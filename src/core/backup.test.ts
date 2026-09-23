@@ -138,6 +138,28 @@ describe('compatible Assistant workspace backups', () => {
     expect(() => readBackup(JSON.stringify(invalid))).toThrow()
   })
 
+  it('round-trips mixed Edge and browser voice selections without changing their provider identity', async () => {
+    const speechVoices = {
+      'zh-Hans': { provider: 'edge', voice: 'zh-TW-HsiaoChenNeural' },
+      'en-US': { voiceURI: 'local-en', name: 'English', lang: 'en-US', localService: true },
+    } as const
+    await savePreferences({ speechVoices })
+    const text = await exportWorkspaceBackup()
+    expect(readBackup(text).preferences.speechVoices).toEqual(speechVoices)
+    await savePreferences({ speechVoices: { 'zh-Hans': undefined } })
+    await restoreBackup(text)
+    expect((await loadWorkspace()).preferences.speechVoices).toEqual(speechVoices)
+    for (const invalid of [
+      { provider: 'edge', voice: 'en-US-AriaNeural' },
+      { provider: 'edge', voice: 'zh-CN-XiaoxiaoNeural', url: 'https://untrusted.example' },
+      { provider: 'unknown', voice: 'zh-CN-XiaoxiaoNeural' },
+    ]) {
+      const changed = JSON.parse(text)
+      changed.workspace.preferences.speechVoices['zh-Hans'] = invalid
+      expect(() => readBackup(JSON.stringify(changed))).toThrow()
+    }
+  })
+
   it.each([0.5, 0.75, 1, 1.25] as const)('round-trips optional default speech rate %s without changing conversation overrides', async defaultSpeechRate => {
     const { threadId } = await seedAssistant()
     await savePreferences({ defaultSpeechRate })

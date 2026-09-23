@@ -1,9 +1,12 @@
 import type { IncomingMessage } from 'node:http'
 import type { Plugin } from 'vite'
 import {
-  LOCAL_TTS_HEADER, LOCAL_TTS_MAX_BODY_BYTES, LOCAL_TTS_PATH, localTtsRequestSchema,
+  LOCAL_TTS_HEADER, LOCAL_TTS_MAX_BODY_BYTES, LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH,
+  edgeVoiceCatalogSchema, localTtsRequestSchema,
+  type LocalTtsResponse,
 } from '../src/core/local-tts-contracts'
 import { EdgeTtsError, synthesizeEdgeSpeech } from './edge-tts'
+import { listEdgeVoices } from './edge-tts-voices'
 import { isLocalRequest } from './local-request'
 
 class LocalTtsError extends Error {
@@ -57,20 +60,26 @@ function readBody(request: IncomingMessage, signal: AbortSignal): Promise<unknow
 
 export function localTts({
   synthesize = synthesizeEdgeSpeech,
+  listVoices = listEdgeVoices,
   timeoutMs = 45_000,
 }: {
   synthesize?: typeof synthesizeEdgeSpeech
+  listVoices?: typeof listEdgeVoices
   timeoutMs?: number
 } = {}): Plugin {
   const active = new Set<AbortController>()
   return {
     name: 'local-edge-tts',
     apply: 'serve',
+    config(_config, environment) {
+      return { define: { 'import.meta.env.DEV_LOCAL_TTS': JSON.stringify(String(!environment.isPreview)) } }
+    },
     configureServer(server) {
       const base = server.config.base.startsWith('/') ? server.config.base.replace(/\/$/, '') : ''
       server.middlewares.use(async (request, response, next) => {
         const path = request.url?.split('?')[0]
-        if (path !== LOCAL_TTS_PATH && path !== `${base}${LOCAL_TTS_PATH}`) return next()
+        const catalogRequest = path === LOCAL_TTS_VOICES_PATH || path === `${base}${LOCAL_TTS_VOICES_PATH}`
+        if (!catalogRequest && path !== LOCAL_TTS_PATH && path !== `${base}${LOCAL_TTS_PATH}`) return next()
         response.setHeader('Cache-Control', 'no-store')
         response.setHeader('X-Content-Type-Options', 'nosniff')
         const sendError = (status: number, error: string) => {
@@ -83,13 +92,14 @@ export function localTts({
           sendError(403, 'Local TTS is only available to the app on this localhost origin.')
           return
         }
-        if (request.method !== 'POST') {
-          response.setHeader('Allow', 'POST')
-          sendError(405, 'Use POST to synthesize local TTS.')
+        const method = catalogRequest ? 'GET' : 'POST'
+        if (request.method !== method) {
+          response.setHeader('Allow', method)
+          sendError(405, catalogRequest ? 'Use GET to list local TTS voices.' : 'Use POST to synthesize local TTS.')
           return
         }
-        if (!/^application\/json(?:\s*;\s*charset=utf-8)?$/i.test(request.headers['content-type'] ?? '')
-          || (request.headers['content-encoding'] && request.headers['content-encoding'] !== 'identity')) {
+        if (!catalogRequest && (!/^application\/json(?:\s*;\s*charset=utf-8)?$/i.test(request.headers['content-type'] ?? '')
+          || (request.headers['content-encoding'] && request.headers['content-encoding'] !== 'identity'))) {
           sendError(415, 'Local TTS requires uncompressed application/json.')
           return
         }
@@ -107,18 +117,33 @@ export function localTts({
         const cancel = () => controller.abort()
         request.once('aborted', cancel)
         response.once('close', cancel)
-        const timer = setTimeout(() => controller.abort(new LocalTtsError(504, 'Local TTS request timed out.')), timeoutMs)
+        const timer = setTimeout(
+          () => controller.abort(new LocalTtsError(504, 'Local TTS request timed out.')),
+          catalogRequest ? Math.min(timeoutMs, 15_000) : timeoutMs,
+        )
         try {
-          const parsed = localTtsRequestSchema.safeParse(await readBody(request, controller.signal))
-          if (!parsed.success) {
-            throw new LocalTtsError(400, 'Expected text (1-1000 characters), an en-US or zh-CN Neural voice, and an optional rate of 0.5, 0.75, 1, or 1.25.')
+          let result: LocalTtsResponse | ReturnType<typeof edgeVoiceCatalogSchema.parse>
+          if (catalogRequest) {
+            const catalog = edgeVoiceCatalogSchema.safeParse({ voices: await listVoices(controller.signal) })
+            if (!catalog.success) throw new EdgeTtsError(502, 'catalog')
+            result = catalog.data
+          } else {
+            const parsed = localTtsRequestSchema.safeParse(await readBody(request, controller.signal))
+            if (!parsed.success) {
+              throw new LocalTtsError(400, 'Expected text (1-1000 characters), a supported English or Mandarin Neural voice, and an optional rate of 0.5, 0.75, 0.85, 1, or 1.25.')
+            }
+            const { audio, wordBoundaries } = await synthesize(parsed.data, controller.signal)
+            result = {
+              audio: { contentType: 'audio/mpeg', base64: audio.toString('base64') },
+              wordBoundaries,
+            }
           }
-          const audio = await synthesize(parsed.data, controller.signal)
           controller.signal.throwIfAborted()
+          const body = JSON.stringify(result)
           response.statusCode = 200
-          response.setHeader('Content-Type', 'audio/mpeg')
-          response.setHeader('Content-Length', audio.length)
-          response.end(audio)
+          response.setHeader('Content-Type', 'application/json; charset=utf-8')
+          response.setHeader('Content-Length', Buffer.byteLength(body))
+          response.end(body)
         } catch (error) {
           if (response.destroyed) return
           const failure = controller.signal.aborted ? controller.signal.reason : error
@@ -126,7 +151,7 @@ export function localTts({
             sendError(failure.status, failure.message)
           } else {
             server.config.logger.error('Local TTS failed unexpectedly.')
-            sendError(500, 'Could not synthesize local TTS.')
+            sendError(500, catalogRequest ? 'Could not load local TTS voices.' : 'Could not synthesize local TTS.')
           }
         } finally {
           clearTimeout(timer)

@@ -1,20 +1,25 @@
-import { speechRateSchema, speechVoicePreferencesSchema, type BrowserVoicePreference, type SpeechLocale, type SpeechRate, type SpeechVoicePreferences } from './contracts'
+import { isEdgeVoice, speechRateSchema, speechVoicePreferencesSchema, type BrowserVoicePreference, type SpeechLocale, type SpeechRate, type SpeechVoicePreference, type SpeechVoicePreferences } from './contracts'
 import { interruptAudio } from './audio-owner'
+import { startEdgeSpeech, type EdgeSpeechPlayback } from './edge-speech'
 
 interface PlaybackState {
   activeId?: string
-  phase?: 'loading-voices' | 'starting' | 'speaking'
-  voiceKind?: 'local' | 'online'
+  phase?: 'loading-voices' | 'loading-audio' | 'starting' | 'speaking'
+  voiceKind?: 'local' | 'online' | 'edge'
   error?: string
 }
 interface PlaybackRequest {
   id: string
   locale: SpeechLocale
-  synthesis: SpeechSynthesis
+  synthesis?: SpeechSynthesis
+  edge?: EdgeSpeechPlayback
   utterance?: SpeechSynthesisUtterance
   clearDiscovery?: () => void
   playbackTimer?: ReturnType<typeof setTimeout>
   finish?: (outcome: PlaybackOutcome) => void
+}
+interface BrowserPlaybackRequest extends PlaybackRequest {
+  synthesis: SpeechSynthesis
 }
 export type PlaybackOutcome = { status: 'completed' | 'cancelled' } | { status: 'error'; error: string }
 
@@ -44,6 +49,10 @@ export function browserVoiceKey(voice: BrowserVoicePreference) {
   return JSON.stringify([voice.voiceURI, voice.name, voice.lang, voice.localService])
 }
 
+export function speechVoiceKey(voice: SpeechVoicePreference) {
+  return isEdgeVoice(voice) ? `edge:${voice.voice}` : browserVoiceKey(voice)
+}
+
 export function clearVoiceCache() {
   voiceCache = new WeakMap()
 }
@@ -53,7 +62,7 @@ export function setSpeechVoicePreferences(preferences: SpeechVoicePreferences = 
   const changed = speechVoicePreferencesSchema.keyof().options.some(locale => {
     const previousVoice = voicePreferences[locale]
     const nextVoice = next[locale]
-    return (previousVoice && browserVoiceKey(previousVoice)) !== (nextVoice && browserVoiceKey(nextVoice))
+    return (previousVoice && speechVoiceKey(previousVoice)) !== (nextVoice && speechVoiceKey(nextVoice))
   })
   if (!changed) return
   voicePreferences = next
@@ -92,7 +101,7 @@ function voiceLocale(language: string) {
   }
 }
 
-function languageMatches(language: string, locale: SpeechLocale) {
+export function languageMatches(language: string, locale: SpeechLocale) {
   const parsed = voiceLocale(language)
   if (!parsed) return false
   if (locale === 'en-US') return parsed.tag.language === 'en'
@@ -197,7 +206,8 @@ function cancelCurrent() {
   const request = current
   current = undefined
   if (request) clearRequest(request)
-  const error = cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined))
+  const error = request?.edge ? request.edge.cancel()
+    : cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined))
   request?.finish?.(error ? { status: 'error', error } : { status: 'cancelled' })
   return error
 }
@@ -212,11 +222,11 @@ export function stopBrowserSpeech(): string | undefined {
 
 function fail(request: PlaybackRequest, error: string) {
   if (current !== request) return
-  voiceCache.get(request.synthesis)?.delete(request.locale)
+  if (request.synthesis) voiceCache.get(request.synthesis)?.delete(request.locale)
   const version = generation
   current = undefined
   clearRequest(request)
-  const cancelError = cancelSynthesis(request.synthesis)
+  const cancelError = request.edge ? request.edge.cancel() : cancelSynthesis(request.synthesis)
   const detail = cancelError ? `${error} ${cancelError}` : error
   if (version === generation) publish({ error: detail })
   request.finish?.({ status: 'error', error: detail })
@@ -230,7 +240,7 @@ function missingVoiceMessage(voices: SpeechSynthesisVoice[], locale: SpeechLocal
   return `The browser has not exposed a matching ${language} voice, either local or online. Try Hear again, or check your browser speech settings.`
 }
 
-function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, text: string, locale: SpeechLocale, rate: number) {
+function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVoice, text: string, locale: SpeechLocale, rate: number) {
   if (current !== request) return
   request.clearDiscovery?.()
   let utterance: SpeechSynthesisUtterance
@@ -325,12 +335,33 @@ function beginBrowserSpeech(
     rejectPlayback('Choose a non-empty passage of at most 8,000 characters to hear.')
     return
   }
+  const selected = voicePreferences[locale]
+  if (isEdgeVoice(selected)) {
+    const request: PlaybackRequest = { id, locale, finish }
+    current = request
+    request.edge = startEdgeSpeech(text, selected, locale, rate, phase => {
+      if (current === request) publish({ activeId: id, phase, voiceKind: 'edge' })
+    })
+    void request.edge.done.then(outcome => {
+      if (current !== request) return
+      if (outcome.status === 'error') {
+        fail(request, outcome.error)
+      } else {
+        current = undefined
+        clearRequest(request)
+        publish({})
+        request.finish?.(outcome)
+      }
+    })
+    publish({ activeId: id, phase: 'loading-audio', voiceKind: 'edge' })
+    return
+  }
   const synthesis = typeof window !== 'undefined' ? window.speechSynthesis : undefined
   if (!synthesis || typeof SpeechSynthesisUtterance === 'undefined') {
     rejectPlayback('Speech playback is not available in this browser.')
     return
   }
-  const request: PlaybackRequest = { id, locale, synthesis, finish }
+  const request: BrowserPlaybackRequest = { id, locale, synthesis, finish }
   current = request
   const deadline = performance.now() + voiceWaitMs
   let expired = false
@@ -345,7 +376,6 @@ function beginBrowserSpeech(
     }
     if (current !== request) return
     const finishedWaiting = expired || performance.now() >= deadline
-    const selected = voicePreferences[locale]
     const cachedKey = voiceCache.get(synthesis)?.get(locale)
     const cached = voices.find(voice => browserVoiceMatches(voice, locale) && browserVoiceKey(voice) === cachedKey)
     if (!cached) voiceCache.get(synthesis)?.delete(locale)

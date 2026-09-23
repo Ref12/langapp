@@ -3,7 +3,89 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
-## Local Edge TTS adapter (2026-09-22, in progress)
+## Edge/browser voice selection and previews (2026-09-22, complete)
+
+The user requested both Edge TTS and ordinary browser voices, saved per-language
+selection, and an explicit Test voice control. Highlighting is out of scope.
+The frontend is implemented: Settings groups the two sources, keeps unavailable
+or still-loading saved selections visible, and provides separate Mandarin and
+English preview buttons. Choosing a voice never plays it. Browser preferences
+retain their original metadata; Edge preferences are `{ provider: "edge", voice }`.
+Old settings and backups remain valid, and mixed-provider selections round-trip.
+
+`src/core/assistant/edge-speech.ts` handles the local catalog client and buffered
+base64 MP3 playback. Shared `speech.ts` routes every existing Hear, Practice,
+guided-lesson, and spoken-reply call through the saved provider. English always
+uses normal synthesis speed and media playback rate 1. Longer passages split
+into <=1000-character clips without cutting surrogate pairs and play sequentially.
+Completion means the actual final audio-ended event, not fetch/play resolution.
+Stop, settings changes, navigation, competing audio, and visibility cancellation
+abort requests, discard queued clips, and release audio/object URLs. Errors are
+visible; neither provider silently substitutes for the other. Word metadata is
+validated but not displayed or persisted. Static hosting retains browser speech;
+Edge requires the loopback development-server capability flag.
+
+Agent `1b58fcf0-1fe5-40dd-9582-13a85eef3913` completed server/catalog integration
+and its results have been retrieved and reviewed. `scripts/edge-tts-voices.ts`
+loads the actual fixed-upstream catalog with a 2 MiB limit and 15-second deadline.
+Supported IDs and provider locales must agree, and duplicate IDs or malformed
+catalogs fail instead of supplying partial/fabricated choices.
+`GET /__local/tts/voices` shares the guarded localhost request boundary and
+four-operation concurrency limit with synthesis. Regional IDs, Mandarin 0.85,
+and normal-speed English are supported. `DEV_LOCAL_TTS` is enabled by the root
+development plugin only; preview disables it, production has no route, and
+standalone v1 is unchanged. The new server test is included in `tsconfig.node.json`.
+
+Final combined validation: 688 tests passed across 14 files (271 server,
+368 frontend/audio, and 49 backup tests). The new Practice integration uses the
+actual Edge player with mocked media and proves capture/cue wait for reference
+audio to end. The inline mode-switch regression now waits for the Conversation
+UI and capture handle before changing settings, avoiding a race that clicked the
+still-rendered Shadow control. App/server TypeScript, scoped ESLint, and
+whitespace checks passed. One unrelated backup baseline
+assertion was excluded: `reads all exportable tables` in HEAD still expects nine
+tables, while HEAD's exporter includes the four new study tables. Neither the
+exporter nor that assertion was changed. The older local-settings template
+mismatch below also remains untouched. All automated speech/network tests use
+mocks. A metadata-only request through the running localhost server returned
+HTTP 200 and 58 real voices (47 English, 11 Mandarin); the served browser module
+has the Edge capability enabled. No speech text, microphone audio, private
+settings, or Azure key was sent for this catalog read. No further live synthesis
+or real playback was performed. No implementation remains pending. The user
+requested committing this refinement on 2026-09-22; no push is authorized.
+
+## Edge TTS word timings (2026-09-22, complete)
+
+The user requested word text, start time, and duration alongside the audio and
+explicitly chose JSON with base64 MP3 instead of multipart. Success from
+`POST /__local/tts` is now `application/json; charset=utf-8` with
+`{ audio: { contentType: "audio/mpeg", base64 }, wordBoundaries }`.
+Each boundary has `{ text, startTime, duration }`; times are seconds from the
+beginning of the synthesized clip, converted directly from Edge's 100 ns ticks.
+Do not rescale by the requested speaking rate or collapse silence/gaps.
+
+`scripts/edge-tts.ts` requests word metadata and collects every WordBoundary
+from every metadata frame, including events after the last audio chunk.
+It preserves repeated words and provider segmentation, XML-unescapes text once,
+ignores sentence/session markers, and rejects malformed or descending timings.
+The 2 MiB audio limit remains; word metadata is bounded by 1000 words and
+512 KiB of text frames. No missing timings are fabricated (absence is `[]`).
+Completion still requires audio and `turn.end`; errors/aborts discard both
+partial audio and metadata. `EdgeTtsResult` returns Buffer plus boundaries;
+the HTTP layer owns base64 encoding. Shared response types are in
+`src/core/local-tts-contracts.ts`.
+
+Validation: 177 tests passed across transport (119), endpoint (57), and
+dev-server integration (1), with server-side TypeScript and scoped ESLint.
+Coverage includes batched/interleaved metadata, Chinese text, XML entities,
+zero/submillisecond timings, invalid values/count limits, per-request isolation,
+English-rate preservation, byte-exact base64 round trips, and UTF-8 JSON lengths.
+No further live provider request was made for this refinement; the earlier
+single approved synthesis below tested the prior audio-only response.
+Existing browser playback/highlighting UI remains unchanged. No new dependency,
+private-settings edit, commit, or push was needed.
+
+## Local Edge TTS adapter (2026-09-22, complete)
 
 The user chose the local Vite server instead of deploying a Cloudflare Worker
 for the initial text-to-MP3 adapter. Scope is the server endpoint only: no
@@ -19,9 +101,33 @@ Short MP3 clips are buffered before a successful response, not progressively
 played or persisted. Production/static hosting and standalone v1 are unchanged.
 README documents the endpoint and the explicit text disclosure to Microsoft.
 
-Implementation/validation is in progress; do not infer completion from this
-section. Preserve all unrelated in-flight study/annotation changes and private
-settings. No commit or push has been requested.
+The adapter buffers up to 2 MiB, with a 10-second handshake and 30-second
+synthesis deadline inside the endpoint's 45-second request budget. It does not
+retry upstream failures or silently select a different voice. Protocol metadata
+is pinned to the observed client version; this unofficial endpoint can change.
+
+Validation: 182 tests passed across `scripts/edge-tts.test.ts`,
+`scripts/local-tts.test.ts`, `scripts/dev-server.test.ts`, and the applicable
+`scripts/local-settings.test.ts` cases. The existing template assertion was
+excluded after confirming the mismatch in HEAD: the template sets
+`defaultSpeechRate: 0.5`, while that test expects `0.75`. It was not changed.
+The dev-server test still emits the existing occupied HMR-port warning but
+passes. Server-side TypeScript and scoped ESLint passed.
+
+The user explicitly approved one synthetic live synthesis. The running server
+at `http://localhost:5173/` returned HTTP 200, 13,824 MP3 bytes, 96 complete
+MPEG frames, 24 kHz, and 2.304 seconds for that request. No audio was played or
+saved, and no conversation, microphone, private settings, or Azure key was used.
+All automated tests remain offline/mocked. Vite was reloaded to pick up the
+completed adapter; malformed requests return 400 without contacting Microsoft.
+
+Agent `d76059cf-7187-4267-8a8f-234abaa5114b` completed the protocol and its
+83 mocked tests. Parent completed the middleware, shared guard, and integration.
+HEAD advanced externally to `96ce2cca` during this work and includes the earlier
+endpoint scaffold. The final transport and follow-up changes are not committed
+by this session. No commit or push was requested here. Preserve other sessions'
+work and private settings. Connecting app playback is a separate future step,
+not unfinished work within this server-only request.
 
 ## Local-main merge integration
 

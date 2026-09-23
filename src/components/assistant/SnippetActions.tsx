@@ -8,15 +8,16 @@ import { navigate } from '../../core/routing'
 import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
 import { interruptAudio } from '../../core/assistant/audio-owner'
 
-export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false }: { text: string; locale: SpeechLocale; rate?: number; label?: string; iconOnly?: boolean }) {
+export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false, buttonText = 'Hear', disabled = false }: { text: string; locale: SpeechLocale; rate?: number; label?: string; iconOnly?: boolean; buttonText?: string; disabled?: boolean }) {
   const id = useId()
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const active = playback.activeId === id
   const stopLabel = playback.phase === 'loading-voices' ? 'Cancel voice discovery' : 'Stop playback'
   useEffect(() => () => { if (getPlaybackState().activeId === id) stopBrowserSpeech() }, [id])
   return <button className={`button secondary snippet-button${iconOnly ? ' icon-only' : ''}`} type="button" title={active ? stopLabel : 'Hear with your selected voice; Automatic prefers local voices before online voices'}
+    disabled={disabled && !active}
     aria-label={active ? stopLabel : label} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, text, locale, rate)}>
-    {active ? <Square size={15} /> : <Volume2 size={15} />}{!iconOnly && (active ? 'Stop' : 'Hear')}
+    {active ? <Square size={15} /> : <Volume2 size={15} />}{!iconOnly && (active ? 'Stop' : buttonText)}
   </button>
 }
 
@@ -74,7 +75,9 @@ export function PlaybackStatus() {
   }, [stop])
   if (!playback.activeId && !playback.error && !error) return null
   return <div className="playback-status" data-assistant-exclude role={playback.error || error ? 'alert' : 'status'}>
-    <span>{error || playback.error || (playback.phase === 'loading-voices' ? 'Looking for a voice...'
+    <span>{error || playback.error || (playback.phase === 'loading-audio' ? 'Preparing Edge speech...'
+      : playback.phase === 'loading-voices' ? 'Looking for a voice...'
+      : playback.voiceKind === 'edge' ? playback.phase === 'starting' ? 'Starting Edge speech...' : 'Playing with Edge TTS (online)'
       : playback.phase === 'starting' ? `Starting ${playback.voiceKind === 'online' ? 'online' : 'local'} speech...`
         : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>
     <button className="icon-button" type="button" aria-label={error ? 'Retry stopping audio' : playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stop}>

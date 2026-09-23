@@ -20,12 +20,23 @@ export const browserVoicePreferenceSchema = z.object({
   lang: z.string().min(1).max(100),
   localService: z.boolean(),
 }).strict()
+export const edgeVoiceIdSchema = z.string().regex(/^(?:en-[A-Z]{2}|zh-(?:CN|SG|TW))(?:-[a-z]+)?-[A-Za-z][A-Za-z0-9]{0,63}Neural$/)
+export const edgeVoicePreferenceSchema = z.object({
+  provider: z.literal('edge'),
+  voice: edgeVoiceIdSchema,
+}).strict()
 export const speechVoicePreferencesSchema = z.object({
-  'zh-Hans': browserVoicePreferenceSchema.optional(),
-  'en-US': browserVoicePreferenceSchema.optional(),
+  'zh-Hans': z.union([browserVoicePreferenceSchema, edgeVoicePreferenceSchema.refine(value => value.voice.startsWith('zh-'))]).optional(),
+  'en-US': z.union([browserVoicePreferenceSchema, edgeVoicePreferenceSchema.refine(value => value.voice.startsWith('en-'))]).optional(),
 }).strict()
 export type BrowserVoicePreference = z.infer<typeof browserVoicePreferenceSchema>
+export type EdgeVoicePreference = z.infer<typeof edgeVoicePreferenceSchema>
+export type SpeechVoicePreference = BrowserVoicePreference | EdgeVoicePreference
 export type SpeechVoicePreferences = z.infer<typeof speechVoicePreferencesSchema>
+
+export function isEdgeVoice(preference: SpeechVoicePreference | undefined): preference is EdgeVoicePreference {
+  return Boolean(preference && 'provider' in preference && preference.provider === 'edge')
+}
 
 export const assistantSourceSchema = z.object({
   text: z.string().min(1).max(MAX_DRAFT_LENGTH).refine(value => value.trim().length > 0, 'Source text must not be blank.'),

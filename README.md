@@ -271,10 +271,17 @@ and controls. During recognition practice, help is available only after checking
 or revealing the answer, so it cannot bypass the existing assistance policy.
 
 **Hear** uses the Mandarin and English selections in **Settings -> Hear voices**.
-Selections save automatically, survive reload, and apply to every Hear button.
+Each language offers grouped **Browser voices** and **Edge TTS (online)** choices.
+Edge choices come from Microsoft's current voice catalog through the local
+development server; they are not limited to voices exposed by your browser.
+Selections save automatically, survive reload and backups, and apply to Hear,
+Practice reference phrases, guided lessons, and spoken Assistant replies.
+Use the language's **Test voice** button to hear a short sample with the selected
+voice; it becomes **Stop** during playback. Selecting a voice does not play it.
 The default **Automatic (local first)** prefers a matching installed local voice.
 After a brief discovery window, it uses a matching online browser voice if no
-local voice is available. The discovered voice is cached for the page session,
+local voice is available; it never automatically selects Edge TTS.
+The discovered browser voice is cached for the page session,
 so later Hear clicks reuse it without another discovery wait. Cached voices are
 checked against the current browser list before reuse. Changed selections,
 playback failures, and **Refresh voice list** invalidate cached choices.
@@ -282,9 +289,12 @@ An explicitly selected available voice plays without the discovery wait.
 A missing saved voice remains selected and is labeled unavailable: choose another
 voice or Automatic, or enable the saved voice and refresh. It never silently
 switches from a selected local voice to an online voice.
-Online playback sends the chosen text to the browser's speech service; the
-settings and playback status identify online voices. Viewing or changing voice
-settings never starts playback or sends an AI request. Hear never requests
+Online browser playback sends the chosen text to the browser's speech service.
+Edge playback sends it to Microsoft through the local server; MP3 clips play
+sequentially, and longer passages are divided into bounded requests.
+Settings and playback status identify the provider. Viewing Settings can fetch
+Edge voice metadata, but sends no text. Changing selections never starts playback
+or sends an AI request. Hear and Test voice never request
 microphone access or falls back to a wrong-language voice. Missing voices and
 playback failures are reported visibly. Discovery handles delayed and partial
 lists. Mandarin locale aliases and Taiwanese Mandarin are supported, with
@@ -400,18 +410,58 @@ For example, a same-origin caller can send:
 ```
 
 `text` must contain 1-1000 characters after trimming. `voice` is a required
-`en-US` or `zh-CN` short Neural voice name, such as `en-US-AriaNeural` or
-`zh-CN-XiaoxiaoNeural`. Unknown upstream voices fail rather than falling back.
-`rate` defaults to `1`; accepted values are `0.5`, `0.75`, `1`, and `1.25`.
+short Neural voice name from the supported English or Mandarin catalog, such
+as `en-US-AriaNeural`, `en-GB-SoniaNeural`, or `zh-CN-XiaoxiaoNeural`.
+English regions, mainland/Singapore/Taiwan Mandarin, and supported regional
+Mandarin IDs are accepted. Unknown upstream voices fail rather than falling back.
+`rate` defaults to `1`; accepted values are `0.5`, `0.75`, `0.85`, `1`, and `1.25`.
+The internal `0.85` rate preserves guided-lesson playback; user speed choices
+remain unchanged.
 English is always synthesized at normal speed, regardless of the requested
 rate. Mandarin uses the requested rate.
 
+`GET /__local/tts/voices` uses the same localhost, same-origin, and intent-header
+requirements. It returns `{ voices: [{ id, name, locale, gender }] }`, filtered
+from the real upstream catalog to supported English and Mandarin voices.
+Loading this list sends no speech text and does not synthesize or play audio.
+Catalog loading has a 15-second deadline and a 2 MiB upstream response limit;
+malformed catalogs, conflicting IDs, or mismatched locales fail visibly.
+
 The server connects to Microsoft's unofficial Edge Read Aloud WebSocket
 service using a Node/TypeScript adapter; Python and Azure credentials are not
-required. A successful response is a completed `audio/mpeg` body. This first
-version buffers short clips in memory (maximum 2 MiB) before returning HTTP 200,
-so a failed or interrupted synthesis cannot masquerade as a complete clip.
-Errors return JSON with an `error` field and a non-success status.
+required. A successful response is now `application/json`, not a raw MP3 body.
+It contains base64 MP3 audio and the provider's word timings, for example
+(audio and timings below are illustrative):
+
+```json
+{
+  "audio": {
+    "contentType": "audio/mpeg",
+    "base64": "<base64-encoded MP3>"
+  },
+  "wordBoundaries": [
+    { "text": "Hello", "startTime": 0.1, "duration": 0.3 }
+  ]
+}
+```
+
+Each boundary's `startTime` and `duration` are **seconds**, converted from Edge's
+100-nanosecond ticks. Start times are relative to the beginning of this clip,
+including leading silence and gaps, and can be compared with an audio element's
+`currentTime`. They already reflect the synthesized rate; do not scale them
+again by the requested Mandarin speed. Word text is XML-unescaped once, and
+segmentation is supplied by Microsoft rather than inferred from spaces or
+Chinese characters. Repeated words remain separate entries.
+
+The server collects every word in each metadata batch, including batches that
+arrive after the last audio chunk, and waits for `turn.end` before returning
+HTTP 200. Clips are buffered in memory (maximum 2 MiB of decoded MP3), with at
+most 1000 word boundaries and 512 KiB of upstream text metadata. Missing
+boundaries produce an explicit empty array, not estimated timings; malformed,
+unsafe, or out-of-order word metadata fails the request rather than returning
+partial highlighting. Sentence/session markers are not returned as words.
+Errors return JSON with an `error` field and a non-success status. Failed or
+interrupted synthesis never returns a success-shaped partial clip.
 
 The endpoint accepts only loopback peers and localhost Host headers, checks
 same-origin request metadata, and requires the explicit header above. It is not
@@ -421,13 +471,17 @@ Requests are limited to 16 KiB and four concurrent operations, with a maximum
 upstream work. No text/audio is logged, cached, or written to disk; responses
 use `Cache-Control: no-store`.
 
-**This is a server endpoint only.** Hear, Practice, lessons, and spoken Assistant
-replies still use the existing browser voices; nothing is uploaded by merely
-starting the dev server. Calling the endpoint sends the supplied text to
-Microsoft. The service is unofficial and may reject requests or change without
-notice. This endpoint is absent from standalone v1, production preview, and the
-static GitHub Pages deployment. A future playback-provider integration or hosted
-adapter must remain explicit rather than silently replacing local speech.
+The UI uses these endpoints only for explicitly selected Edge voices.
+**Word-highlighting UI is not connected.** Word boundaries remain in each
+synthesis response but are not displayed or persisted. Nothing is uploaded by
+merely starting the dev server. Stop, navigation, or a competing audio flow
+cancels pending requests and queued clips; Practice waits for actual playback
+completion before the recording cue and capture.
+The service is unofficial and may reject requests or change without notice.
+These endpoints are absent from standalone v1, production preview, and static
+GitHub Pages. On those sites browser voices still work; a saved Edge selection
+remains visibly unavailable until you choose another voice, rather than silently
+switching providers. No hosted proxy or automatic cloud fallback is configured.
 
 ### Local app settings
 

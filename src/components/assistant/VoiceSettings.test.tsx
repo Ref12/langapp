@@ -9,6 +9,8 @@ import { clearUnsavedDrafts } from '../../core/assistant/drafts'
 import type { BrowserVoicePreference } from '../../core/assistant/contracts'
 import * as speech from '../../core/assistant/speech'
 import { VoiceSettings } from './VoiceSettings'
+import { MockAudio, mockAudio } from '../../test/mock-audio'
+import { LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../../core/local-tts-contracts'
 
 class Utterance {
   constructor(public text: string) {}
@@ -24,6 +26,12 @@ const mandarin: SpeechSynthesisVoice = { name: 'Mandarin local', lang: 'zh-CN', 
 const onlineMandarin: SpeechSynthesisVoice = { name: 'Mandarin online', lang: 'cmn-Hans-CN', localService: false, default: false, voiceURI: 'online-zh' }
 const english: SpeechSynthesisVoice = { name: 'English local', lang: 'en-US', localService: true, default: false, voiceURI: 'local-en' }
 const onlineEnglish: SpeechSynthesisVoice = { name: 'English online', lang: 'en-GB', localService: false, default: false, voiceURI: 'online-en' }
+const edgeMandarin = { provider: 'edge', voice: 'zh-CN-XiaoxiaoNeural' } as const
+const edgeEnglish = { provider: 'edge', voice: 'en-GB-SoniaNeural' } as const
+const edgeCatalog = { voices: [
+  { id: edgeMandarin.voice, name: 'Xiaoxiao', locale: 'zh-CN', gender: 'Female' },
+  { id: edgeEnglish.voice, name: 'Sonia', locale: 'en-GB', gender: 'Female' },
+] }
 let voices: SpeechSynthesisVoice[]
 let synthesis: EventTarget & {
   getVoices: ReturnType<typeof vi.fn<() => SpeechSynthesisVoice[]>>
@@ -33,6 +41,18 @@ let synthesis: EventTarget & {
 
 function metadata(voice: SpeechSynthesisVoice): BrowserVoicePreference {
   return { voiceURI: voice.voiceURI, name: voice.name, lang: voice.lang, localService: voice.localService }
+}
+
+function enableEdge() {
+  vi.stubEnv('DEV_LOCAL_TTS', 'true')
+  const fetcher = vi.fn<typeof fetch>().mockImplementation(async (_url, options) => new Response(
+    JSON.stringify(options?.method === 'POST'
+      ? { audio: { contentType: 'audio/mpeg', base64: '//uQRAEC' }, wordBoundaries: [] } : edgeCatalog),
+    { headers: { 'Content-Type': 'application/json' } },
+  ))
+  vi.stubGlobal('fetch', fetcher)
+  mockAudio()
+  return fetcher
 }
 
 async function go(route: string) {
@@ -70,6 +90,137 @@ afterEach(() => {
 })
 
 describe('Hear voice settings', () => {
+  it('groups real Edge and browser choices, saves mixed selections, and plays Edge only on an explicit preview', async () => {
+    const fetcher = enableEdge()
+    const user = userEvent.setup()
+    render(<App />)
+    const zh = await screen.findByLabelText('Mandarin voice')
+    const en = screen.getByLabelText('English voice')
+    await within(zh).findByRole('option', { name: 'Xiaoxiao — Female — Edge TTS' })
+    expect(within(zh).getByRole('group', { name: 'Browser voices' })).toBeInTheDocument()
+    expect(within(zh).getByRole('group', { name: 'Edge TTS (online)' })).toBeInTheDocument()
+    expect(within(en).getByRole('option', { name: 'Sonia — Female — Edge TTS' })).toBeInTheDocument()
+    expect(within(en).queryByRole('option', { name: /Xiaoxiao/ })).not.toBeInTheDocument()
+    expect(within(zh).queryByRole('option', { name: /Sonia/ })).not.toBeInTheDocument()
+    await user.selectOptions(zh, speech.speechVoiceKey(edgeMandarin))
+    await waitFor(() => expect(zh).toHaveValue(speech.speechVoiceKey(edgeMandarin)))
+    await waitFor(() => expect(en).toBeEnabled())
+    await user.selectOptions(en, speech.browserVoiceKey(onlineEnglish))
+    await waitFor(async () => expect((await db.preferences.get('workspace'))?.speechVoices).toEqual({
+      'zh-Hans': edgeMandarin, 'en-US': metadata(onlineEnglish),
+    }))
+    expect(fetcher).toHaveBeenCalledTimes(1)
+    expect(fetcher.mock.calls[0][0]).toBe(LOCAL_TTS_VOICES_PATH)
+    expect(MockAudio.instances).toHaveLength(0)
+    expect(synthesis.speak).not.toHaveBeenCalled()
+
+    await user.click(screen.getByRole('button', { name: 'Test Mandarin voice' }))
+    await waitFor(() => expect(MockAudio.instances).toHaveLength(1))
+    expect(fetcher.mock.calls[1][0]).toBe(LOCAL_TTS_PATH)
+    expect(JSON.parse(String(fetcher.mock.calls[1][1]?.body))).toMatchObject({
+      text: '你好！这是你选择的中文声音。', voice: edgeMandarin.voice,
+    })
+    expect(MockAudio.instances[0].play).toHaveBeenCalledOnce()
+    act(() => MockAudio.instances[0].onplaying?.())
+    expect(await screen.findByText('Playing with Edge TTS (online)')).toBeInTheDocument()
+    act(() => MockAudio.instances[0].onended?.())
+    await screen.findByRole('button', { name: 'Test Mandarin voice' })
+    cleanup()
+    render(<App />)
+    expect(await screen.findByLabelText('Mandarin voice')).toHaveValue(speech.speechVoiceKey(edgeMandarin))
+    expect(screen.getByLabelText('English voice')).toHaveValue(speech.browserVoiceKey(onlineEnglish))
+    await within(screen.getByLabelText('Mandarin voice')).findByRole('option', { name: 'Xiaoxiao — Female — Edge TTS' })
+    expect(fetcher.mock.calls.filter(call => call[1]?.method === 'POST')).toHaveLength(1)
+  })
+
+  it('previews browser voices without a cloud request and supports stopping the sample', async () => {
+    render(<App />)
+    await screen.findByLabelText('English voice')
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', { name: 'Test English voice' }))
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({
+      text: 'Hello! This is your English voice.', voice: english, rate: 1,
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Stop playback' }))
+    expect(speech.getPlaybackState()).toEqual({})
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('uses a persisted Edge selection from an actual Assistant Hear button', async () => {
+    const fetcher = enableEdge()
+    await savePreferences({ speechVoices: { 'zh-Hans': edgeMandarin } })
+    const threadId = await createConversation()
+    await db.assistantMessages.add({
+      id: 'edge-reply', threadId, role: 'assistant', sequence: 0, mode: 'conversation', intent: 'message',
+      text: '', blocks: [{ type: 'speech', text: '\u8336', locale: 'zh-Hans' }], status: 'completed', createdAt: Date.now(),
+    })
+    window.location.hash = `conversation/${threadId}`
+    render(<App />)
+    const reply = await screen.findByRole('article', { name: 'Assistant reply' })
+    fireEvent.click(within(reply).getByRole('button', { name: 'Hear' }))
+    await waitFor(() => expect(MockAudio.instances).toHaveLength(1))
+    expect(fetcher).toHaveBeenCalledOnce()
+    expect(fetcher.mock.calls[0][0]).toBe(LOCAL_TTS_PATH)
+    expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body))).toMatchObject({ text: '\u8336', voice: edgeMandarin.voice })
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    await go('settings')
+    expect(MockAudio.instances[0].pause).toHaveBeenCalled()
+  })
+
+  it('keeps browser choices usable when Edge catalog loading fails', async () => {
+    const fetcher = enableEdge()
+    fetcher.mockResolvedValueOnce(new Response('Unavailable', { status: 502 }))
+    render(<App />)
+    expect(await screen.findByRole('alert')).toHaveTextContent('Local Edge TTS failed')
+    expect(await screen.findByRole('option', { name: 'English local — en-US — Local' })).toBeEnabled()
+    fireEvent.click(screen.getByRole('button', { name: 'Test English voice' }))
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(fetcher).toHaveBeenCalledOnce()
+  })
+
+  it('retains unavailable Edge choices without falling back on static hosting', async () => {
+    await savePreferences({ speechVoices: { 'en-US': edgeEnglish } })
+    render(<App />)
+    const select = await screen.findByLabelText('English voice')
+    expect(select).toHaveValue(speech.speechVoiceKey(edgeEnglish))
+    expect(within(select).getByRole('option', { name: /en-GB-SoniaNeural.*Unavailable/ })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Test English voice' })).toBeDisabled()
+    expect(screen.getByText(/Edge TTS is available only/)).toBeInTheDocument()
+    expect(fetch).not.toHaveBeenCalled()
+    expect(synthesis.speak).not.toHaveBeenCalled()
+  })
+
+  it('aborts catalog requests on refresh and when leaving Settings', async () => {
+    const fetcher = enableEdge()
+    fetcher.mockImplementation((_url, options) => new Promise((_resolve, reject) => {
+      options?.signal?.addEventListener('abort', () => reject(options.signal?.reason), { once: true })
+    }))
+    const view = render(<VoiceSettings workspace={await loadWorkspace()} busy={false} run={vi.fn()} />)
+    await waitFor(() => expect(fetcher).toHaveBeenCalledOnce())
+    fireEvent.click(screen.getByRole('button', { name: 'Refresh voice list' }))
+    await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(2))
+    expect(fetcher.mock.calls[0][1]?.signal?.aborted).toBe(true)
+    view.unmount()
+    expect(fetcher.mock.calls[1][1]?.signal?.aborted).toBe(true)
+    expect(MockAudio.instances).toHaveLength(0)
+  })
+
+  it('keeps a saved Edge selection visible while its catalog is loading', async () => {
+    const fetcher = enableEdge()
+    fetcher.mockImplementation((_url, options) => new Promise((_resolve, reject) => {
+      options?.signal?.addEventListener('abort', () => reject(options.signal?.reason), { once: true })
+    }))
+    await savePreferences({ speechVoices: { 'zh-Hans': edgeMandarin } })
+    render(<VoiceSettings workspace={await loadWorkspace()} busy={false} run={vi.fn()} />)
+    const select = screen.getByLabelText('Mandarin voice')
+    expect(select).toHaveValue(speech.speechVoiceKey(edgeMandarin))
+    expect(within(select).getByRole('option', { name: /XiaoxiaoNeural.*Loading/ })).toHaveProperty('selected', true)
+    expect(screen.getByRole('button', { name: 'Test Mandarin voice' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Test English voice' })).toBeEnabled()
+    expect(MockAudio.instances).toHaveLength(0)
+  })
+
   it('lists matching Local and Online voices without treating Cantonese as Mandarin or sending requests', async () => {
     voices.push(
       { ...mandarin, voiceURI: 'taiwan', name: 'Taiwan Mandarin', lang: 'zh-TW' },
@@ -267,8 +418,8 @@ describe('Hear voice settings', () => {
     vi.useFakeTimers()
     render(<VoiceSettings workspace={workspace} busy={false} run={vi.fn()} />)
     act(() => vi.advanceTimersByTime(3000))
-    expect(screen.getByText(/No matching Mandarin voices are available/)).toBeInTheDocument()
-    expect(screen.getByText(/No matching English voices are available/)).toBeInTheDocument()
+    expect(screen.getByText(/No matching Mandarin browser voices are available/)).toBeInTheDocument()
+    expect(screen.getByText(/No matching English browser voices are available/)).toBeInTheDocument()
     expect(vi.getTimerCount()).toBe(0)
     expect(synthesis.speak).not.toHaveBeenCalled()
     expect(fetch).not.toHaveBeenCalled()

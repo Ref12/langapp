@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented, committed and exercised in the dev server; full `npm test` not yet run (see handoff). AI-generated exercises over the v2 curriculum with a knowledge set and FSRS reading cards. |
-| [Assistant and browser voices](assistant-handoff.md) | Complete, included in the accompanying commit: opt-in conversational dictation and spoken replies, shared audio cancellation, and compact icon-only Send. English stays at normal speed independently of the Mandarin speed setting. 649 targeted tests covered, root build passed, both agents finished and reviewed. Previous phrase-first practice/cue is committed as d7967d9; inline practice and configurable speech feedback/speed as 1272492. |
+| [Assistant and browser voices](assistant-handoff.md) | Complete: grouped Edge/browser choices, per-language Test voice controls, persistence, and shared Hear/Practice/lesson/reply playback. The guarded local catalog returned 58 real voices; no new live synthesis or playback. 688 targeted tests passed, with the unrelated backup-table assertion excluded. Edge audio retains JSON/base64 and word timings without highlighting. Static hosting uses browser voices only. Existing baseline mismatches remain documented. The user authorized committing this work; no push was requested. |
 
 ## Maintaining this folder
 

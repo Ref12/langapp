@@ -11,6 +11,7 @@ import { clearUnsavedDrafts } from '../../core/assistant/drafts'
 import { stopBrowserSpeech } from '../../core/assistant/speech'
 import * as playback from '../../core/assistant/speech'
 import * as cues from '../../core/assistant/recording-cue'
+import { MockAudio, mockAudio } from '../../test/mock-audio'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', romanization: 'ni hao', meaning: 'hello' } as const
 const connection: SpeechConnection = { id: 'assistant-speech', provider: 'azure', region: 'eastus', apiKey: 'fake-speech-key',
@@ -80,6 +81,31 @@ async function begin(name = 'Start speaking') {
 }
 
 describe('automatic translation practice', () => {
+  it('waits for selected Edge reference audio to end before starting capture or the cue', async () => {
+    vi.mocked(playback.playBrowserSpeechToEnd).mockRestore()
+    vi.stubEnv('DEV_LOCAL_TTS', 'true')
+    mockAudio()
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
+      audio: { contentType: 'audio/mpeg', base64: '//uQRAEC' }, wordBoundaries: [],
+    }), { headers: { 'Content-Type': 'application/json' } })))
+    await db.preferences.update('workspace', { speechVoices: {
+      'zh-Hans': { provider: 'edge', voice: 'zh-CN-XiaoxiaoNeural' },
+    } })
+    render(<App />)
+    await begin()
+    await waitFor(() => expect(MockAudio.instances).toHaveLength(1))
+    expect(MockAudio.instances[0].play).toHaveBeenCalledOnce()
+    expect(start).not.toHaveBeenCalled()
+    expect(azureStart).not.toHaveBeenCalled()
+    expect(playCue).not.toHaveBeenCalled()
+    act(() => MockAudio.instances[0].onended?.())
+    await waitFor(() => expect(start).toHaveBeenCalledOnce())
+    expect(playCue).not.toHaveBeenCalled()
+    act(() => report({ phase: 'listening', transcript: '' }))
+    await waitFor(() => expect(playCue).toHaveBeenCalledOnce())
+    expect(azureStart).not.toHaveBeenCalled()
+  })
+
   it('previews a Shadow phrase when Practice is clicked, without starting a recording on panel mount', async () => {
     await updateThread(threadId, { practiceInput: 'listen-repeat' })
     await db.assistantMessages.add({ id: 'shadow-reply', threadId, role: 'assistant', sequence: 0, text: '', blocks: [phrase],

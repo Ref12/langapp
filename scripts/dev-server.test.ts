@@ -3,12 +3,12 @@ import { resolve } from 'node:path'
 import { readFile } from 'node:fs/promises'
 import { createServer } from 'vite'
 import { expect, it } from 'vitest'
-import { LOCAL_TTS_HEADER, LOCAL_TTS_PATH } from '../src/core/local-tts-contracts'
+import { LOCAL_TTS_HEADER, LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../src/core/local-tts-contracts'
 
 it('serves the production app, separate mockups, and transformed v1 dependencies from one origin', async () => {
   const server = await createServer({
     configFile: resolve('vite.config.ts'),
-    server: { host: '127.0.0.1', port: 0 },
+    server: { host: '127.0.0.1', port: 0, hmr: false },
     logLevel: 'silent',
   })
   try {
@@ -19,6 +19,14 @@ it('serves the production app, separate mockups, and transformed v1 dependencies
     const root = await fetch(base + '/').then(response => response.text())
     expect(root).toContain('src="/src/main.tsx"')
     expect(root).not.toContain('<iframe')
+    expect(server.config.define?.['import.meta.env.DEV_LOCAL_TTS']).toBe(JSON.stringify('true'))
+    const blockedCatalog = await fetch(base + LOCAL_TTS_VOICES_PATH)
+    expect(blockedCatalog.status).toBe(403)
+    const invalidCatalogMethod = await fetch(base + LOCAL_TTS_VOICES_PATH, {
+      method: 'POST', headers: { [LOCAL_TTS_HEADER]: '1', Origin: base },
+    })
+    expect(invalidCatalogMethod.status).toBe(405)
+    expect(invalidCatalogMethod.headers.get('Allow')).toBe('GET')
     const blockedTts = await fetch(base + LOCAL_TTS_PATH, { method: 'POST' })
     expect(blockedTts.status).toBe(403)
     const invalidTts = await fetch(base + LOCAL_TTS_PATH, {
