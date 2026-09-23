@@ -1,16 +1,19 @@
 import { db } from '../database'
-import { LOOPBACK_HOSTNAMES } from '../assistant/contracts'
+import { LOOPBACK_HOSTNAMES, speechVoicePreferencesSchema } from '../assistant/contracts'
 import { localSettingsSchema, LOCAL_SETTINGS_FILE, LOCAL_SETTINGS_HEADER, LOCAL_SETTINGS_PATH } from '../local-settings-contracts'
 import { saveAIConnection } from '../assistant/store'
 import { saveSpeechConnection } from '../assistant/speech-connection'
-import type { AIConnectionInput, SpeechRate } from '../assistant/contracts'
+import type { AIConnectionInput, SpeechRate, SpeechVoicePreferences } from '../assistant/contracts'
 import type { SpeechConnectionInput } from '../assistant/speech-contracts'
+import { speechVoiceKey } from '../assistant/speech'
+import { savePreferences } from '../learning'
 
 export type LocalAIConnectionResult = 'unavailable' | 'existing' | 'missing' | 'loaded' | 'error'
 export type LocalConnectionsResult = {
   aiConnection: LocalAIConnectionResult
   speechConnection: LocalAIConnectionResult
   defaultSpeechRate: LocalAIConnectionResult
+  speechVoices: LocalAIConnectionResult
 }
 
 function localSettingsAvailable(): boolean {
@@ -80,8 +83,25 @@ async function importDefaultSpeechRate(rate: SpeechRate | undefined, signal: Abo
   })
 }
 
+async function importSpeechVoices(voices: SpeechVoicePreferences | undefined, signal: AbortSignal): Promise<LocalAIConnectionResult> {
+  return db.transaction('rw', db.preferences, async () => {
+    signal.throwIfAborted()
+    const current = await db.preferences.get('workspace')
+    signal.throwIfAborted()
+    const changed = speechVoicePreferencesSchema.keyof().options.some(locale => {
+      const voice = voices?.[locale]
+      const saved = current?.speechVoices?.[locale]
+      return voice !== undefined && (!saved || speechVoiceKey(voice) !== speechVoiceKey(saved))
+    })
+    if (!changed) return Object.values(current?.speechVoices ?? {}).some(Boolean) ? 'existing' : 'missing'
+    await savePreferences({ speechVoices: voices })
+    signal.throwIfAborted()
+    return 'loaded'
+  })
+}
+
 export async function initializeLocalConnections(signal: AbortSignal): Promise<LocalConnectionsResult> {
-  if (!localSettingsAvailable()) return { aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable' }
+  if (!localSettingsAvailable()) return { aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable' }
   signal.throwIfAborted()
   const [ai, speech] = await Promise.all([
     db.aiConnections.get('assistant'), db.speechConnections.get('assistant-speech'),
@@ -96,19 +116,22 @@ export async function initializeLocalConnections(signal: AbortSignal): Promise<L
     return {
       aiConnection: ai ? 'existing' : 'error', speechConnection: speech ? 'existing' : 'error',
       defaultSpeechRate: 'error',
+      speechVoices: 'error',
     }
   }
   // Each import has its own transaction, so one storage failure cannot block the others.
-  const [aiResult, speechResult, rateResult] = await Promise.allSettled([
+  const [aiResult, speechResult, rateResult, voicesResult] = await Promise.allSettled([
     ai ? Promise.resolve<LocalAIConnectionResult>('existing') : importAIConnection(settings?.aiConnection, signal),
     speech ? Promise.resolve<LocalAIConnectionResult>('existing') : importSpeechConnection(settings?.speechConnection, signal),
     importDefaultSpeechRate(settings?.defaultSpeechRate, signal),
+    importSpeechVoices(settings?.speechVoices, signal),
   ])
   signal.throwIfAborted()
   return {
     aiConnection: aiResult.status === 'fulfilled' ? aiResult.value : 'error',
     speechConnection: speechResult.status === 'fulfilled' ? speechResult.value : 'error',
     defaultSpeechRate: rateResult.status === 'fulfilled' ? rateResult.value : 'error',
+    speechVoices: voicesResult.status === 'fulfilled' ? voicesResult.value : 'error',
   }
 }
 

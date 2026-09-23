@@ -11,6 +11,7 @@ import * as speech from '../../core/assistant/speech'
 import { VoiceSettings } from './VoiceSettings'
 import { MockAudio, mockAudio } from '../../test/mock-audio'
 import { LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../../core/local-tts-contracts'
+import { LOCAL_SETTINGS_PATH } from '../../core/local-settings-contracts'
 
 class Utterance {
   constructor(public text: string) {}
@@ -90,6 +91,49 @@ afterEach(() => {
 })
 
 describe('Hear voice settings', () => {
+  it('loads file selections into the actual pickers and uses them only for an explicit preview', async () => {
+    vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
+    const fetcher = enableEdge()
+    const ttsFetch = fetcher.getMockImplementation()!
+    let finishSettings!: (response: Response) => void
+    const settings = new Promise<Response>(resolve => { finishSettings = resolve })
+    fetcher.mockImplementation((input, options) => input === LOCAL_SETTINGS_PATH ? settings : ttsFetch(input, options))
+    render(<App />)
+    await screen.findByText('Loading saved voice selections...')
+    expect(screen.getByLabelText('Mandarin voice')).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Test English voice' })).toBeDisabled()
+    expect(MockAudio.instances).toHaveLength(0)
+    await act(async () => finishSettings(new Response(JSON.stringify({
+      defaultSpeechRate: 0.5, speechVoices: { 'zh-Hans': edgeMandarin, 'en-US': edgeEnglish },
+    }))))
+    await waitFor(() => {
+      expect(screen.getByLabelText('Mandarin voice')).toHaveValue(speech.speechVoiceKey(edgeMandarin))
+      expect(screen.getByLabelText('English voice')).toHaveValue(speech.speechVoiceKey(edgeEnglish))
+      expect(screen.getByRole('button', { name: 'Test English voice' })).toBeEnabled()
+    })
+    expect(fetcher.mock.calls.filter(call => call[1]?.method === 'POST')).toHaveLength(0)
+    fireEvent.click(screen.getByRole('button', { name: 'Test English voice' }))
+    await waitFor(() => expect(MockAudio.instances).toHaveLength(1))
+    const request = fetcher.mock.calls.find(call => call[1]?.method === 'POST')!
+    expect(JSON.parse(String(request[1]?.body))).toMatchObject({ voice: edgeEnglish.voice, rate: 1 })
+    expect(synthesis.speak).not.toHaveBeenCalled()
+  })
+
+  it('reports invalid file preferences without replacing saved voices or disabling manual selection', async () => {
+    vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
+    await savePreferences({ speechVoices: { 'zh-Hans': edgeMandarin } })
+    const fetcher = enableEdge()
+    const ttsFetch = fetcher.getMockImplementation()!
+    fetcher.mockImplementation((input, options) => input === LOCAL_SETTINGS_PATH
+      ? Promise.resolve(new Response('{}', { status: 400 })) : ttsFetch(input, options))
+    render(<App />)
+    expect(await screen.findByText(/Voice selections could not be loaded/)).toHaveAttribute('role', 'alert')
+    expect(screen.getByLabelText('Mandarin voice')).toHaveValue(speech.speechVoiceKey(edgeMandarin))
+    expect(screen.getByLabelText('Mandarin voice')).toBeEnabled()
+    expect((await db.preferences.get('workspace'))?.speechVoices).toEqual({ 'zh-Hans': edgeMandarin })
+    expect(MockAudio.instances).toHaveLength(0)
+  })
+
   it('groups real Edge and browser choices, saves mixed selections, and plays Edge only on an explicit preview', async () => {
     const fetcher = enableEdge()
     const user = userEvent.setup()

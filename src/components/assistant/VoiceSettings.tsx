@@ -5,7 +5,7 @@ import { edgeTtsAvailable, loadEdgeVoices } from '../../core/assistant/edge-spee
 import type { EdgeVoice } from '../../core/local-tts-contracts'
 import { savePreferences } from '../../core/learning'
 import type { PageProps } from '../shared'
-import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
+import { LocalSpeechRateSetupContext, LocalSpeechVoicesSetupContext } from './local-ai-setup-context'
 import { HearButton } from './SnippetActions'
 
 const languages: { locale: SpeechLocale; label: string }[] = [
@@ -21,6 +21,7 @@ function voiceLabel(voice: SpeechVoicePreference) {
 export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspace' | 'busy' | 'run'>) {
   const id = useId()
   const speedSetup = useContext(LocalSpeechRateSetupContext)
+  const voiceSetup = useContext(LocalSpeechVoicesSetupContext)
   const [state, setState] = useState<BrowserVoiceState>({ voices: [], loading: true })
   const edgeAvailable = edgeTtsAvailable()
   const [edge, setEdge] = useState<{ voices: EdgeVoice[]; loading: boolean; error?: string }>({ voices: [], loading: edgeAvailable })
@@ -42,6 +43,8 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
     <h2 id={`${id}-heading`}>Hear voices</h2>
     {speedSetup === 'loading' && <p className="small muted" role="status">Loading default speech speed...</p>}
     {speedSetup === 'error' && <p className="notice error" role="alert">Default speech speed could not be loaded. Check app.settings.jsonc and reload. The previous speed setting was kept.</p>}
+    {voiceSetup === 'loading' && <p className="small muted" role="status">Loading saved voice selections...</p>}
+    {voiceSetup === 'error' && <p className="notice error" role="alert">Voice selections could not be loaded. Check app.settings.jsonc and reload. Your previous selections were kept.</p>}
     <p className="small muted" id={`${id}-help`}>Selections save automatically and apply to Hear, Practice, lessons, and spoken replies. Automatic prefers local browser voices; it never selects Edge TTS.</p>
     <p className="small muted" id={`${id}-privacy`}>Online voices send the spoken text to the browser's speech service. Edge TTS sends it to Microsoft through the local server. Only Test voice or playback sends text; loading the Edge catalog sends no text.</p>
     {languages.map(({ locale, label }) => {
@@ -57,7 +60,7 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
       const unavailable = Boolean(selected && !listed && (!isEdgeVoice(selected) || !edgeAvailable || !edge.loading))
       return <div key={locale}>
         <label htmlFor={`${id}-${locale}`}>{label} voice
-        <select id={`${id}-${locale}`} disabled={busy} value={value}
+        <select id={`${id}-${locale}`} disabled={busy || voiceSetup === 'loading'} value={value}
           aria-describedby={`${id}-help ${id}-privacy${unavailable ? ` ${id}-${locale}-unavailable` : ''}`}
           onChange={event => {
             const key = event.target.value
@@ -81,7 +84,7 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
         </select></label>
         <HearButton text={locale === 'en-US' ? 'Hello! This is your English voice.' : '你好！这是你选择的中文声音。'}
           locale={locale} label={`Test ${label} voice`} buttonText="Test voice"
-          disabled={busy || unavailable || (isEdgeVoice(selected) && edge.loading)} />
+          disabled={busy || voiceSetup === 'loading' || unavailable || (isEdgeVoice(selected) && edge.loading)} />
         {unavailable && <p className="notice" id={`${id}-${locale}-unavailable`} role="status">Your saved {label} voice is not currently available. Hear will not use a different voice. Choose another voice or Automatic, or refresh after enabling the saved voice.</p>}
         {!state.loading && !state.error && voices.length === 0 && !selected && <p className="small muted">No matching {label} browser voices are available. Enable a browser or system voice, then refresh.</p>}
       </div>

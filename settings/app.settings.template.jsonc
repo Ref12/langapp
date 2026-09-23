@@ -12,6 +12,18 @@
   // This non-secret preference is included in workspace backups. Loading never plays audio.
   "defaultSpeechRate": 0.5,
 
+  // Optional per-language voices, reapplied on startup like defaultSpeechRate.
+  // Omitted languages keep their saved choices; omitting this section changes nothing.
+  // Use exact Edge catalog IDs. Loading these preferences never plays or sends text.
+  // Edge playback needs the local dev server; a missing voice never silently switches.
+  // Browser selections are also supported: use voiceURI, name, lang, and localService
+  // from the browser voice's saved preference instead of provider/voice.
+  // Uncomment to pin these voices; UI changes last until the next reload.
+  // "speechVoices": {
+  //   "zh-Hans": { "provider": "edge", "voice": "zh-CN-YunjianNeural" },
+  //   "en-US": { "provider": "edge", "voice": "en-US-ChristopherNeural" }
+  // },
+
   // Optional AI connection. Remove this section to leave AI setup manual.
   "aiConnection": {
     // "responses" uses /responses; "chat-completions" uses /chat/completions.

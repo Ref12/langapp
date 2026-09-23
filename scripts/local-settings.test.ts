@@ -21,6 +21,10 @@ const settings = {
 const speechConnection = {
   provider: 'azure', region: 'eastus', apiKey: 'synthetic-local-speech-test-key', storageAcknowledged: true,
 }
+const speechVoices = {
+  'zh-Hans': { provider: 'edge', voice: 'zh-CN-YunjianNeural' },
+  'en-US': { provider: 'edge', voice: 'en-US-ChristopherNeural' },
+}
 let directory: string
 let server: ViteDevServer | undefined
 
@@ -93,10 +97,24 @@ describe('development-only local app settings', () => {
     expect(speechTemplate).toMatchObject({ speechConnection })
   })
 
+  it('documents optional voice selections without enabling them in the copied template', async () => {
+    const source = await readFile(new URL('../settings/app.settings.template.jsonc', import.meta.url), 'utf8')
+    expect(parse(source)).not.toHaveProperty('speechVoices')
+    const enabled = source.replace(/^ {2}\/\/ ("speechVoices": \{[\s\S]*?^ {2}\/\/ \},)/m,
+      (_match, section: string) => section.replace(/^ {2}\/\/ /gm, ''))
+    const errors: ParseError[] = []
+    const configured = parse(enabled, errors)
+    expect(errors).toEqual([])
+    expect(configured.speechVoices).toEqual(speechVoices)
+    expect(localSettingsSchema.shape.speechVoices.safeParse(configured.speechVoices).success).toBe(true)
+  })
+
   it.each([
     { speechConnection }, { ...settings, speechConnection }, { aiConnection: settings.aiConnection },
     { defaultSpeechRate: 0.5 }, { defaultSpeechRate: 0.75 }, { defaultSpeechRate: 1 }, { defaultSpeechRate: 1.25 },
     { ...settings, speechConnection, defaultSpeechRate: 0.75 },
+    { speechVoices }, { ...settings, speechConnection, defaultSpeechRate: 0.5, speechVoices },
+    { speechVoices: { 'en-US': { voiceURI: 'local-en', name: 'English local', lang: 'en-US', localService: true } } },
   ])('serves each optional connection independently without calling a live provider (case %#)', async configured => {
     await writeFile(configFile(), JSON.stringify(configured))
     const base = await start()
@@ -179,6 +197,10 @@ describe('development-only local app settings', () => {
     JSON.stringify({ speechConnection: { ...speechConnection, region: 'invalid/region' } }),
     JSON.stringify({ speechConnection: { ...speechConnection, storageAcknowledged: false } }),
     JSON.stringify({ speechConnection: { ...speechConnection, apiKey: '' } }),
+    ...[
+      null, [], { 'zh-Hans': speechVoices['en-US'] }, { 'en-US': speechVoices['zh-Hans'] },
+      { 'en-US': { ...speechVoices['en-US'], url: 'https://untrusted.example/' } },
+    ].map(speechVoices => JSON.stringify({ speechVoices })),
     ...[0, 0.6, 2, -1, '0.75', null, true, {}, []].map(defaultSpeechRate => JSON.stringify({ defaultSpeechRate })),
     `${JSON.stringify(settings)} trailing-junk`,
     `${JSON.stringify(settings)} /* unterminated`,

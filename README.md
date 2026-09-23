@@ -514,6 +514,25 @@ An optional top-level `"defaultSpeechRate": 0.75` sets the default Mandarin
 playback speed. Supported values are `0.5`, `0.75`, `1`, and `1.25`. It works
 without either connection section and never changes English playback speed or
 the saved speed of an existing conversation.
+
+An optional top-level `speechVoices` section pins the same per-language
+selections used by **Settings -> Hear voices**, for example:
+
+```json
+{
+  "speechVoices": {
+    "zh-Hans": { "provider": "edge", "voice": "zh-CN-YunjianNeural" },
+    "en-US": { "provider": "edge", "voice": "en-US-ChristopherNeural" }
+  }
+}
+```
+
+Edge IDs must match the language and a supported catalog voice. Browser voices
+use their saved `{ voiceURI, name, lang, localService }` metadata instead of
+`{ provider, voice }`; their availability depends on the current browser/device.
+The commented template includes an example without enabling cloud voices by
+default. Loading selections never synthesizes text or starts audio.
+
 The earlier `.env.local` /
 `ASSISTANT_AI_` shortcut is no longer read.
 
@@ -536,6 +555,14 @@ each startup: edit it and reload to change the default for new conversations.
 The imported default is saved with workspace preferences; omitting the key leaves
 that saved default unchanged. Without any configured default, existing behavior
 remains: Mandarin Hear and new conversations start at normal speed (`1x`).
+Explicit `speechVoices` entries are likewise reapplied at each startup, merging
+only the specified languages. Omitted languages keep their saved choices, and
+omitting the section or using `{}` does not clear them. To stop pinning a voice,
+remove its file entry and choose the desired voice or Automatic in Settings.
+UI changes do not rewrite this file. Voice and speed preferences import
+independently, survive reload/backups, and leave credentials and existing chats
+unchanged. A failed import reports an error in Hear voices and keeps the previous
+selection rather than silently replacing it.
 
 This shortcut is unavailable on LAN addresses, in `npm run preview`, and in
 production. Credentials are not embedded in bundles, cached by the endpoint,

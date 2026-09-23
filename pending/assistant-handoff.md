@@ -3,6 +3,36 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## File-based voice selections (2026-09-22, complete)
+
+The user requested voice preferences in `settings/app.settings.jsonc` and
+explicitly authorized updating that existing ignored file. Only its new
+`speechVoices` section was added: Edge `zh-CN-YunjianNeural` for Mandarin and
+`en-US-ChristopherNeural` for English. Other settings were left intact; no
+credentials were printed or copied into tracked files.
+
+The shared local-settings schema accepts the existing strict browser/Edge
+preference format. Configured languages are reapplied on each startup, like
+`defaultSpeechRate`; omitted languages/sections keep saved choices. Imports
+merge inside independent transactions, preserve concurrent unrelated edits,
+avoid duplicate writes, and roll back on cancellation. Voice storage failures have
+their own Settings status and do not block connection or speed imports.
+Pickers/previews wait for initial file loading; importing never plays audio.
+The read-only endpoint does not write later UI selections back to the file.
+The public template documents optional, commented-out examples so copying it
+does not opt users into Edge playback.
+
+Validation: 175 tests passed across local connection import, local settings
+middleware, voice settings, speech connection settings, and default speech rate.
+The pre-existing template assertion expecting 0.75 rather than the template's
+0.5 remained excluded. App/server TypeScript and scoped ESLint passed.
+The live localhost settings endpoint accepts and returns the requested voice
+fields; only those non-secret fields were inspected in its output.
+No synthesis, playback, or microphone capture was performed.
+The previous Edge integration is committed as `4e3dc3b3`. The user requested
+committing this refinement on 2026-09-23. The private settings file remains
+git-ignored and excluded from the commit; no push was requested.
+
 ## Edge/browser voice selection and previews (2026-09-22, complete)
 
 The user requested both Edge TTS and ordinary browser voices, saved per-language

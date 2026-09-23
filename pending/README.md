@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented, committed and exercised in the dev server; full `npm test` not yet run (see handoff). AI-generated exercises over the v2 curriculum with a knowledge set and FSRS reading cards. |
-| [Assistant and browser voices](assistant-handoff.md) | Complete: grouped Edge/browser choices, per-language Test voice controls, persistence, and shared Hear/Practice/lesson/reply playback. The guarded local catalog returned 58 real voices; no new live synthesis or playback. 688 targeted tests passed, with the unrelated backup-table assertion excluded. Edge audio retains JSON/base64 and word timings without highlighting. Static hosting uses browser voices only. Existing baseline mismatches remain documented. The user authorized committing this work; no push was requested. |
+| [Assistant and browser voices](assistant-handoff.md) | Edge/browser integration committed as `4e3dc3b3`. Latest refinement complete: `speechVoices` in local JSONC settings reapplies per-language preferences on startup, with independent error/loading status. The user's existing ignored settings file was updated as requested without changing other fields and remains excluded from Git. 175 scoped tests passed; known baseline mismatches remain documented. The user authorized committing the refinement; no push was requested. |
 
 ## Maintaining this folder
 
