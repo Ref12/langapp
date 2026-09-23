@@ -5,6 +5,7 @@ import { LOCAL_SETTINGS_HEADER, LOCAL_SETTINGS_PATH } from '../local-settings-co
 import { exportWorkspaceBackup, readBackup } from '../backup'
 import { initializeLocalAIConnection, initializeLocalConnections } from './local-connection'
 import { saveSpeechConnection } from '../assistant/speech-connection'
+import { resetProfileStorage } from '../../test/profile-storage'
 
 const connection = {
   baseUrl: 'https://provider.example/v1/', apiKey: 'synthetic-local-test-key', model: 'test-model',
@@ -23,8 +24,7 @@ beforeEach(async () => {
   vi.stubEnv('DEV', true)
   vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
   vi.stubEnv('BASE_URL', '/')
-  await db.delete()
-  await db.open()
+  await resetProfileStorage()
   await initializeWorkspace()
 })
 afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); vi.restoreAllMocks() })
@@ -567,7 +567,7 @@ describe('automatic local AI connection setup', () => {
 
   it('reports server failures without using the response body as an error message', async () => {
     respond({ error: connection.apiKey }, 500)
-    await expect(load()).rejects.toThrow('Check app.settings.jsonc')
+    await expect(load()).rejects.toThrow('Check default.yaml')
     expect(await db.aiConnections.count()).toBe(0)
   })
 

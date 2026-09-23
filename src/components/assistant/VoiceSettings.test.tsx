@@ -12,6 +12,7 @@ import { VoiceSettings } from './VoiceSettings'
 import { MockAudio, mockAudio } from '../../test/mock-audio'
 import { LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../../core/local-tts-contracts'
 import { LOCAL_SETTINGS_PATH } from '../../core/local-settings-contracts'
+import { resetProfileStorage } from '../../test/profile-storage'
 
 class Utterance {
   constructor(public text: string) {}
@@ -74,8 +75,7 @@ beforeEach(async () => {
   speech.stopBrowserSpeech()
   speech.clearVoiceCache()
   speech.setSpeechVoicePreferences()
-  await db.delete()
-  await db.open()
+  await resetProfileStorage()
   await initializeWorkspace()
 })
 

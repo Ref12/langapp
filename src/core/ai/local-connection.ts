@@ -7,6 +7,7 @@ import type { AIConnectionInput, SpeechRate, SpeechVoicePreferences } from '../a
 import type { SpeechConnectionInput } from '../assistant/speech-contracts'
 import { speechVoiceKey } from '../assistant/speech'
 import { savePreferences } from '../learning'
+import { getActiveProfile } from '../profiles/store'
 
 export type LocalAIConnectionResult = 'unavailable' | 'existing' | 'missing' | 'loaded' | 'error'
 export type LocalConnectionsResult = {
@@ -21,7 +22,9 @@ function localSettingsAvailable(): boolean {
 }
 
 async function readLocalSettings(signal: AbortSignal) {
-  const response = await fetch(`${import.meta.env.BASE_URL}${LOCAL_SETTINGS_PATH.slice(1)}`, {
+  const profileId = getActiveProfile().id
+  const query = profileId === 'default' ? '' : `?profile=${encodeURIComponent(profileId)}`
+  const response = await fetch(`${import.meta.env.BASE_URL}${LOCAL_SETTINGS_PATH.slice(1)}${query}`, {
     headers: { [LOCAL_SETTINGS_HEADER]: '1' },
     cache: 'no-store', credentials: 'omit', mode: 'same-origin', redirect: 'error', referrerPolicy: 'no-referrer', signal,
   })

@@ -17,5 +17,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["vite.config.ts", "vitest.config.ts", "scripts/dev-server.test.ts", "scripts/local-settings.test.ts", "scripts/local-tts.test.ts", "scripts/edge-tts.test.ts", "scripts/edge-tts-voices.test.ts", "scripts/structured-output-probe.test.ts"]
+  "include": ["vite.config.ts", "vitest.config.ts", "scripts/dev-server.test.ts", "scripts/local-settings.test.ts", "scripts/local-profiles.test.ts", "scripts/profile-files.test.ts", "scripts/local-tts.test.ts", "scripts/edge-tts.test.ts", "scripts/edge-tts-voices.test.ts", "scripts/structured-output-probe.test.ts"]
 }

@@ -42,9 +42,9 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
   return <section className="panel settings-form" aria-labelledby={`${id}-heading`}>
     <h2 id={`${id}-heading`}>Hear voices</h2>
     {speedSetup === 'loading' && <p className="small muted" role="status">Loading default speech speed...</p>}
-    {speedSetup === 'error' && <p className="notice error" role="alert">Default speech speed could not be loaded. Check app.settings.jsonc and reload. The previous speed setting was kept.</p>}
+    {speedSetup === 'error' && <p className="notice error" role="alert">Default speech speed could not be loaded. Check the profile YAML in data/ and reload. The previous speed setting was kept.</p>}
     {voiceSetup === 'loading' && <p className="small muted" role="status">Loading saved voice selections...</p>}
-    {voiceSetup === 'error' && <p className="notice error" role="alert">Voice selections could not be loaded. Check app.settings.jsonc and reload. Your previous selections were kept.</p>}
+    {voiceSetup === 'error' && <p className="notice error" role="alert">Voice selections could not be loaded. Check the profile YAML in data/ and reload. Your previous selections were kept.</p>}
     <p className="small muted" id={`${id}-help`}>Selections save automatically and apply to Hear, Practice, lessons, and spoken replies. Automatic prefers local browser voices; it never selects Edge TTS.</p>
     <p className="small muted" id={`${id}-privacy`}>Online voices send the spoken text to the browser's speech service. Edge TTS sends it to Microsoft through the local server. Only Test voice or playback sends text; loading the Edge catalog sends no text.</p>
     {languages.map(({ locale, label }) => {

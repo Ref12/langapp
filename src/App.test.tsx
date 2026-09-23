@@ -2,17 +2,18 @@ import { act, cleanup, render, screen, waitFor, within } from '@testing-library/
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
-import { db } from './core/database'
+import { db, initializeWorkspace } from './core/database'
 import { getWord } from './data/mandarin'
 import { advancePractice, startPractice, submitAnswer, trackWord } from './core/learning'
 import { curriculumLessons } from './data/curriculum'
 import { seedRetiredLesson } from './test/retired-lesson'
+import { resetProfileStorage } from './test/profile-storage'
+import { resetProfilesForTests, SELECTED_PROFILE_KEY } from './core/profiles/store'
 
 beforeEach(async () => {
   window.location.hash = ''
   document.documentElement.dataset.theme = 'dark'
-  await db.delete()
-  await db.open()
+  await resetProfileStorage()
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
@@ -21,6 +22,30 @@ async function go(route: string) {
 }
 
 describe('Mandarin learning loop', () => {
+  it('opens existing browser preferences as default without replacing them', async () => {
+    await initializeWorkspace()
+    await db.preferences.update('workspace', { name: 'Existing workspace', theme: 'light', defaultSpeechRate: 0.75 })
+    await trackWord('zh:tea', 'test')
+    const saved = await db.words.toArray()
+    resetProfilesForTests()
+    render(<App />)
+    expect(await screen.findByRole('link', { name: 'Active profile: default' })).toBeInTheDocument()
+    await screen.findByRole('heading', { name: 'Make the language yours.' })
+    expect(await db.preferences.get('workspace')).toMatchObject({ name: 'Existing workspace', theme: 'light', defaultSpeechRate: 0.75 })
+    expect(await db.words.toArray()).toEqual(saved)
+  })
+
+  it('offers non-destructive default-profile recovery for an unavailable selection', async () => {
+    await initializeWorkspace()
+    await db.preferences.update('workspace', { name: 'Keep this workspace' })
+    localStorage.setItem(SELECTED_PROFILE_KEY, '8185cd97-7797-468d-84e2-e4850279bf12')
+    resetProfilesForTests()
+    render(<App />)
+    expect(await screen.findByRole('alert')).toHaveTextContent('selected profile is unavailable')
+    expect(screen.getByRole('button', { name: 'Open default profile' })).toBeInTheDocument()
+    expect(await db.preferences.get('workspace')).toMatchObject({ name: 'Keep this workspace' })
+  })
+
   it('supports unfamiliar meaning prompts without leaking pinyin into character-selection questions', async () => {
     const user = userEvent.setup()
     render(<App />)

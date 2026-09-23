@@ -3,6 +3,66 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Named YAML profiles (complete)
+
+The user requested an ignored root `data` folder, YAML settings/template, and
+named profiles containing settings, knowledge, and conversations in one file.
+They clarified that browser storage remains the live store and server/browser
+import/export are manual snapshots. Every YAML export must include credentials.
+The user requested a local commit on 2026-09-23. No push is authorized.
+
+Settings now includes profile controls, guarded browser/server transfers,
+startup profile selection, and one-time local-settings bootstrap.
+Switching uses a full reload, stops active audio/Assistant work, and blocks
+unsaved conversation drafts. Profile operations wait for pending settings saves
+and bootstrap; settings saves wait for profile operations. Snapshots do not stop
+live work. YAML imports preview before replacement and include connections;
+legacy JSON replacement keeps its existing credential-preserving behavior.
+
+Core agent `6323b2ba-8c28-43af-934d-5bc4ac47c9fd` completed database/backup
+extraction and `src/core/profiles/{identity,contracts,codec,store}`; its results
+were retrieved and integrated. The original default database upgrades to
+schema 5 in place, adding only a profile-local bootstrap marker. Named profiles
+use isolated databases and a separate metadata registry. Selection does not
+rebind the active page's database. Complete profile restores are transactional,
+including credentials and the bootstrap marker; imported requests are interrupted.
+
+Server agent `ce89fda6-c67e-4fcd-835d-f9911ab796b5` completed local middleware,
+safe profile files, migration, templates, and Vite protections. Its final result
+was retrieved; both agents are idle. Migration and template generation use
+lowercase `default`. Server exports use SHA-256 revisions, filesystem locks,
+staged atomic writes, and explicit conflicts instead of silently overwriting.
+The parent refined listing to reject oversized directories before reading any
+profile contents, avoiding needless parsing and a load-sensitive stress test.
+
+The running development server automatically migrated the actual ignored
+settings file through its initialization hook. Metadata-only inspection confirmed
+`data/default.yaml`, `data/profile.template.yaml`, the existing AI/Azure
+credentials' presence, and Yunjian/Christopher voice preferences. The legacy
+private JSONC file is gone; the obsolete tracked JSONC template was removed.
+The parent corrected only profile display-name casing in both ignored YAML
+files. Initial YAML contains settings only; browser knowledge/history stay in
+the default database until explicitly exported. No private values or transcripts
+were printed or copied into tracked files. Both YAML files are Git-ignored.
+
+Final targeted validation: 441 applicable tests across 18 files pass, including
+288 client/core cases and 153 server/study/audio cases. The final server rerun
+passed all 78 cases after the listing preflight refinement.
+One confirmed pre-existing App test remains excluded: it expects the retired
+"Your learning set." dictionary heading instead of the current v2 inventory.
+App/node TypeScript and changed-file ESLint pass. The existing `build:next`
+script stops at the pre-existing stale `learning-content.generated.json` check;
+no curriculum data was changed. Direct existing TypeScript + Vite production
+bundling passes. The 26 output files contain neither real credential value;
+private data paths return 403 from the live server. Live profile-list API returns
+200. Synthetic tests exercise revision conflicts, rollback, migration failure,
+root/v1 route protections, bootstrap persistence, and settings-operation locks.
+No synthesis, playback, microphone capture, or AI request was performed.
+The profile settings browser canvas is open at localhost; automated UI coverage
+used synthetic data and no real browser profile was replaced, cloned, or exported.
+No implementation work remains pending. The user requested committing this
+feature on 2026-09-23; no push was requested.
+
 ## File-based voice selections (2026-09-22, complete)
 
 The user requested voice preferences in `settings/app.settings.jsonc` and

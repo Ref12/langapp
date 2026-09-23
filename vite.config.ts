@@ -3,6 +3,7 @@ import { createServer, defineConfig, type Plugin, type UserConfig, type ViteDevS
 import react from '@vitejs/plugin-react'
 import { mockupFiles } from './scripts/mockup-files.mjs'
 import { localSettings } from './scripts/local-settings'
+import { localProfiles } from './scripts/local-profiles'
 import { localTts } from './scripts/local-tts'
 
 function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
@@ -64,6 +65,6 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
   base: './',
   appType: 'mpa',
-  plugins: [react(), localSettings(), localTts(), versionedSite(new Set(await mockupFiles()))],
+  plugins: [react(), localSettings(), localProfiles(), localTts(), versionedSite(new Set(await mockupFiles()))],
   build: { outDir: 'dist' },
 }))

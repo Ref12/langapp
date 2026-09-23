@@ -22,6 +22,7 @@ import { DraftStatus } from './components/assistant/DraftStatus'
 import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnectionSetup'
 import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } from './core/assistant/speech'
 import { interruptAudio } from './core/assistant/audio-owner'
+import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsLocalSettingsImport, resetSelectedProfile } from './core/profiles/store'
 import './App.css'
 import './components/assistant/assistant.css'
 
@@ -72,6 +73,7 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
 }
 
 function WorkspaceApp() {
+  const profile = getActiveProfile()
   const workspace = useLiveQuery(loadWorkspace, [])
   const route = useRoute()
   const [pending, setPending] = useState(0)
@@ -164,7 +166,7 @@ function WorkspaceApp() {
       <div className="workspace"><header className="topbar"><div className="topbar-leading">
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         <div className="breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>{label}</strong></div></div>
-        <div className="topbar-actions"><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
+        <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current={page === 'settings' ? 'page' : undefined}><SettingsIcon size={20} /></a>
@@ -182,8 +184,17 @@ function WorkspaceApp() {
 }
 
 function StorageFailure({ error }: { error: string }) {
-  return <main className="opening-workspace"><h1>Your workspace could not be opened.</h1><p role="alert">{error}</p><p>No v1 data has been changed. Check that browser storage is available, then try again.</p>
-    <div className="button-row"><button className="button primary" onClick={() => window.location.reload()}>Retry</button><a href="./v1/" className="button secondary">Open v1</a></div>
+  const [resetError, setResetError] = useState('')
+  return <main className="opening-workspace"><h1>Your workspace could not be opened.</h1><p role="alert">{resetError || error}</p><p>No v1 data has been changed. Check that browser storage is available, then try again. You can also return to the default profile without deleting any profiles.</p>
+    <div className="button-row"><button className="button primary" onClick={() => window.location.reload()}>Retry</button>
+      <button className="button secondary" onClick={() => {
+        try {
+          resetSelectedProfile()
+          window.location.reload()
+        } catch (reason) {
+          setResetError(reason instanceof Error ? reason.message : 'Profile selection could not be reset.')
+        }
+      }}>Open default profile</button><a href="./v1/" className="button secondary">Open v1</a></div>
   </main>
 }
 
@@ -199,10 +210,15 @@ class WorkspaceBoundary extends Component<{ children: ReactNode }, { error: stri
 
 export default function App() {
   const [ready, setReady] = useState(false)
+  const [bootstrap, setBootstrap] = useState(false)
   const [error, setError] = useState('')
   useEffect(() => {
     let disposed = false
-    initializeWorkspace().then(
+    initializeProfiles().then(async () => {
+      await initializeWorkspace()
+      const pending = import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && await needsLocalSettingsImport()
+      if (!disposed) setBootstrap(pending)
+    }).then(
       () => { if (!disposed) setReady(true) },
       reason => { if (!disposed) setError(reason instanceof Error ? reason.message : String(reason)) },
     )
@@ -210,8 +226,8 @@ export default function App() {
   }, [])
   if (error) return <StorageFailure error={error} />
   return ready ? <WorkspaceBoundary>
-    {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true'
-      ? <LocalAIConnectionSetup><WorkspaceApp /></LocalAIConnectionSetup>
+    {bootstrap
+      ? <LocalAIConnectionSetup onImported={markLocalSettingsImported}><WorkspaceApp /></LocalAIConnectionSetup>
       : <WorkspaceApp />}
   </WorkspaceBoundary> : <div className="opening-workspace" role="status">Opening your Mandarin workspace...</div>
 }

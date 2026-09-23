@@ -9,6 +9,7 @@ import { AIConnectionSettings } from './AIConnectionSettings'
 import { LocalAIConnectionSetup } from './LocalAIConnectionSetup'
 import { LocalSpeechSetupContext } from './local-ai-setup-context'
 import { SpeechConnectionSettings } from './SpeechConnectionSettings'
+import { resetProfileStorage } from '../../test/profile-storage'
 
 const connection = {
   provider: 'azure', region: 'eastus', apiKey: 'synthetic-speech-settings-key', storageAcknowledged: true,
@@ -25,8 +26,7 @@ beforeEach(async () => {
   recognition.mockClear()
   vi.stubGlobal('SpeechRecognition', recognition)
   vi.stubGlobal('MediaRecorder', vi.fn())
-  await db.delete()
-  await db.open()
+  await resetProfileStorage()
   await initializeWorkspace()
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.unstubAllEnvs() })

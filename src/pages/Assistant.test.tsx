@@ -10,14 +10,14 @@ import type { AIAPIType, AssistantBlock } from '../core/assistant/contracts'
 import { clearUnsavedDrafts } from '../core/assistant/drafts'
 import { buildLessonPages } from '../core/learning-content'
 import { lessonDefinitions } from '../data/learning-content'
+import { resetProfileStorage } from '../test/profile-storage'
 
 const connection = { baseUrl: 'https://example.test/v1', apiKey: 'test-key-not-a-secret', model: 'test-model', nativeTools: false, structuredOutput: false, storageAcknowledged: true as const }
 
 beforeEach(async () => {
   clearUnsavedDrafts()
   window.location.hash = ''
-  await db.delete()
-  await db.open()
+  await resetProfileStorage()
   await initializeWorkspace()
 })
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.unstubAllEnvs(); vi.restoreAllMocks() })
@@ -52,12 +52,15 @@ describe('first usable Assistant', () => {
 
   it('automatically loads development settings before showing the editable connection form', async () => {
     vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
-    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ aiConnection: connection }))))
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
+      aiConnection: connection, defaultSpeechRate: 0.5,
+      speechVoices: { 'en-US': { provider: 'edge', voice: 'en-US-ChristopherNeural' } },
+    }))))
     window.location.hash = 'settings'
     render(<App />)
     await screen.findByText('Saved AI connection: test-model')
     expect(screen.getByLabelText('API key')).toHaveValue(connection.apiKey)
-    expect(within(screen.getByRole('region', { name: 'AI connection settings' })).getByText(/Loaded the AI connection from app.settings.jsonc/)).toBeInTheDocument()
+    expect(within(screen.getByRole('region', { name: 'AI connection settings' })).getByText(/Loaded the AI connection from default.yaml/)).toBeInTheDocument()
     expect(fetch).toHaveBeenCalledTimes(1)
     await go('conversation')
     expect(screen.queryByText(/Loaded the AI connection/)).not.toBeInTheDocument()
@@ -68,11 +71,18 @@ describe('first usable Assistant', () => {
     await user.click(await screen.findByRole('button', { name: 'Remove connection' }))
     await user.click(screen.getByRole('button', { name: 'Confirm removal' }))
     await screen.findByText('No AI connection is saved on this device.')
+    await act(async () => { await savePreferences({
+      defaultSpeechRate: 1.25,
+      speechVoices: { 'en-US': { provider: 'edge', voice: 'en-US-AriaNeural' } },
+    }) })
     expect(fetch).toHaveBeenCalledTimes(1)
     cleanup()
     render(<App />)
-    await screen.findByText('Saved AI connection: test-model')
-    expect(fetch).toHaveBeenCalledTimes(2)
+    await screen.findByText('No AI connection is saved on this device.')
+    expect(fetch).toHaveBeenCalledTimes(1)
+    expect(await db.preferences.get('workspace')).toMatchObject({
+      defaultSpeechRate: 1.25, speechVoices: { 'en-US': { provider: 'edge', voice: 'en-US-AriaNeural' } },
+    })
   })
 
   it('keeps manual setup available and reports local setup errors without displaying secrets', async () => {

@@ -3,6 +3,7 @@ import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type
 import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
+import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -20,6 +21,7 @@ export class LearningDatabase extends Dexie {
   studyCards!: EntityTable<StudyCard, 'id'>
   exerciseSessions!: EntityTable<ExerciseSession, 'id'>
   exerciseAttempts!: EntityTable<ExerciseAttempt, 'id'>
+  profileState!: EntityTable<{ id: 'local-settings'; imported: true }, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -46,10 +48,38 @@ export class LearningDatabase extends Dexie {
       exerciseSessions: '&id, status, mode, createdAt',
       exerciseAttempts: '&id, sessionId, createdAt',
     })
+    this.version(5).stores({ profileState: '&id' })
   }
 }
 
-export const db = new LearningDatabase()
+export let db = new LearningDatabase()
+let configuredProfileId: string | undefined
+
+export function profileDatabaseName(id: string): string {
+  const safeId = profileIdSchema.parse(id)
+  return safeId === DEFAULT_PROFILE_ID ? 'linguaweave-next' : `linguaweave-next-profile-${safeId}`
+}
+
+export function configureDatabaseForProfile(id: string): void {
+  const safeId = profileIdSchema.parse(id)
+  if (configuredProfileId !== undefined && configuredProfileId !== safeId) {
+    throw new Error('Reload the page to switch profiles.')
+  }
+  const name = profileDatabaseName(safeId)
+  if (db.name !== name) {
+    if (db.isOpen()) throw new Error('Profiles must be initialized before opening the workspace.')
+    db.close()
+    db = new LearningDatabase(name)
+  }
+  configuredProfileId = safeId
+}
+
+export function resetDatabaseForTests(): void {
+  if (import.meta.env?.MODE !== 'test') throw new Error('Database reset is only available in tests.')
+  db.close()
+  db = new LearningDatabase()
+  configuredProfileId = undefined
+}
 
 export async function initializeWorkspace(): Promise<void> {
   await db.transaction('rw', db.preferences, async () => {

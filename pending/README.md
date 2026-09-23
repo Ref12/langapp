@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented, committed and exercised in the dev server; full `npm test` not yet run (see handoff). AI-generated exercises over the v2 curriculum with a knowledge set and FSRS reading cards. |
-| [Assistant and browser voices](assistant-handoff.md) | Edge/browser integration committed as `4e3dc3b3`. Latest refinement complete: `speechVoices` in local JSONC settings reapplies per-language preferences on startup, with independent error/loading status. The user's existing ignored settings file was updated as requested without changing other fields and remains excluded from Git. 175 scoped tests passed; known baseline mismatches remain documented. The user authorized committing the refinement; no push was requested. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Named YAML profiles complete: isolated browser-live profiles, fresh/clone/switch controls, and manual credential-inclusive YAML transfers through browser files or the ignored data folder. Existing private settings/template migrated to YAML; default browser data retained in place. 441 targeted tests pass; unrelated existing dictionary assertion and stale curriculum build prerequisite documented. The user requested a local commit on 2026-09-23; no push was requested. |
 
 ## Maintaining this folder
 

@@ -1,214 +1,133 @@
 // @vitest-environment node
-import { webcrypto } from 'node:crypto'
+import { randomUUID, webcrypto } from 'node:crypto'
 import { request as httpRequest } from 'node:http'
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { mkdir, rm, symlink, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { build, createServer, normalizePath, preview, type ViteDevServer } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { parse, type ParseError } from 'jsonc-parser'
-import {
-  localSettingsSchema, LOCAL_SETTINGS_DIRECTORY, LOCAL_SETTINGS_FILE, LOCAL_SETTINGS_HEADER, LOCAL_SETTINGS_PATH,
-} from '../src/core/local-settings-contracts'
+import { stringify } from 'yaml'
+import { localSettingsSchema, LOCAL_SETTINGS_DIRECTORY, LOCAL_SETTINGS_FILE, LOCAL_SETTINGS_HEADER, LOCAL_SETTINGS_PATH } from '../src/core/local-settings-contracts'
+import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from '../src/core/profiles/codec'
+import { createProfileTemplate } from '../src/core/profiles/template'
 import { localSettings } from './local-settings'
 
 const key = 'synthetic-local-test-key'
-const settings = {
-  aiConnection: {
-    baseUrl: 'https://provider.example/v1', apiKey: key, model: 'test-model',
-    nativeTools: false, structuredOutput: false, storageAcknowledged: true,
-  },
+const aiConnection = {
+  baseUrl: 'https://provider.example/v1', apiKey: key, model: 'test-model',
+  nativeTools: false, structuredOutput: false, storageAcknowledged: true as const,
 }
 const speechConnection = {
-  provider: 'azure', region: 'eastus', apiKey: 'synthetic-local-speech-test-key', storageAcknowledged: true,
+  provider: 'azure' as const, region: 'eastus', apiKey: 'synthetic-local-speech-test-key', storageAcknowledged: true as const,
 }
 const speechVoices = {
-  'zh-Hans': { provider: 'edge', voice: 'zh-CN-YunjianNeural' },
-  'en-US': { provider: 'edge', voice: 'en-US-ChristopherNeural' },
+  'zh-Hans': { provider: 'edge' as const, voice: 'zh-CN-YunjianNeural' },
+  'en-US': { provider: 'edge' as const, voice: 'en-US-ChristopherNeural' },
 }
 let directory: string
 let server: ViteDevServer | undefined
-
 beforeEach(async () => {
   if (!globalThis.crypto) vi.stubGlobal('crypto', webcrypto)
-  directory = join(process.cwd(), `.local-settings-test-${crypto.randomUUID()}`)
-  await mkdir(directory)
-  await mkdir(join(directory, LOCAL_SETTINGS_DIRECTORY))
+  directory = join(process.cwd(), `.local-settings-test-${randomUUID()}`)
+  await mkdir(join(directory, LOCAL_SETTINGS_DIRECTORY), { recursive: true })
 })
 afterEach(async () => {
   await server?.close()
   server = undefined
   await rm(directory, { recursive: true, force: true })
+  vi.restoreAllMocks()
   vi.unstubAllGlobals()
   vi.unstubAllEnvs()
 })
-
-function configFile() {
-  return join(directory, LOCAL_SETTINGS_DIRECTORY, LOCAL_SETTINGS_FILE)
+function configFile() { return join(directory, LOCAL_SETTINGS_DIRECTORY, LOCAL_SETTINGS_FILE) }
+function yaml(settings: unknown = {}, id = 'default') {
+  return serializeProfileYaml(createEmptyProfile({ id, name: 'Test' }, localSettingsSchema.parse(settings)))
 }
-
-async function start(exposeSettings = true) {
+async function start(exposeSettings = true, nested = false) {
+  const root = nested ? join(directory, 'versions', 'v1') : directory
+  await mkdir(root, { recursive: true })
   server = await createServer({
-    configFile: false, root: directory, plugins: [localSettings({ exposeSettings })], logLevel: 'silent',
-    appType: 'mpa',
-    server: { host: '127.0.0.1', port: 0, hmr: false, watch: null, fs: { deny: ['**/another-private-file'] } },
+    configFile: false, root, cacheDir: join(directory, '.vite-cache'), base: nested ? '/v1/' : '/', plugins: [localSettings({ exposeSettings, privateRoot: directory })], logLevel: 'silent',
+    appType: 'mpa', server: { host: '127.0.0.1', port: 0, hmr: false, watch: null, fs: { deny: ['**/another-private-file'] } },
   })
   await server.listen()
   const address = server.httpServer?.address()
   if (!address || typeof address === 'string') throw new Error('Missing test server address')
   return `http://127.0.0.1:${address.port}`
 }
+function headers(origin: string) { return { [LOCAL_SETTINGS_HEADER]: '1', Origin: origin, 'Sec-Fetch-Site': 'same-origin' } }
 
-function headers(origin: string) {
-  return { [LOCAL_SETTINGS_HEADER]: '1', Origin: origin, 'Sec-Fetch-Site': 'same-origin' }
-}
-
-describe('development-only local app settings', () => {
-  it('provides a commented JSONC template explaining every field and validating storage consent', async () => {
-    const source = await readFile(new URL('../settings/app.settings.template.jsonc', import.meta.url), 'utf8')
-    const errors: ParseError[] = []
-    const template: unknown = parse(source, errors)
-    expect(errors).toEqual([])
-    expect(template).toMatchObject({ aiConnection: {
-      apiType: 'responses', apiKey: '', model: '', nativeTools: false, structuredOutput: false, storageAcknowledged: expect.any(Boolean),
-    } })
-    expect(template).toHaveProperty('defaultSpeechRate', 0.75)
-    for (const field of ['aiConnection', 'apiType', 'baseUrl', 'apiKey', 'model', 'nativeTools', 'structuredOutput', 'storageAcknowledged', 'defaultSpeechRate']) {
-      expect(source).toMatch(new RegExp(`//[^\\n]*\\n\\s*"${field}":`))
+describe('development-only profile bootstrap settings', () => {
+  it('generates a commented secret-free YAML template without enabling cloud services', () => {
+    const source = createProfileTemplate()
+    const template = parseProfileYaml(source)
+    expect(template.profile).toEqual({ id: 'default', name: 'default' })
+    expect(template.settings).not.toHaveProperty('aiConnection')
+    expect(template.settings).not.toHaveProperty('speechConnection')
+    expect(template.settings.preferences).not.toHaveProperty('speechVoices')
+    expect(template.settings.preferences).not.toHaveProperty('defaultSpeechRate')
+    for (const field of ['apiType', 'baseUrl', 'apiKey', 'model', 'nativeTools', 'structuredOutput', 'storageAcknowledged']) {
+      expect(source).toContain(`#   ${field}:`)
     }
-    const filled = source.replace('"apiKey": ""', `"apiKey": "${key}"`)
-      .replace('"model": ""', '"model": "test-model"')
-      .replace('"storageAcknowledged": false', '"storageAcknowledged": true')
-    expect(localSettingsSchema.safeParse(parse(filled)).success).toBe(true)
-    const unacknowledged: { aiConnection: { storageAcknowledged: boolean } } = parse(filled)
-    unacknowledged.aiConnection.storageAcknowledged = false
-    expect(localSettingsSchema.safeParse(unacknowledged).success).toBe(false)
-    expect(template).not.toHaveProperty('speechConnection')
-    expect(source).toContain('// , "speechConnection": {')
-    expect(source).toContain('//   "provider": "azure"')
-    expect(source).toContain('//   "region": "eastus"')
-    expect(source).toContain('Connections import independently')
-    const withSpeech = filled.replace(/^ {2}\/\/ (, "speechConnection": \{[\s\S]*?^ {2}\/\/ \})/m, (_match, section: string) => section.replace(/^ {2}\/\/ /gm, ''))
-      .replace('"apiKey": ""', `"apiKey": "${speechConnection.apiKey}"`)
-      .replace('"storageAcknowledged": false', '"storageAcknowledged": true')
-    const speechErrors: ParseError[] = []
-    const speechTemplate: unknown = parse(withSpeech, speechErrors)
-    expect(speechErrors).toEqual([])
-    expect(localSettingsSchema.safeParse(speechTemplate).success).toBe(true)
-    expect(speechTemplate).toMatchObject({ speechConnection })
+    expect(source).toContain('ALL exports include')
+    expect(source).toContain('speechVoices')
   })
-
-  it('documents optional voice selections without enabling them in the copied template', async () => {
-    const source = await readFile(new URL('../settings/app.settings.template.jsonc', import.meta.url), 'utf8')
-    expect(parse(source)).not.toHaveProperty('speechVoices')
-    const enabled = source.replace(/^ {2}\/\/ ("speechVoices": \{[\s\S]*?^ {2}\/\/ \},)/m,
-      (_match, section: string) => section.replace(/^ {2}\/\/ /gm, ''))
-    const errors: ParseError[] = []
-    const configured = parse(enabled, errors)
-    expect(errors).toEqual([])
-    expect(configured.speechVoices).toEqual(speechVoices)
-    expect(localSettingsSchema.shape.speechVoices.safeParse(configured.speechVoices).success).toBe(true)
-  })
-
   it.each([
-    { speechConnection }, { ...settings, speechConnection }, { aiConnection: settings.aiConnection },
-    { defaultSpeechRate: 0.5 }, { defaultSpeechRate: 0.75 }, { defaultSpeechRate: 1 }, { defaultSpeechRate: 1.25 },
-    { ...settings, speechConnection, defaultSpeechRate: 0.75 },
-    { speechVoices }, { ...settings, speechConnection, defaultSpeechRate: 0.5, speechVoices },
-    { speechVoices: { 'en-US': { voiceURI: 'local-en', name: 'English local', lang: 'en-US', localService: true } } },
-  ])('serves each optional connection independently without calling a live provider (case %#)', async configured => {
-    await writeFile(configFile(), JSON.stringify(configured))
+    { speechConnection }, { aiConnection, speechConnection }, { aiConnection },
+    ...[0.5, 0.75, 1, 1.25].map(defaultSpeechRate => ({ defaultSpeechRate })),
+    { aiConnection, speechConnection, defaultSpeechRate: 0.75, speechVoices },
+    { speechVoices }, { speechVoices: { 'en-US': { voiceURI: 'local-en', name: 'English local', lang: 'en-US', localService: true } } },
+    {},
+  ])('extracts all configured settings independently (case %#)', async configured => {
+    await writeFile(configFile(), yaml(configured))
     const base = await start()
     const fetcher = vi.spyOn(globalThis, 'fetch')
     const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
     expect(response.status).toBe(200)
     expect(await response.json()).toEqual(configured)
     expect(fetcher).toHaveBeenCalledTimes(1)
-    expect(JSON.stringify(server?.config.env)).not.toContain(speechConnection.apiKey)
-    expect(JSON.stringify(server?.config.define)).not.toContain(speechConnection.apiKey)
-    fetcher.mockRestore()
+    expect(JSON.stringify(server?.config.env)).not.toContain(key)
+    expect(JSON.stringify(server?.config.define)).not.toContain(key)
   })
-
-  it('reads settings from the settings folder without caching, interpolation, or environment overrides', async () => {
+  it('uses the selected profile without stale caching, interpolation, or default fallback', async () => {
+    const id = randomUUID()
     const literalKey = `${key}-//$VARIABLE/*literal*/`
     vi.stubEnv('VARIABLE', 'must-not-expand')
-    vi.stubEnv('ASSISTANT_AI_MODEL', 'must-not-override')
-    const configured = { aiConnection: { ...settings.aiConnection, apiKey: literalKey } }
-    await writeFile(configFile(), JSON.stringify(configured))
+    await writeFile(configFile(), yaml({ aiConnection }))
+    await writeFile(join(directory, 'data', `${id}.yaml`), '\uFEFF# Comment\n' + yaml({ aiConnection: { ...aiConnection, apiKey: literalKey } }, id))
     const base = await start()
-    const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
+    const endpoint = base + LOCAL_SETTINGS_PATH + `?profile=${id}`
+    const response = await fetch(endpoint, { headers: headers(base) })
     expect(response.status).toBe(200)
     expect(response.headers.get('cache-control')).toBe('no-store')
     expect(response.headers.get('access-control-allow-origin')).toBeNull()
-    expect(await response.json()).toEqual(configured)
+    expect(await response.json()).toMatchObject({ aiConnection: { apiKey: literalKey } })
     expect(server?.config.define?.['import.meta.env.DEV_LOCAL_SETTINGS']).toBe(JSON.stringify('true'))
-    expect(JSON.stringify(server?.config.env)).not.toContain(key)
-    expect(JSON.stringify(server?.config.define)).not.toContain(key)
-    await writeFile(configFile(), JSON.stringify({ aiConnection: { ...settings.aiConnection, model: 'updated-model' } }))
-    const updated = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) }).then(response => response.json())
-    expect(updated).toMatchObject({ aiConnection: { model: 'updated-model' } })
+    await writeFile(join(directory, 'data', `${id}.yaml`), yaml({}, id))
+    expect(await fetch(endpoint, { headers: headers(base) }).then(response => response.json())).toEqual({})
+    expect((await fetch(base + LOCAL_SETTINGS_PATH + `?profile=${randomUUID()}`, { headers: headers(base) })).status).toBe(404)
+    for (const query of ['?profile=../default', '?profile=', '?profile=default&profile=default', '?unknown=value']) {
+      expect((await fetch(base + LOCAL_SETTINGS_PATH + query, { headers: headers(base) })).status).toBe(400)
+    }
   })
-
-  it('does not read a root-level file or the obsolete environment shortcut', async () => {
-    await writeFile(join(directory, LOCAL_SETTINGS_FILE), JSON.stringify(settings))
+  it('does not read root-level YAML or obsolete environment shortcuts', async () => {
+    await writeFile(join(directory, LOCAL_SETTINGS_FILE), yaml({ aiConnection }))
     await writeFile(join(directory, '.env.local'), `ASSISTANT_AI_API_KEY=${key}`)
     const base = await start()
     expect((await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(404)
   })
-
-  it('accepts an empty settings object and UTF-8 JSON with a byte order mark', async () => {
-    await writeFile(configFile(), '\uFEFF{}')
-    const base = await start()
-    const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
-    expect(response.status).toBe(200)
-    expect(await response.json()).toEqual({})
-  })
-
-  it('supports line/block comments and trailing commas without changing string values', async () => {
-    const value = `{
-      // App-level settings
-      "aiConnection": {
-        /* Only a local template comment */
-        "apiType": "responses",
-        "baseUrl": "https://provider.example/v1",
-        "apiKey": "${key}/*literal*/",
-        "model": "test-model",
-        "nativeTools": false,
-        "structuredOutput": true,
-        "storageAcknowledged": true,
-      },
-    }`
-    await writeFile(configFile(), value)
-    const base = await start()
-    const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
-    expect(response.status).toBe(200)
-    expect(await response.json()).toMatchObject({
-      aiConnection: { apiKey: `${key}/*literal*/`, apiType: 'responses', structuredOutput: true },
-    })
-  })
-
   it.each([
-    JSON.stringify({ aiConnection: { ...settings.aiConnection, storageAcknowledged: false } }),
-    JSON.stringify({ aiConnection: { ...settings.aiConnection, nativeTools: 'true' } }),
-    JSON.stringify({ aiConnection: { ...settings.aiConnection, baseUrl: 'http://provider.example/v1' } }),
-    JSON.stringify({ aiConnection: { ...settings.aiConnection, model: '' } }),
-    JSON.stringify({ aiConnection: settings.aiConnection, unknownSection: {} }),
-    JSON.stringify({ aiConnection: { ...settings.aiConnection, apiType: 'unsupported' } }),
-    JSON.stringify({ speechConnection: { ...speechConnection, provider: 'other' } }),
-    JSON.stringify({ speechConnection: { ...speechConnection, region: 'invalid/region' } }),
-    JSON.stringify({ speechConnection: { ...speechConnection, storageAcknowledged: false } }),
-    JSON.stringify({ speechConnection: { ...speechConnection, apiKey: '' } }),
-    ...[
-      null, [], { 'zh-Hans': speechVoices['en-US'] }, { 'en-US': speechVoices['zh-Hans'] },
-      { 'en-US': { ...speechVoices['en-US'], url: 'https://untrusted.example/' } },
-    ].map(speechVoices => JSON.stringify({ speechVoices })),
-    ...[0, 0.6, 2, -1, '0.75', null, true, {}, []].map(defaultSpeechRate => JSON.stringify({ defaultSpeechRate })),
-    `${JSON.stringify(settings)} trailing-junk`,
-    `${JSON.stringify(settings)} /* unterminated`,
-    `{"aiConnection": {"apiKey": "${key}",`,
-    ' '.repeat(32 * 1024 + 1),
-    'null',
-  ])('rejects invalid settings without echoing secrets (case %#)', async value => {
-    await writeFile(configFile(), value)
+    { aiConnection: { ...aiConnection, storageAcknowledged: false } },
+    { aiConnection: { ...aiConnection, nativeTools: 'true' } },
+    { aiConnection: { ...aiConnection, baseUrl: 'http://provider.example/v1' } },
+    { aiConnection: { ...aiConnection, model: '' } },
+    { aiConnection: { ...aiConnection, apiType: 'unsupported' } },
+    { speechConnection: { ...speechConnection, provider: 'other' } },
+    { speechConnection: { ...speechConnection, region: 'invalid/region' } },
+    { speechConnection: { ...speechConnection, storageAcknowledged: false } },
+    { speechConnection: { ...speechConnection, apiKey: '' } },
+  ])('rejects invalid configured connections without echoing secrets (case %#)', async settings => {
+    const snapshot = createEmptyProfile({ id: 'default', name: 'Test' })
+    await writeFile(configFile(), stringify({ ...snapshot, settings: { ...snapshot.settings, ...settings } }))
     const base = await start()
     const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
     expect(response.status).toBe(400)
@@ -217,44 +136,36 @@ describe('development-only local app settings', () => {
     expect(message).not.toContain(key)
     expect(message).not.toContain(speechConnection.apiKey)
   })
-
-  it('names both connection acknowledgements without leaking invalid values', async () => {
-    await writeFile(configFile(), JSON.stringify({ speechConnection: { ...speechConnection, storageAcknowledged: false } }))
+  it.each([null, [], { 'zh-Hans': speechVoices['en-US'] }, { 'en-US': speechVoices['zh-Hans'] },
+    { 'en-US': { ...speechVoices['en-US'], url: 'https://untrusted.example/' } },
+  ])('retains speech voice validation (case %#)', async speechVoices => {
+    const snapshot = createEmptyProfile({ id: 'default', name: 'Test' })
+    await writeFile(configFile(), stringify({ ...snapshot, settings: { preferences: { ...snapshot.settings.preferences, speechVoices } } }))
     const base = await start()
-    const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
-    expect(response.status).toBe(400)
-    const message = await response.text()
-    expect(message).toContain('storageAcknowledged')
-    expect(message).toContain('aiConnection')
-    expect(message).toContain('speechConnection')
-    expect(message).not.toContain(speechConnection.apiKey)
+    expect((await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(400)
   })
-
-  it('reports file access failures rather than pretending settings are missing', async () => {
+  it.each([0, 0.6, 2, -1, '0.75', null, true, {}, []])('retains speech rate validation (case %#)', async defaultSpeechRate => {
+    const snapshot = createEmptyProfile({ id: 'default', name: 'Test' })
+    await writeFile(configFile(), stringify({ ...snapshot, settings: { preferences: { ...snapshot.settings.preferences, defaultSpeechRate } } }))
+    const base = await start()
+    expect((await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(400)
+  })
+  it('reports nonregular files and malformed YAML rather than resetting them', async () => {
     await mkdir(configFile())
     const base = await start()
-    const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
-    expect(response.status).toBe(500)
-    expect(await response.text()).toContain('Could not read local settings')
+    expect((await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(400)
+    await rm(configFile(), { recursive: true })
+    await writeFile(configFile(), `secret: [${key}`)
+    expect((await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(400)
   })
-
   it('rejects navigation, cross-origin requests, untrusted hosts, and non-GET methods', async () => {
-    await writeFile(configFile(), JSON.stringify(settings))
+    await writeFile(configFile(), yaml({ aiConnection }))
     const base = await start()
     const endpoint = base + LOCAL_SETTINGS_PATH
     expect((await fetch(endpoint)).status).toBe(403)
-    const blockedHeaders: Record<string, string>[] = [
-      { Origin: 'https://untrusted.example' },
-      { Origin: base.replace('127.0.0.1', 'localhost') },
-      { Origin: 'null' },
-      { 'Sec-Fetch-Site': 'cross-site' },
-    ]
-    for (const changes of blockedHeaders) {
-      const response = await fetch(endpoint, { headers: { ...headers(base), ...changes } })
-      expect(response.status, JSON.stringify(changes)).toBe(403)
-      expect(await response.text()).not.toContain(key)
+    for (const changes of [{ Origin: 'https://untrusted.example' }, { Origin: base.replace('127.0.0.1', 'localhost') }, { Origin: 'null' }, { 'Sec-Fetch-Site': 'cross-site' }]) {
+      expect((await fetch(endpoint, { headers: { ...headers(base), ...changes } })).status).toBe(403)
     }
-    // Fetch can discard a Host override; use HTTP directly for this case.
     const hostileHostStatus = await new Promise<number | undefined>((resolve, reject) => {
       const request = httpRequest(endpoint, { headers: { ...headers(base), Host: 'untrusted.example' } }, response => {
         response.resume()
@@ -266,32 +177,69 @@ describe('development-only local app settings', () => {
     expect(hostileHostStatus).toBe(403)
     expect((await fetch(endpoint, { method: 'POST', headers: headers(base) })).status).toBe(405)
   })
-
-  it.each([true, false])('blocks direct file access, including when only protecting v1 (exposeSettings=%s)', async expose => {
-    await writeFile(configFile(), JSON.stringify(settings))
-    await writeFile(join(directory, LOCAL_SETTINGS_DIRECTORY, 'app.settings.json'), JSON.stringify(settings))
-    const base = await start(expose)
-    const relative = `/${LOCAL_SETTINGS_DIRECTORY}/${LOCAL_SETTINGS_FILE}`
-    for (const path of [relative, `${relative}?raw`, `${relative}?url`, relative.toUpperCase(), `/@fs/${normalizePath(configFile())}`, `/${LOCAL_SETTINGS_DIRECTORY}/app.settings.json`]) {
+  it.each([false, true])('denies root data and legacy secrets in root and nested v1 servers (nested=%s)', async nested => {
+    await writeFile(configFile(), yaml({ aiConnection }))
+    await writeFile(join(directory, 'data', 'profile.template.yaml'), createProfileTemplate())
+    await mkdir(join(directory, 'settings'))
+    await writeFile(join(directory, 'settings', 'app.settings.jsonc'), JSON.stringify({ aiConnection }))
+    await mkdir(join(directory, 'src', 'data'), { recursive: true })
+    await writeFile(join(directory, 'src', 'data', 'curriculum.json'), '{"public":true}')
+    const base = await start(!nested, nested)
+    const paths = [
+      '/data/default.yaml', '/data/profile.template.yaml', '/data/default.yaml?raw', '/DATA/DEFAULT.YAML',
+      `/@fs/${normalizePath(configFile())}`, `/v1/@fs/${normalizePath(configFile())}`,
+      '/v1/data/default.yaml', '/v1/%2e%2e/data/default.yaml', '/%64ata/default.yaml',
+      '/v1/%2e%2e%2fdata%2fdefault.yaml', '/v1/%2e%2e%5cdata%5cdefault.yaml', '/%2564ata/default.yaml', '/settings/app.settings.jsonc',
+      '/settings/app.settings.json', '/.env.local', '/.git/config', '/private.pem',
+    ]
+    for (const path of paths) {
       const response = await fetch(base + path)
       expect([403, 404], path).toContain(response.status)
       expect(await response.text()).not.toContain(key)
     }
     expect(server?.config.server.fs.deny).toEqual(expect.arrayContaining(['.env', '.env.*', '**/another-private-file']))
-    if (!expose) {
-      expect(server?.config.define?.['import.meta.env.DEV_LOCAL_SETTINGS']).toBeUndefined()
-      expect((await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(404)
+    if (!nested) expect((await fetch(base + '/src/data/curriculum.json')).status).toBe(200)
+    else expect((await fetch(base + '/v1' + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(404)
+  })
+  it('blocks static and filesystem aliases that resolve into root data', async () => {
+    await writeFile(configFile(), yaml({ aiConnection }))
+    await symlink(join(directory, 'data'), join(directory, 'alias'), 'junction')
+    const base = await start()
+    for (const path of ['/alias/default.yaml', '/alias/default.yaml?raw', `/@fs/${normalizePath(join(directory, 'alias', 'default.yaml'))}`]) {
+      const response = await fetch(base + path)
+      expect(response.status).toBe(403)
+      expect(await response.text()).not.toContain(key)
     }
   })
-
-  it('does not include settings in production output or offer an endpoint in preview', async () => {
-    await writeFile(configFile(), JSON.stringify(settings))
+  it('ignores private data in file watching without excluding tracked src/data', async () => {
+    await writeFile(configFile(), yaml({ aiConnection }))
+    server = await createServer({
+      configFile: false, root: directory, cacheDir: join(directory, '.vite-cache'),
+      plugins: [localSettings()], logLevel: 'silent',
+      server: { host: '127.0.0.1', port: 0, hmr: false },
+    })
+    const ignored = JSON.stringify(server.config.server.watch?.ignored)
+    expect(ignored).toContain('/data')
+    expect(ignored).not.toContain('/src/data')
+    await vi.waitFor(() => expect(Object.keys(server!.watcher.getWatched()).length).toBeGreaterThan(0))
+    const watched = Object.keys(server.watcher.getWatched()).map(path => normalizePath(path))
+    expect(watched).not.toContain(normalizePath(join(directory, 'data')))
+  })
+  it('rejects explicit private imports during builds without echoing contents', async () => {
+    await writeFile(configFile(), yaml({ aiConnection }))
+    await writeFile(join(directory, 'index.html'), '<script type="module" src="./main.js"></script>')
+    await writeFile(join(directory, 'main.js'), "import snapshot from './data/default.yaml?raw'; console.log(snapshot)")
+    const result = build({
+      configFile: false, root: directory, plugins: [localSettings()], logLevel: 'silent', build: { write: false },
+    })
+    await expect(result).rejects.toThrow('Private local files cannot be imported')
+    await expect(result).rejects.not.toThrow(key)
+  })
+  it('does not include data in production output or offer bootstrap in preview', async () => {
+    await writeFile(configFile(), yaml({ aiConnection }))
     await writeFile(join(directory, 'index.html'), '<script type="module" src="./main.js"></script>')
     await writeFile(join(directory, 'main.js'), 'console.log(import.meta.env)')
-    const result = await build({
-      configFile: false, root: directory, plugins: [localSettings()], logLevel: 'silent',
-      build: { write: false },
-    })
+    const result = await build({ configFile: false, root: directory, plugins: [localSettings()], logLevel: 'silent', build: { write: false } })
     expect(JSON.stringify(result)).not.toContain(key)
     expect(JSON.stringify(result)).not.toContain(LOCAL_SETTINGS_FILE)
     await mkdir(join(directory, 'dist'))
@@ -305,9 +253,8 @@ describe('development-only local app settings', () => {
       if (!address || typeof address === 'string') throw new Error('Missing preview address')
       const base = `http://127.0.0.1:${address.port}`
       expect(production.config.define?.['import.meta.env.DEV_LOCAL_SETTINGS']).toBe(JSON.stringify('false'))
-      const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
-      expect(response.status).toBe(404)
-      expect(await response.text()).not.toContain(key)
+      expect((await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })).status).toBe(404)
+      expect((await fetch(base + '/data/default.yaml')).status).toBe(403)
     } finally {
       await new Promise<void>((resolve, reject) => {
         production.httpServer.close(error => error ? reject(error) : resolve())

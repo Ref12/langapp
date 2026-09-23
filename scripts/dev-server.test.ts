@@ -1,13 +1,30 @@
 // @vitest-environment node
 import { resolve } from 'node:path'
-import { readFile } from 'node:fs/promises'
+import { mkdir, readFile, rm } from 'node:fs/promises'
+import { randomUUID } from 'node:crypto'
 import { createServer } from 'vite'
 import { expect, it } from 'vitest'
 import { LOCAL_TTS_HEADER, LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../src/core/local-tts-contracts'
+import rootConfig from '../vite.config'
+import { localProfiles } from './local-profiles'
+import { initializeProfileDirectory, listProfileFiles, readProfileFile, saveProfileFile } from './profile-files'
+import { LOCAL_PROFILES_PATH } from '../src/core/profiles/local-contracts'
 
 it('serves the production app, separate mockups, and transformed v1 dependencies from one origin', async () => {
+  const profileRoot = resolve(`.dev-server-profile-test-${randomUUID()}`)
+  await mkdir(profileRoot)
+  const config = await rootConfig({ command: 'serve', mode: 'development', isPreview: false })
+  // Exercise the real routing/configuration without reading or migrating actual private settings.
+  config.plugins = config.plugins?.map(plugin => plugin && typeof plugin === 'object' && 'name' in plugin && plugin.name === 'local-profiles'
+    ? localProfiles({
+      initialize: (_root, signal) => initializeProfileDirectory(profileRoot, signal),
+      read: (_root, id, signal) => readProfileFile(profileRoot, id, signal),
+      list: (_root, signal) => listProfileFiles(profileRoot, signal),
+      save: (_root, id, input, signal) => saveProfileFile(profileRoot, id, input, signal),
+    }) : plugin)
   const server = await createServer({
-    configFile: resolve('vite.config.ts'),
+    ...config,
+    configFile: false,
     server: { host: '127.0.0.1', port: 0, hmr: false },
     logLevel: 'silent',
   })
@@ -20,6 +37,8 @@ it('serves the production app, separate mockups, and transformed v1 dependencies
     expect(root).toContain('src="/src/main.tsx"')
     expect(root).not.toContain('<iframe')
     expect(server.config.define?.['import.meta.env.DEV_LOCAL_TTS']).toBe(JSON.stringify('true'))
+    expect(server.config.define?.['import.meta.env.DEV_LOCAL_PROFILES']).toBe(JSON.stringify('true'))
+    expect((await fetch(base + LOCAL_PROFILES_PATH)).status).toBe(403)
     const blockedCatalog = await fetch(base + LOCAL_TTS_VOICES_PATH)
     expect(blockedCatalog.status).toBe(403)
     const invalidCatalogMethod = await fetch(base + LOCAL_TTS_VOICES_PATH, {
@@ -69,5 +88,6 @@ it('serves the production app, separate mockups, and transformed v1 dependencies
     }
   } finally {
     await server.close()
+    await rm(profileRoot, { recursive: true, force: true })
   }
 }, 30_000)

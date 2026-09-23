@@ -71,12 +71,12 @@ Those design artifacts remain memory-only and never access either app's database
   Curriculum contextual understanding, productive use, grammar evidence, and
   communicative checkpoints remain **unassessed**. A full recognition queue
   does not pass a level's goals. Prerequisites are guidance, not enforced gates.
-- Save appearance and reading preferences; download or explicitly restore a
-  versioned backup in Settings. Restore replaces only the new workspace, inside
-  one transaction. Backups include Assistant conversations but exclude device
-  credentials, are bounded to 5 MiB, and are not compatible with v1.
-  Content version 2 adds curriculum references; previous content-version-1
-  starter backups remain readable without rewriting their IDs or saved answers.
+- Keep named profiles with independent preferences, connections, learning, and
+  conversations. Settings can create a fresh profile or clone the current one,
+  download/upload a versioned YAML snapshot, or manually save/load one in the
+  local server's ignored `data` folder. YAML exports include credentials and are
+  bounded to 10 MiB; keep them private. Existing root-app JSON backups remain
+  readable without rewriting IDs or answers. Archived v1 backups remain separate.
 
 The starter content in `src/data/mandarin.ts` is original material adapted from
 the design examples. Its local `zh:*` IDs and historical progress remain separate
@@ -126,8 +126,9 @@ mastery or examination readiness.
 Data: `npm run curriculum:v2:app` regenerates `src\data\v2\*.generated.json`
 from the v2 inventories (`--check` fails when stale; the build runs the check).
 Knowledge, cards, sessions and answers are new Dexie tables (schema 4) and are
-included in backups as schema 3 (`study`); older backups restore with an empty
-knowledge set. The previous curriculum map remains reachable at `#curriculum`
+included in profile YAML under `knowledge.study`. Previous schema-3 root-app JSON
+backups remain importable; older backups restore with an empty knowledge set.
+The previous curriculum map remains reachable at `#curriculum`
 and the older recognition practice at `#practice`; neither feeds the knowledge set.
 
 ## Assistant
@@ -301,17 +302,18 @@ lists. Mandarin locale aliases and Taiwanese Mandarin are supported, with
 Simplified/mainland voices preferred in Automatic mode.
 English plays at normal speed;
 Mandarin phrases in a conversation use that conversation's chosen rate.
-The local-settings `defaultSpeechRate` configures the initial speed for new
+The profile preference `defaultSpeechRate` configures the initial speed for new
 conversations and Mandarin Hear buttons outside conversations.
 Navigation, page hiding, and Escape stop playback.
 
-AI and Azure Speech keys are plaintext device settings accessible to code on the same origin;
-use a restricted key. They are excluded from every workspace backup. New
-version-2 backups include conversations, drafts, and recoverable run state.
-Version-1 root-app backups remain readable and restore with no conversations.
-Restoring replaces learning and conversation data, preserves the device's AI
-and speech connections, and never resumes a request automatically. V1 data and settings
-remain isolated.
+AI and Azure Speech keys are plaintext profile settings accessible to code on the
+same origin. Use restricted keys. Every profile YAML export includes these keys,
+conversations, drafts, and saved practice results; protect both downloaded files
+and the local data folder. Replacing a profile from YAML replaces its connections
+as well as its learning and conversation data. Previous root-app JSON backups
+remain readable and preserve existing connections; version 1 has no conversations.
+Restored requests never resume automatically. Archived v1 data and settings remain
+isolated.
 
 ### Assistant system prompts
 
@@ -326,7 +328,7 @@ each turn, not saved as historical system messages.
 The active prompts are tracked, public application files, bundled into development and
 production builds with no runtime settings fetch. Rebuild/redeploy to publish
 prompt changes; do not put credentials or private information in them. They are
-independent of the ignored `app.settings.jsonc` connection settings. Mandatory
+independent of the ignored profile YAML files in `data`. Mandatory
 response-format, read-only-tool, and untrusted-data rules remain app-owned in
 TypeScript, and replies and tool calls are still validated regardless of prompts.
 
@@ -483,92 +485,78 @@ GitHub Pages. On those sites browser voices still work; a saved Edge selection
 remains visibly unavailable until you choose another voice, rather than silently
 switching providers. No hosted proxy or automatic cloud fallback is configured.
 
-### Local app settings
+### Named profiles and YAML snapshots
 
-To avoid entering the connection again in each fresh browser profile, copy the
-commented template into the git-ignored JSONC file in the `settings` directory:
+**Browser storage remains the live store.** The first profile is called `default`
+and retains the existing root-app database in place, including connections,
+voice preferences, knowledge, schedules, learning history, drafts, conversations,
+and practice feedback. Nothing is moved into the archived v1 app.
 
-```powershell
-Copy-Item settings\app.settings.template.jsonc settings\app.settings.jsonc
-```
+Use **Settings -> Profiles and backups** to create a fresh profile or clone the
+current profile. Fresh profiles have default preferences, empty learning and
+conversations, and no configured connections. Clones include the current saved
+data and credentials. Names must be unique; each profile has a stable ID separate
+from its display name. Switching reloads the app after stopping audio and active
+Assistant requests. Save pending conversation drafts and unfinished settings
+edits first. In-flight work is never resumed in a clone or restored profile.
 
-Both files use the `app.settings` prefix and the `.jsonc` format extension.
-If `settings\app.settings.jsonc` already exists, edit it rather than replacing it.
-Existing plain JSON settings can be renamed from `.json` to `.jsonc` unchanged.
+Each profile snapshot is one versioned YAML document with three main sections:
 
-Settings are grouped by section so other app settings can be added later.
-Both `aiConnection` and `speechConnection` are optional. Within `aiConnection`, fill in
-`baseUrl`, `apiKey`, and `model`. Choose `"apiType": "responses"` or
-`"apiType": "chat-completions"`; omitting it retains Chat Completions.
-For Azure, enable the template's commented `speechConnection` example, using
-`"provider": "azure"`, its `region` identifier (for example `eastus`), `apiKey`,
-and `"storageAcknowledged": true`. Omit sections you do not want configured.
-The template explains every field. Set `nativeTools` and
-`structuredOutput` to `true` only when supported. Set
-`"storageAcknowledged": true` to opt into saving the key in plaintext browser
-storage. These flags are JSON booleans, not strings. Use a restricted development
-key; never commit `settings\app.settings.jsonc` or put it in `public`.
-The file must be valid JSONC, no larger than 32 KiB. Line/block comments and
-trailing commas are supported; malformed syntax is rejected, not repaired.
-An optional top-level `"defaultSpeechRate": 0.75` sets the default Mandarin
-playback speed. Supported values are `0.5`, `0.75`, `1`, and `1.25`. It works
-without either connection section and never changes English playback speed or
-the saved speed of an existing conversation.
+| Section | Contents |
+| --- | --- |
+| `settings` | Workspace preferences, English/Mandarin voices and speed, AI and Azure Speech connections **including keys** |
+| `knowledge` | Knowledge set, FSRS cards and scheduling, study sessions/answers, and older root-app learning progress |
+| `conversations` | Threads, messages, drafts, practice feedback, and interrupted/completed request records |
 
-An optional top-level `speechVoices` section pins the same per-language
-selections used by **Settings -> Hear voices**, for example:
+Metadata records the format version, content version, export time, profile ID,
+and display name. Files are bounded to 10 MiB and validated before importing:
+unknown fields, duplicate keys, YAML aliases/custom tags, malformed references,
+and inconsistent histories are rejected rather than repaired or partially loaded.
+Raw recordings are never stored or exported.
 
-```json
-{
-  "speechVoices": {
-    "zh-Hans": { "provider": "edge", "voice": "zh-CN-YunjianNeural" },
-    "en-US": { "provider": "edge", "voice": "en-US-ChristopherNeural" }
-  }
-}
-```
+**Every YAML export includes saved credentials in plaintext**, for both server
+and browser exports. The controls show this warning. Keep these files private
+and use restricted keys. Restoring a YAML profile replaces its connections;
+omitted connections are cleared. Previous root-app JSON backups are still
+accepted, with their original credential-preserving behavior.
 
-Edge IDs must match the language and a supported catalog voice. Browser voices
-use their saved `{ voiceURI, name, lang, localService }` metadata instead of
-`{ provider, voice }`; their availability depends on the current browser/device.
-The commented template includes an example without enabling cloud voices by
-default. Loading selections never synthesizes text or starts audio.
+**Download profile** uses a browser Blob/download, and **Choose profile file**
+loads YAML for review. Confirm replacement of the current profile, or import it
+as a new named profile. No data changes merely by selecting a file. Browser-only
+profiles and these file operations work without the local server.
 
-The earlier `.env.local` /
-`ASSISTANT_AI_` shortcut is no longer read.
+During `npm run dev`, the ignored root `data` directory also supports manual
+snapshots. The default file is `data\default.yaml`; other files use their stable
+profile IDs, `data\<id>.yaml`. A secret-free commented
+`data\profile.template.yaml` is generated when absent; it is ignored too.
+The template generator is maintained in source, so a new checkout can recreate it
+without committing local data. Authored system-prompt Markdown stays in `settings`.
 
-During `npm run dev`, the app automatically queries a localhost-only endpoint
-on startup. It imports each connection
-independently: an existing AI connection does not prevent loading missing speech
-settings, and existing saved connections are never overwritten.
-Loading configuration does not test a provider, request a microphone, send a
-message, alter learning progress, or block lesson rendering. Separate setup
-notices appear only in the corresponding Settings sections. Missing configuration is
-optional; invalid configuration leaves manual setup available.
+Existing `settings\app.settings.jsonc` is migrated to `data\default.yaml` without
+changing its configured values. The original is removed only after successful,
+validated creation; an existing destination is never silently overwritten.
+This initial disk file contains migrated settings, not an automatic export of
+browser history. Existing browser history and knowledge already belong to the
+`default` profile in place. Use **Export to data folder** for a full snapshot.
+The default profile can bootstrap migrated connection/voice settings once.
+Subsequent launches use the live browser settings, not stale disk snapshots.
+New fresh/clone/import profiles do not inherit the default file's settings.
 
-Saved connections always win, including a save in another tab while the file is
-loading. To apply connection changes to the file, remove the saved connection in Settings
-and reload. To leave a provider unconfigured, also remove its section from the local
-JSONC file (an empty `{}` is valid), or remove the file altogether. Only this
-file is read; environment variables do not override its settings.
-Unlike credentials, an explicitly supplied `defaultSpeechRate` is reapplied on
-each startup: edit it and reload to change the default for new conversations.
-The imported default is saved with workspace preferences; omitting the key leaves
-that saved default unchanged. Without any configured default, existing behavior
-remains: Mandarin Hear and new conversations start at normal speed (`1x`).
-Explicit `speechVoices` entries are likewise reapplied at each startup, merging
-only the specified languages. Omitted languages keep their saved choices, and
-omitting the section or using `{}` does not clear them. To stop pinning a voice,
-remove its file entry and choose the desired voice or Automatic in Settings.
-UI changes do not rewrite this file. Voice and speed preferences import
-independently, survive reload/backups, and leave credentials and existing chats
-unchanged. A failed import reports an error in Hear voices and keeps the previous
-selection rather than silently replacing it.
+**Export to data folder** prepares a snapshot and asks before creating or
+replacing its file. Revision checks reject concurrent changes rather than
+overwriting them. **Import from data folder** reads a selected snapshot for the
+same review/replace/new-profile flow as browser uploads. Neither operation is
+automatic synchronization; later browser changes do not rewrite YAML.
+The local APIs require loopback, same-origin request metadata, and an explicit
+intent header, and are absent from production, preview, and standalone v1.
+Both development servers block direct access to the root data folder, including
+filesystem aliases. Profile contents are not bundled, logged, or cached.
 
-This shortcut is unavailable on LAN addresses, in `npm run preview`, and in
-production. Credentials are not embedded in bundles, cached by the endpoint,
-or included in workspace backups. The dev endpoint accepts only same-origin
-app requests on localhost, and both development servers block direct access to
-the credential file.
+`settings.preferences.defaultSpeechRate` still supports `0.5`, `0.75`, `1`, and
+`1.25`, affects Mandarin only, and does not change existing conversation rates.
+`settings.preferences.speechVoices` uses the existing per-language browser or
+Edge preference objects. File edits take effect through explicit import after
+the one-time bootstrap. Importing settings never tests providers or plays audio.
 Normal browser-to-provider CORS requirements still apply.
 
 ### Standalone structured-output probe

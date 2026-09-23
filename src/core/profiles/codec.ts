@@ -1,0 +1,98 @@
+import { isAlias, isCollection, isPair, isScalar, parseAllDocuments, stringify } from 'yaml'
+import { z } from 'zod'
+import { CONTENT_VERSION } from '../../data/mandarin'
+import { interruptImportedRuns, readBackup, splitStudy } from '../backup-codec'
+import { localSettingsSchema } from '../local-settings-contracts'
+import { MAX_PROFILE_BYTES, PROFILE_FORMAT, profileSnapshotSchema, type ProfileSnapshot } from './contracts'
+import { type ProfileMetadata } from './identity'
+
+const INVALID_PROFILE = 'Invalid profile YAML. Check the file format, settings, and saved data.'
+const MAX_DEPTH = 40
+
+function checkSize(text: string): void {
+  if (new TextEncoder().encode(text).byteLength > MAX_PROFILE_BYTES) {
+    throw new Error('The profile exceeds the 10 MiB limit.')
+  }
+}
+
+function checkNode(node: unknown, depth = 0): void {
+  if (depth > MAX_DEPTH || isAlias(node)) throw new Error(INVALID_PROFILE)
+  if (isPair(node)) {
+    if (!isScalar(node.key) || typeof node.key.value !== 'string') throw new Error(INVALID_PROFILE)
+    checkNode(node.key, depth + 1)
+    checkNode(node.value, depth + 1)
+  } else if (isCollection(node) || isScalar(node)) {
+    // Explicit tags and anchors are unnecessary for snapshots and can obscure their contents.
+    if (node.tag || node.anchor) throw new Error(INVALID_PROFILE)
+    if (isCollection(node)) for (const item of node.items) checkNode(item, depth + 1)
+  }
+}
+
+export function createEmptyProfile(profile: ProfileMetadata, localSettings?: z.infer<typeof localSettingsSchema>): ProfileSnapshot {
+  try {
+    const settings = localSettingsSchema.parse(localSettings ?? {})
+    return profileSnapshotSchema.parse({
+      format: PROFILE_FORMAT, version: 1, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
+      settings: {
+        preferences: {
+          id: 'workspace', language: 'zh-Hans', name: 'Your workspace', theme: 'dark',
+          pinyin: true, readingMode: 'weave', sidebarCollapsed: false,
+          ...(settings.defaultSpeechRate === undefined ? {} : { defaultSpeechRate: settings.defaultSpeechRate }),
+          ...(settings.speechVoices === undefined ? {} : { speechVoices: settings.speechVoices }),
+        },
+        ...(settings.aiConnection ? { aiConnection: settings.aiConnection } : {}),
+        ...(settings.speechConnection ? { speechConnection: settings.speechConnection } : {}),
+      },
+      knowledge: { words: [], readings: [], lessons: [], sessions: [], attempts: [],
+        study: { knowledge: [], cards: [], sessions: [], attempts: [] } },
+      conversations: { threads: [], messages: [], runs: [] },
+    })
+  } catch {
+    throw new Error(INVALID_PROFILE)
+  }
+}
+
+export function parseProfileYaml(text: string): ProfileSnapshot {
+  checkSize(text)
+  try {
+    const documents = parseAllDocuments(text, {
+      version: '1.2', schema: 'core', uniqueKeys: true, strict: true, prettyErrors: false,
+    })
+    if (documents.length !== 1) throw new Error(INVALID_PROFILE)
+    const document = documents[0]
+    if (document.errors.length || document.warnings.length) throw new Error(INVALID_PROFILE)
+    checkNode(document.contents)
+    const snapshot = profileSnapshotSchema.parse(document.toJS({ maxAliasCount: 0 }))
+    interruptImportedRuns(snapshot.conversations)
+    return snapshot
+  } catch {
+    // Parser/schema diagnostics may contain source text, including credentials.
+    throw new Error(INVALID_PROFILE)
+  }
+}
+
+export function serializeProfileYaml(snapshot: ProfileSnapshot): string {
+  let text: string
+  try {
+    text = stringify(profileSnapshotSchema.parse(snapshot), { aliasDuplicateObjects: false, lineWidth: 0 })
+  } catch {
+    throw new Error(INVALID_PROFILE)
+  }
+  checkSize(text)
+  return text
+}
+
+export function fromLegacyBackup(text: string, profile: ProfileMetadata): ProfileSnapshot {
+  try {
+    const { learning, assistant, study } = splitStudy(readBackup(text))
+    const { preferences, ...knowledge } = learning
+    return profileSnapshotSchema.parse({
+      ...createEmptyProfile(profile),
+      settings: { preferences },
+      knowledge: { ...knowledge, study },
+      conversations: assistant ?? { threads: [], messages: [], runs: [] },
+    })
+  } catch {
+    throw new Error('Invalid legacy backup. Check the file format and saved data.')
+  }
+}

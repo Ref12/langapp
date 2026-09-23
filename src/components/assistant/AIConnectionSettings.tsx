@@ -7,7 +7,12 @@ import { removeAIConnection, saveAIConnection } from '../../core/assistant/store
 import { testAIConnection } from '../../core/ai/provider'
 import { LocalAISetupContext } from './local-ai-setup-context'
 
-function ConnectionForm({ connection }: { connection?: AIConnection }) {
+interface ConnectionSettingsProps {
+  busy?: boolean
+  onBusyChange?: (busy: boolean) => void
+}
+
+function ConnectionForm({ connection, busy, onBusyChange }: ConnectionSettingsProps & { connection?: AIConnection }) {
   const [apiType, setApiType] = useState<AIAPIType>(connection?.apiType ?? 'chat-completions')
   const [baseUrl, setBaseUrl] = useState(connection?.baseUrl ?? 'https://api.openai.com/v1')
   const [apiKey, setApiKey] = useState(connection?.apiKey ?? '')
@@ -23,7 +28,9 @@ function ConnectionForm({ connection }: { connection?: AIConnection }) {
   useEffect(() => () => controller.current?.abort(), [])
   const input = () => aiConnectionInputSchema.parse({ apiType, baseUrl, apiKey, model, nativeTools, structuredOutput, storageAcknowledged: acknowledged })
   const perform = async (action: 'test' | 'save' | 'remove') => {
+    if (busy || pending) return
     setPending(true)
+    onBusyChange?.(true)
     setNotice('')
     setError('')
     try {
@@ -45,13 +52,14 @@ function ConnectionForm({ connection }: { connection?: AIConnection }) {
       setError(reason instanceof Error ? reason.message : 'The connection action could not be completed.')
     } finally {
       setPending(false)
+      onBusyChange?.(false)
       controller.current = undefined
     }
   }
   return <form className="panel settings-form" aria-label="Assistant AI connection" onSubmit={event => { event.preventDefault(); void perform('save') }}>
     <h2>Assistant AI connection</h2>
     <p className="small muted">Your conversations stay on this device. Sending a turn shares its relevant conversation, learning context, and selected text with your configured provider. Requests may incur provider charges.</p>
-    <fieldset className="connection-fields" disabled={pending}>
+    <fieldset className="connection-fields" disabled={pending || busy}>
       <label>API protocol<select value={apiType} onChange={event => setApiType(aiApiTypeSchema.parse(event.target.value))}>
         <option value="chat-completions">Chat Completions</option>
         <option value="responses">Responses API</option>
@@ -65,24 +73,24 @@ function ConnectionForm({ connection }: { connection?: AIConnection }) {
       <label className="toggle"><input type="checkbox" checked={structuredOutput} onChange={event => setStructuredOutput(event.target.checked)} /> My endpoint supports strict JSON-schema responses</label>
       <p className="small muted">Without this option, Assistant requests JSON and validates it locally. Unsupported capabilities produce an error; the app never silently switches protocols.</p>
       <label className="toggle"><input type="checkbox" required checked={acknowledged} onChange={event => setAcknowledged(event.target.checked)} /> I understand that the key is stored in plaintext browser storage and is accessible to code on this origin.</label>
-      <p className="small muted">Credentials are excluded from backups. Use a restricted key. HTTPS is required except on localhost; your endpoint must allow browser CORS requests.</p>
+      <p className="small muted">Profile YAML exports include this key in plaintext. Keep exported files private and use a restricted key. HTTPS is required except on localhost; your endpoint must allow browser CORS requests.</p>
     </fieldset>
     <div className="button-row">
-      <button type="submit" className="button primary" disabled={pending}>Save AI connection</button>
-      <button type="button" className="button secondary" disabled={pending} onClick={() => void perform('test')}>Test connection</button>
+      <button type="submit" className="button primary" disabled={pending || busy}>Save AI connection</button>
+      <button type="button" className="button secondary" disabled={pending || busy} onClick={() => void perform('test')}>Test connection</button>
       {pending && <button type="button" className="button secondary" disabled={!controller.current} onClick={() => controller.current?.abort()}>Cancel test</button>}
-      {connection && <button type="button" className="button secondary" disabled={pending} onClick={() => setRemoving(true)}>Remove connection</button>}
+      {connection && <button type="button" className="button secondary" disabled={pending || busy} onClick={() => setRemoving(true)}>Remove connection</button>}
     </div>
     {removing && <div className="notice"><p>Remove this device's saved AI key and connection? Conversations and learning progress will remain.</p>
-      <div className="button-row"><button type="button" className="button secondary" disabled={pending} onClick={() => void perform('remove')}>Confirm removal</button>
-        <button type="button" className="button secondary" onClick={() => setRemoving(false)}>Keep connection</button></div>
+      <div className="button-row"><button type="button" className="button secondary" disabled={pending || busy} onClick={() => void perform('remove')}>Confirm removal</button>
+        <button type="button" className="button secondary" disabled={pending || busy} onClick={() => setRemoving(false)}>Keep connection</button></div>
     </div>}
     {notice && <p role="status" className="small">{notice}</p>}
     {error && <p role="alert" className="connection-error">{error}</p>}
   </form>
 }
 
-export function AIConnectionSettings() {
+export function AIConnectionSettings({ busy, onBusyChange }: ConnectionSettingsProps = {}) {
   const localSetup = useContext(LocalAISetupContext)
   const connections = useLiveQuery<AIConnection[] | undefined>(() => localSetup === 'loading' ? undefined : db.aiConnections.toArray(), [localSetup])
   if (localSetup === 'loading') return <section aria-label="AI connection settings"><p role="status">Loading local Assistant configuration...</p></section>
@@ -95,7 +103,7 @@ export function AIConnectionSettings() {
         : `Local AI setup could not be completed. Check ${LOCAL_SETTINGS_FILE} and browser storage, then reload, or configure the connection below.`}
     </p>}
     <p className="small muted" role="status">{connection ? `Saved AI connection: ${connection.model}` : 'No AI connection is saved on this device.'}</p>
-    {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && <p className="small muted">Local development can load aiConnection from {LOCAL_SETTINGS_FILE} on startup when no connection is saved. To apply changed file settings, remove the saved connection and reload. Remove aiConnection from the file too if you want AI to stay unconfigured.</p>}
-    <ConnectionForm key={connection?.revision ?? 'unconfigured'} connection={connection} />
+    {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && <p className="small muted">The default profile can load aiConnection from {LOCAL_SETTINGS_FILE} once during initial setup when no connection is saved. Later file changes require an explicit profile import; removing a connection here keeps it removed across reloads.</p>}
+    <ConnectionForm key={connection?.revision ?? 'unconfigured'} connection={connection} busy={busy} onBusyChange={onBusyChange} />
   </section>
 }

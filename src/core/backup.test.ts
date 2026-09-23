@@ -224,6 +224,7 @@ describe('compatible Assistant workspace backups', () => {
     expect(tables).toEqual([
       'preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
       'assistantThreads', 'assistantMessages', 'assistantRuns',
+      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts',
     ])
     expect(tables).not.toContain('aiConnections')
   })
@@ -346,5 +347,48 @@ describe('compatible Assistant workspace backups', () => {
     expect(await loadWorkspace()).toEqual(before)
     expect(await snapshot()).toEqual(assistant)
     expect(await db.aiConnections.get('assistant')).toEqual(connection)
+  })
+})
+
+describe('cancellable legacy restores', () => {
+  it('retains the one-argument API and completes bootstrap without changing credentials', async () => {
+    const text = await exportWorkspaceBackup()
+    await saveConnection()
+    const connection = await db.aiConnections.get('assistant')
+    await restoreBackup(text)
+    expect(await db.aiConnections.get('assistant')).toEqual(connection)
+    expect(await db.profileState.get('local-settings')).toEqual({ id: 'local-settings', imported: true })
+  })
+
+  it('rejects already cancelled restores before clearing saved data', async () => {
+    const text = await exportWorkspaceBackup()
+    await trackWord('zh:tea', 'dictionary')
+    const before = await loadWorkspace()
+    const controller = new AbortController()
+    controller.abort()
+    await expect(restoreBackup(text, controller.signal)).rejects.toThrow()
+    expect(await loadWorkspace()).toEqual(before)
+    expect(await db.profileState.get('local-settings')).toBeUndefined()
+  })
+
+  it('rolls back an in-flight restore on navigation cancellation, including its bootstrap marker', async () => {
+    const text = await exportWorkspaceBackup()
+    await seedAssistant()
+    await trackWord('zh:tea', 'dictionary')
+    await saveConnection()
+    const before = await loadWorkspace()
+    const assistant = await snapshot()
+    const connection = await db.aiConnections.get('assistant')
+    const controller = new AbortController()
+    const original = db.preferences.add.bind(db.preferences)
+    vi.spyOn(db.preferences, 'add').mockImplementation(preferences => original(preferences).then(result => {
+      controller.abort()
+      return result
+    }))
+    await expect(restoreBackup(text, controller.signal)).rejects.toThrow()
+    expect(await loadWorkspace()).toEqual(before)
+    expect(await snapshot()).toEqual(assistant)
+    expect(await db.aiConnections.get('assistant')).toEqual(connection)
+    expect(await db.profileState.get('local-settings')).toBeUndefined()
   })
 })

@@ -21,7 +21,7 @@ export default defineConfig(async ({ command, isPreview }) => {
     },
     plugins: [
       react(),
-      localSettings({ exposeSettings: false }),
+      localSettings({ exposeSettings: false, privateRoot: fileURLToPath(new URL('../..', import.meta.url)) }),
       VitePWA({
         registerType: 'prompt',
         injectRegister: null,
