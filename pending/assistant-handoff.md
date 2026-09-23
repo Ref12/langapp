@@ -3,6 +3,26 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Local Edge TTS adapter (2026-09-22, in progress)
+
+The user chose the local Vite server instead of deploying a Cloudflare Worker
+for the initial text-to-MP3 adapter. Scope is the server endpoint only: no
+changes to existing Hear/Practice/reply playback or saved voice settings.
+`scripts/local-tts.ts` mounts localhost-only `POST /__local/tts`;
+`src/core/local-tts-contracts.ts` defines its strict input/header contract.
+The request-origin guard is shared with the private settings endpoint through
+`scripts/local-request.ts`, without weakening settings access.
+`scripts/edge-tts.ts` owns the fixed-upstream Node WebSocket protocol,
+English normal-speed enforcement, bounded audio, timeout, and cancellation.
+`ws` and `@types/ws` are direct development dependencies. No Python is needed.
+Short MP3 clips are buffered before a successful response, not progressively
+played or persisted. Production/static hosting and standalone v1 are unchanged.
+README documents the endpoint and the explicit text disclosure to Microsoft.
+
+Implementation/validation is in progress; do not infer completion from this
+section. Preserve all unrelated in-flight study/annotation changes and private
+settings. No commit or push has been requested.
+
 ## Local-main merge integration
 
 The curriculum branch integrates local main at `490c685`. Guided lesson audio

@@ -1,27 +1,11 @@
-import type { IncomingMessage } from 'node:http'
 import { open } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Plugin } from 'vite'
 import { parse, type ParseError } from 'jsonc-parser'
-import { LOOPBACK_HOSTNAMES } from '../src/core/assistant/contracts'
 import { localSettingsSchema, LOCAL_SETTINGS_DIRECTORY, LOCAL_SETTINGS_FILE, LOCAL_SETTINGS_HEADER, LOCAL_SETTINGS_PATH } from '../src/core/local-settings-contracts'
+import { isLocalRequest } from './local-request'
 
-const localAddresses = new Set(['127.0.0.1', '::1', '::ffff:127.0.0.1'])
 const maxConfigBytes = 32 * 1024
-
-function isLocalRequest(request: IncomingMessage, protocol: string): boolean {
-  if (!localAddresses.has(request.socket.remoteAddress ?? '')
-    || request.headers[LOCAL_SETTINGS_HEADER] !== '1') return false
-  let origin: URL
-  try {
-    origin = new URL(`${protocol}://${request.headers.host}`)
-  } catch {
-    return false
-  }
-  return LOOPBACK_HOSTNAMES.includes(origin.hostname) && !origin.username && !origin.password
-    && (!request.headers.origin || request.headers.origin === origin.origin)
-    && (!request.headers['sec-fetch-site'] || ['same-origin', 'none'].includes(String(request.headers['sec-fetch-site'])))
-}
 
 async function readConfiguration(root: string): Promise<unknown> {
   const file = await open(join(root, LOCAL_SETTINGS_DIRECTORY, LOCAL_SETTINGS_FILE), 'r')
@@ -67,7 +51,7 @@ export function localSettings({ exposeSettings = true } = {}): Plugin {
           response.statusCode = status
           response.end(JSON.stringify(value))
         }
-        if (!isLocalRequest(request, server.config.server.https ? 'https' : 'http')) {
+        if (!isLocalRequest(request, server.config.server.https ? 'https' : 'http', LOCAL_SETTINGS_HEADER)) {
           send(403, { error: 'Local settings are only available to the app on this localhost origin.' })
           return
         }

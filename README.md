@@ -385,6 +385,50 @@ Open `http://localhost:5173/dev/#lessons` to review the real curriculum in deskt
 and phone-sized layouts. The same `/dev/` route is included in the built site
 and works beneath a Pages prefix such as `/langapp/dev/`.
 
+### Local Edge TTS endpoint
+
+The root Vite development server exposes `POST /__local/tts`. It accepts
+`Content-Type: application/json` and requires `x-linguaweave-local-tts: 1`.
+For example, a same-origin caller can send:
+
+```json
+{
+  "text": "Hello from LinguaWeave.",
+  "voice": "en-US-AriaNeural",
+  "rate": 1
+}
+```
+
+`text` must contain 1-1000 characters after trimming. `voice` is a required
+`en-US` or `zh-CN` short Neural voice name, such as `en-US-AriaNeural` or
+`zh-CN-XiaoxiaoNeural`. Unknown upstream voices fail rather than falling back.
+`rate` defaults to `1`; accepted values are `0.5`, `0.75`, `1`, and `1.25`.
+English is always synthesized at normal speed, regardless of the requested
+rate. Mandarin uses the requested rate.
+
+The server connects to Microsoft's unofficial Edge Read Aloud WebSocket
+service using a Node/TypeScript adapter; Python and Azure credentials are not
+required. A successful response is a completed `audio/mpeg` body. This first
+version buffers short clips in memory (maximum 2 MiB) before returning HTTP 200,
+so a failed or interrupted synthesis cannot masquerade as a complete clip.
+Errors return JSON with an `error` field and a non-success status.
+
+The endpoint accepts only loopback peers and localhost Host headers, checks
+same-origin request metadata, and requires the explicit header above. It is not
+a general proxy and accepts no destination URL or custom upstream headers.
+Requests are limited to 16 KiB and four concurrent operations, with a maximum
+45-second request lifetime. Client disconnects and server shutdown cancel
+upstream work. No text/audio is logged, cached, or written to disk; responses
+use `Cache-Control: no-store`.
+
+**This is a server endpoint only.** Hear, Practice, lessons, and spoken Assistant
+replies still use the existing browser voices; nothing is uploaded by merely
+starting the dev server. Calling the endpoint sends the supplied text to
+Microsoft. The service is unofficial and may reject requests or change without
+notice. This endpoint is absent from standalone v1, production preview, and the
+static GitHub Pages deployment. A future playback-provider integration or hosted
+adapter must remain explicit rather than silently replacing local speech.
+
 ### Local app settings
 
 To avoid entering the connection again in each fresh browser profile, copy the

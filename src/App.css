@@ -397,4 +397,10 @@ select { padding: 10px; }
 .tile { font-size: 24px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-selected); color: inherit; cursor: pointer; min-height: 48px; }
 .tile:disabled { cursor: default; }
 .tile-used { opacity: 0.3; }
+.tile .mandarin-word rt { font-size: 12px; }
+.session-topline { max-width: 760px; margin: 0 auto 16px; }
+.session-topline .back-link { margin-bottom: 0; }
+.practice-tools { margin-top: 12px; }
+.practice-question-content .practice-tools { justify-content: flex-start; }
+.snippet-button.icon-only { padding-inline: 10px; flex-shrink: 0; }
 .notice.success { border-color: var(--accent); }

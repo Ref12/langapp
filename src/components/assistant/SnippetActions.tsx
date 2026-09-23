@@ -8,15 +8,15 @@ import { navigate } from '../../core/routing'
 import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
 import { interruptAudio } from '../../core/assistant/audio-owner'
 
-export function HearButton({ text, locale, rate }: { text: string; locale: SpeechLocale; rate?: number }) {
+export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false }: { text: string; locale: SpeechLocale; rate?: number; label?: string; iconOnly?: boolean }) {
   const id = useId()
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const active = playback.activeId === id
   const stopLabel = playback.phase === 'loading-voices' ? 'Cancel voice discovery' : 'Stop playback'
   useEffect(() => () => { if (getPlaybackState().activeId === id) stopBrowserSpeech() }, [id])
-  return <button className="button secondary snippet-button" type="button" title={active ? stopLabel : 'Hear with your selected voice; Automatic prefers local voices before online voices'}
-    aria-label={active ? stopLabel : 'Hear'} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, text, locale, rate)}>
-    {active ? <Square size={15} /> : <Volume2 size={15} />}{active ? 'Stop' : 'Hear'}
+  return <button className={`button secondary snippet-button${iconOnly ? ' icon-only' : ''}`} type="button" title={active ? stopLabel : 'Hear with your selected voice; Automatic prefers local voices before online voices'}
+    aria-label={active ? stopLabel : label} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, text, locale, rate)}>
+    {active ? <Square size={15} /> : <Volume2 size={15} />}{!iconOnly && (active ? 'Stop' : 'Hear')}
   </button>
 }
 

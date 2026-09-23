@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { readFile } from 'node:fs/promises'
 import { createServer } from 'vite'
 import { expect, it } from 'vitest'
+import { LOCAL_TTS_HEADER, LOCAL_TTS_PATH } from '../src/core/local-tts-contracts'
 
 it('serves the production app, separate mockups, and transformed v1 dependencies from one origin', async () => {
   const server = await createServer({
@@ -18,6 +19,15 @@ it('serves the production app, separate mockups, and transformed v1 dependencies
     const root = await fetch(base + '/').then(response => response.text())
     expect(root).toContain('src="/src/main.tsx"')
     expect(root).not.toContain('<iframe')
+    const blockedTts = await fetch(base + LOCAL_TTS_PATH, { method: 'POST' })
+    expect(blockedTts.status).toBe(403)
+    const invalidTts = await fetch(base + LOCAL_TTS_PATH, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', [LOCAL_TTS_HEADER]: '1', Origin: base },
+      body: '{}',
+    })
+    expect(invalidTts.status).toBe(400)
+    expect(await invalidTts.json()).toHaveProperty('error')
     expect(await fetch(base + '/index.html').then(response => response.text())).toContain('src="/src/main.tsx"')
     expect(await fetch(base + '/preview.html').then(response => response.text())).toContain('id="prototype-frame"')
     const redirect = await fetch(base + '/dev?review=lessons', { redirect: 'manual' })
