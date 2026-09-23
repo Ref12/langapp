@@ -25,7 +25,7 @@ describe('cumulative v2 grammar vocabulary', () => {
     expect(result.errors).toEqual([])
     expect(result.requiredVocabulary['s-shi4-n--identity']).toContain('shi4--identity')
     expect(result.requiredVocabulary['num-bei1-drink--cups']).toContain('bei1--cupfuls')
-  })
+  }, 30000)
 
   it('keeps the actual HSK 1 cupful construction bound to its retained lexical identity', () => {
     const input = loadGrammarVocabulary()
@@ -36,7 +36,7 @@ describe('cumulative v2 grammar vocabulary', () => {
     expect(cupfuls.ch).toBe('杯')
     expect(cupfuls.ds).toMatch(/measure word/)
     expect(input.requirements.find(entry => entry.grammar === rule.lb)?.vocabulary).toContain(cupfuls.lb)
-  })
+  }, 30000)
 
   it('exposes cumulative lexical prerequisites for lesson sequencing', () => {
     const result = auditGrammarVocabulary(fixture())

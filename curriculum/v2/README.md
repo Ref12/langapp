@@ -610,7 +610,7 @@ The complete authoring and generated-data gates are:
 
 ```text
 npm run curriculum:v2:examples:check
-npm test -- scripts\v2-grammar-vocabulary.test.ts scripts\v2-curriculum.integration.test.ts
+npm test -- scripts\v2-grammar-vocabulary.test.ts scripts\v2-curriculum.integration.test.ts scripts\v2-all-bands.integration.test.ts
 npm run curriculum:v2:order:check
 ```
 

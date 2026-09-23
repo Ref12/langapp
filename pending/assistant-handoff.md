@@ -3,6 +3,42 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## GitHub Pages publication (2026-09-23)
+
+The user requested committing the label refinement and publishing/pushing the
+current root app in place of the existing repository Pages site. Labels are
+committed as `93ffd940`; named profiles were already committed as `6e28eee6`.
+Pages is configured for GitHub Actions at https://ref12.github.io/langapp/.
+The existing assembly puts the root app there, retains archived v1 at `/v1/`,
+and preserves the old root worker's non-destructive retirement behavior.
+
+Release blockers corrected without changing curriculum content or live data:
+the learning-content projection needed LF checkout attributes, not new content;
+v1's Node TypeScript project needed JS-module inference for shared schemas;
+old Dictionary/schema assertions needed to reflect the shipped study/profile
+model. Filesystem-timeout tests now finish real initialization before applying
+their intentionally short request deadline. Large grammar audits have bounded
+30-second timeouts; Pages tests use at most four workers.
+
+`npm run test:pages` passes all 1945 tests across 96 files, and `npm run lint`
+and the complete `npm run build` pass. The assembled site responds under the
+`/langapp/` prefix, including root, v1, device preview, design previews and worker.
+The artifact contains no private data/settings directory. Production preview
+blocks `data/default.yaml` and has no local profile or TTS endpoint.
+The temporary preview server was stopped.
+
+The strict all-seven-band authoring audit moved unchanged to
+`scripts/v2-all-bands.integration.test.ts`. `npm test` and the documented
+curriculum gates still include it; it remains blocked by HSK 7-9's missing
+authored usage examples. Only that audit is excluded from Pages publication,
+which ships HSK 1-6; all shipped projection/lesson checks and reviewed-sense
+regressions remain in the release gates. Do not mark HSK 7-9 complete.
+Private profiles/credentials are not deployed. Moving localhost data to Pages
+requires an explicit browser YAML export/import; Edge TTS remains localhost-only.
+
+Remaining publication step: commit these deployment changes, push `main`, and
+confirm the resulting Actions deployment and public app before reporting it live.
+
 ## Label-based profile YAML (complete)
 
 The user clarified that exported profile YAML should use `lb` rather than

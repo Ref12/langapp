@@ -11,6 +11,7 @@ import { LOCAL_PROFILES_HEADER, LOCAL_PROFILES_PATH, localProfileSaveReplySchema
 import { localProfiles, MAX_PROFILE_REQUEST_BYTES } from './local-profiles'
 import { localSettings } from './local-settings'
 import { isLocalRequest } from './local-request'
+import { initializeProfileDirectory } from './profile-files'
 
 let root: string
 let server: ViteDevServer | undefined
@@ -143,7 +144,8 @@ describe('root-development protected local profiles API', () => {
     expect(await response.text()).not.toContain(key)
   })
   it('times out slow bodies and does not create a snapshot', async () => {
-    const base = await start({ timeoutMs: 100 })
+    await initializeProfileDirectory(root)
+    const base = await start({ timeoutMs: 100, initialize: vi.fn().mockResolvedValue(undefined) })
     const status = await new Promise<number | undefined>((resolve, reject) => {
       const request = httpRequest(base + LOCAL_PROFILES_PATH + '/default', { method: 'PUT', headers: { ...headers(base), 'Content-Length': '1000' } }, response => {
         response.resume()
@@ -156,7 +158,8 @@ describe('root-development protected local profiles API', () => {
     await expect(readFile(join(root, 'data', 'default.yaml'))).rejects.toMatchObject({ code: 'ENOENT' })
   })
   it('times out stalled filesystem operations with a finite response', async () => {
-    const base = await start({ timeoutMs: 100, list: async (_root, signal) => new Promise((_resolve, reject) => {
+    await initializeProfileDirectory(root)
+    const base = await start({ timeoutMs: 100, initialize: vi.fn().mockResolvedValue(undefined), list: async (_root, signal) => new Promise((_resolve, reject) => {
       signal?.addEventListener('abort', () => reject(new Error('aborted')), { once: true })
     }) })
     expect((await fetch(base + LOCAL_PROFILES_PATH, { headers: headers(base) })).status).toBe(408)

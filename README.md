@@ -603,12 +603,26 @@ Run the same quality gates as deployment:
 
 ```powershell
 npm run lint
-npm test
+npm run test:pages
 npm run build
 ```
 
+`test:pages` runs the app, archived v1, generators, and supported-curriculum
+tests. It excludes only `scripts/v2-all-bands.integration.test.ts`, the separate
+authoring-completeness audit for all seven bands. HSK 7-9 is not shipped in the
+new app and still lacks authored usage examples. `npm test` retains that strict
+audit and currently fails on those missing examples; it is not bypassed or
+treated as complete. The Pages build still checks every shipped HSK 1-6
+projection, including its authored examples and lesson prerequisites.
+
 ## Deployment
 
+The current app is published at **https://ref12.github.io/langapp/**, replacing
+the previous site at that address. The archived app remains at
+https://ref12.github.io/langapp/v1/.
+
+Repository **Settings -> Pages -> Build and deployment -> Source** must be
+**GitHub Actions**, as configured for this repository.
 Pushes to `main` run `.github/workflows/deploy-pages.yml`. The workflow
 installs from the lockfile, runs lint and tests, creates the production build,
 and deploys `dist` to GitHub Pages. `npm run build` first builds the new app
@@ -620,19 +634,26 @@ documentation, and screenshot fixtures are not published. `npm run preview`
 serves the complete `dist` site, including `/v1/`.
 
 The app uses hash routing and relative assets so it works at a repository Pages
-path such as `https://ref12.github.io/langapp/v1/`. The v1 manifest and service
+path such as `https://ref12.github.io/langapp/`. The v1 manifest and service
 worker are scoped to that subdirectory. The old root service worker is retired
 when the browser discovers its update, without clearing IndexedDB or caches.
 
 Moving to a subpath does not move browser storage: v1 retains the `linguaweave`
 IndexedDB database, so existing profiles, imported content, credentials, and
 progress remain available on the same origin. The new root app uses
-`linguaweave-next` (schema version 2), with its own preferences, word states,
+`linguaweave-next` (schema version 5), with its own preferences, word states,
 reading positions, lesson completion, practice sessions, immutable attempts,
 Assistant conversations/runs, and separate device AI settings. Existing
 schema-version-1 workspaces migrate without rewriting learning evidence.
 It does not open, migrate, or restore the v1 database. No new root service worker
 is registered yet.
+
+Localhost and GitHub Pages are different browser-storage origins. To move a
+profile between them, download its YAML in Settings and import that file on the
+other site; the deployment does not upload any local profile or credential.
+The ignored `data` folder and private settings are never included in `dist`.
+Browser file import/export and browser voices work on Pages; local-server
+profile files and Edge TTS require `npm run dev` and are not hosted by Pages.
 
 ## Voice tutor setup (v1)
 

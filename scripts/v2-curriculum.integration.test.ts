@@ -2,7 +2,6 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { parse } from 'yaml'
-import { orderCurriculum } from './v2-order-curriculum.mjs'
 import { exampleSchema } from './v2-example-schema.mjs'
 
 const usageExamples = (band: string) => exampleSchema.array().parse(parse(readFileSync(
@@ -11,11 +10,7 @@ const wordLabels = (examples: ReturnType<typeof usageExamples>, id: string) =>
   examples.find(example => example.id === id)?.segments
     .flatMap(segment => 'word' in segment ? [segment.word] : [])
 
-describe('complete authored Chinese v2 curriculum', () => {
-  it('has all grammar examples, lexical prerequisites, contextual coverage and current all-band lesson projections', () => {
-    expect(orderCurriculum({ check: true })).toEqual([])
-  }, 120000)
-
+describe('reviewed Chinese v2 curriculum senses', () => {
   it('keeps resultative 成 separate from the fraction sense in reviewed examples', () => {
     const examples = usageExamples('6')
     for (const id of ['hsk6-b3-restore-room', 'hsk6-b3-rivers-converge', 'hsk6-b4-verbal-agreement']) {

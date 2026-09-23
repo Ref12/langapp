@@ -69,7 +69,7 @@ describe('Assistant database migration', () => {
       }
       old.close()
       await migrated.open()
-      expect(migrated.verno).toBe(3)
+      expect(migrated.verno).toBe(5)
       expect(await migrated.preferences.get('workspace')).toEqual(workspace.preferences)
       for (const table of ['words', 'readings', 'lessons', 'sessions', 'attempts'] as const) {
         expect(await migrated.table(table).toArray()).toEqual(workspace[table])
@@ -79,6 +79,11 @@ describe('Assistant database migration', () => {
       expect(await migrated.assistantRuns.count()).toBe(0)
       expect(await migrated.aiConnections.count()).toBe(0)
       expect(await migrated.speechConnections.count()).toBe(0)
+      expect(await migrated.knowledge.count()).toBe(0)
+      expect(await migrated.studyCards.count()).toBe(0)
+      expect(await migrated.exerciseSessions.count()).toBe(0)
+      expect(await migrated.exerciseAttempts.count()).toBe(0)
+      expect(await migrated.profileState.count()).toBe(0)
       expect(migrated.assistantMessages.schema.idxByName['[threadId+sequence]'].unique).toBe(true)
       expect(migrated.assistantThreads.schema.idxByName.updatedAt).toBeDefined()
       expect(migrated.assistantRuns.schema.idxByName['[threadId+status]']).toBeDefined()
@@ -100,7 +105,10 @@ describe('Assistant database migration', () => {
     })
     const workspace: Workspace = await loadWorkspace()
     expect(workspace).not.toHaveProperty('assistant')
-    expect(tables).toEqual([['preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts']])
+    expect(tables).toEqual([[
+      'preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
+      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts',
+    ]])
   })
 })
 

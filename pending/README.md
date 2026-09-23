@@ -5,8 +5,8 @@ Start with the relevant handoff, then inspect the current source and Git status.
 
 | Handoff | State |
 | --- | --- |
-| [New / Review study flow](study-handoff.md) | Implemented, committed and exercised in the dev server; full `npm test` not yet run (see handoff). AI-generated exercises over the v2 curriculum with a knowledge set and FSRS reading cards. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | Named YAML profiles committed as `6e28eee6`. Label-based YAML refinement complete: schema 2 uses `lb` for entries/cards and labels for recognition questions/answers. All 371 retained words have unique labels; browser/conversation/session identities and older imports are preserved. 239 targeted tests, types, lint, and direct production bundling pass. The user requested committing and publishing the current app to GitHub Pages on 2026-09-23. |
+| [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Named YAML profiles committed as `6e28eee6`; label-based exports as `93ffd940`. Pages publication is prepared: 1945 release tests, lint, and the complete root/v1 build pass. Commit/push and public deployment confirmation remain; the user authorized both on 2026-09-23. |
 
 ## Maintaining this folder
 

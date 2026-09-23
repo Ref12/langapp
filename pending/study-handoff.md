@@ -1,8 +1,11 @@
 # New / Review study flow handoff
 
-State: implemented and committed; `tsc -b` and `eslint .` passed before the fixes
-below. The full `npm test` suite has not been run; the user chose to commit
-without it. Run `npm test` and fix anything the new tests report.
+State: implemented and committed. During Pages publication preparation on
+2026-09-23, the full suite was run and stale UI/schema assertions were corrected.
+All 1945 Pages release tests, lint, and the complete root/v1 build now pass.
+The strict all-seven-band authoring audit remains blocked by missing HSK 7-9
+usage examples, which are outside the published HSK 1-6 app. See
+`assistant-handoff.md` for the deployment gates and publication state.
 
 Verified manually in the dev server (2026-09-22, deepseek-v4.1-flash via Poe,
 structured output off): a New session generated 10 exercises, all accepted, and
@@ -17,7 +20,8 @@ the first answer was checked and scheduled. That required three fixes:
   this, every target ref failed validation.
 
 Before these fixes, 4 study tests failed (2 in `exercises.test.ts`, 2 in
-`knowledge.test.ts`), consistent with the last two bugs; not re-run since.
+`knowledge.test.ts`), consistent with the last two bugs; all pass in the
+2026-09-23 release run.
 
 ## What was built
 

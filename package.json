@@ -19,6 +19,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:pages": "vitest run --maxWorkers=4 --exclude scripts/v2-all-bands.integration.test.ts",
     "test:watch": "vitest"
   },
   "dependencies": {

@@ -95,10 +95,13 @@ describe('Mandarin learning loop', () => {
     render(<App />)
     await screen.findByRole('button', { name: 'Word help: tea' })
     expect(await db.readings.get('zh:tea-house')).toMatchObject({ passage: 1, completed: [0] })
+    expect((await db.words.get('zh:rain'))?.introducedFrom).toBe('story:zh:tea-house')
+    expect(await db.words.get('zh:tea')).toBeUndefined()
     await go('dictionary')
-    await screen.findByRole('heading', { name: 'Your learning set.' })
-    expect(screen.getByRole('heading', { name: getWord('zh:rain').native })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: getWord('zh:tea').native })).not.toBeInTheDocument()
+    await screen.findByRole('heading', { name: 'Vocabulary and grammar, by band.' })
+    await user.click(screen.getByRole('button', { name: 'My knowledge set (0)' }))
+    await screen.findByRole('heading', { name: 'Your knowledge set is empty' })
+    expect(await db.knowledge.count()).toBe(0)
   })
 
   it('resumes a saved answer after reload and records the attempt on the word', async () => {
