@@ -60,6 +60,9 @@ export function validateStudy(study: StudyBackup) {
   unique(study.cards.map(card => card.id), 'study cards')
   unique(study.sessions.map(session => session.id), 'exercise sessions')
   unique(study.attempts.map(attempt => attempt.id), 'exercise answers')
+  for (const entry of study.knowledge) {
+    if (entry.ref !== `${entry.kind}:${entry.lb}`) throw new Error('Backup knowledge entry has inconsistent labels.')
+  }
   const known = new Set(study.knowledge.map(entry => entry.ref))
   for (const card of study.cards) {
     if (card.id !== `${card.ref}:${card.domain}` || !known.has(card.ref)) throw new Error('Backup study card does not belong to a knowledge item.')

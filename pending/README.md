@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented, committed and exercised in the dev server; full `npm test` not yet run (see handoff). AI-generated exercises over the v2 curriculum with a knowledge set and FSRS reading cards. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | Named YAML profiles complete: isolated browser-live profiles, fresh/clone/switch controls, and manual credential-inclusive YAML transfers through browser files or the ignored data folder. Existing private settings/template migrated to YAML; default browser data retained in place. 441 targeted tests pass; unrelated existing dictionary assertion and stale curriculum build prerequisite documented. The user requested a local commit on 2026-09-23; no push was requested. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Named YAML profiles committed as `6e28eee6`. Label-based YAML refinement complete: schema 2 uses `lb` for entries/cards and labels for recognition questions/answers. All 371 retained words have unique labels; browser/conversation/session identities and older imports are preserved. 239 targeted tests, types, lint, and direct production bundling pass. The user requested committing and publishing the current app to GitHub Pages on 2026-09-23. |
 
 ## Maintaining this folder
 

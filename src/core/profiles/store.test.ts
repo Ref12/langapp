@@ -1,4 +1,5 @@
 import { IDBFactory } from 'fake-indexeddb'
+import { stringify } from 'yaml'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from './codec'
 import { populatedProfile } from './test-fixtures'
@@ -198,6 +199,8 @@ describe('isolated named browser profiles', () => {
       })
     }
     const text = await store.exportActiveProfile()
+    expect(text).toContain('lb: starter-cha2--tea')
+    expect(text).not.toContain('wordId:')
     expect(reads).toHaveLength(3)
     for (const tables of reads) expect(tables).toEqual(database.db.tables.map(table => table.name))
     const exported = parseProfileYaml(text)
@@ -208,6 +211,22 @@ describe('isolated named browser profiles', () => {
       ...populatedProfile().conversations,
       messages: [...populatedProfile().conversations.messages].sort((a, b) => a.id.localeCompare(b.id)),
     })
+  })
+
+  it('restores older ID-based YAML and re-exports labels without migrating database identities', async () => {
+    const snapshot = populatedProfile()
+    await store.restoreActiveProfile(stringify({ ...snapshot, version: 1 }, { aliasDuplicateObjects: false }))
+    const before = await allRows()
+    const yaml = await store.exportActiveProfile()
+    expect(yaml).toContain('lb: starter-cha2--tea')
+    expect(yaml).not.toContain('wordId:')
+    expect(await allRows()).toEqual(before)
+    await store.restoreActiveProfile(yaml)
+    for (const table of ['words', 'sessions', 'attempts', 'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'assistantThreads', 'assistantMessages']) {
+      expect(await database.db.table(table).toArray()).toEqual(before[table])
+    }
+    expect((await database.db.words.toArray())[0].wordId).toBe('zh:tea')
+    expect((await database.db.sessions.toArray())[0].id).toBe('legacy-session')
   })
 
   it('replaces every section and connection atomically while retaining the active identity', async () => {

@@ -8,6 +8,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { loadExampleCurriculum, loadTeachingOrder, repositoryRoot } from './v2-curriculum-io.mjs'
 import { preflightBandLessons } from './v2-generate-lessons.mjs'
+import { buildProfileWordLabels, loadProfileWordLabelSources } from './profile-word-labels.mjs'
 
 export const appBands = ['1', '2', '3', '4', '5', '6']
 const outputRoot = resolve(repositoryRoot, 'src', 'data', 'v2')
@@ -61,13 +62,18 @@ export function buildAppData(root = repositoryRoot) {
       vocabulary: band.vocabulary.length, grammar: band.grammar.length, groups: band.groups.length,
     })),
   }
-  return { index, bands }
+  const profileWordLabels = buildProfileWordLabels({
+    ...loadProfileWordLabelSources(root),
+    vocabulary: bands.flatMap(band => band.vocabulary),
+  })
+  return { index, bands, profileWordLabels }
 }
 
 function outputs(data) {
   return [
     ['index.generated.json', stableJSON(data.index)],
     ...data.bands.map(band => [`hsk-${band.band}.generated.json`, stableJSON(band)]),
+    ['profile-word-labels.generated.json', stableJSON(data.profileWordLabels)],
   ]
 }
 

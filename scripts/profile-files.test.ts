@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto'
 import * as fs from 'node:fs/promises'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { stringify } from 'yaml'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from '../src/core/profiles/codec'
 import { MAX_PROFILE_BYTES } from '../src/core/profiles/contracts'
 import { createProfileTemplate } from '../src/core/profiles/template'
@@ -131,6 +132,22 @@ describe('safe named YAML profile files', () => {
     expect(await fs.readFile(file(), 'utf8')).toBe(text)
     expect(loaded.yaml).toContain('synthetic-ai-key')
     expect(loaded.yaml).toContain('synthetic-speech-key')
+    expect(loaded.yaml).toContain('lb: starter-cha2--tea')
+    expect(loaded.yaml).not.toContain('wordId:')
+  })
+  it('reads previous YAML snapshots and permits a revision-checked replacement with label-based YAML', async () => {
+    await initializeProfileDirectory(root)
+    const snapshot = populatedProfile()
+    const previous = stringify({ ...snapshot, version: 1 }, { aliasDuplicateObjects: false })
+    const original = await saveProfileFile(root, 'default', { yaml: previous, expectedRevision: null })
+    const loaded = await readProfileFile(root, 'default')
+    expect(loaded.snapshot).toEqual(snapshot)
+    const updated = serializeProfileYaml(loaded.snapshot)
+    await saveProfileFile(root, 'default', { yaml: updated, expectedRevision: original.revision })
+    const saved = await fs.readFile(file(), 'utf8')
+    expect(saved).toContain('lb: starter-cha2--tea')
+    expect(saved).not.toContain('wordId:')
+    expect((await readProfileFile(root, 'default')).snapshot).toEqual(snapshot)
   })
   it('rejects mismatched metadata, invalid IDs, YAML aliases and malformed documents before writes', async () => {
     await initializeProfileDirectory(root)

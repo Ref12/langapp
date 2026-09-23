@@ -1,10 +1,12 @@
 import { describe, expect, it, vi } from 'vitest'
-import { stringify } from 'yaml'
+import { parse, stringify } from 'yaml'
 import { exportBackup } from '../backup-codec'
 import { createEmptyProfile, fromLegacyBackup, parseProfileYaml, serializeProfileYaml } from './codec'
-import { MAX_PROFILE_BYTES, profileSnapshotSchema } from './contracts'
+import { MAX_PROFILE_BYTES, PROFILE_VERSION, profileSnapshotSchema, profileYamlSchema } from './contracts'
 import { profileIdSchema, profileMetadataSchema } from './identity'
 import { populatedProfile } from './test-fixtures'
+import { words } from '../../data/mandarin'
+import { curriculumWords } from '../../data/curriculum'
 
 describe('profile identity and YAML snapshots', () => {
   it('accepts only default or UUID filenames, and trimmed bounded names', () => {
@@ -35,6 +37,91 @@ describe('profile identity and YAML snapshots', () => {
     expect(text).toContain('synthetic-speech-key')
     expect(parseProfileYaml(text)).toEqual(snapshot)
     expect(snapshot).toEqual(before)
+  })
+
+  it('writes lb fields throughout learning records without changing structural or conversation IDs', () => {
+    const snapshot = populatedProfile()
+    const wire = profileYamlSchema.parse(parse(serializeProfileYaml(snapshot)))
+    expect(wire.version).toBe(PROFILE_VERSION)
+    expect(wire.knowledge.words[0]).toMatchObject({ lb: 'starter-cha2--tea' })
+    expect(wire.knowledge.words[0]).not.toHaveProperty('wordId')
+    expect(wire.knowledge.sessions[0]).toMatchObject({
+      id: 'legacy-session',
+      questions: [{ lb: 'starter-cha2--tea', options: ['starter-cha2--tea', 'starter-yu3--rain'] }],
+    })
+    expect(wire.knowledge.sessions[0].questions[0]).not.toHaveProperty('wordId')
+    expect(wire.knowledge.attempts[0]).toMatchObject({
+      id: 'legacy-session:0', sessionId: 'legacy-session', lb: 'starter-cha2--tea', answerLb: 'starter-cha2--tea',
+    })
+    expect(wire.knowledge.attempts[0]).not.toHaveProperty('wordId')
+    expect(wire.knowledge.attempts[0]).not.toHaveProperty('answerId')
+    expect(wire.knowledge.study.knowledge[0]).toMatchObject({ kind: 'vocabulary', lb: 'tea' })
+    expect(wire.knowledge.study.knowledge[0]).not.toHaveProperty('ref')
+    expect(wire.knowledge.study.cards[0]).toMatchObject({ kind: 'vocabulary', lb: 'tea', domain: 'reading' })
+    expect(wire.knowledge.study.cards[0]).not.toHaveProperty('id')
+    expect(wire.knowledge.study.cards[0]).not.toHaveProperty('ref')
+    expect(wire.knowledge.study.sessions).toEqual(snapshot.knowledge.study.sessions)
+    expect(wire.knowledge.study.attempts).toEqual(snapshot.knowledge.study.attempts)
+    expect(wire.conversations).toEqual(snapshot.conversations)
+  })
+
+  it('round-trips every retained word by a unique explicit label without merging starter and curriculum history', () => {
+    const snapshot = createEmptyProfile({ id: 'default', name: 'default' })
+    snapshot.knowledge.words = words.map(word => ({
+      wordId: word.id, language: 'zh-Hans', introducedAt: 1, introducedFrom: 'dictionary',
+      attempts: 0, independentCorrect: 0, successfulDays: [], successfulActivities: [], dueAt: 1,
+    }))
+    const text = serializeProfileYaml(snapshot)
+    const wire = profileYamlSchema.parse(parse(text))
+    const lbs = wire.knowledge.words.map(word => word.lb)
+    expect(new Set(lbs).size).toBe(words.length)
+    expect(text).not.toMatch(/zh-hsk\d|zh-hsklegacy|wordId:/)
+    const tea = curriculumWords.find(word => word.native === '茶')!
+    expect(lbs[words.findIndex(word => word.id === tea.id)]).not.toBe('starter-cha2--tea')
+    expect(parseProfileYaml(text)).toEqual(snapshot)
+  })
+
+  it('keeps vocabulary and grammar labels distinct when reconstructing study cards', () => {
+    const snapshot = populatedProfile()
+    snapshot.knowledge.study.knowledge.push({ ...snapshot.knowledge.study.knowledge[0], kind: 'grammar', ref: 'grammar:tea' })
+    snapshot.knowledge.study.cards.push({ ...snapshot.knowledge.study.cards[0], id: 'grammar:tea:reading', ref: 'grammar:tea' })
+    const text = serializeProfileYaml(snapshot)
+    const wire = profileYamlSchema.parse(parse(text))
+    expect(wire.knowledge.study.cards.map(card => ({ kind: card.kind, lb: card.lb }))).toEqual([
+      { kind: 'vocabulary', lb: 'tea' }, { kind: 'grammar', lb: 'tea' },
+    ])
+    expect(parseProfileYaml(text)).toEqual(snapshot)
+  })
+
+  it('reads previous ID-based YAML snapshots and re-exports them using labels', () => {
+    const snapshot = populatedProfile()
+    const previous = stringify({ ...snapshot, version: 1 }, { aliasDuplicateObjects: false })
+    expect(previous).toContain('wordId: zh:tea')
+    const restored = parseProfileYaml(previous)
+    expect(restored).toEqual(snapshot)
+    const exported = serializeProfileYaml(restored)
+    expect(exported).toContain('lb: starter-cha2--tea')
+    expect(exported).not.toContain('wordId:')
+    expect(exported).toContain(`version: ${PROFILE_VERSION}`)
+  })
+
+  it('rejects unknown or mixed ID/label references before any lossy normalization', () => {
+    const snapshot = populatedProfile()
+    const wire = profileYamlSchema.parse(parse(serializeProfileYaml(snapshot)))
+    for (const corrupt of [
+      { ...wire, knowledge: { ...wire.knowledge, words: [{ ...wire.knowledge.words[0], wordId: 'zh:tea' }] } },
+      { ...wire, knowledge: { ...wire.knowledge, words: [{ ...wire.knowledge.words[0], lb: 'synthetic-secret' }] } },
+      { ...wire, knowledge: { ...wire.knowledge, attempts: [{ ...wire.knowledge.attempts[0], answerLb: 'synthetic-secret' }] } },
+      { ...wire, knowledge: { ...wire.knowledge, sessions: [{
+        ...wire.knowledge.sessions[0], questions: [{ ...wire.knowledge.sessions[0].questions[0], options: ['synthetic-secret', 'starter-yu3--rain'] }],
+      }] } },
+    ]) {
+      expect(() => parseProfileYaml(stringify(corrupt))).toThrow('Invalid profile YAML')
+      try { parseProfileYaml(stringify(corrupt)) } catch (error) { expect(String(error)).not.toContain('synthetic-secret') }
+    }
+    snapshot.knowledge.study.knowledge[0].lb = 'mismatched'
+    expect(() => serializeProfileYaml(snapshot)).toThrow('Invalid profile YAML')
+    expect(() => parseProfileYaml(stringify({ ...snapshot, version: 1 }, { aliasDuplicateObjects: false }))).toThrow('Invalid profile YAML')
   })
 
   it('interrupts imported pending operations without mutating the export source', () => {
@@ -89,7 +176,7 @@ describe('profile identity and YAML snapshots', () => {
       { ...valid, knowledge: { ...valid.knowledge, study: { ...valid.knowledge.study, knowledge: [] } } },
       { ...valid, knowledge: { ...valid.knowledge, attempts: [] } },
     ]) {
-      const result = () => parseProfileYaml(stringify(corrupt))
+      const result = () => parseProfileYaml(stringify({ ...corrupt, version: 1 }, { aliasDuplicateObjects: false }))
       expect(result).toThrow('Invalid profile YAML')
       try { result() } catch (error) { expect(String(error)).not.toContain('synthetic-secret') }
     }

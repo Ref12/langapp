@@ -514,6 +514,20 @@ unknown fields, duplicate keys, YAML aliases/custom tags, malformed references,
 and inconsistent histories are rejected rather than repaired or partially loaded.
 Raw recordings are never stored or exported.
 
+Profile YAML version 2 identifies vocabulary/grammar entries and study cards by
+`lb` (with `kind` where needed), not internal vocabulary or card IDs. Older
+recognition questions and answers also use labels: `lb`, label-valued `options`,
+and `answerLb`. Study-session targets already use `vocabulary:<lb>` or
+`grammar:<lb>` references. Conversation, session, attempt, lesson, and profile
+IDs remain unchanged, as do conversation text and historical tool logs.
+Every retained vocabulary entry has an explicit, unique export label. Original
+starter entries use `starter-` labels; older senses without an existing label
+have explicit `legacy-` labels. They never merge with similarly spelled current
+curriculum entries or transfer learning evidence between them. Imports resolve
+labels back to the existing browser keys, so no browser database migration is
+needed. Version-1 ID-based YAML and earlier JSON backups remain importable;
+subsequent exports use version 2. Existing files are not rewritten automatically.
+
 **Every YAML export includes saved credentials in plaintext**, for both server
 and browser exports. The controls show this warning. Keep these files private
 and use restricted keys. Restoring a YAML profile replaces its connections;

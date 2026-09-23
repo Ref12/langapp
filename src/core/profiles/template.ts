@@ -11,6 +11,8 @@ export function createProfileTemplate(): string {
 # Browser IndexedDB stays live; this file is only a manual snapshot.
 # Copy to default.yaml, or use a UUID filename and matching profile.id.
 # Each file includes settings, learning progress, and conversations.
+# Schema 2 uses lb labels for vocabulary/grammar entries and study cards.
+# Conversation, session, and attempt IDs retain their original identities.
 # ALL exports include configured AI/Azure credentials. Keep data/ private.
 # profile.name is the display name; do not change profile.id after creation.
 # settings.preferences contains the complete browser workspace preferences.

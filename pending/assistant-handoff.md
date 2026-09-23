@@ -3,6 +3,46 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Label-based profile YAML (complete)
+
+The user clarified that exported profile YAML should use `lb` rather than
+vocabulary/grammar IDs, while conversation/session IDs stay unchanged. They
+also explicitly require labels for every retained entry, including old starter
+and recognition records that did not already have one.
+
+The parent implemented YAML schema 2 with `lb`/`answerLb` for old recognition
+records, label-valued question options, and `{kind, lb}` for study entries/cards.
+Session target references already use kind-qualified labels. Database identities
+remain unchanged; imports decode labels back to existing keys. Schema-1 YAML
+and old JSON imports remain supported. Conversation content/tool logs are not
+rewritten. Existing profile files have not been edited or exported.
+
+Agent `1afdbb33-f21e-4910-82f8-638af12f6cd9` completed the public label index and
+existing v2 app-data generator integration/tests. It produced
+`src/data/v2/profile-word-labels.generated.json` as an array of `{id, lb}`,
+covering all 357 retained curriculum words and 14 starter words without
+collisions. Existing authored labels take precedence, then exact-ID v2 labels,
+with explicit `legacy-` and `starter-` labels for remaining historical entries.
+There is no spelling-based remapping or transfer of learning evidence.
+
+The agent result was retrieved and integrated. The index generator rejects
+missing labels, duplicate IDs/labels, and stale/unnecessary explicit overrides.
+Existing curriculum and generated band files are unchanged. Generator freshness
+includes the new index; the runtime imports only the compact generated mapping,
+not the generator or the TypeScript parser used to inspect starter definitions.
+
+Validation: all 239 targeted tests across nine files pass, covering all 371
+retained word roundtrips, separate grammar/vocabulary cards, schema-1 YAML and
+JSON compatibility, credential preservation, atomic restore, file revision
+replacement, browser download/import controls, and generator consistency.
+App/node TypeScript, targeted ESLint, and direct Vite production bundling pass.
+The running server returns HTTP 200 for the existing profile list, confirming
+older snapshots remain readable. Tests use synthetic data only. No private
+profile was rewritten, and no AI/speech provider request was sent.
+No implementation work remains. On 2026-09-23 the user requested committing
+this refinement, publishing the current app in place of the existing GitHub
+Pages site, and pushing those changes. Deployment work follows separately.
+
 ## Named YAML profiles (complete)
 
 The user requested an ignored root `data` folder, YAML settings/template, and

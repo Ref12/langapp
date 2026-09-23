@@ -5,7 +5,7 @@ import { clearUnsavedDrafts } from '../assistant/drafts'
 import { speechConnectionInputSchema, speechConnectionSchema } from '../assistant/speech-contracts'
 import { configureDatabaseForProfile, db, LearningDatabase, profileDatabaseName, resetDatabaseForTests } from '../database'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from './codec'
-import { PROFILE_FORMAT, type ProfileSnapshot } from './contracts'
+import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from './contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema, profileMetadataSchema, type ProfileMetadata } from './identity'
 
 export const PROFILE_REGISTRY_DATABASE = 'linguaweave-profile-registry'
@@ -165,7 +165,7 @@ async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata
       speechConnection = speechConnectionInputSchema.strip().parse(parsed.data)
     }
     return {
-      format: PROFILE_FORMAT, version: 1, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
+      format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
       settings: { preferences, ...(aiConnection ? { aiConnection } : {}), ...(speechConnection ? { speechConnection } : {}) },
       knowledge: {
         words: await database.words.toArray(), readings: await database.readings.toArray(),

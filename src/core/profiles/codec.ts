@@ -3,11 +3,13 @@ import { z } from 'zod'
 import { CONTENT_VERSION } from '../../data/mandarin'
 import { interruptImportedRuns, readBackup, splitStudy } from '../backup-codec'
 import { localSettingsSchema } from '../local-settings-contracts'
-import { MAX_PROFILE_BYTES, PROFILE_FORMAT, profileSnapshotSchema, type ProfileSnapshot } from './contracts'
+import { MAX_PROFILE_BYTES, PROFILE_FORMAT, PROFILE_VERSION, profileDataSchema, profileSnapshotSchema, profileYamlSchema, type ProfileSnapshot } from './contracts'
 import { type ProfileMetadata } from './identity'
+import { fromProfileYaml, toProfileYaml } from './vocabulary'
 
 const INVALID_PROFILE = 'Invalid profile YAML. Check the file format, settings, and saved data.'
 const MAX_DEPTH = 40
+const legacyProfileSchema = profileDataSchema.extend({ version: z.literal(1) })
 
 function checkSize(text: string): void {
   if (new TextEncoder().encode(text).byteLength > MAX_PROFILE_BYTES) {
@@ -32,7 +34,7 @@ export function createEmptyProfile(profile: ProfileMetadata, localSettings?: z.i
   try {
     const settings = localSettingsSchema.parse(localSettings ?? {})
     return profileSnapshotSchema.parse({
-      format: PROFILE_FORMAT, version: 1, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
+      format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
       settings: {
         preferences: {
           id: 'workspace', language: 'zh-Hans', name: 'Your workspace', theme: 'dark',
@@ -62,7 +64,11 @@ export function parseProfileYaml(text: string): ProfileSnapshot {
     const document = documents[0]
     if (document.errors.length || document.warnings.length) throw new Error(INVALID_PROFILE)
     checkNode(document.contents)
-    const snapshot = profileSnapshotSchema.parse(document.toJS({ maxAliasCount: 0 }))
+    const value: unknown = document.toJS({ maxAliasCount: 0 })
+    const version = typeof value === 'object' && value !== null && 'version' in value ? value.version : undefined
+    const snapshot = profileSnapshotSchema.parse(version === 1
+      ? { ...legacyProfileSchema.parse(value), version: PROFILE_VERSION }
+      : fromProfileYaml(profileYamlSchema.parse(value)))
     interruptImportedRuns(snapshot.conversations)
     return snapshot
   } catch {
@@ -74,7 +80,7 @@ export function parseProfileYaml(text: string): ProfileSnapshot {
 export function serializeProfileYaml(snapshot: ProfileSnapshot): string {
   let text: string
   try {
-    text = stringify(profileSnapshotSchema.parse(snapshot), { aliasDuplicateObjects: false, lineWidth: 0 })
+    text = stringify(toProfileYaml(profileSnapshotSchema.parse(snapshot)), { aliasDuplicateObjects: false, lineWidth: 0 })
   } catch {
     throw new Error(INVALID_PROFILE)
   }
