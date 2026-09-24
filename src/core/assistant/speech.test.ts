@@ -11,7 +11,7 @@ class Utterance {
   rate = 1
   onstart?: (() => void) | null
   onend?: (() => void) | null
-  onerror?: (() => void) | null
+  onerror?: ((event?: { error: string }) => void) | null
 }
 
 const localMandarin = { name: 'Local Mandarin', lang: 'zh-CN', localService: true, voiceURI: 'local-zh', default: false }
@@ -21,9 +21,11 @@ const onlineEnglish = { ...localEnglish, name: 'Online English', voiceURI: 'onli
 const preference = ({ voiceURI, name, lang, localService }: SpeechSynthesisVoice) => ({ voiceURI, name, lang, localService })
 const voiceListeners = new Set<() => void>()
 const synthesis = {
+  paused: false,
   getVoices: vi.fn<() => SpeechSynthesisVoice[]>(),
   speak: vi.fn<(utterance: Utterance) => void>(),
   cancel: vi.fn<() => void>(),
+  resume: vi.fn<() => void>(),
   addEventListener: vi.fn<(type: string, listener: () => void) => void>(),
   removeEventListener: vi.fn<(type: string, listener: () => void) => void>(),
 }
@@ -46,6 +48,8 @@ beforeEach(() => {
   synthesis.getVoices.mockReset().mockReturnValue([localMandarin, localEnglish])
   synthesis.speak.mockReset()
   synthesis.cancel.mockReset()
+  synthesis.paused = false
+  synthesis.resume.mockReset()
   synthesis.addEventListener.mockReset().mockImplementation((type, listener) => {
     expect(type).toBe('voiceschanged')
     voiceListeners.add(listener)
@@ -138,7 +142,8 @@ describe('shared audio ownership', () => {
     expectClean()
   })
 
-  it('settles synchronous native speech completion without leaking timers', async () => {
+  it.each(['listed', 'system'])('settles synchronous %s speech completion without leaking timers', async source => {
+    if (source === 'system') synthesis.getVoices.mockReturnValue([])
     synthesis.speak.mockImplementation(utterance => { utterance.onstart?.(); utterance.onend?.() })
     const reply = speakConversationReply([
       { type: 'speech', text: 'Tea', locale: 'en-US' },
@@ -172,11 +177,13 @@ describe('default Mandarin playback speed', () => {
     await expect(failed).resolves.toMatchObject({ status: 'error', error: expect.stringContaining('could not be played') })
   })
 
-  it('settles playback promises for missing voices, unsupported browsers, replacement and timeouts', async () => {
+  it('settles playback promises for missing selected voices, unsupported browsers, replacement and timeouts', async () => {
+    setSpeechVoicePreferences({ 'zh-Hans': preference(localMandarin) })
     synthesis.getVoices.mockReturnValue([])
     const missing = playBrowserSpeechToEnd('missing', '\u8336', 'zh-Hans')
     vi.advanceTimersByTime(3000)
     await expect(missing).resolves.toMatchObject({ status: 'error' })
+    setSpeechVoicePreferences()
     voicesChanged([localMandarin])
     const replaced = playBrowserSpeechToEnd('first', '\u8336', 'zh-Hans')
     const timeout = playBrowserSpeechToEnd('second', '\u8336', 'zh-Hans')
@@ -320,6 +327,115 @@ describe('installed-local-voice language matching', () => {
   })
 })
 
+describe('system-selected browser voices', () => {
+  it.each(['zh-Hans', 'en-US'] as const)('speaks synchronously with the requested %s language when enumeration is empty', async locale => {
+    synthesis.getVoices.mockReturnValue([])
+    const outcome = playBrowserSpeechToEnd('system', 'Example', locale, 0.5)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    const utterance = synthesis.speak.mock.calls[0][0]
+    expect(utterance.voice).toBeUndefined()
+    expect(utterance.lang).toBe(locale === 'zh-Hans' ? 'zh-CN' : 'en-US')
+    expect(utterance.rate).toBe(locale === 'en-US' ? 1 : 0.5)
+    expect(voiceListeners.size).toBe(0)
+    expect(getPlaybackState()).toEqual({ activeId: 'system', phase: 'starting', voiceKind: 'system' })
+    utterance.onstart?.()
+    expect(getPlaybackState().voiceKind).toBe('system')
+    utterance.onend?.()
+    await expect(outcome).resolves.toEqual({ status: 'completed' })
+    expectClean()
+  })
+
+  it('asks for Mandarin without assigning a listed English or Cantonese voice', () => {
+    synthesis.getVoices.mockReturnValue([localEnglish, { ...localMandarin, lang: 'zh-HK' }])
+    playBrowserSpeech('system', 'Example', 'zh-Hans')
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+    expect(synthesis.speak.mock.calls[0][0].lang).toBe('zh-CN')
+  })
+
+  it('can speak when optional voice enumeration throws', () => {
+    synthesis.getVoices.mockImplementation(() => { throw new Error('Cannot enumerate') })
+    playBrowserSpeech('system', 'Example', 'en-US')
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+    expect(getPlaybackState().voiceKind).toBe('system')
+  })
+
+  it('does not restart system speech when voices appear and prefers a listed local voice next time', () => {
+    synthesis.getVoices.mockReturnValue([])
+    playBrowserSpeech('first', 'Example', 'zh-Hans')
+    voicesChanged([localMandarin])
+    vi.advanceTimersByTime(3000)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+    synthesis.speak.mock.calls[0][0].onend?.()
+    playBrowserSpeech('next', 'Example', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[1][0].voice).toBe(localMandarin)
+  })
+
+  it('keeps missing explicitly selected voices from switching to a system voice', () => {
+    setSpeechVoicePreferences({ 'zh-Hans': preference(localMandarin) })
+    synthesis.getVoices.mockReturnValue([])
+    playBrowserSpeech('selected', 'Example', 'zh-Hans')
+    vi.advanceTimersByTime(3000)
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    expect(getPlaybackState().error).toContain('Choose another voice or Automatic')
+  })
+
+  it.each(['language-unavailable', 'voice-unavailable'])('reports actual %s errors without retrying or claiming completion', async error => {
+    synthesis.getVoices.mockReturnValue([])
+    const outcome = playBrowserSpeechToEnd('system', 'Example', 'zh-Hans')
+    synthesis.speak.mock.calls[0][0].onerror?.({ error })
+    await expect(outcome).resolves.toMatchObject({ status: 'error', error: expect.stringContaining('text-to-speech') })
+    vi.advanceTimersByTime(60_000)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expectClean()
+  })
+
+  it('cancels system speech and ignores late events without changing the replacement', async () => {
+    synthesis.getVoices.mockReturnValue([])
+    const first = playBrowserSpeechToEnd('first', 'Example', 'zh-Hans')
+    const callbacks = synthesis.speak.mock.calls[0][0]
+    const late = [callbacks.onstart, callbacks.onend, callbacks.onerror]
+    playBrowserSpeech('next', 'Example', 'en-US')
+    await expect(first).resolves.toEqual({ status: 'cancelled' })
+    late.forEach(callback => callback?.())
+    expect(getPlaybackState()).toEqual({ activeId: 'next', phase: 'starting', voiceKind: 'system' })
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+  })
+
+  it('resumes a paused engine before requesting the system voice', () => {
+    synthesis.getVoices.mockReturnValue([])
+    synthesis.paused = true
+    synthesis.resume.mockImplementation(() => expect(synthesis.speak).not.toHaveBeenCalled())
+    playBrowserSpeech('system', 'Example', 'en-US')
+    expect(synthesis.resume).toHaveBeenCalledOnce()
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+  })
+
+  it.each(['start', 'completion'])('reports a system %s timeout without treating late events as success', async phase => {
+    synthesis.getVoices.mockReturnValue([])
+    const outcome = playBrowserSpeechToEnd('system', 'Example', 'en-US')
+    const utterance = synthesis.speak.mock.calls[0][0]
+    const lateEnd = utterance.onend
+    if (phase === 'completion') utterance.onstart?.()
+    vi.advanceTimersByTime(phase === 'start' ? 10_000 : 30_000)
+    await expect(outcome).resolves.toMatchObject({ status: 'error' })
+    const failed = getPlaybackState()
+    lateEnd?.()
+    expect(getPlaybackState()).toBe(failed)
+    expectClean()
+  })
+
+  it('reports blocked system speech as a permission problem', () => {
+    synthesis.getVoices.mockReturnValue([])
+    playBrowserSpeech('system', 'Example', 'en-US')
+    synthesis.speak.mock.calls[0][0].onerror?.({ error: 'not-allowed' })
+    expect(getPlaybackState().error).toContain('sound permissions')
+    expectClean()
+  })
+})
+
 describe('cached and selected browser voices', () => {
   it('reuses discovered online voices immediately after playback and navigation, with current native objects', () => {
     synthesis.getVoices.mockReturnValue([onlineMandarin])
@@ -385,20 +501,20 @@ describe('cached and selected browser voices', () => {
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
   })
 
-  it('does not cache a missing voice or a failed initial speak call', () => {
+  it('does not cache an unlisted system voice or a failed initial speak call', () => {
     synthesis.getVoices.mockReturnValue([])
     playBrowserSpeech('missing', '茶', 'zh-Hans')
     vi.advanceTimersByTime(3000)
     synthesis.getVoices.mockReturnValue([onlineMandarin])
     synthesis.speak.mockImplementationOnce(() => { throw new Error('Speech unavailable') })
     playBrowserSpeech('blocked', '茶', 'zh-Hans')
-    expect(synthesis.speak).not.toHaveBeenCalled()
+    expect(synthesis.speak).toHaveBeenCalledTimes(1)
     vi.advanceTimersByTime(3000)
     expect(getPlaybackState().error).toContain('blocked speech')
     playBrowserSpeech('retry', '茶', 'zh-Hans')
-    expect(synthesis.speak).toHaveBeenCalledTimes(1)
-    vi.advanceTimersByTime(3000)
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    vi.advanceTimersByTime(3000)
+    expect(synthesis.speak).toHaveBeenCalledTimes(3)
   })
 
   it('honors explicit online and English selections immediately, even with preferred local alternatives', () => {
@@ -525,7 +641,8 @@ describe('voice list observation for settings', () => {
 })
 
 describe('bounded browser voice discovery', () => {
-  it('waits for an initially empty voice list, then speaks only once on voiceschanged', () => {
+  it('waits for a selected voice in an initially empty list, then speaks only once on voiceschanged', () => {
+    setSpeechVoicePreferences({ 'zh-Hans': preference(localMandarin) })
     synthesis.getVoices.mockReturnValue([])
     expect(playBrowserSpeech('one', '茶', 'zh-Hans')).toBeUndefined()
     expect(getPlaybackState()).toEqual({ activeId: 'one', phase: 'loading-voices' })
@@ -541,7 +658,8 @@ describe('bounded browser voice discovery', () => {
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
   })
 
-  it('waits through a nonempty English-only list and remote Mandarin until local Mandarin arrives', () => {
+  it('waits through an English-only list and remote Mandarin until the selected local Mandarin arrives', () => {
+    setSpeechVoicePreferences({ 'zh-Hans': preference(localMandarin) })
     synthesis.getVoices.mockReturnValue([localEnglish])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     vi.advanceTimersByTime(1000)
@@ -557,7 +675,7 @@ describe('bounded browser voice discovery', () => {
   })
 
   it('uses bounded polling when voiceschanged is not delivered', () => {
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineEnglish])
     playBrowserSpeech('one', 'Tea', 'en-US')
     synthesis.getVoices.mockReturnValue([localEnglish])
     vi.advanceTimersByTime(99)
@@ -572,7 +690,7 @@ describe('bounded browser voice discovery', () => {
     vi.stubGlobal('speechSynthesis', {
       getVoices: synthesis.getVoices, speak: synthesis.speak, cancel: synthesis.cancel, onvoiceschanged,
     })
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     synthesis.getVoices.mockReturnValue([localMandarin])
     vi.advanceTimersByTime(100)
@@ -582,17 +700,19 @@ describe('bounded browser voice discovery', () => {
   })
 
   it.each([
-    { voices: [], diagnostic: 'not exposed any speech voices yet' },
-    { voices: [onlineEnglish], diagnostic: 'not exposed a matching Mandarin voice, either local or online' },
-    { voices: [localEnglish], diagnostic: 'not exposed a matching Mandarin voice, either local or online' },
-    { voices: [{ ...localMandarin, lang: 'ja-JP' }], diagnostic: 'not exposed a matching Mandarin voice, either local or online' },
-  ])('times out with accurate browser-list diagnostics: $diagnostic', ({ voices, diagnostic }) => {
+    { voices: [] },
+    { voices: [onlineEnglish] },
+    { voices: [localEnglish] },
+    { voices: [{ ...localMandarin, lang: 'ja-JP' }] },
+  ])('times out with a selected-voice diagnostic rather than substituting another voice (case %#)', ({ voices }) => {
+    setSpeechVoicePreferences({ 'zh-Hans': preference(localMandarin) })
+    synthesis.cancel.mockClear()
     synthesis.getVoices.mockReturnValue(voices)
     playBrowserSpeech('one', '茶', 'zh-Hans')
     vi.advanceTimersByTime(2999)
     expect(getPlaybackState().error).toBeUndefined()
     vi.advanceTimersByTime(1)
-    expect(getPlaybackState().error).toContain(diagnostic)
+    expect(getPlaybackState().error).toContain('selected Mandarin voice is not available')
     expect(getPlaybackState().error).not.toContain('No installed')
     expect(getPlaybackState().activeId).toBeUndefined()
     expect(synthesis.speak).not.toHaveBeenCalled()
@@ -605,12 +725,12 @@ describe('bounded browser voice discovery', () => {
     expect(synthesis.speak).not.toHaveBeenCalled()
   })
 
-  it('diagnoses missing English without attempting to speak Mandarin', () => {
+  it('requests system English without assigning an available Mandarin voice', () => {
     synthesis.getVoices.mockReturnValue([localMandarin])
     playBrowserSpeech('one', 'Tea', 'en-US')
-    vi.advanceTimersByTime(3000)
-    expect(getPlaybackState().error).toContain('not exposed a matching English voice, either local or online')
-    expect(synthesis.speak).not.toHaveBeenCalled()
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ lang: 'en-US', rate: 1 })
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
   })
 
   it('falls back to online Mandarin for the observed local-English and remote-Mandarin browser list', () => {
@@ -628,7 +748,7 @@ describe('bounded browser voice discovery', () => {
   })
 
   it('finalizes discovery using the current list if a throttled event arrives at the deadline', () => {
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     vi.spyOn(performance, 'now').mockReturnValue(3001)
     voicesChanged([onlineMandarin])
@@ -639,11 +759,12 @@ describe('bounded browser voice discovery', () => {
   })
 
   it('remains bounded when the wall clock moves backwards', () => {
+    setSpeechVoicePreferences({ 'zh-Hans': preference(localMandarin) })
     synthesis.getVoices.mockReturnValue([])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     vi.setSystemTime(-60_000)
     vi.advanceTimersByTime(3000)
-    expect(getPlaybackState().error).toContain('not exposed any speech voices')
+    expect(getPlaybackState().error).toContain('selected Mandarin voice is not available')
     expectClean()
   })
 })
@@ -673,11 +794,12 @@ describe('matching online browser voice fallback', () => {
     expectClean()
   })
 
-  it('handles empty and partial lists followed by an online candidate without restarting the wait', () => {
-    synthesis.getVoices.mockReturnValue([])
+  it('handles updated partial lists with online candidates without restarting the wait', () => {
+    const taiwanese = { ...onlineMandarin, lang: 'zh-TW' }
+    synthesis.getVoices.mockReturnValue([taiwanese])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     vi.advanceTimersByTime(1000)
-    voicesChanged([localEnglish])
+    voicesChanged([localEnglish, taiwanese])
     vi.advanceTimersByTime(1000)
     voicesChanged([localEnglish, onlineMandarin])
     expect(synthesis.speak).not.toHaveBeenCalled()
@@ -733,12 +855,13 @@ describe('matching online browser voice fallback', () => {
   })
 
   it.each(['en-US', 'ja-JP', 'yue', 'yue-Hant-HK', 'zh-HK', 'zh-Hant-HK', 'zh-MO', 'zh--CN'])(
-    'rejects an online %s voice instead of speaking the wrong language', lang => {
+    'requests system Mandarin without assigning an online %s voice', lang => {
       synthesis.getVoices.mockReturnValue([{ ...onlineMandarin, lang }])
       playBrowserSpeech('one', '茶', 'zh-Hans')
-      vi.advanceTimersByTime(3000)
-      expect(synthesis.speak).not.toHaveBeenCalled()
-      expect(getPlaybackState().error).toContain('not exposed a matching Mandarin voice, either local or online')
+      expect(synthesis.speak).toHaveBeenCalledOnce()
+      expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+      expect(synthesis.speak.mock.calls[0][0].lang).toBe('zh-CN')
+      synthesis.speak.mock.calls[0][0].onend?.()
       expectClean()
     },
   )
@@ -746,18 +869,20 @@ describe('matching online browser voice fallback', () => {
   it('does not choose online Mandarin when English was requested', () => {
     synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('one', 'Tea', 'en-US')
-    vi.advanceTimersByTime(3000)
-    expect(synthesis.speak).not.toHaveBeenCalled()
-    expect(getPlaybackState().error).toContain('not exposed a matching English voice, either local or online')
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+    expect(synthesis.speak.mock.calls[0][0].lang).toBe('en-US')
+    synthesis.speak.mock.calls[0][0].onend?.()
     expectClean()
   })
 
   it('does not select a voice whose local/online classification is unknown', () => {
     synthesis.getVoices.mockReturnValue([{ ...onlineMandarin, localService: undefined as unknown as boolean }])
     playBrowserSpeech('one', '茶', 'zh-Hans')
-    vi.advanceTimersByTime(3000)
-    expect(synthesis.speak).not.toHaveBeenCalled()
-    expect(getPlaybackState().error).toContain('not exposed a matching Mandarin voice')
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+    expect(getPlaybackState().voiceKind).toBe('system')
+    synthesis.speak.mock.calls[0][0].onend?.()
     expectClean()
   })
 
@@ -767,8 +892,10 @@ describe('matching online browser voice fallback', () => {
     vi.advanceTimersByTime(2999)
     synthesis.getVoices.mockReturnValue([localEnglish])
     vi.advanceTimersByTime(1)
-    expect(synthesis.speak).not.toHaveBeenCalled()
-    expect(getPlaybackState().error).toContain('not exposed a matching Mandarin voice')
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+    expect(synthesis.speak.mock.calls[0][0].lang).toBe('zh-CN')
+    synthesis.speak.mock.calls[0][0].onend?.()
     expectClean()
   })
 
@@ -860,7 +987,7 @@ describe('matching online browser voice fallback', () => {
 
 describe('cancellation and stale callbacks', () => {
   it.each(['Stop', 'navigation', 'page hiding', 'unmount'])('cancels waiting via stopBrowserSpeech for %s', () => {
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     const lateDiscovery = Array.from(voiceListeners)[0]
     stopBrowserSpeech()
@@ -874,7 +1001,7 @@ describe('cancellation and stale callbacks', () => {
   })
 
   it('supersedes waiting requests and ignores their queued discovery callbacks', () => {
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineMandarin, onlineEnglish])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     const lateDiscovery = Array.from(voiceListeners)[0]
     vi.advanceTimersByTime(2500)
@@ -894,7 +1021,7 @@ describe('cancellation and stale callbacks', () => {
     const first = synthesis.speak.mock.calls[0][0]
     first.onstart?.()
     const callbacks = [first.onstart, first.onend, first.onerror]
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('two', '茶', 'zh-Hans')
     callbacks.forEach(callback => callback?.())
     expect(getPlaybackState()).toEqual({ activeId: 'two', phase: 'loading-voices' })
@@ -1017,7 +1144,8 @@ describe('playback lifecycle, errors, and input', () => {
     expectClean()
   })
 
-  it.each(['initial', 'delayed'])('fails visibly when getVoices throws during %s discovery', timing => {
+  it.each(['initial', 'delayed'])('fails visibly when getVoices throws during %s discovery for a selected voice', timing => {
+    setSpeechVoicePreferences({ 'en-US': preference(localEnglish) })
     synthesis.getVoices.mockReturnValue([])
     if (timing === 'initial') synthesis.getVoices.mockImplementation(() => { throw new Error('unavailable') })
     expect(() => playBrowserSpeech('one', 'Tea', 'en-US')).not.toThrow()
@@ -1039,6 +1167,7 @@ describe('playback lifecycle, errors, and input', () => {
   })
 
   it('fails visibly and cleans up if voice event registration throws', () => {
+    synthesis.getVoices.mockReturnValue([onlineEnglish])
     synthesis.addEventListener.mockImplementation(() => { throw new Error('blocked') })
     expect(() => playBrowserSpeech('one', 'Tea', 'en-US')).not.toThrow()
     expect(getPlaybackState().error).toContain('could not watch for speech voices')
@@ -1047,7 +1176,7 @@ describe('playback lifecycle, errors, and input', () => {
   })
 
   it('invalidates waiting callbacks even if browser cancellation throws, and refuses replacement playback', () => {
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     const lateDiscovery = Array.from(voiceListeners)[0]
     synthesis.cancel.mockImplementation(() => { throw new Error('blocked') })
@@ -1113,7 +1242,7 @@ describe('playback lifecycle, errors, and input', () => {
   })
 
   it('cancels an existing request even when its replacement has invalid text', () => {
-    synthesis.getVoices.mockReturnValue([])
+    synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     playBrowserSpeech('two', '', 'en-US')
     voicesChanged([localMandarin])

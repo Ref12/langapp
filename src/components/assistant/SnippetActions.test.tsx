@@ -48,6 +48,7 @@ describe('browser speech controls', () => {
   })
 
   it('labels discovery, startup, and speaking separately and stops on Escape', () => {
+    voices = [{ ...mandarin, localService: false }]
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
     fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
     expect(screen.getByRole('status')).toHaveTextContent('Looking for a voice')
@@ -63,6 +64,7 @@ describe('browser speech controls', () => {
   })
 
   it('cancels discovery when its Hear control unmounts', () => {
+    voices = [{ ...mandarin, localService: false }]
     const view = render(<HearButton text={'\u8336'} locale="zh-Hans" />)
     fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
     view.unmount()
@@ -84,11 +86,25 @@ describe('browser speech controls', () => {
     expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   })
 
-  it('reports missing voices and lets the learner dismiss the error', () => {
+  it('plays synchronously with an unlisted system voice, discloses its unknown provider, and stops on Escape', () => {
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
     fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
-    act(() => vi.advanceTimersByTime(3000))
-    expect(screen.getByRole('alert')).toHaveTextContent('not exposed any speech voices')
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
+    expect(synthesis.speak.mock.calls[0][0].lang).toBe('zh-CN')
+    expect(screen.getByRole('status')).toHaveTextContent('Starting system-selected speech (may be online)')
+    act(() => synthesis.speak.mock.calls[0][0].onstart?.())
+    expect(screen.getByRole('status')).toHaveTextContent('Playing with a system-selected voice (may be online)')
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(getPlaybackState()).toEqual({})
+    expect(vi.getTimerCount()).toBe(0)
+  })
+
+  it('reports an actual system playback error and lets the learner dismiss it', () => {
+    render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
+    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    act(() => synthesis.speak.mock.calls[0][0].onerror?.())
+    expect(screen.getByRole('alert')).toHaveTextContent('System speech could not be played')
     fireEvent.click(screen.getByRole('button', { name: 'Dismiss playback error' }))
     expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   })

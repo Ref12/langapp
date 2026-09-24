@@ -5,7 +5,7 @@ import { startEdgeSpeech, type EdgeSpeechPlayback } from './edge-speech'
 interface PlaybackState {
   activeId?: string
   phase?: 'loading-voices' | 'loading-audio' | 'starting' | 'speaking'
-  voiceKind?: 'local' | 'online' | 'edge'
+  voiceKind?: 'local' | 'online' | 'system' | 'edge'
   error?: string
 }
 interface PlaybackRequest {
@@ -141,7 +141,7 @@ export function watchBrowserVoices(listener: (state: BrowserVoiceState) => void)
       voices = synthesis.getVoices()
     } catch {
       dispose()
-      listener({ voices: [], loading: false, error: 'The browser could not list speech voices. Check your browser speech settings, then refresh the voice list.' })
+      listener({ voices: [], loading: false, error: 'The browser could not list speech voices. Automatic can still request a system voice by language; use Test voice to try it.' })
       return
     }
     const snapshot = JSON.stringify([loading, voices.map(browserVoiceKey)])
@@ -232,22 +232,14 @@ function fail(request: PlaybackRequest, error: string) {
   request.finish?.({ status: 'error', error: detail })
 }
 
-function missingVoiceMessage(voices: SpeechSynthesisVoice[], locale: SpeechLocale) {
-  const language = locale === 'zh-Hans' ? 'Mandarin' : 'English'
-  if (!voices.length) {
-    return 'The browser has not exposed any speech voices yet. Try Hear again, or check your browser speech settings.'
-  }
-  return `The browser has not exposed a matching ${language} voice, either local or online. Try Hear again, or check your browser speech settings.`
-}
-
-function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVoice, text: string, locale: SpeechLocale, rate: number) {
+function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVoice | undefined, text: string, locale: SpeechLocale, rate: number) {
   if (current !== request) return
   request.clearDiscovery?.()
   let utterance: SpeechSynthesisUtterance
   try {
     utterance = new SpeechSynthesisUtterance(text)
-    utterance.voice = voice
-    utterance.lang = voiceLocale(voice.lang)!.tag.toString()
+    if (voice) utterance.voice = voice
+    utterance.lang = voice ? voiceLocale(voice.lang)!.tag.toString() : locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
     utterance.rate = locale === 'en-US' || !Number.isFinite(rate) ? 1 : Math.max(0.1, Math.min(10, rate))
   } catch {
     fail(request, 'The browser could not prepare speech playback. Try Hear again.')
@@ -257,7 +249,7 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
   request.utterance = utterance
   let callingSpeak = false
   let endedDuringSpeak = false
-  const voiceKind = voice.localService === true ? 'local' : 'online'
+  const voiceKind = voice ? voice.localService === true ? 'local' : 'online' : 'system'
   utterance.onstart = () => {
     if (current !== request) return
     clearTimeout(request.playbackTimer)
@@ -279,8 +271,18 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
     request.finish?.({ status: 'completed' })
   }
   utterance.onend = completePlayback
-  utterance.onerror = () => {
-    fail(request, voiceKind === 'online'
+  utterance.onerror = event => {
+    if (event?.error === 'language-unavailable' || event?.error === 'voice-unavailable') {
+      fail(request, `The browser could not provide the requested ${locale === 'zh-Hans' ? 'Mandarin' : 'English'} speech. Enable that language in your device's text-to-speech settings, then try Hear again.`)
+      return
+    }
+    if (event?.error === 'not-allowed') {
+      fail(request, 'Speech was blocked by the browser. Tap Hear again and check site sound permissions.')
+      return
+    }
+    fail(request, voiceKind === 'system'
+      ? 'System speech could not be played. Check your device text-to-speech languages, speech settings, and network connection, then try Hear again.'
+      : voiceKind === 'online'
       ? 'Online browser speech could not be played. Check your network connection and browser speech settings, then try Hear again.'
       : 'Local browser speech could not be played. Try Hear again, or check your browser speech settings.')
   }
@@ -290,6 +292,8 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
   publish({ activeId: request.id, phase: 'starting', voiceKind })
   if (current !== request) return
   try {
+    if (request.synthesis.paused) request.synthesis.resume()
+    if (current !== request) return
     callingSpeak = true
     request.synthesis.speak(utterance)
     callingSpeak = false
@@ -371,7 +375,8 @@ function beginBrowserSpeech(
     try {
       voices = synthesis.getVoices()
     } catch {
-      fail(request, 'The browser could not list speech voices. Try Hear again, or check your browser speech settings.')
+      if (!selected) startSpeaking(request, undefined, text, locale, rate)
+      else fail(request, 'The browser could not list speech voices. Choose Automatic to request a system voice, or refresh the voice list to use your selected voice.')
       return
     }
     if (current !== request) return
@@ -379,22 +384,27 @@ function beginBrowserSpeech(
     const cachedKey = voiceCache.get(synthesis)?.get(locale)
     const cached = voices.find(voice => browserVoiceMatches(voice, locale) && browserVoiceKey(voice) === cachedKey)
     if (!cached) voiceCache.get(synthesis)?.delete(locale)
+    const online = preferredVoice(voices, locale, 'online')
     const voice = selected
       ? voices.find(voice => browserVoiceMatches(voice, locale) && browserVoiceKey(voice) === browserVoiceKey(selected))
       : preferredVoice(voices, locale, 'local') ?? cached
-        ?? (finishedWaiting ? preferredVoice(voices, locale, 'online') : undefined)
+        ?? (finishedWaiting ? online : undefined)
     if (voice) {
       // Cache identifiers, not native objects: revalidate against the current browser list on every Hear.
       const cache = voiceCache.get(synthesis) ?? new Map<SpeechLocale, string>()
       cache.set(locale, browserVoiceKey(voice))
       voiceCache.set(synthesis, cache)
       startSpeaking(request, voice, text, locale, rate)
+    } else if (!selected && !online) {
+      // Voice enumeration can be empty/incomplete on Android. Keep speak in the tap's call stack.
+      startSpeaking(request, undefined, text, locale, rate)
     } else if (finishedWaiting) {
-      fail(request, selected
-        ? `The selected ${locale === 'zh-Hans' ? 'Mandarin' : 'English'} voice is not available. Choose another voice or Automatic in Settings.`
-        : missingVoiceMessage(voices, locale))
+      fail(request, `The selected ${locale === 'zh-Hans' ? 'Mandarin' : 'English'} voice is not available. Choose another voice or Automatic in Settings.`)
     }
   }
+  publish({ activeId: id, phase: 'loading-voices' })
+  discover()
+  if (current !== request || request.utterance) return
   // Allow partial local lists to settle before online fallback; some browsers miss voiceschanged.
   const recheck = setInterval(discover, voiceRecheckMs)
   const timeout = setTimeout(() => { expired = true; discover() }, voiceWaitMs)
@@ -413,7 +423,4 @@ function beginBrowserSpeech(
       return
     }
   }
-  if (current !== request) return
-  publish({ activeId: id, phase: 'loading-voices' })
-  discover()
 }

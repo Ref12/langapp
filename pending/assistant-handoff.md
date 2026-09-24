@@ -3,6 +3,37 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Android voice enumeration fallback
+
+The user reported no available voices in Android Chrome and Edge and recalled
+the v1 workaround. V1's `readAloud()` calls native speech synchronously with a
+language tag even when no matching voice is enumerated. The current shared
+speech engine now does the same in Automatic mode: an initially empty,
+nonmatching, or unreadable list immediately requests `zh-CN` or `en-US` without
+assigning a voice. This is feature-based, not Android user-agent detection.
+Listed local voices remain preferred; matching online candidates keep the
+existing bounded local-first discovery window and identity cache.
+Explicit browser and Edge selections never silently switch to a system voice.
+
+Playback reports `system` rather than asserting a local/online identity. Settings
+explains that an empty list is not proof of unavailability and keeps Automatic
+previews usable. Both Settings and playback disclose that system-selected speech
+may be online. English remains normal speed. A paused synthesis engine resumes
+before speaking. Actual unavailable-language/voice and permission errors get
+actionable messages; startup/completion watchdogs, real-end completion, audio
+ownership, cancellation, and stale-callback protection remain intact.
+
+The focused speech, Settings, shared controls, guided audio, spoken-reply,
+Practice, Edge, and default-speed suites pass (393 cases across 10 files,
+including a final 19-case Settings rerun). App/node TypeScript and changed-file
+ESLint pass. Coverage includes synchronous empty-list playback, no wrong-language
+voice assignment, late discovery without duplicate utterances, explicit-selection
+failure, system timeouts/errors, and the actual App's Mandarin/English previews.
+All audio/provider behavior was synthetic; actual Android device playback still
+needs user confirmation. No live speech, AI request, or private profile edit was
+performed. The user requested committing and pushing this fix on 2026-09-23
+through the existing `main` push and GitHub Pages deployment workflow.
+
 ## Chat tool-call response compatibility (2026-09-23)
 
 The user reported "The AI service returned an invalid message" during Test

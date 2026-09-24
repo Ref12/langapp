@@ -78,6 +78,7 @@ export function PlaybackStatus() {
     <span>{error || playback.error || (playback.phase === 'loading-audio' ? 'Preparing Edge speech...'
       : playback.phase === 'loading-voices' ? 'Looking for a voice...'
       : playback.voiceKind === 'edge' ? playback.phase === 'starting' ? 'Starting Edge speech...' : 'Playing with Edge TTS (online)'
+      : playback.voiceKind === 'system' ? playback.phase === 'starting' ? 'Starting system-selected speech (may be online)...' : 'Playing with a system-selected voice (may be online)'
       : playback.phase === 'starting' ? `Starting ${playback.voiceKind === 'online' ? 'online' : 'local'} speech...`
         : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>
     <button className="icon-button" type="button" aria-label={error ? 'Retry stopping audio' : playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stop}>

@@ -279,9 +279,17 @@ Selections save automatically, survive reload and backups, and apply to Hear,
 Practice reference phrases, guided lessons, and spoken Assistant replies.
 Use the language's **Test voice** button to hear a short sample with the selected
 voice; it becomes **Stop** during playback. Selecting a voice does not play it.
-The default **Automatic (local first)** prefers a matching installed local voice.
-After a brief discovery window, it uses a matching online browser voice if no
-local voice is available; it never automatically selects Edge TTS.
+The default **Automatic (local first)** prefers a matching listed local voice.
+If only matching online voices are listed, it gives local discovery a brief
+window before using an online browser voice. It never automatically selects Edge TTS.
+An empty or incomplete voice list does not prove speech is unavailable: Android
+Chrome and Edge may speak without listing voices. When the initial voice list has
+no match (or cannot be read), Automatic calls speech synchronously from the playback
+request, sets `zh-CN` for Mandarin or `en-US` for English, and leaves voice selection
+to the browser/system. Hear and Test voice preserve the tap's synchronous call
+stack rather than waiting for discovery. Later voice-list events do not restart
+that utterance. A system-selected voice may be online; the app cannot verify its
+identity from the voice list.
 The discovered browser voice is cached for the page session,
 so later Hear clicks reuse it without another discovery wait. Cached voices are
 checked against the current browser list before reuse. Changed selections,
@@ -293,12 +301,15 @@ switches from a selected local voice to an online voice.
 Online browser playback sends the chosen text to the browser's speech service.
 Edge playback sends it to Microsoft through the local server; MP3 clips play
 sequentially, and longer passages are divided into bounded requests.
-Settings and playback status identify the provider. Viewing Settings can fetch
-Edge voice metadata, but sends no text. Changing selections never starts playback
+Settings and playback status distinguish local, online, Edge, and system-selected
+voices without labeling an unlisted system choice as local. Viewing Settings can
+fetch Edge voice metadata, but sends no text. Changing selections never starts playback
 or sends an AI request. Hear and Test voice never request
-microphone access or falls back to a wrong-language voice. Missing voices and
-playback failures are reported visibly. Discovery handles delayed and partial
-lists. Mandarin locale aliases and Taiwanese Mandarin are supported, with
+microphone access or assign a listed wrong-language voice. Missing explicitly
+selected voices and actual playback failures are reported visibly. If the system
+cannot provide the requested language, enable it in the device's text-to-speech
+settings. Discovery handles delayed and partial lists. Mandarin locale aliases
+and Taiwanese Mandarin are supported, with
 Simplified/mainland voices preferred in Automatic mode.
 English plays at normal speed;
 Mandarin phrases in a conversation use that conversation's chosen rate.

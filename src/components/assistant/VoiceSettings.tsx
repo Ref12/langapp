@@ -45,8 +45,8 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
     {speedSetup === 'error' && <p className="notice error" role="alert">Default speech speed could not be loaded. Check the profile YAML in data/ and reload. The previous speed setting was kept.</p>}
     {voiceSetup === 'loading' && <p className="small muted" role="status">Loading saved voice selections...</p>}
     {voiceSetup === 'error' && <p className="notice error" role="alert">Voice selections could not be loaded. Check the profile YAML in data/ and reload. Your previous selections were kept.</p>}
-    <p className="small muted" id={`${id}-help`}>Selections save automatically and apply to Hear, Practice, lessons, and spoken replies. Automatic prefers local browser voices; it never selects Edge TTS.</p>
-    <p className="small muted" id={`${id}-privacy`}>Online voices send the spoken text to the browser's speech service. Edge TTS sends it to Microsoft through the local server. Only Test voice or playback sends text; loading the Edge catalog sends no text.</p>
+    <p className="small muted" id={`${id}-help`}>Selections save automatically and apply to Hear, Practice, lessons, and spoken replies. Automatic prefers listed local browser voices. If no matching voice is listed, it asks the system for the requested language; it never selects Edge TTS.</p>
+    <p className="small muted" id={`${id}-privacy`}>Online voices send the spoken text to the browser's speech service. A system-selected voice may also be online; its identity and availability cannot be confirmed from an empty voice list. Edge TTS sends it to Microsoft through the local server. Only Test voice or playback sends text; loading the Edge catalog sends no text.</p>
     {languages.map(({ locale, label }) => {
       const voices = [...new Map(state.voices.filter(voice => browserVoiceMatches(voice, locale)).map(voice => [browserVoiceKey(voice), voice])).values()]
         .sort((left, right) => Number(right.localService) - Number(left.localService) || left.name.localeCompare(right.name) || left.lang.localeCompare(right.lang))
@@ -86,7 +86,7 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
           locale={locale} label={`Test ${label} voice`} buttonText="Test voice"
           disabled={busy || voiceSetup === 'loading' || unavailable || (isEdgeVoice(selected) && edge.loading)} />
         {unavailable && <p className="notice" id={`${id}-${locale}-unavailable`} role="status">Your saved {label} voice is not currently available. Hear will not use a different voice. Choose another voice or Automatic, or refresh after enabling the saved voice.</p>}
-        {!state.loading && !state.error && voices.length === 0 && !selected && <p className="small muted">No matching {label} browser voices are available. Enable a browser or system voice, then refresh.</p>}
+        {!state.loading && !state.error && voices.length === 0 && !selected && <p className="small muted">No {label} voices are listed by this browser. Automatic can still request a system voice for {label}. Use Test voice to try it; Android may speak even with an empty list.</p>}
       </div>
     })}
     {state.loading && <p className="small muted" role="status">Looking for browser voices...</p>}

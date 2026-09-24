@@ -54,7 +54,8 @@ afterEach(() => {
 })
 
 describe('guided audio lifecycle using real browser speech engine', () => {
-  it('advances only on successful completion, leaves the response gap, then finishes', async () => {
+  it.each(['listed', 'system'])('advances only on successful %s speech completion, leaves the response gap, then finishes', async source => {
+    if (source === 'system') synthesis.getVoices.mockReturnValue([])
     player.start()
     expect(latest()).toMatchObject({ status: 'playing', index: 0 })
     vi.advanceTimersByTime(100)
@@ -138,7 +139,10 @@ describe('guided audio lifecycle using real browser speech engine', () => {
   })
 
   it.each(['missing', 'error', 'timeout', 'blocked'] as const)('surfaces %s playback failures without advancing', async failure => {
-    if (failure === 'missing') synthesis.getVoices.mockReturnValue([])
+    if (failure === 'missing') {
+      setSpeechVoicePreferences({ 'en-US': { name: english.name, voiceURI: english.voiceURI, lang: english.lang, localService: english.localService } })
+      synthesis.getVoices.mockReturnValue([])
+    }
     if (failure === 'blocked') synthesis.speak.mockImplementationOnce(() => { throw new Error('blocked') })
     player.start()
     if (failure === 'missing') vi.advanceTimersByTime(3000)

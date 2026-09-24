@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | Published to GitHub Pages as `06fee765`, including named profiles and label-based exports. A subsequent parser fix accepts native tool-call replies that omit `content`; the user confirmed connection testing succeeds and requested publication on 2026-09-23. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Published to GitHub Pages as `06fee765`, including named profiles and label-based exports. A subsequent parser fix accepts native tool-call replies that omit `content`. The Android empty-voice-list workaround is implemented in Automatic mode; the user requested publication on 2026-09-23. Device playback needs user confirmation. |
 
 ## Maintaining this folder
 
