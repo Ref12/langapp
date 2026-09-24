@@ -17,8 +17,11 @@ async function completeAssistantChat(input: AIConnectionInput, history: TutorMes
 function response(content: unknown = reply) {
   return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify(content) } }] }))
 }
-function toolResponse(calls = [{ id: 'call-1', type: 'function', function: { name: 'lookup_words', arguments: '{"query":"chá"}' } }]) {
-  return new Response(JSON.stringify({ choices: [{ finish_reason: 'tool_calls', message: { role: 'assistant', content: null, tool_calls: calls } }] }))
+function toolResponse(
+  calls = [{ id: 'call-1', type: 'function', function: { name: 'lookup_words', arguments: '{"query":"chá"}' } }],
+  content: { content?: string | null } = { content: null },
+) {
+  return new Response(JSON.stringify({ choices: [{ finish_reason: 'tool_calls', message: { role: 'assistant', ...content, tool_calls: calls } }] }))
 }
 function installFetch(...responses: Response[]) {
   const fetcher = vi.fn()
@@ -58,14 +61,14 @@ describe('OpenAI-compatible transport', () => {
     expect(settings).toEqual({ ...connection, structuredOutput: true })
   })
 
-  it('tests native tools through a correlated two-step exchange, including content:null', async () => {
-    const fetcher = installFetch(toolResponse(), response())
+  it.each([{}, { content: null }, { content: '' }])('tests native tools through a correlated two-step exchange with %j', async (content: { content?: string | null }) => {
+    const fetcher = installFetch(toolResponse(undefined, content), response())
     await testAIConnection({ ...connection, nativeTools: true, structuredOutput: true })
     expect(fetcher).toHaveBeenCalledTimes(2)
     expect(body(fetcher).tools.map((tool: { function: { name: string } }) => tool.function.name)).toEqual(['lookup_words', 'lookup_lessons', 'get_learning_context'])
     expect(body(fetcher).tools[0].function.parameters).toMatchObject({ additionalProperties: false, properties: { query: { maxLength: 200 } } })
     expect(body(fetcher).tool_choice).toEqual({ type: 'function', function: { name: 'lookup_words' } })
-    expect(body(fetcher, 1).messages[2]).toMatchObject({ role: 'assistant', content: null, tool_calls: [{ id: 'call-1' }] })
+    expect(body(fetcher, 1).messages[2]).toMatchObject({ role: 'assistant', content: content.content ?? null, tool_calls: [{ id: 'call-1' }] })
     expect(body(fetcher, 1).messages[3]).toMatchObject({ role: 'tool', tool_call_id: 'call-1' })
     expect(JSON.parse(body(fetcher, 1).messages[3].content)).toMatchObject({ synthetic: true, words: [] })
     expect(body(fetcher, 1).tool_choice).toBe('none')
@@ -119,7 +122,7 @@ describe('OpenAI-compatible transport', () => {
     expect(fetcher).not.toHaveBeenCalled()
   })
 
-  it('rejects malformed, unknown, duplicate and oversized tool calls', async () => {
+  it.each([{}, { content: null }])('rejects malformed, unknown, duplicate and oversized tool calls with %j', async (content: { content?: string | null }) => {
     for (const calls of [
       [{ id: 'x', type: 'function', function: { name: 'write_progress', arguments: '{}' } }],
       [{ id: '', type: 'function', function: { name: 'lookup_words', arguments: '{"query":""}' } }],
@@ -130,15 +133,36 @@ describe('OpenAI-compatible transport', () => {
       Array.from({ length: 2 }, () => ({ id: 'same', type: 'function', function: { name: 'lookup_words', arguments: '{"query":""}' } })),
       Array.from({ length: 5 }, (_, index) => ({ id: String(index), type: 'function', function: { name: 'lookup_words', arguments: '{"query":""}' } })),
     ]) {
-      installFetch(toolResponse(calls))
+      installFetch(toolResponse(calls, content))
       await expect(completeAssistantChat({ ...connection, nativeTools: true }, messages)).rejects.toThrow(/tool|four calls/)
     }
   })
 
-  it('never accepts native calls when tools are disabled', async () => {
-    installFetch(toolResponse())
+  it.each([{}, { content: null }])('never accepts native calls when tools are disabled, with %j', async (content: { content?: string | null }) => {
+    installFetch(toolResponse(undefined, content))
     await expect(completeAssistantChat(connection, messages)).rejects.toThrow('disabled')
   })
+
+  it.each([
+    { finish_reason: 'stop', message: { role: 'assistant' } },
+    { finish_reason: 'stop', message: { role: 'assistant', content: null } },
+    { finish_reason: 'tool_calls', message: { role: 'assistant' } },
+    { finish_reason: 'tool_calls', message: { role: 'assistant', tool_calls: [] } },
+  ])('requires a final reply or actual tool calls when content is absent: %j', async choice => {
+    const fetcher = installFetch(new Response(JSON.stringify({ choices: [choice] })))
+    await expect(completeAssistantChat({ ...connection, nativeTools: true }, messages)).rejects.toThrow('no final reply')
+    expect(fetcher).toHaveBeenCalledTimes(1)
+  })
+
+  it.each([false, 42, {}, [], [{ type: 'text', text: 'Not a Chat Completions text string' }]].map(content => ({ content })))(
+    'rejects invalid content types even alongside valid tool calls: %j', async ({ content }) => {
+      const value = await toolResponse().json()
+      value.choices[0].message.content = content
+      const fetcher = installFetch(new Response(JSON.stringify(value)))
+      await expect(completeAssistantChat({ ...connection, nativeTools: true }, messages)).rejects.toThrow('invalid message')
+      expect(fetcher).toHaveBeenCalledTimes(1)
+    },
+  )
 
   it('does not require strict-schema tool support when only native function calling was selected', async () => {
     const fetcher = installFetch(toolResponse())

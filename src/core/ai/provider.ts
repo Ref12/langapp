@@ -215,7 +215,9 @@ function parseChatCompletion(value: unknown, nativeTools: boolean): ParsedComple
   if (!['stop', 'tool_calls'].includes(String(choice.finish_reason)) || !object(message) || message.role !== 'assistant' || message.refusal) {
     return invalid('The AI service could not complete a supported reply. Try rephrasing the request or check the model.')
   }
-  if (message.content !== null && typeof message.content !== 'string') return invalid('The AI service returned an invalid message.')
+  if (message.content != null && typeof message.content !== 'string') {
+    return invalid('The AI service returned invalid message content. Expected text; tool-call-only messages may omit content or set it to null.')
+  }
   if (typeof message.content === 'string' && message.content.length > MAX_REPLY_LENGTH) return invalid('The AI reply was too large. Ask for a shorter response.')
   if (message.tool_calls !== undefined && (!Array.isArray(message.tool_calls) || message.tool_calls.length > 0)) {
     if (!nativeTools) return invalid('The AI returned tools although native tools are disabled. Check the model configuration.')
@@ -230,7 +232,7 @@ function parseChatCompletion(value: unknown, nativeTools: boolean): ParsedComple
     const tool_calls: NativeToolCall[] = calls.map(call => ({
       id: call.id, type: 'function', function: { name: call.name, arguments: JSON.stringify(call.arguments) },
     }))
-    return { kind: 'tools', calls, continuation: [{ role: 'assistant', content: message.content, tool_calls }] }
+    return { kind: 'tools', calls, continuation: [{ role: 'assistant', content: message.content ?? null, tool_calls }] }
   }
   if (choice.finish_reason !== 'stop' || typeof message.content !== 'string' || !message.content.trim()) return invalid('The AI returned no final reply. Try again or check the model.')
   return parseReply(message.content)

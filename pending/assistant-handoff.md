@@ -3,6 +3,21 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Chat tool-call response compatibility (2026-09-23)
+
+The user reported "The AI service returned an invalid message" during Test
+connection with native tools enabled. The Chat Completions parser incorrectly
+rejected tool-only messages that omit `content`. It now accepts omitted or null
+content after validating the tool calls and normalizes continuation content to
+null. Final replies still require nonempty text; malformed content, disabled or
+invalid tools, and empty tool-call lists remain rejected.
+
+The user reloaded localhost and confirmed Test connection succeeds. All 177
+targeted provider/Responses/structured/runtime cases and app/node types and
+changed-file lint pass. No live provider request was sent by the agent.
+The user requested publishing this fix on 2026-09-23 through the existing
+`main` push and GitHub Pages deployment workflow.
+
 ## GitHub Pages publication (2026-09-23)
 
 The user requested committing the label refinement and publishing/pushing the
@@ -36,8 +51,10 @@ regressions remain in the release gates. Do not mark HSK 7-9 complete.
 Private profiles/credentials are not deployed. Moving localhost data to Pages
 requires an explicit browser YAML export/import; Edge TTS remains localhost-only.
 
-Remaining publication step: commit these deployment changes, push `main`, and
-confirm the resulting Actions deployment and public app before reporting it live.
+Publication completed as `06fee765`, pushed to `main`. Actions run `35931888325`
+succeeded, and the public root app, bundle, v1 archive, device preview and
+retirement worker matched its CI artifact byte-for-byte. No publication work
+remains for that release.
 
 ## Label-based profile YAML (complete)
 
