@@ -41,6 +41,7 @@ function run(url: string, extra: string[] = []) {
 }
 
 describe.skipIf(!available)('PowerShell structured-output probe', () => {
+  // Include PowerShell's cold start on shared CI runners, not just the HTTP exchange.
   it.each(['responses', 'chat-completions'])('sends exactly one %s schema-only challenge and validates the completed output', async apiType => {
     const requests: { path: string | undefined; body: Record<string, unknown> }[] = []
     const base = await listen((request, response) => {
@@ -71,7 +72,7 @@ describe.skipIf(!available)('PowerShell structured-output probe', () => {
     expect(requests).toHaveLength(1)
     expect(requests[0].path).toBe(`/v1/${apiType === 'responses' ? 'responses' : 'chat/completions'}`)
     expect(result.stdout).not.toContain(key)
-  })
+  }, 30000)
 
   it.each([
     'UNSTRUCTURED', '{"proof":"ignored","count":7,"status":"schema_applied"}',
