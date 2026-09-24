@@ -115,6 +115,23 @@ describe('first usable Assistant', () => {
     expect((await db.assistantThreads.toArray())[0].speechRate).toBe(0.5)
   })
 
+  it('offers quarter-speed Mandarin and retains the selected conversation speed after reload', async () => {
+    const id = await createConversation()
+    window.location.hash = `conversation/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Assistant settings' }))
+    const select = screen.getByLabelText('Mandarin speech speed')
+    expect(within(select).getAllByRole('option').map(option => option.getAttribute('value'))).toEqual(['0.25', '0.5', '0.75', '1', '1.25'])
+    await user.selectOptions(select, '0.25')
+    await waitFor(async () => expect((await db.assistantThreads.get(id))?.speechRate).toBe(0.25))
+    expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBeUndefined()
+    cleanup()
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Assistant settings' }))
+    expect(screen.getByLabelText('Mandarin speech speed')).toHaveValue('0.25')
+  })
+
   it('reports an invalid JSON speed in voice settings even when both connections are already saved', async () => {
     vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
     await saveAIConnection(connection)

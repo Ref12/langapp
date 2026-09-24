@@ -73,7 +73,7 @@ describe('development-only profile bootstrap settings', () => {
   })
   it.each([
     { speechConnection }, { aiConnection, speechConnection }, { aiConnection },
-    ...[0.5, 0.75, 1, 1.25].map(defaultSpeechRate => ({ defaultSpeechRate })),
+    ...[0.25, 0.5, 0.75, 1, 1.25].map(defaultSpeechRate => ({ defaultSpeechRate })),
     { aiConnection, speechConnection, defaultSpeechRate: 0.75, speechVoices },
     { speechVoices }, { speechVoices: { 'en-US': { voiceURI: 'local-en', name: 'English local', lang: 'en-US', localService: true } } },
     {},

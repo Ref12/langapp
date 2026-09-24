@@ -400,12 +400,12 @@ describe('visible dictation failures', () => {
 })
 
 describe('explicit queued tutor speech', () => {
-  it('plays only locale-tagged speech in order, English normally and Mandarin at the selected speed', async () => {
-    const reply = speak()
+  it.each([0.25, 0.75] as const)('plays only locale-tagged speech in order, English normally and Mandarin at %s', async rate => {
+    const reply = speak(blocks, rate)
     expect(playBrowserSpeechToEnd).toHaveBeenCalledExactlyOnceWith(expect.any(String), 'Hello', 'en-US', 1)
     utterances[0].resolve({ status: 'completed' })
     await flush()
-    expect(playBrowserSpeechToEnd).toHaveBeenLastCalledWith(expect.any(String), '你好', 'zh-Hans', 0.75)
+    expect(playBrowserSpeechToEnd).toHaveBeenLastCalledWith(expect.any(String), '你好', 'zh-Hans', rate)
     expect(playBrowserSpeechToEnd).toHaveBeenCalledTimes(2)
     utterances[1].resolve({ status: 'completed' })
     await expect(reply.done).resolves.toEqual({ status: 'completed' })

@@ -11,7 +11,7 @@ const timestamp = z.number().int().nonnegative()
 export const assistantModeSchema = z.enum(['conversation', 'shadow'])
 export const assistantIntentSchema = z.enum(['message', 'shadow', 'repeat', 'explain'])
 export const speechLocaleSchema = z.enum(['en-US', 'zh-Hans'])
-export const speechRateSchema = z.union([z.literal(0.5), z.literal(0.75), z.literal(1), z.literal(1.25)])
+export const speechRateSchema = z.union([z.literal(0.25), z.literal(0.5), z.literal(0.75), z.literal(1), z.literal(1.25)])
 export type SpeechRate = z.infer<typeof speechRateSchema>
 
 export const browserVoicePreferenceSchema = z.object({

@@ -16,7 +16,7 @@ export function createProfileTemplate(): string {
 # ALL exports include configured AI/Azure credentials. Keep data/ private.
 # profile.name is the display name; do not change profile.id after creation.
 # settings.preferences contains the complete browser workspace preferences.
-# Optional defaultSpeechRate values: 0.5, 0.75, 1, 1.25.
+# Optional defaultSpeechRate values: 0.25, 0.5, 0.75, 1, 1.25.
 # Optional speechVoices belong inside settings.preferences.
 # No network voice/provider is enabled by this blank template.
 ${yaml.replace('settings:\n', `settings:

@@ -18,7 +18,7 @@ describe('new conversation speaking speed', () => {
     expect(await db.preferences.get('workspace')).not.toHaveProperty('defaultSpeechRate')
   })
 
-  it.each([0.5, 0.75, 1, 1.25] as const)('uses saved default %s for new conversations and source-based drafts', async defaultSpeechRate => {
+  it.each([0.25, 0.5, 0.75, 1, 1.25] as const)('uses saved default %s for new conversations and source-based drafts', async defaultSpeechRate => {
     await savePreferences({ defaultSpeechRate })
     const empty = await createConversation()
     const source = await createConversation({ text: '茶', title: 'Tea', route: 'dictionary', locale: 'zh-Hans' })

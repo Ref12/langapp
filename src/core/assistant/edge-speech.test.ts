@@ -101,10 +101,10 @@ describe('Edge catalog client', () => {
 })
 
 describe('shared Edge playback', () => {
-  it('plays selected Edge audio without browser speech support and awaits the real end event', async () => {
+  it.each([0.25, 0.5])('keeps English Edge audio at normal speed for requested rate %s and awaits the real end event', async rate => {
     vi.stubGlobal('speechSynthesis', undefined)
     vi.stubGlobal('SpeechSynthesisUtterance', undefined)
-    const pending = playBrowserSpeechToEnd('edge', 'Hello', 'en-US', 0.5)
+    const pending = playBrowserSpeechToEnd('edge', 'Hello', 'en-US', rate)
     expect(getPlaybackState()).toMatchObject({ activeId: 'edge', phase: 'loading-audio', voiceKind: 'edge' })
     await flush()
     expect(fetcher).toHaveBeenCalledWith(LOCAL_TTS_PATH, expect.objectContaining({
@@ -130,11 +130,11 @@ describe('shared Edge playback', () => {
     expect(synthesis.speak).not.toHaveBeenCalled()
   })
 
-  it('uses the saved Mandarin default without changing the decoded clip playback rate', async () => {
-    setDefaultSpeechRate(0.75)
+  it.each([0.25, 0.75] as const)('uses the saved Mandarin default %s without changing the decoded clip playback rate', async rate => {
+    setDefaultSpeechRate(rate)
     const pending = playBrowserSpeechToEnd('mandarin', '\u4f60\u597d', 'zh-Hans')
     await flush()
-    expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body))).toMatchObject({ rate: 0.75 })
+    expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body))).toMatchObject({ rate })
     expect(MockAudio.instances[0].playbackRate).toBe(1)
     MockAudio.instances[0].onended?.()
     await expect(pending).resolves.toEqual({ status: 'completed' })

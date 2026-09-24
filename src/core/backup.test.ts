@@ -160,7 +160,7 @@ describe('compatible Assistant workspace backups', () => {
     }
   })
 
-  it.each([0.5, 0.75, 1, 1.25] as const)('round-trips optional default speech rate %s without changing conversation overrides', async defaultSpeechRate => {
+  it.each([0.25, 0.5, 0.75, 1, 1.25] as const)('round-trips optional default speech rate %s without changing conversation overrides', async defaultSpeechRate => {
     const { threadId } = await seedAssistant()
     await savePreferences({ defaultSpeechRate })
     const text = await exportWorkspaceBackup()

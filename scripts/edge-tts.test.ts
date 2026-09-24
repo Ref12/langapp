@@ -213,7 +213,7 @@ describe('Edge speech request protocol', () => {
   })
 
   it.each([
-    [0.5, '-50%'], [0.75, '-25%'], [0.85, '-15%'], [1, '+0%'], [1.25, '+25%'],
+    [0.25, '-75%'], [0.5, '-50%'], [0.75, '-25%'], [0.85, '-15%'], [1, '+0%'], [1.25, '+25%'],
   ] as const)('maps Mandarin rate %s exactly to %s', async (rate, expected) => {
     const { socket, result } = start({ ...request, rate })
     expect(socket.sent[1]).toContain(`rate="${expected}"`)
@@ -223,7 +223,7 @@ describe('Edge speech request protocol', () => {
 
   it.each(['en-US-AriaNeural', 'en-GB-SoniaNeural', 'en-AU-NatashaNeural', 'en-IN-NeerjaNeural'])(
     'keeps English %s at normal speed for every requested rate', async voice => {
-      for (const rate of [0.5, 0.75, 0.85, 1, 1.25] as const) {
+      for (const rate of [0.25, 0.5, 0.75, 0.85, 1, 1.25] as const) {
         const { socket, result } = start({ ...request, voice, rate })
         expect(socket.sent[1]).toContain('rate="+0%"')
         expect(socket.sent[1]).toContain(`xml:lang="${voice.slice(0, 5)}"`)

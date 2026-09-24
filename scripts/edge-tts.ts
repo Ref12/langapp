@@ -102,7 +102,7 @@ function requestFrames(request: LocalTtsRequest, requestId: string): [string, st
   const locale = request.voice.slice(0, separator)
   const voice = `Microsoft Server Speech Text to Speech Voice (${locale}, ${request.voice.slice(separator + 1)})`
   const rate = request.voice.startsWith('en-') ? '+0%' : ({
-    0.5: '-50%', 0.75: '-25%', 0.85: '-15%', 1: '+0%', 1.25: '+25%',
+    0.25: '-75%', 0.5: '-50%', 0.75: '-25%', 0.85: '-15%', 1: '+0%', 1.25: '+25%',
   } as const)[request.rate]
   const config = JSON.stringify({
     context: {

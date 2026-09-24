@@ -130,7 +130,7 @@ export function localTts({
           } else {
             const parsed = localTtsRequestSchema.safeParse(await readBody(request, controller.signal))
             if (!parsed.success) {
-              throw new LocalTtsError(400, 'Expected text (1-1000 characters), a supported English or Mandarin Neural voice, and an optional rate of 0.5, 0.75, 0.85, 1, or 1.25.')
+              throw new LocalTtsError(400, 'Expected text (1-1000 characters), a supported English or Mandarin Neural voice, and an optional rate of 0.25, 0.5, 0.75, 0.85, 1, or 1.25.')
             }
             const { audio, wordBoundaries } = await synthesize(parsed.data, controller.signal)
             result = {

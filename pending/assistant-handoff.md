@@ -3,6 +3,29 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Quarter-speed Mandarin playback (2026-09-24)
+
+The user requested 0.25x in addition to the existing speech speeds. The shared
+`speechRateSchema` now accepts 0.25, so conversation rates, workspace defaults,
+local settings, JSON backups, and profile YAML all preserve it. The Assistant
+settings speed selector derives its options and validation from that schema
+instead of maintaining a separate list. Existing defaults and conversations are
+not rewritten; English remains normal speed.
+
+Browser speech passes 0.25 through for both listed and system-selected Mandarin
+voices. Edge requests accept it and emit SSML `rate="-75%"`; decoded audio still
+plays at 1x to avoid slowing it twice. The internal guided-lesson 0.85 rate is
+unchanged and is not added to the user selector. README and generated profile
+template guidance list the new supported rate. Private snapshots were not edited.
+
+All 730 focused cases across 11 files pass, including selector persistence after
+reload, normal English, queued replies, local/online/system browser voices, Edge
+request forwarding and SSML, local bootstrap settings, and JSON/YAML roundtrips.
+App/node TypeScript and changed-file ESLint pass. Provider and audio coverage is
+synthetic; no live speech or AI request was made. The user requested committing
+and pushing this change on 2026-09-24 through the existing `main` push and
+GitHub Pages deployment workflow.
+
 ## Android voice enumeration fallback
 
 The user reported no available voices in Android Chrome and Edge and recalled

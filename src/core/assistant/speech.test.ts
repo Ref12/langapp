@@ -194,7 +194,7 @@ describe('default Mandarin playback speed', () => {
     await expect(playBrowserSpeechToEnd('unsupported', '\u8336', 'zh-Hans')).resolves.toMatchObject({ status: 'error' })
   })
 
-  it.each([0.5, 0.75, 1, 1.25] as const)('uses the configured default %s only for Mandarin, without playing on configuration', rate => {
+  it.each([0.25, 0.5, 0.75, 1, 1.25] as const)('uses the configured default %s only for Mandarin, without playing on configuration', rate => {
     setDefaultSpeechRate(rate)
     expect(synthesis.getVoices).not.toHaveBeenCalled()
     expect(synthesis.speak).not.toHaveBeenCalled()
@@ -224,12 +224,12 @@ describe('default Mandarin playback speed', () => {
     expect(synthesis.speak.mock.calls[2][0].rate).toBe(1)
   })
 
-  it('applies the same configured default to online browser voices', () => {
+  it.each([0.25, 0.75] as const)('applies the configured default %s to online browser voices', rate => {
     synthesis.getVoices.mockReturnValue([onlineMandarin, onlineEnglish])
-    setDefaultSpeechRate(0.75)
+    setDefaultSpeechRate(rate)
     playBrowserSpeech('mandarin', '茶', 'zh-Hans')
     vi.advanceTimersByTime(3000)
-    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ voice: onlineMandarin, rate: 0.75 })
+    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ voice: onlineMandarin, rate })
     playBrowserSpeech('english', 'Tea', 'en-US')
     vi.advanceTimersByTime(3000)
     expect(synthesis.speak.mock.calls[1][0]).toMatchObject({ voice: onlineEnglish, rate: 1 })
@@ -328,14 +328,16 @@ describe('installed-local-voice language matching', () => {
 })
 
 describe('system-selected browser voices', () => {
-  it.each(['zh-Hans', 'en-US'] as const)('speaks synchronously with the requested %s language when enumeration is empty', async locale => {
+  it.each([
+    ['zh-Hans', 0.25], ['zh-Hans', 0.5], ['en-US', 0.25], ['en-US', 0.5],
+  ] as const)('speaks synchronously with the requested %s language and rate %s when enumeration is empty', async (locale, rate) => {
     synthesis.getVoices.mockReturnValue([])
-    const outcome = playBrowserSpeechToEnd('system', 'Example', locale, 0.5)
+    const outcome = playBrowserSpeechToEnd('system', 'Example', locale, rate)
     expect(synthesis.speak).toHaveBeenCalledOnce()
     const utterance = synthesis.speak.mock.calls[0][0]
     expect(utterance.voice).toBeUndefined()
     expect(utterance.lang).toBe(locale === 'zh-Hans' ? 'zh-CN' : 'en-US')
-    expect(utterance.rate).toBe(locale === 'en-US' ? 1 : 0.5)
+    expect(utterance.rate).toBe(locale === 'en-US' ? 1 : rate)
     expect(voiceListeners.size).toBe(0)
     expect(getPlaybackState()).toEqual({ activeId: 'system', phase: 'starting', voiceKind: 'system' })
     utterance.onstart?.()

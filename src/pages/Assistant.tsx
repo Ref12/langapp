@@ -4,7 +4,7 @@ import { ArrowLeft, MessageCircle, Mic, PanelLeftClose, PanelLeftOpen, Plus, Sea
 import { db } from '../core/database'
 import { normalizeSearch } from '../core/search'
 import { navigate } from '../core/routing'
-import { MAX_DRAFT_LENGTH, practiceInputSchema, speechLocaleSchema, type AssistantMessage, type AssistantThread, type SpeechBlock } from '../core/assistant/contracts'
+import { MAX_DRAFT_LENGTH, practiceInputSchema, speechLocaleSchema, speechRateSchema, type AssistantMessage, type AssistantThread, type SpeechBlock } from '../core/assistant/contracts'
 import { createConversation, deleteThread, expireAssistantRuns, saveDraft, selectPracticePhrase, updateThread } from '../core/assistant/store'
 import { cancelAssistantRun, sendAssistantTurn } from '../core/assistant/runtime'
 import { AssistantText } from '../components/assistant/AssistantText'
@@ -364,8 +364,8 @@ function Conversation({ thread }: { thread: AssistantThread }) {
               <p className="small muted">Azure pronunciation scores when configured; otherwise a local transcript comparison.</p>
               <label>Mandarin speech speed<select value={thread.speechRate} onChange={event => {
                 const rate = Number(event.target.value)
-                if (rate === 0.5 || rate === 0.75 || rate === 1 || rate === 1.25) void action(() => updateThread(thread.id, { speechRate: rate }))
-              }}>{[0.5, 0.75, 1, 1.25].map(rate => <option key={rate} value={rate}>{rate}x</option>)}</select></label>
+                void action(() => updateThread(thread.id, { speechRate: speechRateSchema.parse(rate) }))
+              }}>{speechRateSchema.options.map(({ value: rate }) => <option key={rate} value={rate}>{rate}x</option>)}</select></label>
               <label className="toggle"><input type="checkbox" checked={thread.romanization} onChange={event => { const romanization = event.target.checked; void action(() => updateThread(thread.id, { romanization })) }} /> Show romanization</label>
               <a className="text-link" href="#settings">Voices, AI and speech connections, and appearance</a>
               <button type="button" className="button secondary" onClick={() => setSettingsOpen(false)}>Close settings</button>

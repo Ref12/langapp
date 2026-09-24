@@ -311,6 +311,7 @@ cannot provide the requested language, enable it in the device's text-to-speech
 settings. Discovery handles delayed and partial lists. Mandarin locale aliases
 and Taiwanese Mandarin are supported, with
 Simplified/mainland voices preferred in Automatic mode.
+Mandarin speech speed choices are 0.25x, 0.5x, 0.75x, 1x, and 1.25x.
 English plays at normal speed;
 Mandarin phrases in a conversation use that conversation's chosen rate.
 The profile preference `defaultSpeechRate` configures the initial speed for new
@@ -427,9 +428,8 @@ short Neural voice name from the supported English or Mandarin catalog, such
 as `en-US-AriaNeural`, `en-GB-SoniaNeural`, or `zh-CN-XiaoxiaoNeural`.
 English regions, mainland/Singapore/Taiwan Mandarin, and supported regional
 Mandarin IDs are accepted. Unknown upstream voices fail rather than falling back.
-`rate` defaults to `1`; accepted values are `0.5`, `0.75`, `0.85`, `1`, and `1.25`.
-The internal `0.85` rate preserves guided-lesson playback; user speed choices
-remain unchanged.
+`rate` defaults to `1`; accepted values are `0.25`, `0.5`, `0.75`, `0.85`, `1`, and `1.25`.
+The internal `0.85` rate preserves guided-lesson playback and is not a user speed choice.
 English is always synthesized at normal speed, regardless of the requested
 rate. Mandarin uses the requested rate.
 
@@ -577,7 +577,7 @@ intent header, and are absent from production, preview, and standalone v1.
 Both development servers block direct access to the root data folder, including
 filesystem aliases. Profile contents are not bundled, logged, or cached.
 
-`settings.preferences.defaultSpeechRate` still supports `0.5`, `0.75`, `1`, and
+`settings.preferences.defaultSpeechRate` supports `0.25`, `0.5`, `0.75`, `1`, and
 `1.25`, affects Mandarin only, and does not change existing conversation rates.
 `settings.preferences.speechVoices` uses the existing per-language browser or
 Edge preference objects. File edits take effect through explicit import after

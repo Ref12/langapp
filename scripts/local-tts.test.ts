@@ -149,6 +149,14 @@ describe('development-only local TTS', () => {
     expect(synthesize.mock.calls[0][0]).toEqual({ text: 'Synthetic phrase.', voice: 'zh-CN-XiaoxiaoNeural', rate: 1 })
   })
 
+  it('passes quarter-speed Mandarin through the local endpoint to synthesis', async () => {
+    const request = { text: 'Synthetic phrase.', voice: 'zh-CN-XiaoxiaoNeural', rate: 0.25 }
+    const response = await post(await start(), request)
+    expect(response.status).toBe(200)
+    await response.arrayBuffer()
+    expect(synthesize).toHaveBeenCalledWith(request, expect.any(AbortSignal))
+  })
+
   it('supports a configured Vite base without claiming unrelated routes', async () => {
     const origin = await start({ base: '/langapp/' })
     for (const path of [LOCAL_TTS_PATH, `/langapp${LOCAL_TTS_PATH}`]) {
@@ -219,7 +227,7 @@ describe('development-only local TTS', () => {
   })
 
   it('accepts valid XML Unicode scalars and every supported rate', () => {
-    for (const rate of [0.5, 0.75, 0.85, 1, 1.25]) {
+    for (const rate of [0.25, 0.5, 0.75, 0.85, 1, 1.25]) {
       expect(localTtsRequestSchema.safeParse({ ...payload, text: 'Hello \u{1f600}\t\n<&>', rate }).success).toBe(true)
     }
   })

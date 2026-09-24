@@ -231,7 +231,7 @@ describe('automatic local AI connection setup', () => {
       expect(await db.assistantThreads.get(existing)).toEqual(before)
     })
 
-    it.each([0.5, 0.75, 1, 1.25])('imports rate-only settings (%s) even when both connections exist', async defaultSpeechRate => {
+    it.each([0.25, 0.5, 0.75, 1, 1.25])('imports rate-only settings (%s) even when both connections exist', async defaultSpeechRate => {
       await saveAIConnection(connection)
       await saveSpeechConnection(speechConnection)
       const ai = await db.aiConnections.get('assistant')

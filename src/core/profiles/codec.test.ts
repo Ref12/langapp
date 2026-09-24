@@ -39,6 +39,16 @@ describe('profile identity and YAML snapshots', () => {
     expect(snapshot).toEqual(before)
   })
 
+  it('round-trips quarter-speed defaults and conversation overrides in YAML', () => {
+    const snapshot = populatedProfile()
+    snapshot.settings.preferences.defaultSpeechRate = 0.25
+    snapshot.conversations.threads[0].speechRate = 0.25
+    const text = serializeProfileYaml(snapshot)
+    expect(text).toContain('defaultSpeechRate: 0.25')
+    expect(text).toContain('speechRate: 0.25')
+    expect(parseProfileYaml(text)).toEqual(snapshot)
+  })
+
   it('writes lb fields throughout learning records without changing structural or conversation IDs', () => {
     const snapshot = populatedProfile()
     const wire = profileYamlSchema.parse(parse(serializeProfileYaml(snapshot)))
