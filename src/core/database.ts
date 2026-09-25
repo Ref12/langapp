@@ -4,6 +4,7 @@ import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread } fr
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
+import type { MahjongGame } from './games/mahjong'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -22,6 +23,7 @@ export class LearningDatabase extends Dexie {
   exerciseSessions!: EntityTable<ExerciseSession, 'id'>
   exerciseAttempts!: EntityTable<ExerciseAttempt, 'id'>
   profileState!: EntityTable<{ id: 'local-settings'; imported: true }, 'id'>
+  mahjongGames!: EntityTable<MahjongGame, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -49,6 +51,7 @@ export class LearningDatabase extends Dexie {
       exerciseAttempts: '&id, sessionId, createdAt',
     })
     this.version(5).stores({ profileState: '&id' })
+    this.version(6).stores({ mahjongGames: '&id' })
   }
 }
 

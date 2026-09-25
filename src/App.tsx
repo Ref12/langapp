@@ -13,6 +13,7 @@ import { Library, Reader } from './pages/Reading'
 import { LessonDetail, Lessons } from './pages/Lessons'
 import { Study, StudySessionPage } from './pages/Study'
 import { Practice, PracticeSessionPage } from './pages/Practice'
+import { Mahjong } from './pages/Mahjong'
 import { Dictionary } from './pages/Dictionary'
 import { Settings } from './pages/Settings'
 import { LevelDetail } from './pages/Curriculum'
@@ -61,6 +62,7 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
     const lesson = lessons.find(item => item.id === id)
     return lesson ? <LessonDetail {...props} lesson={lesson} page={lessonPage} /> : <NotFound />
   }
+  if (page === 'practice' && id === 'mahjong') return <Mahjong {...props} />
   if (page === 'practice' && id) {
     const session = props.workspace.sessions.find(item => item.id === id)
     return session ? <PracticeSessionPage {...props} session={session} /> : <NotFound />
@@ -171,7 +173,7 @@ function WorkspaceApp() {
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current={page === 'settings' ? 'page' : undefined}><SettingsIcon size={20} /></a>
         </div></header>
-        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
+        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : route === 'practice/mahjong' ? 'mahjong-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {currentPage}
         </main>

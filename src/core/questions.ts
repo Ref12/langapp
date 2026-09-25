@@ -10,7 +10,7 @@ function shuffled<T>(items: T[]): T[] {
   return result
 }
 
-function glosses(meaning: string): string[] {
+export function glosses(meaning: string): string[] {
   return meaning.toLowerCase().replace(/\([^)]*\)/g, '').split(/[,;/]|\bor\b/)
     .map(part => part.trim().replace(/^(?:(?:to|a|an|the)\s+)+/, '').replace(/[.!?]/g, '').trim())
     .filter(Boolean)

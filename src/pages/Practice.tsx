@@ -23,6 +23,10 @@ export function Practice({ workspace, now, run, busy }: PageProps) {
       <section className="experience-card"><p className="eyebrow accent">AT YOUR OWN PACE</p><h2>Practice your learning set</h2><p>Choose another round even when nothing is due. Repeating today does not count as practice on a new day.</p>
         <button className="button secondary" disabled={busy || !workspace.words.length} onClick={() => void run(async () => navigate(`practice/${await startPractice('all')}`))}>Practice now <RotateCcw size={16} /></button></section>
     </div>
+    <section className="experience-card practice-games"><p className="eyebrow accent">GAMES</p><h2>Word Mahjong</h2>
+      <p>Clear a layered board by pairing English meanings, pinyin, and Chinese characters. Uses your introduced vocabulary; no AI connection needed.</p>
+      <a className="button primary" href="#practice/mahjong">Play Mahjong <ArrowRight size={16} /></a>
+    </section>
     {!workspace.words.length && <EmptyState title="Your first words are waiting"><p>Start a lesson, or add an underlined word while reading.</p><a href="#lessons" className="button primary">Explore lessons</a></EmptyState>}
   </>
 }

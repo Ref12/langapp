@@ -131,6 +131,43 @@ backups remain importable; older backups restore with an empty knowledge set.
 The previous curriculum map remains reachable at `#curriculum`
 and the older recognition practice at `#practice`; neither feeds the knowledge set.
 
+## Practice games
+
+**Practice -> Play Mahjong** opens Word Mahjong Solitaire (`#practice/mahjong`).
+Match two different representations of the same vocabulary sense: character and
+English, character and pinyin, or pinyin and English. Mixed boards include all
+three pair types. Tiles must be uncovered and have a free left or right edge;
+character tiles never include pronunciation annotations.
+
+Boards use only vocabulary already in the current profile's knowledge set or
+legacy learning set, with no AI request. New boards contain 48 tiles (24 pairs)
+in a sculpted, three-layer courtyard layout. Four to ten distinct words repeat
+across the board. Any free copy can match the opposite representation of that
+word, not just its originally dealt partner. Each word uses exactly two
+representations per board; mixed boards vary those two across different words.
+At least four distinct short words are required.
+Entries are limited to six Chinese characters, 24 pinyin characters, and 32
+English characters for mobile readability; full source text is retained, not
+truncated. Different vocabulary senses with shared glosses, characters, or
+pinyin are excluded to avoid ambiguous answers; repeated copies of the same
+sense are intentionally included. Grammar records are not tiles.
+
+Deals and reshuffles are constructed from a legal removal sequence. Hint
+highlights an available pair, Undo restores the last match, and Reshuffle
+restacks the remaining tiles while keeping cleared pairs and clearing Undo
+history. This recovers even from an impossible remaining tower caused by
+matching interchangeable duplicates. Misses, hints, and shuffles are counted
+within the game only; no learning evidence or FSRS schedules are changed.
+
+The latest board is saved automatically in a profile-local Dexie table (schema
+6), including cleared tiles and counts, and survives navigation and reload.
+Starting another board replaces it after confirmation. Games are not included
+in profile exports/clones or legacy JSON backups; restoring a profile or backup
+clears its in-progress game.
+Earlier small boards remain playable; use **Deal the new stacked layout** to
+replace one explicitly. Compact windows may scroll rather than shrink the new
+board's word tiles below readable, tappable sizes.
+
 ## Assistant
 
 Assistant provides persistent English/Mandarin conversations and **Shadow**:
