@@ -45,7 +45,7 @@ async function addRun(threadId: string, expiresAt: number, status: AssistantRun[
 }
 
 describe('Assistant database migration', () => {
-  it('adds Assistant and speech settings tables without changing schema 1 learning records or another database', async () => {
+  it('adds current workspace tables without changing schema 1 learning records or another database', async () => {
     await trackWord('zh:tea', 'dictionary')
     await openStory('zh:tea-house')
     const id = await startPractice('lesson', curriculumLessons[0].id)
@@ -69,7 +69,7 @@ describe('Assistant database migration', () => {
       }
       old.close()
       await migrated.open()
-      expect(migrated.verno).toBe(5)
+      expect(migrated.verno).toBe(6)
       expect(await migrated.preferences.get('workspace')).toEqual(workspace.preferences)
       for (const table of ['words', 'readings', 'lessons', 'sessions', 'attempts'] as const) {
         expect(await migrated.table(table).toArray()).toEqual(workspace[table])
@@ -84,6 +84,8 @@ describe('Assistant database migration', () => {
       expect(await migrated.exerciseSessions.count()).toBe(0)
       expect(await migrated.exerciseAttempts.count()).toBe(0)
       expect(await migrated.profileState.count()).toBe(0)
+      expect(await migrated.mahjongGames.count()).toBe(0)
+      expect(migrated.mahjongGames.schema.primKey.name).toBe('id')
       expect(migrated.assistantMessages.schema.idxByName['[threadId+sequence]'].unique).toBe(true)
       expect(migrated.assistantThreads.schema.idxByName.updatedAt).toBeDefined()
       expect(migrated.assistantRuns.schema.idxByName['[threadId+status]']).toBeDefined()

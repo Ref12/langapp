@@ -16,6 +16,7 @@ export const gameWords: GameWord[] = [
 function seeded(seed: number) {
   return () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 2 ** 32 }
 }
+const solvableDeals = [4, 6, 10].flatMap(count => Array.from({ length: 80 }, (_, seed) => ({ count, seed })))
 
 describe('Mahjong Solitaire rules', () => {
   it('requires uncovered tiles with at least one open horizontal side', () => {
@@ -44,19 +45,17 @@ describe('Mahjong Solitaire rules', () => {
     expect(distinctWords(candidates)).toEqual([word])
   })
 
-  it.each([4, 6, 10])('constructs solvable 48-tile boards from %i words across many deals', count => {
-    for (let seed = 0; seed < 80; seed++) {
-      let game = createMahjong(gameWords.slice(0, count), 'mixed', seeded(seed))
-      expect(game.tiles).toHaveLength(48)
-      expect(game.tiles.some(tile => tile.z === 2)).toBe(true)
-      expect(game.tiles.some(tile => !Number.isInteger(tile.x))).toBe(true)
-      const forms = new Set(game.tiles.map(tile => tile.face))
-      expect(forms.size).toBe(3)
-      for (const [first, second] of removalOrder(courtyardLayout(), () => .5)) {
-        expect(availablePairs(game).some(pair => pair.some(tile => tile.id === first.id) && pair.some(tile => tile.id === second.id))).toBe(true)
-        game = removePair(game, first.id, second.id)
-        expect(readMahjong(game)).toEqual(game)
-      }
+  it.each(solvableDeals)('constructs a solvable 48-tile board from $count words with seed $seed', ({ count, seed }) => {
+    let game = createMahjong(gameWords.slice(0, count), 'mixed', seeded(seed))
+    expect(game.tiles).toHaveLength(48)
+    expect(game.tiles.some(tile => tile.z === 2)).toBe(true)
+    expect(game.tiles.some(tile => !Number.isInteger(tile.x))).toBe(true)
+    const forms = new Set(game.tiles.map(tile => tile.face))
+    expect(forms.size).toBe(3)
+    for (const [first, second] of removalOrder(courtyardLayout(), () => .5)) {
+      expect(availablePairs(game).some(pair => pair.some(tile => tile.id === first.id) && pair.some(tile => tile.id === second.id))).toBe(true)
+      game = removePair(game, first.id, second.id)
+      expect(readMahjong(game)).toEqual(game)
     }
   })
 
