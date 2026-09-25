@@ -1,5 +1,9 @@
 import { z } from 'zod'
 import { glosses } from '../questions'
+import { isFree, MAX_LAYOUT_TILES, positionSchema, removalOrder, type Position } from './mahjong-geometry'
+import { DEFAULT_LAYOUT_ID, getMahjongLayout, layoutIdSchema, layoutSnapshotSchema } from './mahjong-layouts'
+
+export { isFree, removalOrder, type Position } from './mahjong-geometry'
 
 export const faceSchema = z.enum(['character', 'pinyin', 'meaning'])
 export type TileFace = z.infer<typeof faceSchema>
@@ -10,18 +14,14 @@ export const gameWordSchema = z.object({
   pinyin: z.string().min(1).max(24), meaning: z.string().min(1).max(32),
 }).strict()
 export type GameWord = z.infer<typeof gameWordSchema>
-const positionSchema = z.object({
-  id: z.number().int().min(0).max(47), x: z.number().multipleOf(.25).min(0).max(5),
-  y: z.number().multipleOf(.25).min(0).max(6), z: z.number().int().min(0).max(2),
-})
-export type Position = z.infer<typeof positionSchema>
 const tileSchema = positionSchema.extend({ word: gameWordSchema, face: faceSchema }).strict()
 export type MahjongTile = z.infer<typeof tileSchema>
 export const mahjongGameSchema = z.object({
   id: z.literal('current'), gameId: z.string().min(1), revision: z.number().int().nonnegative(),
-  mode: modeSchema, layout: z.literal('courtyard').optional(), tiles: z.array(tileSchema).min(8).max(48),
-  removed: z.array(z.number().int().min(0).max(47)).max(48),
-  history: z.array(z.tuple([z.number().int().nonnegative(), z.number().int().nonnegative()])).max(24),
+  mode: modeSchema, layout: layoutIdSchema.optional(), layoutSnapshot: layoutSnapshotSchema.optional(),
+  tiles: z.array(tileSchema).min(8).max(MAX_LAYOUT_TILES),
+  removed: z.array(z.number().int().min(0).max(MAX_LAYOUT_TILES - 1)).max(MAX_LAYOUT_TILES),
+  history: z.array(z.tuple([z.number().int().nonnegative(), z.number().int().nonnegative()])).max(MAX_LAYOUT_TILES / 2),
   mistakes: z.number().int().nonnegative(), hints: z.number().int().nonnegative(),
   shuffles: z.number().int().nonnegative(),
 }).strict()
@@ -71,27 +71,15 @@ export function layout(pairCount: number): Position[] {
 }
 
 export function courtyardLayout(): Position[] {
-  const positions: Position[] = []
-  const add = (x: number, y: number, z: number) => positions.push({ id: positions.length, x, y, z })
-  for (let y = 0; y < 7; y++) {
-    const columns = y === 0 || y === 6 ? [2, 3] : y === 3 ? [0, 1, 4, 5] : [0, 1, 2, 3, 4, 5]
-    columns.forEach(x => add(x, y, 0))
-  }
-  for (const y of [1.25, 4.75]) for (const x of [.5, 1.5, 3.5, 4.5]) add(x, y, 1)
-  for (const y of [2.5, 3.5]) for (const x of [.5, 4.5]) add(x, y, 1)
-  for (const y of [1.5, 4.5]) for (const x of [1, 4]) add(x, y, 2)
-  return positions
+  return getMahjongLayout('courtyard').positions.map(position => ({ ...position }))
 }
 
 export function boardLayout(game: MahjongGame): Position[] {
-  return game.layout === 'courtyard' ? courtyardLayout() : layout(game.tiles.length / 2)
-}
-
-export function isFree(tile: Position, remaining: readonly Position[]): boolean {
-  if (!remaining.some(other => other.id === tile.id)) return false
-  const covered = remaining.some(other => other.z > tile.z && Math.abs(other.x - tile.x) < 1 && Math.abs(other.y - tile.y) < 1)
-  const neighbor = (offset: number) => remaining.some(other => other.z === tile.z && Math.abs(other.y - tile.y) < 1 && other.x === tile.x + offset)
-  return !covered && (!neighbor(-1) || !neighbor(1))
+  if (game.layoutSnapshot) {
+    if (game.layoutSnapshot.id !== game.layout) throw new Error('Saved Mahjong layout ID does not match its geometry snapshot.')
+    return game.layoutSnapshot.positions
+  }
+  return game.layout ? getMahjongLayout(game.layout).positions : layout(game.tiles.length / 2)
 }
 
 export function remainingTiles(game: MahjongGame): MahjongTile[] {
@@ -109,43 +97,26 @@ export function availablePairs(game: MahjongGame): [MahjongTile, MahjongTile][] 
   return free.flatMap((first, i) => free.slice(i + 1).filter(second => matches(first, second)).map(second => [first, second] as [MahjongTile, MahjongTile]))
 }
 
-// Pair empty positions in a legal removal order, then deal matching faces into each pair.
-// This constructs a solvable board without searching random word arrangements.
-export function removalOrder(positions: readonly Position[], random: Random): [Position, Position][] {
-  const deadEnds = new Set<string>()
-  const solve = (remaining: readonly Position[]): [Position, Position][] | undefined => {
-    if (!remaining.length) return []
-    const mask = remaining.map(tile => tile.id).sort((a, b) => a - b).join(',')
-    if (deadEnds.has(mask)) return undefined
-    const free = shuffle(remaining.filter(tile => isFree(tile, remaining)), random)
-    const pairs = free.flatMap((first, i) => free.slice(i + 1).map(second => [first, second] as [Position, Position]))
-      .sort((a, b) => b[0].z + b[1].z - a[0].z - a[1].z)
-    for (const [first, second] of pairs) {
-      const rest = solve(remaining.filter(tile => tile.id !== first.id && tile.id !== second.id))
-      if (rest) return [[first, second], ...rest]
-    }
-    deadEnds.add(mask)
-    return undefined
-  }
-  const pairs = solve(positions)
-  if (!pairs) throw new Error('The remaining tile layout cannot be dealt. Undo a move or start a new board.')
-  return pairs
-}
-
 const representations: [TileFace, TileFace][] = [['character', 'meaning'], ['character', 'pinyin'], ['pinyin', 'meaning']]
-export function createMahjong(words: readonly GameWord[], mode: MahjongMode = 'mixed', random: Random = Math.random): MahjongGame {
+export function createMahjong(words: readonly GameWord[], mode: MahjongMode = 'mixed', random: Random = Math.random, layoutId = DEFAULT_LAYOUT_ID): MahjongGame {
+  const configuration = getMahjongLayout(layoutId)
+  const pairCount = configuration.positions.length / 2
   const candidates = distinctWords(shuffle(words, random))
   if (candidates.length < 4) throw new Error('Add at least four distinct, short vocabulary words to your knowledge set before playing.')
-  const vocabulary = candidates.slice(0, 10)
-  const wordPairs = shuffle(Array.from({ length: 24 }, (_, i) => i % vocabulary.length), random)
-  const tiles = removalOrder(courtyardLayout(), () => .5).flatMap((positions, i) => {
+  const vocabulary = candidates.slice(0, Math.min(10, pairCount))
+  const wordPairs = shuffle(Array.from({ length: pairCount }, (_, i) => i % vocabulary.length), random)
+  const tiles = configuration.solution.flatMap((positions, i) => {
     const wordIndex = wordPairs[i]
     // Each word uses exactly two faces, so any duplicate copies may be paired
     // without stranding an unequal number of representations.
     const faces = mode === 'mixed' ? representations[wordIndex % representations.length] : representations.find(pair => pair.join('-') === mode)!
     return shuffle(faces, random).map((face, index) => ({ ...positions[index], face, word: vocabulary[wordIndex] }))
   }).sort((a, b) => a.id - b.id)
-  return { id: 'current', gameId: crypto.randomUUID(), revision: 0, mode, layout: 'courtyard', tiles, removed: [], history: [], mistakes: 0, hints: 0, shuffles: 0 }
+  return {
+    id: 'current', gameId: crypto.randomUUID(), revision: 0, mode, layout: configuration.id,
+    layoutSnapshot: { id: configuration.id, name: configuration.name, positions: configuration.positions.map(position => ({ ...position })) },
+    tiles, removed: [], history: [], mistakes: 0, hints: 0, shuffles: 0,
+  }
 }
 
 export function removePair(game: MahjongGame, firstId: number, secondId: number): MahjongGame {

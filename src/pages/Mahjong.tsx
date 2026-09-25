@@ -8,11 +8,27 @@ import { useCatalog } from '../components/study/useCatalog'
 import type { PageProps } from '../components/shared'
 import { availablePairs, boardLayout, createMahjong, distinctWords, isFree, matches, modeSchema, readMahjong, remainingTiles, type GameWord, type MahjongGame, type MahjongMode, type TileFace } from '../core/games/mahjong'
 import { updateMahjong, type MahjongAction } from '../core/games/mahjong-store'
+import { DEFAULT_LAYOUT_ID, getMahjongLayout, mahjongLayouts, type MahjongLayout } from '../core/games/mahjong-layouts'
 import './mahjong.css'
 
 const faceLabels: Record<TileFace, string> = { character: 'Character', meaning: 'English', pinyin: 'Pinyin' }
 const modeLabels: Record<MahjongMode, string> = {
   mixed: 'Mixed pairs', 'character-meaning': 'Character + English', 'character-pinyin': 'Character + pinyin', 'pinyin-meaning': 'Pinyin + English',
+}
+
+function LayoutPreview({ configuration }: { configuration: MahjongLayout }) {
+  const columns = Math.max(...configuration.positions.map(position => position.x)) + 1
+  const rows = Math.max(...configuration.positions.map(position => position.y)) + 1
+  const layers = Math.max(...configuration.positions.map(position => position.z)) + 1
+  return <figure className="mahjong-layout-preview">
+    <svg viewBox={`0 0 ${columns * 20 + layers * 3} ${rows * 28 + layers * 3}`} role="img" aria-label={`${configuration.name} tile configuration preview`}>
+      {[...configuration.positions].sort((a, b) => a.z - b.z || a.y - b.y || a.x - b.x).map(position => <rect key={position.id}
+        x={position.x * 20 + position.z * 2} y={position.y * 28 + (layers - position.z) * 2} width={18} height={26} rx={2}
+        fill={position.z === 0 ? '#cdd4bd' : position.z === 1 ? '#eeeede' : '#ffffff'} stroke="#496257" strokeWidth={1} />)}
+    </svg>
+    <figcaption><strong>{configuration.name}</strong><p>{configuration.description}</p>
+      <span>{configuration.positions.length} tiles / {configuration.positions.length / 2} pairs / {layers} layers</span></figcaption>
+  </figure>
 }
 
 function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProps, 'busy' | 'run'>) {
@@ -63,7 +79,7 @@ function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProp
             aria-description={`Tile ${tile.id + 1}, layer ${tile.z + 1}. ${free ? 'Free tile' : 'Blocked: a tile covers it or both sides are occupied'}`}
             aria-pressed={selected === tile.id}
             className={`mahjong-tile ${tile.face}${tile.word.character.length > 2 ? ' long-word' : ''}${free ? ' free' : ' blocked'}${hint?.revision === game.revision && hint.ids.includes(tile.id) ? ' hinted' : ''}`}
-            style={{ '--x': tile.x, '--y': tile.y, '--layer': tile.z, zIndex: tile.z * 100 + Math.round(tile.y * 10 + tile.x) } as CSSProperties}
+            style={{ '--x': tile.x, '--y': tile.y, '--layer': tile.z, zIndex: tile.z * 1000 + Math.round(tile.y * 32 + tile.x) } as CSSProperties}
             onClick={() => choose(tile.id)}>
             <span className="mahjong-tile-text" lang={tile.face === 'character' ? 'zh-Hans' : tile.face === 'meaning' ? 'en' : 'zh-Latn'}>{text}</span>
           </button>
@@ -86,6 +102,7 @@ function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProp
 export function Mahjong({ workspace, busy, run }: PageProps) {
   const { catalog, error } = useCatalog()
   const [mode, setMode] = useState<MahjongMode>('mixed')
+  const [layoutId, setLayoutId] = useState(DEFAULT_LAYOUT_ID)
   const [replace, setReplace] = useState(false)
   const saved = useLiveQuery(async () => {
     const value = await db.mahjongGames.get('current')
@@ -107,12 +124,23 @@ export function Mahjong({ workspace, busy, run }: PageProps) {
   }
   const eligible = distinctWords(vocabulary)
   const game = saved?.game
+  const gameId = game?.gameId
+  const gameMode = game?.mode
+  const gameLayout = game?.layout
+  useEffect(() => {
+    if (gameId && gameMode) {
+      setMode(gameMode)
+      setLayoutId(mahjongLayouts.find(configuration => configuration.id === gameLayout)?.id ?? DEFAULT_LAYOUT_ID)
+    }
+  }, [gameId, gameLayout, gameMode])
+  const configuration = getMahjongLayout(layoutId)
+  const currentLayoutName = game?.layoutSnapshot?.name ?? (game?.layout ? getMahjongLayout(game.layout).name : 'Classic')
   const start = () => void run(async () => {
-    const next = createMahjong(eligible, mode)
+    const next = createMahjong(eligible, mode, Math.random, layoutId)
     await db.mahjongGames.put(next)
     setReplace(false)
   })
-  return <div className={`mahjong-player${game?.layout === 'courtyard' ? ' mahjong-courtyard' : ''}`}>
+  return <div className={`mahjong-player${!game || game.layout ? ' mahjong-courtyard' : ''}`}>
     <header className="mahjong-heading"><a className="back-link" href="#practice"><ArrowLeft size={16} /> Practice</a>
       <h1>Word Mahjong</h1></header>
     {saved?.error && <p role="alert" className="notice error">{saved.error}</p>}
@@ -121,7 +149,11 @@ export function Mahjong({ workspace, busy, run }: PageProps) {
     {game && <MahjongBoard key={game.gameId} game={game} busy={busy} run={run} />}
     {game && !game.layout && !replace && <p className="small mahjong-upgrade">Your saved board is preserved. <button className="text-link" onClick={() => setReplace(true)}>Deal the new stacked layout</button></p>}
     {saved && (!game || replace || game.removed.length === game.tiles.length) ? <section className="mahjong-setup" aria-label="New Mahjong board">
-      <p>Clear a 48-tile, three-layer board. Words have repeated pairs: any free copy can match a different representation of the same word.</p>
+      <label>Tile configuration<select value={layoutId} onChange={event => setLayoutId(event.target.value)}>
+        {mahjongLayouts.map(configuration => <option key={configuration.id} value={configuration.id}>{configuration.name}</option>)}
+      </select></label>
+      <LayoutPreview configuration={configuration} />
+      <p>Words have repeated pairs: any free copy can match a different representation of the same word.</p>
       <label>Tile pairs<select value={mode} onChange={event => setMode(modeSchema.parse(event.target.value))}>
         {modeSchema.options.map(value => <option key={value} value={value}>{modeLabels[value]}</option>)}
       </select></label>
@@ -132,7 +164,7 @@ export function Mahjong({ workspace, busy, run }: PageProps) {
       <div className="button-row"><button className="button primary" disabled={busy || !catalog || eligible.length < 4} onClick={start}>{replace ? 'Replace board' : 'Deal tiles'}</button>
         {replace && <button className="button secondary" disabled={busy} onClick={() => setReplace(false)}>Keep playing</button>}</div>
     </section> : game && <details className="mahjong-help"><summary aria-label="Rules and new board"><Info size={20} /><span>Rules and new board</span></summary>
-      <p>{modeLabels[game.mode]}. Match the same word across two different representations. A tile must have nothing on top and at least one open horizontal side.</p>
+      <p>{currentLayoutName} / {modeLabels[game.mode]}. Match the same word across two different representations. A tile must have nothing on top and at least one open horizontal side.</p>
       <p>Repeated copies are interchangeable. Each word uses two representations on a board; identical representations do not match. No pinyin annotations appear on character tiles.</p>
       <p>Hint outlines a free pair. Reshuffle restacks the remaining tiles into a solvable arrangement and clears Undo history, without restoring cleared pairs.</p>
       <p>The current board is saved in this profile, but is not part of workspace backups. Games never change knowledge, scores, or review timing.</p>

@@ -136,7 +136,7 @@ describe('Mahjong Solitaire rules', () => {
   })
 
   it('continues old small saved boards without resetting progress', () => {
-    const old = { ...createMahjong(gameWords), layout: undefined,
+    const old = { ...createMahjong(gameWords), layout: undefined, layoutSnapshot: undefined,
       tiles: removalOrder(layout(4), () => .5).flatMap((positions, i) => positions.map((position, index) => ({
         ...position, word: gameWords[i], face: index ? 'pinyin' as const : 'character' as const,
       }))) }

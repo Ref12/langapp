@@ -1,0 +1,22 @@
+version: 1
+id: courtyard
+name: Courtyard
+description: An open courtyard with layered shoulders, side walls, and four raised corners.
+layers:
+  - rows:
+      - { y: 0, x: [2, 3] }
+      - { y: 1, x: [0, 1, 2, 3, 4, 5] }
+      - { y: 2, x: [0, 1, 2, 3, 4, 5] }
+      - { y: 3, x: [0, 1, 4, 5] }
+      - { y: 4, x: [0, 1, 2, 3, 4, 5] }
+      - { y: 5, x: [0, 1, 2, 3, 4, 5] }
+      - { y: 6, x: [2, 3] }
+  - rows:
+      # Preserve the original courtyard's position IDs for pre-YAML saves.
+      - { y: 1.25, x: [0.5, 1.5, 3.5, 4.5] }
+      - { y: 4.75, x: [0.5, 1.5, 3.5, 4.5] }
+      - { y: 2.5, x: [0.5, 4.5] }
+      - { y: 3.5, x: [0.5, 4.5] }
+  - rows:
+      - { y: 1.5, x: [1, 4] }
+      - { y: 4.5, x: [1, 4] }

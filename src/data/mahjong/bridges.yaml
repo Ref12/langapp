@@ -1,0 +1,18 @@
+version: 1
+id: bridges
+name: Twin bridges
+description: Two raised bridges surround a wide central opening, connected by narrow side paths.
+layers:
+  - rows:
+      - { y: 0, x: [0, 1, 2, 3, 4, 5] }
+      - { y: 1, x: [0, 1, 2, 3, 4, 5] }
+      - { y: 2, x: [0, 5] }
+      - { y: 3, x: [0, 5] }
+      - { y: 4, x: [0, 1, 2, 3, 4, 5] }
+      - { y: 5, x: [0, 1, 2, 3, 4, 5] }
+  - rows:
+      - { y: 0.5, x: [0.5, 1.5, 2.5, 3.5, 4.5] }
+      - { y: 4.5, x: [0.5, 1.5, 2.5, 3.5, 4.5] }
+  - rows:
+      - { y: 0.75, x: [1.5, 3.5] }
+      - { y: 4.25, x: [1.5, 3.5] }

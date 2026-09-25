@@ -1,0 +1,20 @@
+version: 1
+id: pagoda
+name: Pagoda
+description: A compact stepped pyramid rising to a two-tile summit.
+layers:
+  - rows:
+      - { y: 0, x: [1, 2, 3] }
+      - { y: 1, x: [0, 1, 2, 3, 4] }
+      - { y: 2, x: [0, 1, 2, 3, 4] }
+      - { y: 3, x: [0, 1, 2, 3, 4] }
+      - { y: 4, x: [0, 1, 2, 3, 4] }
+      - { y: 5, x: [1, 2, 3] }
+  - rows:
+      - { y: 1, x: [1, 2, 3] }
+      - { y: 2, x: [1, 2, 3] }
+      - { y: 3, x: [1, 2, 3] }
+      - { y: 4, x: [1, 2, 3] }
+  - rows:
+      - { y: 2, x: [2] }
+      - { y: 3, x: [2] }

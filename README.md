@@ -140,8 +140,9 @@ three pair types. Tiles must be uncovered and have a free left or right edge;
 character tiles never include pronunciation annotations.
 
 Boards use only vocabulary already in the current profile's knowledge set or
-legacy learning set, with no AI request. New boards contain 48 tiles (24 pairs)
-in a sculpted, three-layer courtyard layout. Four to ten distinct words repeat
+legacy learning set, with no AI request. The configuration picker includes
+Courtyard (48 tiles), Pagoda (40), and Twin bridges (42), with shape previews.
+Four to ten distinct words repeat
 across the board. Any free copy can match the opposite representation of that
 word, not just its originally dealt partner. Each word uses exactly two
 representations per board; mixed boards vary those two across different words.
@@ -167,6 +168,12 @@ clears its in-progress game.
 Earlier small boards remain playable; use **Deal the new stacked layout** to
 replace one explicitly. Compact windows may scroll rather than shrink the new
 board's word tiles below readable, tappable sizes.
+
+Configurations live in [`src/data/mahjong`](src/data/mahjong/README.md) as
+versioned YAML, discovered automatically. The strict loader checks tile bounds,
+overlaps, support, and a complete legal removal sequence. Add a YAML file to
+extend the picker without changing game code. New games save their geometry
+snapshot, so later layout changes do not invalidate a saved board.
 
 ## Assistant
 

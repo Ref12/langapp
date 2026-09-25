@@ -136,3 +136,34 @@ it('displays precomposed pinyin letters even when a saved board has combining to
   expect(tile.textContent).not.toContain('\u030c')
   expect((await db.mahjongGames.get('current'))?.gameId).toBe(game.gameId)
 })
+
+it.each([
+  ['pagoda', 'Pagoda', 40],
+  ['bridges', 'Twin bridges', 42],
+] as const)('selects and resumes the %s configuration without resetting it during play', async (id, name, tileCount) => {
+  await introduce()
+  const user = userEvent.setup()
+  render(<App />)
+  const select = await screen.findByLabelText('Tile configuration')
+  await user.selectOptions(select, id)
+  expect(screen.getByRole('img', { name: `${name} tile configuration preview` })).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Deal tiles' })).toBeEnabled())
+  await user.click(screen.getByRole('button', { name: 'Deal tiles' }))
+  await screen.findByRole('group', { name: 'Mahjong tiles' })
+  const saved = (await db.mahjongGames.get('current'))!
+  expect(saved.layout).toBe(id)
+  expect(saved.tiles).toHaveLength(tileCount)
+  expect(saved.layoutSnapshot?.name).toBe(name)
+  cleanup()
+  render(<App />)
+  await screen.findByRole('group', { name: 'Mahjong tiles' })
+  await user.click(screen.getByRole('button', { name: 'Reshuffle' }))
+  await waitFor(async () => expect((await db.mahjongGames.get('current'))?.shuffles).toBe(1))
+  expect((await db.mahjongGames.get('current'))?.layoutSnapshot).toEqual(saved.layoutSnapshot)
+  await user.click(screen.getByLabelText('Rules and new board'))
+  await user.click(screen.getByRole('button', { name: 'New board' }))
+  expect(screen.getByLabelText('Tile configuration')).toHaveValue(id)
+  await user.selectOptions(screen.getByLabelText('Tile configuration'), 'courtyard')
+  await user.click(screen.getByRole('button', { name: 'Keep playing' }))
+  expect((await db.mahjongGames.get('current'))?.gameId).toBe(saved.gameId)
+})
