@@ -30,7 +30,7 @@ export const sudokuSymbolSchema = z.object({
 }).strict()
 export type SudokuSymbol = z.infer<typeof sudokuSymbolSchema>
 const cellState = z.object({ value: z.number().int().min(0).max(9), excluded: z.number().int().min(0).max(511) }).strict()
-export const sudokuGameSchema = sudokuPuzzleSchema.extend({
+export const legacySudokuGameSchema = sudokuPuzzleSchema.extend({
   id: z.literal('current'),
   gameId: z.string().min(1),
   revision: z.number().int().nonnegative(),
@@ -41,6 +41,22 @@ export const sudokuGameSchema = sudokuPuzzleSchema.extend({
     index: z.number().int().min(0).max(80),
     before: cellState,
     after: cellState,
+  }).strict()).max(200),
+}).strict()
+const entrySet = z.number().int().min(0).max(511)
+const entrySets = z.array(entrySet).min(16).max(81)
+export const sudokuGameSchema = sudokuPuzzleSchema.extend({
+  version: z.literal(2),
+  id: z.literal('current'),
+  gameId: z.string().min(1),
+  revision: z.number().int().nonnegative(),
+  symbols: z.array(sudokuSymbolSchema).min(4).max(9),
+  entries: entrySets,
+  checked: entrySets.nullable(),
+  history: z.array(z.object({
+    index: z.number().int().min(0).max(80),
+    before: entrySet,
+    after: entrySet,
   }).strict()).max(200),
 }).strict()
 export type SudokuGame = z.infer<typeof sudokuGameSchema>

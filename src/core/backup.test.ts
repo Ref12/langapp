@@ -50,6 +50,17 @@ async function saveConnection() {
 }
 
 describe('compatible Assistant workspace backups', () => {
+  it('preserves Sudoku sound and pinyin preferences without writing defaults into older backups', async () => {
+    const original = readBackup(await exportWorkspaceBackup())
+    expect(original.preferences).not.toHaveProperty('sudokuAutoSpeak')
+    expect(original.preferences).not.toHaveProperty('sudokuShowPinyin')
+    await savePreferences({ sudokuAutoSpeak: false, sudokuShowPinyin: true })
+    const backup = await exportWorkspaceBackup()
+    expect(readBackup(backup).preferences).toMatchObject({ sudokuAutoSpeak: false, sudokuShowPinyin: true })
+    await savePreferences({ sudokuAutoSpeak: true, sudokuShowPinyin: false })
+    await restoreBackup(backup)
+    expect((await loadWorkspace()).preferences).toMatchObject({ sudokuAutoSpeak: false, sudokuShowPinyin: true })
+  })
   it.each([
     { voiceEnabled: false, voiceInputLocale: 'en-US' },
     { voiceEnabled: true, voiceInputLocale: 'en-US' },

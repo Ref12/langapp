@@ -13,6 +13,8 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (!next.name || next.name.length > 80) throw new Error('Use a workspace name between 1 and 80 characters.')
     if (changes.speechVoices !== undefined) next.speechVoices = { ...current.speechVoices, ...changes.speechVoices }
     if (next.speechVoices !== undefined) next.speechVoices = speechVoicePreferencesSchema.parse(next.speechVoices)
+    if (next.sudokuAutoSpeak !== undefined && typeof next.sudokuAutoSpeak !== 'boolean') throw new Error('Choose whether automatic Sudoku speech is on or off.')
+    if (next.sudokuShowPinyin !== undefined && typeof next.sudokuShowPinyin !== 'boolean') throw new Error('Choose whether selected-character pinyin is shown.')
     await db.preferences.put(next)
   })
 }

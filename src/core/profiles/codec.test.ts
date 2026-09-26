@@ -50,6 +50,13 @@ describe('profile identity and YAML snapshots', () => {
     expect(parseProfileYaml(text)).toEqual(snapshot)
   })
 
+  it.each([true, false])('round-trips independent Sudoku audio and selected-pinyin preferences (%s)', enabled => {
+    const snapshot = populatedProfile()
+    snapshot.settings.preferences.sudokuAutoSpeak = enabled
+    snapshot.settings.preferences.sudokuShowPinyin = !enabled
+    expect(parseProfileYaml(serializeProfileYaml(snapshot))).toEqual(snapshot)
+  })
+
   it('writes lb fields throughout learning records without changing structural or conversation IDs', () => {
     const snapshot = populatedProfile()
     const wire = profileYamlSchema.parse(parse(serializeProfileYaml(snapshot)))

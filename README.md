@@ -269,27 +269,46 @@ not a human-solving-technique rating. Equal clue counts can require different
 deductions. Generation runs in a cancellable Web Worker with bounded search,
 attempts, and elapsed time; no AI or puzzle service is contacted.
 
-Select a cell, then a character in the palette. **Scratch** displays the complete
-symbol set in empty cells; palette taps cross out a character or restore it.
-Crossed-out symbols remain visible and are entirely the learner's deductions,
-not automatically computed answers. **Reset** in scratch mode clears that cell's
-markers. Entries preserve their underlying scratch state, and **Undo** restores
-up to 200 previous edits. Fixed clues cannot be edited. Row, column, or box
-duplicates are highlighted without revealing the solution.
+Select a cell and tap palette characters to add or remove entries. Several
+entries appear as small candidates; exactly one becomes the cell's proposed
+answer. **Check** grades single-entry answers against the solution, marking
+correct answers green and wrong answers red. Empty and multi-entry cells remain
+unresolved. Edits invalidate that cell's previous grade until it is checked
+again; unchanged checked cells retain their feedback. **Erase** clears the
+selected cell and **Undo** restores up to 200 previous edits. Fixed clues cannot
+be edited. Arrow keys move through the grid, number keys toggle palette
+characters, and Delete/Backspace clear an editable cell.
 
-Arrow keys move through the grid. Number keys select the corresponding palette
-character, N toggles scratch mode, and Delete/Backspace erase an editable entry.
-The information button opens a character key with introduced-word context and
-explicit **Hear** playback. Contexts use whole-word readings and meanings; they
-do not invent a standalone pronunciation or definition for a character from a
-multi-character word. Manually added characters may have no known word context.
-This offers repeated exposure and pronunciation review, not evidence of mastery.
+Clicking a character in a filled cell, candidate list, palette, or character key
+speaks that character using the selected Mandarin voice and default speed.
+Automatic character speech starts **on**; the speaker button mutes it and stops
+current speech. The selected-character **Hear** button works even when muted.
+Opening/reloading a puzzle, focus movement, and unmuting never start speech on
+their own. Rapid character clicks replace rather than queue speech.
 
-The current puzzle, symbol key, entries, crossed-out markers, and undo history
+The information button contains **Show pinyin on selection**, **off** by
+default. It displays the selected character's standalone dictionary readings,
+including multiple possibilities where appropriate, without annotating the
+whole puzzle. Readings are not inferred by splitting a containing word's pinyin.
+If a standalone reading is unavailable, the UI says so. The character key also
+retains introduced whole-word contexts and explicit word playback. Isolated
+speech can choose a different reading than a word context; online voices may
+send the clicked character to the voice service.
+
+Both toggles persist per profile and round-trip through exports/backups as
+optional `settings.preferences.sudokuAutoSpeak` and
+`settings.preferences.sudokuShowPinyin`. Older profiles retain the on/off
+defaults without being rewritten just by opening a game. **New puzzle** is in
+the information panel. These aids offer exposure, not evidence of mastery.
+
+The current puzzle, symbol key, entry sets, Check feedback, and undo history
 are saved in a profile-local `sudokuGames` table (Dexie schema 9). Replacing a
 puzzle is explicit; canceling generation leaves the old puzzle intact. Like
 Mahjong, Sudoku is excluded from profile exports/clones and legacy JSON backups,
 is cleared by a restore, and never changes knowledge or spaced-review schedules.
+Earlier scratch-marker saves are upgraded lazily to game format 2: existing
+answers stay intact, crossed-out markers become the remaining candidate set,
+untouched blanks stay empty, and compatible undo history is preserved.
 
 Generator references reviewed on September 25, 2026:
 

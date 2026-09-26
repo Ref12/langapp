@@ -55,6 +55,8 @@ export interface Preferences {
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences
   defaultSpeechRate?: SpeechRate
+  sudokuAutoSpeak?: boolean
+  sudokuShowPinyin?: boolean
 }
 
 export interface WordState {
