@@ -27,7 +27,7 @@ describe('book import and reading in v2', () => {
     await user.type(screen.getByRole('textbox', { name: 'Title' }), 'An imported book')
     await user.type(screen.getByRole('textbox', { name: 'Book text' }), '# One\nHello.\n# Two\nGoodbye.')
     await user.click(screen.getByRole('button', { name: 'Import text' }))
-    await screen.findByRole('heading', { name: 'An imported book' })
+    await screen.findByRole('heading', { name: 'An imported book', level: 1 })
     const id = (await db.libraryBooks.toArray())[0].id
     expect(window.location.hash).toBe(`#book/${id}`)
     expect(screen.getByRole('button', { name: 'Translate chapter' })).toBeDisabled()
@@ -68,7 +68,7 @@ describe('book import and reading in v2', () => {
     const file = new File(['Hello book.'], 'sample.txt', { type: 'text/plain' })
     Object.defineProperty(file, 'text', { value: async () => 'Hello book.' })
     await user.upload(screen.getByLabelText('Book file'), file)
-    await screen.findByRole('heading', { name: 'sample' })
+    await screen.findByRole('heading', { name: 'sample', level: 1 })
     await act(() => saveAIConnection({
       baseUrl: 'https://provider.test/v1', apiKey: 'synthetic-key', model: 'test',
       nativeTools: false, structuredOutput: true, storageAcknowledged: true,
@@ -93,9 +93,10 @@ describe('book import and reading in v2', () => {
       })
       window.location.hash = `#book/${id}`
     })
-    await screen.findByRole('heading', { name: 'Navigation book' })
+    await screen.findByRole('heading', { name: 'Navigation book', level: 1 })
     let complete!: (value: unknown) => void
     vi.mocked(requestStructuredJSON).mockImplementation(() => new Promise(resolve => { complete = resolve }))
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Translate passage' })).toBeEnabled())
     await user.click(screen.getByRole('button', { name: 'Translate passage' }))
     await waitFor(() => expect(requestStructuredJSON).toHaveBeenCalledTimes(1))
     const signal = vi.mocked(requestStructuredJSON).mock.calls[0][1].signal!
