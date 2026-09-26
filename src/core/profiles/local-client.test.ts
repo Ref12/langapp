@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createEmptyProfile, serializeProfileYaml } from './codec'
 import { MAX_PROFILE_BYTES } from './contracts'
 import { LOCAL_PROFILES_HEADER, LOCAL_PROFILES_PATH } from './local-contracts'
-import { listLocalProfiles, localProfilesAvailable, readLocalProfile, saveLocalProfile } from './local-client'
+import { listLocalProfiles, localProfilesAvailable, readLocalDefaultProfile, readLocalProfile, saveLocalProfile } from './local-client'
 
 const profile = { id: 'default', name: 'default' }
 const revision = 'a'.repeat(64)
@@ -44,6 +44,24 @@ describe('local profile client', () => {
     fetcher.mockResolvedValueOnce(json({ yaml, revision }))
     await expect(readLocalProfile('default', new AbortController().signal)).resolves.toEqual({ yaml, revision })
     expect(fetcher.mock.calls[0][0]).toBe(`${LOCAL_PROFILES_PATH}/default`)
+  })
+
+  it('treats only a missing default file as optional and preserves guarded transport', async () => {
+    fetcher.mockResolvedValueOnce(json({ error: 'synthetic-private-response' }, 404))
+    await expect(readLocalDefaultProfile(new AbortController().signal)).resolves.toBeNull()
+    expect(fetcher).toHaveBeenCalledWith(`${LOCAL_PROFILES_PATH}/default`, expect.objectContaining({
+      method: 'GET', headers: { [LOCAL_PROFILES_HEADER]: '1' }, credentials: 'omit',
+      mode: 'same-origin', redirect: 'error', referrerPolicy: 'no-referrer', cache: 'no-store',
+    }))
+    fetcher.mockResolvedValueOnce(json({ yaml, revision }))
+    await expect(readLocalDefaultProfile(new AbortController().signal)).resolves.toEqual({ yaml, revision })
+    fetcher.mockResolvedValueOnce(json({ error: 'synthetic-private-response' }, 404))
+    await expect(readLocalProfile('default', new AbortController().signal)).rejects.toThrow('HTTP 404')
+  })
+
+  it.each([400, 403, 409, 413, 429, 500])('does not treat HTTP %s as an absent default file', async status => {
+    fetcher.mockResolvedValueOnce(json({ error: 'synthetic-private-response' }, status))
+    await expect(readLocalDefaultProfile(new AbortController().signal)).rejects.toThrow()
   })
 
   it.each([null, revision])('exports only on explicit request with the expected revision (%s)', async expectedRevision => {

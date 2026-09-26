@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { LOOPBACK_HOSTNAMES } from '../assistant/contracts'
 import { MAX_PROFILE_BYTES } from './contracts'
 import { parseProfileYaml } from './codec'
-import { profileIdSchema, profileMetadataSchema } from './identity'
+import { DEFAULT_PROFILE_ID, profileIdSchema, profileMetadataSchema } from './identity'
 import { LOCAL_PROFILES_HEADER, LOCAL_PROFILES_PATH } from './local-contracts'
 
 const revisionSchema = z.string().regex(/^[a-f0-9]{64}$/i)
@@ -11,7 +11,9 @@ const listSchema = z.object({ profiles: z.array(fileSchema).max(500) }).strict()
 const readSchema = z.object({ yaml: z.string(), revision: revisionSchema }).strict()
 const savedSchema = z.object({ profile: profileMetadataSchema, revision: revisionSchema }).strict()
 export type LocalProfileFile = z.infer<typeof fileSchema>
-class LocalProfileError extends Error {}
+class LocalProfileError extends Error {
+  constructor(message: string, readonly status?: number) { super(message) }
+}
 
 export function localProfilesAvailable() {
   return import.meta.env.DEV && import.meta.env.DEV_LOCAL_PROFILES === 'true'
@@ -36,7 +38,7 @@ async function request(path: string, signal: AbortSignal, body?: string): Promis
     if (!response.ok) {
       await response.body?.cancel()
       if (response.status === 409) throw new LocalProfileError('The server copy changed. Refresh the data-folder list and review it before exporting again.')
-      throw new LocalProfileError(`Local profile operation failed (HTTP ${response.status}). No import was applied. For an export, refresh the list to check the server copy.`)
+      throw new LocalProfileError(`Local profile operation failed (HTTP ${response.status}). No import was applied. For an export, refresh the list to check the server copy.`, response.status)
     }
     if (!response.headers.get('content-type')?.startsWith('application/json') || !response.body) {
       await response.body?.cancel()
@@ -85,6 +87,15 @@ export async function readLocalProfile(id: string, signal: AbortSignal) {
   const snapshot = parseProfileYaml(result.data.yaml)
   if (snapshot.profile.id !== id) throw new Error('The profile file does not match the selected profile.')
   return result.data
+}
+
+export async function readLocalDefaultProfile(signal: AbortSignal) {
+  try {
+    return await readLocalProfile(DEFAULT_PROFILE_ID, signal)
+  } catch (error) {
+    if (error instanceof LocalProfileError && error.status === 404) return null
+    throw error
+  }
 }
 
 export async function saveLocalProfile(yaml: string, expectedRevision: string | null, signal: AbortSignal) {

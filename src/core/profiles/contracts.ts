@@ -5,10 +5,11 @@ import { speechConnectionInputSchema } from '../assistant/speech-contracts'
 import { validateAssistant, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
 import { studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
 import { profileMetadataSchema } from './identity'
+import { librarySchema } from '../library/contracts'
 
 export const MAX_PROFILE_BYTES = 10 * 1024 * 1024
 export const PROFILE_FORMAT = 'linguaweave-profile'
-export const PROFILE_VERSION = 3
+export const PROFILE_VERSION = 4
 export const profileDataSchema = z.object({
   format: z.literal(PROFILE_FORMAT),
   version: z.literal(PROFILE_VERSION),
@@ -22,6 +23,7 @@ export const profileDataSchema = z.object({
   }).strict(),
   knowledge: workspaceSchema.omit({ preferences: true }).extend({ study: studyBackupSchema }).strict(),
   conversations: assistantBackupSchema,
+  library: librarySchema.default([]),
 }).strict()
 
 export const profileSnapshotSchema = profileDataSchema.superRefine((snapshot, context) => {

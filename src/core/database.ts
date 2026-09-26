@@ -6,6 +6,7 @@ import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
 import type { MahjongGame } from './games/mahjong'
 import type { CharacterState } from './characters/contracts'
+import type { LibraryBook } from './library/contracts'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -26,6 +27,7 @@ export class LearningDatabase extends Dexie {
   profileState!: EntityTable<{ id: 'local-settings'; imported: true }, 'id'>
   mahjongGames!: EntityTable<MahjongGame, 'id'>
   characterStates!: EntityTable<CharacterState, 'character'>
+  libraryBooks!: EntityTable<LibraryBook, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -55,6 +57,7 @@ export class LearningDatabase extends Dexie {
     this.version(5).stores({ profileState: '&id' })
     this.version(6).stores({ mahjongGames: '&id' })
     this.version(7).stores({ characterStates: '&character' })
+    this.version(8).stores({ libraryBooks: '&id, updatedAt' })
   }
 }
 

@@ -27,7 +27,7 @@ function chatText(value: unknown): string {
     return invalid('The AI service returned an invalid chat response. Check the endpoint and model.')
   }
   const choice = value.choices[0]
-  if (choice.finish_reason === 'length') return invalid('The AI response was cut off. Ask for fewer exercises.')
+  if (choice.finish_reason === 'length') return invalid('The AI response was cut off. Request less content or choose another model.')
   const message = choice.message
   if (choice.finish_reason !== 'stop' || !object(message) || message.refusal || typeof message.content !== 'string') {
     return invalid('The AI service could not complete the request. Check the model and structured-output setting in Settings.')
@@ -37,7 +37,7 @@ function chatText(value: unknown): string {
 
 function responsesText(value: unknown): string {
   if (!object(value) || !Array.isArray(value.output)) return invalid('The AI service returned an invalid Responses response. Check the endpoint and selected API type in Settings.')
-  if (value.status === 'incomplete') return invalid('The AI response was cut off at its output-token limit. Ask for fewer exercises or choose another model.')
+  if (value.status === 'incomplete') return invalid('The AI response was cut off at its output-token limit. Request less content or choose another model.')
   if (value.status !== 'completed' || value.error != null) return invalid('The AI service could not complete the Responses request. Check the model in Settings.')
   let text = ''
   for (const item of value.output) {
@@ -71,7 +71,7 @@ export async function requestStructuredJSON(input: AIConnectionInput, request: S
       ? (responses ? { text: { format: { type: 'json_schema', ...format } } } : { response_format: { type: 'json_schema', json_schema: format } })
       : {}),
   })
-  if (body.length > MAX_REQUEST_LENGTH) return invalid('This exercise request is too large. Reduce the number of items and try again.')
+  if (body.length > MAX_REQUEST_LENGTH) return invalid('This AI request is too large. Reduce the amount of content and try again.')
   const controller = new AbortController()
   let timedOut = false
   const timeout = setTimeout(() => { timedOut = true; controller.abort() }, REQUEST_TIMEOUT_MS * 2)
@@ -90,8 +90,8 @@ export async function requestStructuredJSON(input: AIConnectionInput, request: S
     }
     const value = await readJSON(response, controller.signal)
     const text = (responses ? responsesText(value) : chatText(value)).trim()
-    if (!text) return invalid('The AI returned no exercises. Try again or check the model.')
-    if (text.length > MAX_TEXT_LENGTH) return invalid('The AI reply was too large. Ask for fewer exercises.')
+    if (!text) return invalid('The AI returned no content. Try again or check the model.')
+    if (text.length > MAX_TEXT_LENGTH) return invalid('The AI reply was too large. Request less content.')
     try { return JSON.parse(text) as unknown } catch { return invalid('The AI reply was not strict JSON. Enable structured output in Settings or choose another model.') }
   } catch (error) {
     if (timedOut) throw new AITransportError('The AI request timed out. Check your connection or local server and try again.')

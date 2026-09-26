@@ -11,6 +11,7 @@ const INVALID_PROFILE = 'Invalid profile YAML. Check the file format, settings, 
 const MAX_DEPTH = 40
 const legacyProfileSchema = profileDataSchema.extend({ version: z.literal(1) })
 const labelProfileSchema = profileYamlSchema.extend({ version: z.literal(2) })
+const characterProfileSchema = profileYamlSchema.extend({ version: z.literal(3) })
 
 function checkSize(text: string): void {
   if (new TextEncoder().encode(text).byteLength > MAX_PROFILE_BYTES) {
@@ -71,7 +72,8 @@ export function parseProfileYaml(text: string): ProfileSnapshot {
       ? { ...legacyProfileSchema.parse(value), version: PROFILE_VERSION }
       : fromProfileYaml(version === 2
         ? { ...labelProfileSchema.parse(value), version: PROFILE_VERSION }
-        : profileYamlSchema.parse(value)))
+        : version === 3 ? { ...characterProfileSchema.parse(value), version: PROFILE_VERSION }
+          : profileYamlSchema.parse(value)))
     interruptImportedRuns(snapshot.conversations)
     return snapshot
   } catch {
@@ -93,13 +95,14 @@ export function serializeProfileYaml(snapshot: ProfileSnapshot): string {
 
 export function fromLegacyBackup(text: string, profile: ProfileMetadata): ProfileSnapshot {
   try {
-    const { learning, assistant, study } = splitStudy(readBackup(text))
+    const { learning, assistant, study, library } = splitStudy(readBackup(text))
     const { preferences, ...knowledge } = learning
     return profileSnapshotSchema.parse({
       ...createEmptyProfile(profile),
       settings: { preferences },
       knowledge: { ...knowledge, study },
       conversations: assistant ?? { threads: [], messages: [], runs: [] },
+      library,
     })
   } catch {
     throw new Error('Invalid legacy backup. Check the file format and saved data.')

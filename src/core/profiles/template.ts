@@ -10,8 +10,9 @@ export function createProfileTemplate(): string {
   return `# LinguaWeave named profile snapshot (YAML 1.2).
 # Browser IndexedDB stays live; this file is only a manual snapshot.
 # Copy to default.yaml, or use a UUID filename and matching profile.id.
-# Each file includes settings, learning progress, and conversations.
-# Schema 3 retains lb labels for vocabulary/grammar entries and study cards.
+# Each file includes settings, learning progress, conversations, and imported books.
+# Schema 4 adds library books, saved reading places, and cached translations.
+# Vocabulary/grammar entries and study cards retain lb labels.
 # knowledge.characterStates stores exact characters, manual additions, and practice history.
 # Characters derived from vocabulary knowledge are not copied into this list.
 # Conversation, session, and attempt IDs retain their original identities.

@@ -122,6 +122,7 @@ describe('content-version compatible backups', () => {
     const old = { ...JSON.parse(exportBackup(original)), version: 1, contentVersion: 1 }
     delete old.assistant
     delete old.study
+    delete old.library
     await startPractice('lesson', curriculumLessons[0].id)
     await restoreBackup(JSON.stringify(old))
     expect(await loadWorkspace()).toEqual(original)

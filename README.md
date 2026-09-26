@@ -14,7 +14,9 @@ and deployment assembly; run npm commands from the repository root.
 The site root serves the new React/TypeScript application in [`src`](src), using
 the mockups' blue/slate design and shared theme tokens. It has a real, isolated
 Mandarin workspace with no seeded progress or accounts. Assistant can use your
-own AI connection after explicit configuration; no credentials are preloaded.
+own AI connection after configuration. On a fresh localhost workspace,
+`data\default.yaml` is imported automatically; credentials are never deployed
+with the public site.
 
 The original app remains at `/v1/` (or `/langapp/v1/` on repository Pages).
 Use `/dev/` for the real app with **Desktop / Mobile** preview controls.
@@ -88,13 +90,37 @@ cupful measure word (`杯`), and the greeting, approval, and adjective senses of
 `好`, remain distinct. New practice choices exclude duplicate written forms and
 shared English gloss alternatives; recognition still does not assess use in context.
 
-Not connected in this checkpoint: personal imports, playable levels 5-30,
+Not connected in this checkpoint: playable levels 5-30,
 tourist or specialist routes, contextual or productive skill assessment or level assessment,
 hands-free conversation, generated stories/lessons/exercises, general audio or
 handwriting assessment, other target
 languages, synchronization, and installation/offline shell caching for the new
-app. The Library links to the original v1 import tools rather than simulating
-imports. V1's voice tutor remains available independently.
+app. V1's voice tutor remains available independently.
+
+## Library book imports
+
+The v2 **Library -> Import book** accepts EPUB, plain text, Markdown, and pasted
+text. EPUB metadata supplies the title/author, and chapters follow spine order.
+Books stay in the active browser profile, separate from v1; importing does not
+send anything to an AI provider. The reader saves its place, supports chapter
+selection, and marks passages read only on explicit confirmation.
+
+**Translate passage** sends one bounded excerpt to the configured AI connection.
+**Translate chapter** processes the chapter in small parts, saving each successful
+translation immediately. Cancel, navigation, or a failed request leaves completed
+parts cached; retrying resumes only missing translations. Nothing automatically
+translates an entire book. Provider usage may incur charges. English reading
+works without a connection; generated Mandarin includes selectable contextual
+word meanings and optional pinyin. These AI annotations may contain errors and
+do not establish vocabulary knowledge or proficiency. The prepared stories
+retain their existing English / Weave / Mandarin modes.
+
+Books, bookmarks, and translations are included in profile YAML exports and
+clones, and in version-5 JSON backups. Earlier snapshots remain importable with
+an empty personal library. Existing snapshot limits still apply (10 MiB YAML,
+5 MiB JSON); exports report oversized libraries rather than truncating them.
+Importing books works on GitHub Pages as well as localhost, subject to browser
+storage capacity and the configured provider's CORS support.
 
 ## New and Review (v2 curriculum)
 
@@ -594,13 +620,14 @@ from its display name. Switching reloads the app after stopping audio and active
 Assistant requests. Save pending conversation drafts and unfinished settings
 edits first. In-flight work is never resumed in a clone or restored profile.
 
-Each profile snapshot is one versioned YAML document with three main sections:
+Each profile snapshot is one versioned YAML document with four main sections:
 
 | Section | Contents |
 | --- | --- |
 | `settings` | Workspace preferences, English/Mandarin voices and speed, AI and Azure Speech connections **including keys** |
 | `knowledge` | Knowledge set, FSRS cards and scheduling, study sessions/answers, and older root-app learning progress |
 | `conversations` | Threads, messages, drafts, practice feedback, and interrupted/completed request records |
+| `library` | Imported book text, chapter structure, reading places, and cached Mandarin translations |
 
 Metadata records the format version, content version, export time, profile ID,
 and display name. Files are bounded to 10 MiB and validated before importing:
@@ -619,8 +646,9 @@ starter entries use `starter-` labels; older senses without an existing label
 have explicit `legacy-` labels. They never merge with similarly spelled current
 curriculum entries or transfer learning evidence between them. Imports resolve
 labels back to the existing browser keys, so no browser database migration is
-needed. Version-1 ID-based YAML and earlier JSON backups remain importable;
-subsequent exports use version 2. Existing files are not rewritten automatically.
+needed for labels. Version 3 added character state and version 4 adds imported
+library books. Versions 1-3 and earlier JSON backups remain importable;
+subsequent exports use version 4. Existing files are not rewritten automatically.
 
 **Every YAML export includes saved credentials in plaintext**, for both server
 and browser exports. The controls show this warning. Keep these files private
@@ -646,8 +674,10 @@ validated creation; an existing destination is never silently overwritten.
 This initial disk file contains migrated settings, not an automatic export of
 browser history. Existing browser history and knowledge already belong to the
 `default` profile in place. Use **Export to data folder** for a full snapshot.
-The default profile can bootstrap migrated connection/voice settings once.
-Subsequent launches use the live browser settings, not stale disk snapshots.
+On a fresh default localhost workspace, the complete `data\default.yaml` snapshot
+is imported automatically before opening the app. Existing browser preferences,
+connections, books, learning, and conversations are never replaced by this
+bootstrap. Subsequent launches use the live browser data, not stale disk snapshots.
 New fresh/clone/import profiles do not inherit the default file's settings.
 
 **Export to data folder** prepares a snapshot and asks before creating or
@@ -659,6 +689,8 @@ The local APIs require loopback, same-origin request metadata, and an explicit
 intent header, and are absent from production, preview, and standalone v1.
 Both development servers block direct access to the root data folder, including
 filesystem aliases. Profile contents are not bundled, logged, or cached.
+GitHub Pages cannot read a local `data\default.yaml`; use a browser profile upload
+there. The automatic local import does not publish private settings or keys.
 
 `settings.preferences.defaultSpeechRate` supports `0.25`, `0.5`, `0.75`, `1`, and
 `1.25`, affects Mandarin only, and does not change existing conversation rates.

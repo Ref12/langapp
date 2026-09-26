@@ -181,6 +181,7 @@ async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata
         threads: await database.assistantThreads.toArray(), messages: await database.assistantMessages.toArray(),
         runs: await database.assistantRuns.toArray(),
       },
+      library: await database.libraryBooks.toArray(),
     }
   })
 }
@@ -211,6 +212,7 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
       await database.sessions.bulkAdd(knowledge.sessions)
       await database.attempts.bulkAdd(knowledge.attempts)
       await database.characterStates.bulkAdd(knowledge.characterStates)
+      await database.libraryBooks.bulkAdd(snapshot.library.map(book => ({ ...book, revision: crypto.randomUUID() })))
       await database.knowledge.bulkAdd(knowledge.study.knowledge)
       await database.studyCards.bulkAdd(knowledge.study.cards)
       await database.exerciseSessions.bulkAdd(knowledge.study.sessions)

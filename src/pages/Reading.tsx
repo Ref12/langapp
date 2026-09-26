@@ -1,20 +1,65 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, BookOpen, Search } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, Search, Upload } from 'lucide-react'
+import { useLiveQuery } from 'dexie-react-hooks'
 import { getWord, stories } from '../data/mandarin'
 import { moveReading, openStory, savePreferences } from '../core/learning'
 import type { ReadingMode, Segment, Story } from '../core/model'
 import { EmptyState, PageHeading, WordCard, type PageProps } from '../components/shared'
 import { SnippetActions } from '../components/assistant/SnippetActions'
 import { MandarinWord } from '../components/MandarinWord'
+import { db } from '../core/database'
+import { importBookFile, importBookText } from '../core/library/store'
+import { navigate } from '../core/routing'
+import './reading.css'
 
-export function Library({ workspace }: PageProps) {
+export function Library({ workspace, busy, run }: PageProps) {
   const [query, setQuery] = useState('')
+  const [showImport, setShowImport] = useState(false)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const books = useLiveQuery(() => db.libraryBooks.orderBy('updatedAt').reverse().toArray(), [])
   const matches = stories.filter(story => `${story.title} ${story.topic}`.toLowerCase().includes(query.trim().toLowerCase()))
+  const imported = (books ?? []).filter(book => `${book.title} ${book.author ?? ''}`.toLowerCase().includes(query.trim().toLowerCase()))
   return <>
-    <PageHeading eyebrow="MEANING BEFORE MEMORIZATION" title="Your next good read.">Original stories with prepared Mandarin translations. No AI setup required.</PageHeading>
-    <div className="library-toolbar"><span className="small muted">{matches.length} stories</span>
+    <PageHeading eyebrow="MEANING BEFORE MEMORIZATION" title="Your next good read."
+      action={<button className="button primary" disabled={busy} aria-expanded={showImport} onClick={() => setShowImport(value => !value)}><Upload size={17} /> Import book</button>}>
+      Read original stories with prepared Mandarin, or import your own books and translate with your connected AI.
+    </PageHeading>
+    {showImport && <section className="panel book-import" aria-label="Import a book">
+      <h2>Bring a book into your library</h2>
+      <label className="field">Book file
+        <input type="file" accept=".epub,.txt,.md,.markdown" disabled={busy} onChange={event => {
+          const file = event.target.files?.[0]
+          event.target.value = ''
+          if (file) void run(async () => navigate(`book/${await importBookFile(file)}`))
+        }} />
+      </label>
+      <p className="small muted">EPUB, plain text, or Markdown. File import stays on this device; no text is sent to AI until you choose Translate.</p>
+      <details><summary>Or paste text</summary>
+        <form className="book-paste" onSubmit={event => {
+          event.preventDefault()
+          void run(async () => navigate(`book/${await importBookText(title, content)}`))
+        }}>
+          <label className="field">Title<input required maxLength={300} value={title} disabled={busy} onChange={event => setTitle(event.target.value)} /></label>
+          <label className="field">Book text<textarea required rows={6} value={content} disabled={busy} onChange={event => setContent(event.target.value)} /></label>
+          <button className="button secondary" disabled={busy || !title.trim() || !content.trim()}>{busy ? 'Importing...' : 'Import text'}</button>
+        </form>
+      </details>
+    </section>}
+    <div className="library-toolbar"><span className="small muted">{matches.length + imported.length} books and stories</span>
       <label className="search-field"><Search size={18} /><input type="search" aria-label="Search library" placeholder="Search your library" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
-    <div className="book-grid">{matches.map(story => {
+    {books === undefined && <p role="status">Opening your imported books...</p>}
+    <div className="book-grid">
+      {imported.map(book => <a key={book.id} className="book-card" href={`#book/${book.id}`}>
+        <div className="book-cover cover-imported"><span className="eyebrow">{book.sourceType.toUpperCase()}</span><BookOpen size={54} aria-hidden="true" /><span>YOUR LIBRARY</span></div>
+        <div className="book-details"><div className="card-topline"><span className="tag">{book.completed.length === book.passages.length ? 'Read' : book.completed.length ? 'In progress' : 'Ready to read'}</span><BookOpen size={18} /></div>
+          <h2>{book.title}</h2>{book.author && <p>{book.author}</p>}
+          <p className="small muted">{book.chapters.length} chapters / {book.passages.filter(passage => passage.translation).length} of {book.passages.length} passages translated</p>
+          <progress aria-label={`${book.title} reading progress`} value={book.completed.length} max={book.passages.length} />
+          <p className="small muted">{book.completed.length} of {book.passages.length} passages read</p>
+        </div>
+      </a>)}
+      {matches.map(story => {
       const progress = workspace.readings.find(item => item.storyId === story.id)
       return <a key={story.id} className="book-card" href={`#reader/${story.id}`}>
         <div className={`book-cover ${story.id === 'zh:after-rain' ? 'cover-rain' : ''}`}><span className="eyebrow">{story.topic}</span><span lang="zh-Hans" className="cover-glyph">{story.glyph}</span><span>ORIGINAL STORY</span></div>
@@ -25,8 +70,8 @@ export function Library({ workspace }: PageProps) {
         </div>
       </a>
     })}</div>
-    {!matches.length && <EmptyState title="No matching stories"><p>Try a title or topic such as tea, rain, or nature.</p><button className="button secondary" onClick={() => setQuery('')}>Clear search</button></EmptyState>}
-    <p className="page-footnote">Personal imports and generated translations are not connected yet. The original import tools remain in <a href="./v1/#/modules/reading">v1</a>, with separate learning data.</p>
+    {books !== undefined && !matches.length && !imported.length && <EmptyState title="No matching stories"><p>Try a book title, author, or story topic.</p><button className="button secondary" onClick={() => setQuery('')}>Clear search</button></EmptyState>}
+    <p className="page-footnote">Imported books, reading places, and translations are saved in this profile on this browser. Profile exports include them. V1 keeps its separate library and learning data.</p>
   </>
 }
 

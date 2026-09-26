@@ -10,6 +10,7 @@ import { EmptyState, type PageProps } from './components/shared'
 import { MobileNavigation } from './components/MobileNavigation'
 import { Overview } from './pages/Overview'
 import { Library, Reader } from './pages/Reading'
+import { ImportedReader } from './pages/ImportedReader'
 import { LessonDetail, Lessons } from './pages/Lessons'
 import { Study, StudySessionPage } from './pages/Study'
 import { Practice, PracticeSessionPage } from './pages/Practice'
@@ -25,6 +26,7 @@ import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnection
 import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } from './core/assistant/speech'
 import { interruptAudio } from './core/assistant/audio-owner'
 import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsLocalSettingsImport, resetSelectedProfile } from './core/profiles/store'
+import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
 import './App.css'
 import './components/assistant/assistant.css'
 
@@ -45,6 +47,7 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
   const [page, id, lessonPage] = route.split('/')
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
+  if (page === 'book' && id) return <ImportedReader {...props} id={id} />
   if (page === 'reader') {
     const story = stories.find(item => item.id === (id ?? stories[0].id))
     return story ? <Reader key={story.id} {...props} story={story} /> : <NotFound />
@@ -98,7 +101,7 @@ function WorkspaceApp() {
   }, [])
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
-  const section = page === 'reader' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page === 'writing' ? 'dictionary' : page
+  const section = page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page === 'writing' ? 'dictionary' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
@@ -219,6 +222,7 @@ export default function App() {
   useEffect(() => {
     let disposed = false
     initializeProfiles().then(async () => {
+      await bootstrapDefaultProfile()
       await initializeWorkspace()
       const pending = import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && await needsLocalSettingsImport()
       if (!disposed) setBootstrap(pending)

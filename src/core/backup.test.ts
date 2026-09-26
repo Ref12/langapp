@@ -176,6 +176,7 @@ describe('compatible Assistant workspace backups', () => {
     const old = JSON.parse(await exportWorkspaceBackup())
     old.version = version
     delete old.study
+    delete old.library
     if (version === 1) delete old.assistant
     expect(old.workspace.preferences).not.toHaveProperty('defaultSpeechRate')
     await savePreferences({ defaultSpeechRate: 0.5 })
@@ -201,7 +202,7 @@ describe('compatible Assistant workspace backups', () => {
     const before = await loadWorkspace()
     const assistant = await snapshot()
     const text = await exportWorkspaceBackup(stale)
-    expect(JSON.parse(text)).toMatchObject({ format: 'linguaweave-next-backup', version: 4, contentVersion: 2 })
+    expect(JSON.parse(text)).toMatchObject({ format: 'linguaweave-next-backup', version: 5, contentVersion: 2 })
     expect(readBackup(text)).toEqual({ ...before, assistant })
     for (const secret of ['very-private-api-key', 'private-provider.test', 'private-model', 'apiKey', 'aiConnections', 'storageAcknowledged', 'baseUrl']) {
       expect(text).not.toContain(secret)
@@ -225,7 +226,7 @@ describe('compatible Assistant workspace backups', () => {
     expect(tables).toEqual([
       'preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
       'assistantThreads', 'assistantMessages', 'assistantRuns',
-      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'characterStates',
+      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'characterStates', 'libraryBooks',
     ])
     expect(tables).not.toContain('aiConnections')
   })
@@ -254,6 +255,7 @@ describe('compatible Assistant workspace backups', () => {
     old.contentVersion = contentVersion
     delete old.assistant
     delete old.study
+    delete old.library
     await seedAssistant()
     await saveConnection()
     const connection = await db.aiConnections.get('assistant')
@@ -322,7 +324,7 @@ describe('compatible Assistant workspace backups', () => {
     const invalid = [
       { ...valid, aiConnections: [{ apiKey: 'secret' }] },
       { ...valid, assistant: { ...valid.assistant, connections: [] } },
-      { ...valid, version: 5 },
+      { ...valid, version: 6 },
       { ...valid, version: 2 },
       { ...valid, contentVersion: 3 },
     ]
@@ -385,6 +387,7 @@ describe('cancellable legacy restores', () => {
     it.each([1, 2, 3])('defaults missing character state to empty for schema %s and clears newer local state', async version => {
       const old = JSON.parse(await exportWorkspaceBackup())
       old.version = version
+      delete old.library
       delete old.workspace.characterStates
       if (version < 3) delete old.study
       if (version < 2) delete old.assistant

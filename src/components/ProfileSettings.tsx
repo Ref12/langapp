@@ -127,7 +127,7 @@ export function ProfileSettings({ busy, reload = () => window.location.reload(),
 
   return <section className="panel settings-form" aria-label="Profiles and backups">
     <h2>Profiles and backups</h2>
-    <p>Current profile: <strong>{active.name}</strong>. Each profile has separate settings, knowledge, learning progress, and conversations.</p>
+    <p>Current profile: <strong>{active.name}</strong>. Each profile has separate settings, knowledge, learning progress, conversations, and imported books.</p>
     <p className="small muted">Browser storage is the live copy. YAML files are manual snapshots, not automatic synchronization. Save unfinished settings edits before switching or exporting. Unsaved conversation drafts must be saved first.</p>
     {bootstrapping && <p role="status">Finishing the initial local settings import before profile operations...</p>}
     <label>Browser profile<select disabled={disabled || profiles.length === 0} value={selected} onChange={event => { setSelected(event.target.value); setSwitching(false) }}>
@@ -233,7 +233,7 @@ export function ProfileSettings({ busy, reload = () => window.location.reload(),
       </div>}
     </> : <p className="small muted">Data-folder operations require the local development server. Browser profile downloads and imports still work here.</p>}
     {importing && <div className="notice"><h3>Import profile snapshot?</h3>
-      <p>{importing.snapshot.profile.name}: {importing.snapshot.knowledge.study.knowledge.length} knowledge items, {importing.snapshot.conversations.threads.length} conversations. Replacing this profile replaces its settings, progress, and conversation history.</p>
+      <p>{importing.snapshot.profile.name}: {importing.snapshot.knowledge.study.knowledge.length} knowledge items, {importing.snapshot.conversations.threads.length} conversations, {importing.snapshot.library.length} imported books. Replacing this profile replaces its settings, progress, conversation history, and personal library, including saved translations.</p>
       <p>{importing.legacy ? 'This older JSON backup does not change saved credentials.' : 'Imported connection settings and credentials replace the current profile connections. Missing connections are cleared.'} Imported requests never restart automatically.</p>
       <div className="button-row"><button type="button" className="button primary" disabled={disabled} onClick={() => void perform(async signal => {
         await stopForProfileChange()

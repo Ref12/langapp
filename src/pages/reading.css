@@ -1,0 +1,19 @@
+.book-import, .book-translation-controls { margin-bottom: 24px; }
+.book-import h2 { margin-top: 0; }
+.book-import input[type="file"] { width: 100%; padding: 12px 0; }
+.book-paste { display: grid; gap: 16px; margin-top: 20px; }
+.book-paste .field { display: grid; gap: 8px; }
+.book-paste textarea { resize: vertical; }
+.cover-imported { background: #244750; }
+.book-chapters { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.book-chapters select { max-width: min(440px, 70vw); }
+.book-source { white-space: pre-wrap; overflow-wrap: anywhere; }
+.book-translation { overflow-wrap: anywhere; }
+.book-translation p { margin: 0 0 1em; }
+.book-translation .reading-token { padding: 0; }
+.imported-reading { max-width: 960px; margin: 0 auto; }
+@media (max-width: 760px) {
+  .book-chapters { width: 100%; }
+  .book-chapters select { flex: 1; min-width: 0; max-width: 100%; }
+  .imported-reading { padding: 20px; }
+}
