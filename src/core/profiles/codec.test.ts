@@ -26,6 +26,7 @@ describe('profile identity and YAML snapshots', () => {
       readingMode: 'weave', sidebarCollapsed: false,
     } })
     expect(snapshot.knowledge.study).toEqual({ knowledge: [], cards: [], sessions: [], attempts: [] })
+    expect(snapshot.knowledge.characterStates).toEqual([])
     expect(snapshot.conversations).toEqual({ threads: [], messages: [], runs: [] })
   })
 
@@ -113,6 +114,41 @@ describe('profile identity and YAML snapshots', () => {
     expect(exported).toContain('lb: starter-cha2--tea')
     expect(exported).not.toContain('wordId:')
     expect(exported).toContain(`version: ${PROFILE_VERSION}`)
+  })
+
+  it.each([1, 2])('imports schema %s YAML without character state and upgrades it without affecting other data', version => {
+    const snapshot = populatedProfile()
+    snapshot.knowledge.characterStates = []
+    const previous = version === 1 ? { ...structuredClone(snapshot), version } : { ...parse(serializeProfileYaml(snapshot)), version }
+    delete previous.knowledge.characterStates
+    const restored = parseProfileYaml(stringify(previous, { aliasDuplicateObjects: false }))
+    expect(restored).toEqual(snapshot)
+    expect(parseProfileYaml(serializeProfileYaml(restored))).toEqual(snapshot)
+  })
+
+  it('preserves exact character identities in YAML without vocabulary label mapping or Unicode folding', () => {
+    const snapshot = populatedProfile()
+    snapshot.knowledge.characterStates.push(
+      { character: '豈', manualAddedAt: 0, practiceCompletions: 0 },
+      { character: '豈', practiceCompletions: 1, lastPracticedAt: 0 },
+    )
+    const wire = parse(serializeProfileYaml(snapshot))
+    expect(wire.knowledge.characterStates).toEqual(snapshot.knowledge.characterStates)
+    expect(parseProfileYaml(stringify(wire)).knowledge.characterStates).toEqual(snapshot.knowledge.characterStates)
+  })
+
+  it('rejects invalid or duplicate characters and unknown fields instead of stripping their history', () => {
+    const wire = parse(serializeProfileYaml(populatedProfile()))
+    for (const characterStates of [
+      [{ character: '茶杯', practiceCompletions: 0 }],
+      [{ character: '茶', practiceCompletions: 1 }],
+      [{ character: '茶', practiceCompletions: 0, writingMastery: true }],
+      [{ character: '茶', practiceCompletions: 0 }, { character: '茶', practiceCompletions: 0 }],
+      null,
+    ]) {
+      const invalid = { ...wire, knowledge: { ...wire.knowledge, characterStates } }
+      expect(() => parseProfileYaml(stringify(invalid))).toThrow('Invalid profile YAML')
+    }
   })
 
   it('rejects unknown or mixed ID/label references before any lossy normalization', () => {

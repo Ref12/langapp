@@ -4,6 +4,7 @@ import { exportBackup, exportWorkspaceBackup, MAX_BACKUP_BYTES, readBackup, rest
 import { savePreferences, trackWord } from './learning'
 import { createConversation, saveAIConnection, saveDraft, savePracticeDraft, selectPracticePhrase, updateThread } from './assistant/store'
 import type { AssistantBackup, AssistantMessage, AssistantRun } from './assistant/contracts'
+import { addCharacterToKnowledge, recordCharacterPractice, removeManualCharacter } from './characters/store'
 
 beforeEach(async () => {
   await db.delete()
@@ -200,7 +201,7 @@ describe('compatible Assistant workspace backups', () => {
     const before = await loadWorkspace()
     const assistant = await snapshot()
     const text = await exportWorkspaceBackup(stale)
-    expect(JSON.parse(text)).toMatchObject({ format: 'linguaweave-next-backup', version: 3, contentVersion: 2 })
+    expect(JSON.parse(text)).toMatchObject({ format: 'linguaweave-next-backup', version: 4, contentVersion: 2 })
     expect(readBackup(text)).toEqual({ ...before, assistant })
     for (const secret of ['very-private-api-key', 'private-provider.test', 'private-model', 'apiKey', 'aiConnections', 'storageAcknowledged', 'baseUrl']) {
       expect(text).not.toContain(secret)
@@ -224,7 +225,7 @@ describe('compatible Assistant workspace backups', () => {
     expect(tables).toEqual([
       'preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
       'assistantThreads', 'assistantMessages', 'assistantRuns',
-      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts',
+      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'characterStates',
     ])
     expect(tables).not.toContain('aiConnections')
   })
@@ -321,7 +322,7 @@ describe('compatible Assistant workspace backups', () => {
     const invalid = [
       { ...valid, aiConnections: [{ apiKey: 'secret' }] },
       { ...valid, assistant: { ...valid.assistant, connections: [] } },
-      { ...valid, version: 4 },
+      { ...valid, version: 5 },
       { ...valid, version: 2 },
       { ...valid, contentVersion: 3 },
     ]
@@ -358,6 +359,73 @@ describe('cancellable legacy restores', () => {
     await restoreBackup(text)
     expect(await db.aiConnections.get('assistant')).toEqual(connection)
     expect(await db.profileState.get('local-settings')).toEqual({ id: 'local-settings', imported: true })
+  })
+
+  describe('portable character knowledge and practice history', () => {
+    it('round-trips exact manual characters and history, replaces stale rows, and preserves other study data', async () => {
+      const stale = await loadWorkspace()
+      await addCharacterToKnowledge('茶')
+      await recordCharacterPractice('茶')
+      await addCharacterToKnowledge('𠀀')
+      await recordCharacterPractice('雨')
+      await addCharacterToKnowledge('豈')
+      await addCharacterToKnowledge('豈')
+      const before = await loadWorkspace()
+      const text = await exportWorkspaceBackup(stale)
+      expect(readBackup(text).characterStates).toEqual(before.characterStates)
+      expect(readBackup(exportBackup(readBackup(text))).characterStates).toEqual(before.characterStates)
+      await removeManualCharacter('𠀀')
+      await recordCharacterPractice('茶')
+      await addCharacterToKnowledge('字')
+      await restoreBackup(text)
+      expect(await loadWorkspace()).toEqual(before)
+      expect(await db.characterStates.get('雨')).not.toHaveProperty('manualAddedAt')
+    })
+
+    it.each([1, 2, 3])('defaults missing character state to empty for schema %s and clears newer local state', async version => {
+      const old = JSON.parse(await exportWorkspaceBackup())
+      old.version = version
+      delete old.workspace.characterStates
+      if (version < 3) delete old.study
+      if (version < 2) delete old.assistant
+      await addCharacterToKnowledge('茶')
+      await recordCharacterPractice('茶')
+      const text = JSON.stringify(old)
+      expect(readBackup(text).characterStates).toEqual([])
+      await restoreBackup(text)
+      expect((await loadWorkspace()).characterStates).toEqual([])
+    })
+
+    it.each([
+      [{ character: '茶杯', practiceCompletions: 0 }],
+      [{ character: '茶\n', practiceCompletions: 0 }],
+      [{ character: '茶\uFE00', practiceCompletions: 0 }],
+      [{ character: '茶', practiceCompletions: -1 }],
+      [{ character: '茶', practiceCompletions: 1 }],
+      [{ character: '茶', practiceCompletions: 0, manualAddedAt: -1 }],
+      [{ character: '茶', practiceCompletions: 1, lastPracticedAt: 1.5 }],
+      [{ character: '茶', practiceCompletions: 0, mastery: true }],
+      [{ character: '茶', practiceCompletions: 0 }, { character: '茶', practiceCompletions: 0 }],
+      null,
+    ].map(characterStates => ({ characterStates })))('rejects malformed, unknown, and duplicate state before writes (case %#)', async ({ characterStates }) => {
+      await addCharacterToKnowledge('雨')
+      const before = await loadWorkspace()
+      const backup = JSON.parse(await exportWorkspaceBackup())
+      backup.workspace.characterStates = characterStates
+      await expect(restoreBackup(JSON.stringify(backup))).rejects.toThrow()
+      expect(await loadWorkspace()).toEqual(before)
+    })
+
+    it('rolls back all state when writing the character table fails during replacement', async () => {
+      await addCharacterToKnowledge('茶')
+      await recordCharacterPractice('茶')
+      const text = await exportWorkspaceBackup()
+      await addCharacterToKnowledge('雨')
+      const before = await loadWorkspace()
+      vi.spyOn(db.characterStates, 'bulkAdd').mockRejectedValueOnce(new Error('Character write failed'))
+      await expect(restoreBackup(text)).rejects.toThrow('Character write failed')
+      expect(await loadWorkspace()).toEqual(before)
+    })
   })
 
   it('rejects already cancelled restores before clearing saved data', async () => {

@@ -171,6 +171,7 @@ async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata
         words: await database.words.toArray(), readings: await database.readings.toArray(),
         lessons: await database.lessons.toArray(), sessions: await database.sessions.toArray(),
         attempts: await database.attempts.toArray(),
+        characterStates: await database.characterStates.toArray(),
         study: {
           knowledge: await database.knowledge.toArray(), cards: await database.studyCards.toArray(),
           sessions: await database.exerciseSessions.toArray(), attempts: await database.exerciseAttempts.toArray(),
@@ -209,6 +210,7 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
       await database.lessons.bulkAdd(knowledge.lessons)
       await database.sessions.bulkAdd(knowledge.sessions)
       await database.attempts.bulkAdd(knowledge.attempts)
+      await database.characterStates.bulkAdd(knowledge.characterStates)
       await database.knowledge.bulkAdd(knowledge.study.knowledge)
       await database.studyCards.bulkAdd(knowledge.study.cards)
       await database.exerciseSessions.bulkAdd(knowledge.study.sessions)

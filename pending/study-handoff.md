@@ -54,7 +54,16 @@ pages and backup schema: `src/App.test.tsx`, `src/pages/Curriculum.test.tsx`,
 
 - HSK 7-9 has no `examples.yaml`, so it is not in the app data yet.
 - Only the `reading` domain has cards; listening/speaking/writing would be
-  separate cards and exercise types.
+  separate cards and exercise types. Dictionary -> Characters now provides
+  separate three-phase tracing practice, without a writing FSRS card or mastery
+  claim. Character membership is derived from exact known v2 vocabulary
+  spellings plus manual additions. Dexie 7 `characterStates` stores manual
+  membership and completed rounds; backup 4 and profile YAML 3 preserve them
+  while accepting older snapshots with an empty character-state list.
+  The prepared Chinese default paths are projected by
+  `scripts/generate-app-characters.mjs`, checked during `build:next`, and loaded
+  by Unicode page only when practice is opened. New geometry/review approval
+  and Japanese/Korean app activation remain outside this integration.
 - The old `#practice` recognition flow and starter words still use the
   original `words` tables and do not feed the knowledge set.
 - Exercise coverage of every target is requested in the prompt but not enforced

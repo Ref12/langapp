@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chinese writing artwork: attribution and source</title>
+<style>body{font:1rem/1.6 system-ui;max-width:70ch;margin:2rem auto;padding:0 1rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}a{overflow-wrap:anywhere}</style></head><body>
+<h1>Chinese writing artwork: attribution and source</h1>
+<p>Copyright (C) 1999 Arphic Technology Co., Ltd. Derived through Make Me a Hanzi by Shaunak Kishore and contributors and Hanzi Writer Data by David Chanin.</p>
+<p>These source-derived guides are not professionally reviewed handwriting instruction. Only five default variants retain pre-existing user-review evidence (一、人、杯、茶、雨); the 2026-09-15 date is a carry-forward attestation, not the unknown original review date. All other defaults are unreviewed. No recognition or mastery claim is made.</p>
+<p>Source and derived artwork are freely available under the <a href="hanzi-writer-ARPHICPL.TXT">unaltered ARPHIC PUBLIC LICENSE</a>, AS IS, without warranty. You may copy, modify and redistribute under its conditions; preserve its copyright, license, and prominent dated modification notices and make modifications freely available. Independent application/implementation code and vocabulary have separate licensing; the artwork license is not replaced by a code license.</p>
+<h2>Modification notices</h2><pre>MODIFIED 2026-09-25: Projected prepared Chinese YAML default variants into lazy Unicode-page JSON, retaining exact ordered path strings, inherited review evidence and source provenance. No new artwork review, candidate selection, coordinate transform or stroke reordering. Source and derived artwork remain freely available under the ARPHIC PUBLIC LICENSE, AS IS, without warranty; retain the unaltered license and modification notices. Independent implementation code is separate.
+
+MODIFIED 2026-09-15: Selected current Chinese curriculum characters from pinned
+Hanzi Writer Data; retained original source bytes in the selected archive.
+Derived 100-unit padded source-median paths, conservative terminal candidates,
+and exact paths for five previously reviewed prototype recipes. No new visual
+approval is implied. Stroke order and original em-box proportions are retained.
+Copyright (C) 1999 Arphic Technology Co., Ltd.; via Make Me a Hanzi by Shaunak
+Kishore and contributors and Hanzi Writer Data by David Chanin.
+Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS,
+without warranty. Retain licenses/hanzi-writer-ARPHICPL.TXT and modification
+notices with redistributed source and derived artwork. Independent code is separate.</pre>
+<h2>Exact downloadable source and reproducibility</h2><ul>
+<li><a href="hanzi-writer-selected.zip">Original selected upstream ZIP</a> (unaltered; original data, README, license and selection notice). SHA-256: <code>bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68</code>.</li>
+<li><a href="source-lock.yaml">Original source/member hash lock</a> and <a href="sources.yaml">retained source catalog</a>.</li>
+<li><a href="derived-source.generated.zip">Prepared YAML and projection source bundle</a> (not an unrelated upstream library). SHA-256: <code>8dddf2fad47771891acca0ce8074bd88311a00fdd90524a8fce6bfe72067ef3f</code>. Includes exact prepared pages, manifest/coverage, reviewed recipes, notices, projection script and pinned package metadata. The default paths in downloadable JSON are also the complete projected artwork modifications.</li>
+<li><a href="https://github.com/chanind/hanzi-writer-data/tree/68d10a4b21150cae5e1ebbd223eed289cf32d90c">Pinned upstream revision 68d10a4b21150cae5e1ebbd223eed289cf32d90c</a>.</li>
+</ul><p>Extract the derived source bundle, place the original selected ZIP at <code>curriculum/chinese/upstream/writing/hanzi-writer-selected.zip</code>, then use Node.js with the locked dependencies (<code>npm ci</code>) and run <code>node scripts/generate-app-characters.mjs</code>. With dependencies available, projection and <code>--check</code> are offline. No source importer, network fetch, candidate refinement or geometry regeneration is performed. The bundle includes the exact YAML input and script, not font fitting or new review evidence.</p>
+<p>Paths are already normalized to a 100-unit y-down frame; retain width 5.5 and round caps/joins. Each ordered path is one continuous pen-down. No per-glyph fitting or additional transform is appropriate.</p>
+</body></html>

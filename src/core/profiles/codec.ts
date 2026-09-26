@@ -10,6 +10,7 @@ import { fromProfileYaml, toProfileYaml } from './vocabulary'
 const INVALID_PROFILE = 'Invalid profile YAML. Check the file format, settings, and saved data.'
 const MAX_DEPTH = 40
 const legacyProfileSchema = profileDataSchema.extend({ version: z.literal(1) })
+const labelProfileSchema = profileYamlSchema.extend({ version: z.literal(2) })
 
 function checkSize(text: string): void {
   if (new TextEncoder().encode(text).byteLength > MAX_PROFILE_BYTES) {
@@ -45,7 +46,7 @@ export function createEmptyProfile(profile: ProfileMetadata, localSettings?: z.i
         ...(settings.aiConnection ? { aiConnection: settings.aiConnection } : {}),
         ...(settings.speechConnection ? { speechConnection: settings.speechConnection } : {}),
       },
-      knowledge: { words: [], readings: [], lessons: [], sessions: [], attempts: [],
+      knowledge: { words: [], readings: [], lessons: [], sessions: [], attempts: [], characterStates: [],
         study: { knowledge: [], cards: [], sessions: [], attempts: [] } },
       conversations: { threads: [], messages: [], runs: [] },
     })
@@ -68,7 +69,9 @@ export function parseProfileYaml(text: string): ProfileSnapshot {
     const version = typeof value === 'object' && value !== null && 'version' in value ? value.version : undefined
     const snapshot = profileSnapshotSchema.parse(version === 1
       ? { ...legacyProfileSchema.parse(value), version: PROFILE_VERSION }
-      : fromProfileYaml(profileYamlSchema.parse(value)))
+      : fromProfileYaml(version === 2
+        ? { ...labelProfileSchema.parse(value), version: PROFILE_VERSION }
+        : profileYamlSchema.parse(value)))
     interruptImportedRuns(snapshot.conversations)
     return snapshot
   } catch {

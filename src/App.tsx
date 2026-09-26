@@ -15,6 +15,7 @@ import { Study, StudySessionPage } from './pages/Study'
 import { Practice, PracticeSessionPage } from './pages/Practice'
 import { Mahjong } from './pages/Mahjong'
 import { Dictionary } from './pages/Dictionary'
+import { Writing } from './pages/Writing'
 import { Settings } from './pages/Settings'
 import { LevelDetail } from './pages/Curriculum'
 import { Assistant, AssistantSidebar } from './pages/Assistant'
@@ -68,7 +69,8 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
     return session ? <PracticeSessionPage {...props} session={session} /> : <NotFound />
   }
   if (page === 'practice' || page === 'review') return <Practice {...props} />
-  if (page === 'dictionary') return <Dictionary {...props} />
+  if (page === 'dictionary') return <Dictionary {...props} section={id} initialScope={lessonPage} />
+  if (page === 'writing') return <Writing {...props} codepoint={id} scope={lessonPage} />
   if (page === 'settings') return <Settings {...props} />
   if (page === 'conversation') return <Assistant threadId={id} returnRoute={returnRoute} />
   return <NotFound />
@@ -96,7 +98,7 @@ function WorkspaceApp() {
   }, [])
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
-  const section = page === 'reader' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page
+  const section = page === 'reader' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page === 'writing' ? 'dictionary' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined

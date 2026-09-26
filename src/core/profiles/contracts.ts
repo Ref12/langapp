@@ -8,7 +8,7 @@ import { profileMetadataSchema } from './identity'
 
 export const MAX_PROFILE_BYTES = 10 * 1024 * 1024
 export const PROFILE_FORMAT = 'linguaweave-profile'
-export const PROFILE_VERSION = 2
+export const PROFILE_VERSION = 3
 export const profileDataSchema = z.object({
   format: z.literal(PROFILE_FORMAT),
   version: z.literal(PROFILE_VERSION),

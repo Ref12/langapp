@@ -1,5 +1,6 @@
 import type { SpeechRate, SpeechVoicePreferences } from './assistant/contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
+import type { CharacterState } from './characters/contracts'
 
 export const LANGUAGE = 'zh-Hans' as const
 export type ReadingMode = 'source' | 'weave' | 'target'
@@ -122,4 +123,5 @@ export interface Workspace {
   studyCards: StudyCard[]
   exerciseSessions: ExerciseSession[]
   exerciseAttempts: ExerciseAttempt[]
+  characterStates: CharacterState[]
 }

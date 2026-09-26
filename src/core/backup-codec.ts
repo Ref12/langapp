@@ -3,6 +3,7 @@ import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from 
 import type { Workspace } from './model'
 import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
 import { studyBackupSchema, type StudyBackup } from './study/contracts'
+import { characterStateSchema } from './characters/contracts'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()
@@ -31,6 +32,7 @@ export const workspaceSchema = z.object({
     id: z.string(), sessionId: z.string(), question: count, wordId: z.string(), activity, answerId: z.string(),
     correct: z.boolean(), assisted: z.boolean(), createdAt: time,
   }).strict()).max(50000),
+  characterStates: z.array(characterStateSchema).max(100000).default([]),
 }).strict()
 const legacyBackupSchema = z.object({
   format: z.literal('linguaweave-next-backup'), version: z.literal(1),
@@ -40,6 +42,7 @@ const backupSchema = z.discriminatedUnion('version', [
   legacyBackupSchema,
   legacyBackupSchema.extend({ version: z.literal(2), assistant: assistantBackupSchema }).strict(),
   legacyBackupSchema.extend({ version: z.literal(3), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
+  legacyBackupSchema.extend({ version: z.literal(4), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
 ])
 
 export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup }
@@ -157,6 +160,7 @@ export function validateWorkspace(workspace: z.infer<typeof workspaceSchema>) {
   unique(workspace.lessons.map(lesson => lesson.lessonId), 'lessons')
   unique(workspace.sessions.map(session => session.id), 'sessions')
   unique(workspace.attempts.map(attempt => attempt.id), 'attempts')
+  unique(workspace.characterStates.map(state => state.character), 'character states')
   const wordIds = new Set(workspace.words.map(word => word.wordId))
   const sessions = new Map(workspace.sessions.map(session => [session.id, session]))
   const attempts = new Map(workspace.attempts.map(attempt => [attempt.id, attempt]))
@@ -193,10 +197,10 @@ export function readBackup(text: string): WorkspaceBackup {
   const { workspace } = backup
   validateWorkspace(workspace)
   if (backup.version !== 1) validateAssistant(backup.assistant)
-  if (backup.version === 3) validateStudy(backup.study)
+  if ('study' in backup) validateStudy(backup.study)
   if (backup.version !== 1) {
     interruptImportedRuns(backup.assistant)
-    return { ...withStudy(workspace, backup.version === 3 ? backup.study : emptyStudy()), assistant: backup.assistant }
+    return { ...withStudy(workspace, 'study' in backup ? backup.study : emptyStudy()), assistant: backup.assistant }
   }
   return withStudy(workspace, emptyStudy())
 }
@@ -204,7 +208,7 @@ export function readBackup(text: string): WorkspaceBackup {
 export function exportBackup(workspace: WorkspaceBackup, assistant?: AssistantBackup): string {
   const { learning, assistant: includedAssistant, study } = splitStudy(workspace)
   const snapshot = assistant ?? includedAssistant ?? { threads: [], messages: [], runs: [] }
-  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 3, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study }, null, 2)
+  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 4, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study }, null, 2)
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('This workspace exceeds the 5 MiB backup limit.')
   readBackup(text)
   return text

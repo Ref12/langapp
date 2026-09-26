@@ -9,7 +9,7 @@ export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from
 function exportableTables() {
   return [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
     db.assistantThreads, db.assistantMessages, db.assistantRuns,
-    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts]
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates]
 }
 
 export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<string> {
@@ -46,6 +46,7 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
       await db.lessons.bulkAdd(workspace.lessons)
       await db.sessions.bulkAdd(workspace.sessions)
       await db.attempts.bulkAdd(workspace.attempts)
+      await db.characterStates.bulkAdd(workspace.characterStates)
       await db.assistantThreads.bulkAdd(assistant.threads)
       await db.assistantMessages.bulkAdd(assistant.messages)
       await db.assistantRuns.bulkAdd(assistant.runs)

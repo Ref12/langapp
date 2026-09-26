@@ -5,6 +5,71 @@ production writing activity, handwriting recognizer, font, or claim of
 professional language review. They implement the shared
 [character contract](../../CHARACTERS.md).
 
+## App projection
+
+The Mandarin app consumes a separate, deterministic projection of these prepared
+files; it does not run the source importer or introduce new review approvals:
+
+```powershell
+npm run characters:generate
+npm run characters:check
+npm test -- scripts\generate-app-characters.test.ts src\core\characters\assets.test.ts
+```
+
+`scripts/generate-app-characters.mjs` verifies the manifest's prepared page,
+coverage, source-catalog, recipe, license and selected-source hashes. It checks
+exact keys, declared defaults, provenance, ordered source stroke counts,
+inherited review evidence, and canonical nonzero single-subpath M/L/Q/C paths
+whose coordinates/control points remain within 0..100. It copies default path
+strings in their existing order without fitting, rounding, transforming,
+normalizing character keys or selecting candidates. All 3,001 available keys
+are projected, not just those currently used by the app's HSK 1-6 vocabulary.
+Missing guides must remain unavailable; vocabulary must not fabricate them.
+
+The small `src/data/characters/index.generated.json` contains character,
+stroke-count, default-variant and review-status metadata, plus exact generated
+source revision/archive pins, but no stroke paths. Runtime provenance checks use
+those pins, so an intentional prepared-source refresh cannot leave stale
+revision or archive-hash constants in the loader.
+`src/core/characters/assets.ts` exports `characterAssetIndex`,
+`loadCharacterAsset(exactCharacter)` and `characterAttributionUrl`. Its public
+`CharacterAssetSummary` has `{character, strokeCount, reviewed, variant}`;
+`CharacterAsset` adds ordered `paths` and source provenance. The loader validates
+membership and the entire incoming page before returning a character, shares
+in-flight/successful page loads, and allows retries after any failed request.
+Runtime path validation uses `src/core/characters/geometry.ts`'s
+`makeStrokeGuide`, the same 32-subdivision, spacing-2 sampler used for tracing.
+The offline generator has its own matching path-contract validation and does
+not execute the browser loader or sampler.
+
+Runtime geometry URLs are
+`BASE_URL + "characters/chinese/u004e.generated.json"` (for example, 一).
+The page is the scalar shifted right eight bits, encoded as lowercase
+hexadecimal padded to four digits. Each JSON page has
+`{schemaVersion: 1, language: "chinese", page, notice, characters: CharacterAsset[]}`.
+There are 80 lazy pages, about 10.7 MB total before HTTP compression; the largest
+page is about 307 KB. No geometry page is eagerly imported into the application.
+The loader respects Vite's `import.meta.env.BASE_URL`, including GitHub Pages
+subpaths and relative production bases. Render paths as SVG path attributes,
+never as raw SVG markup. Use the existing width 5.5 and round caps/joins.
+
+`characterAttributionUrl` points to the viewable local
+`characters/chinese/ATTRIBUTION.html`. The public distribution includes the
+unaltered ARPHIC license, dated notices, retained source catalog and lock, the
+exact original selected ZIP, and a deterministic derived-source ZIP with the
+prepared YAML, review evidence, projection script and locked package metadata.
+The page explains reproduction and how to restore the separately distributed
+original ZIP. It also distinguishes the artwork's ARPHIC terms from independent
+implementation-code and vocabulary licensing. It makes no professional-review
+claim. Source downloads are not loaded with the practice page.
+
+`characters:check` is part of `build:next`. It compares every expected byte and
+reports missing, modified or extra owned page outputs without writing, creating
+directories or deleting anything. Generation validates all inputs before writing
+and removes only obsolete owned generated page filenames; unrelated files are
+preserved. Vite copies the public assets and legally necessary source/notices
+into the built distribution.
+
 ## Scope and identity
 
 The current required union is **3,001 Han characters in 80 Unicode pages**:

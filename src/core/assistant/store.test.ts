@@ -69,7 +69,7 @@ describe('Assistant database migration', () => {
       }
       old.close()
       await migrated.open()
-      expect(migrated.verno).toBe(6)
+      expect(migrated.verno).toBe(7)
       expect(await migrated.preferences.get('workspace')).toEqual(workspace.preferences)
       for (const table of ['words', 'readings', 'lessons', 'sessions', 'attempts'] as const) {
         expect(await migrated.table(table).toArray()).toEqual(workspace[table])
@@ -85,6 +85,8 @@ describe('Assistant database migration', () => {
       expect(await migrated.exerciseAttempts.count()).toBe(0)
       expect(await migrated.profileState.count()).toBe(0)
       expect(await migrated.mahjongGames.count()).toBe(0)
+      expect(await migrated.characterStates.count()).toBe(0)
+      expect(migrated.characterStates.schema.primKey.name).toBe('character')
       expect(migrated.mahjongGames.schema.primKey.name).toBe('id')
       expect(migrated.assistantMessages.schema.idxByName['[threadId+sequence]'].unique).toBe(true)
       expect(migrated.assistantThreads.schema.idxByName.updatedAt).toBeDefined()
@@ -109,7 +111,7 @@ describe('Assistant database migration', () => {
     expect(workspace).not.toHaveProperty('assistant')
     expect(tables).toEqual([[
       'preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
-      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts',
+      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'characterStates',
     ]])
   })
 })

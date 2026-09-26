@@ -65,7 +65,9 @@ Those design artifacts remain memory-only and never access either app's database
   answer. Same-day repetition does not create spaced evidence. Successful days
   schedule reviews after 1, 3, and 7 days; misses and revealed answers return
   after 5 minutes. No automatic **Mastered** status is awarded.
-- Hearing, speaking, and writing remain **Not studied**. Lesson completion records
+- Legacy word-level hearing, speaking, and writing remain **Not studied**;
+  character writing rounds are recorded separately in Dictionary -> Characters.
+  Lesson completion records
   practice, not mastery or an official HSK result. This is the new mockup-based
   reading-state policy, separate from v1's Learning/Familiar/Mastered model.
   Curriculum contextual understanding, productive use, grammar evidence, and
@@ -112,6 +114,43 @@ The **Lessons** tab now offers two paths over the v2 Chinese curriculum
   separate sections, by band, with search. **Add to knowledge set** only makes an
   item eligible for review; it is not a claim of proficiency. The full list and
   your knowledge set stay separate.
+
+### Dictionary characters and writing
+
+**Dictionary -> Characters** adds the prepared Chinese character collection,
+plus exact Han spellings in the app's vocabulary. **My knowledge set** is the
+union of characters in your known v2 vocabulary and independent manual
+additions. Multiple words or senses contribute a character only once.
+**Keep independently** retains an automatically included character even if its
+words leave the set; removing that manual addition does not hide it while a
+known word still contains it. Grammar patterns and legacy recognition progress
+do not automatically add characters. Character spelling does not establish a
+reading or morpheme meaning: displayed words provide context only.
+
+**Practice writing** opens the selected character's exact ordered guide paths.
+Each round has three repetitions with a full guide, three showing one stroke
+at a time, and three from memory. Two committed misses on the same memory
+stroke reveal only that stroke; interruptions do not count. Undo preserves
+assistance for the revisited stroke, while Clear and the next repetition reset
+it. Mouse, touch and pen input are supported. The optional stroke-order
+demonstration also works without tracing, but never counts as a completed
+stroke. Unfinished rounds restart when leaving the page.
+
+Manual additions and completed rounds are saved per profile and included in
+backups and profile snapshots. Writing rounds do not change reading cards,
+automatically add knowledge, assign mastery, or create a writing FSRS schedule.
+This is a tracing aid, not general handwriting recognition. Missing guides stay
+visible and cannot be practiced; no replacement character or invented path is
+used. Only the five previously approved prototype defaults retain their
+artwork-review status; the other source-derived guides remain unreviewed.
+
+`npm run characters:generate` projects the committed Chinese asset defaults
+into lazy app chunks; `npm run characters:check` detects stale projection files
+without rewriting them and runs as part of `build:next`. The projection keeps
+the artwork's sources, modification notices and license material available
+from the practice page. It does not regenerate or visually approve the
+upstream character collection. Japanese and Korean assets are not exposed in
+the current Mandarin-only app.
 
 Exercises are written by your own connected AI model (Settings) from the
 session's target items and your known vocabulary: multiple choice in either

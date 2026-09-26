@@ -14,6 +14,11 @@ export function populatedProfile(running = false): ProfileSnapshot {
   snapshot.exportedAt = 123
   snapshot.settings.preferences.name = 'Existing learner'
   snapshot.knowledge = {
+    characterStates: [
+      { character: '茶', manualAddedAt: 1, practiceCompletions: 2, lastPracticedAt: 3 },
+      { character: '雨', practiceCompletions: 1, lastPracticedAt: 2 },
+      { character: '𠀀', manualAddedAt: 0, practiceCompletions: 0 },
+    ],
     words: [{
       wordId: 'zh:tea', language: 'zh-Hans', introducedAt: 1, introducedFrom: 'dictionary', attempts: 1,
       independentCorrect: 1, successfulDays: ['2026-01-01'], successfulActivities: ['meaning'], dueAt: 200000,

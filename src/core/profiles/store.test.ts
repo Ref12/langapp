@@ -53,12 +53,13 @@ afterEach(() => {
 })
 
 describe('isolated named browser profiles', () => {
-  it('upgrades an original pre-profile v4 workspace in place without changing any learning or credentials', async () => {
+  it.each([4, 6])('upgrades a v%s workspace in place without changing any learning or credentials', async version => {
     const legacyFactory = new IDBFactory()
     vi.stubGlobal('indexedDB', legacyFactory)
     Dexie.dependencies.indexedDB = legacyFactory
     const legacy = new Dexie('linguaweave-next')
-    legacy.version(4).stores(Object.fromEntries(database.db.tables.filter(table => table.name !== 'profileState').map(table =>
+    const newTables = version === 4 ? ['profileState', 'mahjongGames', 'characterStates'] : ['characterStates']
+    legacy.version(version).stores(Object.fromEntries(database.db.tables.filter(table => !newTables.includes(table.name)).map(table =>
       [table.name, [table.schema.primKey.src, ...table.schema.indexes.map(index => index.src)].join(', ')])))
     const snapshot = populatedProfile(true)
     const data: Record<string, unknown[]> = {
@@ -78,6 +79,9 @@ describe('isolated named browser profiles', () => {
     legacy.close()
     await reopenPage()
     expect(database.db.name).toBe('linguaweave-next')
+    expect(database.db.verno).toBe(7)
+    expect(await database.db.characterStates.count()).toBe(0)
+    expect(database.db.characterStates.schema.primKey.keyPath).toBe('character')
     expect(store.getActiveProfile()).toEqual({ id: 'default', name: 'default' })
     for (const [name, rows] of Object.entries(data)) {
       const actual = await database.db.table(name).toArray()
@@ -162,7 +166,7 @@ describe('isolated named browser profiles', () => {
     expect(await clone.speechConnections.get('assistant-speech')).toMatchObject(running.settings.speechConnection!)
     expect((await clone.aiConnections.get('assistant'))?.revision).not.toBe((await database.db.aiConnections.get('assistant'))?.revision)
     for (const name of ['preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
-      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'assistantThreads']) {
+      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'assistantThreads', 'characterStates']) {
       expect(await clone.table(name).toArray()).toEqual(before[name])
     }
     expect((await clone.assistantRuns.get('run'))?.status).toBe('interrupted')
@@ -187,6 +191,34 @@ describe('isolated named browser profiles', () => {
     expect((await live.preferences.get('workspace'))?.name).toBe('Late write to default')
     const other = await readDatabase(profile.id)
     expect((await other.preferences.get('workspace'))?.name).toBe('Your workspace')
+  })
+
+  it('keeps manual additions and writing history profile-local across selection, reload, and empty restore', async () => {
+    let characters = await import('../characters/store')
+    await characters.addCharacterToKnowledge('茶')
+    await characters.recordCharacterPractice('茶')
+    const original = await database.loadWorkspace()
+    const profile = await store.createProfile('Writing profile', false)
+    await store.selectProfile(profile.id)
+    await characters.recordCharacterPractice('茶')
+    expect((await database.db.characterStates.get('茶'))?.practiceCompletions).toBe(2)
+    await reopenPage()
+    characters = await import('../characters/store')
+    expect((await database.loadWorkspace()).characterStates).toEqual([])
+    await characters.recordCharacterPractice('茶')
+    await characters.addCharacterToKnowledge('𠀀')
+    const exported = parseProfileYaml(await store.exportActiveProfile())
+    expect(exported.knowledge.characterStates).toEqual([
+      { character: '茶', practiceCompletions: 1, lastPracticedAt: expect.any(Number) },
+      { character: '𠀀', manualAddedAt: expect.any(Number), practiceCompletions: 0 },
+    ])
+    await store.restoreActiveProfile(serializeProfileYaml(createEmptyProfile(profile)))
+    expect((await database.loadWorkspace()).characterStates).toEqual([])
+    const source = await readDatabase('default')
+    expect(await source.characterStates.get('茶')).toEqual({
+      ...original.characterStates[0], practiceCompletions: 2, lastPracticedAt: expect.any(Number),
+    })
+    expect(await source.characterStates.get('𠀀')).toBeUndefined()
   })
 
   it('exports all profile domains and credentials in one read transaction', async () => {
@@ -222,7 +254,7 @@ describe('isolated named browser profiles', () => {
     expect(yaml).not.toContain('wordId:')
     expect(await allRows()).toEqual(before)
     await store.restoreActiveProfile(yaml)
-    for (const table of ['words', 'sessions', 'attempts', 'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'assistantThreads', 'assistantMessages']) {
+    for (const table of ['words', 'sessions', 'attempts', 'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'assistantThreads', 'assistantMessages', 'characterStates']) {
       expect(await database.db.table(table).toArray()).toEqual(before[table])
     }
     expect((await database.db.words.toArray())[0].wordId).toBe('zh:tea')
@@ -295,6 +327,7 @@ describe('isolated named browser profiles', () => {
     expect(imported.name).toBe('Imported')
     const other = await readDatabase(imported.id)
     expect(await other.words.count()).toBe(1)
+    expect(await other.characterStates.toArray()).toEqual(populatedProfile().knowledge.characterStates)
     expect((await other.aiConnections.get('assistant'))?.apiKey).toBe('synthetic-ai-key')
     expect(await allRows()).toEqual(before)
     expect(store.getActiveProfile().id).toBe('default')

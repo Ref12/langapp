@@ -5,6 +5,7 @@ import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
 import type { MahjongGame } from './games/mahjong'
+import type { CharacterState } from './characters/contracts'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -24,6 +25,7 @@ export class LearningDatabase extends Dexie {
   exerciseAttempts!: EntityTable<ExerciseAttempt, 'id'>
   profileState!: EntityTable<{ id: 'local-settings'; imported: true }, 'id'>
   mahjongGames!: EntityTable<MahjongGame, 'id'>
+  characterStates!: EntityTable<CharacterState, 'character'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -52,6 +54,7 @@ export class LearningDatabase extends Dexie {
     })
     this.version(5).stores({ profileState: '&id' })
     this.version(6).stores({ mahjongGames: '&id' })
+    this.version(7).stores({ characterStates: '&character' })
   }
 }
 
@@ -97,7 +100,7 @@ export async function initializeWorkspace(): Promise<void> {
 
 export async function loadWorkspace(): Promise<Workspace> {
   return db.transaction('r', [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
-    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts], async () => {
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates], async () => {
     const preferences = await db.preferences.get('workspace')
     if (!preferences) throw new Error('Your workspace has not been initialized. Reload to try again.')
     return {
@@ -111,6 +114,7 @@ export async function loadWorkspace(): Promise<Workspace> {
       studyCards: await db.studyCards.toArray(),
       exerciseSessions: await db.exerciseSessions.toArray(),
       exerciseAttempts: await db.exerciseAttempts.toArray(),
+      characterStates: await db.characterStates.toArray(),
     }
   })
 }
