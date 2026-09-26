@@ -35,11 +35,12 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
   const abort = () => transaction?.abort()
   signal?.addEventListener('abort', abort, { once: true })
   try {
-    await db.transaction('rw', [...exportableTables(), db.profileState, db.mahjongGames], async () => {
+    await db.transaction('rw', [...exportableTables(), db.profileState, db.mahjongGames, db.sudokuGames], async () => {
       transaction = Dexie.currentTransaction!
       signal?.throwIfAborted()
       for (const table of exportableTables()) await table.clear()
       await db.mahjongGames.clear()
+      await db.sudokuGames.clear()
       await db.preferences.add(workspace.preferences)
       await db.words.bulkAdd(workspace.words)
       await db.readings.bulkAdd(workspace.readings)

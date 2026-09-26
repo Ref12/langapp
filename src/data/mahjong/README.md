@@ -83,7 +83,7 @@ solvable deals, and reshuffling all use the expanded geometry.
 1. Add a file such as `small-garden.yaml` beside the existing configurations.
 2. Give it a new `id`, name, description, and bottom-to-top layer list.
 3. Run `npm run test:pages -- src/core/games/mahjong-layouts.test.ts`.
-4. Open **Practice -> Play Mahjong**, choose the configuration, and inspect its
+4. Open **Games -> Play Mahjong**, choose the configuration, and inspect its
    preview and a dealt board at both mobile and desktop sizes.
 
 The layout tests discover every file and validate its geometry, removal proof,

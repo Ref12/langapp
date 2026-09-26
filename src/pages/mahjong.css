@@ -48,7 +48,6 @@
 .mahjong-complete { text-align: center; margin-bottom: 0; color: #ede9d7; background: #1a382c; border-color: #89986c55; }
 .mahjong-complete h2 { font-family: Georgia, "Times New Roman", serif; color: #f1d99e; font-size: 28px; }
 .mahjong-complete .muted { color: #bac7ad; }
-.practice-games { margin-top: 24px; }
 .workspace:has(.mahjong-courtyard) { background: radial-gradient(ellipse at 45% 35%, #35812c, #185923 75%, #154a20); }
 .mahjong-main:has(.mahjong-courtyard) { padding-top: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
 .mahjong-courtyard { position: relative; max-width: 720px; }

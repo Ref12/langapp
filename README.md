@@ -196,9 +196,15 @@ backups remain importable; older backups restore with an empty knowledge set.
 The previous curriculum map remains reachable at `#curriculum`
 and the older recognition practice at `#practice`; neither feeds the knowledge set.
 
-## Practice games
+## Games
 
-**Practice -> Play Mahjong** opens Word Mahjong Solitaire (`#practice/mahjong`).
+**Games** has its own entry in the desktop sidebar and mobile menu. The hub
+(`#games`) contains Mahjong and Sudoku; games are no longer embedded in Practice.
+
+### Word Mahjong
+
+**Games -> Play Mahjong** opens Word Mahjong Solitaire (`#games/mahjong`).
+The older `#practice/mahjong` bookmark remains supported and highlights Games.
 Match two different representations of the same vocabulary sense: character and
 English, character and pinyin, or pinyin and English. Mixed boards include all
 three pair types. Tiles must be uncovered and have a free left or right edge;
@@ -239,6 +245,74 @@ versioned YAML, discovered automatically. The strict loader checks tile bounds,
 overlaps, support, and a complete legal removal sequence. Add a YAML file to
 extend the picker without changing game code. New games save their geometry
 snapshot, so later layout changes do not invalidate a saved board.
+
+### Character Sudoku
+
+**Games -> Play Sudoku** (`#games/sudoku`) uses distinct Han characters in place
+of the numbers. Every row, column, and outlined box contains each character
+exactly once. Symbols come from characters in introduced v2 vocabulary, manual
+character additions, and the legacy learning set. The app never fills a short
+set with untaught characters; select a smaller grid or add more characters.
+
+| Grid | Box shape | Easy clues | Medium clues | Hard clues |
+| --- | --- | --- | --- | --- |
+| 4 x 4 | 2 rows x 2 columns | 8 | 6 | 4 |
+| 6 x 6 | 2 rows x 3 columns | 22 | 16 | 12 |
+| 9 x 9 | 3 rows x 3 columns | 46 | 36 | 28 |
+
+Generation is local and seeded. An original box-compatible grid permutation
+and clue-removal generator uses an independent minimum-candidate backtracking
+solver to retain **exactly one solution** after every removal. A new puzzle
+must reach the requested clue count; failure is surfaced rather than quietly
+substituting another setting. These difficulty names describe clue density,
+not a human-solving-technique rating. Equal clue counts can require different
+deductions. Generation runs in a cancellable Web Worker with bounded search,
+attempts, and elapsed time; no AI or puzzle service is contacted.
+
+Select a cell, then a character in the palette. **Scratch** displays the complete
+symbol set in empty cells; palette taps cross out a character or restore it.
+Crossed-out symbols remain visible and are entirely the learner's deductions,
+not automatically computed answers. **Reset** in scratch mode clears that cell's
+markers. Entries preserve their underlying scratch state, and **Undo** restores
+up to 200 previous edits. Fixed clues cannot be edited. Row, column, or box
+duplicates are highlighted without revealing the solution.
+
+Arrow keys move through the grid. Number keys select the corresponding palette
+character, N toggles scratch mode, and Delete/Backspace erase an editable entry.
+The information button opens a character key with introduced-word context and
+explicit **Hear** playback. Contexts use whole-word readings and meanings; they
+do not invent a standalone pronunciation or definition for a character from a
+multi-character word. Manually added characters may have no known word context.
+This offers repeated exposure and pronunciation review, not evidence of mastery.
+
+The current puzzle, symbol key, entries, crossed-out markers, and undo history
+are saved in a profile-local `sudokuGames` table (Dexie schema 9). Replacing a
+puzzle is explicit; canceling generation leaves the old puzzle intact. Like
+Mahjong, Sudoku is excluded from profile exports/clones and legacy JSON backups,
+is cleared by a restore, and never changes knowledge or spaced-review schedules.
+
+Generator references reviewed on September 25, 2026:
+
+- [RutledgePaulV/sudoku-generator](https://github.com/RutledgePaulV/sudoku-generator)
+  is an archived, MIT-licensed Python project whose README says it is not
+  actively developed; its latest commit is from November 2020. It checks for
+  alternative solutions, but is hardcoded to 9 x 9 rather than a browser-ready
+  multi-size engine.
+- [petewritescode/sudoku-gen](https://github.com/petewritescode/sudoku-gen)
+  is a MIT TypeScript alternative with September 2026 maintenance. It transforms
+  stored 9 x 9 seeds and retains their difficulty labels rather than analyzing
+  newly generated puzzles.
+- [komeilmehranfar/sudoku-core](https://github.com/komeilmehranfar/sudoku-core)
+  offers MIT TypeScript generation, uniqueness checks, and technique-informed
+  grading, but its solver assumes 9 x 9. Its latest inspected release is v3.0.3
+  from June 2024.
+- [robatron/sudoku.js](https://github.com/robatron/sudoku.js) is a MIT browser
+  reference; current source includes uniqueness checking, while its difficulty
+  settings are clue counts. It also targets 9 x 9 only.
+
+These informed the comparison, not copied implementations. The app uses its
+own small engine to support rectangular 6 x 6 boxes alongside 4 x 4 and 9 x 9,
+without adding a runtime dependency or relying on an external puzzle service.
 
 ## Assistant
 

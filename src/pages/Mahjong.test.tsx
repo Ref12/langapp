@@ -8,7 +8,7 @@ import { trackWord } from '../core/learning'
 import { availablePairs, createMahjong, isFree, remainingTiles, type MahjongTile } from '../core/games/mahjong'
 
 beforeEach(async () => {
-  window.location.hash = '#practice/mahjong'
+  window.location.hash = '#games/mahjong'
   await db.delete()
   await db.open()
   await initializeWorkspace()
@@ -36,8 +36,8 @@ async function deal() {
   return (await db.mahjongGames.get('current'))!
 }
 
-it('offers the game from Practice and explains how to get enough introduced vocabulary', async () => {
-  window.location.hash = '#practice'
+it('offers the game from Games and explains how to get enough introduced vocabulary', async () => {
+  window.location.hash = '#games'
   render(<App />)
   await userEvent.setup().click(await screen.findByRole('link', { name: 'Play Mahjong' }))
   await screen.findByText(/0 distinct short words/)

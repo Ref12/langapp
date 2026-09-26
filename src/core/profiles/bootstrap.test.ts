@@ -130,7 +130,7 @@ describe('one-time local default profile bootstrap', () => {
     'words', 'readings', 'lessons', 'sessions', 'attempts',
     'aiConnections', 'speechConnections', 'assistantThreads', 'assistantMessages', 'assistantRuns',
     'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'profileState',
-    'mahjongGames', 'characterStates', 'libraryBooks',
+    'mahjongGames', 'characterStates', 'libraryBooks', 'sudokuGames',
   ])('preserves a workspace populated only in %s without fetching private YAML', async tableName => {
     const table = database.db.table(tableName)
     await table.add({ [table.schema.primKey.keyPath as string]: 'existing-browser-record' })

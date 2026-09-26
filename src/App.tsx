@@ -1,6 +1,6 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, ChevronRight, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, ChevronRight, Gamepad2, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { savePreferences } from './core/learning'
 import { useRoute } from './core/routing'
@@ -15,6 +15,8 @@ import { LessonDetail, Lessons } from './pages/Lessons'
 import { Study, StudySessionPage } from './pages/Study'
 import { Practice, PracticeSessionPage } from './pages/Practice'
 import { Mahjong } from './pages/Mahjong'
+import { Games } from './pages/Games'
+import { Sudoku } from './pages/Sudoku'
 import { Dictionary } from './pages/Dictionary'
 import { Writing } from './pages/Writing'
 import { Settings } from './pages/Settings'
@@ -35,6 +37,7 @@ const navigation = [
   { id: 'library', label: 'Library', icon: LibraryBig },
   { id: 'lessons', label: 'Lessons', icon: BookOpen },
   { id: 'practice', label: 'Practice', icon: Sparkles },
+  { id: 'games', label: 'Games', icon: Gamepad2 },
   { id: 'conversation', label: 'Assistant', icon: MessageCircle },
   { id: 'dictionary', label: 'Dictionary', icon: BookText },
 ]
@@ -67,6 +70,9 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
     return lesson ? <LessonDetail {...props} lesson={lesson} page={lessonPage} /> : <NotFound />
   }
   if (page === 'practice' && id === 'mahjong') return <Mahjong {...props} />
+  if (page === 'games' && id === 'mahjong') return <Mahjong {...props} />
+  if (page === 'games' && id === 'sudoku') return <Sudoku {...props} />
+  if (page === 'games' && !id) return <Games />
   if (page === 'practice' && id) {
     const session = props.workspace.sessions.find(item => item.id === id)
     return session ? <PracticeSessionPage {...props} session={session} /> : <NotFound />
@@ -101,7 +107,7 @@ function WorkspaceApp() {
   }, [])
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
-  const section = page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page === 'writing' ? 'dictionary' : page
+  const section = route === 'practice/mahjong' ? 'games' : page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page === 'writing' ? 'dictionary' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
@@ -178,7 +184,7 @@ function WorkspaceApp() {
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current={page === 'settings' ? 'page' : undefined}><SettingsIcon size={20} /></a>
         </div></header>
-        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : route === 'practice/mahjong' ? 'mahjong-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
+        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {currentPage}
         </main>

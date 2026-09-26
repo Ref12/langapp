@@ -7,6 +7,7 @@ import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
 import type { MahjongGame } from './games/mahjong'
 import type { CharacterState } from './characters/contracts'
 import type { LibraryBook } from './library/contracts'
+import type { SudokuGame } from './games/sudoku-contracts'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -28,6 +29,7 @@ export class LearningDatabase extends Dexie {
   mahjongGames!: EntityTable<MahjongGame, 'id'>
   characterStates!: EntityTable<CharacterState, 'character'>
   libraryBooks!: EntityTable<LibraryBook, 'id'>
+  sudokuGames!: EntityTable<SudokuGame, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -58,6 +60,7 @@ export class LearningDatabase extends Dexie {
     this.version(6).stores({ mahjongGames: '&id' })
     this.version(7).stores({ characterStates: '&character' })
     this.version(8).stores({ libraryBooks: '&id, updatedAt' })
+    this.version(9).stores({ sudokuGames: '&id' })
   }
 }
 

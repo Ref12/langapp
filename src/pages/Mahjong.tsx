@@ -141,7 +141,7 @@ export function Mahjong({ workspace, busy, run }: PageProps) {
     setReplace(false)
   })
   return <div className={`mahjong-player${!game || game.layout ? ' mahjong-courtyard' : ''}`}>
-    <header className="mahjong-heading"><a className="back-link" href="#practice"><ArrowLeft size={16} /> Practice</a>
+    <header className="mahjong-heading"><a className="back-link" href="#games"><ArrowLeft size={16} /> Games</a>
       <h1>Word Mahjong</h1></header>
     {saved?.error && <p role="alert" className="notice error">{saved.error}</p>}
     {error && <p role="alert" className="notice error">Vocabulary could not be loaded. {error}</p>}
