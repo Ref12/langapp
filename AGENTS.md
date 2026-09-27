@@ -8,6 +8,15 @@ Check the current files and Git status against the handoff; notes can become
 stale. Preserve unrelated uncommitted changes. Pending notes are context, not
 authorization to commit, push, or expand the user's current request.
 
+## Generated source bundle
+
+After changing `package.json`, `package-lock.json`, or
+`scripts\generate-app-characters.mjs`, run `npm run characters:generate` and
+include its updated outputs. The character-artwork reproducibility ZIP contains
+those exact files, so dependency-only changes also update the ZIP and its
+attribution hash. `npm run characters:check` must pass before publishing; a
+direct Vite build does not run this check.
+
 ## Chinese v2 grammar and vocabulary
 
 Before changing Chinese v2 vocabulary, grammar, or lessons, read
