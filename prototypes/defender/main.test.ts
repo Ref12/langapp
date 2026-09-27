@@ -3,7 +3,7 @@ import { URL as NodeURL } from 'node:url'
 import '@testing-library/jest-dom/vitest'
 import { afterEach, expect, it, vi } from 'vitest'
 import { sampleWords } from './deck'
-import { allowsPinyinAnnotations, answerText, directionForms, pinyinAnswerForms, promptText } from './game'
+import { allowsPinyinAnnotations, ANSWER_BANK_SIZE, answerText, directionForms, pinyinAnswerForms, promptText } from './game'
 
 afterEach(() => { window.dispatchEvent(new Event('pagehide')); vi.restoreAllMocks(); vi.unstubAllGlobals() })
 
@@ -28,16 +28,28 @@ it('plays tap and typed modes, pauses, and does not submit Chinese IME compositi
   await import('./main')
   const hints = document.getElementById('show-pinyin') as HTMLInputElement
   expect(hints.checked).toBe(false)
-  expect(document.querySelectorAll('.answer-choice')).toHaveLength(6)
+  expect(document.querySelectorAll('.answer-choice')).toHaveLength(ANSWER_BANK_SIZE)
   expect([...document.querySelectorAll<HTMLButtonElement>('.answer-choice')].every(button => button.disabled)).toBe(true)
   button('primary').click()
   step(13_000)
   expect(document.querySelectorAll('.incoming-word').length).toBeGreaterThan(1)
-  const incoming = document.querySelector('.incoming-word')!.textContent
+  expect(document.querySelectorAll('.incoming-word.leading')).toHaveLength(1)
+  const incoming = document.querySelector('.incoming-word.leading')!.textContent
   const word = sampleWords.find(word => word.character === incoming)!
   const answers = [...document.querySelectorAll<HTMLButtonElement>('.answer-choice')]
+  const later = [...document.querySelectorAll('.incoming-word:not(.leading)')].find(tile => tile.textContent !== incoming)
+  if (later) {
+    const laterWord = sampleWords.find(word => word.character === later.textContent)!
+    answers.find(button => button.textContent === laterWord.meaning)!.click()
+    expect(score()).toBe(0)
+    expect(document.getElementById('feedback')).toHaveTextContent('does not match the leading word')
+    expect(later.isConnected).toBe(true)
+  }
+  const choices = answers.map(button => button.textContent)
   answers.find(button => button.textContent === word.meaning)!.click()
   expect(score()).toBe(100)
+  expect(document.querySelectorAll('.incoming-word.leading')).toHaveLength(1)
+  expect([...document.querySelectorAll('.answer-choice')].map(button => button.textContent)).toEqual(choices)
   button('pause').click()
   const positions = [...document.querySelectorAll<HTMLElement>('.incoming-word')].map(node => node.style.cssText)
   step(5000)
@@ -83,7 +95,9 @@ it('plays tap and typed modes, pauses, and does not submit Chinese IME compositi
     document.getElementById('settings')!.dispatchEvent(new Event('change', { bubbles: true }))
     expect(hints.disabled).toBe(!allowsPinyinAnnotations(incomingDirection))
     button('primary').click()
+    expect(document.querySelectorAll('.answer-choice')).toHaveLength(12)
     const prompt = document.querySelector<HTMLElement>('.incoming-word')!
+    expect(prompt).toHaveClass('leading')
     expect(prompt.lang).toBe(incomingDirection === 'english' ? 'en' : incomingDirection === 'pinyin-character' ? 'zh-Latn' : 'zh-Hans')
     const promptValue = prompt.querySelector('.word-face')!.firstChild!.textContent
     const incomingWord = sampleWords.find(word => promptText(word, incomingDirection) === promptValue)!

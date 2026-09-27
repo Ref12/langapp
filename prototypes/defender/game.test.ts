@@ -1,15 +1,17 @@
 import { describe, expect, it } from 'vitest'
 import { sampleWords } from './deck'
-import { advanceRun, allowsPinyinAnnotations, answerText, createRun, LANES, MAX_INCOMING, normalizeAnswer, normalizePinyinInput, paceAt, pauseRun, pinyinAnswerForms, promptText, resumeRun, SHIELDS, submitTranslation, type Direction, type Mode, type Pace, type Run } from './game'
+import { advanceRun, allowsPinyinAnnotations, ANSWER_BANK_SIZE, answerText, createRun, LANES, leadingWord, MAX_INCOMING, normalizeAnswer, normalizePinyinInput, paceAt, pauseRun, pinyinAnswerForms, promptText, resumeRun, SHIELDS, submitTranslation, type Direction, type Mode, type Pace, type Run } from './game'
 
 const setup = { mode: 'tap' as const, direction: 'chinese' as const, pace: 'standard' as const }
 const make = () => createRun(setup, sampleWords, 42)
 const answerFor = (run: Run, id: string) => answerText(run.words.find(word => word.id === id)!, run.settings.direction)
 
 describe('Defender prototype', () => {
-  it('starts with a stable six-word deck and one fully visible incoming word', () => {
+  it('starts with all 12 answer-bank words and one fully visible incoming word', () => {
     const game = make()
-    expect(game.words).toHaveLength(6)
+    expect(game.words).toHaveLength(ANSWER_BANK_SIZE)
+    expect(ANSWER_BANK_SIZE).toBe(12)
+    expect(new Set(game.words.map(word => word.id))).toEqual(new Set(sampleWords.map(word => word.id)))
     expect(game.incoming).toHaveLength(1)
     expect(game.incoming[0].position).toBe(1)
     expect(game.shields).toBe(SHIELDS)
@@ -95,16 +97,62 @@ describe('Defender prototype', () => {
     expect(submitTranslation(run, 'unrelated').outcome).toBe('wrong')
   })
 
-  it('clears the matching copy nearest the shield, not all copies or another word', () => {
+  it('rejects matches behind the leader and clears only one leading word at a time', () => {
     const run = make(), first = run.incoming[0], other = run.words.find(word => word.id !== first.wordId)!
     run.incoming = [
       { ...first, id: 1, position: .8 },
       { ...first, id: 2, lane: 1, position: .2 },
       { ...first, id: 3, lane: 2, position: .1, wordId: other.id },
     ]
-    const next = submitTranslation(run, answerFor(run, first.wordId))
-    expect(next.tile?.id).toBe(2)
-    expect(next.run.incoming.map(tile => tile.id)).toEqual([1, 3])
+    expect(leadingWord(run)?.id).toBe(3)
+    const wrong = submitTranslation(run, answerFor(run, first.wordId))
+    expect(wrong.outcome).toBe('wrong')
+    expect(wrong.run.incoming).toEqual(run.incoming)
+    expect(wrong.run.score).toBe(0)
+    const next = submitTranslation(run, answerFor(run, other.id))
+    expect(next.tile?.id).toBe(3)
+    expect(next.run.incoming.map(tile => tile.id)).toEqual([1, 2])
+    const duplicate = submitTranslation(next.run, answerFor(run, first.wordId))
+    expect(duplicate.tile?.id).toBe(2)
+    expect(duplicate.run.incoming.map(tile => tile.id)).toEqual([1])
+  })
+
+  it.each(['tap', 'type'] as const)('enforces the leader for %s across all four directions', mode => {
+    for (const direction of ['chinese', 'english', 'character-pinyin', 'pinyin-character'] as const) {
+      const run = createRun({ ...setup, mode, direction }, sampleWords, 42)
+      const word = run.words[0], other = run.words[1]
+      run.incoming = [
+        { id: 2, wordId: other.id, lane: 0, position: .8, speed: .1 },
+        { id: 1, wordId: word.id, lane: 1, position: .3, speed: .1 },
+      ]
+      expect(submitTranslation(run, answerText(other, direction)).outcome).toBe('wrong')
+      expect(submitTranslation(run, answerText(word, direction)).outcome).toBe('hit')
+    }
+  })
+
+  it('breaks distance ties by arrival ID and updates the leader as words overtake or breach', () => {
+    const run = make(), template = run.incoming[0]
+    run.incoming = [
+      { ...template, id: 9, position: .4, speed: .5, lane: 0 },
+      { ...template, id: 4, position: .3, speed: .1, lane: 1 },
+    ]
+    expect(leadingWord(run)?.id).toBe(4)
+    const advanced = advanceRun(run, .5).run
+    expect(leadingWord(advanced)?.id).toBe(9)
+    const breached = advanceRun(advanced, .5).run
+    expect(leadingWord(breached)?.id).toBe(4)
+    run.incoming = [{ ...template, id: 9 }, { ...template, id: 4 }]
+    expect(leadingWord(run)?.id).toBe(4)
+    expect(run.incoming[0].id).toBe(9)
+  })
+
+  it('ignores answers between spawns without breaking the streak', () => {
+    const run = make()
+    run.incoming = []; run.streak = 3
+    expect(leadingWord(run)).toBeUndefined()
+    const result = submitTranslation(run, answerFor(run, run.words[0].id))
+    expect(result.outcome).toBe('ignored')
+    expect(result.run).toBe(run)
   })
 
   it('breaks streaks on mistakes without taking shields or changing word positions', () => {
@@ -151,7 +199,11 @@ describe('Defender prototype', () => {
         for (let j = 1; j < tiles.length; j++) expect(tiles[j].position - tiles[j - 1].position).toBeGreaterThan(.8)
       }
       // Let pressure accumulate, then defend words just before impact.
-      for (const tile of run.incoming.filter(tile => tile.position < .1)) run = submitTranslation(run, answerFor(run, tile.wordId)).run
+      while (true) {
+        const leader = leadingWord(run)
+        if (!leader || leader.position >= .1) break
+        run = submitTranslation(run, answerFor(run, leader.wordId)).run
+      }
     }
     expect(maximum).toBeGreaterThanOrEqual(4)
     expect(run.phase).toBe('playing')

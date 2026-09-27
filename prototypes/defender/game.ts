@@ -34,9 +34,15 @@ export interface Run {
   missed: string[]
 }
 export const LANES = 4
+export const ANSWER_BANK_SIZE = 12
 export const MAX_INCOMING = 8
 export const SHIELDS = 5
 export const WAVE_SECONDS = 20
+
+export function leadingWord(run: Run): Incoming | undefined {
+  return run.incoming.reduce<Incoming | undefined>((leader, tile) =>
+    !leader || tile.position < leader.position || (tile.position === leader.position && tile.id < leader.id) ? tile : leader, undefined)
+}
 
 function random(run: Run): number {
   run.randomState = (Math.imul(run.randomState, 1664525) + 1013904223) >>> 0
@@ -117,7 +123,7 @@ export function createRun(settings: Settings, words: readonly Word[], seed: numb
     const j = Math.floor(random(run) * (i + 1))
     ;[run.words[i], run.words[j]] = [run.words[j], run.words[i]]
   }
-  run.words = run.words.slice(0, 6)
+  run.words = run.words.slice(0, ANSWER_BANK_SIZE)
   spawn(run)
   return run
 }
@@ -170,13 +176,12 @@ export function advanceRun(current: Run, seconds: number): { run: Run; events: G
 /** Common input boundary for tap, typing, and a future reviewed speech transcript. */
 export function submitTranslation(current: Run, input: string): { run: Run; outcome: 'hit' | 'wrong' | 'ignored'; tile?: Incoming } {
   const answer = directionForms[current.settings.direction].answer === 'pinyin' ? normalizePinyinInput(input) : normalizeAnswer(input)
-  if (current.phase !== 'playing' || !answer) return { run: current, outcome: 'ignored' }
-  const matches = current.incoming.filter(tile => {
-    const word = current.words.find(word => word.id === tile.wordId)!
-    return acceptedAnswers(word, current.settings.direction).includes(answer)
-  }).sort((a, b) => a.position - b.position || a.id - b.id)
-  const run = copy(current), tile = matches[0]
-  if (!tile) { run.wrong++; run.streak = 0; return { run, outcome: 'wrong' } }
+  const tile = leadingWord(current)
+  if (current.phase !== 'playing' || !answer || !tile) return { run: current, outcome: 'ignored' }
+  const run = copy(current), word = current.words.find(word => word.id === tile.wordId)!
+  if (!acceptedAnswers(word, current.settings.direction).includes(answer)) {
+    run.wrong++; run.streak = 0; return { run, outcome: 'wrong' }
+  }
   run.incoming = run.incoming.filter(item => item.id !== tile.id)
   run.hits++
   run.streak++

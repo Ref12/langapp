@@ -1,5 +1,5 @@
 import { sampleWords, type Word } from './deck'
-import { advanceRun, allowsPinyinAnnotations, answerText, createRun, directionForms, isDirection, pauseRun, promptText, resumeRun, SHIELDS, submitTranslation, type Incoming, type Run, type Settings, type WordForm } from './game'
+import { advanceRun, allowsPinyinAnnotations, ANSWER_BANK_SIZE, answerText, createRun, directionForms, isDirection, leadingWord, pauseRun, promptText, resumeRun, SHIELDS, submitTranslation, type Incoming, type Run, type Settings, type WordForm } from './game'
 
 function element<T extends HTMLElement>(selector: string): T {
   const node = document.querySelector<T>(selector)
@@ -62,14 +62,14 @@ function paintWord(node: HTMLElement, word: Word, form: WordForm, annotate: bool
   node.replaceChildren(face)
 }
 
-function paintControls(words: Word[] = sampleWords.slice(0, 6)) {
+function paintControls(words: Word[] = sampleWords.slice(0, ANSWER_BANK_SIZE)) {
   const options = run?.settings ?? config(), typing = options.mode === 'type'
   const answerForm = directionForms[options.direction].answer
   const labels = { meaning: 'English meaning', character: 'Chinese word', pinyin: 'pinyin' }
   showPinyin.disabled = !allowsPinyinAnnotations(options.direction)
   pinyinHelp.textContent = showPinyin.disabled ? 'Hints are hidden when matching pronunciation.' : 'Optional help in Chinese ↔ English modes.'
   answerBank.hidden = typing; typeForm.hidden = !typing
-  controlLabel.textContent = typing ? 'TYPE TO DEFEND' : 'YOUR TRANSLATIONS'
+  controlLabel.textContent = typing ? 'TYPE FOR THE TARGET' : `${words.length} ANSWERS / ONE TARGET`
   controlHint.textContent = typing ? answerForm === 'pinyin' ? 'Tone marks or numbers · Enter' : `${labels[answerForm]} · Enter to fire` : `Tap the ${labels[answerForm]}`
   answerInput.placeholder = answerForm === 'meaning' ? 'Type an English meaning…' : answerForm === 'pinyin' ? 'Pinyin: shuǐ or shui3…' : '输入中文…'
   answerInput.lang = answerForm === 'meaning' ? 'en' : answerForm === 'pinyin' ? 'zh-Latn' : 'zh-Hans'
@@ -86,9 +86,10 @@ function paintControls(words: Word[] = sampleWords.slice(0, 6)) {
 
 function lockControls() {
   const playing = run?.phase === 'playing'
-  for (const button of buttons.values()) button.disabled = !playing
+  const target = run && leadingWord(run)
+  for (const button of buttons.values()) button.disabled = !playing || !target
   answerInput.disabled = !playing
-  typeForm.querySelector('button')!.disabled = !playing
+  typeForm.querySelector('button')!.disabled = !playing || !target
 }
 
 function paintHud() {
@@ -109,6 +110,7 @@ function paintHud() {
 
 function paintTiles() {
   const live = new Set(run?.incoming.map(tile => tile.id) ?? [])
+  const leader = run && leadingWord(run)
   for (const [id, node] of tiles) if (!live.has(id)) { node.remove(); tiles.delete(id) }
   for (const tile of run?.incoming ?? []) {
     let node = tiles.get(tile.id)
@@ -123,7 +125,13 @@ function paintTiles() {
     }
     node.style.setProperty('--position', String(tile.position))
     node.classList.toggle('danger', tile.position < .23)
+    const leading = tile.id === leader?.id
+    if (node.classList.contains('leading') !== leading) {
+      node.classList.toggle('leading', leading)
+      node.setAttribute('aria-description', leading ? 'Leading word. Match this one first.' : 'Queued word. Match the leading word first.')
+    }
   }
+  lockControls()
 }
 
 function flash(tile: Incoming, text: string, breach = false) {
@@ -184,7 +192,7 @@ function start() {
   overlay.hidden = true; pause.disabled = false; pause.textContent = 'Ⅱ'; pause.setAttribute('aria-label', 'Pause game'); pause.title = 'Pause game'
   effects.replaceChildren(); incoming.replaceChildren(); tiles.clear()
   paintControls(run.words); paintTiles(); paintHud()
-  announce(run.settings.mode === 'tap' ? 'Translate any incoming word. Tap its match below.' : 'Translate any incoming word. Type the answer and press Enter.')
+  announce(run.settings.mode === 'tap' ? 'Match only the highlighted leading word.' : 'Type the highlighted leading word’s answer and press Enter.')
   if (run.settings.mode === 'type') answerInput.focus()
   else buttons.values().next().value?.focus({ preventScroll: true })
   animation = requestAnimationFrame(frame)
@@ -222,7 +230,7 @@ function answer(text: string) {
     announce(`${promptText(word, run.settings.direction)} — ${answerText(word, run.settings.direction)}. Intercepted!`, 'hit')
     answerInput.value = ''
   } else {
-    announce('No incoming word matches that answer. Try again.', 'wrong')
+    announce('That does not match the leading word. Follow the highlighted target.', 'wrong')
     if (run.settings.mode === 'type') answerInput.select()
   }
   paintTiles(); paintHud()
@@ -232,7 +240,7 @@ function setup() {
   run = undefined; stopAnimation(); tiles.clear(); incoming.replaceChildren(); effects.replaceChildren()
   settings.hidden = false; briefing.hidden = false; recap.hidden = true; pause.disabled = true
   overlay.hidden = false; kicker.textContent = 'YOUR NEXT WATCH'; title.textContent = 'Ready to hold the line?'
-  copy.textContent = 'Translate incoming words before they cross the shield. Five breaches end the run.'
+  copy.textContent = 'Match the highlighted leading word before it crosses the shield. Five breaches end the run.'
   primary.textContent = 'Start defending →'; secondary.hidden = true
   paintControls(); paintHud(); announce('Choose controls, direction, and pace.'); mode.focus()
 }

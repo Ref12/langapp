@@ -26,9 +26,10 @@ Opening the preview from the game initially loads a fresh instance.
 ## Play
 
 - **Tap mode:** incoming words move right to left on desktop and fall toward
-  a bottom shield at viewport widths of 600 pixels or less. Tap the matching
-  translation in the six-word answer bank. Choices keep their positions for
-  the whole run and never highlight the right answer automatically.
+  a bottom shield at viewport widths of 600 pixels or less. Tap the leading
+  word's translation in the 12-item answer bank (three columns by four rows). All 12 sample words are
+  available, keeping their positions for the whole run; choices never highlight
+  the right answer automatically.
 - **Type mode:** type the translation and press Enter or Defend. Chinese
   IME composition is not submitted on its confirmation keystroke.
 - **Direction:** choose Chinese → English, English → Chinese,
@@ -44,15 +45,19 @@ Opening the preview from the game initially loads a fresh instance.
   can coexist across four lanes; lane spacing is enforced.
   Lane progress is normalized, so device resizing changes the direction of
   travel without changing a word's remaining travel time or the game rules.
-- **Defending:** an answer clears the matching word nearest the shield.
-  Repeated copies need separate answers. Correct answers earn 100 points plus
-  a capped streak bonus. Incorrect answers break the streak but cost no shield.
+- **Defending:** only the highlighted **TARGET**, the word closest to the
+  shield across all lanes, can be matched. Equal positions are ordered by
+  arrival ID. Answering a later word counts as incorrect, even when it is
+  visible. A hit removes exactly one leading word and promotes the next target;
+  repeated copies need separate answers. Answers while no words are present
+  are ignored. Correct answers earn 100 points plus a capped streak bonus.
+  Incorrect answers break the streak but cost no shield.
 - **Breaches:** each word crossing the line costs one of five shields.
   The run ends at zero shields and lists the missed words for review.
 - **Pause:** use Pause or Escape. Hidden tabs pause automatically, and an
   interrupted animation frame pauses rather than jumping words across the line.
   Resume is explicit. End run is available while paused.
-- **Replay:** Play again creates a fresh shuffled six-word deck. Change setup
+- **Replay:** Play again creates a fresh shuffled 12-word bank. Change setup
   returns to the mode, direction, and pace controls.
 
 English answers accept only the displayed meaning and explicit alternatives in
@@ -87,7 +92,9 @@ npx eslint prototypes\defender
 The engine tests cover both modes and all four directions, tone-aware pinyin
 normalization, duplicate
 targets, wrong answers, pauses, shield loss, game over, seed reproducibility,
-frame-rate behavior, and multiple simultaneous words as pace ramps.
+frame-rate behavior, and multiple simultaneous words as pace ramps. Targeting
+tests cover leader-only matching, tie-breaking, overtaking, breaches, and
+duplicate copies in both input modes.
 The DOM integration check covers both controls, pause/resume, end-of-run flow,
 tab hiding, Chinese IME-safe submission, annotation rendering, and suppression
 of pronunciation hints in pinyin-matching modes.
