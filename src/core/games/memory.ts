@@ -22,6 +22,7 @@ export const memoryGameSchema = z.object({
 }).strict()
 export type MemoryGame = z.infer<typeof memoryGameSchema>
 export type MemoryAction = { type: 'start' } | { type: 'continue' } | { type: 'reveal'; id: number }
+export const MEMORY_MISMATCH_DELAY_MS = 1200
 
 export function memoryGroupSize(mode: MemoryMode): number { return mode === 'triplets' ? 3 : 2 }
 
@@ -34,11 +35,14 @@ function shuffle<T>(items: readonly T[], random: () => number): T[] {
   return result
 }
 
-export function memoryMatches(tiles: readonly MemoryTile[], mode: MemoryMode): boolean {
-  return tiles.length === memoryGroupSize(mode)
-    && new Set(tiles.map(tile => tile.id)).size === tiles.length
+function compatibleTiles(tiles: readonly MemoryTile[]): boolean {
+  return new Set(tiles.map(tile => tile.id)).size === tiles.length
     && tiles.every(tile => tile.word.id === tiles[0].word.id)
     && new Set(tiles.map(tile => tile.face)).size === tiles.length
+}
+
+export function memoryMatches(tiles: readonly MemoryTile[], mode: MemoryMode): boolean {
+  return tiles.length === memoryGroupSize(mode) && compatibleTiles(tiles)
 }
 
 export function createMemoryGame(words: readonly GameWord[], mode: MemoryMode, wordCount: MemoryWordCount, random = Math.random): MemoryGame {
@@ -74,14 +78,16 @@ export function readMemoryGame(value: unknown): MemoryGame {
     }
   }
   const complete = game.matched.length === game.tiles.length
+  const mismatch = game.turned.length >= 2 && !compatibleTiles(game.turned.map(id => game.tiles[id]))
   if ((game.phase === 'complete') !== complete || game.attempts < game.matched.length / size
     || (game.phase === 'study' && (game.attempts !== 0 || game.turned.length !== 0 || game.matched.length !== 0))
     || (game.phase === 'play' && game.turned.length >= size)
     || (game.phase === 'complete' && game.turned.length !== 0)
-    || (game.phase === 'review' && (game.turned.length !== size || game.attempts <= game.matched.length / size
-      || memoryMatches(game.turned.map(id => game.tiles[id]), game.mode)))) {
+    || (game.phase === 'review' && (game.turned.length < 2 || game.turned.length > size || game.attempts <= game.matched.length / size || !mismatch))) {
     throw new Error('The saved Memory turn is inconsistent.')
   }
+  // Earlier triplet games allowed a mismatched second tile to wait for a third.
+  if (game.phase === 'play' && mismatch) return { ...game, phase: 'review', attempts: game.attempts + 1 }
   return game
 }
 
@@ -98,9 +104,9 @@ export function applyMemoryAction(game: MemoryGame, action: MemoryAction): Memor
     || game.turned.includes(action.id) || game.matched.includes(action.id)) throw new Error('Choose a face-down tile during an active turn.')
   const turned = [...game.turned, action.id]
   const next = { ...game, revision: game.revision + 1, turned }
+  if (!compatibleTiles(turned.map(id => game.tiles[id]))) return { ...next, attempts: next.attempts + 1, phase: 'review' }
   if (turned.length < memoryGroupSize(game.mode)) return next
   next.attempts++
-  if (!memoryMatches(turned.map(id => game.tiles[id]), game.mode)) return { ...next, phase: 'review' }
   const matched = [...game.matched, ...turned]
   return { ...next, matched, turned: [], phase: matched.length === game.tiles.length ? 'complete' : 'play' }
 }

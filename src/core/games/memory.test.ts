@@ -35,14 +35,13 @@ describe('Memory matching', () => {
     },
   )
 
-  it.each(['mixed', 'triplets'] as const)('keeps a failed %s turn visible until Continue without counting it twice', mode => {
+  it.each(['mixed', 'triplets'] as const)('ends a failed %s turn at the second card and counts it once', mode => {
     let game = applyMemoryAction(createMemoryGame(words, mode, 4, () => .5), { type: 'start' })
     const first = game.tiles[0], other = game.tiles.find(tile => tile.word.id !== first.word.id)!
     const group = [first, other]
-    if (mode === 'triplets') group.push(game.tiles.find(tile => !group.some(chosen => chosen.id === tile.id))!)
     for (const tile of group) game = applyMemoryAction(game, { type: 'reveal', id: tile.id })
     expect(game.phase).toBe('review')
-    expect(game.turned).toHaveLength(memoryGroupSize(mode))
+    expect(game.turned).toHaveLength(2)
     expect(game.attempts).toBe(1)
     expect(game.matched).toEqual([])
     expect(readMemoryGame(JSON.parse(JSON.stringify(game)))).toEqual(game)
@@ -52,6 +51,35 @@ describe('Memory matching', () => {
     expect(continued.turned).toEqual([])
     expect(continued.attempts).toBe(1)
     expect(continued.tiles).toEqual(game.tiles)
+  })
+
+  it('waits for a third card only if the first two are compatible', () => {
+    let game = applyMemoryAction(createMemoryGame(words, 'triplets', 4), { type: 'start' })
+    const group = game.tiles.filter(tile => tile.word.id === game.tiles[0].word.id)
+    game = applyMemoryAction(game, { type: 'reveal', id: group[0].id })
+    game = applyMemoryAction(game, { type: 'reveal', id: group[1].id })
+    expect(game.phase).toBe('play')
+    expect(game.attempts).toBe(0)
+    expect(game.matched).toEqual([])
+    const wrong = game.tiles.find(tile => tile.word.id !== group[0].word.id)!
+    game = applyMemoryAction(game, { type: 'reveal', id: wrong.id })
+    expect(game.phase).toBe('review')
+    expect(game.turned).toHaveLength(3)
+    expect(game.attempts).toBe(1)
+    expect(readMemoryGame(game)).toEqual(game)
+  })
+
+  it('resumes old unfinished triplet mismatches and old full review turns', () => {
+    const game = applyMemoryAction(createMemoryGame(words, 'triplets', 4), { type: 'start' })
+    const first = game.tiles[0], second = game.tiles.find(tile => tile.word.id !== first.word.id)!
+    const third = game.tiles.find(tile => tile.id !== first.id && tile.id !== second.id)!
+    const oldPartial = { ...game, turned: [first.id, second.id] }
+    const resumed = readMemoryGame(oldPartial)
+    expect(resumed.phase).toBe('review')
+    expect(resumed.attempts).toBe(1)
+    expect(readMemoryGame(resumed)).toEqual(resumed)
+    expect(readMemoryGame({ ...game, phase: 'review', attempts: 1, turned: [first.id, second.id, third.id] }).turned).toHaveLength(3)
+    expect(oldPartial.attempts).toBe(0)
   })
 
   it('rejects repeated tile selections and partial or forged matching groups', () => {

@@ -12,3 +12,16 @@ export async function updateMemory(expected: MemoryGame, action: MemoryAction): 
     return next
   })
 }
+
+/** A stale automatic flip must not affect a newer turn or a replacement board. */
+export async function finishMemoryMismatch(expected: MemoryGame): Promise<MemoryGame | undefined> {
+  return db.transaction('rw', db.memoryGames, async () => {
+    const value = await db.memoryGames.get('current')
+    if (!value || value.gameId !== expected.gameId || value.revision !== expected.revision) return undefined
+    const game = readMemoryGame(value)
+    if (game.phase !== 'review') return undefined
+    const next = applyMemoryAction(game, { type: 'continue' })
+    await db.memoryGames.put(next)
+    return next
+  })
+}

@@ -347,17 +347,29 @@ scroll in very short windows rather than clip vocabulary or shrink tap targets.
 - **Pairs** match two different representations of a word. Choose Chinese +
   English, Chinese + pinyin, pinyin + English, or mixed pair types.
 - **Triplets** require all three representations of the same word: Chinese,
-  pinyin, and English. Finding two of them does not eliminate a partial triplet.
+  pinyin, and English. Finding two of them does not complete a partial triplet.
 
 Every tile is initially visible in a self-paced **study phase**. **Start
-memory** turns the tiles face down without moving them. Reveal two or three
-tiles per turn, according to the selected mode. Matching groups are removed,
-leaving their positions empty. A mismatch stays visible for study until
-**Continue** turns that group face down; there is no timer or automatic flip-back.
+memory** turns the tiles face down without moving them. Reveal up to two or
+three tiles per turn, according to the selected mode. Matched cards remain
+face up in their original positions, sharing a distinct color from an eight-color
+curated palette (`src/core/games/memory-colors.ts`). Colors are assigned in match
+order and remain stable across reload; matched labels and checkmarks supplement
+color. The completed board also stays visible.
+
+The first incompatible card ends the turn immediately: two different words
+already fail a triplet attempt, without requiring a third flip. Mismatched cards
+remain visible for 1.2 seconds, then turn face down automatically. If the first
+two cards do match, a third incompatible card turns all three back after the
+same pause. There is no Continue button. Navigating away cancels the pending
+timer; returning to a saved mismatch gives it a fresh short pause. Stale timers
+cannot affect a newer turn or board. A failed save leaves the cards visible with
+an explicit retry action instead of repeatedly retrying in the background.
 
 Concealed tiles render only their backs and position labels, not hidden word
 text in the DOM or accessible names. Character tiles never include a pinyin
-annotation. Turns are counted only after a full pair or triplet is revealed.
+annotation. Each turn is counted once, when it first mismatches or completes a
+matching pair or triplet.
 Preparing another board requires confirmation and resets only that game.
 
 The current board, study/play/review phase, revealed tiles, matches, and turns

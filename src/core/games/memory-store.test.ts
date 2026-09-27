@@ -2,8 +2,8 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace, LearningDatabase, loadWorkspace } from '../database'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
 import { starterWords } from '../../data/mandarin'
-import { createMemoryGame } from './memory'
-import { updateMemory } from './memory-store'
+import { applyMemoryAction, createMemoryGame } from './memory'
+import { finishMemoryMismatch, updateMemory } from './memory-store'
 
 const words = starterWords.map(word => ({ id: word.id, character: word.native, pinyin: word.pinyin, meaning: word.meaning }))
 beforeEach(async () => { await db.delete(); await db.open(); await initializeWorkspace() })
@@ -37,4 +37,24 @@ it('isolates profiles and clears non-exported games on backup restore', async ()
   expect(text).not.toContain('memoryGames')
   await restoreBackup(text)
   expect(await db.memoryGames.count()).toBe(0)
+})
+
+it('ignores duplicate or stale automatic flips without hiding a newer turn', async () => {
+  let game = applyMemoryAction(createMemoryGame(words, 'triplets', 4), { type: 'start' })
+  const first = game.tiles[0], second = game.tiles.find(tile => tile.word.id !== first.word.id)!
+  game = applyMemoryAction(game, { type: 'reveal', id: first.id })
+  game = applyMemoryAction(game, { type: 'reveal', id: second.id })
+  await db.memoryGames.put(game)
+  const next = (await finishMemoryMismatch(game))!
+  expect(next.phase).toBe('play')
+  expect(next.attempts).toBe(1)
+  expect(await finishMemoryMismatch(game)).toBeUndefined()
+  const partial = await updateMemory(next, { type: 'reveal', id: first.id })
+  const newer = await updateMemory(partial, { type: 'reveal', id: second.id })
+  expect(await finishMemoryMismatch(game)).toBeUndefined()
+  expect(await db.memoryGames.get('current')).toEqual(newer)
+  const replacement = createMemoryGame(words, 'mixed', 4)
+  await db.memoryGames.put(replacement)
+  expect(await finishMemoryMismatch(newer)).toBeUndefined()
+  expect(await db.memoryGames.get('current')).toEqual(replacement)
 })
