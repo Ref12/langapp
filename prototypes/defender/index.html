@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <title>Word Defender · Prototype</title>
+    <link rel="stylesheet" href="./defender.css">
+    <script type="module" src="./main.ts"></script>
+  </head>
+  <body>
+    <main class="defender">
+      <header class="page-header">
+        <div><p class="eyebrow">LANGUAGE ARCADE / FIELD TEST 01</p><h1>Word <span>Defender</span></h1></div>
+        <span class="prototype-badge">PROTOTYPE</span>
+      </header>
+      <p class="intro">Recognize. Translate. Hold the line.</p>
+
+      <form id="settings" class="settings" aria-label="Game setup">
+        <label>Controls<select id="mode"><option value="tap">Tap a translation</option><option value="type">Type a translation</option></select></label>
+        <label>Incoming words<select id="direction"><option value="chinese">Chinese → English</option><option value="english">English → Chinese</option></select></label>
+        <label>Starting pace<select id="pace"><option value="gentle">Gentle</option><option value="standard" selected>Standard</option><option value="brisk">Brisk</option></select></label>
+      </form>
+
+      <section class="arena" aria-label="Word Defender game">
+        <div class="hud">
+          <div class="metric"><span>SCORE</span><strong id="score">0000</strong></div>
+          <div class="metric"><span>WAVE</span><strong id="wave">01</strong></div>
+          <div class="shield-status"><span>SHIELD</span><div id="shields" role="img" aria-label="5 of 5 shields"></div></div>
+          <button id="pause" class="icon-button" type="button" aria-label="Pause game" title="Pause game" disabled>Ⅱ</button>
+        </div>
+        <div id="field" class="field" role="group" aria-label="Incoming words">
+          <div class="field-grid" aria-hidden="true"></div>
+          <div class="defense-line" aria-hidden="true"><span>HOLD THE LINE</span></div>
+          <div class="entry-label" aria-hidden="true">INCOMING ←</div>
+          <div id="incoming"></div>
+          <div id="effects" aria-hidden="true"></div>
+          <div id="overlay" class="overlay">
+            <div class="overlay-content">
+              <p id="overlay-kicker" class="eyebrow">YOUR FIRST WATCH</p>
+              <h2 id="overlay-title">Keep the words<br>on your side.</h2>
+              <p id="overlay-copy">Translate incoming words before they cross the shield. Five breaches end the run.</p>
+              <div class="overlay-actions"><button id="primary" class="button primary" type="button">Start defending <span aria-hidden="true">→</span></button><button id="secondary" class="button secondary" type="button" hidden>End run</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="arena-footer"><span id="streak">0 streak</span><span id="pressure">Multiple words. One line to hold.</span></div>
+      </section>
+
+      <section class="controls" aria-label="Answer controls">
+        <div class="controls-heading"><span id="control-label" class="eyebrow">YOUR TRANSLATIONS</span><span id="control-hint">Tap the matching meaning</span></div>
+        <div id="answer-bank" class="answer-bank" role="group" aria-label="Translation choices"></div>
+        <form id="type-form" class="type-form" hidden>
+          <label class="sr-only" for="answer-input">Type the matching translation</label>
+          <input id="answer-input" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="Type an English meaning…" maxlength="80">
+          <button class="button primary" type="submit">Defend <span aria-hidden="true">↵</span></button>
+        </form>
+        <p id="feedback" class="feedback" role="status" aria-live="polite">Choose your controls and starting pace, then start.</p>
+      </section>
+
+      <details id="briefing" class="briefing">
+        <summary>How to play &amp; prototype word deck</summary>
+        <p>Words travel from right to left. Match any incoming word; you do not need to select a target first. If the same word appears twice, your answer clears the one nearest the shield.</p>
+        <p>Every 20 seconds a new wave increases the spawn rate and the speed of new words. Up to eight words can be on screen. Wrong answers break your streak; missed words cost a shield. Pause anytime with the pause button or Escape. Switching tabs pauses automatically.</p>
+        <p>Typing accepts the displayed translation and listed English alternatives, ignoring case, extra spaces, and final sentence punctuation. Chinese answers require the actual characters; use your Chinese keyboard/IME. Pinyin is not an answer in this prototype.</p>
+        <div id="word-deck" class="word-deck"></div>
+        <p class="prototype-note">Standalone experiment using a small sample deck—not your app knowledge set. No saved scores, microphone, AI calls, or changes to learning progress. Spoken translations are planned for a later version.</p>
+      </details>
+      <section id="recap" class="recap" hidden aria-label="Run recap"><h2>Words to revisit</h2><div id="missed-words"></div></section>
+      <p id="fatal-error" class="error" role="alert" hidden></p>
+    </main>
+  </body>
+</html>
