@@ -17,6 +17,10 @@ h1 span { font-weight: 350; color: #e5c388; }
 .intro { margin: 10px 0 22px; color: #a6b5b2; font-size: 14px; }
 .settings { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 12px; margin-bottom: 18px; }
 .settings label { display: grid; gap: 6px; color: #a6b5b2; font-size: 11px; }
+.pinyin-setting { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; color: #a6b5b2; font-size: 11px; }
+.pinyin-setting label { display: inline-flex; align-items: center; min-height: 34px; gap: 8px; color: #d5e5da; cursor: pointer; }
+.pinyin-setting input { width: 18px; height: 18px; accent-color: #76d9b4; }
+.pinyin-setting:has(input:disabled) { opacity: .6; }
 select { min-width: 0; width: 100%; min-height: 44px; border: 1px solid #375152; padding: 9px; color: #eef2e8; background: #14272c; border-radius: 8px; font-size: 13px; }
 .arena { overflow: hidden; border-radius: 16px; border: 1px solid #49625d; box-shadow: 0 22px 60px #0004; background: #10252b; }
 .hud { display: flex; align-items: center; gap: 32px; padding: 13px 20px; background: #0c1c23; border-bottom: 1px solid #34524e; }
@@ -35,6 +39,12 @@ select { min-width: 0; width: 100%; min-height: 44px; border: 1px solid #375152;
 .entry-label { position: absolute; right: 14px; top: 8px; color: #7caaa5; font-size: 8px; letter-spacing: 2px; }
 .incoming-word, .word-effect { position: absolute; left: calc(var(--line) + 5px + var(--position) * (100% - var(--line) - var(--card-width) - 21px)); top: calc((var(--lane) + .5) * 25% - 25px); width: var(--card-width); height: 50px; border: 1px solid #6da69a; border-radius: 9px; display: grid; place-items: center; padding: 5px; color: #f2f4e9; background: linear-gradient(140deg, #2e5959, #1b3e48); box-shadow: 0 4px 12px #0003, inset 0 1px #bed7bb22; font-size: 17px; font-weight: 500; text-align: center; line-height: 1.15; }
 .incoming-word[lang="zh-Hans"] { font-size: 28px; font-weight: 400; }
+.incoming-word[lang="zh-Latn"] { font-size: 19px; font-style: normal; }
+.word-face { max-width: 100%; }
+.with-pinyin { padding: 2px 5px; }
+.with-pinyin ruby { ruby-align: center; line-height: 1.05; }
+.with-pinyin rt { font: 11px/1.1 "Segoe UI", system-ui, sans-serif; color: #c0d9ba; }
+.incoming-word.with-pinyin[lang="zh-Hans"] { font-size: 23px; }
 .incoming-word.danger { border-color: #ffb87a; color: #ffd6af; background: #653a2f; }
 .word-effect { z-index: 3; pointer-events: none; animation: word-hit .45s ease-out forwards; color: #c9ffe0; border-color: #90ffbd; background: #34745f; }
 .word-effect.breach { color: #ffc4b6; border-color: #ff896c; background: #773f36; }
@@ -81,19 +91,23 @@ select { min-width: 0; width: 100%; min-height: 44px; border: 1px solid #375152;
   .prototype-badge { padding: 6px 8px; font-size: 8px; }
   .intro { margin: 5px 0 14px; font-size: 12px; }
   .settings { gap: 7px; grid-template-columns: 1fr 1fr; margin-bottom: 12px; }
-  .settings label:last-child { grid-column: 1 / -1; }
-  .settings label:last-child select { min-height: 38px; }
+  .settings .pace-setting { grid-column: 1 / -1; }
+  .settings .pace-setting select { min-height: 38px; }
+  .pinyin-setting { gap: 2px; }
   .hud { padding: 8px 12px; gap: 16px; }
   .metric strong { font-size: 21px; }
   .shield { width: 12px; }
   .field { --card-width: 104px; --line: 24px; height: clamp(232px, 38dvh, 316px); }
   .incoming-word { font-size: 14px; }
   .incoming-word[lang="zh-Hans"] { font-size: 25px; }
+  .incoming-word[lang="zh-Latn"] { font-size: 15px; }
+  .incoming-word.with-pinyin[lang="zh-Hans"] { font-size: 22px; }
   .arena-footer { padding: 7px 10px; font-size: 10px; }
   .controls { margin-top: 12px; }
   .controls-heading .eyebrow { font-size: 9px; letter-spacing: 1px; }
   .answer-bank { gap: 7px; }
   .answer-choice { min-height: 48px; font-size: 14px; }
+  .answer-choice.with-pinyin { min-height: 48px; font-size: 22px; }
   .type-form .button { padding-inline: 10px; gap: 7px; }
   .word-deck { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

@@ -3,6 +3,7 @@ import { URL as NodeURL } from 'node:url'
 import '@testing-library/jest-dom/vitest'
 import { afterEach, expect, it, vi } from 'vitest'
 import { sampleWords } from './deck'
+import { allowsPinyinAnnotations, answerText, directionForms, pinyinAnswerForms, promptText } from './game'
 
 afterEach(() => { window.dispatchEvent(new Event('pagehide')); vi.restoreAllMocks(); vi.unstubAllGlobals() })
 
@@ -25,6 +26,8 @@ it('plays tap and typed modes, pauses, and does not submit Chinese IME compositi
   const button = (id: string) => document.getElementById(id) as HTMLButtonElement
   const score = () => Number(document.getElementById('score')!.textContent)
   await import('./main')
+  const hints = document.getElementById('show-pinyin') as HTMLInputElement
+  expect(hints.checked).toBe(false)
   expect(document.querySelectorAll('.answer-choice')).toHaveLength(6)
   expect([...document.querySelectorAll<HTMLButtonElement>('.answer-choice')].every(button => button.disabled)).toBe(true)
   button('primary').click()
@@ -71,4 +74,34 @@ it('plays tap and typed modes, pauses, and does not submit Chinese IME compositi
   const before = document.getElementById('wave')!.textContent
   step(40_000)
   expect(document.getElementById('wave')!.textContent).toBe(before)
+  vi.spyOn(document, 'hidden', 'get').mockReturnValue(false)
+  for (const controls of ['tap', 'type'] as const) for (const incomingDirection of ['chinese', 'english', 'character-pinyin', 'pinyin-character'] as const) {
+    if (button('primary').textContent !== 'Resume') button('pause').click()
+    button('secondary').click()
+    button('secondary').click()
+    mode.value = controls; direction.value = incomingDirection; hints.checked = true
+    document.getElementById('settings')!.dispatchEvent(new Event('change', { bubbles: true }))
+    expect(hints.disabled).toBe(!allowsPinyinAnnotations(incomingDirection))
+    button('primary').click()
+    const prompt = document.querySelector<HTMLElement>('.incoming-word')!
+    expect(prompt.lang).toBe(incomingDirection === 'english' ? 'en' : incomingDirection === 'pinyin-character' ? 'zh-Latn' : 'zh-Hans')
+    const promptValue = prompt.querySelector('.word-face')!.firstChild!.textContent
+    const incomingWord = sampleWords.find(word => promptText(word, incomingDirection) === promptValue)!
+    expect(prompt.querySelector('rt')?.textContent).toBe(incomingDirection === 'chinese' ? incomingWord.pinyin : undefined)
+    if (controls === 'tap') {
+      const options = [...document.querySelectorAll<HTMLButtonElement>('.answer-choice')]
+      const choice = options.find(button => button.querySelector('.word-face')!.firstChild!.textContent === answerText(incomingWord, incomingDirection))!
+      expect(choice.querySelector('rt')?.textContent).toBe(incomingDirection === 'english' ? incomingWord.pinyin : undefined)
+      choice.click()
+    } else {
+      input.value = directionForms[incomingDirection].answer === 'pinyin'
+        ? pinyinAnswerForms(incomingWord.pinyin).at(-1)! : answerText(incomingWord, incomingDirection)
+      document.getElementById('type-form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+    }
+    expect(score()).toBe(100)
+    if (!allowsPinyinAnnotations(incomingDirection)) expect(document.querySelector('#field rt, #answer-bank rt')).toBeNull()
+    // A saved preference must not leak annotations into later spawned words either.
+    step(4500)
+    if (!allowsPinyinAnnotations(incomingDirection)) expect(document.querySelector('#incoming rt')).toBeNull()
+  }
 })

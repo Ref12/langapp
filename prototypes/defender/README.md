@@ -23,8 +23,14 @@ dependencies or provider connection are needed.
   the whole run and never highlight the right answer automatically.
 - **Type mode:** type the translation and press Enter or Defend. Chinese
   IME composition is not submitted on its confirmation keystroke.
-- **Direction:** Chinese prompts require English answers; English prompts
-  require Chinese characters. Pinyin is reference information, not an answer.
+- **Direction:** choose Chinese → English, English → Chinese,
+  Chinese → Pinyin, or Pinyin → Chinese. Both tap and typing support every
+  direction.
+- **Optional annotations:** enable **Show pinyin over Chinese words** for
+  Chinese ↔ English. It annotates incoming Chinese or the Chinese answer
+  bank, never the English choices. The toggle starts off and is disabled in
+  pronunciation-matching modes so the answer is not printed on the character.
+  Switching back to a meaning mode restores the checkbox's prior preference.
 - **Pressure:** the first word is immediate. Every 20 seconds raises the wave:
   shorter spawn intervals and faster new words. Up to eight incoming words
   can coexist across four lanes; lane spacing is enforced.
@@ -42,7 +48,16 @@ dependencies or provider connection are needed.
 English answers accept only the displayed meaning and explicit alternatives in
 `englishAnswers`, with Unicode normalization, case folding, whitespace
 normalization, and trailing sentence-punctuation removal. No fuzzy matching,
-AI grading, or inferred synonyms. The briefing/deck is unavailable during a run.
+AI grading, or inferred synonyms. Pinyin answers accept the source tone-marked
+spelling (`míng tiān`, `míngtiān`) or numbered syllables (`ming2 tian1`,
+`ming2tian1`), with neutral tones omitted or written `0` or `5`. Case, spacing,
+and apostrophe separators are ignored; tones are not discarded. `ü`, `u:`, and
+`v` are equivalent keyboard spellings for the umlaut vowel. Bare toneless
+answers are not accepted for toned words. Chinese answers still require the
+actual characters. Source `pinyin` in `deck.ts` must separate syllables with
+spaces and use tone-marked spelling, which allows numbered answers to be
+derived without guessing word boundaries. Ambiguous prompt/answer forms are
+rejected. The briefing/deck is unavailable during a run.
 
 ## Spoken-mode seam
 
@@ -59,11 +74,13 @@ npx tsc --noEmit --target es2022 --module esnext --moduleResolution bundler --li
 npx eslint prototypes\defender
 ```
 
-The engine tests cover both modes and directions, answer normalization, duplicate
+The engine tests cover both modes and all four directions, tone-aware pinyin
+normalization, duplicate
 targets, wrong answers, pauses, shield loss, game over, seed reproducibility,
 frame-rate behavior, and multiple simultaneous words as pace ramps.
 The DOM integration check covers both controls, pause/resume, end-of-run flow,
-tab hiding, and Chinese IME-safe submission.
+tab hiding, Chinese IME-safe submission, annotation rendering, and suppression
+of pronunciation hints in pinyin-matching modes.
 
 This is a mechanic prototype, not a validated learning assessment. Integration
 with the real knowledge set, persistent progress, spoken input, and calibrated

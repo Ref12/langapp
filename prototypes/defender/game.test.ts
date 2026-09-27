@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { sampleWords } from './deck'
-import { advanceRun, answerText, createRun, LANES, MAX_INCOMING, normalizeAnswer, paceAt, pauseRun, promptText, resumeRun, SHIELDS, submitTranslation, type Direction, type Mode, type Pace, type Run } from './game'
+import { advanceRun, allowsPinyinAnnotations, answerText, createRun, LANES, MAX_INCOMING, normalizeAnswer, normalizePinyinInput, paceAt, pauseRun, pinyinAnswerForms, promptText, resumeRun, SHIELDS, submitTranslation, type Direction, type Mode, type Pace, type Run } from './game'
 
 const setup = { mode: 'tap' as const, direction: 'chinese' as const, pace: 'standard' as const }
 const make = () => createRun(setup, sampleWords, 42)
@@ -30,7 +30,7 @@ describe('Defender prototype', () => {
     expect(run.score).toBe(0)
   })
 
-  it.each(['chinese', 'english'] as Direction[])('asks for the opposite representation of %s', direction => {
+  it.each(['chinese', 'english', 'character-pinyin', 'pinyin-character'] as Direction[])('asks for the opposite representation of %s', direction => {
     const run = createRun({ ...setup, direction }, sampleWords, 3)
     const word = run.words.find(word => word.id === run.incoming[0].wordId)!
     expect(submitTranslation(run, promptText(word, direction)).outcome).toBe('wrong')
@@ -38,6 +38,50 @@ describe('Defender prototype', () => {
     if (direction === 'english') expect(submitTranslation(run, word.pinyin).outcome).toBe('wrong')
   })
 
+  it.each(['tap', 'type'] as const)('matches pinyin correctly in %s mode without requiring tone-mark keyboards', mode => {
+    const run = createRun({ ...setup, mode, direction: 'character-pinyin' }, sampleWords, 42)
+    run.incoming[0].wordId = run.words[0].id
+    const word = run.words[0], forms = pinyinAnswerForms(word.pinyin)
+    expect(submitTranslation(run, word.pinyin).outcome).toBe('hit')
+    expect(submitTranslation(run, forms[1] ?? forms[0]).outcome).toBe('hit')
+    expect(submitTranslation(run, word.character).outcome).toBe('wrong')
+    expect(submitTranslation(run, word.meaning).outcome).toBe('wrong')
+    const untoned = word.pinyin.normalize('NFD').replace(/[\u0304\u0301\u030c\u0300]/g, '').normalize('NFC')
+    expect(submitTranslation(run, untoned).outcome).toBe('wrong')
+  })
+
+  it('preserves tones and syllable boundaries in numbered answers, including neutral tones and umlauts', () => {
+    expect(pinyinAnswerForms('péng you')).toEqual(['péngyou', 'peng2you'])
+    expect(normalizePinyinInput(' PENG2 you5! ')).toBe('peng2you')
+    expect(normalizePinyinInput('peng2you0')).toBe('peng2you')
+    expect(normalizePinyinInput('nü3')).toBe(normalizePinyinInput('nu:3'))
+    expect(normalizePinyinInput('nv3')).toBe('nü3')
+    expect(pinyinAnswerForms('nǚ')).toEqual(['nǚ', 'nü3'])
+    expect(pinyinAnswerForms('mi\u030c fa\u0300n')).toEqual(['mǐfàn', 'mi3fan4'])
+    expect(pinyinAnswerForms('míng tiān')).toEqual(['míngtiān', 'ming2tian1'])
+    const words = [sampleWords[0], sampleWords[1]]
+    const run = createRun({ ...setup, direction: 'character-pinyin' }, words, 5)
+    run.incoming[0].wordId = 'water'
+    for (const input of ['shui3', 'SHUI3', 'shuǐ']) expect(submitTranslation(run, input).outcome).toBe('hit')
+    for (const input of ['shui', 'shui2', 'shu3i', 'shui35', '水', 'water']) expect(submitTranslation(run, input).outcome).toBe('wrong')
+  })
+
+  it('keeps optional annotations limited to meaning modes', () => {
+    for (const direction of ['chinese', 'english', 'character-pinyin', 'pinyin-character'] as const) {
+      const run = createRun({ ...setup, direction, showPinyin: true }, sampleWords, 1)
+      expect(run.settings.showPinyin).toBe(allowsPinyinAnnotations(direction))
+      expect(submitTranslation(run, answerFor(run, run.incoming[0].wordId)).outcome).toBe('hit')
+    }
+    expect(make().settings.showPinyin).toBe(false)
+  })
+
+  it('rejects homophonic pinyin answers instead of making two meanings indistinguishable', () => {
+    const words = [sampleWords[0], { ...sampleWords[1], pinyin: sampleWords[0].pinyin }]
+    expect(() => createRun({ ...setup, direction: 'character-pinyin' }, words, 5)).toThrow('ambiguous')
+    expect(() => createRun({ ...setup, direction: 'pinyin-character' }, words, 5)).toThrow('ambiguous')
+    expect(() => createRun(setup, words, 5)).not.toThrow()
+    expect(() => pinyinAnswerForms('míngtiān')).toThrow('Separate pinyin syllables')
+  })
   it('supports listed English alternatives, case, spacing, punctuation, and Chinese IME output', () => {
     expect(normalizeAnswer('  A   Friend!? ')).toBe('a friend')
     const run = make()

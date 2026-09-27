@@ -1,9 +1,18 @@
 import type { Word } from './deck'
 
 export type Mode = 'tap' | 'type'
-export type Direction = 'chinese' | 'english'
+export type Direction = 'chinese' | 'english' | 'character-pinyin' | 'pinyin-character'
+export type WordForm = 'character' | 'meaning' | 'pinyin'
 export type Pace = 'gentle' | 'standard' | 'brisk'
-export interface Settings { mode: Mode; direction: Direction; pace: Pace }
+export interface Settings { mode: Mode; direction: Direction; pace: Pace; showPinyin?: boolean }
+export const directionForms: Record<Direction, { prompt: WordForm; answer: WordForm }> = {
+  chinese: { prompt: 'character', answer: 'meaning' },
+  english: { prompt: 'meaning', answer: 'character' },
+  'character-pinyin': { prompt: 'character', answer: 'pinyin' },
+  'pinyin-character': { prompt: 'pinyin', answer: 'character' },
+}
+export function isDirection(value: string): value is Direction { return Object.hasOwn(directionForms, value) }
+export function allowsPinyinAnnotations(direction: Direction): boolean { return direction === 'chinese' || direction === 'english' }
 export interface Incoming { id: number; wordId: string; lane: number; position: number; speed: number }
 export type GameEvent = { type: 'hit' | 'breach'; tile: Incoming } | { type: 'wave'; wave: number }
 export interface Run {
@@ -39,11 +48,35 @@ export function normalizeAnswer(text: string): string {
 }
 
 export function answerText(word: Word, direction: Direction): string {
-  return direction === 'chinese' ? word.meaning : word.character
+  return word[directionForms[direction].answer].normalize('NFC')
 }
 
 export function promptText(word: Word, direction: Direction): string {
-  return direction === 'chinese' ? word.character : word.meaning
+  return word[directionForms[direction].prompt].normalize('NFC')
+}
+
+export function normalizePinyinInput(text: string): string {
+  return normalizeAnswer(text).replace(/u:|v/g, 'ü').replace(/[\s'’]/g, '').replace(/([a-züê])[05]/g, '$1')
+}
+
+/** Source syllables are space-separated; neutral tones may be omitted or written 0/5. */
+export function pinyinAnswerForms(pinyin: string): string[] {
+  const toneNumbers: Record<string, string> = { '\u0304': '1', '\u0301': '2', '\u030c': '3', '\u0300': '4' }
+  const syllables = pinyin.trim().normalize('NFD').split(/[\s'’]+/)
+  const numbered = syllables.map(syllable => {
+    const marks = syllable.match(/[\u0304\u0301\u030c\u0300]/g) ?? []
+    if (marks.length > 1) throw new Error('Separate pinyin syllables with spaces in the prototype deck.')
+    const base = syllable.replace(/[\u0304\u0301\u030c\u0300]/g, '').normalize('NFC')
+    if (!/^[a-züê]+$/i.test(base)) throw new Error('Use tone-marked pinyin syllables in the prototype deck.')
+    return base + (marks[0] ? toneNumbers[marks[0]] : '')
+  }).join('')
+  return [...new Set([normalizePinyinInput(pinyin), normalizePinyinInput(numbered)])]
+}
+
+function acceptedAnswers(word: Word, direction: Direction): string[] {
+  const form = directionForms[direction].answer
+  return form === 'meaning' ? word.englishAnswers.map(normalizeAnswer)
+    : form === 'pinyin' ? pinyinAnswerForms(word.pinyin) : [normalizeAnswer(word.character)]
 }
 
 export function paceAt(pace: Pace, wave: number) {
@@ -53,15 +86,20 @@ export function paceAt(pace: Pace, wave: number) {
 }
 
 export function createRun(settings: Settings, words: readonly Word[], seed: number): Run {
-  if (!['tap', 'type'].includes(settings.mode) || !['chinese', 'english'].includes(settings.direction)
+  if (!['tap', 'type'].includes(settings.mode) || !isDirection(settings.direction)
     || !['gentle', 'standard', 'brisk'].includes(settings.pace)) throw new Error('Choose a valid mode, direction, and pace.')
+  if (settings.showPinyin !== undefined && typeof settings.showPinyin !== 'boolean') throw new Error('Choose whether pinyin annotations are on or off.')
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('The game seed must be an unsigned integer.')
   if (words.length < 2 || new Set(words.map(word => word.id)).size !== words.length) throw new Error('The prototype needs at least two distinct words.')
   const answers = new Set<string>()
+  const prompts = new Set<string>()
   for (const word of words) {
-    if (!word.id || !word.character.trim() || !word.meaning.trim() || !word.englishAnswers.length) throw new Error('Every prototype word needs both forms and accepted English answers.')
-    for (const answer of settings.direction === 'chinese' ? word.englishAnswers : [word.character]) {
-      const normalized = normalizeAnswer(answer)
+    if (!word.id || !word.character.trim() || !word.meaning.trim() || !word.pinyin.trim() || !word.englishAnswers.length) throw new Error('Every prototype word needs Chinese, pinyin, a meaning, and accepted English answers.')
+    pinyinAnswerForms(word.pinyin)
+    const prompt = settings.direction === 'pinyin-character' ? normalizePinyinInput(word.pinyin) : normalizeAnswer(promptText(word, settings.direction))
+    if (prompts.has(prompt)) throw new Error('The prototype deck has ambiguous prompts.')
+    prompts.add(prompt)
+    for (const normalized of new Set(acceptedAnswers(word, settings.direction))) {
       if (!normalized || answers.has(normalized)) throw new Error('The prototype deck has ambiguous answers.')
       answers.add(normalized)
     }
@@ -70,7 +108,8 @@ export function createRun(settings: Settings, words: readonly Word[], seed: numb
     }
   }
   const run: Run = {
-    settings: { ...settings }, words: words.map(word => ({ ...word, englishAnswers: [...word.englishAnswers] })),
+    settings: { ...settings, showPinyin: allowsPinyinAnnotations(settings.direction) && settings.showPinyin === true },
+    words: words.map(word => ({ ...word, englishAnswers: [...word.englishAnswers] })),
     phase: 'playing', elapsed: 0, wave: 1, score: 0, streak: 0, bestStreak: 0,
     hits: 0, wrong: 0, shields: SHIELDS, spawned: 0, nextSpawn: 0, randomState: seed, incoming: [], missed: [],
   }
@@ -130,12 +169,11 @@ export function advanceRun(current: Run, seconds: number): { run: Run; events: G
 
 /** Common input boundary for tap, typing, and a future reviewed speech transcript. */
 export function submitTranslation(current: Run, input: string): { run: Run; outcome: 'hit' | 'wrong' | 'ignored'; tile?: Incoming } {
-  const answer = normalizeAnswer(input)
+  const answer = directionForms[current.settings.direction].answer === 'pinyin' ? normalizePinyinInput(input) : normalizeAnswer(input)
   if (current.phase !== 'playing' || !answer) return { run: current, outcome: 'ignored' }
   const matches = current.incoming.filter(tile => {
     const word = current.words.find(word => word.id === tile.wordId)!
-    const accepted = current.settings.direction === 'chinese' ? word.englishAnswers : [word.character]
-    return accepted.some(value => normalizeAnswer(value) === answer)
+    return acceptedAnswers(word, current.settings.direction).includes(answer)
   }).sort((a, b) => a.position - b.position || a.id - b.id)
   const run = copy(current), tile = matches[0]
   if (!tile) { run.wrong++; run.streak = 0; return { run, outcome: 'wrong' } }

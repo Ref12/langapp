@@ -18,8 +18,12 @@
 
       <form id="settings" class="settings" aria-label="Game setup">
         <label>Controls<select id="mode"><option value="tap">Tap a translation</option><option value="type">Type a translation</option></select></label>
-        <label>Incoming words<select id="direction"><option value="chinese">Chinese → English</option><option value="english">English → Chinese</option></select></label>
-        <label>Starting pace<select id="pace"><option value="gentle">Gentle</option><option value="standard" selected>Standard</option><option value="brisk">Brisk</option></select></label>
+        <label>Incoming words<select id="direction"><option value="chinese">Chinese → English</option><option value="english">English → Chinese</option><option value="character-pinyin">Chinese → Pinyin</option><option value="pinyin-character">Pinyin → Chinese</option></select></label>
+        <label class="pace-setting">Starting pace<select id="pace"><option value="gentle">Gentle</option><option value="standard" selected>Standard</option><option value="brisk">Brisk</option></select></label>
+        <div class="pinyin-setting">
+          <label><input id="show-pinyin" type="checkbox" aria-describedby="pinyin-help"> Show pinyin over Chinese words</label>
+          <span id="pinyin-help">Optional help in Chinese ↔ English modes.</span>
+        </div>
       </form>
 
       <section class="arena" aria-label="Word Defender game">
@@ -62,7 +66,8 @@
         <summary>How to play &amp; prototype word deck</summary>
         <p>Words travel from right to left. Match any incoming word; you do not need to select a target first. If the same word appears twice, your answer clears the one nearest the shield.</p>
         <p>Every 20 seconds a new wave increases the spawn rate and the speed of new words. Up to eight words can be on screen. Wrong answers break your streak; missed words cost a shield. Pause anytime with the pause button or Escape. Switching tabs pauses automatically.</p>
-        <p>Typing accepts the displayed translation and listed English alternatives, ignoring case, extra spaces, and final sentence punctuation. Chinese answers require the actual characters; use your Chinese keyboard/IME. Pinyin is not an answer in this prototype.</p>
+        <p>Typing accepts the displayed translation and listed English alternatives, ignoring case, extra spaces, and final sentence punctuation. Chinese answers require the actual characters; use your Chinese keyboard/IME. Pinyin answers accept tone marks (shuǐ) or tone numbers (shui3); the tones must match. Spaces between syllables are optional; neutral tones can be omitted or written 0 or 5.</p>
+        <p>Pinyin annotations are optional for Chinese ↔ English. They appear only over Chinese words, not English answers. Pronunciation-matching modes always hide annotations to avoid giving away the answer.</p>
         <div id="word-deck" class="word-deck"></div>
         <p class="prototype-note">Standalone experiment using a small sample deck—not your app knowledge set. No saved scores, microphone, AI calls, or changes to learning progress. Spoken translations are planned for a later version.</p>
       </details>

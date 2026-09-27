@@ -1,5 +1,5 @@
 import { sampleWords, type Word } from './deck'
-import { advanceRun, answerText, createRun, pauseRun, promptText, resumeRun, SHIELDS, submitTranslation, type Incoming, type Run, type Settings } from './game'
+import { advanceRun, allowsPinyinAnnotations, answerText, createRun, directionForms, isDirection, pauseRun, promptText, resumeRun, SHIELDS, submitTranslation, type Incoming, type Run, type Settings, type WordForm } from './game'
 
 function element<T extends HTMLElement>(selector: string): T {
   const node = document.querySelector<T>(selector)
@@ -9,6 +9,7 @@ function element<T extends HTMLElement>(selector: string): T {
 
 const settings = element<HTMLFormElement>('#settings')
 const mode = element<HTMLSelectElement>('#mode'), direction = element<HTMLSelectElement>('#direction'), pace = element<HTMLSelectElement>('#pace')
+const showPinyin = element<HTMLInputElement>('#show-pinyin'), pinyinHelp = element('#pinyin-help')
 const field = element('#field'), incoming = element('#incoming'), effects = element('#effects')
 const overlay = element('#overlay'), title = element('#overlay-title'), copy = element('#overlay-copy'), kicker = element('#overlay-kicker')
 const primary = element<HTMLButtonElement>('#primary'), secondary = element<HTMLButtonElement>('#secondary'), pause = element<HTMLButtonElement>('#pause')
@@ -26,9 +27,9 @@ let lastHud = ''
 
 function config(): Settings {
   const inputMode = mode.value, incomingDirection = direction.value, startingPace = pace.value
-  if ((inputMode !== 'tap' && inputMode !== 'type') || (incomingDirection !== 'chinese' && incomingDirection !== 'english')
+  if ((inputMode !== 'tap' && inputMode !== 'type') || !isDirection(incomingDirection)
     || (startingPace !== 'gentle' && startingPace !== 'standard' && startingPace !== 'brisk')) throw new Error('Choose valid game settings.')
-  return { mode: inputMode, direction: incomingDirection, pace: startingPace }
+  return { mode: inputMode, direction: incomingDirection, pace: startingPace, showPinyin: showPinyin.checked && allowsPinyinAnnotations(incomingDirection) }
 }
 
 function announce(text: string, kind = '') {
@@ -45,18 +46,37 @@ function deckCard(word: Word): HTMLDivElement {
 }
 element('#word-deck').append(...sampleWords.map(deckCard))
 
+function paintWord(node: HTMLElement, word: Word, form: WordForm, annotate: boolean) {
+  node.lang = form === 'character' ? 'zh-Hans' : form === 'pinyin' ? 'zh-Latn' : 'en'
+  const hinted = annotate && form === 'character'
+  node.classList.toggle('with-pinyin', hinted)
+  const face = document.createElement(hinted ? 'ruby' : 'span')
+  face.className = 'word-face'
+  face.textContent = word[form].normalize('NFC')
+  if (hinted) {
+    const reading = document.createElement('rt')
+    reading.lang = 'zh-Latn'; reading.textContent = word.pinyin.normalize('NFC')
+    face.append(reading)
+  }
+  node.replaceChildren(face)
+}
+
 function paintControls(words: Word[] = sampleWords.slice(0, 6)) {
-  const options = config(), typing = options.mode === 'type'
+  const options = run?.settings ?? config(), typing = options.mode === 'type'
+  const answerForm = directionForms[options.direction].answer
+  const labels = { meaning: 'English meaning', character: 'Chinese word', pinyin: 'pinyin' }
+  showPinyin.disabled = !allowsPinyinAnnotations(options.direction)
+  pinyinHelp.textContent = showPinyin.disabled ? 'Hints are hidden when matching pronunciation.' : 'Optional help in Chinese ↔ English modes.'
   answerBank.hidden = typing; typeForm.hidden = !typing
   controlLabel.textContent = typing ? 'TYPE TO DEFEND' : 'YOUR TRANSLATIONS'
-  controlHint.textContent = options.direction === 'chinese' ? typing ? 'English · Enter to fire' : 'Tap the English meaning' : typing ? 'Chinese · Enter to fire' : 'Tap the Chinese word'
-  answerInput.placeholder = options.direction === 'chinese' ? 'Type an English meaning…' : '输入中文…'
-  answerInput.lang = options.direction === 'chinese' ? 'en' : 'zh-Hans'
+  controlHint.textContent = typing ? answerForm === 'pinyin' ? 'Tone marks or numbers · Enter' : `${labels[answerForm]} · Enter to fire` : `Tap the ${labels[answerForm]}`
+  answerInput.placeholder = answerForm === 'meaning' ? 'Type an English meaning…' : answerForm === 'pinyin' ? 'Pinyin: shuǐ or shui3…' : '输入中文…'
+  answerInput.lang = answerForm === 'meaning' ? 'en' : answerForm === 'pinyin' ? 'zh-Latn' : 'zh-Hans'
   answerBank.replaceChildren(); buttons.clear()
   for (const word of words) {
     const button = document.createElement('button')
-    button.type = 'button'; button.className = 'answer-choice'; button.textContent = answerText(word, options.direction)
-    button.lang = options.direction === 'chinese' ? 'en' : 'zh-Hans'
+    button.type = 'button'; button.className = 'answer-choice'
+    paintWord(button, word, answerForm, options.showPinyin === true)
     button.addEventListener('click', () => answer(answerText(word, options.direction)))
     buttons.set(word.id, button); answerBank.append(button)
   }
@@ -94,9 +114,9 @@ function paintTiles() {
     if (!node) {
       const word = run!.words.find(word => word.id === tile.wordId)!
       node = document.createElement('div')
-      node.className = 'incoming-word'; node.textContent = promptText(word, run!.settings.direction)
-      node.lang = run!.settings.direction === 'chinese' ? 'zh-Hans' : 'en'
-      node.setAttribute('aria-label', `Incoming ${node.textContent}`)
+      node.className = 'incoming-word'
+      paintWord(node, word, directionForms[run!.settings.direction].prompt, run!.settings.showPinyin === true)
+      node.setAttribute('aria-label', `Incoming ${promptText(word, run!.settings.direction)}${node.classList.contains('with-pinyin') ? `, ${word.pinyin}` : ''}`)
       node.style.setProperty('--lane', String(tile.lane))
       tiles.set(tile.id, node); incoming.append(node)
     }
@@ -198,7 +218,7 @@ function answer(text: string) {
   if (result.outcome === 'hit' && result.tile) {
     const word = run.words.find(word => word.id === result.tile!.wordId)!
     flash(result.tile, 'Matched')
-    announce(`${word.character} — ${word.meaning}. Intercepted!`, 'hit')
+    announce(`${promptText(word, run.settings.direction)} — ${answerText(word, run.settings.direction)}. Intercepted!`, 'hit')
     answerInput.value = ''
   } else {
     announce('No incoming word matches that answer. Try again.', 'wrong')
