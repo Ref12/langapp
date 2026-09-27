@@ -8,6 +8,7 @@ import { navigate } from '../core/routing'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { SnippetActions } from '../components/assistant/SnippetActions'
 import { MandarinWord } from '../components/MandarinWord'
+import { AnswerButton } from '../components/AnswerButton'
 
 export function Practice({ workspace, now, run, busy }: PageProps) {
   const due = workspace.words.filter(word => word.dueAt <= now).length
@@ -27,9 +28,14 @@ export function Practice({ workspace, now, run, busy }: PageProps) {
   </>
 }
 
-function PracticeQuestion({ session, attempt, workspace, run, busy }: PageProps & { session: PracticeSession; attempt?: Attempt }) {
+function PracticeQuestion({ session, attempt: persistedAttempt, workspace, run, busy }: PageProps & { session: PracticeSession; attempt?: Attempt }) {
+  const [savedAttempt, setSavedAttempt] = useState<Attempt>()
+  const attempt = persistedAttempt ?? savedAttempt
   const [selected, setSelected] = useState(attempt?.answerId ?? '')
   const title = useRef<HTMLHeadingElement>(null)
+  const pending = useRef(false)
+  // Grading can change familiarity; keep the current prompt's pinyin geometry stable.
+  const questionWords = useRef(workspace.words)
   const question = session.questions[session.cursor]
   const word = getWord(question.wordId)
   const meaning = question.activity === 'meaning'
@@ -38,14 +44,31 @@ function PracticeQuestion({ session, attempt, workspace, run, busy }: PageProps 
   const reviewing = lesson?.curriculum && !lesson.wordIds.includes(word.id)
   const module = word.curriculum && curriculumLevels.find(level => level.id === word.curriculum?.levelId)?.modules.find(item => item.id === word.curriculum?.moduleId)
   useEffect(() => { title.current?.focus() }, [])
-  return <div className="practice-player panel" data-assistant-protected={!question.revealed && !attempt ? 'true' : undefined}>
+  const next = () => {
+    if (busy || pending.current) return
+    pending.current = true
+    void run(async () => {
+      try {
+        if (attempt) {
+          await advancePractice(session.id, session.cursor)
+        } else {
+          const saved = await submitAnswer(session.id, session.cursor, selected)
+          // Retain the result while the live workspace query catches up.
+          setSavedAttempt(saved)
+        }
+      } finally {
+        pending.current = false
+      }
+    })
+  }
+  return <div className="practice-player answer-player panel" data-assistant-protected={!question.revealed && !attempt ? 'true' : undefined}>
     <div className="card-topline"><span className="eyebrow">READING / {meaning ? 'RECOGNIZE A MEANING' : 'RECOGNIZE A WORD'}</span><span className="small muted">Question {session.cursor + 1} of {session.questions.length}</span></div>
     <progress aria-label="Practice progress" value={session.cursor} max={session.questions.length} />
     <div className="practice-question-content">
       <h2 ref={title} tabIndex={-1}>{meaning ? 'What does this word mean?' : 'Which Mandarin word matches?'}</h2>
       {module && <p className="small muted practice-context">{reviewing ? 'EARLIER REVIEW' : 'CURRICULUM SENSE'} / {module.title}</p>}
       <p className={meaning ? 'practice-prompt native' : 'practice-prompt'} lang={meaning ? 'zh-Hans' : 'en'}>{meaning
-        ? <MandarinWord word={word} state={workspace.words.find(item => item.wordId === word.id)} pinyin={pronunciationHints} />
+        ? <MandarinWord word={word} state={questionWords.current.find(item => item.wordId === word.id)} pinyin={pronunciationHints} />
         : word.meaning}</p>
     </div>
     <fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
@@ -54,24 +77,21 @@ function PracticeQuestion({ session, attempt, workspace, run, busy }: PageProps 
         return <label key={id} className={`answer-option ${selected === id ? 'selected' : ''} ${attempt && id === word.id ? 'correct-option' : ''}`}>
           <input type="radio" name="answer" value={id} checked={selected === id} onChange={() => setSelected(id)} />
           <span lang={meaning ? 'en' : 'zh-Hans'}>{meaning ? option.meaning
-            : <MandarinWord word={option} state={workspace.words.find(item => item.wordId === option.id)} pinyin={pronunciationHints} />}</span>
-          {attempt && id === word.id && <CheckCircle2 size={18} aria-label="Correct answer" />}
+            : <MandarinWord word={option} state={questionWords.current.find(item => item.wordId === option.id)} pinyin={pronunciationHints} />}</span>
+          <span className="answer-option-mark">{attempt && id === word.id && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
         </label>
       })}
     </fieldset>
-    {(question.revealed || attempt) && <div className={`notice ${attempt?.correct ? 'success' : ''}`} role="status">
+    <AnswerButton result={attempt?.correct} busy={busy} ready={Boolean(selected)} onCheck={next} onNext={next}
+      secondary={<button className="button secondary" disabled={busy || question.revealed || Boolean(attempt)}
+        onClick={() => void run(() => revealAnswer(session.id, session.cursor))}><Eye size={16} /> Show answer</button>} />
+    {(attempt || question.revealed) && <div className={`notice answer-feedback${attempt?.correct ? ' success' : ''}`} role="status">
       <strong>{attempt ? attempt.correct ? attempt.assisted ? 'Correct, with help.' : 'Correct, without help.' : 'Not quite. Keep this one close.' : 'Answer revealed. This question will be recorded as assisted.'}</strong>
       <p><MandarinWord word={word} state={workspace.words.find(item => item.wordId === word.id)} pinyin={workspace.preferences.pinyin} /> / {word.meaning}</p>
-      <p className="small practice-feedback-detail">{attempt ? attempt.assisted || !attempt.correct ? 'This word will be due again in about five minutes.' : 'Saved to your reading progress. The other language skills are unchanged.' : 'Choose the answer, then Check to save your attempt.'}</p>
+      <p className="small practice-feedback-detail">{attempt ? attempt.correct && !attempt.assisted ? 'Saved to your reading progress.' : 'This word will be due again in about five minutes.' : 'Choose the answer, then Check answer to save your attempt.'}</p>
       <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: 'zh-Hans', title: 'Practice answer explanation', route: `practice/${session.id}` }} />
     </div>}
-    <div className="button-row">
-      {!attempt ? <>
-        <button className="button secondary" disabled={busy || question.revealed} onClick={() => void run(() => revealAnswer(session.id, session.cursor))}><Eye size={16} /> Show answer</button>
-        <button className="button primary" disabled={busy || !selected} onClick={() => void run(async () => { await submitAnswer(session.id, session.cursor, selected) })}>Check answer <CheckCircle2 size={16} /></button>
-      </> : <button className="button primary" disabled={busy} onClick={() => void run(() => advancePractice(session.id, session.cursor))}>{session.cursor === session.questions.length - 1 ? 'Finish practice' : 'Next question'} <ArrowRight size={16} /></button>}
-    </div>
-    <p className="small muted practice-save-note">Each checked answer is saved immediately in {workspace.preferences.name}. You can leave and resume this question.</p>
+    <p className="small muted practice-save-note">Check answer saves your response immediately in {workspace.preferences.name}. Review the result, then use Next. You can leave and resume this question.</p>
   </div>
 }
 

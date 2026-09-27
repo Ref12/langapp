@@ -183,8 +183,19 @@ session's target items and your known vocabulary: multiple choice in either
 direction and sentence tiles. The app validates every proposed exercise, drops
 any that use Chinese outside your knowledge set or that are malformed, and
 never repairs or invents replacements. A session is stored with its exercises,
-so it survives reload; each checked answer is recorded once and reschedules the
-items it practices (correct = Good, incorrect = Again). Without an AI
+so it survives reload. After validation, the app uniformly shuffles new
+multiple-choice options and remaps the answer index before saving; it never
+relies on the AI's ordering. That order remains stable on reload, and already
+saved exercises are not rewritten.
+
+**Check answer** saves the selected response once and keeps the current exercise
+visible. The same button stays in place, turns green for correct or red for
+wrong, and becomes **Next**. Feedback appears below the controls rather than
+moving them. Next advances to the following exercise or completes the session.
+Saved answers remain navigable after reload or an interrupted advance without
+grading twice. This also applies to the older recognition Practice flow, while
+preserving its explicit Show answer/assistance behavior. Each recorded answer
+reschedules the items it practices (correct = Good, incorrect = Again). Without an AI
 connection, New and Review cannot start. Session results record practice, not
 mastery or examination readiness.
 
@@ -255,6 +266,26 @@ exactly once. Symbols come from characters in introduced v2 vocabulary, manual
 character additions, and the legacy learning set. The app never fills a short
 set with untaught characters; select a smaller grid or add more characters.
 
+**Character source** offers four choices:
+
+- **Random characters** retains the original shuffled character-set mode.
+- **Known-vocabulary lesson examples** offers authored sentences whose word
+  references are all in the knowledge set.
+- **Type or paste a phrase** accepts a Chinese phrase/sentence and optional
+  English meaning.
+- **Generate a phrase with AI** explicitly asks the configured provider for a
+  sentence using supplied known vocabulary and an English translation. Merely
+  selecting this mode makes no request. Review the suggestion before generating
+  the puzzle; unknown vocabulary or too few distinct characters is rejected.
+
+Phrase modes deduplicate characters by first appearance and use the first 4,
+6, or 9 distinct characters in that order, rather than shuffling the palette.
+Extra characters in a longer phrase are ignored for the puzzle. Selected
+characters must already be in the learning set. The full source sentence and
+translation remain available in the information panel, with explicit phrase
+playback. The source, character order, and contextual readings are snapshotted
+with the puzzle so reloads and later catalog changes do not alter it.
+
 | Grid | Box shape | Easy clues | Medium clues | Hard clues |
 | --- | --- | --- | --- | --- |
 | 4 x 4 | 2 rows x 2 columns | 8 | 6 | 4 |
@@ -288,13 +319,16 @@ Opening/reloading a puzzle, focus movement, and unmuting never start speech on
 their own. Rapid character clicks replace rather than queue speech.
 
 The information button contains **Show pinyin on selection**, **off** by
-default. It displays the selected character's standalone dictionary readings,
-including multiple possibilities where appropriate, without annotating the
-whole puzzle. Readings are not inferred by splitting a containing word's pinyin.
-If a standalone reading is unavailable, the UI says so. The character key also
-retains introduced whole-word contexts and explicit word playback. Isolated
-speech can choose a different reading than a word context; online voices may
-send the clicked character to the voice service.
+default. Selected-character readings are resolved from the actual containing
+words or source sentence, not just standalone vocabulary entries. The shared
+local pinyin alignment preserves supplied readings, including word-joined pinyin,
+when a unique alignment exists; otherwise it uses the contextual `pinyin-pro`
+dictionary. Standalone lookup is a fallback for characters without usable word
+context. Multiple context readings are shown when appropriate. Genuinely
+unsupported readings remain explicit rather than fabricated. The character key
+retains whole-word contexts and explicit word playback. Local suggestions can
+still need review, and isolated speech can choose a different reading than the
+word or sentence context; online voices may send the clicked text to the service.
 
 Both toggles persist per profile and round-trip through exports/backups as
 optional `settings.preferences.sudokuAutoSpeak` and

@@ -155,12 +155,17 @@ export interface ValidationResult {
   rejected: string[]
 }
 
-function shuffleIndexes(count: number): number[] {
+function randomIndexes(count: number): number[] {
   const order = Array.from({ length: count }, (_, index) => index)
   for (let index = order.length - 1; index > 0; index--) {
     const other = Math.floor(Math.random() * (index + 1))
     ;[order[index], order[other]] = [order[other], order[index]]
   }
+  return order
+}
+
+function shuffleIndexes(count: number): number[] {
+  const order = randomIndexes(count)
   // Avoid presenting the answer order unchanged when there is any alternative.
   if (count > 1 && order.every((value, index) => value === index)) return [...order.slice(1), order[0]]
   return order
@@ -199,7 +204,14 @@ export function validateProposal(value: unknown, input: GenerationInput): Valida
     const result = exerciseSchema.safeParse(candidate)
     if (!result.success) { reject(result.error.issues.map(issue => issue.message).join('; ').slice(0, 200)); continue }
     ids.add(proposal.id)
-    exercises.push(result.data)
+    const exercise = result.data
+    if (exercise.type === 'choice') {
+      // Shuffle only validated, newly generated choices; identity is a valid permutation.
+      const order = randomIndexes(exercise.options.length)
+      exercises.push({ ...exercise, options: order.map(index => exercise.options[index]), answer: order.indexOf(exercise.answer) })
+    } else {
+      exercises.push(exercise)
+    }
   }
   return { exercises, rejected }
 }

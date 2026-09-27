@@ -9,7 +9,8 @@ Two exercise types are supported:
    correct option. direction "zh-to-en": the question is a Chinese word, phrase or
    sentence and the options are English meanings. direction "en-to-zh": the question
    is English and the options are Chinese. Wrong options must be plausible but
-   clearly wrong.
+   clearly wrong. The app shuffles options after validation; explanations must
+   refer to answer content, never option positions, letters or numbers.
 2. "tiles": fields id, type, targets, translation, tiles, distractors, explanation.
    "translation" is the English sentence to translate. "tiles" is the correct Chinese
    sentence split into words in the right order (one vocabulary item per tile,

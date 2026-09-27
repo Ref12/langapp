@@ -39,6 +39,19 @@
 .sudoku-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .sudoku-settings label { display: grid; gap: 6px; font-size: 13px; }
 .sudoku-settings select { min-width: 0; width: 100%; }
+.sudoku-source-label { display: grid; gap: 6px; margin-top: 14px; font-size: 13px; }
+.sudoku-source-label select { min-width: 0; width: 100%; }
+.sudoku-custom-phrase { display: grid; gap: 12px; margin-top: 12px; }
+.sudoku-custom-phrase label { display: grid; gap: 6px; font-size: 13px; }
+.sudoku-custom-phrase textarea, .sudoku-custom-phrase input { width: 100%; padding: 10px; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.sudoku-custom-phrase textarea { min-height: 76px; max-height: 180px; resize: vertical; }
+.sudoku-ai-phrase { margin-top: 14px; }
+.sudoku-phrase-preview { margin-top: 14px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; }
+.sudoku-phrase-preview p { margin-bottom: 6px; }
+.sudoku-source-phrase { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.sudoku-source-phrase p { flex: 1; min-width: 0; margin: 0; font-size: 18px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sudoku-source-phrase .button { flex-shrink: 0; }
+.sudoku-phrase-details h2 { font-size: 17px; }
 @media (max-width: 760px) {
   .sudoku-main { padding: 8px 12px calc(12px + env(safe-area-inset-bottom)); }
   .sudoku-heading h1 { font-size: 20px; }

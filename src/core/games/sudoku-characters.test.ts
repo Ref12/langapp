@@ -2,7 +2,7 @@ import { beforeEach, expect, it } from 'vitest'
 import { db, initializeWorkspace, loadWorkspace } from '../database'
 import { trackWord } from '../learning'
 import { loadCatalog } from '../study/catalog'
-import { sudokuCharacters } from './sudoku-characters'
+import { resolveSudokuReadings, sudokuCharacters } from './sudoku-characters'
 
 beforeEach(async () => { await db.delete(); await db.open(); await initializeWorkspace() })
 
@@ -23,4 +23,22 @@ it('uses only introduced spellings and manual additions without inventing charac
     text: '学生', pinyin: unit.record.pr.normalize('NFC'), meaning: unit.record.ds,
   }])
   expect(symbols.find(symbol => symbol.character === '茶')?.contexts[0].meaning).toBe('tea')
+})
+
+it('resolves a component from its known word even without a standalone vocabulary entry', async () => {
+  await expect(resolveSudokuReadings({
+    character: '名', contexts: [{ text: '名字', pinyin: 'míng zi', meaning: 'name' }],
+  })).resolves.toEqual(['míng'])
+  await expect(resolveSudokuReadings({
+    character: '国', contexts: [{ text: '中国', pinyin: 'zhōngguó', meaning: 'China' }],
+  })).resolves.toEqual(['guó'])
+})
+
+it('prefers contextual readings over unrelated standalone alternatives and retains phrase snapshots', async () => {
+  await expect(resolveSudokuReadings({
+    character: '行', contexts: [{ text: '银行', pinyin: 'yín háng', meaning: 'bank' }],
+  }, ['xíng'])).resolves.toEqual(['háng'])
+  await expect(resolveSudokuReadings({
+    character: '行', readings: ['ha\u0301ng'], contexts: [],
+  }, ['xíng'])).resolves.toEqual(['háng'])
 })

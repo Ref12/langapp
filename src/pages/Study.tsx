@@ -11,6 +11,7 @@ import { UnitCard } from '../components/study/UnitCard'
 import { useCatalog } from '../components/study/useCatalog'
 import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
 import { AnnotatedChinese } from '../components/study/AnnotatedChinese'
+import { AnswerButton } from '../components/AnswerButton'
 import { readingIndex } from '../core/study/annotate'
 
 function useAIConnection() {
@@ -70,7 +71,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
 
 interface Annotation { readings: Map<string, Set<string>>; pinyin: boolean }
 
-function ChoiceQuestion({ exercise, attempt, submit, busy, readings, pinyin }: Annotation & { exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; busy: boolean }) {
+function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin }: Annotation & { exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const [selected, setSelected] = useState(attempt ? Number(attempt.response) : -1)
   const chineseQuestion = exercise.direction === 'zh-to-en'
   return <>
@@ -82,14 +83,14 @@ function ChoiceQuestion({ exercise, attempt, submit, busy, readings, pinyin }: A
         <input type="radio" name="answer" value={index} checked={selected === index} onChange={() => setSelected(index)} />
         {chineseQuestion ? <span lang="en">{option}</span> : <span><AnnotatedChinese text={option} readings={readings} pinyin={pinyin} /></span>}
         {!chineseQuestion && <HearButton text={option} locale="zh-Hans" label={`Hear option ${index + 1}`} iconOnly />}
-        {attempt && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}
+        <span className="answer-option-mark">{attempt && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
       </label>)}
     </fieldset>
-    {!attempt && <div className="button-row"><button className="button primary" disabled={busy || selected < 0} onClick={() => submit(selected)}>Check answer <CheckCircle2 size={16} /></button></div>}
+    <AnswerButton result={attempt?.correct} busy={busy} ready={selected >= 0} onCheck={() => submit(selected)} onNext={next} />
   </>
 }
 
-function TilesQuestion({ exercise, attempt, submit, busy, readings, pinyin }: Annotation & { exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; busy: boolean }) {
+function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin }: Annotation & { exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const all = [...exercise.tiles, ...exercise.distractors]
   const [placed, setPlaced] = useState<number[]>(() => {
     if (!attempt) return []
@@ -111,7 +112,7 @@ function TilesQuestion({ exercise, attempt, submit, busy, readings, pinyin }: An
     <div className="tile-bank" lang="zh-Hans" role="group" aria-label="Available tiles">
       {exercise.shuffled.map(index => <button key={index} type="button" className={`tile ${placed.includes(index) ? 'tile-used' : ''}`} disabled={locked || placed.includes(index)} onClick={() => setPlaced([...placed, index])}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)}
     </div>
-    {!attempt && <div className="button-row"><button className="button primary" disabled={busy || placed.length < 2} onClick={() => submit(placed.map(index => all[index]))}>Check answer <CheckCircle2 size={16} /></button></div>}
+    <AnswerButton result={attempt?.correct} busy={busy} ready={placed.length >= 2} onCheck={() => submit(placed.map(index => all[index]))} onNext={next} />
   </>
 }
 
@@ -130,16 +131,35 @@ function SessionIntroduction({ catalog, session, workspace, run, busy, now, begi
   </>
 }
 
-function ExercisePlayer({ catalog, session, attempt, workspace, run, busy, readings, pinyin, setPinyin }: PageProps & Annotation & {
+function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace, run, busy, readings, pinyin, setPinyin }: PageProps & Annotation & {
   catalog: Catalog; session: ExerciseSession; attempt?: ExerciseAttempt; setPinyin: (value: boolean) => void
 }) {
   const exercise: Exercise = session.exercises[session.cursor]
   const title = useRef<HTMLHeadingElement>(null)
+  const pending = useRef(false)
+  const [savedAttempt, setSavedAttempt] = useState<ExerciseAttempt>()
+  const attempt = persistedAttempt ?? savedAttempt
   useEffect(() => { title.current?.focus() }, [])
-  const submit = (response: unknown) => void run(async () => { await submitExerciseAnswer(session.id, session.cursor, response) })
+  const next = (response?: unknown) => {
+    if (busy || pending.current) return
+    pending.current = true
+    void run(async () => {
+      try {
+        if (attempt) {
+          await advanceExercise(session.id, session.cursor)
+        } else {
+          const saved = await submitExerciseAnswer(session.id, session.cursor, response)
+          // Retain the result while the live workspace query catches up.
+          setSavedAttempt(saved)
+        }
+      } finally {
+        pending.current = false
+      }
+    })
+  }
   const correctSentence = exercise.type === 'tiles' ? exercise.tiles.join('') : exercise.options[exercise.answer]
   const chineseAnswer = exercise.type === 'tiles' || exercise.direction === 'en-to-zh'
-  return <div className="practice-player panel" data-assistant-protected={!attempt ? 'true' : undefined}>
+  return <div className="practice-player answer-player panel" data-assistant-protected={!attempt ? 'true' : undefined}>
     <div className="card-topline"><span className="eyebrow">{session.mode === 'new' ? 'NEW ITEMS' : 'REVIEW'} / {exercise.type === 'choice' ? 'CHOOSE' : 'BUILD THE SENTENCE'}</span><span className="small muted">Exercise {session.cursor + 1} of {session.exercises.length}</span></div>
     <progress aria-label="Session progress" value={session.cursor} max={session.exercises.length} />
     <div className="practice-question-content">
@@ -151,17 +171,16 @@ function ExercisePlayer({ catalog, session, attempt, workspace, run, busy, readi
       </div>
     </div>
     {exercise.type === 'choice'
-      ? <ChoiceQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={submit} busy={busy} readings={readings} pinyin={pinyin} />
-      : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={submit} busy={busy} readings={readings} pinyin={pinyin} />}
-    {attempt && <div className={`notice ${attempt.correct ? 'success' : ''}`} role="status">
+      ? <ChoiceQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} />
+      : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} />}
+    {attempt && <div className={`notice answer-feedback${attempt.correct ? ' success' : ''}`} role="status">
       <strong>{attempt.correct ? 'Correct.' : 'Not quite.'}</strong>
       {chineseAnswer ? <p><AnnotatedChinese text={correctSentence} readings={readings} pinyin={pinyin} /></p> : <p lang="en">{correctSentence}</p>}
       <p className="small">{exercise.explanation}</p>
-      <p className="small practice-feedback-detail">{attempt.correct ? 'Scheduled further out for each item this exercise practices.' : 'These items come back within this session window and again soon after.'}</p>
-      <SnippetActions source={{ text: correctSentence, meaning: exercise.type === 'tiles' ? exercise.translation : exercise.explanation, locale: 'zh-Hans', title: 'Exercise answer explanation', route: `lessons/session/${session.id}` }} />
-      <div className="button-row"><button className="button primary" disabled={busy} onClick={() => void run(() => advanceExercise(session.id, session.cursor))}>{session.cursor === session.exercises.length - 1 ? 'Finish session' : 'Next exercise'} <ArrowRight size={16} /></button></div>
+      <p className="small practice-feedback-detail">{attempt.correct ? 'Saved to your reading progress.' : 'These items come back within this session window and again soon after.'}</p>
+      <SnippetActions source={{ text: correctSentence, meaning: exercise.type === 'tiles' ? exercise.translation : exercise.explanation, locale: chineseAnswer ? 'zh-Hans' : 'en-US', title: 'Exercise answer explanation', route: `lessons/session/${session.id}` }} />
     </div>}
-    <p className="small muted practice-save-note">Each checked answer is saved immediately in {workspace.preferences.name}. You can leave and resume this exercise.</p>
+    <p className="small muted practice-save-note">Check answer saves your response immediately in {workspace.preferences.name}. Review the result, then use Next. You can leave and resume this exercise.</p>
   </div>
 }
 

@@ -1,5 +1,6 @@
-import { legacySudokuGameSchema, sudokuGameSchema, type SudokuGame, type SudokuPuzzle, type SudokuSymbol } from './sudoku-contracts'
+import { legacySudokuGameSchema, sudokuGameSchema, type SudokuGame, type SudokuPhrase, type SudokuPuzzle, type SudokuSymbol } from './sudoku-contracts'
 import { countSudokuSolutions, validSudoku } from './sudoku-generator'
+import { wordCharacters } from '../characters/dictionary'
 
 export function sudokuEntryValue(entries: number): number {
   return entries !== 0 && (entries & (entries - 1)) === 0 ? Math.log2(entries) + 1 : 0
@@ -21,18 +22,27 @@ export function sudokuCheckCounts(game: SudokuGame) {
   return { correct, incorrect, unresolved }
 }
 
-export function createSudokuGame(puzzle: SudokuPuzzle, characters: SudokuSymbol[], random: () => number = Math.random): SudokuGame {
+export function createSudokuGame(puzzle: SudokuPuzzle, characters: SudokuSymbol[], random: () => number = Math.random, phrase?: SudokuPhrase): SudokuGame {
   if (characters.length < puzzle.size || new Set(characters.map(item => item.character)).size !== characters.length) {
     throw new Error(`Choose at least ${puzzle.size} distinct characters from your learning set.`)
   }
-  const symbols = [...characters]
-  for (let i = symbols.length - 1; i > 0; i--) {
-    const j = Math.floor(random() * (i + 1))
-    ;[symbols[i], symbols[j]] = [symbols[j], symbols[i]]
+  let symbols = [...characters]
+  if (phrase) {
+    symbols = wordCharacters(phrase.text).slice(0, puzzle.size).map(character => {
+      const symbol = characters.find(item => item.character === character)
+      if (!symbol) throw new Error(`The phrase character ${character} is not in your learning set.`)
+      return symbol
+    })
+    if (symbols.length !== puzzle.size) throw new Error(`The phrase needs at least ${puzzle.size} distinct characters.`)
+  } else {
+    for (let i = symbols.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1))
+      ;[symbols[i], symbols[j]] = [symbols[j], symbols[i]]
+    }
   }
   return readSudokuGame({
     ...puzzle, version: 2, id: 'current', gameId: crypto.randomUUID(), revision: 0,
-    symbols: symbols.slice(0, puzzle.size), entries: puzzle.givens.map(value => value ? 1 << (value - 1) : 0),
+    symbols: symbols.slice(0, puzzle.size), ...(phrase ? { phrase } : {}), entries: puzzle.givens.map(value => value ? 1 << (value - 1) : 0),
     checked: null, history: [],
   })
 }
@@ -79,6 +89,12 @@ export function readSudokuGame(value: unknown): SudokuGame {
     throw new Error('The saved Sudoku board is inconsistent.')
   }
   if (countSudokuSolutions(game.givens, game.size) !== 1) throw new Error('The saved Sudoku puzzle must have exactly one solution.')
+  if (game.phrase) {
+    const ordered = wordCharacters(game.phrase.text).slice(0, game.size)
+    if (ordered.length !== game.size || game.symbols.some((symbol, index) => symbol.character !== ordered[index])) {
+      throw new Error('The saved Sudoku symbols do not follow the phrase order.')
+    }
+  }
   const entries = [...game.entries]
   for (const move of [...game.history].reverse()) {
     if (move.index >= count || game.givens[move.index] !== 0 || move.before > mask || move.after > mask || move.after !== entries[move.index]) {

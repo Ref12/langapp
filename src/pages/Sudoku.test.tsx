@@ -10,9 +10,13 @@ import { updateSudoku } from '../core/games/sudoku-store'
 import { createSudokuGame } from '../core/games/sudoku-state'
 import { clearVoiceCache, getPlaybackState, setSpeechVoicePreferences, stopBrowserSpeech } from '../core/assistant/speech'
 import type { SudokuRequest } from '../core/games/sudoku-contracts'
+import { loadCatalog, renderExample } from '../core/study/catalog'
+import { wordCharacters } from '../core/characters/dictionary'
 
 const worker = vi.hoisted(() => ({ generateSudokuInWorker: vi.fn() }))
+const phrasesAI = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../core/games/sudoku-client', () => worker)
+vi.mock('../core/ai/structured', () => phrasesAI)
 const characters = Array.from('天地人日月水火木金')
 class Utterance {
   constructor(public text: string) {}
@@ -34,6 +38,7 @@ beforeEach(async () => {
   window.location.hash = '#games/sudoku'
   await db.delete(); await db.open(); await initializeWorkspace()
   worker.generateSudokuInWorker.mockReset().mockImplementation(async (request: SudokuRequest) => generateSudoku(request))
+  phrasesAI.requestStructuredJSON.mockReset()
 })
 afterEach(() => { cleanup(); stopBrowserSpeech(); vi.unstubAllGlobals(); vi.restoreAllMocks() })
 async function populate() {
@@ -272,4 +277,82 @@ it('surfaces playback errors without preventing entry edits', async () => {
   act(() => speak.mock.lastCall![0].onerror?.({ error: 'not-allowed' }))
   expect(await screen.findByRole('alert')).toHaveTextContent('Speech was blocked')
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.entries[index]).toBe(1))
+})
+
+it('shows contextual pinyin for a character supplied only through a compound word', async () => {
+  const game = createSudokuGame(generateSudoku({ size: 4, difficulty: 'easy', seed: 4 }), [
+    { character: '名', contexts: [{ text: '名字', pinyin: 'míng zi', meaning: 'name' }] },
+    ...Array.from('天地人').map(character => ({ character, contexts: [] })),
+  ])
+  await db.sudokuGames.put(game)
+  await savePreferences({ sudokuShowPinyin: true, sudokuAutoSpeak: false })
+  render(<App />)
+  await screen.findByRole('grid')
+  await userEvent.setup().click(screen.getByRole('button', { name: 'Add 名' }))
+  await waitFor(() => expect(document.querySelector('.sudoku-selected-pinyin')).toHaveTextContent('míng'))
+  expect(document.querySelector('.sudoku-selected-pinyin')).not.toHaveTextContent('No standalone')
+})
+
+it('keeps typed phrase characters in first-appearance order, deduplicates and truncates, and preserves the source on reload', async () => {
+  await db.characterStates.bulkPut(Array.from('我学习中').map(character => ({ character, manualAddedAt: 1, practiceCompletions: 0 })))
+  const user = userEvent.setup()
+  render(<App />)
+  await screen.findByLabelText('Character source')
+  await user.selectOptions(screen.getByLabelText('Grid size'), '4')
+  await user.selectOptions(screen.getByLabelText('Character source'), 'custom')
+  await user.type(screen.getByLabelText('Chinese phrase or sentence'), '我我学习中文。')
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Generate puzzle' })).toBeEnabled())
+  await user.click(screen.getByRole('button', { name: 'Generate puzzle' }))
+  await screen.findByRole('grid')
+  const game = (await db.sudokuGames.get('current'))!
+  expect(game.symbols.map(symbol => symbol.character)).toEqual(Array.from('我学习中'))
+  expect(game.phrase).toMatchObject({ source: 'custom', text: '我我学习中文。' })
+  expect(phrasesAI.requestStructuredJSON).not.toHaveBeenCalled()
+  cleanup(); render(<App />)
+  await screen.findByRole('grid')
+  expect(document.querySelector('.sudoku-source-phrase')).toHaveTextContent('我我学习中文。')
+  expect(within(screen.getByRole('group', { name: 'Puzzle characters' })).getAllByRole('button').map(button => button.textContent)).toEqual(Array.from('我学习中'))
+  await newPuzzle(user)
+  expect(screen.getByLabelText('Character source')).toHaveValue('custom')
+  expect(screen.getByLabelText('Chinese phrase or sentence')).toHaveValue('我我学习中文。')
+})
+
+it('offers authored examples based on known vocabulary and keeps random mode available', async () => {
+  const catalog = await loadCatalog()
+  const example = catalog.orderedGroups.flatMap(({ group }) => group.examples).find(example => wordCharacters(renderExample(catalog, example).text).length >= 4)!
+  const refs = new Set(example.segments.flatMap(segment => segment.word ? [`vocabulary:${segment.word}`] : []))
+  const units = [...catalog.units.values()].filter(unit => refs.has(unit.ref))
+  await db.knowledge.bulkPut(units.map(unit => ({ ref: unit.ref, kind: unit.kind, lb: unit.record.lb, band: unit.band, addedAt: 1, source: 'dictionary' as const })))
+  const user = userEvent.setup()
+  render(<App />)
+  await screen.findByLabelText('Character source')
+  expect(screen.getByLabelText('Character source')).toHaveValue('random')
+  await user.selectOptions(screen.getByLabelText('Grid size'), '4')
+  await user.selectOptions(screen.getByLabelText('Character source'), 'lesson')
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Generate puzzle' })).toBeEnabled())
+  await user.click(screen.getByRole('button', { name: 'Generate puzzle' }))
+  await screen.findByRole('grid')
+  expect((await db.sudokuGames.get('current'))?.phrase?.source).toBe('lesson')
+})
+
+it('only requests an AI sentence explicitly and lets the learner review it before generating a puzzle', async () => {
+  const catalog = await loadCatalog()
+  const units = [...catalog.units.values()].filter(unit => unit.kind === 'vocabulary' && ['我', '学习', '中文'].includes(unit.record.ch))
+  await db.knowledge.bulkPut(units.map(unit => ({ ref: unit.ref, kind: unit.kind, lb: unit.record.lb, band: unit.band, addedAt: 1, source: 'dictionary' as const })))
+  await db.aiConnections.put({ id: 'assistant', revision: 'r1', updatedAt: 1, baseUrl: 'https://example.test/v1', apiKey: 'synthetic-key', model: 'model', nativeTools: false, structuredOutput: true, storageAcknowledged: true })
+  phrasesAI.requestStructuredJSON.mockResolvedValueOnce({ text: '我学习中文。', translation: 'I study Chinese.' })
+  const user = userEvent.setup()
+  render(<App />)
+  await screen.findByLabelText('Character source')
+  await user.selectOptions(screen.getByLabelText('Grid size'), '4')
+  await user.selectOptions(screen.getByLabelText('Character source'), 'ai')
+  expect(phrasesAI.requestStructuredJSON).not.toHaveBeenCalled()
+  await user.click(screen.getByRole('button', { name: 'Suggest phrase with AI' }))
+  await screen.findByText('I study Chinese.')
+  expect(phrasesAI.requestStructuredJSON).toHaveBeenCalledTimes(1)
+  expect(await db.sudokuGames.count()).toBe(0)
+  await user.click(screen.getByRole('button', { name: 'Generate puzzle' }))
+  await screen.findByRole('grid')
+  expect((await db.sudokuGames.get('current'))?.phrase?.source).toBe('ai')
+  expect(phrasesAI.requestStructuredJSON).toHaveBeenCalledTimes(1)
 })

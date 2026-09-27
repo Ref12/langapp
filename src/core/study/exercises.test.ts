@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { buildCatalog, requireUnit, type BandData } from './catalog'
 import { buildGenerationPrompt, checkAnswer, createSegmenter, validateProposal, type GenerationInput } from './exercises'
 
@@ -31,6 +31,8 @@ const input: GenerationInput = {
   catalog,
 }
 
+afterEach(() => vi.restoreAllMocks())
+
 describe('segmenter', () => {
   it('accepts text built from known forms and rejects anything else', () => {
     const segmenter = createSegmenter(['我', '是', '学生', '学习'])
@@ -43,6 +45,57 @@ describe('segmenter', () => {
 })
 
 describe('exercise validation', () => {
+  it.each(['zh-to-en', 'en-to-zh'] as const)('uniformly shuffles validated %s choices, including unchanged order', direction => {
+    const random = vi.spyOn(Math, 'random')
+    const sequences = (count: number): number[][] => count < 2 ? [[]]
+      : Array.from({ length: count }, (_, index) => sequences(count - 1).map(rest => [(index + 0.5) / count, ...rest])).flat()
+    for (const count of [2, 3, 4]) {
+      const options = (direction === 'zh-to-en' ? ['I', 'identity', 'student', 'study'] : ['我', '是', '学生', '学习']).slice(0, count)
+      for (let answer = 0; answer < count; answer++) {
+        const proposal = {
+          id: 'choice', type: 'choice', targets: ['vocabulary:wo3--me'], direction,
+          question: direction === 'zh-to-en' ? '我' : 'Choose the matching word.',
+          options, answer, explanation: 'An explanation about the answer content.',
+        }
+        const original = structuredClone(proposal)
+        const permutations = new Set<string>()
+        const positions = new Array<number>(count).fill(0)
+        for (const draws of sequences(count)) {
+          random.mockReset()
+          for (const draw of draws) random.mockReturnValueOnce(draw)
+          const result = validateProposal({ exercises: [proposal] }, input)
+          expect(result.rejected).toEqual([])
+          const choice = result.exercises[0]
+          if (choice.type !== 'choice') throw new Error('expected choice')
+          expect(random).toHaveBeenCalledTimes(count - 1)
+          expect({ ...choice, options, answer }).toEqual(original)
+          expect(choice.options[choice.answer]).toBe(options[answer])
+          expect([...choice.options].sort()).toEqual([...options].sort())
+          for (let position = 0; position < count; position++) {
+            expect(checkAnswer(choice, position)).toEqual({ correct: position === choice.answer, response: String(position) })
+          }
+          expect(proposal).toEqual(original)
+          positions[choice.answer]++
+          permutations.add(JSON.stringify(choice.options))
+        }
+        expect(permutations.size).toBe(sequences(count).length)
+        expect(permutations.has(JSON.stringify(options))).toBe(true)
+        expect(positions).toEqual(new Array(count).fill(permutations.size / count))
+      }
+    }
+  })
+
+  it.each([-1, 2, 3, 4])('rejects answer index %s before shuffling two choices', answer => {
+    const random = vi.spyOn(Math, 'random')
+    const result = validateProposal({ exercises: [{
+      id: 'invalid', type: 'choice', targets: ['vocabulary:wo3--me'], direction: 'zh-to-en',
+      question: '我', options: ['I', 'you'], answer, explanation: 'Invalid answer.',
+    }] }, input)
+    expect(result.exercises).toEqual([])
+    expect(result.rejected).toHaveLength(1)
+    expect(random).not.toHaveBeenCalled()
+  })
+
   it('keeps exercises within the known set and drops the rest with reasons', () => {
     const result = validateProposal({ exercises: [
       { id: 'c1', type: 'choice', targets: ['vocabulary:xue2-sheng5--student'], direction: 'zh-to-en', question: '我是学生。', options: ['I am a student.', 'I am a teacher.'], answer: 0, explanation: '学生 means student.' },
@@ -83,8 +136,10 @@ describe('exercise validation', () => {
       { id: 'c1', type: 'choice', targets: ['vocabulary:wo3--me'], direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'x' },
       { id: 't1', type: 'tiles', targets: ['vocabulary:wo3--me'], translation: 'I am a student.', tiles: ['我', '是', '学生'], distractors: [], explanation: 'x' },
     ] }, input)
-    expect(checkAnswer(exercises[0], 0)).toEqual({ correct: true, response: '0' })
-    expect(checkAnswer(exercises[0], 1).correct).toBe(false)
+    const choice = exercises[0]
+    if (choice.type !== 'choice') throw new Error('expected choice')
+    expect(checkAnswer(choice, choice.answer)).toEqual({ correct: true, response: String(choice.answer) })
+    expect(checkAnswer(choice, 1 - choice.answer).correct).toBe(false)
     expect(() => checkAnswer(exercises[0], 5)).toThrow()
     expect(checkAnswer(exercises[1], ['我', '是', '学生']).correct).toBe(true)
     expect(checkAnswer(exercises[1], ['是', '我', '学生']).correct).toBe(false)

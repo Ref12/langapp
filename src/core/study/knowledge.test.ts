@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../database'
 import { loadCatalog } from './catalog'
 import { addToKnowledge, advanceExercise, discardSession, dueCards, groupProgress, nextGroup, startNewSession, startReviewSession, submitExerciseAnswer } from './knowledge'
@@ -25,6 +25,7 @@ beforeEach(async () => {
   await db.open()
   structured.requestStructuredJSON.mockReset()
 })
+afterEach(() => vi.restoreAllMocks())
 
 describe('knowledge set and sessions', () => {
   it('walks the generated curriculum order group by group', async () => {
@@ -78,16 +79,18 @@ describe('knowledge set and sessions', () => {
     expect((await db.knowledge.toArray()).map(entry => entry.source)).toEqual(group.units.map(() => 'new'))
 
     const before = (await db.studyCards.get(`${session.exercises[0].targets[0]}:reading`))!
-    const attempt = await submitExerciseAnswer(id, 0, 0)
+    const [first, second] = session.exercises
+    if (first.type !== 'choice' || second.type !== 'choice') throw new Error('expected choices')
+    const attempt = await submitExerciseAnswer(id, 0, first.answer)
     expect(attempt.correct).toBe(true)
-    expect(await submitExerciseAnswer(id, 0, 1)).toEqual(attempt)
+    expect(await submitExerciseAnswer(id, 0, 1 - first.answer)).toEqual(attempt)
     const after = (await db.studyCards.get(before.id))!
     expect(after.state).toBe('review')
     expect(after.due).toBeGreaterThan(before.due)
     await expect(advanceExercise(id, 1)).rejects.toThrow(/Check your answer/)
     await advanceExercise(id, 0)
     expect((await db.exerciseSessions.get(id))!.cursor).toBe(1)
-    const miss = await submitExerciseAnswer(id, 1, 1)
+    const miss = await submitExerciseAnswer(id, 1, 1 - second.answer)
     expect(miss.correct).toBe(false)
     expect((await db.studyCards.get(`${session.exercises[1].targets[0]}:reading`))!.state).toBe('relearning')
     expect((await db.studyCards.get(`${session.exercises[1].targets[1]}:reading`))!.state).toBe('learning')
@@ -105,6 +108,40 @@ describe('knowledge set and sessions', () => {
     expect(await db.exerciseAttempts.count()).toBe(4)
   })
 
+  it.each(['new', 'review'] as const)('persists shuffled %s choices once and preserves them on resume and grading', async mode => {
+    await db.aiConnections.add(connection)
+    const group = nextGroup(await loadCatalog(), new Set())!
+    const refs = group.units.map(unit => unit.ref)
+    if (mode === 'review') await addToKnowledge(refs)
+    const proposed = proposal(refs)
+    structured.requestStructuredJSON.mockResolvedValueOnce(proposed)
+    const random = vi.spyOn(Math, 'random').mockReturnValue(0.99).mockReturnValueOnce(0).mockReturnValueOnce(0)
+    const start = () => mode === 'new' ? startNewSession() : startReviewSession(Date.now(), true)
+    const id = await start()
+    const saved = (await db.exerciseSessions.get(id))!
+    expect(saved.exercises.slice(0, 2)).toEqual(proposed.exercises.slice(0, 2).map(exercise => ({
+      ...exercise, options: [...exercise.options!].reverse(), answer: 1,
+    })))
+    random.mockClear()
+    db.close()
+    await db.open()
+    expect(await start()).toBe(id)
+    expect(await db.exerciseSessions.get(id)).toEqual(saved)
+    const attempt = await submitExerciseAnswer(id, 0, 1)
+    expect(attempt).toMatchObject({ correct: true, response: '1' })
+    expect(await submitExerciseAnswer(id, 0, 0)).toEqual(attempt)
+    expect(await db.exerciseSessions.get(id)).toEqual(saved)
+    await advanceExercise(id, 0)
+    db.close()
+    await db.open()
+    expect(await start()).toBe(id)
+    expect((await db.exerciseSessions.get(id))!.exercises).toEqual(saved.exercises)
+    expect(await db.exerciseAttempts.get(attempt.id)).toEqual(attempt)
+    expect(await db.exerciseAttempts.count()).toBe(1)
+    expect(random).not.toHaveBeenCalled()
+    expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
+  })
+
   it('reviews due items with FSRS order and brings recent items back into the next new session', async () => {
     await db.aiConnections.add(connection)
     const catalog = await loadCatalog()
@@ -115,8 +152,9 @@ describe('knowledge set and sessions', () => {
       return proposal(targets)
     })
     const first = await startNewSession()
-    for (let index = 0; index < 4; index++) {
-      await submitExerciseAnswer(first, index, index < 2 ? 0 : ['我', '是', '学生'])
+    const exercises = (await db.exerciseSessions.get(first))!.exercises
+    for (const [index, exercise] of exercises.entries()) {
+      await submitExerciseAnswer(first, index, exercise.type === 'choice' ? exercise.answer : exercise.tiles)
       await advanceExercise(first, index)
     }
     await expect(startReviewSession(Date.now())).rejects.toThrow(/Nothing is due/)

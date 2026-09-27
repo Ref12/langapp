@@ -20,11 +20,20 @@ export const sudokuPuzzleSchema = sudokuRequestSchema.extend({
   solution: cells,
 }).strict()
 export type SudokuPuzzle = z.infer<typeof sudokuPuzzleSchema>
+export const sudokuPhraseSchema = z.object({
+  source: z.enum(['lesson', 'custom', 'ai']),
+  id: z.string().max(400).optional(),
+  text: z.string().trim().min(1).max(400),
+  pinyin: z.string().max(2400),
+  translation: z.string().max(1000),
+}).strict()
+export type SudokuPhrase = z.infer<typeof sudokuPhraseSchema>
 export const sudokuSymbolSchema = z.object({
   character: characterSchema,
+  readings: z.array(z.string().trim().min(1).max(32)).max(32).optional(),
   contexts: z.array(z.object({
-    text: z.string().min(1).max(100),
-    pinyin: z.string().min(1).max(200),
+    text: z.string().min(1).max(400),
+    pinyin: z.string().min(1).max(2400),
     meaning: z.string().min(1).max(1000),
   }).strict()).max(3),
 }).strict()
@@ -51,6 +60,7 @@ export const sudokuGameSchema = sudokuPuzzleSchema.extend({
   gameId: z.string().min(1),
   revision: z.number().int().nonnegative(),
   symbols: z.array(sudokuSymbolSchema).min(4).max(9),
+  phrase: sudokuPhraseSchema.optional(),
   entries: entrySets,
   checked: entrySets.nullable(),
   history: z.array(z.object({

@@ -223,6 +223,14 @@ summary { cursor: pointer; min-height: 28px; }
 .answer-option [lang="zh-Hans"] { font-size: 25px; }
 .practice-player > .button-row { justify-content: flex-end; }
 .practice-player > .small { margin-top: 24px; margin-bottom: 0; }
+html:has(.answer-player) { scrollbar-gutter: stable; }
+.answer-option > .answer-option-mark { display: inline-flex; flex: 0 0 18px; width: 18px; height: 18px; }
+.answer-actions { display: grid; grid-template-columns: minmax(0, 1fr) 160px; align-items: start; gap: 12px; }
+.answer-actions > .button { width: 100%; height: 44px; min-height: 44px; padding: 8px; font-size: 12px; gap: 6px; white-space: nowrap; }
+.answer-actions > .button:first-child { justify-self: start; width: auto; min-width: 140px; }
+.answer-actions .answer-result-correct { background: #216e39; border-color: #216e39; color: #fff; }
+.answer-actions .answer-result-incorrect { background: #b42318; border-color: #b42318; color: #fff; }
+.answer-player > .answer-feedback { margin-bottom: 0; }
 .completion { text-align: center; max-width: 760px; margin-inline: auto; }
 .completion h2 { margin-top: 20px; }
 .completion-count { font-size: 54px; color: var(--accent); margin: 20px 0 0; }
@@ -348,6 +356,8 @@ select { padding: 10px; }
   .practice-player > .button-row > .button { padding-inline: 8px; font-size: 12px; gap: 6px; }
   .practice-player > .button-row { justify-content: stretch; }
   .practice-player > .button-row > .button { flex: 1; }
+  .answer-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .answer-actions > .button:first-child { width: 100%; min-width: 0; }
   .card-topline { flex-wrap: wrap; }
 }
 @media (max-width: 760px) and (max-height: 700px) {
@@ -382,6 +392,16 @@ select { padding: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+@media (min-width: 540px) and (max-width: 760px) and (max-height: 500px) {
+  .answer-player > .practice-question-content { grid-column: 1; grid-row: 3; }
+  .answer-player > .practice-question-content:has(.practice-prompt) { grid-row: 3 / span 2; }
+  .answer-player > .practice-prompt { grid-column: 1; grid-row: 4; }
+  .answer-player > .answer-options { grid-column: 2; grid-row: 3 / span 2; }
+  .answer-player > .tile-answer { grid-column: 2; grid-row: 3; }
+  .answer-player > .tile-bank { grid-column: 2; grid-row: 4; }
+  .answer-player > .answer-actions { grid-column: 1 / -1; grid-row: 5; align-self: start; }
+  .answer-player > .answer-feedback { grid-column: 1 / -1; grid-row: 6; }
 }
 
 /* Study: New / Review sessions and the curriculum dictionary */
