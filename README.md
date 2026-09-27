@@ -439,30 +439,79 @@ appending to the existing draft without sending or replacing its text. Elsewhere
 it starts a new conversation with an editable draft and exact source context.
 Each Mandarin speech snippet in an Assistant reply has its own **Hear / Ask / Practice**
 buttons; ordinary explanation blocks do not. Word cards have one action row.
-**Practice** opens just the practice step for that selected translation. It does
-not change Conversation/Shadow mode, replace the composer draft, generate a new
-translation, or send a message. It first plays the phrase using the selected
-Mandarin voice and conversation speed. In Conversation, practice stays under the original
-phrase: **Submit / Cancel** temporarily replaces that phrase's action row.
-Shadow keeps a separate practice panel and its selected translation survives reload.
+**Practice** opens a phrase playlist in a centered popup (a tall bottom sheet on
+mobile), in either Conversation or Shadow. Opening is silent and does not record,
+change mode, replace the composer draft, generate a translation, or send a message.
+Every step shows Hanzi and pinyin at normal weight, with newly added characters
+colored and their matching pinyin underlined.
+**From start** builds progressively longer prefixes; **From end** builds suffixes
+without reversing word order. The generated order ends with the full original
+phrase; you can rearrange it.
+
+Tap a row to hear it, use **Previous / Next** to move and play, or **Play** to
+repeat the selected step. **Pause** keeps your place; Play restarts that step
+from its beginning. **Self-paced** is the default and never advances automatically.
+**Guided** waits for actual playback completion, leaves a configurable 1-30 second
+repetition pause, repeats each step 1-5 times, then advances. Closing the popup,
+Escape, leaving the page, or starting another audio activity stops its sequence.
+Practice speed starts at the conversation's rate and supports 0.25x through 1.25x;
+English speech remains normal speed.
+
+Browser-native speech uses a muted preparation utterance before a cold start or
+after idle to protect the beginning from being clipped. This can add roughly two
+seconds before the phrase; immediate consecutive speech with the same voice
+does not repeat the preparation. It uses the selected voice and language, keeps
+the actual phrase unchanged, and is cancelled by Stop along with that phrase.
+For online/system-selected voices, the voice service may also receive the short
+preparation text. Guided pauses and recording still wait for the actual phrase
+to finish. This applies to shared browser speech throughout the app, not Edge
+audio playback.
+
+Chunk and contextual pinyin suggestions run locally using a lazily loaded
+`pinyin-pro` dictionary ([MIT license](public/licenses/pinyin-pro.txt)); no AI
+request is needed. Supplied pinyin is reused only
+when it can safely be aligned. Suggestions are not guaranteed linguistic analysis:
+**Edit chunks** shows tappable characters: highlight the characters that end a
+chunk, or tap them again to join adjacent chunks, then explicitly **Save chunks**.
+Punctuation stays visible as plain text rather than a selectable tile.
+Original text and character order are preserved.
+
+Use **Select part** to add a word or partial phrase: tap its first character,
+then its last (or just one character for a single-character selection). Desktop
+text selection also works. The preview includes contextual pinyin. **Add selection
+to playlist** inserts immediately before the current step, selects the new row,
+and does not play it. Each row has **Move up / Move down** controls; added parts
+also have **Remove**. These edits pause playback and save immediately.
+
+Saved boundaries, selected parts, and row order belong to that exact phrase in
+the active profile and survive reload, cloning, and JSON/YAML export/import.
+There are at most 80 total playlist rows, including generated steps and added
+parts. Changing chunks retains selected parts and the relative order of valid
+steps, removes obsolete chain lengths, and inserts any new chain lengths after
+the retained generated steps.
+Playback position, pacing, and unsaved edits reset when the popup closes.
+No playlist step adds a chat message or awards learning evidence.
+
 The conversation settings gear has a separate **Practice input** dropdown:
 
 - **Listen and repeat (no recording)** is the default, including for older chats.
   Hear the translation and repeat aloud at your own pace; the microphone stays off.
-- **Listen and record** plays the phrase when you click **Practice** in
-  Conversation, then prepares the microphone and sounds a short start cue.
+- **Listen and record** adds an optional whole-phrase recording section inside
+  the popup. **Record whole phrase** plays the complete reference at the current
+  practice speed, then prepares the microphone and sounds a short start cue.
   Wait for **Listening...** before repeating the phrase. **Submit** finishes recording and shows feedback under that same
   phrase, without adding a message. **Cancel** discards the attempt.
-  Shadow uses **Start speaking / Stop capture** in its practice panel, with the
-  same phrase-first playback and recording cue, and automatically adds the
-  result as a separate bubble. Neither flow sends to the LLM.
+  Both modes keep feedback on the original phrase. Older standalone selected
+  Shadow targets retain **Start speaking / Stop capture** and save a separate
+  local result bubble. Neither flow sends to the LLM. Recording is never an
+  automatic playlist step.
 
 The conversation's **Speech feedback** toggle defaults on. With an Azure Speech
 connection configured and feedback enabled, the app records up to 30 seconds of
-real Mandarin audio. In Conversation, **Submit** sends it and the exact expected
+real Mandarin audio. **Submit** sends it and the exact expected
 translation to Azure for pronunciation assessment. Reaching the recording limit
 releases the microphone but waits for Submit before uploading; Cancel discards it.
-Shadow submits automatically when recording finishes. Configure the
+Older standalone targets submit automatically when recording finishes. Configure the
 region and key separately under **Settings -> Practice speech connection** or through the
 local-settings file below. Saving settings does not contact Azure or request a
 microphone. Only explicitly starting a recording activates capture.
@@ -483,8 +532,8 @@ returned measurements; incomplete results are labeled rather than assigned
 invented scores. Provider failures remain visible, with no silent fallback that
 pretends assessment succeeded.
 
-Practice input and feedback preference are per-conversation. Conversation keeps
-the latest result on each original phrase; Shadow and older result bubbles retain
+Practice input and feedback preference are per-conversation. Both modes keep
+the latest result on each original phrase; older result bubbles retain
 their separate messages. Recognized transcripts and comparison or speech-provider
 feedback survive reload and backups and are included in full-message Copy.
 Detailed explanations and word scores are collapsed to keep feedback compact.
@@ -495,8 +544,8 @@ old path. Conversation mode, the main draft, and learning evidence stay unchange
 Reference playback, the start cue, recording, or assessment is cancelled on navigation, closing practice, changing
 the input/translation/feedback/provider connection, playback, Escape, or page
 hiding. Cancelled attempts do not create results. No recording resumes after
-reload. Storage failures let you retry **Submit** (or **Retry saving result** in
-Shadow) without another recording or provider request; keep practice open until
+reload. Storage failures let you retry **Submit** (or **Retry saving result** for
+older standalone targets) without another recording or provider request; keep practice open until
 the result is saved.
 
 A small **Copy full message** button below each

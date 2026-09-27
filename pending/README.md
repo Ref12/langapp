@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | Profiles, AI parser compatibility, and the Android voice-list workaround are published (latest `90fcdde1`). Quarter-speed Mandarin playback (0.25x) is implemented across controls, browser/Edge speech, and saved settings; the user requested publication on 2026-09-24. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Phrase chaining, highlighted split tiles, saved partial-phrase tracks, and native speech warm-up are complete. Commit/push authorized on 2026-09-26; check the main-branch Pages workflow for deployment status. |
 
 ## Maintaining this folder
 

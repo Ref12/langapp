@@ -3,12 +3,14 @@ import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, 
 import type { SpeechRate } from './contracts'
 import { acquireAudio, interruptAudio } from './audio-owner'
 import { speakConversationReply } from './conversation-voice'
+import { withAutoCompletedSpeechPreparation as withWarmup } from '../../test/mock-speech-preparation'
 
 class Utterance {
   constructor(public text: string) {}
   voice?: SpeechSynthesisVoice
   lang = ''
   rate = 1
+  volume = 1
   onstart?: (() => void) | null
   onend?: (() => void) | null
   onerror?: ((event?: { error: string }) => void) | null
@@ -44,7 +46,7 @@ beforeEach(() => {
   vi.useFakeTimers()
   vi.setSystemTime(0)
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
-  vi.stubGlobal('speechSynthesis', synthesis)
+  vi.stubGlobal('speechSynthesis', withWarmup(synthesis))
   synthesis.getVoices.mockReset().mockReturnValue([localMandarin, localEnglish])
   synthesis.speak.mockReset()
   synthesis.cancel.mockReset()
@@ -76,6 +78,56 @@ afterEach(() => {
 })
 
 describe('shared audio ownership', () => {
+  it.each(['listed', 'system'])('does not cancel a known-idle engine before the first or repeated %s playback', async source => {
+    if (source === 'system') synthesis.getVoices.mockReturnValue([])
+    vi.stubGlobal('speechSynthesis', withWarmup({ ...synthesis, speaking: false, pending: false }))
+    synthesis.cancel.mockClear()
+    for (const id of ['first', 'repeat']) {
+      stopBrowserSpeech()
+      const outcome = playBrowserSpeechToEnd(id, 'The complete phrase.', 'en-US', 0.25)
+      expect(synthesis.cancel).not.toHaveBeenCalled()
+      const utterance = synthesis.speak.mock.calls.at(-1)![0]
+      expect(utterance).toMatchObject({ text: 'The complete phrase.', rate: 1 })
+      utterance.onstart?.()
+      utterance.onend?.()
+      await expect(outcome).resolves.toEqual({ status: 'completed' })
+    }
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    expectClean()
+  })
+
+  it('still cancels tracked startup speech even before the native pending flag updates', async () => {
+    vi.stubGlobal('speechSynthesis', withWarmup({ ...synthesis, speaking: false, pending: false }))
+    const first = playBrowserSpeechToEnd('first', 'The complete phrase.', 'en-US')
+    const lateEnd = synthesis.speak.mock.calls[0][0].onend
+    const second = playBrowserSpeechToEnd('second', '茶', 'zh-Hans', 0.25)
+    await expect(first).resolves.toEqual({ status: 'cancelled' })
+    expect(synthesis.cancel).toHaveBeenCalledOnce()
+    lateEnd?.()
+    expect(getPlaybackState().activeId).toBe('second')
+    expect(synthesis.speak.mock.calls[1][0].rate).toBe(0.25)
+    stopBrowserSpeech()
+    await expect(second).resolves.toEqual({ status: 'cancelled' })
+    expect(synthesis.cancel).toHaveBeenCalledTimes(2)
+    expectClean()
+  })
+
+  it.each(['speaking', 'pending'] as const)('still stops untracked native speech when %s is true', status => {
+    vi.stubGlobal('speechSynthesis', withWarmup({ ...synthesis, speaking: false, pending: false, [status]: true }))
+    stopBrowserSpeech()
+    expect(synthesis.cancel).toHaveBeenCalledOnce()
+  })
+
+  it('retries a failed native cancellation even if the engine subsequently reports idle', async () => {
+    vi.stubGlobal('speechSynthesis', withWarmup({ ...synthesis, speaking: false, pending: false }))
+    const pending = playBrowserSpeechToEnd('first', 'The complete phrase.', 'en-US')
+    synthesis.cancel.mockImplementationOnce(() => { throw new Error('stop failed') })
+    expect(stopBrowserSpeech()).toContain('could not stop')
+    await expect(pending).resolves.toMatchObject({ status: 'error' })
+    expect(stopBrowserSpeech()).toBeUndefined()
+    expect(synthesis.cancel).toHaveBeenCalledTimes(2)
+  })
+
   it('interrupts top-level capture or practice before a raw preview starts', () => {
     const interrupted = vi.fn(() => expect(synthesis.speak).not.toHaveBeenCalled())
     const lease = acquireAudio(interrupted)
@@ -495,7 +547,7 @@ describe('cached and selected browser voices', () => {
     if (reason === 'refresh') clearVoiceCache()
     if (reason === 'error') synthesis.speak.mock.calls[0][0].onerror?.()
     if (reason === 'startup timeout') vi.advanceTimersByTime(10_000)
-    if (reason === 'new browser API') vi.stubGlobal('speechSynthesis', { ...synthesis })
+    if (reason === 'new browser API') vi.stubGlobal('speechSynthesis', withWarmup(synthesis))
     playBrowserSpeech('second', '茶', 'zh-Hans')
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
     expect(getPlaybackState().phase).toBe('loading-voices')
@@ -689,9 +741,9 @@ describe('bounded browser voice discovery', () => {
 
   it('supports speech APIs without event listener methods without replacing onvoiceschanged', () => {
     const onvoiceschanged = vi.fn()
-    vi.stubGlobal('speechSynthesis', {
+    vi.stubGlobal('speechSynthesis', withWarmup({
       getVoices: synthesis.getVoices, speak: synthesis.speak, cancel: synthesis.cancel, onvoiceschanged,
-    })
+    }))
     synthesis.getVoices.mockReturnValue([onlineMandarin])
     playBrowserSpeech('one', '茶', 'zh-Hans')
     synthesis.getVoices.mockReturnValue([localMandarin])

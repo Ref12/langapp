@@ -21,8 +21,10 @@ const speechConnection = { id: 'assistant-speech', provider: 'azure', region: 'e
 const assessment: SpeechAssessment = { status: 'assessed', accuracy: 93, fluency: 82, completeness: 100, words: [] }
 const playCue = vi.fn<() => Promise<void>>()
 const cancelCue = vi.fn<() => Promise<void>>()
+let popupSource: HTMLElement | undefined
 
 beforeEach(async () => {
+  popupSource = undefined
   clearUnsavedDrafts()
   vi.stubEnv('DEV_LOCAL_SETTINGS', 'false')
   vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
@@ -80,11 +82,34 @@ async function blocks() {
   const reply = await screen.findByRole('article', { name: 'Assistant reply' })
   return Array.from(reply.querySelectorAll<HTMLElement>('.speech-block'))
 }
-async function begin(index = 0) {
+async function openPractice(index = 0) {
   const block = (await blocks())[index]
-  await waitFor(() => expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled())
-  await act(async () => { fireEvent.click(within(block).getByRole('button', { name: 'Practice' })) })
-  return block
+  let popup = screen.queryByRole('dialog', { name: 'Phrase practice' })
+  if (popup && popupSource !== block) {
+    await closePractice()
+    popup = null
+  }
+  if (!popup) {
+    await waitFor(() => expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled())
+    await act(async () => { fireEvent.click(within(block).getByRole('button', { name: 'Practice' })) })
+    popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
+    popupSource = block
+  }
+  await within(popup).findByRole('list', { name: 'Phrase playlist' })
+  return popup
+}
+async function closePractice() {
+  const popup = screen.getByRole('dialog', { name: 'Phrase practice' })
+  fireEvent.click(within(popup).getByRole('button', { name: 'Close practice' }))
+  await waitFor(() => expect(popup).not.toBeInTheDocument())
+}
+async function begin(index = 0) {
+  const popup = await openPractice(index)
+  const recording = await within(popup).findByRole('region', { name: 'Optional whole phrase recording' })
+  const record = within(recording).getByRole('button', { name: 'Record whole phrase' })
+  await waitFor(() => expect(record).toBeEnabled())
+  await act(async () => { fireEvent.click(record) })
+  return recording
 }
 async function submit(block: HTMLElement) {
   fireEvent.click(within(block).getByRole('button', { name: 'Submit' }))
@@ -96,7 +121,39 @@ function deferred<T>() {
   return { promise, resolve }
 }
 
-describe('inline Conversation practice', () => {
+describe('source-block popup practice', () => {
+  it('saves selected parts and their order on the exact source block and restores them when reopened', async () => {
+    render(<App />)
+    const popup = await openPractice(1)
+    fireEvent.click(within(popup).getByRole('button', { name: 'Select part' }))
+    fireEvent.click(within(popup).getByRole('button', { name: /^Select character 1:/ }))
+    fireEvent.click(within(popup).getByRole('button', { name: 'Add selection to playlist' }))
+    await waitFor(async () => {
+      const message = await db.assistantMessages.get('source-reply')
+      expect(message?.practiceChains).toHaveLength(1)
+      expect(message?.practiceChains?.[0]).toMatchObject({
+        blockIndex: 2, chain: { items: [{ kind: 'selection', start: 0, end: 1 }, { kind: 'chain', step: 0 }] },
+      })
+    })
+    fireEvent.click(within(popup).getByRole('button', { name: 'Move step 1 down' }))
+    await waitFor(() => expect(within(popup).getByRole('button', { name: /^Play step 2:/ })).toHaveAttribute('aria-current', 'step'))
+    await closePractice()
+    const reopened = await openPractice(1)
+    expect(within(reopened).getByRole('button', { name: /^Play step 2:/ })).toHaveTextContent('Selected part')
+    fireEvent.click(within(reopened).getByRole('button', { name: 'Edit chunks' }))
+    fireEvent.click(within(reopened).getByRole('button', { name: /^Split after character 1:/ }))
+    fireEvent.click(within(reopened).getByRole('button', { name: 'Save chunks' }))
+    await within(reopened).findByRole('list', { name: 'Phrase playlist' })
+    expect(within(reopened).getAllByRole('button', { name: /^Play step/ })).toHaveLength(3)
+    expect(within(reopened).getByRole('button', { name: /^Play step 3:/ })).toHaveTextContent('Selected part')
+    expect(await db.assistantMessages.count()).toBe(1)
+    expect(await db.words.count()).toBe(0)
+    expect(await db.assistantThreads.get(threadId)).toMatchObject({ draft: 'Keep this draft' })
+    expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
+    expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
   it('connects actual speech end/cancel events to the practice sequence without cancelling its own reference', async () => {
     vi.mocked(playback.playBrowserSpeechToEnd).mockRestore()
     class Utterance {
@@ -115,23 +172,27 @@ describe('inline Conversation practice', () => {
     vi.stubGlobal('speechSynthesis', synthesis)
     render(<App />)
     const block = await begin()
-    expect(synthesis.speak).toHaveBeenCalledTimes(1)
-    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ text: phrase.text, rate: 1 })
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    const [preparation, target] = synthesis.speak.mock.calls.map(([utterance]) => utterance)
+    expect(preparation).toMatchObject({ volume: 0, rate: 1 })
+    expect(target).toMatchObject({ text: phrase.text, rate: 1 })
+    await act(async () => { preparation.onstart?.(); preparation.onend?.() })
     expect(capture.startSpeechCapture).not.toHaveBeenCalled()
-    act(() => synthesis.speak.mock.calls[0][0].onstart?.())
+    expect(playCue).not.toHaveBeenCalled()
+    act(() => target.onstart?.())
     expect(within(block).getByRole('status')).toHaveTextContent('Listen...')
-    await act(async () => synthesis.speak.mock.calls[0][0].onend?.())
+    await act(async () => target.onend?.())
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
     expect(playCue).toHaveBeenCalledTimes(1)
     fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
     await begin()
-    const lateEnd = synthesis.speak.mock.calls[1][0].onend
+    const lateEnd = synthesis.speak.mock.calls.at(-1)![0].onend
     synthesis.cancel.mockClear()
     fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
     await act(async () => lateEnd?.())
     expect(synthesis.cancel).toHaveBeenCalled()
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(within(block).getByRole('button', { name: 'Record whole phrase' })).toBeEnabled()
   })
 
   it('waits for the phrase to finish and the microphone to start, then cues before enabling Submit', async () => {
@@ -180,7 +241,8 @@ describe('inline Conversation practice', () => {
     const block = await begin()
     fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
     await act(async () => { voice.resolve({ status: 'completed' }); tone.resolve() })
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(within(block).getByRole('button', { name: 'Record whole phrase' })).toBeEnabled()
+    expect(screen.getByRole('dialog', { name: 'Phrase practice' })).toBeInTheDocument()
     expect(cancelCue).toHaveBeenCalled()
     if (phase === 'phrase') expect(capture.startSpeechCapture).not.toHaveBeenCalled()
     else expect(handles[0].cancel).toHaveBeenCalled()
@@ -192,10 +254,10 @@ describe('inline Conversation practice', () => {
     render(<App />)
     let block = await begin()
     expect(within(block).getByRole('alert')).toHaveTextContent('selected voice is unavailable')
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(within(block).getByRole('button', { name: 'Record whole phrase' })).toBeEnabled()
     vi.mocked(playback.playBrowserSpeechToEnd).mockResolvedValueOnce({ status: 'cancelled' })
     block = await begin()
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(within(block).getByRole('button', { name: 'Record whole phrase' })).toBeEnabled()
     expect(playCue).not.toHaveBeenCalled()
     expect(capture.startSpeechCapture).not.toHaveBeenCalled()
     expect(await db.assistantMessages.count()).toBe(1)
@@ -207,7 +269,7 @@ describe('inline Conversation practice', () => {
     render(<App />)
     const block = await begin()
     expect(within(block).getByRole('alert')).toHaveTextContent('Audio unavailable.')
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(within(block).getByRole('button', { name: 'Record whole phrase' })).toBeEnabled()
     if (phase === 'prepare') expect(capture.startSpeechCapture).not.toHaveBeenCalled()
     else expect(handles[0].cancel).toHaveBeenCalled()
     expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
@@ -226,27 +288,32 @@ describe('inline Conversation practice', () => {
     expect(await db.assistantMessages.count()).toBe(1)
   })
 
-  it('plays the phrase from Practice, replaces just that row, and saves feedback without a new message', async () => {
+  it.each(['conversation', 'shadow'] as const)('records explicitly in %s and saves only source-block feedback without a new message', async mode => {
+    await db.assistantThreads.update(threadId, { mode })
     render(<App />)
     const block = await begin(1)
+    const source = (await blocks())[1]
     expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledWith(expect.any(String), phrase.text, phrase.locale, 1)
     expect(playCue).toHaveBeenCalledTimes(1)
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
-    expect(within(block).queryByRole('button', { name: 'Hear' })).not.toBeInTheDocument()
-    expect(within(block).queryByRole('button', { name: 'Ask' })).not.toBeInTheDocument()
+    expect(within(source).getByRole('button', { name: 'Hear' })).toBeInTheDocument()
+    expect(within(source).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
+    expect(within(source).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
     expect(within(block).getAllByRole('button').map(button => button.textContent)).toEqual(['Submit', 'Cancel'])
     expect(within((await blocks())[0]).getByRole('button', { name: 'Practice' })).toBeEnabled()
     expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument()
     await submit(block)
     expect(within(block).getByText('Transcript matches.')).toBeInTheDocument()
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(within(block).getByRole('button', { name: 'Record whole phrase' })).toBeEnabled()
+    await closePractice()
+    expect(within(source).getByLabelText('Practice feedback')).toHaveTextContent('Transcript matches.')
     expect(within((await blocks())[0]).queryByLabelText('Practice feedback')).not.toBeInTheDocument()
     const message = await db.assistantMessages.get('source-reply')
     expect(message?.practiceResults).toEqual([{ blockIndex: 2, result: { kind: 'transcript-diff', phrase, transcript: phrase.text, reason: 'not-configured' } }])
     expect(await db.assistantMessages.count()).toBe(1)
     expect(await db.assistantRuns.count()).toBe(0)
     expect(await db.words.count()).toBe(0)
-    expect(await db.assistantThreads.get(threadId)).toMatchObject({ mode: 'conversation', draft: 'Keep this draft' })
+    expect(await db.assistantThreads.get(threadId)).toMatchObject({ mode, draft: 'Keep this draft' })
     expect(fetch).not.toHaveBeenCalled()
   })
 
@@ -257,7 +324,8 @@ describe('inline Conversation practice', () => {
     expect(within(block).getByText('Ready to submit.')).toBeInTheDocument()
     expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
     fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(within(block).getByRole('button', { name: 'Record whole phrase' })).toBeEnabled()
+    expect(screen.getByRole('dialog', { name: 'Phrase practice' })).toBeInTheDocument()
     expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
     expect(fetch).not.toHaveBeenCalled()
   })
@@ -291,13 +359,18 @@ describe('inline Conversation practice', () => {
     expect(await db.assistantMessages.count()).toBe(1)
   })
 
-  it('keeps non-recording practice microphone-free with inline Submit and Cancel', async () => {
+  it('opens listen-and-repeat silently and keeps explicit playlist playback microphone-free', async () => {
     await updateThread(threadId, { practiceInput: 'listen-repeat' })
     render(<App />)
-    const block = await begin()
-    expect(within(block).getByText('Repeat aloud. Microphone off.')).toBeInTheDocument()
-    fireEvent.click(within(block).getByRole('button', { name: 'Submit' }))
-    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    const popup = await openPractice()
+    expect(popup).toHaveTextContent('Microphone off')
+    expect(within(popup).queryByRole('region', { name: 'Optional whole phrase recording' })).not.toBeInTheDocument()
+    expect(within(popup).queryByRole('button', { name: 'Submit' })).not.toBeInTheDocument()
+    expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
+    expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    expect(azure.startAzurePracticeCapture).not.toHaveBeenCalled()
+    expect(cues.prepareRecordingCue).not.toHaveBeenCalled()
+    await act(async () => { fireEvent.click(within(popup).getByRole('button', { name: 'Play practice' })) })
     expect(capture.startSpeechCapture).not.toHaveBeenCalled()
     expect(azure.startAzurePracticeCapture).not.toHaveBeenCalled()
     expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledTimes(1)
@@ -307,11 +380,12 @@ describe('inline Conversation practice', () => {
 
   it('moves between identical phrases without leaving two recorders or applying late feedback', async () => {
     render(<App />)
-    const first = await begin()
+    await begin()
     const late = report
     const second = await begin(1)
     expect(handles[0].cancel).toHaveBeenCalled()
-    expect(within(first).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(screen.getAllByRole('dialog', { name: 'Phrase practice' })).toHaveLength(1)
+    expect(within((await blocks())[0]).getByRole('button', { name: 'Practice' })).toBeEnabled()
     act(() => late({ phase: 'finished', transcript: 'late text' }))
     await submit(second)
     expect((await db.assistantMessages.get('source-reply'))?.practiceResults?.map(entry => entry.blockIndex)).toEqual([2])
@@ -370,7 +444,7 @@ describe('inline Conversation practice', () => {
     render(<App />)
     const block = await begin()
     const late = report
-    if (action === 'Escape') fireEvent.keyDown(document, { key: 'Escape' })
+    if (action === 'Escape') fireEvent.keyDown(screen.getByRole('dialog', { name: 'Phrase practice' }), { key: 'Escape' })
     else if (action === 'pagehide') fireEvent(window, new Event('pagehide'))
     else if (action === 'hidden') {
       vi.spyOn(document, 'hidden', 'get').mockReturnValue(true)
@@ -400,11 +474,22 @@ describe('inline Conversation practice', () => {
     fireEvent.click(within(block).getByRole('button', { name: 'Submit' }))
     await within(block).findByRole('alert')
     expect(await db.assistantMessages.count()).toBe(1)
+    expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
+    fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
+    expect(within(block).getByRole('alert')).toHaveTextContent('Retry Submit to save your feedback before closing practice.')
+    const popup = screen.getByRole('dialog', { name: 'Phrase practice' })
+    fireEvent.click(within(popup).getByRole('button', { name: 'Close practice' }))
+    await within(popup).findByText('Save your pending feedback before closing practice.')
+    expect(popup).toBeInTheDocument()
+    expect(within(block).getByRole('button', { name: 'Submit' })).toBeEnabled()
+    expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
     await submit(block)
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
     expect(handles[0].stop).toHaveBeenCalledTimes(1)
     expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledTimes(1)
     expect(playCue).toHaveBeenCalledTimes(1)
+    expect(await db.assistantMessages.count()).toBe(1)
+    expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toHaveLength(1)
     await begin()
     act(() => report({ phase: 'finished', transcript: '\u4f60' }))
     await submit(block)

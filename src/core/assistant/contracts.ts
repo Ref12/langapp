@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { speechAssessmentSchema } from './speech-contracts'
+import { practiceChainSchema } from './practice-chain-contracts'
 
 export const MAX_DRAFT_LENGTH = 8000
 export const MAX_TOOL_ROUNDS = 4
@@ -91,6 +92,7 @@ export const assistantThreadSchema = z.object({
   voiceInputLocale: speechLocaleSchema.optional(),
   practicePhrase: practicePhraseSchema.optional(),
   practiceDraft: z.string().max(MAX_DRAFT_LENGTH).optional(),
+  practiceChain: practiceChainSchema.optional(),
   romanization: z.boolean(),
   speechRate: speechRateSchema,
   returnRoute: z.string().min(1).max(300).regex(/^[\w:/.-]+$/),
@@ -112,6 +114,10 @@ export const assistantMessageSchema = z.object({
     blockIndex: z.number().int().min(0).max(11),
     result: practiceResultSchema,
   }).strict()).max(12).optional(),
+  practiceChains: z.array(z.object({
+    blockIndex: z.number().int().min(0).max(11),
+    chain: practiceChainSchema,
+  }).strict()).max(12).optional(),
   mode: assistantModeSchema,
   intent: assistantIntentSchema,
   status: z.enum(['pending', 'completed', 'failed', 'cancelled']),
@@ -119,6 +125,20 @@ export const assistantMessageSchema = z.object({
   error: z.string().max(1000).optional(),
   createdAt: timestamp,
 }).strict().superRefine((message, context) => {
+  if (message.practiceChains) {
+    if (message.role !== 'assistant' || message.status !== 'completed') {
+      context.addIssue({ code: 'custom', message: 'Practice playlists belong to completed assistant replies.' })
+    }
+    const indices = new Set<number>()
+    for (const entry of message.practiceChains) {
+      const block = message.blocks[entry.blockIndex]
+      if (indices.has(entry.blockIndex) || block?.type !== 'speech'
+        || block.locale !== 'zh-Hans' || block.text !== entry.chain.text) {
+        context.addIssue({ code: 'custom', message: 'Practice chunks must belong to a unique, unchanged Mandarin phrase.' })
+      }
+      indices.add(entry.blockIndex)
+    }
+  }
   if (message.practiceResults) {
     if (message.role !== 'assistant' || message.status !== 'completed') {
       context.addIssue({ code: 'custom', message: 'Inline practice feedback is only allowed in completed assistant replies.' })

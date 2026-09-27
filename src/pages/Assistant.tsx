@@ -12,7 +12,8 @@ import { MessageActions } from '../components/assistant/MessageActions'
 import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
 import { PhrasePractice } from '../components/assistant/PhrasePractice'
 import { PracticeResultBubble } from '../components/assistant/PracticeResultBubble'
-import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
+import { stopBrowserSpeech } from '../core/assistant/speech'
+import { interruptAudio } from '../core/assistant/audio-owner'
 import { LocalSpeechSetupContext, LocalSpeechRateSetupContext } from '../components/assistant/local-ai-setup-context'
 import type { SpeechConnection } from '../core/assistant/speech-contracts'
 import { registerDraftEditor } from '../core/assistant/draft-actions'
@@ -80,8 +81,8 @@ interface InlinePracticeControls {
 function ConversationPhraseActions({ message, blockIndex, phrase, thread, controls }: {
   message: AssistantMessage; blockIndex: number; phrase: SpeechBlock; thread: AssistantThread; controls: InlinePracticeControls
 }) {
-  const key = JSON.stringify([message.id, blockIndex, phrase, thread.practiceInput ?? 'listen-repeat',
-    thread.speechFeedback ?? true, controls.connection?.revision])
+  const key = JSON.stringify([message.id, blockIndex, phrase, thread.mode, thread.practiceInput ?? 'listen-repeat',
+    thread.speechFeedback ?? true])
   return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy}
     speechConnection={controls.connection} connectionLoading={controls.loading}
     inline={{ message, blockIndex, active: controls.activeId === key, activate: () => controls.activate(key) }}
@@ -110,7 +111,7 @@ function Message({ message, thread, onExplain, onPractice, inlinePractice }: {
         {thread.romanization && block.romanization && <p className="pinyin" data-assistant-exclude>{block.romanization}</p>}
         {block.meaning && <p className="small muted">{block.meaning}</p>}
         {block.locale === 'zh-Hans'
-          ? thread.mode === 'conversation' && message.role === 'assistant' && message.status === 'completed'
+          ? message.role === 'assistant' && message.status === 'completed'
             ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice} />
             : <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
             rate={thread.speechRate} onPractice={() => onPractice(block)} />
@@ -139,7 +140,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [inlinePracticeId, setInlinePracticeId] = useState<string>()
-  const previewPlaybackId = `practice-preview-${thread.id}`
+  const [shadowPracticeOpen, setShadowPracticeOpen] = useState(false)
   const writes = useRef<Promise<void>>(Promise.resolve())
   const sendVersion = useRef(0)
   const sendPending = useRef(false)
@@ -154,10 +155,6 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const lastMessage = messages?.[messages.length - 1]
   const retryUser = lastFailed && lastMessage?.id === lastFailed.id
     ? messages?.find(message => message.role === 'user' && message.runId === lastFailed.runId && message.intent !== 'repeat' && !message.practice) : undefined
-
-  useEffect(() => () => {
-    if (getPlaybackState().activeId === previewPlaybackId) stopBrowserSpeech()
-  }, [previewPlaybackId, thread.mode])
 
   const save = useCallback((value: string, source?: AssistantThread['source']) => {
     rememberDraft(thread.id, value)
@@ -281,8 +278,13 @@ function Conversation({ thread }: { thread: AssistantThread }) {
         }}
         onPractice={phrase => {
           if (busy) { setError('Stop or finish the current reply before practicing.'); return }
-          playBrowserSpeech(previewPlaybackId, phrase.text, phrase.locale, thread.speechRate)
-          void action(() => selectPracticePhrase(thread.id, phrase))
+          void action(async () => {
+            interruptAudio()
+            const failure = stopBrowserSpeech()
+            if (failure) throw new Error(failure)
+            await selectPracticePhrase(thread.id, phrase)
+            setShadowPracticeOpen(true)
+          })
         }}
         onExplain={phrase => {
           if (busy) { setError('Stop or finish the current reply before requesting an explanation.'); return }
@@ -291,11 +293,12 @@ function Conversation({ thread }: { thread: AssistantThread }) {
             source: { text: phrase.text, title: 'Mandarin translation', route: `conversation/${thread.id}`, locale: phrase.locale, meaning: phrase.meaning },
           })
         }} />)}
-      {thread.mode === 'shadow' && practicePhrase && <PhrasePractice key={JSON.stringify([practicePhrase, thread.practiceInput ?? 'listen-repeat', thread.speechFeedback ?? true, speechSetup?.connection?.revision ?? 'missing'])}
+      {thread.mode === 'shadow' && practicePhrase && <PhrasePractice key={JSON.stringify([practicePhrase, thread.practiceInput ?? 'listen-repeat', thread.speechFeedback ?? true])}
         thread={thread} phrase={practicePhrase} busy={busy || deleting} speechConnection={speechSetup?.connection} connectionLoading={!speechSetup || localSpeechSetup === 'loading'}
+        open={shadowPracticeOpen}
         onClose={async () => {
-          if (getPlaybackState().activeId === previewPlaybackId) stopBrowserSpeech()
           await selectPracticePhrase(thread.id)
+          setShadowPracticeOpen(false)
           input.current?.focus()
         }} />}
       {retryUser && !busy && <button className="button secondary" onClick={() => {

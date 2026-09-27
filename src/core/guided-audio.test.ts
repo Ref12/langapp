@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { withAutoCompletedSpeechPreparation } from '../test/mock-speech-preparation'
 import { createGuidedAudio, type GuidedAudioState } from './guided-audio'
 import type { AudioStep } from './learning-content'
 import { clearVoiceCache, getPlaybackState, playBrowserSpeech, setSpeechVoicePreferences, stopBrowserSpeech } from './assistant/speech'
@@ -34,7 +35,7 @@ const finish = async () => {
 beforeEach(() => {
   vi.useFakeTimers()
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
-  vi.stubGlobal('speechSynthesis', synthesis)
+  vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
   synthesis.getVoices.mockReset().mockReturnValue([english, mandarin])
   synthesis.speak.mockReset()
   synthesis.cancel.mockReset()

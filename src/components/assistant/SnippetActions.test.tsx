@@ -1,5 +1,6 @@
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
 import { getPlaybackState, setDefaultSpeechRate, stopBrowserSpeech } from '../../core/assistant/speech'
 import { HearButton, PlaybackStatus, SnippetActions } from './SnippetActions'
 
@@ -24,7 +25,7 @@ beforeEach(() => {
     getVoices: () => voices, speak: vi.fn<(utterance: Utterance) => void>(), cancel: vi.fn(),
   })
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
-  vi.stubGlobal('speechSynthesis', synthesis)
+  vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
   stopBrowserSpeech()
   setDefaultSpeechRate()
 })

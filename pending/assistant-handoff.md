@@ -3,6 +3,144 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Phrase chaining playlist
+
+The user approved implementing a popup playlist from each phrase's Practice
+action, with both Hanzi and pinyin, forward/backward cumulative steps,
+self-paced by default and optional guided pacing, plus local editable chunks.
+Opening does not speak or record. Implementation is complete; the user authorized
+committing and pushing it on 2026-09-26. This section supersedes old inline/Shadow panel entry
+behavior; the capture/assessment engine and its result persistence remain.
+
+`PracticePlaylist` provides the native dialog, responsive mobile sheet, transport,
+options, and split/merge editor. `PhrasePractice` wraps existing source actions
+and embeds the moved `PracticeRecording` only when spoken feedback is enabled.
+Whole-phrase recording is a separate explicit action, using the popup's rate.
+Completed replies in both modes attach feedback and saved chunk boundaries to
+the exact source block; old standalone selected Shadow targets remain supported.
+Closing guards submitted unsaved feedback and preserves retry behavior.
+
+`practice-chain` is lazy-loaded with pinned `pinyin-pro@3.29.4`; shared persisted
+contracts must remain dictionary-free. `practice-playback` uses existing audio
+ownership and real speech completion for guided gaps. `practice-chain-store`
+saves exact-source boundaries and optional ordered selections, with no chat turns
+or learning writes. These are additive optional thread/message fields included by existing
+JSON/profile YAML serialization, without an IndexedDB version change.
+
+All three delegated scopes are complete and integrated. The initial speech
+connection lookup no longer changes the popup identity: opening before it resolves
+is safe, while subsequent provider/input/feedback/mode changes still cancel capture.
+Failed native cancellation prevents the UI from claiming a direction change or
+successful close. Pending submitted feedback remains available for storage-only retry.
+
+Validation: 229 new core/store/popup cases pass (79 chunking, 127 playback,
+6 persistence, 17 popup), as do 99 adapted Assistant/voice/recording integration
+cases. Existing speech, audio ownership, practice results, JSON backups, profile
+codecs/store/bootstrap/client, conversation store, and mobile navigation regressions
+pass. App/node TypeScript and scoped ESLint pass. Production Vite bundling keeps
+the dictionary in a lazy chunk, about 142 KiB gzipped, rather than startup JS.
+The dependency's MIT notice ships under `public/licenses/pinyin-pro.txt`.
+
+A real headless Edge production preview, with a separate synthetic browser
+profile and blocked external requests, confirms native modal behavior at 1440x1000
+and 390x844, fixed visible transport, four Hanzi/pinyin tracks, silent opening,
+one dictionary fetch only after opening, and Escape dismissal. Audio/capture and
+provider coverage remains synthetic; no live speech/AI request or private profile
+edit was made. No implementation blocker remains. Commit/push only on request.
+
+The user's live development browser exposed an additional Strict Mode race:
+effect cleanup calls native dialog.close(), whose queued close event can arrive
+after React has reopened the same dialog. The close handler now ignores that
+stale event while the dialog is open. A regression using StrictMode and queued
+native close events failed before the fix and passes afterward, including
+playback/navigation and close/reopen. All 65 popup/recording integration cases,
+TypeScript, and scoped lint pass. The live browser now opens the popup and its
+chunk editor instead of immediately dismissing it. Production-only smoke checks
+cannot replace this development-mode coverage.
+
+At the user's request, playlist Hanzi and pinyin use normal weight; newly added
+characters use the theme accent color instead of bold, with matching pinyin
+underlined as a second cue.
+
+### Playlist refinements and native speech startup
+
+The user requested arbitrary word/partial-phrase additions, insertion at the
+currently selected/playing index, and row reordering. The model now supports
+optional ordered `items` (generated chain steps or safe source-unit selections).
+Add inserts before the current row and selects the addition without speaking.
+Up/Down preserve the selected item's identity; custom rows can be removed.
+All these explicit edits pause playback and save to the exact source block.
+The 80-row limit includes generated steps and additions. Chunk-count changes
+retain valid generated lengths and selections in relative order, remove obsolete
+lengths, and insert new lengths after the retained generated steps. A reordered
+playlist need not end with the full phrase.
+
+`PracticePhraseSelection` supports native desktop selection and a mobile
+tap-first/tap-last picker, including single-character and reverse-order ranges.
+Selection previews retain full-phrase contextual pinyin and safe Unicode
+boundaries. A failed Add retains the selection for retry. The user's latest
+split-editor preference replaces between-character checkboxes with highlighted
+character-end tiles, using the same selection-strip style. Punctuation must be
+plain text, not a tile, in both editors, without dropping it from stored text.
+`PracticeBoundaryEditor`, `practice-character-groups`, and the popup CSS own this
+presentation; core offsets remain code-point based.
+
+The audio issue is missing **beginnings**, not endings. The user clarified that
+they mainly encountered it with **browser-native TTS**, despite this desktop
+profile currently selecting Edge. Do not infer the affected engine from current
+saved settings alone. It was reported with multiple audio outputs.
+
+With explicit permission, a synthetic phrase was played through the live browser:
+an identical complete Edge MP3 twice started at media time zero and reached the
+real end, without early pause/load/seek; the user heard the opening missing both
+times. Decoding that same recording with 750ms of real leading silence restored
+the opening. Raw native Microsoft Huihui (without preceding cancellation) still
+lost it, despite native start/word events at character zero. Queueing a muted
+native preparation utterance (`volume=0`, same voice/language, normal rate) and
+the unchanged target in one synchronous call stack restored the opening audibly.
+This supports startup-loss mitigation, not a precise browser/OS root cause.
+
+The user approved default-on native preparation **after idle**, accepting roughly
+two seconds of startup time. Shared `speech.ts` now queues muted preparation
+and the unchanged target synchronously, with a 1,000ms idle threshold keyed by
+native synthesis, language, and voice identity. Preparation runs at normal rate;
+the actual target retains quarter-speed Mandarin or normal-speed English.
+Only successful target completion establishes warmth. Voice changes, actual
+cancellation, and failures invalidate it; an idle Stop does not. Separate bounded
+startup, preparation, and target deadlines prevent an indefinitely active queue.
+Late preparation callbacks cannot end or fail an already-started target.
+No JavaScript sleep, automatic phrase replay,
+voice-provider switch, or microphone use is appropriate. Only the actual target's
+completion may advance guided practice or start capture. Immediate consecutive
+speech should avoid redundant preparation; cancellation must clear both queued
+utterances. Earlier idle-cancel hardening is not itself a demonstrated solution.
+The speculative Edge duration-watchdog change was removed because it does not
+address missing beginnings. The Edge silent lead-in was diagnostic only.
+
+The current checkout is served at `http://127.0.0.1:5175/`; port 5174 belongs to
+an older worktree. The live split editor shows highlighted 44px character tiles,
+plain punctuation, unchanged source text, and no horizontal overflow. No live
+user playlist edit or private profile rewrite was performed.
+
+Final integration: 737 speech/UI/recording/caller cases pass across 20 files,
+including 59 raw preparation cases and popup/capture cases that explicitly wait
+for the real target after preparation. The separate 481-case
+model/controller/store/backup/profile run passed across nine files (the controller
+is included in both runs). Target-focused native fixtures use the EventTarget-safe
+`withAutoCompletedSpeechPreparation` helper; raw lifecycle cases do not.
+App/node TypeScript, changed-file ESLint, and production Vite bundling pass.
+The dictionary remains lazy-loaded at approximately 143 KiB gzipped.
+
+A final live run of the implemented shared native engine completed cold and
+immediately consecutive playback: preparation and target were enqueued in the
+same call stack, followed by one target-only enqueue for the warm second play.
+The user's audible confirmation came from the preceding controlled native
+preparation comparison. Android/device-specific output behavior has not been
+independently confirmed; do not claim a universal platform fix or an Edge fix.
+The user authorized committing and pushing these completed refinements on
+2026-09-26. The existing main-branch Pages workflow handles publication; its
+result, not the local bundle alone, establishes deployment status.
+
 ## Quarter-speed Mandarin playback (2026-09-24)
 
 The user requested 0.25x in addition to the existing speech speeds. The shared

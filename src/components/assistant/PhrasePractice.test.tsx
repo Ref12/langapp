@@ -1,5 +1,4 @@
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../../App'
 import { db, initializeWorkspace } from '../../core/database'
@@ -12,6 +11,7 @@ import { stopBrowserSpeech } from '../../core/assistant/speech'
 import * as playback from '../../core/assistant/speech'
 import * as cues from '../../core/assistant/recording-cue'
 import { MockAudio, mockAudio } from '../../test/mock-audio'
+import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', romanization: 'ni hao', meaning: 'hello' } as const
 const connection: SpeechConnection = { id: 'assistant-speech', provider: 'azure', region: 'eastus', apiKey: 'fake-speech-key',
@@ -75,12 +75,41 @@ beforeEach(async () => {
 })
 afterEach(() => { cleanup(); stopBrowserSpeech(); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.unstubAllEnvs() })
 
+async function openPractice() {
+  let popup = screen.queryByRole('dialog', { name: 'Phrase practice' })
+  if (!popup) {
+    const card = (await screen.findByRole('heading', { name: 'Practice this translation' })).parentElement!
+    await waitFor(() => expect(within(card).getByRole('button', { name: 'Practice' })).toBeEnabled())
+    await act(async () => { fireEvent.click(within(card).getByRole('button', { name: 'Practice' })) })
+    popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
+  }
+  const opened = popup
+  await waitFor(() => expect(within(opened).getByRole('button', { name: 'Play practice' })).toBeEnabled())
+  return opened
+}
+
 async function begin(name = 'Start speaking') {
-  await waitFor(() => expect(screen.getByRole('button', { name })).toBeEnabled())
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name })) })
+  const popup = screen.queryByRole('dialog', { name: 'Phrase practice' }) ?? await openPractice()
+  const recording = await within(popup).findByRole('region', { name: 'Optional whole phrase recording' })
+  await waitFor(() => expect(within(recording).getByRole('button', { name })).toBeEnabled())
+  await act(async () => { fireEvent.click(within(recording).getByRole('button', { name })) })
+  return recording
 }
 
 describe('automatic translation practice', () => {
+  it('opens legacy spoken-feedback practice without starting speech, a recording, or a cue', async () => {
+    render(<App />)
+    const popup = await openPractice()
+    const recording = await within(popup).findByRole('region', { name: 'Optional whole phrase recording' })
+    await waitFor(() => expect(within(recording).getByRole('button', { name: 'Start speaking' })).toBeEnabled())
+    expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
+    expect(start).not.toHaveBeenCalled()
+    expect(azureStart).not.toHaveBeenCalled()
+    expect(cues.prepareRecordingCue).not.toHaveBeenCalled()
+    expect(playCue).not.toHaveBeenCalled()
+    expect(await db.assistantMessages.count()).toBe(0)
+  })
+
   it('waits for selected Edge reference audio to end before starting capture or the cue', async () => {
     vi.mocked(playback.playBrowserSpeechToEnd).mockRestore()
     vi.stubEnv('DEV_LOCAL_TTS', 'true')
@@ -106,7 +135,7 @@ describe('automatic translation practice', () => {
     expect(azureStart).not.toHaveBeenCalled()
   })
 
-  it('previews a Shadow phrase when Practice is clicked, without starting a recording on panel mount', async () => {
+  it('opens a Shadow phrase popup silently without starting speech, a recording, or the cue', async () => {
     await updateThread(threadId, { practiceInput: 'listen-repeat' })
     await db.assistantMessages.add({ id: 'shadow-reply', threadId, role: 'assistant', sequence: 0, text: '', blocks: [phrase],
       mode: 'shadow', intent: 'shadow', status: 'completed', createdAt: 1 })
@@ -115,10 +144,14 @@ describe('automatic translation practice', () => {
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
     expect(preview).not.toHaveBeenCalled()
     fireEvent.click(within(reply).getByRole('button', { name: 'Practice' }))
-    expect(preview).toHaveBeenCalledWith(`practice-preview-${threadId}`, phrase.text, phrase.locale, 1)
+    const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
+    await waitFor(() => expect(within(popup).getByRole('button', { name: 'Play practice' })).toBeEnabled())
+    expect(preview).not.toHaveBeenCalled()
+    expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
     expect(start).not.toHaveBeenCalled()
     expect(azureStart).not.toHaveBeenCalled()
     expect(playCue).not.toHaveBeenCalled()
+    expect(cues.prepareRecordingCue).not.toHaveBeenCalled()
   })
 
   it('connects actual browser recognition callbacks to one automatic local comparison', async () => {
@@ -160,13 +193,16 @@ describe('automatic translation practice', () => {
     await updateThread(threadId, { practiceInput: 'listen-repeat' })
     await db.speechConnections.put(connection)
     render(<App />)
-    const panel = await screen.findByLabelText('Translation practice')
-    expect(within(panel).getByRole('button', { name: 'Hear' })).toBeEnabled()
-    expect(panel).toHaveTextContent('Your microphone is off')
+    const popup = await openPractice()
+    expect(within(popup).getByRole('button', { name: 'Play practice' })).toBeEnabled()
+    expect(popup).toHaveTextContent('Microphone off')
+    expect(within(popup).queryByRole('region', { name: 'Optional whole phrase recording' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Start speaking' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Send for feedback' })).not.toBeInTheDocument()
     expect(start).not.toHaveBeenCalled()
     expect(azureStart).not.toHaveBeenCalled()
+    expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
+    expect(cues.prepareRecordingCue).not.toHaveBeenCalled()
     expect(fetch).not.toHaveBeenCalled()
   })
 
@@ -246,18 +282,19 @@ describe('automatic translation practice', () => {
   })
 
   it('cancels on input changes, closing, or navigation, and ignores late final results', async () => {
-    const user = userEvent.setup()
     render(<App />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Assistant settings' }))
     await begin()
     const late = report
-    await user.click(screen.getByRole('button', { name: 'Assistant settings' }))
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Practice input' }), 'listen-repeat')
+    await act(async () => { await updateThread(threadId, { practiceInput: 'listen-repeat' }) })
+    await waitFor(() => expect(screen.getByRole('combobox', { name: 'Practice input' })).toHaveValue('listen-repeat'))
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Stop capture' })).not.toBeInTheDocument())
     act(() => late({ phase: 'finished', transcript: 'late discarded text' }))
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Practice input' }), 'spoken-feedback')
+    await act(async () => { await updateThread(threadId, { practiceInput: 'spoken-feedback' }) })
+    await waitFor(() => expect(screen.getByRole('combobox', { name: 'Practice input' })).toHaveValue('spoken-feedback'))
     await begin()
     fireEvent.click(screen.getByRole('button', { name: 'Close practice' }))
-    await waitFor(() => expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument())
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument())
     await act(async () => { await selectPracticePhrase(threadId, phrase) })
     await begin()
     const lateNavigation = report
@@ -308,6 +345,7 @@ describe('automatic translation practice', () => {
     await db.speechConnections.put(connection)
     vi.mocked(assessment.azureSpeechCaptureSupported).mockReturnValue(false)
     render(<App />)
+    await openPractice()
     await screen.findByText('Recording unavailable in this browser.')
     expect(screen.getByRole('button', { name: 'Start speaking' })).toBeDisabled()
     expect(start).not.toHaveBeenCalled()
@@ -320,7 +358,7 @@ describe('automatic translation practice', () => {
       getVoices: () => [{ name: 'Mandarin', lang: 'zh-CN', voiceURI: 'local-zh', localService: true, default: false }],
       speak: vi.fn(), cancel: vi.fn(),
     })
-    vi.stubGlobal('speechSynthesis', synthesis)
+    vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
     render(<App />)
     await begin()
     fireEvent.click(within(screen.getByLabelText('Translation practice')).getByRole('button', { name: 'Hear' }))
@@ -345,16 +383,26 @@ describe('automatic translation practice', () => {
   it('retains a result after storage failure for an idempotent storage-only retry', async () => {
     render(<App />)
     await begin()
+    act(() => report({ phase: 'listening', transcript: '' }))
+    await waitFor(() => expect(playCue).toHaveBeenCalledTimes(1))
     vi.spyOn(db.assistantMessages, 'add').mockRejectedValueOnce(new Error('Storage full'))
     act(() => report({ phase: 'finished', transcript: phrase.text }))
     const retry = await screen.findByRole('button', { name: 'Retry saving result' })
     expect(screen.getByLabelText('Translation practice')).toHaveTextContent(phrase.text)
     expect(await db.assistantMessages.count()).toBe(0)
     expect(screen.getByRole('button', { name: 'Record again' })).toBeDisabled()
+    const popup = screen.getByRole('dialog', { name: 'Phrase practice' })
+    fireEvent.click(within(popup).getByRole('button', { name: 'Close practice' }))
+    await within(popup).findByText('Save your pending feedback before closing practice.')
+    expect(popup).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Record again' })).toBeDisabled()
+    expect(await db.assistantMessages.count()).toBe(0)
     fireEvent.click(retry)
     await screen.findByRole('article', { name: 'Practice result' })
     expect(await db.assistantMessages.count()).toBe(1)
     expect(start).toHaveBeenCalledTimes(1)
+    expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledTimes(1)
+    expect(playCue).toHaveBeenCalledTimes(1)
     expect(fetch).not.toHaveBeenCalled()
   })
 })

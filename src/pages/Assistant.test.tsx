@@ -320,7 +320,7 @@ describe('first usable Assistant', () => {
     expect(await screen.findByRole('textbox', { name: 'Message Assistant' })).toHaveValue(selectedDraft)
   })
 
-  it.each(['shadow'] as const)('opens listen-and-repeat practice without changing %s mode, sending, or replacing drafts', async mode => {
+  it.each(['conversation', 'shadow'] as const)('opens listen-and-repeat practice without changing %s mode, sending, or replacing drafts', async mode => {
     const id = await createConversation()
     await updateThread(id, { mode })
     await saveDraft(id, 'Keep my unfinished question')
@@ -344,22 +344,30 @@ describe('first usable Assistant', () => {
     expect(within(english).queryByRole('button', { name: 'Practice' })).not.toBeInTheDocument()
 
     await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[1])
-    const reference = await screen.findByLabelText('Translation practice')
-    expect(within(reference).getByText(greeting.text)).toBeInTheDocument()
-    expect(within(reference).getByText(greeting.romanization)).toBeInTheDocument()
+    const reference = await screen.findByRole('dialog', { name: 'Phrase practice' })
+    expect(reference.querySelector('.practice-target')).toHaveTextContent(greeting.text)
+    const playlist = await within(reference).findByRole('list', { name: 'Phrase playlist' })
+    expect(playlist.querySelector('[lang="zh-Latn"]')).toHaveTextContent(/\S/)
     expect(within(reference).getByText(greeting.meaning)).toBeInTheDocument()
     expect(await db.assistantThreads.get(id)).toMatchObject({
-      mode, practiceInput: 'listen-repeat', practicePhrase: greeting, draft: 'Keep my unfinished question',
+      mode, practiceInput: 'listen-repeat', draft: 'Keep my unfinished question',
     })
+    expect((await db.assistantThreads.get(id))?.practicePhrase).toBeUndefined()
     expect(input).toHaveValue('Keep my unfinished question')
-    await waitFor(() => expect(reference).toHaveFocus())
+    await waitFor(() => expect(within(reference).getByRole('button', { name: 'Close practice' })).toHaveFocus())
     expect(within(reference).queryByRole('button', { name: 'Start speaking' })).not.toBeInTheDocument()
-    expect(reference).toHaveTextContent('Your microphone is off')
+    expect(within(reference).queryByRole('region', { name: 'Optional whole phrase recording' })).not.toBeInTheDocument()
+    expect(reference).toHaveTextContent('Microphone off')
+    expect(screen.queryByRole('heading', { name: 'Practice this translation' })).not.toBeInTheDocument()
     expect(window.location.hash).toBe(`#conversation/${id}`)
     expect((await db.assistantMessages.get('practice-reply'))?.mode).toBe('conversation')
 
+    await user.click(within(reference).getByRole('button', { name: 'Close practice' }))
+    await waitFor(() => expect(reference).not.toBeInTheDocument())
     await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[0])
-    await waitFor(async () => expect((await db.assistantThreads.get(id))?.practicePhrase).toEqual(tea))
+    const next = await screen.findByRole('dialog', { name: 'Phrase practice' })
+    expect(within(next).getByText(tea.meaning)).toBeInTheDocument()
+    expect((await db.assistantThreads.get(id))?.practicePhrase).toBeUndefined()
     expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.role === 'event').count()).toBe(mode === 'shadow' ? 1 : 0)
     expect(await db.assistantThreads.count()).toBe(1)
     expect(await db.assistantRuns.count()).toBe(0)
@@ -369,10 +377,13 @@ describe('first usable Assistant', () => {
 
     cleanup()
     render(<App />)
-    expect(within(await screen.findByLabelText('Translation practice')).getByText(tea.text)).toBeInTheDocument()
     expect(await screen.findByRole('textbox', { name: 'Message Assistant' })).toHaveValue('Keep my unfinished question')
+    expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument()
+    const restoredReply = await screen.findByRole('article', { name: 'Assistant reply' })
+    await user.click(within(restoredReply).getAllByRole('button', { name: 'Practice' })[0])
+    expect(within(await screen.findByRole('dialog', { name: 'Phrase practice' })).getByText(tea.meaning)).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Close practice' }))
-    await waitFor(() => expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument())
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument())
     expect((await db.assistantThreads.get(id))?.mode).toBe(mode)
   })
 
@@ -405,20 +416,23 @@ describe('first usable Assistant', () => {
     expect(await db.assistantRuns.count()).toBe(0)
   })
 
-  it('reopens an older pending Shadow repetition as listen-only practice without hijacking the composer', async () => {
+  it('offers an older pending Shadow repetition as an explicitly opened listen-only popup without hijacking the composer', async () => {
     const id = await createConversation()
     await updateThread(id, { mode: 'shadow', shadowIntent: 'repeat', shadowPhrase: { type: 'speech', text: '\u8336', locale: 'zh-Hans' } })
     await db.assistantThreads.update(id, { practiceInput: undefined })
     await saveDraft(id, 'My next thought in English')
     window.location.hash = `conversation/${id}`
     render(<App />)
-    const panel = await screen.findByLabelText('Translation practice')
-    expect(panel).toHaveTextContent('Your microphone is off')
-    expect(within(panel).getByText('\u8336')).toBeInTheDocument()
+    const card = (await screen.findByRole('heading', { name: 'Practice this translation' })).parentElement!
+    expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument()
+    fireEvent.click(within(card).getByRole('button', { name: 'Practice' }))
+    const panel = await screen.findByRole('dialog', { name: 'Phrase practice' })
+    expect(panel).toHaveTextContent('Microphone off')
+    expect(panel.querySelector('.practice-target')).toHaveTextContent('\u8336')
     expect(screen.getByRole('textbox', { name: 'Message Assistant' })).toHaveValue('My next thought in English')
     expect(screen.queryByText('Next turn: repeat the selected phrase')).not.toBeInTheDocument()
     fireEvent.click(within(panel).getByRole('button', { name: 'Close practice' }))
-    await waitFor(() => expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument())
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument())
     expect(await db.assistantThreads.get(id)).toMatchObject({ mode: 'shadow', shadowIntent: 'new-phrase', draft: 'My next thought in English' })
   })
 

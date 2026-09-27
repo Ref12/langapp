@@ -10,6 +10,7 @@ import * as playback from '../../core/assistant/speech'
 import * as cues from '../../core/assistant/recording-cue'
 import { interruptAudio } from '../../core/assistant/audio-owner'
 import * as audioOwner from '../../core/assistant/audio-owner'
+import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', meaning: 'hello' } as const
 const blocks: AssistantBlock[] = [
@@ -346,7 +347,7 @@ describe('conversation voice input and replies', () => {
       speak: vi.fn<(utterance: Utterance) => void>(), cancel: vi.fn(),
     })
     vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
-    vi.stubGlobal('speechSynthesis', synthesis)
+    vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
     await updateThread(id, { speechRate: 0.75 })
     await saveDraft(id, 'Request')
     await oldReply()
@@ -390,9 +391,13 @@ describe('conversation voice input and replies', () => {
     const firstCancel = cancel
     await waitFor(() => expect(screen.getByRole('button', { name: 'Practice' })).toBeEnabled())
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Practice' })) })
-    const practice = await screen.findByLabelText('Inline translation practice')
-    await waitFor(() => expect(within(practice).getByRole('button', { name: 'Submit' })).toBeEnabled())
+    const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
+    const practice = await within(popup).findByRole('region', { name: 'Optional whole phrase recording' })
     expect(firstCancel).toHaveBeenCalled()
+    expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
+    expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
+    await act(async () => { fireEvent.click(within(practice).getByRole('button', { name: 'Record whole phrase' })) })
+    await waitFor(() => expect(within(practice).getByRole('button', { name: 'Submit' })).toBeEnabled())
     expect(screen.getByRole('button', { name: 'Start voice input' })).toBeEnabled()
     const practiceCancel = cancel
     await begin()

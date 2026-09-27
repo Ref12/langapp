@@ -1,5 +1,6 @@
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
 import { LearningModelView } from './LearningModels'
 import { LessonStudy } from './LessonStudy'
 import { contentWords, contentModels, contentGrammar, learningContent, lessonDefinitions, lessonLearningModels, lessonRoutes } from '../../data/learning-content'
@@ -35,7 +36,7 @@ const study = (page?: string) => <LessonStudy definition={definition} lessonId={
 beforeEach(() => {
   vi.useFakeTimers()
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
-  vi.stubGlobal('speechSynthesis', synthesis)
+  vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
   synthesis.speak.mockClear()
   synthesis.cancel.mockClear()
 })

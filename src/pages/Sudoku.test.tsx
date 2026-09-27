@@ -1,6 +1,7 @@
 import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+import { withAutoCompletedSpeechPreparation } from '../test/mock-speech-preparation'
 import App from '../App'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
 import { savePreferences } from '../core/learning'
@@ -27,7 +28,7 @@ let speak: ReturnType<typeof vi.fn<(utterance: Utterance) => void>>
 let cancel: ReturnType<typeof vi.fn>
 beforeEach(async () => {
   speak = vi.fn(); cancel = vi.fn()
-  vi.stubGlobal('speechSynthesis', Object.assign(new EventTarget(), { getVoices: () => [voice], speak, cancel }))
+  vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(Object.assign(new EventTarget(), { getVoices: () => [voice], speak, cancel })))
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
   stopBrowserSpeech(); setSpeechVoicePreferences(); clearVoiceCache()
   window.location.hash = '#games/sudoku'

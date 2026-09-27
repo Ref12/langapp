@@ -106,6 +106,7 @@ export async function selectPracticePhrase(threadId: string, phrase?: SpeechBloc
     const currentPhrase = thread.practicePhrase ?? (thread.shadowIntent === 'repeat' ? thread.shadowPhrase : undefined)
     await db.assistantThreads.put(assistantThreadSchema.parse({
       ...thread, practicePhrase: selected, shadowIntent: 'new-phrase',
+      practiceChain: !selected || selected.text === thread.practiceChain?.text ? thread.practiceChain : undefined,
       practiceDraft: selected && JSON.stringify(selected) === JSON.stringify(currentPhrase) ? thread.practiceDraft : undefined,
       updatedAt: Date.now(),
     }))

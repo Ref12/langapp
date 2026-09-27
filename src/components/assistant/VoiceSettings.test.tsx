@@ -13,6 +13,7 @@ import { MockAudio, mockAudio } from '../../test/mock-audio'
 import { LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../../core/local-tts-contracts'
 import { LOCAL_SETTINGS_PATH } from '../../core/local-settings-contracts'
 import { resetProfileStorage } from '../../test/profile-storage'
+import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
 
 class Utterance {
   constructor(public text: string) {}
@@ -70,7 +71,7 @@ beforeEach(async () => {
   synthesis = Object.assign(new EventTarget(), {
     getVoices: vi.fn(() => voices), speak: vi.fn<(utterance: Utterance) => void>(), cancel: vi.fn(),
   })
-  vi.stubGlobal('speechSynthesis', synthesis)
+  vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
   speech.stopBrowserSpeech()
   speech.clearVoiceCache()
@@ -457,7 +458,7 @@ describe('Hear voice settings', () => {
     expect(screen.getByRole('alert')).toHaveTextContent('Speech playback is not available')
     expect(screen.getByLabelText('Mandarin voice')).toHaveValue('')
     view.unmount()
-    vi.stubGlobal('speechSynthesis', synthesis)
+    vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
     voices = []
     vi.useFakeTimers()
     render(<VoiceSettings workspace={workspace} busy={false} run={vi.fn()} />)

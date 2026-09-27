@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { MockAudio, mockAudio } from '../../test/mock-audio'
+import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
 import { LOCAL_TTS_HEADER, LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../local-tts-contracts'
 import { loadEdgeVoices, startEdgeSpeech } from './edge-speech'
 import {
@@ -44,7 +45,7 @@ beforeEach(() => {
   vi.stubEnv('DEV_LOCAL_TTS', 'true')
   vi.stubEnv('BASE_URL', '/')
   vi.stubGlobal('fetch', fetcher)
-  vi.stubGlobal('speechSynthesis', synthesis)
+  vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
   synthesis.getVoices.mockClear()
   synthesis.speak.mockReset()
@@ -101,6 +102,29 @@ describe('Edge catalog client', () => {
 })
 
 describe('shared Edge playback', () => {
+  it('waits for the complete uncached response before playing the complete audio Blob', async () => {
+    let stream!: ReadableStreamDefaultController<Uint8Array>
+    fetcher.mockResolvedValueOnce(new Response(new ReadableStream<Uint8Array>({
+      start(controller) { stream = controller },
+    }), { headers: { 'Content-Type': 'application/json' } }))
+    const pending = playBrowserSpeechToEnd('cold', '你好，欢迎回来。', 'zh-Hans', 0.25)
+    await flush()
+    const response = new TextEncoder().encode(JSON.stringify(body))
+    stream.enqueue(response.slice(0, 30))
+    await flush()
+    expect(MockAudio.instances).toHaveLength(0)
+    stream.enqueue(response.slice(30))
+    await flush()
+    expect(MockAudio.instances).toHaveLength(0)
+    stream.close()
+    await flush()
+    expect(audio.createObjectURL.mock.calls[0][0].size).toBe(atob(body.audio.base64).length)
+    expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body))).toMatchObject({ text: '你好，欢迎回来。', rate: 0.25 })
+    MockAudio.instances[0].onended?.()
+    await expect(pending).resolves.toEqual({ status: 'completed' })
+    expect(fetcher).toHaveBeenCalledOnce()
+  })
+
   it.each([0.25, 0.5])('keeps English Edge audio at normal speed for requested rate %s and awaits the real end event', async rate => {
     vi.stubGlobal('speechSynthesis', undefined)
     vi.stubGlobal('SpeechSynthesisUtterance', undefined)

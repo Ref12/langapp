@@ -14,6 +14,7 @@ interface PlaybackRequest {
   synthesis?: SpeechSynthesis
   edge?: EdgeSpeechPlayback
   utterance?: SpeechSynthesisUtterance
+  warmup?: SpeechSynthesisUtterance
   clearDiscovery?: () => void
   playbackTimer?: ReturnType<typeof setTimeout>
   finish?: (outcome: PlaybackOutcome) => void
@@ -26,12 +27,16 @@ export type PlaybackOutcome = { status: 'completed' | 'cancelled' } | { status: 
 const voiceWaitMs = 3000
 const voiceRecheckMs = 100
 const playbackStartWaitMs = 10_000
+const warmupCompletionWaitMs = 10_000
+const speechWarmIdleMs = 1000
 let state: PlaybackState = {}
 let current: PlaybackRequest | undefined
 let generation = 0
 const listeners = new Set<() => void>()
 const interruptionListeners = new Set<(nextId?: string) => void>()
+const failedCancellations = new WeakSet<SpeechSynthesis>()
 let voiceCache = new WeakMap<SpeechSynthesis, Map<SpeechLocale, string>>()
+let speechWarmth = new WeakMap<SpeechSynthesis, { key: string; endedAt: number }>()
 let voicePreferences: SpeechVoicePreferences = {}
 let defaultSpeechRate: SpeechRate | undefined
 
@@ -55,6 +60,7 @@ export function speechVoiceKey(voice: SpeechVoicePreference) {
 
 export function clearVoiceCache() {
   voiceCache = new WeakMap()
+  speechWarmth = new WeakMap()
 }
 
 export function setSpeechVoicePreferences(preferences: SpeechVoicePreferences = {}) {
@@ -187,17 +193,25 @@ function preferredVoice(voices: SpeechSynthesisVoice[], locale: SpeechLocale, vo
 function clearRequest(request: PlaybackRequest) {
   request.clearDiscovery?.()
   clearTimeout(request.playbackTimer)
-  if (request.utterance) {
-    request.utterance.onstart = null
-    request.utterance.onend = null
-    request.utterance.onerror = null
+  for (const utterance of [request.warmup, request.utterance]) {
+    if (!utterance) continue
+    utterance.onstart = null
+    utterance.onend = null
+    utterance.onerror = null
   }
 }
 
-function cancelSynthesis(synthesis: SpeechSynthesis | undefined) {
+function cancelSynthesis(synthesis: SpeechSynthesis | undefined, utterance?: SpeechSynthesisUtterance) {
+  if (!synthesis) return
   try {
-    synthesis?.cancel()
+    // Do not send a native cancellation when the engine is already idle.
+    // A tracked utterance still needs cancelling before native flags catch up.
+    if (!utterance && !failedCancellations.has(synthesis) && synthesis.speaking === false && synthesis.pending === false) return
+    speechWarmth.delete(synthesis)
+    synthesis.cancel()
+    failedCancellations.delete(synthesis)
   } catch {
+    failedCancellations.add(synthesis)
     return 'The browser could not stop speech playback. Try Stop again or close this page.'
   }
 }
@@ -207,7 +221,7 @@ function cancelCurrent() {
   current = undefined
   if (request) clearRequest(request)
   const error = request?.edge ? request.edge.cancel()
-    : cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined))
+    : cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined), request?.utterance)
   request?.finish?.(error ? { status: 'error', error } : { status: 'cancelled' })
   return error
 }
@@ -222,11 +236,14 @@ export function stopBrowserSpeech(): string | undefined {
 
 function fail(request: PlaybackRequest, error: string) {
   if (current !== request) return
-  if (request.synthesis) voiceCache.get(request.synthesis)?.delete(request.locale)
+  if (request.synthesis) {
+    voiceCache.get(request.synthesis)?.delete(request.locale)
+    speechWarmth.delete(request.synthesis)
+  }
   const version = generation
   current = undefined
   clearRequest(request)
-  const cancelError = request.edge ? request.edge.cancel() : cancelSynthesis(request.synthesis)
+  const cancelError = request.edge ? request.edge.cancel() : cancelSynthesis(request.synthesis, request.utterance)
   const detail = cancelError ? `${error} ${cancelError}` : error
   if (version === generation) publish({ error: detail })
   request.finish?.({ status: 'error', error: detail })
@@ -236,22 +253,38 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
   if (current !== request) return
   request.clearDiscovery?.()
   let utterance: SpeechSynthesisUtterance
+  let warmup: SpeechSynthesisUtterance | undefined
+  const warmKey = JSON.stringify([locale, voice ? browserVoiceKey(voice) : 'system'])
+  const warmth = speechWarmth.get(request.synthesis)
+  const idleMs = warmth ? performance.now() - warmth.endedAt : Infinity
   try {
     utterance = new SpeechSynthesisUtterance(text)
     if (voice) utterance.voice = voice
     utterance.lang = voice ? voiceLocale(voice.lang)!.tag.toString() : locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
     utterance.rate = locale === 'en-US' || !Number.isFinite(rate) ? 1 : Math.max(0.1, Math.min(10, rate))
+    utterance.volume = 1
+    if (warmth?.key !== warmKey || idleMs < 0 || idleMs >= speechWarmIdleMs) {
+      warmup = new SpeechSynthesisUtterance(locale === 'zh-Hans' ? '准备好了。' : 'Ready to begin.')
+      if (voice) warmup.voice = voice
+      warmup.lang = utterance.lang
+      warmup.rate = 1
+      warmup.volume = 0
+      if (warmup.volume !== 0) throw new Error('Speech preparation could not be muted.')
+    }
   } catch {
     fail(request, 'The browser could not prepare speech playback. Try Hear again.')
     return
   }
   if (current !== request) return
   request.utterance = utterance
+  request.warmup = warmup
   let callingSpeak = false
   let endedDuringSpeak = false
+  let targetStarted = false
   const voiceKind = voice ? voice.localService === true ? 'local' : 'online' : 'system'
   utterance.onstart = () => {
-    if (current !== request) return
+    if (current !== request || targetStarted) return
+    targetStarted = true
     clearTimeout(request.playbackTimer)
     // Allow slow, long passages, but do not leave playback active forever if onend is lost.
     request.playbackTimer = setTimeout(() => {
@@ -267,6 +300,7 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
     }
     current = undefined
     clearRequest(request)
+    speechWarmth.set(request.synthesis, { key: warmKey, endedAt: performance.now() })
     publish({})
     request.finish?.({ status: 'completed' })
   }
@@ -286,15 +320,48 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
       ? 'Online browser speech could not be played. Check your network connection and browser speech settings, then try Hear again.'
       : 'Local browser speech could not be played. Try Hear again, or check your browser speech settings.')
   }
-  request.playbackTimer = setTimeout(() => {
-    fail(request, 'The browser did not start speech in time. Try Hear again.')
-  }, playbackStartWaitMs)
+  const waitForTargetStart = () => {
+    clearTimeout(request.playbackTimer)
+    request.playbackTimer = setTimeout(() => {
+      fail(request, 'The browser did not start speech in time. Try Hear again.')
+    }, playbackStartWaitMs)
+  }
+  if (warmup) {
+    let warmupStarted = false
+    let warmupFinished = false
+    warmup.onstart = () => {
+      if (current !== request || targetStarted || warmupStarted || warmupFinished) return
+      warmupStarted = true
+      clearTimeout(request.playbackTimer)
+      request.playbackTimer = setTimeout(() => {
+        fail(request, 'Browser speech preparation timed out. Try Hear again.')
+      }, warmupCompletionWaitMs)
+    }
+    warmup.onend = () => {
+      if (current !== request || targetStarted || warmupFinished) return
+      warmupFinished = true
+      waitForTargetStart()
+    }
+    warmup.onerror = event => {
+      if (current !== request || warmupFinished || targetStarted) return
+      utterance.onerror?.call(utterance, event)
+    }
+    request.playbackTimer = setTimeout(() => {
+      fail(request, 'The browser did not start speech preparation in time. Try Hear again.')
+    }, playbackStartWaitMs)
+  } else {
+    waitForTargetStart()
+  }
   publish({ activeId: request.id, phase: 'starting', voiceKind })
   if (current !== request) return
   try {
     if (request.synthesis.paused) request.synthesis.resume()
     if (current !== request) return
     callingSpeak = true
+    // Queue both in the gesture's call stack; the native queue, not a JS delay,
+    // puts real muted output ahead of the unchanged audible target.
+    if (warmup) request.synthesis.speak(warmup)
+    if (current !== request) { callingSpeak = false; return }
     request.synthesis.speak(utterance)
     callingSpeak = false
     // A synchronous end cannot establish success until speak returns safely.
