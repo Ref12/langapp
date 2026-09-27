@@ -2,11 +2,10 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, Info, Lightbulb, RotateCcw, Shuffle } from 'lucide-react'
 import { db } from '../core/database'
-import { getWord } from '../data/mandarin'
-import { requireUnit } from '../core/study/catalog'
 import { useCatalog } from '../components/study/useCatalog'
 import type { PageProps } from '../components/shared'
-import { availablePairs, boardLayout, createMahjong, distinctWords, isFree, matches, modeSchema, readMahjong, remainingTiles, type GameWord, type MahjongGame, type MahjongMode, type TileFace } from '../core/games/mahjong'
+import { availablePairs, boardLayout, createMahjong, isFree, matches, modeSchema, readMahjong, remainingTiles, type MahjongGame, type MahjongMode, type TileFace } from '../core/games/mahjong'
+import { introducedGameWords } from '../core/games/game-vocabulary'
 import { updateMahjong, type MahjongAction } from '../core/games/mahjong-store'
 import { DEFAULT_LAYOUT_ID, getMahjongLayout, mahjongLayouts, type MahjongLayout } from '../core/games/mahjong-layouts'
 import './mahjong.css'
@@ -111,18 +110,7 @@ export function Mahjong({ workspace, busy, run }: PageProps) {
       return { game: undefined, error: 'The saved Mahjong board is invalid. Start a new board to replace it.' }
     }
   }, [])
-  const vocabulary: GameWord[] = []
-  if (catalog) {
-    for (const entry of workspace.knowledge) {
-      const unit = requireUnit(catalog, entry.ref)
-      if (unit.kind === 'vocabulary') vocabulary.push({ id: unit.ref, character: unit.record.ch, pinyin: unit.record.pr, meaning: unit.record.ds })
-    }
-    for (const state of workspace.words) {
-      const word = getWord(state.wordId)
-      vocabulary.push({ id: word.id, character: word.native, pinyin: word.pinyin, meaning: word.meaning })
-    }
-  }
-  const eligible = distinctWords(vocabulary)
+  const eligible = catalog ? introducedGameWords(catalog, workspace) : []
   const game = saved?.game
   const gameId = game?.gameId
   const gameMode = game?.mode

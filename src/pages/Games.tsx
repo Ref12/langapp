@@ -1,4 +1,4 @@
-import { ArrowRight, Grid3X3, Layers } from 'lucide-react'
+import { ArrowRight, Brain, Grid3X3, Layers } from 'lucide-react'
 import { PageHeading } from '../components/shared'
 
 export function Games() {
@@ -12,6 +12,10 @@ export function Games() {
       <section className="experience-card"><Grid3X3 size={28} className="accent" /><h2>Character Sudoku</h2>
         <p>Classic Sudoku with characters instead of numbers. Choose a grid size and difficulty, keep multiple candidates, and check proposed answers.</p>
         <a className="button primary" href="#games/sudoku">Play Sudoku <ArrowRight size={16} /></a>
+      </section>
+      <section className="experience-card"><Brain size={28} className="accent" /><h2>Word Memory</h2>
+        <p>Study the tiles, then turn them face down. Find matching pairs or complete Chinese, pinyin, and English triplets.</p>
+        <a className="button primary" href="#games/memory">Play Memory <ArrowRight size={16} /></a>
       </section>
     </div>
   </>

@@ -1,19 +1,12 @@
 import { z } from 'zod'
-import { glosses } from '../questions'
+import { distinctWords, faceSchema, gameWordSchema, pairFaces, pairModeSchema as modeSchema, type GameWord } from './game-vocabulary'
 import { isFree, MAX_LAYOUT_TILES, positionSchema, removalOrder, type Position } from './mahjong-geometry'
 import { DEFAULT_LAYOUT_ID, getMahjongLayout, layoutIdSchema, layoutSnapshotSchema } from './mahjong-layouts'
 
 export { isFree, removalOrder, type Position } from './mahjong-geometry'
 
-export const faceSchema = z.enum(['character', 'pinyin', 'meaning'])
-export type TileFace = z.infer<typeof faceSchema>
-export const modeSchema = z.enum(['mixed', 'character-meaning', 'character-pinyin', 'pinyin-meaning'])
+export { distinctWords, faceSchema, gameWordSchema, pairModeSchema as modeSchema, type GameWord, type TileFace } from './game-vocabulary'
 export type MahjongMode = z.infer<typeof modeSchema>
-export const gameWordSchema = z.object({
-  id: z.string().min(1), character: z.string().min(1).max(6),
-  pinyin: z.string().min(1).max(24), meaning: z.string().min(1).max(32),
-}).strict()
-export type GameWord = z.infer<typeof gameWordSchema>
 const tileSchema = positionSchema.extend({ word: gameWordSchema, face: faceSchema }).strict()
 export type MahjongTile = z.infer<typeof tileSchema>
 export const mahjongGameSchema = z.object({
@@ -35,27 +28,6 @@ function shuffle<T>(items: readonly T[], random: Random): T[] {
     ;[result[i], result[j]] = [result[j], result[i]]
   }
   return result
-}
-
-function normalized(face: TileFace, text: string): string {
-  const value = text.normalize('NFKC').toLowerCase().trim()
-  return face === 'pinyin' ? value.replace(/\s/g, '') : value.replace(/\s+/g, ' ')
-}
-
-export function distinctWords(words: readonly GameWord[]): GameWord[] {
-  const seen = { character: new Set<string>(), pinyin: new Set<string>(), meaning: new Set<string>() }
-  const ids = new Set<string>()
-  const meanings = new Set<string>()
-  return words.filter(word => {
-    const parts = glosses(word.meaning)
-    if (!gameWordSchema.safeParse(word).success || parts.length === 0 || ids.has(word.id)
-      || faceSchema.options.some(face => seen[face].has(normalized(face, word[face])))
-      || parts.some(part => meanings.has(part))) return false
-    faceSchema.options.forEach(face => seen[face].add(normalized(face, word[face])))
-    ids.add(word.id)
-    parts.forEach(part => meanings.add(part))
-    return true
-  })
 }
 
 export function layout(pairCount: number): Position[] {
@@ -97,7 +69,6 @@ export function availablePairs(game: MahjongGame): [MahjongTile, MahjongTile][] 
   return free.flatMap((first, i) => free.slice(i + 1).filter(second => matches(first, second)).map(second => [first, second] as [MahjongTile, MahjongTile]))
 }
 
-const representations: [TileFace, TileFace][] = [['character', 'meaning'], ['character', 'pinyin'], ['pinyin', 'meaning']]
 export function createMahjong(words: readonly GameWord[], mode: MahjongMode = 'mixed', random: Random = Math.random, layoutId = DEFAULT_LAYOUT_ID): MahjongGame {
   const configuration = getMahjongLayout(layoutId)
   const pairCount = configuration.positions.length / 2
@@ -109,7 +80,7 @@ export function createMahjong(words: readonly GameWord[], mode: MahjongMode = 'm
     const wordIndex = wordPairs[i]
     // Each word uses exactly two faces, so any duplicate copies may be paired
     // without stranding an unequal number of representations.
-    const faces = mode === 'mixed' ? representations[wordIndex % representations.length] : representations.find(pair => pair.join('-') === mode)!
+    const faces = pairFaces(mode, wordIndex)
     return shuffle(faces, random).map((face, index) => ({ ...positions[index], face, word: vocabulary[wordIndex] }))
   }).sort((a, b) => a.id - b.id)
   return {

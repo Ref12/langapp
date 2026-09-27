@@ -199,7 +199,8 @@ and the older recognition practice at `#practice`; neither feeds the knowledge s
 ## Games
 
 **Games** has its own entry in the desktop sidebar and mobile menu. The hub
-(`#games`) contains Mahjong and Sudoku; games are no longer embedded in Practice.
+(`#games`) contains Mahjong, Character Sudoku, and Word Memory; games are no
+longer embedded in Practice.
 
 ### Word Mahjong
 
@@ -332,6 +333,39 @@ Generator references reviewed on September 25, 2026:
 These informed the comparison, not copied implementations. The app uses its
 own small engine to support rectangular 6 x 6 boxes alongside 4 x 4 and 9 x 9,
 without adding a runtime dependency or relying on an external puzzle service.
+
+### Word Memory
+
+**Games -> Play Memory** (`#games/memory`) prepares a shuffled board from short
+vocabulary already in your profile's knowledge set or legacy learning set.
+It shares Mahjong's source-backed word, pronunciation, and ambiguity filters;
+grammar and untaught vocabulary are never substituted. Choose 2, 4, 6, or 8
+words per board.
+The smaller boards keep study and play compact on phones; large boards may
+scroll in very short windows rather than clip vocabulary or shrink tap targets.
+
+- **Pairs** match two different representations of a word. Choose Chinese +
+  English, Chinese + pinyin, pinyin + English, or mixed pair types.
+- **Triplets** require all three representations of the same word: Chinese,
+  pinyin, and English. Finding two of them does not eliminate a partial triplet.
+
+Every tile is initially visible in a self-paced **study phase**. **Start
+memory** turns the tiles face down without moving them. Reveal two or three
+tiles per turn, according to the selected mode. Matching groups are removed,
+leaving their positions empty. A mismatch stays visible for study until
+**Continue** turns that group face down; there is no timer or automatic flip-back.
+
+Concealed tiles render only their backs and position labels, not hidden word
+text in the DOM or accessible names. Character tiles never include a pinyin
+annotation. Turns are counted only after a full pair or triplet is revealed.
+Preparing another board requires confirmation and resets only that game.
+
+The current board, study/play/review phase, revealed tiles, matches, and turns
+are saved in the profile-local `memoryGames` table (Dexie schema 10). Reloading
+mid-game never reopens the study phase. Games do not change vocabulary knowledge,
+lesson scores, or spaced-review schedules. Like the other games, Memory is
+excluded from profile exports/clones and legacy JSON backups and is cleared
+when a profile or backup is restored.
 
 ## Assistant
 
