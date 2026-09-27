@@ -33,8 +33,10 @@ describe('Knowledge-set Defender waves', () => {
   it('stops spawning at the wave boundary but keeps the current bank until the incoming words are gone', () => {
     let game = createDefenderGame(words, settings, 5)
     const bank = game.run.words
-    for (let i = 0; i < 201; i++) game = tickDefender(game, .1).game
-    expect(game.run.elapsed).toBeGreaterThanOrEqual(20)
+    game.run.elapsed = 59.9
+    game.run.nextSpawn = 0
+    game = tickDefender(game, .2).game
+    expect(game.run.elapsed).toBeGreaterThanOrEqual(60)
     expect(game.stage).toBe('wave')
     expect(game.run.incoming.length).toBeGreaterThan(0)
     const spawned = game.run.spawned
@@ -43,6 +45,37 @@ describe('Knowledge-set Defender waves', () => {
     expect(game.run.words).toEqual(bank)
     expect(game.run.wave).toBe(1)
     expect(() => startNextDefenderWave(game)).toThrow('Finish')
+  })
+
+  it('keeps spawning for a full minute and gives the next wave another minute', () => {
+    let game = createDefenderGame(words, settings, 5)
+    expect(game.waveEndAt).toBe(60)
+    let spawnedAt20 = 0
+    for (let second = 0; second < 59; second++) {
+      game = tickDefender(game, 1).game
+      while (leadingWord(game.run)) {
+        const leader = leadingWord(game.run)!
+        const word = game.run.words.find(word => word.id === leader.wordId)!
+        game = answerDefender(game, answerText(word, settings.direction)).game
+      }
+      if (second === 19) spawnedAt20 = game.run.spawned
+      expect(game.stage).toBe('wave')
+      expect(game.run.wave).toBe(1)
+    }
+    expect(game.run.elapsed).toBeCloseTo(59)
+    expect(game.run.spawned).toBeGreaterThan(spawnedAt20)
+    game = drain(game)
+    expect(game.run.elapsed).toBeGreaterThanOrEqual(60)
+    expect(startNextDefenderWave(game).waveEndAt - game.run.elapsed).toBeCloseTo(60, 8)
+  })
+
+  it('retains an older saved wave deadline and uses a minute for subsequent waves', () => {
+    const saved = { ...createDefenderGame(words, settings, 5), waveEndAt: 20 }
+    const restored = readDefenderGame(saved)
+    expect(restored.waveEndAt).toBe(20)
+    const finished = drain(restored)
+    expect(finished.run.elapsed).toBeCloseTo(20, 0)
+    expect(startNextDefenderWave(finished).waveEndAt - finished.run.elapsed).toBeCloseTo(60, 8)
   })
 
   it('prioritizes wrong answers and breached words, then brings in unseen vocabulary', () => {

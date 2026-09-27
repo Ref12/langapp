@@ -229,8 +229,9 @@ Tone-number pinyin is accepted alongside tone marks. Optional pinyin annotations
 are available only for Chinese/English challenges, never pronunciation matching.
 Words fall on mobile and travel right to left on desktop.
 
-Each wave spawns for 20 seconds, then drains: no new words appear while existing
+Each wave spawns for 60 seconds, then drains: no new words appear while existing
 targets remain. The answer bank never changes underneath an active target.
+Saved waves retain their original deadline; the next wave uses the 60-second window.
 After clearing the field, review the next bank and explicitly start the next
 wave. Wrong answers and shield breaches retain the target for the next wave;
 remaining slots prefer words not yet used, then other words from the same

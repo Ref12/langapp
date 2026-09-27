@@ -81,7 +81,7 @@ it('rejects a nonleading answer, retains it for review, and resumes a saved run 
 it('drains a wave before presenting the next word set and retains missed targets', async () => {
   const words = await populate(40)
   const game = createDefenderGame(words, { mode: 'tap', direction: 'chinese', pace: 'standard' }, 2)
-  game.run.elapsed = 20
+  game.run.elapsed = 60
   game.run.incoming[0].position = .2
   game.review = [game.run.incoming[0].wordId]
   await db.defenderGames.put(pauseDefender(game))

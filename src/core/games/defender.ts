@@ -1,11 +1,13 @@
 import { z } from 'zod'
-import { advanceRun, allowsPinyinAnnotations, ANSWER_BANK_SIZE, createRun, leadingWord, paceAt, pauseRun, resumeRun, SHIELDS, submitTranslation, WAVE_SECONDS, type Settings, type Word } from '../../../shared/defender-engine'
+import { advanceRun, allowsPinyinAnnotations, ANSWER_BANK_SIZE, createRun, leadingWord, paceAt, pauseRun, resumeRun, SHIELDS, submitTranslation, type Settings, type Word } from '../../../shared/defender-engine'
 import { distinctWords, gameWordSchema } from './game-vocabulary'
 import { requireUnit, type Catalog } from '../study/catalog'
 import type { Workspace } from '../model'
 
 export { answerText, directionForms, isDirection, allowsPinyinAnnotations, leadingWord, promptText, SHIELDS } from '../../../shared/defender-engine'
 export type { Settings, Word } from '../../../shared/defender-engine'
+
+const WAVE_SECONDS = 60
 
 export const defenderSettingsSchema = z.object({
   mode: z.enum(['tap', 'type']),
