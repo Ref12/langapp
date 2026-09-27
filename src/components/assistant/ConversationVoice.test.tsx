@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../../App'
 import { db, initializeWorkspace } from '../../core/database'
 import { createConversation, saveAIConnection, saveDraft, updateThread } from '../../core/assistant/store'
+import * as store from '../../core/assistant/store'
 import { clearUnsavedDrafts } from '../../core/assistant/drafts'
 import type { AssistantBlock } from '../../core/assistant/contracts'
 import * as capture from '../../core/assistant/speech-capture'
@@ -271,7 +272,7 @@ describe('conversation voice input and replies', () => {
     expect(capture.startSpeechCapture).not.toHaveBeenCalled()
   })
 
-  it.each(['off', 'navigate', 'escape', 'hear'] as const)('suppresses a late spoken reply after %s', async change => {
+  it.each(['off', 'saved voice setting', 'navigate', 'escape', 'hear'] as const)('suppresses a late spoken reply after %s', async change => {
     let finish!: (value: Response) => void
     vi.mocked(fetch).mockImplementation(() => new Promise(resolve => { finish = resolve }))
     await oldReply()
@@ -280,13 +281,34 @@ describe('conversation voice input and replies', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: 'Send' })).toBeEnabled())
     fireEvent.click(screen.getByRole('button', { name: 'Send' }))
     await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1))
-    if (change === 'off') await act(async () => updateThread(id, { voiceEnabled: false }))
-    if (change === 'navigate') await act(async () => { window.location.hash = 'overview'; window.dispatchEvent(new HashChangeEvent('hashchange')) })
-    if (change === 'escape') fireEvent.keyDown(document, { key: 'Escape' })
-    if (change === 'hear') fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
-    await act(async () => finish(response()))
-    await waitFor(async () => expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.status === 'completed' && message.runId !== undefined && message.role === 'assistant').count()).toBe(1))
-    expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
+    let finishSettingsSave: (() => void) | undefined
+    try {
+      if (change === 'off') {
+        const persist = store.updateThread
+        const pendingSave = new Promise<void>(resolve => { finishSettingsSave = resolve })
+        vi.spyOn(store, 'updateThread').mockImplementationOnce(async (...args) => { await pendingSave; await persist(...args) })
+        fireEvent.click(screen.getByRole('button', { name: 'Assistant settings' }))
+        fireEvent.click(screen.getByRole('checkbox', { name: 'Voice input and replies' }))
+        expect(store.updateThread).toHaveBeenCalledWith(id, { voiceEnabled: false })
+      }
+      if (change === 'saved voice setting') {
+        await act(async () => updateThread(id, { voiceEnabled: false }))
+        // A committed IndexedDB write does not synchronously flush Dexie's React subscription.
+        await waitFor(() => expect(screen.queryByRole('button', { name: 'Start voice input' })).not.toBeInTheDocument())
+      }
+      if (change === 'navigate') await act(async () => { window.location.hash = 'overview'; window.dispatchEvent(new HashChangeEvent('hashchange')) })
+      if (change === 'escape') fireEvent.keyDown(document, { key: 'Escape' })
+      if (change === 'hear') fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+      await act(async () => finish(response()))
+      await waitFor(async () => expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.status === 'completed' && message.runId !== undefined && message.role === 'assistant').count()).toBe(1))
+      if (change !== 'navigate') await screen.findByRole('button', { name: 'Send' })
+      expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()
+    } finally {
+      if (finishSettingsSave) {
+        await act(async () => finishSettingsSave?.())
+        await waitFor(() => expect(screen.getByRole('checkbox', { name: 'Voice input and replies' })).not.toBeChecked())
+      }
+    }
   })
 
   it('reports playback failure without resending or losing the saved reply', async () => {
