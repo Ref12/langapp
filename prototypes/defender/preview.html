@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Word Defender · Device preview</title>
+    <link rel="stylesheet" href="../../docs/mockups/theme.css">
+    <link rel="stylesheet" href="../../docs/mockups/preview.css">
+    <script src="./preview.ts" type="module"></script>
+  </head>
+  <body>
+    <header class="preview-toolbar">
+      <div class="preview-title"><span class="preview-dot"></span><strong>Word Defender</strong><span>Prototype / device preview</span></div>
+      <div class="device-controls" role="group" aria-label="Preview viewport">
+        <button type="button" data-device="desktop" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M12 16v5M7 21h10"/></svg> Desktop</button>
+        <button type="button" data-device="mobile" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg> Mobile</button>
+      </div>
+      <div class="preview-meta"><output id="viewport-size" aria-live="polite">Loading viewport...</output><a href="./index.html" target="_blank" rel="noopener">Open game only ↗</a></div>
+    </header>
+    <main id="preview-stage" class="preview-stage" data-device="desktop">
+      <iframe id="prototype-frame" title="Word Defender prototype" src="./index.html"></iframe>
+    </main>
+    <noscript>Open <a href="./index.html">Word Defender</a> directly. JavaScript is required to play.</noscript>
+  </body>
+</html>

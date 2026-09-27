@@ -45,6 +45,7 @@ function deckCard(word: Word): HTMLDivElement {
   return card
 }
 element('#word-deck').append(...sampleWords.map(deckCard))
+if (window.self !== window.top) element('.device-preview-link').hidden = true
 
 function paintWord(node: HTMLElement, word: Word, form: WordForm, annotate: boolean) {
   node.lang = form === 'character' ? 'zh-Hans' : form === 'pinyin' ? 'zh-Latn' : 'en'

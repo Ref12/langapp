@@ -12,7 +12,7 @@
     <main class="defender">
       <header class="page-header">
         <div><p class="eyebrow">LANGUAGE ARCADE / FIELD TEST 01</p><h1>Word <span>Defender</span></h1></div>
-        <span class="prototype-badge">PROTOTYPE</span>
+        <div class="header-links"><a class="device-preview-link" href="./preview.html?device=mobile" target="_top">Device preview</a><span class="prototype-badge">PROTOTYPE</span></div>
       </header>
       <p class="intro">Recognize. Translate. Hold the line.</p>
 
@@ -36,7 +36,7 @@
         <div id="field" class="field" role="group" aria-label="Incoming words">
           <div class="field-grid" aria-hidden="true"></div>
           <div class="defense-line" aria-hidden="true"><span>HOLD THE LINE</span></div>
-          <div class="entry-label" aria-hidden="true">INCOMING ←</div>
+          <div class="entry-label" aria-hidden="true"><span class="wide-direction">INCOMING ←</span><span class="narrow-direction">INCOMING ↓</span></div>
           <div id="incoming"></div>
           <div id="effects" aria-hidden="true"></div>
           <div id="overlay" class="overlay">
@@ -64,7 +64,7 @@
 
       <details id="briefing" class="briefing">
         <summary>How to play &amp; prototype word deck</summary>
-        <p>Words travel from right to left. Match any incoming word; you do not need to select a target first. If the same word appears twice, your answer clears the one nearest the shield.</p>
+        <p>Words travel right to left on desktop and fall toward the bottom shield on mobile. Match any incoming word; you do not need to select a target first. If the same word appears twice, your answer clears the one nearest the shield.</p>
         <p>Every 20 seconds a new wave increases the spawn rate and the speed of new words. Up to eight words can be on screen. Wrong answers break your streak; missed words cost a shield. Pause anytime with the pause button or Escape. Switching tabs pauses automatically.</p>
         <p>Typing accepts the displayed translation and listed English alternatives, ignoring case, extra spaces, and final sentence punctuation. Chinese answers require the actual characters; use your Chinese keyboard/IME. Pinyin answers accept tone marks (shuǐ) or tone numbers (shui3); the tones must match. Spaces between syllables are optional; neutral tones can be omitted or written 0 or 5.</p>
         <p>Pinyin annotations are optional for Chinese ↔ English. They appear only over Chinese words, not English answers. Pronunciation-matching modes always hide annotations to avoid giving away the answer.</p>

@@ -16,9 +16,17 @@ Open `http://localhost:5173/prototypes/defender/index.html` (substitute the serv
 actual port). The page uses native DOM, CSS, and TypeScript; no additional
 dependencies or provider connection are needed.
 
+Use the **Device preview** link, or open
+`http://localhost:5173/prototypes/defender/preview.html?device=mobile`, for a
+Desktop/Mobile switch. It reuses the repository's preview shell and resizes the
+same iframe without resetting the run, scores, or typed answer. The Mobile
+viewport is 390 pixels wide (or narrower if necessary), up to 844 pixels tall.
+Opening the preview from the game initially loads a fresh instance.
+
 ## Play
 
-- **Tap mode:** incoming words move from right to left. Tap the matching
+- **Tap mode:** incoming words move right to left on desktop and fall toward
+  a bottom shield at viewport widths of 600 pixels or less. Tap the matching
   translation in the six-word answer bank. Choices keep their positions for
   the whole run and never highlight the right answer automatically.
 - **Type mode:** type the translation and press Enter or Defend. Chinese
@@ -34,6 +42,8 @@ dependencies or provider connection are needed.
 - **Pressure:** the first word is immediate. Every 20 seconds raises the wave:
   shorter spawn intervals and faster new words. Up to eight incoming words
   can coexist across four lanes; lane spacing is enforced.
+  Lane progress is normalized, so device resizing changes the direction of
+  travel without changing a word's remaining travel time or the game rules.
 - **Defending:** an answer clears the matching word nearest the shield.
   Repeated copies need separate answers. Correct answers earn 100 points plus
   a capped streak bonus. Incorrect answers break the streak but cost no shield.
@@ -70,7 +80,7 @@ speech, contact speech services, or pretend voice input is implemented.
 
 ```powershell
 npm test -- prototypes\defender
-npx tsc --noEmit --target es2022 --module esnext --moduleResolution bundler --lib es2022,dom,dom.iterable --strict --skipLibCheck prototypes\defender\game.ts prototypes\defender\main.ts prototypes\defender\game.test.ts prototypes\defender\main.test.ts
+npx tsc --noEmit --target es2022 --module esnext --moduleResolution bundler --lib es2022,dom,dom.iterable --strict --skipLibCheck prototypes\defender\game.ts prototypes\defender\main.ts prototypes\defender\preview.ts prototypes\defender\game.test.ts prototypes\defender\main.test.ts prototypes\defender\preview.test.ts
 npx eslint prototypes\defender
 ```
 
