@@ -216,7 +216,7 @@ describe('development-only local TTS', () => {
     { ...payload, text: 'bad\ud800text' }, { ...payload, text: 'bad\ufffetext' },
     { ...payload, voice: 'https://attacker.example' }, { ...payload, voice: "en-US-X'Neural" },
     { ...payload, voice: 'fr-FR-DeniseNeural' }, { ...payload, voice: '' },
-    { ...payload, rate: 0.6 }, { ...payload, rate: '0.75' }, { ...payload, rate: null },
+    { ...payload, rate: 1.3 }, { ...payload, rate: '0.75' }, { ...payload, rate: null },
     { ...payload, url: 'https://attacker.example' },
   ])('rejects invalid input without contacting a provider or echoing the text (case %#)', async value => {
     const origin = await start()
@@ -227,7 +227,7 @@ describe('development-only local TTS', () => {
   })
 
   it('accepts valid XML Unicode scalars and every supported rate', () => {
-    for (const rate of [0.25, 0.5, 0.75, 0.85, 1, 1.25]) {
+    for (const rate of [0.25, 0.5, 0.75, 0.8, 0.85, 1, 1.25]) {
       expect(localTtsRequestSchema.safeParse({ ...payload, text: 'Hello \u{1f600}\t\n<&>', rate }).success).toBe(true)
     }
   })

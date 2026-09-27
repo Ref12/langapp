@@ -4,6 +4,8 @@ export const MAX_PRACTICE_CHUNKS = 80
 export const MAX_PRACTICE_TEXT_LENGTH = 3000
 
 export type PracticeDirection = 'forward' | 'backward'
+export type PracticeMode = PracticeDirection | 'words' | 'phrase'
+export const practiceRateSchema = z.number().finite().min(0.25).max(1.25)
 export type PracticePlaylistItem = { kind: 'chain'; step: number } | { kind: 'selection'; start: number; end: number }
 
 export interface PracticeUnit {

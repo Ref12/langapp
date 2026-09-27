@@ -1,12 +1,16 @@
 import { acquireAudio, type AudioLease } from './audio-owner'
-import { speechRateSchema, type SpeechRate } from './contracts'
+import { practiceRateSchema } from './practice-chain-contracts'
 import { getPlaybackState, playBrowserSpeechToEnd, stopBrowserSpeech, subscribeSpeechInterruption, type PlaybackOutcome } from './speech'
 
 export interface PracticePlaybackOptions {
   pacing: 'self-paced' | 'guided'
-  rate: SpeechRate
+  rate: number
   pauseSeconds: number
   repetitions: number
+  loop?: boolean
+  autoRamp?: boolean
+  maxRate?: number
+  minPauseSeconds?: number
 }
 
 export interface PracticePlaybackState {
@@ -24,9 +28,15 @@ function validate(texts: string[], options: PracticePlaybackOptions, index?: num
   if (!options || !['self-paced', 'guided'].includes(options.pacing)) {
     return 'Choose self-paced or guided practice.'
   }
-  if (!speechRateSchema.safeParse(options.rate).success) return 'Choose a supported Mandarin speech rate.'
-  if (!Number.isFinite(options.pauseSeconds) || options.pauseSeconds < 1 || options.pauseSeconds > 30) {
-    return 'The response pause must be between 1 and 30 seconds.'
+  if (!practiceRateSchema.safeParse(options.rate).success) return 'Choose a Mandarin speech rate between 0.25x and 1.25x.'
+  if (!Number.isFinite(options.pauseSeconds) || options.pauseSeconds < 0.5 || options.pauseSeconds > 30) {
+    return 'The response pause must be between 0.5 and 30 seconds.'
+  }
+  if (options.loop !== undefined && typeof options.loop !== 'boolean'
+    || options.autoRamp !== undefined && typeof options.autoRamp !== 'boolean') return 'Choose whether to loop and accelerate practice.'
+  if (options.maxRate !== undefined && !practiceRateSchema.safeParse(options.maxRate).success) return 'Choose a maximum speech rate between 0.25x and 1.25x.'
+  if (options.minPauseSeconds !== undefined && (!Number.isFinite(options.minPauseSeconds) || options.minPauseSeconds < 0.5 || options.minPauseSeconds > 30)) {
+    return 'Choose a minimum pause between 0.5 and 30 seconds.'
   }
   if (!Number.isInteger(options.repetitions) || options.repetitions < 1 || options.repetitions > 5) {
     return 'Choose between 1 and 5 repetitions.'
@@ -54,6 +64,9 @@ export function createPracticePlayback(
   let validationError = idError ?? validate(texts, options)
   let phrases = validationError ? [] : [...texts]
   let settings = { ...options }
+  let round = 1
+  let responseSeconds = 0
+  let fullRound = true
   let state: PracticePlaybackState = {
     status: validationError ? 'error' : 'idle', index: 0, repetition: 1,
     ...(validationError ? { error: validationError } : {}),
@@ -171,6 +184,7 @@ export function createPracticePlayback(
       publish({ status: 'idle', index: state.index, repetition: state.repetition })
       return
     }
+    responseSeconds = settings.pauseSeconds
     publish({ status: 'responding', index: state.index, repetition: state.repetition })
     if (!current(run.version)) return
     timer = setTimeout(() => {
@@ -178,11 +192,23 @@ export function createPracticePlayback(
       if (!current(run.version)) return
       if (state.repetition < settings.repetitions) speak(state.index, state.repetition + 1)
       else if (state.index < phrases.length - 1) speak(state.index + 1, 1)
+      else if (settings.loop) {
+        if (fullRound && settings.autoRamp) {
+          settings = {
+            ...settings,
+            rate: Number(Math.max(settings.rate, Math.min(settings.maxRate ?? 1, settings.rate + 0.05)).toFixed(2)),
+            pauseSeconds: Number(Math.min(settings.pauseSeconds, Math.max(settings.minPauseSeconds ?? 0.75, settings.pauseSeconds - 0.25)).toFixed(2)),
+          }
+        }
+        round++
+        fullRound = true
+        speak(0, 1)
+      }
       else {
         release()
         publish({ status: 'completed', index: state.index, repetition: state.repetition })
       }
-    }, settings.pauseSeconds * 1000)
+    }, responseSeconds * 1000)
   }
 
   const speak = (index: number, repetition: number) => {
@@ -250,11 +276,17 @@ export function createPracticePlayback(
     }
     const cancelError = cancel(true)
     if (cancelError) { report(cancelError); return }
-    if (current(request)) speak(index, 1)
+    if (current(request)) {
+      fullRound = index === 0
+      speak(index, 1)
+    }
   }
 
   return {
-    play: () => begin(state.index),
+    play: () => {
+      if (state.status === 'completed') { round = 1; begin(0) }
+      else begin(state.index)
+    },
     pause: () => { if (!disposed) halt() },
     previous: () => begin(Math.max(0, state.index - 1)),
     next: () => begin(Math.min(phrases.length - 1, state.index + 1)),
@@ -273,9 +305,33 @@ export function createPracticePlayback(
       if (request !== version || disposed) return
       phrases = [...nextTexts]
       settings = { ...nextOptions }
+      round = 1
+      responseSeconds = 0
       validationError = undefined
       if (!stopping && !stopRequired && !activeRun) release()
       publish({ status: 'paused', index: index ?? Math.min(state.index, phrases.length - 1), repetition: 1 })
+    },
+    updateSettings: (nextOptions: PracticePlaybackOptions) => {
+      if (disposed) return
+      const error = idError ?? validate(phrases, nextOptions)
+      if (error) { halt(error); return }
+      if (nextOptions.pacing !== settings.pacing) {
+        const request = version + 1
+        halt()
+        if (state.status === 'error' || request !== version || disposed) return
+      }
+      settings = { ...nextOptions }
+      publish({ ...state })
+    },
+    seek: (index: number) => {
+      if (disposed) return
+      if (!Number.isInteger(index) || index < 0 || index >= phrases.length) { halt('Choose an existing practice phrase.'); return }
+      const request = version + 1
+      halt()
+      if (state.status === 'error' || request !== version || disposed) return
+      round = 1
+      fullRound = index === 0
+      publish({ status: 'paused', index, repetition: 1 })
     },
     dispose: () => {
       if (disposed) return
@@ -288,5 +344,8 @@ export function createPracticePlayback(
       else publish({ status: 'paused', index: state.index, repetition: state.repetition })
     },
     getState: (): PracticePlaybackState => ({ ...state }),
+    getOptions: (): PracticePlaybackOptions => ({ ...settings }),
+    getRound: () => round,
+    getResponseSeconds: () => responseSeconds,
   }
 }

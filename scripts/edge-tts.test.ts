@@ -213,7 +213,7 @@ describe('Edge speech request protocol', () => {
   })
 
   it.each([
-    [0.25, '-75%'], [0.5, '-50%'], [0.75, '-25%'], [0.85, '-15%'], [1, '+0%'], [1.25, '+25%'],
+    [0.25, '-75%'], [0.5, '-50%'], [0.75, '-25%'], [0.8, '-20%'], [0.85, '-15%'], [1, '+0%'], [1.25, '+25%'],
   ] as const)('maps Mandarin rate %s exactly to %s', async (rate, expected) => {
     const { socket, result } = start({ ...request, rate })
     expect(socket.sent[1]).toContain(`rate="${expected}"`)

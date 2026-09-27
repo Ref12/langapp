@@ -8,6 +8,7 @@ import {
   practiceChainSchema,
   reconcilePracticeItems,
   type PracticeDirection,
+  type PracticeMode,
   type PracticePart,
   type PracticePlan,
   type PracticePlaylistItem,
@@ -106,7 +107,7 @@ function alignProvided(units: string[], readings: Reading[], romanization: strin
   return result.reverse()
 }
 
-function suggestEnds(text: string, units: string[], warnings: string[]): number[] {
+function suggestEnds(text: string, units: string[], warnings: string[], wordByWord: boolean): number[] {
   let words: string[]
   try {
     const Segmenter = (Intl as typeof Intl & { Segmenter?: WordSegmenter }).Segmenter
@@ -116,7 +117,7 @@ function suggestEnds(text: string, units: string[], warnings: string[]): number[
     if (words.join('') !== text) throw new Error('Segment text mismatch')
   } catch {
     words = [...units]
-    warnings.push('Word segmentation was unavailable; chunks use simple adjacent-character groups. Review the boundaries.')
+    warnings.push('Word segmentation was unavailable; review the suggested character boundaries before practicing.')
   }
 
   // Pair adjacent single Han suggestions, without absorbing an existing word or
@@ -124,7 +125,7 @@ function suggestEnds(text: string, units: string[], warnings: string[]): number[
   const grouped: string[] = []
   for (let i = 0; i < words.length; i++) {
     const word = words[i]
-    if (Array.from(word).length === 1 && han.test(word)
+    if (!wordByWord && Array.from(word).length === 1 && han.test(word)
       && words[i + 1] && Array.from(words[i + 1]).length === 1 && han.test(words[i + 1])) {
       grouped.push(word + words[++i])
     } else if (/^[\p{Script=Latin}\p{N}\p{M}]+$/u.test(word)
@@ -165,7 +166,7 @@ function suggestEnds(text: string, units: string[], warnings: string[]): number[
   return capped
 }
 
-export function createPracticePlan(text: string, romanization?: string): PracticePlan {
+export function createPracticePlan(text: string, romanization?: string, wordByWord = false): PracticePlan {
   // Match the existing 3000 UTF-16-code-unit phrase contract before dictionary work.
   const length = typeof text === 'string' && text.length <= MAX_PRACTICE_TEXT_LENGTH ? Array.from(text).length : 0
   practiceChainSchema.parse({ text, ends: [length] })
@@ -206,7 +207,7 @@ export function createPracticePlan(text: string, romanization?: string): Practic
   if (characters.some(character => letterOrNumber.test(character) && !/[\p{Script=Han}\p{Script=Latin}\p{N}]/u.test(character))) {
     warnings.push('Other scripts are kept as written; local Mandarin pinyin does not transliterate them.')
   }
-  const plan = { units, ends: suggestEnds(text, characters, warnings), warnings }
+  const plan = { units, ends: suggestEnds(text, characters, warnings, wordByWord), warnings }
   assertPlan(plan)
   return plan
 }
@@ -292,6 +293,7 @@ export function buildPracticeTracks(plan: PracticePlan, direction: PracticeDirec
       const selected = part(plan, item.start, item.end)
       return { item, text: selected.text, pinyin: selected.pinyin, parts: [{ ...selected, added: true }] }
     }
+
     const index = item.step
     const selected = direction === 'forward' ? chunks.slice(0, index + 1) : chunks.slice(chunks.length - index - 1)
     const complete = part(plan, selected[0].start, selected[selected.length - 1].end)
@@ -305,6 +307,15 @@ export function buildPracticeTracks(plan: PracticePlan, direction: PracticeDirec
       })),
     }
   })
+}
+
+export function buildPracticeModeTracks(plan: PracticePlan, mode: PracticeMode): PracticeTrack[] {
+  if (mode === 'forward' || mode === 'backward') return buildPracticeTracks(plan, mode)
+  if (mode !== 'words' && mode !== 'phrase') throw new Error('Unknown practice mode.')
+  const parts = mode === 'words' ? getPracticeChunks(plan) : [getPracticePart(plan, 0, plan.units.length)]
+  return parts.map((part, step) => ({
+    item: { kind: 'chain', step }, text: part.text, pinyin: part.pinyin, parts: [{ ...part, added: true }],
+  }))
 }
 
 export function applyPracticeEnds(plan: PracticePlan, ends: number[]): PracticePlan {

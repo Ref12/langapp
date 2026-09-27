@@ -535,23 +535,42 @@ conversation's speed, or the default Mandarin speed elsewhere. The most recently
 edited selection's chunks and playlist order are retained only for that page
 visit, not saved to a profile or backup; leaving the page or reloading clears them.
 
-**Practice** opens a phrase playlist in a centered popup (a tall bottom sheet on
-mobile), in either Conversation or Shadow. Opening is silent and does not record,
-change mode, replace the composer draft, generate a translation, or send a message.
-Every step shows Hanzi and pinyin at normal weight, with newly added characters
-colored and their matching pinyin underlined.
-**From start** builds progressively longer prefixes; **From end** builds suffixes
-without reversing word order. The generated order ends with the full original
-phrase; you can rearrange it.
+**Practice** opens a centered popup (a tall bottom sheet on mobile) with the
+active step, contextual pinyin, and compact playback controls. Opening is silent
+and does not record, replace the composer draft, generate a translation, or send
+a message. The standalone design experiment remains in `prototypes/phrase-practice`.
 
-Tap a row to hear it, use **Previous / Next** to move and play, or **Play** to
-repeat the selected step. **Pause** keeps your place; Play restarts that step
-from its beginning. **Self-paced** is the default and never advances automatically.
-**Guided** waits for actual playback completion, leaves a configurable 1-30 second
-repetition pause, repeats each step 1-5 times, then advances. Closing the popup,
-Escape, leaving the page, or starting another audio activity stops its sequence.
-Practice speed starts at the conversation's rate and supports 0.25x through 1.25x;
-English speech remains normal speed.
+Four modes share the same phrase: **Word by word** plays each suggested word
+separately in sentence order; **Whole phrase** plays the complete text;
+**Build from start / end** plays cumulative prefixes or suffixes without
+reversing word order. New phrases start word by word with guided pacing.
+Previously edited phrases reopen in Build from end with self-paced playback,
+preserving their saved boundaries and custom steps. Word segmentation is a local
+suggestion, not necessarily a single character or guaranteed linguistic analysis.
+
+**Previous / Next**, the phrase strip, and step markers select silently;
+**Play** speaks the selected step. **Pause** keeps your place; Play restarts that
+step. **Speech speed** and **Repeat pause** have minus/plus controls in every
+mode. Speech starts at the configured Mandarin rate, adjustable from 0.25x to
+1.25x in 0.05 increments. Response pauses range from 0.5 to 30 seconds and are
+remembered separately per mode for the popup visit. Live changes apply to the
+next utterance or response pause, never cut off current speech or shorten a
+response window already in progress. English speech remains normal speed.
+
+**Loop** starts on, **Auto-ramp** off. With guided looping and Auto-ramp enabled,
+each complete round adds 0.05x speech speed and subtracts 0.25 seconds from the
+response pause, up to limits in **Practice options** (initially 1x and 0.75s).
+At the limits, looping continues unchanged. Manual faster speeds or shorter
+pauses are not reversed, and resuming or seeking midway through a phrase does
+not count as a complete round for acceleration. Turning Loop off finishes the
+current round; closing, Escape, navigation, hiding the page, or another audio
+activity stops the sequence.
+
+**Practice options** also contains pinyin/meaning visibility, self-paced/guided
+pacing, repetitions per step (1-5), and explanatory/privacy details. Guided
+response pauses begin only after actual speech completion. Self-paced waits for
+an explicit Play and never loops or accelerates automatically. Playback settings
+reset on closing; they do not overwrite conversation settings.
 
 Browser-native speech uses a muted preparation utterance before a cold start or
 after idle to protect the beginning from being clipped. This can add roughly two
@@ -567,17 +586,20 @@ Chunk and contextual pinyin suggestions run locally using a lazily loaded
 `pinyin-pro` dictionary ([MIT license](public/licenses/pinyin-pro.txt)); no AI
 request is needed. Supplied pinyin is reused only
 when it can safely be aligned. Suggestions are not guaranteed linguistic analysis:
-**Edit chunks** shows tappable characters: highlight the characters that end a
+**Edit playlist -> Edit chunks** shows tappable characters: highlight the characters that end a
 chunk, or tap them again to join adjacent chunks, then explicitly **Save chunks**.
 Punctuation stays visible as plain text rather than a selectable tile.
 Original text and character order are preserved.
 
-Use **Select part** to add a word or partial phrase: tap its first character,
+Inside **Edit playlist**, use **Select part** to add a word or partial phrase: tap its first character,
 then its last (or just one character for a single-character selection). Desktop
 text selection also works. The preview includes contextual pinyin. **Add selection
 to playlist** inserts immediately before the current step, selects the new row,
 and does not play it. Each row has **Move up / Move down** controls; added parts
 also have **Remove**. These edits pause playback and save immediately.
+Custom steps and row order apply to the two build modes; word-by-word uses the
+same edited chunk boundaries in sentence order, and whole-phrase uses the exact
+complete text. Switching modes never removes or rewrites saved custom steps.
 
 For Assistant phrase actions, saved boundaries, selected parts, and row order belong to that exact phrase in
 the active profile and survive reload, cloning, and JSON/YAML export/import.
@@ -592,8 +614,9 @@ The conversation settings gear has a separate **Practice input** dropdown:
 
 - **Listen and repeat (no recording)** is the default, including for older chats.
   Hear the translation and repeat aloud at your own pace; the microphone stays off.
-- **Listen and record** adds an optional whole-phrase recording section inside
-  the popup. **Record whole phrase** plays the complete reference at the current
+- **Listen and record** adds a **Recording and feedback** button in the popup
+  header. Its section stays separate from the playlist. **Record whole phrase**
+  plays the complete reference at the current
   practice speed, then prepares the microphone and sounds a short start cue.
   Wait for **Listening...** before repeating the phrase. **Submit** finishes recording and shows feedback under that same
   phrase, without adding a message. **Cancel** discards the attempt.
@@ -809,8 +832,9 @@ short Neural voice name from the supported English or Mandarin catalog, such
 as `en-US-AriaNeural`, `en-GB-SoniaNeural`, or `zh-CN-XiaoxiaoNeural`.
 English regions, mainland/Singapore/Taiwan Mandarin, and supported regional
 Mandarin IDs are accepted. Unknown upstream voices fail rather than falling back.
-`rate` defaults to `1`; accepted values are `0.25`, `0.5`, `0.75`, `0.85`, `1`, and `1.25`.
-The internal `0.85` rate preserves guided-lesson playback and is not a user speed choice.
+`rate` defaults to `1` and accepts finite values from `0.25` through `1.25`.
+Mandarin provider requests round the rate to the nearest whole percentage;
+practice controls use 0.05 increments. English requests remain at normal speed.
 English is always synthesized at normal speed, regardless of the requested
 rate. Mandarin uses the requested rate.
 

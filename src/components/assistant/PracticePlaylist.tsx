@@ -1,8 +1,8 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronDown, ChevronUp, Pause, Play, SkipBack, SkipForward, X } from 'lucide-react'
-import { speechRateSchema, type SpeechBlock, type SpeechRate } from '../../core/assistant/contracts'
-import { MAX_PRACTICE_CHUNKS, type PracticePlan, type PracticeDirection, type PracticePlaylistItem } from '../../core/assistant/practice-chain-contracts'
+import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp, ListMusic, Mic, Minus, Pause, Play, Plus, Quote, Repeat2, SkipBack, SkipForward, SlidersHorizontal, TrendingUp, WholeWord, X } from 'lucide-react'
+import { type SpeechBlock, type SpeechRate } from '../../core/assistant/contracts'
+import { MAX_PRACTICE_CHUNKS, type PracticePlan, type PracticeMode, type PracticePlaylistItem } from '../../core/assistant/practice-chain-contracts'
 import { createPracticePlayback, type PracticePlaybackOptions, type PracticePlaybackState } from '../../core/assistant/practice-playback'
 import { PracticeBoundaryEditor } from './PracticeBoundaryEditor'
 import { PracticePhraseSelection } from './PracticePhraseSelection'
@@ -17,7 +17,7 @@ interface Props {
   savedItems?: PracticePlaylistItem[]
   busy: boolean
   recordingActive: boolean
-  recording?: (rate: SpeechRate) => ReactNode
+  recording?: (rate: number) => ReactNode
   onSave: (ends: number[], items?: PracticePlaylistItem[]) => Promise<void>
   onClose: () => Promise<void>
   saveNotice?: string
@@ -34,9 +34,25 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
   const alive = useRef(false)
   const closing = useRef(false)
   const saved = useRef({ ends: savedEnds, items: savedItems })
-  const initialOptions = useRef<PracticePlaybackOptions>({ pacing: 'self-paced', rate, pauseSeconds: 3, repetitions: 1 })
+  const initialMode = useRef<PracticeMode>(savedEnds || savedItems ? 'backward' : 'words')
+  const initialOptions = useRef<PracticePlaybackOptions>({
+    pacing: initialMode.current === 'words' ? 'guided' : 'self-paced', rate,
+    pauseSeconds: initialMode.current === 'words' ? 1.5 : 3, repetitions: 1,
+    loop: true, autoRamp: false, maxRate: 1, minPauseSeconds: 0.75,
+  })
   const [options, setOptions] = useState(initialOptions.current)
-  const [direction, setDirection] = useState<PracticeDirection>('backward')
+  const [direction, setDirection] = useState<PracticeMode>(initialMode.current)
+  const mode = useRef(direction)
+  const pauses = useRef<Record<PracticeMode, number>>({ words: 1.5, phrase: 4, forward: 3, backward: 3 })
+  const [round, setRound] = useState(1)
+  const [responseSeconds, setResponseSeconds] = useState(0)
+  const [optionsOpen, setOptionsOpen] = useState(false)
+  const [editing, setEditing] = useState(false)
+  const [recordingOpen, setRecordingOpen] = useState(false)
+  const [showPinyin, setShowPinyin] = useState(true)
+  const [showMeaning, setShowMeaning] = useState(true)
+  const editToggle = useRef<HTMLButtonElement>(null)
+  const optionToggle = useRef<HTMLButtonElement>(null)
   const [loaded, setLoaded] = useState<LoadedPlan>()
   const [loadError, setLoadError] = useState('')
   const [retry, setRetry] = useState(0)
@@ -97,12 +113,21 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
     setLoaded(undefined)
     void import('../../core/assistant/practice-chain').then(engine => {
       if (!active) return
-      let plan = engine.createPracticePlan(phrase.text, phrase.romanization)
+      let plan = engine.createPracticePlan(phrase.text, phrase.romanization, !saved.current.ends)
       if (saved.current.ends) plan = engine.applyPracticeEnds(plan, saved.current.ends)
       if (saved.current.items) plan = { ...plan, items: saved.current.items }
-      const tracks = engine.buildPracticeTracks(plan, 'backward')
+      const tracks = engine.buildPracticeModeTracks(plan, initialMode.current)
       player.current = createPracticePlayback(id, tracks.map(track => track.text), initialOptions.current, next => {
-        if (alive.current && active) setState(next)
+        if (alive.current && active) {
+          setState(next)
+          const settings = player.current?.getOptions()
+          if (settings) {
+            setOptions(settings)
+            pauses.current[mode.current] = settings.pauseSeconds
+          }
+          setRound(player.current?.getRound() ?? 1)
+          setResponseSeconds(player.current?.getResponseSeconds() ?? 0)
+        }
       })
       setLoaded({ engine, plan })
     }).catch(cause => {
@@ -118,18 +143,35 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
   useEffect(() => {
     if (busy) { player.current?.pause(); void closeRef.current() }
   }, [busy])
-  useEffect(() => { activeRow.current?.scrollIntoView?.({ block: 'nearest' }) }, [state.index, loaded, direction])
+  useEffect(() => { if (editing) activeRow.current?.scrollIntoView?.({ block: 'nearest' }) }, [state.index, loaded, direction, editing])
 
-  const tracks = loaded?.engine.buildPracticeTracks(loaded.plan, direction) ?? []
+  const tracks = useMemo(() => loaded?.engine.buildPracticeModeTracks(loaded.plan, direction) ?? [], [loaded, direction])
+  const chunks = useMemo(() => loaded?.engine.getPracticeChunks(loaded.plan) ?? [], [loaded])
+  const chainMode = direction === 'forward' || direction === 'backward'
   const disabled = !loaded || busy || saving || recordingActive || !!draft
   const playing = state.status === 'playing' || state.status === 'responding'
   const configure = (nextOptions: PracticePlaybackOptions, nextDirection = direction) => {
     if (!loaded) return
-    const nextTracks = loaded.engine.buildPracticeTracks(loaded.plan, nextDirection)
-    player.current?.configure(nextTracks.map(track => track.text), nextOptions, nextDirection === direction ? state.index : 0)
+    const nextTracks = loaded.engine.buildPracticeModeTracks(loaded.plan, nextDirection)
+    if (nextDirection === direction) player.current?.updateSettings(nextOptions)
+    else player.current?.configure(nextTracks.map(track => track.text), nextOptions, 0)
     if (player.current?.getState().status === 'error') return
+    mode.current = nextDirection
+    pauses.current[nextDirection] = nextOptions.pauseSeconds
     setOptions(nextOptions)
     setDirection(nextDirection)
+  }
+  const changeMode = (next: PracticeMode) => {
+    const previousPause = options.pauseSeconds
+    configure({ ...options, pauseSeconds: pauses.current[next] }, next)
+    pauses.current[direction] = previousPause
+  }
+  const showEditor = () => {
+    player.current?.pause()
+    if (player.current?.getState().status === 'error') return
+    if (!chainMode) changeMode('backward')
+    setEditing(true)
+    setOptionsOpen(false)
   }
   const edit = (operation: () => PracticePlan) => {
     setError('')
@@ -143,7 +185,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
     try {
       player.current?.pause()
       if (player.current?.getState().status === 'error') return false
-      const nextTracks = loaded.engine.buildPracticeTracks(next, direction)
+      const nextTracks = loaded.engine.buildPracticeModeTracks(next, direction)
       if (next.items) await onSave(next.ends, next.items)
       else await onSave(next.ends)
       if (!alive.current) return false
@@ -158,7 +200,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
   }
   const save = async () => {
     if (!loaded || !draft) return
-    const nextTracks = loaded.engine.buildPracticeTracks(draft, direction)
+    const nextTracks = loaded.engine.buildPracticeModeTracks(draft, direction)
     const changed = nextTracks.findIndex((track, index) => track.text !== tracks[index]?.text)
     const index = Math.min(state.index, changed < 0 ? nextTracks.length - 1 : changed)
     if (await persist(draft, index, 'Chunks')) setDraft(undefined)
@@ -193,13 +235,15 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
     void persist(loaded.engine.removePracticeSelection(loaded.plan, index),
       Math.min(current > index ? current - 1 : current, tracks.length - 2), 'Playlist')
   }
-  const status = state.status === 'error' ? state.error : state.status === 'playing' ? 'Listen to the model...'
-    : state.status === 'responding' ? `Your turn. Repeat aloud. Repetition ${state.repetition} of ${options.repetitions}.`
-      : state.status === 'completed' ? 'Playlist finished. You can repeat any part.'
-        : state.status === 'paused' ? 'Paused. Play repeats this step from the beginning.'
-          : 'Ready. Play a step, then repeat aloud.'
+  const status = state.status === 'error' ? 'Playback needs attention' : state.status === 'playing' ? 'Listen'
+    : state.status === 'responding' ? 'Your turn'
+      : state.status === 'completed' ? 'Round complete' : state.status === 'paused' ? 'Paused' : 'Ready when you are'
+  const currentTrack = tracks[state.index]
+  const rates = Array.from({ length: 21 }, (_, index) => Number((0.25 + index * 0.05).toFixed(2)))
+  const pauseValues = [...new Set([0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 8, 10, 15, 20, 30, options.pauseSeconds])].sort((a, b) => a - b)
 
   return createPortal(<dialog ref={dialog} className="practice-playlist" aria-labelledby={`${id}-title`}
+    data-mode={direction} data-phase={state.status}
     aria-describedby={`${id}-privacy`} onCancel={event => { event.preventDefault(); void requestClose() }}
     onClose={event => {
       // Strict Mode can reopen the dialog before a queued cleanup close event arrives.
@@ -214,44 +258,65 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
       if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) void requestClose()
     }} data-assistant-exclude>
     <header className="practice-playlist-header">
-      <div><p className="eyebrow">LISTEN AND BUILD</p><h2 id={`${id}-title`}>Phrase practice</h2></div>
-      <button type="button" className="icon-button" aria-label="Close practice" disabled={saving} autoFocus onClick={() => void requestClose()}><X size={22} /></button>
+      <h2 id={`${id}-title`}>Phrase practice</h2>
+      <div className="practice-header-actions">
+        <button ref={editToggle} type="button" className="icon-button" aria-label="Edit playlist" title="Edit playlist" disabled={disabled}
+          aria-expanded={editing} aria-controls={`${id}-editor`} onClick={() => editing ? setEditing(false) : showEditor()}><ListMusic size={18} /></button>
+        {recording && <button type="button" className="icon-button" aria-label="Recording and feedback" title="Recording and feedback"
+          aria-expanded={recordingOpen || recordingActive} onClick={() => setRecordingOpen(!recordingOpen)}><Mic size={18} /></button>}
+        <button ref={optionToggle} type="button" className="icon-button" aria-label="Practice options" title="Practice options"
+          aria-expanded={optionsOpen} aria-controls={`${id}-options`} onClick={() => { setOptionsOpen(!optionsOpen); setEditing(false) }} disabled={!!draft}><SlidersHorizontal size={18} /></button>
+        <button type="button" className="icon-button" aria-label="Close practice" disabled={saving} autoFocus onClick={() => void requestClose()}><X size={22} /></button>
+      </div>
     </header>
-    <div className="practice-playlist-controls">
-      <label>Build direction<select value={direction} disabled={disabled} onChange={event => configure(options, event.target.value === 'forward' ? 'forward' : 'backward')}>
-        <option value="forward">From start</option><option value="backward">From end</option>
-      </select></label>
-      <label>Pacing<select value={options.pacing} disabled={disabled} onChange={event => configure({ ...options, pacing: event.target.value === 'guided' ? 'guided' : 'self-paced' })}>
-        <option value="self-paced">Self-paced</option><option value="guided">Guided</option>
-      </select></label>
-      <label>Practice speed<select value={options.rate} disabled={disabled} onChange={event => configure({ ...options, rate: speechRateSchema.parse(Number(event.target.value)) })}>
-        {speechRateSchema.options.map(({ value }) => <option key={value} value={value}>{value}x</option>)}
-      </select></label>
-      {options.pacing === 'guided' && <>
-        <label>Repetition pause<select value={options.pauseSeconds} disabled={disabled} onChange={event => configure({ ...options, pauseSeconds: Number(event.target.value) })}>
-          {[1, 2, 3, 5, 8, 10, 15, 20, 30].map(seconds => <option key={seconds} value={seconds}>{seconds} seconds</option>)}
-        </select></label>
-        <label>Repetitions per step<select value={options.repetitions} disabled={disabled} onChange={event => configure({ ...options, repetitions: Number(event.target.value) })}>
-          {[1, 2, 3, 4, 5].map(count => <option key={count} value={count}>{count}</option>)}
-        </select></label>
-      </>}
+    <div className="practice-mode-switch" role="group" aria-label="Practice mode">
+      {([
+        ['words', 'Word by word', WholeWord], ['phrase', 'Whole phrase', Quote],
+        ['forward', 'Build from start', ArrowRight], ['backward', 'Build from end', ArrowLeft],
+      ] as const).map(([value, label, Icon]) => <button type="button" key={value} disabled={disabled}
+        aria-pressed={direction === value} onClick={() => { changeMode(value); if (value === 'words' || value === 'phrase') setEditing(false) }}><Icon size={15} />{label}</button>)}
     </div>
     <div className="practice-playlist-content">
-      <div className="practice-target">
+      <section id={`${id}-options`} className="practice-options" aria-label="Practice options" hidden={!optionsOpen}>
+        <div className="practice-panel-heading"><h3>Make it yours</h3><button type="button" className="text-link" onClick={() => { setOptionsOpen(false); optionToggle.current?.focus() }}>Done</button></div>
+        <div className="practice-playlist-controls">
+          <label>Pacing<select value={options.pacing} disabled={disabled} onChange={event => configure({ ...options, pacing: event.target.value === 'guided' ? 'guided' : 'self-paced' })}>
+            <option value="self-paced">Self-paced</option><option value="guided">Guided</option>
+          </select></label>
+          <label>Repetitions per step<select value={options.repetitions} disabled={disabled} onChange={event => configure({ ...options, repetitions: Number(event.target.value) })}>
+            {[1, 2, 3, 4, 5].map(count => <option key={count} value={count}>{count}</option>)}
+          </select></label>
+          <label>Fastest speech<select value={options.maxRate} disabled={disabled} onChange={event => configure({ ...options, maxRate: Number(event.target.value) })}>
+            {[0.75, 1, 1.25].map(value => <option key={value} value={value}>{value}x</option>)}
+          </select></label>
+          <label>Shortest pause<select value={options.minPauseSeconds} disabled={disabled} onChange={event => configure({ ...options, minPauseSeconds: Number(event.target.value) })}>
+            {[0.5, 0.75, 1, 1.5].map(value => <option key={value} value={value}>{value}s</option>)}
+          </select></label>
+        </div>
+        <div className="practice-display-options">
+          <label><input type="checkbox" checked={showPinyin} onChange={event => setShowPinyin(event.target.checked)} />Pinyin</label>
+          <label><input type="checkbox" checked={showMeaning} onChange={event => setShowMeaning(event.target.checked)} />Meaning</label>
+        </div>
+        <p className="small muted">Auto-ramp adds 0.05x speech speed and shortens the repeat pause by 0.25s after each complete round, up to these limits. Pace changes apply to the next spoken step or response pause. Self-paced waits for your next tap.</p>
+        <details><summary>About phrase practice</summary>
+          <p className="small muted">Chunks and pinyin are suggested on this device. Your selected speech voice may be online. Opening Practice does not play or record audio. Practice is not proof of mastery.</p>
+          {saveNotice && <p className="small muted">{saveNotice}</p>}
+          {loaded?.plan.warnings.map((warning, index) => <p key={index} className="small muted">{warning}</p>)}
+        </details>
+      </section>
+      <p id={`${id}-privacy`} className="visually-hidden">Opening is silent. Your selected speech voice may be online. Recording is optional and separate. {saveNotice}</p>
+      <div id={`${id}-editor`} hidden={!editing} className="practice-editor">
+        <div className="practice-panel-heading"><h3>Build playlist</h3><button type="button" className="text-link" disabled={!!draft || saving}
+          onClick={() => { setEditing(false); editToggle.current?.focus() }}>Done editing</button></div>
+        <p className="small muted">Custom steps and their order apply to the build modes. Word by word follows your chunk boundaries in sentence order; Whole phrase plays the complete text.</p>
+        <div className="practice-target">
         <p className="small muted">Full phrase</p>
         {loaded && !draft ? <PracticePhraseSelection text={phrase.text} units={loaded.plan.units} disabled={disabled}
           preview={(start, end) => loaded.engine.getPracticePart(loaded.plan, start, end)} add={addSelection} />
           : <p lang="zh-Hans">{phrase.text}</p>}
         {phrase.meaning && <p className="small muted">{phrase.meaning}</p>}
       </div>
-      <p id={`${id}-privacy`} className="small muted">Chunks and pinyin are suggested on this device. Your selected speech voice may be online. Opening Practice does not play or record audio.</p>
-      {saveNotice && <p className="small muted">{saveNotice}</p>}
-      {loadError ? <div role="alert" className="notice error"><p>{loadError}</p><button type="button" className="button secondary" onClick={() => setRetry(value => value + 1)}>Retry loading practice</button></div>
-        : !loaded ? <p role="status">Preparing chunks and pinyin...</p> : <>
-          {loaded.plan.warnings.length > 0 && <details className="small">
-            <summary>Review local chunk and pinyin suggestions</summary>
-            {loaded.plan.warnings.map((warning, index) => <p key={index}>{warning}</p>)}
-          </details>}
+      {loaded && <>
           <div className="practice-list-heading">
             <p className="small muted">Colored characters and underlined pinyin mark the newly added part.</p>
             <button type="button" className="button secondary" disabled={disabled} onClick={() => {
@@ -303,22 +368,69 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
             </li>)}
           </ol>}
         </>}
-      {error && <p className="notice error" role="alert">{error}</p>}
-      {recording && !draft && loaded && <section className="practice-playlist-recording" aria-label="Optional whole phrase recording">
-        <p className="small muted">Optional: record the complete phrase for feedback. Recording is separate from the playlist.</p>
+      </div>
+      {loadError ? <div role="alert" className="notice error"><p>{loadError}</p><button type="button" className="button secondary" onClick={() => setRetry(value => value + 1)}>Retry loading practice</button></div>
+        : !loaded ? <p>Preparing chunks and pinyin...</p> : !editing && !optionsOpen && currentTrack && <section className="practice-rehearsal" aria-label="Current practice step">
+          <div className="practice-phrase-strip" role="group" aria-label="Words in the phrase" hidden={direction === 'phrase'}>
+            {chunks.map((chunk, index) => <button type="button" key={chunk.start} disabled={disabled} lang="zh-Hans"
+              aria-pressed={currentTrack.parts.some(part => part.start <= chunk.start && part.end >= chunk.end)}
+              onClick={() => {
+                const step = direction === 'words' ? index : tracks.findIndex(track => track.item.kind === 'chain' && track.item.step === (direction === 'backward' ? chunks.length - 1 - index : index))
+                if (step >= 0) player.current?.seek(step)
+              }}>{chunk.text}</button>)}
+          </div>
+          <div className="practice-phase"><span>{status}</span><span>Round {round}</span></div>
+          <div className="practice-current">
+            <p className="practice-track-hanzi" lang="zh-Hans">{currentTrack.parts.map((part, index) => <span key={index} className={part.added ? 'practice-addition' : undefined}>{part.text}</span>)}</p>
+            {showPinyin && <p className="practice-track-pinyin" lang="zh-Latn">{currentTrack.pinyin}</p>}
+            {showMeaning && currentTrack.text === phrase.text && phrase.meaning && <p className="small muted">{phrase.meaning}</p>}
+          </div>
+          <div className="practice-response-track" aria-hidden="true">
+            {state.status === 'responding' && <span key={`${round}:${state.index}:${state.repetition}`} style={{ animationDuration: `${responseSeconds}s` }} />}
+          </div>
+          <div className="practice-phase"><span>{direction === 'phrase' ? 'Whole phrase' : `${direction === 'words' ? 'Word' : 'Step'} ${state.index + 1} of ${tracks.length}`}</span>
+            <span>{state.status === 'responding' ? `${responseSeconds}s to repeat` : options.pacing === 'self-paced' ? 'Self-paced' : ''}</span></div>
+          <div className="practice-step-markers" role="group" aria-label="Practice steps">
+            {tracks.map((track, index) => <button type="button" key={index} disabled={disabled} aria-current={state.index === index ? 'step' : undefined}
+              aria-label={`Select step ${index + 1}: ${track.text}`} onClick={() => player.current?.seek(index)}><span /></button>)}
+          </div>
+        </section>}
+      {recording && !draft && loaded && <section className="practice-playlist-recording" aria-label="Optional whole phrase recording" hidden={!recordingOpen && !recordingActive}>
         {recording(options.rate)}
       </section>}
     </div>
     <footer className="practice-transport">
-      <p className="small" role={state.status === 'error' ? 'alert' : 'status'}>{status}</p>
+      <div className="practice-pace-controls">
+        <div className="practice-pace-control"><span>Speech speed</span><div className="practice-stepper">
+          <button type="button" className="icon-button" aria-label="Slower speech" disabled={disabled || options.rate <= 0.25} onClick={() => configure({ ...options, rate: Number((options.rate - 0.05).toFixed(2)) })}><Minus size={16} /></button>
+          <select aria-label="Practice speed" value={options.rate} disabled={disabled} onChange={event => configure({ ...options, rate: Number(event.target.value) })}>
+            {rates.map(value => <option key={value} value={value}>{value}x</option>)}
+          </select>
+          <button type="button" className="icon-button" aria-label="Faster speech" disabled={disabled || options.rate >= 1.25} onClick={() => configure({ ...options, rate: Number((options.rate + 0.05).toFixed(2)) })}><Plus size={16} /></button>
+        </div></div>
+        <div className="practice-pace-control"><span>Repeat pause</span><div className="practice-stepper">
+          <button type="button" className="icon-button" aria-label="Shorter repeat pause" disabled={disabled || options.pauseSeconds <= 0.5} onClick={() => configure({ ...options, pauseSeconds: Number(Math.max(0.5, options.pauseSeconds - 0.25).toFixed(2)) })}><Minus size={16} /></button>
+          <select aria-label="Repetition pause" value={options.pauseSeconds} disabled={disabled} onChange={event => configure({ ...options, pauseSeconds: Number(event.target.value) })}>
+            {pauseValues.map(value => <option key={value} value={value}>{value}s</option>)}
+          </select>
+          <button type="button" className="icon-button" aria-label="Longer repeat pause" disabled={disabled || options.pauseSeconds >= 30} onClick={() => configure({ ...options, pauseSeconds: Math.min(30, options.pauseSeconds + 0.25) })}><Plus size={16} /></button>
+        </div></div>
+      </div>
+      <p className="visually-hidden" role="status">{status}</p>
       <div className="practice-transport-buttons">
-        <button type="button" className="button secondary" aria-label="Previous step" disabled={disabled || state.index === 0} onClick={() => player.current?.previous()}><SkipBack size={18} />Previous</button>
+        <button type="button" className="icon-button" aria-label="Previous step" disabled={disabled || state.index === 0} onClick={() => player.current?.seek(state.index - 1)}><SkipBack size={18} /></button>
         <button type="button" className="button primary" aria-label={playing ? 'Pause practice' : 'Play practice'} disabled={disabled} onClick={() => playing ? player.current?.pause() : player.current?.play()}>
           {playing ? <Pause size={20} /> : <Play size={20} />}{playing ? 'Pause' : 'Play'}
         </button>
-        <button type="button" className="button secondary" aria-label="Next step" disabled={disabled || state.index >= tracks.length - 1} onClick={() => player.current?.next()}>Next<SkipForward size={18} /></button>
+        <button type="button" className="icon-button" aria-label="Next step" disabled={disabled || state.index >= tracks.length - 1} onClick={() => player.current?.seek(state.index + 1)}><SkipForward size={18} /></button>
       </div>
-      <p className="small muted">{tracks.length ? `Step ${state.index + 1} of ${tracks.length} / ` : ''}{options.pacing === 'self-paced' ? 'Self-paced' : 'Guided'}{!recording && ' / Microphone off'}. Practice is not proof of mastery.</p>
+      <div className="practice-repeat-controls">
+        <button type="button" disabled={disabled || options.pacing !== 'guided'} aria-pressed={Boolean(options.loop)} onClick={() => configure({ ...options, loop: !options.loop })}><Repeat2 size={15} />Loop <span>{options.loop ? 'On' : 'Off'}</span></button>
+        <button type="button" disabled={disabled || !options.loop || options.pacing !== 'guided'} aria-pressed={Boolean(options.autoRamp)}
+          title={options.pacing !== 'guided' ? 'Choose Guided pacing in Practice options to use Auto-ramp' : !options.loop ? 'Turn on Loop to use Auto-ramp' : 'Accelerate after each complete round'}
+          onClick={() => configure({ ...options, autoRamp: !options.autoRamp })}><TrendingUp size={15} />Auto-ramp <span>{options.autoRamp ? 'On' : 'Off'}</span></button>
+      </div>
+      {(error || state.error) && <p className="practice-error" role="alert">{error || state.error}</p>}
     </footer>
   </dialog>, document.body)
 }

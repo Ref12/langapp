@@ -71,8 +71,8 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
       setError(cause instanceof Error ? cause.message : 'Other audio could not be stopped. Try Practice again.')
     }
   }
-  const recordingControls = thread.practiceInput === 'spoken-feedback' ? (rate: AssistantThread['speechRate']) => <PracticeRecording
-    thread={{ ...thread, speechRate: rate }} phrase={phrase} busy={busy}
+  const recordingControls = thread.practiceInput === 'spoken-feedback' ? (rate: number) => <PracticeRecording
+    thread={thread} playbackRate={rate} phrase={phrase} busy={busy}
     speechConnection={speechConnection} connectionLoading={connectionLoading}
     inline={inline ? { ...inline, active: recording, activate: () => setRecording(true) } : undefined}
     onActiveChange={inline ? undefined : setRecording}

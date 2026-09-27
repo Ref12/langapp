@@ -85,6 +85,8 @@ async function openPractice() {
   }
   const opened = popup
   await waitFor(() => expect(within(opened).getByRole('button', { name: 'Play practice' })).toBeEnabled())
+  const recordingToggle = within(opened).queryByRole('button', { name: 'Recording and feedback' })
+  if (recordingToggle?.getAttribute('aria-expanded') === 'false') fireEvent.click(recordingToggle)
   return opened
 }
 
@@ -195,7 +197,7 @@ describe('automatic translation practice', () => {
     render(<App />)
     const popup = await openPractice()
     expect(within(popup).getByRole('button', { name: 'Play practice' })).toBeEnabled()
-    expect(popup).toHaveTextContent('Microphone off')
+    expect(popup).toHaveTextContent('Opening is silent')
     expect(within(popup).queryByRole('region', { name: 'Optional whole phrase recording' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Start speaking' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Send for feedback' })).not.toBeInTheDocument()

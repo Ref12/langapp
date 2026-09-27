@@ -162,8 +162,8 @@ describe('practice playback using the real shared speech engine', () => {
     expect(synthesis.speak).toHaveBeenCalledTimes(6)
     expect(vi.getTimerCount()).toBe(0)
     player.play()
-    expect(player.getState()).toEqual({ status: 'playing', index: 2, repetition: 1 })
-    expect(utterance().text).toBe(phrases[2])
+    expect(player.getState()).toEqual({ status: 'playing', index: 0, repetition: 1 })
+    expect(utterance().text).toBe(phrases[0])
   })
 
   it.each([0.25, 0.5, 0.75, 1, 1.25] as const)('starts the same response gap after real end at Mandarin speed %s', async rate => {
@@ -268,6 +268,95 @@ describe('practice playback using the real shared speech engine', () => {
     player.play()
     await flush()
     expect(player.getState()).toEqual({ status: 'idle', index: 0, repetition: 1 })
+    expect(vi.getTimerCount()).toBe(0)
+  })
+})
+
+describe('live pacing and repeated rounds', () => {
+  it('changes pace without cancelling speech or shortening a response already in progress', async () => {
+    guided({ rate: 0.75, pauseSeconds: 1.5 })
+    player.play()
+    synthesis.cancel.mockClear()
+    player.updateSettings({ ...player.getOptions(), rate: 0.8 })
+    expect(synthesis.cancel).not.toHaveBeenCalled()
+    expect(utterance().rate).toBe(0.75)
+    await finish()
+    expect(player.getResponseSeconds()).toBe(1.5)
+    await vi.advanceTimersByTimeAsync(500)
+    player.updateSettings({ ...player.getOptions(), pauseSeconds: 0.5 })
+    await vi.advanceTimersByTimeAsync(999)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    await vi.advanceTimersByTimeAsync(1)
+    expect(utterance()).toMatchObject({ text: phrases[1], rate: 0.8 })
+    await finish()
+    expect(player.getResponseSeconds()).toBe(0.5)
+  })
+
+  it('loops and accelerates only after the last response of a complete round', async () => {
+    guided({ loop: true, autoRamp: true, pauseSeconds: 1 })
+    player.play()
+    for (let i = 0; i < 3; i++) {
+      expect(player.getRound()).toBe(1)
+      expect(utterance().rate).toBe(0.75)
+      await finish()
+      await vi.advanceTimersByTimeAsync(1000)
+    }
+    expect(player.getRound()).toBe(2)
+    expect(utterance()).toMatchObject({ text: phrases[0], rate: 0.8 })
+    expect(player.getOptions().pauseSeconds).toBe(0.75)
+  })
+
+  it('clamps ramp limits and does not slow faster manual settings', async () => {
+    player.configure([phrases[0]], { ...defaults, pacing: 'guided', loop: true, autoRamp: true,
+      rate: 0.98, pauseSeconds: 0.8, maxRate: 1, minPauseSeconds: 0.75 })
+    player.play()
+    await finish(); await vi.advanceTimersByTimeAsync(800)
+    expect(player.getOptions()).toMatchObject({ rate: 1, pauseSeconds: 0.75 })
+    await finish(); await vi.advanceTimersByTimeAsync(750)
+    expect(player.getOptions()).toMatchObject({ rate: 1, pauseSeconds: 0.75 })
+    player.updateSettings({ ...player.getOptions(), rate: 1.2, pauseSeconds: 0.5 })
+    await finish(); await vi.advanceTimersByTimeAsync(500)
+    expect(player.getOptions()).toMatchObject({ rate: 1.2, pauseSeconds: 0.5 })
+  })
+
+  it('does not ramp a partial round after a manual seek', async () => {
+    guided({ loop: true, autoRamp: true, pauseSeconds: 0.5 })
+    player.seek(2)
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    player.play()
+    await finish(); await vi.advanceTimersByTimeAsync(500)
+    expect(player.getRound()).toBe(2)
+    expect(player.getOptions().rate).toBe(0.75)
+    expect(utterance().text).toBe(phrases[0])
+  })
+
+  it('stops looping when Loop is switched off during the final response pause', async () => {
+    player.configure([phrases[0]], { ...defaults, pacing: 'guided', loop: true, autoRamp: true, pauseSeconds: 0.5 })
+    player.play()
+    await finish()
+    player.updateSettings({ ...player.getOptions(), loop: false })
+    await vi.advanceTimersByTimeAsync(500)
+    expect(player.getState().status).toBe('completed')
+    expect(player.getRound()).toBe(1)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+  })
+
+  it('does not clear cancellation errors through pace updates or silently seek past them', () => {
+    player.play()
+    synthesis.cancel.mockImplementation(() => { throw new Error('Device busy') })
+    player.pause()
+    player.updateSettings({ ...player.getOptions(), rate: 0.8 })
+    expect(player.getState().status).toBe('error')
+    player.seek(2)
+    expect(player.getState().status).toBe('error')
+    expect(player.getState().index).toBe(0)
+  })
+
+  it.each([{ rate: 1.3 }, { maxRate: NaN }, { minPauseSeconds: 0.25 }, { pauseSeconds: Infinity }])('rejects invalid live pace settings %j', settings => {
+    guided({ loop: true })
+    player.play()
+    player.updateSettings({ ...player.getOptions(), ...settings })
+    expect(player.getState().status).toBe('error')
     expect(vi.getTimerCount()).toBe(0)
   })
 })
@@ -766,7 +855,7 @@ describe('API validation', () => {
     ['non-string phrase', [null] as unknown as string[], defaults],
     ['sparse phrase list', new Array<string>(1), defaults],
     ['invalid pacing', phrases, { ...defaults, pacing: 'auto' as 'guided' }],
-    ['invalid rate', phrases, { ...defaults, rate: 0.8 as SpeechRate }],
+    ['invalid rate', phrases, { ...defaults, rate: 1.3 }],
     ['NaN rate', phrases, { ...defaults, rate: NaN as SpeechRate }],
     ['short pause', phrases, { ...defaults, pauseSeconds: 0 }],
     ['long pause', phrases, { ...defaults, pauseSeconds: 31 }],

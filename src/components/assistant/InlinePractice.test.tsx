@@ -95,6 +95,10 @@ async function openPractice(index = 0) {
     popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
     popupSource = block
   }
+  await waitFor(() => expect(within(popup!).getByRole('button', { name: 'Edit playlist' })).toBeEnabled())
+  if (!within(popup).queryByRole('list', { name: 'Phrase playlist' })) fireEvent.click(within(popup).getByRole('button', { name: 'Edit playlist' }))
+  const recordingToggle = within(popup).queryByRole('button', { name: 'Recording and feedback' })
+  if (recordingToggle?.getAttribute('aria-expanded') === 'false') fireEvent.click(recordingToggle)
   await within(popup).findByRole('list', { name: 'Phrase playlist' })
   return popup
 }
@@ -122,6 +126,17 @@ function deferred<T>() {
 }
 
 describe('source-block popup practice', () => {
+  it('uses the fine-grained popup rate for recording without changing conversation settings', async () => {
+    const savedThread = await db.assistantThreads.get(threadId)
+    render(<App />)
+    const popup = await openPractice()
+    fireEvent.change(within(popup).getByLabelText('Practice speed'), { target: { value: '0.8' } })
+    await begin()
+    expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledWith(expect.any(String), phrase.text, 'zh-Hans', 0.8)
+    expect(within(popup).getByRole('button', { name: 'Faster speech' })).toBeDisabled()
+    expect(await db.assistantThreads.get(threadId)).toEqual(savedThread)
+  })
+
   it('saves selected parts and their order on the exact source block and restores them when reopened', async () => {
     render(<App />)
     const popup = await openPractice(1)
@@ -363,7 +378,7 @@ describe('source-block popup practice', () => {
     await updateThread(threadId, { practiceInput: 'listen-repeat' })
     render(<App />)
     const popup = await openPractice()
-    expect(popup).toHaveTextContent('Microphone off')
+    expect(popup).toHaveTextContent('Opening is silent')
     expect(within(popup).queryByRole('region', { name: 'Optional whole phrase recording' })).not.toBeInTheDocument()
     expect(within(popup).queryByRole('button', { name: 'Submit' })).not.toBeInTheDocument()
     expect(playback.playBrowserSpeechToEnd).not.toHaveBeenCalled()

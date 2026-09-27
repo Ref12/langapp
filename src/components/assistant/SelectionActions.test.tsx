@@ -54,6 +54,8 @@ async function open() {
   const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
   fireEvent.click(within(toolbar).getByRole('button', { name: 'Practice' }))
   const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
+  await waitFor(() => expect(within(popup).getByRole('button', { name: 'Edit playlist' })).toBeEnabled())
+  fireEvent.click(within(popup).getByRole('button', { name: 'Edit playlist' }))
   await within(popup).findByRole('list', { name: 'Phrase playlist' })
   return popup
 }
@@ -133,7 +135,7 @@ it('preserves keyboard access and restores focus after closing practice', async 
   expect(button).toHaveFocus()
   await user.keyboard('{Enter}')
   const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
-  await within(popup).findByRole('list', { name: 'Phrase playlist' })
+  await within(popup).findByRole('region', { name: 'Current practice step' })
   await user.keyboard('{Escape}')
   await waitFor(() => expect(popup).not.toBeInTheDocument())
   expect(button).toHaveFocus()
@@ -185,7 +187,7 @@ it('retains edited chunks when reopening the same selection during this page vis
   await select()
   const reopened = await open()
   expect(within(reopened).getAllByRole('button', { name: /^Play step/ })).toHaveLength(2)
-  expect(within(reopened).getByText(/kept for this page visit only/)).toBeInTheDocument()
+  expect(reopened.querySelector('[id$="-privacy"]')).toHaveTextContent(/kept for this page visit only/)
   expect(await db.assistantThreads.count()).toBe(0)
   view.rerender(<Harness route="dictionary" text="你好" />)
   await waitFor(() => expect(reopened).not.toBeInTheDocument())

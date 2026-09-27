@@ -45,6 +45,8 @@ async function open() {
   const button = screen.getByRole('button', { name: 'Open practice' })
   button.focus()
   fireEvent.click(button)
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Edit playlist' })).toBeEnabled())
+  fireEvent.click(screen.getByRole('button', { name: 'Edit playlist' }))
   await screen.findByRole('list', { name: 'Phrase playlist' })
   return screen.getByRole('dialog', { name: 'Phrase practice' })
 }
@@ -81,6 +83,77 @@ afterEach(async () => {
   }
 })
 
+describe('compact practice modes', () => {
+  async function fresh() {
+    render(<PracticePlaylist phrase={{ type: 'speech', locale: 'zh-Hans', text: '我很累。', meaning: "I'm very tired." }}
+      rate={0.75} busy={false} recordingActive={false} onSave={save} onClose={closed} />)
+    return screen.findByRole('region', { name: 'Current practice step' })
+  }
+
+  it('defaults new phrases to word-by-word and keeps prose, editing and options out of the active view', async () => {
+    const step = await fresh()
+    expect(screen.getByRole('button', { name: 'Word by word' })).toHaveAttribute('aria-pressed', 'true')
+    expect(step.querySelector('.practice-current [lang="zh-Hans"]')).toHaveTextContent('我')
+    expect(screen.getByRole('button', { name: 'Loop On' })).toBeEnabled()
+    expect(screen.getByRole('button', { name: 'Auto-ramp Off' })).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.queryByRole('list', { name: 'Phrase playlist' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('region', { name: 'Practice options' })).not.toBeInTheDocument()
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    expect(fetch).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
+    expect(synthesis.speak.mock.lastCall![0]).toMatchObject({ text: '我', rate: 0.75 })
+  })
+
+  it('switches all four modes silently and remembers independent response pauses', async () => {
+    await fresh()
+    fireEvent.click(screen.getByRole('button', { name: 'Shorter repeat pause' }))
+    expect(screen.getByLabelText('Repetition pause')).toHaveValue('1.25')
+    for (const [label, expected, gap] of [['Whole phrase', '我很累。', '4'], ['Build from end', '累。', '3'], ['Build from start', '我', '3'], ['Word by word', '我', '1.25']]) {
+      fireEvent.click(screen.getByRole('button', { name: label }))
+      expect(document.querySelector('.practice-current [lang="zh-Hans"]')).toHaveTextContent(expected)
+      expect(screen.getByLabelText('Repetition pause')).toHaveValue(gap)
+    }
+    expect(synthesis.speak).not.toHaveBeenCalled()
+  })
+
+  it('updates speed without interrupting speech and shows automatic changes after a complete loop', async () => {
+    await fresh()
+    fireEvent.change(screen.getByLabelText('Repetition pause'), { target: { value: '0.5' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Auto-ramp Off' }))
+    vi.useFakeTimers()
+    fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
+    synthesis.cancel.mockClear()
+    fireEvent.click(screen.getByRole('button', { name: 'Faster speech' }))
+    expect(synthesis.cancel).not.toHaveBeenCalled()
+    expect(synthesis.speak.mock.lastCall![0].rate).toBe(0.75)
+    for (let i = 0; i < 3; i++) {
+      await end()
+      expect(screen.getByRole('status')).toHaveTextContent('Your turn')
+      await act(async () => vi.advanceTimersByTimeAsync(500))
+    }
+    expect(synthesis.speak.mock.calls.map(([call]) => [call.text, call.rate])).toEqual([
+      ['我', 0.75], ['很', 0.8], ['累。', 0.8], ['我', 0.85],
+    ])
+    expect(screen.getByLabelText('Practice speed')).toHaveValue('0.85')
+    expect(screen.getByText('Round 2')).toBeVisible()
+  })
+
+  it('opens the chunk editor without dropping stored build tracks and restores focus when done', async () => {
+    await fresh()
+    fireEvent.click(screen.getByRole('button', { name: 'Edit playlist' }))
+    expect(screen.getByRole('list', { name: 'Phrase playlist' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Build from end' })).toHaveAttribute('aria-pressed', 'true')
+    fireEvent.click(screen.getByRole('button', { name: 'Done editing' }))
+    expect(screen.getByRole('button', { name: 'Edit playlist' })).toHaveFocus()
+    fireEvent.click(screen.getByRole('button', { name: 'Practice options' }))
+    fireEvent.click(screen.getByLabelText('Pinyin'))
+    fireEvent.click(screen.getByRole('button', { name: 'Done' }))
+    expect(document.querySelector('.practice-current [lang="zh-Latn"]')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Practice options' })).toHaveFocus()
+    expect(save).not.toHaveBeenCalled()
+  })
+})
+
 describe('phrase playlist popup', () => {
   it('waits for the actual phrase, not muted preparation, before the guided response gap', async () => {
     vi.stubGlobal('speechSynthesis', synthesis)
@@ -93,7 +166,7 @@ describe('phrase playlist popup', () => {
     expect(preparation).toMatchObject({ volume: 0, rate: 1, lang: 'zh-CN' })
     expect(target).toMatchObject({ volume: 1, rate: 0.25, text: '\u8dd1\u6b65\u3002' })
     await act(async () => { preparation.onstart?.(); preparation.onend?.() })
-    expect(screen.getByRole('status')).toHaveTextContent('Listen to the model')
+    expect(screen.getByRole('status')).toHaveTextContent('Listen')
     expect(screen.getByRole('button', { name: /^Play step 1:/ })).toHaveAttribute('aria-current', 'step')
     await act(async () => { target.onstart?.(); target.onend?.() })
     expect(screen.getByRole('status')).toHaveTextContent('Your turn')
@@ -140,6 +213,8 @@ describe('phrase playlist popup', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     expect(synthesis.speak).toHaveBeenCalledOnce()
     fireEvent.click(screen.getByRole('button', { name: 'Next step' }))
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     expect(synthesis.speak.mock.calls[1][0].text).toBe('\u53bb\u516c\u56ed\u8dd1\u6b65\u3002')
     fireEvent.click(screen.getByRole('button', { name: 'Close practice' }))
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
@@ -167,7 +242,7 @@ describe('phrase playlist popup', () => {
     expect(document.body.style.overflow).toBe('hidden')
   })
 
-  it('plays and navigates synchronously at quarter speed, without advancing after a self-paced model', async () => {
+  it('plays synchronously at quarter speed and navigates silently without advancing after a self-paced model', async () => {
     render(<Harness />)
     await open()
     fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
@@ -176,8 +251,11 @@ describe('phrase playlist popup', () => {
     await end()
     expect(synthesis.speak).toHaveBeenCalledOnce()
     fireEvent.click(screen.getByRole('button', { name: 'Next step' }))
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     expect(synthesis.speak.mock.calls[1][0].text).toBe('\u53bb\u516c\u56ed\u8dd1\u6b65\u3002')
     fireEvent.click(screen.getByRole('button', { name: 'Previous step' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     expect(synthesis.speak.mock.calls[2][0].text).toBe('\u8dd1\u6b65\u3002')
     fireEvent.click(screen.getByRole('button', { name: /^Play step 4:/ }))
     expect(synthesis.speak.mock.calls[3][0].text).toBe(phrase.text)
@@ -187,12 +265,13 @@ describe('phrase playlist popup', () => {
   it('rebuilds forward tracks and changes speed without automatically speaking', async () => {
     render(<Harness />)
     await open()
-    fireEvent.change(screen.getByLabelText('Build direction'), { target: { value: 'forward' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Build from start' }))
     fireEvent.change(screen.getByLabelText('Practice speed'), { target: { value: '0.5' } })
     expect(synthesis.speak).not.toHaveBeenCalled()
     fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ text: '\u6211\u60f3', rate: 0.5 })
     fireEvent.click(screen.getByRole('button', { name: 'Next step' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     expect(synthesis.speak.mock.calls[1][0].text).toBe('\u6211\u60f3\u660e\u5929\u65e9\u4e0a')
   })
 
@@ -309,8 +388,8 @@ describe('phrase playlist popup', () => {
     await open()
     fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     synthesis.cancel.mockImplementationOnce(() => { throw new Error('Device busy') })
-    fireEvent.change(screen.getByLabelText('Build direction'), { target: { value: 'forward' } })
-    expect(screen.getByLabelText('Build direction')).toHaveValue('backward')
+    fireEvent.click(screen.getByRole('button', { name: 'Build from start' }))
+    expect(screen.getByRole('button', { name: 'Build from end' })).toHaveAttribute('aria-pressed', 'true')
     expect(screen.getByRole('alert')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Play practice' }))
     expect(synthesis.speak.mock.calls[1][0].text).toBe('\u8dd1\u6b65\u3002')
@@ -351,7 +430,7 @@ describe('phrase playlist popup', () => {
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
     await open()
     expect(screen.getByRole('button', { name: /^Play step 1:/ })).toHaveTextContent('Selected part')
-    fireEvent.change(screen.getByLabelText('Build direction'), { target: { value: 'forward' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Build from start' }))
     expect(screen.getByRole('button', { name: /^Play step 1:/ })).toHaveTextContent('\u660e\u5929\u65e9\u4e0a')
     expect(screen.getByRole('button', { name: /^Play step 2:/ })).toHaveTextContent('\u6211\u60f3')
     fireEvent.click(screen.getByRole('button', { name: 'Remove step 1' }))

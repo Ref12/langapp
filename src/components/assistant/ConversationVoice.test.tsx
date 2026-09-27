@@ -414,6 +414,7 @@ describe('conversation voice input and replies', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: 'Practice' })).toBeEnabled())
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Practice' })) })
     const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
+    fireEvent.click(within(popup).getByRole('button', { name: 'Recording and feedback' }))
     const practice = await within(popup).findByRole('region', { name: 'Optional whole phrase recording' })
     expect(firstCancel).toHaveBeenCalled()
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)

@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { edgeVoiceIdSchema, speechRateSchema } from './assistant/contracts'
+import { edgeVoiceIdSchema } from './assistant/contracts'
+import { practiceRateSchema } from './assistant/practice-chain-contracts'
 
 export const LOCAL_TTS_PATH = '/__local/tts'
 export const LOCAL_TTS_HEADER = 'x-linguaweave-local-tts'
@@ -29,7 +30,7 @@ export const localTtsRequestSchema = z.object({
     'Text contains unsupported XML characters.',
   ),
   voice: edgeVoiceIdSchema,
-  rate: z.union([speechRateSchema, z.literal(0.85)]).default(1),
+  rate: practiceRateSchema.default(1),
 }).strict()
 
 export type LocalTtsRequest = z.infer<typeof localTtsRequestSchema>

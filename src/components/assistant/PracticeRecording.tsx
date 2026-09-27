@@ -19,11 +19,12 @@ interface InlinePractice {
   activate: () => void
 }
 
-export function PracticeRecording({ thread, phrase, busy, speechConnection, connectionLoading, onClose, inline, onActiveChange, onCloseGuard }: {
+export function PracticeRecording({ thread, phrase, busy, speechConnection, connectionLoading, onClose, inline, onActiveChange, onCloseGuard, playbackRate = thread.speechRate }: {
   thread: AssistantThread; phrase: SpeechBlock; busy: boolean; speechConnection?: SpeechConnection; connectionLoading: boolean
   onClose: () => Promise<void>; inline?: InlinePractice
   onActiveChange?: (active: boolean) => void
   onCloseGuard?: (guard?: () => void) => void
+  playbackRate?: number
 }) {
   const [capture, setCapture] = useState<SpeechAssessmentCaptureState>({ phase: 'finished', transcript: '' })
   const [error, setError] = useState('')
@@ -249,7 +250,7 @@ export function PracticeRecording({ thread, phrase, busy, speechConnection, conn
       return
     }
     setLeadIn('phrase')
-    void playBrowserSpeechToEnd(playbackId, parsed.data.text, parsed.data.locale, thread.speechRate).then(outcome => {
+    void playBrowserSpeechToEnd(playbackId, parsed.data.text, parsed.data.locale, playbackRate).then(outcome => {
       if (!lifecycle.current.mounted || lifecycle.current.version !== version) return
       setLeadIn(undefined)
       if (outcome.status !== 'completed') {
@@ -301,7 +302,7 @@ export function PracticeRecording({ thread, phrase, busy, speechConnection, conn
     <p lang={phrase.locale} className="speech-native">{phrase.text}</p>
     {thread.romanization && phrase.romanization && <p className="pinyin">{phrase.romanization}</p>}
     {phrase.meaning && <p className="small muted">{phrase.meaning}</p>}
-    <HearButton text={phrase.text} locale={phrase.locale} rate={thread.speechRate} />
+    <HearButton text={phrase.text} locale={phrase.locale} rate={playbackRate} />
     {!spoken ? <p className="small">Listen and repeat. Your microphone is off.</p> : <>
       <p className="small muted">{disclosure}</p>
       {connectionLoading && <p className="small" role="status">Loading speech connection...</p>}
