@@ -69,7 +69,7 @@ describe('Assistant database migration', () => {
       }
       old.close()
       await migrated.open()
-      expect(migrated.verno).toBe(10)
+      expect(migrated.verno).toBe(11)
       expect(await migrated.preferences.get('workspace')).toEqual(workspace.preferences)
       for (const table of ['words', 'readings', 'lessons', 'sessions', 'attempts'] as const) {
         expect(await migrated.table(table).toArray()).toEqual(workspace[table])
@@ -89,6 +89,7 @@ describe('Assistant database migration', () => {
       expect(await migrated.libraryBooks.count()).toBe(0)
       expect(await migrated.sudokuGames.count()).toBe(0)
       expect(await migrated.memoryGames.count()).toBe(0)
+      expect(await migrated.defenderGames.count()).toBe(0)
       expect(migrated.characterStates.schema.primKey.name).toBe('character')
       expect(migrated.mahjongGames.schema.primKey.name).toBe('id')
       expect(migrated.assistantMessages.schema.idxByName['[threadId+sequence]'].unique).toBe(true)

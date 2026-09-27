@@ -18,6 +18,7 @@ import { Mahjong } from './pages/Mahjong'
 import { Games } from './pages/Games'
 import { Sudoku } from './pages/Sudoku'
 import { Memory } from './pages/Memory'
+import { Defender } from './pages/Defender'
 import { Dictionary } from './pages/Dictionary'
 import { Writing } from './pages/Writing'
 import { Settings } from './pages/Settings'
@@ -74,6 +75,7 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
   if (page === 'games' && id === 'mahjong') return <Mahjong {...props} />
   if (page === 'games' && id === 'sudoku') return <Sudoku {...props} />
   if (page === 'games' && id === 'memory') return <Memory {...props} />
+  if (page === 'games' && id === 'defender') return <Defender {...props} />
   if (page === 'games' && !id) return <Games />
   if (page === 'practice' && id) {
     const session = props.workspace.sessions.find(item => item.id === id)
@@ -186,7 +188,7 @@ function WorkspaceApp() {
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current={page === 'settings' ? 'page' : undefined}><SettingsIcon size={20} /></a>
         </div></header>
-        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
+        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {currentPage}
         </main>

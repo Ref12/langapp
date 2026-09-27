@@ -210,8 +210,47 @@ and the older recognition practice at `#practice`; neither feeds the knowledge s
 ## Games
 
 **Games** has its own entry in the desktop sidebar and mobile menu. The hub
-(`#games`) contains Mahjong, Character Sudoku, and Word Memory; games are no
+(`#games`) contains Word Defender, Mahjong, Character Sudoku, and Word Memory; games are no
 longer embedded in Practice.
+
+### Word Defender
+
+**Games -> Play Defender** (`#games/defender`) uses short vocabulary from the
+active profile's **knowledge set**, not sample words, grammar, or automatic
+character membership. The bank has up to 12 actual choices in three columns;
+smaller sets use however many eligible words are available, including one.
+An empty set offers a Dictionary link instead of inserting unfamiliar words.
+As with the matching games, long entries and shared characters/readings/glosses
+are excluded to keep the moving cards readable and choices unambiguous.
+
+Tap or type the translation of the **highlighted leading word** nearest the
+shield. Chinese/English and Chinese/pinyin work in either direction.
+Tone-number pinyin is accepted alongside tone marks. Optional pinyin annotations
+are available only for Chinese/English challenges, never pronunciation matching.
+Words fall on mobile and travel right to left on desktop.
+
+Each wave spawns for 20 seconds, then drains: no new words appear while existing
+targets remain. The answer bank never changes underneath an active target.
+After clearing the field, review the next bank and explicitly start the next
+wave. Wrong answers and shield breaches retain the target for the next wave;
+remaining slots prefer words not yet used, then other words from the same
+knowledge-set snapshot. With small sets, words necessarily repeat. New words
+and faster pacing arrive together at wave boundaries. Misses cost shields only
+when a word reaches the line; a wrong answer breaks the streak and marks the
+target for review without consuming a shield. Five breaches end a run.
+
+Run snapshots are profile-local in `defenderGames` (Dexie schema 11).
+Checkpoints are saved after answers, breaches, pauses, wave boundaries, and
+every five seconds. Reloading starts paused; hidden pages and menu navigation
+pause automatically. Failed writes pause play and expose retry/reload controls.
+Restoring a profile or backup clears the game, and games are not included in
+exports/clones. Defender never changes lesson scores or FSRS scheduling.
+Knowledge-set changes apply when starting a new run.
+
+The standalone demo at `prototypes/defender` remains available with its original
+sample deck and continuous wave ramp. Both versions reuse the pure mechanics in
+`shared/defender-engine.ts`; the main app adds knowledge-set selection, safe
+between-wave bank rotation, and persistence. Spoken input is still deferred.
 
 ### Word Mahjong
 

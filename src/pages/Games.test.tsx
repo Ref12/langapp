@@ -15,6 +15,7 @@ it('has a standalone menu and hub, and removes the embedded game card from Pract
   expect(within(navigation).getByRole('link', { name: 'Games' })).toHaveAttribute('aria-current', 'page')
   expect(screen.getByRole('link', { name: 'Play Mahjong' })).toHaveAttribute('href', '#games/mahjong')
   expect(screen.getByRole('link', { name: 'Play Memory' })).toHaveAttribute('href', '#games/memory')
+  expect(screen.getByRole('link', { name: 'Play Defender' })).toHaveAttribute('href', '#games/defender')
   await user.click(screen.getByRole('link', { name: 'Play Sudoku' }))
   await screen.findByRole('heading', { name: 'Character Sudoku' })
   expect(within(navigation).getByRole('link', { name: 'Games' })).toHaveAttribute('aria-current', 'page')

@@ -1,0 +1,78 @@
+.defender-player { position: relative; max-width: 860px; margin: 0 auto; }
+.defender-heading { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; min-height: 44px; padding-right: 44px; }
+.defender-heading h1 { margin: 0; font-size: 26px; flex: 1; }
+.defender-heading .back-link { margin: 0; min-height: 44px; }
+.defender-arena { border: 1px solid #49625d; border-radius: 14px; overflow: hidden; background: #10252b; color: #edf4ee; }
+.defender-hud { display: flex; align-items: center; gap: 24px; padding: 10px 16px; background: #0c1c23; border-bottom: 1px solid #34524e; }
+.defender-hud > div { display: grid; gap: 4px; }
+.defender-hud span { color: #a5bcb1; font-size: 9px; letter-spacing: 1px; }
+.defender-hud strong { font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.defender-hud .icon-button { color: #cce2d7; border: 1px solid #35514f; border-radius: 50%; }
+.defender-hud .defender-shields { margin-left: auto; gap: 9px; }
+.defender-shields > div { display: flex; gap: 5px; }
+.defender-shields i { width: 14px; height: 8px; border-radius: 2px; background: #74cab2; }
+.defender-shields i.lost { background: #293d40; }
+.defender-field { --card-width: 140px; --line: 30px; position: relative; height: 320px; background: linear-gradient(#4d8b8220 1px, transparent 1px), linear-gradient(90deg, #4d8b8218 1px, transparent 1px), radial-gradient(ellipse at 0 50%, #28645355, transparent 70%), #132a32; background-size: 100% 25%, 48px 100%, 100% 100%; }
+.defender-line { position: absolute; left: var(--line); top: 0; bottom: 0; width: 2px; background: #76d9b4; box-shadow: 0 0 16px #5bffc460; }
+.defender-line span { position: absolute; top: 50%; right: 10px; writing-mode: vertical-rl; transform: rotate(180deg) translateY(50%); white-space: nowrap; color: #81c6ad; font-size: 8px; letter-spacing: 1px; }
+.defender-incoming { position: absolute; left: calc(var(--line) + 5px + var(--position) * (100% - var(--line) - var(--card-width) - 21px)); top: calc((var(--lane) + .5) * 25% - 28px); width: var(--card-width); height: 56px; display: grid; place-items: center; padding: 4px; border: 1px solid #6da69a; border-radius: 8px; background: linear-gradient(140deg, #2e5959, #1b3e48); text-align: center; box-shadow: 0 4px 10px #0003; }
+.defender-incoming.danger { background: #653a2f; border-color: #ffb87a; }
+.defender-incoming.leading { border-color: #f2cf87; box-shadow: 0 0 0 2px #c4a46b60; }
+.defender-incoming.leading::before { content: "TARGET"; position: absolute; top: -8px; left: 4px; background: #e2c487; color: #17292b; padding: 1px 4px; border-radius: 3px; font-size: 7px; font-weight: 700; }
+.defender-word-face { max-width: 100%; font-size: 14px; line-height: 1.2; overflow-wrap: anywhere; }
+.defender-word-face[lang="zh-Hans"] { font-size: 24px; }
+.defender-word-face[lang="zh-Latn"] { font-size: 16px; }
+.defender-word-face ruby { line-height: 1; ruby-align: center; }
+.defender-word-face rt { font: 10px/1.1 "Segoe UI", sans-serif; color: inherit; }
+.defender-footer { display: flex; justify-content: space-between; gap: 8px; padding: 8px 12px; font-size: 11px; color: #bbcfbf; background: #0c1c23; }
+.defender-overlay { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px; text-align: center; background: #102027e8; backdrop-filter: blur(5px); }
+.defender-overlay h2 { margin-bottom: 6px; color: #edf4ee; font-size: 24px; }
+.defender-overlay p { font-size: 13px; color: #b7cac1; }
+.defender-answer-bank { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.defender-answer { min-height: 50px; min-width: 0; padding: 5px; display: grid; place-items: center; background: var(--surface-selected); border: 1px solid var(--line-strong); color: var(--text); }
+.defender-type-form { display: flex; gap: 8px; margin-top: 14px; }
+.defender-type-form input { width: 100%; min-width: 0; font-size: 18px; padding: 8px 12px; }
+.defender-feedback { font-size: 12px; line-height: 1.4; min-height: 20px; margin: 8px 0; color: var(--text-secondary); }
+.defender-help { position: absolute; top: 0; right: 0; width: 44px; z-index: 10; font-size: 12px; color: var(--muted); }
+.defender-help summary { display: flex; align-items: center; justify-content: flex-end; min-height: 44px; padding: 12px; list-style: none; }
+.defender-help summary::-webkit-details-marker { display: none; }
+.defender-help summary span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.defender-help[open] { width: min(340px, 100%); max-height: calc(100dvh - 90px); overflow: auto; padding: 0 14px 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); box-shadow: 0 10px 25px #0005; }
+.defender-help[open] summary { padding-right: 0; }
+.defender-settings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.defender-settings label { display: grid; gap: 6px; font-size: 13px; }
+.defender-settings select { width: 100%; min-width: 0; }
+.defender-vocabulary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.defender-vocabulary > div { display: flex; flex-direction: column; gap: 4px; padding: 10px; background: var(--surface-raised); border-radius: 8px; font-size: 13px; }
+.defender-vocabulary strong { font-size: 22px; font-weight: 500; }
+.defender-vocabulary small { color: var(--accent); }
+.defender-wave-review { margin-top: 16px; }
+@media (max-width: 760px) {
+  .defender-main { padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); }
+  .defender-heading { margin-bottom: 6px; }
+  .defender-heading h1 { font-size: 21px; }
+  .defender-heading .back-link { display: none; }
+  .defender-hud { gap: 18px; padding: 8px 12px; }
+  .defender-field { height: clamp(190px, 32dvh, 300px); background-size: 100% 48px, 25% 100%, 100% 100%; }
+  .defender-line { left: 0; right: 0; width: auto; height: 2px; top: auto; bottom: 24px; }
+  .defender-line span { left: 50%; top: 6px; right: auto; writing-mode: horizontal-tb; transform: translateX(-50%); }
+  .defender-incoming { left: calc(8px + var(--lane) * (100% - 16px) / 4); top: calc(16px + (1 - var(--position)) * (100% - 98px)); width: calc((100% - 16px) / 4 - 4px); height: 58px; padding: 3px; }
+  .defender-word-face { font-size: 11px; line-height: 1.1; }
+  .defender-word-face[lang="zh-Hans"] { font-size: 19px; }
+  .defender-word-face.long-word[lang="zh-Hans"] { font-size: 15px; }
+  .defender-word-face[lang="zh-Latn"] { font-size: 12px; }
+  .defender-answer-bank { margin-top: 10px; gap: 6px; }
+  .defender-answer { min-height: 46px; }
+  .defender-settings { grid-template-columns: 1fr 1fr; }
+  .defender-settings label:last-child { grid-column: 1 / -1; }
+  .defender-vocabulary { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) and (max-height: 650px) {
+  .defender-main { padding-top: 4px; }
+  .defender-heading { min-height: 34px; margin-bottom: 4px; }
+  .defender-heading h1 { font-size: 20px; }
+  .defender-hud { padding-block: 4px; }
+  .defender-field { height: 180px; }
+  .defender-answer-bank { gap: 4px; margin-top: 6px; }
+  .defender-answer { min-height: 44px; padding: 4px; }
+}

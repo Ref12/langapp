@@ -3,6 +3,10 @@
 A standalone, in-memory game experiment. It does **not** add a Games menu item,
 read profiles, store scores, modify the curriculum, or ship in the production
 app build. Its small original sample deck is in `deck.ts`.
+The separate integrated version is available under **Games -> Play Defender**,
+using knowledge-set vocabulary and between-wave rotation. `game.ts` re-exports
+the common pure engine from `shared/defender-engine.ts`; this demo retains its
+sample deck, continuous wave ramp, and no persistent state.
 
 ## Run
 

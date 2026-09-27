@@ -1,10 +1,5 @@
-export interface Word {
-  id: string
-  character: string
-  meaning: string
-  pinyin: string
-  englishAnswers: string[]
-}
+import type { Word } from '../../shared/defender-engine'
+export type { Word } from '../../shared/defender-engine'
 
 // Original prototype examples, independent of the app's knowledge and progress.
 export const sampleWords: Word[] = [

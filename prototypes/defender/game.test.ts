@@ -223,7 +223,7 @@ describe('Defender prototype', () => {
   })
 
   it('rejects invalid decks and timing rather than silently running a broken game', () => {
-    expect(() => createRun(setup, sampleWords.slice(0, 1), 1)).toThrow('two')
+    expect(() => createRun(setup, [], 1)).toThrow('one')
     expect(() => createRun(setup, [sampleWords[0], { ...sampleWords[1], englishAnswers: ['tea'] }], 1)).toThrow('ambiguous')
     expect(() => createRun(setup, sampleWords, -1)).toThrow('seed')
     expect(() => advanceRun(make(), -1)).toThrow('between')
