@@ -240,7 +240,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
       : state.status === 'completed' ? 'Round complete' : state.status === 'paused' ? 'Paused' : 'Ready when you are'
   const currentTrack = tracks[state.index]
   const rates = Array.from({ length: 21 }, (_, index) => Number((0.25 + index * 0.05).toFixed(2)))
-  const pauseValues = [...new Set([0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 8, 10, 15, 20, 30, options.pauseSeconds])].sort((a, b) => a - b)
+  const pauseValues = [...new Set([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 8, 10, 15, 20, 30, options.pauseSeconds])].sort((a, b) => a - b)
 
   return createPortal(<dialog ref={dialog} className="practice-playlist" aria-labelledby={`${id}-title`}
     data-mode={direction} data-phase={state.status}
@@ -289,15 +289,15 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
           <label>Fastest speech<select value={options.maxRate} disabled={disabled} onChange={event => configure({ ...options, maxRate: Number(event.target.value) })}>
             {[0.75, 1, 1.25].map(value => <option key={value} value={value}>{value}x</option>)}
           </select></label>
-          <label>Shortest pause<select value={options.minPauseSeconds} disabled={disabled} onChange={event => configure({ ...options, minPauseSeconds: Number(event.target.value) })}>
-            {[0.5, 0.75, 1, 1.5].map(value => <option key={value} value={value}>{value}s</option>)}
+          <label>Shortest pause<select title="Auto-ramp's lower pause limit. No effect when Auto-ramp is off." value={options.minPauseSeconds} disabled={disabled} onChange={event => configure({ ...options, minPauseSeconds: Number(event.target.value) })}>
+            {[0, 0.25, 0.5, 0.75, 1, 1.5].map(value => <option key={value} value={value}>{value}s</option>)}
           </select></label>
         </div>
         <div className="practice-display-options">
           <label><input type="checkbox" checked={showPinyin} onChange={event => setShowPinyin(event.target.checked)} />Pinyin</label>
           <label><input type="checkbox" checked={showMeaning} onChange={event => setShowMeaning(event.target.checked)} />Meaning</label>
         </div>
-        <p className="small muted">Auto-ramp adds 0.05x speech speed and shortens the repeat pause by 0.25s after each complete round, up to these limits. Pace changes apply to the next spoken step or response pause. Self-paced waits for your next tap.</p>
+        <p className="small muted">Fastest speech and Shortest pause only limit Auto-ramp: +0.05x speech speed and -0.25s pause per complete round. Zero pause adds no wait after speech. Pace changes apply to the next step or pause; Self-paced waits for your tap.</p>
         <details><summary>About phrase practice</summary>
           <p className="small muted">Chunks and pinyin are suggested on this device. Your selected speech voice may be online. Opening Practice does not play or record audio. Practice is not proof of mastery.</p>
           {saveNotice && <p className="small muted">{saveNotice}</p>}
@@ -377,7 +377,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
               onClick={() => {
                 const step = direction === 'words' ? index : tracks.findIndex(track => track.item.kind === 'chain' && track.item.step === (direction === 'backward' ? chunks.length - 1 - index : index))
                 if (step >= 0) player.current?.seek(step)
-              }}>{chunk.text}</button>)}
+              }}><span>{chunk.text}</span>{showPinyin && <span className="practice-word-pinyin" lang="zh-Latn">{chunk.pinyin}</span>}</button>)}
           </div>
           <div className="practice-phase"><span>{status}</span><span>Round {round}</span></div>
           <div className="practice-current">
@@ -409,7 +409,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
           <button type="button" className="icon-button" aria-label="Faster speech" disabled={disabled || options.rate >= 1.25} onClick={() => configure({ ...options, rate: Number((options.rate + 0.05).toFixed(2)) })}><Plus size={16} /></button>
         </div></div>
         <div className="practice-pace-control"><span>Repeat pause</span><div className="practice-stepper">
-          <button type="button" className="icon-button" aria-label="Shorter repeat pause" disabled={disabled || options.pauseSeconds <= 0.5} onClick={() => configure({ ...options, pauseSeconds: Number(Math.max(0.5, options.pauseSeconds - 0.25).toFixed(2)) })}><Minus size={16} /></button>
+          <button type="button" className="icon-button" aria-label="Shorter repeat pause" disabled={disabled || options.pauseSeconds <= 0} onClick={() => configure({ ...options, pauseSeconds: Number(Math.max(0, options.pauseSeconds - 0.25).toFixed(2)) })}><Minus size={16} /></button>
           <select aria-label="Repetition pause" value={options.pauseSeconds} disabled={disabled} onChange={event => configure({ ...options, pauseSeconds: Number(event.target.value) })}>
             {pauseValues.map(value => <option key={value} value={value}>{value}s</option>)}
           </select>

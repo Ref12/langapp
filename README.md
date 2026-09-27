@@ -552,21 +552,25 @@ suggestion, not necessarily a single character or guaranteed linguistic analysis
 **Play** speaks the selected step. **Pause** keeps your place; Play restarts that
 step. **Speech speed** and **Repeat pause** have minus/plus controls in every
 mode. Speech starts at the configured Mandarin rate, adjustable from 0.25x to
-1.25x in 0.05 increments. Response pauses range from 0.5 to 30 seconds and are
+1.25x in 0.05 increments. Response pauses range from 0 to 30 seconds and are
 remembered separately per mode for the popup visit. Live changes apply to the
 next utterance or response pause, never cut off current speech or shorten a
 response window already in progress. English speech remains normal speed.
+Zero means no extra repeat wait after speech finishes, not gapless synthesis.
 
 **Loop** starts on, **Auto-ramp** off. With guided looping and Auto-ramp enabled,
 each complete round adds 0.05x speech speed and subtracts 0.25 seconds from the
 response pause, up to limits in **Practice options** (initially 1x and 0.75s).
+**Shortest pause** is only the Auto-ramp floor and may be zero; it has no effect
+when Auto-ramp is off. **Repeat pause** directly controls the current delay.
 At the limits, looping continues unchanged. Manual faster speeds or shorter
 pauses are not reversed, and resuming or seeking midway through a phrase does
 not count as a complete round for acceleration. Turning Loop off finishes the
 current round; closing, Escape, navigation, hiding the page, or another audio
 activity stops the sequence.
 
-**Practice options** also contains pinyin/meaning visibility, self-paced/guided
+**Practice options** also contains pinyin/meaning visibility (pinyin appears below
+each top word selector with a small gap, as well as beneath the active step), self-paced/guided
 pacing, repetitions per step (1-5), and explanatory/privacy details. Guided
 response pauses begin only after actual speech completion. Self-paced waits for
 an explicit Play and never loops or accelerates automatically. Playback settings

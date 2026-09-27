@@ -273,6 +273,47 @@ describe('practice playback using the real shared speech engine', () => {
 })
 
 describe('live pacing and repeated rounds', () => {
+  it('waits for speech completion but adds no response delay at zero pause', async () => {
+    guided({ pauseSeconds: 0, loop: false })
+    player.play()
+    utterance().onstart?.()
+    await vi.advanceTimersByTimeAsync(5000)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    await finish()
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    expect(utterance().text).toBe(phrases[1])
+    expect(player.getResponseSeconds()).toBe(0)
+    player.pause()
+    await vi.advanceTimersByTimeAsync(1000)
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+  })
+
+  it('ramps the pause down to zero and can keep looping there until paused', async () => {
+    player.configure([phrases[0]], { ...defaults, pacing: 'guided', loop: true, autoRamp: true,
+      pauseSeconds: 0.25, minPauseSeconds: 0 })
+    player.play()
+    await finish()
+    await vi.advanceTimersByTimeAsync(250)
+    expect(player.getOptions().pauseSeconds).toBe(0)
+    expect(player.getRound()).toBe(2)
+    await finish()
+    expect(player.getOptions().pauseSeconds).toBe(0)
+    expect(player.getRound()).toBe(3)
+    player.pause()
+    await vi.advanceTimersByTimeAsync(1000)
+    expect(synthesis.speak).toHaveBeenCalledTimes(3)
+  })
+
+  it('can cancel during a zero-pause completion before another step is queued', async () => {
+    guided({ pauseSeconds: 0, loop: true })
+    player.play()
+    utterance().onend?.()
+    player.pause()
+    await flush()
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+    expect(player.getState().status).toBe('paused')
+  })
+
   it('changes pace without cancelling speech or shortening a response already in progress', async () => {
     guided({ rate: 0.75, pauseSeconds: 1.5 })
     player.play()
@@ -352,7 +393,7 @@ describe('live pacing and repeated rounds', () => {
     expect(player.getState().index).toBe(0)
   })
 
-  it.each([{ rate: 1.3 }, { maxRate: NaN }, { minPauseSeconds: 0.25 }, { pauseSeconds: Infinity }])('rejects invalid live pace settings %j', settings => {
+  it.each([{ rate: 1.3 }, { maxRate: NaN }, { minPauseSeconds: -0.25 }, { pauseSeconds: Infinity }])('rejects invalid live pace settings %j', settings => {
     guided({ loop: true })
     player.play()
     player.updateSettings({ ...player.getOptions(), ...settings })
@@ -857,7 +898,7 @@ describe('API validation', () => {
     ['invalid pacing', phrases, { ...defaults, pacing: 'auto' as 'guided' }],
     ['invalid rate', phrases, { ...defaults, rate: 1.3 }],
     ['NaN rate', phrases, { ...defaults, rate: NaN as SpeechRate }],
-    ['short pause', phrases, { ...defaults, pauseSeconds: 0 }],
+    ['short pause', phrases, { ...defaults, pauseSeconds: -0.25 }],
     ['long pause', phrases, { ...defaults, pauseSeconds: 31 }],
     ['NaN pause', phrases, { ...defaults, pauseSeconds: NaN }],
     ['infinite pause', phrases, { ...defaults, pauseSeconds: Infinity }],

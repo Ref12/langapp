@@ -29,14 +29,14 @@ function validate(texts: string[], options: PracticePlaybackOptions, index?: num
     return 'Choose self-paced or guided practice.'
   }
   if (!practiceRateSchema.safeParse(options.rate).success) return 'Choose a Mandarin speech rate between 0.25x and 1.25x.'
-  if (!Number.isFinite(options.pauseSeconds) || options.pauseSeconds < 0.5 || options.pauseSeconds > 30) {
-    return 'The response pause must be between 0.5 and 30 seconds.'
+  if (!Number.isFinite(options.pauseSeconds) || options.pauseSeconds < 0 || options.pauseSeconds > 30) {
+    return 'The response pause must be between 0 and 30 seconds.'
   }
   if (options.loop !== undefined && typeof options.loop !== 'boolean'
     || options.autoRamp !== undefined && typeof options.autoRamp !== 'boolean') return 'Choose whether to loop and accelerate practice.'
   if (options.maxRate !== undefined && !practiceRateSchema.safeParse(options.maxRate).success) return 'Choose a maximum speech rate between 0.25x and 1.25x.'
-  if (options.minPauseSeconds !== undefined && (!Number.isFinite(options.minPauseSeconds) || options.minPauseSeconds < 0.5 || options.minPauseSeconds > 30)) {
-    return 'Choose a minimum pause between 0.5 and 30 seconds.'
+  if (options.minPauseSeconds !== undefined && (!Number.isFinite(options.minPauseSeconds) || options.minPauseSeconds < 0 || options.minPauseSeconds > 30)) {
+    return 'Choose a minimum pause between 0 and 30 seconds.'
   }
   if (!Number.isInteger(options.repetitions) || options.repetitions < 1 || options.repetitions > 5) {
     return 'Choose between 1 and 5 repetitions.'
