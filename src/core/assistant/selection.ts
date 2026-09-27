@@ -1,9 +1,15 @@
 import type { SpeechLocale } from './contracts'
+import { MAX_PRACTICE_TEXT_LENGTH } from './practice-chain-contracts'
 
 export function snippetLocale(text: string): SpeechLocale | undefined {
   if (/[\p{Script=Han}]/u.test(text) && !/[A-Za-z\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(text)) return 'zh-Hans'
   if (/[A-Za-z]/.test(text) && /^[\p{Script=Latin}\p{P}\p{N}\p{Z}\s]+$/u.test(text)) return 'en-US'
   return undefined
+}
+
+export function selectionPracticeUnavailable(text: string): string | undefined {
+  if (snippetLocale(text) !== 'zh-Hans') return 'Select Mandarin text to use phrase practice.'
+  if (text.trim().length > MAX_PRACTICE_TEXT_LENGTH) return `Select at most ${MAX_PRACTICE_TEXT_LENGTH.toLocaleString('en-US')} characters to practice.`
 }
 
 export function selectedSnippet(selection: Selection | null, root: HTMLElement): string | undefined {

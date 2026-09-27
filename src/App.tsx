@@ -195,7 +195,7 @@ function WorkspaceApp() {
       </div>
       <PlaybackStatus />
       <DraftStatus />
-      {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} />}
+      {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
   </>
 }

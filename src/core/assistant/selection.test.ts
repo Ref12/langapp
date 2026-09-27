@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { selectedSnippet, snippetLocale } from './selection'
+import { selectedSnippet, selectionPracticeUnavailable, snippetLocale } from './selection'
 
 afterEach(() => { document.body.replaceChildren(); window.getSelection()?.removeAllRanges() })
 
@@ -50,5 +50,13 @@ describe('context selection', () => {
     expect(snippetLocale('I would like tea.')).toBe('en-US')
     expect(snippetLocale('\u8336 means tea')).toBeUndefined()
     expect(snippetLocale('\u304a\u8336')).toBeUndefined()
+  })
+
+  it('limits practice to Mandarin within the phrase player length contract', () => {
+    expect(selectionPracticeUnavailable('你好')).toBeUndefined()
+    expect(selectionPracticeUnavailable('你'.repeat(3000))).toBeUndefined()
+    expect(selectionPracticeUnavailable('你'.repeat(3001))).toContain('3,000')
+    expect(selectionPracticeUnavailable('hello')).toContain('Mandarin')
+    expect(selectionPracticeUnavailable('お茶')).toContain('Mandarin')
   })
 })

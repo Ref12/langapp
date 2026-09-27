@@ -524,6 +524,17 @@ appending to the existing draft without sending or replacing its text. Elsewhere
 it starts a new conversation with an editable draft and exact source context.
 Each Mandarin speech snippet in an Assistant reply has its own **Hear / Ask / Practice**
 buttons; ordinary explanation blocks do not. Word cards have one action row.
+
+The app-wide text-selection popup also offers **Hear / Ask / Practice**.
+Select Mandarin text (up to 3,000 UTF-16 units) and choose **Practice** to open
+the same playlist on the current page, without creating a conversation, changing
+a draft, sending an AI request, or starting the microphone. English, mixed-language,
+and oversized selections explain why Practice is unavailable. Protected exercise
+answers and editable drafts remain excluded. Selection practice uses the current
+conversation's speed, or the default Mandarin speed elsewhere. The most recently
+edited selection's chunks and playlist order are retained only for that page
+visit, not saved to a profile or backup; leaving the page or reloading clears them.
+
 **Practice** opens a phrase playlist in a centered popup (a tall bottom sheet on
 mobile), in either Conversation or Shadow. Opening is silent and does not record,
 change mode, replace the composer draft, generate a translation, or send a message.
@@ -568,7 +579,7 @@ to playlist** inserts immediately before the current step, selects the new row,
 and does not play it. Each row has **Move up / Move down** controls; added parts
 also have **Remove**. These edits pause playback and save immediately.
 
-Saved boundaries, selected parts, and row order belong to that exact phrase in
+For Assistant phrase actions, saved boundaries, selected parts, and row order belong to that exact phrase in
 the active profile and survive reload, cloning, and JSON/YAML export/import.
 There are at most 80 total playlist rows, including generated steps and added
 parts. Changing chunks retains selected parts and the relative order of valid

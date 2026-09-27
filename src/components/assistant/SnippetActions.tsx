@@ -1,12 +1,16 @@
 import { useCallback, useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { useLiveQuery } from 'dexie-react-hooks'
 import { MessageCircle, Repeat2, Square, Volume2, X } from 'lucide-react'
 import { prepareAssistantDraft } from '../../core/assistant/draft-actions'
-import { type AssistantSource, type SpeechLocale } from '../../core/assistant/contracts'
+import { practicePhraseSchema, type AssistantSource, type SpeechBlock, type SpeechLocale, type SpeechRate } from '../../core/assistant/contracts'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayback } from '../../core/assistant/speech'
-import { selectedSnippet, snippetLocale } from '../../core/assistant/selection'
+import { selectedSnippet, selectionPracticeUnavailable, snippetLocale } from '../../core/assistant/selection'
 import { navigate } from '../../core/routing'
 import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
 import { interruptAudio } from '../../core/assistant/audio-owner'
+import { db } from '../../core/database'
+import { practiceChainSchema, type PracticePlaylistItem } from '../../core/assistant/practice-chain-contracts'
+import { PracticePlaylist } from './PracticePlaylist'
 
 export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false, buttonText = 'Hear', disabled = false }: { text: string; locale: SpeechLocale; rate?: number; label?: string; iconOnly?: boolean; buttonText?: string; disabled?: boolean }) {
   const id = useId()
@@ -87,16 +91,25 @@ export function PlaybackStatus() {
   </div>
 }
 
-export function SelectionActions({ route, title }: { route: string; title: string }) {
+export function SelectionActions({ route, title, rate = 1 }: { route: string; title: string; rate?: SpeechRate }) {
   const [text, setText] = useState<string>()
+  const [practice, setPractice] = useState<{ phrase: SpeechBlock; rate: SpeechRate }>()
+  const [practiceError, setPracticeError] = useState('')
+  const [savedPractice, setSavedPractice] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
   const toolbar = useRef<HTMLDivElement>(null)
+  const [page, threadId] = route.split('/')
+  const threadRate = useLiveQuery(async () => page === 'conversation' && threadId
+    ? (await db.assistantThreads.get(threadId))?.speechRate
+    : undefined, [page, threadId])
   useEffect(() => {
     const read = () => {
-      if (toolbar.current?.contains(document.activeElement)) return
+      if (toolbar.current?.contains(document.activeElement) || document.querySelector('dialog[open]')) return
       const root = document.getElementById('main')
       setText(root ? selectedSnippet(window.getSelection(), root) : undefined)
+      setPracticeError('')
     }
     const keys = (event: KeyboardEvent) => {
+      if (document.querySelector('dialog[open]')) return
       if (event.key === 'Escape') setText(undefined)
       if (event.altKey && event.key === 'Enter' && toolbar.current) {
         event.preventDefault()
@@ -107,10 +120,43 @@ export function SelectionActions({ route, title }: { route: string; title: strin
     document.addEventListener('keydown', keys)
     return () => { document.removeEventListener('selectionchange', read); document.removeEventListener('keydown', keys) }
   }, [])
-  useEffect(() => { setText(undefined) }, [route])
-  return text ? <div className="selection-actions" ref={toolbar} role="toolbar" aria-label="Selected text actions" data-assistant-exclude
-    onMouseDown={event => event.preventDefault()}>
-    <SnippetActions key={`${route}:${text}`} source={{ text, title: `Selection from ${title}`, route, locale: snippetLocale(text) }} onPrepared={() => setText(undefined)} />
-    <button type="button" className="icon-button" aria-label="Dismiss selected text actions" onClick={() => setText(undefined)}><X size={18} /></button>
-  </div> : null
+  useEffect(() => {
+    setText(undefined); setPractice(undefined); setSavedPractice(undefined); setPracticeError('')
+  }, [route])
+  const unavailable = text ? selectionPracticeUnavailable(text) : undefined
+  const openPractice = () => {
+    if (!text) return
+    setPracticeError('')
+    try {
+      if (unavailable) throw new Error(unavailable)
+      if (document.querySelector('dialog[open]')) throw new Error('Close the current dialog before opening selection practice.')
+      const phrase = practicePhraseSchema.parse({ type: 'speech', text, locale: 'zh-Hans' })
+      interruptAudio()
+      const failure = stopBrowserSpeech()
+      if (failure) throw new Error(failure)
+      setPractice({ phrase, rate: threadRate ?? rate })
+    } catch (reason) {
+      setPracticeError(reason instanceof Error ? reason.message : 'Selection practice could not be opened.')
+    }
+  }
+  return <>
+    {text && <div className="selection-actions" ref={toolbar} role="toolbar" aria-label="Selected text actions" data-assistant-exclude
+      hidden={Boolean(practice)} onMouseDown={event => event.preventDefault()}>
+      <SnippetActions key={`${route}:${text}`} source={{ text, title: `Selection from ${title}`, route, locale: snippetLocale(text) }}
+        onPrepared={() => setText(undefined)} onPractice={openPractice} practiceDisabled={Boolean(unavailable)}
+        practiceTitle={unavailable ?? 'Practice the selected Mandarin text'} />
+      <button type="button" className="icon-button" aria-label="Dismiss selected text actions" onClick={() => setText(undefined)}><X size={18} /></button>
+      {unavailable && <p className="small muted selection-actions-note">{unavailable}</p>}
+      {practiceError && <p role="alert" className="small connection-error selection-actions-note">{practiceError}</p>}
+    </div>}
+    {practice && <PracticePlaylist key={`${route}:${practice.phrase.text}`} phrase={practice.phrase} rate={practice.rate}
+      savedEnds={savedPractice?.text === practice.phrase.text ? savedPractice.ends : undefined}
+      savedItems={savedPractice?.text === practice.phrase.text ? savedPractice.items : undefined}
+      busy={false} recordingActive={false}
+      saveNotice="Your last edited selection is kept for this page visit only. No conversation or learning progress is changed."
+      onSave={async (ends, items) => {
+        setSavedPractice(practiceChainSchema.parse({ text: practice.phrase.text, ends, ...(items ? { items } : {}) }))
+      }}
+      onClose={async () => { setPractice(undefined) }} />}
+  </>
 }

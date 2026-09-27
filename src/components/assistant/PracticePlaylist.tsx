@@ -20,9 +20,10 @@ interface Props {
   recording?: (rate: SpeechRate) => ReactNode
   onSave: (ends: number[], items?: PracticePlaylistItem[]) => Promise<void>
   onClose: () => Promise<void>
+  saveNotice?: string
 }
 
-export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, recordingActive, recording, onSave, onClose }: Props) {
+export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, recordingActive, recording, onSave, onClose, saveNotice }: Props) {
   const id = useId()
   const dialog = useRef<HTMLDialogElement>(null)
   const opener = useRef(document.activeElement)
@@ -244,6 +245,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
         {phrase.meaning && <p className="small muted">{phrase.meaning}</p>}
       </div>
       <p id={`${id}-privacy`} className="small muted">Chunks and pinyin are suggested on this device. Your selected speech voice may be online. Opening Practice does not play or record audio.</p>
+      {saveNotice && <p className="small muted">{saveNotice}</p>}
       {loadError ? <div role="alert" className="notice error"><p>{loadError}</p><button type="button" className="button secondary" onClick={() => setRetry(value => value + 1)}>Retry loading practice</button></div>
         : !loaded ? <p role="status">Preparing chunks and pinyin...</p> : <>
           {loaded.plan.warnings.length > 0 && <details className="small">
