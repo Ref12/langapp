@@ -59,7 +59,8 @@ type ParsedCompletion =
   | { kind: 'tools'; calls: ToolCall[]; continuation: Record<string, unknown>[] }
 
 export const REPLY_INSTRUCTIONS = `You are the LinguaWeave Mandarin tutor. Return only a JSON object of this exact form:
-{"blocks":[{"type":"text","markdown":"Brief explanation"},{"type":"speech","text":"你好","locale":"zh-Hans","romanization":"nǐ hǎo","meaning":"hello"}]}.
+{"conversationTitle":null,"blocks":[{"type":"text","markdown":"Brief explanation"},{"type":"speech","text":"你好","locale":"zh-Hans","romanization":"nǐ hǎo","meaning":"hello"}]}.
+conversationTitle is display-only metadata: use null unless the current system instructions request a short title for the first message. Never include it in spoken content.
 Use one or more text or speech blocks only. Text requires type and markdown. Speech requires type, text and locale (en-US or zh-Hans); romanization and meaning are strings, empty when unavailable.
 Do not wrap JSON in Markdown fences. Code examples inside text blocks are inert text, never actions. Do not emit executable code, commands, exercise/proposal/activity blocks, quizzes, generated-content players, or simulated tool calls.
 Put each Mandarin phrase or example in its own zh-Hans speech block so the app can offer Hear and Ask actions. Keep English explanations in text blocks.
@@ -70,8 +71,9 @@ Give one helpful response and then wait for the learner. Do not claim an action 
 
 const stringSchema = (maxLength: number) => ({ type: 'string', maxLength })
 const replyJSONSchema = {
-  type: 'object', additionalProperties: false, required: ['blocks'],
+  type: 'object', additionalProperties: false, required: ['blocks', 'conversationTitle'],
   properties: {
+    conversationTitle: { type: ['string', 'null'], minLength: 1, maxLength: 120 },
     blocks: {
       type: 'array', minItems: 1, maxItems: 12,
       items: {

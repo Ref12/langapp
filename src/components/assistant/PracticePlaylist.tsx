@@ -6,6 +6,7 @@ import { MAX_PRACTICE_CHUNKS, type PracticePlan, type PracticeMode, type Practic
 import { createPracticePlayback, type PracticePlaybackOptions, type PracticePlaybackState } from '../../core/assistant/practice-playback'
 import { PracticeBoundaryEditor } from './PracticeBoundaryEditor'
 import { PracticePhraseSelection } from './PracticePhraseSelection'
+import { rememberPracticePhrase } from '../../core/assistant/practice-history'
 import './practice-playlist.css'
 
 type ChainEngine = typeof import('../../core/assistant/practice-chain')
@@ -18,7 +19,7 @@ interface Props {
   busy: boolean
   recordingActive: boolean
   recording?: (rate: number) => ReactNode
-  onSave: (ends: number[], items?: PracticePlaylistItem[]) => Promise<void>
+  onSave?: (ends: number[], items?: PracticePlaylistItem[]) => Promise<void>
   onClose: () => Promise<void>
   saveNotice?: string
 }
@@ -60,6 +61,19 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
   const [draft, setDraft] = useState<PracticePlan>()
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  const [historyError, setHistoryError] = useState('')
+  const [historySaving, setHistorySaving] = useState(false)
+  const historyEntry = useRef({ phrase, rate })
+  const openedHistory = useRef<Promise<void>>()
+  const writeHistory = () => rememberPracticePhrase(historyEntry.current.phrase, historyEntry.current.rate, saved.current.ends, saved.current.items)
+  const retryHistory = () => {
+    setHistorySaving(true)
+    void writeHistory().then(() => {
+      if (alive.current) setHistoryError('')
+    }, cause => {
+      if (alive.current) setHistoryError(`History not saved. ${cause instanceof Error ? cause.message : 'Check browser storage and retry.'}`)
+    }).finally(() => { if (alive.current) setHistorySaving(false) })
+  }
 
   const requestClose = async () => {
     if (closing.current || saving) return
@@ -86,6 +100,10 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
     const overflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     element.showModal()
+    openedHistory.current ??= rememberPracticePhrase(historyEntry.current.phrase, historyEntry.current.rate, saved.current.ends, saved.current.items)
+    void openedHistory.current.catch(cause => {
+      if (alive.current) setHistoryError(`History not saved. ${cause instanceof Error ? cause.message : 'Check browser storage and retry.'}`)
+    })
     const leave = () => {
       player.current?.pause()
       void closeRef.current()
@@ -186,11 +204,17 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
       player.current?.pause()
       if (player.current?.getState().status === 'error') return false
       const nextTracks = loaded.engine.buildPracticeModeTracks(next, direction)
-      if (next.items) await onSave(next.ends, next.items)
-      else await onSave(next.ends)
+      if (onSave) {
+        if (next.items) await onSave(next.ends, next.items)
+        else await onSave(next.ends)
+      } else {
+        await rememberPracticePhrase(phrase, rate, next.ends, next.items)
+        if (alive.current) setHistoryError('')
+      }
       if (!alive.current) return false
       player.current?.configure(nextTracks.map(track => track.text), options, index)
       saved.current = { ends: next.ends, items: next.items }
+      if (onSave) retryHistory()
       setLoaded({ ...loaded, plan: next })
       return true
     } catch (cause) {
@@ -277,6 +301,8 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
         aria-pressed={direction === value} onClick={() => { changeMode(value); if (value === 'words' || value === 'phrase') setEditing(false) }}><Icon size={15} />{label}</button>)}
     </div>
     <div className="practice-playlist-content">
+      {historyError && <div className="notice error" role="alert"><p>{historyError}</p>
+        <button type="button" className="button secondary" disabled={historySaving} onClick={retryHistory}>{historySaving ? 'Saving History...' : 'Retry saving History'}</button></div>}
       <section id={`${id}-options`} className="practice-options" aria-label="Practice options" hidden={!optionsOpen}>
         <div className="practice-panel-heading"><h3>Make it yours</h3><button type="button" className="text-link" onClick={() => { setOptionsOpen(false); optionToggle.current?.focus() }}>Done</button></div>
         <div className="practice-playlist-controls">

@@ -1,6 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, MessageCircle, Mic, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, Trash2, X } from 'lucide-react'
+import { MessageCircle, Mic, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, X } from 'lucide-react'
 import { db } from '../core/database'
 import { normalizeSearch } from '../core/search'
 import { navigate } from '../core/routing'
@@ -19,6 +20,7 @@ import type { SpeechConnection } from '../core/assistant/speech-contracts'
 import { registerDraftEditor } from '../core/assistant/draft-actions'
 import { appendContextText, finishDraftSave, getDraftFailures, getUnsavedDraft, rememberDraft } from '../core/assistant/drafts'
 import { useConversationVoice } from '../components/assistant/useConversationVoice'
+import { ConversationTitle } from '../components/assistant/ConversationTitle'
 
 function ConversationList({ selectedId, collapsed = false, expand, returnRoute = 'overview' }: {
   selectedId?: string; collapsed?: boolean; expand?: () => void; returnRoute?: string
@@ -78,12 +80,13 @@ interface InlinePracticeControls {
   loading: boolean
 }
 
-function ConversationPhraseActions({ message, blockIndex, phrase, thread, controls }: {
+function ConversationPhraseActions({ message, blockIndex, phrase, thread, controls, onExplain }: {
   message: AssistantMessage; blockIndex: number; phrase: SpeechBlock; thread: AssistantThread; controls: InlinePracticeControls
+  onExplain?: () => void
 }) {
   const key = JSON.stringify([message.id, blockIndex, phrase, thread.mode, thread.practiceInput ?? 'listen-repeat',
     thread.speechFeedback ?? true])
-  return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy}
+  return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy} compact onExplain={onExplain}
     speechConnection={controls.connection} connectionLoading={controls.loading}
     inline={{ message, blockIndex, active: controls.activeId === key, activate: () => controls.activate(key) }}
     onClose={() => controls.close(key)} />
@@ -107,18 +110,19 @@ function Message({ message, thread, onExplain, onPractice, inlinePractice }: {
     {message.blocks.map((block, index) => block.type === 'text'
       ? <div key={index}><AssistantText markdown={block.markdown} /></div>
       : <div className="speech-block" key={index}>
+        <div className="speech-block-text">
         <p lang={block.locale} className={block.locale === 'zh-Hans' ? 'speech-native' : ''}>{block.text}</p>
         {thread.romanization && block.romanization && <p className="pinyin" data-assistant-exclude>{block.romanization}</p>}
         {block.meaning && <p className="small muted">{block.meaning}</p>}
+        </div>
         {block.locale === 'zh-Hans'
           ? message.role === 'assistant' && message.status === 'completed'
-            ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice} />
+            ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice}
+              onExplain={thread.mode === 'shadow' && message.mode === 'shadow' ? () => onExplain(block) : undefined} />
             : <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
-            rate={thread.speechRate} onPractice={() => onPractice(block)} />
-          : <HearButton text={block.text} locale={block.locale} />}
-        {thread.mode === 'shadow' && message.mode === 'shadow' && block.locale === 'zh-Hans' && <div className="button-row shadow-actions" data-assistant-exclude>
-          <button className="button secondary" onClick={() => onExplain(block)}>Explain more</button>
-        </div>}
+            compact rate={thread.speechRate} onPractice={() => onPractice(block)}
+            onExplain={thread.mode === 'shadow' && message.mode === 'shadow' ? () => onExplain(block) : undefined} />
+          : <HearButton text={block.text} locale={block.locale} iconOnly />}
       </div>)}
     {message.status === 'pending' && <p className="small muted" role="status">Working on your reply...</p>}
     {message.error && <p className="small connection-error">{message.error}</p>}
@@ -126,7 +130,7 @@ function Message({ message, thread, onExplain, onPractice, inlinePractice }: {
   </article>
 }
 
-function Conversation({ thread }: { thread: AssistantThread }) {
+function Conversation({ thread, headerTarget }: { thread: AssistantThread; headerTarget?: HTMLElement | null }) {
   const messages = useLiveQuery(() => db.assistantMessages.where('threadId').equals(thread.id).sortBy('sequence'), [thread.id])
   const runs = useLiveQuery(() => db.assistantRuns.where('threadId').equals(thread.id).toArray(), [thread.id])
   const connection = useLiveQuery(() => db.aiConnections.get('assistant'), [])
@@ -148,6 +152,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const input = useRef<HTMLTextAreaElement>(null)
   const history = useRef<HTMLDivElement>(null)
   const settings = useRef<HTMLDivElement>(null)
+  const deleteConfirmation = useRef<HTMLDivElement>(null)
   const active = runs?.some(run => run.status === 'running') ?? false
   const busy = sending || active
   const practicePhrase = thread.practicePhrase ?? (thread.shadowIntent === 'repeat' ? thread.shadowPhrase : undefined)
@@ -206,6 +211,29 @@ function Conversation({ thread }: { thread: AssistantThread }) {
     document.addEventListener('pointerdown', outside)
     return () => { document.removeEventListener('keydown', close); document.removeEventListener('pointerdown', outside) }
   }, [settingsOpen])
+  useEffect(() => {
+    if (!confirmDelete) return
+    deleteConfirmation.current?.scrollIntoView?.({ block: 'nearest' })
+    deleteConfirmation.current?.querySelector('button')?.focus()
+  }, [confirmDelete])
+  useLayoutEffect(() => {
+    const element = input.current
+    if (!element) return
+    const resize = () => {
+      element.style.height = 'auto'
+      element.style.height = `${element.scrollHeight}px`
+    }
+    resize()
+    const container = element.parentElement
+    let width = container?.clientWidth
+    // Only width changes should resize text; observing height would create a loop.
+    const widthObserver = typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(() => {
+      if (container?.clientWidth !== width) { width = container?.clientWidth; resize() }
+    })
+    if (container) widthObserver?.observe(container)
+    window.addEventListener('resize', resize)
+    return () => { widthObserver?.disconnect(); window.removeEventListener('resize', resize) }
+  }, [draft])
 
   const action = async (operation: () => Promise<void>) => {
     setError('')
@@ -262,11 +290,9 @@ function Conversation({ thread }: { thread: AssistantThread }) {
         : voice.capture?.phase === 'starting' ? 'Starting microphone...'
           : voice.capture ? 'Finishing recording...' : ''
   return <section className="assistant-conversation" aria-label="Assistant conversation">
-    <header className="conversation-header">
-      <a className="icon-button mobile-conversation-back" href="#conversation" aria-label="All conversations"><ArrowLeft size={20} /></a>
-      <div><h1>{thread.title}</h1><p className="small muted">{thread.mode === 'shadow' ? 'Shadow / reflect, repeat, understand' : 'Conversation / English and Mandarin'}</p></div>
-      <button className="icon-button" aria-label="Delete conversation" title="Delete conversation" onClick={() => setConfirmDelete(true)}><Trash2 size={18} /></button>
-    </header>
+    {headerTarget ? createPortal(<ConversationTitle thread={thread} onDelete={() => setConfirmDelete(true)} />, headerTarget)
+      : headerTarget === undefined ? <ConversationTitle thread={thread} onDelete={() => setConfirmDelete(true)} /> : null}
+    <h1 className="visually-hidden">{thread.title}</h1>
     <div ref={history} className="assistant-history" tabIndex={0} aria-label="Conversation history">
       {!messages?.length && <div className="assistant-welcome"><MessageCircle size={32} className="accent" /><h2>A partner in your learning.</h2>
         <p>Ask about a word, explore a lesson, or switch to Shadow to practice expressing a thought in Mandarin.</p><p className="small muted">Conversation is practice, not proof of mastery. AI explanations can be mistaken.</p></div>}
@@ -304,7 +330,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {retryUser && !busy && <button className="button secondary" onClick={() => {
         void sendAdditional({ text: retryUser.text, source: retryUser.source, intent: retryUser.intent, preserveDraft: true })
       }}>Retry reply</button>}
-      {confirmDelete && <div className="notice" role="alert"><p>Delete this conversation, its drafts, and replies? Your learning progress will not change.</p>
+      {confirmDelete && <div ref={deleteConfirmation} className="notice" role="alert"><p>Delete this conversation, its drafts, and replies? Your learning progress will not change.</p>
         <div className="button-row"><button className="button secondary" disabled={deleting} onClick={() => {
           setDeleting(true)
           voice.cancel()
@@ -329,7 +355,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {thread.mode === 'shadow' && <p className="small muted">Share a thought in English for a Mandarin translation and explanation. Use Practice on the translation when ready.</p>}
       <form onSubmit={event => { event.preventDefault(); void voice.submit() }}>
         <label className="visually-hidden" htmlFor={`draft-${thread.id}`}>Message Assistant</label>
-        <textarea id={`draft-${thread.id}`} ref={input} rows={3} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting} readOnly={!!voice.capture}
+        <textarea id={`draft-${thread.id}`} ref={input} rows={1} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting} readOnly={!!voice.capture}
           placeholder={thread.mode === 'shadow' ? 'Write a thought to express in Mandarin...' : 'Ask, explore, or practice...'}
           onChange={event => { const value = event.target.value; latestDraft.current = value; setDraft(value); void save(value) }}
           onKeyDown={event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); event.currentTarget.form?.requestSubmit() } }} />
@@ -384,12 +410,12 @@ function Conversation({ thread }: { thread: AssistantThread }) {
             title={voice.capture ? 'Cancel recording' : 'Stop speaking'} onClick={voice.cancel}><X size={18} /></button>}
           {voiceStatus ? <span className="small muted" role="status">{voiceStatus}</span>
             : saving ? <span className="small muted" role="status">Saving draft...</span> : null}
-          {busy ? <button className="button secondary" type="button" onClick={() => {
+          {busy ? <button className="icon-button composer-stop" type="button" aria-label="Stop reply" title="Stop reply" onClick={() => {
             sendVersion.current++
             voice.cancel()
             void action(() => cancelAssistantRun(thread.id))
-          }}><Square size={16} />Stop reply</button>
-            : <button className="button primary composer-send" type="submit" aria-label={voice.capture ? 'Submit' : 'Send'} title={voice.capture ? 'Submit' : 'Send'}
+          }}><Square size={16} /></button>
+            : <button className="icon-button composer-send" type="submit" aria-label={voice.capture ? 'Submit' : 'Send'} title={voice.capture ? 'Submit' : 'Send'}
               disabled={(!draft.trim() && voice.capture?.phase !== 'listening') || !connection || deleting || (!!voice.capture && voice.capture.phase !== 'listening')}><Send size={18} /></button>}
         </div>
       </form>
@@ -402,11 +428,11 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   </section>
 }
 
-export function Assistant({ threadId, returnRoute }: { threadId?: string; returnRoute: string }) {
+export function Assistant({ threadId, returnRoute, headerTarget }: { threadId?: string; returnRoute: string; headerTarget?: HTMLElement | null }) {
   const result = useLiveQuery(async () => ({ thread: threadId ? await db.assistantThreads.get(threadId) : undefined }), [threadId])
   if (!result) return <p role="status">Loading your conversation...</p>
   if (threadId && !result.thread) return <div className="empty-state"><h1>Conversation not found</h1><p>It may have been deleted or replaced by a backup.</p><a className="button secondary" href="#conversation">All conversations</a></div>
-  if (result.thread) return <Conversation key={result.thread.id} thread={result.thread} />
+  if (result.thread) return <Conversation key={result.thread.id} thread={result.thread} headerTarget={headerTarget} />
   return <>
     <div className="assistant-mobile-picker"><ConversationList returnRoute={returnRoute} /></div>
     <div className="assistant-desktop-welcome"><MessageCircle size={44} className="accent" /><h1>Your Mandarin, in conversation.</h1>

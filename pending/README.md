@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | Phrase chaining, highlighted split tiles, saved partial-phrase tracks, and native speech warm-up are complete. Also records Pages-test stabilization committed as `df2fde2a`; Pages run `36378166144` passed and the deployed site returned HTTP 200. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Local History and compact mobile Assistant changes are implemented, including title rename/delete menus and first-reply AI naming. Targeted checks and build pass; records an unrelated intermittent Potions test failure in the full Pages run. Not committed or published. Earlier Pages repair `df2fde2a` was deployed successfully. |
 
 ## Maintaining this folder
 

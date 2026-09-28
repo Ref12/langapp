@@ -17,6 +17,8 @@ interface PhrasePracticeProps {
   connectionLoading: boolean
   onClose: () => Promise<void>
   open?: boolean
+  compact?: boolean
+  onExplain?: () => void
   inline?: {
     message: AssistantMessage
     blockIndex: number
@@ -25,7 +27,7 @@ interface PhrasePracticeProps {
   }
 }
 
-export function PhrasePractice({ thread, phrase, busy, speechConnection, connectionLoading, onClose, inline, open = false }: PhrasePracticeProps) {
+export function PhrasePractice({ thread, phrase, busy, speechConnection, connectionLoading, onClose, inline, open = false, compact = false, onExplain }: PhrasePracticeProps) {
   const [localOpen, setLocalOpen] = useState(false)
   const [recording, setRecording] = useState(false)
   const [error, setError] = useState('')
@@ -80,7 +82,7 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
     onClose={inline ? async () => setRecording(false) : close}
   /> : undefined
 
-  return <div className={inline ? 'inline-practice' : 'panel phrase-practice'} data-assistant-exclude>
+  return <div className={inline ? `inline-practice${compact ? ' compact-phrase-actions' : ''}` : 'panel phrase-practice'} data-assistant-exclude>
     {!inline && <>
       <h2>Practice this translation</h2>
       <p className="speech-native" lang="zh-Hans">{phrase.text}</p>
@@ -89,7 +91,7 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
     <SnippetActions source={{
       text: phrase.text, meaning: phrase.meaning, locale: phrase.locale,
       title: 'Assistant phrase', route: `conversation/${thread.id}`,
-    }} rate={thread.speechRate} onPractice={activate} practiceDisabled={busy}
+    }} rate={thread.speechRate} onPractice={activate} practiceDisabled={busy} compact={compact} onExplain={onExplain}
       practiceTitle="Open the phrase practice playlist" />
     {error && <p role="alert" className="small connection-error">{error}</p>}
     {inline && result && !visible && <PracticeFeedback result={result} />}

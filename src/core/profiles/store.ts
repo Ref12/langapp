@@ -152,6 +152,7 @@ async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata
     if (!preferences) throw new Error('Your workspace has not been initialized. Reload to try again.')
     const ai = await database.aiConnections.get('assistant')
     const speech = await database.speechConnections.get('assistant-speech')
+    const practiceHistory = await database.practiceHistory.toArray()
     let aiConnection: ProfileSnapshot['settings']['aiConnection']
     let speechConnection: ProfileSnapshot['settings']['speechConnection']
     if (ai) {
@@ -180,6 +181,7 @@ async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata
       conversations: {
         threads: await database.assistantThreads.toArray(), messages: await database.assistantMessages.toArray(),
         runs: await database.assistantRuns.toArray(),
+        ...(practiceHistory.length ? { practiceHistory } : {}),
       },
       library: await database.libraryBooks.toArray(),
     }
@@ -220,6 +222,7 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
       await database.assistantThreads.bulkAdd(conversations.threads)
       await database.assistantMessages.bulkAdd(conversations.messages)
       await database.assistantRuns.bulkAdd(conversations.runs)
+      await database.practiceHistory.bulkAdd(conversations.practiceHistory ?? [])
       await database.profileState.put({ id: 'local-settings', imported: true })
       signal?.throwIfAborted()
     })

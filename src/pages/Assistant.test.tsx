@@ -11,6 +11,7 @@ import { clearUnsavedDrafts } from '../core/assistant/drafts'
 import { buildLessonPages } from '../core/learning-content'
 import { lessonDefinitions } from '../data/learning-content'
 import { resetProfileStorage } from '../test/profile-storage'
+import { openPhraseActions } from '../test/phrase-actions'
 
 const connection = { baseUrl: 'https://example.test/v1', apiKey: 'test-key-not-a-secret', model: 'test-model', nativeTools: false, structuredOutput: false, storageAcknowledged: true as const }
 
@@ -36,14 +37,54 @@ function respond(blocks: AssistantBlock[], apiType: AIAPIType = 'chat-completion
 }
 
 describe('first usable Assistant', () => {
+  it('uses a one-row empty composer and a top-bar title menu with persistent rename and guarded deletion', async () => {
+    const id = await createConversation()
+    window.location.hash = `conversation/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
+    expect(input).toHaveAttribute('rows', '1')
+    expect(screen.queryByRole('button', { name: 'Delete conversation' })).not.toBeInTheDocument()
+    let title = screen.getByRole('button', { name: 'Conversation actions: New conversation' })
+    expect(title.closest('.topbar')).not.toBeNull()
+    await user.click(title)
+    await user.click(screen.getByRole('button', { name: 'Rename conversation' }))
+    const name = screen.getByRole('textbox', { name: 'Conversation name' })
+    await user.clear(name)
+    expect(screen.getByRole('button', { name: 'Save name' })).toBeDisabled()
+    await user.type(name, '  Tea practice  ')
+    vi.spyOn(db.assistantThreads, 'put').mockRejectedValueOnce(new Error('Storage full'))
+    await user.click(screen.getByRole('button', { name: 'Save name' }))
+    expect(await screen.findByRole('alert')).toHaveTextContent('Storage full')
+    expect(await db.assistantThreads.get(id)).toMatchObject({ title: 'New conversation' })
+    await user.click(screen.getByRole('button', { name: 'Save name' }))
+    title = await screen.findByRole('button', { name: 'Conversation actions: Tea practice' })
+    expect(title).toHaveFocus()
+    await waitFor(() => expect(screen.queryByRole('textbox', { name: 'Conversation name' })).not.toBeInTheDocument())
+    expect(await db.assistantThreads.get(id)).toMatchObject({ title: 'Tea practice', titleManuallySet: true })
+    cleanup()
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Conversation actions: Tea practice' }))
+    await user.keyboard('{Escape}')
+    expect(screen.queryByRole('button', { name: 'Delete conversation' })).not.toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Conversation actions: Tea practice' }))
+    await user.click(screen.getByRole('button', { name: 'Delete conversation' }))
+    expect(screen.getByRole('button', { name: 'Delete permanently' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Keep conversation' }))
+    expect(await db.assistantThreads.get(id)).toBeDefined()
+  })
+
   it('omits redundant workspace back links from conversations and their picker', async () => {
+    vi.stubGlobal('matchMedia', () => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() }))
     const id = await createConversation()
     window.location.hash = `conversation/${id}`
     render(<App />)
     await screen.findByRole('textbox', { name: 'Message Assistant' })
     expect(screen.queryByRole('link', { name: 'Back to workspace' })).not.toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Open navigation' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'All conversations' })).toHaveAttribute('href', '#conversation')
+    expect(screen.queryByRole('link', { name: 'All conversations' })).not.toBeInTheDocument()
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Open navigation' }))
+    expect(within(screen.getByRole('dialog', { name: 'Workspace navigation' })).getByRole('link', { name: 'Assistant' })).toHaveAttribute('href', '#conversation')
     await go('conversation')
     await screen.findByRole('heading', { name: 'Your Mandarin, in conversation.' })
     expect(screen.queryByRole('link', { name: 'Back to workspace' })).not.toBeInTheDocument()
@@ -252,7 +293,7 @@ describe('first usable Assistant', () => {
     expect((await db.assistantThreads.get(prepared.id))?.draft).toContain(getWord('zh:rain').native)
   })
 
-  it('puts Hear/Ask under each Mandarin phrase and appends phrase or selection context to the current chat', async () => {
+  it('puts Hear/Ask in each phrase menu and appends phrase or selection context to the current chat', async () => {
     const originalSource = { text: 'Original reference', title: 'Original source', route: 'dictionary' }
     const id = await createConversation(originalSource)
     await saveDraft(id, 'Keep my question')
@@ -275,10 +316,11 @@ describe('first usable Assistant', () => {
     render(<App />)
     const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
-    expect(within(reply).getAllByRole('button', { name: 'Ask' })).toHaveLength(2)
-    expect(within(reply).getAllByRole('button', { name: 'Hear' })).toHaveLength(2)
+    expect(within(reply).queryByRole('button', { name: 'Ask' })).not.toBeInTheDocument()
+    expect(within(reply).getAllByRole('button', { name: 'Phrase actions' })).toHaveLength(2)
     for (const phrase of ['\u8336', '\u4f60\u597d']) {
       const block = within(reply).getByText(phrase).closest<HTMLDivElement>('.speech-block')!
+      openPhraseActions(block)
       expect(within(block).getByRole('button', { name: 'Hear' })).toBeInTheDocument()
       expect(within(block).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
       expect(within(block).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
@@ -288,7 +330,7 @@ describe('first usable Assistant', () => {
     }
     expect(within(reply).getByRole('button', { name: 'Copy full message' })).toBeInTheDocument()
     fireEvent.change(input, { target: { value: 'Keep my question and this last keystroke' } })
-    fireEvent.click(within(reply).getAllByRole('button', { name: 'Ask' })[0])
+    fireEvent.click(openPhraseActions(reply).getByRole('button', { name: 'Ask' }))
     const fullDraft = 'Keep my question and this last keystroke\n\nPlease explain this passage:\n\n\u8336\n\nMeaning: tea'
     await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe(fullDraft))
     expect(input).toHaveValue(fullDraft)
@@ -339,11 +381,11 @@ describe('first usable Assistant', () => {
     render(<App />)
     const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
-    expect(within(reply).getAllByRole('button', { name: 'Practice' })).toHaveLength(2)
+    expect(within(reply).getAllByRole('button', { name: 'Phrase actions' })).toHaveLength(2)
     const english = within(reply).getByText('Hello').closest<HTMLDivElement>('.speech-block')!
     expect(within(english).queryByRole('button', { name: 'Practice' })).not.toBeInTheDocument()
 
-    await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[1])
+    await user.click(openPhraseActions(reply, 1).getByRole('button', { name: 'Practice' }))
     const reference = await screen.findByRole('dialog', { name: 'Phrase practice' })
     expect(reference.querySelector('.practice-target')).toHaveTextContent(greeting.text)
     const playlist = await within(reference).findByRole('region', { name: 'Current practice step' })
@@ -364,7 +406,7 @@ describe('first usable Assistant', () => {
 
     await user.click(within(reference).getByRole('button', { name: 'Close practice' }))
     await waitFor(() => expect(reference).not.toBeInTheDocument())
-    await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[0])
+    await user.click(openPhraseActions(reply).getByRole('button', { name: 'Practice' }))
     const next = await screen.findByRole('dialog', { name: 'Phrase practice' })
     expect(await within(next).findByRole('region', { name: 'Current practice step' })).toHaveTextContent(tea.meaning)
     expect((await db.assistantThreads.get(id))?.practicePhrase).toBeUndefined()
@@ -380,7 +422,7 @@ describe('first usable Assistant', () => {
     expect(await screen.findByRole('textbox', { name: 'Message Assistant' })).toHaveValue('Keep my unfinished question')
     expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument()
     const restoredReply = await screen.findByRole('article', { name: 'Assistant reply' })
-    await user.click(within(restoredReply).getAllByRole('button', { name: 'Practice' })[0])
+    await user.click(openPhraseActions(restoredReply).getByRole('button', { name: 'Practice' }))
     expect(await within(await screen.findByRole('dialog', { name: 'Phrase practice' })).findByRole('region', { name: 'Current practice step' })).toHaveTextContent(tea.meaning)
     await user.click(screen.getByRole('button', { name: 'Close practice' }))
     await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument())
@@ -566,7 +608,8 @@ describe('first usable Assistant', () => {
     window.location.hash = `conversation/${id}`
     const user = userEvent.setup()
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Delete conversation' }))
+    await user.click(await screen.findByRole('button', { name: /^Conversation actions:/ }))
+    await user.click(screen.getByRole('button', { name: 'Delete conversation' }))
     expect(await db.assistantThreads.get(id)).toBeDefined()
     await user.click(screen.getByRole('button', { name: 'Delete permanently' }))
     await waitFor(async () => expect(await db.assistantThreads.get(id)).toBeUndefined())

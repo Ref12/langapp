@@ -12,6 +12,7 @@ import * as cues from '../../core/assistant/recording-cue'
 import { interruptAudio } from '../../core/assistant/audio-owner'
 import * as audioOwner from '../../core/assistant/audio-owner'
 import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
+import { openPhraseActions } from '../../test/phrase-actions'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', meaning: 'hello' } as const
 const blocks: AssistantBlock[] = [
@@ -211,7 +212,7 @@ describe('conversation voice input and replies', () => {
     await openVoice()
     await begin()
     act(() => report({ phase: 'listening', transcript: 'Discard' }))
-    fireEvent.click(screen.getByRole('button', { name: 'Ask' }))
+    fireEvent.click(openPhraseActions().getByRole('button', { name: 'Ask' }))
     await waitFor(() => expect(screen.getByRole('textbox', { name: 'Message Assistant' })).toHaveValue(`Original\n\nPlease explain this passage:\n\n${phrase.text}\n\nMeaning: hello`))
     expect(cancel).toHaveBeenCalled()
     expect(fetch).not.toHaveBeenCalled()
@@ -298,7 +299,7 @@ describe('conversation voice input and replies', () => {
       }
       if (change === 'navigate') await act(async () => { window.location.hash = 'overview'; window.dispatchEvent(new HashChangeEvent('hashchange')) })
       if (change === 'escape') fireEvent.keyDown(document, { key: 'Escape' })
-      if (change === 'hear') fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+      if (change === 'hear') fireEvent.click(openPhraseActions().getByRole('button', { name: 'Hear' }))
       await act(async () => finish(response()))
       await waitFor(async () => expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.status === 'completed' && message.runId !== undefined && message.role === 'assistant').count()).toBe(1))
       if (change !== 'navigate') await screen.findByRole('button', { name: 'Send' })
@@ -411,6 +412,7 @@ describe('conversation voice input and replies', () => {
     await openVoice()
     await begin()
     const firstCancel = cancel
+    openPhraseActions()
     await waitFor(() => expect(screen.getByRole('button', { name: 'Practice' })).toBeEnabled())
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Practice' })) })
     const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })

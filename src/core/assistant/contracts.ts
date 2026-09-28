@@ -60,6 +60,15 @@ export const speechBlockSchema = z.object({
 }).strict()
 export const practiceInputSchema = z.enum(['listen-repeat', 'spoken-feedback'])
 export const practicePhraseSchema = speechBlockSchema.extend({ locale: z.literal('zh-Hans') })
+export const practiceHistoryEntrySchema = z.object({
+  text: z.string().min(1).max(3000),
+  phrase: practicePhraseSchema,
+  rate: speechRateSchema,
+  lastOpenedAt: timestamp,
+  chain: practiceChainSchema.optional(),
+}).strict().refine(entry => entry.text === entry.phrase.text && (!entry.chain || entry.chain.text === entry.text),
+  'History must retain the exact practiced phrase.')
+export type PracticeHistoryEntry = z.infer<typeof practiceHistoryEntrySchema>
 export const practiceAttemptSchema = z.object({
   phrase: practicePhraseSchema,
   input: z.literal('speech-transcript'),
@@ -76,11 +85,13 @@ export const practiceResultSchema = z.discriminatedUnion('kind', [
 export const assistantBlockSchema = z.discriminatedUnion('type', [textBlockSchema, speechBlockSchema])
 export const assistantReplySchema = z.object({
   blocks: z.array(assistantBlockSchema).min(1).max(12),
+  conversationTitle: z.string().trim().min(1).max(120).nullable().optional(),
 }).strict()
 
 export const assistantThreadSchema = z.object({
   id,
   title: z.string().min(1).max(120),
+  titleManuallySet: z.boolean().optional(),
   draft: z.string().max(MAX_DRAFT_LENGTH),
   source: assistantSourceSchema.optional(),
   mode: assistantModeSchema,
@@ -209,6 +220,8 @@ export const assistantBackupSchema = z.object({
   threads: z.array(assistantThreadSchema).max(500),
   messages: z.array(assistantMessageSchema).max(10000),
   runs: z.array(assistantRunSchema).max(5000),
+  practiceHistory: z.array(practiceHistoryEntrySchema).refine(entries => new Set(entries.map(entry => entry.text)).size === entries.length,
+    'History contains duplicate phrases.').optional(),
 }).strict()
 
 export type AssistantMode = z.infer<typeof assistantModeSchema>

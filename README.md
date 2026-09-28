@@ -546,8 +546,16 @@ validated text and locale-tagged speech blocks, not executable code. Ordinary
 Markdown examples never dispatch app operations.
 
 Each conversation keeps its own draft, source context, mode, romanization
-preference, and Mandarin playback speed. New conversations are named after the
-first sent message. Failed draft saves are visibly reported, and the unsaved
+preference, and Mandarin playback speed. The conversation title lives in the top
+bar; tap it for **Rename conversation** or **Delete conversation** (with confirmation).
+Use the top-level menu's **Assistant** item to return to the conversation list;
+there is no separate conversation back button. The empty composer is one line
+tall and grows with its text, with a compact Send icon and full-sized tap target.
+
+The first sent message supplies a provisional name. The AI can replace it with
+a short title in the same first reply, without a second request. A manual rename,
+including one made while that reply is pending, always wins. Later replies cannot
+rename the conversation. Failed draft saves are visibly reported, and the unsaved
 text remains in memory across in-app navigation so you can retry; it is not safe
 to close or reload until saved. Switching Conversation/Shadow affects subsequent turns and
 preserves previous messages. Shadow translates the learner's thought rather than
@@ -584,8 +592,10 @@ share exclusive audio ownership so starting one interrupts the other.
 **Ask** stays in the current conversation when used inside a chat,
 appending to the existing draft without sending or replacing its text. Elsewhere,
 it starts a new conversation with an editable draft and exact source context.
-Each Mandarin speech snippet in an Assistant reply has its own **Hear / Ask / Practice**
-buttons; ordinary explanation blocks do not. Word cards have one action row.
+Each Mandarin speech snippet in an Assistant reply has a small actions icon on
+its right. Tap it for **Hear / Ask / Practice**, and **Explain more** for Shadow
+translations; ordinary explanation blocks do not have an action row. Word cards
+keep their existing action row.
 
 The app-wide text-selection popup also offers **Hear / Ask / Practice**.
 Select Mandarin text (up to 3,000 UTF-16 units) and choose **Practice** to open
@@ -593,9 +603,28 @@ the same playlist on the current page, without creating a conversation, changing
 a draft, sending an AI request, or starting the microphone. English, mixed-language,
 and oversized selections explain why Practice is unavailable. Protected exercise
 answers and editable drafts remain excluded. Selection practice uses the current
-conversation's speed, or the default Mandarin speed elsewhere. The most recently
-edited selection's chunks and playlist order are retained only for that page
-visit, not saved to a profile or backup; leaving the page or reloading clears them.
+conversation's speed, or the default Mandarin speed elsewhere. The current page
+remembers the last edited selection, and **History** retains the phrase and its
+latest saved playlist across navigation and reload.
+
+### Recent phrase history
+
+The top-level **History** item (`#history`) lists phrases as soon as their Phrase
+Practice dialog opens, even if no audio is played. Each exact phrase appears
+once, most recent first; reopening moves it to the top. Tap a row to reopen a
+silent practice dialog with the phrase, meaning, romanization, saved starting
+speed, and most recently saved chunks/order. Edits made from History update its
+playlist, not the original conversation's playlist. History is independent of
+learning evidence and remains available if a source conversation is deleted.
+
+History is stored in the active profile's `practiceHistory` table (Dexie schema
+13). It is included in profile clones, YAML exports/imports, and JSON backups
+as optional `conversations.practiceHistory` / `assistant.practiceHistory`.
+Older snapshots without this field restore an empty History. Existing
+conversations are not retroactively treated as practiced phrases. Failed
+History writes are reported in the dialog with a retry action.
+
+### Phrase practice
 
 **Practice** opens a centered popup (a tall bottom sheet on mobile) with the
 active step, contextual pinyin, and compact playback controls. Opening is silent

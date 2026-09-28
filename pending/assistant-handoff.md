@@ -3,6 +3,52 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## History and compact Assistant (2026-09-28)
+
+Local changes add top-level History, recording each distinct phrase when its
+Phrase Practice dialog opens (the user's explicit choice), newest first.
+`PracticePlaylist` owns the single StrictMode-safe opening write for all entry
+points. The profile-scoped `practiceHistory` table is Dexie version 13;
+validated optional history entries roundtrip in Assistant JSON backups and
+profile YAML/clones. Restoring older snapshots clears history. Opening remains
+silent and never awards learning evidence. History can reopen and edit its
+own playlist independently of source conversations; deleting a source does not
+delete history. A failed history write is visible with explicit retry.
+
+Conversation titles now occupy the app's top bar. Their menu offers rename
+and confirmed deletion; navigation -> Assistant replaces the old back button.
+The composer starts at one line, grows/shrinks with text, and uses a smaller
+visual Send control with a 44px touch target. Per-phrase Hear/Ask/Practice and
+Shadow Explain more live in a right-side actions popup; native selection's
+popup remains available. Menus support focus, Escape, outside dismissal,
+and viewport-bounded positioning.
+
+The first normal AI reply may include validated `conversationTitle` metadata
+in the same request (Chat Completions and Responses, strict schema or plain
+JSON). The existing first-message excerpt remains the provisional name.
+Only the first message of an unnamed conversation can accept generated naming.
+Manual renames set `titleManuallySet`; before/during a reply they prevent an
+automatic overwrite. Later or cancelled replies cannot rename. Metadata is
+never included in speech or conversation message text.
+
+Validation: targeted persistence, title-generation, profile, recording and UI
+regressions pass. The final focused run passed 95 cases across six files;
+TypeScript, repository lint and full current/v1 production build pass. A
+synthetic headless Edge profile confirms a 44px empty textarea, 54px composer,
+32px visual Send circle inside a 44px target, shrink-back after multiline text,
+top-bar title menus, silent History registration and no horizontal overflow at
+320px, 390px (including 420px keyboard-height), and 1440px. Action popups remain
+inside the viewport. No live AI/TTS or private-profile mutation was used.
+
+The full Pages suite had 3,364 passed, one skipped, and one timing-dependent
+failure in the untouched Potions color-reveal test (it observed a smoke tile
+immediately after the Colors button disabled). All 12 Potions tests passed
+when rerun alone. That unrelated test was not changed. Do not describe the
+full suite as entirely green.
+
+Preview server for this work: `http://127.0.0.1:5180/`. Changes remain local;
+no commit or push is authorized for this request.
+
 ## Pages test stabilization (2026-09-28)
 
 Pages run `36373324469` failed only in two order-sensitive UI tests:

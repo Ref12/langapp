@@ -187,7 +187,7 @@ it('retains edited chunks when reopening the same selection during this page vis
   await select()
   const reopened = await open()
   expect(within(reopened).getAllByRole('button', { name: /^Play step/ })).toHaveLength(2)
-  expect(reopened.querySelector('[id$="-privacy"]')).toHaveTextContent(/kept for this page visit only/)
+  expect(reopened.querySelector('[id$="-privacy"]')).toHaveTextContent(/saved in History/)
   expect(await db.assistantThreads.count()).toBe(0)
   view.rerender(<Harness route="dictionary" text="你好" />)
   await waitFor(() => expect(reopened).not.toBeInTheDocument())

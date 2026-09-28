@@ -11,6 +11,7 @@ import type { SpeechAssessment } from '../../core/assistant/speech-contracts'
 import * as playback from '../../core/assistant/speech'
 import * as cues from '../../core/assistant/recording-cue'
 import { exportWorkspaceBackup, restoreBackup } from '../../core/backup'
+import { openPhraseActions } from '../../test/phrase-actions'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', meaning: 'hello' } as const
 let threadId: string
@@ -90,6 +91,7 @@ async function openPractice(index = 0) {
     popup = null
   }
   if (!popup) {
+    openPhraseActions(block)
     await waitFor(() => expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled())
     await act(async () => { fireEvent.click(within(block).getByRole('button', { name: 'Practice' })) })
     popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
@@ -311,11 +313,12 @@ describe('source-block popup practice', () => {
     expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledWith(expect.any(String), phrase.text, phrase.locale, 1)
     expect(playCue).toHaveBeenCalledTimes(1)
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
+    openPhraseActions(source)
     expect(within(source).getByRole('button', { name: 'Hear' })).toBeInTheDocument()
     expect(within(source).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
     expect(within(source).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
     expect(within(block).getAllByRole('button').map(button => button.textContent)).toEqual(['Submit', 'Cancel'])
-    expect(within((await blocks())[0]).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(openPhraseActions((await blocks())[0]).getByRole('button', { name: 'Practice' })).toBeEnabled()
     expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument()
     await submit(block)
     expect(within(block).getByText('Transcript matches.')).toBeInTheDocument()
@@ -400,7 +403,7 @@ describe('source-block popup practice', () => {
     const second = await begin(1)
     expect(handles[0].cancel).toHaveBeenCalled()
     expect(screen.getAllByRole('dialog', { name: 'Phrase practice' })).toHaveLength(1)
-    expect(within((await blocks())[0]).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(openPhraseActions((await blocks())[0]).getByRole('button', { name: 'Practice' })).toBeEnabled()
     act(() => late({ phase: 'finished', transcript: 'late text' }))
     await submit(second)
     expect((await db.assistantMessages.get('source-reply'))?.practiceResults?.map(entry => entry.blockIndex)).toEqual([2])
@@ -412,7 +415,7 @@ describe('source-block popup practice', () => {
     await act(async () => { await updateThread(threadId, { mode: 'shadow' }) })
     await waitFor(() => expect(handles[0].cancel).toHaveBeenCalled())
     await act(async () => { await updateThread(threadId, { mode: 'conversation' }) })
-    await screen.findByText('Conversation / English and Mandarin')
+    await screen.findByText('Switched to Conversation mode.')
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Submit' })).not.toBeInTheDocument())
     await begin()
     await waitFor(() => expect(handles).toHaveLength(2))

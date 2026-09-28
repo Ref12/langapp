@@ -12,6 +12,7 @@ import * as playback from '../../core/assistant/speech'
 import * as cues from '../../core/assistant/recording-cue'
 import { MockAudio, mockAudio } from '../../test/mock-audio'
 import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
+import { openPhraseActions } from '../../test/phrase-actions'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', romanization: 'ni hao', meaning: 'hello' } as const
 const connection: SpeechConnection = { id: 'assistant-speech', provider: 'azure', region: 'eastus', apiKey: 'fake-speech-key',
@@ -145,7 +146,7 @@ describe('automatic translation practice', () => {
     render(<App />)
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
     expect(preview).not.toHaveBeenCalled()
-    fireEvent.click(within(reply).getByRole('button', { name: 'Practice' }))
+    fireEvent.click(openPhraseActions(reply).getByRole('button', { name: 'Practice' }))
     const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
     await waitFor(() => expect(within(popup).getByRole('button', { name: 'Play practice' })).toBeEnabled())
     expect(preview).not.toHaveBeenCalled()

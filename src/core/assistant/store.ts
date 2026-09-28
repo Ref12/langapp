@@ -9,10 +9,11 @@ import {
 
 const threadIdSchema = assistantThreadSchema.shape.id
 const threadChangesSchema = assistantThreadSchema.pick({
+  title: true,
   mode: true, shadowIntent: true, shadowPhrase: true, romanization: true, speechRate: true, returnRoute: true,
   practiceInput: true, practicePhrase: true, speechFeedback: true,
   voiceEnabled: true, voiceInputLocale: true,
-}).partial().strict()
+}).extend({ title: z.string().trim().min(1).max(120) }).partial().strict()
 type ThreadChanges = z.infer<typeof threadChangesSchema>
 
 async function requireThread(threadId: string): Promise<AssistantThread> {
@@ -83,7 +84,7 @@ export async function updateThread(threadId: string, changes: ThreadChanges): Pr
   await db.transaction('rw', db.assistantThreads, db.assistantMessages, async () => {
     const thread = await requireThread(threadId)
     const now = Date.now()
-    const next = { ...thread, ...validated, updatedAt: now }
+    const next = { ...thread, ...validated, ...(validated.title !== undefined ? { titleManuallySet: true } : {}), updatedAt: now }
     assistantThreadSchema.parse(next)
     if (next.mode !== thread.mode) {
       const last = await db.assistantMessages.where('[threadId+sequence]')

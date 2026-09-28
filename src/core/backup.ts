@@ -9,7 +9,7 @@ export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from
 function exportableTables() {
   return [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
     db.assistantThreads, db.assistantMessages, db.assistantRuns,
-    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks]
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks, db.practiceHistory]
 }
 
 export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<string> {
@@ -17,10 +17,12 @@ export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<str
   void _workspace
   return db.transaction('r', exportableTables(), async () => {
     const workspace = await loadWorkspace()
+    const practiceHistory = await db.practiceHistory.toArray()
     const assistant = {
       threads: await db.assistantThreads.toArray(),
       messages: await db.assistantMessages.toArray(),
       runs: await db.assistantRuns.toArray(),
+      ...(practiceHistory.length ? { practiceHistory } : {}),
     }
     return exportBackup({ ...workspace, library: await db.libraryBooks.toArray() }, assistant)
   })
@@ -56,6 +58,7 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
       await db.assistantThreads.bulkAdd(assistant.threads)
       await db.assistantMessages.bulkAdd(assistant.messages)
       await db.assistantRuns.bulkAdd(assistant.runs)
+      await db.practiceHistory.bulkAdd(assistant.practiceHistory ?? [])
       await db.knowledge.bulkAdd(study.knowledge)
       await db.studyCards.bulkAdd(study.cards)
       await db.exerciseSessions.bulkAdd(study.sessions)

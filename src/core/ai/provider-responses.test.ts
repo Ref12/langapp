@@ -78,7 +78,7 @@ describe('stateless Responses model client', () => {
     await testAIConnection({ ...connection, structuredOutput: true })
     expect(body(fetcher).text.format).toMatchObject({
       type: 'json_schema', name: 'assistant_reply', strict: true,
-      schema: { type: 'object', additionalProperties: false, required: ['blocks'] },
+      schema: { type: 'object', additionalProperties: false, required: ['blocks', 'conversationTitle'] },
     })
     expect(body(fetcher)).not.toHaveProperty('response_format')
     expect(body(fetcher)).not.toHaveProperty('max_tokens')

@@ -1,6 +1,6 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, ChevronRight, Gamepad2, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, ChevronRight, Gamepad2, History as HistoryIcon, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { savePreferences } from './core/learning'
 import { useRoute } from './core/routing'
@@ -25,6 +25,7 @@ import { Writing } from './pages/Writing'
 import { Settings } from './pages/Settings'
 import { LevelDetail } from './pages/Curriculum'
 import { Assistant, AssistantSidebar } from './pages/Assistant'
+import { History } from './pages/History'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
 import { DraftStatus } from './components/assistant/DraftStatus'
 import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnectionSetup'
@@ -42,6 +43,7 @@ const navigation = [
   { id: 'practice', label: 'Practice', icon: Sparkles },
   { id: 'games', label: 'Games', icon: Gamepad2 },
   { id: 'conversation', label: 'Assistant', icon: MessageCircle },
+  { id: 'history', label: 'History', icon: HistoryIcon },
   { id: 'dictionary', label: 'Dictionary', icon: BookText },
 ]
 
@@ -49,7 +51,7 @@ function NotFound() {
   return <EmptyState title="This page is not available"><p>The story, lesson, or saved session may no longer be in this workspace.</p><a className="button primary" href="#overview">Return to overview</a></EmptyState>
 }
 
-function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: string; returnRoute: string }) {
+function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProps & { route: string; returnRoute: string; assistantHeader: HTMLElement | null }) {
   const [page, id, lessonPage] = route.split('/')
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
@@ -87,7 +89,8 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
   if (page === 'dictionary') return <Dictionary {...props} section={id} initialScope={lessonPage} />
   if (page === 'writing') return <Writing {...props} codepoint={id} scope={lessonPage} />
   if (page === 'settings') return <Settings {...props} />
-  if (page === 'conversation') return <Assistant threadId={id} returnRoute={returnRoute} />
+  if (page === 'history') return <History />
+  if (page === 'conversation') return <Assistant threadId={id} returnRoute={returnRoute} headerTarget={assistantHeader} />
   return <NotFound />
 }
 
@@ -98,6 +101,7 @@ function WorkspaceApp() {
   const [pending, setPending] = useState(0)
   const [error, setError] = useState('')
   const [now, setNow] = useState(Date.now)
+  const [assistantHeader, setAssistantHeader] = useState<HTMLDivElement | null>(null)
   const main = useRef<HTMLElement>(null)
   const returnRoute = useRef('overview')
   const run = useCallback(async (operation: () => Promise<void>) => {
@@ -157,7 +161,7 @@ function WorkspaceApp() {
   const collapsed = preferences.sidebarCollapsed
   const due = workspace.words.filter(word => word.dueAt <= now).length
   const busy = pending > 0
-  const currentPage = <CurrentPage key={route} route={route} returnRoute={returnRoute.current} workspace={workspace} busy={busy} now={now} run={run} />
+  const currentPage = <CurrentPage key={route} route={route} returnRoute={returnRoute.current} assistantHeader={assistantHeader} workspace={workspace} busy={busy} now={now} run={run} />
   const practicing = (page === 'practice' && workspace.sessions.some(session => session.id === route.split('/')[1] && session.status === 'active'))
     || (page === 'lessons' && workspace.exerciseSessions.some(session => session.id === route.split('/')[2] && session.status === 'active'))
   const workspaceNavigation = <>
@@ -184,7 +188,8 @@ function WorkspaceApp() {
       </aside>
       <div className="workspace"><header className="topbar"><div className="topbar-leading">
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
-        <div className="breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>{label}</strong></div></div>
+        {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
+          : <div className="breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>{label}</strong></div>}</div>
         <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>

@@ -56,6 +56,45 @@ beforeEach(async () => {
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks() })
 
 describe('event-driven durable tutor', () => {
+  it('generates the title in the first reply only without adding requests or title text to messages', async () => {
+    const id = await createThread()
+    const fetcher = mockFetch(finalResponse({ blocks, conversationTitle: 'Talking about tea' }), finalResponse({ blocks, conversationTitle: 'Ignore this later title' }))
+    const reply = await sendAssistantTurn(id)
+    expect((await db.assistantThreads.get(id))?.title).toBe('Talking about tea')
+    expect(reply.blocks).toEqual(blocks)
+    expect(reply).not.toHaveProperty('conversationTitle')
+    expect(JSON.parse(fetcher.mock.calls[0][1].body).messages[0].content).toContain('This is the first message')
+    await sendAssistantTurn(id, { text: 'Tell me more' })
+    expect((await db.assistantThreads.get(id))?.title).toBe('Talking about tea')
+    expect(JSON.parse(fetcher.mock.calls[1][1].body).messages[0].content).toContain('Do not rename this conversation')
+    expect(fetcher).toHaveBeenCalledTimes(2)
+  })
+
+  it.each(['before', 'during'] as const)('preserves a manual name set %s the first reply', async when => {
+    const id = await createThread()
+    if (when === 'before') await updateThread(id, { title: 'My tea notes' })
+    const held = deferredFetch()
+    const sending = sendAssistantTurn(id)
+    await waitForFetch(held.fetcher)
+    if (when === 'during') await updateThread(id, { title: 'My tea notes' })
+    held.finish(finalResponse({ blocks, conversationTitle: 'Model name' }))
+    await sending
+    expect((await db.assistantThreads.get(id))?.title).toBe('My tea notes')
+    expect((await db.assistantThreads.get(id))?.titleManuallySet).toBe(true)
+  })
+
+  it('does not publish a title after cancellation', async () => {
+    const id = await createThread()
+    const held = deferredFetch()
+    const sending = sendAssistantTurn(id)
+    const failure = expect(sending).rejects.toThrow(/cancelled/)
+    await waitForFetch(held.fetcher)
+    await cancelAssistantRun(id)
+    held.finish(finalResponse({ blocks, conversationTitle: 'Late name' }))
+    await failure
+    expect((await db.assistantThreads.get(id))?.title).toBe('Please explain tea')
+  })
+
   it('atomically reserves linked messages and a bounded run, publishes once, then waits for the learner across reload', async () => {
     const id = await createThread('  Please explain tea  ')
     const before = await loadWorkspace()

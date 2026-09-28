@@ -1,6 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie'
 import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type Preferences, type ReadingProgress, type WordState, type Workspace } from './model'
-import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread } from './assistant/contracts'
+import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
@@ -37,6 +37,7 @@ export class LearningDatabase extends Dexie {
   defenderGames!: EntityTable<DefenderGame, 'id'>
   potionGames!: EntityTable<PotionsGame, 'id'>
   potionProgress!: EntityTable<PotionsProgress, 'id'>
+  practiceHistory!: EntityTable<PracticeHistoryEntry, 'text'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -71,6 +72,7 @@ export class LearningDatabase extends Dexie {
     this.version(10).stores({ memoryGames: '&id' })
     this.version(11).stores({ defenderGames: '&id' })
     this.version(12).stores({ potionGames: '&id', potionProgress: '&id' })
+    this.version(13).stores({ practiceHistory: '&text, lastOpenedAt' })
   }
 }
 

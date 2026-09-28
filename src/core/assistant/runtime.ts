@@ -30,6 +30,7 @@ interface ReservedTurn {
   pending: AssistantMessage
   run: AssistantRun
   connection: AIConnection
+  generateTitle: boolean
 }
 
 const controllers = new Map<string, { threadId: string; controller: AbortController }>()
@@ -93,10 +94,11 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
       createdAt: now, updatedAt: now, expiresAt: now + RUN_TIMEOUT_MS,
     })
     const firstSend = !await db.assistantMessages.where('threadId').equals(threadId).filter(message => message.role === 'user').count()
+    const generateTitle = firstSend && !thread.titleManuallySet && thread.title === 'New conversation'
     const clearCapturedDraft = !request?.preserveDraft && thread.draft === text
     const nextThread: AssistantThread = {
       ...thread, updatedAt: now,
-      ...(firstSend ? { title: text.trim().replace(/\s+/g, ' ').slice(0, 120) } : {}),
+      ...(generateTitle ? { title: text.trim().replace(/\s+/g, ' ').slice(0, 120) } : {}),
       ...(clearCapturedDraft ? { draft: '' } : {}),
     }
     if (clearCapturedDraft) delete nextThread.source
@@ -105,7 +107,7 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
     await db.assistantMessages.bulkAdd([user, pending])
     await db.assistantRuns.add(run)
     requireActiveSignal(signal)
-    return { thread, user, pending, run, connection: parsedConnection.data }
+    return { thread, user, pending, run, connection: parsedConnection.data, generateTitle }
   })
 }
 
@@ -176,6 +178,9 @@ async function publishReply(turn: ReservedTurn, value: AssistantReply, signal: A
       && JSON.stringify(current.thread.shadowPhrase) === JSON.stringify(turn.thread.shadowPhrase)
     const nextThread: AssistantThread = {
       ...current.thread, updatedAt: now,
+      ...(turn.generateTitle && reply.conversationTitle && !current.thread.titleManuallySet
+        && current.thread.title === turn.user.text.trim().replace(/\s+/g, ' ').slice(0, 120)
+        ? { title: reply.conversationTitle } : {}),
       ...(rememberPhrase && phrase?.type === 'speech' ? { shadowPhrase: phrase } : {}),
     }
     await db.assistantThreads.put(assistantThreadSchema.parse(nextThread))
@@ -217,7 +222,7 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
         && (message.role === 'user' || message.role === 'assistant'))
       .limit(24).toArray()
     const context = await abortable(getLearningContext((turn.user.source?.text ?? turn.user.text).slice(0, 200)), controller.signal)
-    const messages = buildTutorMessages(turn.thread, turn.user, history, context)
+    const messages = buildTutorMessages(turn.thread, turn.user, history, context, turn.generateTitle)
     const client = createAssistantModelClient(turn.connection, messages)
     const callIds = new Set<string>()
     let results: ToolResult[] = []

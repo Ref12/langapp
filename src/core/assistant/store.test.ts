@@ -69,7 +69,8 @@ describe('Assistant database migration', () => {
       }
       old.close()
       await migrated.open()
-      expect(migrated.verno).toBe(12)
+      expect(migrated.verno).toBe(13)
+      expect(await migrated.practiceHistory.count()).toBe(0)
       expect(await migrated.preferences.get('workspace')).toEqual(workspace.preferences)
       for (const table of ['words', 'readings', 'lessons', 'sessions', 'attempts'] as const) {
         expect(await migrated.table(table).toArray()).toEqual(workspace[table])
@@ -305,7 +306,8 @@ describe('durable independent conversations', () => {
     await expect(saveDraft(id, 'x'.repeat(MAX_DRAFT_LENGTH + 1))).rejects.toThrow()
     await expect(saveDraft(id, 'changed', { ...source, text: '' })).rejects.toThrow()
     await expect(updateThread(id, { speechRate: 9 } as never)).rejects.toThrow()
-    await expect(updateThread(id, { title: 'forbidden' } as never)).rejects.toThrow()
+    await expect(updateThread(id, { title: '   ' })).rejects.toThrow()
+    await expect(updateThread(id, { titleManuallySet: false } as never)).rejects.toThrow()
     expect(await db.assistantThreads.get(id)).toEqual(before)
     expect(await db.assistantMessages.count()).toBe(0)
     vi.spyOn(db.assistantThreads, 'put').mockRejectedValueOnce(new Error('Storage full'))
