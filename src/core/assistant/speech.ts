@@ -28,7 +28,7 @@ const voiceWaitMs = 3000
 const voiceRecheckMs = 100
 const playbackStartWaitMs = 10_000
 const warmupCompletionWaitMs = 10_000
-const speechWarmIdleMs = 1000
+const speechWarmIdleMs = 5 * 60_000
 let state: PlaybackState = {}
 let current: PlaybackRequest | undefined
 let generation = 0

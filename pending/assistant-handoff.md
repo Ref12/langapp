@@ -102,10 +102,11 @@ This supports startup-loss mitigation, not a precise browser/OS root cause.
 
 The user approved default-on native preparation **after idle**, accepting roughly
 two seconds of startup time. Shared `speech.ts` now queues muted preparation
-and the unchanged target synchronously, with a 1,000ms idle threshold keyed by
+and the unchanged target synchronously, with a five-minute idle threshold keyed by
 native synthesis, language, and voice identity. Preparation runs at normal rate;
 the actual target retains quarter-speed Mandarin or normal-speed English.
-Only successful target completion establishes warmth. Voice changes, actual
+The threshold was increased from one second at the user's request after
+Defender matches exposed repeated warm-up latency. Only successful target completion establishes warmth. Voice changes, actual
 cancellation, and failures invalidate it; an idle Stop does not. Separate bounded
 startup, preparation, and target deadlines prevent an indefinitely active queue.
 Late preparation callbacks cannot end or fail an already-started target.

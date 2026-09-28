@@ -584,9 +584,11 @@ an explicit Play and never loops or accelerates automatically. Playback settings
 reset on closing; they do not overwrite conversation settings.
 
 Browser-native speech uses a muted preparation utterance before a cold start or
-after idle to protect the beginning from being clipped. This can add roughly two
-seconds before the phrase; immediate consecutive speech with the same voice
-does not repeat the preparation. It uses the selected voice and language, keeps
+after five minutes idle to protect the beginning from being clipped. This can add
+roughly two seconds before the phrase; subsequent speech with the same voice and
+language within five minutes of the last completed utterance skips preparation.
+Changing voices, cancelling unfinished speech, or a playback failure still
+invalidates that warm state. It uses the selected voice and language, keeps
 the actual phrase unchanged, and is cancelled by Stop along with that phrase.
 For online/system-selected voices, the voice service may also receive the short
 preparation text. Guided pauses and recording still wait for the actual phrase

@@ -134,11 +134,11 @@ describe('muted browser speech preparation', () => {
     await expect(pending).resolves.toEqual({ status: 'completed' })
   })
 
-  it('skips preparation for consecutive speech, preserves warmth across idle Stop, and warms again after 1000ms idle', async () => {
+  it('preserves warmth through idle Stop until five minutes after the last completed speech', async () => {
     const first = playBrowserSpeechToEnd('first', '你好', 'zh-Hans')
     queued().forEach(complete)
     await expect(first).resolves.toEqual({ status: 'completed' })
-    await advance(999)
+    await advance(299_999)
     stopBrowserSpeech()
     const second = playBrowserSpeechToEnd('second', '再见', 'zh-Hans', 0.25)
     expect(queued()).toHaveLength(3)
@@ -146,11 +146,27 @@ describe('muted browser speech preparation', () => {
     complete(queued()[2])
     await expect(second).resolves.toEqual({ status: 'completed' })
     expect(native.cancel).not.toHaveBeenCalled()
-    await advance(1000)
+    await advance(300_000)
     const third = playBrowserSpeechToEnd('third', '你好', 'zh-Hans')
     expect(queued().slice(3).map(utterance => utterance.volume)).toEqual([0, 1])
     queued().slice(3).forEach(complete)
     await expect(third).resolves.toEqual({ status: 'completed' })
+  })
+
+  it.each([
+    ['listed', 1000], ['listed', 5000], ['listed', 60_000], ['listed', 299_999],
+    ['system', 1000], ['system', 5000], ['system', 60_000], ['system', 299_999],
+  ] as const)('keeps %s speech warm across %i milliseconds between words', async (source, idle) => {
+    if (source === 'system') native.getVoices.mockReturnValue([])
+    const first = playBrowserSpeechToEnd('first-match', '你好', 'zh-Hans')
+    queued().forEach(complete)
+    await first
+    await advance(idle)
+    const next = playBrowserSpeechToEnd('next-match', '再见', 'zh-Hans')
+    expect(queued()).toHaveLength(3)
+    expect(queued()[2]).toMatchObject({ text: '再见', volume: 1 })
+    complete(queued()[2])
+    await expect(next).resolves.toEqual({ status: 'completed' })
   })
 
   it.each(['language', 'voice', 'system-to-listed', 'engine', 'preferences', 'refresh', 'clock-reset'])(
