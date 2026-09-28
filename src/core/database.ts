@@ -10,6 +10,7 @@ import type { LibraryBook } from './library/contracts'
 import type { SudokuGame } from './games/sudoku-contracts'
 import type { MemoryGame } from './games/memory'
 import type { DefenderGame } from './games/defender'
+import type { PotionsGame, PotionsProgress } from './games/potions'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -34,6 +35,8 @@ export class LearningDatabase extends Dexie {
   sudokuGames!: EntityTable<SudokuGame, 'id'>
   memoryGames!: EntityTable<MemoryGame, 'id'>
   defenderGames!: EntityTable<DefenderGame, 'id'>
+  potionGames!: EntityTable<PotionsGame, 'id'>
+  potionProgress!: EntityTable<PotionsProgress, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -67,6 +70,7 @@ export class LearningDatabase extends Dexie {
     this.version(9).stores({ sudokuGames: '&id' })
     this.version(10).stores({ memoryGames: '&id' })
     this.version(11).stores({ defenderGames: '&id' })
+    this.version(12).stores({ potionGames: '&id', potionProgress: '&id' })
   }
 }
 

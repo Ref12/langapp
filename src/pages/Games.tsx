@@ -1,4 +1,4 @@
-import { ArrowRight, Brain, Grid3X3, Layers, Shield } from 'lucide-react'
+import { ArrowRight, Brain, FlaskConical, Grid3X3, Layers, Shield } from 'lucide-react'
 import { PageHeading } from '../components/shared'
 
 export function Games() {
@@ -20,6 +20,10 @@ export function Games() {
       <section className="experience-card"><Brain size={28} className="accent" /><h2>Word Memory</h2>
         <p>Study the tiles, then turn them face down. Find matching pairs or complete Chinese, pinyin, and English triplets.</p>
         <a className="button primary" href="#games/memory">Play Memory <ArrowRight size={16} /></a>
+      </section>
+      <section className="experience-card"><FlaskConical size={28} className="accent" /><h2>Phrase Potions</h2>
+        <p>Sort scrambled words between vials until each one holds a complete phrase. Levels are dealt from lesson phrases you already know.</p>
+        <a className="button primary" href="#games/potions">Play Potions <ArrowRight size={16} /></a>
       </section>
     </div>
   </>

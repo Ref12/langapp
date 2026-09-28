@@ -58,7 +58,7 @@ describe('isolated named browser profiles', () => {
     vi.stubGlobal('indexedDB', legacyFactory)
     Dexie.dependencies.indexedDB = legacyFactory
     const legacy = new Dexie('linguaweave-next')
-    const newTables = version === 4 ? ['profileState', 'mahjongGames', 'characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames'] : ['characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames']
+    const newTables = version === 4 ? ['profileState', 'mahjongGames', 'characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress'] : ['characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress']
     legacy.version(version).stores(Object.fromEntries(database.db.tables.filter(table => !newTables.includes(table.name)).map(table =>
       [table.name, [table.schema.primKey.src, ...table.schema.indexes.map(index => index.src)].join(', ')])))
     const snapshot = populatedProfile(true)
@@ -79,7 +79,7 @@ describe('isolated named browser profiles', () => {
     legacy.close()
     await reopenPage()
     expect(database.db.name).toBe('linguaweave-next')
-    expect(database.db.verno).toBe(11)
+    expect(database.db.verno).toBe(12)
     expect(await database.db.sudokuGames.count()).toBe(0)
     expect(await database.db.memoryGames.count()).toBe(0)
     expect(await database.db.defenderGames.count()).toBe(0)
