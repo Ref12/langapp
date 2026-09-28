@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | Phrase chaining, highlighted split tiles, saved partial-phrase tracks, and native speech warm-up are complete. Also records stabilization of two asynchronous Pages-test races from run 36373324469; rerun Pages after this branch is merged to main. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Phrase chaining, highlighted split tiles, saved partial-phrase tracks, and native speech warm-up are complete. Also records Pages-test stabilization committed as `df2fde2a`; Pages run `36378166144` passed and the deployed site returned HTTP 200. |
 
 ## Maintaining this folder
 

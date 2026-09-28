@@ -20,10 +20,9 @@ selection. Product behavior and the assertions are unchanged. Targeted tests
 pass (36 cases). The full release gate passes locally: lint, all 144 Pages test
 files (3,327 passed, one skipped), and the current/v1 production build.
 
-This worktree is based on failed main commit `ff97a66f`. The repair is in
-`src/pages/Sudoku.test.tsx` and `src/components/assistant/VoiceSettings.test.tsx`.
-No main branch commit or Pages rerun has occurred; Pages should be verified after
-the repair is merged/pushed to `main`.
+The repair was pushed directly to `main` as `df2fde2a`. Pages run
+`36378166144` passed its build/test/deploy jobs, and the live site and app bundle
+returned HTTP 200.
 
 ## Phrase chaining playlist
 
