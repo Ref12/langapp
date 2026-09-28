@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import App from '../App'
@@ -7,6 +7,7 @@ import { loadCatalog } from '../core/study/catalog'
 import { stopBrowserSpeech } from '../core/assistant/speech'
 import { withAutoCompletedSpeechPreparation } from '../test/mock-speech-preparation'
 import { canMovePotion, phraseText, type PotionsGame } from '../core/games/potions'
+import * as potionsStore from '../core/games/potions-store'
 
 class Utterance {
   constructor(public text: string) {}
@@ -20,6 +21,7 @@ const voice: SpeechSynthesisVoice = { name: 'Test Mandarin', lang: 'zh-CN', voic
 const synthesis = Object.assign(new EventTarget(), {
   getVoices: () => [voice], speak: vi.fn<(utterance: Utterance) => void>(), cancel: vi.fn(),
 })
+const originalAnimate = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'animate')
 
 beforeEach(async () => {
   window.location.hash = '#games/potions'
@@ -31,7 +33,11 @@ beforeEach(async () => {
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
   stopBrowserSpeech()
 })
-afterEach(() => { cleanup(); stopBrowserSpeech(); vi.restoreAllMocks(); vi.unstubAllGlobals() })
+afterEach(() => {
+  cleanup(); stopBrowserSpeech(); vi.restoreAllMocks(); vi.unstubAllGlobals()
+  if (originalAnimate) Object.defineProperty(HTMLElement.prototype, 'animate', originalAnimate)
+  else Reflect.deleteProperty(HTMLElement.prototype, 'animate')
+})
 
 const vial = (index: number) => document.querySelector<HTMLButtonElement>(`[data-potions-vial="${index}"]`)!
 
@@ -64,7 +70,7 @@ async function almostSolved(game: PotionsGame) {
   const stray = rows[0].pop()!
   const next = { ...game, revision: game.revision + 1, moves: 4, history: [], rows: [...rows, [stray]] }
   await act(async () => { await db.potionGames.put(next) })
-  await waitFor(() => expect(vial(rows.length)).toBeInTheDocument())
+  await waitFor(() => expect(document.querySelectorAll('[data-potions-vial]')).toHaveLength(next.rows.length))
   return { game: next, stray: rows.length }
 }
 
@@ -93,7 +99,7 @@ it('pours a word onto the word it follows, refuses others, and keeps the puzzle 
   expect(vial(from)).toHaveAttribute('aria-pressed', 'true')
   await user.click(vial(empty))
   await waitFor(async () => expect((await db.potionGames.get('current'))?.moves).toBe(1))
-  expect(vial(empty).textContent).toContain(lifted.text)
+  await waitFor(() => expect(vial(empty)).toHaveTextContent(lifted.text))
   const blocked = (await db.potionGames.get('current'))!
   let refused: [number, number] | undefined
   for (let source = 0; source < blocked.rows.length && !refused; source++) {
@@ -159,5 +165,118 @@ it('discards an invalid saved puzzle without losing the level picker', async () 
   await db.table('potionGames').put({ id: 'current', gameId: 'broken' })
   render(<App />)
   await screen.findByText('The saved Phrase Potions puzzle is invalid. Start a level to replace it.')
-  expect(screen.getByRole('button', { name: 'Play level 1' })).toBeEnabled()
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Play level 1' })).toBeEnabled())
+})
+
+function mockPour() {
+  const animation = Object.assign(new EventTarget(), { cancel: vi.fn() })
+  const animate = vi.fn(() => animation)
+  Object.defineProperty(HTMLElement.prototype, 'animate', { configurable: true, value: animate })
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    x: 20, y: 50, left: 20, top: 50, right: 110, bottom: 94, width: 90, height: 44, toJSON: () => ({}),
+  })
+  return { animation, animate }
+}
+
+it('saves before flying, locks repeat pours, then lands only the moved tile and celebrates', async () => {
+  await introduce()
+  const started = await play()
+  const { game, stray } = await almostSolved(started)
+  const { animation, animate } = mockPour()
+  const user = userEvent.setup()
+  await user.click(vial(stray))
+  await user.click(vial(0))
+  await waitFor(() => expect(animate).toHaveBeenCalledOnce())
+  expect((await db.potionGames.get('current'))?.phase).toBe('complete')
+  const flying = document.querySelector('.potions-fly')!
+  expect(flying).toHaveAttribute('aria-hidden', 'true')
+  expect(flying).toHaveTextContent(game.rows[stray][0].text)
+  expect(document.querySelector('.potions-tile.ghost')).toHaveTextContent(game.rows[stray][0].text)
+  expect(screen.queryByRole('dialog')).toBeNull()
+  expect(synthesis.speak).not.toHaveBeenCalled()
+  expect(vial(0)).toBeDisabled()
+  expect(screen.getByRole('button', { name: 'Restart' })).toBeDisabled()
+  fireEvent.click(vial(stray))
+  fireEvent.click(vial(0))
+  expect((await db.potionGames.get('current'))?.moves).toBe(game.moves + 1)
+  await act(async () => { animation.dispatchEvent(new Event('finish')) })
+  await screen.findByRole('dialog')
+  expect(document.querySelector('.potions-fly')).toBeNull()
+  expect(document.querySelector('.potions-tile.ghost')).toBeNull()
+  expect(document.querySelectorAll('.potions-tile.landed')).toHaveLength(1)
+  expect(document.querySelectorAll('.potions-vial.fresh')).toHaveLength(1)
+  await waitFor(() => expect(synthesis.speak).toHaveBeenCalledOnce())
+})
+
+it('keeps the source word and selection on a failed save without flying or speaking', async () => {
+  await introduce()
+  const started = await play()
+  const { game, stray } = await almostSolved(started)
+  const { animate } = mockPour()
+  vi.spyOn(potionsStore, 'updatePotions').mockRejectedValueOnce(new Error('Storage full'))
+  const user = userEvent.setup()
+  await user.click(vial(stray))
+  await user.click(vial(0))
+  await screen.findByText(/Unable to complete this action. Storage full/)
+  expect(animate).not.toHaveBeenCalled()
+  expect(synthesis.speak).not.toHaveBeenCalled()
+  expect(vial(stray)).toHaveAttribute('aria-pressed', 'true')
+  expect(vial(stray)).toHaveTextContent(game.rows[stray][0].text)
+  expect(vial(0)).toBeEnabled()
+  expect((await db.potionGames.get('current'))?.moves).toBe(game.moves)
+})
+
+it.each(['hidden', 'pagehide', 'navigation'] as const)('cleans up an in-flight pour on %s without losing its saved move or starting speech', async reason => {
+  await introduce()
+  const started = await play()
+  const { stray } = await almostSolved(started)
+  const { animation, animate } = mockPour()
+  const user = userEvent.setup()
+  await user.click(vial(stray))
+  await user.click(vial(0))
+  await waitFor(() => expect(animate).toHaveBeenCalledOnce())
+  if (reason === 'hidden') {
+    vi.spyOn(document, 'hidden', 'get').mockReturnValue(true)
+    fireEvent(document, new Event('visibilitychange'))
+  } else if (reason === 'pagehide') fireEvent(window, new Event('pagehide'))
+  else await user.click(screen.getByRole('link', { name: 'Back to Games' }))
+  await waitFor(() => expect(document.querySelector('.potions-fly')).toBeNull())
+  expect(animation.cancel).toHaveBeenCalled()
+  expect(synthesis.speak).not.toHaveBeenCalled()
+  expect((await db.potionGames.get('current'))?.phase).toBe('complete')
+})
+
+it('skips flight for reduced motion and does not replay it after reload', async () => {
+  await introduce()
+  const started = await play()
+  const { stray } = await almostSolved(started)
+  const { animate } = mockPour()
+  vi.stubGlobal('matchMedia', (media: string) => Object.assign(new EventTarget(), { matches: media === '(prefers-reduced-motion: reduce)', media }))
+  const user = userEvent.setup()
+  await user.click(vial(stray))
+  await user.click(vial(0))
+  await screen.findByRole('dialog')
+  expect(animate).not.toHaveBeenCalled()
+  expect(document.querySelector('.potions-tile.landed')).toBeNull()
+  cleanup(); render(<App />)
+  await screen.findByRole('dialog')
+  expect(animate).not.toHaveBeenCalled()
+  expect(document.querySelector('.potions-tile.landed')).toBeNull()
+})
+
+it('reveals only colors in smoky levels and charges each power-up once', async () => {
+  await introduce()
+  const started = await play()
+  await act(async () => { await db.potionGames.put({ ...started, level: 25, hidden: true, revision: 1 }) })
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Colors' })).toBeEnabled())
+  const user = userEvent.setup()
+  expect(document.querySelectorAll('[data-potions-tile][data-potion-color="smoke"]')).toHaveLength(started.rows.flat().length)
+  await user.click(screen.getByRole('button', { name: 'Colors' }))
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Colors' })).toBeDisabled())
+  expect(document.querySelector('[data-potions-tile][data-potion-color="smoke"]')).toBeNull()
+  expect(screen.getByRole('img', { name: '2 of 3 stars' })).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: 'Spare vial' }))
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Spare vial' })).toBeDisabled())
+  expect(document.querySelectorAll('[data-potions-vial]')).toHaveLength(started.rows.length + 1)
+  expect(screen.getByRole('img', { name: '1 of 3 stars' })).toBeInTheDocument()
 })

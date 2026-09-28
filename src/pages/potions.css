@@ -1,83 +1,151 @@
-.potions-main { padding: 18px 24px; }
-.potions-player { position: relative; max-width: 660px; margin: 0 auto; }
-.potions-heading { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; padding-right: 44px; min-height: 44px; }
-.potions-heading h1 { margin: 0; font-size: 25px; }
-.potions-heading .back-link { min-height: 44px; margin: 0; }
-.potions-score { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
-.potions-score strong { color: var(--text); font-weight: 600; }
-
-.potions-targets { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin: 0 0 10px; padding: 0; list-style: none; }
-.potions-target { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid var(--line-strong); border-left: 6px solid var(--group-border); border-radius: 8px; background: var(--surface); font-size: 12px; line-height: 1.3; }
-.potions-target.done { border-color: var(--group-border); background: var(--group-background); color: var(--group-ink); }
+.workspace:has(> .potions-main) { display: flex; flex-direction: column; height: 100dvh; }
+.workspace:has(> .potions-main) > .topbar { flex: none; }
+.potions-main {
+  flex: 1; min-height: 0; width: 100%; max-width: none; display: flex; flex-direction: column; padding: 12px 20px;
+  background: radial-gradient(ellipse at 20% 0, #a855f740, transparent 55%), radial-gradient(ellipse at 95% 30%, #3b82f62b, transparent 55%), radial-gradient(ellipse at 50% 110%, #ec489935, transparent 55%), #150a2c;
+}
+.potions-player, .potions-complete {
+  --potion-ink: #f4efff; --potion-soft: #cbb6ff; --potion-gold: #ffd166; --potion-panel: #26124ab8; --potion-line: #ffffff29;
+  color-scheme: dark; color: var(--potion-ink); font-family: "Arial Rounded MT Bold", "Trebuchet MS", "Segoe UI", sans-serif;
+}
+.potions-player { position: relative; isolation: isolate; width: 100%; max-width: 600px; min-height: 0; flex: 1; margin: 0 auto; display: flex; flex-direction: column; }
+.potions-player :focus-visible, .potions-complete :focus-visible { outline-color: var(--potion-gold); }
+.potions-player .muted, .potions-complete .muted { color: var(--potion-soft); }
+.potions-player .text-link { color: var(--potion-gold); }
+.potions-heading { flex: none; display: flex; align-items: center; gap: 10px; padding-right: 50px; min-height: 48px; margin-bottom: 4px; }
+.potions-heading h1 { display: flex; align-items: center; justify-content: center; gap: 8px; flex: 1; margin: 0; color: var(--potion-gold); font-size: clamp(19px, 3vw, 25px); font-weight: 700; letter-spacing: .2px; text-shadow: 0 3px 0 #5a1e968c, 0 6px 18px #ffb43c40; }
+.potions-player .icon-button, .potions-complete .icon-button { border-radius: 14px; color: var(--potion-ink); background: #ffffff12; box-shadow: inset 0 0 0 2px var(--potion-line); }
+.potions-player .button, .potions-complete .button {
+  border: 0; border-radius: 14px; padding: 10px 14px; min-height: 44px; font-weight: 700; font-size: 14px; letter-spacing: .2px;
+  transition: transform .12s, box-shadow .12s; color: #3b1465;
+  background: linear-gradient(#ffe9a8, #ffd166 55%, #f5a623); box-shadow: 0 5px 0 #b06a12, 0 10px 22px #0005;
+}
+.potions-player .button.secondary, .potions-complete .button.secondary { background: linear-gradient(#ffffff29, #ffffff12); color: var(--potion-ink); box-shadow: 0 5px 0 #0005, inset 0 0 0 2px #ffffff38; }
+.potions-player .button.potions-mint { background: linear-gradient(#a7f3d0, #34d399 55%, #10b981); color: #06331f; box-shadow: 0 5px 0 #047857, 0 10px 22px #0005; }
+.potions-player .button:active:not(:disabled), .potions-complete .button:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 1px 0 #0005; }
+.potions-player .button:disabled { opacity: .6; filter: grayscale(.8); }
+.potions-game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; padding-bottom: 8px; }
+.potions-score { flex: none; display: flex; align-items: center; gap: 8px; }
+.potions-level-title { flex: 1; text-align: center; }
+.potions-level-title strong { display: block; font-size: 22px; text-shadow: 0 2px 8px #0008; }
+.potions-level-title > span { font-size: 10px; letter-spacing: 2px; color: var(--potion-soft); text-transform: uppercase; }
+.potions-moves { min-width: 64px; text-align: center; background: var(--potion-panel); border-radius: 14px; padding: 5px 8px; box-shadow: inset 0 0 0 2px var(--potion-line); }
+.potions-moves strong { font-size: 19px; font-variant-numeric: tabular-nums; }
+.potions-moves span { display: block; font-size: 10px; letter-spacing: 1.5px; color: var(--potion-soft); text-transform: uppercase; }
+.potions-brew-count { display: flex; justify-content: space-between; align-items: center; color: var(--potion-soft); font-size: 11px; padding-inline: 2px; }
+.potions-stars { display: inline-flex; justify-content: center; gap: 4px; color: #ffffff40; }
+.potions-stars svg { width: 14px; height: 14px; fill: currentColor; }
+.potions-stars .earned { color: var(--potion-gold); }
+.potions-targets { flex: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-height: 25%; overflow-y: auto; margin: 0; padding: 2px; list-style: none; }
+.potions-target { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 12px; background: var(--potion-panel); box-shadow: inset 0 0 0 2px var(--potion-line); font-size: 13px; line-height: 1.25; transition: background .3s, box-shadow .3s; }
+.potions-dot { flex: none; width: 12px; height: 12px; border-radius: 4px; background: var(--liquid-mid); box-shadow: inset 0 2px 0 #ffffff66, 0 2px 4px #0006; }
+.potions-target.done { background: #1050348c; box-shadow: inset 0 0 0 2px #4ade8080, 0 0 14px #4ade8026; }
+.potions-target.done .potions-dot { background: #4ade80; }
 .potions-target-text { flex: 1; min-width: 0; }
-.potions-target-native { display: block; margin-top: 2px; font-size: 15px; font-weight: 600; }
-.potions-hear { flex: none; }
-.potions-target.done .potions-hear { color: var(--group-ink); }
+.potions-target-native { display: block; margin-top: 2px; color: var(--potion-gold); font-size: 15px; font-weight: 600; }
+.potions-player .potions-hear, .potions-complete .potions-hear { width: 36px; height: 44px; border-radius: 50%; color: #3b1465; background: radial-gradient(circle closest-side, #ffd166 94%, transparent 100%); box-shadow: none; }
 
-.potions-board { display: grid; gap: 8px; outline: none; }
-.potions-vial { display: block; width: 100%; height: clamp(36px, calc((100dvh - 372px - (var(--vials) - 1) * 8px) / var(--vials)), 62px); margin: 0; padding: 0 9px 0 0; border: 0; background: none; cursor: pointer; }
-.potions-vial:disabled { cursor: default; }
-.potions-glass { display: grid; grid-template-columns: repeat(var(--capacity), minmax(0, 1fr)); gap: 3px; height: 100%; padding: 4px; border: 1px solid var(--line-strong); border-radius: 26px 6px 6px 26px; background: linear-gradient(180deg, #ffffff10, #ffffff04); box-shadow: inset 6px 0 12px #0003; }
-.potions-vial.selected .potions-glass { border-color: var(--accent); box-shadow: inset 6px 0 12px #0003, 0 0 0 2px var(--accent); }
-.potions-vial.done .potions-glass { border-color: #3a8268; box-shadow: inset 6px 0 12px #0003, 0 0 0 2px #3a826899; }
+.potions-board { --tile-height: 44px; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: safe center; gap: 10px; overflow: auto; padding: 14px 22px 14px 6px; outline: none; overscroll-behavior: contain; }
+.potions-vial { position: relative; flex: none; display: flex; align-items: center; width: 100%; min-height: 44px; margin: 0; padding: 0; border: 0; background: none; text-align: left; transition: transform .18s cubic-bezier(.34,1.56,.64,1); transform-origin: 0 50%; }
+.potions-vial:disabled { opacity: 1; }
+.potions-vial:not(:disabled):hover { filter: none; }
+.potions-glass { flex: 1; min-width: 0; position: relative; padding: 4px; border-radius: 10px; background: linear-gradient(190deg, #ffffff33, #ffffff0f 40%, #ffffff24); box-shadow: inset 0 0 0 2px #ffffff4d, inset 8px 0 14px #0005, 0 8px 18px #0005; transition: box-shadow .25s; }
+.potions-slots { position: relative; display: grid; grid-template-columns: repeat(var(--capacity), minmax(0, 1fr)); gap: 3px; container-type: inline-size; }
+.potions-slot, .potions-tile { min-height: var(--tile-height); }
+.potions-slot { border-radius: 6px; background: #10082520; }
+.potions-tile {
+  display: flex; align-items: center; justify-content: center; padding: 2px 3px; border-radius: 6px;
+  background: linear-gradient(var(--liquid-light), var(--liquid-mid) 45%, var(--liquid-dark)); color: var(--liquid-ink);
+  box-shadow: inset 0 4px 0 #ffffff61, inset 0 -5px 8px #0004; font-weight: 600; line-height: 1.15; text-align: center; overflow-wrap: anywhere;
+  font-size: clamp(11px, calc(100cqi / var(--capacity) / (var(--letters) + .5)), 20px);
+  text-shadow: var(--liquid-shadow, none);
+}
+.potions-shine { position: absolute; left: 10px; right: 8px; top: 6px; height: 22%; border-radius: 8px; background: linear-gradient(90deg, #ffffff38, #ffffff08); pointer-events: none; }
+.potions-lip { flex: none; width: 9px; height: calc(var(--tile-height) + 22px); margin-left: -3px; border-radius: 6px; background: linear-gradient(90deg, #ffffff8c, #ffffff2e); box-shadow: 2px 0 4px #0005; }
+.potions-vial.selected { transform: translateY(-4px) scale(1.01); }
+.potions-vial.selected .potions-glass { box-shadow: inset 0 0 0 2px #ffffff8c, inset 8px 0 14px #0005, 0 0 0 3px #ffd16659, 0 12px 26px #0006; }
+.potions-tile.lifted { transform: translate(4px, -6px) scale(1.07); box-shadow: inset 0 4px 0 #ffffff73, 0 0 0 2px #ffd166, 0 8px 16px #0008; transition: transform .18s cubic-bezier(.34,1.56,.64,1); z-index: 1; }
+.potions-tile.ghost { visibility: hidden; }
+.potions-tile.landed { animation: potions-land .32s cubic-bezier(.34,1.56,.64,1); }
+.potions-vial.pouring { transform: translateY(-4px) rotate(4deg); }
 .potions-vial.refused { animation: potions-refuse .35s ease; }
-.potions-slot { border-radius: 4px; background: #0000001f; }
-.potions-tile { display: flex; align-items: center; justify-content: center; padding: 0 2px; border: 1px solid var(--group-border); border-radius: 5px; background: var(--group-background); color: var(--group-ink); font-size: 17px; font-weight: 600; line-height: 1.05; text-align: center; overflow-wrap: anywhere; animation: potions-pour .25s ease-out; }
-.potions-tile.long-word { font-size: 13px; }
-.potions-glass > .potions-tile:first-child { border-radius: 22px 5px 5px 22px; }
-.potions-tile.lifted { transform: translateY(-4px); box-shadow: 0 4px 8px #0006; }
+.potions-vial.done .potions-glass { box-shadow: inset 0 0 0 2px #ffffff80, 0 0 22px #4ade808c, 0 8px 18px #0005; }
+.potions-vial-star { position: absolute; right: -19px; top: calc(50% - 8px); color: var(--potion-gold); fill: currentColor; filter: drop-shadow(0 0 6px #ffd166aa); }
+.potions-vial.fresh, .potions-target.fresh { animation: potions-done .5s cubic-bezier(.34,1.56,.64,1); }
+.potions-fly { position: fixed; z-index: 60; min-height: 0; margin: 0; pointer-events: none; transform-origin: top left; font-family: "Arial Rounded MT Bold", "Trebuchet MS", "Segoe UI", sans-serif; }
+.potions-burst { position: absolute; left: 50%; top: 50%; pointer-events: none; }
+.potions-burst i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #ffd166; animation: potions-burst .6s ease-out both; }
+.potions-burst i:nth-child(2n) { background: #fff; }
+.potions-feedback { flex: none; min-height: 32px; max-height: 60px; overflow-y: auto; margin: 0; padding: 0 4px; color: #d9c9ff; text-align: center; font-size: 12px; line-height: 1.4; }
+.potions-controls { flex: none; display: flex; justify-content: center; gap: 8px; padding: 4px 3px 6px; }
+.potions-controls .button { position: relative; flex: 1; gap: 5px; padding-inline: 8px; font-size: 13px; white-space: nowrap; }
+.potions-charge { position: absolute; right: -4px; top: -8px; min-width: 19px; height: 19px; display: grid; place-items: center; border-radius: 10px; background: #b91c1c; color: #fff; font-size: 11px; box-shadow: 0 0 0 2px #fff; }
 
-.potions-feedback { min-height: 34px; margin: 8px 0; color: var(--text-secondary); font-size: 13px; line-height: 1.35; }
-.potions-controls { display: flex; flex-wrap: wrap; gap: 8px; }
-.potions-controls .button { flex: 1 1 auto; min-width: 104px; gap: 6px; font-size: 13px; padding-inline: 10px; }
+[data-potion-color="0"] { --liquid-light: #ff7a7a; --liquid-mid: #e23b3b; --liquid-dark: #a61e24; --liquid-ink: #fff; --liquid-shadow: 0 1px 2px #0007; }
+[data-potion-color="1"] { --liquid-light: #ffb55c; --liquid-mid: #f08a17; --liquid-dark: #b35d05; --liquid-ink: #2a1300; }
+[data-potion-color="2"] { --liquid-light: #ffe875; --liquid-mid: #f2d21e; --liquid-dark: #b89a08; --liquid-ink: #2a2100; }
+[data-potion-color="3"] { --liquid-light: #4fd58f; --liquid-mid: #12a15a; --liquid-dark: #0a6d3b; --liquid-ink: #fff; --liquid-shadow: 0 1px 2px #0007; }
+[data-potion-color="4"] { --liquid-light: #6fe3f0; --liquid-mid: #12b3c6; --liquid-dark: #0a7c8a; --liquid-ink: #04232a; }
+[data-potion-color="5"] { --liquid-light: #6e8df0; --liquid-mid: #2a4fc9; --liquid-dark: #1a318a; --liquid-ink: #fff; --liquid-shadow: 0 1px 2px #0007; }
+[data-potion-color="6"] { --liquid-light: #bc8cf5; --liquid-mid: #8b46e0; --liquid-dark: #5e23a8; --liquid-ink: #fff; --liquid-shadow: 0 1px 2px #0007; }
+[data-potion-color="7"] { --liquid-light: #f58cc8; --liquid-mid: #de3e9b; --liquid-dark: #a01e6c; --liquid-ink: #fff; --liquid-shadow: 0 1px 2px #0007; }
+[data-potion-color="smoke"] { --liquid-light: #a5a9d8; --liquid-mid: #6c70a8; --liquid-dark: #474a7e; --liquid-ink: #fff; --liquid-shadow: 0 1px 2px #0007; }
 
-.potions-setup { margin-top: 14px; }
+.potions-sparks { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.potions-sparks i { position: absolute; bottom: -10px; width: 5px; height: 5px; border-radius: 50%; background: var(--potion-gold); animation: potions-float linear infinite; }
+.potions-setup { min-height: 0; overflow-y: auto; margin: 12px 0 0; background: var(--potion-panel); border: 2px solid var(--potion-line); border-radius: 24px; }
+.potions-setup h2 { color: var(--potion-gold); font-size: 25px; font-weight: 700; }
 .potions-setup p { font-size: 13px; }
-.potions-levels { display: grid; grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 8px; max-height: 40dvh; overflow-y: auto; margin: 14px 0 0; padding: 2px; list-style: none; }
-.potions-level { display: grid; align-content: center; justify-items: center; gap: 2px; width: 100%; aspect-ratio: 1; margin: 0; padding: 0; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); color: var(--text); font-size: 15px; font-variant-numeric: tabular-nums; cursor: pointer; }
-.potions-level.cleared { border-color: #3a8268; background: #c8ebdc; color: #173d30; }
-.potions-level.next { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-.potions-level.current { outline: 2px solid var(--accent); outline-offset: 2px; }
-.potions-level-stars { font-size: 9px; letter-spacing: 1px; color: inherit; opacity: .8; }
-
-.potions-rules { position: absolute; top: 0; right: 0; width: 44px; z-index: 5; font-size: 12px; color: var(--muted); }
-.potions-rules summary { min-height: 44px; display: flex; justify-content: flex-end; align-items: center; padding: 12px; list-style: none; }
+.potions-levels { display: grid; grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 12px; margin: 20px 0 0; padding: 5px; list-style: none; }
+.potions-level { display: grid; align-content: center; justify-items: center; gap: 2px; width: 100%; aspect-ratio: 1; margin: 0; padding: 0; border: 0; border-radius: 18px; background: linear-gradient(#8b5cf6, #6d28d9); color: #fff; box-shadow: 0 4px 0 #43188f, inset 0 0 0 2px #ffffff40; font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.potions-level.cleared { background: linear-gradient(#5eead4, #10b981); box-shadow: 0 4px 0 #065f46, inset 0 0 0 2px #ffffff4d; color: #06331f; }
+.potions-level.next { box-shadow: 0 4px 0 #43188f, inset 0 0 0 2px #ffd166, 0 0 14px #ffd16630; }
+.potions-level.current { outline: 2px solid var(--potion-gold); outline-offset: 2px; }
+.potions-level-stars { min-height: 12px; font-size: 10px; letter-spacing: 1px; }
+.potions-rules { position: absolute; top: 2px; right: 0; width: 44px; z-index: 5; font-size: 13px; color: var(--potion-soft); }
+.potions-rules summary { min-height: 44px; display: flex; justify-content: flex-end; align-items: center; padding: 12px; border-radius: 14px; background: #ffffff12; box-shadow: inset 0 0 0 2px var(--potion-line); list-style: none; }
 .potions-rules summary::-webkit-details-marker { display: none; }
 .potions-rules summary span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.potions-rules[open] { width: min(330px, 100%); max-height: calc(100dvh - 90px); overflow: auto; padding: 0 14px 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); box-shadow: 0 10px 25px #0005; }
-.potions-rules[open] summary { padding-right: 0; }
-
-.potions-complete { position: fixed; inset: 0; width: min(400px, calc(100vw - 32px)); height: fit-content; max-width: none; max-height: calc(100dvh - 32px); overflow-y: auto; margin: auto; padding: 30px 22px 22px; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); color: var(--text); text-align: center; box-shadow: 0 24px 80px #0006; }
-.potions-complete::backdrop { background: #0009; }
-.potions-complete-close { position: absolute; top: 6px; right: 6px; }
-.potions-complete h2 { margin: 0 0 4px; }
+.potions-rules[open] { width: min(350px, 100%); max-height: 100%; overflow: auto; padding: 0 14px 14px; border: 2px solid var(--potion-line); border-radius: 18px; background: #25104a; box-shadow: 0 10px 25px #0008; }
+.potions-rules[open] summary { padding-right: 0; margin-bottom: 8px; background: none; box-shadow: none; }
+.potions-complete { position: fixed; inset: 0; width: min(400px, calc(100vw - 32px)); height: fit-content; max-width: none; max-height: calc(100dvh - 32px); overflow-y: auto; margin: auto; padding: 30px 20px 24px; border: 2px solid #ffffff33; border-radius: 28px; background: linear-gradient(#3b1a6e, #25104a); text-align: center; box-shadow: 0 24px 60px #0009; animation: potions-modal .45s cubic-bezier(.34,1.56,.64,1); }
+.potions-complete::backdrop { background: #080214b8; backdrop-filter: blur(4px); }
+.potions-complete-close { position: absolute; top: 6px; right: 6px; z-index: 1; }
+.potions-complete h2 { margin: 8px 0 4px; color: var(--potion-gold); font-weight: 700; font-size: 26px; text-shadow: 0 3px 0 #5a1e9680; }
 .potions-complete p { font-size: 13px; }
-.potions-stars { font-size: 26px; letter-spacing: 6px; color: #d8b33d; }
+.potions-win-emblem { color: var(--potion-gold); }
+.potions-win-stars { gap: 14px; margin: 12px 0; }
+.potions-win-stars svg { width: 44px; height: 44px; }
+.potions-win-stars .earned { animation: potions-star .4s cubic-bezier(.34,1.8,.64,1) both; animation-delay: calc(.2s + var(--star-index) * .22s); filter: drop-shadow(0 0 9px #ffd16680); }
 .potions-phrase-list { display: grid; gap: 8px; margin: 14px 0; padding: 0; list-style: none; text-align: left; }
-.potions-phrase-list li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--line-strong); border-radius: 10px; }
+.potions-phrase-list li { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 14px; background: #0004; box-shadow: inset 0 0 0 2px #ffffff14; }
 .potions-phrase-list li > span { display: grid; flex: 1; min-width: 0; gap: 2px; }
 .potions-phrase-list strong { font-size: 17px; }
-.potions-complete .button-row { justify-content: center; }
+.potions-complete .button-row { justify-content: center; gap: 12px; }
+.potions-confetti { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
+.potions-confetti i { position: absolute; top: -16px; width: 8px; height: 12px; border-radius: 3px; background: var(--liquid-mid); animation: potions-confetti linear both; }
 
-@keyframes potions-pour { from { transform: translateY(-40%) scaleX(.6); opacity: .4; } to { transform: none; opacity: 1; } }
-@keyframes potions-refuse { 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-3px); } }
-@media (prefers-reduced-motion: reduce) { .potions-tile, .potions-vial.refused { animation: none; } }
-
+@keyframes potions-float { 0% { transform: translateY(0) scale(.6); opacity: 0; } 12% { opacity: .6; } 100% { transform: translateY(-90dvh) scale(1.15); opacity: 0; } }
+@keyframes potions-land { from { transform: scaleX(.55); } to { transform: scaleX(1); } }
+@keyframes potions-refuse { 25% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-4px); } }
+@keyframes potions-done { 40% { transform: scale(1.04); } }
+@keyframes potions-burst { from { transform: scale(1); opacity: 1; } to { transform: translate(var(--burst-x), var(--burst-y)) scale(0); opacity: 0; } }
+@keyframes potions-modal { from { transform: scale(.6) translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes potions-star { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes potions-confetti { from { transform: translate(0, 0) rotate(0); opacity: 1; } to { transform: translate(var(--drift), 70dvh) rotate(720deg); opacity: 0; } }
 @media (max-width: 760px) {
-  .potions-main { padding: 8px 12px calc(10px + env(safe-area-inset-bottom)); }
-  .potions-heading h1 { font-size: 21px; }
-  .potions-heading .back-link { display: none; }
-  .potions-targets { grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 8px; }
-  .potions-target { padding: 5px 8px; font-size: 11px; }
+  .potions-main { padding: 6px 12px calc(6px + env(safe-area-inset-bottom)); }
+  .potions-game { gap: 6px; padding-bottom: 4px; }
+  .potions-target { font-size: 12px; padding: 6px 8px; gap: 6px; }
   .potions-target-native { font-size: 14px; }
-  .potions-board { gap: 6px; }
-  .potions-vial { height: clamp(34px, calc((100dvh - 330px - (var(--vials) - 1) * 6px) / var(--vials)), 56px); }
-  .potions-tile { font-size: 15px; }
-  .potions-tile.long-word { font-size: 11px; }
-  .potions-feedback { min-height: 30px; margin: 6px 0; font-size: 12px; }
-  .potions-controls .button { min-width: 0; flex: 1 1 88px; padding-inline: 6px; font-size: 12px; }
+  .potions-controls { gap: 7px; }
+  .potions-controls .button { padding-inline: 6px; font-size: 12px; gap: 4px; }
 }
 @media (max-width: 375px) {
-  .potions-tile { font-size: 13px; }
-  .potions-tile.long-word { font-size: 10px; }
+  .potions-controls .button { flex-direction: column; gap: 2px; padding-block: 6px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .potions-player *, .potions-player *::before, .potions-player *::after,
+  .potions-complete, .potions-complete *, .potions-fly { animation: none !important; transition: none !important; }
+  .potions-sparks, .potions-burst, .potions-confetti { display: none; }
 }
