@@ -1,9 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { db } from '../../core/database'
 import { answerDefender, createDefenderGame, endDefender, pauseDefender, readDefenderGame, resumeDefender, startNextDefenderWave, tickDefender, type DefenderGame, type Settings, type Word } from '../../core/games/defender'
 import { saveDefenderGame, type DefenderRevision } from '../../core/games/defender-store'
+import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../../core/assistant/speech'
 
 export function useDefender() {
+  const speechId = useId()
+  const stopMatchSpeech = useCallback(() => {
+    if (getPlaybackState().activeId === speechId) stopBrowserSpeech()
+  }, [speechId])
   const [game, setGame] = useState<DefenderGame>()
   const current = useRef<DefenderGame>()
   const persisted = useRef<DefenderRevision>()
@@ -29,6 +34,7 @@ export function useDefender() {
       return true
     }).catch(reason => {
       blocked.current = true
+      stopMatchSpeech()
       if (current.current) publish(pauseDefender(current.current))
       const detail = `Defender could not be saved. ${reason instanceof Error ? reason.message : String(reason)}`
       if (mounted.current) setError(detail)
@@ -40,7 +46,7 @@ export function useDefender() {
       if (mounted.current && lastWrite.current === job) setSaving(false)
     })
     return job
-  }, [publish])
+  }, [publish, stopMatchSpeech])
 
   useEffect(() => {
     mounted.current = true
@@ -63,29 +69,33 @@ export function useDefender() {
     })
     return () => {
       disposed = true; mounted.current = false
+      stopMatchSpeech()
       if (current.current?.run.phase === 'playing' && !blocked.current) void checkpoint(pauseDefender(current.current))
     }
-  }, [publish, checkpoint])
+  }, [publish, checkpoint, stopMatchSpeech])
 
   const pause = useCallback((reason = 'Paused. Resume when you are ready.') => {
+    stopMatchSpeech()
     if (current.current?.run.phase !== 'playing') return
     const next = pauseDefender(current.current)
     publish(next); setMessage(reason); void checkpoint(next)
-  }, [publish, checkpoint])
+  }, [publish, checkpoint, stopMatchSpeech])
   useEffect(() => {
     const hidden = () => { if (document.hidden) pause('Paused while you were away.') }
     const navigation = () => { if (document.querySelector('dialog[open]')) pause('Paused while navigation is open.') }
     document.addEventListener('visibilitychange', hidden)
     document.addEventListener('focusin', navigation)
+    window.addEventListener('pagehide', stopMatchSpeech)
     const timer = window.setInterval(() => {
       if (current.current?.run.phase === 'playing' && !blocked.current) void checkpoint(current.current)
     }, 5000)
     return () => {
       document.removeEventListener('visibilitychange', hidden)
       document.removeEventListener('focusin', navigation)
+      window.removeEventListener('pagehide', stopMatchSpeech)
       window.clearInterval(timer)
     }
-  }, [pause, checkpoint])
+  }, [pause, checkpoint, stopMatchSpeech])
   useEffect(() => {
     if (game?.run.phase !== 'playing') return
     let animation = 0, previous = performance.now()
@@ -96,6 +106,7 @@ export function useDefender() {
       if (delta > 1) { pause('Paused after an interruption. Your shields are safe.'); return }
       const result = tickDefender(latest, Math.max(0, delta))
       publish(result.game)
+      if (result.game.run.phase === 'over') stopMatchSpeech()
       if (result.events.some(event => event.type === 'breach')) setMessage('A word crossed the shield. It will return in the next wave.')
       if (result.events.some(event => event.type === 'breach') || result.game.stage === 'between' || result.game.run.phase === 'over') void checkpoint(result.game)
       if (result.game.stage === 'between') setMessage('Wave cleared. Missed words return before new words.')
@@ -103,10 +114,11 @@ export function useDefender() {
     }
     animation = requestAnimationFrame(frame)
     return () => cancelAnimationFrame(animation)
-  }, [game?.run.phase, checkpoint, pause, publish])
+  }, [game?.run.phase, checkpoint, pause, publish, stopMatchSpeech])
 
   const start = async (words: Word[], settings: Settings) => {
     if (transitioning.current) return false
+    stopMatchSpeech()
     transitioning.current = true
     try {
       if (blocked.current || invalid || !loaded) throw new Error('Resolve the saved-game error before starting another run.')
@@ -123,6 +135,7 @@ export function useDefender() {
   }
   const nextWave = async () => {
     if (!current.current || blocked.current || saving || transitioning.current) return
+    stopMatchSpeech()
     transitioning.current = true
     try {
       const next = startNextDefenderWave(current.current)
@@ -137,9 +150,14 @@ export function useDefender() {
     publish(result.game)
     setMessage(result.outcome === 'hit' ? result.game.stage === 'between' ? 'Wave cleared!' : 'Matched!' : 'Not the leading word. This target will return next wave.')
     void checkpoint(result.game)
+    if (result.outcome === 'hit') {
+      const matched = result.game.run.words.find(word => word.id === result.tile?.wordId)!
+      playBrowserSpeech(speechId, matched.character, 'zh-Hans')
+    }
     return result.outcome
   }
   const end = () => {
+    stopMatchSpeech()
     if (!current.current) return
     const next = endDefender(current.current)
     publish(next); void checkpoint(next)

@@ -228,6 +228,12 @@ shield. Chinese/English and Chinese/pinyin work in either direction.
 Tone-number pinyin is accepted alongside tone marks. Optional pinyin annotations
 are available only for Chinese/English challenges, never pronunciation matching.
 Words fall on mobile and travel right to left on desktop.
+Each successful match speaks the matched Chinese word using the selected Mandarin
+voice and speed, in every direction and input mode. Incorrect answers and breaches
+do not speak. New matches replace unfinished audio rather than queueing it.
+Pausing, ending, leaving, or hiding the game stops its playback; reopening does
+not replay matches. The final match can finish speaking during the wave review.
+Online voices may send the matched word to their speech service.
 
 Each wave spawns for 60 seconds, then drains: no new words appear while existing
 targets remain. The answer bank never changes underneath an active target.

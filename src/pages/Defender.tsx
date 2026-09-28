@@ -133,6 +133,7 @@ export function Defender({ workspace }: PageProps) {
         <p>Words fall toward the shield on mobile and travel right to left on desktop. Only the highlighted leader can be answered. Tap a translation or type the displayed English meaning, Chinese characters, or pinyin. Pinyin accepts tone marks or numbers; tones must match.</p>
         <p>After 60 seconds, spawning stops while you clear the remaining words. The next bank prioritizes missed words, then unseen vocabulary, then other words. It never changes under live targets. Later waves are faster.</p>
         <p>Wrong answers break the streak and retain that target for review. Breaches cost one of five shields and also retain the word. Esc or the pause button pauses; hiding the page or opening navigation pauses automatically.</p>
+        <p>Each match speaks the Chinese word using your selected Mandarin voice and speed. Online voices may send the word to their speech service. A new match replaces unfinished playback; pausing or leaving stops it.</p>
         <p>Runs checkpoint after answers, breaches, pauses, and every five seconds. Reopening always starts paused. Only this profile's knowledge-set vocabulary is used; changes to that set apply on a new run. No lesson or FSRS progress changes. Defender is not included in profile exports and is cleared by a restore.</p>
       </details>
     </>}
