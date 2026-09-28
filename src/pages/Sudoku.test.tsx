@@ -157,6 +157,7 @@ it('persists mute, stops current speech, and keeps manual Hear working without a
   expect(getPlaybackState().activeId).toBeDefined()
   await user.click(screen.getByRole('button', { name: 'Mute automatic character audio' }))
   await waitFor(async () => expect((await db.preferences.get('workspace'))?.sudokuAutoSpeak).toBe(false))
+  await screen.findByRole('button', { name: 'Unmute automatic character audio' })
   expect(getPlaybackState().activeId).toBeUndefined()
   expect(cancel).toHaveBeenCalled()
   const count = speak.mock.calls.length

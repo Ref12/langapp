@@ -466,6 +466,7 @@ describe('Hear voice settings', () => {
     await savePreferences({ speechVoices: { 'zh-Hans': metadata(mandarin) } })
     render(<App />)
     const select = await screen.findByLabelText('Mandarin voice')
+    await within(select).findByRole('option', { name: 'Mandarin online — cmn-Hans-CN — Online' })
     vi.spyOn(db.preferences, 'put').mockRejectedValueOnce(new Error('Storage full'))
     await userEvent.setup().selectOptions(select, speech.browserVoiceKey(onlineMandarin))
     expect(await screen.findByRole('alert')).toHaveTextContent('Storage full')

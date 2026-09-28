@@ -3,6 +3,28 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Pages test stabilization (2026-09-28)
+
+Pages run `36373324469` failed only in two order-sensitive UI tests:
+
+- `src/pages/Sudoku.test.tsx` persisted Sudoku automatic speech off, then tapped
+  a cell before the live workspace had rendered the saved mute state. The test
+  could start a second utterance after the persistence assertion.
+- `src/components/assistant/VoiceSettings.test.tsx` attempted to select the
+  asynchronous online Mandarin voice before the browser voice watcher had added
+  that option to the picker.
+
+Both tests now wait for the corresponding UI state: the Sudoku button reflects
+**Unmute automatic character audio**, and the online voice option exists before
+selection. Product behavior and the assertions are unchanged. Targeted tests
+pass (36 cases). The full release gate passes locally: lint, all 144 Pages test
+files (3,327 passed, one skipped), and the current/v1 production build.
+
+This worktree is based on failed main commit `ff97a66f`. The repair is in
+`src/pages/Sudoku.test.tsx` and `src/components/assistant/VoiceSettings.test.tsx`.
+No main branch commit or Pages rerun has occurred; Pages should be verified after
+the repair is merged/pushed to `main`.
+
 ## Phrase chaining playlist
 
 The user approved implementing a popup playlist from each phrase's Practice
