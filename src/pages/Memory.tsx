@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } from 'react'
+import { createPortal } from 'react-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, Brain, CheckCircle2, Info } from 'lucide-react'
+import { ArrowLeft, Brain, CheckCircle2, Info, X } from 'lucide-react'
 import { db } from '../core/database'
 import type { PageProps } from '../components/shared'
 import { useCatalog } from '../components/study/useCatalog'
@@ -19,19 +20,56 @@ const modes: Record<MemoryMode, string> = {
 }
 const faces = { character: 'Chinese', pinyin: 'Pinyin', meaning: 'English' }
 
-function MemoryBoard({ game, busy, run, onNewBoard }: { game: MemoryGame; onNewBoard: () => void } & Pick<PageProps, 'busy' | 'run'>) {
+function MemoryCompletion({ game, onClose }: { game: MemoryGame; onClose: () => void }) {
+  const id = useId()
+  const dialog = useRef<HTMLDialogElement>(null)
+  const opener = useRef(document.activeElement)
+  const alive = useRef(false)
+  useEffect(() => {
+    const element = dialog.current!
+    const previousFocus = opener.current
+    const overflow = document.body.style.overflow
+    alive.current = true
+    document.body.style.overflow = 'hidden'
+    element.showModal()
+    return () => {
+      alive.current = false
+      element.close()
+      document.body.style.overflow = overflow
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected && !document.querySelector('dialog[open]')) previousFocus.focus({ preventScroll: true })
+    }
+  }, [])
+  return createPortal(<dialog ref={dialog} className="memory-complete" aria-labelledby={`${id}-title`} aria-describedby={`${id}-summary`} data-assistant-exclude
+    onCancel={event => { event.preventDefault(); onClose() }}
+    onClose={event => { if (alive.current && !event.currentTarget.open) onClose() }}
+    onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); onClose() } }}
+    onClick={event => {
+      if (event.target !== event.currentTarget) return
+      const bounds = event.currentTarget.getBoundingClientRect()
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) onClose()
+    }}>
+    <button type="button" className="icon-button memory-complete-close" aria-label="Close completion" autoFocus onClick={onClose}><X size={20} /></button>
+    <CheckCircle2 size={40} className="accent" aria-hidden="true" />
+    <h2 id={`${id}-title`}>You found every {memoryGroupSize(game.mode) === 3 ? 'triplet' : 'pair'}.</h2>
+    <p id={`${id}-summary`}>{game.wordCount} words matched in {game.attempts} turns.</p>
+    <p className="small muted">A little recall practice. Lesson scores and review schedules are unchanged.</p>
+    <div className="button-row"><button type="button" className="button primary" onClick={onClose}>View board</button>
+      <a className="button secondary" href="#games">Back to Games</a></div>
+  </dialog>, document.body)
+}
+
+function MemoryBoard({ game, busy, run }: { game: MemoryGame } & Pick<PageProps, 'busy' | 'run'>) {
   const [message, setMessage] = useState('')
   const [flipFailed, setFlipFailed] = useState(false)
   const attemptedReview = useRef<string>()
   const board = useRef<HTMLDivElement>(null)
-  const completion = useRef<HTMLHeadingElement>(null)
+  const [completionDismissed, setCompletionDismissed] = useState(false)
   const size = memoryGroupSize(game.mode)
   const group = size === 3 ? 'triplet' : 'pair'
   const found = game.matched.length / size
   const misses = game.attempts - found
   const matchedColors = memoryMatchedColors(game)
   const columns = size === 3 ? game.tiles.length > 18 ? 4 : 3 : game.tiles.length <= 4 ? 2 : 4
-  useEffect(() => { if (game.phase === 'complete') completion.current?.focus({ preventScroll: true }) }, [game.phase])
   const hideMismatch = useCallback(() => run(async () => {
     try {
       const next = await finishMemoryMismatch(game)
@@ -81,7 +119,7 @@ function MemoryBoard({ game, busy, run, onNewBoard }: { game: MemoryGame; onNewB
           disabled={busy || game.phase !== 'play' || visible}
           aria-label={visible ? `${matched ? 'Matched tile' : 'Tile'} ${tile.id + 1}, ${faces[tile.face]}: ${tile.word[tile.face].normalize('NFC')}` : `Reveal tile ${tile.id + 1}`}
           onClick={() => act({ type: 'reveal', id: tile.id })}>
-          {visible ? <><span className="memory-face-label">{faces[tile.face]}</span>
+          {visible ? <>
             {matched && <CheckCircle2 className="memory-match-mark" size={14} aria-hidden="true" />}
             <span className="memory-word" lang={tile.face === 'character' ? 'zh-Hans' : tile.face === 'pinyin' ? 'zh-Latn' : 'en'}>{tile.word[tile.face].normalize('NFC')}</span>
           </> : <span className="memory-card-back" aria-hidden="true"><Brain size={26} /><span>{tile.id + 1}</span></span>}
@@ -94,13 +132,7 @@ function MemoryBoard({ game, busy, run, onNewBoard }: { game: MemoryGame; onNewB
         : game.phase === 'complete' ? 'Board complete.' : message || `Reveal ${size} tiles for the same word.`}</p>
     {game.phase === 'study' && <button className="button primary full-width" disabled={busy} onClick={() => act({ type: 'start' })}>Start memory</button>}
     {game.phase === 'review' && flipFailed && <button className="button secondary full-width" disabled={busy} onClick={() => void hideMismatch()}>Retry turning cards over</button>}
-    {game.phase === 'complete' && <section className="memory-complete panel">
-      <CheckCircle2 size={40} className="accent" /><h2 ref={completion} tabIndex={-1}>You found every {group}.</h2>
-      <p>{game.wordCount} words matched in {game.attempts} turns.</p>
-      <p className="small muted">A little recall practice. Lesson scores and review schedules are unchanged.</p>
-      <div className="button-row"><button className="button primary" onClick={onNewBoard} disabled={busy}>New board</button>
-        <a className="button secondary" href="#games">Back to Games</a></div>
-    </section>}
+    {game.phase === 'complete' && !completionDismissed && <MemoryCompletion game={game} onClose={() => setCompletionDismissed(true)} />}
   </>
 }
 
@@ -128,11 +160,13 @@ export function Memory({ workspace, busy, run }: PageProps) {
     setReplace(false)
   })
   return <div className="memory-player">
-    <header className="memory-heading"><a className="back-link" href="#games"><ArrowLeft size={16} /> Games</a><h1>Word Memory</h1></header>
+    <header className="memory-heading"><a className="back-link" href="#games"><ArrowLeft size={16} /> Games</a><h1>Word Memory</h1>
+      {game && !replace && <button type="button" className="button secondary memory-new-board" disabled={busy} onClick={() => setReplace(true)}>New board</button>}
+    </header>
     {saved?.error && <p className="notice error" role="alert">{saved.error}</p>}
     {error && <p className="notice error" role="alert">Vocabulary could not be loaded. {error}</p>}
     {!saved && <p role="status">Opening your saved board...</p>}
-    {game && !replace && <MemoryBoard key={game.gameId} game={game} busy={busy} run={run} onNewBoard={() => setReplace(true)} />}
+    {game && !replace && <MemoryBoard key={game.gameId} game={game} busy={busy} run={run} />}
     {saved && (!game || replace) && <section className="panel memory-setup" aria-label="New Memory board">
       <h2>{replace ? 'Prepare a different board?' : 'Study, remember, match.'}</h2>
       <p>First see every tile face up. When you press Start memory they turn over, keeping their positions.</p>
@@ -149,11 +183,10 @@ export function Memory({ workspace, busy, run }: PageProps) {
       <div className="button-row"><button className="button primary" disabled={busy || !catalog || eligible.length < wordCount} onClick={prepare}>Prepare tiles</button>
         {replace && <button className="button secondary" disabled={busy} onClick={() => setReplace(false)}>Keep current board</button>}</div>
     </section>}
-    {game && !replace && game.phase !== 'complete' && <details className="memory-rules"><summary aria-label="Rules and new board"><Info size={20} /><span>Rules and new board</span></summary>
+    {game && !replace && game.phase !== 'complete' && <details className="memory-rules"><summary aria-label="Memory rules"><Info size={20} /><span>Memory rules</span></summary>
       <p>{modes[game.mode]}. Once started, reveal up to {memoryGroupSize(game.mode)} tiles per turn. They must be different forms of the same word. A triplet is matched only when all three forms are revealed.</p>
       <p>Matched cards stay face up, sharing a unique color from a fixed palette. The moment any two cards differ, the turn ends and those cards flip back after 1.2 seconds. A mismatched second card ends even a triplet turn. Positions and progress survive reload.</p>
       <p>Only short introduced vocabulary is used, excluding ambiguous shared forms and meanings. Character tiles have no pinyin annotation. Games do not change your knowledge or review schedules and are not included in backups.</p>
-      <button className="button secondary" disabled={busy} onClick={() => setReplace(true)}>New board</button>
     </details>}
   </div>
 }

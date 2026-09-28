@@ -98,6 +98,7 @@
 .selection-actions .snippet-button { padding-inline: 8px; gap: 6px; }
 .selection-actions-note { grid-column: 1 / -1; margin: 0; }
 .playback-status { position: fixed; z-index: 30; top: 12px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; max-width: min(600px, calc(100vw - 24px)); border: 1px solid var(--accent-line); background: var(--surface); padding: 8px 12px; border-radius: 10px; font-size: 12px; box-shadow: 0 8px 28px #0004; }
+.playback-status-compact { padding: 2px; }
 .draft-save-status { position: fixed; z-index: 28; top: 70px; left: 50%; transform: translateX(-50%); max-width: min(650px, calc(100vw - 24px)); border: 1px solid var(--danger-line); background: var(--surface); color: var(--danger); padding: 12px; border-radius: 8px; font-size: 12px; }
 .draft-save-status a { text-decoration: underline; }
 .assistant-mobile-picker, .mobile-conversation-back { display: none; }

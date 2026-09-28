@@ -288,6 +288,11 @@ restacks the remaining tiles while keeping cleared pairs and clearing Undo
 history. This recovers even from an impossible remaining tower caused by
 matching interchangeable duplicates. Misses, hints, and shuffles are counted
 within the game only; no learning evidence or FSRS schedules are changed.
+After a successful match is saved, Mahjong speaks the Chinese word using your
+selected Mandarin voice and speed, regardless of the pair's representations.
+Selections, misses, hints, Undo, reshuffles, and reloads do not trigger speech.
+New matches replace unfinished audio; leaving, replacing the board, or hiding
+the game stops it. Online voices may send the word to their speech service.
 
 The latest board is saved automatically in a profile-local Dexie table (schema
 6), including cleared tiles and counts, and survives navigation and reload.
@@ -429,13 +434,17 @@ scroll in very short windows rather than clip vocabulary or shrink tap targets.
 - **Triplets** require all three representations of the same word: Chinese,
   pinyin, and English. Finding two of them does not complete a partial triplet.
 
+Face-up cards show the word without Chinese, English, or Pinyin headings;
+representation metadata remains available in accessible names.
 Every tile is initially visible in a self-paced **study phase**. **Start
 memory** turns the tiles face down without moving them. Reveal up to two or
 three tiles per turn, according to the selected mode. Matched cards remain
 face up in their original positions, sharing a distinct color from an eight-color
 curated palette (`src/core/games/memory-colors.ts`). Colors are assigned in match
 order and remain stable across reload; matched labels and checkmarks supplement
-color. The completed board also stays visible.
+color. Completion opens a centered, dismissible dialog over the board, including
+on mobile. Close it with **View board**, the close button, Escape, or the backdrop
+to review the completed cards without changing progress.
 
 The first incompatible card ends the turn immediately: two different words
 already fail a triplet attempt, without requiring a third flip. Mismatched cards
@@ -450,7 +459,9 @@ Concealed tiles render only their backs and position labels, not hidden word
 text in the DOM or accessible names. Character tiles never include a pinyin
 annotation. Each turn is counted once, when it first mismatches or completes a
 matching pair or triplet.
-Preparing another board requires confirmation and resets only that game.
+**New board** is available in the top-right controls during study, play, and
+completion. It opens setup first; **Keep current board** cancels without replacing
+the saved game. Preparing the replacement resets only that game.
 
 The current board, study/play/review phase, revealed tiles, matches, and turns
 are saved in the profile-local `memoryGames` table (Dexie schema 10). Reloading
@@ -689,6 +700,11 @@ and controls. During recognition practice, help is available only after checking
 or revealing the answer, so it cannot bypass the existing assistance policy.
 
 **Hear** uses the Mandarin and English selections in **Settings -> Hear voices**.
+Routine voice lookup, startup, and playback banners are hidden by default.
+Enable **Show speech debug messages** in that section to display them. The
+profile-local `speechDebugMessages` preference survives reloads and profile/backup
+exports; older profiles default to off. Errors remain visible and active audio
+still has a compact stop control, regardless of the debug setting.
 Each language offers grouped **Browser voices** and **Edge TTS (online)** choices.
 Edge choices come from Microsoft's current voice catalog through the local
 development server; they are not limited to voices exposed by your browser.

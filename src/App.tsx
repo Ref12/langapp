@@ -193,7 +193,7 @@ function WorkspaceApp() {
           {currentPage}
         </main>
       </div>
-      <PlaybackStatus />
+      <PlaybackStatus debug={preferences.speechDebugMessages ?? false} />
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>

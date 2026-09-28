@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, Info, Lightbulb, RotateCcw, Shuffle } from 'lucide-react'
 import { db } from '../core/database'
@@ -8,6 +8,7 @@ import { availablePairs, boardLayout, createMahjong, isFree, matches, modeSchema
 import { introducedGameWords } from '../core/games/game-vocabulary'
 import { updateMahjong, type MahjongAction } from '../core/games/mahjong-store'
 import { DEFAULT_LAYOUT_ID, getMahjongLayout, mahjongLayouts, type MahjongLayout } from '../core/games/mahjong-layouts'
+import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribeSpeechInterruption } from '../core/assistant/speech'
 import './mahjong.css'
 
 const faceLabels: Record<TileFace, string> = { character: 'Character', meaning: 'English', pinyin: 'Pinyin' }
@@ -31,6 +32,8 @@ function LayoutPreview({ configuration }: { configuration: MahjongLayout }) {
 }
 
 function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProps, 'busy' | 'run'>) {
+  const speechId = useId()
+  const speechGeneration = useRef(0)
   const [selected, setSelected] = useState<number>()
   const [hint, setHint] = useState<{ revision: number; ids: number[] }>()
   const [feedback, setFeedback] = useState('Choose two free tiles for the same word.')
@@ -44,12 +47,36 @@ function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProp
   const layers = Math.max(...positions.map(tile => tile.z))
   // Another tab can remove a selected tile or replace the arrangement.
   useEffect(() => { setSelected(undefined) }, [game.revision])
-  const action = (operation: MahjongAction, message: string, hintIds: number[] = []) => void run(async () => {
-    const next = await updateMahjong(game, operation)
-    setSelected(undefined)
-    setFeedback(message)
-    setHint(hintIds.length ? { revision: next.revision, ids: hintIds } : undefined)
-  })
+  useEffect(() => {
+    const stop = () => {
+      speechGeneration.current++
+      if (getPlaybackState().activeId === speechId) stopBrowserSpeech()
+    }
+    const hidden = () => { if (document.hidden) stop() }
+    const unsubscribe = subscribeSpeechInterruption(nextId => { if (nextId !== speechId) speechGeneration.current++ })
+    document.addEventListener('visibilitychange', hidden)
+    window.addEventListener('pagehide', stop)
+    return () => {
+      unsubscribe()
+      document.removeEventListener('visibilitychange', hidden)
+      window.removeEventListener('pagehide', stop)
+      stop()
+    }
+  }, [speechId])
+  const action = (operation: MahjongAction, message: string, hintIds: number[] = []) => {
+    const generation = ++speechGeneration.current
+    void run(async () => {
+      const next = await updateMahjong(game, operation)
+      setSelected(undefined)
+      setFeedback(message)
+      setHint(hintIds.length ? { revision: next.revision, ids: hintIds } : undefined)
+      if (operation.type === 'match' && next.removed.length > game.removed.length
+        && generation === speechGeneration.current && !document.hidden) {
+        const matched = next.tiles.find(tile => tile.id === operation.first)!
+        playBrowserSpeech(speechId, matched.word.character, 'zh-Hans')
+      }
+    })
+  }
   const choose = (id: number) => {
     setHint(undefined)
     if (selected === id) { setSelected(undefined); return }
@@ -154,6 +181,7 @@ export function Mahjong({ workspace, busy, run }: PageProps) {
     </section> : game && <details className="mahjong-help"><summary aria-label="Rules and new board"><Info size={20} /><span>Rules and new board</span></summary>
       <p>{currentLayoutName} / {modeLabels[game.mode]}. Match the same word across two different representations. A tile must have nothing on top and at least one open horizontal side.</p>
       <p>Repeated copies are interchangeable. Each word uses two representations on a board; identical representations do not match. No pinyin annotations appear on character tiles.</p>
+      <p>Successful matches speak the Chinese word using your selected Mandarin voice and speed. Online voices may send the word to their speech service. New matches replace unfinished audio; leaving or hiding the game stops it.</p>
       <p>Hint outlines a free pair. Reshuffle restacks the remaining tiles into a solvable arrangement and clears Undo history, without restoring cleared pairs.</p>
       <p>The current board is saved in this profile, but is not part of workspace backups. Games never change knowledge, scores, or review timing.</p>
       <button className="button secondary" disabled={busy} onClick={() => setReplace(true)}>New board</button>

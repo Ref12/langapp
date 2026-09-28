@@ -99,5 +99,11 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
       setRefresh(value => value + 1)
     }}>Refresh voice list</button>
     <p className="small muted">Refresh clears the page-session voice cache and checks again briefly; it does not change your saved selections. A missing selected voice never silently switches to another voice.</p>
+    <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.speechDebugMessages ?? false}
+      onChange={event => {
+        const speechDebugMessages = event.target.checked
+        void run(() => savePreferences({ speechDebugMessages }))
+      }} /> Show speech debug messages</label>
+    <p className="small muted">Show voice lookup, startup, and playback details. Off by default; errors and the stop-audio control remain available.</p>
   </section>
 }

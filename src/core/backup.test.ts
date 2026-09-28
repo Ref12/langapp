@@ -50,6 +50,22 @@ async function saveConnection() {
 }
 
 describe('compatible Assistant workspace backups', () => {
+  it('round-trips speech debug messages while older backups keep the setting absent', async () => {
+    const original = await exportWorkspaceBackup()
+    expect(readBackup(original).preferences).not.toHaveProperty('speechDebugMessages')
+    await savePreferences({ speechDebugMessages: true })
+    const backup = await exportWorkspaceBackup()
+    expect(readBackup(backup).preferences.speechDebugMessages).toBe(true)
+    await savePreferences({ speechDebugMessages: false })
+    await restoreBackup(backup)
+    expect((await loadWorkspace()).preferences.speechDebugMessages).toBe(true)
+    await restoreBackup(original)
+    expect((await loadWorkspace()).preferences.speechDebugMessages).toBeUndefined()
+    const invalid = JSON.parse(backup)
+    invalid.workspace.preferences.speechDebugMessages = 'true'
+    expect(() => readBackup(JSON.stringify(invalid))).toThrow()
+  })
+
   it('preserves Sudoku sound and pinyin preferences without writing defaults into older backups', async () => {
     const original = readBackup(await exportWorkspaceBackup())
     expect(original.preferences).not.toHaveProperty('sudokuAutoSpeak')

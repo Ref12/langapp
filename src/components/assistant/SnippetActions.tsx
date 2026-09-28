@@ -56,7 +56,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, practiceD
   </div>
 }
 
-export function PlaybackStatus() {
+export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const [error, setError] = useState('')
   const stop = useCallback(() => {
@@ -78,13 +78,14 @@ export function PlaybackStatus() {
     }
   }, [stop])
   if (!playback.activeId && !playback.error && !error) return null
-  return <div className="playback-status" data-assistant-exclude role={playback.error || error ? 'alert' : 'status'}>
-    <span>{error || playback.error || (playback.phase === 'loading-audio' ? 'Preparing Edge speech...'
+  const showMessage = debug || Boolean(playback.error || error)
+  return <div className={`playback-status${showMessage ? '' : ' playback-status-compact'}`} data-assistant-exclude role={playback.error || error ? 'alert' : debug ? 'status' : undefined}>
+    {showMessage && <span>{error || playback.error || (playback.phase === 'loading-audio' ? 'Preparing Edge speech...'
       : playback.phase === 'loading-voices' ? 'Looking for a voice...'
       : playback.voiceKind === 'edge' ? playback.phase === 'starting' ? 'Starting Edge speech...' : 'Playing with Edge TTS (online)'
       : playback.voiceKind === 'system' ? playback.phase === 'starting' ? 'Starting system-selected speech (may be online)...' : 'Playing with a system-selected voice (may be online)'
       : playback.phase === 'starting' ? `Starting ${playback.voiceKind === 'online' ? 'online' : 'local'} speech...`
-        : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>
+        : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>}
     <button className="icon-button" type="button" aria-label={error ? 'Retry stopping audio' : playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stop}>
       {playback.error && !error ? <X size={18} /> : <Square size={18} />}
     </button>

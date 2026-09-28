@@ -57,6 +57,12 @@ describe('profile identity and YAML snapshots', () => {
     expect(parseProfileYaml(serializeProfileYaml(snapshot))).toEqual(snapshot)
   })
 
+  it.each([true, false])('round-trips the profile speech debug preference (%s)', enabled => {
+    const snapshot = populatedProfile()
+    snapshot.settings.preferences.speechDebugMessages = enabled
+    expect(parseProfileYaml(serializeProfileYaml(snapshot))).toEqual(snapshot)
+  })
+
   it('writes lb fields throughout learning records without changing structural or conversation IDs', () => {
     const snapshot = populatedProfile()
     const wire = profileYamlSchema.parse(parse(serializeProfileYaml(snapshot)))

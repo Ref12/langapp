@@ -17,6 +17,7 @@ export const workspaceSchema = z.object({
     theme: z.enum(['dark', 'light']), pinyin: z.boolean(), readingMode: z.enum(['source', 'weave', 'target']), sidebarCollapsed: z.boolean(),
     speechVoices: speechVoicePreferencesSchema.optional(),
     defaultSpeechRate: speechRateSchema.optional(),
+    speechDebugMessages: z.boolean().optional(),
     sudokuAutoSpeak: z.boolean().optional(),
     sudokuShowPinyin: z.boolean().optional(),
   }).strict(),
