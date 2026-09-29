@@ -26,9 +26,9 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
   </button>
 }
 
-export function SnippetActions({ source, rate, onPrepared, onPractice, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', compact = false, onExplain }: {
+export function SnippetActions({ source, rate, onPrepared, onPractice, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', compact = false }: {
   source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; practiceDisabled?: boolean; practiceTitle?: string
-  compact?: boolean; onExplain?: () => void
+  compact?: boolean
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
@@ -52,8 +52,6 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, practiceD
       {onPractice && <button type="button" className="button secondary snippet-button" title={practiceTitle} disabled={practiceDisabled} onClick={() => { close?.(); onPractice() }}>
         <Repeat2 size={15} />Practice
       </button>}
-      {onExplain && <button type="button" className="button secondary snippet-button" disabled={practiceDisabled}
-        onClick={() => { close?.(); onExplain() }}>Explain more</button>}
     </div>
     {error && <p className="small" role="alert">{error}</p>}
     {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}

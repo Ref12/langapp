@@ -5,7 +5,19 @@ The latest section supersedes older Practice/Shadow behavior described later.
 
 ## History and compact Assistant (2026-09-28)
 
-Local changes add top-level History, recording each distinct phrase when its
+Committed locally as `ce99a73` at the user's request; not pushed. Subsequent
+uncommitted edits remove the Shadow instruction above the composer, both
+modes' textarea placeholders, and Explain more from phrase actions. Ask
+continues to prepare an editable explanation draft without sending. Accessible
+input labeling, actionable setup/context/error notices, and the footer remain.
+Follow-up validation: 116 tests across the Assistant, conversation voice,
+phrase practice, inline practice, and selection suites pass, as do TypeScript
+and changed-file lint. Synthetic Edge confirms the empty Shadow textarea is
+44px and its form 54px, with no helper/placeholder or Explain more action.
+Growth/shrink, History opening, and viewport bounds still pass at 320px,
+390px (including a short viewport), and 1440px; no runtime errors or AI calls.
+
+The committed changes add top-level History, recording each distinct phrase when its
 Phrase Practice dialog opens (the user's explicit choice), newest first.
 `PracticePlaylist` owns the single StrictMode-safe opening write for all entry
 points. The profile-scoped `practiceHistory` table is Dexie version 13;
@@ -18,8 +30,8 @@ delete history. A failed history write is visible with explicit retry.
 Conversation titles now occupy the app's top bar. Their menu offers rename
 and confirmed deletion; navigation -> Assistant replaces the old back button.
 The composer starts at one line, grows/shrinks with text, and uses a smaller
-visual Send control with a 44px touch target. Per-phrase Hear/Ask/Practice and
-Shadow Explain more live in a right-side actions popup; native selection's
+visual Send control with a 44px touch target. Per-phrase Hear/Ask/Practice
+live in a right-side actions popup; native selection's
 popup remains available. Menus support focus, Escape, outside dismissal,
 and viewport-bounded positioning.
 
@@ -46,8 +58,9 @@ immediately after the Colors button disabled). All 12 Potions tests passed
 when rerun alone. That unrelated test was not changed. Do not describe the
 full suite as entirely green.
 
-Preview server for this work: `http://127.0.0.1:5180/`. Changes remain local;
-no commit or push is authorized for this request.
+Preview server for this work: `http://127.0.0.1:5180/`. The user requested a
+commit before the copy/menu cleanup; those follow-up edits remain uncommitted.
+No push was requested.
 
 ## Pages test stabilization (2026-09-28)
 

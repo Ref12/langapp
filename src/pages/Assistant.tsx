@@ -80,20 +80,19 @@ interface InlinePracticeControls {
   loading: boolean
 }
 
-function ConversationPhraseActions({ message, blockIndex, phrase, thread, controls, onExplain }: {
+function ConversationPhraseActions({ message, blockIndex, phrase, thread, controls }: {
   message: AssistantMessage; blockIndex: number; phrase: SpeechBlock; thread: AssistantThread; controls: InlinePracticeControls
-  onExplain?: () => void
 }) {
   const key = JSON.stringify([message.id, blockIndex, phrase, thread.mode, thread.practiceInput ?? 'listen-repeat',
     thread.speechFeedback ?? true])
-  return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy} compact onExplain={onExplain}
+  return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy} compact
     speechConnection={controls.connection} connectionLoading={controls.loading}
     inline={{ message, blockIndex, active: controls.activeId === key, activate: () => controls.activate(key) }}
     onClose={() => controls.close(key)} />
 }
 
-function Message({ message, thread, onExplain, onPractice, inlinePractice }: {
-  message: AssistantMessage; thread: AssistantThread; onExplain: (phrase: SpeechBlock) => void; onPractice: (phrase: SpeechBlock) => void
+function Message({ message, thread, onPractice, inlinePractice }: {
+  message: AssistantMessage; thread: AssistantThread; onPractice: (phrase: SpeechBlock) => void
   inlinePractice: InlinePracticeControls
 }) {
   if (message.role === 'event') return <p className="assistant-mode-marker">{message.text}</p>
@@ -117,11 +116,9 @@ function Message({ message, thread, onExplain, onPractice, inlinePractice }: {
         </div>
         {block.locale === 'zh-Hans'
           ? message.role === 'assistant' && message.status === 'completed'
-            ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice}
-              onExplain={thread.mode === 'shadow' && message.mode === 'shadow' ? () => onExplain(block) : undefined} />
+            ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice} />
             : <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
-            compact rate={thread.speechRate} onPractice={() => onPractice(block)}
-            onExplain={thread.mode === 'shadow' && message.mode === 'shadow' ? () => onExplain(block) : undefined} />
+            compact rate={thread.speechRate} onPractice={() => onPractice(block)} />
           : <HearButton text={block.text} locale={block.locale} iconOnly />}
       </div>)}
     {message.status === 'pending' && <p className="small muted" role="status">Working on your reply...</p>}
@@ -311,13 +308,6 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
             await selectPracticePhrase(thread.id, phrase)
             setShadowPracticeOpen(true)
           })
-        }}
-        onExplain={phrase => {
-          if (busy) { setError('Stop or finish the current reply before requesting an explanation.'); return }
-          void sendAdditional({
-            text: `Please explain this Mandarin phrase: ${phrase.text}`, intent: 'explain', preserveDraft: true,
-            source: { text: phrase.text, title: 'Mandarin translation', route: `conversation/${thread.id}`, locale: phrase.locale, meaning: phrase.meaning },
-          })
         }} />)}
       {thread.mode === 'shadow' && practicePhrase && <PhrasePractice key={JSON.stringify([practicePhrase, thread.practiceInput ?? 'listen-repeat', thread.speechFeedback ?? true])}
         thread={thread} phrase={practicePhrase} busy={busy || deleting} speechConnection={speechSetup?.connection} connectionLoading={!speechSetup || localSpeechSetup === 'loading'}
@@ -352,11 +342,9 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
           voice.cancel()
           void action(async () => { await writes.current; await saveDraft(thread.id, latestDraft.current, null) })
         }}><X size={16} /></button></div>}
-      {thread.mode === 'shadow' && <p className="small muted">Share a thought in English for a Mandarin translation and explanation. Use Practice on the translation when ready.</p>}
       <form onSubmit={event => { event.preventDefault(); void voice.submit() }}>
         <label className="visually-hidden" htmlFor={`draft-${thread.id}`}>Message Assistant</label>
         <textarea id={`draft-${thread.id}`} ref={input} rows={1} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting} readOnly={!!voice.capture}
-          placeholder={thread.mode === 'shadow' ? 'Write a thought to express in Mandarin...' : 'Ask, explore, or practice...'}
           onChange={event => { const value = event.target.value; latestDraft.current = value; setDraft(value); void save(value) }}
           onKeyDown={event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); event.currentTarget.form?.requestSubmit() } }} />
         <div className="composer-controls">

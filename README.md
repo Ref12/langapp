@@ -551,6 +551,7 @@ bar; tap it for **Rename conversation** or **Delete conversation** (with confirm
 Use the top-level menu's **Assistant** item to return to the conversation list;
 there is no separate conversation back button. The empty composer is one line
 tall and grows with its text, with a compact Send icon and full-sized tap target.
+It has no instructional paragraph above it or placeholder text inside it.
 
 The first sent message supplies a provisional name. The AI can replace it with
 a short title in the same first reply, without a second request. A manual rename,
@@ -559,7 +560,8 @@ rename the conversation. Failed draft saves are visibly reported, and the unsave
 text remains in memory across in-app navigation so you can retry; it is not safe
 to close or reload until saved. Switching Conversation/Shadow affects subsequent turns and
 preserves previous messages. Shadow translates the learner's thought rather than
-inventing an unrelated phrase. **Explain more** elaborates on a translation.
+inventing an unrelated phrase. Use **Ask** on a translation to draft a follow-up
+explanation request.
 **Stop reply** cancels generation; retry is explicit. Reloading never sends an
 AI request. Interrupted work can be stopped and retried.
 
@@ -573,8 +575,8 @@ recording** discards the active attempt and retains the pre-existing draft.
 Speech is appended to existing composer text, not to the conversation history
 until explicitly sent. The Send control is a compact circular icon button.
 
-Only the new, successfully saved reply from an explicit send, retry, or
-explanation request is spoken. Validated speech blocks play in order using
+Only the new, successfully saved reply from an explicit send or retry is spoken.
+Validated speech blocks play in order using
 their English/Mandarin voice selections and the saved Mandarin speed. Markdown,
 romanization, and display meanings are not guessed into speech. **Stop
 speaking**, Escape, navigation, hiding the page, or starting other audio cancels
@@ -593,8 +595,8 @@ share exclusive audio ownership so starting one interrupts the other.
 appending to the existing draft without sending or replacing its text. Elsewhere,
 it starts a new conversation with an editable draft and exact source context.
 Each Mandarin speech snippet in an Assistant reply has a small actions icon on
-its right. Tap it for **Hear / Ask / Practice**, and **Explain more** for Shadow
-translations; ordinary explanation blocks do not have an action row. Word cards
+its right. Tap it for **Hear / Ask / Practice** in either mode; ordinary
+explanation blocks do not have an action row. Word cards
 keep their existing action row.
 
 The app-wide text-selection popup also offers **Hear / Ask / Practice**.

@@ -37,6 +37,20 @@ function respond(blocks: AssistantBlock[], apiType: AIAPIType = 'chat-completion
 }
 
 describe('first usable Assistant', () => {
+  it.each(['conversation', 'shadow'] as const)('keeps the %s composer free of instructional text and placeholders', async mode => {
+    const id = await createConversation()
+    await updateThread(id, { mode })
+    window.location.hash = `conversation/${id}`
+    render(<App />)
+    const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
+    expect(input).toHaveAttribute('rows', '1')
+    expect(input).not.toHaveAttribute('placeholder')
+    expect(input).toHaveValue('')
+    const composer = input.closest<HTMLDivElement>('.assistant-composer')!
+    expect(within(composer).queryByText(/Share a thought in English/)).not.toBeInTheDocument()
+    expect(within(composer).getByRole('link', { name: 'AI connection settings' })).toBeInTheDocument()
+  })
+
   it('uses a one-row empty composer and a top-bar title menu with persistent rename and guarded deletion', async () => {
     const id = await createConversation()
     window.location.hash = `conversation/${id}`
@@ -293,15 +307,16 @@ describe('first usable Assistant', () => {
     expect((await db.assistantThreads.get(prepared.id))?.draft).toContain(getWord('zh:rain').native)
   })
 
-  it('puts Hear/Ask in each phrase menu and appends phrase or selection context to the current chat', async () => {
+  it.each(['conversation', 'shadow'] as const)('uses Ask without Explain more in %s phrase menus and appends context to the current chat', async mode => {
     const originalSource = { text: 'Original reference', title: 'Original source', route: 'dictionary' }
     const id = await createConversation(originalSource)
+    await updateThread(id, { mode })
     await saveDraft(id, 'Keep my question')
     const other = await createConversation()
     await saveDraft(other, 'Other chat draft')
     await db.assistantMessages.add({
-      id: 'multi-block-reply', threadId: id, role: 'assistant', text: '', sequence: 0,
-      mode: 'conversation', intent: 'message', status: 'completed', createdAt: Date.now(),
+      id: 'multi-block-reply', threadId: id, role: 'assistant', text: '', sequence: mode === 'shadow' ? 1 : 0,
+      mode, intent: 'message', status: 'completed', createdAt: Date.now(),
       blocks: [
         { type: 'text', markdown: 'First explanation.' },
         { type: 'speech', text: '\u8336', locale: 'zh-Hans', romanization: 'cha', meaning: 'tea' },
@@ -324,6 +339,7 @@ describe('first usable Assistant', () => {
       expect(within(block).getByRole('button', { name: 'Hear' })).toBeInTheDocument()
       expect(within(block).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
       expect(within(block).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
+      expect(within(block).queryByRole('button', { name: 'Explain more', hidden: true })).not.toBeInTheDocument()
     }
     for (const block of reply.querySelectorAll('.assistant-markdown')) {
       expect(block.querySelector('button')).toBeNull()
@@ -353,7 +369,7 @@ describe('first usable Assistant', () => {
     await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe(selectedDraft))
     expect(input).toHaveValue(selectedDraft)
     expect(await db.assistantThreads.count()).toBe(2)
-    expect(await db.assistantMessages.count()).toBe(1)
+    expect(await db.assistantMessages.count()).toBe(mode === 'shadow' ? 2 : 1)
     expect(await db.assistantRuns.count()).toBe(0)
     expect(fetch).not.toHaveBeenCalled()
     selection.removeAllRanges()
