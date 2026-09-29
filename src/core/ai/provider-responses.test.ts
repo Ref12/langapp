@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { stringify } from 'yaml'
 import type { AIConnectionInput } from '../assistant/contracts'
 import {
   AssistantCancelledError, createAssistantModelClient, MAX_REPLY_LENGTH, MAX_RESPONSE_BYTES,
@@ -14,7 +15,7 @@ const reply = { blocks: [
   { type: 'text', markdown: 'Tea is 茶.' },
   { type: 'speech', text: '茶', locale: 'zh-Hans', romanization: 'chá', meaning: 'tea' },
 ] }
-const finalMessage = (text = JSON.stringify(reply)) => ({
+const finalMessage = (text = stringify(reply, { indentSeq: false })) => ({
   type: 'message', id: 'msg-final', status: 'completed', role: 'assistant',
   content: [{ type: 'output_text', text, annotations: [] }],
 })
@@ -62,24 +63,22 @@ describe('stateless Responses model client', () => {
     const fetcher = installFetch(response())
     const history = [
       { role: 'system' as const, content: 'tutor instructions' },
-      { role: 'assistant' as const, content: JSON.stringify(reply) }, ...messages,
+      { role: 'assistant' as const, content: stringify(reply, { indentSeq: false }) }, ...messages,
     ]
     const model = createAssistantModelClient(connection, history)
     history[0].content = 'changed after creation'
     await model.complete()
     expect(body(fetcher).input[0].content).toBe('tutor instructions')
-    expect(body(fetcher).input[1]).toEqual({ role: 'assistant', content: JSON.stringify(reply) })
+    expect(body(fetcher).input[1]).toEqual({ role: 'assistant', content: stringify(reply, { indentSeq: false }) })
     expect(body(fetcher)).not.toHaveProperty('previous_response_id')
     expect(body(fetcher)).not.toHaveProperty('conversation')
   })
 
-  it('places the same strict teaching schema in text.format, only when selected', async () => {
+  it('requests YAML without JSON-schema mode even when other generated content uses it', async () => {
     const fetcher = installFetch(response())
     await testAIConnection({ ...connection, structuredOutput: true })
-    expect(body(fetcher).text.format).toMatchObject({
-      type: 'json_schema', name: 'assistant_reply', strict: true,
-      schema: { type: 'object', additionalProperties: false, required: ['blocks', 'conversationTitle'] },
-    })
+    expect(body(fetcher)).not.toHaveProperty('text')
+    expect(body(fetcher).input[0].content).toContain('Return only one YAML document')
     expect(body(fetcher)).not.toHaveProperty('response_format')
     expect(body(fetcher)).not.toHaveProperty('max_tokens')
     expect(body(fetcher)).not.toHaveProperty('tools')
@@ -111,7 +110,7 @@ describe('stateless Responses model client', () => {
       expect(request).not.toHaveProperty('previous_response_id')
       expect(request).not.toHaveProperty('conversation')
       expect(request.store).toBe(false)
-      expect(request.text.format.strict).toBe(true)
+      expect(request).not.toHaveProperty('text')
     }
     expect(fetcher).toHaveBeenCalledTimes(2)
   })
@@ -305,17 +304,17 @@ describe('stateless Responses model client', () => {
     await expect(client().complete()).rejects.toThrow('no final reply')
   })
 
-  it('never repairs malformed/fenced JSON or treats code inside a valid teaching block as actions', async () => {
+  it('never repairs malformed/fenced YAML or treats code inside a valid teaching block as actions', async () => {
     for (const text of [
-      `\`\`\`json\n${JSON.stringify(reply)}\n\`\`\``, '{"blocks": [}',
-      JSON.stringify({ blocks: [{ type: 'exercise', questions: [] }] }),
-      JSON.stringify({ blocks: [{ type: 'text', markdown: 'Hi', action: 'write_progress' }] }),
+      `\`\`\`yaml\n${stringify(reply)}\`\`\``, 'blocks: [}',
+      stringify({ blocks: [{ type: 'exercise', questions: [] }] }),
+      stringify({ blocks: [{ type: 'text', markdown: 'Hi', action: 'write_progress' }] }),
     ]) {
       installFetch(response([finalMessage(text)]))
-      await expect(client().complete()).rejects.toThrow(/strict JSON|unsupported/)
+      await expect(client().complete()).rejects.toThrow(/valid YAML|unsupported/)
     }
     const inert = { blocks: [{ type: 'text', markdown: '```js\nwrite_progress();\n```\nThis is quoted code.' }] }
-    installFetch(response([finalMessage(JSON.stringify(inert))]))
+    installFetch(response([finalMessage(stringify(inert))]))
     await expect(client().complete()).resolves.toEqual({ kind: 'reply', reply: inert })
   })
 

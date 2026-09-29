@@ -532,11 +532,13 @@ protocol selection never silently falls back to a different API.
 Provider transport is kept separate from the tutor loop so a future central
 service can replace the direct provider calls. No central service is used today.
 
-Enable native tool calling or strict JSON-schema responses only if your endpoint
-supports them. Without schema support, the app requests JSON and validates the
-response locally. Unsupported responses fail visibly rather than switching
-protocols or displaying a simulated conversation. HTTPS is required except for
-localhost, and the endpoint must permit browser CORS requests.
+Enable native tool calling only if your endpoint supports it. Assistant replies
+always use compact YAML, validated locally, without provider JSON-schema mode.
+The strict JSON-schema setting remains available for generated exercises, reading
+translations, and generated game content; selecting it adds a separate synthetic
+JSON capability request to **Test connection**. Unsupported responses fail visibly
+rather than switching protocols or displaying a simulated conversation. HTTPS is
+required except for localhost, and the endpoint must permit browser CORS requests.
 
 **Send** shares bounded conversation history, relevant learning context, and
 any selected source text with your configured provider; provider charges may
@@ -544,6 +546,33 @@ apply. Optional native tools retrieve known words, lessons, and reading evidence
 They cannot modify learning progress or save generated content. Responses are
 validated text and locale-tagged speech blocks, not executable code. Ordinary
 Markdown examples never dispatch app operations.
+
+Reply content is one YAML document with a `blocks` list. List dashes are not
+indented beneath `blocks`; item fields use two spaces. Empty optional fields are
+omitted, including `romanization`, `meaning`, and an unrequested `conversationTitle`:
+
+```yaml
+blocks:
+- type: text
+  markdown: A short greeting.
+- type: speech
+  text: 你好。
+  locale: zh-Hans
+  romanization: nǐ hǎo
+  meaning: Hello.
+```
+
+Multiline text uses literal scalars; scalar-like strings and YAML punctuation
+must be quoted when necessary. Reply history is serialized in the same compact
+format without rewriting stored conversations. A requested first-reply title is
+an additional nonempty top-level `conversationTitle` field. Provider envelopes,
+native tool arguments/results, and source/learning-context data remain JSON.
+The YAML parser rejects duplicate keys, multiple documents, tags, anchors,
+aliases, and excessive nesting before validating the existing block types,
+locales, and size limits. It does not extract fenced replies or repair malformed
+content. Existing JSON-shaped replies are still valid YAML syntax, not a separate
+fallback protocol. Empty optional strings and legacy null titles are omitted
+from normalized replies; required content must remain nonempty.
 
 Each conversation keeps its own draft, source context, mode, romanization
 preference, and Mandarin playback speed. The conversation title lives in the top

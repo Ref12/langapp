@@ -3,6 +3,45 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Compact YAML replies (2026-09-28)
+
+Implemented and validated work changes Assistant final reply content and historical
+assistant messages to compact YAML. `blocks` list dashes have no additional
+indent, fields use two spaces, and optional empty strings/null titles are
+omitted. Stored conversation objects and display/audio behavior remain the same.
+Native tool arguments/results, API envelopes, and user source/context envelopes
+remain JSON. YAML's JSON-compatible syntax still accepts old JSON-shaped replies;
+there is no repair or alternate parser fallback.
+
+`src/core/yaml.ts` extracts the existing profile parser's single-document,
+unique-key, no-tag/anchor/alias, bounded-depth checks for reuse by replies.
+Profiles retain their existing size limits and redacted errors. Assistant keeps
+its bounded transport and strict block validation; malformed replies fail visibly.
+`serializeAssistantReply` applies the same normalized format to recent history
+without imposing new final-reply limits on valid imported historical messages.
+First-turn naming is in the same YAML document; later turns omit the title.
+
+Assistant requests no provider JSON-schema response format, even if the saved
+connection enables it. That option is retained for exercise generation,
+reading translation, and game-content generation. Test connection checks
+Assistant YAML/native tools, then separately checks a synthetic JSON object
+when strict JSON is selected. Settings now explain that scope and extra request.
+Validation passed: 1,558 tests in 43 suites covering AI transports, runtime,
+history, profiles/backups, voice/selection, Settings, and JSON-based generators.
+Regression cases include malformed YAML/redacted errors, compact serialization,
+omitted metadata, title generation, both APIs, imported history, and cancellation
+of the extra JSON capability request. `npm run lint` and `npm run build:next`
+also pass, including TypeScript and the curriculum/character freshness checks.
+Vite reports its existing large-chunk warning. The full Pages suite was not run
+for this change. The user subsequently requested committing and pushing this YAML
+change before starting a separate app-wide pinyin display preference. Publication
+is in progress; verify Git and Pages before treating the change as deployed.
+
+The previous display change was committed/pushed as `bb730517` and deployed
+successfully by Pages run `36505588855`. The full CI gate passed; live HTML,
+JavaScript, and CSS were verified byte-for-byte against that run's artifact.
+The earlier deployment failure described below is historical.
+
 ## History and compact Assistant (2026-09-28)
 
 Latest local follow-up: English speech content uses normal explanation-text

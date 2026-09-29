@@ -50,6 +50,22 @@ function responsesText(value: unknown): string {
   return text
 }
 
+export async function testStructuredJSONConnection(input: AIConnectionInput, signal?: AbortSignal): Promise<void> {
+  const result = await requestStructuredJSON(input, {
+    name: 'connection_test',
+    schema: {
+      type: 'object', additionalProperties: false, required: ['ready'],
+      properties: { ready: { type: 'boolean', enum: [true] } },
+    },
+    system: 'Synthetic capability test. Return only the JSON object {"ready":true}. No learner data is supplied.',
+    user: 'Check the selected JSON-schema capability for generated content.',
+    maxOutputTokens: 5000, signal,
+  })
+  if (!object(result) || result.ready !== true || Object.keys(result).length !== 1) {
+    throw new AITransportError('The AI service did not return the expected JSON-schema test result. Disable strict JSON-schema responses or choose a compatible model.')
+  }
+}
+
 export async function requestStructuredJSON(input: AIConnectionInput, request: StructuredRequest): Promise<unknown> {
   const parsed = aiConnectionInputSchema.safeParse({
     apiType: input.apiType, baseUrl: input.baseUrl, apiKey: input.apiKey, model: input.model, nativeTools: input.nativeTools,

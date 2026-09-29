@@ -86,7 +86,22 @@ export const assistantBlockSchema = z.discriminatedUnion('type', [textBlockSchem
 export const assistantReplySchema = z.object({
   blocks: z.array(assistantBlockSchema).min(1).max(12),
   conversationTitle: z.string().trim().min(1).max(120).nullable().optional(),
-}).strict()
+}).strict().transform(normalizeAssistantReply)
+
+export function normalizeAssistantReply(reply: { blocks: AssistantBlock[]; conversationTitle?: string | null }) {
+  return {
+    ...(reply.conversationTitle ? { conversationTitle: reply.conversationTitle } : {}),
+    blocks: reply.blocks.map(block => {
+      if (block.type === 'text') return block
+      const { romanization, meaning, ...speech } = block
+      return {
+        ...speech,
+        ...(romanization?.trim() ? { romanization } : {}),
+        ...(meaning?.trim() ? { meaning } : {}),
+      }
+    }),
+  }
+}
 
 export const assistantThreadSchema = z.object({
   id,

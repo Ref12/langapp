@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { stringify } from 'yaml'
 import type { AIConnectionInput } from '../assistant/contracts'
 import {
   AssistantCancelledError, createAssistantModelClient, MAX_RESPONSE_BYTES, REQUEST_TIMEOUT_MS,
@@ -15,7 +16,7 @@ async function completeAssistantChat(input: AIConnectionInput, history: TutorMes
   return createAssistantModelClient(input, history).complete([], options)
 }
 function response(content: unknown = reply) {
-  return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify(content) } }] }))
+  return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: stringify(content, { indentSeq: false }) } }] }))
 }
 function toolResponse(
   calls = [{ id: 'call-1', type: 'function', function: { name: 'lookup_words', arguments: '{"query":"chá"}' } }],
@@ -50,13 +51,12 @@ describe('OpenAI-compatible transport', () => {
     expect(fetcher).toHaveBeenCalledTimes(1)
   })
 
-  it('tests strict schema capability explicitly with synthetic content only', async () => {
+  it('tests YAML replies even when strict JSON is enabled for other generated content', async () => {
     const fetcher = installFetch(response())
     const settings = { ...connection, structuredOutput: true }
     await testAIConnection(settings)
-    expect(body(fetcher).response_format).toMatchObject({
-      type: 'json_schema', json_schema: { name: 'assistant_reply', strict: true, schema: { additionalProperties: false } },
-    })
+    expect(body(fetcher)).not.toHaveProperty('response_format')
+    expect(body(fetcher).messages[0].content).toContain('Return only one YAML document')
     expect(body(fetcher).messages[1].content).toContain('Synthetic capability test')
     expect(settings).toEqual({ ...connection, structuredOutput: true })
   })
@@ -72,7 +72,7 @@ describe('OpenAI-compatible transport', () => {
     expect(body(fetcher, 1).messages[3]).toMatchObject({ role: 'tool', tool_call_id: 'call-1' })
     expect(JSON.parse(body(fetcher, 1).messages[3].content)).toMatchObject({ synthetic: true, words: [] })
     expect(body(fetcher, 1).tool_choice).toBe('none')
-    expect(body(fetcher, 1).response_format.type).toBe('json_schema')
+    expect(body(fetcher, 1)).not.toHaveProperty('response_format')
   })
 
   it('reports incompatible capability settings without retrying or silently falling back', async () => {
@@ -104,9 +104,9 @@ describe('OpenAI-compatible transport', () => {
     expect(fetcher).toHaveBeenCalledTimes(1)
   })
 
-  it('does not extract fenced JSON or repair invalid JSON', async () => {
-    installFetch(new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: `\`\`\`json\n${JSON.stringify(reply)}\n\`\`\`` } }] })))
-    await expect(completeAssistantChat(connection, messages)).rejects.toThrow('not strict JSON')
+  it('does not extract fenced YAML or repair invalid API JSON', async () => {
+    installFetch(new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: `\`\`\`yaml\n${stringify(reply)}\`\`\`` } }] })))
+    await expect(completeAssistantChat(connection, messages)).rejects.toThrow('not valid YAML')
     installFetch(new Response('{choices: PRIVATE-KEY}'))
     await expect(completeAssistantChat(connection, messages)).rejects.toThrow('invalid JSON')
   })

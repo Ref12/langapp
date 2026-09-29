@@ -1,8 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import Dexie from 'dexie'
+import { parse, stringify } from 'yaml'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
 import { db, initializeWorkspace, loadWorkspace } from '../database'
-import { RUN_TIMEOUT_MS, type AssistantMessage, type AssistantSource } from './contracts'
+import { RUN_TIMEOUT_MS, type AIAPIType, type AssistantMessage, type AssistantSource } from './contracts'
 import { cancelAssistantRun, sendAssistantTurn } from './runtime'
 import { saveInlinePracticeResult, savePracticeResult } from './practice-results'
 import { createConversation, deleteThread, expireAssistantRuns, saveAIConnection, saveDraft, selectPracticePhrase, updateThread } from './store'
@@ -15,8 +16,12 @@ const blocks = [
   { type: 'text', markdown: 'Tea is 茶.' },
   { type: 'speech', text: '茶', locale: 'zh-Hans', romanization: 'chá', meaning: 'tea' },
 ]
-function finalResponse(content: unknown = { blocks }) {
-  return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify(content) } }] }))
+function finalResponse(content: unknown = { blocks }, apiType: AIAPIType = 'chat-completions') {
+  const text = stringify(content, { indentSeq: false })
+  return new Response(JSON.stringify(apiType === 'responses'
+    ? { status: 'completed', output: [{ type: 'message', id: 'reply', role: 'assistant', status: 'completed',
+      content: [{ type: 'output_text', text }] }] }
+    : { choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: text } }] }))
 }
 function toolResponse(id = 'lookup-1', name = 'lookup_words', query = '茶') {
   return new Response(JSON.stringify({ choices: [{ finish_reason: 'tool_calls', message: {
@@ -56,17 +61,19 @@ beforeEach(async () => {
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks() })
 
 describe('event-driven durable tutor', () => {
-  it('generates the title in the first reply only without adding requests or title text to messages', async () => {
+  it.each(['chat-completions', 'responses'] as const)('generates a YAML title in the first %s reply only without adding requests or title text to messages', async apiType => {
+    await saveAIConnection({ ...settings, apiType })
     const id = await createThread()
-    const fetcher = mockFetch(finalResponse({ blocks, conversationTitle: 'Talking about tea' }), finalResponse({ blocks, conversationTitle: 'Ignore this later title' }))
+    const fetcher = mockFetch(finalResponse({ blocks, conversationTitle: 'Talking about tea' }, apiType), finalResponse({ blocks, conversationTitle: 'Ignore this later title' }, apiType))
     const reply = await sendAssistantTurn(id)
     expect((await db.assistantThreads.get(id))?.title).toBe('Talking about tea')
     expect(reply.blocks).toEqual(blocks)
     expect(reply).not.toHaveProperty('conversationTitle')
-    expect(JSON.parse(fetcher.mock.calls[0][1].body).messages[0].content).toContain('This is the first message')
+    const historyKey = apiType === 'responses' ? 'input' : 'messages'
+    expect(JSON.parse(fetcher.mock.calls[0][1].body)[historyKey][0].content).toContain('This is the first message')
     await sendAssistantTurn(id, { text: 'Tell me more' })
     expect((await db.assistantThreads.get(id))?.title).toBe('Talking about tea')
-    expect(JSON.parse(fetcher.mock.calls[1][1].body).messages[0].content).toContain('Do not rename this conversation')
+    expect(JSON.parse(fetcher.mock.calls[1][1].body)[historyKey][0].content).toContain('Do not rename this conversation')
     expect(fetcher).toHaveBeenCalledTimes(2)
   })
 
@@ -144,7 +151,7 @@ describe('event-driven durable tutor', () => {
     expect(sent[0].content).toContain('Current mode: shadow. Current intent: shadow.')
     expect(JSON.stringify(sent)).toContain('first question')
     expect(JSON.stringify(sent)).not.toMatch(/private other thread|Switched to/)
-    expect(JSON.parse(sent[2].content)).toEqual({ blocks })
+    expect(parse(sent[2].content)).toEqual({ blocks })
     expect(sent.filter((message: { content: string }) => message.content.includes('help me shadow tea'))).toHaveLength(1)
     const saved = await messagesFor(first)
     expect(saved.map(message => message.sequence)).toEqual([0, 1, 2, 3, 4])
@@ -282,7 +289,7 @@ describe('event-driven durable tutor', () => {
     const response = apiType === 'chat-completions' ? finalResponse() : new Response(JSON.stringify({
       id: 'response', status: 'completed', error: null, incomplete_details: null,
       output: [{ type: 'message', id: 'message', role: 'assistant', status: 'completed',
-        content: [{ type: 'output_text', text: JSON.stringify({ blocks }), annotations: [] }] }],
+        content: [{ type: 'output_text', text: stringify({ blocks }, { indentSeq: false }), annotations: [] }] }],
     }))
     const fetcher = mockFetch(response)
     await sendAssistantTurn(id)
@@ -680,7 +687,7 @@ describe('event-driven durable tutor', () => {
 describe('Responses durable tutor', () => {
   const message = () => ({
     type: 'message', id: 'msg-final', role: 'assistant', status: 'completed',
-    content: [{ type: 'output_text', text: JSON.stringify({ blocks }), annotations: [] }],
+    content: [{ type: 'output_text', text: stringify({ blocks }, { indentSeq: false }), annotations: [] }],
   })
   const reasoning = (id = 'rs-1') => ({
     type: 'reasoning', id, summary: [{ type: 'summary_text', text: 'PRIVATE-REASONING-SUMMARY' }],
@@ -739,7 +746,7 @@ describe('Responses durable tutor', () => {
     const next = JSON.parse(fetcher.mock.calls[2][1].body)
     expect(JSON.stringify(next)).not.toMatch(/PRIVATE-OPAQUE|PRIVATE-REASONING|PRIVATE-INTERMEDIATE|function_call_output|resp-real/)
     expect(next.input.filter((item: { role: string }) => item.role === 'assistant')).toEqual([
-      { role: 'assistant', content: JSON.stringify({ blocks }) },
+      { role: 'assistant', content: stringify({ blocks }, { indentSeq: false }) },
     ])
     expect(fetcher).toHaveBeenCalledTimes(3)
   })

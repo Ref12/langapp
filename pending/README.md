@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | English speech now renders as ordinary explanation text; spoken replies remain unchanged. The user requested commit/push and deployment verification after the earlier UI commits. Previous Pages run `36503739257` failed in the intermittent Potions power-up test; do not treat those earlier pushes as deployed. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | Compact YAML Assistant replies and history are implemented and validated; commit/push requested. Empty optional fields are omitted; native tools and non-chat generation retain JSON. The preceding normal-English-text change (`bb730517`) was deployed successfully in Pages run `36505588855`. |
 
 ## Maintaining this folder
 

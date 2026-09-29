@@ -5,6 +5,7 @@ import { aiApiTypeSchema, aiConnectionInputSchema, type AIAPIType, type AIConnec
 import { LOCAL_SETTINGS_FILE } from '../../core/local-settings-contracts'
 import { removeAIConnection, saveAIConnection } from '../../core/assistant/store'
 import { testAIConnection } from '../../core/ai/provider'
+import { testStructuredJSONConnection } from '../../core/ai/structured'
 import { LocalAISetupContext } from './local-ai-setup-context'
 
 interface ConnectionSettingsProps {
@@ -45,6 +46,7 @@ function ConnectionForm({ connection, busy, onBusyChange }: ConnectionSettingsPr
         } else {
           controller.current = new AbortController()
           await testAIConnection(value, controller.current.signal)
+          if (value.structuredOutput) await testStructuredJSONConnection(value, controller.current.signal)
           setNotice('Connection test succeeded with the selected capabilities. Save to use these settings.')
         }
       }
@@ -71,7 +73,7 @@ function ConnectionForm({ connection, busy, onBusyChange }: ConnectionSettingsPr
       <label className="toggle"><input type="checkbox" checked={nativeTools} onChange={event => setNativeTools(event.target.checked)} /> My endpoint supports native tool calling</label>
       <p className="small muted">Enables read-only word, lesson, and learning-context lookups. No tools can change scores or save generated content.</p>
       <label className="toggle"><input type="checkbox" checked={structuredOutput} onChange={event => setStructuredOutput(event.target.checked)} /> My endpoint supports strict JSON-schema responses</label>
-      <p className="small muted">Without this option, Assistant requests JSON and validates it locally. Unsupported capabilities produce an error; the app never silently switches protocols.</p>
+      <p className="small muted">Applies to generated exercises, reading translations, and generated game content. Assistant replies always use compact YAML validated locally, without JSON-schema mode. Testing this option sends an additional synthetic JSON request.</p>
       <label className="toggle"><input type="checkbox" required checked={acknowledged} onChange={event => setAcknowledged(event.target.checked)} /> I understand that the key is stored in plaintext browser storage and is accessible to code on this origin.</label>
       <p className="small muted">Profile YAML exports include this key in plaintext. Keep exported files private and use a restricted key. HTTPS is required except on localhost; your endpoint must allow browser CORS requests.</p>
     </fieldset>

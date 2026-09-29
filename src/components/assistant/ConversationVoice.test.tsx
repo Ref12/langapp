@@ -1,5 +1,6 @@
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { stringify } from 'yaml'
 import App from '../../App'
 import { db, initializeWorkspace } from '../../core/database'
 import { createConversation, saveAIConnection, saveDraft, updateThread } from '../../core/assistant/store'
@@ -26,7 +27,7 @@ let transcript: string
 let stop: ReturnType<typeof vi.fn>
 let cancel: ReturnType<typeof vi.fn>
 const response = () => new Response(JSON.stringify({
-  choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify({ blocks }) } }],
+  choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: stringify({ blocks }, { indentSeq: false }) } }],
 }))
 
 beforeEach(async () => {

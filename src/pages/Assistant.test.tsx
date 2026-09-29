@@ -1,6 +1,7 @@
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { stringify } from 'yaml'
 import App from '../App'
 import { db, initializeWorkspace } from '../core/database'
 import { createConversation, saveAIConnection, saveDraft, updateThread } from '../core/assistant/store'
@@ -27,13 +28,16 @@ async function go(route: string) {
   await act(async () => { window.location.hash = route; window.dispatchEvent(new HashChangeEvent('hashchange')) })
 }
 
-function respond(blocks: AssistantBlock[], apiType: AIAPIType = 'chat-completions') {
-  const text = JSON.stringify({ blocks })
+function aiResponse(text: string, apiType: AIAPIType = 'chat-completions') {
   const body = apiType === 'responses' ? {
     object: 'response', id: 'resp_test', status: 'completed', error: null, incomplete_details: null,
     output: [{ type: 'message', id: 'msg_test', role: 'assistant', status: 'completed', content: [{ type: 'output_text', text, annotations: [] }] }],
   } : { choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: text } }] }
-  vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(body), { status: 200 })))
+  return new Response(JSON.stringify(body), { status: 200 })
+}
+
+function respond(blocks: AssistantBlock[], apiType: AIAPIType = 'chat-completions') {
+  vi.stubGlobal('fetch', vi.fn(async () => aiResponse(stringify({ blocks }, { indentSeq: false }), apiType)))
 }
 
 describe('first usable Assistant', () => {
@@ -618,6 +622,64 @@ describe('first usable Assistant', () => {
     await screen.findByText('Connection test succeeded with the selected capabilities. Save to use these settings.')
     expect(fetch).toHaveBeenCalledTimes(1)
     expect(fetch).toHaveBeenCalledWith(`${connection.baseUrl}/responses`, expect.objectContaining({ method: 'POST' }))
+    expect(await db.assistantRuns.count()).toBe(0)
+  })
+
+  it.each(['chat-completions', 'responses'] as const)('tests Assistant YAML and generated-content JSON separately with %s', async apiType => {
+    await saveAIConnection({ ...connection, apiType, structuredOutput: true })
+    window.location.hash = 'settings'
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(aiResponse('blocks:\n- type: text\n  markdown: Connection ready.', apiType))
+      .mockResolvedValueOnce(aiResponse('{"ready":true}', apiType))
+    vi.stubGlobal('fetch', fetcher)
+    render(<App />)
+    await userEvent.setup().click(await screen.findByRole('button', { name: 'Test connection' }))
+    await screen.findByText('Connection test succeeded with the selected capabilities. Save to use these settings.')
+    expect(fetcher).toHaveBeenCalledTimes(2)
+    const first = JSON.parse(fetcher.mock.calls[0][1].body)
+    const second = JSON.parse(fetcher.mock.calls[1][1].body)
+    expect(first).not.toHaveProperty('response_format')
+    expect(first).not.toHaveProperty('text')
+    const format = apiType === 'responses' ? second.text.format : second.response_format.json_schema
+    expect(format).toMatchObject({ name: 'connection_test', strict: true })
+    expect(second).not.toHaveProperty('tools')
+    expect(screen.getByText(/Assistant replies always use compact YAML/)).toBeInTheDocument()
+    expect(await db.assistantRuns.count()).toBe(0)
+  })
+
+  it('does not report connection success when the separate JSON-schema test fails', async () => {
+    await saveAIConnection({ ...connection, structuredOutput: true })
+    window.location.hash = 'settings'
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(aiResponse('blocks:\n- type: text\n  markdown: Connection ready.'))
+      .mockResolvedValueOnce(aiResponse('{"ready":false}'))
+    vi.stubGlobal('fetch', fetcher)
+    render(<App />)
+    await userEvent.setup().click(await screen.findByRole('button', { name: 'Test connection' }))
+    expect(await within(screen.getByRole('form', { name: 'Assistant AI connection' })).findByRole('alert')).toHaveTextContent('expected JSON-schema test result')
+    expect(screen.queryByText(/Connection test succeeded/)).not.toBeInTheDocument()
+    expect(fetcher).toHaveBeenCalledTimes(2)
+  })
+
+  it.each(['chat-completions', 'responses'] as const)('can cancel the additional JSON capability request with %s', async apiType => {
+    await saveAIConnection({ ...connection, apiType, structuredOutput: true })
+    window.location.hash = 'settings'
+    let finish!: (response: Response) => void
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(aiResponse('blocks:\n- type: text\n  markdown: Connection ready.', apiType))
+      .mockReturnValueOnce(new Promise<Response>(resolve => { finish = resolve }))
+    vi.stubGlobal('fetch', fetcher)
+    render(<App />)
+    const user = userEvent.setup()
+    await user.click(await screen.findByRole('button', { name: 'Test connection' }))
+    await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(2))
+    expect(screen.getByRole('button', { name: 'Test connection' })).toBeDisabled()
+    await user.click(screen.getByRole('button', { name: 'Cancel test' }))
+    expect(fetcher.mock.calls[1][1].signal.aborted).toBe(true)
+    expect(await within(screen.getByRole('form', { name: 'Assistant AI connection' })).findByRole('alert')).toHaveTextContent('Assistant request cancelled.')
+    await act(async () => { finish(aiResponse('{"ready":true}', apiType)) })
+    expect(screen.queryByText(/Connection test succeeded/)).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Test connection' })).toBeEnabled()
     expect(await db.assistantRuns.count()).toBe(0)
   })
 
