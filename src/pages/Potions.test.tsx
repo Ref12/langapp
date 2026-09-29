@@ -272,11 +272,17 @@ it('reveals only colors in smoky levels and charges each power-up once', async (
   const user = userEvent.setup()
   expect(document.querySelectorAll('[data-potions-tile][data-potion-color="smoke"]')).toHaveLength(started.rows.flat().length)
   await user.click(screen.getByRole('button', { name: 'Colors' }))
-  await waitFor(() => expect(screen.getByRole('button', { name: 'Colors' })).toBeDisabled())
-  expect(document.querySelector('[data-potions-tile][data-potion-color="smoke"]')).toBeNull()
-  expect(screen.getByRole('img', { name: '2 of 3 stars' })).toBeInTheDocument()
+  // Busy state also disables the buttons before the saved board is rendered.
+  await waitFor(() => {
+    expect(screen.getByRole('button', { name: 'Colors' })).toBeDisabled()
+    expect(document.querySelector('[data-potions-tile][data-potion-color="smoke"]')).toBeNull()
+    expect(screen.getByRole('img', { name: '2 of 3 stars' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Spare vial' })).toBeEnabled()
+  })
   await user.click(screen.getByRole('button', { name: 'Spare vial' }))
-  await waitFor(() => expect(screen.getByRole('button', { name: 'Spare vial' })).toBeDisabled())
-  expect(document.querySelectorAll('[data-potions-vial]')).toHaveLength(started.rows.length + 1)
-  expect(screen.getByRole('img', { name: '1 of 3 stars' })).toBeInTheDocument()
+  await waitFor(() => {
+    expect(screen.getByRole('button', { name: 'Spare vial' })).toBeDisabled()
+    expect(document.querySelectorAll('[data-potions-vial]')).toHaveLength(started.rows.length + 1)
+    expect(screen.getByRole('img', { name: '1 of 3 stars' })).toBeInTheDocument()
+  })
 })

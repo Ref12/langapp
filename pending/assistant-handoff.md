@@ -5,8 +5,16 @@ The latest section supersedes older Practice/Shadow behavior described later.
 
 ## Profile-wide pinyin display (2026-09-28)
 
-Implemented and validated locally. The user requested committing, pushing, and
-verifying deployment of this follow-up. Check Git and the matching Pages run for
+Committed and pushed as `7549b784`. Pages run `36526006580` failed twice in the
+pre-existing Potions power-up test: the first attempt still saw four vials, and
+the retry still saw a smoky tile. Both had 3,495 passes and one skipped test.
+No pinyin-specific failure occurred, and the deploy job was skipped.
+
+The user authorized fixing the test, committing/pushing the repair, and finishing
+deployment verification. The test had mistaken transient busy-button disabling
+for completion. It now waits for the actual board effect and matching star count
+together, and for Spare vial to become enabled before clicking it. No gameplay
+code or assertion was weakened. Check the repair commit's matching Pages run for
 publication status. The preceding YAML change was committed/pushed as `a941fe7c`.
 
 User decisions: each current-app profile can select `marks` (`wǒ`),
