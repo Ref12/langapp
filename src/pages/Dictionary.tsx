@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Search } from 'lucide-react'
 import { normalizeSearch } from '../core/search'
+import { formatPinyin } from '../core/pinyin'
 import { catalogBands, catalogCounts, type Unit } from '../core/study/catalog'
 import { cardId, type UnitKind } from '../core/study/contracts'
 import { DOMAIN } from '../core/study/knowledge'
@@ -33,13 +34,16 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
     [catalog, workspace.knowledge, workspace.characterStates])
   const knownCounts = { vocabulary: workspace.knowledge.filter(entry => entry.kind === 'vocabulary').length, grammar: workspace.knowledge.filter(entry => entry.kind === 'grammar').length, characters: characterSet?.all.size ?? 0 }
   const normalized = normalizeSearch(query)
+  const pronunciationQuery = normalizeSearch(formatPinyin(query, 'marks'))
+  const matchesReading = (reading: string) => pronunciationQuery !== normalized && normalizeSearch(reading).includes(pronunciationQuery)
   const matches = catalog ? [...catalog.units.values()].filter(unit => unit.kind === kind
     && (scope === 'all' || known.has(unit.ref))
     && (band === 'all' || unit.band === band)
-    && (!normalized || searchText(unit).includes(normalized))) : []
+    && (!normalized || searchText(unit).includes(normalized) || matchesReading(unit.record.pr))) : []
   const characterMatches = kind === 'characters' ? characters.filter(entry => (scope === 'all' || characterSet?.all.has(entry.character))
     && (band === 'all' || entry.bands.some(value => value === band))
-    && (!normalized || normalizeSearch(`${entry.character} U+${entry.character.codePointAt(0)!.toString(16)} ${entry.words.map(word => `${word.record.ch} ${word.record.pr} ${word.record.ds}`).join(' ')}`).includes(normalized))) : []
+    && (!normalized || normalizeSearch(`${entry.character} U+${entry.character.codePointAt(0)!.toString(16)} ${entry.words.map(word => `${word.record.ch} ${word.record.pr} ${word.record.ds}`).join(' ')}`).includes(normalized)
+      || entry.words.some(word => matchesReading(word.record.pr)))) : []
   const count = kind === 'characters' ? characterMatches.length : matches.length
   const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
   return <>

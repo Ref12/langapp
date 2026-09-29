@@ -6,6 +6,7 @@ import { practiceHistoryEntrySchema, type PracticeHistoryEntry } from '../core/a
 import { interruptAudio } from '../core/assistant/audio-owner'
 import { stopBrowserSpeech } from '../core/assistant/speech'
 import { PracticePlaylist } from '../components/assistant/PracticePlaylist'
+import { Pinyin } from '../components/Pinyin'
 
 export function History() {
   const entries = useLiveQuery(async () => (await db.practiceHistory.orderBy('lastOpenedAt').reverse().toArray())
@@ -33,7 +34,7 @@ export function History() {
             }
           }}>
             <span><span className="speech-native" lang="zh-Hans">{entry.text}</span>
-              {entry.phrase.romanization && <span className="pinyin" lang="zh-Latn">{entry.phrase.romanization}</span>}
+              {entry.phrase.romanization && <span className="pinyin" lang="zh-Latn"><Pinyin text={entry.phrase.romanization} /></span>}
               {entry.phrase.meaning && <span className="small muted">{entry.phrase.meaning}</span>}
               <time className="small muted" dateTime={new Date(entry.lastOpenedAt).toISOString()}>{new Date(entry.lastOpenedAt).toLocaleString()}</time>
             </span><Repeat2 size={20} aria-hidden="true" />

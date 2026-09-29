@@ -4,7 +4,8 @@ import { beforeEach, afterEach, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
 import { loadCatalog } from '../core/study/catalog'
-import { trackWord } from '../core/learning'
+import { savePreferences, trackWord } from '../core/learning'
+import { formatPinyin } from '../core/pinyin'
 import { availablePairs, createMahjong, isFree, matches, remainingTiles, type MahjongTile } from '../core/games/mahjong'
 import * as mahjongStore from '../core/games/mahjong-store'
 import { getPlaybackState, stopBrowserSpeech } from '../core/assistant/speech'
@@ -70,6 +71,22 @@ it('uses both legacy learning words and current knowledge without adding untaugh
   for (const id of ['zh:tea', 'zh:rain', 'zh:cup', 'zh:friend']) await trackWord(id, 'test')
   const game = await deal()
   expect(new Set(game.tiles.map(tile => tile.word.id))).toEqual(new Set(['zh:tea', 'zh:rain', 'zh:cup', 'zh:friend']))
+})
+
+it('reformats existing pinyin tiles and accessible names without changing the saved board or playing audio', async () => {
+  await introduce()
+  const game = await deal()
+  const item = game.tiles.find(item => item.face === 'pinyin')!
+  const button = tileButton(item)
+  for (const format of ['marks-and-numbers', 'numbers', 'marks'] as const) {
+    await act(() => savePreferences({ pinyinFormat: format }))
+    const text = formatPinyin(item.word.pinyin, format)
+    await waitFor(() => expect(button).toHaveTextContent(text))
+    expect(button).toHaveAccessibleName(`Pinyin: ${text}`)
+    expect(document.querySelector(`[data-tile-id="${item.id}"]`)).toBe(button)
+    expect(await db.mahjongGames.get('current')).toEqual(game)
+  }
+  expect(synthesis.speak).not.toHaveBeenCalled()
 })
 
 it('plays layered cross-representation pairs, persists after reload, and never awards learning progress', async () => {

@@ -53,19 +53,19 @@ describe('Defender prototype', () => {
   })
 
   it('preserves tones and syllable boundaries in numbered answers, including neutral tones and umlauts', () => {
-    expect(pinyinAnswerForms('péng you')).toEqual(['péngyou', 'peng2you'])
+    expect(pinyinAnswerForms('péng you')).toEqual(['péngyou', 'peng2you', 'péng2you'])
     expect(normalizePinyinInput(' PENG2 you5! ')).toBe('peng2you')
     expect(normalizePinyinInput('peng2you0')).toBe('peng2you')
     expect(normalizePinyinInput('nü3')).toBe(normalizePinyinInput('nu:3'))
     expect(normalizePinyinInput('nv3')).toBe('nü3')
-    expect(pinyinAnswerForms('nǚ')).toEqual(['nǚ', 'nü3'])
-    expect(pinyinAnswerForms('mi\u030c fa\u0300n')).toEqual(['mǐfàn', 'mi3fan4'])
-    expect(pinyinAnswerForms('míng tiān')).toEqual(['míngtiān', 'ming2tian1'])
+    expect(pinyinAnswerForms('nǚ')).toEqual(['nǚ', 'nü3', 'nǚ3'])
+    expect(pinyinAnswerForms('mi\u030c fa\u0300n')).toEqual(['mǐfàn', 'mi3fan4', 'mǐ3fàn4'])
+    expect(pinyinAnswerForms('míng tiān')).toEqual(['míngtiān', 'ming2tian1', 'míng2tiān1'])
     const words = [sampleWords[0], sampleWords[1]]
     const run = createRun({ ...setup, direction: 'character-pinyin' }, words, 5)
     run.incoming[0].wordId = 'water'
-    for (const input of ['shui3', 'SHUI3', 'shuǐ']) expect(submitTranslation(run, input).outcome).toBe('hit')
-    for (const input of ['shui', 'shui2', 'shu3i', 'shui35', '水', 'water']) expect(submitTranslation(run, input).outcome).toBe('wrong')
+    for (const input of ['shui3', 'SHUI3', 'shuǐ', 'shuǐ3']) expect(submitTranslation(run, input).outcome).toBe('hit')
+    for (const input of ['shui', 'shui2', 'shu3i', 'shui35', 'shuǐ2', '水', 'water']) expect(submitTranslation(run, input).outcome).toBe('wrong')
   })
 
   it('keeps optional annotations limited to meaning modes', () => {

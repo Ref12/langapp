@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | Compact YAML Assistant replies and history are implemented and validated; commit/push requested. Empty optional fields are omitted; native tools and non-chat generation retain JSON. The preceding normal-English-text change (`bb730517`) was deployed successfully in Pages run `36505588855`. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | YAML replies were pushed as `a941fe7c`; Pages run `36514703900` succeeded. Profile-wide pinyin formats are implemented and validated; commit, push, and deployment verification requested. Settings changes update existing displays without rewriting pronunciation; the user's local files and template generator select marks plus numbers. |
 
 ## Maintaining this folder
 

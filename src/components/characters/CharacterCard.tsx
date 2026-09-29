@@ -4,6 +4,8 @@ import { addCharacterToKnowledge, removeManualCharacter } from '../../core/chara
 import type { CharacterState } from '../../core/characters/contracts'
 import type { PageProps } from '../shared'
 
+import { Pinyin } from '../Pinyin'
+
 export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, run, busy }: {
   entry: DictionaryCharacter; automatic: boolean; manual: boolean; state?: CharacterState
   scope: 'all' | 'knowledge'; pinyin: boolean
@@ -17,7 +19,7 @@ export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, 
     <div className="character-word-context">
       {words.length ? <>
         <p className="small muted">In {words.length} curriculum {words.length === 1 ? 'word sense' : 'word senses'}</p>
-        {words.slice(0, 2).map(word => <p className="small" key={word.ref}><span lang="zh-Hans">{word.record.ch}</span>{pinyin && <span className="muted"> {word.record.pr}</span>}<span className="character-word-meaning">{word.record.ds}</span></p>)}
+        {words.slice(0, 2).map(word => <p className="small" key={word.ref}><span lang="zh-Hans">{word.record.ch}</span>{pinyin && <span className="muted"> <Pinyin text={word.record.pr} /></span>}<span className="character-word-meaning">{word.record.ds}</span></p>)}
       </> : <p className="small muted">From the prepared character collection; no word in the current app bands.</p>}
     </div>
     {state && state.practiceCompletions > 0 && <p className="small muted">{state.practiceCompletions} writing {state.practiceCompletions === 1 ? 'round' : 'rounds'} completed</p>}

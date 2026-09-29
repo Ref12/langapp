@@ -33,6 +33,8 @@ import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } fr
 import { interruptAudio } from './core/assistant/audio-owner'
 import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsLocalSettingsImport, resetSelectedProfile } from './core/profiles/store'
 import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
+import { PinyinFormatContext } from './components/pinyin-context'
+import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
 import './App.css'
 import './components/assistant/assistant.css'
 
@@ -173,7 +175,7 @@ function WorkspaceApp() {
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a>
           <a className="legacy-link" href="./v1/">Original app / v1</a></div>
         </>
-  return <>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -204,7 +206,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </>
+  </PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

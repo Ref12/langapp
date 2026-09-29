@@ -6,3 +6,4 @@ export const LocalAISetupContext = createContext<LocalAISetupStatus | undefined>
 export const LocalSpeechSetupContext = createContext<LocalAISetupStatus | undefined>(undefined)
 export const LocalSpeechRateSetupContext = createContext<LocalAISetupStatus | undefined>(undefined)
 export const LocalSpeechVoicesSetupContext = createContext<LocalAISetupStatus | undefined>(undefined)
+export const LocalPinyinSetupContext = createContext<LocalAISetupStatus | undefined>(undefined)

@@ -75,14 +75,15 @@ export function normalizePinyinInput(text: string): string {
 export function pinyinAnswerForms(pinyin: string): string[] {
   const toneNumbers: Record<string, string> = { '\u0304': '1', '\u0301': '2', '\u030c': '3', '\u0300': '4' }
   const syllables = pinyin.trim().normalize('NFD').split(/[\s'’]+/)
-  const numbered = syllables.map(syllable => {
+  const converted = syllables.map(syllable => {
     const marks = syllable.match(/[\u0304\u0301\u030c\u0300]/g) ?? []
     if (marks.length > 1) throw new Error('Separate pinyin syllables with spaces in the word deck.')
     const base = syllable.replace(/[\u0304\u0301\u030c\u0300]/g, '').normalize('NFC')
     if (!/^[a-züê]+$/i.test(base)) throw new Error('Use tone-marked pinyin syllables in the word deck.')
-    return base + (marks[0] ? toneNumbers[marks[0]] : '')
-  }).join('')
-  return [...new Set([normalizePinyinInput(pinyin), normalizePinyinInput(numbered)])]
+    const tone = marks[0] ? toneNumbers[marks[0]] : ''
+    return { numbered: base + tone, combined: syllable.normalize('NFC') + tone }
+  })
+  return [...new Set([pinyin, converted.map(part => part.numbered).join(''), converted.map(part => part.combined).join('')].map(normalizePinyinInput))]
 }
 
 function acceptedAnswers(word: Word, direction: Direction): string[] {

@@ -1,6 +1,7 @@
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { PracticePhraseSelection } from './PracticePhraseSelection'
+import { PinyinFormatContext } from '../pinyin-context'
 
 const text = '\u6211\u60f3\u660e\u5929\u65e9\u4e0a\u53bb\u516c\u56ed\u8dd1\u6b65\u3002'
 const readings = ['wo3', 'xiang3', 'ming2', 'tian1', 'zao3', 'shang4', 'qu4', 'gong1', 'yuan2', 'pao3', 'bu4', '。']
@@ -13,14 +14,17 @@ const preview = (start: number, end: number) => ({
 afterEach(() => { cleanup(); window.getSelection()?.removeAllRanges() })
 
 describe('precise phrase selection', () => {
-  it('selects a partial phrase with two taps, including in reverse order, without browser long-press selection', async () => {
+  it.each([
+    ['marks', 'xiǎng míng tiān'], ['marks-and-numbers', 'xiǎng3 míng2 tiān1'], ['numbers', 'xiang3 ming2 tian1'],
+  ] as const)('selects a partial phrase with two taps and displays %s without changing its readings', async (format, display) => {
     const add = vi.fn().mockResolvedValue(true)
-    render(<PracticePhraseSelection text={text} units={units} disabled={false} preview={preview} add={add} />)
+    render(<PinyinFormatContext.Provider value={format}><PracticePhraseSelection text={text} units={units} disabled={false} preview={preview} add={add} /></PinyinFormatContext.Provider>)
     fireEvent.click(screen.getByRole('button', { name: 'Select part' }))
     fireEvent.click(screen.getByRole('button', { name: /^Select character 4:/ }))
     fireEvent.click(screen.getByRole('button', { name: /^Select character 2:/ }))
     expect(screen.getByRole('status')).toHaveTextContent('\u60f3\u660e\u5929')
-    expect(screen.getByRole('status')).toHaveTextContent('xiang3 ming2 tian1')
+    expect(screen.getByRole('status')).toHaveTextContent(display)
+    expect(preview(1, 4).pinyin).toBe('xiang3 ming2 tian1')
     expect(screen.getAllByRole('button', { pressed: true })).toHaveLength(3)
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Add selection to playlist' })) })
     expect(add).toHaveBeenCalledWith(1, 4)

@@ -10,6 +10,7 @@ import { knownPotionPhrases } from '../core/games/potions-phrases'
 import { startPotionsLevel, updatePotions } from '../core/games/potions-store'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribeSpeechInterruption } from '../core/assistant/speech'
 import { capturePotionPour, usePotionAnimation } from './potions-animation'
+import { Pinyin } from '../components/Pinyin'
 import './potions.css'
 
 function vialColor(game: PotionsGame, phrase: number) {
@@ -65,7 +66,7 @@ function PotionsComplete({ game, stars, last, onClose, onNext, speak }: {
       ? 'Finish without revealing the colors or adding a vial for all three stars.'
       : 'A perfect brew.'}</p>
     <ul className="potions-phrase-list">{game.phrases.map(phrase => <li key={phrase.id}>
-      <span><strong lang="zh-Hans">{phraseText(phrase)}</strong><span lang="zh-Latn" className="small muted">{phrase.pinyin}</span><span className="small">{phrase.translation}</span></span>
+      <span><strong lang="zh-Hans">{phraseText(phrase)}</strong><span lang="zh-Latn" className="small muted"><Pinyin text={phrase.pinyin} /></span><span className="small">{phrase.translation}</span></span>
       <HearPhrase text={phraseText(phrase)} speak={speak} />
     </li>)}</ul>
     <p className="small muted">Games do not change lesson scores or review schedules.</p>

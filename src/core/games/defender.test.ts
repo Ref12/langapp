@@ -23,6 +23,15 @@ function drain(game: DefenderGame): DefenderGame {
 }
 
 describe('Knowledge-set Defender waves', () => {
+  it.each(['wǒ', 'wo3', 'wǒ3'])('accepts the displayed pinyin format %s without changing the deck', answer => {
+    const word: Word = { id: 'test', character: '我', pinyin: 'wǒ', meaning: 'I', englishAnswers: ['I'] }
+    const game = createDefenderGame([word], { ...settings, direction: 'character-pinyin', mode: 'type' }, 42)
+    expect(answerDefender(game, answer).outcome).toBe('hit')
+    expect(answerDefender(game, 'wǒ2').outcome).toBe('wrong')
+    expect(answerDefender(game, 'wo').outcome).toBe('wrong')
+    expect(game.run.words[0]).toEqual(word)
+  })
+
   it.each([1, 2, 5, 12, 30])('uses at most12 of the %i available words without adding unknown vocabulary', count => {
     const game = createDefenderGame(words.slice(0, count), settings, 42)
     expect(game.run.words).toHaveLength(Math.min(count, 12))

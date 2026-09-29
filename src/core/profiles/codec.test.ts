@@ -50,6 +50,20 @@ describe('profile identity and YAML snapshots', () => {
     expect(parseProfileYaml(text)).toEqual(snapshot)
   })
 
+  it.each(['marks', 'marks-and-numbers', 'numbers'] as const)('round-trips %s pinyin display without changing stored readings', pinyinFormat => {
+    const snapshot = populatedProfile()
+    const conversations = structuredClone(snapshot.conversations)
+    snapshot.settings.preferences.pinyinFormat = pinyinFormat
+    expect(parseProfileYaml(serializeProfileYaml(snapshot))).toEqual(snapshot)
+    expect(snapshot.conversations).toEqual(conversations)
+    expect(createEmptyProfile({ id: 'default', name: 'default' }, { pinyinFormat }).settings.preferences.pinyinFormat).toBe(pinyinFormat)
+  })
+
+  it('rejects unsupported pinyin formats in snapshots', () => {
+    const yaml = serializeProfileYaml(populatedProfile()).replace('    pinyin: true', '    pinyin: true\n    pinyinFormat: invalid')
+    expect(() => parseProfileYaml(yaml)).toThrow('Invalid profile YAML')
+  })
+
   it.each([true, false])('round-trips independent Sudoku audio and selected-pinyin preferences (%s)', enabled => {
     const snapshot = populatedProfile()
     snapshot.settings.preferences.sudokuAutoSpeak = enabled

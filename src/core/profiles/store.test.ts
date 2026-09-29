@@ -161,6 +161,7 @@ describe('isolated named browser profiles', () => {
 
   it('clones all validated data and credentials but interrupts the clone, never its source', async () => {
     const running = populatedProfile(true)
+    running.settings.preferences.pinyinFormat = 'marks-and-numbers'
     await store.restoreActiveProfile(serializeProfileYaml(running))
     await database.db.assistantRuns.put(running.conversations.runs[0])
     await database.db.assistantMessages.put(running.conversations.messages[1])

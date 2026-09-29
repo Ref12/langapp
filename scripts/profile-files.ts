@@ -242,6 +242,7 @@ export function profileLocalSettings(snapshot: Awaited<ReturnType<typeof readPro
     ...(speechConnection ? { speechConnection } : {}),
     ...(preferences.defaultSpeechRate === undefined ? {} : { defaultSpeechRate: preferences.defaultSpeechRate }),
     ...(preferences.speechVoices === undefined ? {} : { speechVoices: preferences.speechVoices }),
+    ...(preferences.pinyinFormat === undefined ? {} : { pinyinFormat: preferences.pinyinFormat }),
   })
 }
 

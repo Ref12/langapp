@@ -7,6 +7,8 @@ import { loadCatalog } from '../core/study/catalog'
 import { answerText, createDefenderGame, defenderKnowledgeWords, leadingWord, pauseDefender, type DefenderGame } from '../core/games/defender'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { withAutoCompletedSpeechPreparation } from '../test/mock-speech-preparation'
+import { savePreferences } from '../core/learning'
+import { formatPinyin } from '../core/pinyin'
 
 class Utterance {
   constructor(public text: string) {}
@@ -77,6 +79,21 @@ it('blocks an empty knowledge set without using legacy words or sample vocabular
   await screen.findByText('0 short, distinct words available from your knowledge set.')
   expect(screen.getByRole('button', { name: 'Start Defender' })).toBeDisabled()
   expect(await db.defenderGames.count()).toBe(0)
+})
+
+it.each(['marks-and-numbers', 'numbers'] as const)('accepts typed %s pinyin while retaining the original word and speaking only Chinese', async pinyinFormat => {
+  const words = await populate(1)
+  await savePreferences({ pinyinFormat })
+  const game = pauseDefender(createDefenderGame(words, { mode: 'type', direction: 'character-pinyin', pace: 'gentle' }, 42))
+  await db.defenderGames.put(game)
+  render(<App />)
+  const user = userEvent.setup()
+  await user.click(await screen.findByRole('button', { name: 'Resume' }))
+  await user.type(screen.getByRole('textbox', { name: 'Defender answer' }), formatPinyin(words[0].pinyin, pinyinFormat))
+  await user.click(screen.getByRole('button', { name: 'Defend' }))
+  await waitFor(async () => expect((await db.defenderGames.get('current'))?.run.hits).toBe(1))
+  expect((await db.defenderGames.get('current'))?.run.words).toEqual(game.run.words)
+  expect(synthesis.speak.mock.lastCall?.[0]).toMatchObject({ text: words[0].character, lang: 'zh-CN' })
 })
 
 it('rejects a nonleading answer, retains it for review, and resumes a saved run paused after reload', async () => {

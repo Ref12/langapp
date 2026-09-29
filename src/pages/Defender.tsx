@@ -5,16 +5,20 @@ import type { PageProps } from '../components/shared'
 import { useDefender } from '../components/games/useDefender'
 import { allowsPinyinAnnotations, answerText, defenderKnowledgeWords, defenderSettingsSchema, directionForms, leadingWord, nextDefenderWords, promptText, SHIELDS, type Settings, type Word } from '../core/games/defender'
 import type { WordForm } from '../../shared/defender-engine'
+import { Pinyin } from '../components/Pinyin'
+import { usePinyinFormatter } from '../components/pinyin-context'
 import './defender.css'
 
 const directionNames = { chinese: 'Chinese → English', english: 'English → Chinese', 'character-pinyin': 'Chinese → Pinyin', 'pinyin-character': 'Pinyin → Chinese' }
 function WordFace({ word, form, pinyin }: { word: Word; form: WordForm; pinyin: boolean }) {
   return <span lang={form === 'character' ? 'zh-Hans' : form === 'pinyin' ? 'zh-Latn' : 'en'} className={`defender-word-face${word.character.length > 2 ? ' long-word' : ''}`}>
-    {pinyin && form === 'character' ? <ruby>{word.character}<rt lang="zh-Latn">{word.pinyin}</rt></ruby> : word[form]}
+    {pinyin && form === 'character' ? <ruby>{word.character}<rt lang="zh-Latn"><Pinyin text={word.pinyin} /></rt></ruby>
+      : form === 'pinyin' ? <Pinyin text={word.pinyin} /> : word[form]}
   </span>
 }
 
 export function Defender({ workspace }: PageProps) {
+  const formatPinyin = usePinyinFormatter()
   const { catalog, error: catalogError } = useCatalog()
   const words = useMemo(() => catalog ? defenderKnowledgeWords(catalog, workspace) : [], [catalog, workspace])
   const play = useDefender()
@@ -92,7 +96,7 @@ export function Defender({ workspace }: PageProps) {
           {run.incoming.map(tile => {
             const word = run.words.find(word => word.id === tile.wordId)!
             return <div className={`defender-incoming${tile.id === target?.id ? ' leading' : ''}${tile.position < .23 ? ' danger' : ''}`}
-              key={tile.id} data-defender-tile={tile.id} aria-label={`${tile.id === target?.id ? 'Target' : 'Incoming'}: ${promptText(word, actual.direction)}`}
+              key={tile.id} data-defender-tile={tile.id} aria-label={`${tile.id === target?.id ? 'Target' : 'Incoming'}: ${forms.prompt === 'pinyin' ? formatPinyin(word.pinyin) : promptText(word, actual.direction)}`}
               style={{ '--position': tile.position, '--lane': tile.lane } as CSSProperties}>
               <WordFace word={word} form={forms.prompt} pinyin={actual.showPinyin === true} />
             </div>
@@ -112,25 +116,25 @@ export function Defender({ workspace }: PageProps) {
       </section>
       {inputMode === 'tap' ? <div className="defender-answer-bank" role="group" aria-label="Defender answers">
         {run.words.map(word => <button key={word.id} className="defender-answer" disabled={!playing || !target || Boolean(play.error)}
-          aria-label={`Answer ${answerText(word, actual.direction)}`} onClick={() => submit(answerText(word, actual.direction))}>
+          aria-label={`Answer ${forms.answer === 'pinyin' ? formatPinyin(word.pinyin) : answerText(word, actual.direction)}`} onClick={() => submit(answerText(word, actual.direction))}>
           <WordFace word={word} form={forms.answer} pinyin={actual.showPinyin === true} />
         </button>)}
       </div> : <form className="defender-type-form" onSubmit={event => { event.preventDefault(); if (!composing.current) submit(answer) }}>
         <label className="visually-hidden" htmlFor="defender-answer-input">Defender answer</label>
         <input id="defender-answer-input" ref={input} disabled={!playing || Boolean(play.error)} value={answer} onChange={event => setAnswer(event.target.value)}
           maxLength={100} autoComplete="off" autoCorrect="off" spellCheck={false} enterKeyHint="send"
-          placeholder={forms.answer === 'meaning' ? 'Type the English meaning...' : forms.answer === 'pinyin' ? 'Pinyin: shuǐ or shui3...' : '输入中文...'}
+          placeholder={forms.answer === 'meaning' ? 'Type the English meaning...' : forms.answer === 'pinyin' ? `Pinyin: ${formatPinyin('shuǐ')}...` : '输入中文...'}
           onCompositionStart={() => { composing.current = true }} onCompositionEnd={() => { composing.current = false }}
           onKeyDown={event => { if (event.key === 'Enter' && (composing.current || event.nativeEvent.isComposing || event.keyCode === 229)) event.preventDefault() }} />
         <button className="button primary" type="submit" disabled={!playing || !target || Boolean(play.error)}>Defend</button>
       </form>}
       <p className="defender-feedback" role="status">{play.message}</p>
       {between && <section className="panel defender-wave-review"><h2>Next wave's words</h2>
-        <div className="defender-vocabulary">{upcoming.map(word => <div key={word.id}><strong lang="zh-Hans">{word.character}</strong><span>{word.pinyin}</span><span>{word.meaning}</span>{game.review.includes(word.id) && <small>Review from this wave</small>}</div>)}</div>
+        <div className="defender-vocabulary">{upcoming.map(word => <div key={word.id}><strong lang="zh-Hans">{word.character}</strong><span><Pinyin text={word.pinyin} /></span><span>{word.meaning}</span>{game.review.includes(word.id) && <small>Review from this wave</small>}</div>)}</div>
       </section>}
       <details className="defender-help" onToggle={event => { if (event.currentTarget.open && playing) play.pause('Paused while viewing the rules.') }}>
         <summary aria-label="Rules, saving, and word selection"><Info size={20} /><span>Rules, saving, and word selection</span></summary>
-        <p>Words fall toward the shield on mobile and travel right to left on desktop. Only the highlighted leader can be answered. Tap a translation or type the displayed English meaning, Chinese characters, or pinyin. Pinyin accepts tone marks or numbers; tones must match.</p>
+        <p>Words fall toward the shield on mobile and travel right to left on desktop. Only the highlighted leader can be answered. Tap a translation or type the displayed English meaning, Chinese characters, or pinyin. Pinyin accepts tone marks, numbers, or both; tones must match.</p>
         <p>After 60 seconds, spawning stops while you clear the remaining words. The next bank prioritizes missed words, then unseen vocabulary, then other words. It never changes under live targets. Later waves are faster.</p>
         <p>Wrong answers break the streak and retain that target for review. Breaches cost one of five shields and also retain the word. Esc or the pause button pauses; hiding the page or opening navigation pauses automatically.</p>
         <p>Each match speaks the Chinese word using your selected Mandarin voice and speed. Online voices may send the word to their speech service. A new match replaces unfinished playback; pausing or leaving stops it.</p>

@@ -5,6 +5,7 @@ import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, 
 import { studyBackupSchema, type StudyBackup } from './study/contracts'
 import { characterStateSchema } from './characters/contracts'
 import { librarySchema, type LibraryBook } from './library/contracts'
+import { pinyinFormatSchema } from './pinyin'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()
@@ -20,6 +21,7 @@ export const workspaceSchema = z.object({
     speechDebugMessages: z.boolean().optional(),
     sudokuAutoSpeak: z.boolean().optional(),
     sudokuShowPinyin: z.boolean().optional(),
+    pinyinFormat: pinyinFormatSchema.optional(),
   }).strict(),
   words: z.array(z.object({
     wordId: z.string(), language: z.literal('zh-Hans'), introducedAt: time, introducedFrom: z.string().max(200),

@@ -6,6 +6,7 @@ import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/cha
 import { advanceRound, commitStroke, memoryHint, newWritingRound, PHASES, REPETITIONS } from '../core/characters/practice'
 import { useCatalog } from '../components/study/useCatalog'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
+import { Pinyin } from '../components/Pinyin'
 import './writing.css'
 
 function routeCharacter(codepoint?: string): string | undefined {
@@ -177,7 +178,7 @@ export function WritingPlayer({ asset, back, workspace, run, busy }: PageProps &
         {word?.kind === 'vocabulary' && <div className="writing-word-context">
           <p className="small muted">Word context{hidden ? ` / character ${Array.from(word.record.ch).indexOf(asset.character) + 1}` : ''}</p>
           <p lang="zh-Hans">{hidden ? Array.from(word.record.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : word.record.ch}</p>
-          {workspace.preferences.pinyin && <p className="small muted">{word.record.pr}</p>}
+          {workspace.preferences.pinyin && <p className="small muted"><Pinyin text={word.record.pr} /></p>}
           <p className="small">{word.record.ds}</p>
         </div>}
         <p id="writing-help">{round.phase === 0 ? 'Trace the outlines in order. Start at the blue dot and follow the arrow.'

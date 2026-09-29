@@ -8,6 +8,7 @@ import type { SpeechConnectionInput } from '../assistant/speech-contracts'
 import { speechVoiceKey } from '../assistant/speech'
 import { savePreferences } from '../learning'
 import { getActiveProfile } from '../profiles/store'
+import type { PinyinFormat } from '../pinyin'
 
 export type LocalAIConnectionResult = 'unavailable' | 'existing' | 'missing' | 'loaded' | 'error'
 export type LocalConnectionsResult = {
@@ -15,6 +16,7 @@ export type LocalConnectionsResult = {
   speechConnection: LocalAIConnectionResult
   defaultSpeechRate: LocalAIConnectionResult
   speechVoices: LocalAIConnectionResult
+  pinyinFormat: LocalAIConnectionResult
 }
 
 function localSettingsAvailable(): boolean {
@@ -103,8 +105,21 @@ async function importSpeechVoices(voices: SpeechVoicePreferences | undefined, si
   })
 }
 
+async function importPinyinFormat(format: PinyinFormat | undefined, signal: AbortSignal): Promise<LocalAIConnectionResult> {
+  return db.transaction('rw', db.preferences, async () => {
+    signal.throwIfAborted()
+    const current = await db.preferences.get('workspace')
+    signal.throwIfAborted()
+    if (format === undefined) return current?.pinyinFormat === undefined ? 'missing' : 'existing'
+    if (current?.pinyinFormat === format) return 'existing'
+    await savePreferences({ pinyinFormat: format })
+    signal.throwIfAborted()
+    return 'loaded'
+  })
+}
+
 export async function initializeLocalConnections(signal: AbortSignal): Promise<LocalConnectionsResult> {
-  if (!localSettingsAvailable()) return { aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable' }
+  if (!localSettingsAvailable()) return { aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable', pinyinFormat: 'unavailable' }
   signal.throwIfAborted()
   const [ai, speech] = await Promise.all([
     db.aiConnections.get('assistant'), db.speechConnections.get('assistant-speech'),
@@ -120,14 +135,16 @@ export async function initializeLocalConnections(signal: AbortSignal): Promise<L
       aiConnection: ai ? 'existing' : 'error', speechConnection: speech ? 'existing' : 'error',
       defaultSpeechRate: 'error',
       speechVoices: 'error',
+      pinyinFormat: 'error',
     }
   }
   // Each import has its own transaction, so one storage failure cannot block the others.
-  const [aiResult, speechResult, rateResult, voicesResult] = await Promise.allSettled([
+  const [aiResult, speechResult, rateResult, voicesResult, pinyinResult] = await Promise.allSettled([
     ai ? Promise.resolve<LocalAIConnectionResult>('existing') : importAIConnection(settings?.aiConnection, signal),
     speech ? Promise.resolve<LocalAIConnectionResult>('existing') : importSpeechConnection(settings?.speechConnection, signal),
     importDefaultSpeechRate(settings?.defaultSpeechRate, signal),
     importSpeechVoices(settings?.speechVoices, signal),
+    importPinyinFormat(settings?.pinyinFormat, signal),
   ])
   signal.throwIfAborted()
   return {
@@ -135,6 +152,7 @@ export async function initializeLocalConnections(signal: AbortSignal): Promise<L
     speechConnection: speechResult.status === 'fulfilled' ? speechResult.value : 'error',
     defaultSpeechRate: rateResult.status === 'fulfilled' ? rateResult.value : 'error',
     speechVoices: voicesResult.status === 'fulfilled' ? voicesResult.value : 'error',
+    pinyinFormat: pinyinResult.status === 'fulfilled' ? pinyinResult.value : 'error',
   }
 }
 

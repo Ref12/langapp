@@ -4,6 +4,7 @@ import type { WordState } from '../core/model'
 import { applyAnswer } from '../core/progress'
 import { getWord } from '../data/mandarin'
 import { MandarinWord } from './MandarinWord'
+import { PinyinFormatContext } from './pinyin-context'
 
 afterEach(cleanup)
 
@@ -36,4 +37,16 @@ it('allows exercises and the manual preference to suppress pronunciation hints',
   const { container } = render(<MandarinWord word={word} pinyin={false} />)
   expect(container.querySelector('ruby')).toHaveTextContent(word.native)
   expect(container.querySelector('rt')).not.toBeInTheDocument()
+})
+
+it('updates an existing ruby annotation in place without exposing hidden hints or altering canonical data', () => {
+  const { container, rerender } = render(<PinyinFormatContext.Provider value="marks-and-numbers"><MandarinWord word={word} /></PinyinFormatContext.Provider>)
+  const rt = container.querySelector('rt')
+  expect(rt).toHaveTextContent('chá2')
+  rerender(<PinyinFormatContext.Provider value="numbers"><MandarinWord word={word} /></PinyinFormatContext.Provider>)
+  expect(container.querySelector('rt')).toBe(rt)
+  expect(rt).toHaveTextContent('cha2')
+  expect(word.pinyin).toBe('chá')
+  rerender(<PinyinFormatContext.Provider value="numbers"><MandarinWord word={word} state={state} /></PinyinFormatContext.Provider>)
+  expect(container.querySelector('rt')).toBeNull()
 })

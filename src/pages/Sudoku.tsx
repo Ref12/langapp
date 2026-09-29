@@ -16,6 +16,7 @@ import { updateSudoku } from '../core/games/sudoku-store'
 import { savePreferences } from '../core/learning'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { readingIndex } from '../core/study/annotate'
+import { Pinyin } from '../components/Pinyin'
 import './sudoku.css'
 
 const difficultyNames = { easy: 'Easy', medium: 'Medium', hard: 'Hard' }
@@ -151,7 +152,7 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
         : 'Tap characters to add or remove entries. One is an answer; several are candidates.'}</p>
     {showPinyin && audioCharacter && <p className="sudoku-selected-pinyin" role="status">
       <span lang="zh-Hans">{audioCharacter}</span>{' / '}
-      {pronunciations.length ? <>{pronunciations.length > 1 && 'Possible readings: '}<span lang="zh-Latn">{pronunciations.join(' / ')}</span></>
+      {pronunciations.length ? <>{pronunciations.length > 1 && 'Possible readings: '}<span lang="zh-Latn"><Pinyin text={pronunciations.join(' / ')} /></span></>
         : selectedPinyin?.error ? 'Pinyin could not be loaded. Reload to try again.'
           : selectedPinyin ? 'No reading was found in the word context or local dictionary.' : 'Loading pinyin...'}
     </p>}
@@ -180,7 +181,7 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
       <p>Character clicks speak by default. The speaker button mutes automatic playback; Hear still works when muted. These settings are saved in this profile.</p>
       <p>Your selected Mandarin voice and speed are used. Online voices may send the character to the voice service. Isolated characters can have multiple readings; the voice may choose a different one from the word context.</p>
       {game.phrase && <div className="sudoku-phrase-details"><h2>Source phrase</h2><p lang="zh-Hans">{game.phrase.text}</p>
-        <p>{game.phrase.pinyin}</p>{game.phrase.translation && <p>{game.phrase.translation}</p>}
+        <p><Pinyin text={game.phrase.pinyin} /></p>{game.phrase.translation && <p>{game.phrase.translation}</p>}
         <p>The palette uses the first {game.size} distinct characters in reading order. Repeated characters share a symbol; later characters are not added to the puzzle.</p>
       </div>}
       <div className="button-row">{game.symbols.map((item, index) => <button className="button secondary" key={item.character}
@@ -188,7 +189,7 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
       <h2 lang="zh-Hans">{symbol.character}</h2>
       {symbol.contexts.length ? <><p className="small muted">{game.phrase ? 'In your source phrase:' : 'In your introduced vocabulary (word context, not a character definition):'}</p>
         {symbol.contexts.map(context => <div key={`${context.text}:${context.pinyin}:${context.meaning}`} className="sudoku-word-context">
-          <p><span lang="zh-Hans">{context.text}</span> / {context.pinyin} / {context.meaning}</p>
+          <p><span lang="zh-Hans">{context.text}</span> / <Pinyin text={context.pinyin} /> / {context.meaning}</p>
           <HearButton text={context.text} locale="zh-Hans" label={`Hear ${context.text}`} />
         </div>)}</> : <p className="small muted">This character was added manually. No introduced word context is available yet.</p>}
       <p>Every row, column, and {box.rows} by {box.columns} box must contain every character exactly once. Each generated puzzle has one solution.</p>

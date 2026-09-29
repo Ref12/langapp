@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { aiConnectionInputSchema, speechRateSchema, speechVoicePreferencesSchema } from './assistant/contracts'
 import { speechConnectionInputSchema } from './assistant/speech-contracts'
+import { pinyinFormatSchema } from './pinyin'
 
 export const LOCAL_SETTINGS_FILE = 'default.yaml'
 export const LOCAL_SETTINGS_DIRECTORY = 'data'
@@ -12,4 +13,5 @@ export const localSettingsSchema = z.object({
   speechConnection: speechConnectionInputSchema.optional(),
   defaultSpeechRate: speechRateSchema.optional(),
   speechVoices: speechVoicePreferencesSchema.optional(),
+  pinyinFormat: pinyinFormatSchema.optional(),
 }).strict()

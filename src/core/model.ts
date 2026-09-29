@@ -1,6 +1,7 @@
 import type { SpeechRate, SpeechVoicePreferences } from './assistant/contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import type { CharacterState } from './characters/contracts'
+import type { PinyinFormat } from './pinyin'
 
 export const LANGUAGE = 'zh-Hans' as const
 export type ReadingMode = 'source' | 'weave' | 'target'
@@ -51,6 +52,7 @@ export interface Preferences {
   name: string
   theme: 'dark' | 'light'
   pinyin: boolean
+  pinyinFormat?: PinyinFormat
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences

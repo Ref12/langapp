@@ -11,15 +11,17 @@ import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { SnippetActions } from '../components/assistant/SnippetActions'
 import './reading.css'
 
+import { Pinyin } from '../components/Pinyin'
+
 function Translation({ translation, pinyin }: { translation: BookTranslation; pinyin: boolean }) {
   const [selected, setSelected] = useState<{ text: string; pinyin: string; meaning: string }>()
   return <>
     <div className="reading-text book-translation" lang="zh-Hans">{translation.blocks.map((block, index) => <p key={index}>{block.map((token, word) => <span key={word}>
       <button type="button" className="reading-token" aria-label={`Word help: ${token.text}`} onClick={() => setSelected(token)}>
-        {pinyin && token.pinyin ? <ruby className="mandarin-word">{token.text}<rt aria-hidden="true" data-assistant-exclude>{token.pinyin}</rt></ruby> : token.text}
+        {pinyin && token.pinyin ? <ruby className="mandarin-word">{token.text}<rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt></ruby> : token.text}
       </button>{token.trailing}
     </span>)}</p>)}</div>
-    {selected && <p className="notice" role="status"><strong lang="zh-Hans">{selected.text}</strong> {selected.pinyin} / {selected.meaning}</p>}
+    {selected && <p className="notice" role="status"><strong lang="zh-Hans">{selected.text}</strong> <Pinyin text={selected.pinyin} /> / {selected.meaning}</p>}
   </>
 }
 

@@ -4,7 +4,8 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
-import { trackWord } from '../core/learning'
+import { savePreferences, trackWord } from '../core/learning'
+import { formatPinyin } from '../core/pinyin'
 import { loadCatalog } from '../core/study/catalog'
 import { applyMemoryAction, createMemoryGame, MEMORY_MISMATCH_DELAY_MS, type MemoryMode } from '../core/games/memory'
 
@@ -33,6 +34,20 @@ it('is discoverable in Games and requires enough introduced vocabulary', async (
   await screen.findByText('0 distinct short words available from your introduced vocabulary.')
   expect(screen.getByRole('button', { name: 'Prepare tiles' })).toBeDisabled()
   expect(document.querySelector('.memory-board')).toBeNull()
+})
+
+it('reformats an existing pinyin board and accessible labels without changing the saved tiles', async () => {
+  const game = await prepare('character-pinyin')
+  const item = game.tiles.find(item => item.face === 'pinyin')!
+  const button = tile(item.id)
+  for (const format of ['marks-and-numbers', 'numbers', 'marks'] as const) {
+    await act(() => savePreferences({ pinyinFormat: format }))
+    const text = formatPinyin(item.word.pinyin, format)
+    await waitFor(() => expect(button).toHaveTextContent(text))
+    expect(button).toHaveAccessibleName(`Tile ${item.id + 1}, Pinyin: ${text}`)
+    expect(tile(item.id)).toBe(button)
+    expect(await db.memoryGames.get('current')).toEqual(game)
+  }
 })
 
 it.each(['mixed', 'triplets'] as const)('shows a study phase then keeps %s answers out of the concealed DOM', async mode => {

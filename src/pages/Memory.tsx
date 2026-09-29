@@ -9,6 +9,7 @@ import { introducedGameWords } from '../core/games/game-vocabulary'
 import { createMemoryGame, MEMORY_MISMATCH_DELAY_MS, memoryGroupSize, memoryModeSchema, memoryWordCountSchema, readMemoryGame, type MemoryAction, type MemoryGame, type MemoryMode, type MemoryWordCount } from '../core/games/memory'
 import { finishMemoryMismatch, updateMemory } from '../core/games/memory-store'
 import { memoryMatchedColors } from '../core/games/memory-colors'
+import { usePinyinFormatter } from '../components/pinyin-context'
 import './memory.css'
 
 const modes: Record<MemoryMode, string> = {
@@ -59,6 +60,7 @@ function MemoryCompletion({ game, onClose }: { game: MemoryGame; onClose: () => 
 }
 
 function MemoryBoard({ game, busy, run }: { game: MemoryGame } & Pick<PageProps, 'busy' | 'run'>) {
+  const formatPinyin = usePinyinFormatter()
   const [message, setMessage] = useState('')
   const [flipFailed, setFlipFailed] = useState(false)
   const attemptedReview = useRef<string>()
@@ -112,16 +114,17 @@ function MemoryBoard({ game, busy, run }: { game: MemoryGame } & Pick<PageProps,
         const matched = game.matched.includes(tile.id)
         const color = matched ? matchedColors.get(tile.word.id) : undefined
         const visible = matched || game.phase === 'study' || game.turned.includes(tile.id)
+        const text = tile.face === 'pinyin' ? formatPinyin(tile.word.pinyin) : tile.word[tile.face].normalize('NFC')
         return <button key={tile.id} type="button" data-memory-tile={tile.id}
           data-match-color={color?.name}
           style={color ? { '--match-background': color.background, '--match-border': color.border, '--match-ink': color.ink } as CSSProperties : undefined}
           className={`memory-card${visible ? ` face-up ${tile.face}${tile.word.character.length > 2 ? ' long-word' : ''}` : ' face-down'}${matched ? ' matched' : game.phase === 'review' && visible ? ' mismatch' : ''}`}
           disabled={busy || game.phase !== 'play' || visible}
-          aria-label={visible ? `${matched ? 'Matched tile' : 'Tile'} ${tile.id + 1}, ${faces[tile.face]}: ${tile.word[tile.face].normalize('NFC')}` : `Reveal tile ${tile.id + 1}`}
+          aria-label={visible ? `${matched ? 'Matched tile' : 'Tile'} ${tile.id + 1}, ${faces[tile.face]}: ${text}` : `Reveal tile ${tile.id + 1}`}
           onClick={() => act({ type: 'reveal', id: tile.id })}>
           {visible ? <>
             {matched && <CheckCircle2 className="memory-match-mark" size={14} aria-hidden="true" />}
-            <span className="memory-word" lang={tile.face === 'character' ? 'zh-Hans' : tile.face === 'pinyin' ? 'zh-Latn' : 'en'}>{tile.word[tile.face].normalize('NFC')}</span>
+            <span className="memory-word" lang={tile.face === 'character' ? 'zh-Hans' : tile.face === 'pinyin' ? 'zh-Latn' : 'en'}>{text}</span>
           </> : <span className="memory-card-back" aria-hidden="true"><Brain size={26} /><span>{tile.id + 1}</span></span>}
         </button>
       })}

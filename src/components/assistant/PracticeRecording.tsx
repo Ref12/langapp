@@ -10,6 +10,7 @@ import { saveInlinePracticeResult, savePracticeResult } from '../../core/assista
 import { HearButton } from './SnippetActions'
 import { PracticeFeedback } from './PracticeFeedback'
 import { acquireAudio, type AudioLease } from '../../core/assistant/audio-owner'
+import { Pinyin } from '../Pinyin'
 
 interface PendingResult { id: string; result: PracticeResult }
 interface InlinePractice {
@@ -300,7 +301,7 @@ export function PracticeRecording({ thread, phrase, busy, speechConnection, conn
 
   return <aside ref={panel} tabIndex={-1} className="panel phrase-practice" aria-label="Translation practice" data-assistant-exclude>
     <p lang={phrase.locale} className="speech-native">{phrase.text}</p>
-    {thread.romanization && phrase.romanization && <p className="pinyin">{phrase.romanization}</p>}
+    {thread.romanization && phrase.romanization && <p className="pinyin"><Pinyin text={phrase.romanization} /></p>}
     {phrase.meaning && <p className="small muted">{phrase.meaning}</p>}
     <HearButton text={phrase.text} locale={phrase.locale} rate={playbackRate} />
     {!spoken ? <p className="small">Listen and repeat. Your microphone is off.</p> : <>

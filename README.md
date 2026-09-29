@@ -97,6 +97,35 @@ handwriting assessment, other target
 languages, synchronization, and installation/offline shell caching for the new
 app. V1's voice tutor remains available independently.
 
+## Pinyin display
+
+**Settings -> Reading and appearance -> Pinyin format** chooses tone marks
+(`wǒ`), tone marks and numbers (`wǒ3`), or numbers (`wo3`) for the active profile.
+Numbered formats use `5` for neutral syllables (`men5`) and retain `ü` (`nü3`),
+not `u`. Profiles without the optional setting retain tone marks.
+
+This is a render-time preference across the current app's pinyin fields:
+dictionary and character cards, lessons and examples, reading annotations,
+Assistant replies, History, phrase practice, and games. Changing it refreshes
+existing content in place, including open practice dialogs. Visibility controls
+and exercise hint rules still apply. Plain prose, code, and user input are not
+rewritten. Unrecognized or ambiguous transcriptions are preserved rather than
+guessing their pronunciation; the formatter does not infer tone changes from
+Chinese text.
+
+Canonical curriculum, cached AI responses, speech text, learning records, and
+game data remain unchanged. AI speech-block romanization uses normal tone-marked
+pinyin; the app handles formatting locally, without an AI request or playback.
+Dictionary search accepts all three spellings; Defender's typed pinyin accepts
+marks, numbers, or both with matching tones.
+
+The optional profile field is `settings.preferences.pinyinFormat`, with values
+`marks`, `marks-and-numbers`, or `numbers`. It survives profile clones, YAML
+exports, and JSON backups; old snapshots still load without it. The checked-in
+template generator selects `marks-and-numbers` for its generated local template.
+Other new profiles still use the tone-mark fallback. The archived v1 UI remains
+separate.
+
 ## Library book imports
 
 The v2 **Library -> Import book** accepts EPUB, plain text, Markdown, and pasted
@@ -1126,8 +1155,11 @@ there. The automatic local import does not publish private settings or keys.
 `settings.preferences.defaultSpeechRate` supports `0.25`, `0.5`, `0.75`, `1`, and
 `1.25`, affects Mandarin only, and does not change existing conversation rates.
 `settings.preferences.speechVoices` uses the existing per-language browser or
-Edge preference objects. File edits take effect through explicit import after
-the one-time bootstrap. Importing settings never tests providers or plays audio.
+Edge preference objects. `settings.preferences.pinyinFormat` selects `marks`,
+`marks-and-numbers`, or `numbers` (see [Pinyin display](#pinyin-display)).
+File edits take effect through explicit import after the one-time bootstrap;
+changing Pinyin format in Settings updates the active browser profile immediately.
+Importing settings never tests providers or plays audio.
 Normal browser-to-provider CORS requirements still apply.
 
 ### Standalone structured-output probe

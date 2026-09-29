@@ -49,10 +49,16 @@ describe('safe named YAML profile files', () => {
     await initializeProfileDirectory(root)
     expect(await fs.readdir(join(root, 'data'))).toEqual(['profile.template.yaml'])
     expect(await fs.readFile(file('profile.template.yaml'), 'utf8')).toBe(createProfileTemplate())
+    expect(parseProfileYaml(createProfileTemplate()).settings.preferences.pinyinFormat).toBe('marks-and-numbers')
     await fs.writeFile(file('profile.template.yaml'), '# my edited template\n')
     await initializeProfileDirectory(root)
     expect(await fs.readFile(file('profile.template.yaml'), 'utf8')).toBe('# my edited template\n')
     expect(await listProfileFiles(root)).toEqual({ profiles: [] })
+  })
+
+  it('exposes a profile display preference through local settings without modifying saved readings', async () => {
+    const snapshot = createEmptyProfile({ id: 'default', name: 'default' }, { pinyinFormat: 'marks-and-numbers' })
+    expect(profileLocalSettings(parseProfileYaml(serializeProfileYaml(snapshot)))).toEqual({ pinyinFormat: 'marks-and-numbers' })
   })
   it('migrates every setting/key from commented JSONC, verifies YAML, and removes only its legacy file', async () => {
     const source = await legacy('\uFEFF// migration fixture\n' + JSON.stringify(settings, null, 2).replace(/\n}$/, ',\n}'))

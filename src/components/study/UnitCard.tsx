@@ -4,12 +4,13 @@ import { renderExample, type AuthoredExample, type Catalog, type Unit } from '..
 import type { StudyCard } from '../../core/study/contracts'
 import { cardStatus, unitKindLabel } from '../../core/study/labels'
 import { SnippetActions } from '../assistant/SnippetActions'
+import { Pinyin } from '../Pinyin'
 
 export function ExampleLine({ catalog, example, pinyin }: { catalog: Catalog; example: Omit<AuthoredExample, 'id'>; pinyin: boolean }) {
   const rendered = renderExample(catalog, example)
   return <div className="study-example">
     <p lang="zh-Hans" className="example">{rendered.text}</p>
-    {pinyin && <p className="small muted" data-assistant-exclude>{rendered.pinyin}</p>}
+    {pinyin && <p className="small muted" data-assistant-exclude><Pinyin text={rendered.pinyin} /></p>}
     <p className="small muted">{example.translation}</p>
   </div>
 }
@@ -25,7 +26,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   return <article className={`word-card study-unit-card${compact ? ' lesson-word-card' : ''}`} data-unit={unit.ref}>
     <div className="card-topline"><span className="eyebrow">{unitKindLabel(unit)} / HSK {unit.band}</span><span className="tag">{cardStatus(card, now)}</span></div>
     <h3 lang={unit.kind === 'vocabulary' ? 'zh-Hans' : undefined} className={unit.kind === 'vocabulary' ? 'word-native' : 'study-pattern'}>{title}</h3>
-    {pinyin && <p className="small muted study-pinyin" data-assistant-exclude>{unit.record.pr}</p>}
+    {pinyin && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /></p>}
     <p className="word-meaning">{unit.record.ds}</p>
     {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} catalog={catalog} example={example} pinyin={pinyin} />)}
     <SnippetActions source={{ text: unit.kind === 'vocabulary' ? unit.record.ch : renderExample(catalog, unit.record.ex).text, meaning: unit.record.ds, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} />

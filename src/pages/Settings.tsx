@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { savePreferences } from '../core/learning'
 import { PageHeading, type PageProps } from '../components/shared'
 import { AIConnectionSettings } from '../components/assistant/AIConnectionSettings'
 import { SpeechConnectionSettings } from '../components/assistant/SpeechConnectionSettings'
 import { VoiceSettings } from '../components/assistant/VoiceSettings'
 import { ProfileSettings } from '../components/ProfileSettings'
+import { DEFAULT_PINYIN_FORMAT, pinyinFormatSchema } from '../core/pinyin'
+import { LocalPinyinSetupContext } from '../components/assistant/local-ai-setup-context'
 
 export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
+  const pinyinSetup = useContext(LocalPinyinSetupContext)
   const [name, setName] = useState(workspace.preferences.name)
   const [notice, setNotice] = useState('')
   const [profileBusy, setProfileBusy] = useState(false)
@@ -29,6 +32,16 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
         void run(() => savePreferences({ theme }))
       }}><option value="dark">Dark</option><option value="light">Light</option></select></label>
       <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Pinyin for unfamiliar words</label>
+      <label>Pinyin format<select disabled={busy || pinyinSetup === 'loading'} value={workspace.preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT} onChange={event => {
+        const value = event.target.value
+        void run(() => savePreferences({ pinyinFormat: pinyinFormatSchema.parse(value) }))
+      }}>
+        <option value="marks">Tone marks — wǒ</option>
+        <option value="marks-and-numbers">Tone marks and numbers — wǒ3</option>
+        <option value="numbers">Tone numbers — wo3</option>
+      </select></label>
+      <p className="small muted">Applies immediately to displayed pinyin throughout this profile, including saved Assistant replies and practice. Numbered formats use 5 for the neutral tone. This does not change saved pronunciation, speech, or when pinyin is hidden.</p>
+      {pinyinSetup === 'error' && <p className="connection-error" role="alert">Local pinyin settings could not be loaded. Check default.yaml and browser storage, or choose a format here.</p>}
       <p className="small muted">Vocabulary in lessons, meaning practice, reading, and the dictionary shows pinyin until it reaches Learned: unaided correct answers on three separate days across both recognition activities. Character-selection questions hide pinyin until the answer is revealed or checked. A miss or revealed answer brings pronunciation support back. Revealing an answer is still recorded as assistance.</p>
     </section>
     <VoiceSettings workspace={workspace} busy={busy} run={run} />

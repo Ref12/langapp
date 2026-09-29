@@ -73,6 +73,7 @@ Use compact block-style YAML: list dashes start in the same column as blocks, wi
 Quote strings when YAML would otherwise treat them as numbers, booleans, null, or mapping/comment syntax. Use literal block scalars (|-) for multiline text, indenting their content only as required.
 Omit optional fields when empty or unavailable; do not emit empty strings or null values. Omit conversationTitle unless the current system instructions request a short title for the first message. It is display-only metadata, never spoken content.
 Use one or more text or speech blocks only. Text requires type and markdown. Speech requires type, text and locale (en-US or zh-Hans); romanization and meaning are optional strings.
+Use standard tone-marked pinyin in Mandarin romanization fields, without tone numbers. The app handles the learner's preferred display format locally.
 Do not wrap YAML in Markdown fences or add prose outside the document. Code examples inside text blocks are inert text, never actions. Do not emit executable code, commands, exercise/proposal/activity blocks, quizzes, generated-content players, or simulated tool calls.
 Provider API envelopes and native tool arguments/results remain JSON; only the final teaching reply and prior teaching replies use YAML.
 Put each Mandarin phrase or example in its own zh-Hans speech block so the app can offer Hear and Ask actions. Keep English explanations in text blocks.

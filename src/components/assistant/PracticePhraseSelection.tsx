@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { hasPracticeSpeech, isPracticeBoundary, type PracticePart, type PracticeUnit } from '../../core/assistant/practice-chain-contracts'
 import { practiceCharacterGroups } from './practice-character-groups'
+import { Pinyin } from '../Pinyin'
 
 interface SelectionRange { start: number; end: number }
 
@@ -104,7 +105,7 @@ export function PracticePhraseSelection({ text, units, disabled, preview, add }:
       {part && <div className="practice-selected-part" role="status">
         <span className="small muted">Selected part</span>
         <span lang="zh-Hans">{part.text}</span>
-        <span className="pinyin" lang="zh-Latn">{part.pinyin}</span>
+        <span className="pinyin" lang="zh-Latn"><Pinyin text={part.pinyin} /></span>
       </div>}
       {selection && !part && <p className="small" role="status">Include at least one spoken character in the selection.</p>}
       {hint && <p className="small" role="status">{hint}</p>}

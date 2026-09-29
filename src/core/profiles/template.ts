@@ -5,6 +5,7 @@ export const PROFILE_TEMPLATE_FILE = 'profile.template.yaml'
 
 export function createProfileTemplate(): string {
   const snapshot = createEmptyProfile({ id: DEFAULT_PROFILE_ID, name: 'default' })
+  snapshot.settings.preferences.pinyinFormat = 'marks-and-numbers'
   snapshot.exportedAt = 0
   const yaml = serializeProfileYaml(snapshot)
   return `# LinguaWeave named profile snapshot (YAML 1.2).
@@ -21,6 +22,8 @@ export function createProfileTemplate(): string {
 # settings.preferences contains the complete browser workspace preferences.
 # Optional defaultSpeechRate values: 0.25, 0.5, 0.75, 1, 1.25.
 # Optional speechVoices belong inside settings.preferences.
+# pinyinFormat: marks, marks-and-numbers, or numbers; omitted means marks.
+# Numbered pinyin uses 5 for neutral tone. Display only; saved readings stay unchanged.
 # No network voice/provider is enabled by this blank template.
 ${yaml.replace('settings:\n', `settings:
   # Optional AI connection; uncomment only after filling every required value.

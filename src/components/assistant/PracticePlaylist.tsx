@@ -7,6 +7,8 @@ import { createPracticePlayback, type PracticePlaybackOptions, type PracticePlay
 import { PracticeBoundaryEditor } from './PracticeBoundaryEditor'
 import { PracticePhraseSelection } from './PracticePhraseSelection'
 import { rememberPracticePhrase } from '../../core/assistant/practice-history'
+import { Pinyin } from '../Pinyin'
+import { usePinyinFormatter } from '../pinyin-context'
 import './practice-playlist.css'
 
 type ChainEngine = typeof import('../../core/assistant/practice-chain')
@@ -25,6 +27,7 @@ interface Props {
 }
 
 export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, recordingActive, recording, onSave, onClose, saveNotice }: Props) {
+  const formatPinyin = usePinyinFormatter()
   const id = useId()
   const dialog = useRef<HTMLDialogElement>(null)
   const opener = useRef(document.activeElement)
@@ -361,7 +364,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
               change={ends => edit(() => loaded.engine.applyPracticeEnds(draft, ends))} />
             <div className="practice-chunk-preview" aria-label="Chunk preview">
               {loaded.engine.getPracticeChunks(draft).map(chunk => <span key={`${chunk.start}:${chunk.end}`}>
-                <span lang="zh-Hans">{chunk.text}</span><span lang="zh-Latn">{chunk.pinyin}</span>
+                <span lang="zh-Hans">{chunk.text}</span><span lang="zh-Latn"><Pinyin text={chunk.pinyin} /></span>
               </span>)}
             </div>
             <div className="button-row">
@@ -373,13 +376,13 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
               key={track.item.kind === 'chain' ? `chain:${track.item.step}` : `selection:${track.item.start}:${track.item.end}`}>
               <button type="button" className="practice-track" ref={state.index === index ? activeRow : undefined}
                 aria-current={state.index === index ? 'step' : undefined}
-                aria-label={`Play step ${index + 1}: ${track.text}. ${track.pinyin}`}
+                aria-label={`Play step ${index + 1}: ${track.text}. ${formatPinyin(track.pinyin)}`}
                 disabled={disabled} onClick={() => player.current?.select(index)}>
                 <span className="practice-track-number">{index + 1}</span>
                 <span className="practice-track-text">
                   {track.item.kind === 'selection' && <span className="practice-track-kind">Selected part</span>}
                   <span className="practice-track-hanzi" lang="zh-Hans">{track.parts.map((part, partIndex) => <span key={partIndex} className={part.added ? 'practice-addition' : undefined}>{part.text}</span>)}</span>
-                  <span className="practice-track-pinyin" lang="zh-Latn">{track.parts.map((part, partIndex) => <span key={partIndex}>{partIndex > 0 ? ' ' : ''}<span className={part.added ? 'practice-addition' : undefined}>{part.pinyin}</span></span>)}</span>
+                  <span className="practice-track-pinyin" lang="zh-Latn">{track.parts.map((part, partIndex) => <span key={partIndex}>{partIndex > 0 ? ' ' : ''}<span className={part.added ? 'practice-addition' : undefined}><Pinyin text={part.pinyin} /></span></span>)}</span>
                 </span>
                 {state.index === index && <span className="small muted">{playing ? 'Active' : 'Selected'}</span>}
               </button>
@@ -403,12 +406,12 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
               onClick={() => {
                 const step = direction === 'words' ? index : tracks.findIndex(track => track.item.kind === 'chain' && track.item.step === (direction === 'backward' ? chunks.length - 1 - index : index))
                 if (step >= 0) player.current?.seek(step)
-              }}><span>{chunk.text}</span>{showPinyin && <span className="practice-word-pinyin" lang="zh-Latn">{chunk.pinyin}</span>}</button>)}
+              }}><span>{chunk.text}</span>{showPinyin && <span className="practice-word-pinyin" lang="zh-Latn"><Pinyin text={chunk.pinyin} /></span>}</button>)}
           </div>
           <div className="practice-phase"><span>{status}</span><span>Round {round}</span></div>
           <div className="practice-current">
             <p className="practice-track-hanzi" lang="zh-Hans">{currentTrack.parts.map((part, index) => <span key={index} className={part.added ? 'practice-addition' : undefined}>{part.text}</span>)}</p>
-            {showPinyin && <p className="practice-track-pinyin" lang="zh-Latn">{currentTrack.pinyin}</p>}
+            {showPinyin && <p className="practice-track-pinyin" lang="zh-Latn"><Pinyin text={currentTrack.pinyin} /></p>}
             {showMeaning && currentTrack.text === phrase.text && phrase.meaning && <p className="small muted">{phrase.meaning}</p>}
           </div>
           <div className="practice-response-track" aria-hidden="true">

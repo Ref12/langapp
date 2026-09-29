@@ -3,6 +3,67 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## Profile-wide pinyin display (2026-09-28)
+
+Implemented and validated locally. The user requested committing, pushing, and
+verifying deployment of this follow-up. Check Git and the matching Pages run for
+publication status. The preceding YAML change was committed/pushed as `a941fe7c`.
+
+User decisions: each current-app profile can select `marks` (`wǒ`),
+`marks-and-numbers` (`wǒ3`), or `numbers` (`wo3`) in Settings under Reading and
+appearance. Omitted preferences retain `marks`; numbered modes use neutral tone
+`5`. The checked-in generator `src/core/profiles/template.ts`, the ignored
+generated `data/profile.template.yaml`, and the ignored active `data/default.yaml`
+explicitly select `marks-and-numbers`. Never stage or print those private files.
+Other new profiles retain the marked default.
+
+`src/core/pinyin.ts` handles only presentation: tones, Unicode composition,
+umlauts, explicit legacy numeric syllables, syllabic nasals, erhua, punctuation,
+and uniquely segmentable joined marked spellings. Ambiguous or unrecognized text
+remains literal. Number-to-mark conversion is dictionary-free; `pinyin-pro`
+remains lazy-loaded for phrase segmentation rather than inflating initial app
+loading. The formatter does not infer lexical readings or tone sandhi.
+
+`PinyinFormatContext` wraps the live workspace in App; `<Pinyin>` adds no DOM
+wrapper, and the formatter hook handles string/accessibility fields. Existing
+Assistant replies, History, open phrase-practice portals, lesson/example cards,
+reading annotations, character cards, Writing, and game surfaces update in
+place. Pinyin visibility, learned-word rules, hidden game answers, source data,
+speech text, cached replies, and stored game state are unchanged. Ordinary
+Markdown/prose and user input are not rewritten. The AI is instructed to return
+standard tone-marked pinyin; preference changes make no generation request.
+Archived v1 has no new Settings UI.
+
+The optional preference is validated by Settings/savePreferences and the shared
+profile/backup schema. It survives YAML and JSON roundtrips and profile clones.
+Local file projection/import handles it independently, with explicit error
+status. Existing browser profiles are not overwritten by disk bootstrap: after
+the initial import, use Settings for this one preference or explicit profile
+import for a full snapshot. Changing the active disk file is not continuous
+browser synchronization.
+
+Dictionary searches accept numeric and combined spellings as well as marked
+pinyin. The shared Defender engine accepts correctly matching mark-plus-number
+answers while still rejecting wrong tones; its prototype regression expectations
+were updated alongside current-app tests.
+
+Final validation: all 153 Pages suites pass (3,496 passed, one skipped), including
+28 formatter tests and Settings/live-display/persistence/answer regressions.
+Full lint and both production builds pass, including TypeScript, curriculum
+freshness, and character reproducibility. An initial full run had two outdated
+expectations (numeric selection text under the new marked default, and Defender's
+expanded accepted forms); those were corrected and the full gate rerun.
+The existing Vite large-chunk warning remains. Removing the eager conversion
+dependency kept the approximately 300 kB dictionary in the lazy practice chunk.
+
+An isolated synthetic Edge context verified all three modes at widths 320, 390,
+and 1440 across Settings, Assistant, History, phrase practice, Memory, and Mahjong.
+No horizontal overflow or clipped pinyin tile text was found. An open practice
+node updates in place; saved source messages and both game boards remain exact.
+There were zero AI requests, speech calls, external requests, or runtime errors.
+Private local-profile and local-settings endpoints were blocked. Browser
+screenshots and the repeatable smoke script are session artifacts, not repo data.
+
 ## Compact YAML replies (2026-09-28)
 
 Implemented and validated work changes Assistant final reply content and historical
@@ -33,9 +94,11 @@ omitted metadata, title generation, both APIs, imported history, and cancellatio
 of the extra JSON capability request. `npm run lint` and `npm run build:next`
 also pass, including TypeScript and the curriculum/character freshness checks.
 Vite reports its existing large-chunk warning. The full Pages suite was not run
-for this change. The user subsequently requested committing and pushing this YAML
-change before starting a separate app-wide pinyin display preference. Publication
-is in progress; verify Git and Pages before treating the change as deployed.
+for this change before publication. The user subsequently requested committing
+and pushing it before starting a separate app-wide pinyin display preference.
+It was pushed as `a941fe7c` (`a941fe7cc3d2969c75f4ea253b666d7fb2a7b57b`).
+Pages run `36514703900` completed successfully. This check confirmed the workflow
+result, not a new byte-for-byte comparison of the live deployment artifact.
 
 The previous display change was committed/pushed as `bb730517` and deployed
 successfully by Pages run `36505588855`. The full CI gate passed; live HTML,

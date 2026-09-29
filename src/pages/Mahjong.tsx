@@ -9,6 +9,7 @@ import { introducedGameWords } from '../core/games/game-vocabulary'
 import { updateMahjong, type MahjongAction } from '../core/games/mahjong-store'
 import { DEFAULT_LAYOUT_ID, getMahjongLayout, mahjongLayouts, type MahjongLayout } from '../core/games/mahjong-layouts'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribeSpeechInterruption } from '../core/assistant/speech'
+import { usePinyinFormatter } from '../components/pinyin-context'
 import './mahjong.css'
 
 const faceLabels: Record<TileFace, string> = { character: 'Character', meaning: 'English', pinyin: 'Pinyin' }
@@ -32,6 +33,7 @@ function LayoutPreview({ configuration }: { configuration: MahjongLayout }) {
 }
 
 function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProps, 'busy' | 'run'>) {
+  const formatPinyin = usePinyinFormatter()
   const speechId = useId()
   const speechGeneration = useRef(0)
   const [selected, setSelected] = useState<number>()
@@ -98,7 +100,7 @@ function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProp
         style={{ '--columns': columns, '--rows': rows, '--layers': layers } as CSSProperties}>
         {remaining.map(tile => {
           const free = isFree(tile, remaining)
-          const text = tile.word[tile.face].normalize('NFC')
+          const text = tile.face === 'pinyin' ? formatPinyin(tile.word.pinyin) : tile.word[tile.face].normalize('NFC')
           return <button key={tile.id} type="button" disabled={busy || !free}
             data-tile-id={tile.id}
             aria-label={`${faceLabels[tile.face]}: ${text}`}

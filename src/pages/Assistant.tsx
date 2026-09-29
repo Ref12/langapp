@@ -21,6 +21,7 @@ import { registerDraftEditor } from '../core/assistant/draft-actions'
 import { appendContextText, finishDraftSave, getDraftFailures, getUnsavedDraft, rememberDraft } from '../core/assistant/drafts'
 import { useConversationVoice } from '../components/assistant/useConversationVoice'
 import { ConversationTitle } from '../components/assistant/ConversationTitle'
+import { Pinyin } from '../components/Pinyin'
 
 function ConversationList({ selectedId, collapsed = false, expand, returnRoute = 'overview' }: {
   selectedId?: string; collapsed?: boolean; expand?: () => void; returnRoute?: string
@@ -111,7 +112,7 @@ function Message({ message, thread, onPractice, inlinePractice }: {
       : <div className={block.locale === 'zh-Hans' ? 'speech-block' : 'assistant-markdown'} key={index}>
         <div className={block.locale === 'zh-Hans' ? 'speech-block-text' : undefined}>
         <p lang={block.locale} className={block.locale === 'zh-Hans' ? 'speech-native' : ''}>{block.text}</p>
-        {thread.romanization && block.romanization && <p className="pinyin" data-assistant-exclude>{block.romanization}</p>}
+        {thread.romanization && block.romanization && <p className="pinyin" data-assistant-exclude>{block.locale === 'zh-Hans' ? <Pinyin text={block.romanization} /> : block.romanization}</p>}
         {block.meaning && <p className="small muted">{block.meaning}</p>}
         </div>
         {block.locale === 'zh-Hans'

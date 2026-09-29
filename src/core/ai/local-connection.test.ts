@@ -60,10 +60,10 @@ describe('automatic local AI connection setup', () => {
       await saveAIConnection({ ...connection, model: 'manual-model' })
       const savedAI = await db.aiConnections.get('assistant')
       const fetcher = respond({ aiConnection: connection, speechConnection, defaultSpeechRate: 0.75 })
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'loaded', defaultSpeechRate: 'loaded', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'loaded', defaultSpeechRate: 'loaded', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect(await db.aiConnections.get('assistant')).toEqual(savedAI)
       expect(await db.speechConnections.get('assistant-speech')).toMatchObject(speechConnection)
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'existing', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'existing', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect(fetcher).toHaveBeenCalledTimes(2)
       expect(fetcher.mock.calls[0]).toEqual([LOCAL_SETTINGS_PATH, expect.objectContaining({
         mode: 'same-origin', redirect: 'error', credentials: 'omit', cache: 'no-store', referrerPolicy: 'no-referrer',
@@ -77,7 +77,7 @@ describe('automatic local AI connection setup', () => {
       await saveSpeechConnection({ ...speechConnection, region: 'westus' })
       const savedSpeech = await db.speechConnections.get('assistant-speech')
       const fetcher = respond({ aiConnection: connection, speechConnection })
-      expect(await loadAll()).toEqual({ aiConnection: 'loaded', speechConnection: 'existing', defaultSpeechRate: 'missing', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'loaded', speechConnection: 'existing', defaultSpeechRate: 'missing', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect(await db.aiConnections.get('assistant')).toMatchObject({ model: connection.model })
       expect(await db.speechConnections.get('assistant-speech')).toEqual(savedSpeech)
       expect(fetcher).toHaveBeenCalledTimes(1)
@@ -90,7 +90,7 @@ describe('automatic local AI connection setup', () => {
       [{ speechConnection }, 200, { aiConnection: 'missing', speechConnection: 'loaded' }],
     ])('treats absent optional sections as missing (case %#)', async (settings, status, expected) => {
       const fetcher = respond(settings, status)
-      expect(await loadAll()).toEqual({ ...expected, defaultSpeechRate: 'missing', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ ...expected, defaultSpeechRate: 'missing', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect(await db.aiConnections.count()).toBe(expected.aiConnection === 'loaded' ? 1 : 0)
       expect(await db.speechConnections.count()).toBe(expected.speechConnection === 'loaded' ? 1 : 0)
       expect(fetcher).toHaveBeenCalledTimes(1)
@@ -101,7 +101,7 @@ describe('automatic local AI connection setup', () => {
       await saveSpeechConnection(speechConnection)
       await db.preferences.update('workspace', { defaultSpeechRate: 1 })
       const fetcher = respond({ defaultSpeechRate: 0.5 })
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(0.5)
       expect(fetcher).toHaveBeenCalledTimes(1)
     })
@@ -112,7 +112,7 @@ describe('automatic local AI connection setup', () => {
         await saveSpeechConnection({ ...speechConnection, region: 'westus' })
         return new Response(JSON.stringify({ aiConnection: connection, speechConnection }))
       }))
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'missing', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'missing', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect((await db.aiConnections.get('assistant'))?.model).toBe('manual-model')
       expect((await db.speechConnections.get('assistant-speech'))?.region).toBe('westus')
     })
@@ -140,6 +140,7 @@ describe('automatic local AI connection setup', () => {
         speechConnection: failed === 'speechConnection' ? 'error' : 'loaded',
         defaultSpeechRate: 'missing',
         speechVoices: 'missing',
+        pinyinFormat: 'missing',
       })
       expect(await db.aiConnections.count()).toBe(failed === 'aiConnection' ? 0 : 1)
       expect(await db.speechConnections.count()).toBe(failed === 'speechConnection' ? 0 : 1)
@@ -183,7 +184,7 @@ describe('automatic local AI connection setup', () => {
     ])('rejects invalid configuration without exposing credential values (case %#)', async settings => {
       respond(settings)
       const result = await loadAll()
-      expect(result).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error' })
+      expect(result).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error', pinyinFormat: 'error' })
       expect(JSON.stringify(result)).not.toContain(speechConnection.apiKey)
       expect(await db.aiConnections.count()).toBe(0)
       expect(await db.speechConnections.count()).toBe(0)
@@ -192,29 +193,29 @@ describe('automatic local AI connection setup', () => {
     it('reports an import failure only for a missing connection, preserving saved status', async () => {
       await saveAIConnection(connection)
       respond({ error: speechConnection.apiKey }, 500)
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error', pinyinFormat: 'error' })
     })
 
     it.each(['invalid JSON', ' '.repeat(32001)])('rejects malformed and oversized bodies (case %#)', async body => {
       vi.stubGlobal('fetch', vi.fn(async () => new Response(body)))
-      expect(await loadAll()).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error' })
+      expect(await loadAll()).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error', pinyinFormat: 'error' })
       expect(await db.speechConnections.count()).toBe(0)
     })
 
     it('retains the dev-only flag, loopback restriction, and base-path safety', async () => {
       const fetcher = respond({ speechConnection })
       vi.stubEnv('DEV_LOCAL_SETTINGS', 'false')
-      expect(await loadAll()).toEqual({ aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable' })
+      expect(await loadAll()).toEqual({ aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable', pinyinFormat: 'unavailable' })
       vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
       vi.stubEnv('DEV', false)
-      expect(await loadAll()).toEqual({ aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable' })
+      expect(await loadAll()).toEqual({ aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable', pinyinFormat: 'unavailable' })
       vi.stubEnv('DEV', true)
       vi.stubGlobal('location', new URL('https://app.example/'))
-      expect(await loadAll()).toEqual({ aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable' })
+      expect(await loadAll()).toEqual({ aiConnection: 'unavailable', speechConnection: 'unavailable', defaultSpeechRate: 'unavailable', speechVoices: 'unavailable', pinyinFormat: 'unavailable' })
       expect(fetcher).not.toHaveBeenCalled()
       vi.stubGlobal('location', new URL('http://localhost:5173/'))
       vi.stubEnv('BASE_URL', '/mandarin/')
-      expect(await loadAll()).toEqual({ aiConnection: 'missing', speechConnection: 'loaded', defaultSpeechRate: 'missing', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'missing', speechConnection: 'loaded', defaultSpeechRate: 'missing', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect(fetcher).toHaveBeenCalledWith(`/mandarin${LOCAL_SETTINGS_PATH}`, expect.any(Object))
     })
   })
@@ -242,14 +243,14 @@ describe('automatic local AI connection setup', () => {
       const microphone = vi.fn()
       vi.stubGlobal('speechSynthesis', { speak })
       vi.stubGlobal('navigator', { mediaDevices: { getUserMedia: microphone } })
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect(await db.preferences.get('workspace')).toEqual({ ...preferences, defaultSpeechRate })
       expect(await db.aiConnections.get('assistant')).toEqual(ai)
       expect(await db.speechConnections.get('assistant-speech')).toEqual(speech)
       db.close()
       await db.open()
       expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(defaultSpeechRate)
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'existing', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'existing', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect(fetcher).toHaveBeenCalledTimes(2)
       expect(speak).not.toHaveBeenCalled()
       expect(microphone).not.toHaveBeenCalled()
@@ -260,7 +261,7 @@ describe('automatic local AI connection setup', () => {
     it('reapplies the explicit JSON preference while still importing both missing connections', async () => {
       await db.preferences.update('workspace', { defaultSpeechRate: 1.25 })
       respond({ aiConnection: connection, speechConnection, defaultSpeechRate: 0.5 })
-      expect(await loadAll()).toEqual({ aiConnection: 'loaded', speechConnection: 'loaded', defaultSpeechRate: 'loaded', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'loaded', speechConnection: 'loaded', defaultSpeechRate: 'loaded', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(0.5)
     })
 
@@ -298,7 +299,7 @@ describe('automatic local AI connection setup', () => {
       db.close()
       await db.open()
       const secondFetch = respond({ aiConnection: connection, speechConnection, defaultSpeechRate: 0.5 })
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'missing' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'missing', pinyinFormat: 'missing' })
       expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(0.5)
       const createdId = await createConversation()
       expect((await db.assistantThreads.get(createdId))?.speechRate).toBe(0.5)
@@ -335,7 +336,7 @@ describe('automatic local AI connection setup', () => {
       await saveSpeechConnection(speechConnection)
       await db.preferences.update('workspace', { defaultSpeechRate: 0.75 })
       respond({ defaultSpeechRate: 0.6 })
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'error', speechVoices: 'error' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'error', speechVoices: 'error', pinyinFormat: 'error' })
       expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(0.75)
     })
 
@@ -353,13 +354,13 @@ describe('automatic local AI connection setup', () => {
       await saveSpeechConnection(speechConnection)
       const before = await db.preferences.get('workspace')
       respond({ defaultSpeechRate })
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'error', speechVoices: 'error' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'error', speechVoices: 'error', pinyinFormat: 'error' })
       expect(await db.preferences.get('workspace')).toEqual(before)
     })
 
     it('rejects all imports before persistence if the rate is invalid', async () => {
       respond({ aiConnection: connection, speechConnection, defaultSpeechRate: 0.6 })
-      expect(await loadAll()).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error' })
+      expect(await loadAll()).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error', pinyinFormat: 'error' })
       expect(await db.aiConnections.count()).toBe(0)
       expect(await db.speechConnections.count()).toBe(0)
       expect(await db.preferences.get('workspace')).not.toHaveProperty('defaultSpeechRate')
@@ -383,6 +384,7 @@ describe('automatic local AI connection setup', () => {
         speechConnection: failed === 'speechConnection' ? 'error' : 'loaded',
         defaultSpeechRate: failed === 'defaultSpeechRate' ? 'error' : 'loaded',
         speechVoices: 'missing',
+        pinyinFormat: 'missing',
       })
       expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(failed === 'defaultSpeechRate' ? undefined : 0.5)
     })
@@ -400,6 +402,44 @@ describe('automatic local AI connection setup', () => {
     })
   })
 
+  describe('file-based pinyin display', () => {
+    it.each(['marks', 'marks-and-numbers', 'numbers'] as const)('imports %s without rewriting conversation data', async pinyinFormat => {
+      const id = await createConversation()
+      const thread = await db.assistantThreads.get(id)
+      const fetcher = respond({ pinyinFormat })
+      expect((await loadAll()).pinyinFormat).toBe('loaded')
+      expect((await db.preferences.get('workspace'))?.pinyinFormat).toBe(pinyinFormat)
+      expect((await loadAll()).pinyinFormat).toBe('existing')
+      expect(await db.assistantThreads.get(id)).toEqual(thread)
+      expect(fetcher).toHaveBeenCalledTimes(2)
+      expect(await db.assistantRuns.count()).toBe(0)
+    })
+
+    it('keeps a saved preference when the optional file field is absent', async () => {
+      respond({})
+      expect((await loadAll()).pinyinFormat).toBe('missing')
+      expect(await db.preferences.get('workspace')).not.toHaveProperty('pinyinFormat')
+      await db.preferences.update('workspace', { pinyinFormat: 'numbers' })
+      expect((await loadAll()).pinyinFormat).toBe('existing')
+      expect((await db.preferences.get('workspace'))?.pinyinFormat).toBe('numbers')
+    })
+
+    it.each([null, true, 'number', 3])('rejects malformed pinyin preferences before any persistence: %j', async pinyinFormat => {
+      const before = await db.preferences.get('workspace')
+      respond({ pinyinFormat, aiConnection: connection })
+      expect((await loadAll()).pinyinFormat).toBe('error')
+      expect(await db.preferences.get('workspace')).toEqual(before)
+      expect(await db.aiConnections.count()).toBe(0)
+    })
+
+    it('reports a failed pinyin write without blocking connection imports', async () => {
+      respond({ pinyinFormat: 'numbers', aiConnection: connection })
+      vi.spyOn(db.preferences, 'put').mockRejectedValueOnce(new Error('Storage full'))
+      expect(await loadAll()).toMatchObject({ pinyinFormat: 'error', aiConnection: 'loaded' })
+      expect(await db.preferences.get('workspace')).not.toHaveProperty('pinyinFormat')
+    })
+  })
+
   describe('file-based voice selections', () => {
     it.each([speechVoices, { 'zh-Hans': speechVoices['zh-Hans'], 'en-US': browserEnglish }])('imports and persists real voice identities without playback or provider calls (case %#)', async voices => {
       const fetcher = respond({ speechVoices: voices })
@@ -410,7 +450,7 @@ describe('automatic local AI connection setup', () => {
       vi.stubGlobal('Audio', audio)
       vi.stubGlobal('navigator', { mediaDevices: { getUserMedia: microphone } })
       const writes = vi.spyOn(db.preferences, 'put')
-      expect(await loadAll()).toEqual({ aiConnection: 'missing', speechConnection: 'missing', defaultSpeechRate: 'missing', speechVoices: 'loaded' })
+      expect(await loadAll()).toEqual({ aiConnection: 'missing', speechConnection: 'missing', defaultSpeechRate: 'missing', speechVoices: 'loaded', pinyinFormat: 'missing' })
       expect((await db.preferences.get('workspace'))?.speechVoices).toEqual(voices)
       db.close()
       await db.open()
@@ -449,7 +489,7 @@ describe('automatic local AI connection setup', () => {
       const thread = await db.assistantThreads.get(id)
       await db.preferences.update('workspace', { speechVoices: { 'en-US': browserEnglish } })
       respond({ aiConnection: { ...connection, model: 'file-model' }, speechConnection: { ...speechConnection, region: 'westus' }, defaultSpeechRate: 0.5, speechVoices })
-      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'loaded' })
+      expect(await loadAll()).toEqual({ aiConnection: 'existing', speechConnection: 'existing', defaultSpeechRate: 'loaded', speechVoices: 'loaded', pinyinFormat: 'missing' })
       expect(await db.preferences.get('workspace')).toMatchObject({ defaultSpeechRate: 0.5, speechVoices })
       expect(await db.assistantThreads.get(id)).toEqual(thread)
       expect(await db.aiConnections.get('assistant')).toEqual(ai)
@@ -483,7 +523,7 @@ describe('automatic local AI connection setup', () => {
       await db.preferences.update('workspace', { speechVoices })
       const before = await db.preferences.get('workspace')
       respond({ aiConnection: connection, speechConnection, defaultSpeechRate: 0.5, speechVoices: voices })
-      expect(await loadAll()).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error' })
+      expect(await loadAll()).toEqual({ aiConnection: 'error', speechConnection: 'error', defaultSpeechRate: 'error', speechVoices: 'error', pinyinFormat: 'error' })
       expect(await db.preferences.get('workspace')).toEqual(before)
       expect(await db.aiConnections.count()).toBe(0)
       expect(await db.speechConnections.count()).toBe(0)
@@ -509,6 +549,7 @@ describe('automatic local AI connection setup', () => {
         aiConnection: 'loaded', speechConnection: 'loaded',
         defaultSpeechRate: failed === 'defaultSpeechRate' ? 'error' : 'loaded',
         speechVoices: failed === 'speechVoices' ? 'error' : 'loaded',
+        pinyinFormat: 'missing',
       })
       expect((await db.preferences.get('workspace'))?.speechVoices).toEqual(failed === 'speechVoices' ? undefined : speechVoices)
       expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(failed === 'defaultSpeechRate' ? undefined : 0.5)
