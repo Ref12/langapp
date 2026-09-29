@@ -385,7 +385,7 @@ describe('Hear voice settings', () => {
     await go(`conversation/${threadId}`)
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
     const zhBlock = within(reply).getByText('\u8336').closest<HTMLElement>('.speech-block')!
-    const enBlock = within(reply).getByText('Tea time').closest<HTMLElement>('.speech-block')!
+    const enBlock = within(reply).getByText('Tea time').closest<HTMLElement>('.assistant-markdown')!
     fireEvent.click(openPhraseActions(zhBlock).getByRole('button', { name: 'Hear' }))
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
     expect(synthesis.speak.mock.calls[0][0].voice).toBe(onlineMandarin)

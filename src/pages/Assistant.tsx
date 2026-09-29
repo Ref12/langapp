@@ -108,8 +108,8 @@ function Message({ message, thread, onPractice, inlinePractice }: {
     </details>}
     {message.blocks.map((block, index) => block.type === 'text'
       ? <div key={index}><AssistantText markdown={block.markdown} /></div>
-      : <div className="speech-block" key={index}>
-        <div className="speech-block-text">
+      : <div className={block.locale === 'zh-Hans' ? 'speech-block' : 'assistant-markdown'} key={index}>
+        <div className={block.locale === 'zh-Hans' ? 'speech-block-text' : undefined}>
         <p lang={block.locale} className={block.locale === 'zh-Hans' ? 'speech-native' : ''}>{block.text}</p>
         {thread.romanization && block.romanization && <p className="pinyin" data-assistant-exclude>{block.romanization}</p>}
         {block.meaning && <p className="small muted">{block.meaning}</p>}

@@ -398,7 +398,11 @@ describe('first usable Assistant', () => {
     const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
     expect(within(reply).getAllByRole('button', { name: 'Phrase actions' })).toHaveLength(2)
-    const english = within(reply).getByText('Hello').closest<HTMLDivElement>('.speech-block')!
+    const englishText = within(reply).getByText('Hello')
+    expect(englishText).toHaveAttribute('lang', 'en-US')
+    expect(englishText.closest('.speech-block')).toBeNull()
+    expect(reply.querySelectorAll('.speech-block')).toHaveLength(2)
+    const english = englishText.closest<HTMLDivElement>('.assistant-markdown')!
     expect(within(english).queryByRole('button', { hidden: true })).not.toBeInTheDocument()
 
     await user.click(openPhraseActions(reply, 1).getByRole('button', { name: 'Practice' }))

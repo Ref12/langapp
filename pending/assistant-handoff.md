@@ -5,6 +5,25 @@ The latest section supersedes older Practice/Shadow behavior described later.
 
 ## History and compact Assistant (2026-09-28)
 
+Latest local follow-up: English speech content uses normal explanation-text
+typography and spacing, with no phrase-block border or indentation. Its plain
+text is not interpreted as Markdown, and speech/locale/optional display metadata
+remain intact. Mandarin phrase blocks, bilingual playback, and selected-text
+actions are unchanged. The user requested committing, pushing, and verifying
+deployment of this display refinement. All 86 targeted
+Assistant/voice/selection tests, TypeScript, and changed-file lint pass. Synthetic
+Edge confirms ordinary-text typography, zero border/indentation/unused width,
+and working Mandarin menus and History at mobile/desktop sizes. The preceding
+English button removal was pushed as `918fc90a`.
+
+Pre-publish status: Pages run `36503739257` for `918fc90a` failed in the
+untouched Potions power-up test: it saw four vials rather than five immediately
+after the Spare vial button became disabled. It had 3,369 passing tests and
+one skipped test. The preceding run for `f72e058c` was cancelled; the latest
+successful deployment at this check was still `555fd6fd`. Do not mistake
+successful pushes for a completed deployment. This commit does not change
+Potions code or tests.
+
 History/mobile controls were committed as `ce99a733`. Composer/menu cleanup
 was committed as `f72e058c`; both were pushed to main at the user's request.
 The cleanup removes the Shadow instruction above the composer, both

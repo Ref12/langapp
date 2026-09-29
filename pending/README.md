@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | History/mobile controls (`ce99a733`) and composer/menu cleanup (`f72e058c`) pushed to main. The separate English Hear-button removal is complete; bilingual spoken replies and selection Hear remain. Targeted checks, lint/build, and synthetic browser checks pass. Records the earlier intermittent Potions failure. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | English speech now renders as ordinary explanation text; spoken replies remain unchanged. The user requested commit/push and deployment verification after the earlier UI commits. Previous Pages run `36503739257` failed in the intermittent Potions power-up test; do not treat those earlier pushes as deployed. |
 
 ## Maintaining this folder
 
