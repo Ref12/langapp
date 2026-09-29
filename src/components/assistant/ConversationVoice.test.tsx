@@ -125,6 +125,8 @@ describe('conversation voice input and replies', () => {
     expect(vi.mocked(playback.playBrowserSpeechToEnd).mock.calls.map(call => call.slice(1))).toEqual([
       ['Try this greeting.', 'en-US', 1], [phrase.text, 'zh-Hans', 0.75],
     ])
+    const english = screen.getByText('Try this greeting.').closest<HTMLElement>('.speech-block')!
+    expect(within(english).queryByRole('button', { hidden: true })).not.toBeInTheDocument()
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
     expect(screen.getByRole('textbox', { name: 'Message Assistant' })).toHaveValue('')
   })

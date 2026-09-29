@@ -595,9 +595,10 @@ share exclusive audio ownership so starting one interrupts the other.
 appending to the existing draft without sending or replacing its text. Elsewhere,
 it starts a new conversation with an editable draft and exact source context.
 Each Mandarin speech snippet in an Assistant reply has a small actions icon on
-its right. Tap it for **Hear / Ask / Practice** in either mode; ordinary
-explanation blocks do not have an action row. Word cards
-keep their existing action row.
+its right. Tap it for **Hear / Ask / Practice** in either mode. English speech
+blocks have no per-paragraph Hear button, but still play as part of spoken
+replies when voice is enabled. Ordinary explanation blocks do not have an action
+row. Word cards keep their existing action row.
 
 The app-wide text-selection popup also offers **Hear / Ask / Practice**.
 Select Mandarin text (up to 3,000 UTF-16 units) and choose **Practice** to open

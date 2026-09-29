@@ -356,7 +356,7 @@ describe('Hear voice settings', () => {
     expect(synthesis.speak).not.toHaveBeenCalled()
   })
 
-  it('persists both selections across reload and applies them to real App Hear controls immediately', async () => {
+  it('persists both voices across reload for Mandarin phrase menus and selected English text', async () => {
     const threadId = await createConversation()
     await db.assistantMessages.add({
       id: 'voice-settings-reply', threadId, role: 'assistant', text: '', sequence: 0,
@@ -390,12 +390,21 @@ describe('Hear voice settings', () => {
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
     expect(synthesis.speak.mock.calls[0][0].voice).toBe(onlineMandarin)
     act(() => synthesis.speak.mock.calls[0][0].onend?.())
-    fireEvent.click(within(enBlock).getByRole('button', { name: 'Hear' }))
+    expect(within(enBlock).queryByRole('button', { hidden: true })).not.toBeInTheDocument()
+    const selection = window.getSelection()!
+    const range = document.createRange()
+    range.selectNodeContents(within(enBlock).getByText('Tea time'))
+    selection.removeAllRanges()
+    selection.addRange(range)
+    fireEvent(document, new Event('selectionchange'))
+    const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
+    fireEvent.click(within(toolbar).getByRole('button', { name: 'Hear' }))
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
     expect(synthesis.speak.mock.calls[1][0].voice).toBe(onlineEnglish)
     expect(screen.queryByText('Looking for a voice...')).not.toBeInTheDocument()
     expect(fetch).not.toHaveBeenCalled()
     expect(await db.assistantRuns.count()).toBe(0)
+    selection.removeAllRanges()
   })
 
   it('clears only the changed language when choosing Automatic and retains that choice on reload', async () => {

@@ -399,7 +399,7 @@ describe('first usable Assistant', () => {
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
     expect(within(reply).getAllByRole('button', { name: 'Phrase actions' })).toHaveLength(2)
     const english = within(reply).getByText('Hello').closest<HTMLDivElement>('.speech-block')!
-    expect(within(english).queryByRole('button', { name: 'Practice' })).not.toBeInTheDocument()
+    expect(within(english).queryByRole('button', { hidden: true })).not.toBeInTheDocument()
 
     await user.click(openPhraseActions(reply, 1).getByRole('button', { name: 'Practice' }))
     const reference = await screen.findByRole('dialog', { name: 'Phrase practice' })

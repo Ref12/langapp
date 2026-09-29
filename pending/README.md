@@ -6,7 +6,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 | Handoff | State |
 | --- | --- |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
-| [Assistant, voices, and profiles](assistant-handoff.md) | History and compact mobile Assistant committed locally as `ce99a73`, including title rename/delete and first-reply AI naming. Follow-up composer copy and Explain more removal remains uncommitted. Records prior passing targeted checks/build and an intermittent Potions failure in the full Pages run. Not pushed or published. |
+| [Assistant, voices, and profiles](assistant-handoff.md) | History/mobile controls (`ce99a733`) and composer/menu cleanup (`f72e058c`) pushed to main. The separate English Hear-button removal is complete; bilingual spoken replies and selection Hear remain. Targeted checks, lint/build, and synthetic browser checks pass. Records the earlier intermittent Potions failure. |
 
 ## Maintaining this folder
 

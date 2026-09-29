@@ -10,7 +10,7 @@ import { createConversation, deleteThread, expireAssistantRuns, saveDraft, selec
 import { cancelAssistantRun, sendAssistantTurn } from '../core/assistant/runtime'
 import { AssistantText } from '../components/assistant/AssistantText'
 import { MessageActions } from '../components/assistant/MessageActions'
-import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
+import { SnippetActions } from '../components/assistant/SnippetActions'
 import { PhrasePractice } from '../components/assistant/PhrasePractice'
 import { PracticeResultBubble } from '../components/assistant/PracticeResultBubble'
 import { stopBrowserSpeech } from '../core/assistant/speech'
@@ -119,7 +119,7 @@ function Message({ message, thread, onPractice, inlinePractice }: {
             ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice} />
             : <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
             compact rate={thread.speechRate} onPractice={() => onPractice(block)} />
-          : <HearButton text={block.text} locale={block.locale} iconOnly />}
+          : null}
       </div>)}
     {message.status === 'pending' && <p className="small muted" role="status">Working on your reply...</p>}
     {message.error && <p className="small connection-error">{message.error}</p>}

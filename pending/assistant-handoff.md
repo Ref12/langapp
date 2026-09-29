@@ -5,8 +5,9 @@ The latest section supersedes older Practice/Shadow behavior described later.
 
 ## History and compact Assistant (2026-09-28)
 
-Committed locally as `ce99a73` at the user's request; not pushed. Subsequent
-uncommitted edits remove the Shadow instruction above the composer, both
+History/mobile controls were committed as `ce99a733`. Composer/menu cleanup
+was committed as `f72e058c`; both were pushed to main at the user's request.
+The cleanup removes the Shadow instruction above the composer, both
 modes' textarea placeholders, and Explain more from phrase actions. Ask
 continues to prepare an editable explanation draft without sending. Accessible
 input labeling, actionable setup/context/error notices, and the footer remain.
@@ -58,9 +59,18 @@ immediately after the Colors button disabled). All 12 Potions tests passed
 when rerun alone. That unrelated test was not changed. Do not describe the
 full suite as entirely green.
 
-Preview server for this work: `http://127.0.0.1:5180/`. The user requested a
-commit before the copy/menu cleanup; those follow-up edits remain uncommitted.
-No push was requested.
+Preview server for this work: `http://127.0.0.1:5180/`.
+
+The separately requested follow-up removes per-paragraph Hear buttons from
+English speech blocks and lets their text span the available width. The stored
+speech blocks and bilingual reply playback are unchanged; Mandarin phrase menus
+and selected-text Hear remain available. Its 86 targeted Assistant, voice,
+voice-settings, and selection tests pass, as do full lint and production build
+(including TypeScript and character reproducibility). Synthetic Edge confirms
+no English buttons or unused button-column space at mobile/desktop widths.
+A first browser run hit a failed lazy module fetch while build/checks were
+running; the module returned HTTP 200 and the full browser rerun passed.
+The user requested committing and pushing this independently after the cleanup.
 
 ## Pages test stabilization (2026-09-28)
 
