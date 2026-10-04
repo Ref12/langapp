@@ -117,7 +117,7 @@ describe('first usable Assistant', () => {
     }))))
     window.location.hash = 'settings'
     render(<App />)
-    await screen.findByText('Saved AI connection: test-model')
+    await screen.findByText('Active AI endpoint: Default (test-model)')
     expect(screen.getByLabelText('API key')).toHaveValue(connection.apiKey)
     expect(within(screen.getByRole('region', { name: 'AI connection settings' })).getByText(/Loaded the AI connection from default.yaml/)).toBeInTheDocument()
     expect(fetch).toHaveBeenCalledTimes(1)
@@ -127,9 +127,9 @@ describe('first usable Assistant', () => {
     expect(fetch).toHaveBeenCalledTimes(1)
     expect(await db.assistantRuns.count()).toBe(0)
     const user = userEvent.setup()
-    await user.click(await screen.findByRole('button', { name: 'Remove connection' }))
+    await user.click(await screen.findByRole('button', { name: 'Delete endpoint' }))
     await user.click(screen.getByRole('button', { name: 'Confirm removal' }))
-    await screen.findByText('No AI connection is saved on this device.')
+    await screen.findByText('No active AI endpoint is saved on this device.')
     await act(async () => { await savePreferences({
       defaultSpeechRate: 1.25,
       speechVoices: { 'en-US': { provider: 'edge', voice: 'en-US-AriaNeural' } },
@@ -137,7 +137,7 @@ describe('first usable Assistant', () => {
     expect(fetch).toHaveBeenCalledTimes(1)
     cleanup()
     render(<App />)
-    await screen.findByText('No AI connection is saved on this device.')
+    await screen.findByText('No active AI endpoint is saved on this device.')
     expect(fetch).toHaveBeenCalledTimes(1)
     expect(await db.preferences.get('workspace')).toMatchObject({
       defaultSpeechRate: 1.25, speechVoices: { 'en-US': { provider: 'edge', voice: 'en-US-AriaNeural' } },
@@ -232,7 +232,7 @@ describe('first usable Assistant', () => {
     expect(screen.queryByText(/Loaded the AI connection/)).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Dismiss local AI notice' })).not.toBeInTheDocument()
     await go('settings')
-    await screen.findByText('Saved AI connection: test-model')
+    await screen.findByText('Active AI endpoint: Default (test-model)')
     expect(within(screen.getByRole('region', { name: 'AI connection settings' })).getByText(/Loaded the AI connection/)).toBeInTheDocument()
     expect(screen.getByLabelText('API key')).toHaveValue(connection.apiKey)
     expect(fetch).toHaveBeenCalledTimes(1)
@@ -603,8 +603,8 @@ describe('first usable Assistant', () => {
     await user.selectOptions(screen.getByRole('combobox', { name: 'API protocol' }), 'responses')
     await user.type(screen.getByLabelText('Model'), connection.model)
     await user.click(screen.getByRole('checkbox', { name: /I understand that the key/ }))
-    await user.click(screen.getByRole('button', { name: 'Save AI connection' }))
-    await screen.findByText('Saved AI connection: test-model')
+    await user.click(screen.getByRole('button', { name: 'Add endpoint' }))
+    await screen.findByText('Active AI endpoint: Default (test-model)')
     expect((await db.aiConnections.get('assistant'))?.apiKey).toBe(connection.apiKey)
     expect((await db.aiConnections.get('assistant'))?.apiType).toBe('responses')
     cleanup()

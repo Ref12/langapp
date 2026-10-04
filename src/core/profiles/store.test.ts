@@ -1,4 +1,5 @@
 import { IDBFactory } from 'fake-indexeddb'
+import { omit } from '../omit'
 import { stringify } from 'yaml'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from './codec'
@@ -58,7 +59,7 @@ describe('isolated named browser profiles', () => {
     vi.stubGlobal('indexedDB', legacyFactory)
     Dexie.dependencies.indexedDB = legacyFactory
     const legacy = new Dexie('linguaweave-next')
-    const newTables = version === 4 ? ['profileState', 'mahjongGames', 'characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress', 'practiceHistory'] : ['characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress', 'practiceHistory']
+    const newTables = version === 4 ? ['aiEndpoints', 'profileState', 'mahjongGames', 'characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress', 'practiceHistory'] : ['aiEndpoints', 'characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress', 'practiceHistory']
     legacy.version(version).stores(Object.fromEntries(database.db.tables.filter(table => !newTables.includes(table.name)).map(table =>
       [table.name, [table.schema.primKey.src, ...table.schema.indexes.map(index => index.src)].join(', ')])))
     const snapshot = populatedProfile(true)
@@ -70,7 +71,7 @@ describe('isolated named browser profiles', () => {
       exerciseSessions: snapshot.knowledge.study.sessions, exerciseAttempts: snapshot.knowledge.study.attempts,
       assistantThreads: snapshot.conversations.threads, assistantMessages: snapshot.conversations.messages,
       assistantRuns: snapshot.conversations.runs,
-      aiConnections: [{ ...snapshot.settings.aiConnection, id: 'assistant', revision: 'keep-ai-revision', updatedAt: 5 }],
+      aiConnections: [{ ...omit(snapshot.settings.aiEndpoints!.endpoints[0], 'id', 'name'), id: 'assistant', revision: 'keep-ai-revision', updatedAt: 5 }],
       speechConnections: [{ ...snapshot.settings.speechConnection, id: 'assistant-speech', revision: 'keep-speech-revision', updatedAt: 6 }],
     }
     await legacy.transaction('rw', legacy.tables, async () => {
@@ -79,7 +80,7 @@ describe('isolated named browser profiles', () => {
     legacy.close()
     await reopenPage()
     expect(database.db.name).toBe('linguaweave-next')
-    expect(database.db.verno).toBe(13)
+    expect(database.db.verno).toBe(14)
     expect(await database.db.practiceHistory.count()).toBe(0)
     expect(await database.db.sudokuGames.count()).toBe(0)
     expect(await database.db.memoryGames.count()).toBe(0)
@@ -90,9 +91,12 @@ describe('isolated named browser profiles', () => {
     expect(store.getActiveProfile()).toEqual({ id: 'default', name: 'default' })
     for (const [name, rows] of Object.entries(data)) {
       const actual = await database.db.table(name).toArray()
+      // The saved connection becomes the first endpoint; its row only gains the endpoint tag.
+      if (name === 'aiConnections') { expect(actual).toEqual([{ ...rows[0] as object, endpointId: 'default', name: 'Default' }]); continue }
       expect(actual).toEqual(expect.arrayContaining(rows))
       expect(actual).toHaveLength(rows.length)
     }
+    expect(await database.db.aiEndpoints.toArray()).toEqual([expect.objectContaining({ id: 'default', name: 'Default', order: 0, revision: 'keep-ai-revision', apiKey: 'synthetic-ai-key' })])
     expect(await store.needsLocalSettingsImport()).toBe(true)
     expect((await database.db.assistantRuns.get('run'))?.status).toBe('running')
   })
@@ -168,7 +172,7 @@ describe('isolated named browser profiles', () => {
     const before = await allRows()
     const profile = await store.createProfile('Copy', true)
     const clone = await readDatabase(profile.id)
-    expect(await clone.aiConnections.get('assistant')).toMatchObject(running.settings.aiConnection!)
+    expect(await clone.aiConnections.get('assistant')).toMatchObject(omit(running.settings.aiEndpoints!.endpoints[0], 'id', 'name'))
     expect(await clone.speechConnections.get('assistant-speech')).toMatchObject(running.settings.speechConnection!)
     expect((await clone.aiConnections.get('assistant'))?.revision).not.toBe((await database.db.aiConnections.get('assistant'))?.revision)
     for (const name of ['preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
@@ -242,7 +246,7 @@ describe('isolated named browser profiles', () => {
     expect(reads).toHaveLength(3)
     for (const tables of reads) expect(tables).toEqual(database.db.tables.map(table => table.name))
     const exported = parseProfileYaml(text)
-    expect(exported.settings.aiConnection?.apiKey).toBe('synthetic-ai-key')
+    expect(exported.settings.aiEndpoints?.endpoints[0].apiKey).toBe('synthetic-ai-key')
     expect(exported.settings.speechConnection?.apiKey).toBe('synthetic-speech-key')
     expect(exported.knowledge).toEqual(populatedProfile().knowledge)
     expect(exported.conversations).toEqual({

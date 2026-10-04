@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { CONTENT_VERSION } from '../../data/mandarin'
-import { aiConnectionInputSchema, assistantBackupSchema } from '../assistant/contracts'
+import { aiConnectionInputSchema, aiEndpointsExportSchema, assistantBackupSchema } from '../assistant/contracts'
 import { speechConnectionInputSchema } from '../assistant/speech-contracts'
 import { validateAssistant, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
 import { studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
@@ -9,7 +9,7 @@ import { librarySchema } from '../library/contracts'
 
 export const MAX_PROFILE_BYTES = 10 * 1024 * 1024
 export const PROFILE_FORMAT = 'linguaweave-profile'
-export const PROFILE_VERSION = 4
+export const PROFILE_VERSION = 5
 export const profileDataSchema = z.object({
   format: z.literal(PROFILE_FORMAT),
   version: z.literal(PROFILE_VERSION),
@@ -18,7 +18,9 @@ export const profileDataSchema = z.object({
   profile: profileMetadataSchema,
   settings: z.object({
     preferences: workspaceSchema.shape.preferences,
+    // Version 5 exports the endpoint list; the single connection is the older (version 1-4) shape.
     aiConnection: aiConnectionInputSchema.optional(),
+    aiEndpoints: aiEndpointsExportSchema.optional(),
     speechConnection: speechConnectionInputSchema.optional(),
   }).strict(),
   knowledge: workspaceSchema.omit({ preferences: true }).extend({ study: studyBackupSchema }).strict(),
@@ -32,6 +34,7 @@ export const profileSnapshotSchema = profileDataSchema.superRefine((snapshot, co
     validateWorkspace({ preferences: snapshot.settings.preferences, ...learning })
     validateStudy(study)
     validateAssistant(snapshot.conversations)
+    if (snapshot.settings.aiConnection && snapshot.settings.aiEndpoints) throw new Error('Both AI connection shapes present.')
   } catch {
     context.addIssue({ code: 'custom', message: 'Profile data contains invalid relationships.' })
   }

@@ -1,6 +1,7 @@
 import Dexie, { type EntityTable } from 'dexie'
+import { omit } from './omit'
 import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type Preferences, type ReadingProgress, type WordState, type Workspace } from './model'
-import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
+import type { AIConnection, AIEndpoint, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
@@ -23,6 +24,7 @@ export class LearningDatabase extends Dexie {
   assistantMessages!: EntityTable<AssistantMessage, 'id'>
   assistantRuns!: EntityTable<AssistantRun, 'id'>
   aiConnections!: EntityTable<AIConnection, 'id'>
+  aiEndpoints!: EntityTable<AIEndpoint, 'id'>
   speechConnections!: EntityTable<SpeechConnection, 'id'>
   knowledge!: EntityTable<KnowledgeEntry, 'ref'>
   studyCards!: EntityTable<StudyCard, 'id'>
@@ -73,6 +75,13 @@ export class LearningDatabase extends Dexie {
     this.version(11).stores({ defenderGames: '&id' })
     this.version(12).stores({ potionGames: '&id', potionProgress: '&id' })
     this.version(13).stores({ practiceHistory: '&text, lastOpenedAt' })
+    this.version(14).stores({ aiEndpoints: '&id, order' }).upgrade(async transaction => {
+      // The single saved connection becomes the first (and active) endpoint.
+      const current = await transaction.table('aiConnections').get('assistant')
+      if (!current) return
+      await transaction.table('aiEndpoints').put({ ...omit(current, 'id', 'endpointId', 'name'), id: 'default', name: 'Default', order: 0 })
+      await transaction.table('aiConnections').put({ ...current, endpointId: 'default', name: 'Default' })
+    })
   }
 }
 

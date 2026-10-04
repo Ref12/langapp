@@ -12,6 +12,7 @@ import { MAX_PROFILE_BYTES } from '../core/profiles/contracts'
 import { LocalSpeechVoicesSetupContext } from './assistant/local-ai-setup-context'
 import { Settings } from '../pages/Settings'
 import * as assistantStore from '../core/assistant/store'
+import * as endpointsStore from '../core/assistant/endpoints'
 import * as speechStore from '../core/assistant/speech-connection'
 import { exportWorkspaceBackup } from '../core/backup'
 
@@ -173,11 +174,11 @@ describe('settings operation coordination', () => {
     let finish!: (yaml: string) => void
     vi.mocked(profiles.exportActiveProfile).mockReturnValue(new Promise(resolve => { finish = resolve }))
     const view = render(<Settings workspace={await loadWorkspace()} busy={false} now={Date.now()} run={operation => operation()} />)
-    await screen.findByRole('button', { name: 'Save AI connection' })
+    await screen.findByRole('button', { name: 'Add endpoint' })
     await screen.findByRole('button', { name: 'Save speech connection' })
     fireEvent.click(screen.getByRole('button', { name: 'Download profile' }))
     await waitFor(() => expect(profiles.exportActiveProfile).toHaveBeenCalledOnce())
-    expect(screen.getByRole('button', { name: 'Save AI connection' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Add endpoint' })).toBeDisabled()
     expect(screen.getByRole('button', { name: 'Save speech connection' })).toBeDisabled()
     expect(screen.getByRole('button', { name: 'Save name' })).toBeDisabled()
     expect(screen.getByLabelText('Theme')).toBeDisabled()
@@ -195,10 +196,10 @@ describe('settings operation coordination', () => {
     await speechStore.saveSpeechConnection(speechConnection)
     let finish!: () => void
     const waiting = new Promise<void>(resolve => { finish = resolve })
-    if (kind === 'AI') vi.spyOn(assistantStore, 'saveAIConnection').mockReturnValue(waiting)
+    if (kind === 'AI') vi.spyOn(endpointsStore, 'updateAIEndpoint').mockReturnValue(waiting as never)
     else vi.spyOn(speechStore, 'saveSpeechConnection').mockReturnValue(waiting)
     render(<Settings workspace={await loadWorkspace()} busy={false} now={Date.now()} run={operation => operation()} />)
-    const save = await screen.findByRole('button', { name: `Save ${kind} connection` })
+    const save = await screen.findByRole('button', { name: kind === 'AI' ? 'Save endpoint' : `Save ${kind} connection` })
     fireEvent.click(save)
     await waitFor(() => expect(screen.getByRole('button', { name: 'Download profile' })).toBeDisabled())
     expect(screen.getByLabelText('New profile name')).toBeDisabled()

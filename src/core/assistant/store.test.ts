@@ -69,7 +69,7 @@ describe('Assistant database migration', () => {
       }
       old.close()
       await migrated.open()
-      expect(migrated.verno).toBe(13)
+      expect(migrated.verno).toBe(14)
       expect(await migrated.practiceHistory.count()).toBe(0)
       expect(await migrated.preferences.get('workspace')).toEqual(workspace.preferences)
       for (const table of ['words', 'readings', 'lessons', 'sessions', 'attempts'] as const) {

@@ -1,4 +1,5 @@
 import { aiConnectionInputSchema, type AIConnectionInput } from '../assistant/contracts'
+import { buildRequestHeaders } from './headers'
 import { abortable, AITransportError, AssistantCancelledError, httpFailure, readJSON, REQUEST_TIMEOUT_MS } from './provider'
 
 // One-shot structured JSON completion over the learner's configured OpenAI-compatible
@@ -69,7 +70,7 @@ export async function testStructuredJSONConnection(input: AIConnectionInput, sig
 export async function requestStructuredJSON(input: AIConnectionInput, request: StructuredRequest): Promise<unknown> {
   const parsed = aiConnectionInputSchema.safeParse({
     apiType: input.apiType, baseUrl: input.baseUrl, apiKey: input.apiKey, model: input.model, nativeTools: input.nativeTools,
-    structuredOutput: input.structuredOutput, storageAcknowledged: input.storageAcknowledged,
+    structuredOutput: input.structuredOutput, headers: input.headers, storageAcknowledged: input.storageAcknowledged,
   })
   if (!parsed.success) return invalid('Invalid AI connection. Configure the Assistant connection in Settings first.')
   const connection = parsed.data
@@ -97,7 +98,7 @@ export async function requestStructuredJSON(input: AIConnectionInput, request: S
   try {
     if (controller.signal.aborted) throw new AssistantCancelledError()
     const response = await abortable(fetch(`${connection.baseUrl.replace(/\/+$/, '')}/${responses ? 'responses' : 'chat/completions'}`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${connection.apiKey}` },
+      method: 'POST', headers: buildRequestHeaders(connection),
       body, signal: controller.signal, redirect: 'error', credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store',
     }), controller.signal)
     if (!response.ok) {

@@ -1,4 +1,5 @@
 import { IDBFactory } from 'fake-indexeddb'
+import { omit } from '../omit'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { LibraryBook } from '../library/contracts'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from './codec'
@@ -82,7 +83,7 @@ describe('one-time local default profile bootstrap', () => {
     expect(savedBook?.revision).not.toBe(book.revision)
     expect(await database.db.assistantThreads.toArray()).toEqual(imported.conversations.threads)
     expect((await database.db.assistantRuns.get('run'))?.status).not.toBe('running')
-    expect(await database.db.aiConnections.get('assistant')).toMatchObject(imported.settings.aiConnection!)
+    expect(await database.db.aiConnections.get('assistant')).toMatchObject(omit(imported.settings.aiEndpoints!.endpoints[0], 'id', 'name'))
     expect(await database.db.speechConnections.get('assistant-speech')).toMatchObject(imported.settings.speechConnection!)
     expect(await database.db.profileState.get('local-settings')).toEqual({ id: 'local-settings', imported: true })
     expect(await store.needsLocalSettingsImport()).toBe(false)

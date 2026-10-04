@@ -48,7 +48,7 @@ async function readLocalSettings(signal: AbortSignal) {
 }
 
 async function importAIConnection(connection: AIConnectionInput | undefined, signal: AbortSignal): Promise<LocalAIConnectionResult> {
-  return db.transaction('rw', db.aiConnections, async () => {
+  return db.transaction('rw', db.aiConnections, db.aiEndpoints, async () => {
     signal.throwIfAborted()
     // A manual save or another tab may have configured AI while the file was loading.
     const current = await db.aiConnections.get('assistant')

@@ -1,4 +1,5 @@
 import { stringify } from 'yaml'
+import { buildRequestHeaders } from './headers'
 import {
   aiConnectionInputSchema, assistantReplySchema, assistantToolArgumentsSchema,
   assistantToolNameSchema, MAX_TOOL_ROUNDS, normalizeAssistantReply, type AIConnectionInput, type AssistantReply, type AssistantToolName,
@@ -335,7 +336,7 @@ async function requestCompletion(connection: AIConnectionInput, body: string, op
     if (controller.signal.aborted) throw new AssistantCancelledError()
     const endpoint = connection.apiType === 'responses' ? 'responses' : 'chat/completions'
     const response = await abortable(fetch(`${connection.baseUrl.replace(/\/+$/, '')}/${endpoint}`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${connection.apiKey}` },
+      method: 'POST', headers: buildRequestHeaders(connection),
       body, signal: controller.signal, redirect: 'error', credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store',
     }), controller.signal)
     if (!response.ok) {
@@ -359,7 +360,7 @@ export function createAssistantModelClient(input: AIConnectionInput, messages: T
   // Pick only input fields: persisted connections also carry a local ID and revision.
   const parsed = aiConnectionInputSchema.safeParse({
     apiType: input.apiType, baseUrl: input.baseUrl, apiKey: input.apiKey, model: input.model, nativeTools: input.nativeTools,
-    structuredOutput: input.structuredOutput, storageAcknowledged: input.storageAcknowledged,
+    structuredOutput: input.structuredOutput, headers: input.headers, storageAcknowledged: input.storageAcknowledged,
   })
   if (!parsed.success) return invalid('Invalid AI connection. Use HTTPS (or localhost), a supported API type, a model and API key, and acknowledge local storage in Settings.')
   const connection = parsed.data

@@ -212,6 +212,36 @@ export const assistantRunSchema = z.object({
 }).strict()
 
 export const aiApiTypeSchema = z.enum(['chat-completions', 'responses'])
+
+export const MAX_AI_HEADERS = 20
+// Names a browser refuses to let scripts set (Fetch "forbidden request-header names").
+const FORBIDDEN_HEADER_NAMES = new Set([
+  'accept-charset', 'accept-encoding', 'access-control-request-headers', 'access-control-request-method', 'connection',
+  'content-length', 'cookie', 'cookie2', 'date', 'dnt', 'expect', 'host', 'keep-alive', 'origin', 'referer', 'set-cookie',
+  'te', 'trailer', 'transfer-encoding', 'upgrade', 'via',
+])
+// Headers the app sets itself on every request. They are refused rather than silently overridden.
+export const APP_SET_HEADER_NAMES = ['content-type', 'authorization'] as const
+export function headerNameProblem(name: string): string | undefined {
+  if (!/^[!#$%&'*+.^_`|~0-9A-Za-z-]+$/.test(name)) return 'Header names may only contain letters, digits and !#$%&\'*+-.^_`|~.'
+  const lower = name.toLowerCase()
+  if ((APP_SET_HEADER_NAMES as readonly string[]).includes(lower)) return `${name} is set by the app and cannot be customized.`
+  if (FORBIDDEN_HEADER_NAMES.has(lower) || lower.startsWith('proxy-') || lower.startsWith('sec-')) return `Browsers do not allow scripts to set the ${name} header.`
+  return undefined
+}
+export const aiHeaderSchema = z.object({
+  name: z.string().trim().min(1, 'Header name is required.').max(100).superRefine((name, context) => {
+    const problem = headerNameProblem(name)
+    if (problem) context.addIssue({ code: 'custom', message: problem })
+  }),
+  value: z.string().trim().min(1, 'Header value is required.').max(4000)
+    .refine(value => ![...value].some(char => char === '\0' || char === '\r' || char === '\n'), 'Header values cannot contain line breaks or null characters.')
+    .refine(value => [...value].every(char => char.charCodeAt(0) <= 0xff && (char === '\t' || char.charCodeAt(0) >= 0x20) && char.charCodeAt(0) !== 0x7f), 'Header values must use printable Latin-1 characters.'),
+}).strict()
+export const aiHeadersSchema = z.array(aiHeaderSchema).max(MAX_AI_HEADERS)
+  .refine(headers => new Set(headers.map(header => header.name.toLowerCase())).size === headers.length, 'Header names must be unique (case-insensitive).')
+export type AIHeader = z.infer<typeof aiHeaderSchema>
+
 export const aiConnectionInputSchema = z.object({
   apiType: aiApiTypeSchema.optional(),
   baseUrl: z.string().trim().url().max(2000).refine(value => {
@@ -223,13 +253,41 @@ export const aiConnectionInputSchema = z.object({
   model: z.string().trim().min(1).max(200),
   nativeTools: z.boolean(),
   structuredOutput: z.boolean(),
+  headers: aiHeadersSchema.optional(),
   storageAcknowledged: z.literal(true),
 }).strict()
+// The 'assistant' row is the active endpoint's working copy, which every AI consumer reads.
 export const aiConnectionSchema = aiConnectionInputSchema.extend({
   id: z.literal('assistant'),
+  endpointId: id.optional(),
+  name: z.string().max(80).optional(),
   revision: id,
   updatedAt: timestamp,
 }).strict()
+
+export const aiEndpointNameSchema = z.string().trim().min(1, 'Endpoint name is required.').max(80)
+export const aiEndpointInputSchema = aiConnectionInputSchema.extend({ name: aiEndpointNameSchema }).strict()
+export const aiEndpointSchema = aiEndpointInputSchema.extend({
+  id: z.string().regex(/^[A-Za-z0-9_-]{1,100}$/),
+  order: z.number().int().nonnegative(),
+  revision: id,
+  updatedAt: timestamp,
+}).strict()
+// Versioned export shape for the endpoint list.
+export const AI_ENDPOINTS_VERSION = 1
+export const aiEndpointsExportSchema = z.object({
+  version: z.literal(AI_ENDPOINTS_VERSION),
+  active: aiEndpointSchema.shape.id.optional(),
+  endpoints: z.array(aiEndpointInputSchema.extend({ id: aiEndpointSchema.shape.id }).strict()).min(1).max(20),
+}).strict().superRefine((value, context) => {
+  const ids = new Set(value.endpoints.map(endpoint => endpoint.id))
+  const names = new Set(value.endpoints.map(endpoint => endpoint.name.toLowerCase()))
+  if (ids.size !== value.endpoints.length || names.size !== value.endpoints.length) {
+    context.addIssue({ code: 'custom', message: 'Endpoint ids and names must be unique.' })
+  }
+  if (value.active !== undefined && !ids.has(value.active)) context.addIssue({ code: 'custom', message: 'The active endpoint is not in the list.' })
+})
+export const MAX_AI_ENDPOINTS = 20
 
 export const assistantBackupSchema = z.object({
   threads: z.array(assistantThreadSchema).max(500),
@@ -257,4 +315,7 @@ export type AssistantToolName = z.infer<typeof assistantToolNameSchema>
 export type AIConnectionInput = z.infer<typeof aiConnectionInputSchema>
 export type AIAPIType = z.infer<typeof aiApiTypeSchema>
 export type AIConnection = z.infer<typeof aiConnectionSchema>
+export type AIEndpointInput = z.infer<typeof aiEndpointInputSchema>
+export type AIEndpoint = z.infer<typeof aiEndpointSchema>
+export type AIEndpointsExport = z.infer<typeof aiEndpointsExportSchema>
 export type AssistantBackup = z.infer<typeof assistantBackupSchema>

@@ -1,8 +1,9 @@
 import { z } from 'zod'
+import { removeActiveAIConnection, saveActiveAIConnection } from './endpoints'
 import { db } from '../database'
 import { appendContextText, discardUnsavedDraft } from './drafts'
 import {
-  aiConnectionInputSchema, aiConnectionSchema, assistantMessageSchema, assistantRunSchema,
+  assistantMessageSchema, assistantRunSchema,
   assistantSourceSchema, assistantThreadSchema, MAX_DRAFT_LENGTH,
   practicePhraseSchema, type AIConnectionInput, type AssistantSource, type AssistantThread, type SpeechBlock,
 } from './contracts'
@@ -136,16 +137,11 @@ export async function deleteThread(threadId: string): Promise<void> {
 }
 
 export async function saveAIConnection(input: AIConnectionInput): Promise<void> {
-  const validated = aiConnectionInputSchema.parse(input)
-  const connection = aiConnectionSchema.parse({
-    ...validated, baseUrl: validated.baseUrl.replace(/\/+$/, ''),
-    id: 'assistant', revision: crypto.randomUUID(), updatedAt: Date.now(),
-  })
-  await db.aiConnections.put(connection)
+  await saveActiveAIConnection(input)
 }
 
 export async function removeAIConnection(): Promise<void> {
-  await db.aiConnections.delete('assistant')
+  await removeActiveAIConnection()
 }
 
 export async function expireAssistantRuns(now = Date.now()): Promise<void> {
