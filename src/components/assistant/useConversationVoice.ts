@@ -134,6 +134,22 @@ export function useConversationVoice({ thread, disabled, getDraft, changeDraft, 
     }
   }
 
+  /** One recognition attempt for the auto-listen loop; resolves when it ends. */
+  const listenOnce = async (): Promise<CaptureResult & { silence?: boolean }> => {
+    if (!thread.voiceEnabled || disabled) return { kind: 'cancelled' }
+    begin()
+    const current = attempt.current
+    if (!current) return { kind: 'cancelled' }
+    const result = await current.done
+    const silence = result.kind === 'error' && /No speech was recognized/.test(result.error)
+    return silence ? { ...result, silence: true } : result
+  }
+
+  /** Resolves once any reply being spoken has finished. */
+  const replyFinished = async () => {
+    while (playback.current) await playback.current.done.catch(() => {})
+  }
+
   const submit = async () => {
     if (disabled || state.current.submitting) return
     const current = attempt.current
@@ -189,6 +205,6 @@ export function useConversationVoice({ thread, disabled, getDraft, changeDraft, 
 
   return {
     capture, speaking, error, supported: conversationCaptureSupported(),
-    begin, stop: () => attempt.current?.session?.stop(), cancel, submit, prepareReply,
+    begin, stop: () => attempt.current?.session?.stop(), cancel, submit, prepareReply, listenOnce, replyFinished,
   }
 }

@@ -22,6 +22,7 @@ import { appendContextText, finishDraftSave, getDraftFailures, getUnsavedDraft, 
 import { useConversationVoice } from '../components/assistant/useConversationVoice'
 import { PocketOverlay } from '../components/pocket/PocketOverlay'
 import { usePocketMode } from '../components/pocket/usePocketMode'
+import { useAutoListen } from '../components/pocket/useAutoListen'
 import { ConversationTitle } from '../components/assistant/ConversationTitle'
 import { Pinyin } from '../components/Pinyin'
 
@@ -185,6 +186,8 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
   })
   const cancelVoice = voice.cancel
   const pocket = usePocketMode(!!thread.voiceEnabled)
+  const autoListen = useAutoListen({ voice, send, locale: thread.voiceInputLocale ?? 'en-US', rate: thread.speechRate })
+  const exitPocket = () => { pocket.exit(); if (!autoListen.option) autoListen.stop() }
   useEffect(() => registerDraftEditor(thread.id, async source => {
     if (deleting || (sending && !active)) throw new Error('Wait for the current action to finish before adding context.')
     cancelVoice()
@@ -291,7 +294,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
         : voice.capture?.phase === 'starting' ? 'Starting microphone...'
           : voice.capture ? 'Finishing recording...' : ''
   return <section className="assistant-conversation" aria-label="Assistant conversation">
-    {pocket.active && <PocketOverlay status={voiceStatus} wakeLockHeld={pocket.wakeLockHeld} onExit={pocket.exit} />}
+    {pocket.active && <PocketOverlay status={autoListen.phase === 'paused' ? 'Auto-listen paused' : voiceStatus} wakeLockHeld={pocket.wakeLockHeld} onExit={exitPocket} />}
     {headerTarget ? createPortal(<ConversationTitle thread={thread} onDelete={() => setConfirmDelete(true)} />, headerTarget)
       : headerTarget === undefined ? <ConversationTitle thread={thread} onDelete={() => setConfirmDelete(true)} /> : null}
     <h1 className="visually-hidden">{thread.title}</h1>
@@ -400,7 +403,9 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
             {voice.capture ? <Square size={18} /> : <Mic size={20} />}
           </button>}
           {thread.voiceEnabled && <button className="icon-button" type="button" aria-label="Pocket mode" title="Pocket mode: black screen, keeps the screen awake"
-            onClick={pocket.enter}><Moon size={18} /></button>}
+            onClick={() => { pocket.enter(); if (voice.supported) autoListen.start() }}><Moon size={18} /></button>}
+          {thread.voiceEnabled && voice.supported && <label className="small muted auto-listen-toggle" title="After each spoken reply, listen again automatically. Say stop or pause to end.">
+            <input type="checkbox" checked={autoListen.option} onChange={event => autoListen.setOption(event.target.checked)} /> Auto-listen</label>}
           {(voice.capture || voice.speaking) && <button className="icon-button" type="button" aria-label={voice.capture ? 'Cancel recording' : 'Stop speaking'}
             title={voice.capture ? 'Cancel recording' : 'Stop speaking'} onClick={voice.cancel}><X size={18} /></button>}
           {voiceStatus ? <span className="small muted" role="status">{voiceStatus}</span>
