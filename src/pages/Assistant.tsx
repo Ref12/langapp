@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { MessageCircle, Mic, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, X } from 'lucide-react'
+import { MessageCircle, Mic, Moon, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, X } from 'lucide-react'
 import { db } from '../core/database'
 import { normalizeSearch } from '../core/search'
 import { navigate } from '../core/routing'
@@ -20,6 +20,8 @@ import type { SpeechConnection } from '../core/assistant/speech-contracts'
 import { registerDraftEditor } from '../core/assistant/draft-actions'
 import { appendContextText, finishDraftSave, getDraftFailures, getUnsavedDraft, rememberDraft } from '../core/assistant/drafts'
 import { useConversationVoice } from '../components/assistant/useConversationVoice'
+import { PocketOverlay } from '../components/pocket/PocketOverlay'
+import { usePocketMode } from '../components/pocket/usePocketMode'
 import { ConversationTitle } from '../components/assistant/ConversationTitle'
 import { Pinyin } from '../components/Pinyin'
 
@@ -182,6 +184,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
     save, send,
   })
   const cancelVoice = voice.cancel
+  const pocket = usePocketMode(!!thread.voiceEnabled)
   useEffect(() => registerDraftEditor(thread.id, async source => {
     if (deleting || (sending && !active)) throw new Error('Wait for the current action to finish before adding context.')
     cancelVoice()
@@ -288,6 +291,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
         : voice.capture?.phase === 'starting' ? 'Starting microphone...'
           : voice.capture ? 'Finishing recording...' : ''
   return <section className="assistant-conversation" aria-label="Assistant conversation">
+    {pocket.active && <PocketOverlay status={voiceStatus} wakeLockHeld={pocket.wakeLockHeld} onExit={pocket.exit} />}
     {headerTarget ? createPortal(<ConversationTitle thread={thread} onDelete={() => setConfirmDelete(true)} />, headerTarget)
       : headerTarget === undefined ? <ConversationTitle thread={thread} onDelete={() => setConfirmDelete(true)} /> : null}
     <h1 className="visually-hidden">{thread.title}</h1>
@@ -395,6 +399,8 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
             onClick={voice.capture ? voice.stop : voice.begin}>
             {voice.capture ? <Square size={18} /> : <Mic size={20} />}
           </button>}
+          {thread.voiceEnabled && <button className="icon-button" type="button" aria-label="Pocket mode" title="Pocket mode: black screen, keeps the screen awake"
+            onClick={pocket.enter}><Moon size={18} /></button>}
           {(voice.capture || voice.speaking) && <button className="icon-button" type="button" aria-label={voice.capture ? 'Cancel recording' : 'Stop speaking'}
             title={voice.capture ? 'Cancel recording' : 'Stop speaking'} onClick={voice.cancel}><X size={18} /></button>}
           {voiceStatus ? <span className="small muted" role="status">{voiceStatus}</span>

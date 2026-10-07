@@ -912,6 +912,10 @@ independent of the ignored profile YAML files in `data`. Mandatory
 response-format, read-only-tool, and untrusted-data rules remain app-owned in
 TypeScript, and replies and tool calls are still validated regardless of prompts.
 
+## Pocket mode
+
+Hands-free practice with the screen kept awake and a touch-proof black overlay; see [`docs/pocket-mode.md`](docs/pocket-mode.md).
+
 ## Curriculum source integration
 
 `scripts/generate-app-curriculum.mjs` creates the deterministic
