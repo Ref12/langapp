@@ -445,10 +445,11 @@ describe('Hear voice settings', () => {
     render(<App />)
     const select = await screen.findByLabelText('Mandarin voice')
     expect(select).toHaveValue(speech.browserVoiceKey(mandarin))
-    const missing = within(select).getByRole('option', { name: 'Mandarin local — zh-CN — Local — Unavailable' })
+    // The voice list loads asynchronously, so wait for the options instead of reading them at once.
+    const missing = await within(select).findByRole('option', { name: 'Mandarin local — zh-CN — Local — Unavailable' })
     expect(missing).toBeDisabled()
     expect(missing).toHaveProperty('selected', true)
-    expect(within(select).getByRole('option', { name: 'Mandarin local — zh-CN — Online' })).toBeInTheDocument()
+    expect(await within(select).findByRole('option', { name: 'Mandarin local — zh-CN — Online' })).toBeInTheDocument()
     expect(select).toHaveAccessibleDescription(/Hear will not use a different voice. Choose another voice or Automatic/)
     expect((await db.preferences.get('workspace'))?.speechVoices?.['zh-Hans']).toEqual(metadata(mandarin))
     cleanup()
