@@ -244,8 +244,10 @@ html:has(.answer-player) { scrollbar-gutter: stable; }
 .empty-state h2 { color: var(--text); }
 .filter-label { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; }
 select { padding: 10px; }
-.settings-form { display: grid; gap: 18px; max-width: 760px; }
+.settings-form { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; max-width: 760px; }
 .settings-form h2, .settings-form p { margin-bottom: 0; }
+.settings-form select { width: 100%; max-width: 100%; min-width: 0; text-overflow: ellipsis; }
+.settings-form > * { min-width: 0; }
 .settings-form label:not(.toggle) { display: grid; gap: 8px; font-size: 14px; }
 .settings-form input:not([type="checkbox"]) { padding: 12px; width: 100%; }
 .settings-form > .button { justify-self: start; }
@@ -425,3 +427,9 @@ select { padding: 10px; }
 .practice-question-content .practice-tools { justify-content: flex-start; }
 .snippet-button.icon-only { padding-inline: 10px; flex-shrink: 0; }
 .notice.success { border-color: var(--accent); }
+
+.restore-picker { display: grid; gap: 14px; min-width: 0; }
+.restore-picker label { min-width: 0; grid-template-columns: minmax(0, 1fr); }
+.restore-picker select { width: 100%; max-width: 100%; min-width: 0; text-overflow: ellipsis; }
+.restore-picker .button { justify-self: start; }
+.restore-picker .button-row { flex-wrap: wrap; }

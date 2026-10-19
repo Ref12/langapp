@@ -1069,6 +1069,16 @@ GitHub Pages. On those sites browser voices still work; a saved Edge selection
 remains visibly unavailable until you choose another voice, rather than silently
 switching providers. No hosted proxy or automatic cloud fallback is configured.
 
+### Cloud backup (GitHub)
+
+Profiles live only in this browser's IndexedDB, so keep an off-device copy. Cloud backup commits each profile to a GitHub repository you own: a YAML checkpoint plus an append-only journal of reviews and other changes.
+
+1. **Create a private repository** on GitHub (for example `langapp-backup`). It may be empty; the first backup initializes it. Keep it private: the backup contains your learning data and the connection token.
+2. **Create a fine-grained personal access token** (GitHub > Settings > Developer settings > Personal access tokens > Fine-grained tokens). Under *Repository access* choose *Only select repositories* and pick that one repository. Under *Permissions > Repository permissions* set *Contents* to *Read and write*. No other permission is needed.
+3. **Paste it into the app**: open *Settings > Cloud backup*, enter the GitHub owner, repository, branch (default `main`) and the token, then press *Save connection* and *Back up now*.
+
+Backups then run about a minute or two after changes, when you leave the page, and at least daily. To restore (for example on a new browser), open *Settings > Cloud backup > Restore from GitHub backup*, press *Find backups*, choose the profile and version, and review before replacing. The current data is downloaded first. The token is stored with the profile and included in the backup's `settings.yaml`.
+
 ### Named profiles and YAML snapshots
 
 **Browser storage remains the live store.** The first profile is called `default`
