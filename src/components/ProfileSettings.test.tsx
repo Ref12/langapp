@@ -19,6 +19,7 @@ import { exportWorkspaceBackup } from '../core/backup'
 vi.mock('../core/profiles/store', () => ({
   getActiveProfile: vi.fn(), listProfiles: vi.fn(), createProfile: vi.fn(), selectProfile: vi.fn(),
   exportActiveProfile: vi.fn(), restoreActiveProfile: vi.fn(), importNewProfile: vi.fn(), markLocalSettingsImported: vi.fn(),
+  initializeProfiles: vi.fn().mockResolvedValue(undefined),
 }))
 vi.mock('../core/profiles/local-client', () => ({
   localProfilesAvailable: vi.fn(), listLocalProfiles: vi.fn(), readLocalProfile: vi.fn(), saveLocalProfile: vi.fn(),
