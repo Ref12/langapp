@@ -1,12 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Download, Upload } from 'lucide-react'
 import type { PageProps } from './shared'
-import { db } from '../core/database'
 import { restoreBackup } from '../core/backup'
-import { hasUnsavedDrafts } from '../core/assistant/drafts'
-import { interruptAudio } from '../core/assistant/audio-owner'
-import { stopBrowserSpeech } from '../core/assistant/speech'
-import { cancelAssistantRun } from '../core/assistant/runtime'
 import { MAX_PROFILE_BYTES, type ProfileSnapshot } from '../core/profiles/contracts'
 import { fromLegacyBackup, parseProfileYaml, serializeProfileYaml } from '../core/profiles/codec'
 import type { ProfileMetadata } from '../core/profiles/identity'
@@ -17,26 +12,13 @@ import {
 import {
   listLocalProfiles, localProfilesAvailable, readLocalProfile, saveLocalProfile, type LocalProfileFile,
 } from '../core/profiles/local-client'
+import { requireSavedDrafts, stopForProfileChange } from './profile-guard'
 import { LocalAISetupContext, LocalSpeechSetupContext, LocalSpeechRateSetupContext, LocalSpeechVoicesSetupContext } from './assistant/local-ai-setup-context'
 
 interface PendingImport {
   yaml: string
   snapshot: ProfileSnapshot
   legacy?: string
-}
-
-function requireSavedDrafts() {
-  if (hasUnsavedDrafts()) throw new Error('Wait for your conversation draft to save, or retry its failed save, before changing or exporting profiles.')
-}
-
-async function stopForProfileChange() {
-  requireSavedDrafts()
-  interruptAudio()
-  const failure = stopBrowserSpeech()
-  if (failure) throw new Error(failure)
-  const runs = await db.assistantRuns.where('status').equals('running').toArray()
-  for (const threadId of new Set(runs.map(run => run.threadId))) await cancelAssistantRun(threadId)
-  if (hasUnsavedDrafts()) throw new Error('A conversation draft is still being saved. Try again when it is saved.')
 }
 
 export function ProfileSettings({ busy, reload = () => window.location.reload(), onBusyChange }: Pick<PageProps, 'busy'> & {

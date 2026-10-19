@@ -2,6 +2,7 @@ import { Component, useCallback, useEffect, useRef, useState, type ReactNode } f
 import { useLiveQuery } from 'dexie-react-hooks'
 import { BookOpen, BookText, ChevronRight, Gamepad2, History as HistoryIcon, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
+import { requestPersistence, startBackupScheduler } from './core/backup/service'
 import { savePreferences } from './core/learning'
 import { useRoute } from './core/routing'
 import { lessons, stories } from './data/mandarin'
@@ -251,6 +252,11 @@ export default function App() {
     )
     return () => { disposed = true }
   }, [])
+  useEffect(() => {
+    if (!ready) return undefined
+    void requestPersistence()
+    return startBackupScheduler()
+  }, [ready])
   if (error) return <StorageFailure error={error} />
   return ready ? <WorkspaceBoundary>
     {bootstrap

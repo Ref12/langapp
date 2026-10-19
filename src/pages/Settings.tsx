@@ -5,6 +5,7 @@ import { AIConnectionSettings } from '../components/assistant/AIConnectionSettin
 import { SpeechConnectionSettings } from '../components/assistant/SpeechConnectionSettings'
 import { VoiceSettings } from '../components/assistant/VoiceSettings'
 import { ProfileSettings } from '../components/ProfileSettings'
+import { BackupPanel } from '../components/BackupPanel'
 import { DEFAULT_PINYIN_FORMAT, pinyinFormatSchema } from '../core/pinyin'
 import { LocalPinyinSetupContext } from '../components/assistant/local-ai-setup-context'
 
@@ -19,6 +20,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
   return <>
     <PageHeading eyebrow="YOUR OWN PACE. YOUR OWN SPACE." title="Your workspace.">A local Mandarin learning space, separate from the original app.</PageHeading>
     <ProfileSettings busy={workspaceBusy || aiBusy || speechBusy} onBusyChange={setProfileBusy} />
+    <BackupPanel busy={busy} />
     <form className="panel settings-form" onSubmit={event => {
       event.preventDefault()
       void run(async () => { await savePreferences({ name }); setNotice('Workspace name saved.') })

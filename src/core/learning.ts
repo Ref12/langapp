@@ -1,4 +1,6 @@
 import { getLesson, getStory, getWord } from '../data/mandarin'
+import { wordAttemptEvent } from './backup/journal'
+import { recordJournal } from './backup/journal-store'
 import { db } from './database'
 import { LANGUAGE, type Attempt, type Lesson, type PracticeSession, type Preferences, type WordState } from './model'
 import { applyAnswer } from './progress'
@@ -110,7 +112,7 @@ export async function revealAnswer(sessionId: string, index: number): Promise<vo
 }
 
 export async function submitAnswer(sessionId: string, index: number, answerId: string): Promise<Attempt> {
-  return db.transaction('rw', db.sessions, db.attempts, db.words, async () => {
+  return db.transaction('rw', db.sessions, db.attempts, db.words, db.journal, async () => {
     const id = `${sessionId}:${index}`
     const existing = await db.attempts.get(id)
     if (existing) {
@@ -128,6 +130,7 @@ export async function submitAnswer(sessionId: string, index: number, answerId: s
       answerId, correct: answerId === question.wordId, assisted: question.revealed, createdAt: Date.now(),
     }
     await db.attempts.add(attempt)
+    await recordJournal(wordAttemptEvent(attempt))
     await db.words.put(applyAnswer(word, attempt.activity, attempt.correct, attempt.assisted, attempt.createdAt))
     return attempt
   })

@@ -12,6 +12,20 @@ import type { SudokuGame } from './games/sudoku-contracts'
 import type { MemoryGame } from './games/memory'
 import type { DefenderGame } from './games/defender'
 import type { PotionsGame, PotionsProgress } from './games/potions'
+import type { JournalEvent } from './backup/journal'
+import { notifyLocalChange } from './backup/dirty'
+
+/** Backup connection kept inside the profile database (a copy lives in localStorage too). */
+export interface BackupConfigRecord {
+  id: 'github'
+  owner: string
+  repo: string
+  token: string
+  branch: string
+  lastBackupAt?: number
+  lastError?: string
+  lastCommit?: string
+}
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -40,6 +54,8 @@ export class LearningDatabase extends Dexie {
   potionGames!: EntityTable<PotionsGame, 'id'>
   potionProgress!: EntityTable<PotionsProgress, 'id'>
   practiceHistory!: EntityTable<PracticeHistoryEntry, 'text'>
+  journal!: EntityTable<JournalEvent & { seq?: number }, 'seq'>
+  backupConfig!: EntityTable<BackupConfigRecord, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -82,6 +98,14 @@ export class LearningDatabase extends Dexie {
       await transaction.table('aiEndpoints').put({ ...omit(current, 'id', 'endpointId', 'name'), id: 'default', name: 'Default', order: 0 })
       await transaction.table('aiConnections').put({ ...current, endpointId: 'default', name: 'Default' })
     })
+    this.version(15).stores({ journal: '++seq', backupConfig: '&id' })
+    // Any write to profile data marks the profile as having unsent backup changes.
+    for (const table of this.tables) {
+      if (table.name === 'journal' || table.name === 'backupConfig') continue
+      table.hook('creating', () => { notifyLocalChange() })
+      table.hook('updating', () => { notifyLocalChange() })
+      table.hook('deleting', () => { notifyLocalChange() })
+    }
   }
 }
 

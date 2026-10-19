@@ -6,6 +6,7 @@ import { speechConnectionInputSchema, speechConnectionSchema } from '../assistan
 import { configureDatabaseForProfile, db, LearningDatabase, profileDatabaseName, resetDatabaseForTests } from '../database'
 import { omit } from '../omit'
 import { createEmptyProfile, endpointsFromSettings, parseProfileYaml, serializeProfileYaml } from './codec'
+import type { JournalEvent } from '../backup/journal'
 import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from './contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema, profileMetadataSchema, type ProfileMetadata } from './identity'
 
@@ -147,7 +148,7 @@ export async function markLocalSettingsImported(): Promise<void> {
   if (!updated) throw new Error('The local settings import could not be recorded. Reload to try again.')
 }
 
-async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata): Promise<ProfileSnapshot> {
+export async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata): Promise<ProfileSnapshot> {
   return database.transaction('r', database.tables, async () => {
     const preferences = await database.preferences.get('workspace')
     if (!preferences) throw new Error('Your workspace has not been initialized. Reload to try again.')
@@ -197,7 +198,7 @@ async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata
   })
 }
 
-async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapshot, signal?: AbortSignal): Promise<void> {
+async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapshot, signal?: AbortSignal, journal: JournalEvent[] = []): Promise<void> {
   signal?.throwIfAborted()
   const { settings, knowledge, conversations } = snapshot
   const endpointList = endpointsFromSettings(settings)
@@ -219,7 +220,9 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
     await database.transaction('rw', database.tables, async () => {
       transaction = Dexie.currentTransaction!
       signal?.throwIfAborted()
-      for (const table of database.tables) await table.clear()
+      // The backup connection must survive a restore, otherwise the backup can no longer be reached.
+      for (const table of database.tables) if (table.name !== 'backupConfig') await table.clear()
+      if (journal.length) await database.journal.bulkAdd(journal)
       await database.preferences.add(settings.preferences)
       if (endpoints.length) await database.aiEndpoints.bulkAdd(endpoints)
       if (ai) await database.aiConnections.add(ai)
@@ -250,6 +253,13 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
 export async function exportActiveProfile(): Promise<string> {
   await initializeProfiles()
   return serializeProfileYaml(await readSnapshot(db, getActiveProfile()))
+}
+
+/** Replaces the active profile with a snapshot and its journal (used by cloud restore). */
+export async function restoreActiveSnapshot(snapshot: ProfileSnapshot, journal: JournalEvent[], signal?: AbortSignal): Promise<void> {
+  await initializeProfiles()
+  await writeSnapshot(db, { ...snapshot, profile: getActiveProfile() }, signal, journal)
+  clearUnsavedDrafts()
 }
 
 export async function restoreActiveProfile(text: string, signal?: AbortSignal): Promise<void> {
