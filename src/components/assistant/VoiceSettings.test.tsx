@@ -63,6 +63,12 @@ async function go(route: string) {
   await act(async () => { window.location.hash = route; window.dispatchEvent(new HashChangeEvent('hashchange')) })
 }
 
+async function voiceSelect(label: string, voice: SpeechSynthesisVoice) {
+  const select = await screen.findByLabelText<HTMLSelectElement>(label)
+  await waitFor(() => expect([...select.options].map(option => option.value)).toContain(speech.browserVoiceKey(voice)))
+  return select
+}
+
 beforeEach(async () => {
   vi.stubEnv('DEV_LOCAL_SETTINGS', 'false')
   vi.stubGlobal('fetch', vi.fn())
@@ -368,9 +374,9 @@ describe('Hear voice settings', () => {
     })
     const user = userEvent.setup()
     render(<App />)
-    await user.selectOptions(await screen.findByLabelText('Mandarin voice'), speech.browserVoiceKey(onlineMandarin))
+    await user.selectOptions(await voiceSelect('Mandarin voice', onlineMandarin), speech.browserVoiceKey(onlineMandarin))
     await waitFor(() => expect(screen.getByLabelText('Mandarin voice')).toHaveValue(speech.browserVoiceKey(onlineMandarin)))
-    await user.selectOptions(screen.getByLabelText('English voice'), speech.browserVoiceKey(onlineEnglish))
+    await user.selectOptions(await voiceSelect('English voice', onlineEnglish), speech.browserVoiceKey(onlineEnglish))
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.speechVoices).toEqual({
       'zh-Hans': metadata(onlineMandarin), 'en-US': metadata(onlineEnglish),
     }))
@@ -430,7 +436,7 @@ describe('Hear voice settings', () => {
     await savePreferences({ speechVoices: { 'en-US': metadata(onlineEnglish) } })
     const run = vi.fn(async (operation: () => Promise<void>) => { await operation() })
     render(<VoiceSettings workspace={workspace} busy={false} run={run} />)
-    await userEvent.setup().selectOptions(screen.getByLabelText('Mandarin voice'), speech.browserVoiceKey(mandarin))
+    await userEvent.setup().selectOptions(await voiceSelect('Mandarin voice', mandarin), speech.browserVoiceKey(mandarin))
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.speechVoices).toEqual({
       'zh-Hans': metadata(mandarin), 'en-US': metadata(onlineEnglish),
     }))
