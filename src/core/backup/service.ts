@@ -75,7 +75,7 @@ async function backupOnce(): Promise<BackupStatus> {
     }))
     clearDirty(profileId) // Changes made while uploading set it again.
     const events = journal.map(({ seq: _seq, ...event }) => { void _seq; return event })
-    const files = buildBackupFiles(snapshot, events, config)
+    const files = buildBackupFiles(snapshot, events, { owner: config.owner, repo: config.repo, branch: config.branch, token: config.token })
     const result = await makeBackend(config).publish(profileId, files, `Backup ${snapshot.profile.name} (${events.length} journal events)`)
     const status: BackupStatus = { lastBackupAt: Date.now(), lastCommit: result.version ?? readBackupStatus().lastCommit }
     writeStatus(status)

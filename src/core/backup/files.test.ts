@@ -4,7 +4,7 @@ import { createEmptyProfile } from '../profiles/codec'
 import { populatedProfile } from '../profiles/test-fixtures'
 import type { ProfileSnapshot } from '../profiles/contracts'
 import { buildBackupFiles, loadBackup } from './files'
-import { appendToSegment, replay, reviewEvent, toSegments, serializeJournal, type JournalEvent } from './journal'
+import { appendToSegment, replay, reviewEvent, type JournalEvent } from './journal'
 
 const profile = { id: 'default', name: 'Test' }
 const at = (iso: string) => Date.parse(iso)

@@ -151,19 +151,21 @@ describe('restore', () => {
     fireEvent.click(screen.getByRole('button', { name: /download current data, then replace/i }))
     await waitFor(() => expect(reload).toHaveBeenCalled())
     expect(click).toHaveBeenCalledTimes(1)
-    expect(await created[0].text()).toContain('grammar')
+    const text = await new Promise<string>(resolve => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.readAsText(created[0]) })
+    expect(text).toContain('grammar')
     expect((await db.knowledge.toArray()).map(entry => entry.ref)).toEqual(['vocabulary:cha2--tea'])
   })
 })
 
 describe('scheduler', () => {
   it('debounces after changes, backs up on page hide, and at least daily', async () => {
-    vi.useFakeTimers()
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] })
     const memory = memoryBackend()
     const publish = vi.spyOn(memory.backend, 'publish')
     setBackendFactoryForTests(() => memory.backend)
     await saveBackupConfig(config)
     const stop = startBackupScheduler({ debounceMs: 1000 })
+    await vi.waitFor(() => expect(publish).toHaveBeenCalledTimes(1)) // the startup check backs up the unsent connection change
     await act(async () => { await vi.advanceTimersByTimeAsync(10) })
     publish.mockClear()
     await addToKnowledge(['vocabulary:cha2--tea'])
@@ -172,18 +174,17 @@ describe('scheduler', () => {
     await act(async () => { await vi.advanceTimersByTimeAsync(800) })
     expect(publish).not.toHaveBeenCalled()
     await act(async () => { await vi.advanceTimersByTimeAsync(400) })
-    expect(publish).toHaveBeenCalledTimes(1)
+    await vi.waitFor(() => expect(publish).toHaveBeenCalledTimes(1))
 
     await addToKnowledge(['grammar:s-shi4-n--identity'])
     Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' })
     document.dispatchEvent(new Event('visibilitychange'))
-    await act(async () => { await vi.advanceTimersByTimeAsync(10) })
-    expect(publish).toHaveBeenCalledTimes(2)
+    await vi.waitFor(() => expect(publish).toHaveBeenCalledTimes(2))
     Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'visible' })
 
     // Nothing unsent and a day passes: the hourly check makes the daily backup (content unchanged, so no new version).
     await act(async () => { await vi.advanceTimersByTimeAsync(25 * 60 * 60 * 1000) })
-    expect(publish.mock.calls.length).toBeGreaterThanOrEqual(3)
+    await vi.waitFor(() => expect(publish.mock.calls.length).toBeGreaterThanOrEqual(3))
     stop()
   })
 })
