@@ -1228,7 +1228,7 @@ projection, including its authored examples and lesson prerequisites.
 The current app is published at **https://ref12.github.io/langapp/**. The
 archived v1 app is kept in [`versions/v1`](versions/v1) as source only; it is no
 longer built or published. The same Pages build can also be proxied under another
-path (for example `/apps/lang/`) without changes.
+path (a reverse proxy mounting it under a subpath) without changes.
 
 Repository **Settings -> Pages -> Build and deployment -> Source** must be
 **GitHub Actions**, as configured for this repository.

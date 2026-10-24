@@ -11,8 +11,7 @@ import {
 } from './v2-order-curriculum.mjs'
 import { buildComponentCandidateFile, buildComponentCandidates } from './v2-vocabulary-components.mjs'
 import { curriculumFixture, fixtureGrammar, fixtureWord, writeCurriculumFixture } from './v2-curriculum-fixtures.mjs'
-import { loadTeachingOrder, optionalText } from './v2-curriculum-io.mjs'
-import { buildLessonSequences } from './v2-generate-lessons.mjs'
+import { optionalText } from './v2-curriculum-io.mjs'
 
 const readYaml = (path: string) => parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
 const temporaryRoots: string[] = []
