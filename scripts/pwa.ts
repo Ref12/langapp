@@ -1,14 +1,15 @@
 import type { Plugin } from 'vite'
 
 /**
- * Hexad-only PWA: emits a web manifest and a service worker for the build served at
- * /apps/langapp/. Enabled with LANGAPP_PWA=1; the GitHub Pages build does not use it.
- * The worker only touches same-origin GET requests inside its own scope and never
+ * PWA for every production build: emits a web manifest and a service worker. All URLs
+ * (id, scope, start_url, precache) are relative, so the same build works at
+ * https://ref12.github.io/langapp/ and when proxied under another path such as /apps/lang/.
+ * The service worker replaces the retired root worker at the same URL. It only touches same-origin GET requests inside its own scope and never
  * touches IndexedDB, so learning data is never cleared.
  */
-export function hexadPwa(): Plugin {
+export function pwa(): Plugin {
   return {
-    name: 'hexad-pwa',
+    name: 'langapp-pwa',
     apply: 'build',
     transformIndexHtml: () => [
       { tag: 'link', attrs: { rel: 'manifest', href: './manifest.webmanifest' }, injectTo: 'head' },
@@ -38,7 +39,7 @@ export function hexadPwa(): Plugin {
 
 function serviceWorker(precache: string[]): string {
   const version = Date.now().toString(36)
-  return `// LinguaWeave service worker (hexad deployment). Caches only this scope; never touches IndexedDB.
+  return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB.
 const CACHE = 'linguaweave-shell-${version}'
 const RUNTIME = 'linguaweave-runtime'
 const PRECACHE = ${JSON.stringify(precache)}
@@ -61,7 +62,7 @@ self.addEventListener('fetch', event => {
   const request = event.request
   if (request.method !== 'GET') return
   const url = new URL(request.url)
-  // Only this scope: AI gateway calls (/v1/...), hexad itself and other origins pass through untouched.
+  // Only this scope: AI gateway calls and other origins pass through untouched.
   if (url.origin !== location.origin || !url.href.startsWith(scope)) return
   if (url.pathname.endsWith('/sw.js')) return
   if (request.mode === 'navigate') {

@@ -1220,26 +1220,27 @@ projection, including its authored examples and lesson prerequisites.
 
 ## Deployment
 
-The current app is published at **https://ref12.github.io/langapp/**, replacing
-the previous site at that address. The archived app remains at
-https://ref12.github.io/langapp/v1/.
+The current app is published at **https://ref12.github.io/langapp/**. The
+archived v1 app is kept in [`versions/v1`](versions/v1) as source only; it is no
+longer built or published. The same Pages build can also be proxied under another
+path (for example `/apps/lang/`) without changes.
 
 Repository **Settings -> Pages -> Build and deployment -> Source** must be
 **GitHub Actions**, as configured for this repository.
 Pushes to `main` run `.github/workflows/deploy-pages.yml`. The workflow
 installs from the lockfile, runs lint and tests, creates the production build,
 and deploys `dist` to GitHub Pages. `npm run build` first builds the new app
-(`build:next`), then the archived app (`build:v1`) into `dist/v1`, and finally
-publishes the separate design previews, runtime assets, and character-data
-license. Preview assembly never overwrites the production `index.html`.
-The retirement worker for the former root PWA is retained. Mockup tests,
-documentation, and screenshot fixtures are not published. `npm run preview`
-serves the complete `dist` site, including `/v1/`.
+(`build:next`), which always emits `manifest.webmanifest` and the scoped
+service worker `sw.js`, and then publishes the separate design previews,
+runtime assets, and character-data license. Preview assembly never overwrites
+the production `index.html`. Mockup tests, documentation, and screenshot
+fixtures are not published. `npm run preview` serves the complete `dist` site.
 
 The app uses hash routing and relative assets so it works at a repository Pages
-path such as `https://ref12.github.io/langapp/`. The v1 manifest and service
-worker are scoped to that subdirectory. The old root service worker is retired
-when the browser discovers its update, without clearing IndexedDB or caches.
+path such as `https://ref12.github.io/langapp/`. The manifest (`id`, `scope`, `start_url` are all `./`) and service worker use
+relative URLs only, so the same build works at any path. The new `sw.js`
+replaces the former self-unregistering root worker at the same URL; it caches only
+its own scope and never touches IndexedDB.
 
 Moving to a subpath does not move browser storage: v1 retains the `linguaweave`
 IndexedDB database, so existing profiles, imported content, credentials, and
@@ -1248,8 +1249,7 @@ progress remain available on the same origin. The new root app uses
 reading positions, lesson completion, practice sessions, immutable attempts,
 Assistant conversations/runs, and separate device AI settings. Existing
 schema-version-1 workspaces migrate without rewriting learning evidence.
-It does not open, migrate, or restore the v1 database. No new root service worker
-is registered yet.
+It does not open, migrate, or restore the v1 database.
 
 Localhost and GitHub Pages are different browser-storage origins. To move a
 profile between them, download its YAML in Settings and import that file on the

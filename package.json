@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:v1": "vite --config versions/v1/vite.config.ts",
-    "build": "npm run build:next && npm run build:v1 && node scripts/build-site.mjs",
+    "build": "npm run build:next && node scripts/build-site.mjs",
     "build:next": "npm run curriculum:check && npm run curriculum:v2:app:check && npm run characters:check && tsc -b && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build",
     "characters:generate": "node scripts/generate-app-characters.mjs",
     "characters:check": "node scripts/generate-app-characters.mjs --check",
@@ -17,14 +17,11 @@
     "curriculum:v2:order": "node scripts/v2-order-curriculum.mjs",
     "curriculum:v2:order:check": "node scripts/v2-order-curriculum.mjs --check",
     "curriculum:v2:examples:check": "node scripts/v2-audit-examples.mjs",
-    "build:v1": "tsc -b versions/v1 && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build --config versions/v1/vite.config.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
     "test:pages": "vitest run --maxWorkers=4 --exclude scripts/v2-all-bands.integration.test.ts",
-    "test:watch": "vitest",
-    "build:hexad": "node scripts/build-hexad.mjs",
-    "deploy:hexad": "npm run build:hexad && npx --yes wrangler@4 deploy -c deploy/hexad/wrangler.jsonc"
+    "test:watch": "vitest"
   },
   "dependencies": {
     "dexie": "^4.4.5",

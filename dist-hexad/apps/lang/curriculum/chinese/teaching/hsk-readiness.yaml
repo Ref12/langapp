@@ -1,0 +1,1003 @@
+schema_version: 1
+id: zh-hsk-readiness
+title: HSK readiness path
+alignment_note: 'The six sections define cumulative HSK 1-6 preparation cutoffs. The generated core now
+  contains every official November 2025 vocabulary row and every recognized legacy-list headword in the
+  ten audited papers per level by the relevant cutoff. This is curriculum coverage, not certification:
+  the official grammar crosswalk and learner performance gates remain incomplete.'
+app_practice:
+  supported:
+  - vocabulary meaning recognition
+  - character recognition
+  - spaced vocabulary review
+  - grammar reference
+  external_required:
+  - recorded one-pass listening
+  - timed reading
+  - timed writing from HSK 3
+  - human review of writing
+  - at least two unseen full mock exams
+  - verification of the live official format and pass standard
+resources:
+- id: chinesetest-hsk-format
+  title: ChineseTest official HSK format pages
+  url: https://www.chinesetest.cn/HSK
+  kind: official-format
+  levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7-9
+  note: Verify the current level page before a timed simulation because examination arrangements can change.
+- id: digmandarin-hsk-practice
+  title: DigMandarin HSK practice-test collection
+  url: https://www.digmandarin.com/hsk-practice-test
+  kind: downloadable-practice
+  levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  note: Five hash-pinned legacy-format PDF papers per level are included in the audit by metadata and
+    aggregate coverage only; no paper or transcript is redistributed.
+- id: mandarinmania-hsk-practice
+  title: Mandarin Mania HSK sample and past-paper collection
+  url: https://mandarinmania.com/hsk-sample-tests/
+  kind: downloadable-practice
+  levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  note: Five additional unique legacy-format papers per level are hash-pinned in the audit. The same paper
+    family is independently listed by the University of Manchester Confucius Institute. No paper or transcript
+    is redistributed.
+- id: hsk-mock-platform
+  title: Official HSK Mock platform
+  url: https://hskmock.com/
+  kind: official-external-assessment
+  levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  note: Use externally for current timed performance evidence. The curriculum stores no test content or
+    learner result and does not infer a pass from inventory coverage.
+- id: goeast-hsk-library
+  title: GoEast Mandarin HSK mock-test resource library
+  url: https://goeastmandarin.com/complete-hsk-mock-tests-resource-library/
+  kind: supplementary-practice
+  levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7-9
+  note: Supplementary current-syllabus vocabulary and legacy mock-test links. No linked file is treated
+    as licensed for redistribution or as independent current-format evidence.
+sections:
+- id: hsk-1-readiness
+  title: HSK 1 readiness
+  hsk_level: 1
+  course_levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  outcome: Handle first interactions and complete a current HSK 1 paper with a repeatable listening-and-reading
+    strategy.
+  exam:
+    official_url: https://www.chinesetest.cn/HSK/1
+    questions: 40
+    minutes: 40
+    skills:
+    - listening
+    - reading
+  modules:
+  - id: hsk-1-core-control
+    title: Core language control
+    outcome: Turn the first four course levels into flexible personal, shopping, location, and scheduling
+      language.
+    lessons:
+    - id: hsk-1-core-recall
+      title: Retrieve first-contact language
+      objective: Recall greetings, identity, family, quantities, prices, places, times, requests, and
+        plans without relying on a fixed dialogue.
+      success_criteria:
+      - Complete two fresh role-play combinations.
+      - Repair one misunderstanding politely.
+      - Record fragile vocabulary and grammar for review.
+    - id: hsk-1-sound-script
+      title: Connect sound, pinyin, and characters
+      objective: Match familiar syllables and tones to meanings, then recognize the corresponding simplified-character
+        words in short prompts.
+      success_criteria:
+      - Distinguish tested sound contrasts from recorded audio.
+      - Read familiar words in changed combinations.
+      - Keep listening and reading evidence separate.
+  - id: hsk-1-receptive-skills
+    title: Listening and reading
+    outcome: Find explicit people, objects, numbers, times, places, and actions in short HSK-style items.
+    lessons:
+    - id: hsk-1-listening
+      title: Listen for the decisive detail
+      objective: Use the question and answer choices to predict whether a name, number, place, object,
+        or action will decide the answer.
+      success_criteria:
+      - Answer once without pausing.
+      - Mark whether misses came from sound
+      - vocabulary
+      - or attention.
+      - Replay only during review.
+    - id: hsk-1-reading
+      title: Read for direct matches
+      objective: Read short pinyin-supported or character prompts for the key relationship instead of
+        translating every word.
+      success_criteria:
+      - Locate the decisive word or phrase.
+      - Reject one plausible distractor with a reason.
+      - Finish a short set within its planned time.
+  - id: hsk-1-supporting-production
+    title: Character and spoken reinforcement
+    outcome: Use production to strengthen recognition even though the current HSK 1 written paper scores
+      listening and reading.
+    lessons:
+    - id: hsk-1-character-support
+      title: Build a first character routine
+      objective: Recognize components and write a small set of high-frequency characters with correct
+        stroke direction from a reviewed model.
+      success_criteria:
+      - Copy accurately before writing from memory.
+      - Check proportions and stroke order.
+      - Do not infer handwriting mastery from typing.
+    - id: hsk-1-spoken-support
+      title: Answer aloud before choosing
+      objective: Say a short answer or repeat the key phrase before selecting the written response.
+      success_criteria:
+      - Produce a comprehensible phrase.
+      - Use actual audio for pronunciation feedback.
+      - Retry after a specific correction.
+  - id: hsk-1-mock-cycle
+    title: Mock-test cycle
+    outcome: Establish a baseline, repair named weaknesses, and complete a timed HSK 1 simulation.
+    lessons:
+    - id: hsk-1-diagnostic
+      title: Take an untimed diagnostic
+      objective: Complete one downloadable paper and audio set, then classify every error before doing
+        more general study.
+      success_criteria:
+      - Finish every item.
+      - Log errors by section and cause.
+      - Choose the two highest-value repair targets.
+    - id: hsk-1-simulation
+      title: Retest under official timing
+      objective: Complete a different full set in approximately 40 minutes without pausing the listening
+        audio.
+      success_criteria:
+      - Follow one-pass listening conditions.
+      - Record section results separately.
+      - Schedule another version-checked mock if the result is unstable.
+  mock_test:
+    available_sets: 10
+    sequence:
+    - untimed diagnostic
+    - targeted repair
+    - timed section drill
+    - full simulation
+    - error-led retest
+    resource_ids:
+    - digmandarin-hsk-practice
+    - mandarinmania-hsk-practice
+  knowledge_cutoff:
+    through_course_level: 4
+    official_vocabulary: complete in the checked audit
+    practice_vocabulary: complete for recognized legacy-list headwords in ten audited papers
+    official_grammar: blocked pending reviewed item-level crosswalk
+  skill_crosswalk:
+    listening:
+      module_id: hsk-1-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    reading:
+      module_id: hsk-1-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+  performance_gates:
+  - id: current-format
+    requirement: Reconfirm the live official format, timing, delivery mode, and pass standard before the
+      final simulation.
+    status: external-required
+  - id: unseen-mocks
+    requirement: Complete at least two previously unseen full papers under current timing and one-pass
+      listening conditions.
+    status: learner-evidence-required
+  - id: score-stability
+    requirement: Meet the current official passing standard on both unseen mocks and investigate section-level
+      weakness rather than relying on one total score.
+    status: learner-evidence-required
+  - id: listening-conditions
+    requirement: Use the supplied audio once without pausing, transcript access, or item-specific help.
+    status: learner-evidence-required
+- id: hsk-2-readiness
+  title: HSK 2 readiness
+  hsk_level: 2
+  course_levels:
+  - 5
+  - 6
+  - 7
+  - 8
+  outcome: Manage familiar routines, transactions, travel, study, and social plans while sustaining HSK
+    2 listening and reading.
+  exam:
+    official_url: https://www.chinesetest.cn/HSK/2
+    questions: 60
+    minutes: 55
+    skills:
+    - listening
+    - reading
+  modules:
+  - id: hsk-2-core-control
+    title: Everyday language control
+    outcome: Consolidate home, services, health, travel, work, study, and social language with lower-level
+      material kept active.
+    lessons:
+    - id: hsk-2-routines-events
+      title: Connect routines and events
+      objective: Describe what usually happens, what is happening, what happened, and what changed with
+        clear time reference.
+      success_criteria:
+      - Choose aspect and time expressions by meaning.
+      - Give a connected account rather than isolated sentences.
+      - Correct one misleading tense-based choice.
+    - id: hsk-2-options-problems
+      title: Compare options and solve a problem
+      objective: Compare ordinary purchases or travel plans, explain a reason, and request help or permission
+        after a change.
+      success_criteria:
+      - State the important difference.
+      - Give a comprehensible reason.
+      - Reach a practical outcome in a new scenario.
+  - id: hsk-2-receptive-skills
+    title: Listening and reading
+    outcome: Follow short exchanges and connected descriptions while tracking time, negation, comparison,
+      and result.
+    lessons:
+    - id: hsk-2-listening
+      title: Track turns and changes
+      objective: Identify who did what, when, and whether a plan or state changed across a short recorded
+        exchange.
+      success_criteria:
+      - Note the speaker and time reference.
+      - Catch negation and corrections.
+      - Review misses without reading the transcript first.
+    - id: hsk-2-reading
+      title: Read connected practical text
+      objective: Use grammar and context to order or interpret short messages, notices, and descriptions.
+      success_criteria:
+      - Identify the text's practical purpose.
+      - Link pronouns and omitted subjects correctly.
+      - Explain why a distractor conflicts with the text.
+  - id: hsk-2-supporting-production
+    title: Character and spoken reinforcement
+    outcome: Strengthen automatic recognition through brief typed, handwritten, and spoken retrieval outside
+      the scored paper sections.
+    lessons:
+    - id: hsk-2-character-support
+      title: Write familiar information
+      objective: Type and handwrite short schedules, directions, and routine statements using reviewed
+        forms.
+      success_criteria:
+      - Preserve word order and key characters.
+      - Separate typing from handwriting evidence.
+      - Correct recurring component errors.
+    - id: hsk-2-spoken-support
+      title: Reconstruct a short exchange
+      objective: Retell the useful facts from a short dialogue and answer a changed follow-up question.
+      success_criteria:
+      - Retain the central facts.
+      - Speak in connected phrases.
+      - Repair one omission after feedback.
+  - id: hsk-2-mock-cycle
+    title: Mock-test cycle
+    outcome: Diagnose cumulative HSK 1-2 gaps and complete a 55-minute HSK 2 simulation.
+    lessons:
+    - id: hsk-2-diagnostic
+      title: Diagnose cumulative gaps
+      objective: Take one full practice set untimed and tag errors as lower-level recall, current-level
+        language, listening process, reading process, or pacing.
+      success_criteria:
+      - Review every wrong answer.
+      - Relearn prerequisite gaps before new material.
+      - Build a section-specific repair plan.
+    - id: hsk-2-simulation
+      title: Complete a timed simulation
+      objective: Take a different full set under the official approximate duration and preserve enough
+        attention for the final reading items.
+      success_criteria:
+      - Do not pause the audio.
+      - Stay within the section plan.
+      - Compare the error pattern with the diagnostic.
+  mock_test:
+    available_sets: 10
+    sequence:
+    - untimed diagnostic
+    - prerequisite repair
+    - timed section drill
+    - full simulation
+    - error-led retest
+    resource_ids:
+    - digmandarin-hsk-practice
+    - mandarinmania-hsk-practice
+  knowledge_cutoff:
+    through_course_level: 8
+    official_vocabulary: complete in the checked audit
+    practice_vocabulary: complete for recognized legacy-list headwords in ten audited papers
+    official_grammar: blocked pending reviewed item-level crosswalk
+  skill_crosswalk:
+    listening:
+      module_id: hsk-2-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    reading:
+      module_id: hsk-2-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+  performance_gates:
+  - id: current-format
+    requirement: Reconfirm the live official format, timing, delivery mode, and pass standard before the
+      final simulation.
+    status: external-required
+  - id: unseen-mocks
+    requirement: Complete at least two previously unseen full papers under current timing and one-pass
+      listening conditions.
+    status: learner-evidence-required
+  - id: score-stability
+    requirement: Meet the current official passing standard on both unseen mocks and investigate section-level
+      weakness rather than relying on one total score.
+    status: learner-evidence-required
+  - id: listening-conditions
+    requirement: Use the supplied audio once without pausing, transcript access, or item-specific help.
+    status: learner-evidence-required
+- id: hsk-3-readiness
+  title: HSK 3 readiness
+  hsk_level: 3
+  course_levels:
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  outcome: Understand connected everyday accounts, express relationships among events, and add timed writing
+    to listening and reading preparation.
+  exam:
+    official_url: https://www.chinesetest.cn/HSK/3
+    questions: 80
+    minutes: 90
+    skills:
+    - listening
+    - reading
+    - writing
+  modules:
+  - id: hsk-3-core-control
+    title: Connected communication
+    outcome: Integrate event sequence, feelings, processes, information sharing, opinions, and choices.
+    lessons:
+    - id: hsk-3-events-processes
+      title: Relate events and processes
+      objective: Explain sequence, attempt, result, cause, and consequence in a fresh everyday problem
+        or procedure.
+      success_criteria:
+      - Keep event order unambiguous.
+      - Distinguish attempt from result.
+      - Answer follow-up questions without returning to a memorized script.
+    - id: hsk-3-opinions-information
+      title: Share information and qualify a choice
+      objective: Summarize a familiar source, compare options, and support a preference while acknowledging
+        one disadvantage.
+      success_criteria:
+      - Preserve the source's main point.
+      - Give at least one reason.
+      - Respond to a different preference constructively.
+  - id: hsk-3-receptive-skills
+    title: Listening and reading
+    outcome: Follow longer exchanges and passages for main idea, sequence, speaker intention, and explicit
+      inference.
+    lessons:
+    - id: hsk-3-listening
+      title: Listen beyond isolated keywords
+      objective: Track the situation and speaker intention across a complete item before choosing an answer.
+      success_criteria:
+      - State the gist before reviewing choices.
+      - Use transitions and result language.
+      - Separate vocabulary misses from inference misses.
+    - id: hsk-3-reading
+      title: Read for cohesion
+      objective: Use connectors, reference, and word order to interpret or organize connected text.
+      success_criteria:
+      - Identify what each connector links.
+      - Resolve omitted or repeated participants.
+      - Complete a mixed set under a section time limit.
+  - id: hsk-3-writing
+    title: Writing foundations
+    outcome: Produce accurate sentences under time while keeping handwriting and typed composition evidence
+      distinct.
+    lessons:
+    - id: hsk-3-sentence-building
+      title: Build complete sentences
+      objective: Arrange supplied language into grammatical sentences and explain the role of time, place,
+        aspect, complements, and particles.
+      success_criteria:
+      - Produce one unambiguous order.
+      - Preserve the intended meaning.
+      - Correct the rule behind an error rather than memorizing the answer.
+    - id: hsk-3-character-retrieval
+      title: Retrieve high-frequency characters
+      objective: Write reviewed words from pinyin or context, then check components and stroke order against
+        a trusted model.
+      success_criteria:
+      - Use the intended word and character.
+      - Log visually confused characters.
+      - Retest from memory on a later day.
+  - id: hsk-3-mock-cycle
+    title: Mock-test cycle
+    outcome: Balance listening, reading, and writing across an approximately 90-minute HSK 3 simulation.
+    lessons:
+    - id: hsk-3-diagnostic
+      title: Establish three-section baselines
+      objective: Complete one full practice set untimed enough to diagnose content, process, and handwriting
+        constraints.
+      success_criteria:
+      - Record each section separately.
+      - Inspect every guessed answer.
+      - Select one repair target per section.
+    - id: hsk-3-simulation
+      title: Run a timed three-section mock
+      objective: Complete a different set without pausing audio and reserve the planned time for writing
+        checks.
+      success_criteria:
+      - Follow the section timing plan.
+      - Finish all writing attempts.
+      - Compare accuracy and pacing with the diagnostic.
+  mock_test:
+    available_sets: 10
+    sequence:
+    - untimed diagnostic
+    - skill repair
+    - timed writing drill
+    - full simulation
+    - error-led retest
+    resource_ids:
+    - digmandarin-hsk-practice
+    - mandarinmania-hsk-practice
+  knowledge_cutoff:
+    through_course_level: 13
+    official_vocabulary: complete in the checked audit
+    practice_vocabulary: complete for recognized legacy-list headwords in ten audited papers
+    official_grammar: blocked pending reviewed item-level crosswalk
+  skill_crosswalk:
+    listening:
+      module_id: hsk-3-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    reading:
+      module_id: hsk-3-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    writing:
+      module_id: hsk-3-writing
+      status: curriculum-support-declared
+      performance: external-evidence-required
+  performance_gates:
+  - id: current-format
+    requirement: Reconfirm the live official format, timing, delivery mode, and pass standard before the
+      final simulation.
+    status: external-required
+  - id: unseen-mocks
+    requirement: Complete at least two previously unseen full papers under current timing and one-pass
+      listening conditions.
+    status: learner-evidence-required
+  - id: score-stability
+    requirement: Meet the current official passing standard on both unseen mocks and investigate section-level
+      weakness rather than relying on one total score.
+    status: learner-evidence-required
+  - id: listening-conditions
+    requirement: Use the supplied audio once without pausing, transcript access, or item-specific help.
+    status: learner-evidence-required
+  - id: writing-review
+    requirement: Complete every writing task in the required delivery mode and obtain human review for
+      prompt completion, character accuracy, grammar, cohesion, and source fidelity where applicable.
+    status: learner-evidence-required
+- id: hsk-4-readiness
+  title: HSK 4 readiness
+  hsk_level: 4
+  course_levels:
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  outcome: Resolve less predictable problems, understand broader reports, and communicate organized explanations
+    under HSK 4 timing.
+  exam:
+    official_url: https://www.chinesetest.cn/HSK/4
+    questions: 100
+    minutes: 105
+    skills:
+    - listening
+    - reading
+    - writing
+  modules:
+  - id: hsk-4-core-control
+    title: Explanation and problem-solving
+    outcome: Integrate unfamiliar practical problems, cooperation, news, technology, environment, presentation,
+      and negotiation.
+    lessons:
+    - id: hsk-4-problem-solving
+      title: Explain and resolve an unfamiliar problem
+      objective: Clarify requirements, constraints, cause, and proposed response when the initial information
+        is incomplete.
+      success_criteria:
+      - Ask for the missing fact.
+      - Explain the consequence clearly.
+      - Negotiate a workable response.
+    - id: hsk-4-reports-proposals
+      title: Summarize a report and revise a proposal
+      objective: Separate reported fact from viewpoint, then present and adapt a proposal after an objection.
+      success_criteria:
+      - Attribute claims to the source.
+      - Organize reasons and consequences.
+      - Revise without losing the original purpose.
+  - id: hsk-4-receptive-skills
+    title: Listening and reading
+    outcome: Process denser multi-turn speech and connected text for stance, contrast, cause, and implied
+      conclusion.
+    lessons:
+    - id: hsk-4-listening
+      title: Follow extended exchanges
+      objective: Track a speaker's purpose, attitude, correction, and final decision across an uninterrupted
+        item.
+      success_criteria:
+      - Note the turning point.
+      - Distinguish initial plan from final outcome.
+      - Review with transcript only after a second listen.
+    - id: hsk-4-reading
+      title: Map paragraph logic
+      objective: Identify topic, support, contrast, and conclusion before resolving detailed questions.
+      success_criteria:
+      - Write a one-line structure map.
+      - Justify answers from the text.
+      - Maintain pace across short and longer items.
+  - id: hsk-4-writing
+    title: Accurate timed writing
+    outcome: Produce coherent sentences and short connected responses with controlled word order and register.
+    lessons:
+    - id: hsk-4-sentence-precision
+      title: Control sentence form
+      objective: Build sentences that preserve definiteness, comparison, aspect, complement, and discourse
+        relationships.
+      success_criteria:
+      - Avoid meaning-changing word-order errors.
+      - Use the supplied words naturally.
+      - Explain and retest recurring patterns.
+    - id: hsk-4-connected-writing
+      title: Write a connected practical response
+      objective: Plan, draft, and check a short response with a clear situation, relationship, and outcome.
+      success_criteria:
+      - Cover every prompt condition.
+      - Use explicit cohesion.
+      - Reserve time for a final character and grammar check.
+  - id: hsk-4-mock-cycle
+    title: Mock-test cycle
+    outcome: Complete a 100-question, approximately 105-minute simulation and repair section-specific
+      weaknesses.
+    lessons:
+    - id: hsk-4-diagnostic
+      title: Diagnose accuracy and stamina
+      objective: Use one full set to locate the first point where attention, pace, or language control
+        degrades.
+      success_criteria:
+      - Chart results by subsection.
+      - Identify repeated error families.
+      - Plan mixed old-and-new review.
+    - id: hsk-4-simulation
+      title: Simulate the complete paper
+      objective: Take a different set under current official timing and reproduce the test-day sequence
+        without external help.
+      success_criteria:
+      - Keep to section checkpoints.
+      - Complete all writing items.
+      - Perform an error-led retest after repair.
+  mock_test:
+    available_sets: 10
+    sequence:
+    - untimed diagnostic
+    - mixed repair
+    - timed subsection drill
+    - full simulation
+    - error-led retest
+    resource_ids:
+    - digmandarin-hsk-practice
+    - mandarinmania-hsk-practice
+  knowledge_cutoff:
+    through_course_level: 18
+    official_vocabulary: complete in the checked audit
+    practice_vocabulary: complete for recognized legacy-list headwords in ten audited papers
+    official_grammar: blocked pending reviewed item-level crosswalk
+  skill_crosswalk:
+    listening:
+      module_id: hsk-4-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    reading:
+      module_id: hsk-4-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    writing:
+      module_id: hsk-4-writing
+      status: curriculum-support-declared
+      performance: external-evidence-required
+  performance_gates:
+  - id: current-format
+    requirement: Reconfirm the live official format, timing, delivery mode, and pass standard before the
+      final simulation.
+    status: external-required
+  - id: unseen-mocks
+    requirement: Complete at least two previously unseen full papers under current timing and one-pass
+      listening conditions.
+    status: learner-evidence-required
+  - id: score-stability
+    requirement: Meet the current official passing standard on both unseen mocks and investigate section-level
+      weakness rather than relying on one total score.
+    status: learner-evidence-required
+  - id: listening-conditions
+    requirement: Use the supplied audio once without pausing, transcript access, or item-specific help.
+    status: learner-evidence-required
+  - id: writing-review
+    requirement: Complete every writing task in the required delivery mode and obtain human review for
+      prompt completion, character accuracy, grammar, cohesion, and source fidelity where applicable.
+    status: learner-evidence-required
+- id: hsk-5-readiness
+  title: HSK 5 readiness
+  hsk_level: 5
+  course_levels:
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  outcome: Interpret and produce structured arguments, source-based explanations, and formal synthesis
+    while sustaining HSK 5 pace.
+  exam:
+    official_url: https://www.chinesetest.cn/HSK/5
+    questions: 100
+    minutes: 125
+    skills:
+    - listening
+    - reading
+    - writing
+  modules:
+  - id: hsk-5-core-control
+    title: Analysis and argument
+    outcome: Integrate evidence, institutions, long-term change, perspectives, qualified argument, and
+      formal synthesis.
+    lessons:
+    - id: hsk-5-evidence-perspective
+      title: Separate evidence, inference, and perspective
+      objective: Explain what supports a claim, what remains uncertain, and how another stakeholder could
+        interpret the same information.
+      success_criteria:
+      - Attribute evidence accurately.
+      - Mark inference and uncertainty.
+      - Represent an alternative perspective fairly.
+    - id: hsk-5-argument-synthesis
+      title: Build and revise an argument
+      objective: Synthesize more than one source into a recommendation with criteria, trade-offs, and
+        a qualified conclusion.
+      success_criteria:
+      - Organize a sustained line of reasoning.
+      - Address a credible objection.
+      - Revise the scope when counterevidence appears.
+  - id: hsk-5-receptive-skills
+    title: Listening and reading
+    outcome: Follow longer, faster, and more abstract material while preserving source stance and discourse
+      structure.
+    lessons:
+    - id: hsk-5-listening
+      title: Take selective listening notes
+      objective: Capture speaker, claim, support, contrast, and conclusion without trying to transcribe
+        every word.
+      success_criteria:
+      - Use a consistent note structure.
+      - Preserve qualifications.
+      - Reconstruct the main argument after one listen.
+    - id: hsk-5-reading
+      title: Read strategically across genres
+      objective: Adjust reading speed for notices, narratives, explanations, and arguments while locating
+        structure and key detail.
+      success_criteria:
+      - Identify genre and purpose early.
+      - Distinguish central from supporting detail.
+      - Return to the text for evidence instead of guessing.
+  - id: hsk-5-writing
+    title: Structured timed writing
+    outcome: Plan and produce coherent text for a specified purpose while controlling register, cohesion,
+      and factual consistency.
+    lessons:
+    - id: hsk-5-writing-plan
+      title: Plan before drafting
+      objective: Convert a prompt into audience, purpose, required content, order, and a short language
+        plan.
+      success_criteria:
+      - Cover every prompt condition.
+      - Choose an appropriate register.
+      - Limit planning to the allotted time.
+    - id: hsk-5-writing-revision
+      title: Draft and revise under time
+      objective: Produce connected text, then check organization, reference, repeated wording, characters,
+        and meaning-changing errors.
+      success_criteria:
+      - Maintain one clear controlling idea.
+      - Use paragraph-level cohesion.
+      - Complete a prioritized final check.
+  - id: hsk-5-mock-cycle
+    title: Mock-test cycle
+    outcome: Develop the pacing and stamina needed for an approximately 125-minute HSK 5 paper.
+    lessons:
+    - id: hsk-5-diagnostic
+      title: Diagnose high-level bottlenecks
+      objective: Complete one full set and distinguish language gaps from slow processing, weak note-taking,
+        inference errors, or writing planning.
+      success_criteria:
+      - Measure time by subsection.
+      - Analyze confident wrong answers.
+      - Select repairs that transfer across topics.
+    - id: hsk-5-simulation
+      title: Complete a full timed rehearsal
+      objective: Take a different complete set with planned checkpoints and no unscheduled pauses.
+      success_criteria:
+      - Maintain pace through the longest material.
+      - Finish the writing check.
+      - Compare section stability across two mocks.
+  mock_test:
+    available_sets: 10
+    sequence:
+    - untimed diagnostic
+    - transferable repair
+    - timed long-form drill
+    - full simulation
+    - error-led retest
+    resource_ids:
+    - digmandarin-hsk-practice
+    - mandarinmania-hsk-practice
+  knowledge_cutoff:
+    through_course_level: 24
+    official_vocabulary: complete in the checked audit
+    practice_vocabulary: complete for recognized legacy-list headwords in ten audited papers
+    official_grammar: blocked pending reviewed item-level crosswalk
+  skill_crosswalk:
+    listening:
+      module_id: hsk-5-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    reading:
+      module_id: hsk-5-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    writing:
+      module_id: hsk-5-writing
+      status: curriculum-support-declared
+      performance: external-evidence-required
+  performance_gates:
+  - id: current-format
+    requirement: Reconfirm the live official format, timing, delivery mode, and pass standard before the
+      final simulation.
+    status: external-required
+  - id: unseen-mocks
+    requirement: Complete at least two previously unseen full papers under current timing and one-pass
+      listening conditions.
+    status: learner-evidence-required
+  - id: score-stability
+    requirement: Meet the current official passing standard on both unseen mocks and investigate section-level
+      weakness rather than relying on one total score.
+    status: learner-evidence-required
+  - id: listening-conditions
+    requirement: Use the supplied audio once without pausing, transcript access, or item-specific help.
+    status: learner-evidence-required
+  - id: writing-review
+    requirement: Complete every writing task in the required delivery mode and obtain human review for
+      prompt completion, character accuracy, grammar, cohesion, and source fidelity where applicable.
+    status: learner-evidence-required
+- id: hsk-6-readiness
+  title: HSK 6 readiness
+  hsk_level: 6
+  course_levels:
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  outcome: Sustain precise listening, reading, synthesis, and writing across dense material while managing
+    the longest HSK 1-6 paper.
+  exam:
+    official_url: https://www.chinesetest.cn/HSK/6
+    questions: 101
+    minutes: 140
+    skills:
+    - listening
+    - reading
+    - writing
+  modules:
+  - id: hsk-6-core-control
+    title: Nuance and interpretation
+    outcome: Integrate stance, register, imagery, abstraction, critical interpretation, and extended independent
+      work.
+    lessons:
+    - id: hsk-6-stance-register
+      title: Interpret stance, implication, and register
+      objective: Distinguish literal content from commitment, attitude, audience positioning, and indirect
+        meaning.
+      success_criteria:
+      - Support an interpretation with wording and context.
+      - Compare formal and conversational alternatives.
+      - Preserve meaning while changing tone.
+    - id: hsk-6-critical-synthesis
+      title: Produce a critical synthesis
+      objective: Compare demanding material, weigh alternative readings, and produce a precise conclusion
+        for a chosen audience.
+      success_criteria:
+      - Represent sources faithfully.
+      - Explain a credible alternative.
+      - Revise after substantive critique.
+  - id: hsk-6-receptive-skills
+    title: Listening and reading
+    outcome: Process dense speech and prose for structure, implication, rhetorical framing, and fine-grained
+      evidence.
+    lessons:
+    - id: hsk-6-listening
+      title: Follow dense recorded discourse
+      objective: Track topic shifts, examples, qualifications, and the speaker's final position at natural
+        test pace.
+      success_criteria:
+      - Take sparse structural notes.
+      - Preserve polarity and certainty.
+      - Diagnose whether a miss came from language
+      - memory
+      - or inference.
+    - id: hsk-6-reading
+      title: Read for argument and implication
+      objective: Identify thesis, evidence, concession, assumptions, tone, and local detail without losing
+        pacing.
+      success_criteria:
+      - Map the argument before difficult details.
+      - Cite text evidence for inferences.
+      - Adjust speed by item purpose.
+  - id: hsk-6-writing
+    title: Source-faithful timed writing
+    outcome: Reconstruct and condense supplied information accurately, coherently, and without adding
+      unsupported claims.
+    lessons:
+    - id: hsk-6-source-notes
+      title: Extract a source skeleton
+      objective: Capture actors, chronology, causal relations, key details, and outcome in compact notes
+        without copying whole sentences.
+      success_criteria:
+      - Preserve every central event.
+      - Separate source facts from interpretation.
+      - Use notes that support independent reconstruction.
+    - id: hsk-6-source-reconstruction
+      title: Reconstruct, condense, and check
+      objective: Write a coherent source-faithful account, then check omissions, additions, chronology,
+        reference, and character accuracy.
+      success_criteria:
+      - Retain central propositions and relationships.
+      - Add no invented facts.
+      - Complete a meaning-first final review.
+  - id: hsk-6-mock-cycle
+    title: Mock-test cycle
+    outcome: Build stable performance across a 101-question, approximately 140-minute HSK 6 rehearsal.
+    lessons:
+    - id: hsk-6-diagnostic
+      title: Diagnose precision and endurance
+      objective: Complete one full set and locate failures of vocabulary, discourse tracking, inference,
+        memory, writing fidelity, or stamina.
+      success_criteria:
+      - Analyze results by error mechanism.
+      - Identify late-test decline.
+      - Build an interleaved repair schedule.
+    - id: hsk-6-simulation
+      title: Rehearse the complete exam
+      objective: Take a different current-format set under official timing, including the planned transition
+        into source-based writing.
+      success_criteria:
+      - Follow all timing checkpoints.
+      - Preserve writing fidelity under fatigue.
+      - Confirm improvement on a later unseen set.
+  mock_test:
+    available_sets: 10
+    sequence:
+    - untimed diagnostic
+    - precision repair
+    - timed endurance drill
+    - full simulation
+    - unseen confirmation
+    resource_ids:
+    - digmandarin-hsk-practice
+    - mandarinmania-hsk-practice
+  knowledge_cutoff:
+    through_course_level: 30
+    official_vocabulary: complete in the checked audit
+    practice_vocabulary: complete for recognized legacy-list headwords in ten audited papers
+    official_grammar: blocked pending reviewed item-level crosswalk
+  skill_crosswalk:
+    listening:
+      module_id: hsk-6-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    reading:
+      module_id: hsk-6-receptive-skills
+      status: curriculum-support-declared
+      performance: external-evidence-required
+    writing:
+      module_id: hsk-6-writing
+      status: curriculum-support-declared
+      performance: external-evidence-required
+  performance_gates:
+  - id: current-format
+    requirement: Reconfirm the live official format, timing, delivery mode, and pass standard before the
+      final simulation.
+    status: external-required
+  - id: unseen-mocks
+    requirement: Complete at least two previously unseen full papers under current timing and one-pass
+      listening conditions.
+    status: learner-evidence-required
+  - id: score-stability
+    requirement: Meet the current official passing standard on both unseen mocks and investigate section-level
+      weakness rather than relying on one total score.
+    status: learner-evidence-required
+  - id: listening-conditions
+    requirement: Use the supplied audio once without pausing, transcript access, or item-specific help.
+    status: learner-evidence-required
+  - id: writing-review
+    requirement: Complete every writing task in the required delivery mode and obtain human review for
+      prompt completion, character accuracy, grammar, cohesion, and source fidelity where applicable.
+    status: learner-evidence-required
+advanced:
+  id: hsk-7-9-orientation
+  title: HSK 7-9 orientation
+  status: reference-only
+  official_url: https://www.chinesetest.cn/HSK/7-9
+  skills:
+  - listening
+  - reading
+  - writing
+  - translation
+  - speaking
+  reason: The repository has a shared HSK 7-9 reference inventory, but the current app has no translation
+    assessment, speaking capture, source-based writing scorer, or audited split among levels 7, 8, and
+    9.
+  recommendation: Keep HSK 7-9 outside the core readiness sequence until those modalities and a current
+    official-syllabus mapping are implemented. Use the existing advanced reference and communicative levels
+    only as preparation support, not an HSK 7-9 claim.
+cutoff_semantics:
+  rule: For HSK level N, available curriculum knowledge is the union of items introduced from course level
+    1 through the final course level named by that HSK section. Later core levels and optional branches
+    do not count.
+  vocabulary: Every official November 2025 syllabus row and every recognized legacy-list headword observed
+    in the ten audited papers for that level must be introduced by the cutoff.
+  grammar: Only human-reviewed item-level mappings in hsk-grammar-crosswalk.yaml count as official grammar
+    coverage.
+  performance: Inventory coverage cannot satisfy listening, reading, writing, timing, scoring, or exam-condition
+    gates.
