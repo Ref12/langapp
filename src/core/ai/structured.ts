@@ -1,4 +1,5 @@
 import { aiConnectionInputSchema, type AIConnectionInput } from '../assistant/contracts'
+import { requestCredentials } from './request-credentials'
 import { buildRequestHeaders } from './headers'
 import { abortable, AITransportError, AssistantCancelledError, httpFailure, readJSON, REQUEST_TIMEOUT_MS } from './provider'
 
@@ -99,7 +100,7 @@ export async function requestStructuredJSON(input: AIConnectionInput, request: S
     if (controller.signal.aborted) throw new AssistantCancelledError()
     const response = await abortable(fetch(`${connection.baseUrl.replace(/\/+$/, '')}/${responses ? 'responses' : 'chat/completions'}`, {
       method: 'POST', headers: buildRequestHeaders(connection),
-      body, signal: controller.signal, redirect: 'error', credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store',
+      body, signal: controller.signal, redirect: 'error', credentials: requestCredentials(connection.baseUrl), referrerPolicy: 'no-referrer', cache: 'no-store',
     }), controller.signal)
     if (!response.ok) {
       void response.body?.cancel().catch(() => undefined)

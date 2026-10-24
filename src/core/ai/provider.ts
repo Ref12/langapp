@@ -1,4 +1,5 @@
 import { stringify } from 'yaml'
+import { requestCredentials } from './request-credentials'
 import { buildRequestHeaders } from './headers'
 import {
   aiConnectionInputSchema, assistantReplySchema, assistantToolArgumentsSchema,
@@ -337,7 +338,7 @@ async function requestCompletion(connection: AIConnectionInput, body: string, op
     const endpoint = connection.apiType === 'responses' ? 'responses' : 'chat/completions'
     const response = await abortable(fetch(`${connection.baseUrl.replace(/\/+$/, '')}/${endpoint}`, {
       method: 'POST', headers: buildRequestHeaders(connection),
-      body, signal: controller.signal, redirect: 'error', credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store',
+      body, signal: controller.signal, redirect: 'error', credentials: requestCredentials(connection.baseUrl), referrerPolicy: 'no-referrer', cache: 'no-store',
     }), controller.signal)
     if (!response.ok) {
       void response.body?.cancel().catch(() => undefined)

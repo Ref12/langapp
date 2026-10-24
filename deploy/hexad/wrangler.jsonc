@@ -1,5 +1,5 @@
 // Static-assets Worker for the hexad deployment of LinguaWeave.
-// Build first: npm run build:hexad  (emits dist-hexad/apps/langapp/).
+// Build first: npm run build:hexad  (emits dist-hexad/lang/).
 // The route is added separately (see deploy/hexad/README.md), not from this file.
 {
   "name": "langapp",
