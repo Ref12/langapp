@@ -6,7 +6,7 @@ import { resolve } from 'node:path'
 import { splitInventory } from './v2-order-curriculum.mjs'
 
 const kinds = ['vocabulary', 'grammar']
-const provenancePattern = /licen[cs]e|sources\.yaml|CC-BY|^# (?:Source|Adapted)/i
+const provenancePattern = /(?:licen[cs]e|sources\.yaml|CC-BY)|^# (?:Source: |Adapted )/i
 
 function provenance(source) {
   const header = source.replace(/\r\n/g, '\n').split('\n')
