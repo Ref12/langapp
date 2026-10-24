@@ -23,7 +23,8 @@
     "test": "vitest run",
     "test:pages": "vitest run --maxWorkers=4 --exclude scripts/v2-all-bands.integration.test.ts",
     "test:watch": "vitest",
-    "build:hexad": "node scripts/build-hexad.mjs"
+    "build:hexad": "node scripts/build-hexad.mjs",
+    "deploy:hexad": "npm run build:hexad && npx --yes wrangler@4 deploy -c deploy/hexad/wrangler.jsonc"
   },
   "dependencies": {
     "dexie": "^4.4.5",

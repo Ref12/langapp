@@ -1,6 +1,6 @@
 // Static-assets Worker for the hexad deployment of LinguaWeave.
-// Build first: npm run build:hexad  (emits dist-hexad/lang/).
-// The route is added separately (see deploy/hexad/README.md), not from this file.
+// Build first: npm run build:hexad  (emits dist-hexad/apps/lang/).
+// The route apps--hexad-project.ref12.dev/apps/lang/* -> langapp is added once through the zone API, not from this file.
 {
   "name": "langapp",
   "compatibility_date": "2026-10-01",

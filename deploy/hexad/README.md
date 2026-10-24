@@ -2,7 +2,7 @@
 
 Build (new app only; archived v1 is not built or published):
 
-    npm run build:hexad            # base /lang/, output dist-hexad/lang/
+    npm run build:hexad            # base /apps/lang/, output dist-hexad/apps/lang/
 
 Any other base path or hostname root:
 
@@ -12,4 +12,4 @@ The manifest (id/start_url/scope all `./`) and service worker are emitted only w
 GitHub Pages and dev builds are unchanged. The worker caches only its own scope and never touches IndexedDB.
 
 Worker: `wrangler deploy -c deploy/hexad/wrangler.jsonc` uploads the assets with no route.
-The route (apps--hexad-project.ref12.dev/lang/*) was added once, separately, through the Cloudflare API.
+The route (apps--hexad-project.ref12.dev/apps/lang/*) was added once, separately, through the Cloudflare API.
