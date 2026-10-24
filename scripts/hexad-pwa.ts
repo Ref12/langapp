@@ -64,8 +64,6 @@ self.addEventListener('fetch', event => {
   // Only this scope: AI gateway calls (/v1/...), hexad itself and other origins pass through untouched.
   if (url.origin !== location.origin || !url.href.startsWith(scope)) return
   if (url.pathname.endsWith('/sw.js')) return
-  // The archived v1 app has its own narrower registration and caches; never answer its pages or assets.
-  if (url.pathname.startsWith(new URL('v1/', scope).pathname)) return
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).catch(() => caches.match(scope, { ignoreSearch: true }).then(hit => hit || caches.match(scope + 'index.html'))))
     return
