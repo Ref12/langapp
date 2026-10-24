@@ -5,6 +5,7 @@ import { mockupFiles } from './scripts/mockup-files.mjs'
 import { localSettings } from './scripts/local-settings'
 import { localProfiles } from './scripts/local-profiles'
 import { localTts } from './scripts/local-tts'
+import { hexadPwa } from './scripts/hexad-pwa'
 
 function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
   const base = server.config.base.startsWith('/') ? server.config.base : '/'
@@ -63,8 +64,8 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   root: fileURLToPath(new URL('.', import.meta.url)),
   cacheDir: fileURLToPath(new URL('./node_modules/.vite/next/', import.meta.url)),
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
-  base: './',
+  base: process.env.LANGAPP_BASE ?? './',
   appType: 'mpa',
-  plugins: [react(), localSettings(), localProfiles(), localTts(), versionedSite(new Set(await mockupFiles()))],
-  build: { outDir: 'dist' },
+  plugins: [react(), localSettings(), localProfiles(), localTts(), versionedSite(new Set(await mockupFiles())), ...(process.env.LANGAPP_PWA === '1' ? [hexadPwa()] : [])],
+  build: { outDir: process.env.LANGAPP_OUT ?? 'dist' },
 }))

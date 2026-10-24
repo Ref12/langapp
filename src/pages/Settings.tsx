@@ -57,7 +57,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       <p>Enable Voice input and replies in conversation settings, choose English or Mandarin, and tap the mic to dictate after the cue. Stop to review or Submit to send. Browser recognition may use an online speech service; conversation transcripts go to your AI provider only when sent. Replies are spoken without restarting the microphone. Reloading never starts recording or replays old replies.</p>
       <p>Practice plays the phrase first. Recording is opt-in: Listen and record sounds a short cue when the microphone is ready. Conversation's Submit shows feedback inline; Shadow automatically adds feedback when recording finishes. Azure Speech receives the audio and expected phrase only when Speech feedback is enabled and a connection is configured. Otherwise, the app compares a browser-recognized transcript locally; the browser may use an online recognition service. Results never go to the AI tutor, including in later turns. Raw recordings are never stored.</p>
       <p>Speech assessments are practice feedback, not evidence of mastery or official HSK certification. Hands-free turn-taking, generated activities, and handwriting assessment are not connected.</p>
-      <div className="button-row"><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
+      <div className="button-row"><a href="./preview.html" className="button secondary">Open design mockups</a></div>
     </section>
   </>
 }

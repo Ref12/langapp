@@ -173,8 +173,7 @@ function WorkspaceApp() {
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
         <div className="sidebar-bottom"><div className="workspace-note"><ShieldCheck size={18} /><p>Your own pace.<br />Your own space.<small>Saved on this device.</small></p></div>
-          <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a>
-          <a className="legacy-link" href="./v1/">Original app / v1</a></div>
+          <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>
         </>
   return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
@@ -221,7 +220,7 @@ function StorageFailure({ error }: { error: string }) {
         } catch (reason) {
           setResetError(reason instanceof Error ? reason.message : 'Profile selection could not be reset.')
         }
-      }}>Open default profile</button><a href="./v1/" className="button secondary">Open v1</a></div>
+      }}>Open default profile</button></div>
   </main>
 }
 
