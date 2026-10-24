@@ -230,6 +230,11 @@ mastery or examination readiness.
 
 Data: `npm run curriculum:v2:app` regenerates `src\data\v2\*.generated.json`
 from the v2 inventories (`--check` fails when stale; the build runs the check).
+The same command writes the human-readable teaching order the app uses:
+`curriculum\v2\chinese\hsk-N\ordered-vocabulary.yaml` and `ordered-grammar.yaml`
+(HSK 1-6), every record in the canonical YAML format, grouped by lesson
+(`zh-hsk-N-lesson-NNNN`). They are generated from the same data as the JSON and
+are covered by the same `--check`; do not edit them by hand.
 Knowledge, cards, sessions and answers are new Dexie tables (schema 4) and are
 included in profile YAML under `knowledge.study`. Previous schema-3 root-app JSON
 backups remain importable; older backups restore with an empty knowledge set.

@@ -44,9 +44,9 @@ does not replace this v2 check. Lesson-level introduction order remains a
 separate requirement even when band-level vocabulary coverage passes.
 Canonical v2 `vocabulary.yaml` and `grammar.yaml` files must stay sorted by
 `lb`; do not reorder them manually. Run `npm run curriculum:v2:order` after
-inventory or authored-example changes. It also regenerates the separate
-`ordered-vocabulary.yaml`, `ordered-grammar.yaml`, and schema-v3 lessons for
-all seven bands. Generation validates every input before writing; missing
+inventory or authored-example changes. It also regenerates the schema-v3 lessons. The readable teaching order
+(`hsk-N\ordered-vocabulary.yaml`, `ordered-grammar.yaml`, HSK 1-6) is written by
+`npm run curriculum:v2:app` together with `src\data\v2`, and checked by its `--check`. Generation validates every input before writing; missing
 authored examples are blockers, never invitations to fabricate fallback text.
 Use `npm run curriculum:v2:order:check` to detect unsorted or stale files.
 

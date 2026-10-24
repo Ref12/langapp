@@ -3,11 +3,14 @@
 // and the generated introduction groups with the authored examples that
 // evidence them. The group order is the same dependency-aware, example-driven
 // order the v2 lesson tooling produces; it is not label order.
+// It also writes curriculum/v2/chinese/hsk-N/ordered-{vocabulary,grammar}.yaml,
+// the readable teaching order, from the same band data.
 // Usage: node scripts/generate-v2-app-data.mjs [--check]
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { relative, resolve } from 'node:path'
 import { loadExampleCurriculum, loadTeachingOrder, repositoryRoot } from './v2-curriculum-io.mjs'
 import { preflightBandLessons } from './v2-generate-lessons.mjs'
+import { buildOrderedYamlOutputs } from './v2-ordered-yaml.mjs'
 import { buildProfileWordLabels, loadProfileWordLabelSources } from './profile-word-labels.mjs'
 
 export const appBands = ['1', '2', '3', '4', '5', '6']
@@ -74,7 +77,10 @@ function outputs(data) {
     ['index.generated.json', stableJSON(data.index)],
     ...data.bands.map(band => [`hsk-${band.band}.generated.json`, stableJSON(band)]),
     ['profile-word-labels.generated.json', stableJSON(data.profileWordLabels)],
-  ]
+  ].map(([name, text]) => ({ name: `src/data/v2/${name}`, path: resolve(outputRoot, name), text }))
+    .concat(buildOrderedYamlOutputs(data.bands, repositoryRoot).map(output => ({
+      name: relative(repositoryRoot, output.path).replaceAll('\\', '/'), path: output.path, text: output.content,
+    })))
 }
 
 if (process.argv[1] && /generate-v2-app-data\.mjs$/.test(process.argv[1])) {
@@ -82,17 +88,16 @@ if (process.argv[1] && /generate-v2-app-data\.mjs$/.test(process.argv[1])) {
   const data = buildAppData()
   mkdirSync(outputRoot, { recursive: true })
   let stale = 0
-  for (const [name, text] of outputs(data)) {
-    const path = resolve(outputRoot, name)
+  for (const { name, path, text } of outputs(data)) {
     let current
     try { current = readFileSync(path, 'utf8') } catch { current = undefined }
     if (current === text) continue
     if (check) {
-      console.error(`Stale v2 app data: src/data/v2/${name}`)
+      console.error(`Stale v2 app data: ${name}`)
       stale++
     } else {
       writeFileSync(path, text)
-      console.log(`Wrote src/data/v2/${name}`)
+      console.log(`Wrote ${name}`)
     }
   }
   if (stale) {
