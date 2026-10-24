@@ -55,9 +55,10 @@ the three proficiency levels or require a single advanced teaching level.
 
 The canonical HSK files describe reference membership, not a lesson sequence.
 The separate `lessons` directory organizes teaching without moving inventory
-entries. Generated `ordered-*.yaml` projections copy complete records into
-lesson-introduction order for consumers that need a linear vocabulary or
-grammar stream; they are not canonical authoring sources.
+entries. Generated `hsk-N\ordered-*.yaml` projections (HSK 1-6) copy complete records
+into the app's actual teaching order, grouped by app lesson
+(`zh-hsk-N-lesson-NNNN`); this is where to read that order. They are written by
+`npm run curriculum:v2:app`, not canonical authoring sources.
 
 ## Vocabulary files
 
@@ -104,8 +105,7 @@ may instead be accounted for by an existing entry.
 
 Within each canonical file, records are sorted by `lb`. This produces a stable,
 reviewable authoring order after entries are added or moved. It is not a claim
-that label order is pedagogically optimal. The ordered lesson projections are
-generated separately alongside `lessons\hsk-*.yaml`. Existing source/editorial
+that label order is pedagogically optimal. The ordered projections are generated separately by `npm run curriculum:v2:app`. Existing source/editorial
 comments are retained during sorting but do not define contiguous ranges in an
 `lb`-sorted file.
 
@@ -562,15 +562,15 @@ npm run curriculum:v2:order
 
 The script validates all authored inputs before writing anything. It sorts every
 canonical v2 vocabulary and grammar inventory, plus the reviewed component
-inventories, by `lb`. It generates all seven lesson files and separate
-`ordered-vocabulary.yaml` and `ordered-grammar.yaml` projections beside every
-band's canonical files, preserving the complete grammar `ex`. It refreshes the
+inventories, by `lb`. It generates the lesson files. (The `ordered-vocabulary.yaml` and
+`ordered-grammar.yaml` files are no longer written here: `npm run
+curriculum:v2:app` writes them from the app's planner output, with the
+complete grammar `ex`.) It refreshes the
 HSK 1 `component-candidates.yaml` review input. Component order is
 already determined by each vocabulary record's ordered component binding, so
-there is no separate ordered-component projection. The generated files contain
-complete records in lesson-introduction order. Never edit them directly.
+there is no separate ordered-component projection. Never edit generated files directly.
 `npm run curriculum:v2:order:check` fails when a canonical file is unsorted or
-a generated projection is stale, or when required authoring inputs are missing.
+a generated lesson file is stale, or when required authoring inputs are missing.
 
 The deterministic planner uses stable-ID order from
 `curriculum\chinese\teaching\levels\*\sequence.yaml` as a starting hint only.

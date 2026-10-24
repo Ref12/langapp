@@ -5,8 +5,6 @@ import { fileURLToPath } from 'node:url'
 import { afterEach, describe, expect, it } from 'vitest'
 import { parse, stringify } from 'yaml'
 import {
-  buildOrderedLessonInventories,
-  generatedLessonInventory,
   orderCurriculum,
   sortInventoryText,
   validateComponentBindings,
@@ -59,31 +57,12 @@ describe('v2 curriculum ordering', () => {
     expect(output.indexOf('# Comment for z')).toBeLessThan(output.indexOf('zi4--character'))
   })
 
-  it('generates separate vocabulary and grammar projections in lesson order', () => {
-    const input = curriculumFixture()
-    const root = fixtureRoot(input)
-    const sequences = buildLessonSequences(input, { teachingOrder: loadTeachingOrder(root) })
-    const outputs = buildOrderedLessonInventories({ root, sequences })
-    const vocabulary = outputs.find(output => output.path.endsWith('ordered-vocabulary.yaml'))
-    const grammar = outputs.find(output => output.path.endsWith('ordered-grammar.yaml'))
-    expect(parse(vocabulary!.content).map((entry: { lb: string }) => entry.lb).slice(0, 4)).toEqual([
-      'wo3--me', 'shi4--identity', 'ren2--person', 'ni3--you',
-    ])
-    expect(parse(grammar!.content)).toEqual(input.bands[0].grammar)
-    expect(vocabulary!.content).toContain('4 of 4 vocabulary records')
-    expect(outputs).toHaveLength(14)
-    expect(parse(outputs[2].content)).toEqual([])
-  })
-
-  it('preserves every nested grammar example when sorting, and rejects incomplete projections', () => {
+  it('preserves every nested grammar example when sorting', () => {
     const input = curriculumFixture()
     const first = input.bands[0].grammar[0]
     const second = fixtureGrammar('another', ['wo3--me', 'shi4--identity'])
     const source = stringify([first, second], { lineWidth: 0 })
     expect(parse(sortInventoryText(source, 'grammar.yaml'))).toEqual([second, first])
-    const sequence = buildLessonSequences(input)[0]
-    expect(() => generatedLessonInventory(sequence, source, 'grammar', 'grammar.yaml'))
-      .toThrow(/every record exactly once/)
   })
 
   it('reuses vocabulary data where possible and retains reviewed morphemes otherwise', () => {
@@ -157,7 +136,7 @@ describe('v2 curriculum ordering', () => {
     expect(result.resolved.get('dong1-xi5--thing')?.map(position => position.sense)).toEqual([null, null])
   })
 
-  it('generates all seven lesson files and fourteen projections, preserving ex and UTF-8 LF', () => {
+  it('generates all seven lesson files, preserving ex and UTF-8 LF', () => {
     const input = curriculumFixture()
     for (const band of input.bands.slice(1)) {
       band.vocabulary = ['a', 'b', 'c', 'd'].map(name => fixtureWord(`band-${band.band}-${name}`))
@@ -174,9 +153,6 @@ describe('v2 curriculum ordering', () => {
       expect(text.charCodeAt(0)).not.toBe(0xfeff)
       expect(Object.keys(parse(text))).toEqual(['schemaVersion', 'language', 'alignment', 'status', 'lessons'])
     }
-    for (const output of buildOrderedLessonInventories({ root })) {
-      expect(readFileSync(output.path, 'utf8')).toBe(output.content)
-    }
   })
 
   it('detects stale examples and lesson files without writing in check mode', () => {
@@ -186,7 +162,7 @@ describe('v2 curriculum ordering', () => {
     writeFileSync(path, readFileSync(path, 'utf8').replace('A fixture utterance.', 'An edited fixture utterance.'), 'utf8')
     const lessonPath = resolve(root, 'curriculum', 'v2', 'chinese', 'lessons', 'hsk-1.yaml')
     const before = readFileSync(lessonPath, 'utf8')
-    expect(() => orderCurriculum({ root, check: true })).toThrow(/ordered-grammar.yaml[\s\S]*hsk-1.yaml/)
+    expect(() => orderCurriculum({ root, check: true })).toThrow(/hsk-1.yaml/)
     expect(readFileSync(lessonPath, 'utf8')).toBe(before)
     orderCurriculum({ root })
     expect(orderCurriculum({ root, check: true })).toEqual([])
