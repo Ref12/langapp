@@ -60,8 +60,11 @@ reviewed variant; do not relabel fitted defaults as reviewed in bulk.
 Checks run after integration: test_chinese_writing (27 OK), importer `--check`,
 `characters:check`, lint, `test:pages` (3,507 passed), build, fitter suite default
 (85 OK, 3 skipped) and with LANGAPP_SLOW_TESTS=1 (85 OK). The retained-咖 test now derives
-its expected path instead of pinning a hash of the then-current default. Commit
-hashes are listed in the final report/branch `writing-exercises-fitted` (not pushed).
+its expected path instead of pinning a hash of the then-current default. Branch
+`writing-exercises-fitted` (not pushed): 1aca615e code/tests/handoff, 4dc200b7 regenerated
+data, 639ea2f2 merge of origin/main c039b839 (only conflicts: generated ATTRIBUTION.html and
+derived ZIP, regenerated). After the merge: characters:check, lint, test:pages (3,646 passed)
+and build pass; `npm ci` was needed for main's new qrcode/jsqr dependencies.
 
 ## Start here
 
