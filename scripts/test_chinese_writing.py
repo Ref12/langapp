@@ -18,7 +18,7 @@ from chinese_monoline import (
     candidate_stroke, coordinates, correct_terminals, length, normalize_median,
     reviewed_stroke, source_median_path,
 )
-from curriculum_yaml import CurriculumLoader, load_yaml
+from curriculum_yaml import CurriculumLoader, dump_yaml, load_yaml
 import import_chinese_writing as importer
 
 
@@ -91,16 +91,19 @@ class ChineseAssetTests(unittest.TestCase):
         cls.inventory = extract_inventory(importer.ROOT.parent, "chinese")
         cls.source, cls.lock, cls.inputs = importer.read_source(importer.ROOT, cls.inventory["required"])
         cls.recipes, cls.recipe_pin = importer.read_recipes(importer.ROOT)
+        cls.authored, cls.authored_pin = importer.read_authored_recipes(importer.ROOT, cls.source, cls.lock)
+        cls.fitted, cls.fitted_pin = importer.read_fitted_recipes(importer.ROOT, cls.source, cls.lock)
         cls.batch_source = {character: cls.source[character] for character in importer.BATCH}
         cls.records, cls.queue = importer.make_records(
-            cls.batch_source, cls.lock, cls.recipes, cls.recipe_pin,
+            cls.batch_source, cls.lock, cls.recipes, cls.recipe_pin, cls.authored, cls.authored_pin, cls.fitted, cls.fitted_pin,
         )
 
     def fixture_root(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
         root = Path(directory.name) / "chinese"
-        for name in (importer.ARCHIVE, importer.LOCK, importer.LICENSE, importer.RECIPES, "sources.yaml"):
+        for name in (importer.ARCHIVE, importer.LOCK, importer.LICENSE, importer.RECIPES,
+                     importer.AUTHORED_RECIPES, importer.FITTED_RECIPES, "sources.yaml"):
             destination = importer.local(root, name)
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(importer.local(importer.ROOT, name), destination)
@@ -148,23 +151,72 @@ class ChineseAssetTests(unittest.TestCase):
             recipes = deepcopy(self.recipes)
             recipes["characters"]["\u4e00"][field] = replacement
             with self.subTest(field=field), self.assertRaises(ValueError):
-                importer.make_records(self.batch_source, self.lock, recipes, self.recipe_pin)
+                importer.make_records(self.batch_source, self.lock, recipes, self.recipe_pin,
+                                      self.authored, self.authored_pin, self.fitted, self.fitted_pin)
+
+    def test_wan_has_three_clean_unreviewed_logical_strokes_with_pinned_recipe(self):
+        character = "\u4e07"
+        records, _ = importer.make_records(
+            {character: self.source[character]}, self.lock, self.recipes, self.recipe_pin,
+            self.authored, self.authored_pin, self.fitted, self.fitted_pin,
+        )
+        record = records[character]
+        self.assertEqual(record["default_variant"], "authored-monoline")
+        variant = record["variants"][-1]
+        paths = [stroke["path"] for stroke in variant["strokes"]]
+        self.assertEqual(paths, self.authored["characters"][character]["paths"])
+        self.assertEqual([[op for op, _ in parse_path(path)] for path in paths],
+                         [["M", "L"], ["M", "L", "L", "L"], ["M", "Q"]])
+        for path, x_sign in ((paths[0], 1), (paths[2], -1)):
+            points = sample_path(path)
+            self.assertTrue(all((b[0] - a[0]) * x_sign > 0 for a, b in zip(points, points[1:])))
+            self.assertTrue(all((b[1] - a[1]) * x_sign < 0 for a, b in zip(points, points[1:])))
+        self.assertFalse(variant["status"]["reviewed"])
+        self.assertNotIn("review", variant)
+        self.assertEqual(variant["recipe"]["sha256"], self.authored_pin["sha256"])
+        self.assertEqual(variant["recipe"]["input"], importer.AUTHORED_RECIPES)
+        self.assertEqual([stroke["path"] for stroke in record["variants"][0]["strokes"]],
+                         [source_median_path(normalize_median(points))
+                          for points in self.source[character]["medians"]])
+
+    def test_authored_recipes_reject_source_drift_bad_paths_and_unearned_review(self):
+        root = self.fixture_root()
+        for field, value in (("source_member_sha256", "0" * 64), ("paths", ["M1 1 L2 2"]),
+                             ("paths", ["M1 1 L2 2 M3 3 L4 4"] * 3),
+                             ("paths", ["M1 1 Q200 20 30 30"] * 3), ("reviewed", True)):
+            recipes = deepcopy(self.authored)
+            recipes["characters"]["\u4e07"][field] = value
+            importer.local(root, importer.AUTHORED_RECIPES).write_text(dump_yaml(recipes), encoding="utf-8")
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                importer.read_authored_recipes(root, self.source, self.lock)
+        recipes = deepcopy(self.authored)
+        recipes["characters"]["\u4e00"] = recipes["characters"].pop("\u4e07")
+        importer.local(root, importer.AUTHORED_RECIPES).write_text(dump_yaml(recipes), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "unreviewed source"):
+            importer.read_authored_recipes(root, self.source, self.lock)
 
     def test_candidate_status_and_defaults_never_promote_review(self):
         self.assertEqual(len(self.queue), 18)
         self.assertEqual(sum(v["id"] == "refined-candidate" for r in self.records.values()
                              for v in r["variants"]), 15)
+        self.assertEqual(sum(v["id"] == "fitted-monoline" for r in self.records.values()
+                             for v in r["variants"]), sum(c in self.fitted["characters"] for c in self.records))
         for character, record in self.records.items():
             if character not in importer.APPROVED:
-                self.assertEqual(record["default_variant"], "source-median")
+                self.assertEqual(record["default_variant"],
+                                 "fitted-monoline" if character in self.fitted["characters"] else
+                                 "authored-monoline" if character in self.authored["characters"] else "source-median")
                 self.assertTrue(all(not v["status"]["reviewed"] for v in record["variants"]))
 
     def test_batch_report_distinguishes_detector_flags_from_new_variants(self):
         outputs = importer.review_outputs(self.records, self.batch_source, self.queue)
         report = yaml.load(outputs["review/batch-candidates.yaml"], Loader=CurriculumLoader)
         self.assertEqual(report["detector_flagged_glyphs"], 18)
-        self.assertEqual(report["variant_counts"],
-                         {"refined-candidate": 15, "reviewed-monoline": 5, "source-median": 30})
+        counts = {"refined-candidate": 15, "reviewed-monoline": 5, "source-median": 30}
+        fitted = sum(c in self.fitted["characters"] for c in self.batch_source)
+        if fitted:
+            counts["fitted-monoline"] = fitted
+        self.assertEqual(report["variant_counts"], counts)
         self.assertEqual(set(report["style_cautions"]), set(importer.STYLE_CAUTIONS))
 
     def test_matching_samples_follow_final_display_paths(self):
@@ -253,7 +305,7 @@ class ChineseAssetTests(unittest.TestCase):
 
     def test_bundle_reports_reviewed_defaults_not_all_variant_approval(self):
         minimal = {"language": "chinese", "required": sorted(importer.BATCH), "components": []}
-        outputs = build_outputs(importer.ROOT, self.records, minimal, self.inputs + [self.recipe_pin],
+        outputs = build_outputs(importer.ROOT, self.records, minimal, self.inputs + [self.recipe_pin, self.authored_pin, self.fitted_pin],
                                 adapter="chinese-writing", adapter_version="1", notice=importer.NOTICE)
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "coverage.yaml"
@@ -265,16 +317,20 @@ class ChineseAssetTests(unittest.TestCase):
         self.assertEqual(coverage["missing_license_inputs"], [])
 
     def test_complete_corpus_preserves_stroke_counts_and_review_boundaries(self):
-        records, queue = importer.make_records(self.source, self.lock, self.recipes, self.recipe_pin)
+        records, queue = importer.make_records(self.source, self.lock, self.recipes, self.recipe_pin,
+                                             self.authored, self.authored_pin, self.fitted, self.fitted_pin)
         self.assertEqual(set(records), set(self.inventory["required"]))
         self.assertEqual(len(queue), 2019)
-        self.assertEqual(sum(len(record["variants"]) for record in records.values()), 5022)
+        self.assertEqual(sum(len(record["variants"]) for record in records.values()),
+                         3001 + 2016 + 5 + 1 + len(self.fitted["characters"]))
         rules = [flag["rule"] for entry in queue.values() for flag in entry["rules"]]
         self.assertEqual(rules.count("compact-hook"), 408)
         self.assertEqual(rules.count("short-fall"), 3306)
         for character, record in records.items():
             self.assertEqual(record["default_variant"],
-                             "reviewed-monoline" if character in importer.APPROVED else "source-median")
+                             "reviewed-monoline" if character in importer.APPROVED else
+                             "authored-monoline" if character in self.authored["characters"] else
+                             "fitted-monoline" if character in self.fitted["characters"] else "source-median")
             for variant in record["variants"]:
                 self.assertEqual(len(variant["strokes"]), len(self.source[character]["strokes"]))
                 self.assertEqual(variant["status"]["reviewed"], variant["id"] == "reviewed-monoline")
@@ -283,7 +339,8 @@ class ChineseAssetTests(unittest.TestCase):
     def test_dense_style_cautions_do_not_change_geometry_or_approval(self):
         self.assertEqual(set(importer.STYLE_CAUTIONS), set("\u56ca\u8b66\u8d62\u5668"))
         for character in importer.STYLE_CAUTIONS:
-            self.assertEqual(self.records[character]["default_variant"], "source-median")
+            self.assertEqual(self.records[character]["default_variant"],
+                             "fitted-monoline" if character in self.fitted["characters"] else "source-median")
             self.assertTrue(all(not variant["status"]["reviewed"]
                                 for variant in self.records[character]["variants"]))
 

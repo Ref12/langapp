@@ -11,14 +11,24 @@ const chinese = join(repositoryRoot, 'curriculum', 'chinese')
 const readYaml = (path: string) => parse(readFileSync(join(chinese, path), 'utf8'))
 const page = readYaml(join('characters', 'u004e.yaml'))
 const recipes = readYaml(join('characters', 'recipes', 'reviewed-prototype.yaml'))
+const authored = readYaml(join('characters', 'recipes', 'authored-monoline.yaml'))
 const context = {
   lock: readYaml(join('upstream', 'writing', 'source-lock.yaml')),
   recipes,
   recipeHash: createHash('sha256').update(readFileSync(join(chinese, 'characters', 'recipes', 'reviewed-prototype.yaml'))).digest('hex'),
+  authored,
+  fitted: { characters: {} as Record<string, unknown> },
+  fittedHash: '0'.repeat(64),
+  authoredHash: createHash('sha256').update(readFileSync(join(chinese, 'characters', 'recipes', 'authored-monoline.yaml'))).digest('hex'),
   transform: page['一'].variants[0].transform,
   strokeCounts: new Map([['一', 1], ['丁', 2]]),
 }
-const sourceRecords = () => structuredClone({ 一: page['一'], 丁: page['丁'] })
+// The shipped 丁 default is fitted; these fixtures exercise the source-median projection path with an empty fitted recipe set.
+const sourceRecords = () => {
+  const records = structuredClone({ 一: page['一'], 丁: page['丁'] })
+  records['丁'].default_variant = 'source-median'
+  return records
+}
 const scratch = join(repositoryRoot, 'scripts', `.character-assets-fixtures-${process.pid}`)
 afterEach(() => { rmSync(scratch, { recursive: true, force: true }) })
 
@@ -60,6 +70,28 @@ describe('prepared default projection', () => {
     const cup = readYaml(join('characters', 'u0067.yaml'))['杯']
     cup.variants.find((variant: { id: string }) => variant.id === 'reviewed-monoline').strokes.reverse()
     expect(() => projectCharacterPage('u0067', { 杯: cup }, { ...context, strokeCounts: new Map([['杯', 8]]) })).toThrow(/paths\/order/)
+  })
+
+  it('projects authored 万 exactly as three strokes without granting review', () => {
+    const [wan] = projectCharacterPage('u004e', { 万: page['万'] }, { ...context, strokeCounts: new Map([['万', 3]]) })
+    expect(wan).toMatchObject({ character: '万', variant: 'authored-monoline', strokeCount: 3, reviewed: false })
+    expect(wan.paths).toEqual(authored.characters['万'].paths)
+    expect(wan.provenance.recipe).toEqual({
+      id: 'zh-authored-u4e07', version: '1', input: 'characters/recipes/authored-monoline.yaml', sha256: context.authoredHash,
+    })
+    expect(wan.provenance).not.toHaveProperty('review')
+  })
+
+  it.each(['geometry', 'order', 'recipe hash', 'source hash', 'review'])('rejects authored %s drift', field => {
+    const record = structuredClone(page['万'])
+    const selected = record.variants.find((variant: { id: string }) => variant.id === 'authored-monoline')
+    const changedContext = structuredClone({ ...context, strokeCounts: new Map([['万', 3]]) })
+    if (field === 'geometry') selected.strokes[0].path = 'M10 10 L90 10'
+    if (field === 'order') selected.strokes.reverse()
+    if (field === 'recipe hash') selected.recipe.sha256 = '0'.repeat(64)
+    if (field === 'source hash') changedContext.authored.characters['万'].source_member_sha256 = '0'.repeat(64)
+    if (field === 'review') selected.review = recipes.review
+    expect(() => projectCharacterPage('u004e', { 万: record }, changedContext)).toThrow(/authored/)
   })
 })
 
@@ -105,6 +137,8 @@ describe('owned generated output checks', () => {
   it('fails an input integrity error before creating outputs', async () => {
     mkdirSync(join(scratch, 'curriculum', 'chinese', 'characters', 'recipes'), { recursive: true })
     writeFileSync(join(scratch, 'curriculum', 'chinese', 'characters', 'manifest.yaml'), readFileSync(join(chinese, 'characters', 'manifest.yaml')))
+    writeFileSync(join(scratch, 'curriculum', 'chinese', 'characters', 'recipes', 'authored-monoline.yaml'), readFileSync(join(chinese, 'characters', 'recipes', 'authored-monoline.yaml')))
+    writeFileSync(join(scratch, 'curriculum', 'chinese', 'characters', 'recipes', 'fitted-monoline.yaml'), readFileSync(join(chinese, 'characters', 'recipes', 'fitted-monoline.yaml')))
     writeFileSync(join(scratch, 'curriculum', 'chinese', 'characters', 'recipes', 'reviewed-prototype.yaml'), 'invalid input')
     await expect(buildAppCharacters(scratch)).rejects.toThrow(/SHA-256 mismatch/)
     expect(existsSync(join(scratch, 'public'))).toBe(false)
@@ -123,6 +157,13 @@ it('reproduces all prepared assets and ships original plus derived source withou
   expect(data.index.sourcePins['zh-writing-hanzi-writer']).toEqual({
     revision: context.lock.revision, archive: context.lock.archive, archiveSha256: context.lock.archive_sha256,
   })
+  expect(data.index.authoredRecipes['万'].sha256).toBe(context.authoredHash)
+  const fittedYaml = readYaml(join('characters', 'recipes', 'fitted-monoline.yaml'))
+  expect(data.index.fittedRecipe).toMatchObject({ id: 'zh-fitted-monoline', review: 'fitted-unreviewed', sha256: createHash('sha256').update(readFileSync(join(chinese, 'characters', 'recipes', 'fitted-monoline.yaml'))).digest('hex') })
+  const variants = data.index.characters.map((character: { variant: string }) => character.variant)
+  expect(variants.filter((variant: string) => variant === 'fitted-monoline')).toHaveLength(Object.keys(fittedYaml.characters).length)
+  expect(variants.filter((variant: string) => variant === 'reviewed-monoline')).toHaveLength(5)
+  expect(data.index.characters.filter((character: { variant: string }) => character.variant === 'fitted-monoline').every((character: { reviewed: boolean }) => !character.reviewed)).toBe(true)
   expect(Buffer.byteLength(JSON.stringify(data.index))).toBeLessThan(300_000)
   expect(synchronizeCharacterOutputs(data.outputs, repositoryRoot, true)).toEqual([])
   const output = join('public', 'characters', 'chinese')
@@ -131,12 +172,14 @@ it('reproduces all prepared assets and ships original plus derived source withou
   const zip = await JSZip.loadAsync(data.outputs.get(join(output, 'derived-source.generated.zip'))!)
   expect(Object.keys(zip.files).some(file => file.includes('node_modules') || file.includes('japanese'))).toBe(false)
   expect(await zip.file('curriculum/chinese/characters/u004e.yaml')!.async('nodebuffer')).toEqual(readFileSync(join(chinese, 'characters', 'u004e.yaml')))
+  expect(await zip.file('curriculum/chinese/characters/recipes/authored-monoline.yaml')!.async('nodebuffer')).toEqual(readFileSync(join(chinese, 'characters', 'recipes', 'authored-monoline.yaml')))
   expect(await zip.file('scripts/generate-app-characters.mjs')!.async('string')).toBe(readFileSync(join(repositoryRoot, 'scripts', 'generate-app-characters.mjs'), 'utf8').replace(/\r\n/g, '\n'))
   for (const file of ['scripts/generate-app-characters.mjs', 'package.json', 'package-lock.json']) {
     expect(await zip.file(file)!.async('string')).not.toContain('\r\n')
   }
   const notice = data.outputs.get(join(output, 'ATTRIBUTION.html'))!.toString()
   expect(notice).toContain('MODIFIED 2026-09-25')
+  expect(notice).toContain('MODIFIED 2026-09-30')
   expect(notice).toContain('ARPHIC PUBLIC LICENSE')
   expect(notice).toContain('derived-source.generated.zip')
   expect(notice).toContain('npm ci')

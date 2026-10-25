@@ -5,7 +5,8 @@ from pathlib import Path
 import yaml
 
 
-class CurriculumLoader(getattr(yaml, "CSafeLoader", yaml.SafeLoader)):
+class _CurriculumMapping:
+    """Identical mapping validation for both YAML parser implementations."""
     def construct_mapping(self, node, deep=False):
         self.flatten_mapping(node)
         keys = set()
@@ -27,9 +28,22 @@ class CurriculumLoader(getattr(yaml, "CSafeLoader", yaml.SafeLoader)):
         return super().construct_mapping(node, deep=deep)
 
 
-def load_yaml(path: Path):
+class PureCurriculumLoader(_CurriculumMapping, yaml.SafeLoader):
+    pass
+
+
+if hasattr(yaml, "CSafeLoader"):
+    class LibyamlCurriculumLoader(_CurriculumMapping, yaml.CSafeLoader):
+        pass
+else:
+    LibyamlCurriculumLoader = PureCurriculumLoader
+
+CurriculumLoader = LibyamlCurriculumLoader
+
+
+def load_yaml(path: Path, *, loader=CurriculumLoader):
     with path.open(encoding="utf-8-sig") as stream:
-        return yaml.load(stream, Loader=CurriculumLoader)
+        return yaml.load(stream, Loader=loader)
 
 
 def dump_yaml(value) -> str:

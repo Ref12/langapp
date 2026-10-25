@@ -5,6 +5,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 
 | Handoff | State |
 | --- | --- |
+| [Writing exercises and stroke fitting](writing-handoff.md) | App practice is integrated; the source-driven fitter remains preview-only. The user chose 热 v6 over v7; supervised nine-character batches are next. Includes exact reproduction, accepted checkpoints, uncommitted asset work and remaining automation gaps. |
 | [New / Review study flow](study-handoff.md) | Implemented and committed. All shipped HSK 1-6 study behavior is included in the passing Pages suite. The separate all-seven-band authoring audit remains blocked by missing HSK 7-9 examples. |
 | [Assistant, voices, and profiles](assistant-handoff.md) | Pinyin formats were pushed as `7549b784`. Pages run `36526006580` failed twice in the pre-existing Potions power-up test; the user authorized fixing its synchronization and publishing the repair. Check the repair's matching Pages run for deployment status. Settings changes update existing displays without rewriting pronunciation; the user's local files and template generator select marks plus numbers. |
 

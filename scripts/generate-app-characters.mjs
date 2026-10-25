@@ -14,6 +14,8 @@ const sourceId = 'zh-writing-hanzi-writer'
 const reviewedKeys = ['一', '人', '杯', '茶', '雨']
 const archivePath = 'upstream/writing/hanzi-writer-selected.zip'
 const recipePath = 'characters/recipes/reviewed-prototype.yaml'
+const authoredRecipePath = 'characters/recipes/authored-monoline.yaml'
+const fittedRecipePath = 'characters/recipes/fitted-monoline.yaml'
 const licensePath = 'licenses/hanzi-writer-ARPHICPL.TXT'
 const sourceLockPath = 'upstream/writing/source-lock.yaml'
 const sha256 = value => createHash('sha256').update(value).digest('hex')
@@ -71,7 +73,9 @@ export function projectCharacterPage(page, records, context) {
     assert(Array.isArray(record.variants) && record.variants.length > 0, `${label}: missing variants`)
     const variants = record.variants
     assert(variants.every(variant => object(variant) && typeof variant.id === 'string') && new Set(variants.map(variant => variant.id)).size === variants.length, `${label}: invalid or duplicate variant IDs`)
-    const expectedVariant = reviewedKeys.includes(character) ? 'reviewed-monoline' : 'source-median'
+    const authoredRecipe = context.authored.characters[character]
+    const fittedRecipe = context.fitted.characters[character]
+    const expectedVariant = reviewedKeys.includes(character) ? 'reviewed-monoline' : authoredRecipe ? 'authored-monoline' : fittedRecipe ? 'fitted-monoline' : 'source-median'
     assert(record.default_variant === expectedVariant, `${label}: unsupported default ${record.default_variant}; candidates must never be silently selected`)
     const selected = variants.find(variant => variant.id === record.default_variant)
     assert(selected, `${label}: declared default variant is missing`)
@@ -91,7 +95,7 @@ export function projectCharacterPage(page, records, context) {
       source.sha256 === context.lock.archive_sha256 && source.member_sha256 === context.lock.members[member]?.sha256 &&
       source.source_entry === `https://raw.githubusercontent.com/chanind/hanzi-writer-data/${context.lock.revision}/${member}`, `${label}: source provenance does not match the pinned original member`)
     assert(paths.length === context.strokeCounts.get(character), `${label}: ordered stroke count differs from source`)
-    let review
+    let review, recipe
     if (selected.status.reviewed) {
       const recipe = context.recipes.characters[character]
       assert(object(recipe) && same(paths, recipe.paths) && recipe.source_member_sha256 === source.member_sha256, `${label}: reviewed paths/order must exactly match inherited recipe evidence`)
@@ -100,12 +104,27 @@ export function projectCharacterPage(page, records, context) {
         selected.recipe.version === context.recipes.version, `${label}: reviewed recipe provenance mismatch`)
       assert(same(selected.review, context.recipes.review), `${label}: inherited review attestation mismatch`)
       review = { ...selected.review, recipe: selected.recipe }
+    } else if (authoredRecipe) {
+      assert(object(authoredRecipe) && same(Object.keys(authoredRecipe).sort(), ['paths', 'source_member_sha256']) &&
+        same(paths, authoredRecipe.paths) && authoredRecipe.source_member_sha256 === source.member_sha256,
+      `${label}: authored paths/order must exactly match the pinned recipe`)
+      recipe = { id: `zh-authored-u${character.codePointAt(0).toString(16).padStart(4, '0')}`, version: context.authored.version, input: authoredRecipePath, sha256: context.authoredHash }
+      assert(same(selected.recipe, recipe) && selected.review === undefined, `${label}: authored recipe provenance mismatch; no review may be inherited`)
+    } else if (fittedRecipe) {
+      assert(object(fittedRecipe) && same(Object.keys(fittedRecipe).sort(), ['fitted_strokes', 'paths', 'source_member_sha256']) &&
+        same(paths, fittedRecipe.paths) && fittedRecipe.source_member_sha256 === source.member_sha256,
+      `${label}: fitted paths/order must exactly match the pinned recipe`)
+      recipe = { id: `zh-fitted-u${character.codePointAt(0).toString(16).padStart(4, '0')}`, version: context.fitted.version, input: fittedRecipePath, sha256: context.fittedHash }
+      assert(same(selected.recipe, recipe) && selected.review === undefined, `${label}: fitted recipe provenance mismatch; no review may be inherited`)
+    } else {
+      assert(selected.recipe === undefined && selected.review === undefined, `${label}: unexpected recipe or review evidence`)
     }
     return {
       character, strokeCount: paths.length, reviewed: selected.status.reviewed, variant: selected.id, paths,
       provenance: {
         sourceId, sourceEntry: source.source_entry, sourceArchive: source.input, sourceArchiveSha256: source.sha256,
         member, memberSha256: source.member_sha256, generated: true, validated: true,
+        ...(recipe ? { recipe } : {}),
         ...(review ? { review } : {}),
       },
     }
@@ -125,7 +144,7 @@ function attribution(notice, lock, derivedHash) {
 <h2>Exact downloadable source and reproducibility</h2><ul>
 <li><a href="hanzi-writer-selected.zip">Original selected upstream ZIP</a> (unaltered; original data, README, license and selection notice). SHA-256: <code>${lock.archive_sha256}</code>.</li>
 <li><a href="source-lock.yaml">Original source/member hash lock</a> and <a href="sources.yaml">retained source catalog</a>.</li>
-<li><a href="derived-source.generated.zip">Prepared YAML and projection source bundle</a> (not an unrelated upstream library). SHA-256: <code>${derivedHash}</code>. Includes exact prepared pages, manifest/coverage, reviewed recipes, notices, projection script and pinned package metadata. The default paths in downloadable JSON are also the complete projected artwork modifications.</li>
+<li><a href="derived-source.generated.zip">Prepared YAML and projection source bundle</a> (not an unrelated upstream library). SHA-256: <code>${derivedHash}</code>. Includes exact prepared pages, manifest/coverage, reviewed and unreviewed authored recipes, notices, projection script and pinned package metadata. The default paths in downloadable JSON are also the complete projected artwork modifications.</li>
 <li><a href="https://github.com/chanind/hanzi-writer-data/tree/${lock.revision}">Pinned upstream revision ${lock.revision}</a>.</li>
 </ul><p>Extract the derived source bundle, place the original selected ZIP at <code>curriculum/chinese/upstream/writing/hanzi-writer-selected.zip</code>, then use Node.js with the locked dependencies (<code>npm ci</code>) and run <code>node scripts/generate-app-characters.mjs</code>. With dependencies available, projection and <code>--check</code> are offline. No source importer, network fetch, candidate refinement or geometry regeneration is performed. The bundle includes the exact YAML input and script, not font fitting or new review evidence.</p>
 <p>Paths are already normalized to a 100-unit y-down frame; retain width 5.5 and round caps/joins. Each ordered path is one continuous pen-down. No per-glyph fitting or additional transform is appropriate.</p>
@@ -149,19 +168,33 @@ export async function buildAppCharacters(root = repositoryRoot) {
   const pins = new Map()
   assert(Array.isArray(manifest.inputs), 'Missing pinned source inputs')
   for (const input of manifest.inputs) {
-    assert([archivePath, recipePath, licensePath, sourceLockPath].includes(input.path) && !pins.has(input.path), 'Unsupported/duplicate pinned input')
+    assert([archivePath, recipePath, authoredRecipePath, fittedRecipePath, licensePath, sourceLockPath].includes(input.path) && !pins.has(input.path), 'Unsupported/duplicate pinned input')
     assert(input.source_id === sourceId && /^[a-f0-9]{64}$/.test(input.sha256), `${input.path}: invalid source pin`)
     pins.set(input.path, read(input.path, input.sha256))
   }
-  assert(pins.size === 4, 'Missing required source, recipe, lock or license pin')
+  assert(pins.size === 6, 'Missing required source, recipe, lock or license pin')
   const lock = parse(pins.get(sourceLockPath).toString('utf8'))
   const recipes = parse(pins.get(recipePath).toString('utf8'))
+  const authored = parse(pins.get(authoredRecipePath).toString('utf8'))
+  const fitted = parse(pins.get(fittedRecipePath).toString('utf8'))
   assert(lock.schema_version === 1 && /^[a-f0-9]{40}$/.test(lock.revision) && object(lock.members), 'Invalid original source lock')
   assert(lock.archive === archivePath && lock.archive_sha256 === sha256(pins.get(archivePath)) &&
     lock.license === licensePath && lock.license_sha256 === sha256(pins.get(licensePath)), 'Source lock archive/license mismatch')
   assert(object(recipes.characters) && same(Object.keys(recipes.characters).sort(), reviewedKeys) &&
     recipes.source_revision === lock.revision && object(recipes.review) && typeof recipes.review.reviewer === 'string' &&
     recipes.review.date === '2026-09-15' && typeof recipes.review.note === 'string', 'Missing exact five inherited review attestations')
+  assert(object(authored) && same(Object.keys(authored).sort(), ['characters', 'id', 'notice', 'source_revision', 'version']) &&
+    authored.id === 'zh-authored-monoline' && authored.version === '1' && authored.source_revision === lock.revision &&
+    typeof authored.notice === 'string' && authored.notice.includes('MODIFIED ') && authored.notice.includes('ARPHIC PUBLIC LICENSE') &&
+    manifest.notice.includes(authored.notice) && object(authored.characters) &&
+    Object.keys(authored.characters).every(character => scalar(character) && !reviewedKeys.includes(character)),
+  'Invalid authored recipes, source revision or modification notice')
+  assert(object(fitted) && same(Object.keys(fitted).sort(), ['characters', 'fitter', 'id', 'notice', 'review', 'source_revision', 'version']) &&
+    fitted.id === 'zh-fitted-monoline' && fitted.version === '1' && fitted.review === 'fitted-unreviewed' && fitted.source_revision === lock.revision &&
+    typeof fitted.notice === 'string' && fitted.notice.includes('MODIFIED ') && fitted.notice.includes('ARPHIC PUBLIC LICENSE') &&
+    manifest.notice.includes(fitted.notice) && object(fitted.characters) &&
+    Object.keys(fitted.characters).every(character => scalar(character) && !reviewedKeys.includes(character) && !authored.characters[character]),
+  'Invalid fitted recipes, source revision or modification notice')
   const sourcesBytes = read('sources.yaml', manifest.sources_sha256)
   const sources = parse(sourcesBytes.toString('utf8'))
   const source = Array.isArray(sources) && sources.find(record => record.id === sourceId)
@@ -184,6 +217,8 @@ export async function buildAppCharacters(root = repositoryRoot) {
   }
   const context = {
     lock, recipes, recipeHash: sha256(pins.get(recipePath)), strokeCounts,
+    authored, authoredHash: sha256(pins.get(authoredRecipePath)),
+    fitted, fittedHash: sha256(pins.get(fittedRecipePath)),
     transform: { id: 'hanzi-prototype-padded-em-box', matrix: [0.087890625, 0, 0, -0.087890625, 5, 84.1015625], source_frame: [0, -124, 1024, 1024], version: '1' },
   }
   assert(Array.isArray(manifest.chunks) && manifest.chunks.length > 0, 'Missing manifest chunks')
@@ -204,9 +239,13 @@ export async function buildAppCharacters(root = repositoryRoot) {
   }
   assert(same(characters.filter(character => character.reviewed).map(character => character.character).sort(), reviewedKeys), 'Projection must retain exactly five inherited reviewed defaults')
   assert(strokeCounts.size === characters.length && characters.every(character => strokeCounts.has(character.character)), 'Prepared defaults do not cover the exact selected source inventory')
+  assert(Object.keys(authored.characters).every(character => strokeCounts.has(character)), 'Authored recipe is outside the selected source inventory')
+  assert(Object.keys(fitted.characters).every(character => strokeCounts.has(character)), 'Fitted recipe is outside the selected source inventory')
   const index = {
     schemaVersion: 1, language: 'chinese', sourceIds: [sourceId],
     sourcePins: { [sourceId]: { revision: lock.revision, archive: lock.archive, archiveSha256: lock.archive_sha256 } },
+    authoredRecipes: Object.fromEntries(characters.filter(character => character.variant === 'authored-monoline').map(character => [character.character, character.provenance.recipe])),
+    fittedRecipe: { id: fitted.id, version: fitted.version, input: fittedRecipePath, sha256: sha256(pins.get(fittedRecipePath)), review: fitted.review, fitter: fitted.fitter },
     characters: characters.map(({ character, strokeCount, reviewed, variant }) => ({ character, strokeCount, reviewed, variant })),
   }
   outputs.set(indexPath, Buffer.from(json(index)))

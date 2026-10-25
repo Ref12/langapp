@@ -8,6 +8,13 @@ export interface CharacterAssetSummary {
   variant: string
 }
 
+interface CharacterRecipe {
+  id: string
+  input: string
+  sha256: string
+  version: string
+}
+
 export interface CharacterAsset extends CharacterAssetSummary {
   paths: string[]
   provenance?: {
@@ -19,11 +26,12 @@ export interface CharacterAsset extends CharacterAssetSummary {
     memberSha256: string
     generated: boolean
     validated: boolean
+    recipe?: CharacterRecipe
     review?: {
       date: string
       note: string
       reviewer: string
-      recipe: { id: string; input: string; sha256: string; version: string }
+      recipe: CharacterRecipe
     }
   }
 }
@@ -38,6 +46,8 @@ const object = (value: unknown): value is Record<string, unknown> => typeof valu
 const stringArray = (value: unknown): value is string[] => Array.isArray(value) && value.every(item => typeof item === 'string')
 const hash = (value: unknown): value is string => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value)
 const sourcePin = index.sourcePins['zh-writing-hanzi-writer']
+const authoredRecipes: Record<string, CharacterRecipe> = index.authoredRecipes
+const fittedRecipe: CharacterRecipe = index.fittedRecipe
 
 function parseChunk(input: unknown, page: string): Map<string, CharacterAsset> {
   const invalid = () => new Error(`Invalid Chinese writing asset page: ${page}`)
@@ -63,6 +73,20 @@ function parseChunk(input: unknown, page: string): Map<string, CharacterAsset> {
       sourceArchiveSha256: provenance.sourceArchiveSha256, member, memberSha256: provenance.memberSha256,
       generated: provenance.generated, validated: provenance.validated,
     }
+    const expectedRecipe = authoredRecipes[record.character]
+    if (expectedRecipe) {
+      const recipe = provenance.recipe
+      if (summary.reviewed || summary.variant !== 'authored-monoline' || !object(recipe) ||
+        recipe.id !== expectedRecipe.id || recipe.input !== expectedRecipe.input ||
+        recipe.version !== expectedRecipe.version || recipe.sha256 !== expectedRecipe.sha256) throw invalid()
+      parsedProvenance.recipe = { ...expectedRecipe }
+    } else if (summary.variant === 'fitted-monoline') {
+      const recipe = provenance.recipe
+      const id = `zh-fitted-u${record.character.codePointAt(0)!.toString(16).padStart(4, '0')}`
+      if (summary.reviewed || !object(recipe) || recipe.id !== id || recipe.input !== fittedRecipe.input ||
+        recipe.version !== fittedRecipe.version || recipe.sha256 !== fittedRecipe.sha256) throw invalid()
+      parsedProvenance.recipe = { id, input: fittedRecipe.input, version: fittedRecipe.version, sha256: fittedRecipe.sha256 }
+    } else if (provenance.recipe !== undefined || summary.variant === 'authored-monoline') throw invalid()
     if (summary.reviewed) {
       const review = provenance.review
       if (!object(review) || review.date !== '2026-09-15' || typeof review.note !== 'string' || !review.note ||

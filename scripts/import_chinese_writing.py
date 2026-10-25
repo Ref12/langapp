@@ -16,7 +16,7 @@ import zipfile
 import yaml
 
 from character_assets import build_outputs, sha256, write_outputs
-from character_geometry import sample_path
+from character_geometry import sample_path, validate_path
 from character_inventory import extract_inventory
 from chinese_monoline import (
     TRANSFORM, candidate_stroke, normalize_median, reviewed_stroke, source_median_path,
@@ -34,6 +34,8 @@ ARCHIVE = "upstream/writing/hanzi-writer-selected.zip"
 LOCK = "upstream/writing/source-lock.yaml"
 LICENSE = "licenses/hanzi-writer-ARPHICPL.TXT"
 RECIPES = "characters/recipes/reviewed-prototype.yaml"
+AUTHORED_RECIPES = "characters/recipes/authored-monoline.yaml"
+FITTED_RECIPES = "characters/recipes/fitted-monoline.yaml"
 APPROVED = ("\u8336", "\u96e8", "\u676f", "\u4eba", "\u4e00")
 BATCH = tuple("\u8336\u96e8\u676f\u4eba\u4e00\u4e09\u5341\u5c0f\u4e86\u4e01"
               "\u6c34\u5fc3\u6587\u6728\u6c38\u6211\u53ef\u53e3\u65e5\u56fd"
@@ -171,7 +173,64 @@ def read_recipes(root: Path) -> tuple[dict, dict]:
     return recipes, pin
 
 
-def make_records(source: dict, lock: dict, recipes: dict, recipe_pin: dict) -> tuple[dict, dict]:
+def read_authored_recipes(root: Path, source: dict, lock: dict) -> tuple[dict, dict]:
+    raw = local(root, AUTHORED_RECIPES).read_bytes()
+    recipes = load_yaml(local(root, AUTHORED_RECIPES))
+    if (not isinstance(recipes, dict)
+            or set(recipes) != {"id", "version", "source_revision", "notice", "characters"}
+            or recipes["id"] != "zh-authored-monoline" or recipes["version"] != "1"
+            or recipes["source_revision"] != REVISION
+            or not isinstance(recipes["notice"], str)
+            or "MODIFIED " not in recipes["notice"] or "ARPHIC PUBLIC LICENSE" not in recipes["notice"]
+            or not isinstance(recipes["characters"], dict)):
+        raise ValueError("Invalid authored monoline recipes or modification notice")
+    for character, recipe in recipes["characters"].items():
+        if (not isinstance(character, str) or len(character) != 1 or character not in source
+                or character in APPROVED or not isinstance(recipe, dict)
+                or set(recipe) != {"source_member_sha256", "paths"}
+                or recipe["source_member_sha256"] != lock["members"][f"data/{character}.json"]["sha256"]
+                or not isinstance(recipe["paths"], list)
+                or len(recipe["paths"]) != len(source[character]["medians"])):
+            raise ValueError(f"{character}: authored recipe must pin an unreviewed source and its stroke count")
+        for path in recipe["paths"]:
+            validate_path(path)
+    return recipes, {
+        "path": AUTHORED_RECIPES, "sha256": sha256(raw), "source_id": SOURCE_ID,
+        "source_version": "authored-monoline:1",
+    }
+
+
+def read_fitted_recipes(root: Path, source: dict, lock: dict) -> tuple[dict, dict]:
+    raw = local(root, FITTED_RECIPES).read_bytes()
+    recipes = load_yaml(local(root, FITTED_RECIPES))
+    if (not isinstance(recipes, dict)
+            or set(recipes) != {"id", "version", "source_revision", "fitter", "review", "notice", "characters"}
+            or recipes["id"] != "zh-fitted-monoline" or recipes["version"] != "1"
+            or recipes["source_revision"] != REVISION or recipes["review"] != "fitted-unreviewed"
+            or not isinstance(recipes["notice"], str)
+            or "MODIFIED " not in recipes["notice"] or "ARPHIC PUBLIC LICENSE" not in recipes["notice"]
+            or not isinstance(recipes["characters"], dict)):
+        raise ValueError("Invalid fitted monoline recipes or modification notice")
+    for character, recipe in recipes["characters"].items():
+        if (not isinstance(character, str) or len(character) != 1 or character not in source
+                or character in APPROVED or not isinstance(recipe, dict)
+                or set(recipe) != {"source_member_sha256", "fitted_strokes", "paths"}
+                or recipe["source_member_sha256"] != lock["members"][f"data/{character}.json"]["sha256"]
+                or not isinstance(recipe["paths"], list)
+                or len(recipe["paths"]) != len(source[character]["medians"])
+                or not isinstance(recipe["fitted_strokes"], list)
+                or any(type(i) is not int or not 1 <= i <= len(recipe["paths"]) for i in recipe["fitted_strokes"])):
+            raise ValueError(f"{character}: fitted recipe must pin an unreviewed source and its stroke count")
+        for path in recipe["paths"]:
+            validate_path(path)
+    return recipes, {
+        "path": FITTED_RECIPES, "sha256": sha256(raw), "source_id": SOURCE_ID,
+        "source_version": "fitted-monoline:1",
+    }
+
+
+def make_records(source: dict, lock: dict, recipes: dict, recipe_pin: dict,
+                 authored: dict, authored_pin: dict, fitted: dict, fitted_pin: dict) -> tuple[dict, dict]:
     records, queue = {}, {}
     for character, original in sorted(source.items()):
         if (not isinstance(original, dict) or not isinstance(original.get("strokes"), list)
@@ -229,6 +288,22 @@ def make_records(source: dict, lock: dict, recipes: dict, recipe_pin: dict) -> t
             default = "reviewed-monoline"
         elif flags:
             variants.append(variant("refined-candidate", [path for path, _ in candidates]))
+        if character in authored["characters"]:
+            authored_variant = variant("authored-monoline", authored["characters"][character]["paths"])
+            authored_variant["recipe"] = {
+                "id": f"zh-authored-u{ord(character):04x}", "version": authored["version"],
+                "input": AUTHORED_RECIPES, "sha256": authored_pin["sha256"],
+            }
+            variants.append(authored_variant)
+            default = "authored-monoline"
+        elif character in fitted["characters"]:
+            fitted_variant = variant("fitted-monoline", fitted["characters"][character]["paths"])
+            fitted_variant["recipe"] = {
+                "id": f"zh-fitted-u{ord(character):04x}", "version": fitted["version"],
+                "input": FITTED_RECIPES, "sha256": fitted_pin["sha256"],
+            }
+            variants.append(fitted_variant)
+            default = "fitted-monoline"
         records[character] = {
             "script": "Han", "kind": "character", "default_variant": default, "variants": variants,
         }
@@ -353,12 +428,14 @@ def generate_batch(root: Path) -> dict:
     inventory = extract_inventory(root.parent, "chinese")
     source, lock, inputs = read_source(root, inventory["required"])
     recipes, recipe_pin = read_recipes(root)
+    authored, authored_pin = read_authored_recipes(root, source, lock)
+    fitted, fitted_pin = read_fitted_recipes(root, source, lock)
     if not set(BATCH) <= source.keys():
         raise ValueError("Review batch must be a subset of the required source inventory")
     selected = {character: source[character] for character in BATCH}
-    records, queue = make_records(selected, lock, recipes, recipe_pin)
+    records, queue = make_records(selected, lock, recipes, recipe_pin, authored, authored_pin, fitted, fitted_pin)
     build_outputs(root, records, {"language": "chinese", "required": sorted(BATCH), "components": []},
-                  inputs + [recipe_pin], adapter="chinese-writing", adapter_version="1", notice=NOTICE)
+                  inputs + [recipe_pin, authored_pin, fitted_pin], adapter="chinese-writing", adapter_version="1", notice=NOTICE)
     outputs = review_outputs(records, selected, queue)
     del outputs["review/candidates.yaml"]
     write_review(root, outputs, check=False)
@@ -370,9 +447,12 @@ def generate(root: Path, *, check: bool = False) -> dict:
     inventory = extract_inventory(root.parent, "chinese")
     source, lock, inputs = read_source(root, inventory["required"])
     recipes, recipe_pin = read_recipes(root)
-    records, queue = make_records(source, lock, recipes, recipe_pin)
-    outputs = build_outputs(root, records, inventory, inputs + [recipe_pin],
-                            adapter="chinese-writing", adapter_version="1", notice=NOTICE)
+    authored, authored_pin = read_authored_recipes(root, source, lock)
+    fitted, fitted_pin = read_fitted_recipes(root, source, lock)
+    records, queue = make_records(source, lock, recipes, recipe_pin, authored, authored_pin, fitted, fitted_pin)
+    outputs = build_outputs(root, records, inventory, inputs + [recipe_pin, authored_pin, fitted_pin],
+                            adapter="chinese-writing", adapter_version="1",
+                            notice=NOTICE + "\n" + authored["notice"] + "\n" + fitted["notice"])
     review = review_outputs(records, source, queue)
     stale = write_outputs(root, outputs, check=True)
     stale += write_review(root, review, check=True)

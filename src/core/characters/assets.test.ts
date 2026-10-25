@@ -32,7 +32,7 @@ describe('Chinese writing page loader', () => {
     const [one, ding] = await Promise.all([assets.loadCharacterAsset('一'), assets.loadCharacterAsset('丁')])
     expect(fetch).toHaveBeenCalledExactlyOnceWith('/langapp/next/characters/chinese/u004e.generated.json')
     expect(one).toMatchObject({ character: '一', strokeCount: 1, reviewed: true, variant: 'reviewed-monoline', paths: ['M15.838 51.693 L85.496 45.049'] })
-    expect(ding).toMatchObject({ character: '丁', strokeCount: 2, reviewed: false, variant: 'source-median' })
+    expect(ding).toMatchObject({ character: '丁', strokeCount: 2, reviewed: false, variant: 'fitted-monoline' })
     one.paths[0] = 'corrupted caller copy'
     one.provenance!.member = 'wrong'
     const again = await assets.loadCharacterAsset('一')
@@ -55,6 +55,28 @@ describe('Chinese writing page loader', () => {
     const { loadCharacterAsset } = await import('./assets')
     await loadCharacterAsset('一')
     expect(fetch).toHaveBeenCalledWith('./characters/chinese/u004e.generated.json')
+  })
+
+  it('loads the exact authored 万 recipe without inheriting visual approval', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(page())))
+    const { loadCharacterAsset } = await import('./assets')
+    const wan = await loadCharacterAsset('万')
+    expect(wan).toMatchObject({ character: '万', variant: 'authored-monoline', reviewed: false, strokeCount: 3 })
+    expect(wan.paths.map(path => path.match(/[MLQC]/g))).toEqual([['M', 'L'], ['M', 'L', 'L', 'L'], ['M', 'Q']])
+    expect(wan.provenance?.recipe).toMatchObject({ id: 'zh-authored-u4e07', input: 'characters/recipes/authored-monoline.yaml' })
+    expect(wan.provenance).not.toHaveProperty('review')
+  })
+
+  it.each(['missing', 'hash', 'version', 'identity'])('rejects %s authored recipe provenance', async field => {
+    const input = page()
+    const wan = input.characters.find((record: { character: string }) => record.character === '万')
+    if (field === 'missing') delete wan.provenance.recipe
+    if (field === 'hash') wan.provenance.recipe.sha256 = '0'.repeat(64)
+    if (field === 'version') wan.provenance.recipe.version = '2'
+    if (field === 'identity') wan.provenance.recipe.id = 'zh-authored-u4e08'
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(input)))
+    const { loadCharacterAsset } = await import('./assets')
+    await expect(loadCharacterAsset('万')).rejects.toThrow(/Invalid Chinese writing asset page/)
   })
 
   it('follows regenerated source pins and rejects pages carrying the previous pins', async () => {
