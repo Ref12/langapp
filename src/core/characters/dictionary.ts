@@ -1,3 +1,4 @@
+import { buildWritingRoute } from './writing-route'
 import type { Catalog, Unit } from '../study/catalog'
 import type { Band, KnowledgeEntry } from '../study/contracts'
 import { characterAssetIndex, type CharacterAssetSummary } from './assets'
@@ -51,6 +52,6 @@ export function characterKnowledge(catalog: Catalog, knowledge: KnowledgeEntry[]
   return { automatic, manual, all: new Set([...automatic, ...manual]) }
 }
 
-export function writingRoute(character: string, scope: 'all' | 'knowledge' = 'all'): string {
-  return `#writing/${character.codePointAt(0)!.toString(16)}/${scope}`
+export function writingRoute(character: string, scope: 'all' | 'knowledge' = 'all', options?: { word?: string; index?: number; back?: string }): string {
+  return `#${buildWritingRoute(character, scope, options)}`
 }

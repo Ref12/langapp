@@ -1,22 +1,42 @@
-.character-native { font-family: "Kaiti SC", KaiTi, STKaiti, serif; text-align: center; font-size: 64px; font-weight: 400; line-height: 1.25; margin: 20px 0 12px; }
+.character-native { font-family: "Kaiti SC", KaiTi, STKaiti, serif; font-size: 40px; font-weight: 400; line-height: 1.1; margin: 0; }
 .character-card { display: flex; flex-direction: column; }
 .character-artwork-state { text-align: center; }
 .character-word-context { flex: 1; overflow-wrap: anywhere; }
 .character-word-context > p { margin: 10px 0; }
 .character-word-context [lang] { font-size: 18px; }
 .character-word-meaning { display: block; margin-top: 4px; }
-.character-card-actions { display: grid; gap: 8px; margin-top: 16px; }
-.character-membership-note { margin: 12px 0 0; }
-.writing-back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-bottom: 12px; }
-.writing-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(230px, 1fr); align-items: start; gap: 24px; max-width: 1080px; }
-.writing-workbench { min-width: 0; }
-.writing-phases { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0 0 20px; color: var(--muted); font-size: 12px; }
-.writing-phases li { display: flex; align-items: center; gap: 6px; padding: 6px 9px; border-radius: 6px; }
-.writing-phases li[aria-current] { color: var(--accent); background: var(--surface-selected); }
-.writing-phases span { font-weight: 700; }
-.writing-statusline { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; margin-bottom: 12px; }
-.writing-statusline span { color: var(--muted); }
-.writing-pad { display: block; width: 100%; max-width: 560px; aspect-ratio: 1; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--surface); touch-action: none; user-select: none; cursor: crosshair; }
+.character-card-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.character-card-actions .button { min-height: 36px; padding: 6px 10px; }
+.character-membership-note { margin: 8px 0 0; }
+.character-head { display: flex; align-items: center; gap: 10px; }
+.character-head > div { flex: 1; min-width: 0; }
+.character-head .card-topline { margin: 0; }
+.character-more { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.character-more summary { cursor: pointer; min-height: 28px; display: inline-flex; align-items: center; gap: 4px; }
+.character-more p { margin: 6px 0; }
+main.writing-main { padding: 8px 12px; max-width: 640px; }
+.writing-page { display: flex; flex-direction: column; gap: 6px; }
+.writing-header { position: relative; display: flex; align-items: center; gap: 8px; min-height: 40px; }
+.writing-back { display: inline-flex; align-items: center; gap: 3px; min-height: 32px; font-size: 12px; color: var(--muted); flex-shrink: 0; }
+.writing-title { flex: 1; min-width: 0; margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; overflow: hidden; }
+.writing-title-character, .writing-title-hidden { font-family: "Kaiti SC", KaiTi, STKaiti, serif; font-size: 30px; line-height: 1; flex-shrink: 0; }
+.writing-title-word { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.writing-help-button { width: 32px; height: 32px; min-height: 32px; flex-shrink: 0; }
+.writing-sheet { position: absolute; z-index: 20; top: 100%; right: 0; width: min(360px, calc(100vw - 24px)); max-height: 70dvh; overflow-y: auto; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); box-shadow: 0 8px 28px #0004; font-size: 12px; line-height: 1.5; }
+.writing-sheet p { margin: 0 0 8px; }
+.writing-sheet-close { position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; min-height: 28px; }
+.writing-sheet > p:first-of-type { padding-right: 28px; }
+.writing-workbench { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.writing-statusline { width: var(--writing-pad); display: flex; align-items: center; gap: 10px; font-size: 12px; min-height: 20px; }
+.writing-statusline > span:first-child { flex: 1; }
+.writing-place { color: var(--muted); }
+.writing-phases { list-style: none; display: flex; gap: 3px; padding: 0; margin: 0; }
+.writing-phases li { width: 22px; height: 5px; border-radius: 3px; background: var(--line-strong); }
+.writing-phases li[data-done] { background: var(--accent); opacity: .55; }
+.writing-phases li[aria-current] { background: var(--accent); opacity: 1; }
+.writing-skipped { margin: 0; width: var(--writing-pad); }
+.writing-page { --writing-pad: min(100%, 520px, max(220px, calc(100dvh - 255px))); }
+.writing-pad { display: block; width: var(--writing-pad); aspect-ratio: 1; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: crosshair; }
 .writing-gridlines { fill: none; stroke: var(--line); stroke-width: .3; stroke-dasharray: 1.5 1.5; }
 .writing-guide { fill: none; stroke: var(--line-strong); stroke-width: 5.5; stroke-linecap: round; stroke-linejoin: round; }
 .writing-guide.completed, .writing-guide.replayed, .writing-guide.replaying { stroke: var(--text); }
@@ -27,28 +47,13 @@
 .writing-direction text { fill: var(--on-accent); font: 5px "Segoe UI", sans-serif; text-anchor: middle; dominant-baseline: central; }
 .writing-arrow { fill: var(--accent); }
 .writing-ink { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.writing-feedback { min-height: 42px; margin: 16px 0; font-size: 14px; }
-.writing-controls { display: flex; flex-wrap: wrap; gap: 8px; }
-.writing-controls .primary { margin-left: auto; }
-.writing-reference { margin: 0; }
-.writing-reference-character { font-family: "Kaiti SC", KaiTi, STKaiti, serif; font-size: 90px; line-height: 1.2; text-align: center; margin: 20px 0; }
-.writing-memory-prompt { font-size: 26px; margin: 20px 0; }
-.writing-word-context { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 10px 0; overflow-wrap: anywhere; }
-.writing-word-context p { margin: 5px 0; }
-.writing-word-context [lang] { font-size: 22px; }
-.writing-reference > p { line-height: 1.6; }
-@media (max-width: 900px) {
-  .writing-layout { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
-  .writing-reference-character { font-size: 64px; }
-}
-@media (max-width: 540px) {
-  .writing-page .page-heading h1 { font-size: 24px; }
-  .writing-page .page-heading { margin-bottom: 16px; }
-  .writing-phases { gap: 2px; font-size: 11px; }
-  .writing-phases li { padding: 5px; }
-  .writing-reference { padding: 18px; }
-  .writing-feedback { font-size: 13px; }
-}
+.writing-controls { width: var(--writing-pad); display: flex; align-items: center; gap: 4px; }
+.writing-controls .icon-button { width: 40px; height: 40px; min-height: 40px; border: 1px solid var(--line); border-radius: 6px; flex-shrink: 0; }
+.writing-controls .writing-step { min-height: 40px; padding: 4px 10px; gap: 2px; }
+.writing-progress { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.writing-progress[data-complete] { color: var(--accent); font-weight: 700; }
+.writing-feedback { width: var(--writing-pad); height: 34px; margin: 0; font-size: 12px; line-height: 1.4; overflow: hidden; color: var(--muted); }
+@media (max-width: 380px) { .writing-step span { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .writing-guide.replaying { animation: none; }
 }

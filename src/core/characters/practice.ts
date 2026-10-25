@@ -32,3 +32,13 @@ export function advanceRound(round: WritingRound, strokeCount: number): WritingR
   if (round.phase < PHASES.length - 1) return { ...round, phase: round.phase + 1, repetition: 0, completed: 0, misses: [], feedback: '' }
   return { ...round, finished: true, feedback: '' }
 }
+
+/** The round one step back: previous repetition, else the previous phase's last repetition; undefined at the very start. */
+export function previousRound(round: WritingRound): WritingRound | undefined {
+  const reset = { completed: 0, misses: [] as number[], finished: false, feedback: '' }
+  if (round.finished) return { ...round, phase: PHASES.length - 1, repetition: REPETITIONS - 1, ...reset }
+  if (round.repetition > 0) return { ...round, repetition: round.repetition - 1, ...reset }
+  if (round.phase > 0) return { ...round, phase: round.phase - 1, repetition: REPETITIONS - 1, ...reset }
+  return undefined
+}
+export const isLastStep = (round: WritingRound): boolean => round.phase === PHASES.length - 1 && round.repetition === REPETITIONS - 1

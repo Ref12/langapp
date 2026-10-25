@@ -104,7 +104,7 @@ describe('dictionary characters', () => {
     await user.click(screen.getByRole('link', { name: 'Practice writing \u8336' }))
     await screen.findByRole('img', { name: 'Handwriting area' })
     expect(window.location.hash).toBe('#writing/8336/knowledge')
-    await user.click(screen.getByRole('link', { name: 'Back to characters' }))
+    await user.click(screen.getByRole('link', { name: 'Back' }))
     await screen.findByRole('heading', { name: 'Characters, one stroke at a time.' })
     expect(screen.getByRole('button', { name: 'My knowledge set (1)' })).toHaveAttribute('aria-pressed', 'true')
     await waitFor(() => expect(db.isOpen()).toBe(true))

@@ -191,6 +191,36 @@ it. Mouse, touch and pen input are supported. The optional stroke-order
 demonstration also works without tracing, but never counts as a completed
 stroke. Unfinished rounds restart when leaving the page.
 
+**Writing page layout and controls.** The page fits one phone screen: a small Back
+link, the character with its word context (pinyin, gloss) on one line, and a "?"
+button that opens a sheet with all instructions, caveats, the review note and the
+artwork licences link. Below it one line shows "Full guide - 1/3" with three phase
+segments, then the canvas, then a single control row docked under it: Undo, Clear,
+Watch stroke order (Stop demonstration while playing), the stroke/complete state,
+Previous and Next. **Next** needs a completed character and advances to the next
+repetition, then the next phase, then the next character of the word (or finishes).
+**Previous** steps back through repetitions and phases, and at the very start goes to
+the previous character, opened at its last phase and repetition. A character's
+practice is saved once, after its nine repetitions; stepping back and forward again
+does not save it twice.
+
+**Writing route.** `#writing/<hex-codepoint>/<all|knowledge>` plus an optional query
+(standard `?k=v&...`, values URL-encoded):
+
+| Parameter | Meaning |
+| --- | --- |
+| `word=<chars>` | Practise each character of the word in order. |
+| `i=<n>` | 0-based index of the current character in `word` (default 0). The hex codepoint wins: if `word[i]` differs from it, `i` is recomputed from the codepoint (a codepoint not in `word` ignores `word`). |
+| `back=<route>` | Route (no leading `#`, e.g. `lessons/new`) for the Back link and for finishing. Default: `dictionary/characters/<scope>`. |
+
+With `word`, the header shows "Character i+1 of N" (Han characters only; non-Han
+characters are skipped). Next after the last step moves to character i+1 and Previous at
+the first step to i-1, by replacing the hash (so Back does not walk through every
+character). Characters without a guide are skipped and named in a one-line note; a route
+pointing at one shows "No guide for X" with a skip link. Finishing the last character
+(or Next on it) navigates to `#<back>`. `writingRoute(character, scope, { word, index, back })`
+in `src/core/characters/dictionary.ts` builds these routes.
+
 Manual additions and completed rounds are saved per profile and included in
 backups and profile snapshots. Writing rounds do not change reading cards,
 automatically add knowledge, assign mastery, or create a writing FSRS schedule.

@@ -59,7 +59,8 @@ function NotFound() {
 }
 
 function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProps & { route: string; returnRoute: string; assistantHeader: HTMLElement | null }) {
-  const [page, id, lessonPage] = route.split('/')
+  const [routePath, ...queryParts] = route.split('?')
+  const [page, id, lessonPage] = routePath.split('/')
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
   if (page === 'book' && id) return <ImportedReader {...props} id={id} />
@@ -94,7 +95,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   }
   if (page === 'practice' || page === 'review') return <Practice {...props} />
   if (page === 'dictionary') return <Dictionary {...props} section={id} initialScope={lessonPage} />
-  if (page === 'writing') return <Writing {...props} codepoint={id} scope={lessonPage} />
+  if (page === 'writing') return <Writing {...props} codepoint={id} scope={lessonPage} query={queryParts.join('?')} />
   if (page === 'settings') return <Settings {...props} />
   if (page === 'history') return <History />
   if (page === 'conversation') return <Assistant threadId={id} returnRoute={returnRoute} headerTarget={assistantHeader} />
@@ -201,7 +202,7 @@ function WorkspaceApp() {
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current={page === 'settings' ? 'page' : undefined}><SettingsIcon size={20} /></a>
         </div></header>
-        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : route === 'games/potions' ? 'potions-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
+        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : route === 'games/potions' ? 'potions-main' : practicing ? 'practice-main' : page === 'writing' ? 'writing-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {currentPage}
         </main>
