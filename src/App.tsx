@@ -36,6 +36,7 @@ import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsL
 import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
 import { PinyinFormatContext } from './components/pinyin-context'
 import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
+import { SetupLinkStatus } from './components/SetupQr'
 import './App.css'
 import './components/assistant/assistant.css'
 
@@ -257,9 +258,9 @@ export default function App() {
     return startBackupScheduler()
   }, [ready])
   if (error) return <StorageFailure error={error} />
-  return ready ? <WorkspaceBoundary>
+  return ready ? <><SetupLinkStatus /><WorkspaceBoundary>
     {bootstrap
       ? <LocalAIConnectionSetup onImported={markLocalSettingsImported}><WorkspaceApp /></LocalAIConnectionSetup>
       : <WorkspaceApp />}
-  </WorkspaceBoundary> : <div className="opening-workspace" role="status">Opening your Mandarin workspace...</div>
+  </WorkspaceBoundary></> : <div className="opening-workspace" role="status">Opening your Mandarin workspace...</div>
 }

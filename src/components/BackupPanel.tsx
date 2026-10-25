@@ -7,6 +7,7 @@ import {
   applyBackup, listBackupProfiles, listBackupVersions, loadBackupConfig, loadBackupVersion, isProfileEmpty, persistenceState, readBackupStatus,
   runBackup, saveBackupConfig, snapshotCurrentYaml, type BackupConfig, type BackupStatus, type PersistenceState,
 } from '../core/backup/service'
+import { ScanSetupQr, ShowSetupQr } from './SetupQr'
 import type { LoadedBackup } from '../core/backup/files'
 
 const message = (error: unknown) => error instanceof Error ? error.message : 'The operation failed.'
@@ -95,6 +96,7 @@ export function RestorePicker({ config, reload = () => window.location.reload() 
 export function RestoreFromBackup({ initial }: { initial?: BackupConfig }) {
   const [config, setConfig] = useState<BackupConfig>(initial ?? EMPTY)
   return <div className="settings-form">
+    <ScanSetupQr />
     <ConnectionFields config={config} onChange={setConfig} disabled={false} />
     <RestorePicker config={config} />
   </div>
@@ -128,6 +130,8 @@ export function BackupPanel({ busy }: { busy: boolean }) {
     <h2>Cloud backup</h2>
     <p>Backs up profile <strong>{getActiveProfile().name}</strong> to a private GitHub repository you own, one commit per backup. It runs about a minute or two after changes, when you leave the page, and at least daily.</p>
     <p className="small muted" role="status">Browser storage protection: {persistence === 'granted' ? 'persistent (the browser will not clear it automatically)' : persistence === 'denied' ? 'not granted; the browser may clear this data under storage pressure, so keep the backup current' : 'not supported by this browser'}.</p>
+    <ScanSetupQr onStatus={(_text, error) => { if (!error) void loadBackupConfig().then(value => { if (value) { setConfig(value); setSaved(true) } }) }} />
+    {saved && <ShowSetupQr config={config} />}
     <form className="settings-form" onSubmit={event => {
       event.preventDefault()
       void attempt(async () => { await saveBackupConfig(config); setSaved(true); setNotice('Backup connection saved.') })
