@@ -1,0 +1,72 @@
+# LinguaWeave named profile snapshot (YAML 1.2).
+# Browser IndexedDB stays live; this file is only a manual snapshot.
+# Copy to default.yaml, or use a UUID filename and matching profile.id.
+# Each file includes settings, learning progress, conversations, and imported books.
+# Schema 4 adds library books, saved reading places, and cached translations.
+# Vocabulary/grammar entries and study cards retain lb labels.
+# knowledge.characterStates stores exact characters, manual additions, and practice history.
+# Characters derived from vocabulary knowledge are not copied into this list.
+# Conversation, session, and attempt IDs retain their original identities.
+# ALL exports include configured AI/Azure credentials. Keep data/ private.
+# profile.name is the display name; do not change profile.id after creation.
+# settings.preferences contains the complete browser workspace preferences.
+# Optional defaultSpeechRate values: 0.25, 0.5, 0.75, 1, 1.25.
+# Optional speechVoices belong inside settings.preferences.
+# pinyinFormat: marks, marks-and-numbers, or numbers; omitted means marks.
+# Numbered pinyin uses 5 for neutral tone. Display only; saved readings stay unchanged.
+# No network voice/provider is enabled by this blank template.
+format: linguaweave-profile
+version: 5
+contentVersion: 2
+exportedAt: 0
+profile:
+  id: default
+  name: default
+settings:
+  # Optional AI connection; uncomment only after filling every required value.
+  # aiConnection:
+  #   apiType: responses # responses or chat-completions
+  #   baseUrl: https://provider.example/v1
+  #   apiKey: '' # Your private API key; exported without redaction.
+  #   model: '' # Provider model/deployment name.
+  #   nativeTools: false # Enable only for a compatible provider.
+  #   structuredOutput: false # Enable only for a compatible provider.
+  #   storageAcknowledged: true # Explicit consent to local credential storage.
+  # Optional Azure speech connection; independent from the AI connection.
+  # speechConnection:
+  #   provider: azure
+  #   region: eastus
+  #   apiKey: '' # Your private Azure Speech key.
+  #   storageAcknowledged: true
+  preferences:
+    id: workspace
+    language: zh-Hans
+    name: Your workspace
+    theme: dark
+    pinyin: true
+    readingMode: weave
+    sidebarCollapsed: false
+    pinyinFormat: marks-and-numbers
+knowledge:
+  words: []
+  readings: []
+  lessons: []
+  sessions: []
+  attempts: []
+  characterStates: []
+  study:
+    knowledge: []
+    cards: []
+    sessions: []
+    attempts: []
+conversations:
+  threads: []
+  messages: []
+  runs: []
+library: []
+
+# To select voices, add speechVoices under settings.preferences, for example:
+#   speechVoices:
+#     zh-Hans: { provider: edge, voice: zh-CN-YunjianNeural }
+#     en-US: { provider: edge, voice: en-US-ChristopherNeural }
+# Edge/Azure voices contact a cloud service only when explicitly used.
