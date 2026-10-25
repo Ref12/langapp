@@ -214,7 +214,7 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
         <p className="completion-count">{correct} / {session.exercises.length}</p><p>correct answers</p>
         <p>You practiced {session.targetRefs.length + session.reviewRefs.length} items. Completing a session records practice, not mastery.</p>
         {session.rejected.length > 0 && <details><summary>{session.rejected.length} proposed exercises were discarded</summary><ul className="small muted">{session.rejected.map((reason, index) => <li key={index}>{reason}</li>)}</ul></details>}
-        <div className="button-row"><a className="button primary" href="#lessons">Back to Lessons <ArrowRight size={16} /></a><a className="button secondary" href="#dictionary">See your knowledge set</a></div>
+        <div className="button-row"><a className="button primary" href="#lessons">Back to Lessons <ArrowRight size={16} /></a><a className="button secondary" href="#dictionary/vocabulary/knowledge">See your knowledge set</a></div>
       </section>
     </>
   }

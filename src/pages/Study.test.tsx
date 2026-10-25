@@ -153,6 +153,12 @@ describe('New and Review', () => {
     expect(screen.getByText('1 proposed exercises were discarded')).toBeInTheDocument()
     const session = (await db.exerciseSessions.toArray())[0]
     expect(session.status).toBe('completed')
+    const knowledgeLink = screen.getByRole('link', { name: 'See your knowledge set' })
+    expect(knowledgeLink).toHaveAttribute('href', '#dictionary/vocabulary/knowledge')
+    await act(async () => { window.location.hash = knowledgeLink.getAttribute('href')!.slice(1); window.dispatchEvent(new HashChangeEvent('hashchange')) })
+    expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
+    await act(async () => { window.location.hash = `lessons/session/${session.id}`; window.dispatchEvent(new HashChangeEvent('hashchange')) })
+    await screen.findByRole('heading', { name: 'One more step forward.' })
     expect(await db.exerciseAttempts.count()).toBe(4)
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
     const cards = await db.studyCards.toArray()
@@ -236,6 +242,21 @@ describe('New and Review', () => {
     expect(structured.requestStructuredJSON).not.toHaveBeenCalled()
   })
 
+  it('renders each Mandarin option as one card with radio, text and Hear button inside it (jsdom cannot measure boxes; the Playwright shots cover that)', async () => {
+    const user = userEvent.setup()
+    const session = await seedExercise('choice')
+    await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'I study.', options: ['我学习', '学习我', '我我', '学习'], answer: 0, explanation: 'x' }] })
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    const cards = document.querySelectorAll('.answer-option')
+    expect(cards).toHaveLength(4)
+    cards.forEach((card, index) => {
+      expect(card.tagName).toBe('LABEL')
+      expect(card.querySelector(':scope > input[type="radio"]')).not.toBeNull()
+      expect(card.querySelector(':scope > .snippet-button')).toHaveAccessibleName(`Hear option ${index + 1}`)
+    })
+  })
+
   it('keeps a wrong final tile sentence for review and resumes it without another grade', async () => {
     const user = userEvent.setup()
     const session = await seedExercise('tiles')
@@ -260,6 +281,22 @@ describe('New and Review', () => {
     expect(screen.getByText('0 / 1')).toBeInTheDocument()
     expect(await db.exerciseAttempts.toArray()).toEqual(attempts)
     expect(await db.studyCards.toArray()).toEqual(cards)
+  })
+
+  it('keeps each Mandarin option\'s radio, text and Hear button inside its own card', async () => {
+    // jsdom does no layout, so bounding boxes are checked in the Playwright shots; this pins the structure the CSS relies on.
+    const user = userEvent.setup()
+    const session = await seedExercise('choice')
+    await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'Chinese-language teacher', options: ['汉语学生', '老师汉语', '学生汉语', '汉语老师'], answer: 1, explanation: 'x' }] })
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    const cards = [...document.querySelectorAll('.answer-option')]
+    expect(cards).toHaveLength(4)
+    cards.forEach((card, index) => {
+      expect(card.querySelectorAll('input[type="radio"]')).toHaveLength(1)
+      expect(card.querySelectorAll('.snippet-button')).toHaveLength(1)
+      expect(within(card as HTMLElement).getByRole('button', { name: `Hear option ${index + 1}` })).toBeInTheDocument()
+    })
   })
 
   it('speaks a tile when tapped and still moves it, from the bank and the answer row', async () => {
