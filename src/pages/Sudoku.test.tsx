@@ -80,7 +80,8 @@ it('persists multiple entries, promotes the last remaining candidate, and suppor
   expect(cell(index).querySelector('.sudoku-candidates')).toBeNull()
   await user.click(screen.getByRole('button', { name: `Add ${game.symbols[1].character}` }))
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.entries[index]).toBe(3))
-  expect(cell(index).querySelector('.sudoku-candidates')).toHaveTextContent(game.symbols[0].character)
+  // The write lands before React re-renders the cell, so wait on the rendered candidates too.
+  await waitFor(() => expect(cell(index).querySelector('.sudoku-candidates')).toHaveTextContent(game.symbols[0].character))
   expect(cell(index).querySelector('.sudoku-candidates')).toHaveTextContent(game.symbols[1].character)
   cleanup(); render(<App />)
   await screen.findByRole('grid')
