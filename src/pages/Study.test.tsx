@@ -90,7 +90,11 @@ describe('New and Review', () => {
     const newCard = await screen.findByRole('region', { name: 'New items' })
     await within(newCard).findByRole('heading', { name: `${refs.length} new items` })
     expect(within(newCard).getByText('我')).toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: 'Start new items' }))
+    // The button stays disabled until the AI connection's live query has resolved (disabled={... || !connection}); a click before
+    // that is silently ignored and the heading never appears, so wait for the enabled state that gates the click.
+    const start = screen.getByRole('button', { name: 'Start new items' })
+    await waitFor(() => expect(start).toBeEnabled())
+    await user.click(start)
     await screen.findByRole('heading', { name: 'Meet your new items.' })
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
     expect(await db.knowledge.count()).toBe(refs.length)
