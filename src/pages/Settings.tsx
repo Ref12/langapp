@@ -6,6 +6,7 @@ import { SpeechConnectionSettings } from '../components/assistant/SpeechConnecti
 import { VoiceSettings } from '../components/assistant/VoiceSettings'
 import { ProfileSettings } from '../components/ProfileSettings'
 import { BackupPanel } from '../components/BackupPanel'
+import { Diagnostics } from '../components/Diagnostics'
 import { DEFAULT_PINYIN_FORMAT, pinyinFormatSchema } from '../core/pinyin'
 import { LocalPinyinSetupContext } from '../components/assistant/local-ai-setup-context'
 
@@ -49,7 +50,8 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
     <VoiceSettings workspace={workspace} busy={busy} run={run} />
     <AIConnectionSettings busy={workspaceBusy || profileBusy || speechBusy} onBusyChange={setAIBusy} />
     <SpeechConnectionSettings busy={workspaceBusy || profileBusy || aiBusy} onBusyChange={setSpeechBusy} />
-    <section className="panel"><h2>Keep your learning safe</h2><p>Your profiles are saved in this browser and are not synced to an account. Clearing site data or using private browsing can remove them. Set up the GitHub cloud backup in the Cloud backup panel above to keep an off-device copy that updates automatically, and still export a profile now and then using the controls above.</p>
+    <Diagnostics />
+    <section className="panel"><h2>Keep your learning safe</h2><p>Your profiles are saved in this browser and are not synced to an account. Clearing site data or using private browsing can remove them. Set up the GitHub cloud backup in the Cloud backup panel above to keep an off-device copy (press Back up now to update it), and still export a profile now and then using the controls above.</p>
       <p className="small muted">Profile YAML files contain settings and credentials, knowledge and learning progress, Assistant conversations, and saved practice results including recognized transcripts. Keep exported files private. Raw recordings are never stored. Previous root-app JSON backups can still be imported without changing credentials; archived v1 backups are not compatible. Restored requests never send automatically, and practice results remain excluded from AI tutor context.</p>
     </section>
     {notice && <p className="notice success" role="status">{notice}</p>}

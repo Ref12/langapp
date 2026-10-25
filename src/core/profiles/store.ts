@@ -1,10 +1,11 @@
 import Dexie, { type EntityTable, type Transaction } from 'dexie'
-import { CONTENT_VERSION } from '../../data/mandarin'
-import { AI_ENDPOINTS_VERSION, aiConnectionSchema, aiEndpointSchema, type AIEndpointsExport } from '../assistant/contracts'
+import { CONTENT_VERSION } from '../../data/content-version'
+import { aiConnectionSchema, aiEndpointSchema } from '../assistant/contracts'
 import { clearUnsavedDrafts } from '../assistant/drafts'
-import { speechConnectionInputSchema, speechConnectionSchema } from '../assistant/speech-contracts'
+import { speechConnectionSchema } from '../assistant/speech-contracts'
 import { configureDatabaseForProfile, db, LearningDatabase, profileDatabaseName, resetDatabaseForTests } from '../database'
 import { omit } from '../omit'
+import { readSettingsRows } from './read-snapshot'
 import { createEmptyProfile, endpointsFromSettings, parseProfileYaml, serializeProfileYaml } from './codec'
 import type { JournalEvent } from '../backup/journal'
 import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from './contracts'
@@ -150,34 +151,11 @@ export async function markLocalSettingsImported(): Promise<void> {
 
 export async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata): Promise<ProfileSnapshot> {
   return database.transaction('r', database.tables, async () => {
-    const preferences = await database.preferences.get('workspace')
-    if (!preferences) throw new Error('Your workspace has not been initialized. Reload to try again.')
-    const ai = await database.aiConnections.get('assistant')
-    const savedEndpoints = await database.aiEndpoints.orderBy('order').toArray()
-    const speech = await database.speechConnections.get('assistant-speech')
+    const settings = await readSettingsRows(database)
     const practiceHistory = await database.practiceHistory.toArray()
-    let aiEndpoints: AIEndpointsExport | undefined
-    let speechConnection: ProfileSnapshot['settings']['speechConnection']
-    if (savedEndpoints.length) {
-      const parsed = savedEndpoints.map(endpoint => aiEndpointSchema.safeParse(endpoint))
-      if (parsed.some(result => !result.success)) throw new Error('Saved AI connection settings are invalid. Review them before exporting.')
-      const endpoints = aiEndpointSchema.array().parse(savedEndpoints).map(endpoint => omit(endpoint, 'order', 'revision', 'updatedAt'))
-      const active = endpoints.find(endpoint => endpoint.id === ai?.endpointId)?.id
-      aiEndpoints = { version: AI_ENDPOINTS_VERSION, ...(active ? { active } : {}), endpoints }
-    } else if (ai) {
-      // A single connection saved before the endpoint list existed.
-      const parsed = aiConnectionSchema.safeParse(ai)
-      if (!parsed.success) throw new Error('Saved AI connection settings are invalid. Review them before exporting.')
-      aiEndpoints = { version: AI_ENDPOINTS_VERSION, active: 'default', endpoints: [{ ...omit(parsed.data, 'id', 'endpointId', 'name', 'revision', 'updatedAt'), id: 'default', name: 'Default' }] }
-    }
-    if (speech) {
-      const parsed = speechConnectionSchema.safeParse(speech)
-      if (!parsed.success) throw new Error('Saved speech connection settings are invalid. Review them before exporting.')
-      speechConnection = speechConnectionInputSchema.strip().parse(parsed.data)
-    }
     return {
       format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
-      settings: { preferences, ...(aiEndpoints ? { aiEndpoints } : {}), ...(speechConnection ? { speechConnection } : {}) },
+      settings,
       knowledge: {
         words: await database.words.toArray(), readings: await database.readings.toArray(),
         lessons: await database.lessons.toArray(), sessions: await database.sessions.toArray(),

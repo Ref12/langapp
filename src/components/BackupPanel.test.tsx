@@ -3,9 +3,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace } from '../core/database'
 import { initializeProfiles } from '../core/profiles/store'
 import { requestPersistence, setBackendFactoryForTests } from '../core/backup/service'
+import { resetBackupStateForTests } from '../core/backup/state'
 import { BackupPanel, RestoreOffer } from './BackupPanel'
 
 beforeEach(async () => {
+  await resetBackupStateForTests()
   localStorage.clear()
   await initializeProfiles()
   await db.delete()
@@ -16,8 +18,9 @@ afterEach(() => { cleanup(); setBackendFactoryForTests(undefined); vi.restoreAll
 
 describe('BackupPanel', () => {
   it('saves the connection, backs up now, and shows last backup time or the error', async () => {
-    const publish = vi.fn().mockResolvedValueOnce({ version: 'abcdef123', changed: 3, removed: 0 }).mockRejectedValueOnce(new Error('GitHub rejected the token (401).'))
-    setBackendFactoryForTests(() => ({ listProfiles: async () => [], listVersions: async () => [], readFiles: async () => new Map(), publish }))
+    const remote = { head: 'abcdef123', tree: 't', files: {} }
+    const publish = vi.fn().mockResolvedValueOnce({ version: 'abcdef123', changed: 3, removed: 0, remote, calls: [] }).mockRejectedValueOnce(new Error('GitHub rejected the token (401).'))
+    setBackendFactoryForTests(() => ({ listProfiles: async () => [], listVersions: async () => [], readFiles: async () => new Map(), publish: vi.fn(), publishDelta: publish }))
     render(<BackupPanel busy={false} />)
     expect(screen.getByText(/Last backed up: never/)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /back up now/i })).toBeDisabled()
@@ -29,6 +32,7 @@ describe('BackupPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: /back up now/i }))
     await screen.findByText(/commit abcdef1/)
     expect(screen.queryByText(/Last backed up: never/)).not.toBeInTheDocument()
+    await waitFor(() => expect(screen.getByRole('button', { name: /back up now/i })).toBeEnabled())
     fireEvent.click(screen.getByRole('button', { name: /back up now/i }))
     await screen.findByText(/Last backup error: GitHub rejected the token/)
   })

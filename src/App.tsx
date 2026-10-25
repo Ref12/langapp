@@ -1,8 +1,10 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, ChevronRight, Gamepad2, History as HistoryIcon, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, ChevronRight, Gamepad2, History as HistoryIcon, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, Sparkles, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
-import { requestPersistence, startBackupScheduler } from './core/backup/service'
+import { requestPersistence } from './core/backup/service'
+import { startBackgroundBackup } from './core/backup/background'
+import { recordStartup, timePhase } from './core/backup/diagnostics'
 import { savePreferences } from './core/learning'
 import { useRoute } from './core/routing'
 import { lessons, stories } from './data/mandarin'
@@ -36,6 +38,7 @@ import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsL
 import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
 import { PinyinFormatContext } from './components/pinyin-context'
 import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
+import { BackupNow } from './components/BackupNow'
 import { SetupLinkStatus } from './components/SetupQr'
 import './App.css'
 import './components/assistant/assistant.css'
@@ -173,7 +176,7 @@ function WorkspaceApp() {
         <nav className="primary-nav" aria-label="Main navigation">{navigation.map(item => <a href={`#${item.id}`} key={item.id} aria-current={section === item.id ? 'page' : undefined} title={item.label}>
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
-        <div className="sidebar-bottom"><div className="workspace-note"><ShieldCheck size={18} /><p>Your own pace.<br />Your own space.<small>Saved on this device.</small></p></div>
+        <div className="sidebar-bottom"><BackupNow />
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>
         </>
   return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}>
@@ -241,13 +244,15 @@ export default function App() {
   const [error, setError] = useState('')
   useEffect(() => {
     let disposed = false
+    const began = performance.now()
     initializeProfiles().then(async () => {
-      await bootstrapDefaultProfile()
-      await initializeWorkspace()
+      await timePhase('profiles', async () => undefined)
+      await timePhase('bootstrap', bootstrapDefaultProfile)
+      await timePhase('workspace', initializeWorkspace)
       const pending = import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && await needsLocalSettingsImport()
       if (!disposed) setBootstrap(pending)
     }).then(
-      () => { if (!disposed) setReady(true) },
+      () => { if (!disposed) { setReady(true); recordStartup(performance.now() - began) } },
       reason => { if (!disposed) setError(reason instanceof Error ? reason.message : String(reason)) },
     )
     return () => { disposed = true }
@@ -255,7 +260,7 @@ export default function App() {
   useEffect(() => {
     if (!ready) return undefined
     void requestPersistence()
-    return startBackupScheduler()
+    return startBackgroundBackup()
   }, [ready])
   if (error) return <StorageFailure error={error} />
   return ready ? <><SetupLinkStatus /><WorkspaceBoundary>

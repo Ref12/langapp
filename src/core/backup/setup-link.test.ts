@@ -45,7 +45,7 @@ describe('setup link', () => {
   })
   it('connects, saves and reports; empty profile restores, profile with data does not', async () => {
     const listProfiles = vi.fn().mockResolvedValue([])
-    setBackendFactoryForTests(() => ({ listProfiles, listVersions: async () => [], readFiles: async () => new Map(), publish: vi.fn() }))
+    setBackendFactoryForTests(() => ({ listProfiles, listVersions: async () => [], readFiles: async () => new Map(), publish: vi.fn(), publishDelta: vi.fn() }))
     const reload = vi.fn()
     const result = await applySetup(encodeSetupLink(config, 'https://x.test/'), reload)
     expect(result.message).toBe('Cloud backup connected to me/backups')
@@ -58,7 +58,7 @@ describe('setup link', () => {
     expect(reload).not.toHaveBeenCalled()
   })
   it('surfaces a GitHub error', async () => {
-    setBackendFactoryForTests(() => ({ listProfiles: async () => { throw new Error('GitHub rejected the token (401).') }, listVersions: async () => [], readFiles: async () => new Map(), publish: vi.fn() }))
+    setBackendFactoryForTests(() => ({ listProfiles: async () => { throw new Error('GitHub rejected the token (401).') }, listVersions: async () => [], readFiles: async () => new Map(), publish: vi.fn(), publishDelta: vi.fn() }))
     await expect(applySetup(config)).rejects.toThrow(/401/)
   })
 })

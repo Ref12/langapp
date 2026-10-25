@@ -1,18 +1,18 @@
 import { db, type BackupConfigRecord } from '../database'
 import { getActiveProfile, readSnapshot, restoreActiveSnapshot, initializeProfiles } from '../profiles/store'
 import type { BackupBackend } from './backend'
-import { buildBackupFiles, loadBackup, type LoadedBackup } from './files'
+import { loadBackup, type LoadedBackup } from './files'
 import { GitHubBackend } from './github'
-import { clearDirty, isDirty, markDirty, notifyLocalChange, onLocalChange, setDirtyProfile } from './dirty'
+import { notifyLocalChange } from './dirty'
+import { announce, type BackupReply, type BackupRequest } from './host'
+import { runBackupJob } from './run'
+import { clearCache, loadActive, loadStatus, saveActive, type BackupStatus } from './state'
 import { serializeProfileYaml } from '../profiles/codec'
 
-export const DEBOUNCE_MS = 90_000
-export const DAILY_MS = 24 * 60 * 60 * 1000
 const CONFIG_KEY = 'linguaweave-backup-config:'
-const STATUS_KEY = 'linguaweave-backup-status:'
 
 export type BackupConfig = Omit<BackupConfigRecord, 'id'>
-export interface BackupStatus { lastBackupAt?: number; lastError?: string; lastCommit?: string }
+export type { BackupStatus }
 
 const hasStorage = () => { try { return typeof localStorage !== 'undefined' } catch { return false } }
 
@@ -45,81 +45,53 @@ export async function saveBackupConfig(config: BackupConfig): Promise<void> {
   notifyLocalChange()
 }
 
-export function readBackupStatus(): BackupStatus {
-  if (!hasStorage()) return {}
-  try { return JSON.parse(localStorage.getItem(STATUS_KEY + getActiveProfile().id) ?? '{}') as BackupStatus } catch { return {} }
-}
-
-function writeStatus(status: BackupStatus) {
-  if (hasStorage()) localStorage.setItem(STATUS_KEY + getActiveProfile().id, JSON.stringify(status))
-}
+export const readBackupStatus = async (): Promise<BackupStatus> => { await initializeProfiles(); return loadStatus(getActiveProfile().id) }
 
 export function backendFor(config: Pick<BackupConfig, 'owner' | 'repo' | 'token' | 'branch'>, request?: typeof fetch): BackupBackend {
   return new GitHubBackend(config, request)
 }
 
 let backendOverride: ((config: BackupConfig) => BackupBackend) | undefined
-/** Tests replace the backend factory. */
+/** Tests replace the backend factory (which also keeps the run on the page, where the test's backend lives). */
 export function setBackendFactoryForTests(factory: typeof backendOverride): void { backendOverride = factory }
 const makeBackend = (config: BackupConfig) => backendOverride ? backendOverride(config) : backendFor(config)
 
 let running: Promise<BackupStatus> | undefined
 
-async function backupOnce(): Promise<BackupStatus> {
-  const profileId = getActiveProfile().id
-  const config = await loadBackupConfig()
-  if (!config) throw new Error('Set up the GitHub backup first.')
-  try {
-    const { snapshot, journal } = await db.transaction('r', db.tables, async () => ({
-      snapshot: await readSnapshot(db, getActiveProfile()), journal: await db.journal.orderBy('seq').toArray(),
-    }))
-    clearDirty(profileId) // Changes made while uploading set it again.
-    const events = journal.map(({ seq: _seq, ...event }) => { void _seq; return event })
-    const files = buildBackupFiles(snapshot, events, { owner: config.owner, repo: config.repo, branch: config.branch, token: config.token })
-    const result = await makeBackend(config).publish(profileId, files, `Backup ${snapshot.profile.name} (${events.length} journal events)`)
-    const status: BackupStatus = { lastBackupAt: Date.now(), lastCommit: result.version ?? readBackupStatus().lastCommit }
-    writeStatus(status)
-    await db.backupConfig.update('github', { lastBackupAt: status.lastBackupAt, lastError: '', ...(status.lastCommit ? { lastCommit: status.lastCommit } : {}) })
-    return status
-  } catch (error) {
-    markDirty(profileId) // still unsent; the hourly check retries
-    const message = error instanceof Error ? error.message : 'The backup failed.'
-    writeStatus({ ...readBackupStatus(), lastError: message })
-    throw error instanceof Error ? error : new Error(message)
-  }
+function viaWorker(request: BackupRequest): Promise<BackupReply> {
+  return new Promise(resolve => {
+    const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' })
+    worker.onmessage = (event: MessageEvent<BackupReply>) => { worker.terminate(); resolve(event.data) }
+    worker.onerror = event => { worker.terminate(); resolve({ ok: false, error: event.message || 'The backup worker failed.' }) }
+    worker.postMessage(request)
+  })
 }
 
-/** One backup = one commit. Concurrent calls share the run in flight. */
+async function backupOnce(): Promise<BackupStatus> {
+  const profile = getActiveProfile()
+  const config = await loadBackupConfig()
+  if (!config) throw new Error('Set up the GitHub backup first.')
+  await saveActive({ profile, ...(await loadActive())?.dirtyAt ? { dirtyAt: (await loadActive())!.dirtyAt } : {} })
+  if (typeof Worker !== 'undefined' && !backendOverride) {
+    const reply = await viaWorker({ profile, trigger: 'manual' })
+    if (!reply.ok) throw new Error(reply.error)
+  } else {
+    await runBackupJob({ database: db, profile, config, backend: makeBackend(config), trigger: 'manual' })
+    announce()
+  }
+  const status = await loadStatus(profile.id)
+  await db.backupConfig.update('github', { lastBackupAt: status.lastBackupAt, lastError: '', ...(status.lastCommit ? { lastCommit: status.lastCommit } : {}) })
+  return status
+}
+
+/**
+ * Back up now: the run (reads, building, upload) happens in a worker, never on the page's main thread, and reads the
+ * journal up to a cursor in short transactions. Concurrent calls share the run in flight. Nothing else starts a backup
+ * while the page is in use; background runs live in the service worker (see sw-entry.ts).
+ */
 export function runBackup(): Promise<BackupStatus> {
   running ??= backupOnce().finally(() => { running = undefined })
   return running
-}
-
-/** Debounced after changes, immediately when the page hides with unsent changes, and at least daily. */
-export function startBackupScheduler(options: { debounceMs?: number } = {}): () => void {
-  const profileId = getActiveProfile().id
-  setDirtyProfile(profileId)
-  const debounce = options.debounceMs ?? DEBOUNCE_MS
-  let timer: ReturnType<typeof setTimeout> | undefined
-  const attempt = () => { void loadBackupConfig().then(config => config && runBackup()).catch(() => undefined) }
-  const schedule = () => { clearTimeout(timer); timer = setTimeout(attempt, debounce) }
-  const unsubscribe = onLocalChange(schedule)
-  const hide = () => { if (document.visibilityState === 'hidden' && isDirty(profileId)) { clearTimeout(timer); attempt() } }
-  const pageHide = () => { if (isDirty(profileId)) { clearTimeout(timer); attempt() } }
-  const daily = () => {
-    void loadBackupConfig().then(config => {
-      if (config && (isDirty(profileId) || Date.now() - (readBackupStatus().lastBackupAt ?? 0) >= DAILY_MS)) return runBackup()
-    }).catch(() => undefined)
-  }
-  document.addEventListener('visibilitychange', hide)
-  window.addEventListener('pagehide', pageHide)
-  const interval = setInterval(daily, 60 * 60 * 1000)
-  daily()
-  return () => {
-    clearTimeout(timer); clearInterval(interval); unsubscribe()
-    document.removeEventListener('visibilitychange', hide)
-    window.removeEventListener('pagehide', pageHide)
-  }
 }
 
 // ---- Durable storage ----
@@ -157,8 +129,8 @@ export async function snapshotCurrentYaml(): Promise<string> {
 /** Replaces the active profile with a loaded backup. The caller confirms and keeps a local copy first. */
 export async function applyBackup(loaded: LoadedBackup, config: BackupConfig, signal?: AbortSignal): Promise<void> {
   await restoreActiveSnapshot(loaded.snapshot, loaded.journal, signal)
+  await clearCache(getActiveProfile().id) // the journal was replaced; the next backup starts from a full one
   await saveBackupConfig(config) // the restore leaves the connection intact; keep both copies current
-  clearDirty(getActiveProfile().id)
 }
 
 export async function listBackupProfiles(config: BackupConfig) { return makeBackend(config).listProfiles() }

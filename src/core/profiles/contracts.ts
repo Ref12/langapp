@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { CONTENT_VERSION } from '../../data/mandarin'
+import { CONTENT_VERSION } from '../../data/content-version'
 import { aiConnectionInputSchema, aiEndpointsExportSchema, assistantBackupSchema } from '../assistant/contracts'
 import { speechConnectionInputSchema } from '../assistant/speech-contracts'
 import { validateAssistant, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'

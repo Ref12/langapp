@@ -5,15 +5,15 @@ import { pwa } from './pwa'
 
 type Emitted = { fileName: string; source: string }
 
-function build(bundle: Record<string, unknown>) {
+async function build(bundle: Record<string, unknown>) {
   const files: Emitted[] = []
-  const plugin = pwa() as unknown as { generateBundle: (this: { emitFile: (f: Emitted) => void }, o: unknown, b: unknown) => void }
-  plugin.generateBundle.call({ emitFile: f => files.push(f) }, {}, bundle)
+  const plugin = pwa() as unknown as { generateBundle: (this: { emitFile: (f: Emitted) => void }, o: unknown, b: unknown) => Promise<void> }
+  await plugin.generateBundle.call({ emitFile: f => files.push(f) }, {}, bundle)
   return Object.fromEntries(files.map(f => [f.fileName, f.source]))
 }
 
-describe('PWA plugin', () => {
-  const out = build({ 'index.html': {}, 'assets/index-a.js': {}, 'assets/index-a.css': {} })
+describe('PWA plugin', async () => {
+  const out = await build({ 'index.html': {}, 'assets/index-a.js': {}, 'assets/index-a.css': {} })
 
   it('emits a relative manifest usable at any path', () => {
     const manifest = JSON.parse(out['manifest.webmanifest'])
@@ -27,13 +27,15 @@ describe('PWA plugin', () => {
     expect(link?.attrs).toEqual({ rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' })
   })
 
-  it('emits a worker with relative precache that never touches IndexedDB or leaves its scope', () => {
+  it('emits a worker with relative precache that never touches IndexedDB itself or leaves its scope, and loads the backup code', () => {
     const sw = out['sw.js']
     expect(sw).toContain('"./assets/index-a.js"')
     expect(sw.replace(/^\s*\/\/.*$/gm, '')).not.toMatch(/indexedDB|\bIDB|\.unregister\(/i)
     expect(sw).toContain('self.registration.scope')
+    expect(sw).toContain('importScripts("./backup-sw.js")')
+    expect(out['backup-sw.js']).toMatch(/sync/)
     const handlers = new Map<string, unknown>()
-    runInNewContext(sw, { self: { addEventListener: (n: string, h: unknown) => handlers.set(n, h), registration: { scope: 'https://x.test/apps/lang/' } }, caches: {}, location: { origin: 'https://x.test' } })
+    runInNewContext(sw.replace(/^importScripts.*$/m, ''), { self: { addEventListener: (n: string, h: unknown) => handlers.set(n, h), registration: { scope: 'https://x.test/apps/lang/' } }, caches: {}, location: { origin: 'https://x.test' } })
     expect([...handlers.keys()].sort()).toEqual(['activate', 'fetch', 'install'])
   })
 })

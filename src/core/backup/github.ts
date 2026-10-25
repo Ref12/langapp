@@ -1,4 +1,4 @@
-import { BackupError, type BackupBackend, type BackupProfileInfo, type BackupVersion, type PublishResult } from './backend'
+import { BackupError, StaleBackupError, type BackupBackend, type BackupProfileInfo, type BackupVersion, type CallTrace, type DeltaResult, type PublishResult, type RemoteState } from './backend'
 
 export interface GitHubTarget {
   owner: string
@@ -34,8 +34,12 @@ export class GitHubBackend implements BackupBackend {
     this.branch = target.branch || 'main'
   }
 
+  /** Round trips since the last publishDelta began. */
+  private traces: CallTrace[] = []
+
   private async call<T>(method: string, path: string, body?: unknown, accept = 'application/vnd.github+json'): Promise<{ status: number; data: T }> {
     let response: Response
+    const began = performance.now()
     try {
       response = await this.request(`${API}/repos/${this.target.owner}/${this.target.repo}${path}`, {
         method,
@@ -48,6 +52,7 @@ export class GitHubBackend implements BackupBackend {
     } catch {
       throw new BackupError('Could not reach GitHub. Check your connection.')
     }
+    this.traces.push({ method, path: path.replace(/[0-9a-f]{40}/g, '<sha>').replace(/\?.*$/, ''), status: response.status, ms: Math.round(performance.now() - began) })
     if (!response.ok) {
       let detail = ''
       try { detail = String(((await response.json()) as { message?: unknown }).message ?? '') } catch { /* no body */ }
@@ -152,6 +157,48 @@ export class GitHubBackend implements BackupBackend {
       } catch (error) {
         // 422: the branch moved since we read it (another device or tab). Re-read and rebuild on the new head.
         if (error instanceof BackupError && (error.status === 422 || error.status === 409)) { lastConflict = error; continue }
+        throw error
+      }
+    }
+    throw new BackupError(`The backup branch kept changing (${lastConflict instanceof Error ? lastConflict.message : 'conflict'}). Try again.`, 409)
+  }
+
+  async publishDelta(profileId: string, files: Map<string, string>, keep: Set<string>, message: string, known?: RemoteState): Promise<DeltaResult> {
+    this.traces = []
+    const prefix = `profiles/${profileId}/`
+    const hashes = new Map<string, string>()
+    await Promise.all([...files].map(async ([path, text]) => { hashes.set(path, await gitBlobSha(text)) }))
+    let lastConflict: unknown
+    for (let attempt = 0; attempt < MAX_PUBLISH_ATTEMPTS; attempt++) {
+      if (attempt > 0) await new Promise(resolve => setTimeout(resolve, this.retryDelayMs * attempt))
+      let head = await this.headCommit()
+      if (!head) head = await this.initialize()
+      let remote: RemoteState
+      if (known && known.head === head) remote = known
+      else {
+        const { sha, entries } = await this.treeOf(head)
+        remote = { head, tree: sha, files: Object.fromEntries(entries.filter(entry => entry.type === 'blob' && entry.path.startsWith(prefix)).map(entry => [entry.path.slice(prefix.length), entry.sha])) }
+      }
+      for (const path of keep) if (!(path in remote.files)) throw new StaleBackupError(`The backup repository no longer has ${path}.`)
+      const changes: { path: string; mode: '100644'; type: 'blob'; content?: string; sha?: null }[] = []
+      const next = { ...remote.files }
+      for (const [path, text] of files) {
+        if (remote.files[path] === hashes.get(path)) continue
+        changes.push({ path: prefix + path, mode: '100644', type: 'blob', content: text })
+        next[path] = hashes.get(path)!
+      }
+      let removed = 0
+      for (const path of Object.keys(remote.files)) {
+        if (!files.has(path) && !keep.has(path)) { changes.push({ path: prefix + path, mode: '100644', type: 'blob', sha: null }); delete next[path]; removed++ }
+      }
+      if (!changes.length) return { changed: 0, removed: 0, remote, calls: this.traces }
+      const { data: tree } = await this.call<{ sha: string }>('POST', '/git/trees', { base_tree: remote.tree, tree: changes })
+      const { data: commit } = await this.call<{ sha: string }>('POST', '/git/commits', { message, tree: tree.sha, parents: [head] })
+      try {
+        await this.call('PATCH', `/git/refs/heads/${this.branch}`, { sha: commit.sha, force: false })
+        return { version: commit.sha, changed: changes.length - removed, removed, remote: { head: commit.sha, tree: tree.sha, files: next }, calls: this.traces }
+      } catch (error) {
+        if (error instanceof BackupError && (error.status === 422 || error.status === 409)) { lastConflict = error; known = undefined; continue }
         throw error
       }
     }

@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CloudUpload, History } from 'lucide-react'
 import { stopForProfileChange } from './profile-guard'
 import { getActiveProfile } from '../core/profiles/store'
 import type { BackupProfileInfo, BackupVersion } from '../core/backup/backend'
 import {
-  applyBackup, listBackupProfiles, listBackupVersions, loadBackupConfig, loadBackupVersion, isProfileEmpty, persistenceState, readBackupStatus,
-  runBackup, saveBackupConfig, snapshotCurrentYaml, type BackupConfig, type BackupStatus, type PersistenceState,
+  applyBackup, listBackupProfiles, listBackupVersions, loadBackupConfig, loadBackupVersion, isProfileEmpty, persistenceState,
+  runBackup, saveBackupConfig, snapshotCurrentYaml, type BackupConfig, type PersistenceState,
 } from '../core/backup/service'
+import { useBackupStatus } from './useBackupStatus'
 import { ScanSetupQr, ShowSetupQr } from './SetupQr'
 import type { LoadedBackup } from '../core/backup/files'
 
@@ -105,30 +106,27 @@ export function RestoreFromBackup({ initial }: { initial?: BackupConfig }) {
 export function BackupPanel({ busy }: { busy: boolean }) {
   const [config, setConfig] = useState<BackupConfig>(EMPTY)
   const [saved, setSaved] = useState(false)
-  const [status, setStatus] = useState<BackupStatus>({})
+  const status = useBackupStatus()
   const [persistence, setPersistence] = useState<PersistenceState>('unsupported')
   const [working, setWorking] = useState(false)
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
   const [restoring, setRestoring] = useState(false)
-  const refresh = useCallback(() => setStatus(readBackupStatus()), [])
-
   useEffect(() => {
     let live = true
     void loadBackupConfig().then(value => { if (live && value) { setConfig(value); setSaved(true) } })
     void persistenceState().then(value => { if (live) setPersistence(value) })
-    refresh()
     return () => { live = false }
-  }, [refresh])
+  }, [])
 
   const attempt = async (task: () => Promise<void>) => {
     setWorking(true); setError(''); setNotice('')
-    try { await task() } catch (reason) { setError(message(reason)) } finally { setWorking(false); refresh() }
+    try { await task() } catch (reason) { setError(message(reason)) } finally { setWorking(false) }
   }
   const disabled = busy || working
   return <section className="panel settings-form" aria-label="Cloud backup">
     <h2>Cloud backup</h2>
-    <p>Backs up profile <strong>{getActiveProfile().name}</strong> to a private GitHub repository you own, one commit per backup. It runs about a minute or two after changes, when you leave the page, and at least daily.</p>
+    <p>Backs up profile <strong>{getActiveProfile().name}</strong> to a private GitHub repository you own, one commit per backup. It runs when you press Back up now, in the background so you can keep studying. Where your browser supports Background Sync (installed Chrome on Android), unsent changes are also backed up after you leave the app; elsewhere, press the button now and then.</p>
     <p className="small muted" role="status">Browser storage protection: {persistence === 'granted' ? 'persistent (the browser will not clear it automatically)' : persistence === 'denied' ? 'not granted; the browser may clear this data under storage pressure, so keep the backup current' : 'not supported by this browser'}.</p>
     <ScanSetupQr onStatus={(_text, error) => { if (!error) void loadBackupConfig().then(value => { if (value) { setConfig(value); setSaved(true) } }) }} />
     {saved && <ShowSetupQr config={config} />}
@@ -146,7 +144,7 @@ export function BackupPanel({ busy }: { busy: boolean }) {
         })}><CloudUpload size={16} /> Back up now</button>
       </div>
     </form>
-    <p className="small" role="status">Last backed up: {when(status.lastBackupAt)}{status.lastCommit ? ` (commit ${status.lastCommit.slice(0, 7)})` : ''}</p>
+    <p className="small" role="status">{status.running ? 'Backing up… ' : ''}Last backed up: {when(status.lastBackupAt)}{status.lastCommit ? ` (commit ${status.lastCommit.slice(0, 7)})` : ''}</p>
     {status.lastError && <p className="notice error" role="alert">Last backup error: {status.lastError}</p>}
     {error && <p className="notice error" role="alert">{error}</p>}
     {notice && <p className="notice success" role="status">{notice}</p>}

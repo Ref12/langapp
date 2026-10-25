@@ -5,6 +5,7 @@ import { db } from '../core/database'
 import { navigate } from '../core/routing'
 import { requireUnit, type Catalog } from '../core/study/catalog'
 import { cardId, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type TilesExercise } from '../core/study/contracts'
+import { timeSave } from '../core/backup/diagnostics'
 import { advanceExercise, discardSession, DOMAIN, groupProgress, nextGroup, startNewSession, startReviewSession, submitExerciseAnswer } from '../core/study/knowledge'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { UnitCard } from '../components/study/UnitCard'
@@ -146,9 +147,9 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
     void run(async () => {
       try {
         if (attempt) {
-          await advanceExercise(session.id, session.cursor)
+          await timeSave('next', () => advanceExercise(session.id, session.cursor))
         } else {
-          const saved = await submitExerciseAnswer(session.id, session.cursor, response)
+          const saved = await timeSave('check', () => submitExerciseAnswer(session.id, session.cursor, response))
           // Retain the result while the live workspace query catches up.
           setSavedAttempt(saved)
         }

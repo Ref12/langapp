@@ -1,8 +1,9 @@
 import { parse, stringify } from 'yaml'
-import { CONTENT_VERSION } from '../../data/mandarin'
+import { CONTENT_VERSION } from '../../data/content-version'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from '../profiles/codec'
 import type { ProfileSnapshot } from '../profiles/contracts'
 import type { ProfileMetadata } from '../profiles/identity'
+import { loadBackupV2 } from './layout'
 import { parseJournal, replay, replayFrom, serializeJournal, toSegments, type JournalEvent } from './journal'
 
 // File layout inside profiles/<profile-id>/ (every file is YAML):
@@ -83,6 +84,7 @@ function required(files: Map<string, string>, path: string): string {
 
 /** Reads a backup file set into a snapshot: latest checkpoint plus journal tail, or the whole journal when the checkpoint cannot be read. */
 export function loadBackup(files: Map<string, string>, profileFallback: ProfileMetadata): LoadedBackup {
+  if (files.has('manifest.yaml')) return loadBackupV2(files, profileFallback)
   const journal = readJournal(files)
   const settingsFile = parse(required(files, 'settings.yaml')) as { settings: ProfileSnapshot['settings']; backup?: BackupConnection }
   const meta = files.has('profile.yaml') ? parse(files.get('profile.yaml')!) as Partial<ProfileMetadata> : {}

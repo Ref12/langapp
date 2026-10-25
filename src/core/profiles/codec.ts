@@ -1,7 +1,7 @@
 import { stringify } from 'yaml'
 import { omit } from '../omit'
 import { z } from 'zod'
-import { CONTENT_VERSION } from '../../data/mandarin'
+import { CONTENT_VERSION } from '../../data/content-version'
 import { interruptImportedRuns, readBackup, splitStudy } from '../backup-codec'
 import { localSettingsSchema } from '../local-settings-contracts'
 import { parsePlainYaml } from '../yaml'
