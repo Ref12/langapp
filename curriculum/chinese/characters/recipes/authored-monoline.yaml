@@ -1,0 +1,24 @@
+# MODIFIED 2026-09-30: Simplified 万's pinned source medians into a slanted
+# top line, a three-segment folded hook and one smooth left-falling curve.
+# Original stroke order, em-box placement and width 5.5 are retained.
+# These authored defaults are unreviewed; no inherited approval is reused.
+# Copyright (C) 1999 Arphic Technology Co., Ltd.; via Make Me a Hanzi and
+# Hanzi Writer Data. Derived artwork remains freely available under the
+# ARPHIC PUBLIC LICENSE, AS IS, without warranty. Retain the original license.
+id: zh-authored-monoline
+version: '1'
+source_revision: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
+notice: >-
+  MODIFIED 2026-09-30: Simplified 万's source-derived tracing paths into a
+  slanted line, one connected three-segment folded hook and a smooth falling
+  curve, removing source-median terminal crooks. Original stroke order,
+  em-box placement and width 5.5 are retained. Authored defaults remain
+  unreviewed. Derived artwork is freely available under the ARPHIC PUBLIC
+  LICENSE, AS IS, without warranty; retain the original license and notices.
+characters:
+  万:
+    source_member_sha256: 8b7dd1ad6c952991cbab52e7a95552e991f9fef4bbb9b473b225ebbeae04af5d
+    paths:
+    - M19.356 27.664 L81.805 20.587
+    - M47.715 41.299 L68.281 41.035 L52.373 78.037 L41.826 71.27
+    - M50.242 24.164 Q41.155 58.018 15.283 74.609

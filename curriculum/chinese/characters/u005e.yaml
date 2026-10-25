@@ -8,8 +8,10 @@
 # Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS,
 # without warranty. Retain licenses/hanzi-writer-ARPHICPL.TXT and modification
 # notices with redistributed source and derived artwork. Independent code is separate.
+# MODIFIED 2026-09-30: Simplified 万's source-derived tracing paths into a slanted line, one connected three-segment folded hook and a smooth falling curve, removing source-median terminal crooks. Original stroke order, em-box placement and width 5.5 are retained. Authored defaults remain unreviewed. Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS, without warranty; retain the original license and notices.
+# MODIFIED 2026-10-11: Programmatically fitted simplified tracing paths from pinned Hanzi Writer Data medians using median-simple-models:13. Strokes failing the fitter gates retain their source-median path. Original stroke order, em-box placement and width 5.5 are retained. Fitted defaults are fitted-unreviewed: no human visual review. Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS, without warranty; retain the original license and notices.
 币:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -60,8 +62,46 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/币.json
+      member_sha256: 325d79fe26746c7945fc29651d0c7314baf02aaa3d13f59d66b18322a683416c
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/币.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e01
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M66.748749 14.959488 L30.072525 27.377819
+    - path: M31.328987 38.895289 L29.683379 64.676848
+    - path: M33.518283 41.034249 L71.224506 35.542026 L70.507604 62.11328 L59.667969 57.910156
+    - path: M49.101 23.998 Q50.834 55.283 49.209 86.914
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 市:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -160,8 +200,47 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/市.json
+      member_sha256: ef79fe1efa67b4592ca7feaa156474a2bf3bf4588774ae9ba8a60bda396b6b51
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/市.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e02
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M43.232422 10.009766 Q49.63 12.683 53.515625 18.007813
+    - path: M16.386611 30.970803 L84.84499 21.513519
+    - path: M32.952567 41.366598 L31.289585 66.594626
+    - path: M34.828892 43.157289 L69.402735 37.70929 L68.970988 63.18247 L57.541461 60.051333
+    - path: M49.92699 29.018385 L49.560547 89.023437
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 布:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -217,8 +296,47 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/布.json
+      member_sha256: 9ba0f2615a01b419074bdf50ce829853598cd422be9be6fc0d272c7afb95362f
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/布.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e03
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M20.872843 31.155291 L83.431529 22.530896
+    - path: M49.345 11.534 Q41.287 43.848 15.692 64.549
+    - path: M38.336077 45.836204 L36.306742 69.498159
+    - path: M40.210233 47.526382 L72.182631 42.254947 L71.548196 67.224205 L61.064792 61.178455
+    - path: M53.736599 33.873347 L53.076172 89.726562
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帅:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -273,8 +391,52 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帅.json
+      member_sha256: 440ca4a9612bb103b7836ae8c94329ad0da47e6bf4516d6fdc4bc133510a4062
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帅.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e05
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M22.929688 27.763672 L22.929688 56.943359
+    - path: M34.355469 16.777344 C34.985352 17.304688 37.460938 19.238281 38.134766 19.941406 C38.808594
+        20.644531 38.325195 17.84668 38.398438 20.996094 C38.47168 24.145508 38.676758 34.223633 38.574219
+        38.837891 C38.47168 43.452148 38.09082 46.088867 37.783203 48.681641 C37.475586 51.274414 37.270508
+        52.241211 36.728516 54.394531 C36.186523 56.547852 35.673828 58.935547 34.53125 61.601563 C33.388672
+        64.267578 31.835938 67.53418 29.873047 70.390625 C27.910156 73.24707 24.833984 76.704102 22.753906
+        78.740234 C20.673828 80.776367 18.286133 81.962891 17.392578 82.607422
+    - path: M49.610736 36.858127 L49.25182 62.997539
+    - path: M50.963096 39.25219 L79.925422 33.800459 L79.912106 59.184957 L69.151387 55.120876
+    - path: M61.573132 15.546875 L 63.451114 87.088511
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帆:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -395,8 +557,61 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帆.json
+      member_sha256: 36aad206654d062e8531e4577caa8a6f3d28d806249d37c716c9d1ba78b7704b
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帆.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e06
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M16.003661 39.319191 L13.617922 61.416793
+    - path: M17.697101 40.607931 L39.473613 36.186304 L39.020097 56.114545 L31.449111 53.267823
+    - path: M25.249803 15.283203 L 25.384853 85.598563
+    - path: M46.044922 27.324219 C46.586914 27.77832 48.637695 28.759766 49.296875 30.048828 C49.956055
+        31.337891 49.897461 31.923828 50 35.058594 C50.102539 38.193359 50.19043 44.858398 49.912109 48.857422
+        C49.633789 52.856445 49.208984 55.756836 48.330078 59.052734 C47.451172 62.348633 45.722656 66.318359
+        44.638672 68.632813 C43.554688 70.947266 43.027344 71.474609 41.826172 72.939453 C40.625 74.404297
+        38.75 76.264648 37.431641 77.421875 C36.113281 78.579102 34.501953 79.472656 33.916016 79.882813
+    - path: M52.8125 30.576172 C52.958984 30.341797 52.06543 29.975586 53.691406 29.169922 C55.317383
+        28.364258 60.546875 26.386719 62.568359 25.742188 C64.589844 25.097656 64.853516 25.039063 65.820313
+        25.302734 C66.787109 25.566406 68.164063 26.28418 68.369141 27.324219 C68.574219 28.364258 67.548828
+        29.228516 67.050781 31.542969 C66.552734 33.857422 65.65918 37.15332 65.380859 41.210938 C65.102539
+        45.268555 65 51.669922 65.380859 55.888672 C65.761719 60.107422 67.006836 64.165039 67.666016
+        66.523438 C68.325195 68.881836 68.486328 68.735352 69.335938 70.039063 C70.185547 71.342773 71.811523
+        73.305664 72.763672 74.345703 C73.71582 75.385742 74.067383 75.664063 75.048828 76.279297 C76.030273
+        76.894531 77.524414 77.670898 78.652344 78.037109 C79.780273 78.40332 80.791016 78.491211 81.816406
+        78.476563 C82.841797 78.461914 84.160156 78.535156 84.804688 77.949219 C85.449219 77.363281 85.375977
+        77.260742 85.683594 74.960938 C85.991211 72.661133 86.489258 65.952148 86.650391 64.150391
+    - path: M52.460938 46.220703 Q57.387 49.507 59.84375 54.658203
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 师:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -457,8 +672,54 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/师.json
+      member_sha256: 80d528921fbb75b21ed1737f622adbb8e9da7b71b143a64382568f22ff812093
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/师.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e08
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M24.244602 29.172835 L23.436794 56.508503
+    - path: M34.443359 19.589844 C34.853516 19.882813 36.245117 20.644531 36.904297 21.347656 C37.563477
+        22.050781 38.134766 20.981445 38.398438 23.808594 C38.662109 26.635742 38.588867 34.296875 38.486328
+        38.310547 C38.383789 42.324219 38.076172 45.239258 37.783203 47.890625 C37.490234 50.541992 37.182617
+        52.138672 36.728516 54.21875 C36.274414 56.298828 36.069336 57.836914 35.058594 60.371094 C34.047852
+        62.905273 31.99707 67.124023 30.664063 69.423828 C29.331055 71.723633 28.393555 72.631836 27.060547
+        74.169922 C25.727539 75.708008 24.160156 77.37793 22.666016 78.652344 C21.171875 79.926758 18.857422
+        81.289063 18.095703 81.816406
+    - path: M47.727449 26.441635 L80.832199 19.920691
+    - path: M49.334534 40.830031 L47.710945 63.622769
+    - path: M50.744226 42.456874 L77.905002 38.040488 L77.983019 61.045817 L67.039106 58.219028
+    - path: M62.445536 27.211733 L61.517509 87.265684
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 希:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -519,8 +780,49 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/希.json
+      member_sha256: 759689deac5911aabb9c4693ff3c2522122e3035998b25510d2357bb73f0353d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/希.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e0c
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M57.362 11.282 Q48.271 25.017 33.213 31.367
+    - path: M36.009227 14.146425 L64.963453 26.364182
+    - path: M14.875776 42.775807 L83.301349 34.135277
+    - path: M45.83 31.121 Q35.014 53.327 15.02 67.578
+    - path: M35.926178 52.698714 L33.950179 74.748837
+    - path: M36.712047 52.865263 L69.902139 48.049271 L69.012293 72.306801 L59.667969 68.984375
+    - path: M51.667906 42.702005 L50.61864 90.517653
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帐:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -584,8 +886,49 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帐.json
+      member_sha256: e546a7c19476a80a8e74db78c0e811ab2a925ca7abd9640e3a696f79c19e4940
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帐.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e10
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.454594 35.245307 L16.661236 58.252668
+    - path: M20.332251 36.68127 L40.019218 33.315103 L39.646437 54.315159 L30.927735 50.703124
+    - path: M27.237781 13.085938 L 28.011148 84.193047
+    - path: M72.863 19.717 Q67.608 30.391 58.437 37.959
+    - path: M43.59955 49.152863 L82.666344 41.666816
+    - path: M51.534 15.2 Q54.478 46.349 51.23212 80.423115 L66.611328 68.369141
+    - path: M58.268 47.448 Q69.539 66.841 89.902 70.742
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帕:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -650,8 +993,50 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帕.json
+      member_sha256: b23e32fc4bc8ecccd7c021259c84292d3f058c4271a84c970b378c06f3728e70
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帕.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e15
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M19.240312 36.568922 L17.855538 60.041658
+    - path: M20.752334 38.20614 L42.690513 33.081293 L41.875817 55.53362 L33.726176 51.788405
+    - path: M28.346 11.904 Q32.807 48.54 29.258 86.299
+    - path: M66.929661 17.72224 L57.460645 38.018654
+    - path: M53.523248 37.019345 L53.193012 74.518643
+    - path: M55.596441 39.643236 L77.472639 34.400923 L78.079621 71.30544 L70.982425 71.055165
+    - path: M56.126392 53.306944 L69.909737 50.506142
+    - path: M55.576605 69.606955 L73.537918 67.605629
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帖:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -714,8 +1099,50 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帖.json
+      member_sha256: ac216236c33fc03b8c2c9a6578e1e73e04634b7be7c49a4b7348cea76b6a11f9
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帖.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e16
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M19.472514 36.31707 L17.018579 58.855371
+    - path: M20.598469 37.553918 L42.587652 33.770833 L42.342675 54.925063 L34.003906 52.109375
+    - path: M28.215 11.182 Q32.782 47.472 28.906 84.98
+    - path: M60.611 14.027 Q64.599 34.386 62.058 56.11
+    - path: M65.374717 36.968973 L82.244348 32.505085
+    - path: M49.52926 57.32939 L53.522766 81.287872
+    - path: M52.60772 59.584489 L78.866522 54.594339 L73.602858 72.170862
+    - path: M55.172435 76.955009 L78.582438 73.175499
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帘:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -836,8 +1263,51 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帘.json
+      member_sha256: e0b743bf2e5ad2c5dadf7be9e5ab559949d4428bda2f2c51cd781585707bce24
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帘.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e18
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.78125 9.482422 Q50.748 11.687 54.21875 15.634766
+    - path: M27.731349 22.856561 L19.865952 38.167002
+    - path: M29.517556 26.061253 L73.265 19.288654 Q83.157116 17.757243 78.12803 23.327923 L71.538985
+        30.626558
+    - path: M41.919832 32.131916 L30.385532 43.410913
+    - path: M57.119141 28.378906 Q64.264 31.023 68.369141 36.992188
+    - path: M36.471109 47.599056 L35.036179 70.103107
+    - path: M37.558001 49.212278 L67.716907 44.628123 L66.854404 68.876688 L56.824313 63.683217
+    - path: M50.702173 38.395089 L49.564504 88.056731
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帜:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -904,8 +1374,50 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帜.json
+      member_sha256: aefa06b339a3d430dce78af453676eb6b5de4b8739444609d34ff6e9a5de2972
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帜.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e1c
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M19.458257 35.352661 L17.718795 58.712374
+    - path: M21.310472 36.894155 L40.49018 33.058214 L40.431477 53.866492 L31.441262 51.728005
+    - path: M27.989 11.851 Q31.332 47.476 28.203 83.926
+    - path: M48.811757 29.666768 L52.8125 52.197266
+    - path: M51.758663 31.529975 L74.173837 26.280853 L68.817245 44.83425
+    - path: M54.648491 48.755129 L72.541 45.886511
+    - path: M55.761429 60.935017 L40.900428 78.095348
+    - path: M66.347656 58.613281 Q76.602 66.146 81.289063 77.421875
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帝:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1029,8 +1541,52 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帝.json
+      member_sha256: 3783607529b4c77c369571ed65e630d833efeb94f8e35f7a186d1ebe074003d2
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帝.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e1d
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M43.847656 8.779297 Q49.421 10.849 53.076172 15.371094
+    - path: M35.146531 25.482566 L68.819285 18.7626
+    - path: M 40.185322 29.630084 Q 41.678986 30.968967 42.250751 32.838092
+    - path: M58.93026 25.666018 L52.994418 37.308977
+    - path: M24.878418 39.36553 L18.727548 55.458312
+    - path: M26.928195 42.588782 L76.908742 34.87162 Q86.646855 33.368023 80.940342 39.349549 L73.378907
+        47.275391
+    - path: M35.829853 51.749572 L34.220692 72.665412
+    - path: M37.976123 53.679841 L67.063235 49.076127 L66.406183 70.757482 L56.240234 67.753906
+    - path: M50.188867 41.496023 L49.91211 89.375
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 带:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1098,8 +1654,52 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/带.json
+      member_sha256: 8d62f5e48a73aaede44ee6dc91d2995de9b018b9bb828bc40dae68909e0d5dad
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/带.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e26
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M25.29238 28.604412 L75.549119 21.201189
+    - path: M36.482456 18.868598 L39.560702 36.725122
+    - path: M49.687011 11.388821 L49.891655 38.134922
+    - path: M64.659944 15.373091 L59.061606 34.835988
+    - path: M24.045435 40.539941 L17.101374 55.627787
+    - path: M25.570185 43.728489 L72.356313 36.723012 Q82.334096 35.228998 78.551548 40.107935 L71.972656
+        48.59375
+    - path: M34.666691 52.551964 L33.526411 73.020328
+    - path: M36.254066 54.128569 L66.3221 49.231125 L65.830949 70.265996 L55.08242 66.745741
+    - path: M49.610079 42.333918 L48.857422 89.375
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 席:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1236,8 +1836,52 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/席.json
+      member_sha256: 988cbb2d4c0054cba8f195e3eda8ccda842a37a06ee8cf0b0938311ea0a84536
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/席.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e2d
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M 48.290521 9.564826 Q 51.048628 10.807651 52.931146 13.045294
+    - path: M33.769646 22.778711 L71.595875 16.293401
+    - path: M30.695 19.056 Q30.757 51.057 11.073 75.774
+    - path: M33.237522 37.015863 L78.997122 29.931461
+    - path: M45.487955 27.628077 L48.257856 46.93419
+    - path: M63.27169 23.593314 L59.580539 40.704413
+    - path: M49.472656 45.341797 Q55.756 41.561 62.919922 43.320313
+    - path: M38.384963 53.769583 L37.226214 75.139877
+    - path: M40.426144 55.44434 L71.122568 50.885841 L70.959944 73.165335 L61.395212 68.966114
+    - path: M53.84033 45.932429 L53.076172 88.056641
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帮:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1310,8 +1954,62 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帮.json
+      member_sha256: bedc44702b264ee23d6d6cd0d2d6967a8d32b3c98918f16b643c8e5277430262
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帮.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e2e
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M24.45161 27.217365 L48.477742 21.38641
+    - path: M26.353346 35.708721 L46.553521 30.521737
+    - path: M16.925543 47.160107 L48.51674 38.477276
+    - path: M35.322266 10.800781 C35.849609 11.313477 37.944336 12.998047 38.486328 13.876953 C39.02832
+        14.755859 38.735352 13.232422 38.574219 16.074219 C38.413086 18.916016 38.061523 26.767578 37.519531
+        30.927734 C36.977539 35.087891 36.025391 38.515625 35.322266 41.035156 C34.619141 43.554688 34.238281
+        44.228516 33.300781 46.044922 C32.363281 47.861328 30.942383 50.249023 29.697266 51.933594 C28.452148
+        53.618164 27.397461 54.819336 25.830078 56.152344 C24.262695 57.485352 21.21582 59.301758 20.292969
+        59.931641
+    - path: M57.822266 18.007813 C58.115234 18.125 58.320313 18.930664 59.580078 18.710938 C60.839844
+        18.491211 63.886719 17.099609 65.380859 16.689453 C66.875 16.279297 67.607422 15.986328 68.544922
+        16.25 C69.482422 16.513672 71.123047 16.967773 71.005859 18.271484 C70.888672 19.575195 68.55957
+        22.402344 67.841797 24.072266 C67.124023 25.742188 65.717773 26.445313 66.699219 28.291016 C67.680664
+        30.136719 72.338867 33.491211 73.730469 35.146484 C75.12207 36.801758 74.873047 37.006836 75.048828
+        38.222656 C75.224609 39.438477 75.107422 41.430664 74.785156 42.441406 C74.462891 43.452148 75.180664
+        44.667969 73.115234 44.287109 C71.049805 43.90625 64.179688 40.844727 62.392578 40.15625
+    - path: M56.730044 18.577078 L56.240235 48.945313
+    - path: M35.647774 55.280349 L34.495567 76.179748
+    - path: M37.813123 57.080677 L67.262463 52.807636 L67.06805 75.539597 L57.175683 70.273734
+    - path: M50.227643 47.596823 L49.560546 89.814453
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 常:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1446,8 +2144,54 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/常.json
+      member_sha256: e2adfad55f16edc7de6c7dff6cf78cd79b874f7387aa63d61971900fc3d09db0
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/常.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e38
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M49.945065 10.163099 L49.613175 27.268046
+    - path: M32.773438 17.216797 Q37.496 19.698 39.892578 24.248047
+    - path: M66.508917 14.981497 L56.996147 23.51587
+    - path: M24.352931 29.601979 L18.996236 43.266912
+    - path: M26.207855 33.098488 L72.880485 25.80067 Q82.545887 24.28937 77.31383 30.044632 L70.917969
+        37.080078
+    - path: M34.179688 37.519531 Q39.117 43.241 39.804688 51.494141
+    - path: M38.946313 38.575866 L61.13814 34.768445 L58.678539 44.548249
+    - path: M41.42885 49.030537 L60.914394 45.413549
+    - path: M33.099244 57.997307 L31.994368 77.251823
+    - path: M35.585423 60.165268 L68.032013 55.627283 L67.98782 75.76164 L56.890239 71.768732
+    - path: M49.043539 50.192075 L48.857422 89.462891
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 帽:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1519,8 +2263,54 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/帽.json
+      member_sha256: a95ea977c132dadc097c00d6b622fd5697f125b90eaa6cd2f129e0ea6b5fff98
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/帽.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e3d
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M19.270179 34.061301 L18.216159 56.609753
+    - path: M21.099389 35.672196 L40.877102 32.358094 L40.63986 52.870407 L32.131979 50.352273
+    - path: M27.815 11.856 Q32.224 47.661 28.203 84.629
+    - path: M48.429042 18.421013 L53.164063 39.980469
+    - path: M52.036968 20.582187 L80.192995 15.596915 L73.378906 38.310547
+    - path: M55.620766 29.311682 L68.440568 27.716197
+    - path: M56.673547 38.180053 L68.519915 36.472582
+    - path: M52.828017 47.168133 L51.107218 81.181597
+    - path: M54.338153 48.93417 L75.192431 45.388802 L74.438612 84.375528
+    - path: M54.482422 59.140625 Q60.96 56.581 68.193359 56.416016
+    - path: M54.152282 67.311892 L68.656664 65.130783
+    - path: M53.610434 77.626584 L69.599609 75.927735
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 幅:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1598,8 +2388,54 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/幅.json
+      member_sha256: 786b8193f6d4b56cc83439489da0005b53d6ac5a86440a1845947371782ef931
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/幅.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e45
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.920684 35.277173 L17.682203 58.087347
+    - path: M20.728648 36.599979 L41.144231 32.582286 L40.997788 52.940836 L32.566079 50.275683
+    - path: M28.083505 12.998047 L 28.392544 83.579437
+    - path: M52.904872 22.75609 L75.20299 17.744713
+    - path: M51.528775 32.382525 L55.340178 48.050171
+    - path: M54.165218 34.098777 L76.38918 28.746293 L71.505942 41.288915
+    - path: M56.610531 44.967289 L74.002147 42.432744
+    - path: M46.379075 54.50019 L50.087891 80.673828
+    - path: M49.027324 57.129236 L83.923098 50.629135 L78.124089 83.175514
+    - path: M54.133532 66.903344 L73.404619 62.825895
+    - path: M63.311292 56.386722 L62.864397 74.118289
+    - path: M51.523174 77.314563 L75.3125 74.521485
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 幕:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1679,8 +2515,55 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/幕.json
+      member_sha256: 826be2cf6c2c4b3a5363606b337d95df994693b0d7b31243dde904ce32e1918a
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/幕.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e55
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M24.767311 22.99526 L74.077554 17.214589
+    - path: M35.058594 14.667969 Q40.968 18.799 41.123047 27.236328
+    - path: M59.696063 11.587152 L55.787271 27.038039
+    - path: M34.666335 29.438892 L38.452107 45.944722
+    - path: M37.600916 31.148203 L63.345107 26.839812 L56.541888 44.848333
+    - path: M39.101563 38.574219 Q45.755 35.878 52.8125 36.464844
+    - path: M39.794691 44.187114 L54.479567 41.895765
+    - path: M18.627378 54.377493 L80.822562 47.722497
+    - path: M44.506 47.616 Q33.479 67.214 11.768 73.027
+    - path: M59.158 51.584 Q71.308 66.596 90.166 67.666
+    - path: M37.500327 62.702557 L36.843083 77.399485
+    - path: M38.863487 64.498707 L62.509841 60.618521 L62.673819 77.624257 L53.955078 72.675781
+    - path: M49.236474 55.828899 L48.857422 89.375
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 幢:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1838,8 +2721,58 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/幢.json
+      member_sha256: b6eafd6fc31016f36847bc6fc4d8dc7318f208e11aafbe8b76bac2c964e0b307
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/幢.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e62
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M16.709209 34.917071 L15.588382 56.066653
+    - path: M18.177476 36.287231 L38.045444 31.536886 L37.461631 50.569207 Q37.36965 53.567797 34.541815
+        52.566124 L30.124458 51.001411
+    - path: M25.956522 14.052734 L 25.465035 83.225874
+    - path: M 58.461830 10.755628 Q 61.849808 11.964692 63.937416 14.754651
+    - path: M50.081751 24.119928 L76.089691 18.607398
+    - path: M 52.997445 28.962161 Q 54.148703 30.046325 54.799203 31.467044
+    - path: M70.112345 24.07478 L65.22318 34.472265
+    - path: M42.025911 39.137999 L88.851491 32.056243
+    - path: M47.742085 44.887074 L52.146173 63.878185
+    - path: M49.479438 46.08692 L78.515645 41.258677 L72.710152 62.182642
+    - path: M54.563999 54.278735 L69.558375 50.88646
+    - path: M53.403715 62.135221 L70.654297 58.964843
+    - path: M62.06915 46.167222 L61.665081 78.492737
+    - path: M51.128159 72.618391 L72.904725 68.065415
+    - path: M40.432423 83.19116 L84.904647 78.41766
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 干:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1881,8 +2814,47 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/干.json
+      member_sha256: 5e3b240f9a912cd4c0f5bc6c9b9f8e15d93a0dd2e33055ac2d3cc08f2ef61822
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/干.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e72
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M33.031669 20.761126 L69.790449 13.973363
+    - path: M14.140625 44.814453 C15.180664 45.107422 15.078125 46.967773 20.380859 46.572266 C25.683594
+        46.176758 36.259766 43.701172 45.957031 42.441406 C55.654297 41.181641 71.708984 39.130859 78.564453
+        39.013672 C85.419922 38.896484 85.668945 41.28418 87.089844 41.738281
+    - path: M50.761773 21.883209 L49.479275 87.177864
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 平:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -1975,8 +2947,47 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/平.json
+      member_sha256: 75145604f90fa0dc3fd4f3766fa8cc495542a4bf849f6489408f4dc049f8ff36
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/平.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e73
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M35.125555 19.153673 L65.846748 12.515381
+    - path: M28.818359 27.851563 Q34.249 31.982 36.904297 37.958984
+    - path: M68.673718 25.118467 L57.599894 37.468673
+    - path: M15.893953 51.276143 L86.493772 43.412278
+    - path: M49.728 19.919 Q49.997 53.754 49.209 87.617
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 年:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2030,8 +3041,48 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/年.json
+      member_sha256: 2da9f7d7526442de1cad442cce66970ac1b41f72c2a388dc851d503ebab554c0
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/年.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e74
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M41.293 11.428 Q35.835 25.189 24.568 34.859
+    - path: M39.127132 24.689448 L69.435686 18.829846
+    - path: M35.62842 41.116669 L69.152296 35.536649
+    - path: M32.916776 38.152896 L35.5695 55.10326
+    - path: M12.201 59.113 Q49.38 55.153 86.806 54.675
+    - path: M51.692 24.552 Q53.161 57.511 51.67 90.781
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 并:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2136,8 +3187,53 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/并.json
+      member_sha256: f7a571ddf6c22f97883f684b849467c8353cf87fd9fc5838df764e91bd909fdb
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/并.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e76
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M34.970703 16.865234 Q40.881 19.877 44.375 25.214844
+    - path: M64.759 11.066 Q61.561 19.681 54.307 26.006
+    - path: M31.745805 36.241392 L71.604604 29.220887
+    - path: M15.990528 56.003854 L85.88489 48.900972
+    - path: M37.431641 37.607422 C37.929688 37.915039 39.731445 38.911133 40.419922 39.453125 C41.108398
+        39.995117 41.459961 39.013672 41.5625 40.859375 C41.665039 42.705078 41.401367 47.143555 41.035156
+        50.527344 C40.668945 53.911133 39.863281 58.730469 39.365234 61.162109 C38.867188 63.59375 38.837891
+        63.388672 38.046875 65.117188 C37.255859 66.845703 35.966797 69.599609 34.619141 71.533203 C33.271484
+        73.466797 31.52832 75.356445 29.960938 76.71875 C28.393555 78.081055 26.005859 79.208984 25.214844
+        79.707031
+    - path: M59.781 34.173 Q61.07 61.697 60.459 89.375
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 幸:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2248,8 +3344,50 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/幸.json
+      member_sha256: 3d739b34e17bacfc76613d6df85f141fcad5e5fb37eb39420de377ad9948e5d2
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/幸.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e78
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M35.146785 26.323644 L64.86633 20.81931
+    - path: M51.456964 9.650883 L50.448944 33.620295
+    - path: M16.713204 39.919727 L83.661189 31.670583
+    - path: M 38.236123 43.426060 Q 39.904474 45.028364 40.609170 47.161411
+    - path: M61.076899 38.0656 L54.615772 50.819834
+    - path: M31.571074 55.105612 L67.729843 50.197606
+    - path: M21.443883 68.615682 L79.404461 62.14378
+    - path: M50.202645 54.81759 L49.912109 90.166016
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 幻:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2352,8 +3490,47 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/幻.json
+      member_sha256: ed688de952ba1c55ce345914a33521283dca3991f3a9661bbaaed83cccb691ab
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/幻.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e7b
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M34.482958 14.404297 L 17.915754 48.256299 L 36.084982 46.004394
+    - path: M47.034163 30.576172 L 18.970338 70.384502 L 43.789543 62.363662
+    - path: M41.474609 53.603516 Q46.954 59.461 48.945313 67.050781
+    - path: M52.932266 41.734837 L81.231911 35.223413 L74.292263 72.952393 Q72.629143 81.994324 68.203123
+        78.43262 L59.513619 71.440009
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 幼:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2463,8 +3640,48 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/幼.json
+      member_sha256: 30f83f4724f512a131db7f8b8c9a46d8445ee5ce11a28180596de6baa5584646
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/幼.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e7c
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M34.808553 17.65625 L 18.602570 48.850288 L 34.665202 48.137269
+    - path: M45.250917 35.750699 L21.058222 68.443807 L40.324545 62.819477
+    - path: M38.134766 55.449219 Q43.227 60.141 44.550781 66.611328
+    - path: M47.387005 45.315143 L81.348217 37.952921 L72.535417 77.862252 Q71.888539 80.79168 69.313594
+        79.252311 L60.371094 73.90625
+    - path: M62.569885 14.916285 L66.780311 19.812336 Q64.494 60.518 35.635 84.698
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 幽:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2598,8 +3815,51 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/幽.json
+      member_sha256: 51ef9f27d95445ca11253cceb9cdeca66386ff460cf5d66d5bf310229d4891e1
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/幽.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e7d
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M49.130039 15.722656 L 50.916637 71.467720
+    - path: M36.639678 32.565168 L27.48211 52.297549 L37.366891 52.072894
+    - path: M45.057031 42.194807 L29.40429 67.58738 L41.667463 62.409911
+    - path: M41.65985 57.552542 L46.040447 64.399438
+    - path: M67.960573 27.23215 L57.313019 47.698232 L67.731422 46.827652
+    - path: M74.816721 39.014645 L58.879247 61.600798 L71.164062 57.505859
+    - path: M70.302734 52.988281 Q73.884 56.767 75.400391 61.601563
+    - path: M22.063688 53.842203 L22.836353 78.597659 L77.030902 68.935245
+    - path: M82.478392 45.568037 L79.632519 81.026464
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 广:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2682,8 +3942,45 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/广.json
+      member_sha256: 0c11f22d3152ff319f3cabeb80c4045034e558e76b58509f8487dc7c5872b5c9
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/广.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e7f
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M44.199219 13.349609 Q51.643 15.455 56.943359 20.732422
+    - path: M33.212132 34.309973 L74.962083 27.899581
+    - path: M29.586038 31.71875 C 29.335851 56.796362 26.066632 69.267448 14.931641 84.892578
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 庄:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2788,8 +4085,48 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/庄.json
+      member_sha256: c12ec7f31a4257b43715b6ef95aa43115faf35a7c1b2683057a9d5cd524cf501
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/庄.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e84
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M46.748047 12.470703 Q53.539 14.882 57.910156 20.292969
+    - path: M35.068727 32.853316 L72.625709 25.798724
+    - path: M30.817 27.91 Q32.154 59.772 12.951 84.966
+    - path: M39.038967 57.858815 L71.705235 51.610274
+    - path: M53.78 38.207 Q56.851 55.972 54.674 74.573
+    - path: M31.021443 79.3374 L84.01895 74.102699
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 庆:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -2898,8 +4235,48 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/庆.json
+      member_sha256: bbea7a94d4c04c03b117342dbb12f4a35d15f26e4ce62b20aa4730f26a090350
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/庆.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e86
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M47.363281 9.658203 Q54.001 12.187 58.173828 17.568359
+    - path: M35.46247 30.167619 L72.445783 23.464048
+    - path: M32.01 25.85 Q32.392 57.866 12.471 82.168
+    - path: M36.511263 55.110648 L76.494069 47.33753
+    - path: M54.702013 35.9375 L 50.936107 66.494730 L 35.116389 80.719946
+    - path: M56.358 54.506 Q67.058 76.212 89.463 80.322
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 庇:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3020,8 +4397,49 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/庇.json
+      member_sha256: e3956850310348467533d41a238fcd0d0e82a89868938d515ff4613be6e2cbda
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/庇.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e87
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.869141 9.921875 Q53.051 12.726 57.382813 18.710938
+    - path: M34.543941 32.932139 L72.227764 25.116967
+    - path: M31.105 28.369 Q31.204 59.963 12.6 84.966
+    - path: M41.167637 54.986908 L54.153829 51.831945
+    - path: M39.401838 44.759878 L37.574833 75.029875 L51.249275 67.789425
+    - path: M77.431 45.709 Q69.796 51.271 61.248 55.285
+    - path: M59.479596 39.757486 L58.957921 77.908829 L85.561284 78.586242 L85.15625 61.777344
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 床:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3134,8 +4552,49 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/床.json
+      member_sha256: 61e32987825856552772bfaf429cc5ef9a9f4b7a7a61b415b749670c07cb1954
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/床.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e8a
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.341797 8.955078 Q51.648 11.395 55.449219 16.689453
+    - path: M34.63558 28.600459 L72.995105 22.050387
+    - path: M31.992 24.987 Q31.383 59.267 9.67 85.212
+    - path: M36.51678 48.702832 L73.987742 40.898507
+    - path: M52.038 29.963 Q56.132 58.467 53.252 88.496
+    - path: M53.450507 49.990194 L29.050956 77.452116
+    - path: M56.478 50.744 Q69.099 71.76 92.187 74.609
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 序:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3251,8 +4710,49 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/序.json
+      member_sha256: 057c1a47b1915c328be0cac06d924fc974593ea1a1d856a71f72e08b3a8828e3
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/序.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e8f
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M49.033203 8.427734 Q54.693 10.618 58.261719 15.195313
+    - path: M34.852148 25.905675 L72.846363 19.559835
+    - path: M31.425 21.807 Q30.55 55 10.807 81.301
+    - path: M41.036718 36.318606 L64.729943 28.820751 Q62.592 36.882 56.787 41.142
+    - path: M 51.135500 41.587628 Q 53.658844 42.519558 55.222414 44.663800
+    - path: M32.070069 55.863956 L75.860045 48.400864 Q77.887 54.647 71.357 59.844
+    - path: M56.47275 54.012369 L56.749481 84.729584 L43.652636 78.694093
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 库:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3365,8 +4865,49 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/库.json
+      member_sha256: 57da1bdf8e772015f966c2bc96ea3cb76bc103df38a1bbc6415241cc6e75eeb1
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/库.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e93
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M47.363281 9.482422 Q54.168 11.37 59.052734 16.162109
+    - path: M34.523184 27.715488 L72.648864 21.361864
+    - path: M31.019 23.178 Q31.27 55.735 11.508 81.093
+    - path: M37.809019 42.572329 L69.11326 36.317596
+    - path: M51.585834 30.81875 L40.763586 58.316094 L69.562488 54.02152
+    - path: M27.860771 71.564828 L83.28472 65.65441
+    - path: M56.166212 47.01835 L54.71354 87.754197
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 应:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3471,8 +5012,49 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/应.json
+      member_sha256: 1eb521ad4f40300c0e6023624ad620a4ce73394beb459aa399d8dca745f84bab
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/应.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e94
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.957031 11.943359 Q52.516 14.402 56.943359 19.589844
+    - path: M33.176988 31.566171 L73.379935 25.080844
+    - path: M29.396 27.879 Q31.486 58.29 11.753 82.249
+    - path: M34.794922 53.076172 Q40.161 57.501 42.617188 63.710938
+    - path: M46.484375 46.396484 Q51.352 50.352 53.955078 55.800781
+    - path: M71.682928 42.992164 L57.2764 73.856711
+    - path: M27.658048 78.459906 L81.235608 73.050451
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 底:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3598,8 +5180,50 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/底.json
+      member_sha256: a0688578b26bd8f3c4693463293e83a6d6a0560bf42a230e662fe7c82b8d63fc
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/底.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e95
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.869141 9.833984 Q51.963 11.969 55.888672 16.777344
+    - path: M35.094889 29.096536 L72.70042 20.672912
+    - path: M30.907 24.201 Q32.725 56.612 13.552 82.486
+    - path: M64.176211 31.88105 L44.455583 43.089391
+    - path: M41.493083 41.516108 L41.151616 72.765474 L55.257686 64.626989
+    - path: M47.376409 55.902119 L74.696482 46.21021
+    - path: M53.954197 40.228915 L70.233666 74.248283 L83.995823 80.555368 L85.979365 66.452423
+    - path: M52.460938 71.708984 Q57.737 74.365 60.546875 79.355469
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 店:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3714,8 +5338,51 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/店.json
+      member_sha256: 1d5d0424731bf4b7f76f38258b575d1c8c209ed2055ae59810745e12b6119878
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/店.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e97
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M47.011719 9.833984 Q53.41 12.009 57.910156 16.689453
+    - path: M36.212284 28.501972 L73.160811 21.695534
+    - path: M31.503 23.329 Q33.16 57.235 12.46 84.173
+    - path: M55.450215 31.919153 L54.687663 61.114014
+    - path: M57.907768 45.537779 L73.992275 42.200458
+    - path: M38.224454 62.906065 L43.390013 87.250836
+    - path: M41.006369 65.450282 L69.676943 59.846641 Q75.793195 58.651224 73.86561 63.93059 L69.423172
+        76.097758
+    - path: M44.697533 81.017029 L74.036379 77.730371
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 庙:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3838,8 +5505,50 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/庙.json
+      member_sha256: d4740d1ecd641269dc6e2174d6f4ec9774cca9f420362e12adffb7ed6613a15d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/庙.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e99
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.253906 9.482422 Q52.536 12.007 57.558594 17.392578
+    - path: M34.679252 30.164257 L72.338084 22.327407
+    - path: M27.486067 25.842769 L30.853293 29.18434 Q32.789 60.683 10.625 80.322
+    - path: M37.245965 51.702413 L40.146417 81.972612
+    - path: M38.666055 54.902769 L77.469747 46.459938 L71.406826 85.043476
+    - path: M45.258882 65.921877 L64.770938 61.92297
+    - path: M54.945 33.161 Q55.673 54.174 54.668 75.258
+    - path: M42.52594 78.77772 L66.787109 75.839843
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 府:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -3958,8 +5667,50 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/府.json
+      member_sha256: f08c447ce3476c91dcea497305a425a198e254ecf4f212faa22bff547f1bdf6b
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/府.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e9c
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.957031 8.955078 Q52.302 11.194 56.064453 16.425781
+    - path: M31.204232 27.592002 L72.97882 19.338818
+    - path: M27.221 23.061 Q29.274 54.202 11.421 79.706
+    - path: M46.676461 35.576124 L27.406679 61.83839
+    - path: M40.987493 50.194797 L38.829744 81.163862
+    - path: M48.403752 50.155512 L85.946719 43.091298
+    - path: M66.453 30.468 Q68.123 53.277 68.414888 80.778568 L55.687485 76.916317
+    - path: M50.439453 56.855469 Q54.487 59.043 56.064453 63.095703
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 庞:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -4089,8 +5840,58 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/庞.json
+      member_sha256: 5bdc145c2a50767fd80c4e30b8b0066848c3edd3fbe6796605ad808d61975b8d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/庞.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e9e
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M44.550781 9.833984 Q50.883 11.956 55.273438 16.777344
+    - path: M34.156727 27.173494 L71.229488 20.225574
+    - path: M30.716 23.208 Q29.852 56.405 10.104 82.707
+    - path: M34.027553 52.198739 L69.209776 45.439978
+    - path: M51.219 31.192 Q52.425 65.674 24.981 84.967
+    - path: M54.394531 53.339844 C54.907227 54.02832 57.119141 55.859375 57.470703 57.470703 C57.822266
+        59.082031 56.738281 60.766602 56.503906 63.007813 C56.269531 65.249023 56.079102 68.574219 56.064453
+        70.917969 C56.049805 73.261719 56.225586 75.605469 56.416016 77.070313 C56.606445 78.535156 56.577148
+        78.828125 57.207031 79.707031 C57.836914 80.585938 58.803711 81.68457 60.195313 82.34375 C61.586914
+        83.00293 63.286133 83.427734 65.556641 83.662109 C67.827148 83.896484 71.240234 83.925781 73.818359
+        83.75 C76.396484 83.574219 79.414063 82.973633 81.025391 82.607422 C82.636719 82.241211 82.915039
+        81.816406 83.486328 81.552734 C84.057617 81.289063 84.262695 81.333008 84.453125 81.025391 C84.643555
+        80.717773 84.511719 81.743164 84.628906 79.707031 C84.746094 77.670898 85.068359 70.625 85.15625
+        68.808594
+    - path: M72.801 57.552 Q63.826 70.701 51.085 80.257
+    - path: M64.501953 31.630859 Q70.444 34.265 74.169922 39.365234
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 废:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -4220,8 +6021,55 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/废.json
+      member_sha256: 4b00982b78b783d5ad837e2ce7c34ab94b8be8d6e012e6f906fd150564116385
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/废.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5e9f
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.957031 11.416016 Q52.05 13.564 55.888672 18.447266
+    - path: M34.807698 29.303579 L72.213216 21.454497
+    - path: M30.477 24.512 Q30.953 56.577 10.361 80.498
+    - path: M39.628779 38.687153 L37.398045 50.927216 L73.734283 42.655826
+    - path: M48.945313 31.191406 C49.150391 31.264648 49.545898 31.147461 50.175781 31.630859 C50.805664
+        32.114258 52.768555 31.90918 52.724609 34.091797 C52.680664 36.274414 51.171875 40.756836 49.912109
+        44.726563 C48.652344 48.696289 46.601563 54.467773 45.166016 57.910156 C43.730469 61.352539 42.5
+        63.330078 41.298828 65.380859 C40.097656 67.431641 39.379883 68.413086 37.958984 70.214844 C36.538086
+        72.016602 34.296875 74.638672 32.773438 76.191406 C31.25 77.744141 29.477539 78.974609 28.818359
+        79.53125
+    - path: M46.7988 59.706345 L63.316808 55.241867 Q57.765 81.355 34.05 84.101
+    - path: M45.95 63.168 Q60.39 83.482 84.102 84.365
+    - path: M 65.036583 32.398288 Q 68.498204 33.822810 70.327599 36.951022
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 度:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -4354,8 +6202,51 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/度.json
+      member_sha256: 3cb5c1507a68227dbcdf7424e9b6797e7c3a1616142c21bccdc5b501583578ef
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/度.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5ea6
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M47.714844 9.921875 Q53.148 12.183 56.503906 16.689453
+    - path: M33.393834 27.258369 L72.446048 19.732702
+    - path: M30.295 23.282 Q32.467 57.586 10.977 83.926
+    - path: M33.955615 41.664127 L76.489529 34.099679
+    - path: M44.972213 29.923645 L46.923828 51.494141
+    - path: M62.329773 27.542715 L59.326001 45.273317
+    - path: M48.857422 50.351563 Q55.309 46.25 62.832031 48.330078
+    - path: M41.365268 59.897796 L62.552766 55.609012 Q53.911 81.258 28.65 84.37
+    - path: M40.607 62.889 Q60.369 84.476 87.969 83.398
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 座:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -4486,8 +6377,52 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/座.json
+      member_sha256: 273c4541b210a13d9a5ea8be7e9408c850b24a8be7ffaf926418993d743b0ca3
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/座.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5ea7
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M47.275391 10.273438 Q52.979 12.824 57.646484 16.865234
+    - path: M35.89561 29.43963 L72.631141 22.65188
+    - path: M31.781 25.043 Q31.827 59.05 11.249 85.716
+    - path: M44.467998 41.994139 L33.268479 60.935828
+    - path: M40.947266 52.548828 Q45.412 53.241 47.890625 57.207031
+    - path: M71.026456 38.2486 L61.099984 57.003316
+    - path: M66.875 51.054688 Q73.653 51.637 77.246094 57.470703
+    - path: M41.41262 67.510533 L68.529159 62.610036
+    - path: M55.449 32.416 Q55.845 54.749 54.738 77.112
+    - path: M28.928319 81.953627 L81.82095 77.073999
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 庭:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -4626,8 +6561,56 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/庭.json
+      member_sha256: db3b18e6d03a08fba10f6c896512440e8f064c911b865241a128d6ae9600c14e
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/庭.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5ead
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M46.686041 10.226837 L56.626304 15.748294
+    - path: M32.265772 30.176524 L72.598622 22.501761
+    - path: M29.128 26.394 Q29.097 59.132 10.307 85.413
+    - path: M70.44072 33.496951 L49.808502 44.961778
+    - path: M49.181746 54.005748 L78.512957 48.592692
+    - path: M63.5929 41.355323 L63.138418 63.738574
+    - path: M50.843737 67.898712 L77.729212 63.859036
+    - path: M31.776774 43.015169 L43.41388 40.328468 L36.866349 53.553817 L46.430861 56.091674 L29.135746
+        81.358731
+    - path: M29.609375 64.589844 C30.253906 64.619141 32.216797 64.516602 33.476563 64.765625 C34.736328
+        65.014648 33.652344 64.165039 37.167969 66.083984 C40.683594 68.00293 50.46875 73.979492 54.570313
+        76.279297 C58.671875 78.579102 59.199219 78.769531 61.777344 79.882813 C64.355469 80.996094 67.709961
+        82.387695 70.039063 82.958984 C72.368164 83.530273 72.529297 83.515625 75.751953 83.310547 C78.974609
+        83.105469 87.104492 81.992188 89.375 81.728516
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 康:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -4761,8 +6744,53 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/康.json
+      member_sha256: 1dea627d79324e2da366c832bf809569cc3a8ce1a102aa345505741a3ef88209
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/康.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5eb7
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M45.605469 8.427734 Q51.728 10.452 55.361328 15.458984
+    - path: M32.69631 25.299408 L72.646038 18.701769
+    - path: M28.974 21.161 Q30.637 54.69 10.544 81.4
+    - path: M38.503221 38.432267 L68.98477 31.667997 L63.711635 50.959956
+    - path: M31.840249 47.761534 L82.729915 41.081456
+    - path: M38.263478 56.713749 L67.784354 52.108492
+    - path: M52.203369 26.364005 L52.108 81.006 Q52.103 84.006 49.212 83.206 L40.884284 80.901407
+    - path: M 34.796982 61.183552 Q 37.397099 62.022232 39.103622 64.083943
+    - path: M27.212253 81.218281 L45.715104 68.929224
+    - path: M73.186055 57.78317 L63.183969 67.251721
+    - path: M54.253 61.358 Q66.596 80.238 87.793 81.377
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 庸:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -4909,8 +6937,59 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/庸.json
+      member_sha256: da2c67b8dbfbce57cb6f1ac437086a1b3a952dbfaed00cd8ee2f9c9a0abdfdc3
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/庸.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5eb8
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M46.308594 9.658203 Q51.9 11.522 55.449219 16.074219
+    - path: M34.982181 25.438407 L70.068439 18.656622
+    - path: M28.291016 21.435547 C28.730469 21.875 30.385742 23.193359 30.927734 24.072266 C31.469727
+        24.951172 31.645508 23.999023 31.542969 26.708984 C31.44043 29.418945 30.869141 36.142578 30.3125
+        40.332031 C29.755859 44.521484 28.935547 48.623047 28.203125 51.845703 C27.470703 55.068359 27.045898
+        56.650391 25.917969 59.667969 C24.790039 62.685547 23.00293 66.904297 21.435547 69.951172 C19.868164
+        72.998047 18.081055 75.722656 16.513672 77.949219 C14.946289 80.175781 12.77832 82.416992 12.03125
+        83.310547
+    - path: M39.19039 34.528505 L68.110163 28.295484 L64.475839 43.581453
+    - path: M33.412053 42.551461 L81.728328 35.138883
+    - path: M39.830153 49.331946 L66.804153 44.630056
+    - path: M39.592229 55.226863 L37.844257 83.945546
+    - path: M41.500495 57.179681 L68.995748 51.591317 L70.243588 81.539484 Q70.36848 84.536883 67.511179
+        83.622646 L60.35687 81.333516
+    - path: M44.985333 64.829713 L60.343173 61.667072
+    - path: M44.821039 73.398329 L61.391718 69.98664
+    - path: M53.388148 26.045117 L52.726514 84.628928
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 廉:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -5058,8 +7137,55 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/廉.json
+      member_sha256: c370bca9e293304d6968fcc5a6cf6184c7b3dd3151bb7c33b6a53312f6b00a74
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/廉.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5ec9
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M 46.537544 11.951933 Q 50.022910 13.309692 52.136177 16.197050
+    - path: M34.762118 25.866801 L67.679471 19.718658
+    - path: M32.277 22.781 Q31.749 54.275 13.575 79.63
+    - path: M42.55849 28.962317 L47.404585 33.407774
+    - path: M61.614221 24.98791 L55.365825 34.122644
+    - path: M35.381263 39.943091 L71.557436 33.31273
+    - path: M36.316853 49.05634 L69.207285 42.844229 L65.381813 59.511158
+    - path: M30.409587 57.835354 L81.153701 50.956654
+    - path: M34.401812 66.199726 L68.558591 61.14325
+    - path: M46.291285 40.9559 L43.926345 86.945227
+    - path: M55.449219 38.837891 L55.449219 89.902344
+    - path: M43.408203 66.875 Q36.696 77.477 24.775391 81.552734
+    - path: M57.998 65.381 Q68.019 80.255 85.684 81.465
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 廊:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -5208,8 +7334,54 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/廊.json
+      member_sha256: 0b6e7df5e6df9f6db554c1a61fa318b3541bcdc345688056f3826e0d9f070df7
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/廊.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5eca
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M49.560547 8.955078 Q54.909 10.977 58.349609 15.283203
+    - path: M33.618796 24.826341 L73.879278 17.386256
+    - path: M30.249 20.93 Q29.808 54.044 10.051 80.218
+    - path: M 45.798855 27.662249 Q 47.458300 28.217866 48.699246 29.420062
+    - path: M37.757336 37.805031 L52.999851 34.653013 L50.17874 52.722123
+    - path: M39.009471 44.991943 L45.940387 44.432474
+    - path: M38.938863 52.839628 L47.363281 51.230469
+    - path: M36.677215 36.325092 L36.318889 69.031173 L48.316989 62.099541
+    - path: M47.011719 57.294922 Q51.252 60.851 52.900391 65.908203
+    - path: M64.541658 35.209252 L80.276078 30.363746 L73.824451 44.258379 L84.564824 61.303785 L80.345984
+        67.286892 L69.511719 63.007812
+    - path: M62.405581 33.839729 L62.216798 89.814453
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 廓:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -5370,8 +7542,56 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/廓.json
+      member_sha256: 9dd84c0696102b28a0267b742df1533f643ef13eb59d65039ceaa6d06a78cc54
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/廓.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5ed3
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M 47.743510 9.714028 Q 52.593258 10.964648 55.653666 14.697426
+    - path: M32.594159 24.660418 L71.788474 18.374233
+    - path: M28.74 20.241 Q30.187 52.699 10.962 78.751
+    - path: M41.298828 26.884766 L47.978516 30.3125
+    - path: M33.019237 36.409511 L55.209495 30.928287
+    - path: M32.773438 42.001953 Q37.187 46.422 38.046875 52.988281
+    - path: M37.496456 43.074428 L52.338548 38.767871 L50.686713 46.739131
+    - path: M39.365234 51.230469 Q46.098 47.898 53.515625 48.769531
+    - path: M31.652899 61.293871 L48.634646 54.881648 Q52.173 59.537 46.815 63.995
+    - path: M45.899592 63.475902 L47.182848 83.670442 L35.585938 77.333984
+    - path: M25.404818 74.585352 L55.142534 65.83191
+    - path: M63.459185 36.897825 L79.502036 31.951314 L70.344935 48.108218 L82.538473 61.141154 L79.991439
+        69.107494 L67.314453 66.259767
+    - path: M62.034076 35.947282 L61.880035 89.814495
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 延:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -5437,8 +7657,63 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/延.json
+      member_sha256: 8651d64912aaeeb52d49da82f5ba68824053a13e968c9e614b8e54cfad731691
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/延.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5ef6
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M71.641216 14.931961 L47.108068 30.091381
+    - path: M61.125975 25.840888 L61.02454 55.190843
+    - path: M63.880711 40.39456 L77.74811 37.109923
+    - path: M48.560061 39.153631 L48.764702 59.546972 L78.917878 55.594129
+    - path: M16.953125 28.291016 C17.714844 28.364258 19.194336 29.18457 21.523438 28.730469 C23.852539
+        28.276367 29.140625 26.108398 30.927734 25.566406 C32.714844 25.024414 31.806641 25.361328 32.246094
+        25.478516 C32.685547 25.595703 33.549805 25.478516 33.564453 26.269531 C33.579102 27.060547 33.359375
+        27.866211 32.333984 30.224609 C31.308594 32.583008 28.4375 37.900391 27.412109 40.419922 C26.386719
+        42.939453 25.976563 44.418945 26.181641 45.341797 C26.386719 46.264648 27.807617 45.97168 28.642578
+        45.957031 C29.477539 45.942383 30.473633 45.327148 31.191406 45.253906 C31.90918 45.180664 32.319336
+        45.327148 32.949219 45.517578 C33.579102 45.708008 34.443359 45.97168 34.970703 46.396484 C35.498047
+        46.821289 36.611328 45.883789 36.113281 48.066406 C35.615234 50.249023 33.168945 56.694336 31.982422
+        59.492188 C30.795898 62.290039 29.946289 63.359375 28.994141 64.853516 C28.041992 66.347656 27.822266
+        66.933594 26.269531 68.457031 C24.716797 69.980469 22.15332 72.280273 19.677734 73.994141 C17.202148
+        75.708008 12.792969 77.949219 11.416016 78.740234
+    - path: M17.744141 57.558594 C18.330078 57.558594 20.102539 57.412109 21.259766 57.558594 C22.416992
+        57.705078 22.519531 57.426758 24.6875 58.4375 C26.855469 59.448242 30.664063 61.499023 34.267578
+        63.623047 C37.871094 65.74707 42.163086 68.896484 46.308594 71.181641 C50.454102 73.466797 55.683594
+        75.825195 59.140625 77.333984 C62.597656 78.842773 64.472656 79.765625 67.050781 80.234375 C69.628906
+        80.703125 71.166992 80.395508 74.609375 80.146484 C78.051758 79.897461 85.522461 78.974609 87.705078
+        78.740234
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 廷:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -5499,8 +7774,60 @@
       - 1024
       - 1024
       version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/廷.json
+      member_sha256: 16cee0aa9894dc66fd2c424ff6e34d45c1b2b64bb80bd10b9abc7b0d11f17f24
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/廷.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5ef7
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M72.090201 16.445183 L47.300879 29.936338
+    - path: M43.842487 45.596947 L79.685914 37.239535
+    - path: M61.88708 26.130788 L61.5174 57.929613
+    - path: M46.01756 62.602832 L77.611883 57.919569
+    - path: M16.953125 26.533203 C17.612305 26.635742 19.589844 27.192383 20.908203 27.148438 C22.226563
+        27.104492 23.208008 26.796875 24.863281 26.269531 C26.518555 25.742188 29.448242 24.40918 30.839844
+        23.984375 C32.231445 23.55957 32.583008 23.632813 33.212891 23.720703 C33.842773 23.808594 34.589844
+        23.720703 34.619141 24.511719 C34.648438 25.302734 34.501953 25.991211 33.388672 28.466797 C32.275391
+        30.942383 29.038086 36.860352 27.939453 39.365234 C26.84082 41.870117 25.712891 42.734375 26.796875
+        43.496094 C27.880859 44.257813 32.84668 43.540039 34.443359 43.935547 C36.040039 44.331055 36.860352
+        43.291016 36.376953 45.869141 C35.893555 48.447266 32.963867 56.09375 31.542969 59.404297 C30.12207
+        62.714844 29.741211 63.447266 27.851563 65.732422 C25.961914 68.017578 22.827148 71.064453 20.205078
+        73.115234 C17.583008 75.166016 13.466797 77.216797 12.119141 78.037109
+    - path: M13.876953 58.525391 C14.84375 58.569336 18.110352 58.554688 19.677734 58.789063 C21.245117
+        59.023438 18.579102 57.456055 23.28125 59.931641 C27.983398 62.407227 42.353516 70.712891 47.890625
+        73.642578 C53.427734 76.572266 53.398438 76.308594 56.503906 77.509766 C59.609375 78.710938 63.564453
+        80.292969 66.523438 80.849609 C69.482422 81.40625 70.507813 81.186523 74.257813 80.849609 C78.007813
+        80.512695 86.5625 79.165039 89.023438 78.828125
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 建:
-  default_variant: source-median
+  default_variant: fitted-monoline
   kind: character
   script: Han
   variants:
@@ -5538,6 +7865,61 @@
     - path: M52.900391 11.503906 C53.266602 11.606445 54.248047 11.489258 55.097656 12.119141 C55.947266
         12.749023 57.69043 11.37207 57.998047 15.283203 C58.305664 19.194336 57.22168 25.712891 56.943359
         35.585938 C56.665039 45.458984 56.430664 68.032227 56.328125 74.521484
+    - path: M15.458984 29.697266 C16.279297 29.770508 18.051758 30.59082 20.380859 30.136719 C22.709961
+        29.682617 27.529297 27.529297 29.433594 26.972656 C31.337891 26.416016 31.220703 26.708984 31.806641
+        26.796875 C32.392578 26.884766 32.963867 26.75293 32.949219 27.5 C32.93457 28.24707 32.875977
+        28.920898 31.71875 31.279297 C30.561523 33.637695 27.163086 39.086914 26.005859 41.650391 C24.848633
+        44.213867 24.482422 45.78125 24.775391 46.660156 C25.068359 47.539063 26.782227 46.99707 27.763672
+        46.923828 C28.745117 46.850586 29.814453 46.25 30.664063 46.220703 C31.513672 46.191406 32.246094
+        46.396484 32.861328 46.748047 C33.476563 47.099609 34.750977 45.97168 34.355469 48.330078 C33.959961
+        50.688477 31.762695 57.617188 30.488281 60.898438 C29.213867 64.179688 27.998047 66.010742 26.708984
+        68.017578 C25.419922 70.024414 24.584961 71.181641 22.753906 72.939453 C20.922852 74.697266 17.392578
+        77.363281 15.722656 78.564453 C14.052734 79.765625 13.232422 79.882813 12.734375 80.146484
+    - path: M14.052734 59.580078 C14.755859 59.624023 16.806641 59.580078 18.271484 59.84375 C19.736328
+        60.107422 18.212891 58.686523 22.841797 61.162109 C27.470703 63.637695 40.302734 71.5625 46.044922
+        74.697266 C51.787109 77.832031 53.837891 78.535156 57.294922 79.970703 C60.751953 81.40625 64.091797
+        82.666016 66.787109 83.310547 C69.482422 83.955078 69.87793 84.013672 73.466797 83.837891 C77.055664
+        83.662109 85.844727 82.519531 88.320313 82.255859
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
+  - id: fitted-monoline
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/建.json
+      member_sha256: abc852466c69f409efb12c660d43d3f765bcd87e1227e713b4609c2e71739217
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/建.json
+      source_id: zh-writing-hanzi-writer
+    recipe:
+      id: zh-fitted-u5efa
+      input: characters/recipes/fitted-monoline.yaml
+      sha256: bbf50741552e4585d6b3bbed766809467faa7094a896e680b035f1c6301e89c9
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M44.076779 27.609083 L72.837679 21.484076 L68.084457 39.726177
+    - path: M36.76879 37.813401 L85.65835 30.183291
+    - path: M44.176875 45.814288 L71.40923 40.743652
+    - path: M43.800313 54.324222 L70.821674 49.640519
+    - path: M38.57586 63.85495 L77.695737 58.064717
+    - path: M55.293767 11.503906 L 56.168116 74.517627
     - path: M15.458984 29.697266 C16.279297 29.770508 18.051758 30.59082 20.380859 30.136719 C22.709961
         29.682617 27.529297 27.529297 29.433594 26.972656 C31.337891 26.416016 31.220703 26.708984 31.806641
         26.796875 C32.392578 26.884766 32.963867 26.75293 32.949219 27.5 C32.93457 28.24707 32.875977

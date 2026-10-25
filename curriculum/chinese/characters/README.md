@@ -104,16 +104,212 @@ Chinese variant; it is neither an artwork-style name nor a teacher certification
 
 | Variant ID | Purpose | Default selection |
 | --- | --- | --- |
-| `source-median` | Supported, mechanically checked cubic paths from source medians; visually unreviewed | All but the five reviewed characters |
+| `source-median` | Supported, mechanically checked cubic paths from source medians; visually unreviewed | Characters without an explicit reviewed or authored recipe |
 | `refined-candidate` | Generic conservative terminal corrections for review; visually unreviewed | Never |
 | `reviewed-monoline` | Exact inherited approved prototype paths | U+8336, U+96E8, U+676F, U+4EBA, U+4E00 only |
+| `authored-monoline` | Explicit source-pinned tracing corrections; visually unreviewed | U+4E07 (万) |
+
+`recipes/authored-monoline.yaml` selects 万's corrected default as of 2026-09-30:
+a naturally slanted straight top stroke, three connected straight segments for
+the folded hook, and one smooth quadratic left-falling stroke. The folded hook
+is still **one pen-down**, not three strokes. This removes the source median's
+terminal crooks without changing the source archive, stroke order, em-box
+placement, width, or any other character's geometry. The original baseline
+remains available as a separate variant. Selection does not imply visual approval.
+
+Authored inputs pin the original member hash and exact ordered paths, carry
+dated modification/license notices, and cannot replace one of the five reviewed
+recipes or add review evidence. Both the importer and app projection validate
+the source, stroke count and path contract. The generated app index pins the
+authored recipe metadata; the loader checks it and returns it in
+`provenance.recipe`. The reproducibility ZIP includes the authored recipe.
+Guides, animation and matching all consume the same final paths; no runtime
+smoothing or display-only override is applied.
+
+### Supervised programmatic fitting
+
+See the [writing handoff](../../../pending/writing-handoff.md) for the current
+review checkpoint, exact reproduction command, design decisions and validation
+history. This section describes the tool and asset contract.
+
+The initial fitting experiment is preview-only and limited to **one requested
+character at a time**. It does not edit recipes, defaults, review status or app
+assets:
+
+```powershell
+py -3.12 -B scripts\fit_chinese_strokes.py --character 万 --output C:\Temp\wan-fitting.html
+py -3.12 -B -m unittest discover -s scripts -p test_chinese_stroke_fitting.py
+```
+
+The tool checks pinned source bytes and the current page hash, then fits each
+median without character-specific coordinates or hand-assigned stroke classes.
+It tries a least-squares line using the central stroke, a single quadratic with
+projected endpoints, then intersecting fitted lines at sufficiently distinct
+turns. Terminal insets, fit error, endpoint/corner displacement and corner-angle
+limits are experimental and appear in the report. Nonzero length, one pen-down,
+stroke direction and the 100-unit control envelope are retained. A failed model
+is not permission to clip coordinates, erase a hook or reuse source interpolation
+as a successful fit: unresolved strokes have no candidate path.
+
+Fitter version `median-simple-models:2` adds fallback models for 水 while keeping
+the user-accepted 万 paths byte-exact. It searches source-point splits for a true
+turn joining two independently fitted primitives, allowing a line followed by a
+curve instead of forcing curved limbs into straight facets. Joins come from
+tangent intersections, stay within the existing corner displacement limit, and
+must preserve forward direction and a distinct turn. Valid fits prefer fewer
+curves, then lower sampled deviation; the original models run first.
+
+A separate, explicitly flagged straight-stroke fallback allows at most 5.5 units
+of terminal-only deviation rather than the ordinary 4.125, while requiring the
+entire retained central stroke to stay within 1.1 units of the resulting line.
+It uses the existing 5.5-unit terminal inset, capped at 20% of stroke length,
+and does not relax limits for the middle of the stroke, curves or joins.
+The third 水 stroke triggers this warning: its starting point moves 4.932 units.
+This is a reviewable candidate, not evidence that every short hook is accidental.
+
+Version `median-simple-models:3` softens short returning hooks after selecting
+the fitted limbs. A two-line join qualifies only when its shaft spans at least
+three pen widths, its hook spans at least one pen width but at most 35% of the
+shaft, and its outgoing direction projects negatively onto the shaft by more
+than 0.15. The existing bounded quadratic fillet trims at most 3 units or 45%
+of either limb, retaining the fitted endpoints and smooth tangent joins within
+serialization precision. The rounded path must pass the ordinary geometry
+limits again. Reports retain its unrounded path and flag the corner treatment.
+This is not blanket rounding: ordinary elbows, long outgoing limbs and
+multi-corner folds remain unchanged. For 水, only stroke 1 changes from version 2;
+the other strokes and accepted 万 paths remain byte-exact. The user accepted
+the exact 水 version-3 candidate for this experiment; it has not been applied.
+
+Version `median-simple-models:4` adds a last-resort curved-hook model for 热's
+fifth stroke. It searches for a genuine fold after a fitted line, followed by
+one or two cubic bends. Endpoint tangents come from the source; two bends share
+the same tangent at a source-derived join. A constrained least-squares fit keeps
+positive control handles inside each endpoint-tangent triangle, avoiding
+cusps and curvature reversals within each cubic. Both bends must turn the same
+way, and sampled self-intersections are rejected. This is not a guarantee about
+every possible unsampled intersection or linguistic stroke classification.
+Each cubic must also match its source span in traversal order within 1.65 units,
+checked after serialization. The complete stroke still passes the ordinary
+4.125-unit deviation, endpoint-shift and frame limits. The report records the
+fold, smooth joins, segment types and ordered curve error. In that revision,
+earlier models ran first, preserving the nine other 热 paths and accepted 万/水/咖 geometry.
+The new 热 candidate remains subject to visual review; it does not retain a
+current guide automatically or claim that a dense source interpolation was fitted.
+
+Version `median-simple-models:5` stops preferring a line solely because its
+deviation is small. Before accepting an ordinary line, it checks for supported
+gentle curvature: original source turns must agree in direction and each stay
+below the 35-degree corner threshold; the retained core must support a forward
+quadratic with at least 8 degrees of tangent turn in that same direction.
+A quadratic fitted to uniformly resampled full-stroke points must preserve the
+original endpoints, remain forward and bounded, and reduce sampled deviation
+to at most half that of the line. It must also pass all ordinary candidate
+limits. Reports label this choice `sustained-curve` and retain the competing
+line, measured turns and error ratio. This conservative geometric rule is not
+proof of intended curvature, especially for sparse medians.
+
+The third 热 preview changes only strokes 6-10: the short crossing stroke and
+four bottom dots now keep smooth curvature. The first five strokes, including
+both hooks, are unchanged; this revision does not shorten hooks. The Duolingo
+reference informed the style goal, not the coordinates, which remain derived
+from the pinned source. Earlier accepted 万/水/咖 previews remain preserved and
+unchanged by this revision. Those approvals are historical checkpoints, not a
+requirement to keep angular geometry forever: reconsideration remains
+one character at a time, with new previews and user review.
+
+Version `median-simple-models:6` adds explicitly selected compaction for strokes
+whose reach the user wants reduced, without changing automatic model selection:
+
+```powershell
+py -3.12 -B scripts\fit_chinese_strokes.py --character 热 --compact-stroke 2 --compact-stroke 3 --output C:\Temp\re-compact.html
+```
+
+For a fitted line, each endpoint moves inward by 10% of its length, capped at
+half a pen width, preserving its center and direction. The remaining line must
+span at least one pen width. For a recognized rounded returning hook, the
+unrounded returning limb keeps two thirds of its length, preserving the fitted
+shaft, fold and return direction. The existing bounded fillet is then rebuilt
+and must still meet the returning-hook rules. Full-stroke source deviation and
+endpoint displacement must pass the ordinary limits again; compaction never
+uses the more permissive terminal-only allowance.
+
+This is a supervised style choice, not an automatic claim that the source is
+too long. It does not compact general curves, compound folds or retained-current
+paths. An unsupported selection or failed bound aborts before writing outputs,
+without substituting the uncompacted fit. Indices are one-based, repeatable,
+unique and disjoint from retained-current selections. The schema-v3 report
+records the policy, selected indices, original fitted result, new path and
+recomputed metrics; the HTML identifies compacted strokes explicitly.
+The fourth 热 preview changes only strokes 2 and 3: the returning hook is one
+third shorter and stroke 3 is 20% shorter. Its other eight paths, including the
+gentle curves from v3, remain byte-exact. No app assets are changed.
+
+Version `median-simple-models:7` adds explicit positioning after fitting and
+optional compaction. Repeat `--translate-stroke STROKE DX DY` for each selected
+stroke; negative x moves left and negative y moves up in the 100-unit frame.
+For example, the fifth 热 preview uses the two compactions above plus
+`--translate-stroke 1 -1.25 -3 --translate-stroke 2 -1.25 0 --translate-stroke 3 -1.25 0`.
+This raises the crossbar and moves the left component slightly away from the
+right component, retaining all stroke shapes, sizes and the other seven paths.
+
+The shared affine helper translates every endpoint and control point together.
+Offsets must be finite, nonzero and no longer than the endpoint-shift limit.
+The final paths must still pass the ordinary source-deviation, endpoint and
+frame bounds, without the terminal-only allowance or automatic clamping.
+Duplicate indices, retained-current conflicts and unresolved candidates fail
+before writing output. Translations are explicit review choices, not inferred
+component identities or permission to move every instance of a radical.
+Schema-v4 reports pin each offset and the complete unpositioned result (including
+any compaction); the HTML labels positioning separately from automatic fitting.
+
+Version `median-simple-models:8` adds `--trim-line-start STROKE AMOUNT` for
+one-sided shortening after compaction and positioning. It removes only the
+specified distance from the pen-down start of an `M L` path, along its existing
+direction, keeping the other endpoint fixed. "Start" follows stroke order, not
+screen-left. The amount must be finite, positive and at most half a pen width;
+at least one pen width of line must remain. Ordinary source-deviation and
+endpoint limits are rechecked without clamping or fallback. Curves, hooks,
+exact retained-current paths and duplicate selections are rejected.
+Schema-v5 reports preserve the complete pre-trim result and selected amount,
+and the preview identifies start trimming explicitly.
+
+The sixth 热 preview keeps v5 except for strokes 2 and 3. Stroke 2 moves another
+1.25 units left (total x offset -2.5). Stroke 3 moves up 1 unit and loses 1.5
+units only from its left/pen-down start, preserving its right-end x coordinate
+and angle. The first and third strokes still intersect the shaft as intended;
+the first stroke and other seven strokes are unchanged.
+
+An existing guide stroke that the user prefers can be retained explicitly:
+
+```powershell
+py -3.12 -B scripts\fit_chinese_strokes.py --character 咖 --retain-current-stroke 4 --output C:\Temp\ka-review.html
+```
+
+Stroke numbers are one-based; repeat the option for multiple strokes. The
+report pins this selection and copies each selected current path
+byte-exactly, with `status: retained-current`, not a successful fit. Other strokes
+still use the unchanged fitting rules. This is an explicit review decision, not
+an automatic fallback or a general solution to curved-stroke model selection.
+Invalid indices, duplicate selections and invalid retained geometry fail without
+output. Neither retention nor the preview resizes components or changes app assets.
+
+The self-contained HTML compares original median paths, the current guide and
+the unapplied candidate. It supports per-stroke selection, synchronized replay
+and numbered source-point overlays. A sibling JSON report pins source/member,
+current-page and fitting-tool hashes alongside exact candidate paths and metrics.
+The original artwork license is included in the preview. Error distances are
+geometric diagnostics, not handwriting-quality scores or automatic approval.
+Review each character with the user and refine reusable rules before considering
+bulk application. Approval and publication are separate steps; this command has
+no bulk mode and refuses output paths under `curriculum`, `public` or `src`.
 
 The source audit contains 28,418 ordered logical strokes and 166,294 median
 points. Generic detectors flag 408 compact-hook and 3,306 short-fall strokes
 in 2,019 characters. Three
 of those characters already have reviewed recipes; the other 2,016 receive a
 separately identified candidate variant. Unmatched,
-compound, ambiguous and long-fall geometry retains the source-median renderer.
+compound, ambiguous and long-fall geometry retains the source-median renderer
+unless an explicit authored recipe selects a correction.
 Detector hits are not semantic labels for dots or evidence of visual approval.
 
 Every generated variant passes mechanical path checks, but this does not grant
