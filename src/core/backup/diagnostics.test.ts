@@ -7,7 +7,7 @@ beforeEach(async () => { await resetBackupStateForTests() })
 describe('diagnostics', () => {
   it('keeps the last 20 saves of each kind and the last 20 backup runs', async () => {
     for (let i = 0; i < 25; i++) { await timeSave('check', async () => i); await timeSave('next', async () => i) }
-    for (let i = 0; i < 25; i++) await addRun({ profileId: 'p', trigger: i % 2 ? 'sync' : 'manual', startedAt: 1000 + i, endedAt: 2000 + i, totalMs: 1000, readMs: 100, buildMs: 50, publishMs: 850, calls: [{ method: 'POST', path: '/git/trees', status: 201, ms: 300 }], journalEvents: i, filesChanged: 2, bytes: 10, snapshot: 'none', full: false, outcome: 'ok' })
+    for (let i = 0; i < 25; i++) await addRun({ profileId: 'p', trigger: 'manual', startedAt: 1000 + i, endedAt: 2000 + i, totalMs: 1000, readMs: 100, buildMs: 50, publishMs: 850, calls: [{ method: 'POST', path: '/git/trees', status: 201, ms: 300 }], journalEvents: i, filesChanged: 2, bytes: 10, snapshot: 'none', full: false, outcome: 'ok' })
     await new Promise(resolve => setTimeout(resolve, 50))
     const report = await collectDiagnostics('p')
     expect(report.saves.check).toHaveLength(MARK_HISTORY)

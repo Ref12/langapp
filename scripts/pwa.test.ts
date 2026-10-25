@@ -27,15 +27,15 @@ describe('PWA plugin', async () => {
     expect(link?.attrs).toEqual({ rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' })
   })
 
-  it('emits a worker with relative precache that never touches IndexedDB itself or leaves its scope, and loads the backup code', () => {
+  it('emits a worker with relative precache that never touches IndexedDB or leaves its scope, and has no backup code', () => {
     const sw = out['sw.js']
     expect(sw).toContain('"./assets/index-a.js"')
     expect(sw.replace(/^\s*\/\/.*$/gm, '')).not.toMatch(/indexedDB|\bIDB|\.unregister\(/i)
     expect(sw).toContain('self.registration.scope')
-    expect(sw).toContain('importScripts("./backup-sw.js")')
-    expect(out['backup-sw.js']).toMatch(/sync/)
+    expect(sw.replace(/^\s*\/\/.*$/gm, '')).not.toMatch(/importScripts|\bsync\b|periodicsync|backup/i)
+    expect(out['backup-sw.js']).toBeUndefined()
     const handlers = new Map<string, unknown>()
-    runInNewContext(sw.replace(/^importScripts.*$/m, ''), { self: { addEventListener: (n: string, h: unknown) => handlers.set(n, h), registration: { scope: 'https://x.test/apps/lang/' } }, caches: {}, location: { origin: 'https://x.test' } })
+    runInNewContext(sw, { self: { addEventListener: (n: string, h: unknown) => handlers.set(n, h), registration: { scope: 'https://x.test/apps/lang/' } }, caches: {}, location: { origin: 'https://x.test' } })
     expect([...handlers.keys()].sort()).toEqual(['activate', 'fetch', 'install'])
   })
 })

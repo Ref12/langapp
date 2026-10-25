@@ -3,7 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { BookOpen, BookText, ChevronRight, Gamepad2, History as HistoryIcon, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, Sparkles, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { requestPersistence } from './core/backup/service'
-import { startBackgroundBackup } from './core/backup/background'
+import { removeBackgroundBackupRegistrations } from './core/backup/cleanup'
 import { recordStartup, timePhase } from './core/backup/diagnostics'
 import { savePreferences } from './core/learning'
 import { useRoute } from './core/routing'
@@ -257,10 +257,10 @@ export default function App() {
     )
     return () => { disposed = true }
   }, [])
+  useEffect(() => { void removeBackgroundBackupRegistrations() }, [])
   useEffect(() => {
     if (!ready) return undefined
     void requestPersistence()
-    return startBackgroundBackup()
   }, [ready])
   if (error) return <StorageFailure error={error} />
   return ready ? <><SetupLinkStatus /><WorkspaceBoundary>

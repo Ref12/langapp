@@ -126,7 +126,7 @@ export function BackupPanel({ busy }: { busy: boolean }) {
   const disabled = busy || working
   return <section className="panel settings-form" aria-label="Cloud backup">
     <h2>Cloud backup</h2>
-    <p>Backs up profile <strong>{getActiveProfile().name}</strong> to a private GitHub repository you own, one commit per backup. It runs when you press Back up now, in the background so you can keep studying. Where your browser supports Background Sync (installed Chrome on Android), unsent changes are also backed up after you leave the app; elsewhere, press the button now and then.</p>
+    <p>Backs up profile <strong>{getActiveProfile().name}</strong> to a private GitHub repository you own, one commit per backup. A backup is made only when you press Back up now; nothing is backed up automatically, so check Last backed up below. You can keep studying while it runs.</p>
     <p className="small muted" role="status">Browser storage protection: {persistence === 'granted' ? 'persistent (the browser will not clear it automatically)' : persistence === 'denied' ? 'not granted; the browser may clear this data under storage pressure, so keep the backup current' : 'not supported by this browser'}.</p>
     <ScanSetupQr onStatus={(_text, error) => { if (!error) void loadBackupConfig().then(value => { if (value) { setConfig(value); setSaved(true) } }) }} />
     {saved && <ShowSetupQr config={config} />}

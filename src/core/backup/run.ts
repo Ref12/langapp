@@ -3,7 +3,7 @@ import { journalCursor, readJournaledState, readJournalRange, readSettings, read
 import { StaleBackupError, type BackupBackend } from './backend'
 import { replay, replayFrom } from './journal'
 import { buildFilesV2, SEGMENT_EVENTS, SNAPSHOT_EVERY_EVENTS, SNAPSHOT_EVERY_SEGMENTS, type LogState, type SequencedEvent } from './layout'
-import { addRun, clearCache, clearDirtyBackground, loadActive, loadCache, loadStatus, saveCache, saveStatus, type BackupCache, type BackupTrigger, type RunRecord } from './state'
+import { addRun, clearCache, loadCache, loadStatus, saveCache, saveStatus, type BackupCache, type BackupTrigger, type RunRecord } from './state'
 
 // One backup run, free of window, localStorage and React so a worker or the service worker can host it.
 // It never holds a transaction across the run: a cursor read, then short chunked reads, then building and uploading with no transaction open.
@@ -53,14 +53,9 @@ async function execute(job: BackupJob): Promise<RunRecord> {
     if (cache && cache.target !== target) { await clearCache(profile.id); cache = undefined }
     // A restore or a recreated database rewinds the journal: what was sent no longer describes this data.
     if (cache && await journalCursor(database) < cache.lastSeq) { await clearCache(profile.id); cache = undefined }
-    const active = await loadActive()
-    if (trigger !== 'manual' && cache && !active?.dirtyAt) {
-      // Automatic runs only send when something changed.
-      if (await journalCursor(database) === cache.lastSeq && !active?.dirtyAt) return finish(job, { ...record, outcome: 'skipped', note: 'nothing changed', endedAt: Date.now(), totalMs: Math.round(now() - t0) })
-    }
     for (let attempt = 0; ; attempt++) {
       try {
-        return await once(job, cache, target, startedAt, t0, record)
+        return await once(job, cache, target, t0, record)
       } catch (error) {
         if (error instanceof StaleBackupError && attempt === 0) { await clearCache(profile.id); cache = undefined; continue }
         throw error
@@ -83,7 +78,7 @@ async function finish(job: BackupJob, record: RunRecord): Promise<RunRecord> {
   return record
 }
 
-async function once(job: BackupJob, cache: BackupCache | undefined, target: string, startedAt: number, t0: number, base: RunRecord): Promise<RunRecord> {
+async function once(job: BackupJob, cache: BackupCache | undefined, target: string, t0: number, base: RunRecord): Promise<RunRecord> {
   const { database, profile, config, backend } = job
   // ---- read: cursor, then chunked journal range and short reads of what the journal does not carry ----
   const r0 = now()
@@ -133,7 +128,6 @@ async function once(job: BackupJob, cache: BackupCache | undefined, target: stri
   })
   const prior = await loadStatus(profile.id)
   await saveStatus(profile.id, { lastBackupAt: Date.now(), lastCommit: result.version ?? prior.lastCommit })
-  await clearDirtyBackground(startedAt)
   const bytes = [...built.files.values()].reduce((sum, text) => sum + text.length, 0)
   return finish(job, {
     ...base, endedAt: Date.now(), totalMs: Math.round(now() - t0), readMs, buildMs, publishMs, calls: result.calls, journalEvents: fresh.length,

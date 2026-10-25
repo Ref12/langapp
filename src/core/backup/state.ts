@@ -5,7 +5,8 @@ import type { RemoteState, CallTrace } from './backend'
 // Backup bookkeeping in its own small database so a service worker or worker can read and write it
 // (they have no localStorage) and so it never contends with the learning database.
 
-export type BackupTrigger = 'manual' | 'sync' | 'periodic'
+/** Backups start only from the Back up now buttons. */
+export type BackupTrigger = 'manual'
 export interface BackupStatus { lastBackupAt?: number; lastError?: string; lastCommit?: string; running?: { since: number; trigger: BackupTrigger } }
 
 export interface RunRecord {
@@ -59,20 +60,6 @@ export const backupStateDb = () => database
 
 const get = async <T>(key: string): Promise<T | undefined> => (await database.kv.get(key))?.value as T | undefined
 const put = (key: string, value: unknown) => database.kv.put({ key, value })
-
-/** What the worker and the service worker need to know without localStorage. */
-export interface ActiveBackup { profile: { id: string; name: string }; dirtyAt?: number }
-export const loadActive = () => get<ActiveBackup>('active')
-export const saveActive = (active: ActiveBackup) => put('active', active)
-
-export async function markDirtyForBackground(profile: { id: string; name: string }): Promise<void> {
-  await saveActive({ profile, dirtyAt: Date.now() })
-}
-/** Clears the unsent-changes flag unless something was changed after the backup began. */
-export async function clearDirtyBackground(startedAt: number): Promise<void> {
-  const active = await loadActive()
-  if (active && (active.dirtyAt === undefined || active.dirtyAt <= startedAt)) await saveActive({ profile: active.profile })
-}
 
 export const loadStatus = async (profileId: string): Promise<BackupStatus> => (await get<BackupStatus>('status:' + profileId)) ?? {}
 export const saveStatus = (profileId: string, status: BackupStatus) => put('status:' + profileId, status)

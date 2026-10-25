@@ -3,10 +3,9 @@ import { getActiveProfile, readSnapshot, restoreActiveSnapshot, initializeProfil
 import type { BackupBackend } from './backend'
 import { loadBackup, type LoadedBackup } from './files'
 import { GitHubBackend } from './github'
-import { notifyLocalChange } from './dirty'
 import { announce, type BackupReply, type BackupRequest } from './host'
 import { runBackupJob } from './run'
-import { clearCache, loadActive, loadStatus, saveActive, type BackupStatus } from './state'
+import { clearCache, loadStatus, type BackupStatus } from './state'
 import { serializeProfileYaml } from '../profiles/codec'
 
 const CONFIG_KEY = 'linguaweave-backup-config:'
@@ -42,7 +41,6 @@ export async function saveBackupConfig(config: BackupConfig): Promise<void> {
   if (!clean.token) throw new Error('Paste a fine-grained token with Contents read and write access to this repository.')
   await db.backupConfig.put({ id: 'github', ...clean })
   if (hasStorage()) localStorage.setItem(CONFIG_KEY + getActiveProfile().id, JSON.stringify(clean))
-  notifyLocalChange()
 }
 
 export const readBackupStatus = async (): Promise<BackupStatus> => { await initializeProfiles(); return loadStatus(getActiveProfile().id) }
@@ -71,9 +69,8 @@ async function backupOnce(): Promise<BackupStatus> {
   const profile = getActiveProfile()
   const config = await loadBackupConfig()
   if (!config) throw new Error('Set up the GitHub backup first.')
-  await saveActive({ profile, ...(await loadActive())?.dirtyAt ? { dirtyAt: (await loadActive())!.dirtyAt } : {} })
   if (typeof Worker !== 'undefined' && !backendOverride) {
-    const reply = await viaWorker({ profile, trigger: 'manual' })
+    const reply = await viaWorker({ profile })
     if (!reply.ok) throw new Error(reply.error)
   } else {
     await runBackupJob({ database: db, profile, config, backend: makeBackend(config), trigger: 'manual' })
@@ -86,8 +83,8 @@ async function backupOnce(): Promise<BackupStatus> {
 
 /**
  * Back up now: the run (reads, building, upload) happens in a worker, never on the page's main thread, and reads the
- * journal up to a cursor in short transactions. Concurrent calls share the run in flight. Nothing else starts a backup
- * while the page is in use; background runs live in the service worker (see sw-entry.ts).
+ * journal up to a cursor in short transactions. Concurrent calls share the run in flight. Nothing
+ * else starts a backup: there are no automatic or background runs.
  */
 export function runBackup(): Promise<BackupStatus> {
   running ??= backupOnce().finally(() => { running = undefined })

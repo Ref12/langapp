@@ -6,9 +6,8 @@ import { addToKnowledge } from '../study/knowledge'
 import { RestorePicker } from '../../components/BackupPanel'
 import type { BackupBackend, DeltaResult, PublishResult, RemoteState } from './backend'
 import { buildBackupFiles, loadBackup } from './files'
-import { startBackgroundBackup } from './background'
 import { readSnapshot } from '../profiles/store'
-import { loadActive, loadRuns, resetBackupStateForTests } from './state'
+import { loadRuns, resetBackupStateForTests } from './state'
 import { getActiveProfile } from '../profiles/store'
 import {
   applyBackup, listBackupProfiles, loadBackupConfig, loadBackupVersion, readBackupStatus, runBackup, saveBackupConfig,
@@ -257,23 +256,41 @@ describe('restore', () => {
   })
 })
 
-describe('no automatic runs on the page', () => {
-  it('never backs up by itself while the page is open, hidden or changing', async () => {
+describe('no automatic backups', () => {
+  it('never backs up by itself: not on changes, hiding, page hide, time passing or startup', async () => {
     vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] })
     const memory = memoryBackend()
     const publishDelta = vi.spyOn(memory.backend, 'publishDelta')
     setBackendFactoryForTests(() => memory.backend)
     await saveBackupConfig(config)
-    const stop = startBackgroundBackup()
     await addToKnowledge(['vocabulary:cha2--tea'])
     Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' })
     document.dispatchEvent(new Event('visibilitychange'))
     window.dispatchEvent(new Event('pagehide'))
     await vi.advanceTimersByTimeAsync(25 * 60 * 60 * 1000)
     Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'visible' })
-    stop()
     expect(publishDelta).not.toHaveBeenCalled()
-    expect((await loadActive())?.dirtyAt).toBeTypeOf('number') // only noted, for a background sync to find
+    await runBackup() // only the explicit action makes one
+    expect(publishDelta).toHaveBeenCalledTimes(1)
+  })
+
+  it('has no service worker or background-sync backup code', async () => {
+    const { pwa } = await import('../../../scripts/pwa')
+    const emitted: { fileName: string; source: string }[] = []
+    const plugin = pwa() as unknown as { generateBundle: (this: { emitFile: (f: { fileName: string; source: string }) => void }, o: unknown, b: unknown) => Promise<void> | void }
+    await plugin.generateBundle.call({ emitFile: file => emitted.push(file) }, {}, { 'index.html': {}, 'assets/index-a.js': {} })
+    const sw = emitted.find(file => file.fileName === 'sw.js')!.source.replace(/^\s*\/\/.*$/gm, '')
+    expect(emitted.some(file => /backup/i.test(file.fileName))).toBe(false)
+    expect(sw).not.toMatch(/importScripts|\bsync\b|periodicsync|backup|indexedDB/i)
+  })
+
+  it('removes an earlier periodic sync registration on load', async () => {
+    const unregister = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'serviceWorker', { configurable: true, value: { getRegistration: async () => ({ periodicSync: { unregister } }) } })
+    const { removeBackgroundBackupRegistrations } = await import('./cleanup')
+    await removeBackgroundBackupRegistrations()
+    expect(unregister).toHaveBeenCalledWith('backup')
+    Reflect.deleteProperty(navigator, 'serviceWorker')
   })
 })
 

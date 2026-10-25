@@ -1,4 +1,3 @@
-import { build } from 'esbuild'
 import type { Plugin } from 'vite'
 
 /**
@@ -9,22 +8,14 @@ import type { Plugin } from 'vite'
  * touches IndexedDB, so learning data is never cleared.
  */
 export function pwa(): Plugin {
-  let backupWorker = ''
   return {
     name: 'langapp-pwa',
     apply: 'build',
     transformIndexHtml: () => [
       { tag: 'link', attrs: { rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' }, injectTo: 'head' },
     ],
-    async generateBundle(_options, bundle) {
-      // The backup code the service worker runs for Background Sync, bundled on its own as a classic script for importScripts.
-      const result = await build({
-        entryPoints: ['src/core/backup/sw-entry.ts'], bundle: true, write: false, format: 'iife', target: 'es2020', minify: true,
-        define: { 'import.meta.env': '{"MODE":"production"}', 'import.meta.env.MODE': '"production"' },
-      })
-      this.emitFile({ type: 'asset', fileName: 'backup-sw.js', source: result.outputFiles[0].text })
-      backupWorker = 'backup-sw.js'
-      const precache = ['./', ...Object.keys(bundle).filter(name => /\.(js|css|html|svg)$/.test(name)).map(name => './' + name), './icon.svg', './backup-sw.js']
+    generateBundle(_options, bundle) {
+      const precache = ['./', ...Object.keys(bundle).filter(name => /\.(js|css|html|svg)$/.test(name)).map(name => './' + name), './icon.svg']
       this.emitFile({
         type: 'asset',
         fileName: 'manifest.webmanifest',
@@ -41,15 +32,15 @@ export function pwa(): Plugin {
           icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
         }, null, 2),
       })
-      this.emitFile({ type: 'asset', fileName: 'sw.js', source: serviceWorker(Array.from(new Set(precache)), backupWorker) })
+      this.emitFile({ type: 'asset', fileName: 'sw.js', source: serviceWorker(Array.from(new Set(precache))) })
     },
   }
 }
 
-function serviceWorker(precache: string[], backupWorker: string): string {
+function serviceWorker(precache: string[]): string {
   const version = Date.now().toString(36)
-  return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB itself; the backup code it imports reads the profile database to back it up.
-${backupWorker ? `importScripts(${JSON.stringify('./' + backupWorker)})\n` : ''}const CACHE = 'linguaweave-shell-${version}'
+  return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB.
+const CACHE = 'linguaweave-shell-${version}'
 const RUNTIME = 'linguaweave-runtime'
 const PRECACHE = ${JSON.stringify(precache)}
 const scope = self.registration.scope

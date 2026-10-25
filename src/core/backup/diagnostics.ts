@@ -43,7 +43,7 @@ export function describeRun(run: RunRecord) {
 
 export interface DiagnosticsReport {
   generatedAt: string
-  app: { userAgent: string; online: boolean; backgroundSync: boolean; periodicSync: boolean }
+  app: { userAgent: string; online: boolean }
   backup: { lastBackupAt?: string; lastError?: string; running: boolean }
   startup: unknown[]
   saves: { check: unknown[]; next: unknown[] }
@@ -53,10 +53,9 @@ export interface DiagnosticsReport {
 export async function collectDiagnostics(profileId?: string): Promise<DiagnosticsReport> {
   const [marks, runs, status] = await Promise.all([loadMarks(), loadRuns(), profileId ? loadStatus(profileId) : Promise.resolve({} as BackupStatus)])
   const of = (kind: TimingMark['kind']) => marks.filter(mark => mark.kind === kind).slice(0, 20)
-  const registration = 'serviceWorker' in navigator ? await navigator.serviceWorker.getRegistration().catch(() => undefined) as (ServiceWorkerRegistration & { sync?: unknown; periodicSync?: unknown }) | undefined : undefined
   const report: DiagnosticsReport = {
     generatedAt: new Date().toISOString(),
-    app: { userAgent: navigator.userAgent, online: navigator.onLine, backgroundSync: Boolean(registration?.sync), periodicSync: Boolean(registration?.periodicSync) },
+    app: { userAgent: navigator.userAgent, online: navigator.onLine },
     backup: {
       ...(status.lastBackupAt ? { lastBackupAt: stamp(status.lastBackupAt) } : {}), ...(status.lastError ? { lastError: redact(status.lastError) } : {}),
       running: Boolean(status.running),
