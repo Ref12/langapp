@@ -1,0 +1,5 @@
+.pocket-overlay{position:fixed;inset:0;z-index:100000;background:#000;color:#555;touch-action:none;user-select:none;-webkit-user-select:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;text-align:center;cursor:default}
+.pocket-hint{color:#aaa;font-size:1.1rem;max-width:20rem;margin:0}
+.pocket-armed{color:#7fd0ff;font-size:1.4rem}
+.pocket-status{color:#3a3a3a;font-size:.9rem;margin:0}
+.pocket-status-toggle{position:absolute;bottom:1.5rem;background:none;border:1px solid #222;color:#333;border-radius:.5rem;padding:.4rem .8rem;font-size:.75rem}

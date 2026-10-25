@@ -60,6 +60,7 @@ export interface Preferences {
   speechDebugMessages?: boolean
   sudokuAutoSpeak?: boolean
   sudokuShowPinyin?: boolean
+  tileAutoSpeak?: boolean
 }
 
 export interface WordState {

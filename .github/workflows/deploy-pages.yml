@@ -31,7 +31,7 @@ jobs:
         run: npm run lint
       - name: Test published app and supported curricula
         run: npm run test:pages
-      - name: Build current app at site root and archive at v1
+      - name: Build the app (with PWA manifest and service worker)
         run: npm run build
 
       - name: Configure existing Pages site

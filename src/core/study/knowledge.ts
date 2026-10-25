@@ -1,4 +1,6 @@
 import { db } from '../database'
+import { addEvent, exerciseAttemptEvent, reviewEvent } from '../backup/journal'
+import { recordJournal } from '../backup/journal-store'
 import type { AIConnection } from '../assistant/contracts'
 import { loadCatalog, requireUnit, type Catalog, type StudyGroup, type Unit } from './catalog'
 import {
@@ -51,7 +53,9 @@ async function addUnits(units: Unit[], source: KnowledgeEntry['source'], now: nu
   const added: string[] = []
   for (const unit of units) {
     if (await db.knowledge.get(unit.ref)) continue
-    await db.knowledge.add(knowledgeEntry(unit, source, now))
+    const entry = knowledgeEntry(unit, source, now)
+    await db.knowledge.add(entry)
+    await recordJournal(addEvent(entry))
     if (!await db.studyCards.get(cardId(unit.ref, DOMAIN))) await db.studyCards.add(newCard(unit.ref, now))
     added.push(unit.ref)
   }
@@ -62,7 +66,7 @@ async function addUnits(units: Unit[], source: KnowledgeEntry['source'], now: nu
 export async function addToKnowledge(refs: string[]): Promise<void> {
   const catalog = await loadCatalog()
   const units = refs.map(ref => requireUnit(catalog, ref))
-  await db.transaction('rw', db.knowledge, db.studyCards, () => addUnits(units, 'dictionary', Date.now()))
+  await db.transaction('rw', db.knowledge, db.studyCards, db.journal, () => addUnits(units, 'dictionary', Date.now()))
 }
 
 async function requireConnection(): Promise<AIConnection> {
@@ -109,7 +113,7 @@ export async function startNewSession(signal?: AbortSignal): Promise<string> {
     mode: 'new', targets: next.units, review: reviewRefs.map(ref => requireUnit(catalog, ref)), allowed, catalog,
   }, signal)
   const now = Date.now()
-  return db.transaction('rw', db.knowledge, db.studyCards, db.exerciseSessions, async () => {
+  return db.transaction('rw', db.knowledge, db.studyCards, db.exerciseSessions, db.journal, async () => {
     const resumed = await activeSession('new')
     if (resumed) return resumed.id
     await addUnits(next.newUnits, 'new', now)
@@ -153,7 +157,7 @@ function schedulingState(card: StudyCard): SchedulingState {
 }
 
 export async function submitExerciseAnswer(sessionId: string, index: number, response: unknown): Promise<ExerciseAttempt> {
-  return db.transaction('rw', db.exerciseSessions, db.exerciseAttempts, db.studyCards, async () => {
+  return db.transaction('rw', db.exerciseSessions, db.exerciseAttempts, db.studyCards, db.journal, async () => {
     const id = `${sessionId}:${index}`
     const existing = await db.exerciseAttempts.get(id)
     if (existing) return existing
@@ -164,11 +168,13 @@ export async function submitExerciseAnswer(sessionId: string, index: number, res
     const now = Date.now()
     const attempt: ExerciseAttempt = { id, sessionId, index, refs: exercise.targets, response: result.response, correct: result.correct, createdAt: now }
     await db.exerciseAttempts.add(attempt)
+    await recordJournal(exerciseAttemptEvent(attempt))
     const rating: Rating = result.correct ? 3 : 1
     for (const ref of exercise.targets) {
       const card = await db.studyCards.get(cardId(ref, DOMAIN))
       if (!card) continue // Items removed from the knowledge set are not rescheduled.
       await db.studyCards.put({ ...card, ...schedule(schedulingState(card), rating, now), updatedAt: now })
+      await recordJournal(reviewEvent(ref, rating, now, id))
     }
     return attempt
   })

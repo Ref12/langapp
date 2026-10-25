@@ -112,7 +112,7 @@ export function PracticeSessionPage(props: PageProps & { session: PracticeSessio
       <p className="muted">{attempts.filter(attempt => attempt.assisted).length} assisted answers / {attempts.filter(attempt => !attempt.correct).length} incorrect answers</p>
       <p>You practiced {new Set(session.questions.map(question => question.wordId)).size} words. Completing a lesson records practice, not mastery.</p>
       {lesson?.curriculum && <p className="small muted">Grammar, contextual understanding, production, and the level's communicative checkpoint remain unassessed.</p>}
-      <div className="button-row"><a className="button primary" href="#dictionary">See your learning set <ArrowRight size={16} /></a><a className="button secondary" href={lesson ? `#lesson/${lesson.id}` : '#overview'}>{lesson ? 'Back to lesson' : 'Back to overview'}</a></div>
+      <div className="button-row"><a className="button primary" href="#dictionary/vocabulary/knowledge">See your learning set <ArrowRight size={16} /></a><a className="button secondary" href={lesson ? `#lesson/${lesson.id}` : '#overview'}>{lesson ? 'Back to lesson' : 'Back to overview'}</a></div>
       {next && <div className="button-row"><a className="button secondary" href={`#lesson/${next.id}`}>Continue your path <ArrowRight size={16} /></a></div>}
     </section>
   </>

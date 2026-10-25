@@ -63,6 +63,9 @@ async function newPuzzle(user: ReturnType<typeof userEvent.setup>) {
 
 it('explains the required character set without substituting unfamiliar characters', async () => {
   render(<App />)
+  // The count only appears once the curriculum catalog has loaded, which is slow under load; the default
+  // 1 s findBy timeout is not enough for the first (uncached) load, so wait for the catalog itself.
+  await loadCatalog()
   await screen.findByText('0 distinct characters in your learning set.')
   expect(screen.getByRole('button', { name: 'Generate puzzle' })).toBeDisabled()
   expect(worker.generateSudokuInWorker).not.toHaveBeenCalled()
@@ -77,7 +80,8 @@ it('persists multiple entries, promotes the last remaining candidate, and suppor
   expect(cell(index).querySelector('.sudoku-candidates')).toBeNull()
   await user.click(screen.getByRole('button', { name: `Add ${game.symbols[1].character}` }))
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.entries[index]).toBe(3))
-  expect(cell(index).querySelector('.sudoku-candidates')).toHaveTextContent(game.symbols[0].character)
+  // The write lands before React re-renders the cell, so wait on the rendered candidates too.
+  await waitFor(() => expect(cell(index).querySelector('.sudoku-candidates')).toHaveTextContent(game.symbols[0].character))
   expect(cell(index).querySelector('.sudoku-candidates')).toHaveTextContent(game.symbols[1].character)
   cleanup(); render(<App />)
   await screen.findByRole('grid')

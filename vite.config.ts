@@ -5,6 +5,7 @@ import { mockupFiles } from './scripts/mockup-files.mjs'
 import { localSettings } from './scripts/local-settings'
 import { localProfiles } from './scripts/local-profiles'
 import { localTts } from './scripts/local-tts'
+import { pwa } from './scripts/pwa'
 
 function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
   const base = server.config.base.startsWith('/') ? server.config.base : '/'
@@ -65,6 +66,6 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
   base: './',
   appType: 'mpa',
-  plugins: [react(), localSettings(), localProfiles(), localTts(), versionedSite(new Set(await mockupFiles()))],
+  plugins: [react(), localSettings(), localProfiles(), localTts(), versionedSite(new Set(await mockupFiles())), pwa()],
   build: { outDir: 'dist' },
 }))

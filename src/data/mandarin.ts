@@ -2,7 +2,7 @@ import type { Lesson, Story, Word } from '../core/model'
 import { curriculumLessons, curriculumWords } from './curriculum'
 
 // Original authored examples adapted from the mockups, not an official HSK syllabus.
-export const CONTENT_VERSION = 2
+export { CONTENT_VERSION } from './content-version'
 export const starterWords: Word[] = [
   { id: 'zh:tea', native: '\u8336', pinyin: 'ch\u00e1', meaning: 'tea', kind: 'Noun', example: '\u6211\u60f3\u559d\u8336\u3002', translation: 'I would like to drink tea.' },
   { id: 'zh:rain', native: '\u96e8', pinyin: 'y\u01d4', meaning: 'rain', kind: 'Noun', example: '\u96e8\u505c\u4e86\u3002', translation: 'The rain has stopped.' },

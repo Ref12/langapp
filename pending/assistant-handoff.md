@@ -3,6 +3,30 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
+## AI endpoints and extra headers (2026-10-04)
+
+Implemented and tested, not yet published. Settings now holds a list of named AI
+endpoints (add, edit, duplicate, rename, delete, switch active). Each can carry
+up to 20 extra HTTP headers sent on every provider/structured request.
+
+Design: `db.aiEndpoints` (Dexie v14) is the list. The `aiConnections` row
+`'assistant'` remains the **active endpoint's working copy** (tagged with
+`endpointId`/`name`), so every consumer (Assistant, Study, Reader, Sudoku,
+translation, runtime revision checks) is unchanged. All writes go through
+`src/core/assistant/endpoints.ts`, which updates both in one transaction;
+`saveAIConnection`/`removeAIConnection` act on the active endpoint. The v14
+upgrade (and a lazy fallback) turns the old single connection into endpoint
+`default` named "Default". Header rules live in `contracts.ts` (`aiHeaderSchema`):
+HTTP-token names, no browser-forbidden names, and Content-Type/Authorization are
+refused because the app sets them; `src/core/ai/headers.ts` builds request headers
+(app headers always win). Profile YAML is now version 5 with
+`settings.aiEndpoints: {version: 1, active, endpoints[]}`; versions 1-4 (single
+`aiConnection`) still import and are normalized to one active Default endpoint.
+The dev local-settings file stays a single `aiConnection` (the active endpoint).
+Tests: `headers.test.ts`, `endpoints.test.ts`, `endpoints-profile.test.ts`,
+`AIEndpointSettings.test.tsx`. `scripts/v2-all-bands.integration.test.ts` fails on
+the untouched baseline (missing HSK 7-9 examples).
+
 ## Profile-wide pinyin display (2026-09-28)
 
 Committed and pushed as `7549b784`. Pages run `36526006580` failed twice in the

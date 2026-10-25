@@ -1,10 +1,13 @@
 import Dexie, { type EntityTable, type Transaction } from 'dexie'
-import { CONTENT_VERSION } from '../../data/mandarin'
-import { aiConnectionInputSchema, aiConnectionSchema } from '../assistant/contracts'
+import { CONTENT_VERSION } from '../../data/content-version'
+import { aiConnectionSchema, aiEndpointSchema } from '../assistant/contracts'
 import { clearUnsavedDrafts } from '../assistant/drafts'
-import { speechConnectionInputSchema, speechConnectionSchema } from '../assistant/speech-contracts'
+import { speechConnectionSchema } from '../assistant/speech-contracts'
 import { configureDatabaseForProfile, db, LearningDatabase, profileDatabaseName, resetDatabaseForTests } from '../database'
-import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from './codec'
+import { omit } from '../omit'
+import { readSettingsRows } from './read-snapshot'
+import { createEmptyProfile, endpointsFromSettings, parseProfileYaml, serializeProfileYaml } from './codec'
+import type { JournalEvent } from '../backup/journal'
 import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from './contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema, profileMetadataSchema, type ProfileMetadata } from './identity'
 
@@ -146,28 +149,13 @@ export async function markLocalSettingsImported(): Promise<void> {
   if (!updated) throw new Error('The local settings import could not be recorded. Reload to try again.')
 }
 
-async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata): Promise<ProfileSnapshot> {
+export async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata): Promise<ProfileSnapshot> {
   return database.transaction('r', database.tables, async () => {
-    const preferences = await database.preferences.get('workspace')
-    if (!preferences) throw new Error('Your workspace has not been initialized. Reload to try again.')
-    const ai = await database.aiConnections.get('assistant')
-    const speech = await database.speechConnections.get('assistant-speech')
+    const settings = await readSettingsRows(database)
     const practiceHistory = await database.practiceHistory.toArray()
-    let aiConnection: ProfileSnapshot['settings']['aiConnection']
-    let speechConnection: ProfileSnapshot['settings']['speechConnection']
-    if (ai) {
-      const parsed = aiConnectionSchema.safeParse(ai)
-      if (!parsed.success) throw new Error('Saved AI connection settings are invalid. Review them before exporting.')
-      aiConnection = aiConnectionInputSchema.strip().parse(parsed.data)
-    }
-    if (speech) {
-      const parsed = speechConnectionSchema.safeParse(speech)
-      if (!parsed.success) throw new Error('Saved speech connection settings are invalid. Review them before exporting.')
-      speechConnection = speechConnectionInputSchema.strip().parse(parsed.data)
-    }
     return {
       format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
-      settings: { preferences, ...(aiConnection ? { aiConnection } : {}), ...(speechConnection ? { speechConnection } : {}) },
+      settings,
       knowledge: {
         words: await database.words.toArray(), readings: await database.readings.toArray(),
         lessons: await database.lessons.toArray(), sessions: await database.sessions.toArray(),
@@ -188,11 +176,17 @@ async function readSnapshot(database: LearningDatabase, profile: ProfileMetadata
   })
 }
 
-async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapshot, signal?: AbortSignal): Promise<void> {
+async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapshot, signal?: AbortSignal, journal: JournalEvent[] = []): Promise<void> {
   signal?.throwIfAborted()
   const { settings, knowledge, conversations } = snapshot
-  const ai = settings.aiConnection && aiConnectionSchema.parse({
-    ...settings.aiConnection, id: 'assistant', revision: crypto.randomUUID(), updatedAt: Date.now(),
+  const endpointList = endpointsFromSettings(settings)
+  const endpoints = (endpointList?.endpoints ?? []).map((endpoint, order) => aiEndpointSchema.parse({
+    ...endpoint, order, revision: crypto.randomUUID(), updatedAt: Date.now(),
+  }))
+  const activeEndpoint = endpoints.find(endpoint => endpoint.id === endpointList?.active)
+  const ai = activeEndpoint && aiConnectionSchema.parse({
+    ...omit(activeEndpoint, 'id', 'name', 'order'), id: 'assistant', endpointId: activeEndpoint.id, name: activeEndpoint.name,
+    revision: crypto.randomUUID(), updatedAt: Date.now(),
   })
   const speech = settings.speechConnection && speechConnectionSchema.parse({
     ...settings.speechConnection, id: 'assistant-speech', revision: crypto.randomUUID(), updatedAt: Date.now(),
@@ -204,8 +198,11 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
     await database.transaction('rw', database.tables, async () => {
       transaction = Dexie.currentTransaction!
       signal?.throwIfAborted()
-      for (const table of database.tables) await table.clear()
+      // The backup connection must survive a restore, otherwise the backup can no longer be reached.
+      for (const table of database.tables) if (table.name !== 'backupConfig') await table.clear()
+      if (journal.length) await database.journal.bulkAdd(journal)
       await database.preferences.add(settings.preferences)
+      if (endpoints.length) await database.aiEndpoints.bulkAdd(endpoints)
       if (ai) await database.aiConnections.add(ai)
       if (speech) await database.speechConnections.add(speech)
       await database.words.bulkAdd(knowledge.words)
@@ -234,6 +231,13 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
 export async function exportActiveProfile(): Promise<string> {
   await initializeProfiles()
   return serializeProfileYaml(await readSnapshot(db, getActiveProfile()))
+}
+
+/** Replaces the active profile with a snapshot and its journal (used by cloud restore). */
+export async function restoreActiveSnapshot(snapshot: ProfileSnapshot, journal: JournalEvent[], signal?: AbortSignal): Promise<void> {
+  await initializeProfiles()
+  await writeSnapshot(db, { ...snapshot, profile: getActiveProfile() }, signal, journal)
+  clearUnsavedDrafts()
 }
 
 export async function restoreActiveProfile(text: string, signal?: AbortSignal): Promise<void> {

@@ -5,6 +5,7 @@ import App from '../App'
 import { db } from '../core/database'
 import { loadCatalog } from '../core/study/catalog'
 import type { Exercise } from '../core/study/contracts'
+import * as speech from '../core/assistant/speech'
 import { addToKnowledge, nextGroup } from '../core/study/knowledge'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
@@ -20,6 +21,7 @@ beforeEach(async () => {
   await db.delete()
   await db.open()
   structured.requestStructuredJSON.mockReset()
+  vi.spyOn(speech, 'playBrowserSpeech').mockImplementation(() => undefined)
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
@@ -66,8 +68,13 @@ describe('New and Review', () => {
     await screen.findByRole('heading', { name: /new items$/ })
     expect(await screen.findByRole('link', { name: 'Connect a model in Settings' })).toHaveAttribute('href', '#settings')
     expect(screen.getByRole('button', { name: 'Start new items' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Start new items' })).toHaveTextContent(/^Start$/)
     expect(screen.getByRole('button', { name: 'Review due items' })).toBeDisabled()
     expect(screen.getByRole('heading', { name: '0 items due' })).toBeInTheDocument()
+    // The predefined blurbs show before any session exists, no AI wait.
+    const preview = within(screen.getByRole('region', { name: 'New items' })).getByRole('list', { name: 'Items in this group' })
+    expect(within(preview).getByText('我')).toBeInTheDocument()
+    expect(within(preview).getByText('I, me, my')).toBeInTheDocument()
     expect(await db.knowledge.count()).toBe(0)
   })
 
@@ -88,12 +95,26 @@ describe('New and Review', () => {
     const newCard = await screen.findByRole('region', { name: 'New items' })
     await within(newCard).findByRole('heading', { name: `${refs.length} new items` })
     expect(within(newCard).getByText('我')).toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: 'Start new items' }))
+    // The button stays disabled until the AI connection's live query has resolved (disabled={... || !connection}); a click before
+    // that is silently ignored and the heading never appears, so wait for the enabled state that gates the click.
+    const start = screen.getByRole('button', { name: 'Start new items' })
+    await waitFor(() => expect(start).toBeEnabled())
+    await user.click(start)
     await screen.findByRole('heading', { name: 'Meet your new items.' })
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
     expect(await db.knowledge.count()).toBe(refs.length)
-    expect(screen.getAllByRole('button', { name: 'In your knowledge set' })).toHaveLength(refs.length)
+    // Starting added every item, so the per-card knowledge-set state is not repeated on this page.
+    expect(screen.queryByRole('button', { name: /knowledge set/ })).not.toBeInTheDocument()
+    expect(screen.queryByText('Eligible for review')).not.toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Start the exercises' })).toContainElement(screen.getByRole('button', { name: 'Start exercises' }))
+    // Each example row offers Practice beside Hear and Ask; it opens the practice playlist for that phrase.
+    const hearButtons = screen.getAllByRole('button', { name: 'Hear' })
+    const practiceButtons = screen.getAllByRole('button', { name: 'Practice' })
+    expect(practiceButtons).toHaveLength(hearButtons.length)
     expect(screen.getAllByText('I am a student.').length).toBeGreaterThan(0)
+    await user.click(practiceButtons[0])
+    expect(await screen.findByRole('dialog')).toBeInTheDocument()
+    await user.keyboard('{Escape}')
     await user.click(screen.getByRole('button', { name: 'Start exercises' }))
     await screen.findByRole('heading', { name: 'What does this mean?' })
     expect(screen.getByText('Exercise 1 of 4')).toBeInTheDocument()
@@ -147,6 +168,12 @@ describe('New and Review', () => {
     expect(screen.getByText('1 proposed exercises were discarded')).toBeInTheDocument()
     const session = (await db.exerciseSessions.toArray())[0]
     expect(session.status).toBe('completed')
+    const knowledgeLink = screen.getByRole('link', { name: 'See your knowledge set' })
+    expect(knowledgeLink).toHaveAttribute('href', '#dictionary/vocabulary/knowledge')
+    await act(async () => { window.location.hash = knowledgeLink.getAttribute('href')!.slice(1); window.dispatchEvent(new HashChangeEvent('hashchange')) })
+    expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
+    await act(async () => { window.location.hash = `lessons/session/${session.id}`; window.dispatchEvent(new HashChangeEvent('hashchange')) })
+    await screen.findByRole('heading', { name: 'One more step forward.' })
     expect(await db.exerciseAttempts.count()).toBe(4)
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
     const cards = await db.studyCards.toArray()
@@ -230,6 +257,21 @@ describe('New and Review', () => {
     expect(structured.requestStructuredJSON).not.toHaveBeenCalled()
   })
 
+  it('renders each Mandarin option as one card with radio, text and Hear button inside it (jsdom cannot measure boxes; the Playwright shots cover that)', async () => {
+    const user = userEvent.setup()
+    const session = await seedExercise('choice')
+    await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'I study.', options: ['我学习', '学习我', '我我', '学习'], answer: 0, explanation: 'x' }] })
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    const cards = document.querySelectorAll('.answer-option')
+    expect(cards).toHaveLength(4)
+    cards.forEach((card, index) => {
+      expect(card.tagName).toBe('LABEL')
+      expect(card.querySelector(':scope > input[type="radio"]')).not.toBeNull()
+      expect(card.querySelector(':scope > .snippet-button')).toHaveAccessibleName(`Hear option ${index + 1}`)
+    })
+  })
+
   it('keeps a wrong final tile sentence for review and resumes it without another grade', async () => {
     const user = userEvent.setup()
     const session = await seedExercise('tiles')
@@ -254,5 +296,53 @@ describe('New and Review', () => {
     expect(screen.getByText('0 / 1')).toBeInTheDocument()
     expect(await db.exerciseAttempts.toArray()).toEqual(attempts)
     expect(await db.studyCards.toArray()).toEqual(cards)
+  })
+
+  it('keeps each Mandarin option\'s radio, text and Hear button inside its own card', async () => {
+    // jsdom does no layout, so bounding boxes are checked in the Playwright shots; this pins the structure the CSS relies on.
+    const user = userEvent.setup()
+    const session = await seedExercise('choice')
+    await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'Chinese-language teacher', options: ['汉语学生', '老师汉语', '学生汉语', '汉语老师'], answer: 1, explanation: 'x' }] })
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    const cards = [...document.querySelectorAll('.answer-option')]
+    expect(cards).toHaveLength(4)
+    cards.forEach((card, index) => {
+      expect(card.querySelectorAll('input[type="radio"]')).toHaveLength(1)
+      expect(card.querySelectorAll('.snippet-button')).toHaveLength(1)
+      expect(within(card as HTMLElement).getByRole('button', { name: `Hear option ${index + 1}` })).toBeInTheDocument()
+    })
+  })
+
+  it('speaks a tile when tapped and still moves it, from the bank and the answer row', async () => {
+    const user = userEvent.setup()
+    const play = vi.mocked(speech.playBrowserSpeech)
+    await seedExercise('tiles')
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    const bank = screen.getByRole('group', { name: 'Available tiles' })
+    await user.click(within(bank).getByRole('button', { name: '我' }))
+    expect(play).toHaveBeenLastCalledWith(expect.any(String), '我', 'zh-Hans')
+    const answer = screen.getByRole('group', { name: 'Your sentence' })
+    await user.click(within(answer).getByRole('button', { name: '我' }))
+    expect(play).toHaveBeenCalledTimes(2)
+    expect(play).toHaveBeenLastCalledWith(expect.any(String), '我', 'zh-Hans')
+    expect(within(answer).queryByRole('button', { name: '我' })).not.toBeInTheDocument()
+    await user.click(within(bank).getByRole('button', { name: '学习' }))
+    expect(within(answer).getByRole('button', { name: '学习' })).toBeInTheDocument()
+  })
+
+  it('stays silent but still moves tiles when the tile speech toggle is off, and remembers it', async () => {
+    const user = userEvent.setup()
+    const play = vi.mocked(speech.playBrowserSpeech)
+    await seedExercise('tiles')
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(screen.getByRole('button', { name: 'Mute tiles' }))
+    await screen.findByRole('button', { name: 'Speak tiles' })
+    expect((await db.preferences.get('workspace'))!.tileAutoSpeak).toBe(false)
+    await user.click(within(screen.getByRole('group', { name: 'Available tiles' })).getByRole('button', { name: '我' }))
+    expect(play).not.toHaveBeenCalled()
+    expect(within(screen.getByRole('group', { name: 'Your sentence' })).getByRole('button', { name: '我' })).toBeInTheDocument()
   })
 })

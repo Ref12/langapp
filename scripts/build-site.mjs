@@ -11,7 +11,6 @@ export async function buildSite(outDir = new URL('dist/', root)) {
     await copyFile(new URL(name, mockupDirectory), new URL(filename, outDir))
   }
   // index.html belongs to the production app; design fixtures must never replace it.
-  await copyFile(new URL('public/sw.js', root), new URL('sw.js', outDir))
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

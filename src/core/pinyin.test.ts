@@ -54,4 +54,8 @@ describe('display-only pinyin formatting', () => {
     expect(pinyinFormatSchema.options).toEqual(['marks', 'marks-and-numbers', 'numbers'])
     expect(pinyinFormatSchema.safeParse('anything').success).toBe(false)
   })
+  it('leaves English placeholders in grammar patterns alone', () => {
+    expect(formatPinyin('<person or thing> + ne5?')).toBe('<person or thing> + ne?')
+    expect(formatPinyin('<person or thing> + ni3 ne5', 'marks')).toBe('<person or thing> + nǐ ne')
+  })
 })

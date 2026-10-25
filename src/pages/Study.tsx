@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { db } from '../core/database'
 import { navigate } from '../core/routing'
 import { requireUnit, type Catalog } from '../core/study/catalog'
 import { cardId, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type TilesExercise } from '../core/study/contracts'
+import { timeSave } from '../core/backup/diagnostics'
 import { advanceExercise, discardSession, DOMAIN, groupProgress, nextGroup, startNewSession, startReviewSession, submitExerciseAnswer } from '../core/study/knowledge'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { UnitCard } from '../components/study/UnitCard'
@@ -12,7 +13,10 @@ import { useCatalog } from '../components/study/useCatalog'
 import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
 import { AnnotatedChinese } from '../components/study/AnnotatedChinese'
 import { AnswerButton } from '../components/AnswerButton'
+import { Pinyin } from '../components/Pinyin'
 import { readingIndex } from '../core/study/annotate'
+import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
+import { savePreferences } from '../core/learning'
 
 function useAIConnection() {
   return useLiveQuery(() => db.aiConnections.get('assistant').then(connection => connection ?? null), [])
@@ -48,18 +52,25 @@ export function Study({ workspace, now, run, busy }: PageProps) {
     </a>)}</div></section>}
     <div className="experience-grid two-columns">
       <section className="experience-card" aria-label="New items">
-        <p className="eyebrow accent">NEW</p>
-        <h2>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'}` : catalog ? 'Nothing left to introduce' : 'Loading the curriculum...'}</h2>
-        {next && <ul className="study-preview" lang="zh-Hans">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</li>)}</ul>}
+        <div className="card-header-row">
+          <div><p className="eyebrow accent">NEW</p>
+            <h2>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'}` : catalog ? 'Nothing left to introduce' : 'Loading the curriculum...'}</h2></div>
+          <button className="button primary" aria-label="Start new items" disabled={busy || !next || !connection} onClick={() => start('new')}>Start <ArrowRight size={16} /></button>
+        </div>
+        {next && <ul className="study-preview" aria-label="Items in this group">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>
+          <span className="study-preview-form" lang="zh-Hans">{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</span>
+          <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /> </span>}{unit.record.ds}</span>
+        </li>)}</ul>}
         {progress && <p className="small muted">HSK {next?.band ?? '6'} / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
-        <button className="button primary" disabled={busy || !next || !connection} onClick={() => start('new')}>Start new items <ArrowRight size={16} /></button>
       </section>
       <section className="experience-card" aria-label="Review">
-        <p className="eyebrow accent">REVIEW</p>
-        <h2>{due} {due === 1 ? 'item' : 'items'} due</h2>
+        <div className="card-header-row">
+          <div><p className="eyebrow accent">REVIEW</p>
+            <h2>{due} {due === 1 ? 'item' : 'items'} due</h2></div>
+          <button className="button primary" aria-label="Review due items" disabled={busy || !due || !connection} onClick={() => start('review')}>Review <ArrowRight size={16} /></button>
+        </div>
         <p className="small muted">{workspace.knowledge.length} items in your knowledge set. Review timing follows FSRS spaced repetition for reading; an item is due when its predicted recall drops below 90%.</p>
         <div className="button-row">
-          <button className="button primary" disabled={busy || !due || !connection} onClick={() => start('review')}>Review due items <ArrowRight size={16} /></button>
           {!due && workspace.knowledge.length > 0 && <button className="button secondary" disabled={busy || !connection} onClick={() => start('review', true)}>Review anyway <RotateCcw size={16} /></button>}
         </div>
       </section>
@@ -90,7 +101,7 @@ function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyi
   </>
 }
 
-function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin }: Annotation & { exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
+function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak }: Annotation & { speak: boolean; exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const all = [...exercise.tiles, ...exercise.distractors]
   const [placed, setPlaced] = useState<number[]>(() => {
     if (!attempt) return []
@@ -103,14 +114,20 @@ function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
     }).filter(index => index >= 0)
   })
   const locked = busy || Boolean(attempt)
+  const speechId = useId()
+  useEffect(() => () => { if (getPlaybackState().activeId === speechId) stopBrowserSpeech() }, [speechId])
+  const say = (index: number) => {
+    if (!speak) return
+    try { playBrowserSpeech(speechId, all[index], 'zh-Hans') } catch (reason) { console.error('Tile speech failed.', reason) }
+  }
   return <>
     <p className="practice-prompt" lang="en">{exercise.translation}</p>
     <div className="tile-answer" lang="zh-Hans" role="group" aria-label="Your sentence">
-      {placed.length ? placed.map(index => <button key={index} type="button" className="tile" disabled={locked} onClick={() => setPlaced(placed.filter(item => item !== index))}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)
+      {placed.length ? placed.map(index => <button key={index} type="button" className="tile" disabled={locked} onClick={() => { setPlaced(placed.filter(item => item !== index)); say(index) }}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)
         : <span className="small muted">Tap the tiles in order to build the sentence.</span>}
     </div>
     <div className="tile-bank" lang="zh-Hans" role="group" aria-label="Available tiles">
-      {exercise.shuffled.map(index => <button key={index} type="button" className={`tile ${placed.includes(index) ? 'tile-used' : ''}`} disabled={locked || placed.includes(index)} onClick={() => setPlaced([...placed, index])}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)}
+      {exercise.shuffled.map(index => <button key={index} type="button" className={`tile ${placed.includes(index) ? 'tile-used' : ''}`} disabled={locked || placed.includes(index)} onClick={() => { setPlaced([...placed, index]); say(index) }}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)}
     </div>
     <AnswerButton result={attempt?.correct} busy={busy} ready={placed.length >= 2} onCheck={() => submit(placed.map(index => all[index]))} onNext={next} />
   </>
@@ -126,8 +143,9 @@ function SessionIntroduction({ catalog, session, workspace, run, busy, now, begi
       {session.mode === 'new' ? 'Read each item and its examples, then try the exercises. Items you saw in recent sessions are mixed in.' : 'These items are due according to your review schedule.'}
     </PageHeading>
     <div className="word-grid">{units.map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))}
-      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} />)}</div>
-    <div className="button-row"><button className="button primary" disabled={busy} onClick={begin}>Start exercises <ArrowRight size={16} /></button></div>
+      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus />)}</div>
+    <div className="start-panel" role="region" aria-label="Start the exercises"><p className="small muted">{units.length} {units.length === 1 ? 'item' : 'items'} ready. You can start without reading every card.</p>
+      <button className="button primary" disabled={busy} onClick={begin}>Start exercises <ArrowRight size={16} /></button></div>
   </>
 }
 
@@ -137,6 +155,7 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
   const exercise: Exercise = session.exercises[session.cursor]
   const title = useRef<HTMLHeadingElement>(null)
   const pending = useRef(false)
+  const tileSpeech = workspace.preferences.tileAutoSpeak !== false
   const [savedAttempt, setSavedAttempt] = useState<ExerciseAttempt>()
   const attempt = persistedAttempt ?? savedAttempt
   useEffect(() => { title.current?.focus() }, [])
@@ -146,9 +165,9 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
     void run(async () => {
       try {
         if (attempt) {
-          await advanceExercise(session.id, session.cursor)
+          await timeSave('next', () => advanceExercise(session.id, session.cursor))
         } else {
-          const saved = await submitExerciseAnswer(session.id, session.cursor, response)
+          const saved = await timeSave('check', () => submitExerciseAnswer(session.id, session.cursor, response))
           // Retain the result while the live workspace query catches up.
           setSavedAttempt(saved)
         }
@@ -167,12 +186,14 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
       <p className="small muted practice-context">PRACTICES / {exercise.targets.map(ref => { const unit = requireUnit(catalog, ref); return unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt }).join(' / ')}</p>
       <div className="button-row practice-tools">
         <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>
+        {exercise.type === 'tiles' && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
+          onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute tiles' : 'Speak tiles'}</button>}
         {exercise.type === 'choice' && exercise.direction === 'zh-to-en' && <HearButton text={exercise.question} locale="zh-Hans" label="Hear the Chinese" />}
       </div>
     </div>
     {exercise.type === 'choice'
       ? <ChoiceQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} />
-      : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} />}
+      : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} speak={tileSpeech} />}
     {attempt && <div className={`notice answer-feedback${attempt.correct ? ' success' : ''}`} role="status">
       <strong>{attempt.correct ? 'Correct.' : 'Not quite.'}</strong>
       {chineseAnswer ? <p><AnnotatedChinese text={correctSentence} readings={readings} pinyin={pinyin} /></p> : <p lang="en">{correctSentence}</p>}
@@ -202,7 +223,7 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
         <p className="completion-count">{correct} / {session.exercises.length}</p><p>correct answers</p>
         <p>You practiced {session.targetRefs.length + session.reviewRefs.length} items. Completing a session records practice, not mastery.</p>
         {session.rejected.length > 0 && <details><summary>{session.rejected.length} proposed exercises were discarded</summary><ul className="small muted">{session.rejected.map((reason, index) => <li key={index}>{reason}</li>)}</ul></details>}
-        <div className="button-row"><a className="button primary" href="#lessons">Back to Lessons <ArrowRight size={16} /></a><a className="button secondary" href="#dictionary">See your knowledge set</a></div>
+        <div className="button-row"><a className="button primary" href="#lessons">Back to Lessons <ArrowRight size={16} /></a><a className="button secondary" href="#dictionary/vocabulary/knowledge">See your knowledge set</a></div>
       </section>
     </>
   }

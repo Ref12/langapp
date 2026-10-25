@@ -4,6 +4,7 @@ import { chmod, link, lstat, mkdir, open, opendir, realpath, rename, unlink, typ
 import { join, resolve } from 'node:path'
 import { parse, type ParseError } from 'jsonc-parser'
 import { type z } from 'zod'
+import { omit } from '../src/core/omit'
 import { localSettingsSchema, LOCAL_SETTINGS_DIRECTORY } from '../src/core/local-settings-contracts'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from '../src/core/profiles/codec'
 import { MAX_PROFILE_BYTES } from '../src/core/profiles/contracts'
@@ -236,7 +237,10 @@ export async function saveProfileFile(root: string, id: string, input: LocalProf
 }
 
 export function profileLocalSettings(snapshot: Awaited<ReturnType<typeof readProfileFile>>['snapshot']): z.infer<typeof localSettingsSchema> {
-  const { aiConnection, speechConnection, preferences } = snapshot.settings
+  const { aiEndpoints, speechConnection, preferences } = snapshot.settings
+  // The local settings file holds one connection: the active endpoint (else the first).
+  const endpoint = aiEndpoints?.endpoints.find(item => item.id === aiEndpoints.active) ?? aiEndpoints?.endpoints[0]
+  const aiConnection = endpoint && omit(endpoint, 'id', 'name')
   return localSettingsSchema.parse({
     ...(aiConnection ? { aiConnection } : {}),
     ...(speechConnection ? { speechConnection } : {}),

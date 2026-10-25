@@ -45,6 +45,16 @@ beforeEach(async () => {
 afterEach(cleanup)
 
 describe('dictionary characters', () => {
+  it('opens on My knowledge set for the knowledge hash and on the full list otherwise', async () => {
+    window.location.hash = 'dictionary/vocabulary/knowledge'
+    const view = render(<Harness />)
+    expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
+    view.unmount()
+    window.location.hash = 'dictionary/vocabulary'
+    render(<Harness />)
+    expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'false')
+  })
+
   it('shows available and unavailable guides and filters full versus derived knowledge without duplicates', async () => {
     const user = userEvent.setup()
     render(<Harness />)

@@ -3,6 +3,7 @@ import { lessons } from '../data/mandarin'
 import { curriculumLevels, curriculumWords, nextCurriculumLesson } from '../data/curriculum'
 import { startPractice } from '../core/learning'
 import { navigate } from '../core/routing'
+import { RestoreOffer } from '../components/BackupPanel'
 import { PageHeading, type PageProps } from '../components/shared'
 
 export function Overview({ workspace, now, run, busy }: PageProps) {
@@ -17,6 +18,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
     <PageHeading eyebrow="A LITTLE EVERY DAY" title="Make the language yours." action={<a className="button secondary" href="#lessons">New or review <ArrowRight size={16} /></a>}>
       Build useful Mandarin through short lessons and regular practice.
     </PageHeading>
+    <RestoreOffer />
     <section className="overview-feature">
       <article className="course-card panel feature-panel" aria-label="Curriculum focus">
         <p className="eyebrow accent">{lessonSession ? 'PICK UP YOUR NEXT LESSON' : nextLesson ? 'YOUR NEXT STEP IN MANDARIN' : 'KEEP YOUR MOMENTUM'}</p>

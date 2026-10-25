@@ -1,6 +1,7 @@
 import Dexie, { type EntityTable } from 'dexie'
+import { omit } from './omit'
 import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type Preferences, type ReadingProgress, type WordState, type Workspace } from './model'
-import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
+import type { AIConnection, AIEndpoint, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
@@ -11,6 +12,19 @@ import type { SudokuGame } from './games/sudoku-contracts'
 import type { MemoryGame } from './games/memory'
 import type { DefenderGame } from './games/defender'
 import type { PotionsGame, PotionsProgress } from './games/potions'
+import type { JournalEvent } from './backup/journal'
+
+/** Backup connection kept inside the profile database (a copy lives in localStorage too). */
+export interface BackupConfigRecord {
+  id: 'github'
+  owner: string
+  repo: string
+  token: string
+  branch: string
+  lastBackupAt?: number
+  lastError?: string
+  lastCommit?: string
+}
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -23,6 +37,7 @@ export class LearningDatabase extends Dexie {
   assistantMessages!: EntityTable<AssistantMessage, 'id'>
   assistantRuns!: EntityTable<AssistantRun, 'id'>
   aiConnections!: EntityTable<AIConnection, 'id'>
+  aiEndpoints!: EntityTable<AIEndpoint, 'id'>
   speechConnections!: EntityTable<SpeechConnection, 'id'>
   knowledge!: EntityTable<KnowledgeEntry, 'ref'>
   studyCards!: EntityTable<StudyCard, 'id'>
@@ -38,6 +53,8 @@ export class LearningDatabase extends Dexie {
   potionGames!: EntityTable<PotionsGame, 'id'>
   potionProgress!: EntityTable<PotionsProgress, 'id'>
   practiceHistory!: EntityTable<PracticeHistoryEntry, 'text'>
+  journal!: EntityTable<JournalEvent & { seq?: number }, 'seq'>
+  backupConfig!: EntityTable<BackupConfigRecord, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -73,6 +90,14 @@ export class LearningDatabase extends Dexie {
     this.version(11).stores({ defenderGames: '&id' })
     this.version(12).stores({ potionGames: '&id', potionProgress: '&id' })
     this.version(13).stores({ practiceHistory: '&text, lastOpenedAt' })
+    this.version(14).stores({ aiEndpoints: '&id, order' }).upgrade(async transaction => {
+      // The single saved connection becomes the first (and active) endpoint.
+      const current = await transaction.table('aiConnections').get('assistant')
+      if (!current) return
+      await transaction.table('aiEndpoints').put({ ...omit(current, 'id', 'endpointId', 'name'), id: 'default', name: 'Default', order: 0 })
+      await transaction.table('aiConnections').put({ ...current, endpointId: 'default', name: 'Default' })
+    })
+    this.version(15).stores({ journal: '++seq', backupConfig: '&id' })
   }
 }
 

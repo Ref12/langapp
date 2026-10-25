@@ -5,6 +5,8 @@ import { AIConnectionSettings } from '../components/assistant/AIConnectionSettin
 import { SpeechConnectionSettings } from '../components/assistant/SpeechConnectionSettings'
 import { VoiceSettings } from '../components/assistant/VoiceSettings'
 import { ProfileSettings } from '../components/ProfileSettings'
+import { BackupPanel } from '../components/BackupPanel'
+import { Diagnostics } from '../components/Diagnostics'
 import { DEFAULT_PINYIN_FORMAT, pinyinFormatSchema } from '../core/pinyin'
 import { LocalPinyinSetupContext } from '../components/assistant/local-ai-setup-context'
 
@@ -19,6 +21,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
   return <>
     <PageHeading eyebrow="YOUR OWN PACE. YOUR OWN SPACE." title="Your workspace.">A local Mandarin learning space, separate from the original app.</PageHeading>
     <ProfileSettings busy={workspaceBusy || aiBusy || speechBusy} onBusyChange={setProfileBusy} />
+    <BackupPanel busy={busy} />
     <form className="panel settings-form" onSubmit={event => {
       event.preventDefault()
       void run(async () => { await savePreferences({ name }); setNotice('Workspace name saved.') })
@@ -47,7 +50,8 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
     <VoiceSettings workspace={workspace} busy={busy} run={run} />
     <AIConnectionSettings busy={workspaceBusy || profileBusy || speechBusy} onBusyChange={setAIBusy} />
     <SpeechConnectionSettings busy={workspaceBusy || profileBusy || aiBusy} onBusyChange={setSpeechBusy} />
-    <section className="panel"><h2>Keep your learning safe</h2><p>Your profiles are saved in this browser, not synced to an account. Clearing site data or using private browsing can remove them. Export a profile regularly using the controls above.</p>
+    <Diagnostics />
+    <section className="panel"><h2>Keep your learning safe</h2><p>Your profiles are saved in this browser and are not synced to an account. Clearing site data or using private browsing can remove them. Set up the GitHub cloud backup in the Cloud backup panel above to keep an off-device copy (press Back up now to update it), and still export a profile now and then using the controls above.</p>
       <p className="small muted">Profile YAML files contain settings and credentials, knowledge and learning progress, Assistant conversations, and saved practice results including recognized transcripts. Keep exported files private. Raw recordings are never stored. Previous root-app JSON backups can still be imported without changing credentials; archived v1 backups are not compatible. Restored requests never send automatically, and practice results remain excluded from AI tutor context.</p>
     </section>
     {notice && <p className="notice success" role="status">{notice}</p>}
@@ -55,7 +59,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       <p>Enable Voice input and replies in conversation settings, choose English or Mandarin, and tap the mic to dictate after the cue. Stop to review or Submit to send. Browser recognition may use an online speech service; conversation transcripts go to your AI provider only when sent. Replies are spoken without restarting the microphone. Reloading never starts recording or replays old replies.</p>
       <p>Practice plays the phrase first. Recording is opt-in: Listen and record sounds a short cue when the microphone is ready. Conversation's Submit shows feedback inline; Shadow automatically adds feedback when recording finishes. Azure Speech receives the audio and expected phrase only when Speech feedback is enabled and a connection is configured. Otherwise, the app compares a browser-recognized transcript locally; the browser may use an online recognition service. Results never go to the AI tutor, including in later turns. Raw recordings are never stored.</p>
       <p>Speech assessments are practice feedback, not evidence of mastery or official HSK certification. Hands-free turn-taking, generated activities, and handwriting assessment are not connected.</p>
-      <div className="button-row"><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
+      <div className="button-row"><a href="./preview.html" className="button secondary">Open design mockups</a></div>
     </section>
   </>
 }

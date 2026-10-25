@@ -155,7 +155,7 @@ describe('nonblocking independent startup statuses', () => {
     const speech = await screen.findByRole('region', { name: 'Speech connection settings' })
     expect(within(ai).queryByText(/Loaded the AI connection from/)).not.toBeInTheDocument()
     expect(within(ai).queryByRole('alert')).not.toBeInTheDocument()
-    expect(within(ai).getByText('No AI connection is saved on this device.')).toBeInTheDocument()
+    expect(within(ai).getByText('No active AI endpoint is saved on this device.')).toBeInTheDocument()
     expect(within(speech).getByLabelText('Azure Speech key')).toHaveValue(connection.apiKey)
     expect(fetcher).toHaveBeenCalledTimes(1)
     expect(fetcher).toHaveBeenCalledWith(LOCAL_SETTINGS_PATH, expect.any(Object))

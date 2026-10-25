@@ -1,4 +1,6 @@
 import { db } from '../database'
+import { characterEvent } from '../backup/journal'
+import { recordJournal } from '../backup/journal-store'
 import { characterSchema, characterStateSchema, type CharacterState } from './contracts'
 
 function requireCharacter(character: string): string {
@@ -17,20 +19,22 @@ async function readState(character: string): Promise<CharacterState | undefined>
 
 export async function addCharacterToKnowledge(character: string): Promise<void> {
   const key = requireCharacter(character)
-  await db.transaction('rw', db.characterStates, async () => {
+  await db.transaction('rw', db.characterStates, db.journal, async () => {
     const current = await readState(key)
     if (current?.manualAddedAt !== undefined) return
     await db.characterStates.put(characterStateSchema.parse({
       ...current, character: key, manualAddedAt: Date.now(), practiceCompletions: current?.practiceCompletions ?? 0,
     }))
+    await recordJournal(characterEvent(key, 'add', Date.now()))
   })
 }
 
 export async function removeManualCharacter(character: string): Promise<void> {
   const key = requireCharacter(character)
-  await db.transaction('rw', db.characterStates, async () => {
+  await db.transaction('rw', db.characterStates, db.journal, async () => {
     const current = await readState(key)
     if (current?.manualAddedAt === undefined) return
+    await recordJournal(characterEvent(key, 'remove', Date.now()))
     if (current.practiceCompletions === 0) {
       await db.characterStates.delete(key)
     } else {
@@ -43,7 +47,7 @@ export async function removeManualCharacter(character: string): Promise<void> {
 // Call only after the learner completes all three writing-practice phases.
 export async function recordCharacterPractice(character: string): Promise<void> {
   const key = requireCharacter(character)
-  await db.transaction('rw', db.characterStates, async () => {
+  await db.transaction('rw', db.characterStates, db.journal, async () => {
     const current = await readState(key)
     if (current?.practiceCompletions === Number.MAX_SAFE_INTEGER) {
       throw new Error('The saved character practice count is too large to increment.')
@@ -51,5 +55,6 @@ export async function recordCharacterPractice(character: string): Promise<void> 
     await db.characterStates.put(characterStateSchema.parse({
       ...current, character: key, practiceCompletions: (current?.practiceCompletions ?? 0) + 1, lastPracticedAt: Date.now(),
     }))
+    await recordJournal(characterEvent(key, 'practice', Date.now()))
   })
 }
