@@ -88,6 +88,11 @@ function splitToken(token: string): Syllable[] | undefined {
 }
 
 export function formatPinyin(text: string, format: PinyinFormat = DEFAULT_PINYIN_FORMAT): string {
+  // Grammar patterns embed English placeholders such as <person or thing>; they are not syllables.
+  return text.split(/(<[^>]*>)/).map((part, index) => index % 2 ? part : formatSyllables(part, format)).join('')
+}
+
+function formatSyllables(text: string, format: PinyinFormat): string {
   return text.replace(/(?:u:|[\p{Script=Latin}\p{M}])+[0-9]*/giu, token => {
     if (/^[A-Z]$/.test(token)) return token
     const parts = splitToken(token)

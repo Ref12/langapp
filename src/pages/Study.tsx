@@ -143,8 +143,9 @@ function SessionIntroduction({ catalog, session, workspace, run, busy, now, begi
       {session.mode === 'new' ? 'Read each item and its examples, then try the exercises. Items you saw in recent sessions are mixed in.' : 'These items are due according to your review schedule.'}
     </PageHeading>
     <div className="word-grid">{units.map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))}
-      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} />)}</div>
-    <div className="button-row"><button className="button primary" disabled={busy} onClick={begin}>Start exercises <ArrowRight size={16} /></button></div>
+      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus />)}</div>
+    <div className="start-panel" role="region" aria-label="Start the exercises"><p className="small muted">{units.length} {units.length === 1 ? 'item' : 'items'} ready. You can start without reading every card.</p>
+      <button className="button primary" disabled={busy} onClick={begin}>Start exercises <ArrowRight size={16} /></button></div>
   </>
 }
 

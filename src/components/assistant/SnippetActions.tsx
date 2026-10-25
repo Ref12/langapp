@@ -95,6 +95,39 @@ export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
   </div>
 }
 
+/** Hear / Ask / Practice for a fixed Mandarin text, with the same standalone practice playlist the selection toolbar opens. */
+export function PracticeSnippet({ source }: { source: AssistantSource }) {
+  const [practice, setPractice] = useState<SpeechBlock>()
+  const [error, setError] = useState('')
+  const [saved, setSaved] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
+  const preferences = useLiveQuery(() => db.preferences.get('workspace'), [])
+  const unavailable = selectionPracticeUnavailable(source.text)
+  const open = () => {
+    setError('')
+    try {
+      if (unavailable) throw new Error(unavailable)
+      if (document.querySelector('dialog[open]')) throw new Error('Close the current dialog before opening practice.')
+      const phrase = practicePhraseSchema.parse({ type: 'speech', text: source.text, locale: 'zh-Hans' })
+      interruptAudio()
+      const failure = stopBrowserSpeech()
+      if (failure) throw new Error(failure)
+      setPractice(phrase)
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Practice could not be opened.')
+    }
+  }
+  return <>
+    <SnippetActions source={source} rate={preferences?.defaultSpeechRate} onPractice={open} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
+    {error && <p role="alert" className="small connection-error">{error}</p>}
+    {practice && <PracticePlaylist phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
+      savedEnds={saved?.text === practice.text ? saved.ends : undefined} savedItems={saved?.text === practice.text ? saved.items : undefined}
+      busy={false} recordingActive={false}
+      saveNotice="This phrase and its edited playlist are saved in History. No conversation or learning progress is changed."
+      onSave={async (ends, items) => { setSaved(practiceChainSchema.parse({ text: practice.text, ends, ...(items ? { items } : {}) })) }}
+      onClose={async () => { setPractice(undefined) }} />}
+  </>
+}
+
 export function SelectionActions({ route, title, rate = 1 }: { route: string; title: string; rate?: SpeechRate }) {
   const [text, setText] = useState<string>()
   const [practice, setPractice] = useState<{ phrase: SpeechBlock; rate: SpeechRate }>()
