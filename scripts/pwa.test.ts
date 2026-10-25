@@ -21,6 +21,12 @@ describe('PWA plugin', () => {
     expect(manifest.icons[0].src).toBe('icon.svg')
   })
 
+  it('injects the manifest link with credentials so it loads behind Cloudflare Access', () => {
+    const plugin = pwa() as unknown as { transformIndexHtml: () => { tag: string; attrs: Record<string, string> }[] }
+    const link = plugin.transformIndexHtml().find(t => t.tag === 'link' && t.attrs.rel === 'manifest')
+    expect(link?.attrs).toEqual({ rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' })
+  })
+
   it('emits a worker with relative precache that never touches IndexedDB or leaves its scope', () => {
     const sw = out['sw.js']
     expect(sw).toContain('"./assets/index-a.js"')

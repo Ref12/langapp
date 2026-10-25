@@ -12,7 +12,7 @@ export function pwa(): Plugin {
     name: 'langapp-pwa',
     apply: 'build',
     transformIndexHtml: () => [
-      { tag: 'link', attrs: { rel: 'manifest', href: './manifest.webmanifest' }, injectTo: 'head' },
+      { tag: 'link', attrs: { rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' }, injectTo: 'head' },
     ],
     generateBundle(_options, bundle) {
       const precache = ['./', ...Object.keys(bundle).filter(name => /\.(js|css|html|svg)$/.test(name)).map(name => './' + name), './icon.svg']
