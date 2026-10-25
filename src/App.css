@@ -417,8 +417,14 @@ select { padding: 10px; }
 }
 
 /* Study: New / Review sessions and the curriculum dictionary */
-.study-preview { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 12px 0; font-size: 22px; }
-.study-preview li { background: var(--surface-inset); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; }
+.card-header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.card-header-row > div { min-width: 0; }
+.card-header-row > .button { flex: 0 0 auto; white-space: nowrap; }
+.study-preview { display: grid; gap: 6px; list-style: none; padding: 0; margin: 12px 0; }
+.study-preview li { display: flex; align-items: baseline; gap: 12px; background: var(--surface-inset); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; min-width: 0; }
+.study-preview-form { flex: 0 0 auto; font-size: 22px; max-width: 60%; overflow-wrap: anywhere; }
+.study-preview-gloss { flex: 1 1 0; min-width: 0; font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
+.study-preview-pinyin { color: var(--accent); }
 .study-preview li.muted { opacity: 0.6; }
 .study-pattern { font-size: 22px; line-height: 1.4; word-break: break-word; }
 .study-pinyin { margin-top: -6px; }

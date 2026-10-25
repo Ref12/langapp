@@ -68,8 +68,13 @@ describe('New and Review', () => {
     await screen.findByRole('heading', { name: /new items$/ })
     expect(await screen.findByRole('link', { name: 'Connect a model in Settings' })).toHaveAttribute('href', '#settings')
     expect(screen.getByRole('button', { name: 'Start new items' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Start new items' })).toHaveTextContent(/^Start$/)
     expect(screen.getByRole('button', { name: 'Review due items' })).toBeDisabled()
     expect(screen.getByRole('heading', { name: '0 items due' })).toBeInTheDocument()
+    // The predefined blurbs show before any session exists, no AI wait.
+    const preview = within(screen.getByRole('region', { name: 'New items' })).getByRole('list', { name: 'Items in this group' })
+    expect(within(preview).getByText('我')).toBeInTheDocument()
+    expect(within(preview).getByText('I, me, my')).toBeInTheDocument()
     expect(await db.knowledge.count()).toBe(0)
   })
 

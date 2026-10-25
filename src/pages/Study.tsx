@@ -13,6 +13,7 @@ import { useCatalog } from '../components/study/useCatalog'
 import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
 import { AnnotatedChinese } from '../components/study/AnnotatedChinese'
 import { AnswerButton } from '../components/AnswerButton'
+import { Pinyin } from '../components/Pinyin'
 import { readingIndex } from '../core/study/annotate'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { savePreferences } from '../core/learning'
@@ -51,18 +52,25 @@ export function Study({ workspace, now, run, busy }: PageProps) {
     </a>)}</div></section>}
     <div className="experience-grid two-columns">
       <section className="experience-card" aria-label="New items">
-        <p className="eyebrow accent">NEW</p>
-        <h2>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'}` : catalog ? 'Nothing left to introduce' : 'Loading the curriculum...'}</h2>
-        {next && <ul className="study-preview" lang="zh-Hans">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</li>)}</ul>}
+        <div className="card-header-row">
+          <div><p className="eyebrow accent">NEW</p>
+            <h2>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'}` : catalog ? 'Nothing left to introduce' : 'Loading the curriculum...'}</h2></div>
+          <button className="button primary" aria-label="Start new items" disabled={busy || !next || !connection} onClick={() => start('new')}>Start <ArrowRight size={16} /></button>
+        </div>
+        {next && <ul className="study-preview" aria-label="Items in this group">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>
+          <span className="study-preview-form" lang="zh-Hans">{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</span>
+          <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /> </span>}{unit.record.ds}</span>
+        </li>)}</ul>}
         {progress && <p className="small muted">HSK {next?.band ?? '6'} / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
-        <button className="button primary" disabled={busy || !next || !connection} onClick={() => start('new')}>Start new items <ArrowRight size={16} /></button>
       </section>
       <section className="experience-card" aria-label="Review">
-        <p className="eyebrow accent">REVIEW</p>
-        <h2>{due} {due === 1 ? 'item' : 'items'} due</h2>
+        <div className="card-header-row">
+          <div><p className="eyebrow accent">REVIEW</p>
+            <h2>{due} {due === 1 ? 'item' : 'items'} due</h2></div>
+          <button className="button primary" aria-label="Review due items" disabled={busy || !due || !connection} onClick={() => start('review')}>Review <ArrowRight size={16} /></button>
+        </div>
         <p className="small muted">{workspace.knowledge.length} items in your knowledge set. Review timing follows FSRS spaced repetition for reading; an item is due when its predicted recall drops below 90%.</p>
         <div className="button-row">
-          <button className="button primary" disabled={busy || !due || !connection} onClick={() => start('review')}>Review due items <ArrowRight size={16} /></button>
           {!due && workspace.knowledge.length > 0 && <button className="button secondary" disabled={busy || !connection} onClick={() => start('review', true)}>Review anyway <RotateCcw size={16} /></button>}
         </div>
       </section>
