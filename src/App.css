@@ -148,6 +148,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); width
 .reading-token ruby { font-family: "Segoe UI", sans-serif; }
 rt { font-size: 11px; line-height: 1.5; color: var(--muted); }
 .mandarin-word { ruby-align: center; }
+.mandarin-word + .mandarin-word { margin-inline-start: 0.4em; }
 .mandarin-word rt { font-family: "Segoe UI", sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0; color: var(--accent); }
 .word-native .mandarin-word { display: inline-flex; flex-direction: column-reverse; align-items: center; gap: 8px; }
 .word-native .mandarin-word rt { display: block; line-height: 1.4; }
@@ -221,7 +222,12 @@ summary { cursor: pointer; min-height: 28px; }
 .practice-prompt.native { font-size: 50px; }
 .answer-options { border: 0; padding: 0; margin: 0 0 25px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .answer-option { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 15px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
-.answer-option > span { flex: 1; }
+.answer-option > span:not(.answer-option-mark) { flex: 1 1 0; min-width: 0; overflow-wrap: break-word; }
+.answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 0.4em; }
+.answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] > .mandarin-word + .mandarin-word { margin-inline-start: 0; }
+@media (max-width: 480px) { .answer-options { grid-template-columns: minmax(0, 1fr); } }
+.answer-option > .snippet-button { flex: 0 0 auto; }
+.answer-option input { flex: 0 0 auto; }
 .answer-option.selected { background: var(--accent-soft); border-color: var(--accent); }
 .answer-option.correct-option { border-color: var(--accent); }
 .answer-option [lang="zh-Hans"] { font-size: 25px; }
