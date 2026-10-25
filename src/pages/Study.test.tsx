@@ -5,6 +5,7 @@ import App from '../App'
 import { db } from '../core/database'
 import { loadCatalog } from '../core/study/catalog'
 import type { Exercise } from '../core/study/contracts'
+import * as speech from '../core/assistant/speech'
 import { addToKnowledge, nextGroup } from '../core/study/knowledge'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
@@ -20,6 +21,7 @@ beforeEach(async () => {
   await db.delete()
   await db.open()
   structured.requestStructuredJSON.mockReset()
+  vi.spyOn(speech, 'playBrowserSpeech').mockImplementation(() => undefined)
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
@@ -254,5 +256,37 @@ describe('New and Review', () => {
     expect(screen.getByText('0 / 1')).toBeInTheDocument()
     expect(await db.exerciseAttempts.toArray()).toEqual(attempts)
     expect(await db.studyCards.toArray()).toEqual(cards)
+  })
+
+  it('speaks a tile when tapped and still moves it, from the bank and the answer row', async () => {
+    const user = userEvent.setup()
+    const play = vi.mocked(speech.playBrowserSpeech)
+    await seedExercise('tiles')
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    const bank = screen.getByRole('group', { name: 'Available tiles' })
+    await user.click(within(bank).getByRole('button', { name: '我' }))
+    expect(play).toHaveBeenLastCalledWith(expect.any(String), '我', 'zh-Hans')
+    const answer = screen.getByRole('group', { name: 'Your sentence' })
+    await user.click(within(answer).getByRole('button', { name: '我' }))
+    expect(play).toHaveBeenCalledTimes(2)
+    expect(play).toHaveBeenLastCalledWith(expect.any(String), '我', 'zh-Hans')
+    expect(within(answer).queryByRole('button', { name: '我' })).not.toBeInTheDocument()
+    await user.click(within(bank).getByRole('button', { name: '学习' }))
+    expect(within(answer).getByRole('button', { name: '学习' })).toBeInTheDocument()
+  })
+
+  it('stays silent but still moves tiles when the tile speech toggle is off, and remembers it', async () => {
+    const user = userEvent.setup()
+    const play = vi.mocked(speech.playBrowserSpeech)
+    await seedExercise('tiles')
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(screen.getByRole('button', { name: 'Mute tiles' }))
+    await screen.findByRole('button', { name: 'Speak tiles' })
+    expect((await db.preferences.get('workspace'))!.tileAutoSpeak).toBe(false)
+    await user.click(within(screen.getByRole('group', { name: 'Available tiles' })).getByRole('button', { name: '我' }))
+    expect(play).not.toHaveBeenCalled()
+    expect(within(screen.getByRole('group', { name: 'Your sentence' })).getByRole('button', { name: '我' })).toBeInTheDocument()
   })
 })

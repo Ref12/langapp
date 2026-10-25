@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { db } from '../core/database'
@@ -14,6 +14,8 @@ import { HearButton, SnippetActions } from '../components/assistant/SnippetActio
 import { AnnotatedChinese } from '../components/study/AnnotatedChinese'
 import { AnswerButton } from '../components/AnswerButton'
 import { readingIndex } from '../core/study/annotate'
+import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
+import { savePreferences } from '../core/learning'
 
 function useAIConnection() {
   return useLiveQuery(() => db.aiConnections.get('assistant').then(connection => connection ?? null), [])
@@ -91,7 +93,7 @@ function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyi
   </>
 }
 
-function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin }: Annotation & { exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
+function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak }: Annotation & { speak: boolean; exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const all = [...exercise.tiles, ...exercise.distractors]
   const [placed, setPlaced] = useState<number[]>(() => {
     if (!attempt) return []
@@ -104,14 +106,20 @@ function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
     }).filter(index => index >= 0)
   })
   const locked = busy || Boolean(attempt)
+  const speechId = useId()
+  useEffect(() => () => { if (getPlaybackState().activeId === speechId) stopBrowserSpeech() }, [speechId])
+  const say = (index: number) => {
+    if (!speak) return
+    try { playBrowserSpeech(speechId, all[index], 'zh-Hans') } catch (reason) { console.error('Tile speech failed.', reason) }
+  }
   return <>
     <p className="practice-prompt" lang="en">{exercise.translation}</p>
     <div className="tile-answer" lang="zh-Hans" role="group" aria-label="Your sentence">
-      {placed.length ? placed.map(index => <button key={index} type="button" className="tile" disabled={locked} onClick={() => setPlaced(placed.filter(item => item !== index))}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)
+      {placed.length ? placed.map(index => <button key={index} type="button" className="tile" disabled={locked} onClick={() => { setPlaced(placed.filter(item => item !== index)); say(index) }}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)
         : <span className="small muted">Tap the tiles in order to build the sentence.</span>}
     </div>
     <div className="tile-bank" lang="zh-Hans" role="group" aria-label="Available tiles">
-      {exercise.shuffled.map(index => <button key={index} type="button" className={`tile ${placed.includes(index) ? 'tile-used' : ''}`} disabled={locked || placed.includes(index)} onClick={() => setPlaced([...placed, index])}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)}
+      {exercise.shuffled.map(index => <button key={index} type="button" className={`tile ${placed.includes(index) ? 'tile-used' : ''}`} disabled={locked || placed.includes(index)} onClick={() => { setPlaced([...placed, index]); say(index) }}><AnnotatedChinese text={all[index]} readings={readings} pinyin={pinyin} /></button>)}
     </div>
     <AnswerButton result={attempt?.correct} busy={busy} ready={placed.length >= 2} onCheck={() => submit(placed.map(index => all[index]))} onNext={next} />
   </>
@@ -138,6 +146,7 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
   const exercise: Exercise = session.exercises[session.cursor]
   const title = useRef<HTMLHeadingElement>(null)
   const pending = useRef(false)
+  const tileSpeech = workspace.preferences.tileAutoSpeak !== false
   const [savedAttempt, setSavedAttempt] = useState<ExerciseAttempt>()
   const attempt = persistedAttempt ?? savedAttempt
   useEffect(() => { title.current?.focus() }, [])
@@ -168,12 +177,14 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
       <p className="small muted practice-context">PRACTICES / {exercise.targets.map(ref => { const unit = requireUnit(catalog, ref); return unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt }).join(' / ')}</p>
       <div className="button-row practice-tools">
         <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>
+        {exercise.type === 'tiles' && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
+          onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute tiles' : 'Speak tiles'}</button>}
         {exercise.type === 'choice' && exercise.direction === 'zh-to-en' && <HearButton text={exercise.question} locale="zh-Hans" label="Hear the Chinese" />}
       </div>
     </div>
     {exercise.type === 'choice'
       ? <ChoiceQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} />
-      : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} />}
+      : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} speak={tileSpeech} />}
     {attempt && <div className={`notice answer-feedback${attempt.correct ? ' success' : ''}`} role="status">
       <strong>{attempt.correct ? 'Correct.' : 'Not quite.'}</strong>
       {chineseAnswer ? <p><AnnotatedChinese text={correctSentence} readings={readings} pinyin={pinyin} /></p> : <p lang="en">{correctSentence}</p>}
