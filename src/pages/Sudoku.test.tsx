@@ -63,6 +63,9 @@ async function newPuzzle(user: ReturnType<typeof userEvent.setup>) {
 
 it('explains the required character set without substituting unfamiliar characters', async () => {
   render(<App />)
+  // The count only appears once the curriculum catalog has loaded, which is slow under load; the default
+  // 1 s findBy timeout is not enough for the first (uncached) load, so wait for the catalog itself.
+  await loadCatalog()
   await screen.findByText('0 distinct characters in your learning set.')
   expect(screen.getByRole('button', { name: 'Generate puzzle' })).toBeDisabled()
   expect(worker.generateSudokuInWorker).not.toHaveBeenCalled()

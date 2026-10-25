@@ -108,7 +108,13 @@ describe('Hear voice settings', () => {
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.speechDebugMessages).toBe(true))
     expect(synthesis.speak).not.toHaveBeenCalled()
     expect(fetch).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByRole('button', { name: 'Test Mandarin voice' }))
+    // The preference lands in the database before the page re-renders; the Test button and toggle stay
+    // disabled while it is saving, so wait for the UI state that gates the click.
+    await waitFor(() => expect(toggle).toBeChecked())
+    await waitFor(() => expect(toggle).toBeEnabled())
+    const test = screen.getByRole('button', { name: 'Test Mandarin voice' })
+    await waitFor(() => expect(test).toBeEnabled())
+    fireEvent.click(test)
     expect(screen.getByText('Starting local speech...')).toBeVisible()
     const cancels = synthesis.cancel.mock.calls.length
     fireEvent.click(toggle)
