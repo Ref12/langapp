@@ -5,7 +5,7 @@ import { db } from '../../core/database'
 import { addToKnowledge } from '../../core/study/knowledge'
 import type { Catalog } from '../../core/study/catalog'
 import { useCatalog } from '../study/useCatalog'
-import { useWriteWords } from './WritePractice'
+import { useWriteWords } from './useWriteWords'
 
 interface Row { text: string; pinyin: string; ref?: string; meaning?: string }
 
