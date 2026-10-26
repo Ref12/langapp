@@ -34,7 +34,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
     {pinyin && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /></p>}
     <p className="word-meaning">{unit.record.ds}</p>
     {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} />)}
-    <PracticeSnippet source={{ text: unit.kind === 'vocabulary' ? unit.record.ch : renderExample(catalog, unit.record.ex).text, meaning: unit.record.ds, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} />
+    <PracticeSnippet source={{ text: unit.kind === 'vocabulary' ? unit.record.ch : renderExample(catalog, unit.record.ex).text, meaning: unit.record.ds, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />
     {!hideStatus && <button className="button secondary full-width" disabled={busy || known} onClick={() => void run(() => addToKnowledge([unit.ref]))}>
       {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}
     </button>}

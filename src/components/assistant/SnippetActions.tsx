@@ -29,9 +29,9 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
   </button>
 }
 
-export function SnippetActions({ source, rate, onPrepared, onPractice, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', compact = false }: {
+export function SnippetActions({ source, rate, onPrepared, onPractice, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', compact = false, knowledge = true }: {
   source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; practiceDisabled?: boolean; practiceTitle?: string
-  compact?: boolean
+  compact?: boolean; knowledge?: boolean
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
@@ -56,7 +56,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, practiceD
         <Repeat2 size={15} />Practice
       </button>}
     </div>
-    {source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
+    {knowledge && source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
     {error && <p className="small" role="alert">{error}</p>}
     {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
   </div>
@@ -118,7 +118,7 @@ export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
 }
 
 /** Hear / Ask / Practice for a fixed Mandarin text, with the same standalone practice playlist the selection toolbar opens. */
-export function PracticeSnippet({ source }: { source: AssistantSource }) {
+export function PracticeSnippet({ source, knowledge = true }: { source: AssistantSource; knowledge?: boolean }) {
   const [practice, setPractice] = useState<SpeechBlock>()
   const [error, setError] = useState('')
   const [saved, setSaved] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
@@ -139,7 +139,7 @@ export function PracticeSnippet({ source }: { source: AssistantSource }) {
     }
   }
   return <>
-    <SnippetActions source={source} rate={preferences?.defaultSpeechRate} onPractice={open} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
+    <SnippetActions source={source} knowledge={knowledge} rate={preferences?.defaultSpeechRate} onPractice={open} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
     {error && <p role="alert" className="small connection-error">{error}</p>}
     {practice && <PracticeSheet route={source.route} phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
       savedEnds={saved?.text === practice.text ? saved.ends : undefined} savedItems={saved?.text === practice.text ? saved.items : undefined}
