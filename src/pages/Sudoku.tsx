@@ -17,6 +17,7 @@ import { savePreferences } from '../core/learning'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { readingIndex } from '../core/study/annotate'
 import { Pinyin } from '../components/Pinyin'
+import { usePageSettings } from '../components/page-settings-context'
 import './sudoku.css'
 
 const difficultyNames = { easy: 'Easy', medium: 'Medium', hard: 'Hard' }
@@ -208,6 +209,12 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
 }
 
 export function Sudoku({ workspace, busy, run }: PageProps) {
+  usePageSettings({ title: 'Sudoku settings', content: <>
+    <label className="toggle"><input type="checkbox" checked={workspace.preferences.sudokuAutoSpeak !== false} disabled={busy}
+      onChange={event => { if (!event.target.checked) stopBrowserSpeech(); void run(() => savePreferences({ sudokuAutoSpeak: event.target.checked })) }} /> Speak characters automatically</label>
+    <label className="toggle"><input type="checkbox" checked={workspace.preferences.sudokuShowPinyin === true} disabled={busy}
+      onChange={event => void run(() => savePreferences({ sudokuShowPinyin: event.target.checked }))} /> Show pinyin on selection</label>
+  </> })
   const { catalog, error } = useCatalog()
   const characters = useMemo(() => catalog ? sudokuCharacters(catalog, workspace) : [], [catalog, workspace])
   const readings = useMemo(() => catalog ? readingIndex(catalog.units.values()) : undefined, [catalog])

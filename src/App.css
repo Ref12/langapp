@@ -452,3 +452,17 @@ select { padding: 10px; }
 .start-panel > p { margin: 0; min-width: 0; }
 .start-panel > .button { flex: 0 0 auto; }
 @media (max-width: 760px) { .start-panel { margin-inline: -18px; border-radius: 0; border-inline: 0; flex-direction: column; align-items: stretch; text-align: center; } .start-panel > .button { justify-content: center; } }
+
+.page-settings-anchor { position: relative; display: inline-flex; }
+.page-settings-backdrop { position: fixed; inset: 0; z-index: 40; background: #0006; }
+.page-settings-sheet { position: fixed; z-index: 41; left: 0; right: 0; bottom: 0; max-height: 80dvh; overflow-y: auto; padding: 12px 16px calc(16px + env(safe-area-inset-bottom)); background: var(--sidebar); color: var(--text); border-top: 1px solid var(--line); border-radius: 14px 14px 0 0; box-shadow: 0 -12px 40px #0005; display: flex; flex-direction: column; gap: 8px; }
+.page-settings-header { display: flex; align-items: center; justify-content: space-between; }
+.page-settings-sheet h2, .page-settings-sheet h3 { margin: 0; font-size: 1rem; }
+.page-settings-sheet h3 { margin-top: 6px; font-size: .85rem; }
+.page-settings-body { display: flex; flex-direction: column; gap: 8px; }
+.page-settings-field { display: flex; flex-direction: column; gap: 4px; }
+.page-settings-all { width: 100%; text-align: center; margin-top: 6px; }
+@media (min-width: 761px) {
+  .page-settings-backdrop { background: transparent; }
+  .page-settings-sheet { position: absolute; left: auto; right: 0; bottom: auto; top: calc(100% + 8px); width: 300px; max-height: 70vh; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 32px #0005; }
+}
