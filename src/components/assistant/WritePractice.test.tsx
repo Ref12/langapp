@@ -27,6 +27,16 @@ describe('Write mode of the Practice sheet', () => {
     expect(screen.getAllByText(/xu\u00e9|xue/i).length).toBeGreaterThan(0)
   })
 
+  it('strips punctuation from rows, pinyin and the word query', async () => {
+    render(<PracticeSnippet source={source('\u5b66\u751f\uff0c\u8001\u5e08\u3002')} />)
+    fireEvent.click(screen.getByRole('button', { name: /Practice/ }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Write' }))
+    const links = await screen.findAllByRole('link', { name: /^Write / })
+    expect(links.map(link => link.textContent)).toEqual(['Write \u5b66\u751f', 'Write \u8001\u5e08'])
+    expect(links.map(link => new URLSearchParams(link.getAttribute('href')!.split('?')[1]).get('word'))).toEqual(['\u5b66\u751f', '\u8001\u5e08'])
+    expect(document.querySelector('.practice-write')!.textContent).not.toMatch(/[\uff0c\u3002]/)
+  })
+
   it('remembers the last mode', async () => {
     const first = render(<PracticeSnippet source={source('\u5b66\u751f')} />)
     fireEvent.click(screen.getByRole('button', { name: /Practice/ }))

@@ -67,7 +67,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {catalog && kind !== 'characters' && <div className="word-grid">{matches.slice(0, limit).map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
-      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} run={run} busy={busy} route="dictionary" compact />)}</div>}
+      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact />)}</div>}
     {catalog && kind === 'characters' && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <CharacterCard key={entry.character} entry={entry}
       automatic={characterSet?.automatic.has(entry.character) ?? false} manual={characterSet?.manual.has(entry.character) ?? false}
       state={workspace.characterStates.find(state => state.character === entry.character)} scope={scope} pinyin={workspace.preferences.pinyin} run={run} busy={busy} />)}</div>}
