@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import App from '../App'
@@ -78,16 +78,15 @@ it('reformats dictionary readings and examples while retaining search and pinyin
   render(<App />)
   const query = await screen.findByRole('searchbox', { name: 'Search dictionary' })
   await screen.findByText(/^\d+ items$/)
-  const user = userEvent.setup()
+  const teaPinyin = () => [...document.querySelectorAll('article')].find(card => card.querySelector('h3')?.textContent === '茶')?.querySelector('.study-pinyin') ?? null
+  // One change per spelling (typing re-renders the whole catalog per keystroke); wait for the filtered result, no fixed delay.
   for (const spelling of ['chá2', 'cha2', 'chá']) {
-    await user.clear(query)
-    await user.type(query, spelling)
-    const heading = (await screen.findAllByRole('heading', { name: '茶' }))[0]
-    const card = heading.closest('article')!
-    expect(card.querySelector('.study-pinyin')).toHaveTextContent('chá2')
+    fireEvent.change(query, { target: { value: spelling } })
+    await waitFor(() => expect(query).toHaveValue(spelling))
+    await waitFor(() => expect(teaPinyin()).toHaveTextContent('chá2'), { timeout: 4000 })
   }
   await act(() => savePreferences({ pinyinFormat: 'numbers' }))
-  await waitFor(() => expect(screen.getAllByRole('heading', { name: '茶' })[0].closest('article')!.querySelector('.study-pinyin')).toHaveTextContent('cha2'))
+  await waitFor(() => expect(teaPinyin()).toHaveTextContent('cha2'), { timeout: 4000 })
   await act(() => savePreferences({ pinyin: false }))
   await waitFor(() => expect(document.querySelector('.study-pinyin')).toBeNull())
   expect(fetch).not.toHaveBeenCalled()
