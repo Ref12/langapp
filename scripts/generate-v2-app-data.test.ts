@@ -37,6 +37,16 @@ describe('v2 app data', () => {
     }
   })
 
+  it('carries every authored v2 vocabulary entry of each band into the generated catalog', () => {
+    const entries = (band: string) => readFileSync(resolve(repositoryRoot, 'curriculum', 'v2', 'chinese', `hsk-${band}`, 'vocabulary.yaml'), 'utf8')
+      .split(/\r?\n/).flatMap(line => /^- \{id: ([^,]+),/.exec(line)?.[1] ?? [])
+    for (const band of data.bands) {
+      const authored = entries(band.band)
+      expect(authored.length).toBeGreaterThan(0)
+      expect(band.vocabulary.map(record => record.id)).toEqual(authored)
+    }
+  })
+
   it('places every HSK 1-6 unit exactly once in the generated group order', () => {
     expect(data.bands.map(band => band.band)).toEqual(appBands)
     for (const band of data.bands) {
