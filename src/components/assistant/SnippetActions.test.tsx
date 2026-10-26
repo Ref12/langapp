@@ -42,7 +42,7 @@ describe('browser speech controls', () => {
       <HearButton text="tea" locale="en-US" />
     </>)
     for (const [index, rate] of [0.5, 0.5, 1.25, 1].entries()) {
-      fireEvent.click(screen.getAllByRole('button', { name: 'Hear' })[index])
+      fireEvent.click(screen.getAllByRole('button', { name: /^Hear/ })[index])
       expect(synthesis.speak.mock.calls[index][0].rate).toBe(rate)
       act(() => synthesis.speak.mock.calls[index][0].onend?.())
     }
@@ -51,7 +51,7 @@ describe('browser speech controls', () => {
   it('labels discovery, startup, and speaking separately and stops on Escape', () => {
     voices = [{ ...mandarin, localService: false }]
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus debug /></>)
-    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     expect(screen.getByRole('status')).toHaveTextContent('Looking for a voice')
     expect(screen.getByRole('button', { name: 'Cancel voice discovery' })).toBeEnabled()
     act(() => { voices = [mandarin]; synthesis.dispatchEvent(new Event('voiceschanged')) })
@@ -67,7 +67,7 @@ describe('browser speech controls', () => {
   it('cancels discovery when its Hear control unmounts', () => {
     voices = [{ ...mandarin, localService: false }]
     const view = render(<HearButton text={'\u8336'} locale="zh-Hans" />)
-    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     view.unmount()
     act(() => { voices = [mandarin]; synthesis.dispatchEvent(new Event('voiceschanged')); vi.advanceTimersByTime(5000) })
     expect(synthesis.speak).not.toHaveBeenCalled()
@@ -78,7 +78,7 @@ describe('browser speech controls', () => {
   it('discloses online fallback when the browser has only a remote Mandarin voice', () => {
     voices = [{ ...mandarin, localService: false }]
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus debug /></>)
-    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     act(() => vi.advanceTimersByTime(3000))
     expect(screen.getByRole('status')).toHaveTextContent('Starting online speech')
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
@@ -89,7 +89,7 @@ describe('browser speech controls', () => {
 
   it('plays synchronously with an unlisted system voice, discloses its unknown provider, and stops on Escape', () => {
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus debug /></>)
-    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     expect(synthesis.speak).toHaveBeenCalledOnce()
     expect(synthesis.speak.mock.calls[0][0].voice).toBeUndefined()
     expect(synthesis.speak.mock.calls[0][0].lang).toBe('zh-CN')
@@ -103,7 +103,7 @@ describe('browser speech controls', () => {
 
   it('reports an actual system playback error and lets the learner dismiss it', () => {
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
-    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     act(() => synthesis.speak.mock.calls[0][0].onerror?.())
     expect(screen.getByRole('alert')).toHaveTextContent('System speech could not be played')
     fireEvent.click(screen.getByRole('button', { name: 'Dismiss playback error' }))
@@ -113,13 +113,13 @@ describe('browser speech controls', () => {
   it('reuses a discovered online voice across Hear controls without another discovery wait', () => {
     voices = [{ ...mandarin, localService: false }]
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><HearButton text={'\u4f60\u597d'} locale="zh-Hans" /><PlaybackStatus debug /></>)
-    fireEvent.click(screen.getAllByRole('button', { name: 'Hear' })[0])
+    fireEvent.click(screen.getAllByRole('button', { name: /^Hear/ })[0])
     act(() => vi.advanceTimersByTime(3000))
     act(() => {
       synthesis.speak.mock.calls[0][0].onstart?.()
       synthesis.speak.mock.calls[0][0].onend?.()
     })
-    fireEvent.click(screen.getAllByRole('button', { name: 'Hear' })[1])
+    fireEvent.click(screen.getAllByRole('button', { name: /^Hear/ })[1])
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
     expect(synthesis.speak.mock.calls[1][0].text).toBe('\u4f60\u597d')
     expect(screen.getByRole('status')).toHaveTextContent('Starting online speech')
@@ -129,7 +129,7 @@ describe('browser speech controls', () => {
   it.each(['system', 'local', 'online'])('hides routine %s messages by default but keeps Stop available', source => {
     voices = source === 'system' ? [] : [{ ...mandarin, localService: source === 'local' }]
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
-    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     expect(screen.queryByRole('status')).not.toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Stop all playback' })).toBeVisible()
     if (source === 'online') act(() => vi.advanceTimersByTime(3000))
@@ -143,7 +143,7 @@ describe('browser speech controls', () => {
 
   it('changes debug visibility without restarting or stopping active speech', () => {
     const view = render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
-    fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     expect(screen.queryByRole('status')).not.toBeInTheDocument()
     const cancels = synthesis.cancel.mock.calls.length
     view.rerender(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus debug /></>)

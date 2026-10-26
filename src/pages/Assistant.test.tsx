@@ -297,8 +297,8 @@ describe('first usable Assistant', () => {
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     await go('reader/zh:tea-house')
     const card = (await screen.findByRole('heading', { name: getWord('zh:rain').native })).closest('article')!
-    expect(within(card).getAllByRole('button', { name: 'Ask' })).toHaveLength(1)
-    await userEvent.setup().click(within(card).getByRole('button', { name: 'Ask' }))
+    expect(within(card).getAllByRole('button', { name: 'Phrase actions' })).toHaveLength(1)
+    await userEvent.setup().click(openPhraseActions(card).getByRole('button', { name: 'Ask' }))
     await screen.findByRole('textbox', { name: 'Message Assistant' })
     const prepared = (await db.assistantThreads.toArray()).find(thread => thread.id !== old)!
     expect(prepared.source).toMatchObject({ text: getWord('zh:rain').native, meaning: 'rain', route: 'reader/zh:tea-house' })
@@ -340,9 +340,9 @@ describe('first usable Assistant', () => {
     for (const phrase of ['\u8336', '\u4f60\u597d']) {
       const block = within(reply).getByText(phrase).closest<HTMLDivElement>('.speech-block')!
       openPhraseActions(block)
-      expect(within(block).getByRole('button', { name: 'Hear' })).toBeInTheDocument()
-      expect(within(block).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
-      expect(within(block).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
+      expect(within(block).getByRole('button', { name: /^Hear/ })).toBeInTheDocument()
+      expect(openPhraseActions(block).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
+      expect(openPhraseActions(block).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
       expect(within(block).queryByRole('button', { name: 'Explain more', hidden: true })).not.toBeInTheDocument()
     }
     for (const block of reply.querySelectorAll('.assistant-markdown')) {
@@ -367,7 +367,7 @@ describe('first usable Assistant', () => {
     selection.addRange(range)
     fireEvent(document, new Event('selectionchange'))
     const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
-    await user.click(within(toolbar).getByRole('button', { name: 'Ask' }))
+    await user.click(openPhraseActions(toolbar).getByRole('button', { name: 'Ask' }))
     expect(screen.queryAllByRole('alert').map(element => element.textContent)).toEqual([])
     const selectedDraft = `${fullDraft}\n\nPlease explain this passage:\n\nAnother explanation.`
     await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe(selectedDraft))
@@ -491,7 +491,7 @@ describe('first usable Assistant', () => {
     render(<App />)
     const card = (await screen.findByRole('heading', { name: 'Practice this translation' })).parentElement!
     expect(screen.queryByRole('dialog', { name: 'Phrase practice' })).not.toBeInTheDocument()
-    fireEvent.click(within(card).getByRole('button', { name: 'Practice' }))
+    fireEvent.click(openPhraseActions(card).getByRole('button', { name: 'Practice' }))
     const panel = await screen.findByRole('dialog', { name: 'Phrase practice' })
     expect(panel).toHaveTextContent('Opening is silent')
     expect(panel.querySelector('.practice-target')).toHaveTextContent('\u8336')
@@ -581,12 +581,12 @@ describe('first usable Assistant', () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('button', { name: 'Show answer' })
-    expect(screen.queryByRole('button', { name: 'Ask' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Phrase actions' })).not.toBeInTheDocument()
     expect(document.querySelector('[data-assistant-protected="true"]')).not.toBeNull()
     await user.click(screen.getByRole('button', { name: 'Show answer' }))
-    await screen.findByRole('button', { name: 'Ask' })
+    await screen.findByRole('button', { name: 'Phrase actions' })
     expect(document.querySelector('[data-assistant-protected="true"]')).toBeNull()
-    await user.click(screen.getByRole('button', { name: 'Ask' }))
+    await user.click(openPhraseActions().getByRole('button', { name: 'Ask' }))
     await screen.findByRole('textbox', { name: 'Message Assistant' })
     expect((await db.sessions.get(id))?.questions[0].revealed).toBe(true)
     expect(await db.attempts.count()).toBe(0)

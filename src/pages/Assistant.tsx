@@ -89,7 +89,7 @@ function ConversationPhraseActions({ message, blockIndex, phrase, thread, contro
 }) {
   const key = JSON.stringify([message.id, blockIndex, phrase, thread.mode, thread.practiceInput ?? 'listen-repeat',
     thread.speechFeedback ?? true])
-  return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy} compact
+  return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy}
     speechConnection={controls.connection} connectionLoading={controls.loading}
     inline={{ message, blockIndex, active: controls.activeId === key, activate: () => controls.activate(key) }}
     onClose={() => controls.close(key)} />
@@ -122,7 +122,7 @@ function Message({ message, thread, onPractice, inlinePractice }: {
           ? message.role === 'assistant' && message.status === 'completed'
             ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice} />
             : <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
-            compact rate={thread.speechRate} onPractice={() => onPractice(block)} />
+              rate={thread.speechRate} onPractice={() => onPractice(block)} />
           : null}
       </div>)}
     {message.status === 'pending' && <p className="small muted" role="status">Working on your reply...</p>}

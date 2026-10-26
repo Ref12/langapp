@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { MessageCircle, MoreHorizontal, Repeat2, Square, Volume2, X } from 'lucide-react'
+import { MessageCircle, MoreHorizontal, PenLine, Repeat2, Square, Volume2, X } from 'lucide-react'
 import { prepareAssistantDraft } from '../../core/assistant/draft-actions'
 import { practicePhraseSchema, type AssistantSource, type SpeechBlock, type SpeechLocale, type SpeechRate } from '../../core/assistant/contracts'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayback } from '../../core/assistant/speech'
@@ -29,9 +29,10 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
   </button>
 }
 
-export function SnippetActions({ source, rate, onPrepared, onPractice, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', compact = false, knowledge = true }: {
-  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; practiceDisabled?: boolean; practiceTitle?: string
-  compact?: boolean; knowledge?: boolean
+/** The phrase's actions, always beside the phrase: an icon Hear button and a "…" menu (Ask, Practice, Write, Learn). */
+export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true }: {
+  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; onWrite?: () => void; practiceDisabled?: boolean; practiceTitle?: string
+  knowledge?: boolean
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
@@ -39,32 +40,36 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, practiceD
   const speedSetup = useContext(LocalSpeechRateSetupContext)
   const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
   const createsConversation = page !== 'conversation' || !currentId
-  const content = (close?: (restoreFocus?: boolean) => void) => <div className="snippet-actions" data-assistant-exclude>
-    <div className="button-row">
-      {source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} />}
-      <button type="button" className="button secondary snippet-button" disabled={pending || (createsConversation && speedSetup === 'loading')} onClick={() => {
-        setPending(true)
-        setError('')
-        const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
-        void prepareAssistantDraft(source, page === 'conversation' ? currentId : undefined).then(id => {
-          if (document.querySelector('dialog[open], [role="dialog"][aria-modal="true"]')) setPrepared(id)
-          else { close?.(false); onPrepared?.(); navigate(`conversation/${id}`) }
-        }, reason => { setError(reason instanceof Error ? reason.message : 'The Assistant draft could not be saved.') })
-          .finally(() => setPending(false))
-      }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask'}</button>
-      {onPractice && <button type="button" className="button secondary snippet-button" title={practiceTitle} disabled={practiceDisabled} onClick={() => { close?.(); onPractice() }}>
-        <Repeat2 size={15} />Practice
-      </button>}
+  return <div className="snippet-actions" data-assistant-exclude>
+    <div className="snippet-actions-row">
+      {source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} iconOnly label={`Hear ${source.text}`} />}
+      <ActionMenu label="Phrase actions" trigger={<MoreHorizontal size={20} />}>{close => <div className="phrase-menu">
+        <button type="button" className="button secondary snippet-button" disabled={pending || (createsConversation && speedSetup === 'loading')} onClick={() => {
+          setPending(true)
+          setError('')
+          const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
+          void prepareAssistantDraft(source, page === 'conversation' ? currentId : undefined).then(id => {
+            if (document.querySelector('dialog[open], [role="dialog"][aria-modal="true"]')) setPrepared(id)
+            else { close(false); onPrepared?.(); navigate(`conversation/${id}`) }
+          }, reason => { setError(reason instanceof Error ? reason.message : 'The Assistant draft could not be saved.') })
+            .finally(() => setPending(false))
+        }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask'}</button>
+        {onPractice && <button type="button" className="button secondary snippet-button" title={practiceTitle} disabled={practiceDisabled} onClick={() => { close(); onPractice() }}>
+          <Repeat2 size={15} />Practice
+        </button>}
+        {onWrite && <button type="button" className="button secondary snippet-button" title="Practice writing this phrase" disabled={practiceDisabled} onClick={() => { close(); onWrite() }}>
+          <PenLine size={15} />Write
+        </button>}
+        {knowledge && source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
+        {error && <p className="small" role="alert">{error}</p>}
+        {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
+      </div>}</ActionMenu>
     </div>
-    {knowledge && source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
-    {error && <p className="small" role="alert">{error}</p>}
-    {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
   </div>
-  return compact ? <ActionMenu label="Phrase actions" trigger={<MoreHorizontal size={20} />}>{close => content(close)}</ActionMenu> : content()
 }
 
 /** The Speak / Write switch of the Practice sheet; the last mode is remembered in the workspace preferences. */
-function usePracticeWrite(text: string, route: string, romanization?: string, forced?: 'write') {
+function usePracticeWrite(text: string, route: string, romanization?: string, forced?: 'speak' | 'write') {
   const stored = useLiveQuery(() => db.preferences.get('workspace').then(item => item?.practiceMode ?? 'speak'), [])
   const [local, setLocal] = useState<'speak' | 'write'>()
   const mode = local ?? forced ?? stored ?? 'speak'
@@ -75,7 +80,7 @@ function usePracticeWrite(text: string, route: string, romanization?: string, fo
   return { mode, onMode, content: <WritePractice text={text} romanization={romanization} route={route} onSpeak={() => onMode('speak')} /> }
 }
 
-function PracticeSheet({ route, ...props }: { route: string } & Omit<Parameters<typeof PracticePlaylist>[0], 'write'> & { forced?: 'write' }) {
+function PracticeSheet({ route, ...props }: { route: string } & Omit<Parameters<typeof PracticePlaylist>[0], 'write'> & { forced?: 'speak' | 'write' }) {
   const { forced, ...rest } = props
   const write = usePracticeWrite(rest.phrase.text, route, rest.phrase.romanization, forced)
   return <PracticePlaylist {...rest} write={write} />
@@ -120,11 +125,12 @@ export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
 /** Hear / Ask / Practice for a fixed Mandarin text, with the same standalone practice playlist the selection toolbar opens. */
 export function PracticeSnippet({ source, knowledge = true }: { source: AssistantSource; knowledge?: boolean }) {
   const [practice, setPractice] = useState<SpeechBlock>()
+  const [mode, setMode] = useState<'speak' | 'write'>()
   const [error, setError] = useState('')
   const [saved, setSaved] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
   const preferences = useLiveQuery(() => db.preferences.get('workspace'), [])
   const unavailable = selectionPracticeUnavailable(source.text)
-  const open = () => {
+  const open = (next?: 'speak' | 'write') => {
     setError('')
     try {
       if (unavailable) throw new Error(unavailable)
@@ -133,15 +139,16 @@ export function PracticeSnippet({ source, knowledge = true }: { source: Assistan
       interruptAudio()
       const failure = stopBrowserSpeech()
       if (failure) throw new Error(failure)
+      setMode(next)
       setPractice(phrase)
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Practice could not be opened.')
     }
   }
   return <>
-    <SnippetActions source={source} knowledge={knowledge} rate={preferences?.defaultSpeechRate} onPractice={open} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
+    <SnippetActions source={source} knowledge={knowledge} rate={preferences?.defaultSpeechRate} onPractice={() => open()} onWrite={() => open('write')} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
     {error && <p role="alert" className="small connection-error">{error}</p>}
-    {practice && <PracticeSheet route={source.route} phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
+    {practice && <PracticeSheet route={source.route} forced={mode} phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
       savedEnds={saved?.text === practice.text ? saved.ends : undefined} savedItems={saved?.text === practice.text ? saved.items : undefined}
       busy={false} recordingActive={false}
       saveNotice="This phrase and its edited playlist are saved in History. No conversation or learning progress is changed."
@@ -152,7 +159,7 @@ export function PracticeSnippet({ source, knowledge = true }: { source: Assistan
 
 export function SelectionActions({ route, title, rate = 1 }: { route: string; title: string; rate?: SpeechRate }) {
   const [text, setText] = useState<string>()
-  const [practice, setPractice] = useState<{ phrase: SpeechBlock; rate: SpeechRate }>()
+  const [practice, setPractice] = useState<{ phrase: SpeechBlock; rate: SpeechRate; mode?: 'speak' | 'write' }>()
   const [practiceError, setPracticeError] = useState('')
   const [savedPractice, setSavedPractice] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
   const toolbar = useRef<HTMLDivElement>(null)
@@ -183,7 +190,7 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
     setText(undefined); setPractice(undefined); setSavedPractice(undefined); setPracticeError('')
   }, [route])
   const unavailable = text ? selectionPracticeUnavailable(text) : undefined
-  const openPractice = () => {
+  const openPractice = (mode?: 'speak' | 'write') => {
     if (!text) return
     setPracticeError('')
     try {
@@ -193,7 +200,7 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
       interruptAudio()
       const failure = stopBrowserSpeech()
       if (failure) throw new Error(failure)
-      setPractice({ phrase, rate: threadRate ?? rate })
+      setPractice({ phrase, rate: threadRate ?? rate, mode })
     } catch (reason) {
       setPracticeError(reason instanceof Error ? reason.message : 'Selection practice could not be opened.')
     }
@@ -202,13 +209,13 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
     {text && <div className="selection-actions" ref={toolbar} role="toolbar" aria-label="Selected text actions" data-assistant-exclude
       hidden={Boolean(practice)} onMouseDown={event => event.preventDefault()}>
       <SnippetActions key={`${route}:${text}`} source={{ text, title: `Selection from ${title}`, route, locale: snippetLocale(text) }}
-        onPrepared={() => setText(undefined)} onPractice={openPractice} practiceDisabled={Boolean(unavailable)}
+        onPrepared={() => setText(undefined)} onPractice={() => openPractice()} onWrite={() => openPractice('write')} practiceDisabled={Boolean(unavailable)}
         practiceTitle={unavailable ?? 'Practice the selected Mandarin text'} />
       <button type="button" className="icon-button" aria-label="Dismiss selected text actions" onClick={() => setText(undefined)}><X size={18} /></button>
       {unavailable && <p className="small muted selection-actions-note">{unavailable}</p>}
       {practiceError && <p role="alert" className="small connection-error selection-actions-note">{practiceError}</p>}
     </div>}
-    {practice && <PracticeSheet route={route} key={`${route}:${practice.phrase.text}`} phrase={practice.phrase} rate={practice.rate}
+    {practice && <PracticeSheet route={route} forced={practice.mode} key={`${route}:${practice.phrase.text}`} phrase={practice.phrase} rate={practice.rate}
       savedEnds={savedPractice?.text === practice.phrase.text ? savedPractice.ends : undefined}
       savedItems={savedPractice?.text === practice.phrase.text ? savedPractice.items : undefined}
       busy={false} recordingActive={false}

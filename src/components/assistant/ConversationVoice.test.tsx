@@ -304,7 +304,7 @@ describe('conversation voice input and replies', () => {
       }
       if (change === 'navigate') await act(async () => { window.location.hash = 'overview'; window.dispatchEvent(new HashChangeEvent('hashchange')) })
       if (change === 'escape') fireEvent.keyDown(document, { key: 'Escape' })
-      if (change === 'hear') fireEvent.click(openPhraseActions().getByRole('button', { name: 'Hear' }))
+      if (change === 'hear') fireEvent.click(within(document.body).getByRole('button', { name: /^Hear/ }))
       await act(async () => finish(response()))
       await waitFor(async () => expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.status === 'completed' && message.runId !== undefined && message.role === 'assistant').count()).toBe(1))
       if (change !== 'navigate') await screen.findByRole('button', { name: 'Send' })
@@ -418,8 +418,8 @@ describe('conversation voice input and replies', () => {
     await begin()
     const firstCancel = cancel
     openPhraseActions()
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Practice' })).toBeEnabled())
-    await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Practice' })) })
+    await waitFor(() => expect(openPhraseActions().getByRole('button', { name: 'Practice' })).toBeEnabled())
+    await act(async () => { fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' })) })
     const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
     fireEvent.click(within(popup).getByRole('button', { name: 'Recording and feedback' }))
     const practice = await within(popup).findByRole('region', { name: 'Optional whole phrase recording' })

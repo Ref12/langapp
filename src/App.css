@@ -182,8 +182,6 @@ summary { cursor: pointer; min-height: 28px; }
 .lesson-heading progress { margin-top: 10px; }
 .lesson-word-card .word-native { margin: 20px 0 12px; text-align: center; font-size: 44px; line-height: 1.5; }
 .lesson-word-card .word-meaning { text-align: center; margin-bottom: 12px; }
-.lesson-word-card .snippet-actions { margin: 10px 0; }
-.lesson-word-card .snippet-actions .button-row { justify-content: center; }
 .lesson-pagination { display: flex; justify-content: space-between; gap: 10px; }
 .lesson-pagination .button { flex: 1; }
 .lesson-overview { font-size: 13px; color: var(--muted); }
@@ -386,7 +384,6 @@ select { padding: 10px; }
   .lesson-player { gap: 6px; }
   .lesson-word-card { padding: 8px; }
   .lesson-word-card .word-native { margin: 8px 0 4px; font-size: 32px; line-height: 1.25; }
-  .lesson-word-card .snippet-actions { margin: 6px 0; }
   .lesson-grammar-card { padding: 10px; }
   .lesson-grammar-card .grammar-notes { margin-top: 6px; }
   .lesson-practice-overview { padding: 10px; }

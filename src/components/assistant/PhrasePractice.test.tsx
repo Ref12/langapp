@@ -80,8 +80,8 @@ async function openPractice() {
   let popup = screen.queryByRole('dialog', { name: 'Phrase practice' })
   if (!popup) {
     const card = (await screen.findByRole('heading', { name: 'Practice this translation' })).parentElement!
-    await waitFor(() => expect(within(card).getByRole('button', { name: 'Practice' })).toBeEnabled())
-    await act(async () => { fireEvent.click(within(card).getByRole('button', { name: 'Practice' })) })
+    await waitFor(() => expect(openPhraseActions(card).getByRole('button', { name: 'Practice' })).toBeEnabled())
+    await act(async () => { fireEvent.click(openPhraseActions(card).getByRole('button', { name: 'Practice' })) })
     popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
   }
   const opened = popup
@@ -364,7 +364,7 @@ describe('automatic translation practice', () => {
     vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(synthesis))
     render(<App />)
     await begin()
-    fireEvent.click(within(screen.getByLabelText('Translation practice')).getByRole('button', { name: 'Hear' }))
+    fireEvent.click(within(screen.getByLabelText('Translation practice')).getByRole('button', { name: /^Hear/ }))
     expect(cancel).toHaveBeenCalled()
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
     expect(await db.assistantMessages.count()).toBe(0)

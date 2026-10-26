@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { openPhraseActions } from '../../test/phrase-actions'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace } from '../../core/database'
 import { PracticeSnippet } from './SnippetActions'
@@ -12,7 +13,7 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 describe('Write mode of the Practice sheet', () => {
   it('offers Speak and Write, lists each word with pinyin and links to the writing route with the back route', async () => {
     render(<PracticeSnippet source={source('\u5b66\u751f \u8001\u5e08')} />)
-    fireEvent.click(screen.getByRole('button', { name: /Practice/ }))
+    fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     const write = await screen.findByRole('button', { name: 'Write' })
     expect(screen.getByRole('button', { name: 'Speak' })).toHaveAttribute('aria-pressed', 'true')
     fireEvent.click(write)
@@ -29,7 +30,7 @@ describe('Write mode of the Practice sheet', () => {
 
   it('strips punctuation from rows, pinyin and the word query', async () => {
     render(<PracticeSnippet source={source('\u5b66\u751f\uff0c\u8001\u5e08\u3002')} />)
-    fireEvent.click(screen.getByRole('button', { name: /Practice/ }))
+    fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     fireEvent.click(await screen.findByRole('button', { name: 'Write' }))
     const links = await screen.findAllByRole('link', { name: /^Write / })
     expect(links.map(link => link.textContent)).toEqual(['Write \u5b66\u751f', 'Write \u8001\u5e08'])
@@ -37,14 +38,25 @@ describe('Write mode of the Practice sheet', () => {
     expect(document.querySelector('.practice-write')!.textContent).not.toMatch(/[\uff0c\u3002]/)
   })
 
+  it('opens Write mode directly from the Write menu item; the menu order is Ask, Practice, Write, Learn', async () => {
+    render(<PracticeSnippet source={source('\u5b66\u751f')} />)
+    const menu = openPhraseActions()
+    await menu.findByRole('button', { name: 'Learn' })
+    const names = menu.getAllByRole('button').map(b => b.textContent)
+    expect(names).toEqual(['Ask', 'Practice', 'Write', 'Learn'])
+    fireEvent.click(menu.getByRole('button', { name: 'Write' }))
+    expect(await screen.findByRole('button', { name: 'Write', pressed: true })).toBeInTheDocument()
+    expect(document.querySelector('.practice-write')).not.toBeNull()
+  })
+
   it('remembers the last mode', async () => {
     const first = render(<PracticeSnippet source={source('\u5b66\u751f')} />)
-    fireEvent.click(screen.getByRole('button', { name: /Practice/ }))
+    fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     fireEvent.click(await screen.findByRole('button', { name: 'Write' }))
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.practiceMode).toBe('write'))
     first.unmount(); cleanup()
     render(<PracticeSnippet source={source('\u5b66\u751f')} />)
-    fireEvent.click(screen.getByRole('button', { name: /Practice/ }))
+    fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     await waitFor(() => expect(screen.getByRole('button', { name: 'Write' })).toHaveAttribute('aria-pressed', 'true'))
   })
 

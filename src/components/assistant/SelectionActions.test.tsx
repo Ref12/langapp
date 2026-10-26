@@ -1,4 +1,5 @@
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { openPhraseActions } from '../../test/phrase-actions'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace, loadWorkspace } from '../../core/database'
@@ -52,7 +53,7 @@ async function select(id = 'source-text') {
 }
 async function open() {
   const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
-  fireEvent.click(within(toolbar).getByRole('button', { name: 'Practice' }))
+  fireEvent.click(openPhraseActions(toolbar).getByRole('button', { name: 'Practice' }))
   const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
   await waitFor(() => expect(within(popup).getByRole('button', { name: 'Edit playlist' })).toBeEnabled())
   fireEvent.click(within(popup).getByRole('button', { name: 'Edit playlist' }))
@@ -65,8 +66,8 @@ it('offers Hear, Ask, and Practice and opens a silent same-page playlist with cl
   render(<Harness />)
   await select('ruby-text')
   const toolbar = screen.getByRole('toolbar', { name: 'Selected text actions' })
-  expect(within(toolbar).getByRole('button', { name: 'Hear' })).toBeEnabled()
-  expect(within(toolbar).getByRole('button', { name: 'Ask' })).toBeEnabled()
+  expect(within(toolbar).getByRole('button', { name: /^Hear/ })).toBeEnabled()
+  expect(openPhraseActions(toolbar).getByRole('button', { name: 'Ask' })).toBeEnabled()
   const popup = await open()
   expect(within(popup).getByRole('button', { name: /^Play step 1:/ })).toHaveTextContent('茶。')
   expect(within(popup).getByLabelText('Practice speed')).toHaveValue('0.25')
@@ -116,11 +117,11 @@ it.each([
   render(<Harness text={text} />)
   await select()
   const toolbar = screen.getByRole('toolbar', { name: 'Selected text actions' })
-  const practice = within(toolbar).getByRole('button', { name: 'Practice' })
+  const practice = openPhraseActions(toolbar).getByRole('button', { name: 'Practice' })
   expect(practice).toBeDisabled()
   expect(practice.getAttribute('title')).toContain(reason)
   expect(within(toolbar).getByText(new RegExp(reason))).toBeVisible()
-  expect(within(toolbar).getByRole('button', { name: 'Ask' })).toBeEnabled()
+  expect(openPhraseActions(toolbar).getByRole('button', { name: 'Ask' })).toBeEnabled()
 })
 
 it('preserves keyboard access and restores focus after closing practice', async () => {
@@ -128,26 +129,28 @@ it('preserves keyboard access and restores focus after closing practice', async 
   render(<Harness />)
   await select()
   await user.keyboard('{Alt>}{Enter}{/Alt}')
-  expect(screen.getByRole('button', { name: 'Hear' })).toHaveFocus()
+  expect(screen.getByRole('button', { name: /^Hear/ })).toHaveFocus()
   await user.tab()
+  expect(screen.getByRole('button', { name: 'Phrase actions' })).toHaveFocus()
+  await user.keyboard('{Enter}')
   await user.tab()
-  const button = screen.getByRole('button', { name: 'Practice' })
+  const button = openPhraseActions().getByRole('button', { name: 'Practice' })
   expect(button).toHaveFocus()
   await user.keyboard('{Enter}')
   const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
   await within(popup).findByRole('region', { name: 'Current practice step' })
   await user.keyboard('{Escape}')
   await waitFor(() => expect(popup).not.toBeInTheDocument())
-  expect(button).toHaveFocus()
+  expect(screen.getByRole('button', { name: 'Phrase actions' })).toHaveFocus()
 })
 
 it('stops existing Hear playback and reports interruption failures before opening practice', async () => {
   render(<Harness />)
   await select()
-  fireEvent.click(screen.getByRole('button', { name: 'Hear' }))
+  fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
   expect(getPlaybackState().activeId).toBeDefined()
   synthesis.cancel.mockImplementationOnce(() => { throw new Error('Device busy') })
-  fireEvent.click(screen.getByRole('button', { name: 'Practice' }))
+  fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   expect(screen.getByRole('alert')).toHaveTextContent('The browser could not stop speech playback.')
   await open()

@@ -92,8 +92,8 @@ async function openPractice(index = 0) {
   }
   if (!popup) {
     openPhraseActions(block)
-    await waitFor(() => expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled())
-    await act(async () => { fireEvent.click(within(block).getByRole('button', { name: 'Practice' })) })
+    await waitFor(() => expect(openPhraseActions(block).getByRole('button', { name: 'Practice' })).toBeEnabled())
+    await act(async () => { fireEvent.click(openPhraseActions(block).getByRole('button', { name: 'Practice' })) })
     popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
     popupSource = block
   }
@@ -314,9 +314,9 @@ describe('source-block popup practice', () => {
     expect(playCue).toHaveBeenCalledTimes(1)
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
     openPhraseActions(source)
-    expect(within(source).getByRole('button', { name: 'Hear' })).toBeInTheDocument()
-    expect(within(source).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
-    expect(within(source).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
+    expect(within(source).getByRole('button', { name: /^Hear/ })).toBeInTheDocument()
+    expect(openPhraseActions(source).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
+    expect(openPhraseActions(source).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
     expect(within(block).getAllByRole('button').map(button => button.textContent)).toEqual(['Submit', 'Cancel'])
     expect(openPhraseActions((await blocks())[0]).getByRole('button', { name: 'Practice' })).toBeEnabled()
     expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument()

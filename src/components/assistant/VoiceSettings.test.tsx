@@ -14,7 +14,6 @@ import { LOCAL_TTS_PATH, LOCAL_TTS_VOICES_PATH } from '../../core/local-tts-cont
 import { LOCAL_SETTINGS_PATH } from '../../core/local-settings-contracts'
 import { resetProfileStorage } from '../../test/profile-storage'
 import { withAutoCompletedSpeechPreparation } from '../../test/mock-speech-preparation'
-import { openPhraseActions } from '../../test/phrase-actions'
 
 class Utterance {
   constructor(public text: string) {}
@@ -241,7 +240,7 @@ describe('Hear voice settings', () => {
     window.location.hash = `conversation/${threadId}`
     render(<App />)
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
-    fireEvent.click(openPhraseActions(reply).getByRole('button', { name: 'Hear' }))
+    fireEvent.click(within(reply).getByRole('button', { name: /^Hear/ }))
     await waitFor(() => expect(MockAudio.instances).toHaveLength(1))
     expect(fetcher).toHaveBeenCalledOnce()
     expect(fetcher.mock.calls[0][0]).toBe(LOCAL_TTS_PATH)
@@ -398,7 +397,7 @@ describe('Hear voice settings', () => {
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
     const zhBlock = within(reply).getByText('\u8336').closest<HTMLElement>('.speech-block')!
     const enBlock = within(reply).getByText('Tea time').closest<HTMLElement>('.assistant-markdown')!
-    fireEvent.click(openPhraseActions(zhBlock).getByRole('button', { name: 'Hear' }))
+    fireEvent.click(within(zhBlock).getByRole('button', { name: /^Hear/ }))
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
     expect(synthesis.speak.mock.calls[0][0].voice).toBe(onlineMandarin)
     act(() => synthesis.speak.mock.calls[0][0].onend?.())
@@ -410,7 +409,7 @@ describe('Hear voice settings', () => {
     selection.addRange(range)
     fireEvent(document, new Event('selectionchange'))
     const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
-    fireEvent.click(within(toolbar).getByRole('button', { name: 'Hear' }))
+    fireEvent.click(within(toolbar).getByRole('button', { name: /^Hear/ }))
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
     expect(synthesis.speak.mock.calls[1][0].voice).toBe(onlineEnglish)
     expect(screen.queryByText('Looking for a voice...')).not.toBeInTheDocument()

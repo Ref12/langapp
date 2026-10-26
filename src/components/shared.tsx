@@ -40,10 +40,14 @@ export function WordCard({ word, state, pinyin, source, run, busy, compact = fal
     : <p className="small muted">Starter example / separate from curriculum evidence</p>
   return <article className={`word-card${compact ? ' lesson-word-card' : ''}`}>
     <div className="card-topline"><span className="eyebrow">{word.kind}</span><span className="tag">{readingStage(state)}</span></div>
+    <div className="phrase-row">
+      <div className="phrase-row-text">
     <h3 lang="zh-Hans" className="word-native"><MandarinWord word={word} state={state} pinyin={pinyin} /></h3>
     <p className="word-meaning">{word.meaning}</p>
+      </div>
+      <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: 'zh-Hans', title: `Word: ${word.meaning}`, route }} />
+    </div>
     {!compact && example}
-    <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: 'zh-Hans', title: `Word: ${word.meaning}`, route }} />
     {!compact && curriculumLink}
     {!source.startsWith('lesson:') && <button className="button secondary full-width" disabled={busy || Boolean(state)}
       onClick={() => void run(() => trackWord(word.id, source))}>

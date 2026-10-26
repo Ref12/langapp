@@ -1,4 +1,5 @@
 import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
+import { openPhraseActions } from '../test/phrase-actions'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
@@ -107,12 +108,13 @@ describe('New and Review', () => {
     expect(screen.queryByRole('button', { name: /knowledge set/ })).not.toBeInTheDocument()
     expect(screen.queryByText('Eligible for review')).not.toBeInTheDocument()
     expect(screen.getByRole('region', { name: 'Start the exercises' })).toContainElement(screen.getByRole('button', { name: 'Start exercises' }))
-    // Each example row offers Practice beside Hear and Ask; it opens the practice playlist for that phrase.
-    const hearButtons = screen.getAllByRole('button', { name: 'Hear' })
-    const practiceButtons = screen.getAllByRole('button', { name: 'Practice' })
-    expect(practiceButtons).toHaveLength(hearButtons.length)
+    // Each example row has its own Hear icon and "…" menu (Ask, Practice, Write); it opens the practice playlist for that phrase.
+    const hearButtons = screen.getAllByRole('button', { name: /^Hear/ })
+    const menus = screen.getAllByRole('button', { name: 'Phrase actions' })
+    expect(menus).toHaveLength(hearButtons.length)
+    expect(hearButtons.length).toBeGreaterThan(0)
     expect(screen.getAllByText('I am a student.').length).toBeGreaterThan(0)
-    await user.click(practiceButtons[0])
+    await user.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     expect(await screen.findByRole('dialog')).toBeInTheDocument()
     await user.keyboard('{Escape}')
     await user.click(screen.getByRole('button', { name: 'Start exercises' }))
