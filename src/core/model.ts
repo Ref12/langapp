@@ -59,6 +59,8 @@ export interface Preferences {
   defaultSpeechRate?: SpeechRate
   speechDebugMessages?: boolean
   sudokuAutoSpeak?: boolean
+  writingAutoSpeak?: boolean
+  haptics?: boolean
   sudokuShowPinyin?: boolean
   tileAutoSpeak?: boolean
   practiceMode?: 'speak' | 'write'

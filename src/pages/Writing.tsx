@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { ArrowLeft, Check, ChevronLeft, ChevronRight, CircleHelp, Eraser, Play, Square, Undo2, X } from 'lucide-react'
+import { ArrowLeft, Check, ChevronLeft, ChevronRight, CircleHelp, Eraser, Play, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react'
 import { characterAssetIndex, characterAttributionUrl, loadCharacterAsset, type CharacterAsset } from '../core/characters/assets'
 import { recordCharacterPractice } from '../core/characters/store'
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/characters/geometry'
@@ -7,6 +7,9 @@ import { advanceRound, commitStroke, isLastStep, memoryHint, newWritingRound, PH
 import { buildWritingRoute, isHan, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
 import { useCatalog } from '../components/study/useCatalog'
 import { EmptyState, type PageProps } from '../components/shared'
+import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
+import { haptic } from '../core/haptics'
+import { savePreferences } from '../core/learning'
 import { Pinyin } from '../components/Pinyin'
 import './writing.css'
 
@@ -88,6 +91,14 @@ export function WritingPlayer({ asset, back, place, skipped = [], hasPrevious = 
   const svg = useRef<SVGSVGElement>(null)
   const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
   const marker = useId().replace(/:/g, '')
+  const speechId = useId()
+  const autoSpeak = workspace.preferences.writingAutoSpeak !== false
+  useEffect(() => () => {
+    if (getPlaybackState().activeId === speechId) stopBrowserSpeech()
+  }, [speechId])
+  useEffect(() => {
+    if (!autoSpeak && getPlaybackState().activeId === speechId) stopBrowserSpeech()
+  }, [autoSpeak, speechId])
   const { catalog } = useCatalog()
   const word = useMemo(() => catalog ? [...catalog.units.values()].find(unit => unit.kind === 'vocabulary' && unit.record.ch.includes(asset.character)) : undefined, [catalog, asset.character])
   const completed = round.completed === guides.length
@@ -158,7 +169,11 @@ export function WritingPlayer({ asset, back, place, skipped = [], hasPrevious = 
     pointer.current = undefined
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
     setInk([])
+    const next = commitStroke(round, active.points, guides)
+    if (next !== round) haptic(next.completed > round.completed ? 'success' : 'error', workspace.preferences.haptics !== false)
     setRound(value => commitStroke(value, active.points, guides))
+    // Every finished stroke, accepted or missed, says the character; blocked speech stays silent.
+    if (autoSpeak) { try { playBrowserSpeech(speechId, asset.character, 'zh-Hans') } catch { /* ignore */ } }
   }
   function previous() {
     if (!canPrevious) return
@@ -249,6 +264,9 @@ export function WritingPlayer({ asset, back, place, skipped = [], hasPrevious = 
         {ink.length > 0 && <polyline points={ink.map(point => point.join(',')).join(' ')} className="writing-ink" aria-hidden="true" />}
       </svg>
       <div className="writing-controls" role="toolbar" aria-label="Writing controls">
+        <button className="icon-button" aria-label={`${autoSpeak ? 'Mute' : 'Unmute'} automatic character audio`} aria-pressed={!autoSpeak}
+          title={autoSpeak ? 'Mute automatic character audio' : 'Unmute automatic character audio'} disabled={busy}
+          onClick={() => { if (autoSpeak) stopBrowserSpeech(); void run(() => savePreferences({ writingAutoSpeak: !autoSpeak })) }}>{autoSpeak ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
         <button className="icon-button" title="Undo last stroke" aria-label="Undo" disabled={!round.completed || round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: Math.max(0, value.completed - 1), feedback: '' })) }}><Undo2 size={18} /></button>
         <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>

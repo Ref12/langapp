@@ -20,6 +20,8 @@ export const workspaceSchema = z.object({
     defaultSpeechRate: speechRateSchema.optional(),
     speechDebugMessages: z.boolean().optional(),
     sudokuAutoSpeak: z.boolean().optional(),
+    writingAutoSpeak: z.boolean().optional(),
+    haptics: z.boolean().optional(),
     sudokuShowPinyin: z.boolean().optional(),
     tileAutoSpeak: z.boolean().optional(),
     practiceMode: z.enum(['speak', 'write']).optional(),

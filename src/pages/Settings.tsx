@@ -7,6 +7,7 @@ import { VoiceSettings } from '../components/assistant/VoiceSettings'
 import { ProfileSettings } from '../components/ProfileSettings'
 import { BackupPanel } from '../components/BackupPanel'
 import { Diagnostics } from '../components/Diagnostics'
+import { hapticsSupported } from '../core/haptics'
 import { DEFAULT_PINYIN_FORMAT, pinyinFormatSchema } from '../core/pinyin'
 import { LocalPinyinSetupContext } from '../components/assistant/local-ai-setup-context'
 
@@ -35,6 +36,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
         void run(() => savePreferences({ theme }))
       }}><option value="dark">Dark</option><option value="light">Light</option></select></label>
       <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Pinyin for unfamiliar words</label>
+      <label className="toggle"><input type="checkbox" disabled={busy || !hapticsSupported()} checked={workspace.preferences.haptics !== false} onChange={event => void run(() => savePreferences({ haptics: event.target.checked }))} /> Vibration feedback{!hapticsSupported() && ' (not available on this device)'}</label>
       <label>Pinyin format<select disabled={busy || pinyinSetup === 'loading'} value={workspace.preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT} onChange={event => {
         const value = event.target.value
         void run(() => savePreferences({ pinyinFormat: pinyinFormatSchema.parse(value) }))

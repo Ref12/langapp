@@ -5,6 +5,8 @@ import { initializeWorkspace, loadWorkspace, db } from '../core/database'
 import { Writing, WritingPlayer } from './Writing'
 import type { CharacterAsset } from '../core/characters/assets'
 import type { PageProps } from '../components/shared'
+import { withAutoCompletedSpeechPreparation } from '../test/mock-speech-preparation'
+import { clearVoiceCache, getPlaybackState, setSpeechVoicePreferences, stopBrowserSpeech } from '../core/assistant/speech'
 
 const assets = vi.hoisted(() => ({ load: vi.fn() }))
 vi.mock('../core/characters/assets', () => ({
@@ -17,6 +19,11 @@ vi.mock('../components/study/useCatalog', () => ({ useCatalog: () => ({}) }))
 const asset: CharacterAsset = { character: '\u4e00', strokeCount: 1, reviewed: true, variant: 'reviewed-monoline', paths: ['M10 50 L90 50'] }
 let props: PageProps
 let captured = false
+class Utterance { text: string; lang = ''; voice: SpeechSynthesisVoice | null = null; rate = 1; onstart?: (() => void) | null; onend?: (() => void) | null; onerror?: ((event: { error: string }) => void) | null
+  constructor(text: string) { this.text = text } }
+const voice = { voiceURI: 'test-zh', name: 'Test Mandarin', lang: 'zh-CN', localService: true, default: true } as SpeechSynthesisVoice
+let speak: ReturnType<typeof vi.fn<(utterance: Utterance) => void>>
+let cancel: ReturnType<typeof vi.fn>
 beforeEach(async () => {
   await db.delete()
   await db.open()
@@ -29,6 +36,10 @@ beforeEach(async () => {
     isPrimary: boolean
     constructor(type: string, options: PointerEventInit) { super(type, options); this.pointerId = options.pointerId ?? 1; this.isPrimary = options.isPrimary ?? true }
   })
+  speak = vi.fn(); cancel = vi.fn()
+  vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(Object.assign(new EventTarget(), { getVoices: () => [voice], speak, cancel })))
+  vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
+  stopBrowserSpeech(); setSpeechVoicePreferences(); clearVoiceCache()
   captured = false
   vi.spyOn(SVGElement.prototype, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 100))
   Object.defineProperties(SVGElement.prototype, {
@@ -54,6 +65,73 @@ async function finishGuidedPhases() {
 }
 
 describe('writing exercise', () => {
+  const spoken = () => speak.mock.calls.map(call => call[0].text)
+  it('speaks the character after every finished stroke, accepted or missed, but not on undo', async () => {
+    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    stroke()
+    await waitFor(() => expect(spoken()).toEqual(['\u4e00']))
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    stroke([0, 0], [1, 1])
+    await waitFor(() => expect(spoken()).toEqual(['\u4e00', '\u4e00']))
+    expect(speak.mock.calls.every(call => call[0].lang.startsWith('zh'))).toBe(true)
+    fireEvent.click(screen.getByRole('button', { name: 'Clear' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Watch stroke order' }))
+    await new Promise(resolve => setTimeout(resolve, 20))
+    expect(speak).toHaveBeenCalledTimes(2)
+  })
+  describe('haptics', () => {
+    let vibrate: ReturnType<typeof vi.fn>
+    beforeEach(() => { vibrate = vi.fn(); Object.defineProperty(navigator, 'vibrate', { value: vibrate, configurable: true, writable: true }) })
+    afterEach(() => { delete (navigator as { vibrate?: unknown }).vibrate })
+    it('buzzes briefly for an accepted stroke and longer for a miss', async () => {
+      render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+      stroke()
+      expect(vibrate).toHaveBeenLastCalledWith(20)
+      fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+      stroke([0, 0], [1, 1])
+      expect(vibrate).toHaveBeenLastCalledWith(60)
+      expect(vibrate).toHaveBeenCalledTimes(2)
+      fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
+      expect(vibrate).toHaveBeenCalledTimes(2)
+    })
+    it('stays silent when the preference is off', () => {
+      render(<WritingPlayer {...props} workspace={{ ...props.workspace, preferences: { ...props.workspace.preferences, haptics: false } }} asset={asset} back="dictionary/characters" />)
+      stroke()
+      expect(vibrate).not.toHaveBeenCalled()
+    })
+    it('does not fail when vibrate is unavailable', () => {
+      delete (navigator as { vibrate?: unknown }).vibrate
+      render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+      expect(() => stroke()).not.toThrow()
+    })
+  })
+  it('does not speak on undo', async () => {
+    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    stroke()
+    await waitFor(() => expect(speak).toHaveBeenCalledTimes(1))
+    fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
+    await new Promise(resolve => setTimeout(resolve, 20))
+    expect(speak).toHaveBeenCalledTimes(1)
+  })
+  it('mutes, stops playback, persists the preference and stays silent', async () => {
+    const view = render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    stroke()
+    await waitFor(() => expect(getPlaybackState().activeId).toBeTruthy())
+    const mute = screen.getByRole('button', { name: 'Mute automatic character audio' })
+    expect(mute).toHaveAttribute('aria-pressed', 'false')
+    fireEvent.click(mute)
+    await waitFor(async () => expect((await loadWorkspace()).preferences.writingAutoSpeak).toBe(false))
+    expect(cancel).toHaveBeenCalled()
+    expect(getPlaybackState().activeId).toBeUndefined()
+    const workspace = await loadWorkspace()
+    view.rerender(<WritingPlayer {...props} workspace={workspace} asset={asset} back="dictionary/characters" />)
+    expect(screen.getByRole('button', { name: 'Unmute automatic character audio' })).toHaveAttribute('aria-pressed', 'true')
+    speak.mockClear()
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    stroke()
+    await new Promise(resolve => setTimeout(resolve, 20))
+    expect(speak).not.toHaveBeenCalled()
+  })
   it('completes nine repetitions and saves practice without changing reading or manual knowledge', async () => {
     const onNext = vi.fn()
     render(<WritingPlayer {...props} asset={asset} back="dictionary/characters/knowledge" onNext={onNext} />)

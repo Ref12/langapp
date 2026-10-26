@@ -19,6 +19,8 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (next.speechVoices !== undefined) next.speechVoices = speechVoicePreferencesSchema.parse(next.speechVoices)
     if (next.speechDebugMessages !== undefined && typeof next.speechDebugMessages !== 'boolean') throw new Error('Choose whether speech debug messages are shown.')
     if (next.sudokuAutoSpeak !== undefined && typeof next.sudokuAutoSpeak !== 'boolean') throw new Error('Choose whether automatic Sudoku speech is on or off.')
+    if (next.haptics !== undefined && typeof next.haptics !== 'boolean') throw new Error('Choose whether vibration feedback is on or off.')
+    if (next.writingAutoSpeak !== undefined && typeof next.writingAutoSpeak !== 'boolean') throw new Error('Choose whether automatic writing speech is on or off.')
     if (next.sudokuShowPinyin !== undefined && typeof next.sudokuShowPinyin !== 'boolean') throw new Error('Choose whether selected-character pinyin is shown.')
     if (next.tileAutoSpeak !== undefined && typeof next.tileAutoSpeak !== 'boolean') throw new Error('Choose whether tile speech is on or off.')
     if (next.practiceMode !== undefined && next.practiceMode !== 'speak' && next.practiceMode !== 'write') throw new Error('Choose Speak or Write practice.')
