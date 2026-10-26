@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
-import { buildCatalog, type BandData } from '../core/study/catalog'
+import { buildCatalog, catalogCounts, type BandData } from '../core/study/catalog'
 import { Dictionary } from './Dictionary'
 import { Writing } from './Writing'
 import { useRoute } from '../core/routing'
@@ -75,6 +75,22 @@ describe('dictionary characters', () => {
     await act(async () => { await db.knowledge.delete('vocabulary:teacup') })
     await screen.findByRole('button', { name: 'My knowledge set (1)' })
     expect(screen.getAllByRole('article')).toHaveLength(1)
+  })
+  it('shows knowledge-set counts on tabs and band options in that scope and totals in the full list', async () => {
+    const user = userEvent.setup()
+    window.location.hash = 'dictionary/vocabulary'
+    await db.knowledge.add({ ref: 'vocabulary:tea', kind: 'vocabulary', lb: 'tea', band: '1', source: 'new', addedAt: 1 })
+    render(<Harness />)
+    await screen.findByRole('button', { name: `Vocabulary (${catalogCounts.vocabulary.toLocaleString('en-US')})` })
+    await user.click(screen.getByRole('button', { name: 'My knowledge set (1)' }))
+    expect(screen.getByRole('button', { name: 'Vocabulary (1)' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Grammar (0)' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Characters (1)' })).toBeInTheDocument()
+    expect(screen.getByRole('option', { name: 'HSK 1 (1)' })).toBeInTheDocument()
+    expect(screen.getByRole('option', { name: 'HSK 2 (0)' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Full list' }))
+    expect(screen.getByRole('button', { name: `Vocabulary (${catalogCounts.vocabulary.toLocaleString('en-US')})` })).toBeInTheDocument()
+    expect(screen.getByRole('option', { name: /^HSK 1 \(\d[\d,]*\)$/ })).toBeInTheDocument()
   })
   it('saves independent manual additions and retains automatic membership when unpinned', async () => {
     const user = userEvent.setup()

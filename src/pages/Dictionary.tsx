@@ -33,6 +33,13 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
   const characterSet = useMemo(() => catalog ? characterKnowledge(catalog, workspace.knowledge, workspace.characterStates) : undefined,
     [catalog, workspace.knowledge, workspace.characterStates])
   const knownCounts = { vocabulary: workspace.knowledge.filter(entry => entry.kind === 'vocabulary').length, grammar: workspace.knowledge.filter(entry => entry.kind === 'grammar').length, characters: characterSet?.all.size ?? 0 }
+  const tabCount = (value: UnitKind | 'characters') => scope === 'knowledge' ? knownCounts[value] : value === 'characters' ? characters.length : catalogCounts[value]
+  const bandCounts = new Map<string, number>()
+  if (catalog) {
+    const bump = (value: string) => bandCounts.set(value, (bandCounts.get(value) ?? 0) + 1)
+    if (kind === 'characters') for (const entry of characters) { if (scope === 'all' || characterSet?.all.has(entry.character)) for (const value of new Set(entry.bands)) bump(value) }
+    else for (const unit of catalog.units.values()) if (unit.kind === kind && (scope === 'all' || known.has(unit.ref))) bump(unit.band)
+  }
   const normalized = normalizeSearch(query)
   const pronunciationQuery = normalizeSearch(formatPinyin(query, 'marks'))
   const matchesReading = (reading: string) => pronunciationQuery !== normalized && normalizeSearch(reading).includes(pronunciationQuery)
@@ -53,16 +60,16 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     <div className="library-toolbar">
       <div className="segmented" role="group" aria-label="Dictionary section">
-        <button aria-pressed={kind === 'vocabulary'} onClick={() => { window.location.hash = 'dictionary' }}>Vocabulary ({catalogCounts.vocabulary})</button>
-        <button aria-pressed={kind === 'grammar'} onClick={() => { window.location.hash = 'dictionary/grammar' }}>Grammar ({catalogCounts.grammar})</button>
-        <button aria-pressed={kind === 'characters'} onClick={() => { window.location.hash = 'dictionary/characters' }}>Characters{catalog ? ` (${characters.length})` : ''}</button>
+        <button aria-pressed={kind === 'vocabulary'} onClick={() => { window.location.hash = 'dictionary' }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
+        <button aria-pressed={kind === 'grammar'} onClick={() => { window.location.hash = 'dictionary/grammar' }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
+        <button aria-pressed={kind === 'characters'} onClick={() => { window.location.hash = 'dictionary/characters' }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>
       </div>
       <div className="segmented" role="group" aria-label="Dictionary scope">
         <button aria-pressed={scope === 'all'} onClick={() => select(setScope)('all')}>Full list</button>
         <button aria-pressed={scope === 'knowledge'} onClick={() => select(setScope)('knowledge')}>My knowledge set ({knownCounts[kind]})</button>
       </div>
       <label className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={kind === 'characters' ? 'Character, codepoint, or containing word' : kind === 'vocabulary' ? 'Character, pinyin, or meaning' : 'Pattern, pinyin, or meaning'} aria-label="Search dictionary" /></label>
-      <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}</option>)}</select></label>
+      <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>
     </div>
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
