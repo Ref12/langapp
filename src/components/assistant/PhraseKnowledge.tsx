@@ -1,5 +1,4 @@
-import { useMemo, useState } from 'react'
-import { useLiveQuery } from 'dexie-react-hooks'
+import { useEffect, useMemo, useState } from 'react'
 import { Plus } from 'lucide-react'
 import { db } from '../../core/database'
 import { addToKnowledge } from '../../core/study/knowledge'
@@ -17,7 +16,8 @@ function vocabularyIndex(catalog: Catalog): Map<string, { ref: string; meaning: 
 
 /** "Add to knowledge set" for the words of a phrase, split like Write mode. Words already known are not offered. */
 export function PhraseKnowledge({ text, romanization }: { text: string; romanization?: string }) {
-  const { words } = useWriteWords(text, romanization)
+  const usable = text.length > 0 && text.length <= 3000
+  const { words } = useWriteWords(usable ? text : '', romanization)
   const { catalog } = useCatalog()
   const [open, setOpen] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -30,13 +30,22 @@ export function PhraseKnowledge({ text, romanization }: { text: string; romaniza
     return words.filter(word => !seen.has(word.text) && seen.add(word.text)).map(word => ({ ...word, ...index.get(word.text) }))
   }, [words, catalog])
   const refs = rows.flatMap(row => row.ref ? [row.ref] : [])
-  const known = useLiveQuery(async () => new Set((await db.knowledge.bulkGet(refs)).flatMap(entry => entry ? [entry.ref] : [])), [refs.join('|')])
+  const [known, setKnown] = useState<Set<string>>()
+  const [version, setVersion] = useState(0)
+  const refKey = refs.join('|')
+  useEffect(() => {
+    let disposed = false
+    if (!refKey) { setKnown(new Set()); return }
+    void db.knowledge.bulkGet(refKey.split('|')).then(entries => { if (!disposed) setKnown(new Set(entries.flatMap(entry => entry ? [entry.ref] : []))) }, () => undefined)
+    return () => { disposed = true }
+  }, [refKey, version])
   const remaining = known ? rows.filter(row => !row.ref || !known.has(row.ref)) : []
   const addable = remaining.filter(row => row.ref)
   const add = async (list: Row[]) => {
     setBusy(true); setError('')
     try {
       await addToKnowledge(list.map(row => row.ref!))
+      setVersion(value => value + 1)
       setStatus(list.length === 1 ? `Added ${list[0].text} to your knowledge set` : `Added ${list.length} words to your knowledge set`)
       if (list.length === addable.length) setOpen(false)
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'The words could not be added.') } finally { setBusy(false) }
