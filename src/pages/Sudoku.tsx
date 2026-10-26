@@ -68,15 +68,19 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
   const act = (action: SudokuAction) => void run(async () => {
     const next = await updateSudoku(game, action)
     const counts = action.type === 'check' ? sudokuCheckCounts(next) : undefined
-    setFeedback(counts ? `${counts.correct} correct, ${counts.incorrect} wrong, ${counts.unresolved} unresolved.`
+    setFeedback(action.type === 'uncheck' ? 'Choose a cell, then a character.' : counts ? `${counts.correct} correct, ${counts.incorrect} wrong, ${counts.unresolved} unresolved.`
       : action.type === 'undo' ? 'Last move undone.' : 'Entries saved. Press Check to assess your proposed answers.')
   })
   const choose = (value: number) => {
+    let spoken = value
     if (editable) {
+      const before = game.entries[selected], after = before ^ (1 << (value - 1))
+      // Removing an entry that leaves exactly one: speak the survivor rather than the removed character.
+      if (before & (1 << (value - 1)) && after && (after & (after - 1)) === 0) spoken = Math.log2(after) + 1
       act({ type: 'toggle', index: selected, value })
       grid.current?.querySelector<HTMLButtonElement>(`[data-cell-index="${selected}"]`)?.focus({ preventScroll: true })
     }
-    activateSymbol(value)
+    activateSymbol(spoken)
   }
   const selectCell = (index: number) => {
     setSelected(index)
@@ -159,7 +163,8 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
     <div className="button-row sudoku-controls">
       <button className="button secondary" disabled={busy || !game.history.length} onClick={() => act({ type: 'undo' })}><RotateCcw size={16} /> Undo</button>
       <button className="button secondary" disabled={busy || fixed || complete || !game.entries[selected]} onClick={() => act({ type: 'clear', index: selected })}><Eraser size={16} /> Erase</button>
-      <button className="button secondary" disabled={busy} onClick={() => act({ type: 'check' })}><CheckCircle2 size={16} /> Check</button>
+      <button className="button secondary" disabled={busy} onClick={() => act({ type: checkedCurrent ? 'uncheck' : 'check' })}
+        aria-pressed={!!checkedCurrent}><CheckCircle2 size={16} /> {checkedCurrent ? 'Hide check' : 'Check'}</button>
       <HearButton key={audioCharacter ?? 'unselected'} text={audioCharacter ?? ''} locale="zh-Hans"
         label={audioCharacter ? `Hear character ${audioCharacter}` : 'Hear selected character'} buttonText={audioCharacter ? `Hear ${audioCharacter}` : 'Hear'}
         disabled={!audioCharacter} />

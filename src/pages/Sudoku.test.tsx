@@ -361,3 +361,57 @@ it('only requests an AI sentence explicitly and lets the learner review it befor
   expect((await db.sudokuGames.get('current'))?.phrase?.source).toBe('ai')
   expect(phrasesAI.requestStructuredJSON).toHaveBeenCalledTimes(1)
 })
+
+it('Check toggles: a second press clears grading and an edit after Check clears it too', async () => {
+  await populate()
+  const user = userEvent.setup()
+  let game = await start()
+  const [a, b] = game.givens.flatMap((value, index) => value ? [] : [index])
+  await act(async () => {
+    game = await updateSudoku(game, { type: 'toggle', index: a, value: game.solution[a] })
+    game = await updateSudoku(game, { type: 'toggle', index: b, value: game.solution[b] })
+  })
+  const check = () => screen.getByRole('button', { name: /^(Hide check|Check)$/ })
+  expect(check()).toHaveAttribute('aria-pressed', 'false')
+  await user.click(check())
+  await waitFor(() => expect(cell(a)).toHaveClass('checked-correct'))
+  expect(check()).toHaveAttribute('aria-pressed', 'true')
+  expect(check()).toHaveTextContent('Hide check')
+  expect(document.getElementById('sudoku-instructions')).toHaveTextContent(/correct, 0 wrong/)
+  await user.click(check())
+  await waitFor(() => expect(document.querySelector('.checked-correct, .checked-incorrect')).toBeNull())
+  expect(check()).toHaveTextContent('Check')
+  expect(document.getElementById('sudoku-instructions')).not.toHaveTextContent(/correct, /)
+  expect((await db.sudokuGames.get('current'))?.checked).toBeNull()
+  await user.click(check())
+  await waitFor(() => expect(cell(a)).toHaveClass('checked-correct'))
+  await user.click(cell(a))
+  await user.click(screen.getByRole('button', { name: `Remove ${game.symbols[game.solution[a] - 1].character}` }))
+  await waitFor(() => expect(cell(a)).not.toHaveClass('checked-correct'))
+  expect(document.getElementById('sudoku-instructions')).not.toHaveTextContent(/correct, /)
+})
+
+it('speaks the surviving character when a removal leaves one entry, otherwise the tapped one', async () => {
+  await populate()
+  const user = userEvent.setup()
+  const game = await start()
+  const index = game.givens.indexOf(0), ch = (n: number) => game.symbols[n - 1].character
+  const said = () => speak.mock.lastCall![0].text
+  await user.click(cell(index))
+  const tap = async (n: number, verb: 'Add' | 'Remove') => {
+    await user.click(screen.getByRole('button', { name: `${verb} ${ch(n)}` }))
+    // The toggle saves asynchronously; wait for the palette to reflect it before the next tap.
+    await screen.findByRole('button', { name: `${verb === 'Add' ? 'Remove' : 'Add'} ${ch(n)}` })
+  }
+  await tap(1, 'Add'); expect(said()).toBe(ch(1))
+  await tap(2, 'Add'); expect(said()).toBe(ch(2))
+  await tap(3, 'Add'); expect(said()).toBe(ch(3))
+  await tap(3, 'Remove'); expect(said()).toBe(ch(3)) // two remain: tapped
+  await tap(2, 'Remove'); expect(said()).toBe(ch(1)) // one remains: survivor
+  await tap(1, 'Remove'); expect(said()).toBe(ch(1)) // zero remain: tapped
+  await tap(1, 'Add'); await tap(4, 'Add')
+  const before = speak.mock.calls.length
+  await user.keyboard('4') // keyboard removal leaves one
+  await waitFor(() => expect(speak.mock.calls.length).toBe(before + 1))
+  expect(said()).toBe(ch(1))
+})

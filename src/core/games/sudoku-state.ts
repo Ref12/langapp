@@ -110,10 +110,12 @@ export type SudokuAction =
   | { type: 'clear'; index: number }
   | { type: 'undo' }
   | { type: 'check' }
+  | { type: 'uncheck' }
 
 export function applySudokuAction(game: SudokuGame, action: SudokuAction): SudokuGame {
   const entries = [...game.entries]
   if (action.type === 'check') return { ...game, revision: game.revision + 1, checked: [...entries] }
+  if (action.type === 'uncheck') return { ...game, revision: game.revision + 1, checked: null }
   if (action.type === 'undo') {
     const previous = game.history.at(-1)
     if (!previous) throw new Error('There is no Sudoku move to undo.')
