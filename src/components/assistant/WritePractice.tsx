@@ -10,7 +10,7 @@ import { Pinyin } from '../Pinyin'
 export interface WriteWord { text: string; pinyin: string }
 
 /** Word rows (text + pinyin) for the Han words of a phrase, using the same local segmentation as the Speak playlist. */
-function useWriteWords(text: string, romanization?: string): { words?: WriteWord[]; error?: string } {
+export function useWriteWords(text: string, romanization?: string): { words?: WriteWord[]; error?: string } {
   const [state, setState] = useState<{ words?: WriteWord[]; error?: string }>({})
   useEffect(() => {
     let disposed = false

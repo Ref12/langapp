@@ -12,6 +12,7 @@ import { db } from '../../core/database'
 import { practiceChainSchema, type PracticePlaylistItem } from '../../core/assistant/practice-chain-contracts'
 import { PracticePlaylist } from './PracticePlaylist'
 import { ActionMenu } from './ActionMenu'
+import { PhraseKnowledge } from './PhraseKnowledge'
 import { WritePractice } from './WritePractice'
 import { savePreferences } from '../../core/learning'
 
@@ -55,6 +56,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, practiceD
         <Repeat2 size={15} />Practice
       </button>}
     </div>
+    {source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
     {error && <p className="small" role="alert">{error}</p>}
     {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
   </div>
