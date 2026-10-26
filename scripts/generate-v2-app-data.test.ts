@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { parse } from 'yaml'
 import { unitLabelSchema } from '../src/core/study/contracts'
 import { curriculumWords } from '../src/data/curriculum'
 import { starterWords, words } from '../src/data/mandarin'
@@ -16,6 +17,25 @@ describe('v2 app data', () => {
     vocabulary: data.bands.flatMap(band => band.vocabulary),
   }
   const labels = new Map(data.profileWordLabels.map(record => [record.id, record.lb]))
+
+  it('generates every authored v2 vocabulary entry of each band into the catalog', () => {
+    for (const band of appBands) {
+      const authored = parse(readFileSync(resolve(repositoryRoot, 'curriculum', 'v2', 'chinese', `hsk-${band}`, 'vocabulary.yaml'), 'utf8')) as { id: string; ch: string }[]
+      const generated = new Set(data.bands.find(item => item.band === band)!.vocabulary.map(record => record.id))
+      expect(authored.filter(record => !generated.has(record.id)).map(record => record.ch)).toEqual([])
+      expect(generated.size).toBe(authored.length)
+    }
+  })
+
+  it('carries every authored v2 vocabulary entry of each band into the generated catalog', () => {
+    const authored = (band: string) => readFileSync(resolve(repositoryRoot, 'curriculum', 'v2', 'chinese', `hsk-${band}`, 'vocabulary.yaml'), 'utf8')
+      .split(/\r?\n/).filter(line => line.startsWith('- {id: ')).map(line => /^- \{id: ([^,]+),/.exec(line)![1])
+    for (const band of data.bands) {
+      const expected = authored(band.band)
+      expect(expected.length).toBeGreaterThan(0)
+      expect(band.vocabulary.map(record => record.id)).toEqual(expected)
+    }
+  })
 
   it('places every HSK 1-6 unit exactly once in the generated group order', () => {
     expect(data.bands.map(band => band.band)).toEqual(appBands)
