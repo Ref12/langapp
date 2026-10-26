@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Pencil } from 'lucide-react'
 import { db } from '../../core/database'
@@ -7,7 +7,7 @@ import { hasGuide, isHan } from '../../core/characters/writing-route'
 import { useCatalog } from '../study/useCatalog'
 import { Pinyin } from '../Pinyin'
 
-import { useWriteWords, type WriteWord } from './useWriteWords'
+import { useWriteWords } from './useWriteWords'
 
 /** Write mode of the Practice sheet: one row per word with pinyin and a button that opens the writing exercise. */
 export function WritePractice({ text, romanization, route, onSpeak, onOpen }: {
