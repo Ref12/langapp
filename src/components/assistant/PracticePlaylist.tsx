@@ -24,9 +24,12 @@ interface Props {
   onSave?: (ends: number[], items?: PracticePlaylistItem[]) => Promise<void>
   onClose: () => Promise<void>
   saveNotice?: string
+  /** Speak / Write switch; Write content replaces the playlist while mode is 'write'. */
+  write?: { mode: 'speak' | 'write'; onMode: (mode: 'speak' | 'write') => void; content: ReactNode }
 }
 
-export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, recordingActive, recording, onSave, onClose, saveNotice }: Props) {
+export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, recordingActive, recording, onSave, onClose, saveNotice, write }: Props) {
+  const writing = write?.mode === 'write'
   const formatPinyin = usePinyinFormatter()
   const id = useId()
   const dialog = useRef<HTMLDialogElement>(null)
@@ -296,14 +299,19 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
         <button type="button" className="icon-button" aria-label="Close practice" disabled={saving} autoFocus onClick={() => void requestClose()}><X size={22} /></button>
       </div>
     </header>
-    <div className="practice-mode-switch" role="group" aria-label="Practice mode">
+    {write && <div className="practice-mode-switch practice-sheet-modes" role="group" aria-label="Practice type">
+      {(['speak', 'write'] as const).map(value => <button type="button" key={value} aria-pressed={write.mode === value}
+        onClick={() => { if (value === 'write') player.current?.pause(); write.onMode(value) }}>{value === 'speak' ? 'Speak' : 'Write'}</button>)}
+    </div>}
+    {writing && <div className="practice-playlist-content">{write.content}</div>}
+    <div className="practice-mode-switch" role="group" aria-label="Practice mode" hidden={writing}>
       {([
         ['words', 'Word by word', WholeWord], ['phrase', 'Whole phrase', Quote],
         ['forward', 'Build from start', ArrowRight], ['backward', 'Build from end', ArrowLeft],
       ] as const).map(([value, label, Icon]) => <button type="button" key={value} disabled={disabled}
         aria-pressed={direction === value} onClick={() => { changeMode(value); if (value === 'words' || value === 'phrase') setEditing(false) }}><Icon size={15} />{label}</button>)}
     </div>
-    <div className="practice-playlist-content">
+    <div className="practice-playlist-content" hidden={writing}>
       {historyError && <div className="notice error" role="alert"><p>{historyError}</p>
         <button type="button" className="button secondary" disabled={historySaving} onClick={retryHistory}>{historySaving ? 'Saving History...' : 'Retry saving History'}</button></div>}
       <section id={`${id}-options`} className="practice-options" aria-label="Practice options" hidden={!optionsOpen}>
@@ -428,7 +436,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
         {recording(options.rate)}
       </section>}
     </div>
-    <footer className="practice-transport">
+    <footer className="practice-transport" hidden={writing}>
       <div className="practice-pace-controls">
         <div className="practice-pace-control"><span>Speech speed</span><div className="practice-stepper">
           <button type="button" className="icon-button" aria-label="Slower speech" disabled={disabled || options.rate <= 0.25} onClick={() => configure({ ...options, rate: Number((options.rate - 0.05).toFixed(2)) })}><Minus size={16} /></button>

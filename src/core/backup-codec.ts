@@ -22,6 +22,7 @@ export const workspaceSchema = z.object({
     sudokuAutoSpeak: z.boolean().optional(),
     sudokuShowPinyin: z.boolean().optional(),
     tileAutoSpeak: z.boolean().optional(),
+    practiceMode: z.enum(['speak', 'write']).optional(),
     pinyinFormat: pinyinFormatSchema.optional(),
   }).strict(),
   words: z.array(z.object({

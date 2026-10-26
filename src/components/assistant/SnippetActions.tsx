@@ -12,6 +12,8 @@ import { db } from '../../core/database'
 import { practiceChainSchema, type PracticePlaylistItem } from '../../core/assistant/practice-chain-contracts'
 import { PracticePlaylist } from './PracticePlaylist'
 import { ActionMenu } from './ActionMenu'
+import { WritePractice } from './WritePractice'
+import { savePreferences } from '../../core/learning'
 
 export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false, buttonText = 'Hear', disabled = false }: { text: string; locale: SpeechLocale; rate?: number; label?: string; iconOnly?: boolean; buttonText?: string; disabled?: boolean }) {
   const id = useId()
@@ -57,6 +59,24 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, practiceD
     {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
   </div>
   return compact ? <ActionMenu label="Phrase actions" trigger={<MoreHorizontal size={20} />}>{close => content(close)}</ActionMenu> : content()
+}
+
+/** The Speak / Write switch of the Practice sheet; the last mode is remembered in the workspace preferences. */
+function usePracticeWrite(text: string, route: string, romanization?: string, forced?: 'write') {
+  const stored = useLiveQuery(() => db.preferences.get('workspace').then(item => item?.practiceMode ?? 'speak'), [])
+  const [local, setLocal] = useState<'speak' | 'write'>()
+  const mode = local ?? forced ?? stored ?? 'speak'
+  const onMode = (next: 'speak' | 'write') => {
+    setLocal(next)
+    void savePreferences({ practiceMode: next }).catch(() => undefined)
+  }
+  return { mode, onMode, content: <WritePractice text={text} romanization={romanization} route={route} onSpeak={() => onMode('speak')} /> }
+}
+
+function PracticeSheet({ route, ...props }: { route: string } & Omit<Parameters<typeof PracticePlaylist>[0], 'write'> & { forced?: 'write' }) {
+  const { forced, ...rest } = props
+  const write = usePracticeWrite(rest.phrase.text, route, rest.phrase.romanization, forced)
+  return <PracticePlaylist {...rest} write={write} />
 }
 
 export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
@@ -119,7 +139,7 @@ export function PracticeSnippet({ source }: { source: AssistantSource }) {
   return <>
     <SnippetActions source={source} rate={preferences?.defaultSpeechRate} onPractice={open} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
     {error && <p role="alert" className="small connection-error">{error}</p>}
-    {practice && <PracticePlaylist phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
+    {practice && <PracticeSheet route={source.route} phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
       savedEnds={saved?.text === practice.text ? saved.ends : undefined} savedItems={saved?.text === practice.text ? saved.items : undefined}
       busy={false} recordingActive={false}
       saveNotice="This phrase and its edited playlist are saved in History. No conversation or learning progress is changed."
@@ -186,7 +206,7 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
       {unavailable && <p className="small muted selection-actions-note">{unavailable}</p>}
       {practiceError && <p role="alert" className="small connection-error selection-actions-note">{practiceError}</p>}
     </div>}
-    {practice && <PracticePlaylist key={`${route}:${practice.phrase.text}`} phrase={practice.phrase} rate={practice.rate}
+    {practice && <PracticeSheet route={route} key={`${route}:${practice.phrase.text}`} phrase={practice.phrase} rate={practice.rate}
       savedEnds={savedPractice?.text === practice.phrase.text ? savedPractice.ends : undefined}
       savedItems={savedPractice?.text === practice.phrase.text ? savedPractice.items : undefined}
       busy={false} recordingActive={false}
