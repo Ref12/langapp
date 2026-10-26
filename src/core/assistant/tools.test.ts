@@ -5,7 +5,7 @@ import { curriculum } from '../../data/curriculum'
 import { db, initializeWorkspace, loadWorkspace } from '../database'
 import { REPLY_INSTRUCTIONS } from '../ai/provider'
 import type { AssistantMessage, AssistantThread } from './contracts'
-import { buildTutorMessages, executeAssistantTool, getLearningContext, lookupLessons, lookupWords } from './tools'
+import { lookupCatalog, buildTutorMessages, executeAssistantTool, getLearningContext, lookupLessons, lookupWords } from './tools'
 import conversationPrompt from '../../../settings/system-prompts/conversation.md?raw'
 import shadowPrompt from '../../../settings/system-prompts/shadow.md?raw'
 import explainPrompt from '../../../settings/system-prompts/explain.md?raw'
@@ -219,5 +219,31 @@ describe('bounded tutor context', () => {
     const bounded = buildTutorMessages(thread, current, [long], '{}')
     expect(bounded).toHaveLength(2)
     expect(bounded[1].content).toContain('"request":"again"')
+  })
+
+  it('looks up Chinese sentences by longest catalog match and marks unknown spans', async () => {
+    const result = await lookupCatalog('我明天天气')
+    expect(result.spans.map(span => span.text)).toEqual(['我', '明天', '天气'])
+    expect(result.spans[1]).toMatchObject({ matched: true })
+    expect(result.spans[1].entries[0]).toMatchObject({ chinese: '明天', band: 'HSK 1' })
+    const unknown = await lookupCatalog('明天龘')
+    expect(unknown.spans.at(-1)).toEqual({ text: '龘', matched: false, entries: [] })
+    expect(unknown.spans[0].matched).toBe(true)
+    expect((await lookupCatalog('明天'.repeat(40))).spans.length).toBeLessThanOrEqual(24)
+    // 每天 is not a study-catalog entry: it falls back to its characters.
+    expect((await lookupCatalog('每天')).spans.map(span => span.text)).toEqual(['每', '天'])
+  })
+
+  it('looks up catalog entries by pinyin and meaning and serializes the tool result', async () => {
+    expect((await lookupCatalog('míngtiān')).entries.map(entry => entry.chinese)).toContain('明天')
+    expect((await lookupCatalog('tomorrow')).entries.length).toBeGreaterThan(0)
+    const raw = JSON.parse(await executeAssistantTool('lookup_words', { query: '我明天' }))
+    expect(raw.spans.find((span: { text: string }) => span.text === '明天').entries[0].inKnowledgeSet).toBe(false)
+  })
+
+  it('tells the model to use lookups silently and never mention them', () => {
+    const text = buildTutorMessages(thread, current, [], '{}')[0].content
+    expect(text).toContain('Never mention catalogs, lookups, tools, IDs, matching or study items')
+    expect(text).not.toContain('say so')
   })
 })
