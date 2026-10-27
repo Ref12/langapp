@@ -5,6 +5,10 @@ import { addToKnowledge, advanceExercise, discardSession, dueCards, groupProgres
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)
+vi.mock('./catalog', async importOriginal => {
+  const actual = await importOriginal<typeof import('./catalog')>()
+  return { ...actual, loadCatalog: vi.fn(actual.loadCatalog) }
+})
 
 const connection = {
   id: 'assistant' as const, revision: 'r1', updatedAt: 1, apiType: 'chat-completions' as const,
@@ -207,10 +211,11 @@ describe('knowledge set and sessions', () => {
     expect((await db.exerciseSessions.where('status').equals('active').toArray()).map(session => session.id)).toEqual(['redo-1'])
   })
 
-  it('reports when no new group is left, even with resume: false', { timeout: 60000 }, async () => {
+  it('reports when no new group is left, even with resume: false', async () => {
     await db.aiConnections.add(connection)
-    await addToKnowledge([...(await loadCatalog()).units.keys()])
+    vi.mocked(loadCatalog).mockResolvedValueOnce({ orderedGroups: [], units: new Map() } as unknown as Awaited<ReturnType<typeof loadCatalog>>)
     await expect(startNewSession(undefined, { resume: false })).rejects.toThrow('Every available curriculum group is already in your knowledge set.')
+    expect(structured.requestStructuredJSON).not.toHaveBeenCalled()
   })
 
   it('reports when the AI returns too few usable exercises', async () => {
