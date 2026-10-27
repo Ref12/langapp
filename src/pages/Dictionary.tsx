@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { savePreferences } from '../core/learning'
 import { Search } from 'lucide-react'
 import { normalizeSearch } from '../core/search'
 import { formatPinyin } from '../core/pinyin'
@@ -24,7 +25,12 @@ function searchText(unit: Unit): string {
 export function Dictionary({ workspace, now, run, busy, section, initialScope }: PageProps & { section?: string; initialScope?: string }) {
   const { catalog, error } = useCatalog()
   const kind: UnitKind | 'characters' = section === 'characters' ? 'characters' : section === 'grammar' ? 'grammar' : 'vocabulary'
-  const [scope, setScope] = useState<'all' | 'knowledge'>(initialScope === 'knowledge' ? 'knowledge' : 'all')
+  const explicit = initialScope === 'knowledge' || initialScope === 'all' ? initialScope : undefined
+  const scope: 'all' | 'knowledge' = explicit ?? workspace.preferences.dictionaryScope ?? 'all'
+  useEffect(() => {
+    if (explicit && explicit !== workspace.preferences.dictionaryScope) void savePreferences({ dictionaryScope: explicit }).catch(() => undefined)
+  }, [explicit, workspace.preferences.dictionaryScope])
+  const go = (section: string, next: 'all' | 'knowledge') => { window.location.hash = `dictionary/${section}/${next}` }
   const [band, setBand] = useState('all')
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(PAGE)
@@ -60,13 +66,13 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     <div className="library-toolbar">
       <div className="segmented" role="group" aria-label="Dictionary section">
-        <button aria-pressed={kind === 'vocabulary'} onClick={() => { window.location.hash = 'dictionary' }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
-        <button aria-pressed={kind === 'grammar'} onClick={() => { window.location.hash = 'dictionary/grammar' }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
-        <button aria-pressed={kind === 'characters'} onClick={() => { window.location.hash = 'dictionary/characters' }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>
+        <button aria-pressed={kind === 'vocabulary'} onClick={() => { go('vocabulary', scope) }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
+        <button aria-pressed={kind === 'grammar'} onClick={() => { go('grammar', scope) }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
+        <button aria-pressed={kind === 'characters'} onClick={() => { go('characters', scope) }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>
       </div>
       <div className="segmented" role="group" aria-label="Dictionary scope">
-        <button aria-pressed={scope === 'all'} onClick={() => select(setScope)('all')}>Full list</button>
-        <button aria-pressed={scope === 'knowledge'} onClick={() => select(setScope)('knowledge')}>My knowledge set ({knownCounts[kind]})</button>
+        <button aria-pressed={scope === 'all'} onClick={() => { setLimit(PAGE); go(kind, 'all') }}>Full list</button>
+        <button aria-pressed={scope === 'knowledge'} onClick={() => { setLimit(PAGE); go(kind, 'knowledge') }}>My knowledge set ({knownCounts[kind]})</button>
       </div>
       <label className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={kind === 'characters' ? 'Character, codepoint, or containing word' : kind === 'vocabulary' ? 'Character, pinyin, or meaning' : 'Pattern, pinyin, or meaning'} aria-label="Search dictionary" /></label>
       <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>

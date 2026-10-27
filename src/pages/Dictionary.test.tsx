@@ -50,9 +50,27 @@ describe('dictionary characters', () => {
     const view = render(<Harness />)
     expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
     view.unmount()
-    window.location.hash = 'dictionary/vocabulary'
+    window.location.hash = 'dictionary/vocabulary/all'
     render(<Harness />)
     expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('keeps My knowledge set when switching sections and remembers it for bare routes', async () => {
+    const user = userEvent.setup()
+    window.location.hash = 'dictionary/vocabulary/knowledge'
+    const view = render(<Harness />)
+    expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
+    await user.click(screen.getByRole('button', { name: /^Grammar/ }))
+    expect(window.location.hash).toBe('#dictionary/grammar/knowledge')
+    expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
+    await waitFor(async () => expect((await db.preferences.get('workspace'))?.dictionaryScope).toBe('knowledge'))
+    view.unmount()
+    window.location.hash = 'dictionary'
+    render(<Harness />)
+    expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
+    await user.click(screen.getByRole('button', { name: 'Full list' }))
+    expect(window.location.hash).toBe('#dictionary/vocabulary/all')
+    await waitFor(async () => expect((await db.preferences.get('workspace'))?.dictionaryScope).toBe('all'))
   })
 
   it('shows available and unavailable guides and filters full versus derived knowledge without duplicates', async () => {

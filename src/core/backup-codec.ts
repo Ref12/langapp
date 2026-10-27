@@ -26,6 +26,7 @@ export const workspaceSchema = z.object({
     tileAutoSpeak: z.boolean().optional(),
     practiceMode: z.enum(['speak', 'write']).optional(),
     historyFilter: z.enum(['all', 'speak', 'write', 'lessons']).optional(),
+    dictionaryScope: z.enum(['all', 'knowledge']).optional(),
     pinyinFormat: pinyinFormatSchema.optional(),
   }).strict(),
   words: z.array(z.object({

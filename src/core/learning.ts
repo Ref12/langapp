@@ -24,6 +24,7 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (next.sudokuShowPinyin !== undefined && typeof next.sudokuShowPinyin !== 'boolean') throw new Error('Choose whether selected-character pinyin is shown.')
     if (next.tileAutoSpeak !== undefined && typeof next.tileAutoSpeak !== 'boolean') throw new Error('Choose whether tile speech is on or off.')
     if (next.practiceMode !== undefined && next.practiceMode !== 'speak' && next.practiceMode !== 'write') throw new Error('Choose Speak or Write practice.')
+    if (next.dictionaryScope !== undefined && !['all', 'knowledge'].includes(next.dictionaryScope)) throw new Error('Choose a Dictionary scope.')
     if (next.historyFilter !== undefined && !['all', 'speak', 'write', 'lessons'].includes(next.historyFilter)) throw new Error('Choose a History filter.')
     await db.preferences.put(next)
   })

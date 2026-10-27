@@ -65,6 +65,7 @@ export interface Preferences {
   tileAutoSpeak?: boolean
   practiceMode?: 'speak' | 'write'
   historyFilter?: 'all' | 'speak' | 'write' | 'lessons'
+  dictionaryScope?: 'all' | 'knowledge'
 }
 
 export interface WordState {
