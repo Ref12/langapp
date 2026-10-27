@@ -57,7 +57,15 @@ beforeEach(async () => {
     nativeTools: false, structuredOutput: false, storageAcknowledged: true })
   window.location.hash = `conversation/${id}`
 })
-afterEach(() => {
+afterEach(async () => {
+  // A test may end right after its user message is stored; let the reply request finish so it cannot hit the next test's fetch stub.
+  if ((await userMessages()).length) {
+    await waitFor(async () => {
+      expect(fetch).toHaveBeenCalled()
+      const messages = await db.assistantMessages.where('threadId').equals(id).toArray()
+      expect(messages.some(message => message.status === 'pending')).toBe(false)
+    }, { timeout: 3000 }).catch(() => undefined)
+  }
   cleanup()
   interruptAudio()
   vi.restoreAllMocks()
@@ -121,7 +129,7 @@ describe('conversation voice input and replies', () => {
     expect((await db.assistantThreads.get(id))?.draft).toBe('Existing thought')
     expect(fetch).not.toHaveBeenCalled()
     fireEvent.click(screen.getByRole('button', { name: 'Submit' }))
-    await waitFor(() => expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledTimes(2))
+    await waitFor(() => expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledTimes(2), { timeout: 5000 })
     expect((await userMessages()).map(message => message.text)).toEqual(['Existing thought\nHello there'])
     expect(vi.mocked(playback.playBrowserSpeechToEnd).mock.calls.map(call => call.slice(1))).toEqual([
       ['Try this greeting.', 'en-US', 1], [phrase.text, 'zh-Hans', 0.75],
@@ -245,6 +253,9 @@ describe('conversation voice input and replies', () => {
     await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe('Hello there'))
     fireEvent.click(screen.getByRole('button', { name: 'Send' }))
     await waitFor(async () => expect((await userMessages()).map(message => message.text)).toEqual(['Hello there']))
+    // Let the request and reply finish so they cannot leak a fetch call into the next test's stub.
+    await waitFor(async () => expect((await db.assistantMessages.where('threadId').equals(id).toArray()).some(message => message.role === 'assistant' && message.status === 'completed')).toBe(true))
+    expect(fetch).toHaveBeenCalledTimes(1)
   })
 
   it('does not send empty capture or start a second recording automatically', async () => {

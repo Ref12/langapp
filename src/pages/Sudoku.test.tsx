@@ -77,7 +77,7 @@ it('persists multiple entries, promotes the last remaining candidate, and suppor
   await user.click(cell(index))
   await user.click(screen.getByRole('button', { name: `Add ${game.symbols[0].character}` }))
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.entries[index]).toBe(1))
-  expect(cell(index).querySelector('.sudoku-candidates')).toBeNull()
+  await waitFor(() => { expect(cell(index)).toHaveTextContent(game.symbols[0].character); expect(cell(index).querySelector('.sudoku-candidates')).toBeNull() })
   await user.click(screen.getByRole('button', { name: `Add ${game.symbols[1].character}` }))
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.entries[index]).toBe(3))
   // The write lands before React re-renders the cell, so wait on the rendered candidates too.
@@ -88,10 +88,10 @@ it('persists multiple entries, promotes the last remaining candidate, and suppor
   await user.click(cell(index))
   await user.click(screen.getByRole('button', { name: `Remove ${game.symbols[0].character}` }))
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.entries[index]).toBe(2))
-  expect(cell(index).querySelector('.sudoku-candidates')).toBeNull()
-  expect(cell(index)).toHaveTextContent(game.symbols[1].character)
+  await waitFor(() => { expect(cell(index).querySelector('.sudoku-candidates')).toBeNull(); expect(cell(index)).toHaveTextContent(game.symbols[1].character) })
   await user.click(screen.getByRole('button', { name: 'Undo' }))
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.entries[index]).toBe(3))
+  await waitFor(() => expect(cell(index).querySelector('.sudoku-candidates')).not.toBeNull())
   expect(await loadWorkspace()).toEqual(before)
 })
 

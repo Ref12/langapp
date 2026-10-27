@@ -105,6 +105,8 @@ describe('reviewed voice conversation', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Send' }))
     const retry = await screen.findByRole('button', { name: /Retry tutor reply/ })
     expect(await db.voiceRecordings.count()).toBe(1)
+    // The button renders when the row is marked failed, before generate() releases its busy guard; wait for the enabled state.
+    await waitFor(() => expect(retry).toBeEnabled())
     fireEvent.click(retry)
     await waitFor(() => expect(invokeAIOperation).toHaveBeenCalledTimes(3))
     expect((await db.conversationMessages.toArray()).filter(message => message.role === 'user')).toHaveLength(1)

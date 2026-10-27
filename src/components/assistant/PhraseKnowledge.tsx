@@ -30,13 +30,15 @@ export function PhraseKnowledge({ text, romanization }: { text: string; romaniza
     return words.filter(word => !seen.has(word.text) && seen.add(word.text)).map(word => ({ ...word, ...index.get(word.text) }))
   }, [words, catalog])
   const refs = rows.flatMap(row => row.ref ? [row.ref] : [])
-  const [known, setKnown] = useState<Set<string>>()
+  const [knownState, setKnown] = useState<{ key: string; set: Set<string> }>()
   const [version, setVersion] = useState(0)
   const refKey = refs.join('|')
+  // Only trust the set computed for the current words; a stale one would offer known words.
+  const known = knownState?.key === refKey ? knownState.set : undefined
   useEffect(() => {
     let disposed = false
-    if (!refKey) { setKnown(new Set()); return }
-    void db.knowledge.bulkGet(refKey.split('|')).then(entries => { if (!disposed) setKnown(new Set(entries.flatMap(entry => entry ? [entry.ref] : []))) }, () => undefined)
+    if (!refKey) { setKnown({ key: refKey, set: new Set() }); return }
+    void db.knowledge.bulkGet(refKey.split('|')).then(entries => { if (!disposed) setKnown({ key: refKey, set: new Set(entries.flatMap(entry => entry ? [entry.ref] : [])) }) }, () => undefined)
     return () => { disposed = true }
   }, [refKey, version])
   const remaining = known ? rows.filter(row => !row.ref || !known.has(row.ref)) : []
