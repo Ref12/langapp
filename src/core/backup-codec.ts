@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { MAX_SAVED_SUDOKU_BOARDS, readSavedSudokuBoard, type SavedSudokuBoard } from './games/sudoku-saved'
 import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from '../data/mandarin'
 import type { Workspace } from './model'
 import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
@@ -55,16 +56,16 @@ const backupSchema = z.discriminatedUnion('version', [
   legacyBackupSchema.extend({ version: z.literal(2), assistant: assistantBackupSchema }).strict(),
   legacyBackupSchema.extend({ version: z.literal(3), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
   legacyBackupSchema.extend({ version: z.literal(4), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
-  legacyBackupSchema.extend({ version: z.literal(5), assistant: assistantBackupSchema, study: studyBackupSchema, library: librarySchema }).strict(),
+  legacyBackupSchema.extend({ version: z.literal(5), assistant: assistantBackupSchema, study: studyBackupSchema, library: librarySchema, sudokuBoards: z.array(z.unknown()).max(MAX_SAVED_SUDOKU_BOARDS).optional() }).strict(),
 ])
 
-export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup; library?: LibraryBook[] }
+export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup; library?: LibraryBook[]; sudokuBoards?: SavedSudokuBoard[] }
 
 const emptyStudy = (): StudyBackup => ({ knowledge: [], cards: [], sessions: [], attempts: [] })
 
-export function splitStudy(workspace: WorkspaceBackup): { learning: Omit<WorkspaceBackup, 'assistant' | 'library' | 'knowledge' | 'studyCards' | 'exerciseSessions' | 'exerciseAttempts'>; assistant?: AssistantBackup; library: LibraryBook[]; study: StudyBackup } {
-  const { assistant, library = [], knowledge = [], studyCards = [], exerciseSessions = [], exerciseAttempts = [], ...learning } = workspace
-  return { learning, assistant, library, study: { knowledge, cards: studyCards, sessions: exerciseSessions, attempts: exerciseAttempts } }
+export function splitStudy(workspace: WorkspaceBackup): { learning: Omit<WorkspaceBackup, 'assistant' | 'library' | 'sudokuBoards' | 'knowledge' | 'studyCards' | 'exerciseSessions' | 'exerciseAttempts'>; assistant?: AssistantBackup; library: LibraryBook[]; sudokuBoards: SavedSudokuBoard[]; study: StudyBackup } {
+  const { assistant, library = [], sudokuBoards = [], knowledge = [], studyCards = [], exerciseSessions = [], exerciseAttempts = [], ...learning } = workspace
+  return { learning, assistant, library, sudokuBoards, study: { knowledge, cards: studyCards, sessions: exerciseSessions, attempts: exerciseAttempts } }
 }
 
 function withStudy(workspace: z.infer<typeof workspaceSchema>, study: StudyBackup): Workspace {
@@ -204,6 +205,12 @@ export function validateWorkspace(workspace: z.infer<typeof workspaceSchema>) {
   }
 }
 
+function readSavedBoards(values: unknown[]): SavedSudokuBoard[] {
+  const boards = values.map(readSavedSudokuBoard)
+  unique(boards.map(board => board.id), 'saved Sudoku boards')
+  return boards
+}
+
 export function readBackup(text: string): WorkspaceBackup {
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('The backup exceeds the 5 MiB limit.')
   const backup = backupSchema.parse(JSON.parse(text))
@@ -214,15 +221,16 @@ export function readBackup(text: string): WorkspaceBackup {
   if (backup.version !== 1) {
     interruptImportedRuns(backup.assistant)
     return { ...withStudy(workspace, 'study' in backup ? backup.study : emptyStudy()), assistant: backup.assistant,
-      ...('library' in backup && backup.library.length ? { library: backup.library } : {}) }
+      ...('library' in backup && backup.library.length ? { library: backup.library } : {}),
+      ...('sudokuBoards' in backup && backup.sudokuBoards?.length ? { sudokuBoards: readSavedBoards(backup.sudokuBoards) } : {}) }
   }
   return withStudy(workspace, emptyStudy())
 }
 
 export function exportBackup(workspace: WorkspaceBackup, assistant?: AssistantBackup): string {
-  const { learning, assistant: includedAssistant, study, library } = splitStudy(workspace)
+  const { learning, assistant: includedAssistant, study, library, sudokuBoards } = splitStudy(workspace)
   const snapshot = assistant ?? includedAssistant ?? { threads: [], messages: [], runs: [] }
-  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 5, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study, library }, null, 2)
+  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 5, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study, library, ...(sudokuBoards.length ? { sudokuBoards } : {}) }, null, 2)
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('This workspace exceeds the 5 MiB backup limit.')
   readBackup(text)
   return text

@@ -2,6 +2,7 @@ import Dexie, { type Transaction } from 'dexie'
 import { db, loadWorkspace } from './database'
 import type { Workspace } from './model'
 import { clearUnsavedDrafts } from './assistant/drafts'
+import { listSavedSudokuBoards } from './games/sudoku-store'
 import { exportBackup, readBackup, splitStudy } from './backup-codec'
 
 export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from './backup-codec'
@@ -9,7 +10,7 @@ export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from
 function exportableTables() {
   return [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
     db.assistantThreads, db.assistantMessages, db.assistantRuns,
-    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks, db.practiceHistory]
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks, db.practiceHistory, db.sudokuGames]
 }
 
 export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<string> {
@@ -24,7 +25,8 @@ export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<str
       runs: await db.assistantRuns.toArray(),
       ...(practiceHistory.length ? { practiceHistory } : {}),
     }
-    return exportBackup({ ...workspace, library: await db.libraryBooks.toArray() }, assistant)
+    const sudokuBoards = await listSavedSudokuBoards()
+    return exportBackup({ ...workspace, library: await db.libraryBooks.toArray(), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, assistant)
   })
 }
 
@@ -37,7 +39,7 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
   const abort = () => transaction?.abort()
   signal?.addEventListener('abort', abort, { once: true })
   try {
-    await db.transaction('rw', [...exportableTables(), db.profileState, db.mahjongGames, db.sudokuGames, db.memoryGames, db.defenderGames, db.potionGames, db.potionProgress], async () => {
+    await db.transaction('rw', [...exportableTables(), db.profileState, db.mahjongGames, db.memoryGames, db.defenderGames, db.potionGames, db.potionProgress], async () => {
       transaction = Dexie.currentTransaction!
       signal?.throwIfAborted()
       for (const table of exportableTables()) await table.clear()
@@ -63,6 +65,7 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
       await db.studyCards.bulkAdd(study.cards)
       await db.exerciseSessions.bulkAdd(study.sessions)
       await db.exerciseAttempts.bulkAdd(study.attempts)
+      if (workspace.sudokuBoards?.length) await db.table('sudokuGames').bulkAdd(workspace.sudokuBoards)
       await db.profileState.put({ id: 'local-settings', imported: true })
       signal?.throwIfAborted()
     })

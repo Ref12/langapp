@@ -253,7 +253,7 @@ describe('compatible Assistant workspace backups', () => {
     expect(tables).toEqual([
       'preferences', 'words', 'readings', 'lessons', 'sessions', 'attempts',
       'assistantThreads', 'assistantMessages', 'assistantRuns',
-      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'characterStates', 'libraryBooks', 'practiceHistory',
+      'knowledge', 'studyCards', 'exerciseSessions', 'exerciseAttempts', 'characterStates', 'libraryBooks', 'practiceHistory', 'sudokuGames',
     ])
     expect(tables).not.toContain('aiConnections')
   })

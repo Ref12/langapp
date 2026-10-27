@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, CheckCircle2, Eraser, Info, RotateCcw, Volume2, VolumeX } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, Eraser, Info, RotateCcw, Save, Trash2, Play, Volume2, VolumeX } from 'lucide-react'
 import { db } from '../core/database'
 import type { PageProps } from '../components/shared'
 import { useCatalog } from '../components/study/useCatalog'
@@ -12,7 +12,8 @@ import { generateSudokuInWorker } from '../core/games/sudoku-client'
 import { SUDOKU_BOXES, sudokuDifficultySchema, sudokuSizeSchema, type SudokuDifficulty, type SudokuGame, type SudokuPhrase, type SudokuSize } from '../core/games/sudoku-contracts'
 import { SUDOKU_CLUES } from '../core/games/sudoku-generator'
 import { createSudokuGame, readSudokuGame, sudokuCheckCounts, sudokuComplete, sudokuEntryValue, type SudokuAction } from '../core/games/sudoku-state'
-import { updateSudoku } from '../core/games/sudoku-store'
+import { deleteSavedSudokuBoard, hasUnsavedSudokuProgress, listSavedSudokuBoards, resumeSudokuBoard, saveSudokuBoard, updateSudoku } from '../core/games/sudoku-store'
+import { MAX_SAVED_SUDOKU_BOARDS, type SavedSudokuBoard } from '../core/games/sudoku-saved'
 import { savePreferences } from '../core/learning'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { readingIndex } from '../core/study/annotate'
@@ -22,8 +23,8 @@ import './sudoku.css'
 
 const difficultyNames = { easy: 'Easy', medium: 'Medium', hard: 'Hard' }
 
-function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPuzzle }: {
-  game: SudokuGame; autoSpeak: boolean; showPinyin: boolean; readings?: Map<string, Set<string>>; onNewPuzzle: () => void
+function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPuzzle, onSave }: {
+  game: SudokuGame; autoSpeak: boolean; showPinyin: boolean; readings?: Map<string, Set<string>>; onNewPuzzle: () => void; onSave: () => void
 } & Pick<PageProps, 'busy' | 'run'>) {
   const [selected, setSelected] = useState(() => Math.max(0, game.givens.indexOf(0)))
   const [focusSymbol, setFocusSymbol] = useState(1)
@@ -166,6 +167,7 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
       <button className="button secondary" disabled={busy || fixed || complete || !game.entries[selected]} onClick={() => act({ type: 'clear', index: selected })}><Eraser size={16} /> Erase</button>
       <button className="button secondary" disabled={busy} onClick={() => act({ type: checkedCurrent ? 'uncheck' : 'check' })}
         aria-pressed={!!checkedCurrent}><CheckCircle2 size={16} /> {checkedCurrent ? 'Hide check' : 'Check'}</button>
+      <button className="button secondary" disabled={busy} onClick={onSave}><Save size={16} /> Save board</button>
       <HearButton key={audioCharacter ?? 'unselected'} text={audioCharacter ?? ''} locale="zh-Hans"
         label={audioCharacter ? `Hear character ${audioCharacter}` : 'Hear selected character'} buttonText={audioCharacter ? `Hear ${audioCharacter}` : 'Hear'}
         disabled={!audioCharacter} />
@@ -201,11 +203,41 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
       <p>Every row, column, and {box.rows} by {box.columns} box must contain every character exactly once. Each generated puzzle has one solution.</p>
       <p>Tap palette characters to add or remove entries. Multiple entries remain candidates; a single entry is the cell's proposed answer. Check grades single-entry answers against the solution, leaving empty and multi-entry cells unresolved. Changed entries are ungraded until checked again. Undo remembers the last 200 edits.</p>
       <p>Arrow keys move between cells; keys 1–{size} toggle characters in palette order. Delete clears a cell's entries.</p>
-      <p>Difficulty controls the number of starting clues, not a certified solving-technique grade. Your puzzle is saved in this profile, but is not included in backups or review schedules.</p>
+      <p>Difficulty controls the number of starting clues, not a certified solving-technique grade. Your live puzzle stays in this profile and is not part of review schedules; boards you save with Save board are included in backups.</p>
       <p>Pinyin follows the containing word or sentence. Supplied readings are preserved when they align; otherwise the local contextual dictionary is used. Polyphones and tone changes may still need review.</p>
       <button className="button secondary" disabled={busy} onClick={onNewPuzzle}>New puzzle</button>
     </details>
   </>
+}
+
+function SavedBoards({ boards, busy, pending, onResume, onConfirm, onCancel, onDelete }: {
+  boards: SavedSudokuBoard[]; busy: boolean; pending?: string; onResume: (board: SavedSudokuBoard) => void
+  onConfirm: (id: string, saveFirst: boolean) => void; onCancel: () => void; onDelete: (board: SavedSudokuBoard) => void
+}) {
+  return <details className="panel sudoku-saved" open>
+    <summary><h2>Saved boards ({boards.length}/{MAX_SAVED_SUDOKU_BOARDS})</h2></summary>
+    {boards.length >= MAX_SAVED_SUDOKU_BOARDS && <p className="notice error" role="status">Saved boards are full. Delete one before saving another.</p>}
+    <ul className="sudoku-saved-list">{boards.map(board => <li key={board.id}>
+      <img src={`data:image/svg+xml,${encodeURIComponent(board.thumbnail)}`} width={60} height={60} alt={`Thumbnail of the ${board.size} by ${board.size} board`} />
+      <div className="sudoku-saved-info">
+        <strong lang="zh-Hans">{board.label}</strong>
+        <span className="small muted">{new Date(board.savedAt).toLocaleString()}</span>
+        <span className="small muted">{board.size} × {board.size} · {difficultyNames[board.difficulty]} · {board.filled}/{board.size ** 2} filled{board.checked ? ' · checked' : ''}</span>
+        {pending === board.id && <div className="sudoku-saved-confirm" role="group" aria-label="Unsaved progress">
+          <p className="small">Save the current board first?</p>
+          <div className="button-row">
+            <button className="button primary" disabled={busy} onClick={() => onConfirm(board.id, true)}>Save &amp; resume</button>
+            <button className="button secondary" disabled={busy} onClick={() => onConfirm(board.id, false)}>Resume</button>
+            <button className="button secondary" onClick={onCancel}>Cancel</button>
+          </div>
+        </div>}
+      </div>
+      <div className="sudoku-saved-actions">
+        <button className="button secondary" disabled={busy} onClick={() => onResume(board)} aria-label={`Resume board ${board.label}`}><Play size={14} /> Resume</button>
+        <button className="button secondary" disabled={busy} onClick={() => onDelete(board)} aria-label={`Delete board ${board.label}`}><Trash2 size={14} /> Delete</button>
+      </div>
+    </li>)}</ul>
+  </details>
 }
 
 export function Sudoku({ workspace, busy, run }: PageProps) {
@@ -242,6 +274,24 @@ export function Sudoku({ workspace, busy, run }: PageProps) {
     }
   }, [])
   const game = saved?.game
+  const savedBoards = useLiveQuery(listSavedSudokuBoards, [])
+  const [saveNote, setSaveNote] = useState('')
+  const [pendingResume, setPendingResume] = useState<string>()
+  const unsaved = game && savedBoards ? hasUnsavedSudokuProgress(game, savedBoards) : false
+  const saveCurrent = async () => {
+    if (!game) return false
+    try { await saveSudokuBoard(game); setSaveNote('Board saved. Keep playing, or resume it later from Saved boards.'); return true } catch (reason) {
+      setSaveNote(reason instanceof Error ? reason.message : 'The board could not be saved.'); return false
+    }
+  }
+  const resume = (id: string, saveFirst: boolean) => {
+    setPendingResume(undefined)
+    void run(async () => {
+      if (saveFirst && !await saveCurrent()) return
+      await resumeSudokuBoard(id)
+      setReplace(false); setSaveNote('Board resumed.')
+    })
+  }
   const complete = game ? sudokuComplete(game) : false
   const selectedPhrase: SudokuPhrase | undefined = sourceMode === 'lesson' ? phrases.find(phrase => phrase.id === lessonPhraseId) ?? phrases[0]
     : sourceMode === 'custom' ? { source: 'custom', text: customText, pinyin: '', translation: customTranslation }
@@ -282,12 +332,13 @@ export function Sudoku({ workspace, busy, run }: PageProps) {
       } finally { setSuggesting(false) }
     })
   }
-  const start = () => {
+  const start = (saveFirst = false) => {
     const controller = new AbortController()
     generation.current = controller
     setGenerating(true); setNotice('')
     void run(async () => {
       try {
+        if (saveFirst && !await saveCurrent()) return
         const prepared = sourceMode !== 'random' && selectedPhrase ? await prepareSudokuPhrase(selectedPhrase, characters, size) : undefined
         if (sourceMode !== 'random' && !prepared) throw new Error('Choose a phrase before generating the puzzle.')
         controller.signal.throwIfAborted()
@@ -313,7 +364,8 @@ export function Sudoku({ workspace, busy, run }: PageProps) {
     {!saved && <p role="status">Opening your saved puzzle...</p>}
     {game && <SudokuBoard key={game.gameId} game={game} busy={busy} run={run}
       autoSpeak={workspace.preferences.sudokuAutoSpeak !== false} showPinyin={workspace.preferences.sudokuShowPinyin === true} readings={readings}
-      onNewPuzzle={newPuzzle} />}
+      onNewPuzzle={newPuzzle} onSave={() => void saveCurrent()} />}
+    {saveNote && <p className="small" role="status">{saveNote}</p>}
     {saved && (!game || replace || complete) ? <section className="panel sudoku-setup" aria-label="New Sudoku puzzle">
       <h2>{replace ? 'Replace this puzzle?' : 'Choose your puzzle'}</h2>
       <div className="sudoku-settings">
@@ -358,11 +410,15 @@ export function Sudoku({ workspace, busy, run }: PageProps) {
       <p className="small muted">Puzzle generation runs locally; only an explicit AI phrase request uses your provider. Games do not change your learning progress.</p>
       {replace && <p>Your previous puzzle stays saved until the new one is ready.</p>}
       <div className="button-row">
-        <button className="button primary" disabled={busy || sourceBusy || !catalog || characters.length < size || !phraseReady} onClick={start}>{generating ? 'Generating puzzle...' : 'Generate puzzle'}</button>
+        <button className="button primary" disabled={busy || sourceBusy || !catalog || characters.length < size || !phraseReady} onClick={() => start()}>{generating ? 'Generating puzzle...' : 'Generate puzzle'}</button>
+        {replace && !generating && unsaved && <button className="button secondary" disabled={busy || sourceBusy || !catalog || characters.length < size || !phraseReady} onClick={() => start(true)}>Save it first</button>}
         {generating ? <button className="button secondary" onClick={() => { generation.current?.abort(); setNotice('Puzzle generation canceled. Your previous puzzle is unchanged.') }}>Cancel generation</button>
           : replace && <button className="button secondary" onClick={() => setReplace(false)}>Keep playing</button>}
       </div>
       {notice && <p className="small" role="status">{notice}</p>}
     </section> : null}
+    {savedBoards && savedBoards.length > 0 && <SavedBoards boards={savedBoards} busy={busy} pending={pendingResume}
+      onResume={board => unsaved ? setPendingResume(board.id) : resume(board.id, false)} onConfirm={resume} onCancel={() => setPendingResume(undefined)}
+      onDelete={board => void run(() => deleteSavedSudokuBoard(board.id))} />}
   </div>
 }
