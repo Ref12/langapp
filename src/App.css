@@ -425,8 +425,8 @@ select { padding: 10px; }
 .study-preview li.muted { opacity: 0.6; }
 .study-pattern { font-size: 22px; line-height: 1.4; word-break: break-word; }
 .study-pinyin { margin-top: -6px; }
-.study-example { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 10px; }
-.study-example .example { margin: 0; font-size: 20px; }
+.study-example { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+.study-example .example { margin: 0; font-size: 20px; border-top: 0; padding-top: 0; }
 .tile-answer, .tile-bank { display: flex; flex-wrap: wrap; gap: 10px; min-height: 64px; padding: 12px; border-radius: 8px; margin-bottom: 14px; align-items: center; }
 .tile-answer { border: 1px dashed var(--accent-line); background: var(--accent-soft); }
 .tile-bank { border: 1px solid var(--line); background: var(--surface-inset); }
