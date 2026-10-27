@@ -5,6 +5,8 @@ import { curriculum } from '../../data/curriculum'
 import { db, initializeWorkspace, loadWorkspace } from '../database'
 import { REPLY_INSTRUCTIONS } from '../ai/provider'
 import type { AssistantMessage, AssistantThread } from './contracts'
+import { loadCatalog } from '../study/catalog'
+import { cardId } from '../study/contracts'
 import { lookupCatalog, buildTutorMessages, executeAssistantTool, getLearningContext, lookupLessons, lookupWords } from './tools'
 import conversationPrompt from '../../../settings/system-prompts/conversation.md?raw'
 import shadowPrompt from '../../../settings/system-prompts/shadow.md?raw'
@@ -56,7 +58,7 @@ describe('read-only tutor catalog tools', () => {
     await db.readings.put({ storyId: 'zh:tea-house', passage: 2, completed: [0], updatedAt: 123 })
     const before = await loadWorkspace()
     const context = JSON.parse(await getLearningContext('茶'))
-    expect(context.counts).toEqual({ introducedWords: 0, recordedAttempts: 0, completedLessons: 0 })
+    expect(context.counts).toMatchObject({ knowledgeSet: { vocabulary: 0, grammar: 0, characters: 0 }, cardsDue: 0, exerciseAttempts: { total: 0, correct: 0 }, practisedPhrases: { spoken: 0, written: 0 } })
     expect(context.readings[0]).toMatchObject({ storyId: 'zh:tea-house', currentPassageIndex: 2, completedPassageIndices: [0], totalPassages: 3 })
     expect(context.evidenceNote).toContain('do not demonstrate mastery')
     for (const name of ['lookup_words', 'lookup_lessons', 'get_learning_context'] as const) {
@@ -65,6 +67,48 @@ describe('read-only tutor catalog tools', () => {
       expect(() => JSON.parse(result)).not.toThrow()
     }
     expect(await loadWorkspace()).toEqual(before)
+  })
+
+  it('reports the real v2 study state: knowledge set, cards, sessions, practice and characters', async () => {
+    const refs = ['vocabulary:cha2--tea', 'vocabulary:wo3--me']
+    const catalog = await loadCatalog()
+    const known = refs.filter(ref => catalog.units.has(ref))
+    expect(known.length).toBeGreaterThan(0)
+    await db.knowledge.bulkAdd(known.map(ref => ({ ref, kind: 'vocabulary', lb: ref.split(':')[1], band: 1, addedAt: 5, source: 'new' })) as never)
+    await db.studyCards.add({ id: cardId(known[0], 'reading'), ref: known[0], domain: 'reading', due: 1, stability: 2, difficulty: 5, reps: 3, lapses: 1, state: 'review', lastReview: 4, updatedAt: 4 } as never)
+    const exercise = { id: 'c', type: 'choice', targets: [known[0]], direction: 'zh-to-en', question: 'q', options: ['a', 'b'], answer: 0, explanation: 'x' }
+    await db.exerciseSessions.add({ id: 's1', mode: 'new', domain: 'reading', targetRefs: [known[0]], reviewRefs: [], exercises: [exercise], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 10, completedAt: 20 } as never)
+    await db.exerciseAttempts.add({ id: 's1:0', sessionId: 's1', index: 0, refs: [known[0]], response: '0', correct: true, createdAt: 15 })
+    await db.practiceHistory.bulkAdd([
+      { text: '我想喝茶', phrase: { type: 'speech', text: '我想喝茶', locale: 'zh-Hans' }, rate: 1, lastOpenedAt: 30, kinds: { speak: 30 } },
+      { text: '你好', phrase: { type: 'speech', text: '你好', locale: 'zh-Hans' }, rate: 1, lastOpenedAt: 40, kinds: { write: 40 } },
+    ] as never)
+    await db.characterStates.put({ character: '茶', practiceCompletions: 2, lastPracticedAt: 50 })
+    const before = await loadWorkspace()
+    const context = JSON.parse(await getLearningContext('茶'))
+    expect(context.counts).toMatchObject({
+      knowledgeSet: { vocabulary: known.length, grammar: 0 }, cards: 1, cardsDue: 1,
+      exerciseSessions: { completed: 1, abandoned: 0 }, exerciseAttempts: { total: 1, correct: 1 },
+      practisedPhrases: { spoken: 1, written: 1 }, practisedCharacters: 1,
+    })
+    const word = context.words.find((entry: { id: string }) => entry.id === known[0])
+    expect(word).toMatchObject({ inKnowledgeSet: true, evidence: { introduced: true, attempts: 1, correct: 1, cards: [{ state: 'review', reps: 3, lapses: 1 }] } })
+    expect(context.lessons[0]).toMatchObject({ id: 's1', mode: 'new', status: 'completed', exercises: 1, score: { answered: 1, correct: 1 } })
+    expect(context.recentPractice.phrases.map((entry: { text: string }) => entry.text)).toEqual(['你好', '我想喝茶'])
+    expect(context.recentPractice.characters[0]).toMatchObject({ character: '茶', completions: 2 })
+    expect(await loadWorkspace()).toEqual(before)
+  })
+
+  it('trims long practice lists instead of failing the size guard', async () => {
+    await db.practiceHistory.bulkAdd(Array.from({ length: 400 }, (_, i) => ({
+      text: `phrase ${i} ${'长'.repeat(70)}`, phrase: { type: 'speech', text: `phrase ${i} ${'长'.repeat(70)}`, locale: 'zh-Hans' }, rate: 1, lastOpenedAt: i, kinds: { speak: i },
+    })) as never)
+    const result = await getLearningContext('茶')
+    expect(result.length).toBeLessThanOrEqual(20_000)
+    const context = JSON.parse(result)
+    expect(context.error).toBeUndefined()
+    expect(context.counts.practisedPhrases.spoken).toBe(400)
+    expect(context.recentPractice.phrases.length).toBeLessThanOrEqual(10)
   })
 
   it('validates tool names and bounded strict arguments even outside transport', async () => {
@@ -155,7 +199,7 @@ describe('bounded tutor context', () => {
     expect(messages[2].content).toMatch(/^blocks:\n- type: speech\n {2}text:/)
     expect(JSON.parse(messages[3].content!)).toMatchObject({
       request: 'again', sourceData: current.source,
-      learningContextData: { counts: { introducedWords: 0 } },
+      learningContextData: { counts: { cardsDue: 0 } },
     })
     expect(JSON.stringify(messages)).not.toMatch(/Switched to conversation|placeholder/)
   })
