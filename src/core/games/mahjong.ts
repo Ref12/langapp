@@ -69,6 +69,10 @@ export function availablePairs(game: MahjongGame): [MahjongTile, MahjongTile][] 
   return free.flatMap((first, i) => free.slice(i + 1).filter(second => matches(first, second)).map(second => [first, second] as [MahjongTile, MahjongTile]))
 }
 
+function freshOrder(positions: readonly Position[], fallback: [Position, Position][], random: Random): [Position, Position][] {
+  try { return removalOrder(positions, random) } catch { return fallback }
+}
+
 export function createMahjong(words: readonly GameWord[], mode: MahjongMode = 'mixed', random: Random = Math.random, layoutId = DEFAULT_LAYOUT_ID): MahjongGame {
   const configuration = getMahjongLayout(layoutId)
   const pairCount = configuration.positions.length / 2
@@ -76,7 +80,10 @@ export function createMahjong(words: readonly GameWord[], mode: MahjongMode = 'm
   if (candidates.length < 4) throw new Error('Add at least four distinct, short vocabulary words to your knowledge set before playing.')
   const vocabulary = candidates.slice(0, Math.min(10, pairCount))
   const wordPairs = shuffle(Array.from({ length: pairCount }, (_, i) => i % vocabulary.length), random)
-  const tiles = configuration.solution.flatMap((positions, i) => {
+  // A fresh pairing per game; the parse-time order only proves the layout is solvable
+  // and is the fallback if the bounded search cannot finish.
+  const order = freshOrder(configuration.positions, configuration.solution, random)
+  const tiles = order.flatMap((positions, i) => {
     const wordIndex = wordPairs[i]
     // Each word uses exactly two faces, so any duplicate copies may be paired
     // without stranding an unequal number of representations.
@@ -123,7 +130,8 @@ export function reshuffleMahjong(game: MahjongGame, random: Random = Math.random
   const replacements = new Map<number, MahjongTile>()
   // Duplicate matches may leave an impossible tower. Restack into a solvable
   // suffix of the original layout instead of repeatedly shuffling a dead end.
-  removalOrder(boardLayout(game), () => .5).slice(-pairs.length).forEach((positions, i) => {
+  const layoutPositions = boardLayout(game)
+  freshOrder(layoutPositions, removalOrder(layoutPositions, () => .5), random).slice(-pairs.length).forEach((positions, i) => {
     const pair = shuffle(shuffled[i], random)
     positions.forEach((position, index) => replacements.set(pair[index].id, { ...pair[index], x: position.x, y: position.y, z: position.z }))
   })

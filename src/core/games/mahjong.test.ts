@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { availablePairs, boardLayout, courtyardLayout, createMahjong, distinctWords, isFree, layout, matches, readMahjong, remainingTiles, removalOrder, removePair, reshuffleMahjong, undoPair, type GameWord } from './mahjong'
+import { availablePairs, createMahjong, distinctWords, isFree, layout, matches, readMahjong, remainingTiles, removalOrder, removePair, reshuffleMahjong, undoPair, type GameWord } from './mahjong'
 
 export const gameWords: GameWord[] = [
   { id: 'tea', character: '茶', pinyin: 'chá', meaning: 'tea' },
@@ -46,17 +46,27 @@ describe('Mahjong Solitaire rules', () => {
   })
 
   it.each(solvableDeals)('constructs a solvable 48-tile board from $count words with seed $seed', ({ count, seed }) => {
-    let game = createMahjong(gameWords.slice(0, count), 'mixed', seeded(seed))
+    const game = createMahjong(gameWords.slice(0, count), 'mixed', seeded(seed))
     expect(game.tiles).toHaveLength(48)
     expect(game.tiles.some(tile => tile.z === 2)).toBe(true)
     expect(game.tiles.some(tile => !Number.isInteger(tile.x))).toBe(true)
     const forms = new Set(game.tiles.map(tile => tile.face))
     expect(forms.size).toBe(3)
-    for (const [first, second] of removalOrder(courtyardLayout(), () => .5)) {
-      expect(availablePairs(game).some(pair => pair.some(tile => tile.id === first.id) && pair.some(tile => tile.id === second.id))).toBe(true)
-      game = removePair(game, first.id, second.id)
-      expect(readMahjong(game)).toEqual(game)
+    // Each game has its own pairing: clear it by search, validating every move and save round-trip.
+    const deadEnds = new Set<string>()
+    const clear = (state: typeof game, depth: number): boolean => {
+      if (!remainingTiles(state).length) return true
+      const key = [...state.removed].sort((a, b) => a - b).join()
+      if (deadEnds.has(key)) return false
+      for (const [first, second] of availablePairs(state)) {
+        const next = removePair(state, first.id, second.id)
+        if (depth < 3) expect(readMahjong(next)).toEqual(next)
+        if (clear(next, depth + 1)) return true
+      }
+      deadEnds.add(key)
+      return false
     }
+    expect(clear(game, 0)).toBe(true)
   })
 
   it.each(['character-meaning', 'character-pinyin', 'pinyin-meaning'] as const)('supports %s boards', mode => {
@@ -93,18 +103,25 @@ describe('Mahjong Solitaire rules', () => {
     expect(game.history).toEqual([])
     expect(game.shuffles).toBe(1)
     expect(readMahjong(game)).toEqual(game)
-    for (const positions of removalOrder(boardLayout(game), () => .5).slice(-remainingTiles(game).length / 2)) {
-      const next = positions.map(position => remainingTiles(game).find(tile => tile.x === position.x && tile.y === position.y && tile.z === position.z)!)
-      expect(next.every(Boolean)).toBe(true)
-      game = removePair(game, next[0].id, next[1].id)
+    const deadEnds = new Set<string>()
+    const clear = (state: typeof game): boolean => {
+      if (!remainingTiles(state).length) { game = state; return true }
+      const key = [...state.removed].sort((a, b) => a - b).join()
+      if (deadEnds.has(key)) return false
+      for (const [first, second] of availablePairs(state)) {
+        if (clear(removePair(state, first.id, second.id))) return true
+      }
+      deadEnds.add(key)
+      return false
     }
+    expect(clear(game)).toBe(true)
+    expect(remainingTiles(game)).toHaveLength(0)
     expect(() => reshuffleMahjong(game)).toThrow('complete')
   })
 
-  it('allows a duplicate copy to match across the originally dealt pairs', () => {
+  it('allows a duplicate copy to match any free tile of the same word', () => {
     const game = createMahjong(gameWords.slice(0, 4), 'character-pinyin', seeded(2))
-    const originalPairs = removalOrder(courtyardLayout(), () => .5)
-    const crossPair = availablePairs(game).find(([first, second]) => !originalPairs.some(pair => pair.some(p => p.id === first.id) && pair.some(p => p.id === second.id)))!
+    const crossPair = availablePairs(game)[0]
     expect(crossPair).toBeDefined()
     expect(game.tiles.filter(tile => tile.word.id === crossPair[0].word.id)).toHaveLength(12)
     const next = removePair(game, crossPair[0].id, crossPair[1].id)

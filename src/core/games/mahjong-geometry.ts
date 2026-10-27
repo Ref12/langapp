@@ -35,9 +35,19 @@ export function isFree(tile: Position, remaining: readonly Position[]): boolean 
   return !covered && (!neighbor(-1) || !neighbor(1))
 }
 
+/** True when two tiles are mirror images about the layout's centre line (left/right or top/bottom). */
+export function isMirror(first: Position, second: Position, bounds: { x: number; y: number }): boolean {
+  return first.z === second.z && ((first.y === second.y && first.x + second.x === bounds.x) || (first.x === second.x && first.y + second.y === bounds.y))
+}
+
+export function mirrorBounds(positions: readonly Position[]) {
+  return { x: Math.min(...positions.map(p => p.x)) + Math.max(...positions.map(p => p.x)), y: Math.min(...positions.map(p => p.y)) + Math.max(...positions.map(p => p.y)) }
+}
+
 // Find a legal removal sequence before assigning word pairs. A bounded search
 // rejects configurations it cannot prove instead of freezing the app.
 export function removalOrder(positions: readonly Position[], random: () => number): [Position, Position][] {
+  const bounds = mirrorBounds(positions)
   const deadEnds = new Set<string>()
   let visited = 0
   const solve = (remaining: readonly Position[]): [Position, Position][] | undefined => {
@@ -50,8 +60,11 @@ export function removalOrder(positions: readonly Position[], random: () => numbe
       const j = Math.floor(random() * (i + 1))
       ;[free[i], free[j]] = [free[j], free[i]]
     }
+    // Random pairing with only a mild preference for higher layers (the jitter
+    // outweighs a layer difference), and mirror images pushed to the end.
     const pairs = free.flatMap((first, i) => free.slice(i + 1).map(second => [first, second] as [Position, Position]))
-      .sort((a, b) => b[0].z + b[1].z - a[0].z - a[1].z)
+      .map(pair => ({ pair, key: random() * 3 - (pair[0].z + pair[1].z) * .5 + (isMirror(pair[0], pair[1], bounds) ? 100 : 0) }))
+      .sort((a, b) => a.key - b.key).map(item => item.pair)
     for (const [first, second] of pairs) {
       const rest = solve(remaining.filter(tile => tile.id !== first.id && tile.id !== second.id))
       if (rest) return [[first, second], ...rest]
