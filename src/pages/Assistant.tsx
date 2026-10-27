@@ -10,6 +10,7 @@ import { createConversation, deleteThread, expireAssistantRuns, saveDraft, selec
 import { cancelAssistantRun, sendAssistantTurn } from '../core/assistant/runtime'
 import { AssistantText } from '../components/assistant/AssistantText'
 import { MessageActions } from '../components/assistant/MessageActions'
+import { writePhrase } from '../components/assistant/writePhrase'
 import { SnippetActions } from '../components/assistant/SnippetActions'
 import { PhrasePractice } from '../components/assistant/PhrasePractice'
 import { PracticeResultBubble } from '../components/assistant/PracticeResultBubble'
@@ -122,7 +123,7 @@ function Message({ message, thread, onPractice, inlinePractice }: {
           ? message.role === 'assistant' && message.status === 'completed'
             ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice} />
             : <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
-              rate={thread.speechRate} onPractice={() => onPractice(block)} />
+              rate={thread.speechRate} onPractice={() => onPractice(block)} onWrite={() => { writePhrase(block.text, `conversation/${thread.id}`) }} />
           : null}
       </div>)}
     {message.status === 'pending' && <p className="small muted" role="status">Working on your reply...</p>}

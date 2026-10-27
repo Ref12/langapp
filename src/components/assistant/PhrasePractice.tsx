@@ -4,6 +4,7 @@ import type { SpeechConnection } from '../../core/assistant/speech-contracts'
 import { interruptAudio } from '../../core/assistant/audio-owner'
 import { stopBrowserSpeech } from '../../core/assistant/speech'
 import { savePracticeChain } from '../../core/assistant/practice-chain-store'
+import { writePhrase } from './writePhrase'
 import { SnippetActions } from './SnippetActions'
 import { PracticeFeedback } from './PracticeFeedback'
 import { PracticeRecording } from './PracticeRecording'
@@ -89,7 +90,7 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
     <SnippetActions source={{
       text: phrase.text, meaning: phrase.meaning, locale: phrase.locale,
       title: 'Assistant phrase', route: `conversation/${thread.id}`,
-    }} rate={thread.speechRate} onPractice={activate} practiceDisabled={busy}
+    }} rate={thread.speechRate} onPractice={activate} onWrite={() => { if (!writePhrase(phrase.text, `conversation/${thread.id}`)) setError('There is nothing to write here: writing practice needs Chinese characters with stroke guides.') }} practiceDisabled={busy}
       practiceTitle="Open the phrase practice playlist" />
     {error && <p role="alert" className="small connection-error">{error}</p>}
     {inline && result && !visible && <PracticeFeedback result={result} />}

@@ -311,6 +311,25 @@ describe('first usable Assistant', () => {
     expect((await db.assistantThreads.get(prepared.id))?.draft).toContain(getWord('zh:rain').native)
   })
 
+  it.each(['conversation', 'shadow'] as const)('opens writing practice for a phrase from the %s phrase menu, coming back to the conversation', async mode => {
+    const id = await createConversation()
+    await updateThread(id, { mode })
+    await db.assistantMessages.add({
+      id: 'write-reply', threadId: id, role: 'assistant', text: '', sequence: mode === 'shadow' ? 1 : 0,
+      mode, intent: 'message', status: 'completed', createdAt: Date.now(),
+      blocks: [{ type: 'speech', text: '\u8336', locale: 'zh-Hans', romanization: 'cha', meaning: 'tea' }],
+    })
+    window.location.hash = `/conversation/${id}`
+    render(<App />)
+    const reply = await screen.findByRole('article', { name: 'Assistant reply' })
+    const block = within(reply).getByText('\u8336').closest<HTMLDivElement>('.speech-block')!
+    await userEvent.setup().click(openPhraseActions(block).getByRole('button', { name: 'Write' }))
+    await waitFor(() => expect(window.location.hash).toContain('back='))
+    const hash = decodeURIComponent(window.location.hash)
+    expect(hash).toContain('\u8336')
+    expect(hash).toContain(`back=conversation/${id}`)
+  })
+
   it.each(['conversation', 'shadow'] as const)('uses Ask without Explain more in %s phrase menus and appends context to the current chat', async mode => {
     const originalSource = { text: 'Original reference', title: 'Original source', route: 'dictionary' }
     const id = await createConversation(originalSource)
@@ -343,6 +362,7 @@ describe('first usable Assistant', () => {
       expect(within(block).getByRole('button', { name: /^Hear/ })).toBeInTheDocument()
       expect(openPhraseActions(block).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
       expect(openPhraseActions(block).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
+      expect(openPhraseActions(block).getByRole('button', { name: 'Write' })).toBeInTheDocument()
       expect(within(block).queryByRole('button', { name: 'Explain more', hidden: true })).not.toBeInTheDocument()
     }
     for (const block of reply.querySelectorAll('.assistant-markdown')) {
