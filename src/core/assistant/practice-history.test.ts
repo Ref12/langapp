@@ -59,7 +59,7 @@ describe('recent phrase practice', () => {
     vi.mocked(Date.now).mockReturnValue(30)
     await rememberWrittenPhrase('茶')
     expect(await db.practiceHistory.get('茶')).toMatchObject({ kinds: { write: 30 } })
-    const legacy = { text: '水', phrase: { ...phrase, text: '水' }, rate: 1, lastOpenedAt: 5 }
+    const legacy = { text: '水', phrase: { ...phrase, text: '水' }, rate: 1 as const, lastOpenedAt: 5 }
     expect(practiceHistoryEntrySchema.parse(legacy).kinds).toBeUndefined()
     expect(entryKinds(legacy)).toEqual({ speak: 5 })
     expect(lastKind(legacy)).toBe('speak')
