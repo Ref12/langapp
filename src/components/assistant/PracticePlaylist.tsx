@@ -71,7 +71,9 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
   const [historySaving, setHistorySaving] = useState(false)
   const historyEntry = useRef({ phrase, rate })
   const openedHistory = useRef<Promise<void>>()
-  const writeHistory = () => rememberPracticePhrase(historyEntry.current.phrase, historyEntry.current.rate, saved.current.ends, saved.current.items)
+  const kind = useRef<'speak' | 'write'>('speak')
+  kind.current = writing ? 'write' : 'speak'
+  const writeHistory = () => rememberPracticePhrase(historyEntry.current.phrase, historyEntry.current.rate, saved.current.ends, saved.current.items, kind.current)
   const retryHistory = () => {
     setHistorySaving(true)
     void writeHistory().then(() => {
@@ -80,6 +82,13 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
       if (alive.current) setHistoryError(`History not saved. ${cause instanceof Error ? cause.message : 'Check browser storage and retry.'}`)
     }).finally(() => { if (alive.current) setHistorySaving(false) })
   }
+
+  const firstMode = useRef(writing)
+  useEffect(() => {
+    if (firstMode.current === writing) return
+    firstMode.current = writing
+    void writeHistory().catch(() => undefined)
+  }, [writing])
 
   const requestClose = async () => {
     if (closing.current || saving) return
@@ -106,7 +115,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
     const overflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     element.showModal()
-    openedHistory.current ??= rememberPracticePhrase(historyEntry.current.phrase, historyEntry.current.rate, saved.current.ends, saved.current.items)
+    openedHistory.current ??= writeHistory()
     void openedHistory.current.catch(cause => {
       if (alive.current) setHistoryError(`History not saved. ${cause instanceof Error ? cause.message : 'Check browser storage and retry.'}`)
     })
@@ -214,7 +223,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
         if (next.items) await onSave(next.ends, next.items)
         else await onSave(next.ends)
       } else {
-        await rememberPracticePhrase(phrase, rate, next.ends, next.items)
+        await rememberPracticePhrase(phrase, rate, next.ends, next.items, kind.current)
         if (alive.current) setHistoryError('')
       }
       if (!alive.current) return false

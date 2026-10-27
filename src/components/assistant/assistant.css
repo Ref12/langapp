@@ -158,3 +158,7 @@
   .assistant-composer textarea { max-height: 88px; }
   .assistant-composer { padding-top: 6px; padding-bottom: 6px; }
 }
+.phrase-history-entry .history-phrase { display: grid; gap: 6px; text-align: left; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; }
+.history-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.history-chips .chip { font-size: 0.72rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted, inherit); }
+.history-filters { display: flex; gap: 4px; margin: 0 0 12px; }

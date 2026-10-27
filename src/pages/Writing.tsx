@@ -10,6 +10,7 @@ import { EmptyState, type PageProps } from '../components/shared'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { haptic } from '../core/haptics'
 import { savePreferences } from '../core/learning'
+import { rememberWrittenPhrase } from '../core/assistant/practice-history'
 import { Pinyin } from '../components/Pinyin'
 import './writing.css'
 
@@ -37,6 +38,8 @@ export function Writing({ codepoint, scope, query, ...props }: PageProps & { cod
   const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
   const { word, index, back: requestedBack } = useMemo(() => parseWritingQuery(query, character), [query, character])
   const back = requestedBack ?? `dictionary/characters/${scopeName}`
+  const phrase = query?.includes('word=') ? word.join('') : ''
+  useEffect(() => { if (phrase) void rememberWrittenPhrase(phrase).catch(() => undefined) }, [phrase])
   const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack })
   const nextIndex = word.length ? neighbourIndex(word, index, 1) : undefined
   const previousIndex = word.length ? neighbourIndex(word, index, -1) : undefined

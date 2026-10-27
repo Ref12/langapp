@@ -80,7 +80,7 @@ function usePracticeWrite(text: string, route: string, romanization?: string, fo
   return { mode, onMode, content: <WritePractice text={text} romanization={romanization} route={route} onSpeak={() => onMode('speak')} /> }
 }
 
-function PracticeSheet({ route, ...props }: { route: string } & Omit<Parameters<typeof PracticePlaylist>[0], 'write'> & { forced?: 'speak' | 'write' }) {
+export function PracticeSheet({ route, ...props }: { route: string } & Omit<Parameters<typeof PracticePlaylist>[0], 'write'> & { forced?: 'speak' | 'write' }) {
   const { forced, ...rest } = props
   const write = usePracticeWrite(rest.phrase.text, route, rest.phrase.romanization, forced)
   return <PracticePlaylist {...rest} write={write} />

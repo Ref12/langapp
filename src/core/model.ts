@@ -64,6 +64,7 @@ export interface Preferences {
   sudokuShowPinyin?: boolean
   tileAutoSpeak?: boolean
   practiceMode?: 'speak' | 'write'
+  historyFilter?: 'all' | 'speak' | 'write' | 'lessons'
 }
 
 export interface WordState {

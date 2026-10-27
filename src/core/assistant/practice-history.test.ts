@@ -4,7 +4,7 @@ import { exportWorkspaceBackup, readBackup, restoreBackup } from '../backup'
 import { createProfile, exportActiveProfile, restoreActiveProfile } from '../profiles/store'
 import { parseProfileYaml } from '../profiles/codec'
 import { resetProfileStorage } from '../../test/profile-storage'
-import { rememberPracticePhrase } from './practice-history'
+import { entryKinds, lastKind, rememberPracticePhrase, rememberWrittenPhrase } from './practice-history'
 import { practiceHistoryEntrySchema } from './contracts'
 import { createConversation, deleteThread } from './store'
 
@@ -47,6 +47,30 @@ describe('recent phrase practice', () => {
     delete oldBackup.assistant.practiceHistory
     await restoreBackup(JSON.stringify(oldBackup))
     expect(await db.practiceHistory.count()).toBe(0)
+  })
+
+  it('records the kind of practice, keeps lastOpenedAt as the newest, and counts old entries as spoken', async () => {
+    vi.spyOn(Date, 'now').mockReturnValue(10)
+    await rememberPracticePhrase(phrase, 1)
+    vi.mocked(Date.now).mockReturnValue(20)
+    await rememberPracticePhrase(phrase, 1, undefined, undefined, 'write')
+    expect(await db.practiceHistory.get(phrase.text)).toMatchObject({ lastOpenedAt: 20, kinds: { speak: 10, write: 20 } })
+    expect(lastKind((await db.practiceHistory.get(phrase.text))!)).toBe('write')
+    vi.mocked(Date.now).mockReturnValue(30)
+    await rememberWrittenPhrase('茶')
+    expect(await db.practiceHistory.get('茶')).toMatchObject({ kinds: { write: 30 } })
+    const legacy = { text: '水', phrase: { ...phrase, text: '水' }, rate: 1, lastOpenedAt: 5 }
+    expect(practiceHistoryEntrySchema.parse(legacy).kinds).toBeUndefined()
+    expect(entryKinds(legacy)).toEqual({ speak: 5 })
+    expect(lastKind(legacy)).toBe('speak')
+    await db.practiceHistory.put(legacy)
+    const backup = await exportWorkspaceBackup()
+    expect(readBackup(backup).assistant?.practiceHistory).toContainEqual(legacy)
+    await db.practiceHistory.clear()
+    await restoreBackup(backup)
+    expect(await db.practiceHistory.get('水')).toEqual(legacy)
+    expect(await db.practiceHistory.get(phrase.text)).toMatchObject({ kinds: { speak: 10, write: 20 } })
+    expect(parseProfileYaml(await exportActiveProfile()).conversations.practiceHistory).toContainEqual(legacy)
   })
 
   it('isolates fresh profiles and includes history when cloning a profile', async () => {

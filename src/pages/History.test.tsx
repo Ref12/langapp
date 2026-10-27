@@ -85,3 +85,61 @@ it('reports a failed history write, remains usable, and retries without speaking
   await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument())
   expect(speechSynthesis.speak).not.toHaveBeenCalled()
 })
+
+const session = {
+  id: 'sess-1', mode: 'new' as const, domain: 'reading' as const, targetRefs: ['vocabulary:ni'], reviewRefs: [] as string[], cursor: 1,
+  exercises: [{ id: 'e1', type: 'choice' as const, targets: ['vocabulary:ni'], direction: 'en-to-zh' as const, question: 'you', options: ['你', '我'], answer: 0, explanation: 'x' }],
+  status: 'completed' as const, model: 'm', rejected: [] as string[], createdAt: 40, completedAt: 50,
+}
+
+it('shows kind chips and the standard actions, filters by kind and lessons, and persists the filter', async () => {
+  vi.spyOn(Date, 'now').mockReturnValue(10)
+  await rememberPracticePhrase(phrase, 1)
+  vi.mocked(Date.now).mockReturnValue(20)
+  await rememberPracticePhrase({ ...phrase, text: '茶', meaning: 'Tea' }, 1, undefined, undefined, 'write')
+  await db.exerciseSessions.add(session as never)
+  await db.exerciseAttempts.add({ id: 'a1', sessionId: 'sess-1', index: 0, refs: ['vocabulary:ni'], response: '你', correct: true, createdAt: 45 } as never)
+  vi.restoreAllMocks()
+  render(<App />)
+  const list = await screen.findByRole('list')
+  expect(within(list).getAllByRole('listitem')).toHaveLength(3)
+  expect(within(list).getAllByText('Spoken')).toHaveLength(1)
+  expect(within(list).getAllByText('Written')).toHaveLength(1)
+  expect(screen.getByText(/score 1\/1/)).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /Open lesson session/ })).toHaveAttribute('href', '#lessons/session/sess-1')
+  expect(openPhraseActions(list, 0).getByRole('button', { name: 'Write' })).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Written' }))
+  await waitFor(() => expect(screen.getAllByRole('listitem')).toHaveLength(1))
+  expect(screen.getByRole('button', { name: 'Practice 茶' })).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Spoken' }))
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Practice 你好' })).toBeInTheDocument())
+  expect(screen.queryByRole('button', { name: 'Practice 茶' })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Lessons' }))
+  expect(await screen.findByRole('link', { name: /Open lesson session/ })).toBeInTheDocument()
+  expect(screen.getAllByRole('listitem')).toHaveLength(1)
+  expect((await db.preferences.get('workspace'))?.historyFilter).toBe('lessons')
+  cleanup()
+  render(<App />)
+  expect(await screen.findByRole('link', { name: /Open lesson session/ })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Lessons' })).toHaveAttribute('aria-pressed', 'true')
+  await db.preferences.update('workspace', { historyFilter: 'write' })
+  expect(await screen.findByText('茶')).toBeInTheDocument()
+  expect(screen.queryByText('你好')).not.toBeInTheDocument()
+})
+
+it('shows a per-filter empty state', async () => {
+  await db.preferences.update('workspace', { historyFilter: 'all' })
+  await rememberPracticePhrase(phrase, 1)
+  render(<App />)
+  await screen.findByRole('button', { name: 'Practice 你好' })
+  fireEvent.click(screen.getByRole('button', { name: 'Written' }))
+  expect(await screen.findByRole('heading', { name: 'No written phrases yet.' })).toBeInTheDocument()
+})
+
+it('reopens a phrase last written in Write mode', async () => {
+  await rememberPracticePhrase(phrase, 1, undefined, undefined, 'write')
+  render(<App />)
+  fireEvent.click(await screen.findByRole('button', { name: 'Practice 你好' }))
+  const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
+  expect(await within(popup).findByRole('list', { name: 'Words to write' })).toBeInTheDocument()
+})

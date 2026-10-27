@@ -65,6 +65,8 @@ export const practiceHistoryEntrySchema = z.object({
   phrase: practicePhraseSchema,
   rate: speechRateSchema,
   lastOpenedAt: timestamp,
+  /** Last time each kind of practice was used; absent on older entries, which count as spoken. */
+  kinds: z.object({ speak: timestamp.optional(), write: timestamp.optional() }).strict().optional(),
   chain: practiceChainSchema.optional(),
 }).strict().refine(entry => entry.text === entry.phrase.text && (!entry.chain || entry.chain.text === entry.text),
   'History must retain the exact practiced phrase.')
