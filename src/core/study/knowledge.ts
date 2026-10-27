@@ -76,7 +76,8 @@ async function requireConnection(): Promise<AIConnection> {
 }
 
 async function activeSession(mode: ExerciseSession['mode']): Promise<ExerciseSession | undefined> {
-  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode).first()
+  // A redo is a repeat, never the curriculum's current step, so it does not count as the unfinished session.
+  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode && !session.redoOf).sortBy('createdAt').then(rows => rows[0])
 }
 
 function recentReviewRefs(sessions: ExerciseSession[], exclude: Set<string>): string[] {
@@ -96,10 +97,16 @@ async function saveSession(session: ExerciseSession): Promise<string> {
   return session.id
 }
 
-/** Introduces the next curriculum group, then generates its exercises. Resumes an unfinished New session first. */
-export async function startNewSession(signal?: AbortSignal): Promise<string> {
-  const existing = await activeSession('new')
-  if (existing) return existing.id
+/**
+ * Introduces the next curriculum group, then generates its exercises. By default an unfinished New session is resumed first;
+ * with `resume: false` it always starts the next group and leaves active sessions alone.
+ */
+export async function startNewSession(signal?: AbortSignal, options: { resume?: boolean } = {}): Promise<string> {
+  const resume = options.resume ?? true
+  if (resume) {
+    const existing = await activeSession('new')
+    if (existing) return existing.id
+  }
   const connection = await requireConnection()
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
@@ -114,7 +121,9 @@ export async function startNewSession(signal?: AbortSignal): Promise<string> {
   }, signal)
   const now = Date.now()
   return db.transaction('rw', db.knowledge, db.studyCards, db.exerciseSessions, db.journal, async () => {
-    const resumed = await activeSession('new')
+    // Guard only against the same group being started twice at once.
+    const resumed = resume ? await activeSession('new') : await db.exerciseSessions.where('status').equals('active')
+      .filter(session => session.mode === 'new' && !session.redoOf && session.groupId === next.group.id).first()
     if (resumed) return resumed.id
     await addUnits(next.newUnits, 'new', now)
     return saveSession({

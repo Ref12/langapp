@@ -31,7 +31,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
     setGenerating(mode)
     void run(async () => {
       try {
-        const id = mode === 'new' ? await startNewSession() : await startReviewSession(Date.now(), anyway)
+        const id = mode === 'new' ? await startNewSession(undefined, { resume: false }) : await startReviewSession(Date.now(), anyway)
         navigate(`lessons/session/${id}`)
       } finally {
         setGenerating('')
@@ -53,6 +53,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
             <h2>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'}` : catalog ? 'Nothing left to introduce' : 'Loading the curriculum...'}</h2></div>
           <button className="button primary" aria-label="Start new items" disabled={busy || !next || !connection} onClick={() => start('new')}>Start <ArrowRight size={16} /></button>
         </div>
+        {active.length > 0 && <p className="small muted">Your unfinished lesson is in Pick up where you left off.</p>}
         {next && <ul className="study-preview" aria-label="Items in this group">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>
           <span className="study-preview-form" lang="zh-Hans">{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</span>
           <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /> </span>}{unit.record.ds}</span>

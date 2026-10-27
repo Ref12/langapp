@@ -174,6 +174,45 @@ describe('knowledge set and sessions', () => {
     expect(nextRequest.alsoReview.map((item: { ref: string }) => item.ref)).toEqual(next.reviewRefs)
   })
 
+  const mockProposals = () => structured.requestStructuredJSON.mockImplementation(async (_connection, request) =>
+    proposal(JSON.parse(request.user).targets.map((target: { ref: string }) => target.ref)))
+
+  it('Start with resume: false creates the next group and leaves an unfinished New session resumable', async () => {
+    await db.aiConnections.add(connection)
+    mockProposals()
+    const old = await startNewSession()
+    const fresh = await startNewSession(undefined, { resume: false })
+    expect(fresh).not.toBe(old)
+    expect((await db.exerciseSessions.get(old))!.status).toBe('active')
+    const created = (await db.exerciseSessions.get(fresh))!
+    expect([created.status, created.groupId]).toEqual(['active', 'zh-hsk-1-lesson-0002'])
+    expect(await startNewSession()).toBe(old)
+  })
+
+  it('never treats an active redo session as the unfinished New session', async () => {
+    await db.aiConnections.add(connection)
+    mockProposals()
+    const catalog = await loadCatalog()
+    const group = nextGroup(catalog, new Set())!
+    const redo = { id: 'redo-1', mode: 'new' as const, domain: 'reading' as const, groupId: group.group.id, targetRefs: group.units.map(unit => unit.ref), reviewRefs: [],
+      exercises: proposal(group.units.map(unit => unit.ref)).exercises as never, cursor: 0, status: 'active' as const, model: 'm', rejected: [], createdAt: 1, redoOf: 'older' }
+    await db.exerciseSessions.add(redo)
+    for (const options of [{ resume: false }, undefined]) {
+      const id = await startNewSession(undefined, options)
+      expect(id).not.toBe('redo-1')
+      expect((await db.exerciseSessions.get(id))!.redoOf).toBeUndefined()
+      expect((await db.exerciseSessions.get('redo-1'))!.status).toBe('active')
+      await db.exerciseSessions.update(id, { status: 'abandoned' })
+    }
+    expect((await db.exerciseSessions.where('status').equals('active').toArray()).map(session => session.id)).toEqual(['redo-1'])
+  })
+
+  it('reports when no new group is left, even with resume: false', { timeout: 60000 }, async () => {
+    await db.aiConnections.add(connection)
+    await addToKnowledge([...(await loadCatalog()).units.keys()])
+    await expect(startNewSession(undefined, { resume: false })).rejects.toThrow('Every available curriculum group is already in your knowledge set.')
+  })
+
   it('reports when the AI returns too few usable exercises', async () => {
     await db.aiConnections.add(connection)
     structured.requestStructuredJSON.mockResolvedValueOnce({ exercises: [
