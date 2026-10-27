@@ -39,7 +39,8 @@ export interface CharacterAsset extends CharacterAssetSummary {
 export const characterAssetIndex: CharacterAssetSummary[] = index.characters
 const summaries = new Map(characterAssetIndex.map(summary => [summary.character, { ...summary }]))
 const pageFor = (character: string) => `u${(character.codePointAt(0)! >>> 8).toString(16).padStart(4, '0')}`
-const assetUrl = (file: string) => `${import.meta.env.BASE_URL}characters/chinese/${file}`
+// Read lazily and defensively: this module is reachable from the Vite config bundle (Node), where import.meta.env is undefined.
+const assetUrl = (file: string) => `${import.meta.env?.BASE_URL ?? '/'}characters/chinese/${file}`
 export const characterAttributionUrl = assetUrl('ATTRIBUTION.html')
 const chunks = new Map<string, Promise<Map<string, CharacterAsset>>>()
 const object = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value)
