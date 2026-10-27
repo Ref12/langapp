@@ -70,3 +70,24 @@ export const sudokuGameSchema = sudokuPuzzleSchema.extend({
   }).strict()).max(200),
 }).strict()
 export type SudokuGame = z.infer<typeof sudokuGameSchema>
+
+// Saved boards (snapshots of a game) live in the same table as the live game; the schema stays here, light, so the
+// backup codec and node-side tooling can validate rows without pulling the game logic and browser modules in.
+export const MAX_SAVED_SUDOKU_BOARDS = 30
+export const SAVED_SUDOKU_PREFIX = 'saved-'
+export const SAVED_SUDOKU_THUMBNAIL_MAX = 4000
+export const savedSudokuBoardSchema = z.object({
+  id: z.string().min(SAVED_SUDOKU_PREFIX.length + 1).max(80).startsWith(SAVED_SUDOKU_PREFIX),
+  kind: z.literal('saved-board'),
+  savedAt: z.number().int().nonnegative(),
+  label: z.string().max(100),
+  size: sudokuSizeSchema,
+  difficulty: sudokuDifficultySchema,
+  filled: z.number().int().min(0).max(81),
+  checked: z.boolean(),
+  thumbnail: z.string().max(SAVED_SUDOKU_THUMBNAIL_MAX),
+  sourceGameId: z.string().min(1),
+  sourceRevision: z.number().int().nonnegative(),
+  game: sudokuGameSchema,
+}).strict()
+export type SavedSudokuBoard = z.infer<typeof savedSudokuBoardSchema>

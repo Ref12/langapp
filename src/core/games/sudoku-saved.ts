@@ -1,26 +1,8 @@
-import { z } from 'zod'
-import { SUDOKU_BOXES, sudokuDifficultySchema, sudokuGameSchema, sudokuSizeSchema, type SudokuGame } from './sudoku-contracts'
+import { SAVED_SUDOKU_PREFIX, SAVED_SUDOKU_THUMBNAIL_MAX, savedSudokuBoardSchema, SUDOKU_BOXES, type SavedSudokuBoard, type SudokuGame } from './sudoku-contracts'
 import { readSudokuGame, sudokuEntryValue } from './sudoku-state'
 
-export const MAX_SAVED_SUDOKU_BOARDS = 30
-export const SAVED_SUDOKU_PREFIX = 'saved-'
-const MAX_THUMBNAIL = 4000
-
-export const savedSudokuBoardSchema = z.object({
-  id: z.string().min(SAVED_SUDOKU_PREFIX.length + 1).max(80).startsWith(SAVED_SUDOKU_PREFIX),
-  kind: z.literal('saved-board'),
-  savedAt: z.number().int().nonnegative(),
-  label: z.string().max(100),
-  size: sudokuSizeSchema,
-  difficulty: sudokuDifficultySchema,
-  filled: z.number().int().min(0).max(81),
-  checked: z.boolean(),
-  thumbnail: z.string().max(MAX_THUMBNAIL),
-  sourceGameId: z.string().min(1),
-  sourceRevision: z.number().int().nonnegative(),
-  game: sudokuGameSchema,
-}).strict()
-export type SavedSudokuBoard = z.infer<typeof savedSudokuBoardSchema>
+export { MAX_SAVED_SUDOKU_BOARDS, SAVED_SUDOKU_PREFIX, savedSudokuBoardSchema, type SavedSudokuBoard } from './sudoku-contracts'
+const MAX_THUMBNAIL = SAVED_SUDOKU_THUMBNAIL_MAX
 
 const n = (value: number) => String(Math.round(value * 10) / 10)
 

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { MAX_SAVED_SUDOKU_BOARDS, readSavedSudokuBoard, type SavedSudokuBoard } from './games/sudoku-saved'
+import { MAX_SAVED_SUDOKU_BOARDS, savedSudokuBoardSchema, type SavedSudokuBoard } from './games/sudoku-contracts'
 import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from '../data/mandarin'
 import type { Workspace } from './model'
 import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
@@ -206,7 +206,8 @@ export function validateWorkspace(workspace: z.infer<typeof workspaceSchema>) {
 }
 
 function readSavedBoards(values: unknown[]): SavedSudokuBoard[] {
-  const boards = values.map(readSavedSudokuBoard)
+  // Shape only here (this module is shared with node-side tooling); the one-solution check runs when a board is listed or resumed.
+  const boards = values.map(value => savedSudokuBoardSchema.parse(value))
   unique(boards.map(board => board.id), 'saved Sudoku boards')
   return boards
 }
