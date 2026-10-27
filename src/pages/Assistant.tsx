@@ -132,6 +132,9 @@ function Message({ message, thread, onPractice, inlinePractice }: {
   </article>
 }
 
+const DRAFT_SAVE_DELAY_MS = 400
+const SAVING_INDICATOR_DELAY_MS = 1000
+
 function Conversation({ thread, headerTarget }: { thread: AssistantThread; headerTarget?: HTMLElement | null }) {
   const messages = useLiveQuery(() => db.assistantMessages.where('threadId').equals(thread.id).sortBy('sequence'), [thread.id])
   const runs = useLiveQuery(() => db.assistantRuns.where('threadId').equals(thread.id).toArray(), [thread.id])
@@ -151,6 +154,8 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
   const sendVersion = useRef(0)
   const sendPending = useRef(false)
   const latestDraft = useRef(draft)
+  const debounce = useRef<number>()
+  const queued = useRef<{ value: string; source?: AssistantThread['source'] }>()
   const input = useRef<HTMLTextAreaElement>(null)
   const history = useRef<HTMLDivElement>(null)
   const settings = useRef<HTMLDivElement>(null)
@@ -163,22 +168,51 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
   const retryUser = lastFailed && lastMessage?.id === lastFailed.id
     ? messages?.find(message => message.role === 'user' && message.runId === lastFailed.runId && message.intent !== 'repeat' && !message.practice) : undefined
 
+  const clearTimers = useCallback(() => {
+    if (debounce.current !== undefined) { window.clearTimeout(debounce.current); debounce.current = undefined }
+  }, [])
   const save = useCallback((value: string, source?: AssistantThread['source']) => {
     rememberDraft(thread.id, value)
-    setSaving(true)
+    clearTimers()
+    queued.current = undefined
+    // Show the status only for a write that is still pending after a second.
+    const slow = window.setTimeout(() => setSaving(true), SAVING_INDICATOR_DELAY_MS)
     const write = () => saveDraft(thread.id, value, source)
     const pending = writes.current.then(write, write)
     writes.current = pending
     void pending.then(() => {
+      window.clearTimeout(slow)
       finishDraftSave(thread.id, value, true)
       if (writes.current === pending) { setSaving(false); setError('') }
     }, reason => {
+      window.clearTimeout(slow)
       finishDraftSave(thread.id, value, false)
       if (writes.current === pending) setSaving(false)
       setError(`Draft not saved. ${reason instanceof Error ? reason.message : 'Browser storage is unavailable.'}`)
     })
     return pending
-  }, [thread.id])
+  }, [thread.id, clearTimers])
+  const flushDraft = useCallback(() => {
+    const next = queued.current
+    if (next) void save(next.value, next.source)
+  }, [save])
+  // Typing: keep the text in memory at once, write to storage after a quiet period.
+  const typeDraft = useCallback((value: string) => {
+    rememberDraft(thread.id, value)
+    queued.current = { value }
+    clearTimers()
+    debounce.current = window.setTimeout(flushDraft, DRAFT_SAVE_DELAY_MS)
+  }, [thread.id, clearTimers, flushDraft])
+  useEffect(() => {
+    const hidden = () => { if (document.visibilityState === 'hidden') flushDraft() }
+    window.addEventListener('pagehide', flushDraft)
+    document.addEventListener('visibilitychange', hidden)
+    return () => {
+      window.removeEventListener('pagehide', flushDraft)
+      document.removeEventListener('visibilitychange', hidden)
+      flushDraft()
+    }
+  }, [flushDraft])
   const voice = useConversationVoice({
     thread, disabled: busy || deleting,
     getDraft: () => latestDraft.current,
@@ -332,6 +366,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
       {confirmDelete && <div ref={deleteConfirmation} className="notice" role="alert"><p>Delete this conversation, its drafts, and replies? Your learning progress will not change.</p>
         <div className="button-row"><button className="button secondary" disabled={deleting} onClick={() => {
           setDeleting(true)
+          clearTimers(); queued.current = undefined
           voice.cancel()
           void action(async () => {
             // Confirmed deletion discards the draft even if its last save failed.
@@ -349,12 +384,14 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
         {thread.source.meaning && <p className="small">{thread.source.meaning}</p>}</details>
         <button className="icon-button" aria-label="Remove context" title="Remove context" onClick={() => {
           voice.cancel()
+          clearTimers(); queued.current = undefined
           void action(async () => { await writes.current; await saveDraft(thread.id, latestDraft.current, null) })
         }}><X size={16} /></button></div>}
       <form onSubmit={event => { event.preventDefault(); void voice.submit() }}>
         <label className="visually-hidden" htmlFor={`draft-${thread.id}`}>Message Assistant</label>
         <textarea id={`draft-${thread.id}`} ref={input} rows={1} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting} readOnly={!!voice.capture}
-          onChange={event => { const value = event.target.value; latestDraft.current = value; setDraft(value); void save(value) }}
+          onChange={event => { const value = event.target.value; latestDraft.current = value; setDraft(value); typeDraft(value) }}
+          onBlur={flushDraft}
           onKeyDown={event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); event.currentTarget.form?.requestSubmit() } }} />
         <div className="composer-controls">
           <div className="assistant-settings-anchor" ref={settings}>
@@ -410,7 +447,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
           {(voice.capture || voice.speaking) && <button className="icon-button" type="button" aria-label={voice.capture ? 'Cancel recording' : 'Stop speaking'}
             title={voice.capture ? 'Cancel recording' : 'Stop speaking'} onClick={voice.cancel}><X size={18} /></button>}
           {voiceStatus ? <span className="small muted" role="status">{voiceStatus}</span>
-            : saving ? <span className="small muted" role="status">Saving draft...</span> : null}
+            : saving ? <span className="small muted draft-saving" role="status">Saving draft...</span> : null}
           {busy ? <button className="icon-button composer-stop" type="button" aria-label="Stop reply" title="Stop reply" onClick={() => {
             sendVersion.current++
             voice.cancel()

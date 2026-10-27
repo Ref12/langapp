@@ -66,7 +66,7 @@
 .practice-scores { display: flex; flex-wrap: wrap; gap: 16px; }
 .practice-scores dt { font-size: 12px; color: var(--muted); }
 .practice-scores dd { margin: 4px 0; font-weight: 600; }
-.assistant-composer { flex-shrink: 0; padding: 12px max(24px, calc((100% - 800px) / 2)) 16px; border-top: 1px solid var(--line); background: var(--bg); }
+.assistant-composer { position: relative; flex-shrink: 0; padding: 12px max(24px, calc((100% - 800px) / 2)) 16px; border-top: 1px solid var(--line); background: var(--bg); }
 .assistant-composer > .notice { margin: 0 0 12px; padding: 12px; }
 .assistant-composer form { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto auto auto; align-items: end; padding: 4px; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); }
 .assistant-composer textarea { grid-column: 2; grid-row: 1; display: block; width: 100%; min-height: 44px; max-height: 160px; resize: none; overflow-y: auto; border: 0; border-radius: 8px; background: transparent; color: var(--text); padding: 10px 6px; font: inherit; font-size: 16px; line-height: 24px; }
@@ -79,6 +79,7 @@
 .composer-send svg { position: relative; color: var(--bg); width: 16px; height: 16px; }
 .composer-mic.recording { color: var(--danger); background: var(--surface-raised); border-radius: 50%; }
 .composer-controls > [role="status"] { grid-column: 1 / -1; grid-row: 2; min-width: 0; padding: 4px 8px; }
+.composer-controls > .draft-saving { position: absolute; grid-column: auto; grid-row: auto; right: max(28px, calc((100% - 800px) / 2 + 4px)); top: -22px; padding: 2px 8px; border-radius: 8px; background: var(--bg); pointer-events: none; }
 .composer-footnote { font-size: 10px; color: var(--muted); margin: 8px 0 0; text-align: center; }
 .draft-context { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--accent-line); border-radius: 8px; margin-bottom: 10px; font-size: 12px; background: var(--accent-soft); }
 .draft-context details { flex: 1; min-width: 0; max-height: 150px; overflow: auto; }

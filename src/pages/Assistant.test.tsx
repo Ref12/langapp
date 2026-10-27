@@ -718,3 +718,78 @@ describe('first usable Assistant', () => {
     expect(await db.words.count()).toBe(1)
   })
 })
+
+describe('draft persistence while typing', () => {
+  async function open() {
+    const id = await createConversation()
+    window.location.hash = `conversation/${id}`
+    render(<App />)
+    const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
+    await new Promise(resolve => setTimeout(resolve, 50))
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+    return { id, input }
+  }
+  const type = (input: HTMLElement, value: string) => act(async () => { fireEvent.change(input, { target: { value } }) })
+  const tick = (ms: number) => act(async () => { await vi.advanceTimersByTimeAsync(ms) })
+  afterEach(() => { vi.useRealTimers() })
+
+  it('writes once after the quiet period and leaves updatedAt alone', async () => {
+    const { id, input } = await open()
+    const before = (await db.assistantThreads.get(id))!.updatedAt
+    const put = vi.spyOn(db.assistantThreads, 'put')
+    for (const value of ['h', 'he', 'hel', 'hell', 'hello']) { await type(input, value); await tick(50) }
+    expect(put).not.toHaveBeenCalled()
+    await tick(400)
+    expect(put).toHaveBeenCalledTimes(1)
+    vi.useRealTimers()
+    await waitFor(async () => expect((await db.assistantThreads.get(id))).toMatchObject({ draft: 'hello', updatedAt: before }))
+  })
+
+  it('flushes immediately on blur', async () => {
+    const { id, input } = await open()
+    const put = vi.spyOn(db.assistantThreads, 'put')
+    await type(input, 'abc')
+    await act(async () => { fireEvent.blur(input) })
+    expect(put).toHaveBeenCalledTimes(1)
+    vi.useRealTimers()
+    await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe('abc'))
+  })
+
+  it('flushes on unmount', async () => {
+    const { id, input } = await open()
+    await type(input, 'bye')
+    cleanup()
+    vi.useRealTimers()
+    await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe('bye'))
+  })
+
+  it('shows the saving status only for a write pending longer than a second', async () => {
+    const { input } = await open()
+    let release: () => void = () => {}
+    const real = db.assistantThreads.put.bind(db.assistantThreads)
+    vi.spyOn(db.assistantThreads, 'put').mockImplementation(((...args: Parameters<typeof real>) =>
+      new Promise(resolve => { release = () => resolve(real(...args)) })) as typeof real)
+    await type(input, 'slow')
+    await tick(400)
+    await tick(900)
+    expect(screen.queryByText('Saving draft...')).not.toBeInTheDocument()
+    await tick(200)
+    expect(screen.getByText('Saving draft...')).toBeInTheDocument()
+    vi.useRealTimers()
+    await act(async () => { release() })
+    await waitFor(() => expect(screen.queryByText('Saving draft...')).not.toBeInTheDocument())
+  })
+
+  it('does not show the status for a fast save and still reports a failed one', async () => {
+    const { input } = await open()
+    await type(input, 'fast')
+    await tick(400)
+    expect(screen.queryByText('Saving draft...')).not.toBeInTheDocument()
+    vi.spyOn(db.assistantThreads, 'put').mockRejectedValueOnce(new Error('Storage full'))
+    await type(input, 'fails')
+    await tick(400)
+    vi.useRealTimers()
+    expect(await screen.findByText(/Draft not saved\. Storage full/)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Retry saving draft' })).toBeInTheDocument()
+  })
+})

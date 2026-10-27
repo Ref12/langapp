@@ -61,7 +61,8 @@ export async function saveDraft(threadId: string, draft: string, source?: Assist
   const context = source == null ? source : exactSource(source)
   await db.transaction('rw', db.assistantThreads, async () => {
     const thread = await requireThread(threadId)
-    const next = { ...thread, draft, updatedAt: Date.now() }
+    // Typing must not reorder the thread list: updatedAt follows messages and explicit actions, not draft edits.
+    const next = { ...thread, draft }
     if (context === null) delete next.source
     else if (context !== undefined) next.source = context
     assistantThreadSchema.parse(next)
