@@ -9,6 +9,9 @@ import { rememberPracticePhrase } from '../core/assistant/practice-history'
 import { openPhraseActions } from '../test/phrase-actions'
 import { clearVoiceCache, setSpeechVoicePreferences, stopBrowserSpeech } from '../core/assistant/speech'
 
+const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
+vi.mock('../core/ai/structured', () => structured)
+
 const phrase = { type: 'speech', text: '你好', locale: 'zh-Hans', meaning: 'Hello' } as const
 beforeEach(async () => {
   await resetProfileStorage()
@@ -142,4 +145,31 @@ it('reopens a phrase last written in Write mode', async () => {
   fireEvent.click(await screen.findByRole('button', { name: 'Practice 你好' }))
   const popup = await screen.findByRole('dialog', { name: 'Phrase practice' })
   expect(await within(popup).findByRole('list', { name: 'Words to write' })).toBeInTheDocument()
+})
+
+it('previews item text on a lesson row and redoes it from the row', async () => {
+  await db.exerciseSessions.add({
+    id: 'sess-r', mode: 'review', domain: 'reading', targetRefs: ['vocabulary:wo3--me'], reviewRefs: [], exercises: [{ id: 'c', type: 'choice', targets: ['vocabulary:wo3--me'], direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'x' }],
+    cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 5, completedAt: 6,
+  } as never)
+  render(<App />)
+  const open = await screen.findByRole('link', { name: /Open lesson session/ })
+  expect(open.closest('li')).toHaveTextContent('wo3--me')
+  expect(await screen.findByRole('button', { name: /Redo lesson session/ })).toBeDisabled()
+})
+
+it('redoes a lesson from its History row with the same items and opens the new session', async () => {
+  const refs = ['vocabulary:wo3--me', 'vocabulary:xue2-xi2--study']
+  const exercise = { id: 'c', type: 'choice', targets: refs, direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'x' }
+  await db.knowledge.bulkAdd(refs.map(ref => ({ ref, kind: 'vocabulary', lb: ref, band: 1, addedAt: 1, source: 'dictionary' })) as never)
+  await db.exerciseSessions.add({ id: 'sess-x', mode: 'review', domain: 'reading', targetRefs: refs, reviewRefs: [], exercises: [exercise], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 5, completedAt: 6 } as never)
+  await db.aiConnections.add({ id: 'assistant', revision: 'r1', updatedAt: 1, apiType: 'chat-completions', baseUrl: 'https://example.test/v1', apiKey: 'k', model: 'test-model', nativeTools: false, structuredOutput: true, storageAcknowledged: true })
+  structured.requestStructuredJSON.mockResolvedValueOnce({ exercises: ['a', 'b', 'c', 'd'].map(id => ({ ...exercise, id })) })
+  render(<App />)
+  const redo = await screen.findByRole('button', { name: /Redo lesson session/ })
+  await waitFor(() => expect(redo).toBeEnabled())
+  fireEvent.click(redo)
+  await waitFor(() => expect(window.location.hash).toMatch(/^#lessons\/session\/(?!sess-x)/))
+  const created = (await db.exerciseSessions.toArray()).find(item => item.id !== 'sess-x')!
+  expect(created).toMatchObject({ mode: 'review', targetRefs: refs, redoOf: 'sess-x' })
 })

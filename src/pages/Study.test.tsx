@@ -165,7 +165,7 @@ describe('New and Review', () => {
     expect(screen.getByText('Exercise 4 of 4')).toBeInTheDocument()
     expect((await db.exerciseSessions.toArray())[0].status).toBe('active')
     await user.click(finalAction)
-    await screen.findByRole('heading', { name: 'One more step forward.' })
+    await screen.findByRole('heading', { name: 'Items in this session' })
     expect(screen.getByText('3 / 4')).toBeInTheDocument()
     expect(screen.getByText('1 proposed exercises were discarded')).toBeInTheDocument()
     const session = (await db.exerciseSessions.toArray())[0]
@@ -175,7 +175,7 @@ describe('New and Review', () => {
     await act(async () => { window.location.hash = knowledgeLink.getAttribute('href')!.slice(1); window.dispatchEvent(new HashChangeEvent('hashchange')) })
     expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'true')
     await act(async () => { window.location.hash = `lessons/session/${session.id}`; window.dispatchEvent(new HashChangeEvent('hashchange')) })
-    await screen.findByRole('heading', { name: 'One more step forward.' })
+    await screen.findByRole('heading', { name: 'Items in this session' })
     expect(await db.exerciseAttempts.count()).toBe(4)
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
     const cards = await db.studyCards.toArray()
@@ -223,7 +223,7 @@ describe('New and Review', () => {
     expect(screen.getByText(session.exercises[0].explanation)).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Check answer' })).not.toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Next' }))
-    await screen.findByRole('heading', { name: 'One more step forward.' })
+    await screen.findByRole('heading', { name: 'Items in this session' })
     expect(await db.exerciseAttempts.toArray()).toEqual(attempts)
     expect(await db.studyCards.toArray()).toEqual(cards)
     expect(save).toHaveBeenCalledTimes(1)
@@ -253,7 +253,7 @@ describe('New and Review', () => {
     expectResultAction(action, 'correct')
     expect((await db.exerciseSessions.get(session.id))!.status).toBe('active')
     await user.click(action)
-    await screen.findByRole('heading', { name: 'One more step forward.' })
+    await screen.findByRole('heading', { name: 'Items in this session' })
     expect(await db.exerciseAttempts.count()).toBe(1)
     expect((await db.studyCards.toArray()).every(card => card.reps === 1)).toBe(true)
     expect(structured.requestStructuredJSON).not.toHaveBeenCalled()
@@ -294,7 +294,7 @@ describe('New and Review', () => {
     await screen.findByText('Not quite.')
     expectResultAction(screen.getByRole('button', { name: 'Next' }), 'incorrect')
     await user.click(screen.getByRole('button', { name: 'Next' }))
-    await screen.findByRole('heading', { name: 'One more step forward.' })
+    await screen.findByRole('heading', { name: 'Items in this session' })
     expect(screen.getByText('0 / 1')).toBeInTheDocument()
     expect(await db.exerciseAttempts.toArray()).toEqual(attempts)
     expect(await db.studyCards.toArray()).toEqual(cards)
@@ -346,5 +346,54 @@ describe('New and Review', () => {
     await user.click(within(screen.getByRole('group', { name: 'Available tiles' })).getByRole('button', { name: '我' }))
     expect(play).not.toHaveBeenCalled()
     expect(within(screen.getByRole('group', { name: 'Your sentence' })).getByRole('button', { name: '我' })).toBeInTheDocument()
+  })
+})
+
+describe('Finished lesson session', () => {
+  const refs = ['vocabulary:wo3--me', 'vocabulary:xue2-xi2--study']
+  async function seedFinished() {
+    await addToKnowledge(refs)
+    const exercise: Exercise = { id: 'choice', type: 'choice', targets: refs, direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'The answer means I.' }
+    await db.exerciseSessions.add({
+      id: 'done-1', mode: 'review', domain: 'reading', targetRefs: [refs[0]], reviewRefs: [refs[1]], exercises: [exercise], cursor: 0,
+      status: 'completed', model: 'fixture', rejected: [], createdAt: 1000, completedAt: 2000,
+    })
+    await db.exerciseAttempts.add({ id: 'done-1:0', sessionId: 'done-1', index: 0, refs, response: '0', correct: true, createdAt: 1500 } as never)
+    window.location.hash = '#lessons/session/done-1'
+  }
+
+  it('lists the items with the phrase actions and redoes the session with the same items', async () => {
+    const user = userEvent.setup()
+    await seedFinished()
+    await db.aiConnections.add(connection)
+    structured.requestStructuredJSON.mockResolvedValueOnce({ exercises: ['c1', 'c2', 'c3', 'c4'].map(id => (
+      { id, type: 'choice', targets: refs, direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'The answer means I.' })) })
+    render(<App />)
+    const results = await screen.findByRole('region', { name: 'Results' })
+    expect(results).toHaveTextContent('1 / 1 correct')
+    expect(results).toHaveTextContent('2 items')
+    expect(within(results).getByRole('link', { name: 'See your knowledge set' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Items in this session' })).toBeInTheDocument()
+    expect(screen.getAllByRole('button', { name: /^Hear/ }).length).toBeGreaterThan(0)
+    expect(screen.getByRole('link', { name: /Back to Lessons/ })).toBeInTheDocument()
+    const redo = screen.getByRole('button', { name: /Redo exercises/ })
+    await waitFor(() => expect(redo).toBeEnabled())
+    await user.click(redo)
+    await waitFor(() => expect(window.location.hash).not.toBe('#lessons/session/done-1'))
+    const created = (await db.exerciseSessions.toArray()).find(item => item.id !== 'done-1')!
+    expect(created).toMatchObject({ mode: 'review', targetRefs: [refs[0]], reviewRefs: [refs[1]], redoOf: 'done-1', status: 'active' })
+    expect(window.location.hash).toBe(`#lessons/session/${created.id}`)
+    expect(await db.exerciseSessions.get('done-1')).toMatchObject({ status: 'completed' })
+    expect(await db.exerciseAttempts.count()).toBe(1)
+  })
+
+  it('disables Redo without an AI connection and shows "no answers" when nothing was answered', async () => {
+    await seedFinished()
+    await db.exerciseAttempts.clear()
+    render(<App />)
+    const results = await screen.findByRole('region', { name: 'Results' })
+    expect(results).toHaveTextContent('no answers')
+    await waitFor(() => expect(screen.getByRole('link', { name: 'Connect a model in Settings' })).toBeInTheDocument())
+    expect(screen.getByRole('button', { name: /Redo exercises/ })).toBeDisabled()
   })
 })

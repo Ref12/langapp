@@ -162,3 +162,5 @@
 .history-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .history-chips .chip { font-size: 0.72rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted, inherit); }
 .history-filters { display: flex; gap: 4px; margin: 0 0 12px; }
+.history-lesson > .button { flex-shrink: 0; white-space: nowrap; }
+@media (max-width: 520px) { .history-lesson { flex-wrap: wrap; } .history-lesson > span { flex: 1 1 100%; } }

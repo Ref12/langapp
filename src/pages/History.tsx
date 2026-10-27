@@ -7,7 +7,15 @@ import { interruptAudio } from '../core/assistant/audio-owner'
 import { stopBrowserSpeech } from '../core/assistant/speech'
 import { savePreferences } from '../core/learning'
 import { PracticeSheet, PracticeSnippet } from '../components/assistant/SnippetActions'
+import { startRedoSession } from '../core/study/knowledge'
+import { navigate } from '../core/routing'
+import { useAIConnection } from '../components/study/useAIConnection'
 import { Pinyin } from '../components/Pinyin'
+
+function previewText(refs: string[]): string {
+  const text = refs.map(ref => ref.slice(ref.indexOf(':') + 1)).join(', ')
+  return [...text].length > 40 ? `${[...text].slice(0, 40).join('').trimEnd()}…` : text
+}
 
 type Filter = 'all' | 'speak' | 'write' | 'lessons'
 const FILTERS: { id: Filter; label: string }[] = [
@@ -18,7 +26,7 @@ const EMPTY: Record<Filter, string> = {
   speak: 'No spoken phrases yet.', write: 'No written phrases yet.', lessons: 'No lesson sessions yet.',
 }
 
-interface LessonRow { id: string; at: number; mode: 'new' | 'review'; items: number; exercises: number; answered: number; correct: number; status: string }
+interface LessonRow { id: string; at: number; mode: 'new' | 'review'; items: number; preview: string; exercises: number; answered: number; correct: number; status: string }
 type Row = { type: 'phrase'; at: number; entry: PracticeHistoryEntry } | { type: 'lesson'; at: number; lesson: LessonRow }
 
 export function History() {
@@ -28,6 +36,7 @@ export function History() {
     return sessions.map(session => {
       const mine = attempts.filter(attempt => attempt.sessionId === session.id)
       return { id: session.id, at: session.completedAt ?? session.createdAt, mode: session.mode, items: session.targetRefs.length + session.reviewRefs.length,
+          preview: previewText([...session.targetRefs, ...session.reviewRefs]),
         exercises: session.exercises.length, answered: mine.length, correct: mine.filter(attempt => attempt.correct).length, status: session.status }
     })
   }, [])
@@ -35,6 +44,12 @@ export function History() {
   const filter: Filter = stored ?? 'all'
   const [practice, setPractice] = useState<PracticeHistoryEntry>()
   const [error, setError] = useState('')
+  const connection = useAIConnection()
+  const [redoing, setRedoing] = useState('')
+  const redo = (id: string) => {
+    setError(''); setRedoing(id)
+    startRedoSession(id).then(next => navigate(`lessons/session/${next}`), cause => setError(cause instanceof Error ? cause.message : 'The exercises could not be redone.')).finally(() => setRedoing(''))
+  }
   const choose = (next: Filter) => { void savePreferences({ historyFilter: next }).catch(cause => setError(cause instanceof Error ? cause.message : 'The filter could not be saved.')) }
   const reopen = (entry: PracticeHistoryEntry) => {
     setError('')
@@ -70,8 +85,10 @@ export function History() {
               <strong>{row.lesson.mode === 'new' ? 'New items' : 'Review'}</strong>
               <span className="small muted">{row.lesson.items} item{row.lesson.items === 1 ? '' : 's'} · {row.lesson.exercises} exercise{row.lesson.exercises === 1 ? '' : 's'}
                 {row.lesson.answered > 0 ? ` · score ${row.lesson.correct}/${row.lesson.answered}` : ''}{row.lesson.status === 'completed' ? '' : ` · ${row.lesson.status}`}</span>
-              <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time></span>
+              <span className="small muted" lang="zh-Hans">{row.lesson.preview}</span>
+                <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time></span>
             <a className="button secondary" href={`#lessons/session/${row.lesson.id}`} aria-label={`Open lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`}>Open</a>
+              <button type="button" className="button secondary" disabled={!connection || redoing !== ''} aria-label={`Redo lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`} title={connection === null ? 'Connect an AI model in Settings to redo exercises.' : undefined} onClick={() => redo(row.lesson.id)}>{redoing === row.lesson.id ? 'Preparing...' : 'Redo'}</button>
           </li>
           : <li key={`phrase:${row.entry.text}`} className="phrase-history-entry">
             <span><span className="history-chips">

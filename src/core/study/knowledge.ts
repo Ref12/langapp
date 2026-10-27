@@ -152,6 +152,24 @@ export async function startReviewSession(now: number, anyway = false, signal?: A
   })
 }
 
+/** Starts a fresh session with the same mode and items as an earlier one; the earlier session and its attempts stay. */
+export async function startRedoSession(sourceId: string, signal?: AbortSignal): Promise<string> {
+  const source = await db.exerciseSessions.get(sourceId)
+  if (!source) throw new Error('That lesson session could not be found.')
+  const connection = await requireConnection()
+  const catalog = await loadCatalog()
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  const targets = source.targetRefs.map(ref => requireUnit(catalog, ref))
+  const review = source.reviewRefs.map(ref => requireUnit(catalog, ref))
+  const allowed = [...new Map([...known, ...source.targetRefs, ...source.reviewRefs].map(ref => [ref, requireUnit(catalog, ref)])).values()]
+  const generated = await generateExercises(connection, { mode: source.mode, targets, review, allowed, catalog }, signal)
+  return saveSession({
+    id: crypto.randomUUID(), mode: source.mode, domain: source.domain, ...(source.groupId ? { groupId: source.groupId } : {}),
+    targetRefs: source.targetRefs, reviewRefs: source.reviewRefs, exercises: generated.exercises, cursor: 0, status: 'active',
+    model: connection.model, rejected: generated.rejected, createdAt: Date.now(), redoOf: source.id,
+  })
+}
+
 function schedulingState(card: StudyCard): SchedulingState {
   return { due: card.due, stability: card.stability, difficulty: card.difficulty, reps: card.reps, lapses: card.lapses, state: card.state, lastReview: card.lastReview }
 }

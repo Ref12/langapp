@@ -490,3 +490,16 @@ describe('cancellable legacy restores', () => {
     expect(await db.profileState.get('local-settings')).toBeUndefined()
   })
 })
+
+it('round-trips a redone exercise session with its redoOf link', async () => {
+  const base = {
+    domain: 'reading', targetRefs: ['vocabulary:wo3--me'], reviewRefs: [], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 1, completedAt: 2,
+    exercises: [{ id: 'c', type: 'choice', targets: ['vocabulary:wo3--me'], direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'x' }],
+  }
+  await db.exerciseSessions.bulkAdd([{ ...base, id: 'orig', mode: 'review' }, { ...base, id: 'again', mode: 'review', redoOf: 'orig' }] as never)
+  const text = await exportWorkspaceBackup()
+  await db.exerciseSessions.clear()
+  await restoreBackup(text)
+  expect((await db.exerciseSessions.get('again'))?.redoOf).toBe('orig')
+  expect((await db.exerciseSessions.get('orig'))?.redoOf).toBeUndefined()
+})

@@ -92,6 +92,7 @@ export const exerciseSessionSchema = z.object({
   rejected: z.array(z.string().max(300)).max(60),
   createdAt: timestamp,
   completedAt: timestamp.optional(),
+  redoOf: id.optional(),
 }).strict()
 
 export const exerciseAttemptSchema = z.object({
