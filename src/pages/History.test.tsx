@@ -154,7 +154,8 @@ it('previews item text on a lesson row and redoes it from the row', async () => 
   } as never)
   render(<App />)
   const open = await screen.findByRole('link', { name: /Open lesson session/ })
-  expect(open.closest('li')).toHaveTextContent('wo3--me')
+  await waitFor(() => expect(open.closest('li')).toHaveTextContent('我'))
+  expect(open.closest('li')?.textContent).not.toContain('--')
   expect(await screen.findByRole('button', { name: /Redo lesson session/ })).toBeDisabled()
 })
 
