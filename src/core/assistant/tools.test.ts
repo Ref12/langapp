@@ -190,7 +190,7 @@ describe('bounded tutor context', () => {
       { ...current, id: 'pending', sequence: 4, role: 'assistant', status: 'pending', text: 'placeholder' },
       { ...current, id: 'failed', sequence: 5, role: 'assistant', status: 'failed', text: 'failure placeholder' },
       current,
-    ], '{"counts":{"introducedWords":0}}')
+    ], '{"counts":{"cardsDue":0}}')
     expect(messages).toHaveLength(4)
     expect(messages.filter(message => message.role === 'system')).toHaveLength(1)
     expect(messages[0].content).toContain('Current mode: shadow. Current intent: shadow.')

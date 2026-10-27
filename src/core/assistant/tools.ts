@@ -200,7 +200,7 @@ export async function getLearningContext(query: string): Promise<string> {
   const wordEntries = found.entries.filter(entry => entry.kind !== 'character')
   const build = (limits: { words: number; sessions: number; practice: number }) => ({
     language: 'zh-Hans',
-    evidenceNote: 'Only saved app evidence from the learner\'s knowledge set, spaced-repetition cards, exercise sessions, spoken and written phrase practice and character practice. Being in the knowledge set, finishing exercises or practising a phrase does not demonstrate mastery or spoken pronunciation. Optional practice transcripts are not audio or pronunciation assessments.',
+    evidenceNote: 'Only saved app evidence from the learner\'s knowledge set, spaced-repetition cards, exercise sessions, spoken and written phrase practice and character practice. Being in the knowledge set, finishing exercises or practising a phrase do not demonstrate mastery or spoken pronunciation. Optional practice transcripts are not audio or pronunciation assessments.',
     counts: {
       knowledgeSet: { vocabulary: kinds('vocabulary'), grammar: kinds('grammar'), characters: characters.filter(state => state.manualAddedAt !== undefined).length },
       cardsDue: cards.filter(card => card.due <= now).length, cards: cards.length,
