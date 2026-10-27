@@ -745,6 +745,22 @@ describe('draft persistence while typing', () => {
     await waitFor(async () => expect((await db.assistantThreads.get(id))).toMatchObject({ draft: 'hello', updatedAt: before }))
   })
 
+  it('does not write the old draft back after sending within the quiet period', async () => {
+    await saveAIConnection(connection)
+    respond([{ type: 'text', markdown: 'Reply' } as AssistantBlock])
+    const { id, input } = await open()
+    await type(input, 'send me')
+    const put = vi.spyOn(db.assistantThreads, 'put')
+    await act(async () => { fireEvent.submit(input.closest('form')!) })
+    await tick(100)
+    vi.useRealTimers()
+    await waitFor(async () => expect((await db.assistantMessages.where('threadId').equals(id).toArray()).some(m => m.role === 'user' && m.text === 'send me')).toBe(true))
+    await new Promise(resolve => setTimeout(resolve, 600))
+    expect((await db.assistantThreads.get(id))?.draft).toBe('')
+    expect(put.mock.calls.filter(([row]) => (row as { draft: string }).draft === 'send me').length).toBeLessThanOrEqual(1)
+    expect((await db.assistantThreads.get(id))?.draft).toBe('')
+  })
+
   it('flushes immediately on blur', async () => {
     const { id, input } = await open()
     const put = vi.spyOn(db.assistantThreads, 'put')

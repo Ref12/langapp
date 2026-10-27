@@ -281,6 +281,8 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
   async function send(text: string) {
     if (busy || sendPending.current || deleting || !text.trim()) return
     sendPending.current = true
+    // A queued typing flush must not write the old text back after the send clears the draft.
+    clearTimers(); queued.current = undefined
     const version = ++sendVersion.current
     let reply: ReturnType<typeof voice.prepareReply> | undefined
     setSending(true)
@@ -315,6 +317,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
   const sendAdditional = async (request: Parameters<typeof sendAssistantTurn>[1]) => {
     if (busy || sendPending.current || deleting) return
     sendPending.current = true
+    flushDraft() // retry keeps the draft: persist pending typing now, ordered through writes.current
     let reply: ReturnType<typeof voice.prepareReply> | undefined
     setSending(true)
     try { await action(async () => {
