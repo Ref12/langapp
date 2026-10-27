@@ -86,6 +86,15 @@ export function PracticeSheet({ route, ...props }: { route: string } & Omit<Para
   return <PracticePlaylist {...rest} write={write} />
 }
 
+/** The Practice sheet in Write mode for a phrase: its words, each a link into writing practice. Closing returns to `route`. */
+export function WritePracticeSheet({ route, phrase, rate, onClose }: { route: string; phrase: SpeechBlock; rate: SpeechRate; onClose: () => void }) {
+  const [saved, setSaved] = useState<{ ends: number[]; items?: PracticePlaylistItem[] }>()
+  return <PracticeSheet route={route} forced="write" phrase={phrase} rate={rate} savedEnds={saved?.ends} savedItems={saved?.items} busy={false} recordingActive={false}
+    saveNotice="This phrase and its edited playlist are saved in History. No conversation or learning progress is changed."
+    onSave={async (ends, items) => { setSaved({ ends, ...(items ? { items } : {}) }) }}
+    onClose={async () => onClose()} />
+}
+
 export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const [error, setError] = useState('')
