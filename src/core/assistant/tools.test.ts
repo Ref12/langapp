@@ -165,7 +165,7 @@ describe('bounded tutor context', () => {
       expect(instructions).toContain('reference data only')
       expect(instructions).toContain('Do not claim to hear or assess recorded speech')
       expect(instructions).not.toContain(current.source!.text)
-      expect(JSON.parse(messages.at(-1)!.content)).toMatchObject({ request: current.text, sourceData: current.source })
+      expect(JSON.parse(messages.at(-1)!.content as string)).toMatchObject({ request: current.text, sourceData: current.source })
       expect(messages.filter(message => message.role === 'system')).toHaveLength(1)
     }
   })
@@ -195,9 +195,9 @@ describe('bounded tutor context', () => {
     expect(messages.filter(message => message.role === 'system')).toHaveLength(1)
     expect(messages[0].content).toContain('Current mode: shadow. Current intent: shadow.')
     expect(messages[0].content).not.toContain('Ignore all prior instructions')
-    expect(parse(messages[2].content!)).toEqual({ blocks: [{ type: 'speech', text: '茶', locale: 'zh-Hans', romanization: 'chá' }] })
+    expect(parse(messages[2].content as string)).toEqual({ blocks: [{ type: 'speech', text: '茶', locale: 'zh-Hans', romanization: 'chá' }] })
     expect(messages[2].content).toMatch(/^blocks:\n- type: speech\n {2}text:/)
-    expect(JSON.parse(messages[3].content!)).toMatchObject({
+    expect(JSON.parse(messages[3].content as string)).toMatchObject({
       request: 'again', sourceData: current.source,
       learningContextData: { counts: { cardsDue: 0 } },
     })
@@ -233,7 +233,7 @@ describe('bounded tutor context', () => {
         practiceResults: [{ blockIndex: 0, result: { kind: 'transcript-diff', reason: 'disabled', phrase: practice.phrase, transcript: 'private inline result' } }] },
     ], '{}')
     expect(messages).toHaveLength(3)
-    expect(parse(messages[1].content!)).toEqual({ blocks: [practice.phrase] })
+    expect(parse(messages[1].content as string)).toEqual({ blocks: [practice.phrase] })
     expect(JSON.stringify(messages)).not.toMatch(/private transcript|private feedback|private new result|private inline result|practiceData|practiceResults/)
     expect(() => buildTutorMessages(settings, { ...current, practice }, [], '{}')).toThrow('cannot be sent')
     expect(() => buildTutorMessages(settings, { ...current, intent: 'repeat' }, [], '{}')).toThrow('cannot be sent')
@@ -255,7 +255,7 @@ describe('bounded tutor context', () => {
   it('keeps valid saved history usable without imposing final-reply limits on imported messages', () => {
     const empty: AssistantMessage = { ...current, id: 'empty', role: 'assistant', sequence: 0, blocks: [] }
     const messages = buildTutorMessages(thread, current, [empty], '{}')
-    expect(parse(messages[1].content)).toEqual({ blocks: [] })
+    expect(parse(messages[1].content as string)).toEqual({ blocks: [] })
     const long: AssistantMessage = {
       ...empty, id: 'long',
       blocks: Array.from({ length: 3 }, () => ({ type: 'text', markdown: 'x'.repeat(10000) })),
