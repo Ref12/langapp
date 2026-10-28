@@ -857,13 +857,15 @@ describe('image attachments in the composer', () => {
     await attach(photo())
     await screen.findByRole('button', { name: 'Remove image 1' })
     await act(async () => { fireEvent.change(input, { target: { value: 'What is this?' } }) })
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Send' })).toBeEnabled())
     await userEvent.setup().click(screen.getByRole('button', { name: 'Send' }))
-    await waitFor(() => expect(screen.getByLabelText('Assistant conversation')).toHaveTextContent('says tea'))
+    // Wait for each rendered state in turn: the bubble's thumbnail first, then the reply.
+    expect(await screen.findByRole('button', { name: 'Open image 1' })).toBeInTheDocument()
+    expect(await screen.findByText(/says tea/)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Remove image 1' })).not.toBeInTheDocument()
+    expect(await db.assistantImages.count()).toBe(1)
     const body = JSON.parse(vi.mocked(fetch).mock.calls[0][1]!.body as string)
     expect(body.messages.at(-1).content.some((part: { type: string }) => part.type === 'image_url')).toBe(true)
-    expect(await db.assistantImages.count()).toBe(1)
-    expect(screen.queryByRole('button', { name: 'Remove image 1' })).not.toBeInTheDocument()
-    expect(await screen.findByRole('button', { name: 'Open image 1' })).toBeInTheDocument()
   })
 
   it('keeps the draft and the images when the model rejects image parts', async () => {
@@ -873,10 +875,13 @@ describe('image attachments in the composer', () => {
     await attach(photo())
     await screen.findByRole('button', { name: 'Remove image 1' })
     await act(async () => { fireEvent.change(input, { target: { value: 'Read this sign' } }) })
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Send' })).toBeEnabled())
     await userEvent.setup().click(screen.getByRole('button', { name: 'Send' }))
-    expect(await screen.findAllByText(/This model does not accept images/, undefined, { timeout: 5000 })).not.toHaveLength(0)
-    await waitFor(() => expect(input).toHaveValue('Read this sign'), { timeout: 5000 })
+    // The message is stored first, then the provider rejects it; wait for each rendered state.
+    expect(await screen.findByRole('button', { name: 'Open image 1' })).toBeInTheDocument()
+    expect((await screen.findAllByText(/This model does not accept images/)).length).toBeGreaterThan(0)
     expect(await screen.findByRole('button', { name: 'Remove image 1' })).toBeInTheDocument()
+    await waitFor(() => expect(input).toHaveValue('Read this sign'))
   })
 
   it('shows a placeholder when a restored message has no stored image', async () => {
