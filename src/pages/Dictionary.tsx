@@ -54,14 +54,16 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
   const normalized = normalizeSearch(query)
   const pronunciationQuery = normalizeSearch(formatPinyin(query, 'marks'))
   const matchesReading = (reading: string) => pronunciationQuery !== normalized && normalizeSearch(reading).includes(pronunciationQuery)
-  const matches = catalog ? [...catalog.units.values()].filter(unit => unit.kind === kind
+  const rank = (own: string, exact: string[]) => !normalized ? 2 : exact.some(value => normalizeSearch(value) === normalized) ? 0 : normalizeSearch(own).includes(normalized) ? 1 : 2
+  const byRank = <T,>(items: T[], rankOf: (item: T) => number): T[] => items.map((item, index) => ({ item, index, rank: rankOf(item) })).sort((a, b) => a.rank - b.rank || a.index - b.index).map(entry => entry.item)
+  const matches = catalog ? byRank([...catalog.units.values()].filter(unit => unit.kind === kind
     && (scope === 'all' || known.has(unit.ref))
     && (band === 'all' || unit.band === band)
-    && (!normalized || searchText(unit).includes(normalized) || matchesReading(unit.record.pr))) : []
-  const characterMatches = kind === 'characters' ? characters.filter(entry => (scope === 'all' || characterSet?.all.has(entry.character))
+    && (!normalized || searchText(unit).includes(normalized) || matchesReading(unit.record.pr))), unit => rank('', [unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt])) : []
+  const characterMatches = kind === 'characters' ? byRank(characters.filter(entry => (scope === 'all' || characterSet?.all.has(entry.character))
     && (band === 'all' || entry.bands.some(value => value === band))
     && (!normalized || normalizeSearch(`${entry.character} U+${entry.character.codePointAt(0)!.toString(16)} ${entry.words.map(word => `${word.record.ch} ${word.record.pr} ${word.record.ds}`).join(' ')}`).includes(normalized)
-      || entry.words.some(word => matchesReading(word.record.pr)))) : []
+      || entry.words.some(word => matchesReading(word.record.pr)))), entry => { const code = `U+${entry.character.codePointAt(0)!.toString(16)}`; return rank(`${entry.character} ${code}`, [entry.character, code]) }) : []
   const count = kind === 'characters' ? characterMatches.length : matches.length
   const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
   return <>
