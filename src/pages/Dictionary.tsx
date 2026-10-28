@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { savePreferences } from '../core/learning'
-import { Search } from 'lucide-react'
+import { PenLine, Search } from 'lucide-react'
 import { normalizeSearch } from '../core/search'
 import { formatPinyin } from '../core/pinyin'
 import { catalogBands, catalogCounts, type Unit } from '../core/study/catalog'
@@ -12,6 +12,7 @@ import { useCatalog } from '../components/study/useCatalog'
 import { characterKnowledge, dictionaryCharacters } from '../core/characters/dictionary'
 import { characterAttributionUrl } from '../core/characters/assets'
 import { CharacterCard } from '../components/characters/CharacterCard'
+import { HandwritingPad } from '../components/characters/HandwritingPad'
 import './writing.css'
 
 const PAGE = 48
@@ -34,6 +35,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
   const [band, setBand] = useState('all')
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(PAGE)
+  const [drawing, setDrawing] = useState(false)
   const known = new Set(workspace.knowledge.map(entry => entry.ref))
   const characters = useMemo(() => catalog ? dictionaryCharacters(catalog, undefined, workspace.characterStates) : [], [catalog, workspace.characterStates])
   const characterSet = useMemo(() => catalog ? characterKnowledge(catalog, workspace.knowledge, workspace.characterStates) : undefined,
@@ -46,6 +48,9 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
     if (kind === 'characters') for (const entry of characters) { if (scope === 'all' || characterSet?.all.has(entry.character)) for (const value of new Set(entry.bands)) bump(value) }
     else for (const unit of catalog.units.values()) if (unit.kind === kind && (scope === 'all' || known.has(unit.ref))) bump(unit.band)
   }
+  // Handwriting candidates stay inside the catalog; the Characters section also honours its scope.
+  const drawable = useMemo(() => new Set(characters.filter(entry => scope === 'all' || characterSet?.all.has(entry.character)).map(entry => entry.character)),
+    [characters, characterSet, scope])
   const normalized = normalizeSearch(query)
   const pronunciationQuery = normalizeSearch(formatPinyin(query, 'marks'))
   const matchesReading = (reading: string) => pronunciationQuery !== normalized && normalizeSearch(reading).includes(pronunciationQuery)
@@ -74,9 +79,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
         <button aria-pressed={scope === 'all'} onClick={() => { setLimit(PAGE); go(kind, 'all') }}>Full list</button>
         <button aria-pressed={scope === 'knowledge'} onClick={() => { setLimit(PAGE); go(kind, 'knowledge') }}>My knowledge set ({knownCounts[kind]})</button>
       </div>
-      <label className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={kind === 'characters' ? 'Character, codepoint, or containing word' : kind === 'vocabulary' ? 'Character, pinyin, or meaning' : 'Pattern, pinyin, or meaning'} aria-label="Search dictionary" /></label>
+      <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={kind === 'characters' ? 'Character, codepoint, or containing word' : kind === 'vocabulary' ? 'Character, pinyin, or meaning' : 'Pattern, pinyin, or meaning'} aria-label="Search dictionary" />
+        <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button></div>
       <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>
     </div>
+    {drawing && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => { select(setQuery)(character); setDrawing(false) }} />}
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {catalog && kind !== 'characters' && <div className="word-grid">{matches.slice(0, limit).map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}

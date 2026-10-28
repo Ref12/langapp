@@ -27,6 +27,60 @@ const scalar = value => typeof value === 'string' && [...value].length === 1 && 
 const pageFor = character => `u${(character.codePointAt(0) >>> 8).toString(16).padStart(4, '0')}`
 const projectedNotice = 'MODIFIED 2026-09-25: Projected prepared Chinese YAML default variants into lazy Unicode-page JSON, retaining exact ordered path strings, inherited review evidence and source provenance. No new artwork review, candidate selection, coordinate transform or stroke reordering. Source and derived artwork remain freely available under the ARPHIC PUBLIC LICENSE, AS IS, without warranty; retain the unaltered license and modification notices. Independent implementation code is separate.'
 
+// Compact handwriting-lookup index: every guide stroke resampled to recognitionPoints points, 0..100 quantized to one base64 digit per coordinate.
+export const recognitionFile = 'recognition.generated.json'
+export const recognitionPoints = Number(process.env.RECOGNITION_POINTS ?? 8)
+const digits = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+
+function flattenPath(path) {
+  const parts = path.match(/[MLQC]|[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?/g)
+  const arity = { M: 2, L: 2, Q: 4, C: 6 }
+  const line = []
+  for (let offset = 0; offset < parts.length;) {
+    const op = parts[offset++], values = parts.slice(offset, offset + arity[op]).map(Number)
+    offset += arity[op]
+    const controls = []
+    for (let i = 0; i < values.length; i += 2) controls.push([values[i], values[i + 1]])
+    if (op === 'M' || op === 'L') line.push(controls[0])
+    else {
+      const start = line[line.length - 1]
+      for (let step = 1; step <= 16; step++) {
+        const t = step / 16
+        let work = [start, ...controls]
+        while (work.length > 1) work = work.slice(1).map((end, i) => [work[i][0] * (1 - t) + end[0] * t, work[i][1] * (1 - t) + end[1] * t])
+        line.push(work[0])
+      }
+    }
+  }
+  return line
+}
+
+function resample(line, count) {
+  const along = [0]
+  for (let i = 1; i < line.length; i++) along.push(along[i - 1] + Math.hypot(line[i][0] - line[i - 1][0], line[i][1] - line[i - 1][1]))
+  const total = along[along.length - 1]
+  const result = []
+  let segment = 1
+  for (let k = 0; k < count; k++) {
+    const target = total * k / (count - 1)
+    while (segment < line.length - 1 && along[segment] < target) segment++
+    const span = along[segment] - along[segment - 1]
+    const t = span ? Math.min(1, Math.max(0, (target - along[segment - 1]) / span)) : 0
+    result.push([line[segment - 1][0] * (1 - t) + line[segment][0] * t, line[segment - 1][1] * (1 - t) + line[segment][1] * t])
+  }
+  return result
+}
+
+export function recognitionIndex(characters) {
+  const quantize = value => digits[Math.max(0, Math.min(63, Math.round(value * 63 / 100)))]
+  return {
+    schemaVersion: 1, language: 'chinese', points: recognitionPoints,
+    notice: 'Derived from the ordered stroke paths of the ARPHIC PUBLIC LICENSE character guides in this folder; see ATTRIBUTION.html.',
+    characters: Object.fromEntries(characters.map(character => [character.character,
+      character.paths.map(path => resample(flattenPath(path), recognitionPoints).map(point => quantize(point[0]) + quantize(point[1])).join('')).join('.')])),
+  }
+}
+
 /** Same explicit-command, bounded single-pen-down contract as character_geometry.py. */
 export function validateCharacterPath(path, context = 'path') {
   assert(typeof path === 'string' && path.length > 0 && path.length <= 100_000, `${context}: expected a nonempty path of at most 100000 characters`)
@@ -249,6 +303,7 @@ export async function buildAppCharacters(root = repositoryRoot) {
     characters: characters.map(({ character, strokeCount, reviewed, variant }) => ({ character, strokeCount, reviewed, variant })),
   }
   outputs.set(indexPath, Buffer.from(json(index)))
+  outputs.set(join(publicPath, recognitionFile), Buffer.from(json(recognitionIndex(characters))))
   const derived = new JSZip()
   // The original ZIP is served once, separately; include only the projection's inputs.
   inputFiles.delete(`curriculum/chinese/${archivePath}`)
@@ -271,7 +326,7 @@ export async function buildAppCharacters(root = repositoryRoot) {
 }
 
 const ownedPublic = name => /^u[0-9a-f]{4}\.generated\.json$/i.test(name) ||
-  ['derived-source.generated.zip', 'hanzi-writer-selected.zip', 'hanzi-writer-ARPHICPL.TXT', 'source-lock.yaml', 'sources.yaml', 'ATTRIBUTION.html'].includes(name)
+  [recognitionFile, 'derived-source.generated.zip', 'hanzi-writer-selected.zip', 'hanzi-writer-ARPHICPL.TXT', 'source-lock.yaml', 'sources.yaml', 'ATTRIBUTION.html'].includes(name)
 
 /** Check is strictly no-write; stale cleanup is limited to the owned filenames. */
 export function synchronizeCharacterOutputs(outputs, root = repositoryRoot, check = false) {

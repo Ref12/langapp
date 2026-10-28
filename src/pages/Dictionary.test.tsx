@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useLiveQuery } from 'dexie-react-hooks'
@@ -9,6 +9,16 @@ import { Writing } from './Writing'
 import { useRoute } from '../core/routing'
 
 const source = vi.hoisted(() => ({ catalog: undefined as ReturnType<typeof buildCatalog> | undefined }))
+const handwriting = vi.hoisted(() => ({ calls: [] as { strokes: number; allowed: string }[] }))
+vi.mock('../core/characters/handwriting', () => ({
+  createHandwritingRecognizer: () => ({
+    recognize: async (drawing: unknown[], allowed: string) => {
+      handwriting.calls.push({ strokes: drawing.length, allowed })
+      return [{ character: '\u8336', score: 1 }, { character: '\u676f', score: 2 }]
+    },
+    dispose: () => undefined,
+  }),
+}))
 vi.mock('../components/study/useCatalog', () => ({ useCatalog: () => ({ catalog: source.catalog }) }))
 vi.mock('../core/characters/assets', () => ({
   characterAttributionUrl: './characters/chinese/attribution.html',
@@ -42,7 +52,7 @@ beforeEach(async () => {
   }
   source.catalog = buildCatalog([data])
 })
-afterEach(cleanup)
+afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 
 describe('dictionary characters', () => {
   it('opens on My knowledge set for the knowledge hash and on the full list otherwise', async () => {
@@ -127,6 +137,40 @@ describe('dictionary characters', () => {
     await act(async () => { await db.knowledge.clear() })
     await screen.findByRole('button', { name: 'My knowledge set (1)' })
     expect(screen.queryByRole('article', { name: 'Character \u8336' })).not.toBeInTheDocument()
+  })
+  it('draws a character: candidates stay inside the catalog, picking one fills the search and filters the list', async () => {
+    const user = userEvent.setup()
+    handwriting.calls.length = 0
+    vi.spyOn(SVGElement.prototype, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 100))
+    let captured = false
+    vi.stubGlobal('PointerEvent', class extends MouseEvent {
+      pointerId: number
+      isPrimary: boolean
+      constructor(type: string, options: PointerEventInit) { super(type, options); this.pointerId = options.pointerId ?? 1; this.isPrimary = options.isPrimary ?? true }
+    })
+    Object.defineProperties(SVGElement.prototype, {
+      setPointerCapture: { configurable: true, value: () => { captured = true } },
+      hasPointerCapture: { configurable: true, value: () => captured },
+      releasePointerCapture: { configurable: true, value: () => { captured = false } },
+    })
+    render(<Harness />)
+    expect(await screen.findAllByRole('article')).toHaveLength(3)
+    const search = screen.getByRole('searchbox', { name: 'Search dictionary' })
+    await user.click(screen.getByRole('button', { name: 'Draw' }))
+    const pad = screen.getByRole('img', { name: 'Handwriting area' })
+    expect(screen.getByRole('button', { name: 'Draw' })).toHaveAttribute('aria-expanded', 'true')
+    expect(search).not.toHaveFocus()
+    fireEvent.pointerDown(pad, { pointerId: 1, button: 0, clientX: 20, clientY: 50 })
+    fireEvent.pointerMove(pad, { pointerId: 1, clientX: 50, clientY: 50 })
+    fireEvent.pointerUp(pad, { pointerId: 1, clientX: 80, clientY: 50 })
+    const candidate = await screen.findByRole('button', { name: /^\u676f/ })
+    expect(handwriting.calls.at(-1)?.strokes).toBe(1)
+    expect([...handwriting.calls.at(-1)!.allowed].sort()).toEqual(['\u4e00', '\u676f', '\u8336'])
+    await user.click(candidate)
+    expect(search).toHaveValue('\u676f')
+    expect(screen.queryByRole('img', { name: 'Handwriting area' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('article', { name: 'Character \u4e00' })).not.toBeInTheDocument()
+    expect(screen.getByRole('article', { name: 'Character \u676f' })).toBeInTheDocument()
   })
   it('searches word context, launches practice from the chosen character and returns to its scope', async () => {
     const user = userEvent.setup()
