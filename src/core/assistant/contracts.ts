@@ -128,6 +128,19 @@ export const assistantThreadSchema = z.object({
   updatedAt: timestamp,
 }).strict()
 
+export const MAX_MESSAGE_IMAGES = 4
+
+export interface AssistantImage {
+  id: string
+  threadId: string
+  messageId: string
+  blob: Blob
+  width: number
+  height: number
+  bytes: number
+  createdAt: number
+}
+
 export const assistantMessageSchema = z.object({
   id,
   threadId: id,
@@ -136,6 +149,8 @@ export const assistantMessageSchema = z.object({
   text: z.string().max(MAX_DRAFT_LENGTH),
   blocks: z.array(assistantBlockSchema).max(12),
   source: assistantSourceSchema.optional(),
+  // Ids into the local-only assistantImages table. Images are never part of backups or profile files.
+  imageIds: z.array(id).min(1).max(MAX_MESSAGE_IMAGES).optional(),
   practice: practiceAttemptSchema.optional(),
   practiceResult: practiceResultSchema.optional(),
   practiceResults: z.array(z.object({

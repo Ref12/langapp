@@ -25,6 +25,9 @@ import { usePocketMode } from '../components/pocket/usePocketMode'
 import { useAutoListen } from '../components/pocket/useAutoListen'
 import { ConversationTitle } from '../components/assistant/ConversationTitle'
 import { Pinyin } from '../components/Pinyin'
+import { AssistantImageStrip, AttachButton, ComposerAttachments } from '../components/assistant/AssistantImages'
+import { attachmentHandlers, useAttachments } from '../components/assistant/useAttachments'
+import { AIImagesRejectedError } from '../core/ai/provider'
 
 function ConversationList({ selectedId, collapsed = false, expand, returnRoute = 'overview' }: {
   selectedId?: string; collapsed?: boolean; expand?: () => void; returnRoute?: string
@@ -106,7 +109,8 @@ function Message({ message, thread, onPractice, inlinePractice }: {
     <p className="eyebrow">{message.role === 'user' ? 'YOU' : 'ASSISTANT'}{message.mode === 'shadow' ? ' / SHADOW' : ''}</p>
     {message.source && <details className="message-source"><summary>{message.source.title}</summary><blockquote>{message.source.text}</blockquote>
       <a className="text-link" href={`#${message.source.route}`}>Open source</a></details>}
-    {message.role === 'user' && <p className="user-message-text">{message.text}</p>}
+    {message.role === 'user' && message.text && <p className="user-message-text">{message.text}</p>}
+    {message.role === 'user' && message.imageIds?.length ? <AssistantImageStrip ids={message.imageIds} /> : null}
     {message.practice && <details className="message-source"><summary>Translation practice / reviewed speech transcript</summary>
       <blockquote lang="zh-Hans">{message.practice.phrase.text}</blockquote>
       <p className="small">Feedback compares wording, not pronunciation.</p>
@@ -153,6 +157,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
   const [shadowPracticeOpen, setShadowPracticeOpen] = useState(false)
   const writes = useRef<Promise<void>>(Promise.resolve())
   const sendVersion = useRef(0)
+  const attachments = useAttachments(message => setError(message))
   const sendPending = useRef(false)
   const latestDraft = useRef(draft)
   const debounce = useRef<number>()
@@ -280,8 +285,9 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
     try { await operation() } catch (reason) { setError(reason instanceof Error ? reason.message : 'This Assistant action could not be completed.') }
   }
   async function send(text: string) {
-    if (busy || sendPending.current || deleting || !text.trim()) return
+    if (busy || sendPending.current || deleting || (!text.trim() && !attachments.current.current.length)) return
     sendPending.current = true
+    const images = attachments.current.current
     // A queued typing flush must not write the old text back after the send clears the draft.
     clearTimers(); queued.current = undefined
     const version = ++sendVersion.current
@@ -297,10 +303,15 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
       if (version !== sendVersion.current) return
       setDraft('')
       latestDraft.current = ''
-      const message = await sendAssistantTurn(thread.id, { text })
+      attachments.clear()
+      const message = await sendAssistantTurn(thread.id, { text, ...(images.length ? { images } : {}) })
       if (version === sendVersion.current) reply.play(message)
     } catch (reason) {
-      if (persisted && !latestDraft.current) {
+      if (reason instanceof AIImagesRejectedError) {
+        // Keep the text and the images so the learner can retry after switching the model.
+        setDraft(text); latestDraft.current = text
+        attachments.restore(images)
+      } else if (persisted && !latestDraft.current) {
         try {
           const submitted = await db.assistantMessages.where('threadId').equals(thread.id)
             .filter(message => message.role === 'user' && message.text === text && message.createdAt >= started).count()
@@ -391,7 +402,8 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
           clearTimers(); queued.current = undefined
           void action(async () => { await writes.current; await saveDraft(thread.id, latestDraft.current, null) })
         }}><X size={16} /></button></div>}
-      <form onSubmit={event => { event.preventDefault(); void voice.submit() }}>
+      <ComposerAttachments items={attachments.items} remove={attachments.remove} />
+      <form onSubmit={event => { event.preventDefault(); void voice.submit() }} {...attachmentHandlers(attachments.add)}>
         <label className="visually-hidden" htmlFor={`draft-${thread.id}`}>Message Assistant</label>
         <textarea id={`draft-${thread.id}`} ref={input} rows={1} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting} readOnly={!!voice.capture}
           onChange={event => { const value = event.target.value; latestDraft.current = value; setDraft(value); typeDraft(value) }}
@@ -438,6 +450,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
               <button type="button" className="button secondary" onClick={() => setSettingsOpen(false)}>Close settings</button>
             </div>}
           </div>
+          <AttachButton add={attachments.add} disabled={busy || deleting || !!voice.capture} count={attachments.items.length} />
           {thread.voiceEnabled && <button className={`icon-button composer-mic${voice.capture ? ' recording' : ''}`} type="button"
             aria-label={voice.capture ? 'Stop recording' : 'Start voice input'} title={voice.capture ? 'Stop recording and review' : `Speak in ${thread.voiceInputLocale === 'zh-Hans' ? 'Mandarin' : 'English'}`}
             disabled={busy || deleting || !voice.supported || (!!voice.capture && voice.capture.phase !== 'listening')}
@@ -458,7 +471,7 @@ function Conversation({ thread, headerTarget }: { thread: AssistantThread; heade
             void action(() => cancelAssistantRun(thread.id))
           }}><Square size={16} /></button>
             : <button className="icon-button composer-send" type="submit" aria-label={voice.capture ? 'Submit' : 'Send'} title={voice.capture ? 'Submit' : 'Send'}
-              disabled={(!draft.trim() && voice.capture?.phase !== 'listening') || !connection || deleting || (!!voice.capture && voice.capture.phase !== 'listening')}><Send size={18} /></button>}
+              disabled={(!draft.trim() && !attachments.items.length && voice.capture?.phase !== 'listening') || !connection || deleting || (!!voice.capture && voice.capture.phase !== 'listening')}><Send size={18} /></button>}
         </div>
       </form>
       {error && <div className="composer-error" role="alert"><p>{error}</p>

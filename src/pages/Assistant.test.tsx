@@ -1,5 +1,6 @@
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { Blob as NodeBlob } from 'node:buffer'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { stringify } from 'yaml'
 import App from '../App'
@@ -809,5 +810,81 @@ describe('draft persistence while typing', () => {
     vi.useRealTimers()
     expect(await screen.findByText(/Draft not saved\. Storage full/)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Retry saving draft' })).toBeInTheDocument()
+  })
+})
+
+describe('image attachments in the composer', () => {
+  const photo = (name = 'photo.jpg') => new File([new Uint8Array(8).fill(2)], name, { type: 'image/jpeg' })
+  async function openThread() {
+    await saveAIConnection(connection)
+    const id = await createConversation()
+    window.location.hash = `conversation/${id}`
+    render(<App />)
+    const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
+    return { id, input }
+  }
+  const attach = (...files: File[]) => act(async () => {
+    fireEvent.change(screen.getByTestId('assistant-image-input'), { target: { files } })
+  })
+  async function mockDownscale() {
+    const images = await import('../core/assistant/images')
+    vi.spyOn(images, 'prepareImages').mockImplementation(async (files: Blob[]) => files.map((blob, index) => ({
+      id: `img-${index}-${Math.random()}`, width: 10, height: 10, bytes: blob.size, url: '',
+      // Node's Blob survives fake-indexeddb's structured clone; jsdom's File does not.
+      blob: new NodeBlob([new Uint8Array(8).fill(2)], { type: 'image/jpeg' }) as unknown as Blob,
+    })))
+  }
+
+  it('offers a camera-ready picker, shows thumbnails with remove, and caps at four', async () => {
+    await mockDownscale()
+    await openThread()
+    const picker = screen.getByTestId('assistant-image-input')
+    expect(picker).toHaveAttribute('accept', 'image/*')
+    expect(picker).toHaveAttribute('capture', 'environment')
+    await attach(photo('a.jpg'), photo('b.jpg'))
+    expect(await screen.findAllByRole('button', { name: /^Remove image/ })).toHaveLength(2)
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Remove image 1' }))
+    expect(screen.getAllByRole('button', { name: /^Remove image/ })).toHaveLength(1)
+    await attach(photo(), photo(), photo())
+    await waitFor(() => expect(screen.getAllByRole('button', { name: /^Remove image/ })).toHaveLength(4))
+    expect(screen.getByRole('button', { name: 'Attach image' })).toBeDisabled()
+  })
+
+  it('sends the image with the text and shows it in the user bubble', async () => {
+    await mockDownscale()
+    const { input } = await openThread()
+    respond([{ type: 'text', markdown: 'It says tea.' } as AssistantBlock])
+    await attach(photo())
+    await screen.findByRole('button', { name: 'Remove image 1' })
+    await act(async () => { fireEvent.change(input, { target: { value: 'What is this?' } }) })
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Send' }))
+    await waitFor(() => expect(screen.getByLabelText('Assistant conversation')).toHaveTextContent('says tea'))
+    const body = JSON.parse(vi.mocked(fetch).mock.calls[0][1]!.body as string)
+    expect(body.messages.at(-1).content.some((part: { type: string }) => part.type === 'image_url')).toBe(true)
+    expect(await db.assistantImages.count()).toBe(1)
+    expect(screen.queryByRole('button', { name: 'Remove image 1' })).not.toBeInTheDocument()
+    expect(await screen.findByRole('button', { name: 'Open image 1' })).toBeInTheDocument()
+  })
+
+  it('keeps the draft and the images when the model rejects image parts', async () => {
+    await mockDownscale()
+    const { input } = await openThread()
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('{}', { status: 400 })))
+    await attach(photo())
+    await screen.findByRole('button', { name: 'Remove image 1' })
+    await act(async () => { fireEvent.change(input, { target: { value: 'Read this sign' } }) })
+    await userEvent.setup().click(screen.getByRole('button', { name: 'Send' }))
+    expect(await screen.findAllByText(/This model does not accept images/, undefined, { timeout: 5000 })).not.toHaveLength(0)
+    await waitFor(() => expect(input).toHaveValue('Read this sign'), { timeout: 5000 })
+    expect(await screen.findByRole('button', { name: 'Remove image 1' })).toBeInTheDocument()
+  })
+
+  it('shows a placeholder when a restored message has no stored image', async () => {
+    const { id } = await openThread()
+    await db.assistantMessages.add({
+      id: 'm-img', threadId: id, sequence: 0, role: 'user', text: 'Look', blocks: [], imageIds: ['gone'],
+      mode: 'conversation', intent: 'message', status: 'completed', createdAt: 1,
+    })
+    expect(await screen.findByText('image not included in backup')).toBeInTheDocument()
   })
 })

@@ -128,8 +128,9 @@ export async function savePracticeDraft(threadId: string, phrase: SpeechBlock, t
 }
 
 export async function deleteThread(threadId: string): Promise<void> {
-  await db.transaction('rw', db.assistantThreads, db.assistantMessages, db.assistantRuns, async () => {
+  await db.transaction('rw', db.assistantThreads, db.assistantMessages, db.assistantRuns, db.assistantImages, async () => {
     await requireThread(threadId)
+    await db.assistantImages.where('threadId').equals(threadId).delete()
     await db.assistantMessages.where('threadId').equals(threadId).delete()
     await db.assistantRuns.where('threadId').equals(threadId).delete()
     await db.assistantThreads.delete(threadId)

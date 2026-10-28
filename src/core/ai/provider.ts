@@ -13,6 +13,7 @@ export const REQUEST_TIMEOUT_MS = 45_000
 export const MAX_TOOL_CALLS = 4
 const MAX_ARGUMENT_LENGTH = 1000
 const MAX_REQUEST_LENGTH = 100_000
+const MAX_IMAGE_BODY_LENGTH = 16_000_000
 
 export class AITransportError extends Error {
   constructor(message: string) { super(message); this.name = 'AITransportError' }
@@ -28,10 +29,25 @@ interface NativeToolCall {
   function: { name: AssistantToolName; arguments: string }
 }
 
+export type TutorPart = { type: 'text'; text: string } | { type: 'image'; dataUrl: string }
+
 export interface TutorMessage {
   role: 'system' | 'user' | 'assistant'
-  content: string
+  content: string | TutorPart[]
 }
+
+export class AIImagesRejectedError extends AITransportError {
+  constructor() { super('This model does not accept images. Switch the model in Settings and send again; your text and images are kept.'); this.name = 'AIImagesRejectedError' }
+}
+
+function providerContent(content: TutorMessage['content'], responses: boolean): unknown {
+  if (typeof content === 'string') return content
+  return content.map(part => part.type === 'text'
+    ? { type: responses ? 'input_text' : 'text', text: part.text }
+    : responses ? { type: 'input_image', image_url: part.dataUrl } : { type: 'image_url', image_url: { url: part.dataUrl } })
+}
+
+const IMAGE_DATA_URL = /data:image\/[a-z+.-]+;base64,[A-Za-z0-9+/=]+/gi
 
 export interface ToolCall {
   id: string
@@ -322,7 +338,11 @@ function requestBody(connection: AIConnectionInput, items: unknown[], options: C
         : (options.toolChoice ?? 'auto'),
     } : {}),
   })
-  if (items.length > 48 || body.length > MAX_REQUEST_LENGTH) return invalid('This conversation request is too large. Start a new conversation or shorten the source text.')
+  // Image data is bounded separately: the text part keeps the normal limit.
+  const images = body.match(IMAGE_DATA_URL)
+  const imageLength = images?.reduce((total, url) => total + url.length, 0) ?? 0
+  if (imageLength > MAX_IMAGE_BODY_LENGTH) return invalid('The attached images are too large to send together. Remove an image and try again.')
+  if (items.length > 48 || body.length - imageLength > MAX_REQUEST_LENGTH) return invalid('This conversation request is too large. Start a new conversation or shorten the source text.')
   return body
 }
 
@@ -342,6 +362,7 @@ async function requestCompletion(connection: AIConnectionInput, body: string, op
     }), controller.signal)
     if (!response.ok) {
       void response.body?.cancel().catch(() => undefined)
+      if ((response.status === 400 || response.status === 422) && /"(image_url|input_image)"/.test(body)) throw new AIImagesRejectedError()
       throw httpFailure(response.status)
     }
     const value = await readJSON(response, controller.signal)
@@ -365,7 +386,7 @@ export function createAssistantModelClient(input: AIConnectionInput, messages: T
   })
   if (!parsed.success) return invalid('Invalid AI connection. Use HTTPS (or localhost), a supported API type, a model and API key, and acknowledge local storage in Settings.')
   const connection = parsed.data
-  let items: unknown[] = messages.map(message => ({ role: message.role, content: message.content }))
+  let items: unknown[] = messages.map(message => ({ role: message.role, content: providerContent(message.content, connection.apiType === 'responses') }))
   let pendingIds: string[] = []
   const seenIds = new Set<string>()
   let rounds = 0

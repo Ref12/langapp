@@ -68,13 +68,14 @@
 .practice-scores dd { margin: 4px 0; font-weight: 600; }
 .assistant-composer { position: relative; flex-shrink: 0; padding: 12px max(24px, calc((100% - 800px) / 2)) 16px; border-top: 1px solid var(--line); background: var(--bg); }
 .assistant-composer > .notice { margin: 0 0 12px; padding: 12px; }
-.assistant-composer form { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto auto auto; align-items: end; padding: 4px; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); }
+.assistant-composer form { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto auto auto auto; align-items: end; padding: 4px; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); }
 .assistant-composer textarea { grid-column: 2; grid-row: 1; display: block; width: 100%; min-height: 44px; max-height: 160px; resize: none; overflow-y: auto; border: 0; border-radius: 8px; background: transparent; color: var(--text); padding: 10px 6px; font: inherit; font-size: 16px; line-height: 24px; }
 .composer-controls { display: contents; }
 .composer-controls .assistant-settings-anchor { grid-column: 1; grid-row: 1; }
-.composer-controls .composer-mic { grid-column: 3; grid-row: 1; }
-.composer-controls > .icon-button { grid-column: 4; grid-row: 1; }
-.composer-controls .composer-send, .composer-controls .composer-stop { grid-column: 5; grid-row: 1; width: 44px; height: 44px; padding: 0; position: relative; }
+.composer-controls .composer-attach { grid-column: 3; grid-row: 1; }
+.composer-controls .composer-mic { grid-column: 4; grid-row: 1; }
+.composer-controls > .icon-button { grid-column: 5; grid-row: 1; }
+.composer-controls .composer-send, .composer-controls .composer-stop { grid-column: 6; grid-row: 1; width: 44px; height: 44px; padding: 0; position: relative; }
 .composer-send::before { content: ''; position: absolute; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); }
 .composer-send svg { position: relative; color: var(--bg); width: 16px; height: 16px; }
 .composer-mic.recording { color: var(--danger); background: var(--surface-raised); border-radius: 50%; }
@@ -165,3 +166,16 @@
 .history-filters { display: flex; gap: 4px; margin: 0 0 12px; }
 .history-lesson > .button { flex-shrink: 0; white-space: nowrap; }
 @media (max-width: 520px) { .history-lesson { flex-wrap: wrap; } .history-lesson > span { flex: 1 1 100%; } }
+
+.composer-thumbs, .message-thumbs { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.composer-thumbs { margin: 0 0 8px; }
+.composer-thumbs li, .message-thumbs li { position: relative; }
+.thumb-open { display: block; padding: 0; border: 1px solid var(--line-strong); border-radius: 10px; overflow: hidden; background: var(--surface); cursor: zoom-in; }
+.thumb-open img { display: block; width: 72px; height: 72px; object-fit: cover; }
+.message-thumbs .thumb-open img { width: 96px; height: 96px; }
+.thumb-remove { position: absolute; top: -6px; right: -6px; width: 24px; height: 24px; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--surface-raised); color: var(--text); cursor: pointer; }
+.thumb-missing { display: grid; place-items: center; width: 96px; min-height: 96px; padding: 8px; text-align: center; border: 1px dashed var(--line-strong); border-radius: 10px; }
+.image-viewer { position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, 0.88); display: flex; }
+.image-viewer-close { position: absolute; top: max(12px, env(safe-area-inset-top)); right: 12px; z-index: 1; background: var(--surface-raised); border-radius: 50%; }
+.image-viewer-surface { flex: 1; overflow: auto; display: flex; touch-action: pan-x pan-y pinch-zoom; }
+.image-viewer-surface img { margin: auto; max-width: 100%; max-height: 100%; object-fit: contain; }

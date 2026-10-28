@@ -1,3 +1,4 @@
+import { redactImageData } from '../assistant/images'
 import { addMark, loadMarks, loadRuns, loadStatus, type BackupStatus, type RunRecord, type TimingMark } from './state'
 
 // Small rolling record of how long things take on this device, for Settings → Diagnostics. Startup phases and
@@ -29,7 +30,7 @@ const stamp = (ms: number) => new Date(ms).toISOString()
 
 const secretKeys = /token|secret|password|authorization|key/i
 /** Any text that might carry a credential is dropped from a note. */
-export const redact = (text: string | undefined) => text === undefined ? undefined : text.replace(/(ghp_|github_pat_)[A-Za-z0-9_]+/g, '[redacted]').replace(/Bearer\s+\S+/gi, 'Bearer [redacted]')
+export const redact = (text: string | undefined) => text === undefined ? undefined : redactImageData(text).replace(/(ghp_|github_pat_)[A-Za-z0-9_]+/g, '[redacted]').replace(/Bearer\s+\S+/gi, 'Bearer [redacted]')
 
 export function describeRun(run: RunRecord) {
   return {

@@ -39,10 +39,12 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
   const abort = () => transaction?.abort()
   signal?.addEventListener('abort', abort, { once: true })
   try {
-    await db.transaction('rw', [...exportableTables(), db.profileState, db.mahjongGames, db.memoryGames, db.defenderGames, db.potionGames, db.potionProgress], async () => {
+    await db.transaction('rw', [...exportableTables(), db.profileState, db.assistantImages, db.mahjongGames, db.memoryGames, db.defenderGames, db.potionGames, db.potionProgress], async () => {
       transaction = Dexie.currentTransaction!
       signal?.throwIfAborted()
       for (const table of exportableTables()) await table.clear()
+      // Images are never part of a backup: a restore drops them and messages show a placeholder.
+      await db.assistantImages.clear()
       await db.mahjongGames.clear()
       await db.sudokuGames.clear()
       await db.memoryGames.clear()

@@ -1,7 +1,7 @@
 import Dexie, { type EntityTable } from 'dexie'
 import { omit } from './omit'
 import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type Preferences, type ReadingProgress, type WordState, type Workspace } from './model'
-import type { AIConnection, AIEndpoint, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
+import type { AIConnection, AIEndpoint, AssistantImage, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
@@ -36,6 +36,7 @@ export class LearningDatabase extends Dexie {
   assistantThreads!: EntityTable<AssistantThread, 'id'>
   assistantMessages!: EntityTable<AssistantMessage, 'id'>
   assistantRuns!: EntityTable<AssistantRun, 'id'>
+  assistantImages!: EntityTable<AssistantImage, 'id'>
   aiConnections!: EntityTable<AIConnection, 'id'>
   aiEndpoints!: EntityTable<AIEndpoint, 'id'>
   speechConnections!: EntityTable<SpeechConnection, 'id'>
@@ -98,6 +99,7 @@ export class LearningDatabase extends Dexie {
       await transaction.table('aiConnections').put({ ...current, endpointId: 'default', name: 'Default' })
     })
     this.version(15).stores({ journal: '++seq', backupConfig: '&id' })
+    this.version(16).stores({ assistantImages: '&id, threadId, messageId' })
   }
 }
 

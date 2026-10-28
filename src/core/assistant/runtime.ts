@@ -5,12 +5,13 @@ import {
 import { db } from '../database'
 import {
   aiConnectionSchema, assistantIntentSchema, assistantMessageSchema, assistantRunSchema,
-  assistantSourceSchema, assistantThreadSchema, MAX_DRAFT_LENGTH, MAX_TOOL_ROUNDS, RUN_TIMEOUT_MS,
+  assistantSourceSchema, assistantThreadSchema, MAX_DRAFT_LENGTH, MAX_MESSAGE_IMAGES, MAX_TOOL_ROUNDS, RUN_TIMEOUT_MS,
   type AIConnection, type AssistantIntent, type AssistantMessage, type AssistantReply,
   type AssistantRun, type AssistantSource, type AssistantThread, type AssistantToolStep, type PracticeAttempt,
 } from './contracts'
 import { expireAssistantRuns } from './store'
-import { buildTutorMessages, executeAssistantTool, getLearningContext } from './tools'
+import { blobToDataUrl } from './images'
+import { buildTutorMessages, IMAGE_HISTORY_MESSAGES, executeAssistantTool, getLearningContext } from './tools'
 
 export interface AssistantTurnRequest {
   text?: string
@@ -18,7 +19,11 @@ export interface AssistantTurnRequest {
   source?: AssistantSource
   preserveDraft?: boolean
   practice?: PracticeAttempt
+  /** Prepared (already downscaled) images to store with the user message. */
+  images?: PreparedImageInput[]
 }
+
+export interface PreparedImageInput { id: string; blob: Blob; width: number; height: number; bytes: number }
 
 class AssistantRunError extends Error {
   constructor(message: string) { super(message); this.name = 'AssistantRunError' }
@@ -35,6 +40,7 @@ interface ReservedTurn {
 
 const controllers = new Map<string, { threadId: string; controller: AbortController }>()
 const runTables = () => [db.assistantThreads, db.assistantMessages, db.assistantRuns, db.aiConnections]
+const reserveTables = () => [...runTables(), db.assistantImages]
 
 function requireActiveSignal(signal: AbortSignal): void {
   if (signal.aborted) throw new AssistantCancelledError()
@@ -47,7 +53,7 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
   }
   await expireAssistantRuns()
   requireActiveSignal(signal)
-  return db.transaction('rw', runTables(), async transaction => {
+  return db.transaction('rw', reserveTables(), async transaction => {
     const abortReservation = () => transaction.abort()
     const releaseSignal = () => signal.removeEventListener('abort', abortReservation)
     signal.addEventListener('abort', abortReservation, { once: true })
@@ -70,7 +76,9 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
     const intent = request?.intent ?? (thread.mode === 'shadow' ? 'shadow' : 'message')
     if (!assistantIntentSchema.safeParse(intent).success) throw new AssistantRunError('That Assistant intent is not supported.')
     const text = request?.text ?? thread.draft
-    if (typeof text !== 'string' || !text.trim()) throw new AssistantRunError('Enter a message before sending.')
+    const images = request?.images ?? []
+    if (images.length > MAX_MESSAGE_IMAGES) throw new AssistantRunError(`You can attach up to ${MAX_MESSAGE_IMAGES} images per message.`)
+    if (typeof text !== 'string' || (!text.trim() && !images.length)) throw new AssistantRunError('Enter a message before sending.')
     if (text.length > MAX_DRAFT_LENGTH) throw new AssistantRunError('This message is too long. Shorten it before sending.')
     const source = request && Object.prototype.hasOwnProperty.call(request, 'source') ? request.source : thread.source
     if (source !== undefined && !assistantSourceSchema.safeParse(source).success) throw new AssistantRunError('This source is invalid or too long. Choose a shorter excerpt.')
@@ -81,6 +89,7 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
     const user = assistantMessageSchema.parse({
       id: crypto.randomUUID(), threadId, sequence: (last?.sequence ?? -1) + 1,
       role: 'user', text, blocks: [], ...(source ? { source } : {}),
+      ...(images.length ? { imageIds: images.map(() => crypto.randomUUID()) } : {}),
       mode: thread.mode, intent, status: 'completed', runId, createdAt: now,
     })
     const pending = assistantMessageSchema.parse({
@@ -98,13 +107,19 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
     const clearCapturedDraft = !request?.preserveDraft && thread.draft === text
     const nextThread: AssistantThread = {
       ...thread, updatedAt: now,
-      ...(generateTitle ? { title: text.trim().replace(/\s+/g, ' ').slice(0, 120) } : {}),
+      ...(generateTitle ? { title: text.trim().replace(/\s+/g, ' ').slice(0, 120) || 'Image' } : {}),
       ...(clearCapturedDraft ? { draft: '' } : {}),
     }
     if (clearCapturedDraft) delete nextThread.source
     requireActiveSignal(signal)
     await db.assistantThreads.put(assistantThreadSchema.parse(nextThread))
     await db.assistantMessages.bulkAdd([user, pending])
+    if (images.length) {
+      await db.assistantImages.bulkAdd(images.map((image, index) => ({
+        id: user.imageIds![index], threadId, messageId: user.id, blob: image.blob,
+        width: image.width, height: image.height, bytes: image.bytes, createdAt: now,
+      })))
+    }
     await db.assistantRuns.add(run)
     requireActiveSignal(signal)
     return { thread, user, pending, run, connection: parsedConnection.data, generateTitle }
@@ -179,7 +194,7 @@ async function publishReply(turn: ReservedTurn, value: AssistantReply, signal: A
     const nextThread: AssistantThread = {
       ...current.thread, updatedAt: now,
       ...(turn.generateTitle && reply.conversationTitle && !current.thread.titleManuallySet
-        && current.thread.title === turn.user.text.trim().replace(/\s+/g, ' ').slice(0, 120)
+        && current.thread.title === (turn.user.text.trim().replace(/\s+/g, ' ').slice(0, 120) || 'Image')
         ? { title: reply.conversationTitle } : {}),
       ...(rememberPhrase && phrase?.type === 'speech' ? { shadowPhrase: phrase } : {}),
     }
@@ -204,6 +219,19 @@ async function recordFailure(turn: ReservedTurn, status: 'failed' | 'cancelled',
   })
 }
 
+/** Data URLs for the learner's most recent messages that carry images (older ones are sent as text only). */
+async function loadImageUrls(messages: AssistantMessage[]): Promise<Map<string, string[]>> {
+  const urls = new Map<string, string[]>()
+  const recent = messages.filter(message => message.role === 'user' && message.imageIds?.length)
+    .sort((a, b) => b.sequence - a.sequence).slice(0, IMAGE_HISTORY_MESSAGES)
+  for (const message of recent) {
+    const rows = await db.assistantImages.bulkGet(message.imageIds!)
+    const found = await Promise.all(rows.flatMap(row => row ? [blobToDataUrl(row.blob)] : []))
+    if (found.length) urls.set(message.id, found)
+  }
+  return urls
+}
+
 export async function sendAssistantTurn(threadId: string, request?: AssistantTurnRequest): Promise<AssistantMessage> {
   const controller = new AbortController()
   const invocationId = crypto.randomUUID()
@@ -222,7 +250,8 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
         && (message.role === 'user' || message.role === 'assistant'))
       .limit(24).toArray()
     const context = await abortable(getLearningContext((turn.user.source?.text ?? turn.user.text).slice(0, 200)), controller.signal)
-    const messages = buildTutorMessages(turn.thread, turn.user, history, context, turn.generateTitle)
+    const images = await abortable(loadImageUrls([turn.user, ...history]), controller.signal)
+    const messages = buildTutorMessages(turn.thread, turn.user, history, context, turn.generateTitle, images)
     const client = createAssistantModelClient(turn.connection, messages)
     const callIds = new Set<string>()
     let results: ToolResult[] = []
