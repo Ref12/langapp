@@ -11,7 +11,12 @@ export interface HandwritingRecognizer {
 }
 
 // Read lazily: this module is reachable from the Vite config bundle (Node), where import.meta.env is undefined.
-const indexUrl = () => `${import.meta.env?.BASE_URL ?? '/'}characters/chinese/recognition.generated.json`
+const indexUrl = () => {
+  const relative = `${import.meta.env?.BASE_URL ?? '/'}characters/chinese/recognition.generated.json`
+  // The app is built with a relative base ('./'); resolve against the page here, because the worker would otherwise
+  // resolve it against its own script under assets/ and get a 404.
+  return typeof document === 'undefined' ? relative : new URL(relative, document.baseURI).href
+}
 
 /**
  * Recognition runs in a worker so drawing never waits on it; without Worker support (or if it fails to start)
