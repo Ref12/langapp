@@ -835,12 +835,13 @@ describe('image attachments in the composer', () => {
     })))
   }
 
-  it('offers a camera-ready picker, shows thumbnails with remove, and caps at four', async () => {
+  it('offers an image picker that is not camera-only, shows thumbnails with remove, and caps at four', async () => {
     await mockDownscale()
     await openThread()
     const picker = screen.getByTestId('assistant-image-input')
     expect(picker).toHaveAttribute('accept', 'image/*')
-    expect(picker).toHaveAttribute('capture', 'environment')
+    // No capture attribute: the OS chooser offers camera, gallery and files.
+    expect(picker).not.toHaveAttribute('capture')
     await attach(photo('a.jpg'), photo('b.jpg'))
     expect(await screen.findAllByRole('button', { name: /^Remove image/ })).toHaveLength(2)
     await userEvent.setup().click(screen.getByRole('button', { name: 'Remove image 1' }))

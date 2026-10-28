@@ -10,7 +10,7 @@ import { imageFiles, createUrl, revokeUrl } from './useAttachments'
 export function AttachButton({ add, disabled, count }: { add: (files: Blob[]) => void; disabled: boolean; count: number }) {
   const input = useRef<HTMLInputElement>(null)
   return <>
-    <input ref={input} type="file" accept="image/*" capture="environment" multiple hidden data-testid="assistant-image-input" tabIndex={-1}
+    <input ref={input} type="file" accept="image/*" multiple hidden data-testid="assistant-image-input" tabIndex={-1}
       onChange={event => { const files = imageFiles(event.target.files); event.target.value = ''; if (files.length) add(files) }} />
     <button className="icon-button composer-attach" type="button" aria-label="Attach image" title={count >= MAX_MESSAGE_IMAGES ? 'Up to 4 images per message' : 'Attach a photo or image'}
       disabled={disabled || count >= MAX_MESSAGE_IMAGES} onClick={() => input.current?.click()}><Paperclip size={20} /></button>
