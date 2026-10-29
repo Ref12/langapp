@@ -241,7 +241,7 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
   return <>
     {text && <div className="selection-actions" ref={toolbar} role="toolbar" aria-label="Selected text actions" data-assistant-exclude
       hidden={Boolean(practice)} onMouseDown={event => event.preventDefault()}
-      onPointerDownCapture={event => {
+      onPointerDownCapture={() => {
         clearTimeout(releaseTimer.current)
         pointerHeld.current = true
       }}
