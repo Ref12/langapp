@@ -244,7 +244,6 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
       onPointerDownCapture={event => {
         clearTimeout(releaseTimer.current)
         pointerHeld.current = true
-        if (event.pointerType !== 'touch') event.preventDefault()
       }}
       onPointerUpCapture={() => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }}
       onPointerCancelCapture={() => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }}
