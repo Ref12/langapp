@@ -153,4 +153,23 @@ describe('precise phrase selection', () => {
     await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Add selection to playlist' })) })
     expect(add).toHaveBeenCalledWith(1, 6)
   })
+
+  it('keeps a native selection when a touch on Add collapses it before the click', async () => {
+    const add = vi.fn().mockResolvedValue(true)
+    render(<PracticePhraseSelection text={text} units={units} disabled={false} preview={preview} add={add} />)
+    const node = screen.getByText(text).firstChild!
+    act(() => {
+      const range = document.createRange()
+      range.setStart(node, 2); range.setEnd(node, 6)
+      window.getSelection()!.addRange(range)
+      fireEvent(document, new Event('selectionchange'))
+    })
+    const button = screen.getByRole('button', { name: 'Add selection to playlist' })
+    fireEvent.pointerDown(button, { pointerType: 'touch' })
+    act(() => { window.getSelection()!.removeAllRanges(); fireEvent(document, new Event('selectionchange')) })
+    fireEvent.pointerUp(button, { pointerType: 'touch' })
+    expect(button).toBeEnabled()
+    await act(async () => { fireEvent.click(button) })
+    expect(add).toHaveBeenCalledWith(2, 6)
+  })
 })

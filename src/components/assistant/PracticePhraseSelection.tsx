@@ -16,6 +16,9 @@ export function PracticePhraseSelection({ text, units, disabled, preview, add }:
   const actions = useRef<HTMLDivElement>(null)
   const source = useRef<'native' | 'buttons'>('buttons')
   const anchor = useRef<SelectionRange>()
+  const pointerHeld = useRef(false)
+  const releaseTimer = useRef<ReturnType<typeof setTimeout>>()
+  const release = () => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }
   const [selection, setSelection] = useState<SelectionRange>()
   const [choosing, setChoosing] = useState(false)
   const [hint, setHint] = useState('')
@@ -30,7 +33,7 @@ export function PracticePhraseSelection({ text, units, disabled, preview, add }:
       const inside = selected?.rangeCount && !selected.isCollapsed && selected.anchorNode && selected.focusNode
         && paragraph.current.contains(selected.anchorNode) && paragraph.current.contains(selected.focusNode)
       if (!inside) {
-        if (source.current === 'native' && !actions.current?.contains(document.activeElement)) setSelection(undefined)
+        if (source.current === 'native' && !pointerHeld.current && !actions.current?.contains(document.activeElement)) setSelection(undefined)
         return
       }
       const range = selected.getRangeAt(0)
@@ -55,7 +58,7 @@ export function PracticePhraseSelection({ text, units, disabled, preview, add }:
       setSelection({ start, end })
     }
     document.addEventListener('selectionchange', read)
-    return () => document.removeEventListener('selectionchange', read)
+    return () => { document.removeEventListener('selectionchange', read); clearTimeout(releaseTimer.current) }
   }, [disabled, units])
 
   const clear = () => {
@@ -67,12 +70,15 @@ export function PracticePhraseSelection({ text, units, disabled, preview, add }:
   }
   return <>
     <p ref={paragraph} className="practice-selectable-phrase" lang="zh-Hans">{text}</p>
-    <div ref={actions} className="practice-word-actions">
+    <div ref={actions} className="practice-word-actions"
+      onPointerDownCapture={() => { clearTimeout(releaseTimer.current); pointerHeld.current = true }}
+      onPointerUpCapture={release} onPointerCancelCapture={release} onClickCapture={release}>
       <div className="button-row">
         <button type="button" className="button secondary" disabled={disabled || !units}
           aria-expanded={choosing} onClick={() => { setChoosing(!choosing); clear() }}>Select part</button>
         <button type="button" className="button secondary" disabled={disabled || !part}
           onMouseDown={event => event.preventDefault()}
+          onPointerDown={event => { if (event.pointerType !== 'touch') event.preventDefault() }}
           onClick={() => { if (selection) void add(selection.start, selection.end).then(saved => { if (saved) clear() }) }}>
           Add selection to playlist
         </button>
