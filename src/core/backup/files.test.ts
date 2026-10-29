@@ -51,6 +51,14 @@ describe('backup files', () => {
     expect(loaded.snapshot.settings.preferences.name).toBe('Existing learner')
   })
 
+  it('writes saved media to one file each and loads it back', () => {
+    const item = { id: '7b1f2a9e-4c3d-4e5f-8a6b-1c2d3e4f5a6b', savedAt: 5, url: 'https://example.com/v', title: 'Clip', extractor: 'example', source: 'captions' as const, language: 'zh-Hans', lines: [{ start: 0, end: 1, text: '你好' }] }
+    const snapshot = { ...snapshotAt(0), media: [item] }
+    const files = buildBackupFiles(snapshot, [])
+    expect([...files.keys()]).toContain(`media/${item.id}.yaml`)
+    expect(loadBackup(files, profile).snapshot.media).toEqual([item])
+  })
+
   it('restores the checkpoint plus the journal entries after it', () => {
     const files = buildBackupFiles(snapshotAt(5), events.slice(0, 5))
     // The journal advanced after the checkpoint: later lines were appended to the segments.

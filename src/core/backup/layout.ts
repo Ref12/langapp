@@ -60,7 +60,7 @@ export interface UnjournaledState {
   attempts: ProfileSnapshot['knowledge']['attempts']; exerciseSessions: ProfileSnapshot['knowledge']['study']['sessions']
   practiceHistory: NonNullable<ProfileSnapshot['conversations']['practiceHistory']>
   threads: ProfileSnapshot['conversations']['threads']; messages: ProfileSnapshot['conversations']['messages']
-  runs: ProfileSnapshot['conversations']['runs']; library: ProfileSnapshot['library']
+  runs: ProfileSnapshot['conversations']['runs']; library: ProfileSnapshot['library']; media: ProfileSnapshot['media']
 }
 
 export interface BuildInput {
@@ -109,8 +109,9 @@ export function buildFilesV2(input: BuildInput): BuildOutput {
     },
     conversations: { threads: u.threads, messages: u.messages, runs: u.runs, ...(u.practiceHistory.length ? { practiceHistory: u.practiceHistory } : {}) },
     library: u.library,
+    media: u.media,
   } as ProfileSnapshot
-  const whole = toProfileYaml(assembled) as unknown as { knowledge: Record<string, unknown> & { study: Record<string, unknown> & { sessions: { id: string }[] } }; conversations: { threads: { id: string }[]; messages: { threadId: string }[]; runs: { threadId: string }[]; practiceHistory?: unknown[] }; library: { id: string }[] }
+  const whole = toProfileYaml(assembled) as unknown as { knowledge: Record<string, unknown> & { study: Record<string, unknown> & { sessions: { id: string }[] } }; conversations: { threads: { id: string }[]; messages: { threadId: string }[]; runs: { threadId: string }[]; practiceHistory?: unknown[] }; library: { id: string }[]; media: { id: string }[] }
   const { study, characterStates, ...plain } = whole.knowledge
   const { sessions: exerciseSessions, knowledge: studyKnowledge, cards, attempts } = study
 
@@ -126,6 +127,7 @@ export function buildFilesV2(input: BuildInput): BuildOutput {
   }
   if (whole.conversations.practiceHistory?.length) files.set('conversations/practice-history.yaml', dump({ practiceHistory: whole.conversations.practiceHistory }))
   for (const book of whole.library) files.set(`library/${safeName(book.id)}.yaml`, dump(book))
+  for (const item of whole.media) files.set(`media/${safeName(item.id)}.yaml`, dump(item))
 
   // The log: the new segment(s) only; segments already in the repository are kept as they are.
   const fresh = segmentsOf(input.fresh)
@@ -166,6 +168,7 @@ export function loadBackupV2(files: Map<string, string>, profileFallback: Profil
   const sessions: unknown[] = []
   const conversations = { threads: [] as unknown[], messages: [] as unknown[], runs: [] as unknown[], practiceHistory: [] as unknown[] }
   const library: unknown[] = []
+  const media: unknown[] = []
   for (const [path, text] of [...files].sort(([a], [b]) => a.localeCompare(b))) {
     if (path.startsWith('state/exercise-sessions/')) sessions.push(parse(text))
     else if (path === 'conversations/practice-history.yaml') conversations.practiceHistory.push(...(parse(text) as { practiceHistory: unknown[] }).practiceHistory)
@@ -173,13 +176,14 @@ export function loadBackupV2(files: Map<string, string>, profileFallback: Profil
       const item = parse(text) as { thread: unknown; messages: unknown[]; runs: unknown[] }
       conversations.threads.push(item.thread); conversations.messages.push(...item.messages); conversations.runs.push(...item.runs)
     } else if (path.startsWith('library/')) library.push(parse(text))
+    else if (path.startsWith('media/')) media.push(parse(text))
   }
   const rest = { ...conversations, ...(conversations.practiceHistory.length ? {} : { practiceHistory: undefined }) }
   const profile = { id: meta.id ?? profileFallback.id, name: meta.name ?? profileFallback.name }
   const wire = {
     format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: 0, profile, settings: settingsFile.settings,
     knowledge: { ...stateFile.knowledge, characterStates: snapshotFile.knowledge.characterStates, study: { ...snapshotFile.knowledge.study, sessions } },
-    conversations: rest, library,
+    conversations: rest, library, media,
   }
   const base = parseProfileYaml(dump(wire))
   const tail: JournalEvent[] = []

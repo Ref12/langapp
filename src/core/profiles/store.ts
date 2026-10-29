@@ -172,6 +172,7 @@ export async function readSnapshot(database: LearningDatabase, profile: ProfileM
         ...(practiceHistory.length ? { practiceHistory } : {}),
       },
       library: await database.libraryBooks.toArray(),
+      media: await database.mediaItems.toArray(),
     }
   })
 }
@@ -212,6 +213,7 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
       await database.attempts.bulkAdd(knowledge.attempts)
       await database.characterStates.bulkAdd(knowledge.characterStates)
       await database.libraryBooks.bulkAdd(snapshot.library.map(book => ({ ...book, revision: crypto.randomUUID() })))
+      await database.mediaItems.bulkAdd(snapshot.media)
       await database.knowledge.bulkAdd(knowledge.study.knowledge)
       await database.studyCards.bulkAdd(knowledge.study.cards)
       await database.exerciseSessions.bulkAdd(knowledge.study.sessions)

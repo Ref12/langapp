@@ -80,7 +80,7 @@ describe('isolated named browser profiles', () => {
     legacy.close()
     await reopenPage()
     expect(database.db.name).toBe('linguaweave-next')
-    expect(database.db.verno).toBe(16)
+    expect(database.db.verno).toBe(17)
     expect(await database.db.practiceHistory.count()).toBe(0)
     expect(await database.db.sudokuGames.count()).toBe(0)
     expect(await database.db.memoryGames.count()).toBe(0)

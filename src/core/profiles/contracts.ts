@@ -6,6 +6,7 @@ import { validateAssistant, validateStudy, validateWorkspace, workspaceSchema } 
 import { studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
 import { profileMetadataSchema } from './identity'
 import { librarySchema } from '../library/contracts'
+import { mediaItemSchema } from '../media/contracts'
 
 export const MAX_PROFILE_BYTES = 10 * 1024 * 1024
 export const PROFILE_FORMAT = 'linguaweave-profile'
@@ -26,6 +27,7 @@ export const profileDataSchema = z.object({
   knowledge: workspaceSchema.omit({ preferences: true }).extend({ study: studyBackupSchema }).strict(),
   conversations: assistantBackupSchema,
   library: librarySchema.default([]),
+  media: z.array(mediaItemSchema).max(500).default([]),
 }).strict()
 
 export const profileSnapshotSchema = profileDataSchema.superRefine((snapshot, context) => {

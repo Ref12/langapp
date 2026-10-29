@@ -13,6 +13,7 @@ import type { MemoryGame } from './games/memory'
 import type { DefenderGame } from './games/defender'
 import type { PotionsGame, PotionsProgress } from './games/potions'
 import type { JournalEvent } from './backup/journal'
+import type { MediaItem } from './media/contracts'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
 export interface BackupConfigRecord {
@@ -56,6 +57,7 @@ export class LearningDatabase extends Dexie {
   practiceHistory!: EntityTable<PracticeHistoryEntry, 'text'>
   journal!: EntityTable<JournalEvent & { seq?: number }, 'seq'>
   backupConfig!: EntityTable<BackupConfigRecord, 'id'>
+  mediaItems!: EntityTable<MediaItem, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -100,6 +102,7 @@ export class LearningDatabase extends Dexie {
     })
     this.version(15).stores({ journal: '++seq', backupConfig: '&id' })
     this.version(16).stores({ assistantImages: '&id, threadId, messageId' })
+    this.version(17).stores({ mediaItems: '&id, savedAt' })
   }
 }
 

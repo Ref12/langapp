@@ -42,8 +42,9 @@ export function buildBackupFiles(snapshot: ProfileSnapshot, journal: JournalEven
   const whole = parse(serializeProfileYaml(snapshot)) as Record<string, unknown> & {
     conversations: { threads: { id: string }[]; messages: { threadId: string }[]; runs: { threadId: string }[]; practiceHistory?: unknown[] }
     library: { id: string }[]
+    media: { id: string }[]
   }
-  const { conversations, library, ...rest } = whole
+  const { conversations, library, media, ...rest } = whole
   files.set('profile.yaml', dump({ id: snapshot.profile.id, name: snapshot.profile.name }))
   files.set('settings.yaml', dump({ format: SETTINGS_FORMAT, version: 1, settings: snapshot.settings, ...(connection ? { backup: connection } : {}) }))
   // exportedAt changes on every read; keep it out so an unchanged profile produces identical bytes.
@@ -57,6 +58,7 @@ export function buildBackupFiles(snapshot: ProfileSnapshot, journal: JournalEven
   }
   if (conversations.practiceHistory?.length) files.set('conversations/practice-history.yaml', dump({ practiceHistory: conversations.practiceHistory }))
   for (const book of library) files.set(`library/${safeName(book.id)}.yaml`, dump(book))
+  for (const item of media) files.set(`media/${safeName(item.id)}.yaml`, dump(item))
   for (const [name, events] of toSegments(journal)) files.set(name, serializeJournal(events))
   return files
 }
@@ -90,12 +92,14 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
   const meta = files.has('profile.yaml') ? parse(files.get('profile.yaml')!) as Partial<ProfileMetadata> : {}
   const conversations = { threads: [] as unknown[], messages: [] as unknown[], runs: [] as unknown[], practiceHistory: [] as unknown[] }
   const library: unknown[] = []
+  const media: unknown[] = []
   for (const [path, text] of files) {
     if (path === 'conversations/practice-history.yaml') conversations.practiceHistory.push(...(parse(text) as { practiceHistory: unknown[] }).practiceHistory)
     else if (path.startsWith('conversations/')) {
       const item = parse(text) as { thread: unknown; messages: unknown[]; runs: unknown[] }
       conversations.threads.push(item.thread); conversations.messages.push(...item.messages); conversations.runs.push(...item.runs)
     } else if (path.startsWith('library/')) library.push(parse(text))
+    else if (path.startsWith('media/')) media.push(parse(text))
   }
   const rest = { ...conversations, ...(conversations.practiceHistory.length ? {} : { practiceHistory: undefined }) }
 
@@ -104,7 +108,7 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
   try {
     const checkpoint = parse(required(files, 'checkpoint.yaml')) as { format: string; version: number; journal: { position: number }; profile: Record<string, unknown> }
     if (checkpoint.format !== CHECKPOINT_FORMAT || checkpoint.version !== 1 || !Number.isInteger(checkpoint.journal?.position)) throw new Error('Unsupported checkpoint.')
-    const base = parseProfileYaml(dump({ ...checkpoint.profile, contentVersion: CONTENT_VERSION, conversations: rest, library }))
+    const base = parseProfileYaml(dump({ ...checkpoint.profile, contentVersion: CONTENT_VERSION, conversations: rest, library, media }))
     const tail = journal.slice(checkpoint.journal.position)
     const state = replay(tail, replayFrom({
       knowledge: base.knowledge.study.knowledge, cards: base.knowledge.study.cards,
@@ -127,7 +131,7 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
       study: { ...empty.knowledge.study, knowledge: [...state.knowledge.values()], cards: [...state.cards.values()], attempts: [...state.exerciseAttempts.values()] } },
     conversations: { threads: [], messages: [], runs: [] } }
     // Conversations and library files are independent of the checkpoint, so they still apply.
-    snapshot = parseProfileYaml(dump({ ...(parse(serializeProfileYaml(snapshot)) as object), conversations: rest, library }))
+    snapshot = parseProfileYaml(dump({ ...(parse(serializeProfileYaml(snapshot)) as object), conversations: rest, library, media }))
     tailEvents = journal.length
   }
   return { snapshot: parseProfileYaml(serializeProfileYaml(snapshot)), journal, mode, tailEvents, ...(settingsFile.backup ? { backup: settingsFile.backup } : {}), profile: meta }

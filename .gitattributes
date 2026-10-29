@@ -1,3 +1,5 @@
+# Never let git change line endings.
+* -text
 # Preserve source checksums and reproducible curriculum outputs across platforms.
 curriculum/** -text
 # Public notices are exact copies, including source whitespace.
