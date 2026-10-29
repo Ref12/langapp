@@ -59,10 +59,28 @@ export async function createJob(id: string, url: string): Promise<string> {
   return body.id
 }
 
+export const UNKNOWN_JOB_MESSAGE = 'Medusa does not know this job.'
+
+/** Normalised identity of a video link (YouTube hosts, shorts, youtu.be, extra params dropped); other links keep host and path. */
+export function normalizeMediaUrl(link: string): string {
+  try {
+    const u = new URL(link.trim())
+    const host = u.hostname.toLowerCase().replace(/^(www|m|music)\./, '')
+    let id: string | undefined
+    if (host === 'youtu.be') id = u.pathname.split('/')[1]
+    else if (host === 'youtube.com' || host === 'youtube-nocookie.com') {
+      const parts = u.pathname.split('/').filter(Boolean)
+      id = parts[0] === 'watch' ? u.searchParams.get('v') ?? undefined : ['shorts', 'embed', 'live', 'v'].includes(parts[0] ?? '') ? parts[1] : undefined
+    }
+    if (id) return `youtube:${id}`
+    return `${host}${u.pathname.replace(/\/+$/, '')}${host.endsWith('bilibili.com') ? u.search.replace(/[?&](spm_id_from|vd_source|share_source)=[^&]*/g, '') : ''}`.toLowerCase()
+  } catch { return link.trim() }
+}
+
 export async function jobStatus(id: string): Promise<JobStatus> {
   const response = await call(`/v1/jobs/${encodeURIComponent(id)}`, undefined, 5000)
   const body = await readJson(response) as Partial<JobStatus>
-  if (!response.ok || !body.state) throw new HelperError(body.message ?? 'Medusa does not know this job.')
+  if (!response.ok || !body.state) throw new HelperError(body.message ?? UNKNOWN_JOB_MESSAGE, 'unknown_job')
   return { id, state: body.state, progress: body.progress, code: body.code, message: body.message }
 }
 
@@ -97,11 +115,20 @@ export async function putSync(mediaId: string, sync: readonly SyncAnchor[]): Pro
 }
 
 /** Poll until the job is done (returning its result) or failed (throwing a friendly message with Medusa's code). */
-export async function waitForJob(id: string, options: { intervalMs?: number; signal?: AbortSignal; onStatus?: (status: JobStatus) => void } = {}): Promise<MediaResult> {
-  const { intervalMs = timing.pollMs, signal, onStatus } = options
+export async function waitForJob(id: string, options: { intervalMs?: number; signal?: AbortSignal; onStatus?: (status: JobStatus) => void; resubmitUrl?: string } = {}): Promise<MediaResult> {
+  const { intervalMs = timing.pollMs, signal, onStatus, resubmitUrl } = options
+  let resubmitted = false
   for (;;) {
     if (signal?.aborted) throw new DOMException('Stopped', 'AbortError')
-    const status = await jobStatus(id)
+    let status: JobStatus
+    try { status = await jobStatus(id) } catch (reason) {
+      if (!(reason instanceof HelperError) || reason.code !== 'unknown_job') throw reason
+      // Medusa lost the job (or never got its id): if it is alive, submit the same job once and keep polling.
+      if (resubmitted || !resubmitUrl || !(await probeHelper())) throw new HelperError(`${UNKNOWN_JOB_MESSAGE} Open Medusa, then try again.`, 'unknown_job')
+      resubmitted = true
+      try { id = await createJob(id, resubmitUrl) } catch { throw new HelperError(`${UNKNOWN_JOB_MESSAGE} Open Medusa, then try again.`, 'unknown_job') }
+      continue
+    }
     onStatus?.(status)
     if (status.state === 'done') return jobResult(id)
     if (status.state === 'failed') throw new HelperError(friendlyFailure(status.code, status.message), status.code)

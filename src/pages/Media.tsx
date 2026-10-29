@@ -8,7 +8,7 @@ import { Pinyin } from '../components/Pinyin'
 import { useCatalog } from '../components/study/useCatalog'
 import { annotate } from '../core/study/annotate'
 import { currentLine, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SyncAnchor } from '../core/media/contracts'
-import { HELPER_INSTALL_PAGE, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
+import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
 import { studyLines } from '../core/collections/store'
 import { removeMedia, saveMedia, saveSync } from '../core/media/store'
@@ -51,17 +51,22 @@ function ImportFile({ onError }: { onError: (message: string) => void }) {
   return <label className="button secondary">Import transcript file<input type="file" accept=".json,.media.json,.medusa.json,application/json" hidden onChange={choose} /></label>
 }
 
+const JOB_URL_KEY = 'linguaweave-media-job-url:'
+
 /** Follows one helper job until its transcript is saved; reports an unreachable helper so the page can offer the file fallback. */
 function useJobFollower(setPhase: (phase: Phase) => void) {
   const abort = useRef<AbortController>()
   useEffect(() => () => abort.current?.abort(), [])
-  return useCallback(async (id: string) => {
+  return useCallback(async (id: string, url?: string) => {
+    if (url) { try { sessionStorage.setItem(JOB_URL_KEY + id, url) } catch { /* private mode */ } }
+    let resubmitUrl = url
+    if (!resubmitUrl) { try { resubmitUrl = sessionStorage.getItem(JOB_URL_KEY + id) ?? undefined } catch { /* private mode */ } }
     abort.current?.abort()
     const controller = new AbortController()
     abort.current = controller
     setPhase({ kind: 'working', message: statusText.queued })
     try {
-      const result = await waitForJob(id, { signal: controller.signal, onStatus: status => setPhase({ kind: 'working', message: status.state === 'downloading' ? statusText.downloading : status.message ?? statusText[status.state], progress: status.state === 'downloading' ? status.progress : undefined }) })
+      const result = await waitForJob(id, { signal: controller.signal, resubmitUrl, onStatus: status => setPhase({ kind: 'working', message: status.state === 'downloading' ? statusText.downloading : status.message ?? statusText[status.state], progress: status.state === 'downloading' ? status.progress : undefined }) })
       await saveMedia(result, id)
       navigate(`media/${id}`)
     } catch (reason) {
@@ -104,20 +109,27 @@ function MediaHome({ busy }: Pick<PageProps, 'busy'>) {
     if (await probeHelper()) {
       try {
         await createJob(id, link)
-        await follow(id)
+        await follow(id, link)
       } catch (reason) { setPhase({ kind: 'failed', message: reason instanceof Error ? reason.message : 'Medusa could not start this job.' }) }
       return
     }
     launcher.open(helperIntentUrl(id, link, appUrl(`media/job/${id}`), appUrl('media/install')))
     setPhase({ kind: 'working', message: 'Opening Medusa...' })
-    void follow(id)
+    void follow(id, link)
   }
+  const saved = useMemo(() => { const key = url.trim() ? normalizeMediaUrl(url) : undefined; return key ? items?.find(item => normalizeMediaUrl(item.url) === key) : undefined }, [items, url])
+  const [captureAgain, setCaptureAgain] = useState('')
+  const offerSaved = saved && captureAgain !== normalizeMediaUrl(url)
   return <>
     <PageHeading eyebrow="Media" title="Media">Save a video and its Chinese subtitles with Medusa, then watch with the lines beside the video.</PageHeading>
     <form className="media-add" onSubmit={submit}>
       <input type="url" inputMode="url" aria-label="Link to a video" placeholder="Paste a video link" value={url} onChange={event => setUrl(event.target.value)} />
-      <button className="button primary" type="submit" disabled={busy || !url.trim() || phase.kind === 'working'}>Get transcript</button>
+      {offerSaved ? <>
+        <a className="button primary" href={`#media/${saved.id}`}>Open saved</a>
+        <button className="button secondary" type="button" onClick={() => setCaptureAgain(normalizeMediaUrl(url))}>Capture again</button>
+      </> : <button className="button primary" type="submit" disabled={busy || !url.trim() || phase.kind === 'working'}>Get transcript</button>}
     </form>
+    {offerSaved && <p className="small muted" role="status">This video is already saved: {saved.title}</p>}
     <PhaseNotice phase={phase} retry={id => void follow(id)} onError={message => setPhase({ kind: 'failed', message })} />
     <p className="small muted">Needs the Medusa app on this phone. <a href="#media/install">Install it</a> or <span>import a transcript file instead:</span> <ImportFile onError={message => setPhase({ kind: 'failed', message })} /></p>
     <h2>Saved media</h2>

@@ -5,7 +5,7 @@ import App from '../App'
 import { db } from '../core/database'
 import { resetProfileStorage } from '../test/profile-storage'
 import { openPhraseActions } from '../test/phrase-actions'
-import { launcher, timing } from '../core/media/helper'
+import { launcher, normalizeMediaUrl, timing } from '../core/media/helper'
 import { saveMedia } from '../core/media/store'
 const studied = vi.hoisted(() => vi.fn(() => Promise.resolve('sess1')))
 vi.mock('../core/collections/store', async importOriginal => ({ ...(await importOriginal<typeof import('../core/collections/store')>()), studyLines: studied }))
@@ -59,6 +59,54 @@ describe('Media page', () => {
     expect(JSON.parse(String(fetchMock.mock.calls.find(call => String(call[0]).endsWith('/v1/jobs'))![1]!.body))).toMatchObject({ languages: ['zh-Hans', 'zh-CN', 'zh', 'zh-Hant', 'zh-TW'], want: ['subtitles', 'video'] })
     expect(window.location.hash).toBe(`#media/${saved[0].id}`)
     expect(await db.knowledge.count()).toBe(0)
+  })
+
+  it('re-submits a job Medusa does not know, once, and keeps polling', async () => {
+    let known = false
+    const posts: unknown[] = []
+    vi.stubGlobal('fetch', vi.fn((url: string, init?: RequestInit) => {
+      if (url.endsWith('/v1/status')) return json({ app: 'medusa' })
+      if (url.endsWith('/v1/jobs') && init?.method === 'POST') { posts.push(JSON.parse(String(init.body))); if (posts.length > 1) known = true; return json({ id: 'x' }) }
+      if (url.endsWith('/result')) return json(wire)
+      return known ? json({ id: 'x', state: 'done' }) : json({ code: 'unknown_job' }, false)
+    }))
+    const user = userEvent.setup()
+    render(<App />)
+    await user.type(await screen.findByRole('textbox', { name: 'Link to a video' }), 'https://youtu.be/zzzzzzzzzzz')
+    // first POST is the initial create (Medusa then forgets it); the second is the page's re-submit
+    await user.click(screen.getByRole('button', { name: 'Get transcript' }))
+    await screen.findByRole('heading', { name: 'A drama', level: 1 })
+    expect(posts).toHaveLength(2)
+    expect(posts[1]).toMatchObject({ id: (posts[0] as { id: string }).id, url: 'https://youtu.be/zzzzzzzzzzz', want: ['subtitles', 'video'] })
+  })
+
+  it('says what to do when the re-submit also fails', async () => {
+    vi.stubGlobal('fetch', vi.fn((url: string, init?: RequestInit) => {
+      if (url.endsWith('/v1/status')) return json({ app: 'medusa' })
+      if (url.endsWith('/v1/jobs') && init?.method === 'POST') return json({ id: 'x' }, true).then(r => (posts++ > 0 ? ({ ok: false, json: () => Promise.resolve({ message: 'no' }) } as Response) : r))
+      return json({}, false)
+    }))
+    let posts = 0
+    const user = userEvent.setup()
+    render(<App />)
+    await user.type(await screen.findByRole('textbox', { name: 'Link to a video' }), 'https://example.com/v')
+    await user.click(screen.getByRole('button', { name: 'Get transcript' }))
+    expect((await screen.findByRole('alert')).textContent).toMatch(/Medusa does not know this job\. Open Medusa, then try again\./)
+  })
+
+  it('normalises YouTube links and offers Open saved before a new capture', async () => {
+    for (const link of ['https://m.youtube.com/watch?v=abcdefghijk&t=5s', 'https://youtu.be/abcdefghijk?si=x', 'https://www.youtube.com/shorts/abcdefghijk', 'https://www.youtube.com/watch?v=abcdefghijk&list=L'])
+      expect(normalizeMediaUrl(link)).toBe(normalizeMediaUrl(result.url))
+    expect(normalizeMediaUrl('https://youtu.be/other')).not.toBe(normalizeMediaUrl(result.url))
+    await saveMedia(result as never, '11111111-1111-4111-8111-111111111111')
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('blocked'))))
+    const user = userEvent.setup()
+    render(<App />)
+    await user.type(await screen.findByRole('textbox', { name: 'Link to a video' }), 'https://youtu.be/abcdefghijk?si=x')
+    expect(await screen.findByRole('link', { name: 'Open saved' })).toHaveAttribute('href', '#media/11111111-1111-4111-8111-111111111111')
+    expect(screen.queryByRole('button', { name: 'Get transcript' })).not.toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Capture again' }))
+    expect(screen.getByRole('button', { name: 'Get transcript' })).toBeEnabled()
   })
 
   it('opens the helper by intent URL when it does not answer, then offers the file import', async () => {
