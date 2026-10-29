@@ -198,3 +198,47 @@ it('retains edited chunks when reopening the same selection during this page vis
   const onAnotherPage = await open()
   expect(within(onAnotherPage).getAllByRole('button', { name: /^Play step/ })).toHaveLength(1)
 })
+
+async function collapse() {
+  await act(async () => { window.getSelection()!.removeAllRanges(); document.dispatchEvent(new Event('selectionchange')) })
+}
+
+it('keeps the toolbar and opens the "…" menu when a touch collapses the selection before the click', async () => {
+  render(<Harness />)
+  await select()
+  const toolbar = screen.getByRole('toolbar', { name: 'Selected text actions' })
+  const more = within(toolbar).getByRole('button', { name: 'Phrase actions' })
+  fireEvent.pointerDown(more, { pointerType: 'touch' })
+  await collapse()
+  fireEvent.pointerUp(more, { pointerType: 'touch' })
+  await collapse()
+  fireEvent.click(more)
+  expect(screen.getByRole('toolbar', { name: 'Selected text actions' })).toBeInTheDocument()
+  const menu = await screen.findByRole('dialog', { name: 'Phrase actions' })
+  for (const name of ['Ask', 'Practice', 'Write']) expect(within(menu).getByRole('button', { name })).toBeEnabled()
+  await collapse() // menu open: later collapses keep the text
+  expect(screen.getByRole('toolbar', { name: 'Selected text actions' })).toBeInTheDocument()
+  fireEvent.pointerDown(document.body, { pointerType: 'touch' }) // tap outside closes menu and toolbar
+  act(() => (document.activeElement as HTMLElement | null)?.blur())
+  await collapse()
+  await waitFor(() => expect(screen.queryByRole('toolbar')).not.toBeInTheDocument())
+})
+
+it('keeps the selection for a touch on Hear, which then speaks', async () => {
+  render(<Harness />)
+  await select()
+  const hear = within(screen.getByRole('toolbar', { name: 'Selected text actions' })).getByRole('button', { name: /^Hear/ })
+  fireEvent.pointerDown(hear, { pointerType: 'touch' })
+  await collapse()
+  fireEvent.pointerUp(hear, { pointerType: 'touch' })
+  fireEvent.click(hear)
+  expect(screen.getByRole('toolbar', { name: 'Selected text actions' })).toBeInTheDocument()
+  await waitFor(() => expect(getPlaybackState().activeId).toBeTruthy())
+})
+
+it('still drops the toolbar when the selection collapses with no pointer on it (mouse path)', async () => {
+  render(<Harness />)
+  await select()
+  await collapse()
+  expect(screen.queryByRole('toolbar')).not.toBeInTheDocument()
+})

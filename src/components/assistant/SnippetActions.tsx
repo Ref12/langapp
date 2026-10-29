@@ -181,6 +181,9 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
   const [practiceError, setPracticeError] = useState('')
   const [savedPractice, setSavedPractice] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
   const toolbar = useRef<HTMLDivElement>(null)
+  const pointerHeld = useRef(false)
+  const releaseTimer = useRef<ReturnType<typeof setTimeout>>()
+  const outsideTap = useRef(false)
   const [page, threadId] = route.split('/')
   const threadRate = useLiveQuery(async () => page === 'conversation' && threadId
     ? (await db.assistantThreads.get(threadId))?.speechRate
@@ -188,6 +191,9 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
   useEffect(() => {
     const read = () => {
       if (toolbar.current?.contains(document.activeElement) || document.querySelector('dialog[open]')) return
+      // A touch on the toolbar collapses the selection before focus moves; keep the text while it is pressed or its menu is open.
+      if (pointerHeld.current) return
+      if (!outsideTap.current && toolbar.current?.querySelector('[aria-expanded="true"]')) return
       const root = document.getElementById('main')
       setText(root ? selectedSnippet(window.getSelection(), root) : undefined)
       setPracticeError('')
@@ -200,9 +206,18 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
         toolbar.current.querySelector('button')?.focus()
       }
     }
+    const outside = (event: PointerEvent) => {
+      outsideTap.current = !(event.target instanceof Node && toolbar.current?.contains(event.target))
+      if (outsideTap.current) { clearTimeout(releaseTimer.current); pointerHeld.current = false }
+    }
     document.addEventListener('selectionchange', read)
     document.addEventListener('keydown', keys)
-    return () => { document.removeEventListener('selectionchange', read); document.removeEventListener('keydown', keys) }
+    document.addEventListener('pointerdown', outside, true)
+    return () => {
+      document.removeEventListener('selectionchange', read); document.removeEventListener('keydown', keys)
+      document.removeEventListener('pointerdown', outside, true)
+      clearTimeout(releaseTimer.current)
+    }
   }, [])
   useEffect(() => {
     setText(undefined); setPractice(undefined); setSavedPractice(undefined); setPracticeError('')
@@ -225,7 +240,15 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
   }
   return <>
     {text && <div className="selection-actions" ref={toolbar} role="toolbar" aria-label="Selected text actions" data-assistant-exclude
-      hidden={Boolean(practice)} onMouseDown={event => event.preventDefault()}>
+      hidden={Boolean(practice)} onMouseDown={event => event.preventDefault()}
+      onPointerDownCapture={event => {
+        clearTimeout(releaseTimer.current)
+        pointerHeld.current = true
+        if (event.pointerType !== 'touch') event.preventDefault()
+      }}
+      onPointerUpCapture={() => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }}
+      onPointerCancelCapture={() => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }}
+      onClickCapture={() => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }}>
       <SnippetActions key={`${route}:${text}`} source={{ text, title: `Selection from ${title}`, route, locale: snippetLocale(text) }}
         onPrepared={() => setText(undefined)} onPractice={() => openPractice()} onWrite={() => openPractice('write')} practiceDisabled={Boolean(unavailable)}
         practiceTitle={unavailable ?? 'Practice the selected Mandarin text'} />
