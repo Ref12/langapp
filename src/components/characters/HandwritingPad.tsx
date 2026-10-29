@@ -115,7 +115,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
     <ul className="handwriting-candidates" aria-label="Candidate characters">
       {Array.from({ length: SLOTS }, (_, slot) => {
         const character = candidates[slot]
-        return <li key={slot}>{character && <button type="button" className="handwriting-candidate" onClick={() => onPick(character)}>
+        return <li key={slot}>{character && <button type="button" className="handwriting-candidate" onClick={() => { cancel(); setStrokes([]); onPick(character) }}>
           <span lang="zh-Hans" className="handwriting-character">{character}</span>
           <span className="handwriting-reading"><Pinyin text={readings.get(character) ?? ''} /></span></button>}</li>
       })}

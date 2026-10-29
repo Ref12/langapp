@@ -85,7 +85,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
         <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button></div>
       <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>
     </div>
-    {drawing && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => { select(setQuery)(character); setDrawing(false) }} />}
+    {drawing && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => select(setQuery)(query + character)} />}
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {catalog && kind !== 'characters' && <div className="word-grid">{matches.slice(0, limit).map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}

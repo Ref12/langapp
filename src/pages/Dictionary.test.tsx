@@ -138,7 +138,7 @@ describe('dictionary characters', () => {
     await screen.findByRole('button', { name: 'My knowledge set (1)' })
     expect(screen.queryByRole('article', { name: 'Character \u8336' })).not.toBeInTheDocument()
   })
-  it('draws a character: candidates stay inside the catalog, picking one fills the search and filters the list', async () => {
+  it('draws a character: candidates stay inside the catalog, picking one fills the search and filters the list, and the pad stays open', async () => {
     const user = userEvent.setup()
     handwriting.calls.length = 0
     vi.spyOn(SVGElement.prototype, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 100))
@@ -168,7 +168,7 @@ describe('dictionary characters', () => {
     expect([...handwriting.calls.at(-1)!.allowed].sort()).toEqual(['\u4e00', '\u676f', '\u8336'])
     await user.click(candidate)
     expect(search).toHaveValue('\u676f')
-    expect(screen.queryByRole('img', { name: 'Handwriting area' })).not.toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Handwriting area' })).toBeInTheDocument()
     expect(screen.queryByRole('article', { name: 'Character \u4e00' })).not.toBeInTheDocument()
     expect(screen.getByRole('article', { name: 'Character \u676f' })).toBeInTheDocument()
   })
