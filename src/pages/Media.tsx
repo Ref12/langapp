@@ -7,9 +7,10 @@ import { PracticeSnippet } from '../components/assistant/SnippetActions'
 import { Pinyin } from '../components/Pinyin'
 import { useCatalog } from '../components/study/useCatalog'
 import { annotate } from '../core/study/annotate'
-import { currentLine, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SyncAnchor } from '../core/media/contracts'
+import { currentLine, lineView, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SyncAnchor, type WovenToken } from '../core/media/contracts'
 import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
+import { translateMedia } from '../core/media/translation'
 import { studyLines } from '../core/collections/store'
 import { removeMedia, saveMedia, saveSync } from '../core/media/store'
 import { PhraseKnowledge } from '../components/assistant/PhraseKnowledge'
@@ -187,6 +188,30 @@ function WordLine({ text, pinyin, lookup, className = 'media-now' }: { className
   </>
 }
 
+/** One line from the AI pass: per-word pinyin and (optionally) glosses, with a tap for the contextual meaning. */
+function WovenLine({ tokens, pinyin, glosses, className = 'media-now' }: { tokens: WovenToken[]; pinyin: boolean; glosses: boolean; className?: string }) {
+  const [selected, setSelected] = useState<WovenToken>()
+  return <>
+    <p className={className} lang="zh-Hans">{tokens.map((token, index) => <span key={index} className="woven-token">
+      <ruby className="mandarin-word"><button type="button" className="word" onClick={() => setSelected(token)}>{token.text}</button>
+        {pinyin && token.pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt>}</ruby>
+      {glosses && token.meaning && <span className="woven-gloss" data-assistant-exclude>{token.meaning}</span>}
+      {token.trailing}</span>)}</p>
+    {selected && <p className="notice" role="status"><strong lang="zh-Hans">{selected.text}</strong> <Pinyin text={selected.pinyin} /> / {selected.meaning}</p>}
+  </>
+}
+
+/** The aligned English for a line; tap to see the whole sentence it belongs to. */
+function Fragment({ translation, className = 'media-fragment' }: { translation?: { fragment: string; sentence: string; shared: boolean }; className?: string }) {
+  const [open, setOpen] = useState(false)
+  if (!translation) return null
+  const more = translation.sentence !== translation.fragment
+  return <div className={className}>
+    <button type="button" className="media-fragment-text" aria-expanded={more ? open : undefined} disabled={!more} onClick={() => setOpen(value => !value)}>{translation.fragment}</button>
+    {open && more && <p className="small muted" role="status">{translation.sentence}</p>}
+  </div>
+}
+
 function Watch({ item, workspace, route }: { item: MediaItem; workspace: PageProps['workspace']; route: string }) {
   const video = useRef<HTMLVideoElement>(null)
   const [sync, setSync] = useState<SyncAnchor[]>(item.sync ?? [])
@@ -203,6 +228,25 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const [view, setView] = useState<'learn' | 'lines' | 'watch'>('learn')
   const container = useRef<HTMLDivElement>(null)
   const [annotated, setAnnotated] = useState(false)
+  const [overlayTranslation, setOverlayTranslation] = useState(false)
+  const [glosses, setGlosses] = useState(() => localStorage.getItem('linguaweave-media-glosses') === 'true')
+  const [translating, setTranslating] = useState<{ done: number; total: number } | undefined>()
+  const [translateError, setTranslateError] = useState('')
+  const translateAbort = useRef<AbortController>()
+  useEffect(() => () => translateAbort.current?.abort(), [])
+  const aligned = item.aligned
+  const translated = aligned ? aligned.upTo >= item.lines.length : false
+  const startTranslate = async () => {
+    translateAbort.current?.abort()
+    const controller = new AbortController()
+    translateAbort.current = controller
+    setTranslateError('')
+    setTranslating({ done: aligned?.upTo ?? 0, total: item.lines.length })
+    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating({ done, total })) }
+    catch (reason) { if (!controller.signal.aborted) setTranslateError(reason instanceof Error ? reason.message : 'The translation failed.') }
+    finally { setTranslating(undefined) }
+  }
+  const toggleGlosses = (value: boolean) => { setGlosses(value); localStorage.setItem('linguaweave-media-glosses', String(value)) }
   const [picker, setPicker] = useState(false)
   const [picked, setPicked] = useState<Set<number>>(new Set())
   const [count, setCount] = useState(5)
@@ -301,6 +345,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const shift = (delta: number) => apply(nudge(sync, now(), (line ?? item.lines[0]).start, delta))
   const syncTo = (entry: MediaLine) => apply(withAnchor(sync, { at: entry.start, offset: Math.round((now() - entry.start) * 100) / 100 }))
   const resetHere = () => { const active = [...sync].reverse().find(entry => entry.at <= now()); if (active) apply(sync.filter(entry => entry !== active)) }
+  const viewOf = (index: number) => lineView(aligned, index)
   const lineLearn = (entry: MediaLine, index: number) => <><PhraseKnowledge text={entry.text} label="Add to my knowledge set" /><CollectLine line={{ text: entry.text, source: { mediaId: item.id, title: item.title, line: index, start: entry.start, text: entry.text } }} /></>
   const source = (text: string) => ({ text, locale: 'zh-Hans' as const, title: item.title, route })
   const candidates = item.lines.map((entry, index) => ({ entry, index })).slice(Math.max(0, current), Math.max(0, current) + 120)
@@ -315,6 +360,15 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
       <button type="button" className="button secondary" aria-pressed={view === 'lines'} onClick={() => setView('lines')}>Lines</button>
       <button type="button" className="button secondary" aria-pressed={view === 'watch'} onClick={enterWatch}>Fullscreen</button>
     </div>}
+    <div className="media-translate">
+      {translating
+        ? <><progress max={translating.total} value={translating.done} aria-label="Translation progress" /><span className="small muted">Translating {translating.done} of {translating.total} lines...</span>
+          <button type="button" className="button secondary" onClick={() => translateAbort.current?.abort()}>Cancel</button></>
+        : translated
+          ? <span className="small muted">AI translation ready.</span>
+          : <button type="button" className="button secondary" onClick={() => void startTranslate()}>{aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button>}
+      {translateError && <p className="notice error" role="alert">{translateError}</p>}
+    </div>
     <div className="media-watch" ref={container} data-view={view}>
       <div className="media-pin">
         {canWatch
@@ -324,18 +378,22 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
               <div className="media-overlay-bar">
                 <button type="button" className="button secondary" onClick={exitWatch}>Exit fullscreen</button>
                 <label><input type="checkbox" checked={annotated} onChange={event => setAnnotated(event.target.checked)} /> Annotated subtitles</label>
+                {aligned && <label><input type="checkbox" checked={overlayTranslation} onChange={event => setOverlayTranslation(event.target.checked)} /> Translation</label>}
                 <button type="button" className="button primary" onClick={openPicker}>Learn</button>
               </div>
               {line && <div className="media-overlay-line">{annotated
-                ? <WordLine key={current} text={line.text} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-overlay-text" />
-                : <p className="media-overlay-text" lang="zh-Hans">{line.text}</p>}</div>}
+                ? (viewOf(current).tokens
+                  ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} className="media-overlay-text" />
+                  : <WordLine key={current} text={line.text} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-overlay-text" />)
+                : <p className="media-overlay-text" lang="zh-Hans">{line.text}</p>}
+                {overlayTranslation && viewOf(current).translation && <p className="media-overlay-text media-overlay-second">{viewOf(current).translation!.fragment}</p>}</div>}
               {picker && <div className="media-picker" role="dialog" aria-label="Choose lines to study">
                 <div className="media-controls">
                   <button type="button" className="button secondary" onClick={() => setPicked(new Set(nextInterval(item.lines, now(), 120)))}>Next 2 minutes</button>
                   <label>Next <input type="number" min={1} max={200} value={count} aria-label="Number of lines" onChange={event => setCount(Math.max(1, Number(event.target.value) || 1))} /> lines</label>
                   <button type="button" className="button secondary" onClick={() => setPicked(new Set(nextLines(item.lines, Math.max(0, current), count)))}>Pick {count}</button>
                 </div>
-                <ul className="media-picker-list">{candidates.map(({ entry, index }) => <li key={index}><label><input type="checkbox" checked={picked.has(index)} onChange={() => togglePicked(index)} /> <span lang="zh-Hans">{entry.text}</span></label></li>)}</ul>
+                <ul className="media-picker-list">{candidates.map(({ entry, index }) => <li key={index}><label><input type="checkbox" checked={picked.has(index)} onChange={() => togglePicked(index)} /> <span lang="zh-Hans">{entry.text}</span>{viewOf(index).translation && <span className="small muted"> / {viewOf(index).translation!.fragment}</span>}</label></li>)}</ul>
                 <div className="media-controls">
                   <button type="button" className="button primary" disabled={picked.size === 0} onClick={() => void confirmPicker()}>Study {picked.size} line{picked.size === 1 ? '' : 's'}</button>
                   <button type="button" className="button secondary" onClick={() => setPicker(false)}>Cancel</button>
@@ -351,7 +409,11 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
       </div>
       {studied && <p className="notice" role="status">{studied}</p>}
       {canWatch && <div className="media-footer" hidden={view === 'watch'}>
-        <WordLine key={current} text={line?.text ?? ''} pinyin={workspace.preferences.pinyin} lookup={lookup} />
+        {viewOf(current).tokens
+          ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} />
+          : <WordLine key={current} text={line?.text ?? ''} pinyin={workspace.preferences.pinyin} lookup={lookup} />}
+        <Fragment key={`f${current}`} translation={viewOf(current).translation} />
+        {aligned && <label className="small"><input type="checkbox" checked={glosses} onChange={event => toggleGlosses(event.target.checked)} /> Word meanings</label>}
         {line && <PracticeSnippet source={source(line.text)} learn={lineLearn(line, current)} />}
         <div className="media-controls">
           <button className="button secondary" disabled={!line} onClick={() => line && seek(line, current)}>Replay line</button>
@@ -370,7 +432,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
         <div className="media-lines-scroll" ref={scroller} data-testid="media-lines-scroll" onWheel={stopFollowing} onTouchMove={stopFollowing} onKeyDown={stopFollowing}>
           <ol className="media-lines">{item.lines.map((entry, index) => <li key={index} className="media-line" aria-current={index === current ? 'true' : undefined} ref={index === current ? currentRow : undefined}>
             <button type="button" className="media-line-seek" disabled={!canWatch} onClick={() => seek(entry, index)} aria-label={`Play from ${formatTime(shifted(entry))}`}>
-              <span className="media-line-time">{formatTime(shifted(entry))}</span><span className="media-line-text" lang="zh-Hans">{entry.text}</span></button>
+              <span className="media-line-time">{formatTime(shifted(entry))}</span><span className="media-line-text"><span lang="zh-Hans">{entry.text}</span>{viewOf(index).translation && <span className="media-line-fragment small muted">{viewOf(index).translation!.fragment}</span>}</span></button>
             {canWatch && <button type="button" className="button secondary" onClick={() => syncTo(entry)}>Sync to this line</button>}
             <PracticeSnippet source={source(entry.text)} learn={lineLearn(entry, index)} />
           </li>)}</ol>

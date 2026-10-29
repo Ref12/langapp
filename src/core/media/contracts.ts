@@ -10,6 +10,23 @@ export const mediaLineSchema = z.object({
 export const syncAnchorSchema = z.object({ at: z.number().min(0).max(1_000_000), offset: z.number().min(-3600).max(3600) }).strict()
 export type SyncAnchor = z.infer<typeof syncAnchorSchema>
 
+export const wovenTokenSchema = z.object({ text: z.string().min(1).max(60), pinyin: z.string().max(160), meaning: z.string().max(240), trailing: z.string().max(60) }).strict()
+export type WovenToken = z.infer<typeof wovenTokenSchema>
+
+/** AI translation aligned to subtitle lines (design section 3) plus per-word weaving tokens (section 4); grows chunk by chunk. */
+export const alignedSchema = z.object({
+  sentences: z.array(z.object({
+    lines: z.tuple([z.number().int().min(0), z.number().int().min(0)]),
+    translation: z.string().min(1).max(1200),
+    fragments: z.array(z.object({ line: z.number().int().min(0), text: z.string().min(1).max(600) }).strict()).max(60),
+  }).strict()).max(40_000),
+  tokens: z.array(z.object({ line: z.number().int().min(0), items: z.array(wovenTokenSchema).max(300) }).strict()).max(30_000),
+  /** Lines before this index are translated; a run resumes from here. */
+  upTo: z.number().int().min(0),
+  updatedAt: z.number(),
+}).strict()
+export type Aligned = z.infer<typeof alignedSchema>
+
 export const mediaResultSchema = z.object({
   url: z.string().min(1).max(4000),
   title: z.string().min(1).max(500),
@@ -24,6 +41,7 @@ export const mediaResultSchema = z.object({
   videoPath: z.string().max(500).optional(),
   sync: z.array(syncAnchorSchema).max(2000).optional(),
   syncDirty: z.boolean().optional(),
+  aligned: alignedSchema.optional(),
 }).passthrough()
 export type MediaResult = z.infer<typeof mediaResultSchema>
 export type MediaLine = z.infer<typeof mediaLineSchema>
@@ -79,4 +97,16 @@ export function nudge(sync: readonly SyncAnchor[], time: number, lineStart: numb
   const active = [...sync].reverse().find(entry => entry.at <= time)
   if (active && time - active.at <= 30) return withAnchor(sync, { at: active.at, offset: Math.round((active.offset + delta) * 100) / 100 })
   return withAnchor(sync, { at: lineStart, offset: Math.round((offsetAt(sync, lineStart) + delta) * 100) / 100 })
+}
+
+export interface LineTranslation { fragment: string; sentence: string; /** The fragment is the whole sentence (no natural split). */ shared: boolean }
+
+/** The aligned view of one line: its fragment and whole sentence, plus weaving tokens when present. */
+export function lineView(aligned: Aligned | undefined, line: number): { translation?: LineTranslation; tokens?: WovenToken[] } {
+  if (!aligned) return {}
+  const tokens = aligned.tokens.find(entry => entry.line === line)?.items
+  const sentence = aligned.sentences.find(entry => line >= entry.lines[0] && line <= entry.lines[1])
+  if (!sentence) return { tokens }
+  const fragment = sentence.fragments.find(entry => entry.line === line)
+  return { tokens, translation: { fragment: fragment?.text ?? sentence.translation, sentence: sentence.translation, shared: !fragment } }
 }

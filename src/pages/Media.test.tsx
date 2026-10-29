@@ -9,6 +9,8 @@ import { launcher, normalizeMediaUrl, timing } from '../core/media/helper'
 import { saveMedia } from '../core/media/store'
 const studied = vi.hoisted(() => vi.fn(() => Promise.resolve('sess1')))
 vi.mock('../core/collections/store', async importOriginal => ({ ...(await importOriginal<typeof import('../core/collections/store')>()), studyLines: studied }))
+const translating = vi.hoisted(() => vi.fn())
+vi.mock('../core/media/translation', async importOriginal => ({ ...(await importOriginal<typeof import('../core/media/translation')>()), translateMedia: translating }))
 import { nextInterval, nextLines } from '../core/media/study'
 import { currentLine, nudge } from '../core/media/contracts'
 
@@ -275,6 +277,79 @@ describe('Media page', () => {
     expect(sent).toHaveLength(1)
     expect(sent[0].source).toMatchObject({ mediaId: id, title: 'A drama', text: sent[0].text })
     expect(window.location.hash).toBe('#lessons/session/sess1')
+  })
+
+  const aligned = {
+    sentences: [{ lines: [0, 1], translation: 'Hello, I am a student.', fragments: [{ line: 0, text: 'Hello,' }, { line: 1, text: 'I am a student.' }] }, { lines: [2, 2], translation: 'Goodbye.', fragments: [{ line: 2, text: 'Goodbye.' }] }],
+    tokens: [
+      { line: 0, items: [{ text: '你好', pinyin: 'nǐ hǎo', meaning: 'hello', trailing: '' }] },
+      { line: 1, items: [{ text: '我', pinyin: 'wǒ', meaning: 'I', trailing: '' }, { text: '是', pinyin: 'shì', meaning: 'am', trailing: '' }, { text: '学生', pinyin: 'xuéshēng', meaning: 'student', trailing: '' }] },
+      { line: 2, items: [{ text: '再见', pinyin: 'zàijiàn', meaning: 'goodbye', trailing: '' }] },
+    ], upTo: 3, updatedAt: 1,
+  }
+
+  it('weaves the current line with a toggle for word meanings and shows its aligned fragment', async () => {
+    const id = await saveMedia({ ...result, aligned } as never)
+    window.location.hash = `#media/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByRole('heading', { name: 'A drama', level: 1 })
+    player.time = 4.5
+    const footer = () => document.querySelector('.media-footer') as HTMLElement
+    await waitFor(() => expect(within(footer()).getByText('I am a student.')).toBeInTheDocument())
+    expect(footer().querySelectorAll('.woven-token')).toHaveLength(3)
+    expect(footer().querySelector('.woven-gloss')).toBeNull()
+    expect(within(footer()).queryByText('Hello, I am a student.')).toBeNull()
+    await user.click(within(footer()).getByText('I am a student.'))
+    expect(within(footer()).getByText('Hello, I am a student.')).toBeInTheDocument()
+    await user.click(within(footer()).getByRole('checkbox', { name: 'Word meanings' }))
+    expect(footer().querySelectorAll('.woven-gloss')).toHaveLength(3)
+    await user.click(footer().querySelector('.woven-token .word')!)
+    expect(within(footer()).getByText(/\/ I$/)).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Lines' }))
+    expect(within(screen.getByTestId('media-lines-scroll')).getAllByText(/Hello,|I am a student\.|Goodbye\./)).toHaveLength(3)
+  })
+
+  it('offers the fragment as a second subtitle line and in the Learn picker, and woven tokens when annotated', async () => {
+    const id = await saveMedia({ ...result, aligned } as never)
+    window.location.hash = `#media/${id}`
+    const user = userEvent.setup()
+    Element.prototype.requestFullscreen = vi.fn(() => Promise.resolve())
+    render(<App />)
+    await screen.findByRole('heading', { name: 'A drama', level: 1 })
+    await user.click(screen.getByRole('button', { name: 'Fullscreen' }))
+    player.time = 1.5
+    await waitFor(() => expect(document.querySelector('.media-overlay-text')).toHaveTextContent('你好'))
+    expect(document.querySelector('.media-overlay-second')).toBeNull()
+    await user.click(screen.getByRole('checkbox', { name: 'Translation' }))
+    expect(document.querySelector('.media-overlay-second')).toHaveTextContent('Hello,')
+    await user.click(screen.getByRole('checkbox', { name: 'Annotated subtitles' }))
+    expect(document.querySelectorAll('.media-overlay-line .woven-token').length).toBeGreaterThan(0)
+    await user.click(screen.getByRole('button', { name: 'Learn' }))
+    expect(within(screen.getByRole('dialog', { name: 'Choose lines to study' })).getByText(/I am a student\./)).toBeInTheDocument()
+  })
+
+  it('translates on demand only, with progress, cancel and resume', async () => {
+    const id = await saveMedia(result as never)
+    window.location.hash = `#media/${id}`
+    const user = userEvent.setup()
+    let release: () => void = () => undefined
+    translating.mockImplementation((_id: string, signal: AbortSignal, onProgress: (done: number, total: number) => void) => new Promise<void>((resolve, reject) => {
+      onProgress(1, 3)
+      release = resolve
+      signal.addEventListener('abort', () => reject(new DOMException('Stopped', 'AbortError')))
+    }))
+    render(<App />)
+    await screen.findByRole('heading', { name: 'A drama', level: 1 })
+    expect(translating).not.toHaveBeenCalled()
+    await user.click(screen.getByRole('button', { name: 'Translate with AI' }))
+    expect(await screen.findByText(/Translating 1 of 3 lines/)).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Cancel' }))
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Translate with AI' })).toBeInTheDocument())
+    expect(screen.queryByRole('alert')).toBeNull()
+    await db.mediaItems.update(id, { aligned: { ...aligned, sentences: aligned.sentences.slice(0, 1), tokens: aligned.tokens.slice(0, 2), upTo: 2 } })
+    expect(await screen.findByRole('button', { name: 'Continue translating (2 of 3 done)' })).toBeInTheDocument()
+    release()
   })
 
   it('selects intervals and counts', () => {

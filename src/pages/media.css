@@ -41,3 +41,11 @@
 .media-line-text { overflow-wrap: anywhere; line-height: 1.9; }
 .media-overlay-bar .button { white-space: nowrap; padding-inline: 10px; flex: none; }
 .media-overlay-bar label { font-size: .85rem; line-height: 1.2; }
+.media-translate { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0; }
+.woven-token { display: inline-flex; flex-direction: column; align-items: flex-start; margin-right: .35em; }
+.woven-gloss { font-size: .7rem; line-height: 1.1; color: #8793a8; max-width: 7em; overflow-wrap: anywhere; }
+.media-fragment-text { text-align: left; background: none; border: 0; color: inherit; font: inherit; padding: 2px 0; cursor: pointer; }
+.media-fragment-text:disabled { cursor: default; opacity: 1; }
+.media-line-text { display: grid; }
+.media-line-fragment { line-height: 1.3; }
+.media-overlay-second { display: block; margin-top: 4px; font-size: 1.1rem; }
