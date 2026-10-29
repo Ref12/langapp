@@ -4,8 +4,33 @@
 .media-item { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--border, #2b3445); border-radius: 12px; }
 .media-item h3 { margin: 0 0 2px; font-size: 1rem; overflow-wrap: anywhere; }
 .media-item-actions { display: flex; gap: 8px; flex: none; }
-.media-video { width: 100%; max-height: 60vh; background: #000; border-radius: 12px; }
-.media-now { min-height: 6.5rem; padding: 12px 4px; font-size: 1.6rem; line-height: 2.2; }
+.media-watch { display: grid; gap: 8px; }
+.media-views { display: flex; gap: 8px; margin-bottom: 8px; }
+.media-views [aria-pressed="true"] { outline: 2px solid rgba(80, 150, 255, .8); }
+.media-stage { position: relative; }
+.media-footer[hidden], .media-list-panel[hidden] { display: none; }
+.media-footer { display: grid; gap: 6px; }
+.media-overlay-bar { position: absolute; top: 0; left: 0; right: 0; display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 8px 12px; background: linear-gradient(rgba(0,0,0,.6), transparent); z-index: 2; }
+.media-overlay-line { position: absolute; left: 0; right: 0; bottom: 56px; text-align: center; pointer-events: none; z-index: 2; }
+.media-overlay-line .word, .media-overlay-line button { pointer-events: auto; }
+.media-overlay-text { display: inline-block; margin: 0; padding: 4px 12px; font-size: 1.5rem; line-height: 2; color: #fff; background: rgba(0,0,0,.55); border-radius: 8px; text-shadow: 0 1px 2px #000; }
+.media-picker { position: absolute; inset: 48px 8px 8px; z-index: 4; display: grid; grid-template-rows: auto 1fr auto; gap: 8px; padding: 12px; overflow: hidden; background: rgba(12, 16, 26, .96); border-radius: 12px; }
+.media-picker-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; }
+.media-picker-list li { padding: 3px 0; }
+.media-picker input[type=number] { width: 4.5em; }
+.media-watch[data-view="watch"] { position: fixed; inset: 0; z-index: 1000; background: #000; display: block; }
+.media-watch[data-view="watch"] .media-pin, .media-watch[data-view="watch"] .media-stage { position: absolute; inset: 0; padding: 0; }
+.media-watch[data-view="watch"] .media-video { width: 100%; height: 100%; max-height: none; border-radius: 0; object-fit: contain; }
+.media-pin { position: sticky; top: 0; z-index: 5; background: var(--bg, #0f1420); padding-bottom: 6px; }
+.media-video { width: 100%; max-height: 56vh; background: #000; border-radius: 12px; }
+.media-title-teach { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.media-title-line { font-size: 1.3rem; line-height: 2; margin: 0; }
+.media-list-bar { display: flex; gap: 8px; margin-bottom: 6px; }
+.media-lines-scroll { position: relative; overflow-y: auto; max-height: 40vh; overscroll-behavior: contain; }
+.media-lines-scroll[hidden] { display: none; }
+@media (orientation: landscape) and (max-height: 520px) { .media-watch[data-view="learn"] { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; } .media-watch[data-view="learn"] .media-pin { position: sticky; top: 0; } .media-video { max-height: 62vh; } .media-now { min-height: 0; font-size: 1.25rem; line-height: 2; padding: 0; } .media-overlay-text { font-size: 1.15rem; line-height: 1.8; } .media-picker { inset: 40px 6px 6px; } .media-title-teach { display: none; } }
+@media (min-width: 900px) { .media-video { max-height: 70vh; } .media-lines-scroll { max-height: 60vh; } }
+.media-now { min-height: 4.5rem; padding: 12px 4px; font-size: 1.6rem; line-height: 2.2; }
 .media-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .media-lines { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 2px; }
 .media-line { display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; padding: 6px 8px; border-radius: 10px; }
@@ -14,3 +39,5 @@
 .media-line-seek[disabled] { cursor: default; }
 .media-line-time { flex: none; color: #8793a8; font-variant-numeric: tabular-nums; min-width: 3.2em; }
 .media-line-text { overflow-wrap: anywhere; line-height: 1.9; }
+.media-overlay-bar .button { white-space: nowrap; padding-inline: 10px; flex: none; }
+.media-overlay-bar label { font-size: .85rem; line-height: 1.2; }

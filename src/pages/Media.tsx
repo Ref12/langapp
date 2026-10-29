@@ -9,6 +9,8 @@ import { useCatalog } from '../components/study/useCatalog'
 import { annotate } from '../core/study/annotate'
 import { currentLine, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SyncAnchor } from '../core/media/contracts'
 import { HELPER_INSTALL_PAGE, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
+import { nextInterval, nextLines } from '../core/media/study'
+import { studyLines } from '../core/collections/store'
 import { removeMedia, saveMedia, saveSync } from '../core/media/store'
 import { PhraseKnowledge } from '../components/assistant/PhraseKnowledge'
 import { CollectLine } from '../components/collections/CollectLine'
@@ -159,10 +161,10 @@ function MediaJob({ id }: { id: string }) {
 
 const PAUSE_KEY = 'linguaweave-media-pause-after-line'
 
-function WordLine({ text, pinyin, lookup }: { text: string; pinyin: boolean; lookup: { readings: Map<string, Set<string>>; meanings: Map<string, string> } }) {
+function WordLine({ text, pinyin, lookup, className = 'media-now' }: { className?: string; text: string; pinyin: boolean; lookup: { readings: Map<string, Set<string>>; meanings: Map<string, string> } }) {
   const [selected, setSelected] = useState<{ text: string; pinyin: string; meaning: string }>()
   return <>
-    <p className="media-now" lang="zh-Hans">{annotate(text, lookup.readings).map((segment, index) => {
+    <p className={className} lang="zh-Hans">{annotate(text, lookup.readings).map((segment, index) => {
       const meaning = lookup.meanings.get(segment.text)
       if (!segment.pinyin || !meaning) return <span key={index}>{segment.text}</span>
       const pick = () => setSelected({ text: segment.text, pinyin: segment.pinyin!, meaning })
@@ -184,6 +186,15 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const pauseRef = useRef(pauseAfter)
   const pausedAt = useRef(-2)
   const currentRow = useRef<HTMLLIElement>(null)
+  const scroller = useRef<HTMLDivElement>(null)
+  const [following, setFollowing] = useState(true)
+  const [view, setView] = useState<'learn' | 'lines' | 'watch'>('learn')
+  const container = useRef<HTMLDivElement>(null)
+  const [annotated, setAnnotated] = useState(false)
+  const [picker, setPicker] = useState(false)
+  const [picked, setPicked] = useState<Set<number>>(new Set())
+  const [count, setCount] = useState(5)
+  const [studied, setStudied] = useState('')
   const push = useRef<number>()
   const dirtyOnOpen = useRef(item.syncDirty)
   const canWatch = !!item.hasVideo && !!item.videoPath && !videoFailed
@@ -235,7 +246,37 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
     }, timing.tickMs)
     return () => window.clearInterval(timer)
   }, [canWatch, item.lines])
-  useEffect(() => { currentRow.current?.scrollIntoView?.({ block: 'nearest' }) }, [current])
+  // Follow the current line by moving only the list's own scrollTop; scrollIntoView would also scroll the page and lose the video.
+  const followNow = useCallback(() => {
+    const box = scroller.current, row = currentRow.current
+    if (!box || !row) return
+    box.scrollTop = Math.max(0, row.offsetTop - (box.clientHeight - row.offsetHeight) / 2)
+  }, [])
+  useEffect(() => { if (following && view === 'lines') followNow() }, [current, following, view, followNow])
+  useEffect(() => {
+    const changed = () => { if (!document.fullscreenElement) setView(value => value === 'watch' ? 'learn' : value) }
+    document.addEventListener('fullscreenchange', changed)
+    return () => { document.removeEventListener('fullscreenchange', changed); if (document.fullscreenElement) void document.exitFullscreen?.() }
+  }, [])
+  const enterWatch = () => { setView('watch'); void Promise.resolve(container.current?.requestFullscreen?.()).catch(() => undefined) }
+  const exitWatch = () => { setPicker(false); setView('learn'); if (document.fullscreenElement) void document.exitFullscreen?.() }
+  const openPicker = () => {
+    video.current?.pause()
+    const from = Math.max(0, current)
+    setPicked(new Set(nextLines(item.lines, from, count)))
+    setPicker(true)
+  }
+  const confirmPicker = async () => {
+    const chosen = [...picked].sort((a, b) => a - b).map(index => ({ text: item.lines[index].text, source: { mediaId: item.id, title: item.title, line: index, start: item.lines[index].start, text: item.lines[index].text } }))
+    setStudied('')
+    try {
+      const session = await studyLines(chosen)
+      setPicker(false)
+      navigate(`lessons/session/${session}`)
+    } catch (reason) { setStudied(reason instanceof Error ? reason.message : 'These lines could not be saved.') }
+  }
+  const togglePicked = (index: number) => setPicked(previous => { const next = new Set(previous); if (next.has(index)) next.delete(index); else next.add(index); return next })
+  const stopFollowing = () => setFollowing(false)
   const shifted = (line: MediaLine) => line.start + offsetAt(sync, line.start)
   const seek = (line: MediaLine, index: number) => {
     pausedAt.current = -2
@@ -248,36 +289,82 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const shift = (delta: number) => apply(nudge(sync, now(), (line ?? item.lines[0]).start, delta))
   const syncTo = (entry: MediaLine) => apply(withAnchor(sync, { at: entry.start, offset: Math.round((now() - entry.start) * 100) / 100 }))
   const resetHere = () => { const active = [...sync].reverse().find(entry => entry.at <= now()); if (active) apply(sync.filter(entry => entry !== active)) }
+  const lineLearn = (entry: MediaLine, index: number) => <><PhraseKnowledge text={entry.text} label="Add to my knowledge set" /><CollectLine line={{ text: entry.text, source: { mediaId: item.id, title: item.title, line: index, start: entry.start, text: entry.text } }} /></>
   const source = (text: string) => ({ text, locale: 'zh-Hans' as const, title: item.title, route })
+  const candidates = item.lines.map((entry, index) => ({ entry, index })).slice(Math.max(0, current), Math.max(0, current) + 120)
   return <>
     <PageHeading eyebrow="Media" title={item.title}>{item.lines.length} lines / <a href="#media">All media</a></PageHeading>
-    {canWatch
-      ? <video className="media-video" ref={video} crossOrigin="anonymous" controls playsInline src={videoUrl(item.videoPath!)} onError={() => setVideoFailed(true)} />
-      : <div className="notice" role="status">
-        <p>{item.hasVideo ? 'Open Medusa to watch this video.' : 'This one has no video here; read the transcript below.'}</p>
-        {item.hasVideo && <div className="button-row"><button className="button secondary" onClick={() => setVideoFailed(false)}>Try again</button><a href="#media/install">Install Medusa</a></div>}
-        <p><a href={item.url} target="_blank" rel="noreferrer">Open the original</a></p>
+    {/[\u3400-\u9fff]/.test(item.title) && <div className="media-title-teach">
+      <WordLine text={item.title} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-title-line" />
+      <PracticeSnippet source={source(item.title)} />
+    </div>}
+    {canWatch && <div className="media-views" role="group" aria-label="Watch view">
+      <button type="button" className="button secondary" aria-pressed={view === 'learn'} onClick={() => setView('learn')}>Learning</button>
+      <button type="button" className="button secondary" aria-pressed={view === 'lines'} onClick={() => setView('lines')}>Lines</button>
+      <button type="button" className="button secondary" aria-pressed={view === 'watch'} onClick={enterWatch}>Fullscreen</button>
+    </div>}
+    <div className="media-watch" ref={container} data-view={view}>
+      <div className="media-pin">
+        {canWatch
+          ? <div className="media-stage">
+            <video className="media-video" ref={video} crossOrigin="anonymous" controls playsInline src={videoUrl(item.videoPath!)} onError={() => setVideoFailed(true)} />
+            {view === 'watch' && <>
+              <div className="media-overlay-bar">
+                <button type="button" className="button secondary" onClick={exitWatch}>Exit fullscreen</button>
+                <label><input type="checkbox" checked={annotated} onChange={event => setAnnotated(event.target.checked)} /> Annotated subtitles</label>
+                <button type="button" className="button primary" onClick={openPicker}>Learn</button>
+              </div>
+              {line && <div className="media-overlay-line">{annotated
+                ? <WordLine key={current} text={line.text} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-overlay-text" />
+                : <p className="media-overlay-text" lang="zh-Hans">{line.text}</p>}</div>}
+              {picker && <div className="media-picker" role="dialog" aria-label="Choose lines to study">
+                <div className="media-controls">
+                  <button type="button" className="button secondary" onClick={() => setPicked(new Set(nextInterval(item.lines, now(), 120)))}>Next 2 minutes</button>
+                  <label>Next <input type="number" min={1} max={200} value={count} aria-label="Number of lines" onChange={event => setCount(Math.max(1, Number(event.target.value) || 1))} /> lines</label>
+                  <button type="button" className="button secondary" onClick={() => setPicked(new Set(nextLines(item.lines, Math.max(0, current), count)))}>Pick {count}</button>
+                </div>
+                <ul className="media-picker-list">{candidates.map(({ entry, index }) => <li key={index}><label><input type="checkbox" checked={picked.has(index)} onChange={() => togglePicked(index)} /> <span lang="zh-Hans">{entry.text}</span></label></li>)}</ul>
+                <div className="media-controls">
+                  <button type="button" className="button primary" disabled={picked.size === 0} onClick={() => void confirmPicker()}>Study {picked.size} line{picked.size === 1 ? '' : 's'}</button>
+                  <button type="button" className="button secondary" onClick={() => setPicker(false)}>Cancel</button>
+                </div>
+              </div>}
+            </>}
+          </div>
+          : <div className="notice" role="status">
+            <p>{item.hasVideo ? 'Open Medusa to watch this video.' : 'This one has no video here; read the transcript below.'}</p>
+            {item.hasVideo && <div className="button-row"><button className="button secondary" onClick={() => setVideoFailed(false)}>Try again</button><a href="#media/install">Install Medusa</a></div>}
+            <p><a href={item.url} target="_blank" rel="noreferrer">Open the original</a></p>
+          </div>}
+      </div>
+      {studied && <p className="notice" role="status">{studied}</p>}
+      {canWatch && <div className="media-footer" hidden={view === 'watch'}>
+        <WordLine key={current} text={line?.text ?? ''} pinyin={workspace.preferences.pinyin} lookup={lookup} />
+        {line && <PracticeSnippet source={source(line.text)} learn={lineLearn(line, current)} />}
+        <div className="media-controls">
+          <button className="button secondary" disabled={!line} onClick={() => line && seek(line, current)}>Replay line</button>
+          <label><input type="checkbox" checked={pauseAfter} onChange={event => toggle(event.target.checked)} /> Pause after each line</label>
+        </div>
+        <div className="media-controls" role="group" aria-label="Subtitle sync">
+          <button className="button secondary" onClick={() => shift(-0.25)}>Earlier</button>
+          <button className="button secondary" onClick={() => shift(0.25)}>Later</button>
+          <button className="button secondary" onClick={resetHere}>Reset here</button>
+          <button className="button secondary" onClick={() => apply([])}>Reset all</button>
+          <span className="small muted">{offsetAt(sync, now()) >= 0 ? '+' : ''}{offsetAt(sync, now()).toFixed(2)} s</span>
+        </div>
       </div>}
-    {canWatch && <>
-      <WordLine key={current} text={line?.text ?? ''} pinyin={workspace.preferences.pinyin} lookup={lookup} />
-      <div className="media-controls">
-        <button className="button secondary" disabled={!line} onClick={() => line && seek(line, current)}>Replay line</button>
-        <label><input type="checkbox" checked={pauseAfter} onChange={event => toggle(event.target.checked)} /> Pause after each line</label>
+      <div className="media-list-panel" hidden={canWatch && view !== 'lines'}>
+        {!following && canWatch && <div className="media-list-bar"><button type="button" className="button secondary" onClick={() => { setFollowing(true); followNow() }}>Back to current line</button></div>}
+        <div className="media-lines-scroll" ref={scroller} data-testid="media-lines-scroll" onWheel={stopFollowing} onTouchMove={stopFollowing} onKeyDown={stopFollowing}>
+          <ol className="media-lines">{item.lines.map((entry, index) => <li key={index} className="media-line" aria-current={index === current ? 'true' : undefined} ref={index === current ? currentRow : undefined}>
+            <button type="button" className="media-line-seek" disabled={!canWatch} onClick={() => seek(entry, index)} aria-label={`Play from ${formatTime(shifted(entry))}`}>
+              <span className="media-line-time">{formatTime(shifted(entry))}</span><span className="media-line-text" lang="zh-Hans">{entry.text}</span></button>
+            {canWatch && <button type="button" className="button secondary" onClick={() => syncTo(entry)}>Sync to this line</button>}
+            <PracticeSnippet source={source(entry.text)} learn={lineLearn(entry, index)} />
+          </li>)}</ol>
+        </div>
       </div>
-      <div className="media-controls" role="group" aria-label="Subtitle sync">
-        <button className="button secondary" onClick={() => shift(-0.25)}>Earlier</button>
-        <button className="button secondary" onClick={() => shift(0.25)}>Later</button>
-        <button className="button secondary" onClick={resetHere}>Reset here</button>
-        <button className="button secondary" onClick={() => apply([])}>Reset all</button>
-        <span className="small muted">{offsetAt(sync, now()) >= 0 ? '+' : ''}{offsetAt(sync, now()).toFixed(2)} s</span>
-      </div>
-    </>}
-    <ol className="media-lines">{item.lines.map((entry, index) => <li key={index} className="media-line" aria-current={index === current ? 'true' : undefined} ref={index === current ? currentRow : undefined}>
-      <button type="button" className="media-line-seek" disabled={!canWatch} onClick={() => seek(entry, index)} aria-label={`Play from ${formatTime(shifted(entry))}`}>
-        <span className="media-line-time">{formatTime(shifted(entry))}</span><span className="media-line-text" lang="zh-Hans">{entry.text}</span></button>
-      {canWatch && <button type="button" className="button secondary" onClick={() => syncTo(entry)}>Sync to this line</button>}
-      <PracticeSnippet source={source(entry.text)} learn={<><PhraseKnowledge text={entry.text} /><CollectLine line={{ text: entry.text, source: { mediaId: item.id, title: item.title, line: index, start: entry.start, text: entry.text } }} /></>} />
-    </li>)}</ol>
+    </div>
   </>
 }
 

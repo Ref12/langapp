@@ -15,7 +15,7 @@ function vocabularyIndex(catalog: Catalog): Map<string, { ref: string; meaning: 
 }
 
 /** The "Learn" menu item: adds to the knowledge set the words of a phrase, split like Write mode. Words already known are not offered. */
-export function PhraseKnowledge({ text, romanization }: { text: string; romanization?: string }) {
+export function PhraseKnowledge({ text, romanization, label = 'Learn' }: { text: string; romanization?: string; label?: string }) {
   const usable = text.length > 0 && text.length <= 3000
   const { words } = useWriteWords(usable ? text : '', romanization)
   const { catalog } = useCatalog()
@@ -56,7 +56,7 @@ export function PhraseKnowledge({ text, romanization }: { text: string; romaniza
   return <div className="phrase-knowledge">
     {addable.length > 0 && <button type="button" className="button secondary snippet-button" title="Add this phrase's words to your knowledge set" disabled={busy} aria-expanded={direct ? undefined : open}
       onClick={() => direct ? void add(addable) : setOpen(value => !value)}>
-      <Plus size={15} />Learn</button>}
+      <Plus size={15} />{label}</button>}
     {open && !direct && addable.length > 0 && <ul className="phrase-knowledge-list" aria-label="Words to add">
       <li><button type="button" className="button secondary snippet-button" disabled={busy} onClick={() => void add(addable)}>Add all</button></li>
       {remaining.map(row => <li key={row.text}>
