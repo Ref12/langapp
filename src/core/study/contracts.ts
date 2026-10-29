@@ -96,6 +96,8 @@ export const exerciseSessionSchema = z.object({
   redoOf: id.optional(),
   /** Set when the session practises a collection; such sessions never count as the daily New/Review session. */
   collectionId: id.optional(),
+  /** A collection lesson's order: the exercise index where each phase (words, grammar, the line itself) starts. */
+  phases: z.array(z.object({ kind: z.enum(['words', 'grammar', 'line']), start: z.number().int().nonnegative() }).strict()).max(3).optional(),
 }).strict()
 
 export const exerciseAttemptSchema = z.object({

@@ -4,6 +4,7 @@ import { cardId, isPhraseRef, type StudyCard } from '../study/contracts'
 import { emptySchedulingState } from '../study/fsrs'
 import { DOMAIN, addToKnowledge } from '../study/knowledge'
 import { generateExercises, type PhraseTarget } from '../study/exercises'
+import { orderByPhase } from './phases'
 import { findCatalogUnits } from './extract'
 import { itemId, phraseRef, type Collection, type CollectionItem, type CollectionSource } from './contracts'
 
@@ -140,20 +141,25 @@ export async function startCollectionSession(collectionId: string, options: { it
   if (options.dueOnly) { const due = new Set((await dueItems(collectionId, options.now ?? Date.now())).map(item => item.id)); items = items.filter(item => due.has(item.id)) }
   const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))
   items = items.filter(item => !isPhraseRef(item.ref) ? catalog.units.has(item.ref) : !!item.text)
-    .sort((a, b) => (cards.get(a.ref)?.due ?? 0) - (cards.get(b.ref)?.due ?? 0) || a.ref.localeCompare(b.ref)).slice(0, MAX_COLLECTION_TARGETS)
+  // Lesson order: words, then grammar, then phrases. A chosen selection keeps its order (first appearance in the line); otherwise the most due first.
+  const given = options.itemIds ? new Map(options.itemIds.map((wanted, index) => [wanted, index])) : undefined
+  const rank = (ref: string) => isPhraseRef(ref) ? 2 : ref.startsWith('grammar:') ? 1 : 0
+  items.sort((a, b) => rank(a.ref) - rank(b.ref) || (given ? (given.get(a.id) ?? 0) - (given.get(b.id) ?? 0) : (cards.get(a.ref)?.due ?? 0) - (cards.get(b.ref)?.due ?? 0) || a.ref.localeCompare(b.ref)))
+  items = [...items.filter(item => rank(item.ref) === 0).slice(0, MAX_COLLECTION_TARGETS), ...items.filter(item => rank(item.ref) === 1).slice(0, 3), ...items.filter(item => rank(item.ref) === 2).slice(0, 3)]
   if (!items.length) throw new Error(options.dueOnly ? 'Nothing in this collection is due right now.' : 'This collection has no items to practise yet.')
   const targets: Unit[] = items.filter(item => !isPhraseRef(item.ref)).map(item => requireUnit(catalog, item.ref))
   const phrases: PhraseTarget[] = items.filter(item => isPhraseRef(item.ref)).map(item => ({ ref: item.ref, text: item.text!, ...(item.translation ? { translation: item.translation } : {}) }))
   const known = (await db.knowledge.toArray()).map(entry => entry.ref)
   const allowed = [...new Map([...known, ...targets.map(unit => unit.ref)].filter(ref => catalog.units.has(ref)).map(ref => [ref, requireUnit(catalog, ref)])).values()]
   const generated = await generateExercises(connection, { mode: 'review', targets, review: [], allowed, catalog, phrases }, signal)
+  const ordered = orderByPhase(generated.exercises)
   const refs = items.map(item => item.ref)
   const id = crypto.randomUUID()
   const now = Date.now()
   await db.transaction('rw', db.exerciseSessions, db.studyCards, async () => {
     for (const ref of refs) if (!await db.studyCards.get(cardId(ref, DOMAIN))) await db.studyCards.add(newCard(ref, now))
     await db.exerciseSessions.add({
-      id, mode: 'review', domain: DOMAIN, collectionId, targetRefs: refs, reviewRefs: [], exercises: generated.exercises, cursor: 0, status: 'active',
+      id, mode: 'review', domain: DOMAIN, collectionId, targetRefs: refs, reviewRefs: [], exercises: ordered.exercises, phases: ordered.phases, cursor: 0, status: 'active',
       model: connection.model, rejected: generated.rejected, createdAt: now,
     })
   })

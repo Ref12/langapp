@@ -3,7 +3,7 @@ import { useAIConnection } from '../components/study/useAIConnection'
 import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { navigate } from '../core/routing'
 import { type Catalog, type Unit } from '../core/study/catalog'
-import { cardId, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type TilesExercise } from '../core/study/contracts'
+import { cardId, isPhraseRef, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type TilesExercise } from '../core/study/contracts'
 import { timeSave } from '../core/backup/diagnostics'
 import { advanceExercise, discardSession, DOMAIN, startRedoSession, submitExerciseAnswer } from '../core/study/knowledge'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
@@ -16,6 +16,7 @@ import { Pinyin } from '../components/Pinyin'
 import { readingIndex } from '../core/study/annotate'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { savePreferences } from '../core/learning'
+import { PHASE_LABEL, phaseAt } from '../core/collections/phases'
 import { useStudyActions } from './useStudyActions'
 
 
@@ -113,7 +114,34 @@ function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
   </>
 }
 
+/** A collection lesson opens like a lesson: the words (new ones in full, known ones compact), then the grammar, then the line itself. */
+function CollectionIntroduction({ catalog, session, workspace, run, busy, now, begin }: PageProps & { catalog: Catalog; session: ExerciseSession; begin: () => void }) {
+  const known = new Set(workspace.knowledge.map(entry => entry.ref))
+  const cardOf = (ref: string) => workspace.studyCards.find(card => card.id === cardId(ref, DOMAIN))
+  const wellKnown = (ref: string) => known.has(ref) || cardOf(ref)?.state === 'review'
+  const units = unitsOf(catalog, session.targetRefs)
+  const words = units.filter(unit => unit.kind === 'vocabulary'), grammar = units.filter(unit => unit.kind === 'grammar')
+  const newWords = words.filter(unit => !wellKnown(unit.ref)), knownWords = words.filter(unit => wellKnown(unit.ref))
+  const lines = session.targetRefs.filter(isPhraseRef)
+  const card = (unit: Unit, compact = false) => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={cardOf(unit.ref)} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy}
+    route={`lessons/session/${session.id}`} hideStatus compact={compact} />
+  return <>
+    <a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
+    <PageHeading eyebrow="COLLECTION LESSON" title="Learn the line.">Words first, then grammar, then the line itself.</PageHeading>
+    <ol className="small muted phase-steps" aria-label="Lesson order">{(session.phases ?? []).map(phase => <li key={phase.kind}>{PHASE_LABEL[phase.kind]}</li>)}</ol>
+    {words.length === 0 && <p className="notice" role="status">This line has no vocabulary from the curriculum, so you go straight to the line.</p>}
+    {words.length > 0 && <section aria-label="Words"><h2>Words</h2>
+      {newWords.length > 0 && <div className="word-grid">{newWords.map(unit => card(unit))}</div>}
+      {knownWords.length > 0 && <><p className="small muted">You know these</p><div className="word-grid">{knownWords.map(unit => card(unit, true))}</div></>}</section>}
+    {grammar.length > 0 && <section aria-label="Grammar"><h2>Grammar</h2><div className="word-grid">{grammar.map(unit => card(unit))}</div></section>}
+    {lines.length > 0 && <section aria-label="The line"><h2>The line</h2><p className="small muted">Once the parts are known, you will work with the line itself.</p></section>}
+    <div className="start-panel" role="region" aria-label="Start the exercises"><p className="small muted">{session.exercises.length} exercises in {Math.max(1, session.phases?.length ?? 1)} {(session.phases?.length ?? 1) === 1 ? 'part' : 'parts'}.</p>
+      <button className="button primary" disabled={busy} onClick={begin}>Start exercises <ArrowRight size={16} /></button></div>
+  </>
+}
+
 function SessionIntroduction({ catalog, session, workspace, run, busy, now, begin }: PageProps & { catalog: Catalog; session: ExerciseSession; begin: () => void }) {
+  if (session.collectionId) return <CollectionIntroduction catalog={catalog} session={session} workspace={workspace} run={run} busy={busy} now={now} begin={begin} />
   const group = session.groupId ? catalog.groups.get(session.groupId) : undefined
   const units = unitsOf(catalog, session.targetRefs)
   const examplesFor = (ref: string) => (group?.group.examples ?? []).filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
@@ -159,7 +187,7 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
   const correctSentence = exercise.type === 'tiles' ? exercise.tiles.join('') : exercise.options[exercise.answer]
   const chineseAnswer = exercise.type === 'tiles' || exercise.direction === 'en-to-zh'
   return <div className="practice-player answer-player panel" data-assistant-protected={!attempt ? 'true' : undefined}>
-    <div className="card-topline"><span className="eyebrow">{session.mode === 'new' ? 'NEW ITEMS' : 'REVIEW'} / {exercise.type === 'choice' ? 'CHOOSE' : 'BUILD THE SENTENCE'}</span><span className="small muted">Exercise {session.cursor + 1} of {session.exercises.length}</span></div>
+    <div className="card-topline"><span className="eyebrow">{phaseAt(session.phases, session.cursor) ? `${PHASE_LABEL[phaseAt(session.phases, session.cursor)!.kind].toUpperCase()} (${phaseAt(session.phases, session.cursor)!.number + 1}/${session.phases!.length})` : session.mode === 'new' ? 'NEW ITEMS' : 'REVIEW'} / {exercise.type === 'choice' ? 'CHOOSE' : 'BUILD THE SENTENCE'}</span><span className="small muted">Exercise {session.cursor + 1} of {session.exercises.length}</span></div>
     <progress aria-label="Session progress" value={session.cursor} max={session.exercises.length} />
     <div className="practice-question-content">
       <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : 'Which Mandarin matches?' : 'Arrange the tiles to translate this.'}</h2>

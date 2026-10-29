@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Plus } from 'lucide-react'
+import { BookmarkPlus, GraduationCap } from 'lucide-react'
 import { navigate } from '../../core/routing'
 import { addLines, studyLines } from '../../core/collections/store'
 import { showCollection } from '../../core/collections/store'
@@ -9,11 +9,12 @@ import type { LineInput } from '../../core/collections/store'
 export function CollectLine({ line }: { line: LineInput }) {
   const [status, setStatus] = useState('')
   const [error, setError] = useState('')
+  const [link, setLink] = useState<{ id: string; name: string }>()
   const [busy, setBusy] = useState(false)
   const source = line.source
   if (!source) return null
   const act = async (work: () => Promise<void>) => {
-    setBusy(true); setError(''); setStatus('')
+    setBusy(true); setError(''); setStatus(''); setLink(undefined)
     try { await work() } catch (reason) { setError(reason instanceof Error ? reason.message : 'The phrase could not be saved.') } finally { setBusy(false) }
   }
   return <div className="phrase-knowledge">
@@ -21,11 +22,12 @@ export function CollectLine({ line }: { line: LineInput }) {
       onClick={() => void act(async () => {
         const collection = await showCollection(source.mediaId, source.title)
         const result = await addLines(collection.id, [line])
-        setStatus(result.total ? `Saved to ${collection.name}` : `Already in ${collection.name}`)
-      })}><Plus size={15} />Save</button>
-    <button type="button" className="button secondary snippet-button" disabled={busy} title="Save it and practise it now"
-      onClick={() => void act(async () => navigate(`lessons/session/${await studyLines([line])}`))}>Study</button>
-    {status && <p className="small" role="status">{status} · <a className="text-link" href="#collections">Collections</a></p>}
+        setStatus(result.total ? 'Saved to' : 'Already in'); setLink({ id: collection.id, name: collection.name })
+      })}><BookmarkPlus size={15} />Save to collection</button>
+    <button type="button" className="button secondary snippet-button" disabled={busy} title="Learn this line now: its words, grammar, then the line"
+      onClick={() => void act(async () => navigate(`lessons/session/${await studyLines([line])}`))}>{' '}<GraduationCap size={15} />Study now</button>
+    <p className="small muted">Collections keep a show's words apart from your knowledge set.</p>
+    {status && link && <p className="small" role="status">{status} <a className="text-link" href={`#collections/${link.id}`}>{link.name}</a></p>}
     {error && <p className="small" role="alert">{error}</p>}
   </div>
 }
