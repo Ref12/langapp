@@ -4,6 +4,8 @@ import { fromMedusa, medusaItemSchema, type MediaResult, type SyncAnchor } from 
 export const HELPER_ORIGIN = 'http://127.0.0.1:38917'
 export const HELPER_INSTALL_PAGE = 'https://github.com/lancec-codebox/appbox/releases'
 export const timing = { pollMs: 1000, probeMs: 1500, tickMs: 100, syncDebounceMs: 600 }
+/** Subtitle languages to ask Medusa for; a later target-language setting can replace this. */
+export const MEDIA_LANGUAGES = ['zh-Hans', 'zh-CN', 'zh', 'zh-Hant', 'zh-TW']
 export type JobState = 'queued' | 'fetching' | 'downloading' | 'done' | 'failed'
 export interface JobStatus { id: string; state: JobState; progress?: number; code?: string; message?: string }
 
@@ -51,7 +53,7 @@ export async function probeHelper(timeoutMs = timing.probeMs): Promise<boolean> 
 }
 
 export async function createJob(id: string, url: string): Promise<string> {
-  const response = await call('/v1/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, url, want: ['subtitles', 'video'] }) }, 10_000)
+  const response = await call('/v1/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, url, languages: MEDIA_LANGUAGES, want: ['subtitles', 'video'] }) }, 10_000)
   const body = await readJson(response) as { id?: string; message?: string }
   if (!response.ok || typeof body.id !== 'string') throw new HelperError(body.message ?? 'Medusa could not start this job.')
   return body.id
@@ -117,7 +119,7 @@ export function appUrl(route: string): string {
 /** The Chrome intent URL that wakes Medusa (protocol section 1); every value is URL-encoded. */
 export function helperIntentUrl(job: string, mediaUrl: string, returnUrl: string, installUrl: string): string {
   const e = encodeURIComponent
-  return `intent://open?job=${e(job)}&url=${e(mediaUrl)}&want=${e('subtitles,video')}&return=${e(returnUrl)}#Intent;scheme=medusa;package=io.ref12.medusa;S.browser_fallback_url=${e(installUrl)};end`
+  return `intent://open?job=${e(job)}&url=${e(mediaUrl)}&languages=${e(MEDIA_LANGUAGES.join(','))}&want=${e('subtitles,video')}&return=${e(returnUrl)}#Intent;scheme=medusa;package=io.ref12.medusa;S.browser_fallback_url=${e(installUrl)};end`
 }
 
 export function parseTranscriptFile(text: string): MediaResult {
