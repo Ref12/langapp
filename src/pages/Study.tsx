@@ -5,7 +5,7 @@ import { navigate } from '../core/routing'
 import { requireUnit, type Catalog } from '../core/study/catalog'
 import { cardId, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type TilesExercise } from '../core/study/contracts'
 import { timeSave } from '../core/backup/diagnostics'
-import { advanceExercise, discardSession, DOMAIN, groupProgress, nextGroup, startNewSession, startRedoSession, startReviewSession, submitExerciseAnswer } from '../core/study/knowledge'
+import { advanceExercise, discardSession, DOMAIN, startRedoSession, submitExerciseAnswer } from '../core/study/knowledge'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { UnitCard } from '../components/study/UnitCard'
 import { useCatalog } from '../components/study/useCatalog'
@@ -16,28 +16,11 @@ import { Pinyin } from '../components/Pinyin'
 import { readingIndex } from '../core/study/annotate'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { savePreferences } from '../core/learning'
+import { useStudyActions } from './useStudyActions'
 
 
 export function Study({ workspace, now, run, busy }: PageProps) {
-  const { catalog, error } = useCatalog()
-  const connection = useAIConnection()
-  const [generating, setGenerating] = useState<'new' | 'review' | ''>('')
-  const known = new Set(workspace.knowledge.map(entry => entry.ref))
-  const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref)).length
-  const active = workspace.exerciseSessions.filter(session => session.status === 'active').sort((a, b) => b.createdAt - a.createdAt)
-  const next = catalog ? nextGroup(catalog, known) : undefined
-  const progress = catalog ? groupProgress(catalog, known) : undefined
-  const start = (mode: 'new' | 'review', anyway = false) => {
-    setGenerating(mode)
-    void run(async () => {
-      try {
-        const id = mode === 'new' ? await startNewSession(undefined, { resume: false }) : await startReviewSession(Date.now(), anyway)
-        navigate(`lessons/session/${id}`)
-      } finally {
-        setGenerating('')
-      }
-    })
-  }
+  const { catalog, error, connection, generating, known, due, active, next, progress, start } = useStudyActions({ workspace, now, run })
   return <>
     <PageHeading eyebrow="NEW OR REVIEW" title="Learn something new, or keep what you know.">Pick up the next items in the curriculum, or review what is due. The exercises for each session are written by your connected AI model and checked against your knowledge set.</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
