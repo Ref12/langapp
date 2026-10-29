@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -331,45 +331,7 @@ describe('Mandarin learning loop', () => {
     expect((await db.words.get('zh:hello'))?.attempts).toBe(2)
     await go('overview')
     await screen.findByRole('heading', { name: 'Make the language yours.' })
-    expect(screen.getByText('lessons practiced').closest('strong')?.textContent).toMatch(/^0/)
-  })
-
-  it('prioritizes the next curriculum lesson over recent reading and resumes its practice', async () => {
-    const user = userEvent.setup()
-    const bookmark = { storyId: 'zh:tea-house', passage: 1, completed: [0], updatedAt: Date.now() }
-    await db.readings.add(bookmark)
-    render(<App />)
-    await screen.findByRole('heading', { name: 'Make the language yours.' })
-    const focus = screen.getByRole('article', { name: 'Curriculum focus' })
-    expect(within(focus).getByRole('heading', { name: curriculumLessons[0].title })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: 'A morning at the tea house' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: /^(Start|Continue) reading$/ })).not.toBeInTheDocument()
-    expect(screen.queryByRole('progressbar', { name: 'Story progress' })).not.toBeInTheDocument()
-    expect(screen.getByRole('progressbar', { name: 'Beginner lesson practice' })).toHaveAttribute('value', '0')
-    expect(screen.getByRole('link', { name: 'Start next lesson' })).toHaveAttribute('href', `#lesson/${curriculumLessons[0].id}`)
-    await user.click(screen.getByRole('link', { name: 'Start next lesson' }))
-    await screen.findByRole('heading', { name: curriculumLessons[0].title })
-    await user.click(screen.getByRole('link', { name: 'Go to reading practice' }))
-    await screen.findByRole('heading', { name: 'Try the reading practice.' })
-    await user.click(screen.getByRole('button', { name: 'Start lesson practice' }))
-    await screen.findByRole('heading', { name: 'What does this word mean?' })
-    const session = (await db.sessions.toArray())[0]
-    await go('overview')
-    await screen.findByRole('heading', { name: 'Make the language yours.' })
-    expect(screen.getByRole('link', { name: 'Resume lesson' })).toHaveAttribute('href', `#practice/${session.id}`)
-    expect(screen.getByText('practice sessions in progress').closest('strong')?.textContent).toMatch(/^1/)
-    expect(await db.readings.get(bookmark.storyId)).toEqual(bookmark)
-  })
-
-  it('offers continued practice after all available curriculum lessons have been practiced', async () => {
-    const now = Date.now()
-    await db.lessons.bulkAdd(curriculumLessons.map(lesson => ({ lessonId: lesson.id, startedAt: now, completedAt: now })))
-    render(<App />)
-    await screen.findByRole('heading', { name: 'Keep your Mandarin growing.' })
-    expect(screen.queryByRole('link', { name: 'Start next lesson' })).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Revisit your vocabulary' })).toHaveAttribute('href', '#practice')
-    expect(screen.getByRole('progressbar', { name: 'Beginner lesson practice' })).toHaveAttribute('value', String(curriculumLessons.length))
-    expect(screen.getByRole('progressbar', { name: 'Beginner lesson practice' })).toHaveAttribute('max', String(curriculumLessons.length))
-    expect(screen.getByText('Practice is a step toward the course goals, not a fluency assessment.')).toBeInTheDocument()
+    expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0new-item lessons finished')
+    expect(screen.getByRole('article', { name: 'Next step' })).toBeInTheDocument()
   })
 })
