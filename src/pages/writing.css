@@ -8,8 +8,8 @@
 .character-card-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .character-card-actions .button { min-height: 36px; padding: 6px 10px; }
 .character-membership-note { margin: 8px 0 0; }
-.character-head { display: flex; align-items: center; gap: 10px; }
-.character-head > div { flex: 1; min-width: 0; }
+.character-head { display: flex; align-items: flex-start; gap: 10px; }
+.character-head > .phrase-row-text { flex: 1; min-width: 0; }
 .character-head .card-topline { margin: 0; }
 .character-more { margin-top: 8px; font-size: 12px; color: var(--muted); }
 .character-more summary { cursor: pointer; min-height: 28px; display: inline-flex; align-items: center; gap: 4px; }

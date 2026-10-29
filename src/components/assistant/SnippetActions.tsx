@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { useCallback, useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { MessageCircle, MoreHorizontal, PenLine, Repeat2, Square, Volume2, X } from 'lucide-react'
@@ -30,9 +31,11 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
 }
 
 /** The phrase's actions, always beside the phrase: an icon Hear button and a "…" menu (Ask, Practice, Write, Learn). */
-export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true }: {
+export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true, learn }: {
   source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; onWrite?: () => void; practiceDisabled?: boolean; practiceTitle?: string
   knowledge?: boolean
+  /** Replaces the Learn item (null hides it), e.g. a character is added to the character set. */
+  learn?: ReactNode
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
@@ -60,7 +63,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, 
         {onWrite && <button type="button" className="button secondary snippet-button" title="Practice writing this phrase" disabled={practiceDisabled} onClick={() => { close(); onWrite() }}>
           <PenLine size={15} />Write
         </button>}
-        {knowledge && source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
+        {learn !== undefined ? learn : knowledge && source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
         {error && <p className="small" role="alert">{error}</p>}
         {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
       </div>}</ActionMenu>
@@ -132,7 +135,13 @@ export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
 }
 
 /** Hear / Ask / Practice for a fixed Mandarin text, with the same standalone practice playlist the selection toolbar opens. */
-export function PracticeSnippet({ source, knowledge = true }: { source: AssistantSource; knowledge?: boolean }) {
+export function PracticeSnippet({ source, knowledge = true, learn, practiceMode, onWrite }: {
+    source: AssistantSource; knowledge?: boolean; learn?: ReactNode
+    /** Open Practice in this mode instead of the remembered one. */
+    practiceMode?: 'speak' | 'write'
+    /** Replaces the Write item's default (the Practice sheet in Write mode). */
+    onWrite?: () => void
+  }) {
   const [practice, setPractice] = useState<SpeechBlock>()
   const [mode, setMode] = useState<'speak' | 'write'>()
   const [error, setError] = useState('')
@@ -155,7 +164,7 @@ export function PracticeSnippet({ source, knowledge = true }: { source: Assistan
     }
   }
   return <>
-    <SnippetActions source={source} knowledge={knowledge} rate={preferences?.defaultSpeechRate} onPractice={() => open()} onWrite={() => open('write')} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
+    <SnippetActions source={source} knowledge={knowledge} learn={learn} rate={preferences?.defaultSpeechRate} onPractice={() => open(practiceMode)} onWrite={onWrite ?? (() => open('write'))} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
     {error && <p role="alert" className="small connection-error">{error}</p>}
     {practice && <PracticeSheet route={source.route} forced={mode} phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
       savedEnds={saved?.text === practice.text ? saved.ends : undefined} savedItems={saved?.text === practice.text ? saved.items : undefined}
