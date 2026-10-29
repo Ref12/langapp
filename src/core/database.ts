@@ -14,6 +14,7 @@ import type { DefenderGame } from './games/defender'
 import type { PotionsGame, PotionsProgress } from './games/potions'
 import type { JournalEvent } from './backup/journal'
 import type { MediaItem } from './media/contracts'
+import type { Collection, CollectionItem } from './collections/contracts'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
 export interface BackupConfigRecord {
@@ -58,6 +59,8 @@ export class LearningDatabase extends Dexie {
   journal!: EntityTable<JournalEvent & { seq?: number }, 'seq'>
   backupConfig!: EntityTable<BackupConfigRecord, 'id'>
   mediaItems!: EntityTable<MediaItem, 'id'>
+  collections!: EntityTable<Collection, 'id'>
+  collectionItems!: EntityTable<CollectionItem, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -103,6 +106,7 @@ export class LearningDatabase extends Dexie {
     this.version(15).stores({ journal: '++seq', backupConfig: '&id' })
     this.version(16).stores({ assistantImages: '&id, threadId, messageId' })
     this.version(17).stores({ mediaItems: '&id, savedAt' })
+    this.version(18).stores({ collections: '&id, mediaId, updatedAt', collectionItems: '&id, collectionId, ref' })
   }
 }
 
@@ -146,6 +150,11 @@ export async function initializeWorkspace(): Promise<void> {
   })
 }
 
+async function knowledgeCardsOf() {
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  return (await db.studyCards.toArray()).filter(card => known.has(card.ref))
+}
+
 export async function loadWorkspace(): Promise<Workspace> {
   return db.transaction('r', [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
     db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates], async () => {
@@ -159,7 +168,8 @@ export async function loadWorkspace(): Promise<Workspace> {
       sessions: await db.sessions.toArray(),
       attempts: await db.attempts.toArray(),
       knowledge: await db.knowledge.toArray(),
-      studyCards: await db.studyCards.toArray(),
+      // Cards of collection-only items stay out of the workspace view: only the knowledge set is studied daily.
+      studyCards: await knowledgeCardsOf(),
       exerciseSessions: await db.exerciseSessions.toArray(),
       exerciseAttempts: await db.exerciseAttempts.toArray(),
       characterStates: await db.characterStates.toArray(),

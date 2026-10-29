@@ -83,6 +83,19 @@ describe('dictionary characters', () => {
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.dictionaryScope).toBe('all'))
   })
 
+  it('scopes the list to items in collections without adding them to the knowledge set', async () => {
+    const user = userEvent.setup()
+    window.location.hash = 'dictionary/vocabulary/all'
+    await db.collectionItems.add({ id: 'c1|vocabulary:tea', collectionId: 'c1', ref: 'vocabulary:tea', addedAt: 1 })
+    render(<Harness />)
+    await user.click(await screen.findByRole('button', { name: 'In collections (1)' }))
+    expect(window.location.hash).toBe('#dictionary/vocabulary/collections')
+    await waitFor(() => expect(document.querySelectorAll('[data-unit]')).toHaveLength(1))
+    expect(document.querySelector('[data-unit="vocabulary:tea"]')).not.toBeNull()
+    expect(await db.knowledge.count()).toBe(0)
+    expect((await db.preferences.get('workspace'))?.dictionaryScope).not.toBe('collections')
+  })
+
   it('shows available and unavailable guides and filters full versus derived knowledge without duplicates', async () => {
     const user = userEvent.setup()
     render(<Harness />)

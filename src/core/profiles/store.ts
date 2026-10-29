@@ -6,6 +6,7 @@ import { speechConnectionSchema } from '../assistant/speech-contracts'
 import { configureDatabaseForProfile, db, LearningDatabase, profileDatabaseName, resetDatabaseForTests } from '../database'
 import { omit } from '../omit'
 import { readSettingsRows } from './read-snapshot'
+import { knowledgeCards, readCollectionsState, richerCard } from '../collections/snapshot'
 import { createEmptyProfile, endpointsFromSettings, parseProfileYaml, serializeProfileYaml } from './codec'
 import type { JournalEvent } from '../backup/journal'
 import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from './contracts'
@@ -153,6 +154,7 @@ export async function readSnapshot(database: LearningDatabase, profile: ProfileM
   return database.transaction('r', database.tables, async () => {
     const settings = await readSettingsRows(database)
     const practiceHistory = await database.practiceHistory.toArray()
+    const knownEntries = await database.knowledge.toArray()
     return {
       format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
       settings,
@@ -162,7 +164,7 @@ export async function readSnapshot(database: LearningDatabase, profile: ProfileM
         attempts: await database.attempts.toArray(),
         characterStates: await database.characterStates.toArray(),
         study: {
-          knowledge: await database.knowledge.toArray(), cards: await database.studyCards.toArray(),
+          knowledge: knownEntries, cards: knowledgeCards(await database.studyCards.toArray(), new Set(knownEntries.map(entry => entry.ref))),
           sessions: await database.exerciseSessions.toArray(), attempts: await database.exerciseAttempts.toArray(),
         },
       },
@@ -173,6 +175,7 @@ export async function readSnapshot(database: LearningDatabase, profile: ProfileM
       },
       library: await database.libraryBooks.toArray(),
       media: await database.mediaItems.toArray(),
+      collections: await readCollectionsState(database),
     }
   })
 }
@@ -216,6 +219,9 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
       await database.mediaItems.bulkAdd(snapshot.media)
       await database.knowledge.bulkAdd(knowledge.study.knowledge)
       await database.studyCards.bulkAdd(knowledge.study.cards)
+      await database.collections.bulkAdd(snapshot.collections.collections)
+      await database.collectionItems.bulkAdd(snapshot.collections.items)
+      for (const card of snapshot.collections.cards) await database.studyCards.put(richerCard(await database.studyCards.get(card.id), card))
       await database.exerciseSessions.bulkAdd(knowledge.study.sessions)
       await database.exerciseAttempts.bulkAdd(knowledge.study.attempts)
       await database.assistantThreads.bulkAdd(conversations.threads)

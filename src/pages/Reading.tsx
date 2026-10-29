@@ -25,6 +25,7 @@ export function Library({ workspace, busy, run }: PageProps) {
       action={<button className="button primary" disabled={busy} aria-expanded={showImport} onClick={() => setShowImport(value => !value)}><Upload size={17} /> Import book</button>}>
       Read original stories with prepared Mandarin, or import your own books and translate with your connected AI.
     </PageHeading>
+    <p className="small muted">Gathering words and phrases as you read? <a className="text-link" href="#collections">Open your collections</a>.</p>
     {showImport && <section className="panel book-import" aria-label="Import a book">
       <h2>Bring a book into your library</h2>
       <label className="field">Book file

@@ -5,6 +5,7 @@ import type { Workspace } from './model'
 import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
 import { studyBackupSchema, type StudyBackup } from './study/contracts'
 import { characterStateSchema } from './characters/contracts'
+import { collectionsBackupSchema, type CollectionsBackup } from './collections/contracts'
 import { librarySchema, type LibraryBook } from './library/contracts'
 import { pinyinFormatSchema } from './pinyin'
 
@@ -56,16 +57,16 @@ const backupSchema = z.discriminatedUnion('version', [
   legacyBackupSchema.extend({ version: z.literal(2), assistant: assistantBackupSchema }).strict(),
   legacyBackupSchema.extend({ version: z.literal(3), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
   legacyBackupSchema.extend({ version: z.literal(4), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
-  legacyBackupSchema.extend({ version: z.literal(5), assistant: assistantBackupSchema, study: studyBackupSchema, library: librarySchema, sudokuBoards: z.array(z.unknown()).max(MAX_SAVED_SUDOKU_BOARDS).optional() }).strict(),
+  legacyBackupSchema.extend({ version: z.literal(5), assistant: assistantBackupSchema, study: studyBackupSchema, library: librarySchema, collections: collectionsBackupSchema.optional(), sudokuBoards: z.array(z.unknown()).max(MAX_SAVED_SUDOKU_BOARDS).optional() }).strict(),
 ])
 
-export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup; library?: LibraryBook[]; sudokuBoards?: SavedSudokuBoard[] }
+export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup; library?: LibraryBook[]; collections?: CollectionsBackup; sudokuBoards?: SavedSudokuBoard[] }
 
 const emptyStudy = (): StudyBackup => ({ knowledge: [], cards: [], sessions: [], attempts: [] })
 
-export function splitStudy(workspace: WorkspaceBackup): { learning: Omit<WorkspaceBackup, 'assistant' | 'library' | 'sudokuBoards' | 'knowledge' | 'studyCards' | 'exerciseSessions' | 'exerciseAttempts'>; assistant?: AssistantBackup; library: LibraryBook[]; sudokuBoards: SavedSudokuBoard[]; study: StudyBackup } {
-  const { assistant, library = [], sudokuBoards = [], knowledge = [], studyCards = [], exerciseSessions = [], exerciseAttempts = [], ...learning } = workspace
-  return { learning, assistant, library, sudokuBoards, study: { knowledge, cards: studyCards, sessions: exerciseSessions, attempts: exerciseAttempts } }
+export function splitStudy(workspace: WorkspaceBackup): { learning: Omit<WorkspaceBackup, 'assistant' | 'library' | 'collections' | 'sudokuBoards' | 'knowledge' | 'studyCards' | 'exerciseSessions' | 'exerciseAttempts'>; assistant?: AssistantBackup; library: LibraryBook[]; collections?: CollectionsBackup; sudokuBoards: SavedSudokuBoard[]; study: StudyBackup } {
+  const { assistant, library = [], collections, sudokuBoards = [], knowledge = [], studyCards = [], exerciseSessions = [], exerciseAttempts = [], ...learning } = workspace
+  return { learning, assistant, library, ...(collections ? { collections } : {}), sudokuBoards, study: { knowledge, cards: studyCards, sessions: exerciseSessions, attempts: exerciseAttempts } }
 }
 
 function withStudy(workspace: z.infer<typeof workspaceSchema>, study: StudyBackup): Workspace {
@@ -94,6 +95,17 @@ export function validateStudy(study: StudyBackup) {
       throw new Error('Backup contains an exercise answer without its session.')
     }
   }
+}
+
+export function validateCollections(collections: CollectionsBackup) {
+  unique(collections.collections.map(collection => collection.id), 'collections')
+  unique(collections.items.map(item => item.id), 'collection items')
+  unique(collections.cards.map(card => card.id), 'collection cards')
+  const ids = new Set(collections.collections.map(collection => collection.id))
+  for (const item of collections.items) {
+    if (!ids.has(item.collectionId) || item.id !== `${item.collectionId}|${item.ref}`) throw new Error('Backup contains an inconsistent collection item.')
+  }
+  for (const card of collections.cards) if (card.id !== `${card.ref}:${card.domain}`) throw new Error('Backup contains an inconsistent collection card.')
 }
 
 function unique(values: unknown[], label: string) {
@@ -219,19 +231,21 @@ export function readBackup(text: string): WorkspaceBackup {
   validateWorkspace(workspace)
   if (backup.version !== 1) validateAssistant(backup.assistant)
   if ('study' in backup) validateStudy(backup.study)
+  if ('collections' in backup && backup.collections) validateCollections(backup.collections)
   if (backup.version !== 1) {
     interruptImportedRuns(backup.assistant)
     return { ...withStudy(workspace, 'study' in backup ? backup.study : emptyStudy()), assistant: backup.assistant,
       ...('library' in backup && backup.library.length ? { library: backup.library } : {}),
+      ...('collections' in backup && backup.collections?.collections.length ? { collections: backup.collections } : {}),
       ...('sudokuBoards' in backup && backup.sudokuBoards?.length ? { sudokuBoards: readSavedBoards(backup.sudokuBoards) } : {}) }
   }
   return withStudy(workspace, emptyStudy())
 }
 
 export function exportBackup(workspace: WorkspaceBackup, assistant?: AssistantBackup): string {
-  const { learning, assistant: includedAssistant, study, library, sudokuBoards } = splitStudy(workspace)
+  const { learning, assistant: includedAssistant, study, library, collections, sudokuBoards } = splitStudy(workspace)
   const snapshot = assistant ?? includedAssistant ?? { threads: [], messages: [], runs: [] }
-  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 5, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study, library, ...(sudokuBoards.length ? { sudokuBoards } : {}) }, null, 2)
+  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 5, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study, library, ...(collections ? { collections } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, null, 2)
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('This workspace exceeds the 5 MiB backup limit.')
   readBackup(text)
   return text

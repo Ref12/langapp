@@ -1,6 +1,6 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, ChevronRight, Clapperboard, Gamepad2, History as HistoryIcon, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sparkles, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, ChevronRight, Clapperboard, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sparkles, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { requestPersistence } from './core/backup/service'
 import { removeBackgroundBackupRegistrations } from './core/backup/cleanup'
@@ -31,6 +31,7 @@ import { LevelDetail } from './pages/Curriculum'
 import { Assistant, AssistantSidebar } from './pages/Assistant'
 import { History } from './pages/History'
 import { Media } from './pages/Media'
+import { Collections } from './pages/Collections'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
 import { DraftStatus } from './components/assistant/DraftStatus'
 import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnectionSetup'
@@ -51,6 +52,7 @@ const navigation = [
   { id: 'practice', label: 'Practice', icon: Sparkles },
   { id: 'library', label: 'Library', icon: LibraryBig },
   { id: 'media', label: 'Media', icon: Clapperboard },
+  { id: 'collections', label: 'Collections', icon: Layers },
   { id: 'games', label: 'Games', icon: Gamepad2 },
   { id: 'conversation', label: 'Assistant', icon: MessageCircle },
   { id: 'history', label: 'History', icon: HistoryIcon },
@@ -101,6 +103,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   if (page === 'writing') return <Writing {...props} codepoint={id} scope={lessonPage} query={queryParts.join('?')} />
   if (page === 'settings') return <Settings {...props} />
   if (page === 'media') return <Media {...props} route={routePath} />
+  if (page === 'collections') return <Collections {...props} route={routePath} />
   if (page === 'history') return <History />
   if (page === 'conversation') return <Assistant threadId={id} returnRoute={returnRoute} headerTarget={assistantHeader} />
   return <NotFound />

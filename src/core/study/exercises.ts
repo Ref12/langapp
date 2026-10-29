@@ -101,6 +101,21 @@ export interface GenerationInput {
   allowed: Unit[]
   catalog: Catalog
   count?: number
+  /** Free phrases (a collection's whole lines) practised as targets. They have no curriculum record; their own text is allowed. */
+  phrases?: PhraseTarget[]
+}
+
+export interface PhraseTarget { ref: string; text: string; translation?: string }
+
+/** Every substring of a phrase's Han runs (up to 12 characters) counts as known text for that phrase's exercises. */
+function phraseForms(phrases: PhraseTarget[] = []): string[] {
+  const forms = new Set<string>()
+  for (const phrase of phrases) {
+    for (const run of phrase.text.match(/\p{Script=Han}+/gu) ?? []) {
+      for (let start = 0; start < run.length; start++) for (let length = 1; length <= 12 && start + length <= run.length; length++) forms.add(run.slice(start, start + length))
+    }
+  }
+  return [...forms]
 }
 
 function describeUnit(catalog: Catalog, unit: Unit) {
@@ -129,6 +144,7 @@ function sample<T>(items: T[], size: number, seed: number): T[] {
 export function buildGenerationPrompt(input: GenerationInput): { system: string; user: string } {
   const count = input.count ?? EXERCISES_PER_SESSION
   const focus = new Set([...input.targets, ...input.review].map(unit => unit.ref))
+  const phrases = input.phrases ?? []
   const otherVocabulary = input.allowed.filter(unit => unit.kind === 'vocabulary' && !focus.has(unit.ref))
   const otherGrammar = input.allowed.filter(unit => unit.kind === 'grammar' && !focus.has(unit.ref))
   const vocabulary = sample(otherVocabulary, Math.max(0, MAX_VOCABULARY_IN_PROMPT - input.targets.length - input.review.length), input.allowed.length)
@@ -137,7 +153,8 @@ export function buildGenerationPrompt(input: GenerationInput): { system: string;
     user: JSON.stringify({
       mode: input.mode,
       requestedExercises: count,
-      targets: input.targets.map(unit => describeUnit(input.catalog, unit)),
+      targets: [...input.targets.map(unit => describeUnit(input.catalog, unit)),
+        ...phrases.map(phrase => ({ ref: phrase.ref, kind: 'phrase', chinese: phrase.text, ...(phrase.translation ? { meaning: phrase.translation } : {}) }))],
       alsoReview: input.review.map(unit => describeUnit(input.catalog, unit)),
       otherKnownVocabulary: vocabulary.map(unit => unit.kind === 'vocabulary' ? `${unit.record.ch} (${unit.record.pr}): ${unit.record.ds}` : ''),
       otherKnownGrammar: otherGrammar.slice(0, 60).map(unit => unit.kind === 'grammar' ? `${unit.record.pt}: ${unit.record.ds}` : ''),
@@ -145,6 +162,7 @@ export function buildGenerationPrompt(input: GenerationInput): { system: string;
         'Every Chinese word in every exercise must come from targets, alsoReview or otherKnownVocabulary. No other words.',
         `Each target must appear in at least two exercises, ideally of different types. Produce about ${count} exercises.`,
         'Reference targets and alsoReview items by their ref string in the targets field.',
+        ...(phrases.length ? ['A target of kind phrase is a whole sentence the learner met: use its words and fragments freely, and build exercises on the phrase itself.'] : []),
       ],
     }),
   }
@@ -175,7 +193,8 @@ export function validateProposal(value: unknown, input: GenerationInput): Valida
   const parsed = proposalSchema.safeParse(value)
   if (!parsed.success) throw new AITransportError('The AI returned exercises in an unsupported shape. Enable structured output in Settings or try again.')
   const allowedRefs = new Set([...input.targets, ...input.review].map(unit => unit.ref))
-  const segmenter = createSegmenter(input.allowed.flatMap(unit => unit.kind === 'vocabulary' ? [unit.record.ch] : []))
+  for (const phrase of input.phrases ?? []) allowedRefs.add(phrase.ref)
+  const segmenter = createSegmenter([...input.allowed.flatMap(unit => unit.kind === 'vocabulary' ? [unit.record.ch] : []), ...phraseForms(input.phrases)])
   const rejected: string[] = []
   const exercises: Exercise[] = []
   const ids = new Set<string>()

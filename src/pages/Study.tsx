@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { useAIConnection } from '../components/study/useAIConnection'
 import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { navigate } from '../core/routing'
-import { requireUnit, type Catalog } from '../core/study/catalog'
+import { type Catalog, type Unit } from '../core/study/catalog'
 import { cardId, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type TilesExercise } from '../core/study/contracts'
 import { timeSave } from '../core/backup/diagnostics'
 import { advanceExercise, discardSession, DOMAIN, startRedoSession, submitExerciseAnswer } from '../core/study/knowledge'
@@ -115,7 +115,7 @@ function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
 
 function SessionIntroduction({ catalog, session, workspace, run, busy, now, begin }: PageProps & { catalog: Catalog; session: ExerciseSession; begin: () => void }) {
   const group = session.groupId ? catalog.groups.get(session.groupId) : undefined
-  const units = session.targetRefs.map(ref => requireUnit(catalog, ref))
+  const units = unitsOf(catalog, session.targetRefs)
   const examplesFor = (ref: string) => (group?.group.examples ?? []).filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
   return <>
     <a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
@@ -163,7 +163,7 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
     <progress aria-label="Session progress" value={session.cursor} max={session.exercises.length} />
     <div className="practice-question-content">
       <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : 'Which Mandarin matches?' : 'Arrange the tiles to translate this.'}</h2>
-      <p className="small muted practice-context">PRACTICES / {exercise.targets.map(ref => { const unit = requireUnit(catalog, ref); return unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt }).join(' / ')}</p>
+      <p className="small muted practice-context">PRACTICES / {exercise.targets.map(ref => { const unit = catalog.units.get(ref); return !unit ? 'phrase' : unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt }).join(' / ')}</p>
       <div className="button-row practice-tools">
         <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>
         {exercise.type === 'tiles' && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
@@ -202,6 +202,11 @@ export function RedoPanel({ sessionId, run, busy }: Pick<PageProps, 'run' | 'bus
   </div>
 }
 
+/** The curriculum units among refs; a collection's free phrases have no unit and are left out. */
+function unitsOf(catalog: Catalog, refs: string[]): Unit[] {
+  return refs.flatMap(ref => catalog.units.get(ref) ?? [])
+}
+
 export function StudySessionPage(props: PageProps & { session: ExerciseSession }) {
   const { workspace, session, run, busy } = props
   const { catalog, error } = useCatalog()
@@ -212,7 +217,7 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
   if (!catalog) return <div className="opening-workspace" role="status">Loading the curriculum...</div>
   if (session.status !== 'active') {
     const correct = attempts.filter(attempt => attempt.correct).length
-    const units = [...session.targetRefs, ...session.reviewRefs].map(ref => requireUnit(catalog, ref))
+    const units = unitsOf(catalog, [...session.targetRefs, ...session.reviewRefs])
     const group = session.groupId ? catalog.groups.get(session.groupId) : undefined
     const examplesFor = (ref: string) => (group?.group.examples ?? []).filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
     const original = session.redoOf ? workspace.exerciseSessions.find(item => item.id === session.redoOf) : undefined
@@ -242,7 +247,7 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
       <button className="button secondary" disabled={busy} onClick={() => void run(() => discardSession(session.id))}><X size={16} /> Quit lesson</button></div>
     <ExercisePlayer key={`${session.id}:${session.cursor}`} {...props} catalog={catalog} attempt={attempt} readings={readings} pinyin={pinyin} setPinyin={setPinyin} />
     <details className="lesson-overview"><summary><Sparkles size={16} /> Items in this session</summary>
-      <div className="word-grid">{[...session.targetRefs, ...session.reviewRefs].map(ref => { const unit = requireUnit(catalog, ref); return <UnitCard key={ref} catalog={catalog} unit={unit} compact
+      <div className="word-grid">{unitsOf(catalog, [...session.targetRefs, ...session.reviewRefs]).map(unit => { const ref = unit.ref; return <UnitCard key={ref} catalog={catalog} unit={unit} compact
         card={workspace.studyCards.find(card => card.id === cardId(ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={props.now} run={run} busy={busy} route={`lessons/session/${session.id}`} /> })}</div>
     </details>
   </>

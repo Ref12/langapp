@@ -10,6 +10,8 @@ import { annotate } from '../core/study/annotate'
 import { currentLine, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SyncAnchor } from '../core/media/contracts'
 import { HELPER_INSTALL_PAGE, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { removeMedia, saveMedia, saveSync } from '../core/media/store'
+import { PhraseKnowledge } from '../components/assistant/PhraseKnowledge'
+import { CollectLine } from '../components/collections/CollectLine'
 import './media.css'
 
 type Phase = { kind: 'idle' } | { kind: 'working'; message: string; progress?: number } | { kind: 'unreachable'; id: string } | { kind: 'failed'; message: string }
@@ -274,7 +276,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
       <button type="button" className="media-line-seek" disabled={!canWatch} onClick={() => seek(entry, index)} aria-label={`Play from ${formatTime(shifted(entry))}`}>
         <span className="media-line-time">{formatTime(shifted(entry))}</span><span className="media-line-text" lang="zh-Hans">{entry.text}</span></button>
       {canWatch && <button type="button" className="button secondary" onClick={() => syncTo(entry)}>Sync to this line</button>}
-      <PracticeSnippet source={source(entry.text)} />
+      <PracticeSnippet source={source(entry.text)} learn={<><PhraseKnowledge text={entry.text} /><CollectLine line={{ text: entry.text, source: { mediaId: item.id, title: item.title, line: index, start: entry.start, text: entry.text } }} /></>} />
     </li>)}</ol>
   </>
 }

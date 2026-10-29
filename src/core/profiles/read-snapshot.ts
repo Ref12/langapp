@@ -5,6 +5,7 @@ import { omit } from '../omit'
 import type { JournalEvent } from '../backup/journal'
 import type { UnjournaledState } from '../backup/layout'
 import type { ProfileSnapshot } from './contracts'
+import { knowledgeCards, readCollectionsState } from '../collections/snapshot'
 
 // Short, separate read transactions for the cloud backup. None of them spans the backup, and none
 // touches the journal except the tiny cursor read, so saving an answer never waits behind one.
@@ -79,6 +80,7 @@ export async function readUnjournaledState(database: LearningDatabase): Promise<
     threads: await readInBatches(database.assistantThreads), messages: await readInBatches(database.assistantMessages),
     runs: await readInBatches(database.assistantRuns), library: await readInBatches(database.libraryBooks, 20),
     media: await readInBatches(database.mediaItems, 20),
+    collections: await readCollectionsState(database),
   } as unknown as UnjournaledState
 }
 
@@ -104,9 +106,12 @@ export async function readJournalRange(database: LearningDatabase, after: number
 
 /** The state the log replays (knowledge, cards, exercise answers, characters) together with the cursor: one short read. Used only for the first snapshot. */
 export async function readJournaledState(database: LearningDatabase) {
-  return database.transaction('r', [database.knowledge, database.studyCards, database.exerciseAttempts, database.characterStates, database.journal], async () => ({
-    knowledge: await database.knowledge.toArray(), cards: await database.studyCards.toArray(),
-    attempts: await database.exerciseAttempts.toArray(), characterStates: await database.characterStates.toArray(),
-    seq: (await database.journal.orderBy('seq').last())?.seq ?? 0,
-  }))
+  return database.transaction('r', [database.knowledge, database.studyCards, database.exerciseAttempts, database.characterStates, database.journal], async () => {
+    const knowledge = await database.knowledge.toArray()
+    return {
+      knowledge, cards: knowledgeCards(await database.studyCards.toArray(), new Set(knowledge.map(entry => entry.ref))),
+      attempts: await database.exerciseAttempts.toArray(), characterStates: await database.characterStates.toArray(),
+      seq: (await database.journal.orderBy('seq').last())?.seq ?? 0,
+    }
+  })
 }

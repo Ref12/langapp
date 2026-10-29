@@ -2,11 +2,12 @@ import { z } from 'zod'
 import { CONTENT_VERSION } from '../../data/content-version'
 import { aiConnectionInputSchema, aiEndpointsExportSchema, assistantBackupSchema } from '../assistant/contracts'
 import { speechConnectionInputSchema } from '../assistant/speech-contracts'
-import { validateAssistant, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
+import { validateAssistant, validateCollections, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
 import { studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
 import { profileMetadataSchema } from './identity'
 import { librarySchema } from '../library/contracts'
 import { mediaItemSchema } from '../media/contracts'
+import { collectionsBackupSchema } from '../collections/contracts'
 
 export const MAX_PROFILE_BYTES = 10 * 1024 * 1024
 export const PROFILE_FORMAT = 'linguaweave-profile'
@@ -28,6 +29,7 @@ export const profileDataSchema = z.object({
   conversations: assistantBackupSchema,
   library: librarySchema.default([]),
   media: z.array(mediaItemSchema).max(500).default([]),
+  collections: collectionsBackupSchema.default({ collections: [], items: [], cards: [] }),
 }).strict()
 
 export const profileSnapshotSchema = profileDataSchema.superRefine((snapshot, context) => {
@@ -35,6 +37,7 @@ export const profileSnapshotSchema = profileDataSchema.superRefine((snapshot, co
     const { study, ...learning } = snapshot.knowledge
     validateWorkspace({ preferences: snapshot.settings.preferences, ...learning })
     validateStudy(study)
+    validateCollections(snapshot.collections)
     validateAssistant(snapshot.conversations)
     if (snapshot.settings.aiConnection && snapshot.settings.aiEndpoints) throw new Error('Both AI connection shapes present.')
   } catch {

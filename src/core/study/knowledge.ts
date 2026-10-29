@@ -77,7 +77,7 @@ async function requireConnection(): Promise<AIConnection> {
 
 async function activeSession(mode: ExerciseSession['mode']): Promise<ExerciseSession | undefined> {
   // A redo is a repeat, never the curriculum's current step, so it does not count as the unfinished session.
-  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode && !session.redoOf).sortBy('createdAt').then(rows => rows[0])
+  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode && !session.redoOf && !session.collectionId).sortBy('createdAt').then(rows => rows[0])
 }
 
 function recentReviewRefs(sessions: ExerciseSession[], exclude: Set<string>): string[] {
@@ -165,6 +165,7 @@ export async function startReviewSession(now: number, anyway = false, signal?: A
 export async function startRedoSession(sourceId: string, signal?: AbortSignal): Promise<string> {
   const source = await db.exerciseSessions.get(sourceId)
   if (!source) throw new Error('That lesson session could not be found.')
+  if (source.collectionId) throw new Error('Practise a collection from its own page.')
   const connection = await requireConnection()
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
@@ -184,7 +185,7 @@ function schedulingState(card: StudyCard): SchedulingState {
 }
 
 export async function submitExerciseAnswer(sessionId: string, index: number, response: unknown): Promise<ExerciseAttempt> {
-  return db.transaction('rw', db.exerciseSessions, db.exerciseAttempts, db.studyCards, db.journal, async () => {
+  return db.transaction('rw', db.exerciseSessions, db.exerciseAttempts, db.studyCards, db.knowledge, db.journal, async () => {
     const id = `${sessionId}:${index}`
     const existing = await db.exerciseAttempts.get(id)
     if (existing) return existing
@@ -195,13 +196,15 @@ export async function submitExerciseAnswer(sessionId: string, index: number, res
     const now = Date.now()
     const attempt: ExerciseAttempt = { id, sessionId, index, refs: exercise.targets, response: result.response, correct: result.correct, createdAt: now }
     await db.exerciseAttempts.add(attempt)
+    // Collection practice schedules the shared card but journals reviews only for items in the knowledge set.
+    const inKnowledge = new Set((await db.knowledge.bulkGet(exercise.targets)).flatMap(entry => entry ? [entry.ref] : []))
     await recordJournal(exerciseAttemptEvent(attempt))
     const rating: Rating = result.correct ? 3 : 1
     for (const ref of exercise.targets) {
       const card = await db.studyCards.get(cardId(ref, DOMAIN))
       if (!card) continue // Items removed from the knowledge set are not rescheduled.
       await db.studyCards.put({ ...card, ...schedule(schedulingState(card), rating, now), updatedAt: now })
-      await recordJournal(reviewEvent(ref, rating, now, id))
+      if (inKnowledge.has(ref)) await recordJournal(reviewEvent(ref, rating, now, id))
     }
     return attempt
   })

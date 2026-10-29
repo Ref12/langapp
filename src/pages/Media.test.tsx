@@ -96,7 +96,7 @@ describe('Media page', () => {
     await screen.findByRole('heading', { name: 'Install Medusa' })
     expect(screen.getByRole('link', { name: 'the Medusa releases page' })).toHaveAttribute('href', 'https://github.com/lancec-codebox/appbox/releases')
     const names = screen.getAllByRole('navigation', { name: 'Main navigation' })[0].textContent
-    expect(names).toMatch(/Overview.*Lessons.*Practice.*Library.*Media.*Games.*Assistant.*History.*Dictionary/)
+    expect(names).toMatch(/Overview.*Lessons.*Practice.*Library.*Media.*Collections.*Games.*Assistant.*History.*Dictionary/)
   })
 
   it('tracks the current line from the video, seeks on tap, and adds to knowledge only through Learn', async () => {

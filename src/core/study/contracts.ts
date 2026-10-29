@@ -8,7 +8,8 @@ export type StudyDomain = typeof STUDY_DOMAINS[number]
 
 export const unitLabelSchema = z.string().min(1).max(200).regex(/^[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
 export const unitKindSchema = z.enum(['vocabulary', 'grammar'])
-export const unitRefSchema = z.string().regex(/^(?:vocabulary|grammar):[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
+// `phrase:` refs name a collection's free phrase (see core/collections); they have no curriculum record.
+export const unitRefSchema = z.string().regex(/^(?:vocabulary|grammar|phrase):[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
 export const bandSchema = z.enum(['1', '2', '3', '4', '5', '6'])
 const timestamp = z.number().int().nonnegative()
 const id = z.string().min(1).max(200)
@@ -93,6 +94,8 @@ export const exerciseSessionSchema = z.object({
   createdAt: timestamp,
   completedAt: timestamp.optional(),
   redoOf: id.optional(),
+  /** Set when the session practises a collection; such sessions never count as the daily New/Review session. */
+  collectionId: id.optional(),
 }).strict()
 
 export const exerciseAttemptSchema = z.object({
@@ -125,6 +128,10 @@ export type Band = z.infer<typeof bandSchema>
 
 export function unitRef(kind: UnitKind, lb: string): string {
   return `${kind}:${lb}`
+}
+
+export function isPhraseRef(ref: string): boolean {
+  return ref.startsWith('phrase:')
 }
 
 export function parseUnitRef(ref: string): { kind: UnitKind; lb: string } {

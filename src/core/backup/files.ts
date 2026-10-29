@@ -4,6 +4,8 @@ import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from '../p
 import type { ProfileSnapshot } from '../profiles/contracts'
 import type { ProfileMetadata } from '../profiles/identity'
 import { loadBackupV2 } from './layout'
+import { joinCollections, splitCollections } from '../collections/snapshot'
+import type { CollectionsBackup } from '../collections/contracts'
 import { parseJournal, replay, replayFrom, serializeJournal, toSegments, type JournalEvent } from './journal'
 
 // File layout inside profiles/<profile-id>/ (every file is YAML):
@@ -43,8 +45,9 @@ export function buildBackupFiles(snapshot: ProfileSnapshot, journal: JournalEven
     conversations: { threads: { id: string }[]; messages: { threadId: string }[]; runs: { threadId: string }[]; practiceHistory?: unknown[] }
     library: { id: string }[]
     media: { id: string }[]
+    collections: CollectionsBackup
   }
-  const { conversations, library, media, ...rest } = whole
+  const { conversations, library, media, collections, ...rest } = whole
   files.set('profile.yaml', dump({ id: snapshot.profile.id, name: snapshot.profile.name }))
   files.set('settings.yaml', dump({ format: SETTINGS_FORMAT, version: 1, settings: snapshot.settings, ...(connection ? { backup: connection } : {}) }))
   // exportedAt changes on every read; keep it out so an unchanged profile produces identical bytes.
@@ -59,6 +62,7 @@ export function buildBackupFiles(snapshot: ProfileSnapshot, journal: JournalEven
   if (conversations.practiceHistory?.length) files.set('conversations/practice-history.yaml', dump({ practiceHistory: conversations.practiceHistory }))
   for (const book of library) files.set(`library/${safeName(book.id)}.yaml`, dump(book))
   for (const item of media) files.set(`media/${safeName(item.id)}.yaml`, dump(item))
+  for (const part of splitCollections(collections)) files.set(`collections/${safeName(part.id)}.yaml`, dump(part.value))
   for (const [name, events] of toSegments(journal)) files.set(name, serializeJournal(events))
   return files
 }
@@ -93,6 +97,7 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
   const conversations = { threads: [] as unknown[], messages: [] as unknown[], runs: [] as unknown[], practiceHistory: [] as unknown[] }
   const library: unknown[] = []
   const media: unknown[] = []
+  const collectionParts: CollectionsBackup[] = []
   for (const [path, text] of files) {
     if (path === 'conversations/practice-history.yaml') conversations.practiceHistory.push(...(parse(text) as { practiceHistory: unknown[] }).practiceHistory)
     else if (path.startsWith('conversations/')) {
@@ -100,7 +105,9 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
       conversations.threads.push(item.thread); conversations.messages.push(...item.messages); conversations.runs.push(...item.runs)
     } else if (path.startsWith('library/')) library.push(parse(text))
     else if (path.startsWith('media/')) media.push(parse(text))
+    else if (path.startsWith('collections/')) collectionParts.push(parse(text) as CollectionsBackup)
   }
+  const collections = joinCollections(collectionParts)
   const rest = { ...conversations, ...(conversations.practiceHistory.length ? {} : { practiceHistory: undefined }) }
 
   let snapshot: ProfileSnapshot | undefined
@@ -108,7 +115,7 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
   try {
     const checkpoint = parse(required(files, 'checkpoint.yaml')) as { format: string; version: number; journal: { position: number }; profile: Record<string, unknown> }
     if (checkpoint.format !== CHECKPOINT_FORMAT || checkpoint.version !== 1 || !Number.isInteger(checkpoint.journal?.position)) throw new Error('Unsupported checkpoint.')
-    const base = parseProfileYaml(dump({ ...checkpoint.profile, contentVersion: CONTENT_VERSION, conversations: rest, library, media }))
+    const base = parseProfileYaml(dump({ ...checkpoint.profile, contentVersion: CONTENT_VERSION, conversations: rest, library, media, collections }))
     const tail = journal.slice(checkpoint.journal.position)
     const state = replay(tail, replayFrom({
       knowledge: base.knowledge.study.knowledge, cards: base.knowledge.study.cards,
@@ -131,7 +138,7 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
       study: { ...empty.knowledge.study, knowledge: [...state.knowledge.values()], cards: [...state.cards.values()], attempts: [...state.exerciseAttempts.values()] } },
     conversations: { threads: [], messages: [], runs: [] } }
     // Conversations and library files are independent of the checkpoint, so they still apply.
-    snapshot = parseProfileYaml(dump({ ...(parse(serializeProfileYaml(snapshot)) as object), conversations: rest, library, media }))
+    snapshot = parseProfileYaml(dump({ ...(parse(serializeProfileYaml(snapshot)) as object), conversations: rest, library, media, collections }))
     tailEvents = journal.length
   }
   return { snapshot: parseProfileYaml(serializeProfileYaml(snapshot)), journal, mode, tailEvents, ...(settingsFile.backup ? { backup: settingsFile.backup } : {}), profile: meta }
