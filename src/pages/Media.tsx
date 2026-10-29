@@ -11,6 +11,7 @@ import { currentLine, lineView, nudge, offsetAt, withAnchor, type MediaItem, typ
 import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
 import { translateMedia } from '../core/media/translation'
+import { sendTrack, trackFiles, type TrackKind } from '../core/media/tracks'
 import { studyLines } from '../core/collections/store'
 import { removeMedia, saveMedia, saveSync } from '../core/media/store'
 import { PhraseKnowledge } from '../components/assistant/PhraseKnowledge'
@@ -246,6 +247,26 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
     catch (reason) { if (!controller.signal.aborted) setTranslateError(reason instanceof Error ? reason.message : 'The translation failed.') }
     finally { setTranslating(undefined) }
   }
+  const [trackNote, setTrackNote] = useState('')
+  const [trackFallback, setTrackFallback] = useState<TrackKind>()
+  const addTrack = async (kind: TrackKind) => {
+    setTrackNote(''); setTrackFallback(undefined)
+    try {
+      const result = await sendTrack(item, kind)
+      if (result.ok) setTrackNote(kind === 'translation' ? 'Sent the English track to Medusa.' : 'Sent the pinyin track to Medusa.')
+      else { setTrackNote(result.message); if (result.reason !== 'failed') setTrackFallback(kind) }
+    } catch (reason) { setTrackNote(reason instanceof Error ? reason.message : 'The track could not be sent.') }
+  }
+  const saveFiles = (kind: TrackKind) => {
+    const files = trackFiles(item, kind)
+    for (const file of [files.srt, files.json]) {
+      const link = document.createElement('a')
+      link.href = URL.createObjectURL(new Blob([file.text], { type: 'text/plain;charset=utf-8' }))
+      link.download = file.name
+      link.click()
+      window.setTimeout(() => URL.revokeObjectURL(link.href), 1000)
+    }
+  }
   const toggleGlosses = (value: boolean) => { setGlosses(value); localStorage.setItem('linguaweave-media-glosses', String(value)) }
   const [picker, setPicker] = useState(false)
   const [picked, setPicked] = useState<Set<number>>(new Set())
@@ -365,9 +386,14 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
         ? <><progress max={translating.total} value={translating.done} aria-label="Translation progress" /><span className="small muted">Translating {translating.done} of {translating.total} lines...</span>
           <button type="button" className="button secondary" onClick={() => translateAbort.current?.abort()}>Cancel</button></>
         : translated
-          ? <span className="small muted">AI translation ready.</span>
+          ? <><span className="small muted">AI translation ready.</span>
+            {item.mediaId && <><button type="button" className="button secondary" onClick={() => void addTrack('translation')}>Add translation to Medusa</button>
+              <button type="button" className="button secondary" onClick={() => void addTrack('pinyin')}>Add pinyin to Medusa</button></>}
+            {trackFallback && <button type="button" className="button secondary" onClick={() => saveFiles(trackFallback)}>Save as subtitle file</button>}
+            {!item.mediaId && <button type="button" className="button secondary" onClick={() => saveFiles('translation')}>Save as subtitle file</button>}</>
           : <button type="button" className="button secondary" onClick={() => void startTranslate()}>{aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button>}
       {translateError && <p className="notice error" role="alert">{translateError}</p>}
+      {trackNote && <p className="small muted" role="status">{trackNote}</p>}
     </div>
     <div className="media-watch" ref={container} data-view={view}>
       <div className="media-pin">

@@ -352,6 +352,28 @@ describe('Media page', () => {
     release()
   })
 
+  it('sends the translation to Medusa and falls back to a subtitle file on 404', async () => {
+    const id = await saveMedia({ ...result, mediaId: 'm1', aligned } as never)
+    window.location.hash = `#media/${id}`
+    const user = userEvent.setup()
+    const fetchMock = vi.fn().mockResolvedValue(new Response('', { status: 404 }))
+    const real = globalThis.fetch
+    vi.stubGlobal('fetch', (input: RequestInfo | URL, init?: RequestInit) => String(input).includes('/tracks') ? fetchMock(input, init) : real(input, init))
+    URL.createObjectURL = vi.fn(() => 'blob:x'); URL.revokeObjectURL = vi.fn()
+    const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined)
+    render(<App />)
+    await screen.findByRole('heading', { name: 'A drama', level: 1 })
+    await user.click(screen.getByRole('button', { name: 'Add translation to Medusa' }))
+    expect(await screen.findByText(/too old to add tracks/)).toBeInTheDocument()
+    expect(fetchMock.mock.calls[0][0]).toContain('/v1/media/m1/tracks')
+    await user.click(screen.getByRole('button', { name: 'Save as subtitle file' }))
+    expect(click).toHaveBeenCalledTimes(2)
+    fetchMock.mockResolvedValue(new Response('{}', { status: 200 }))
+    await user.click(screen.getByRole('button', { name: 'Add pinyin to Medusa' }))
+    expect(await screen.findByText('Sent the pinyin track to Medusa.')).toBeInTheDocument()
+    vi.unstubAllGlobals()
+  })
+
   it('selects intervals and counts', () => {
     expect(nextInterval(lines, 4.5, 6)).toEqual(lines.map((e, i) => e.start >= 4.5 && e.start < 10.5 ? i : -1).filter(i => i >= 0))
     expect(nextLines(lines, 1, 2)).toEqual([1, 2])
