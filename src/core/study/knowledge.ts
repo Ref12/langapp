@@ -1,3 +1,4 @@
+import { TERM } from '../collections/terms'
 import { db } from '../database'
 import { addEvent, exerciseAttemptEvent, reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
@@ -220,7 +221,7 @@ export async function startReviewSession(now: number, anyway = false, signal?: A
 export async function startRedoSession(sourceId: string, signal?: AbortSignal): Promise<string> {
   const source = await db.exerciseSessions.get(sourceId)
   if (!source) throw new Error('That lesson session could not be found.')
-  if (source.collectionId) throw new Error('Practise a collection from its own page.')
+  if (source.collectionId) throw new Error(`Practice a ${TERM.singular} from its own page.`)
   const connection = await requireConnection()
   // A redo is only a repeat: starting another replaces the unfinished one.
   const previous = await db.exerciseSessions.where('status').equals('active').filter(item => !!item.redoOf).toArray()

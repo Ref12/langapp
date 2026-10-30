@@ -17,10 +17,10 @@ describe('line menu', () => {
   it('names the actions, explains collections and links to the show collection after saving', async () => {
     const user = userEvent.setup()
     render(<CollectLine line={{ text: '我是学生。', source: { mediaId: 'm1', title: 'Drama', line: 1, start: 1, text: '我是学生。' } }} />)
-    const save = screen.getByRole('button', { name: 'Save to collection' })
+    const save = screen.getByRole('button', { name: 'Save to study set' })
     expect(save.querySelector('svg')).toHaveClass('lucide-bookmark-plus')
     expect(screen.getByRole('button', { name: 'Study now' }).querySelector('svg')).toHaveClass('lucide-graduation-cap')
-    expect(screen.getByText("Collections keep a show's words apart from your knowledge set.")).toBeInTheDocument()
+    expect(screen.getByText("Study sets keep a show's words apart from your knowledge set.")).toBeInTheDocument()
     await user.click(save)
     const link = await screen.findByRole('link', { name: 'Drama' })
     const collection = (await db.collections.toArray())[0]

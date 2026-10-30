@@ -49,7 +49,7 @@ describe('collections', () => {
     await deleteCollection(made.id)
     expect(await db.collections.count()).toBe(0)
     expect(await db.collectionItems.count()).toBe(0)
-    await expect(createCollection('  ')).rejects.toThrow(/Name the collection/)
+    await expect(createCollection('  ')).rejects.toThrow(/Name the study set/)
   })
 
   it('creates a show collection on first add and extracts catalog units from lines', async () => {

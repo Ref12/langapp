@@ -121,7 +121,7 @@ describe('dictionary characters', () => {
     window.location.hash = 'dictionary/vocabulary/all'
     await db.collectionItems.add({ id: 'c1|vocabulary:tea', collectionId: 'c1', ref: 'vocabulary:tea', addedAt: 1 })
     render(<Harness />)
-    await user.click(await screen.findByRole('button', { name: 'In collections (1)' }))
+    await user.click(await screen.findByRole('button', { name: 'In study sets (1)' }))
     expect(window.location.hash).toBe('#dictionary/vocabulary/collections')
     await waitFor(() => expect(document.querySelectorAll('[data-unit]')).toHaveLength(1))
     expect(document.querySelector('[data-unit="vocabulary:tea"]')).not.toBeNull()

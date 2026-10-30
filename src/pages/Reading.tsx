@@ -11,6 +11,7 @@ import { db } from '../core/database'
 import { importBookFile, importBookText } from '../core/library/store'
 import { navigate } from '../core/routing'
 import './reading.css'
+import { TERM } from '../core/collections/terms'
 
 export function Library({ workspace, busy, run }: PageProps) {
   const [query, setQuery] = useState('')
@@ -27,7 +28,7 @@ export function Library({ workspace, busy, run }: PageProps) {
       Read original stories with prepared Mandarin, or import your own books and translate with your connected AI.
     </PageHeading>
     {!!readyMedia?.length && <section className="panel" aria-label="Learn from your media"><h2>Learn from your media</h2><ul className="plain-list">{readyMedia.map(media => <li key={media.id}>{media.title} <a className="button primary" href={`#media/${media.id}?learn`}>Learn from this</a></li>)}</ul></section>}
-    <p className="small muted">Gathering words and phrases as you read? <a className="text-link" href="#collections">Open your collections</a>.</p>
+    <p className="small muted">Gathering words and phrases as you read? <a className="text-link" href="#collections">Open your {TERM.plural}</a>.</p>
     {showImport && <section className="panel book-import" aria-label="Import a book">
       <h2>Bring a book into your library</h2>
       <label className="field">Book file

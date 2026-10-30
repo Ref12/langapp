@@ -32,6 +32,7 @@ import { Assistant, AssistantSidebar } from './pages/Assistant'
 import { History } from './pages/History'
 import { Media } from './pages/Media'
 import { Collections } from './pages/Collections'
+import { TERM } from './core/collections/terms'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
 import { DraftStatus } from './components/assistant/DraftStatus'
 import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnectionSetup'
@@ -52,7 +53,7 @@ const navigation = [
   { id: 'practice', label: 'Practice', icon: Sparkles },
   { id: 'library', label: 'Library', icon: LibraryBig },
   { id: 'media', label: 'Media', icon: Clapperboard },
-  { id: 'collections', label: 'Collections', icon: Layers },
+  { id: 'collections', label: TERM.Plural, icon: Layers },
   { id: 'games', label: 'Games', icon: Gamepad2 },
   { id: 'conversation', label: 'Assistant', icon: MessageCircle },
   { id: 'history', label: 'History', icon: HistoryIcon },

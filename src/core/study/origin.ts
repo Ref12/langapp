@@ -1,6 +1,7 @@
 import type { Catalog } from './catalog'
 import type { ExerciseSession } from './contracts'
 import type { Collection } from '../collections/contracts'
+import { TERM } from '../collections/terms'
 
 // Where an unfinished lesson came from: the curriculum path, a collection (including a "learn from this span" show collection) or a redo.
 
@@ -36,7 +37,7 @@ export function describeSession(session: ExerciseSession, all: ExerciseSession[]
     title = `Redo: lesson of ${day((original ?? session).createdAt)}`
   } else if (origin.kind === 'collection') {
     const collection = collections.find(item => item.id === origin.collectionId)
-    title = `${collection?.name ?? 'Collection'} · ${session.mode === 'new' ? 'New' : 'Review'}`
+    title = `${collection?.name ?? TERM.Singular} · ${session.mode === 'new' ? 'New' : 'Review'}`
   } else title = session.mode === 'new' ? 'New items' : 'Review'
   return { session, origin, title, items: itemsLine(catalog, session.targetRefs), started: day(session.createdAt) }
 }

@@ -7,6 +7,7 @@ import { generateBatched, type PhraseTarget } from '../study/exercises'
 import { exerciseCountPreference, runGeneration, type GenerationResult } from '../study/generation'
 import { orderByPhase } from './phases'
 import { findCatalogUnits } from './extract'
+import { TERM } from './terms'
 import { itemId, phraseRef, type Collection, type CollectionItem, type CollectionSource } from './contracts'
 
 /** A subtitle line to add: its text, optional translation and where it came from. */
@@ -20,7 +21,7 @@ function newCard(ref: string, now: number): StudyCard {
 
 export async function createCollection(name: string): Promise<Collection> {
   const clean = name.trim()
-  if (!clean) throw new Error('Name the collection.')
+  if (!clean) throw new Error(`Name the ${TERM.singular}.`)
   const now = Date.now()
   const collection: Collection = { id: crypto.randomUUID(), name: clean.slice(0, 120), kind: 'user', createdAt: now, updatedAt: now }
   await db.collections.add(collection)
@@ -29,10 +30,10 @@ export async function createCollection(name: string): Promise<Collection> {
 
 export async function renameCollection(id: string, name: string): Promise<void> {
   const clean = name.trim()
-  if (!clean) throw new Error('Name the collection.')
+  if (!clean) throw new Error(`Name the ${TERM.singular}.`)
   await db.transaction('rw', db.collections, async () => {
     const collection = await db.collections.get(id)
-    if (!collection) throw new Error('That collection no longer exists.')
+    if (!collection) throw new Error(`That ${TERM.singular} no longer exists.`)
     await db.collections.put({ ...collection, name: clean.slice(0, 120), updatedAt: Date.now() })
   })
 }
@@ -74,7 +75,7 @@ export async function addLines(collectionId: string, lines: LineInput[]): Promis
   }
   return db.transaction('rw', db.collections, db.collectionItems, db.studyCards, async () => {
     const collection = await db.collections.get(collectionId)
-    if (!collection) throw new Error('That collection no longer exists.')
+    if (!collection) throw new Error(`That ${TERM.singular} no longer exists.`)
     const result: AddResult = { phrases: 0, units: 0, total: 0 }
     for (const item of candidates) {
       if (await db.collectionItems.get(item.id)) continue
@@ -155,7 +156,7 @@ export async function startCollectionSession(collectionId: string, options: { it
   const all = items.filter(item => rank(item.ref) === 0)
   const words = options.itemIds ? all : all.slice(0, MAX_COLLECTION_TARGETS)
   items = [...words, ...items.filter(item => rank(item.ref) === 1).slice(0, 3), ...items.filter(item => rank(item.ref) === 2).slice(0, 3)]
-  if (!items.length) throw new Error(options.dueOnly ? 'Nothing in this collection is due right now.' : 'This collection has no items to practise yet.')
+  if (!items.length) throw new Error(options.dueOnly ? `Nothing in this ${TERM.singular} is due right now.` : `This ${TERM.singular} has no items to practice yet.`)
   const refs = items.map(item => item.ref)
   const id = crypto.randomUUID()
   const now = Date.now()
@@ -184,7 +185,7 @@ export async function collectionResult(session: ExerciseSession, signal?: AbortS
   const catalog = await loadCatalog()
   const collectionId = session.collectionId!
   const items = (await db.collectionItems.bulkGet(session.targetRefs.map(ref => itemId(collectionId, ref)))).flatMap(item => item ? [item] : [])
-  if (!items.length) throw new Error('The items of this collection lesson are gone.')
+  if (!items.length) throw new Error(`The items of this ${TERM.singular} lesson are gone.`)
   const rank = (ref: string) => isPhraseRef(ref) ? 2 : ref.startsWith('grammar:') ? 1 : 0
   const known = (await db.knowledge.toArray()).map(entry => entry.ref)
   const targetsOf = (part: CollectionItem[]) => part.filter(item => !isPhraseRef(item.ref) && !isSourceRef(item.ref)).map(item => requireUnit(catalog, item.ref))
