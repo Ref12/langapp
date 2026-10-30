@@ -421,6 +421,12 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
           </div>}
       </div>
       {studied && <p className="notice" role="status">{studied}</p>}
+      <h1 className="media-title" lang={/[\u3400-\u9fff]/.test(item.title) ? 'zh-Hans' : undefined}>{item.title}</h1>
+      <p className="small muted media-title-meta">{item.lines.length} lines / <a href="#media">All media</a>{hasChineseTitle && <> / <button type="button" className="link-button" aria-expanded={studyTitle} onClick={() => setStudyTitle(value => !value)}>Study the title</button></>}</p>
+      {hasChineseTitle && studyTitle && <div className="media-title-teach">
+        <WordLine text={item.title} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-title-line" />
+        <PracticeSnippet source={source(item.title)} />
+      </div>}
       {canWatch && <div className="media-views" role="group" aria-label="Watch view">
         <button type="button" aria-pressed={view === 'learn'} onClick={() => setView('learn')}>Learning</button>
         <button type="button" aria-pressed={view === 'lines'} onClick={() => setView('lines')}>Lines</button>
@@ -441,12 +447,6 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
         {translateError && <p className="notice error" role="alert">{translateError}</p>}
         {trackNote && <p className="small muted" role="status">{trackNote}</p>}
       </div>
-      <h1 className="media-title" lang={/[\u3400-\u9fff]/.test(item.title) ? 'zh-Hans' : undefined}>{item.title}</h1>
-      <p className="small muted media-title-meta">{item.lines.length} lines / <a href="#media">All media</a>{hasChineseTitle && <> / <button type="button" className="link-button" aria-expanded={studyTitle} onClick={() => setStudyTitle(value => !value)}>Study the title</button></>}</p>
-      {hasChineseTitle && studyTitle && <div className="media-title-teach">
-        <WordLine text={item.title} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-title-line" />
-        <PracticeSnippet source={source(item.title)} />
-      </div>}
       {canWatch && <div className="media-footer" hidden={view === 'watch'}>
         {viewOf(current).tokens
           ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} />
