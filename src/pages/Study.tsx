@@ -66,16 +66,23 @@ export function Study({ workspace, now, run, busy }: PageProps) {
 
 interface Annotation { readings: Map<string, Set<string>>; pinyin: boolean }
 
-function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin }: Annotation & { exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
+function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak }: Annotation & { speak: boolean; exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const [selected, setSelected] = useState(attempt ? Number(attempt.response) : -1)
   const chineseQuestion = exercise.direction === 'zh-to-en'
+  const speechId = useId()
+  useEffect(() => () => { if (getPlaybackState().activeId === speechId) stopBrowserSpeech() }, [speechId])
+  const choose = (index: number) => {
+    setSelected(index)
+    if (!speak || chineseQuestion) return
+    try { playBrowserSpeech(speechId, exercise.options[index], 'zh-Hans') } catch (reason) { console.error('Choice speech failed.', reason) }
+  }
   return <>
     {chineseQuestion
       ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.question} readings={readings} pinyin={pinyin} /></p>
       : <p className="practice-prompt" lang="en">{exercise.question}</p>}
     <fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
       {exercise.options.map((option, index) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${attempt && index === exercise.answer ? 'correct-option' : ''}`}>
-        <input type="radio" name="answer" value={index} checked={selected === index} onChange={() => setSelected(index)} />
+        <input type="radio" name="answer" value={index} checked={selected === index} onChange={() => choose(index)} />
         {chineseQuestion ? <span lang="en">{option}</span> : <span><AnnotatedChinese text={option} readings={readings} pinyin={pinyin} /></span>}
         {!chineseQuestion && <HearButton text={option} locale="zh-Hans" label={`Hear option ${index + 1}`} iconOnly />}
         <span className="answer-option-mark">{attempt && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
@@ -187,6 +194,24 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
   const title = useRef<HTMLHeadingElement>(null)
   const pending = useRef(false)
   const tileSpeech = workspace.preferences.tileAutoSpeak !== false
+  const hasPrompt = exercise.type === 'choice' && exercise.direction === 'zh-to-en'
+  const promptSpeech = workspace.preferences.promptAutoPlay === true
+  const promptSpeechRef = useRef(promptSpeech)
+  promptSpeechRef.current = promptSpeech
+  const promptId = useId()
+  const entryKey = `${session.id}:${session.cursor}`
+  const alreadyAnswered = Boolean(persistedAttempt)
+  const answeredRef = useRef(alreadyAnswered)
+  answeredRef.current = alreadyAnswered
+  // Once per entry into an exercise: not on re-renders, preference changes or Check.
+  useEffect(() => {
+    if (!hasPrompt) return
+    if (promptSpeechRef.current && !answeredRef.current) {
+      try { playBrowserSpeech(promptId, (exercise as ChoiceExercise).question, 'zh-Hans') } catch (reason) { console.error('Prompt speech failed.', reason) }
+    }
+    return () => { if (getPlaybackState().activeId === promptId) stopBrowserSpeech() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entryKey, hasPrompt, promptId])
   const [savedAttempt, setSavedAttempt] = useState<ExerciseAttempt>()
   const attempt = persistedAttempt ?? savedAttempt
   useEffect(() => { title.current?.focus() }, [])
@@ -222,11 +247,15 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
         <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>
         {exercise.type === 'tiles' && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
           onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute tiles' : 'Speak tiles'}</button>}
-        {exercise.type === 'choice' && exercise.direction === 'zh-to-en' && <HearButton text={exercise.question} locale="zh-Hans" label="Hear the Chinese" />}
+        {hasPrompt && <button type="button" className="button secondary snippet-button" aria-pressed={promptSpeech} disabled={busy}
+          onClick={() => { if (promptSpeech) stopBrowserSpeech(); void run(() => savePreferences({ promptAutoPlay: !promptSpeech })) }}>{promptSpeech ? 'Auto-play' : 'Auto-play off'}</button>}
+        {exercise.type === 'choice' && exercise.direction === 'en-to-zh' && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
+          onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute choices' : 'Speak choices'}</button>}
+        {hasPrompt && <HearButton text={exercise.question} locale="zh-Hans" label="Hear the Chinese" />}
       </div>
     </div>
     {exercise.type === 'choice'
-      ? <ChoiceQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} />
+      ? <ChoiceQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} speak={tileSpeech} />
       : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} speak={tileSpeech} />}
     {attempt && <div className={`notice answer-feedback${attempt.correct ? ' success' : ''}`} role="status">
       <strong>{attempt.correct ? 'Correct.' : 'Not quite.'}</strong>

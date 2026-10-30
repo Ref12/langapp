@@ -65,6 +65,8 @@ export interface Preferences {
   exercisesPerLesson?: number
   sudokuShowPinyin?: boolean
   tileAutoSpeak?: boolean
+/** Play the Chinese prompt on entering an exercise that has a Hear button for it. Default off. */
+promptAutoPlay?: boolean
   practiceMode?: 'speak' | 'write'
   historyFilter?: 'all' | 'speak' | 'write' | 'lessons'
   dictionaryScope?: 'all' | 'knowledge'

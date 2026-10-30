@@ -7,6 +7,7 @@ import { db } from '../core/database'
 import { loadCatalog } from '../core/study/catalog'
 import type { Exercise } from '../core/study/contracts'
 import * as speech from '../core/assistant/speech'
+import { savePreferences } from '../core/learning'
 import { addToKnowledge, nextGroup } from '../core/study/knowledge'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
@@ -501,6 +502,73 @@ describe('New and Review', () => {
     await user.click(within(screen.getByRole('group', { name: 'Available tiles' })).getByRole('button', { name: '我' }))
     expect(play).not.toHaveBeenCalled()
     expect(within(screen.getByRole('group', { name: 'Your sentence' })).getByRole('button', { name: '我' })).toBeInTheDocument()
+  })
+})
+
+describe('Speech toggles', () => {
+  const zhToEn = (id: string, question: string): Exercise => ({ id, type: 'choice', targets: [], direction: 'zh-to-en', question, options: ['I', 'you'], answer: 0, explanation: 'x' })
+  async function seedTwo() {
+    const session = await seedExercise('choice')
+    await db.exerciseSessions.put({ ...session, exercises: [zhToEn('a', '我'), zhToEn('b', '你')] })
+  }
+  const prompts = () => vi.mocked(speech.playBrowserSpeech).mock.calls.map(call => call[1])
+
+  it('does not auto-play the prompt by default', async () => {
+    const user = userEvent.setup()
+    await seedTwo()
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
+    await screen.findByRole('button', { name: 'Auto-play off' })
+    expect(prompts()).toEqual([])
+  })
+
+  it('plays the prompt once on entry, not after Check, and again on the next exercise', async () => {
+    const user = userEvent.setup()
+    await seedTwo()
+    render(<App />)
+    const start = await screen.findByRole('button', { name: 'Start' })
+    await savePreferences({ promptAutoPlay: true })
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 100)) }) // let the live workspace query pick it up
+    await user.click(start)
+    await screen.findByRole('button', { name: 'Auto-play' })
+    expect(prompts()).toEqual(['我'])
+    await user.click(screen.getByRole('radio', { name: 'I' }))
+    await user.click(screen.getByRole('button', { name: 'Check answer' }))
+    await screen.findByText('Correct.')
+    expect(prompts()).toEqual(['我'])
+    await user.click(screen.getByRole('button', { name: /Next/ }))
+    await waitFor(() => expect(prompts()).toEqual(['我', '你']))
+  })
+
+  it('shows the auto-play toggle only on Chinese-prompt exercises', async () => {
+    const user = userEvent.setup()
+    const session = await seedExercise('tiles')
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
+    await screen.findByRole('button', { name: 'Mute tiles' })
+    expect(screen.queryByRole('button', { name: /Auto-play/ })).not.toBeInTheDocument()
+    cleanup()
+    await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'teacher', options: ['老师', '学生'], answer: 0, explanation: 'x' }] })
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
+    await screen.findByRole('button', { name: 'Mute choices' })
+    expect(screen.queryByRole('button', { name: /Auto-play/ })).not.toBeInTheDocument()
+  })
+
+  it('speaks a selected Chinese option unless choices are muted', async () => {
+    const user = userEvent.setup()
+    const play = vi.mocked(speech.playBrowserSpeech)
+    const session = await seedExercise('choice')
+    await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'teacher', options: ['老师', '学生'], answer: 0, explanation: 'x' }] })
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
+    await user.click(screen.getAllByRole('radio')[1])
+    expect(play).toHaveBeenLastCalledWith(expect.any(String), '学生', 'zh-Hans')
+    await user.click(screen.getByRole('button', { name: 'Mute choices' }))
+    await screen.findByRole('button', { name: 'Speak choices' })
+    play.mockClear()
+    await user.click(screen.getAllByRole('radio')[0])
+    expect(play).not.toHaveBeenCalled()
   })
 })
 

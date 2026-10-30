@@ -27,6 +27,7 @@ export const workspaceSchema = z.object({
     exercisesPerLesson: z.number().int().min(8).max(40).optional(),
     sudokuShowPinyin: z.boolean().optional(),
     tileAutoSpeak: z.boolean().optional(),
+  promptAutoPlay: z.boolean().optional(),
     practiceMode: z.enum(['speak', 'write']).optional(),
     historyFilter: z.enum(['all', 'speak', 'write', 'lessons']).optional(),
     dictionaryScope: z.enum(['all', 'knowledge']).optional(),
