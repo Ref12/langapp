@@ -10,7 +10,7 @@ import { currentLine, isTranslated, lineView, nudge, offsetAt, withAnchor, type 
 import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
 import { lineUnits } from '../core/media/readings'
-import { translateMedia } from '../core/media/translation'
+import { translateMedia, getConcurrency, setConcurrency } from '../core/media/translation'
 import { linkEntries } from '../core/media/entries'
 import { sendTrack, trackFiles, type TrackKind } from '../core/media/tracks'
 import { studyLines } from '../core/collections/store'
@@ -247,6 +247,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const [overlayTranslation, setOverlayTranslation] = useState(false)
   const [glosses, setGlosses] = useState(() => localStorage.getItem('linguaweave-media-glosses') === 'true')
   const [translating, setTranslating] = useState<{ done: number; total: number; model?: string; active?: { from: number; to: number; startedAt: number }[] } | undefined>()
+  const [concurrency, setConcurrencyState] = useState(getConcurrency)
   const [clock, setClock] = useState(Date.now())
   useEffect(() => { if (!translating?.active?.length) return; const timer = setInterval(() => setClock(Date.now()), 1000); return () => clearInterval(timer) }, [translating?.active?.length])
   const [translateError, setTranslateError] = useState('')
@@ -482,7 +483,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
                 ? <><progress max={Math.max(linking.total, 1)} value={linking.done} aria-label="Word linking progress" /><span className="small muted">Linking words {linking.done} of {linking.total}{linking.model ? ` with ${linking.model}` : ''}...</span>
                   <button type="button" className="button secondary" onClick={() => linkAbort.current?.abort()}>Cancel</button></>
                 : item.entries?.complete
-                  ? <span className="small muted">{item.entries.total} words linked.</span>
+                  ? <span className="small muted">{item.entries.total} words linked{item.entries.unresolved?.length ? ` (${item.entries.unresolved.length} could not be placed: ${item.entries.unresolved.slice(0, 5).join(', ')}${item.entries.unresolved.length > 5 ? ', ...' : ''})` : ''}.</span>
                   : <button type="button" className="button secondary" onClick={() => void startLink()}>{linkError ? 'Retry linking words' : item.entries ? 'Continue linking words' : 'Link words'}</button>}
               {linkError && <span className="notice error" role="alert">{linkError}</span>}
               <details className="media-menu"><summary className="button secondary" aria-label="More translation actions">...</summary><div className="media-menu-items">
@@ -490,7 +491,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
                   <button type="button" className="button secondary" onClick={() => void addTrack('pinyin')}>Add pinyin to Medusa</button></>}
                 {(trackFallback || !item.mediaId) && <button type="button" className="button secondary" onClick={() => saveFiles(trackFallback ?? 'translation')}>Save as subtitle file</button>}
               </div></details></>
-            : <button type="button" className="button secondary" onClick={() => void startTranslate()}>{translateError ? (missingLines ? 'Retry failed parts' : 'Retry translating') : missingLines ? `Retry failed parts (${missingLines} lines)` : aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button>}
+            : <><label className="small muted">Requests at once <input type="number" min={1} max={16} value={concurrency} aria-label="Translation requests at once" style={{ width: '4em' }} onChange={event => setConcurrencyState(setConcurrency(Number(event.target.value)))} /></label><button type="button" className="button secondary" onClick={() => void startTranslate()}>{translateError ? (missingLines ? 'Retry failed parts' : 'Retry translating') : missingLines ? `Retry failed parts (${missingLines} lines)` : aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button></>}
         {translateError && <p className="notice error" role="alert">{translateError}</p>}
         {trackNote && <p className="small muted" role="status">{trackNote}</p>}
       </div>

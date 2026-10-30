@@ -4,6 +4,7 @@ import type { WovenToken } from './contracts'
 // The source line is the truth. The model's tokens are aligned to it character by character: tokens that match in order are kept,
 // characters the model dropped (particles, punctuation) are added back, and characters it invented are dropped.
 // The result always reproduces the line exactly, so a chunk is never rejected for a token/text mismatch.
+// The compact reply format has no `trailing` and no gloss for function words: punctuation is attached here, and a missing reading is filled from the per-character data.
 
 const han = /\p{Script=Han}/u
 const LOOKAHEAD = 8
@@ -22,23 +23,36 @@ export function lineReadings(chars: readonly string[]): string[] {
   return out
 }
 
-export interface Reconciled { tokens: WovenToken[]; /** The model's tokens did not already reproduce the line. */ repaired: boolean }
+export interface Reconciled { tokens: WovenToken[]; /** Characters of the line had to be added back, dropped or re-aligned (punctuation attached as trailing does not count). */ repaired: boolean }
+
+type Attempt = Pick<WovenToken, 'text' | 'pinyin' | 'meaning'> & { trailing?: string }
+
+/** Gives a Han token that came without a reading the per-character readings of its characters (function words carry none in the compact format). */
+function fillReadings(tokens: WovenToken[], chars: readonly string[], starts: readonly number[]): WovenToken[] {
+  const readings = lineReadings(chars)
+  return tokens.map((token, index) => {
+    if (token.pinyin || !han.test(token.text)) return token
+    const from = starts[index]
+    const length = Array.from(token.text).length
+    const pinyin = readings.slice(from, from + length).filter(Boolean).join(' ')
+    return pinyin ? { ...token, pinyin } : token
+  })
+}
 
 /** Builds the tokens of a line from the model's attempt. Every character of `line` ends up in exactly one token's text or trailing. */
-export function reconcileLine(line: string, attempt: readonly Pick<WovenToken, 'text' | 'pinyin' | 'meaning' | 'trailing'>[]): Reconciled {
+export function reconcileLine(line: string, attempt: readonly Attempt[]): Reconciled {
   const chars = Array.from(line)
-  const exact = attempt.length > 0 && attempt.every(token => token.text) && attempt.map(token => token.text + token.trailing).join('') === line
-  if (exact) return { tokens: attempt.map(token => ({ text: token.text, pinyin: token.pinyin, meaning: token.meaning, trailing: token.trailing })), repaired: false }
-  const readings = lineReadings(chars)
   const out: WovenToken[] = []
+  const starts: number[] = []
   let position = 0
+  let repaired = false
   /** Source characters nobody claimed: punctuation joins the previous token's trailing, Han characters become unglossed tokens with their own reading. */
   const absorb = (from: number, to: number) => {
     for (let k = from; k < to; k++) {
       const previous = out[out.length - 1]
-      if (han.test(chars[k])) out.push({ text: chars[k], pinyin: readings[k], meaning: '', trailing: '' })
+      if (han.test(chars[k])) { repaired = true; out.push({ text: chars[k], pinyin: '', meaning: '', trailing: '' }); starts.push(k) }
       else if (previous) previous.trailing += chars[k]
-      else out.push({ text: chars[k], pinyin: '', meaning: '', trailing: '' })
+      else { out.push({ text: chars[k], pinyin: '', meaning: '', trailing: '' }); starts.push(k) }
     }
   }
   for (const token of attempt) {
@@ -48,18 +62,19 @@ export function reconcileLine(line: string, attempt: readonly Pick<WovenToken, '
     for (let start = position; start <= Math.min(chars.length - want.length, position + LOOKAHEAD) && found < 0; start++) {
       if (want.every((char, offset) => chars[start + offset] === char)) found = start
     }
-    if (found < 0) continue // Added or altered by the model: the characters come back from the source below.
+    if (found < 0) { repaired = true; continue } // Added or altered by the model: the characters come back from the source below.
     absorb(position, found)
     position = found + want.length
     let trailing = ''
-    for (const char of Array.from(token.trailing)) {
-      if (position < chars.length && chars[position] === char) { trailing += char; position++ } else break
+    for (const char of Array.from(token.trailing ?? '')) {
+      if (position < chars.length && chars[position] === char) { trailing += char; position++ } else { repaired = true; break }
     }
     out.push({ text: token.text, pinyin: token.pinyin, meaning: token.meaning, trailing })
+    starts.push(found)
   }
   absorb(position, chars.length)
   if (out.map(token => token.text + token.trailing).join('') !== line) return { tokens: fallbackTokens(line), repaired: true }
-  return { tokens: out, repaired: true }
+  return { tokens: fillReadings(out, chars, starts), repaired }
 }
 
 /** A line with no usable model tokens: one unglossed token per Han character, punctuation as trailing. */

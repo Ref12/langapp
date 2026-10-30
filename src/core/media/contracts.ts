@@ -56,6 +56,8 @@ export const entryLinksSchema = z.object({
   counts: z.record(z.string(), z.number().int().min(0)),
   /** Distinct tokens in the last run, and whether every one is resolved. */
   total: z.number().int().min(0),
+  /** Words the AI could not place even on a final retry (a warning, not an error); a later run asks for them again. */
+  unresolved: z.array(z.string().min(1).max(60)).max(500).optional(),
   complete: z.boolean(),
   updatedAt: z.number(),
 }).strict()

@@ -5,7 +5,7 @@ import { requestStructuredJSON } from '../ai/structured'
 import { resetProfileStorage } from '../../test/profile-storage'
 import type { Catalog } from '../study/catalog'
 import { addSourceEntriesToKnowledge } from '../study/knowledge'
-import { collectTokens, entryFrequencies, linkEntries, planLinks, sourceEntryId, validateBatch } from './entries'
+import { baseOf, collectTokens, entryFrequencies, linkEntries, planLinks, sourceEntryId, validateBatch } from './entries'
 import type { MediaLine } from './contracts'
 import { saveMedia } from './store'
 
@@ -163,5 +163,51 @@ describe('knowledge set', () => {
     expect(await addSourceEntriesToKnowledge([ref])).toEqual([])
     expect(await db.knowledge.get(ref)).toMatchObject({ kind: 'source', source: 'dictionary' })
     expect(await db.studyCards.get(`${ref}:reading`)).toMatchObject({ state: 'new' })
+  })
+})
+
+describe('unresolved words, base words and the prompt', () => {
+  beforeEach(() => completion.mockReset())
+  it('ends complete with a warning when a word stays unresolved, after one final small retry', async () => {
+    const id = await item([['词0', '词1', '词2']])
+    completion.mockImplementation((async (_connection: unknown, request: { user: string }) => ({
+      results: (JSON.parse(request.user).words as { text: string; examples: { line: number }[] }[]).filter(word => word.text !== '词1').map(word => (
+        { text: word.text, decision: 'word', ref: '', pinyin: 'cí', meanings: ['w'], pos: 'noun', example: word.examples[0].line })),
+    })) as never)
+    const summary = await run(id)
+    expect(summary.unresolved).toBe(1)
+    expect(completion).toHaveBeenCalledTimes(2) // the batch, then one final batch with just the left-over word
+    expect(JSON.parse((completion.mock.calls[1][1] as { user: string }).user).words.map((word: { text: string }) => word.text)).toEqual(['词1'])
+    const saved = (await db.mediaItems.get(id))!.entries!
+    expect(saved.complete).toBe(true)
+    expect(saved.unresolved).toEqual(['词1'])
+  })
+  it('links a word with a trailing particle to its known base instead of asking for an entry', () => {
+    const known = (text: string) => text === '你' || text === '半'
+    expect(baseOf('你的', known)).toBe('你')
+    expect(baseOf('词了', known)).toBeUndefined()
+    expect(baseOf('的', known)).toBeUndefined()
+    const { aligned } = build([['你的', '半了', '词0']])
+    const plan = planLinks(collectTokens({ aligned } as never), catalog, new Set())
+    expect(plan.exact.get('你的')).toBe('vocabulary:ni3')
+    expect(plan.work.find(entry => entry.token.text === '半了')!.senses).toHaveLength(2) // the base's senses
+    expect(plan.work.find(entry => entry.token.text === '词0')!.senses).toEqual([])
+  })
+  it('rejects a source entry for a particle-suffixed word whose base is known', () => {
+    const batch = [{ token: { text: '你的', count: 1, lines: [0], pinyin: 'nǐ de', gloss: 'your' }, senses: [] }]
+    const answer = { results: [{ text: '你的', decision: 'word', ref: '', pinyin: 'nǐ de', meanings: ['your'], pos: 'pronoun', example: 0 }] }
+    const checked = validateBatch(answer, batch, text => text === '你')
+    expect(checked.words.size).toBe(0)
+    expect(checked.skipped).toEqual(['你的'])
+    expect(validateBatch(answer, batch).words.has('你的')).toBe(true) // without a known base it is a word
+  })
+  it('sends the pass-1 gloss with each word and tells the model near-duplicate senses are equivalent', async () => {
+    const id = await item([['半', '词0']])
+    model()
+    await run(id)
+    const request = completion.mock.calls[0][1] as { user: string; system: string }
+    expect(JSON.parse(request.user).words.find((word: { text: string }) => word.text === '半').gloss).toBe('g')
+    expect(request.system).toMatch(/Near-duplicate senses/)
+    expect(request.system).toMatch(/Never make an entry for a verb or noun plus a particle/)
   })
 })
