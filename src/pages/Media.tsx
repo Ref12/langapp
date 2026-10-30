@@ -123,12 +123,12 @@ function MediaHome({ busy }: Pick<PageProps, 'busy'>) {
   const [captureAgain, setCaptureAgain] = useState('')
   const offerSaved = saved && captureAgain !== normalizeMediaUrl(url)
   return <>
-    <PageHeading eyebrow="Media" title="Media">Save a video and its Chinese subtitles with Medusa, then watch with the lines beside the video.</PageHeading>
+    <PageHeading eyebrow="Media" title="Media">Save a video and its subtitles with Medusa, then watch with the lines beside the video.</PageHeading>
     <form className="media-add" onSubmit={submit}>
       <input type="url" inputMode="url" aria-label="Link to a video" placeholder="Paste a video link" value={url} onChange={event => setUrl(event.target.value)} />
       {offerSaved ? <>
         <a className="button primary" href={`#media/${saved.id}`}>Open saved</a>
-        <button className="button secondary" type="button" onClick={() => setCaptureAgain(normalizeMediaUrl(url))}>Capture again</button>
+        <button className="button secondary" type="button" onClick={() => setCaptureAgain(normalizeMediaUrl(url))}>Download again</button>
       </> : <button className="button primary" type="submit" disabled={busy || !url.trim() || phase.kind === 'working'}>Get transcript</button>}
     </form>
     {offerSaved && <p className="small muted" role="status">This video is already saved: {saved.title}</p>}

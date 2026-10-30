@@ -96,7 +96,7 @@ describe('Media page', () => {
     expect((await screen.findByRole('alert')).textContent).toMatch(/Medusa does not know this job\. Open Medusa, then try again\./)
   })
 
-  it('normalises YouTube links and offers Open saved before a new capture', async () => {
+  it('normalises YouTube links and offers Open saved before a new download', async () => {
     for (const link of ['https://m.youtube.com/watch?v=abcdefghijk&t=5s', 'https://youtu.be/abcdefghijk?si=x', 'https://www.youtube.com/shorts/abcdefghijk', 'https://www.youtube.com/watch?v=abcdefghijk&list=L'])
       expect(normalizeMediaUrl(link)).toBe(normalizeMediaUrl(result.url))
     expect(normalizeMediaUrl('https://youtu.be/other')).not.toBe(normalizeMediaUrl(result.url))
@@ -107,7 +107,7 @@ describe('Media page', () => {
     await user.type(await screen.findByRole('textbox', { name: 'Link to a video' }), 'https://youtu.be/abcdefghijk?si=x')
     expect(await screen.findByRole('link', { name: 'Open saved' })).toHaveAttribute('href', '#media/11111111-1111-4111-8111-111111111111')
     expect(screen.queryByRole('button', { name: 'Get transcript' })).not.toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: 'Capture again' }))
+    await user.click(screen.getByRole('button', { name: 'Download again' }))
     expect(screen.getByRole('button', { name: 'Get transcript' })).toBeEnabled()
   })
 
