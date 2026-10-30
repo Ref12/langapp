@@ -61,6 +61,8 @@ export interface Preferences {
   sudokuAutoSpeak?: boolean
   writingAutoSpeak?: boolean
   haptics?: boolean
+  /** Exercises written for each lesson (new, review, collection, span): 8 to 40, default 20. */
+  exercisesPerLesson?: number
   sudokuShowPinyin?: boolean
   tileAutoSpeak?: boolean
   practiceMode?: 'speak' | 'write'

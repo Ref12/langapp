@@ -2,9 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../database'
 import { loadCatalog, renderExample } from '../study/catalog'
 import { addLines } from './store'
-import { showCollection, studyLines } from './store'
+import { showCollection, studyLines as studyLinesRaw } from './store'
 import { findCatalogUnits } from './extract'
 import { phraseRef } from './contracts'
+import { whenGenerated } from '../study/generation'
+const studyLines = async (...args: Parameters<typeof studyLinesRaw>) => { const id = await studyLinesRaw(...args); await whenGenerated(id); return id }
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)

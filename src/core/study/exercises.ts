@@ -10,7 +10,11 @@ import { exerciseSchema, type Exercise } from './contracts'
 // exercises; the app validates every Chinese string against the allowed
 // vocabulary and drops anything it cannot account for. Nothing is repaired.
 
-export const EXERCISES_PER_SESSION = 10
+export const EXERCISES_PER_SESSION = 20
+export const MIN_EXERCISES_PER_SESSION = 8
+export const MAX_EXERCISES_PER_SESSION = 40
+/** One AI request never asks for more than this many exercises; larger lessons go out as parallel requests. */
+export const MAX_EXERCISES_PER_REQUEST = 20
 export const MIN_USABLE_EXERCISES = 4
 const MAX_VOCABULARY_IN_PROMPT = 400
 const han = /\p{Script=Han}/u
@@ -245,6 +249,23 @@ export async function generateExercises(connection: AIConnectionInput, input: Ge
     throw new AITransportError(`The AI produced only ${result.exercises.length} usable exercises (${result.rejected.length} rejected). Try again or choose a stronger model.`)
   }
   return result
+}
+
+/** Splits a lesson's exercise count into request sizes of at most MAX_EXERCISES_PER_REQUEST, as even as possible (40 gives 20 + 20). */
+export function splitCount(count: number): number[] {
+  const requests = Math.max(1, Math.ceil(count / MAX_EXERCISES_PER_REQUEST))
+  const base = Math.floor(count / requests)
+  return Array.from({ length: requests }, (_, index) => base + (index < count - base * requests ? 1 : 0))
+}
+
+/** Generates `count` exercises: one request, or parallel requests of up to 20 whose results are joined. Never one request per word. */
+export async function generateBatched(connection: AIConnectionInput, input: GenerationInput, count: number, signal?: AbortSignal): Promise<ValidationResult> {
+  const sizes = splitCount(count)
+  const parts = await Promise.all(sizes.map(async (size, index) => {
+    const result = await generateExercises(connection, { ...input, count: size }, signal)
+    return sizes.length === 1 ? result : { ...result, exercises: result.exercises.map(exercise => ({ ...exercise, id: `b${index + 1}-${exercise.id}` })) }
+  }))
+  return { exercises: parts.flatMap(part => part.exercises), rejected: parts.flatMap(part => part.rejected) }
 }
 
 export function checkAnswer(exercise: Exercise, response: unknown): { correct: boolean; response: string } {

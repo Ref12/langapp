@@ -24,6 +24,7 @@ export const workspaceSchema = z.object({
     sudokuAutoSpeak: z.boolean().optional(),
     writingAutoSpeak: z.boolean().optional(),
     haptics: z.boolean().optional(),
+    exercisesPerLesson: z.number().int().min(8).max(40).optional(),
     sudokuShowPinyin: z.boolean().optional(),
     tileAutoSpeak: z.boolean().optional(),
     practiceMode: z.enum(['speak', 'write']).optional(),

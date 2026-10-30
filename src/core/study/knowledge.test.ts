@@ -1,7 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../database'
 import { loadCatalog } from './catalog'
-import { addSourceEntriesToKnowledge, addToKnowledge, advanceExercise, discardSession, dueCards, groupProgress, nextGroup, startNewSession, startReviewSession, submitExerciseAnswer } from './knowledge'
+import { addSourceEntriesToKnowledge, addToKnowledge, advanceExercise, discardSession, dueCards, groupProgress, nextGroup, startNewSession as startNewSessionRaw, startReviewSession as startReviewSessionRaw, submitExerciseAnswer } from './knowledge'
+import { whenGenerated } from './generation'
+const startNewSession = async (...args: Parameters<typeof startNewSessionRaw>) => { const id = await startNewSessionRaw(...args); await whenGenerated(id); return id }
+const startReviewSession = async (...args: Parameters<typeof startReviewSessionRaw>) => { const id = await startReviewSessionRaw(...args); await whenGenerated(id); return id }
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)
@@ -243,8 +246,8 @@ describe('knowledge set and sessions', () => {
     structured.requestStructuredJSON.mockResolvedValueOnce({ exercises: [
       { id: 'c1', type: 'choice', targets: ['vocabulary:wo3--me'], direction: 'zh-to-en', question: '我们', options: ['we', 'I'], answer: 0, explanation: 'Unknown word.' },
     ] })
-    await expect(startNewSession()).rejects.toThrow(/only 0 usable exercises \(1 rejected\)/)
-    expect(await db.knowledge.count()).toBe(0)
-    expect(await db.exerciseSessions.count()).toBe(0)
+    const id = await startNewSession()
+    // The shell is saved at once; the failure is recorded on it so the page can offer Try again.
+    expect(await db.exerciseSessions.get(id)).toMatchObject({ exercises: [], generation: 'failed', generationError: expect.stringMatching(/only 0 usable exercises \(1 rejected\)/) })
   })
 })

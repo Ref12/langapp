@@ -1,12 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../database'
-import { startReviewSession, submitExerciseAnswer, advanceExercise } from '../study/knowledge'
+import { startReviewSession as startReviewSessionRaw, submitExerciseAnswer, advanceExercise } from '../study/knowledge'
 import { cardId } from '../study/contracts'
-import { addLines, createCollection, deleteCollection, dueItems, promoteItems, removeItems, renameCollection, showCollection, startCollectionSession, studyLines } from './store'
+import { addLines, createCollection, deleteCollection, dueItems, promoteItems, removeItems, renameCollection, showCollection, startCollectionSession as startCollectionSessionRaw, studyLines as studyLinesRaw } from './store'
 import { itemId, phraseRef } from './contracts'
 import { initializeWorkspace } from '../database'
 import { exportActiveProfile, restoreActiveProfile } from '../profiles/store'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
+import { whenGenerated } from '../study/generation'
+const startReviewSession = async (...args: Parameters<typeof startReviewSessionRaw>) => { const id = await startReviewSessionRaw(...args); await whenGenerated(id); return id }
+const startCollectionSession = async (...args: Parameters<typeof startCollectionSessionRaw>) => { const id = await startCollectionSessionRaw(...args); await whenGenerated(id); return id }
+const studyLines = async (...args: Parameters<typeof studyLinesRaw>) => { const id = await studyLinesRaw(...args); await whenGenerated(id); return id }
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)

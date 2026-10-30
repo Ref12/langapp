@@ -20,6 +20,7 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (next.speechDebugMessages !== undefined && typeof next.speechDebugMessages !== 'boolean') throw new Error('Choose whether speech debug messages are shown.')
     if (next.sudokuAutoSpeak !== undefined && typeof next.sudokuAutoSpeak !== 'boolean') throw new Error('Choose whether automatic Sudoku speech is on or off.')
     if (next.haptics !== undefined && typeof next.haptics !== 'boolean') throw new Error('Choose whether vibration feedback is on or off.')
+    if (next.exercisesPerLesson !== undefined && (!Number.isInteger(next.exercisesPerLesson) || next.exercisesPerLesson < 8 || next.exercisesPerLesson > 40)) throw new Error('Choose between 8 and 40 exercises per lesson.')
     if (next.writingAutoSpeak !== undefined && typeof next.writingAutoSpeak !== 'boolean') throw new Error('Choose whether automatic writing speech is on or off.')
     if (next.sudokuShowPinyin !== undefined && typeof next.sudokuShowPinyin !== 'boolean') throw new Error('Choose whether selected-character pinyin is shown.')
     if (next.tileAutoSpeak !== undefined && typeof next.tileAutoSpeak !== 'boolean') throw new Error('Choose whether tile speech is on or off.')

@@ -105,6 +105,41 @@ describe('New and Review', () => {
     expect(await db.knowledge.count()).toBe(0)
   })
 
+  it('shows the item cards at once with a disabled "Generating with AI…" footer, then Start; a failure offers Try again', async () => {
+    const user = userEvent.setup()
+    await db.aiConnections.add(connection)
+    const group = nextGroup(await loadCatalog(), new Set())!
+    const refs = group.units.map(unit => unit.ref)
+    let release: (value: unknown) => void = () => undefined
+    let fail: (reason: Error) => void = () => undefined
+    structured.requestStructuredJSON.mockImplementationOnce(() => new Promise((_resolve, reject) => { fail = reject }))
+    render(<App />)
+    const newCard = await screen.findByRole('region', { name: 'New items' })
+    await within(newCard).findByRole('heading', { name: `${refs.length} new items` })
+    const start = screen.getByRole('button', { name: 'Start new items' })
+    await waitFor(() => expect(start).toBeEnabled())
+    await user.click(start)
+    await screen.findByRole('heading', { name: 'Meet your new items.' })
+    expect(screen.queryByText(/Preparing your/)).not.toBeInTheDocument()
+    const footer = screen.getByRole('region', { name: 'Start the exercises' })
+    expect(within(footer).getByRole('button', { name: 'Generating with AI…' })).toBeDisabled()
+    await waitFor(() => expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1))
+    fail(new Error('Model unavailable'))
+    expect(await within(footer).findByText('Model unavailable')).toBeInTheDocument()
+    structured.requestStructuredJSON.mockImplementationOnce(() => new Promise(resolve => { release = resolve }))
+    await user.click(within(footer).getByRole('button', { name: /Try again/ }))
+    expect(await within(footer).findByRole('button', { name: 'Generating with AI…' })).toBeDisabled()
+    await waitFor(() => expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(2))
+    release({ exercises: [
+      { id: 'c1', type: 'choice', targets: [refs[0]], direction: 'zh-to-en', question: '我是学生。', options: ['I am a student.', 'I study.'], answer: 0, explanation: 'x' },
+      { id: 'c2', type: 'choice', targets: [refs[1]], direction: 'en-to-zh', question: 'I study.', options: ['我学习。', '我是学生。'], answer: 0, explanation: 'x' },
+      { id: 'c3', type: 'choice', targets: [refs[2]], direction: 'zh-to-en', question: '学生', options: ['student', 'teacher'], answer: 0, explanation: 'x' },
+      { id: 'c4', type: 'choice', targets: [refs[0]], direction: 'zh-to-en', question: '我是学生。', options: ['I am a student.', 'I study.'], answer: 0, explanation: 'y' },
+    ] })
+    expect(await within(footer).findByRole('button', { name: 'Start' })).toBeEnabled()
+    expect(within(footer).getByText(/4 exercises in 1 part/)).toBeInTheDocument()
+  })
+
   it('introduces the next group, plays generated exercises and records the results', async () => {
     const user = userEvent.setup()
     await db.aiConnections.add(connection)
@@ -128,12 +163,13 @@ describe('New and Review', () => {
     await waitFor(() => expect(start).toBeEnabled())
     await user.click(start)
     await screen.findByRole('heading', { name: 'Meet your new items.' })
+    await screen.findByRole('button', { name: 'Start' }, { timeout: 5000 })
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
     expect(await db.knowledge.count()).toBe(refs.length)
     // Starting added every item, so the per-card knowledge-set state is not repeated on this page.
     expect(screen.queryByRole('button', { name: /knowledge set/ })).not.toBeInTheDocument()
     expect(screen.queryByText('Eligible for review')).not.toBeInTheDocument()
-    expect(screen.getByRole('region', { name: 'Start the exercises' })).toContainElement(screen.getByRole('button', { name: 'Start exercises' }))
+    expect(screen.getByRole('region', { name: 'Start the exercises' })).toContainElement(screen.getByRole('button', { name: 'Start' }))
     // Each example row has its own Hear icon and "…" menu (Ask, Practice, Write); it opens the practice playlist for that phrase.
     const hearButtons = screen.getAllByRole('button', { name: /^Hear/ })
     const menus = screen.getAllByRole('button', { name: 'Phrase actions' })
@@ -143,7 +179,7 @@ describe('New and Review', () => {
     await user.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     expect(await screen.findByRole('dialog')).toBeInTheDocument()
     await user.keyboard('{Escape}')
-    await user.click(screen.getByRole('button', { name: 'Start exercises' }))
+    await user.click(screen.getByRole('button', { name: 'Start' }))
     await screen.findByRole('heading', { name: 'What does this mean?' })
     expect(screen.getByText('Exercise 1 of 4')).toBeInTheDocument()
     await user.click(screen.getByRole('radio', { name: 'I study.' }))
@@ -222,7 +258,7 @@ describe('New and Review', () => {
     const session = await seedExercise(type)
     const save = vi.spyOn(db.exerciseAttempts, 'add')
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
     const action = screen.getByRole('button', { name: 'Check answer' })
     expect(action).toBeDisabled()
     await chooseAnswer(user, type)
@@ -261,7 +297,7 @@ describe('New and Review', () => {
     const user = userEvent.setup()
     const session = await seedExercise(type)
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
     await chooseAnswer(user, type)
     vi.spyOn(db.exerciseAttempts, 'add').mockRejectedValueOnce(new Error('Save failed'))
     const action = screen.getByRole('button', { name: 'Check answer' })
@@ -290,7 +326,7 @@ describe('New and Review', () => {
     const session = await seedExercise('choice')
     await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'I study.', options: ['我学习', '学习我', '我我', '学习'], answer: 0, explanation: 'x' }] })
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
     const cards = document.querySelectorAll('.answer-option')
     expect(cards).toHaveLength(4)
     cards.forEach((card, index) => {
@@ -304,7 +340,7 @@ describe('New and Review', () => {
     const user = userEvent.setup()
     const session = await seedExercise('tiles')
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
     await chooseAnswer(user, 'tiles', false)
     const action = screen.getByRole('button', { name: 'Check answer' })
     await user.click(action)
@@ -332,7 +368,7 @@ describe('New and Review', () => {
     const session = await seedExercise('choice')
     await db.exerciseSessions.put({ ...session, exercises: [{ id: 'zh', type: 'choice', targets: session.targetRefs, direction: 'en-to-zh', question: 'Chinese-language teacher', options: ['汉语学生', '老师汉语', '学生汉语', '汉语老师'], answer: 1, explanation: 'x' }] })
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
     const cards = [...document.querySelectorAll('.answer-option')]
     expect(cards).toHaveLength(4)
     cards.forEach((card, index) => {
@@ -347,7 +383,7 @@ describe('New and Review', () => {
     const play = vi.mocked(speech.playBrowserSpeech)
     await seedExercise('tiles')
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
     const bank = screen.getByRole('group', { name: 'Available tiles' })
     await user.click(within(bank).getByRole('button', { name: '我' }))
     expect(play).toHaveBeenLastCalledWith(expect.any(String), '我', 'zh-Hans')
@@ -365,7 +401,7 @@ describe('New and Review', () => {
     const play = vi.mocked(speech.playBrowserSpeech)
     await seedExercise('tiles')
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Start exercises' }))
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
     await user.click(screen.getByRole('button', { name: 'Mute tiles' }))
     await screen.findByRole('button', { name: 'Speak tiles' })
     expect((await db.preferences.get('workspace'))!.tileAutoSpeak).toBe(false)

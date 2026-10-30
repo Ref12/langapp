@@ -88,7 +88,7 @@ export const exerciseSessionSchema = z.object({
   groupId: id.optional(),
   targetRefs: z.array(unitRefSchema).min(1).max(40),
   reviewRefs: z.array(unitRefSchema).max(40),
-  exercises: z.array(exerciseSchema).min(1).max(30),
+  exercises: z.array(exerciseSchema).max(80),
   cursor: z.number().int().nonnegative(),
   status: z.enum(['active', 'completed', 'abandoned']),
   model: z.string().max(200),
@@ -96,6 +96,11 @@ export const exerciseSessionSchema = z.object({
   createdAt: timestamp,
   completedAt: timestamp.optional(),
   redoOf: id.optional(),
+  /** Set while the exercises are being written ('running') or after the attempt failed; absent once the exercises are filled in. */
+  generation: z.enum(['running', 'failed']).optional(),
+  generationError: z.string().max(600).optional(),
+  /** The number of exercises asked for, from the lesson preference when the session was saved. */
+  exerciseCount: z.number().int().min(1).max(80).optional(),
   /** Set when the session practises a collection; such sessions never count as the daily New/Review session. */
   collectionId: id.optional(),
   /** A collection lesson's order: the exercise index where each phase (words, grammar, the line itself) starts. */

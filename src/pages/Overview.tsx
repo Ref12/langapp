@@ -7,7 +7,7 @@ import { useStudyActions } from './useStudyActions'
 const WEEK = 7 * 24 * 60 * 60 * 1000
 
 export function Overview({ workspace, now, run, busy }: PageProps) {
-  const { catalog, connection, generating, due, active, next, progress, start } = useStudyActions({ workspace, now, run })
+  const { catalog, connection, due, active, next, progress, start } = useStudyActions({ workspace, now, run })
   const resumable = active.find(session => session.mode === 'new' && !session.redoOf)
   const finished = workspace.exerciseSessions.filter(session => session.status === 'completed')
   const lessonsDone = finished.filter(session => session.mode === 'new' && !session.redoOf).length
@@ -17,7 +17,6 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
       Build useful Mandarin through short lessons and regular practice.
     </PageHeading>
     <RestoreOffer />
-    {generating && <div className="notice" role="status" aria-live="polite"><strong>Preparing your {generating === 'new' ? 'new items' : 'review'}...</strong><p>Your AI model is writing the exercises. This can take up to a minute.</p></div>}
     <section className="overview-feature">
       <article className="course-card panel feature-panel" aria-label="Next step">
         <p className="eyebrow accent">{resumable ? 'PICK UP YOUR LESSON' : next ? 'YOUR NEXT STEP IN MANDARIN' : catalog ? 'KEEP YOUR MOMENTUM' : 'LOADING'}</p>

@@ -1,9 +1,10 @@
 import { db } from '../database'
 import { loadCatalog, requireUnit } from '../study/catalog'
-import { cardId, isPhraseRef, isSourceRef, type StudyCard } from '../study/contracts'
+import { cardId, isPhraseRef, isSourceRef, type ExerciseSession, type StudyCard } from '../study/contracts'
 import { emptySchedulingState } from '../study/fsrs'
 import { DOMAIN, addToKnowledge, sourceTargets } from '../study/knowledge'
-import { generateExercises, type PhraseTarget } from '../study/exercises'
+import { generateBatched, type PhraseTarget } from '../study/exercises'
+import { exerciseCountPreference, runGeneration, type GenerationResult } from '../study/generation'
 import { orderByPhase } from './phases'
 import { findCatalogUnits } from './extract'
 import { itemId, phraseRef, type Collection, type CollectionItem, type CollectionSource } from './contracts'
@@ -150,33 +151,54 @@ export async function startCollectionSession(collectionId: string, options: { it
   const words = options.itemIds ? all : all.slice(0, MAX_COLLECTION_TARGETS)
   items = [...words, ...items.filter(item => rank(item.ref) === 1).slice(0, 3), ...items.filter(item => rank(item.ref) === 2).slice(0, 3)]
   if (!items.length) throw new Error(options.dueOnly ? 'Nothing in this collection is due right now.' : 'This collection has no items to practise yet.')
+  const refs = items.map(item => item.ref)
+  const id = crypto.randomUUID()
+  const now = Date.now()
+  const session: ExerciseSession = {
+    id, mode: 'review', domain: DOMAIN, collectionId, targetRefs: refs, reviewRefs: [], exercises: [], cursor: 0, status: 'active',
+    model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: await exerciseCountPreference(),
+  }
+  await db.transaction('rw', db.exerciseSessions, db.studyCards, async () => {
+    for (const ref of refs) if (!await db.studyCards.get(cardId(ref, DOMAIN))) await db.studyCards.add(newCard(ref, now))
+    await db.exerciseSessions.add(session)
+  })
+  void runGeneration(id, () => collectionResult(session, signal))
+  return id
+}
+
+/** The smallest share of a lesson's exercises a word chunk gets, so every chunk's request stays usable. */
+const MIN_CHUNK_EXERCISES = 6
+
+/**
+ * Writes the exercises for a collection session from its saved items. Words go in chunks of at most MAX_COLLECTION_TARGETS, one request per chunk,
+ * run together; grammar and phrases ride with the first chunk. The lesson's exercise count is shared across the chunks.
+ */
+export async function collectionResult(session: ExerciseSession, signal?: AbortSignal): Promise<GenerationResult> {
+  const connection = await db.aiConnections.get('assistant')
+  if (!connection) throw new Error('Connect an AI model in Settings before generating exercises. The app does not include a built-in model.')
+  const catalog = await loadCatalog()
+  const collectionId = session.collectionId!
+  const items = (await db.collectionItems.bulkGet(session.targetRefs.map(ref => itemId(collectionId, ref)))).flatMap(item => item ? [item] : [])
+  if (!items.length) throw new Error('The items of this collection lesson are gone.')
+  const rank = (ref: string) => isPhraseRef(ref) ? 2 : ref.startsWith('grammar:') ? 1 : 0
   const known = (await db.knowledge.toArray()).map(entry => entry.ref)
   const targetsOf = (part: CollectionItem[]) => part.filter(item => !isPhraseRef(item.ref) && !isSourceRef(item.ref)).map(item => requireUnit(catalog, item.ref))
   const phrasesOf = async (part: CollectionItem[]): Promise<PhraseTarget[]> => [...await sourceTargets(part.map(item => item.ref)), ...part.filter(item => isPhraseRef(item.ref)).map(item => ({ ref: item.ref, text: item.text!, ...(item.translation ? { translation: item.translation } : {}) }))]
-  // Words go in chunks of at most MAX_COLLECTION_TARGETS, one request per chunk, run together; grammar and phrases ride with the first chunk.
+  const words = items.filter(item => rank(item.ref) === 0)
   const rest = items.filter(item => rank(item.ref) !== 0)
   const chunks: CollectionItem[][] = []
   for (let from = 0; from < words.length || !chunks.length; from += MAX_COLLECTION_TARGETS) chunks.push(words.slice(from, from + MAX_COLLECTION_TARGETS))
   chunks[0] = [...chunks[0], ...rest]
+  const total = session.exerciseCount ?? await exerciseCountPreference()
+  const share = Math.max(MIN_CHUNK_EXERCISES, Math.ceil(total / chunks.length))
   const parts = await Promise.all(chunks.map(async (part, index) => {
     const targets = targetsOf(part)
     const allowed = [...new Map([...known, ...targets.map(unit => unit.ref)].filter(ref => catalog.units.has(ref)).map(ref => [ref, requireUnit(catalog, ref)])).values()]
-    const result = await generateExercises(connection, { mode: 'review', targets, review: [], allowed, catalog, phrases: await phrasesOf(part) }, signal)
+    const result = await generateBatched(connection, { mode: 'review', targets, review: [], allowed, catalog, phrases: await phrasesOf(part) }, share, signal)
     return chunks.length === 1 ? result : { ...result, exercises: result.exercises.map(exercise => ({ ...exercise, id: `${index + 1}-${exercise.id}` })) }
   }))
-  const generated = { exercises: parts.flatMap(part => part.exercises), rejected: parts.flatMap(part => part.rejected) }
-  const ordered = orderByPhase(generated.exercises)
-  const refs = items.map(item => item.ref)
-  const id = crypto.randomUUID()
-  const now = Date.now()
-  await db.transaction('rw', db.exerciseSessions, db.studyCards, async () => {
-    for (const ref of refs) if (!await db.studyCards.get(cardId(ref, DOMAIN))) await db.studyCards.add(newCard(ref, now))
-    await db.exerciseSessions.add({
-      id, mode: 'review', domain: DOMAIN, collectionId, targetRefs: refs, reviewRefs: [], exercises: ordered.exercises, phases: ordered.phases, cursor: 0, status: 'active',
-      model: connection.model, rejected: generated.rejected, createdAt: now,
-    })
-  })
-  return id
+  const ordered = orderByPhase(parts.flatMap(part => part.exercises))
+  return { exercises: ordered.exercises, phases: ordered.phases, rejected: parts.flatMap(part => part.rejected) }
 }
 
 /** Media.tsx calls this from a line's menu: adds the lines (each carries its media source) to their show's collection, then starts practice on them. */

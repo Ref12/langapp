@@ -40,6 +40,6 @@ describe('collection session introduction', () => {
     expect(screen.getByText('You know these')).toBeInTheDocument()
     expect(within(screen.getByRole('list', { name: 'Lesson order' })).getAllByRole('listitem').map(item => item.textContent)).toEqual(['Words', 'The line'])
     expect(screen.getByRole('heading', { name: 'The line' })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /Start exercises/ })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument()
   })
 })

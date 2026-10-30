@@ -8,7 +8,8 @@ import { isSourceRef } from './contracts'
 import {
   cardId, unitRef, type Band, type ExerciseAttempt, type ExerciseSession, type KnowledgeEntry, type StudyCard, type StudyDomain,
 } from './contracts'
-import { checkAnswer, generateExercises } from './exercises'
+import { checkAnswer, generateBatched } from './exercises'
+import { exerciseCountPreference, runGeneration, type GenerationResult } from './generation'
 import { emptySchedulingState, schedule, type Rating, type SchedulingState } from './fsrs'
 
 // Knowledge set, next-group selection, review selection and exercise sessions.
@@ -150,22 +151,35 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
   const sessions = await db.exerciseSessions.toArray()
   const targetRefs = next.units.map(unit => unit.ref)
   const reviewRefs = recentReviewRefs(sessions, new Set(targetRefs)).filter(ref => known.has(ref) && catalog.units.has(ref))
-  const allowed = curriculumUnits(catalog, [...known, ...targetRefs])
-  const generated = await generateExercises(connection, {
-    mode: 'new', targets: next.units, review: reviewRefs.map(ref => requireUnit(catalog, ref)), allowed, catalog, phrases: await sourceTargets(known),
-  }, signal)
   const now = Date.now()
-  return db.transaction('rw', db.knowledge, db.studyCards, db.exerciseSessions, db.journal, async () => {
+  const count = await exerciseCountPreference()
+  let created: ExerciseSession | undefined
+  const id = await db.transaction('rw', db.knowledge, db.studyCards, db.exerciseSessions, db.journal, async () => {
     // Guard only against the same group being started twice at once.
     const resumed = resume ? await activeSession('new') : await db.exerciseSessions.where('status').equals('active')
       .filter(session => session.mode === 'new' && !session.redoOf && session.groupId === next.group.id).first()
     if (resumed) return resumed.id
     await addUnits(next.newUnits, 'new', now)
-    return saveSession({
+    created = {
       id: crypto.randomUUID(), mode: 'new', domain: DOMAIN, groupId: next.group.id, targetRefs, reviewRefs,
-      exercises: generated.exercises, cursor: 0, status: 'active', model: connection.model, rejected: generated.rejected, createdAt: now,
-    })
+      exercises: [], cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: count,
+    }
+    return saveSession(created)
   })
+  if (created) { const session = created; void runGeneration(id, () => lessonResult(session, signal)) }
+  return id
+}
+
+/** Writes the exercises for a New, Review or redo session from its saved targets; also what Try again runs. */
+export async function lessonResult(session: ExerciseSession, signal?: AbortSignal): Promise<GenerationResult> {
+  const connection = await requireConnection()
+  const catalog = await loadCatalog()
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  const targets = curriculumUnits(catalog, session.targetRefs)
+  const review = curriculumUnits(catalog, session.reviewRefs)
+  const allowed = curriculumUnits(catalog, [...known, ...session.targetRefs, ...session.reviewRefs])
+  const phrases = await sourceTargets(session.mode === 'new' ? known : [...session.targetRefs, ...session.reviewRefs])
+  return generateBatched(connection, { mode: session.mode, targets, review, allowed, catalog, phrases }, session.exerciseCount ?? await exerciseCountPreference(), signal)
 }
 
 export async function dueCards(now: number): Promise<StudyCard[]> {
@@ -186,16 +200,19 @@ export async function startReviewSession(now: number, anyway = false, signal?: A
   const targets = chosen.flatMap(card => catalog.units.has(card.ref) ? [requireUnit(catalog, card.ref)] : [])
   const sourceWords = await sourceTargets(chosen.map(card => card.ref))
   if (!targets.length && !sourceWords.length) throw new Error(known.size ? 'Nothing is due for review right now.' : 'Your knowledge set is empty. Start with New, or add items from the Dictionary.')
-  const allowed = curriculumUnits(catalog, known)
-  const generated = await generateExercises(connection, { mode: 'review', targets, review: [], allowed, catalog, phrases: sourceWords }, signal)
-  return db.transaction('rw', db.exerciseSessions, async () => {
+  const count = await exerciseCountPreference()
+  let created: ExerciseSession | undefined
+  const id = await db.transaction('rw', db.exerciseSessions, async () => {
     const resumed = await activeSession('review')
     if (resumed) return resumed.id
-    return saveSession({
+    created = {
       id: crypto.randomUUID(), mode: 'review', domain: DOMAIN, targetRefs: [...targets.map(unit => unit.ref), ...sourceWords.map(word => word.ref)], reviewRefs: [],
-      exercises: generated.exercises, cursor: 0, status: 'active', model: connection.model, rejected: generated.rejected, createdAt: Date.now(),
-    })
+      exercises: [], cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: Date.now(), generation: 'running', exerciseCount: count,
+    }
+    return saveSession(created)
   })
+  if (created) { const session = created; void runGeneration(id, () => lessonResult(session, signal)) }
+  return id
 }
 
 /** Starts a fresh session with the same mode and items as an earlier one; the earlier session and its attempts stay. */
@@ -204,17 +221,14 @@ export async function startRedoSession(sourceId: string, signal?: AbortSignal): 
   if (!source) throw new Error('That lesson session could not be found.')
   if (source.collectionId) throw new Error('Practise a collection from its own page.')
   const connection = await requireConnection()
-  const catalog = await loadCatalog()
-  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
-  const targets = curriculumUnits(catalog, source.targetRefs)
-  const review = curriculumUnits(catalog, source.reviewRefs)
-  const allowed = curriculumUnits(catalog, [...known, ...source.targetRefs, ...source.reviewRefs])
-  const generated = await generateExercises(connection, { mode: source.mode, targets, review, allowed, catalog, phrases: await sourceTargets([...source.targetRefs, ...source.reviewRefs]) }, signal)
-  return saveSession({
+  const id = await saveSession({
     id: crypto.randomUUID(), mode: source.mode, domain: source.domain, ...(source.groupId ? { groupId: source.groupId } : {}),
-    targetRefs: source.targetRefs, reviewRefs: source.reviewRefs, exercises: generated.exercises, cursor: 0, status: 'active',
-    model: connection.model, rejected: generated.rejected, createdAt: Date.now(), redoOf: source.id,
+    targetRefs: source.targetRefs, reviewRefs: source.reviewRefs, exercises: [], cursor: 0, status: 'active',
+    model: connection.model, rejected: [], createdAt: Date.now(), redoOf: source.id, generation: 'running', exerciseCount: await exerciseCountPreference(),
   })
+  const session = (await db.exerciseSessions.get(id))!
+  void runGeneration(id, () => lessonResult(session, signal))
+  return id
 }
 
 function schedulingState(card: StudyCard): SchedulingState {
