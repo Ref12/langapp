@@ -25,7 +25,7 @@ function reply(from: number, end: number) {
 }
 type Body = { context: { line: number }[]; lines: { line: number; text: string }[]; lookahead: { line: number }[] }
 const bodyOf = (request: { user: string }) => JSON.parse(request.user) as Body
-const isFollowUp = (request: { name: string }) => request.name === 'media_translation_lines'
+const isFollowUp = (request: { name: string }) => request.name === 'media_translation_lines' || request.name === 'media_translation_fragments'
 const windowCalls = () => completion.mock.calls.filter(call => !isFollowUp(call[1]))
 const followUps = () => completion.mock.calls.filter(call => isFollowUp(call[1]))
 const followAnswer = (request: { user: string }) => ({ r: bodyOf(request).lines.map(entry => ({ n: entry.line, t: `T${entry.line}`, w: words(entry.line) })) })
@@ -189,7 +189,7 @@ describe('building a chunk from a reply', () => {
     const chunk = buildChunk(odd, lines, plan)
     expect(chunk.sentences.some(sentence => sentence.lines[0] === 200)).toBe(false)
     expect(chunk.sentences.every((sentence, index) => index === 0 || sentence.lines[0] > chunk.sentences[index - 1].lines[1])).toBe(true)
-    expect(chunk.sentences.find(sentence => sentence.lines[0] === 4)!.fragments).toEqual([])
+    expect(chunk.sentences.find(sentence => sentence.lines[0] === 4)!.fragments.map(fragment => fragment.line)).toEqual([4, 5]) // split programmatically, one piece per line
   })
   it('still rejects a reply that is not a translation at all, or that lost most of the window', () => {
     expect(() => buildChunk({ s: [], k: [] }, lines, plan)).toThrow(/invalid or incomplete/)
@@ -526,5 +526,38 @@ describe('trial fixes', () => {
     const { tokens, changed } = normalizePinyin([{ line: 0, items: [tok('a')] }, { line: 1, items: [tok('b')] }, { line: 2, items: [tok('b')] }])
     expect(changed).toBe(1)
     expect(tokens.every(entry => entry.items[0].pinyin === 'b')).toBe(true)
+  })
+
+  describe('sentences without usable fragments (trial: lines 2270-2273)', () => {
+    const four = ['我本不愿，', '是你苦苦相求，', '我才勉强同意', '让你入府']
+    const english = 'I never wanted to, but you begged and begged me, so I only reluctantly agreed to let you into the mansion.'
+    const source: MediaLine[] = four.map((text, i) => ({ start: i, end: i + 0.9, text }))
+    const base = { s: [{ l: [0, 3], t: english, f: [] as { n: number; t: string }[] }], k: [0, 1, 2, 3].map(n => ({ n, w: [`${four[n].slice(0, 2)}|x|y`] })) }
+
+    it('asks one batched follow-up for the fragments and uses them', async () => {
+      const id = await item(source)
+      completion.mockImplementation((async (_c: unknown, request: { user: string; name: string }) => {
+        if (request.name === 'media_translation_fragments') {
+          const asked = JSON.parse(request.user).sentences as { n: number }[]
+          return { r: asked.map(entry => ({ n: entry.n, f: [{ n: 0, t: 'A' }, { n: 1, t: 'B' }, { n: 2, t: 'C' }, { n: 3, t: 'D' }] })) }
+        }
+        return base
+      }) as never)
+      await translateMedia(id, new AbortController().signal)
+      const saved = (await db.mediaItems.get(id))!.aligned!
+      expect(saved.sentences[0].fragments.map(fragment => fragment.text)).toEqual(['A', 'B', 'C', 'D'])
+      expect(completion.mock.calls.filter(call => call[1].name === 'media_translation_fragments')).toHaveLength(1)
+    })
+    it('falls back to a proportional programmatic split when the follow-up fails', async () => {
+      const id = await item(source)
+      completion.mockImplementation((async (_c: unknown, request: { name: string }) => {
+        if (request.name === 'media_translation_fragments') throw new Error('nope')
+        return base
+      }) as never)
+      await translateMedia(id, new AbortController().signal)
+      const fragments = (await db.mediaItems.get(id))!.aligned!.sentences[0].fragments
+      expect(fragments.map(fragment => fragment.line)).toEqual([0, 1, 2, 3])
+      expect(fragments.map(fragment => fragment.text).join(' ')).toBe(english)
+    })
   })
 })

@@ -16,6 +16,7 @@ import { sendTrack, trackFiles, type TrackKind } from '../core/media/tracks'
 import { studyLines } from '../core/collections/store'
 import { removeMedia, saveMedia, saveSync } from '../core/media/store'
 import { PhraseKnowledge } from '../components/assistant/PhraseKnowledge'
+import { LearnFromSpan } from '../components/media/LearnFromSpan'
 import { CollectLine } from '../components/collections/CollectLine'
 import './media.css'
 
@@ -477,6 +478,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
         <WordLine text={item.title} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-title-line" />
         <PracticeSnippet source={source(item.title)} />
       </div>}
+      <LearnFromSpan item={item} open={window.location.hash.includes('?learn')} />
       {canWatch && <div className="media-views" role="group" aria-label="Watch view">
         <button type="button" aria-pressed={view === 'learn'} onClick={() => setView('learn')}>Learning</button>
         <button type="button" aria-pressed={view === 'lines'} onClick={() => setView('lines')}>Lines</button>

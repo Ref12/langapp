@@ -103,6 +103,34 @@ describe('collections', () => {
     expect((await db.exerciseSessions.get(sessionId))!.targetRefs).toContain(phrase)
   })
 
+  it('keeps every picked word: 20 picks make 3 generation requests and one session', async () => {
+    await db.aiConnections.add(connection)
+    const { loadCatalog } = await import('../study/catalog')
+    const units = (await loadCatalog()).units
+    const refs = [...units.values()].filter(unit => unit.kind === 'vocabulary').slice(0, 20).map(unit => unit.ref)
+    const asked: string[][] = []
+    structured.requestStructuredJSON.mockImplementation(async (_c: unknown, request: { user: string }) => {
+      const described = JSON.parse(request.user).targets as { ref: string; chinese: string }[]
+      const targets = described.map(target => target.ref)
+      asked.push(targets)
+      return { exercises: [0, 1, 2, 3].map(n => ({ id: 'c' + n, type: 'choice', targets: [targets[n % targets.length]], direction: 'zh-to-en', question: described[n % described.length].chinese, options: ['I', 'you', 'we', 'they'], answer: 0, explanation: 'x' })) }
+    })
+    const { id } = await createCollection('Picks')
+    const { addUnitsToCollection } = await import('./store')
+    await addUnitsToCollection(id, refs)
+    const sessionId = await startCollectionSession(id, { itemIds: refs.map(ref => itemId(id, ref)) })
+    expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(3)
+    expect(asked.map(chunk => chunk.length)).toEqual([8, 8, 4])
+    const session = (await db.exerciseSessions.get(sessionId))!
+    expect(new Set(session.targetRefs)).toEqual(new Set(refs))
+    expect(session.exercises).toHaveLength(12)
+    expect(new Set(session.exercises.map(exercise => exercise.id)).size).toBe(12)
+    // Without a selection the old cap of 8 words holds.
+    structured.requestStructuredJSON.mockClear()
+    await startCollectionSession(id)
+    expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
+  })
+
   it('promotes items to the knowledge set and keeps the card history', async () => {
     await db.aiConnections.add(connection)
     structured.requestStructuredJSON.mockImplementation(async (_c: unknown, request: { user: string }) => proposalFor(JSON.parse(request.user).targets.map((target: { ref: string }) => target.ref)))

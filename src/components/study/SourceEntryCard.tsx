@@ -14,7 +14,7 @@ export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, ro
   const example = entry.sources[0]
   const meaning = entry.meanings.join('; ')
   return <article className="word-card study-unit-card lesson-word-card" data-unit={`source:${entry.id}`}>
-    <div className="card-topline"><span className="eyebrow">From your media{entry.pos ? ` / ${entry.pos}` : ''}</span>{known && <span className="tag">{cardStatus(card, now)}</span>}</div>
+    <div className="card-topline"><span className="eyebrow">From your media{entry.pos ? ` / ${entry.pos}` : ''}</span>{entry.register === 'literary' && <span className="tag" title="Classical or court-drama language, rare in everyday speech">literary</span>}{known && <span className="tag">{cardStatus(card, now)}</span>}</div>
     <div className="phrase-row">
       <div className="phrase-row-text">
         <h3 lang="zh-Hans" className="word-native">{entry.word}</h3>

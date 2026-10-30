@@ -39,6 +39,8 @@ export const sourceEntrySchema = z.object({
   pinyin: z.string().min(1).max(160),
   meanings: z.array(z.string().min(1).max(120)).min(1).max(3),
   pos: z.string().max(30),
+  /** Classical, literary or court-drama language that everyday speech does not use. */
+  register: z.enum(['literary']).optional(),
   /** One example per source the word came from. */
   sources: z.array(z.object({ mediaId: z.string().max(200), title: z.string().max(500), line: z.number().int().min(0), text: z.string().min(1).max(2000) }).strict()).min(1).max(100),
   createdAt: z.number(),

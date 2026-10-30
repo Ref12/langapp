@@ -2,6 +2,7 @@ import { aiConnectionSchema, type AIConnection } from '../assistant/contracts'
 import { requestStructuredJSON } from '../ai/structured'
 import { db } from '../database'
 import { loadCatalog, type Catalog } from '../study/catalog'
+import { curriculumWords, mergeKnownWords } from './compounds'
 import { isTranslated, sourceEntrySchema, type EntryLinks, type MediaItem, type SourceEntry } from './contracts'
 
 // Pass 2 of the annotated source: every distinct word of an item is linked to a curriculum unit or a source entry.
@@ -116,9 +117,9 @@ export function entryFrequencies(item: Pick<MediaItem, 'aligned' | 'entries'>, r
 const schema = {
   type: 'object', additionalProperties: false, required: ['results'],
   properties: { results: { type: 'array', items: {
-    type: 'object', additionalProperties: false, required: ['text', 'decision', 'ref', 'pinyin', 'meanings', 'pos', 'example'],
+    type: 'object', additionalProperties: false, required: ['text', 'decision', 'ref', 'pinyin', 'meanings', 'pos', 'example', 'register'],
     properties: {
-      text: { type: 'string' }, decision: { type: 'string', enum: ['sense', 'word', 'skip'] }, ref: { type: 'string' }, pinyin: { type: 'string' },
+      text: { type: 'string' }, decision: { type: 'string', enum: ['sense', 'word', 'skip', 'part'] }, register: { type: 'string', enum: ['literary', ''] }, ref: { type: 'string' }, pinyin: { type: 'string' },
       meanings: { type: 'array', items: { type: 'string' } }, pos: { type: 'string' }, example: { type: 'integer' },
     },
   } } },
@@ -132,7 +133,9 @@ A headword is a dictionary word. Never make an entry for a verb or noun plus a p
 Decide for each word:
 - "sense": the word has "senses" and one of them is the meaning used in its examples. Put that sense's ref in "ref". Leave pinyin "", meanings [], pos "", example -1.
 - "word": a real Mandarin word or expression that no given sense covers (or there are no senses). Give "pinyin" (tone marks, syllables separated by spaces), 1-3 short English "meanings" (a few words each, most common first), "pos" (a short part of speech such as noun, verb, adjective, idiom, measure word) and "example": the line number of the best of its examples. "ref" is "".
+- "part": a single character (or a fragment) that, in its example's "context" (the line split into words with |), is only a piece of a longer fixed expression: a chengyu, idiom, set phrase, title or official rank (寒了心, 奔为妾, 鲤鱼跃龙门, 从一而终, 视…如己出, 德不配位, 毋负朕望, 司员外郎). Make no entry for the piece. Same blanks as "skip".
 - "skip": a personal name, a place name, a segmentation artefact (not a real word on its own) or a bare sound. ref "", pinyin "", meanings [], pos "", example -1.
+For "word", set "register" to "literary" when the word is classical, literary or court-drama (historical-costume) language that people do not use in everyday modern speech (朕, 臣, 毋, 乃, 若, 尔, 赐, 授, 奉, 辞, 爱卿); otherwise "". Always "" for "sense", "skip" and "part".
 Return only the JSON.`
 
 /** Endings that make a headword a verb/noun plus a particle (进了, 断了, 好的, 来过, 看着), not a word of its own. */
@@ -151,7 +154,7 @@ export function baseOf(word: string, known: (text: string) => boolean): string |
 
 export interface BatchAnswer {
   senses: Map<string, string>
-  words: Map<string, { pinyin: string; meanings: string[]; pos: string; example: number }>
+  words: Map<string, { pinyin: string; meanings: string[]; pos: string; example: number; register?: 'literary' }>
   skipped: string[]
   /** Words in the batch the reply left out or answered invalidly; they stay unresolved for a later run. */
   unresolved: string[]
@@ -165,17 +168,19 @@ export function validateBatch(value: unknown, batch: readonly WorkItem[], known:
   const answer: BatchAnswer = { senses: new Map(), words: new Map(), skipped: [], unresolved: [] }
   const seen = new Set<string>()
   for (const raw of results) {
-    const result = raw as { text?: unknown; decision?: unknown; ref?: unknown; pinyin?: unknown; meanings?: unknown; pos?: unknown; example?: unknown }
+    const result = raw as { text?: unknown; decision?: unknown; ref?: unknown; pinyin?: unknown; meanings?: unknown; pos?: unknown; example?: unknown; register?: unknown }
     const item = typeof result.text === 'string' ? asked.get(result.text) : undefined
     if (!item || seen.has(item.token.text)) continue
-    if (result.decision === 'skip') { seen.add(item.token.text); answer.skipped.push(item.token.text); continue }
+    if (result.decision === 'skip' || result.decision === 'part') { seen.add(item.token.text); answer.skipped.push(item.token.text); continue }
     if (result.decision === 'sense') {
       if (typeof result.ref === 'string' && item.senses.some(sense => sense.ref === result.ref)) { seen.add(item.token.text); answer.senses.set(item.token.text, result.ref) }
       continue
     }
     if (result.decision !== 'word') continue
-    // A curriculum word never becomes a source entry (会, 少): it links to its first curriculum sense.
-    if (item.senses.length) { seen.add(item.token.text); answer.senses.set(item.token.text, item.senses[0].ref); continue }
+    // A curriculum word never becomes a source entry (会, 少): it links to its only sense.
+    // With several senses the model must choose one (decision "sense"): a "word" answer stays unresolved and is asked again in a later batch, never guessed.
+    if (item.senses.length === 1) { seen.add(item.token.text); answer.senses.set(item.token.text, item.senses[0].ref); continue }
+    if (item.senses.length > 1) continue
     // Verb or noun + 了/的/吗/呢/过/着 is not a headword when its base is known: no entry of its own (set aside, not retried).
     if (baseOf(item.token.text, known)) { seen.add(item.token.text); answer.skipped.push(item.token.text); continue }
     const pinyin = typeof result.pinyin === 'string' ? result.pinyin.trim() : ''
@@ -184,7 +189,7 @@ export function validateBatch(value: unknown, batch: readonly WorkItem[], known:
     if (!pinyin || han.test(pinyin) || pinyin.length > 160 || !meanings.length || meanings.length > 3 || meanings.some(meaning => meaning.length > 120)) continue
     const example = typeof result.example === 'number' && item.token.lines.includes(result.example) ? result.example : item.token.lines[0]
     seen.add(item.token.text)
-    answer.words.set(item.token.text, { pinyin, meanings, pos, example })
+    answer.words.set(item.token.text, { pinyin, meanings, pos, example, ...(result.register === 'literary' ? { register: 'literary' as const } : {}) })
   }
   answer.unresolved = batch.map(item => item.token.text).filter(text => !seen.has(text))
   if (!seen.size) throw new Error('The AI returned an invalid answer for these words.')
@@ -204,11 +209,11 @@ export interface EntriesOptions {
 export interface EntriesSummary { tokens: number; exact: number; existing: number; requested: number; requests: number; created: number; senses: number; skipped: number; unresolved: number }
 
 /** Builds one entry from an AI answer, with the example from this source. */
-function buildEntry(word: string, answer: { pinyin: string; meanings: string[]; pos: string; example: number }, item: MediaItem, now: number): SourceEntry | undefined {
+function buildEntry(word: string, answer: { pinyin: string; meanings: string[]; pos: string; example: number; register?: 'literary' }, item: MediaItem, now: number): SourceEntry | undefined {
   const line = item.lines[answer.example]
   if (!line) return undefined
   const parsed = sourceEntrySchema.safeParse({
-    id: sourceEntryId(word), word, pinyin: answer.pinyin, meanings: answer.meanings, pos: answer.pos,
+    id: sourceEntryId(word), word, pinyin: answer.pinyin, meanings: answer.meanings, pos: answer.pos, ...(answer.register ? { register: answer.register } : {}),
     sources: [{ mediaId: item.id, title: item.title, line: answer.example, text: line.text }], createdAt: now, updatedAt: now,
   })
   return parsed.success ? parsed.data : undefined
@@ -230,14 +235,23 @@ export async function linkEntries(
   options: EntriesOptions = {},
 ): Promise<EntriesSummary> {
   signal.throwIfAborted()
-  const original = await db.mediaItems.get(id)
+  let original = await db.mediaItems.get(id)
   if (!original) throw new Error('This media is no longer saved.')
   if (!original.aligned || !isTranslated(original.aligned, original.lines.length)) throw new Error('Translate the whole source first; the words come from that pass.')
   const stamp = original.aligned.updatedAt
+  const catalog = options.catalog ?? await loadCatalog()
+  // A curriculum word that pass 1 cut into characters (怎|么) is joined again before anything is linked, and the line view shows the whole word.
+  const curriculum = curriculumWords(catalog)
+  let joined = 0
+  const mergedTokens = original.aligned.tokens.map(entry => { const result = mergeKnownWords(entry.items, text => curriculum.has(text)); joined += result.merged; return result.merged ? { ...entry, items: result.items } : entry })
+  if (joined) {
+    original = { ...original, aligned: { ...original.aligned, tokens: mergedTokens } }
+    await db.mediaItems.update(id, { aligned: original.aligned })
+    console.info(`${TAG} joined ${joined} cut curriculum word(s) in the line tokens`)
+  }
   const tokens = collectTokens(original)
   const byText = new Map(tokens.map(token => [token.text, token]))
   const total = tokens.length
-  const catalog = options.catalog ?? await loadCatalog()
   const existing = new Map((await db.sourceEntries.toArray()).map(entry => [entry.word, entry]))
   const plan = planLinks(tokens, catalog, new Set(existing.keys()), original.entries)
   const batchSize = options.batch ?? ENTRIES.batch
@@ -302,6 +316,8 @@ export async function linkEntries(
   const timeoutMs = options.timeoutMs ?? ENTRIES.timeoutMs
   const label = (index: number) => `batch ${index + 1}/${batches.length}`
 
+  const lineTokens = new Map((original.aligned?.tokens ?? []).map(entry => [entry.line, entry.items.map(token => token.text + token.trailing).join('|')]))
+  const contextOf = (line: number) => lineTokens.get(line) ?? original.lines[line].text
   const ask = async (batch: WorkItem[], outer: AbortSignal): Promise<BatchAnswer> => {
     const guard = new AbortController()
     const relay = () => guard.abort()
@@ -314,7 +330,7 @@ export async function linkEntries(
         user: JSON.stringify({ words: batch.map(item => ({
           text: item.token.text, pinyin: item.token.pinyin, gloss: item.token.gloss,
           ...(item.senses.length ? { senses: item.senses } : {}),
-          examples: item.token.lines.map(line => ({ line, text: original.lines[line].text })),
+          examples: item.token.lines.map(line => ({ line, text: original.lines[line].text, ...(Array.from(item.token.text).length === 1 ? { context: contextOf(line) } : {}) })),
         })) }),
       })
       return validateBatch(reply, batch, plan.known)

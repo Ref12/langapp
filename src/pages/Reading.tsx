@@ -17,6 +17,7 @@ export function Library({ workspace, busy, run }: PageProps) {
   const [showImport, setShowImport] = useState(false)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const readyMedia = useLiveQuery(async () => (await db.mediaItems.orderBy('savedAt').reverse().toArray()).filter(media => media.entries?.complete), [])
   const books = useLiveQuery(() => db.libraryBooks.orderBy('updatedAt').reverse().toArray(), [])
   const matches = stories.filter(story => `${story.title} ${story.topic}`.toLowerCase().includes(query.trim().toLowerCase()))
   const imported = (books ?? []).filter(book => `${book.title} ${book.author ?? ''}`.toLowerCase().includes(query.trim().toLowerCase()))
@@ -25,6 +26,7 @@ export function Library({ workspace, busy, run }: PageProps) {
       action={<button className="button primary" disabled={busy} aria-expanded={showImport} onClick={() => setShowImport(value => !value)}><Upload size={17} /> Import book</button>}>
       Read original stories with prepared Mandarin, or import your own books and translate with your connected AI.
     </PageHeading>
+    {!!readyMedia?.length && <section className="panel" aria-label="Learn from your media"><h2>Learn from your media</h2><ul className="plain-list">{readyMedia.map(media => <li key={media.id}>{media.title} <a className="button primary" href={`#media/${media.id}?learn`}>Learn from this</a></li>)}</ul></section>}
     <p className="small muted">Gathering words and phrases as you read? <a className="text-link" href="#collections">Open your collections</a>.</p>
     {showImport && <section className="panel book-import" aria-label="Import a book">
       <h2>Bring a book into your library</h2>

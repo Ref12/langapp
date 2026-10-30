@@ -252,3 +252,57 @@ describe('trial fixes', () => {
     expect(baseOf('会', () => true)).toBeUndefined()
   })
 })
+
+describe('curriculum words answered as new words', () => {
+  const work = (senses: string[]) => [{ token: { text: '会', count: 1, lines: [0], pinyin: '', gloss: '' }, senses: senses.map(ref => ({ ref, pinyin: '', meaning: '' })) }]
+  const reply = { results: [{ text: '会', decision: 'word', ref: '', pinyin: 'huì', meanings: ['can'], pos: 'v', example: 0 }] }
+  it('links a single-sense word to its sense', () => {
+    expect(validateBatch(reply, work(['vocabulary:a'])).senses.get('会')).toBe('vocabulary:a')
+  })
+  it('leaves a multi-sense word unresolved instead of picking the first sense', () => {
+    const answer = validateBatch({ results: [...reply.results, { text: '会', decision: 'sense', ref: 'vocabulary:b', pinyin: '', meanings: [], pos: '', example: -1 }] }, work(['vocabulary:a', 'vocabulary:b']))
+    expect(answer.senses.get('会')).toBe('vocabulary:b')
+    const alone = validateBatch({ results: [...reply.results, { text: 'x', decision: 'skip' }] }, [...work(['vocabulary:a', 'vocabulary:b']), { token: { text: 'x', count: 1, lines: [0], pinyin: '', gloss: '' }, senses: [] }])
+    expect(alone.senses.has('会')).toBe(false)
+    expect(alone.words.has('会')).toBe(false)
+    expect(alone.unresolved).toContain('会')
+  })
+})
+
+describe('trial quality fixes', () => {
+  const cat = { units: new Map([vocab('zen3me', '怎么', 'zěnme', 'how'), vocab('xi3huan', '喜欢', 'xǐhuan', 'like')]) } as unknown as Catalog
+
+  it('joins a curriculum word that pass 1 cut, so no bare-character source entries appear', async () => {
+    const id = await item([['怎', '么', '词0'], ['喜', '欢', '词0']])
+    model()
+    await run(id, { catalog: cat })
+    const saved = (await db.mediaItems.get(id))!
+    expect(saved.aligned!.tokens[0].items.map(token => token.text)).toEqual(['怎么', '词0'])
+    expect(saved.entries!.links['怎么']).toBe('vocabulary:zen3me')
+    expect((await db.sourceEntries.toArray()).map(entry => entry.word)).toEqual(['词0'])
+  })
+  it('makes no entry for a character the model marks as a piece of an idiom, and sends the line split as context', async () => {
+    const id = await item([['他', '寒', '了', '心']])
+    model()
+    completion.mockImplementation((async (_c: unknown, request: { user: string }) => ({
+      results: (JSON.parse(request.user).words as { text: string; examples: { line: number; context?: string }[] }[]).map(word => word.text === '寒'
+        ? (expect(word.examples[0].context).toBe('他|寒|了|心。'), { text: word.text, decision: 'part', ref: '', pinyin: '', meanings: [], pos: '', example: -1, register: '' })
+        : { text: word.text, decision: 'word', ref: '', pinyin: 'x', meanings: ['m'], pos: 'noun', example: word.examples[0].line, register: '' }),
+    })) as never)
+    await run(id, { catalog: cat })
+    const words = (await db.sourceEntries.toArray()).map(entry => entry.word)
+    expect(words).not.toContain('寒')
+    expect(words).toContain('他')
+  })
+  it('stores the literary register from the batched reply', async () => {
+    const id = await item([['朕', '词0']])
+    completion.mockImplementation((async (_c: unknown, request: { user: string }) => ({
+      results: (JSON.parse(request.user).words as { text: string; examples: { line: number }[] }[]).map(word => (
+        { text: word.text, decision: 'word', ref: '', pinyin: 'x', meanings: ['m'], pos: 'pronoun', example: word.examples[0].line, register: word.text === '朕' ? 'literary' : '' })),
+    })) as never)
+    await run(id, { catalog: cat })
+    const entries = new Map((await db.sourceEntries.toArray()).map(entry => [entry.word, entry]))
+    expect(entries.get('朕')!.register).toBe('literary')
+    expect(entries.get('词0')!.register).toBeUndefined()
+  })
+})
