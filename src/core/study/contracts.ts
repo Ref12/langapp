@@ -63,6 +63,8 @@ export const tilesExerciseSchema = z.object({
   translation: englishText,
   tiles: z.array(chineseTile).min(2).max(16),
   distractors: z.array(chineseTile).max(3),
+  /** Other natural answers built from the same words (spaces and punctuation ignored); the learner's answer may match any of them or the tiles in order. */
+  acceptedAnswers: z.array(z.string().trim().min(1).max(80)).max(4).optional(),
   shuffled: z.array(z.number().int().nonnegative()).min(2).max(19),
   explanation: explanationText,
 }).strict()
@@ -81,6 +83,16 @@ export const exerciseSchema = z.discriminatedUnion('type', [choiceExerciseSchema
     }
   })
 
+/** A missed exercise queued to be played again at the end of the session; the position after the exercises is the redo's place in this list. */
+export const redoSchema = z.object({
+  /** Index into the session's exercises. */
+  exercise: z.number().int().nonnegative(),
+  /** 1 for the first redo, 2 for the second (the most any exercise gets). */
+  round: z.number().int().min(1).max(2),
+  /** A fresh tile order for a tiles exercise. */
+  shuffled: z.array(z.number().int().nonnegative()).max(19).optional(),
+}).strict()
+
 export const exerciseSessionSchema = z.object({
   id,
   mode: z.enum(['new', 'review']),
@@ -90,6 +102,8 @@ export const exerciseSessionSchema = z.object({
   reviewRefs: z.array(unitRefSchema).max(40),
   exercises: z.array(exerciseSchema).max(80),
   cursor: z.number().int().nonnegative(),
+  /** Missed exercises queued after the last one. The cursor runs on through them; redos are never graded or scheduled again. */
+  redos: z.array(redoSchema).max(160).optional(),
   status: z.enum(['active', 'completed', 'abandoned']),
   model: z.string().max(200),
   rejected: z.array(z.string().max(300)).max(60),
@@ -114,6 +128,8 @@ export const exerciseAttemptSchema = z.object({
   refs: z.array(unitRefSchema).min(1).max(6),
   response: z.string().max(2000),
   correct: z.boolean(),
+  /** True for the answer to a redo: it only has to be right and changes no card or score. */
+  redo: z.boolean().optional(),
   createdAt: timestamp,
 }).strict()
 
@@ -129,6 +145,7 @@ export type StudyCard = z.infer<typeof studyCardSchema>
 export type ChoiceExercise = z.infer<typeof choiceExerciseSchema>
 export type TilesExercise = z.infer<typeof tilesExerciseSchema>
 export type Exercise = ChoiceExercise | TilesExercise
+export type Redo = z.infer<typeof redoSchema>
 export type ExerciseSession = z.infer<typeof exerciseSessionSchema>
 export type ExerciseAttempt = z.infer<typeof exerciseAttemptSchema>
 export type StudyBackup = z.infer<typeof studyBackupSchema>

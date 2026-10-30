@@ -7,8 +7,8 @@ import { useStudyActions } from './useStudyActions'
 const WEEK = 7 * 24 * 60 * 60 * 1000
 
 export function Overview({ workspace, now, run, busy }: PageProps) {
-  const { catalog, connection, due, active, next, progress, start } = useStudyActions({ workspace, now, run })
-  const resumable = active.find(session => session.mode === 'new' && !session.redoOf)
+  const { catalog, connection, due, rows, next, progress, start } = useStudyActions({ workspace, now, run })
+  const resumable = rows.find(row => row.origin.kind === 'new')?.session
   const finished = workspace.exerciseSessions.filter(session => session.status === 'completed')
   const lessonsDone = finished.filter(session => session.mode === 'new' && !session.redoOf).length
   const reviewsThisWeek = finished.filter(session => session.mode === 'review' && (session.completedAt ?? session.createdAt) > now - WEEK).length

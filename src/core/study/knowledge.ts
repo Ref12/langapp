@@ -8,8 +8,9 @@ import { isSourceRef } from './contracts'
 import {
   cardId, unitRef, type Band, type ExerciseAttempt, type ExerciseSession, type KnowledgeEntry, type StudyCard, type StudyDomain,
 } from './contracts'
-import { checkAnswer, generateBatched } from './exercises'
-import { exerciseCountPreference, runGeneration, type GenerationResult } from './generation'
+import { checkAnswer, generateBatched, shuffleIndexes } from './exercises'
+import { playItem, queueLength, redoFor } from './redo'
+import { cancelGeneration, exerciseCountPreference, runGeneration, type GenerationResult } from './generation'
 import { emptySchedulingState, schedule, type Rating, type SchedulingState } from './fsrs'
 
 // Knowledge set, next-group selection, review selection and exercise sessions.
@@ -166,7 +167,7 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
     }
     return saveSession(created)
   })
-  if (created) { const session = created; void runGeneration(id, () => lessonResult(session, signal)) }
+  if (created) { const session = created; void runGeneration(id, own => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own)) }
   return id
 }
 
@@ -211,7 +212,7 @@ export async function startReviewSession(now: number, anyway = false, signal?: A
     }
     return saveSession(created)
   })
-  if (created) { const session = created; void runGeneration(id, () => lessonResult(session, signal)) }
+  if (created) { const session = created; void runGeneration(id, own => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own)) }
   return id
 }
 
@@ -221,13 +222,16 @@ export async function startRedoSession(sourceId: string, signal?: AbortSignal): 
   if (!source) throw new Error('That lesson session could not be found.')
   if (source.collectionId) throw new Error('Practise a collection from its own page.')
   const connection = await requireConnection()
+  // A redo is only a repeat: starting another replaces the unfinished one.
+  const previous = await db.exerciseSessions.where('status').equals('active').filter(item => !!item.redoOf).toArray()
+  for (const item of previous) await discardSession(item.id)
   const id = await saveSession({
     id: crypto.randomUUID(), mode: source.mode, domain: source.domain, ...(source.groupId ? { groupId: source.groupId } : {}),
     targetRefs: source.targetRefs, reviewRefs: source.reviewRefs, exercises: [], cursor: 0, status: 'active',
     model: connection.model, rejected: [], createdAt: Date.now(), redoOf: source.id, generation: 'running', exerciseCount: await exerciseCountPreference(),
   })
   const session = (await db.exerciseSessions.get(id))!
-  void runGeneration(id, () => lessonResult(session, signal))
+  void runGeneration(id, own => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own))
   return id
 }
 
@@ -242,11 +246,18 @@ export async function submitExerciseAnswer(sessionId: string, index: number, res
     if (existing) return existing
     const session = await db.exerciseSessions.get(sessionId)
     if (!session || session.status !== 'active' || session.cursor !== index) throw new Error('This exercise is no longer active.')
-    const exercise = session.exercises[index]
+    const item = playItem(session, index)
+    if (!item) throw new Error('This exercise is no longer active.')
+    const exercise = item.exercise
     const result = checkAnswer(exercise, response)
     const now = Date.now()
-    const attempt: ExerciseAttempt = { id, sessionId, index, refs: exercise.targets, response: result.response, correct: result.correct, createdAt: now }
+    const attempt: ExerciseAttempt = { id, sessionId, index, refs: exercise.targets, response: result.response, correct: result.correct, ...(item.redo ? { redo: true } : {}), createdAt: now }
     await db.exerciseAttempts.add(attempt)
+    // A miss goes to the end of the session to be played again; the first attempt below is graded as usual.
+    const redo = result.correct ? undefined : redoFor(item, shuffleIndexes)
+    if (redo) await db.exerciseSessions.put({ ...session, redos: [...(session.redos ?? []), redo] })
+    // A redo only has to be answered correctly: nothing is journaled or scheduled again.
+    if (item.redo) return attempt
     // Collection practice schedules the shared card but journals reviews only for items in the knowledge set.
     const inKnowledge = new Set((await db.knowledge.bulkGet(exercise.targets)).flatMap(entry => entry ? [entry.ref] : []))
     await recordJournal(exerciseAttemptEvent(attempt))
@@ -268,7 +279,7 @@ export async function advanceExercise(sessionId: string, index: number): Promise
     if (!session) throw new Error('Exercise session not found.')
     if (session.status === 'completed' || session.cursor > index) return
     if (session.cursor !== index || !await db.exerciseAttempts.get(`${sessionId}:${index}`)) throw new Error('Check your answer before continuing.')
-    if (index < session.exercises.length - 1) {
+    if (index < queueLength(session) - 1) {
       await db.exerciseSessions.put({ ...session, cursor: index + 1 })
     } else {
       await db.exerciseSessions.put({ ...session, status: 'completed', completedAt: Date.now() })
@@ -278,6 +289,7 @@ export async function advanceExercise(sessionId: string, index: number): Promise
 
 /** Abandons an unfinished session. Recorded answers keep their scheduling effect. */
 export async function discardSession(sessionId: string): Promise<void> {
+  cancelGeneration(sessionId)
   await db.transaction('rw', db.exerciseSessions, async () => {
     const session = await db.exerciseSessions.get(sessionId)
     if (!session || session.status !== 'active') return

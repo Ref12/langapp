@@ -133,7 +133,12 @@ export async function promoteItems(itemIds: string[]): Promise<number> {
 }
 
 /** Starts a practice session on a collection's items (all, a selection, or the due ones). The knowledge set is left unchanged. */
-export async function startCollectionSession(collectionId: string, options: { itemIds?: string[]; dueOnly?: boolean; now?: number } = {}, signal?: AbortSignal): Promise<string> {
+export async function startCollectionSession(collectionId: string, options: { itemIds?: string[]; dueOnly?: boolean; now?: number; resume?: boolean } = {}, signal?: AbortSignal): Promise<string> {
+  // One unfinished session per collection; starting again resumes it unless asked for a fresh one.
+  if (options.resume !== false) {
+    const open = await db.exerciseSessions.where('status').equals('active').filter(item => item.collectionId === collectionId).sortBy('createdAt')
+    if (open.length) return open[0].id
+  }
   const connection = await db.aiConnections.get('assistant')
   if (!connection) throw new Error('Connect an AI model in Settings before generating exercises. The app does not include a built-in model.')
   const catalog = await loadCatalog()
@@ -162,7 +167,7 @@ export async function startCollectionSession(collectionId: string, options: { it
     for (const ref of refs) if (!await db.studyCards.get(cardId(ref, DOMAIN))) await db.studyCards.add(newCard(ref, now))
     await db.exerciseSessions.add(session)
   })
-  void runGeneration(id, () => collectionResult(session, signal))
+  void runGeneration(id, own => collectionResult(session, signal ? AbortSignal.any([signal, own]) : own))
   return id
 }
 

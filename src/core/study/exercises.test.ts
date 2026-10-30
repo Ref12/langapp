@@ -1,6 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { buildCatalog, requireUnit, type BandData } from './catalog'
-import { buildGenerationPrompt, checkAnswer, createSegmenter, validateProposal, type GenerationInput } from './exercises'
+import { buildGenerationPrompt, checkAnswer, createSegmenter, matchTiles, validateProposal, type GenerationInput } from './exercises'
+import type { TilesExercise } from './contracts'
+
+const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
+vi.mock('../ai/structured', () => structured)
 
 const band: BandData = {
   schemaVersion: 1, band: '1', alignment: 'hsk-1',
@@ -146,3 +150,43 @@ describe('exercise validation', () => {
     expect(checkAnswer(exercises[1], ['我', '是']).correct).toBe(false)
   })
 })
+
+describe('accepted answers', () => {
+  const tiles = (extra: Record<string, unknown>) => ({ exercises: [{
+    id: 't1', type: 'tiles', targets: ['vocabulary:wo3--me'], translation: 'I am a student.', tiles: ['我', '是', '学生'], distractors: ['学习'],
+    explanation: 'Subject, 是, noun.', ...extra,
+  }] })
+
+  it('keeps valid alternatives and drops invalid ones without rejecting the exercise', () => {
+    const result = validateProposal(tiles({ acceptedAnswers: ['学生是我', ' 学生 是 我 ', '我是老师', '我是学生。', 'I am a student', '我是学生', '学习'] }), input)
+    expect(result.rejected).toEqual([])
+    const exercise = result.exercises[0] as TilesExercise
+    // 老师 is outside the known set, the third equals the answer, the fourth has no Han, and the first two are the same alternative once spaces go.
+    expect(exercise.acceptedAnswers).toEqual(['学生是我', '学习'])
+  })
+
+  it('omits the field when every alternative is dropped, and when none are given', () => {
+    expect((validateProposal(tiles({ acceptedAnswers: ['我是老师'] }), input).exercises[0] as TilesExercise).acceptedAnswers).toBeUndefined()
+    expect((validateProposal(tiles({}), input).exercises[0] as TilesExercise).acceptedAnswers).toBeUndefined()
+  })
+
+  it('grades the tiles in order or any accepted alternative, ignoring spaces and punctuation, and nothing else', () => {
+    const exercise = validateProposal(tiles({ acceptedAnswers: ['学生是我'] }), input).exercises[0] as TilesExercise
+    expect(checkAnswer(exercise, ['我', '是', '学生']).correct).toBe(true)
+    expect(checkAnswer(exercise, ['学生', '是', '我'])).toEqual({ correct: true, response: JSON.stringify(['学生', '是', '我']) })
+    expect(checkAnswer(exercise, ['是', '我', '学生']).correct).toBe(false)
+    expect(checkAnswer(exercise, ['我', '学习']).correct).toBe(false)
+    expect(matchTiles(exercise, ['我', '是', '学生'])).toBe('main')
+    expect(matchTiles(exercise, ['学生', '是', '我'])).toBe('alternative')
+    expect(matchTiles({ ...exercise, tiles: ['我', '是', '学生。'] }, ['我', '是', '学生'])).toBe('main')
+    expect(matchTiles(exercise, ['是', '我'])).toBe('wrong')
+  })
+
+  it('tells the model to carry every meaning-bearing word and to list alternatives', () => {
+    const prompt = buildGenerationPrompt(input)
+    expect(prompt.system).toContain('acceptedAnswers')
+    expect(prompt.system).toContain('都')
+    expect(JSON.parse(prompt.user).rules.join(' ')).toContain('all')
+  })
+})
+

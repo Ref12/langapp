@@ -205,7 +205,7 @@ export async function getLearningContext(query: string): Promise<string> {
       knowledgeSet: { vocabulary: kinds('vocabulary'), grammar: kinds('grammar'), characters: characters.filter(state => state.manualAddedAt !== undefined).length },
       cardsDue: cards.filter(card => card.due <= now).length, cards: cards.length,
       exerciseSessions: { completed: sessions.filter(session => session.status === 'completed').length, abandoned: sessions.filter(session => session.status === 'abandoned').length },
-      exerciseAttempts: { total: attempts.length, correct: attempts.filter(attempt => attempt.correct).length },
+      exerciseAttempts: { total: attempts.filter(attempt => !attempt.redo).length, correct: attempts.filter(attempt => !attempt.redo && attempt.correct).length },
       practisedPhrases: { spoken, written },
       practisedCharacters: characters.filter(state => state.practiceCompletions > 0).length,
     },

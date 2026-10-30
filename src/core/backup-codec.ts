@@ -88,11 +88,11 @@ export function validateStudy(study: StudyBackup) {
   }
   const sessions = new Map(study.sessions.map(session => [session.id, session]))
   for (const session of study.sessions) {
-    if (session.cursor >= session.exercises.length) throw new Error('Backup has an invalid exercise position.')
+    if (session.cursor >= session.exercises.length + (session.redos?.length ?? 0)) throw new Error('Backup has an invalid exercise position.')
   }
   for (const attempt of study.attempts) {
     const session = sessions.get(attempt.sessionId)
-    if (!session || attempt.id !== `${attempt.sessionId}:${attempt.index}` || attempt.index >= session.exercises.length) {
+    if (!session || attempt.id !== `${attempt.sessionId}:${attempt.index}` || attempt.index >= session.exercises.length + (session.redos?.length ?? 0)) {
       throw new Error('Backup contains an exercise answer without its session.')
     }
   }

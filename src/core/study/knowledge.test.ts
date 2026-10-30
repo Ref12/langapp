@@ -129,10 +129,94 @@ describe('knowledge set and sessions', () => {
     await expect(submitExerciseAnswer(id, 3, 'not tiles')).rejects.toThrow(/Arrange the tiles/)
     expect((await submitExerciseAnswer(id, 3, ['学习', '我'])).correct).toBe(false)
     await advanceExercise(id, 3)
+    // The two misses are queued after the last exercise; the lesson is not finished until they are redone.
+    const queued = (await db.exerciseSessions.get(id))!
+    expect(queued.status).toBe('active')
+    expect(queued.redos?.map(redo => [redo.exercise, redo.round])).toEqual([[1, 1], [3, 1]])
+    const choice = session.exercises[1]
+    if (choice.type !== 'choice') throw new Error('expected choice')
+    expect((await submitExerciseAnswer(id, 4, choice.answer)).redo).toBe(true)
+    await advanceExercise(id, 4)
+    expect((await submitExerciseAnswer(id, 5, ['我', '学习'])).correct).toBe(true)
+    await advanceExercise(id, 5)
     const finished = (await db.exerciseSessions.get(id))!
     expect(finished.status).toBe('completed')
     expect(finished.completedAt).toBeDefined()
-    expect(await db.exerciseAttempts.count()).toBe(4)
+    expect(await db.exerciseAttempts.count()).toBe(6)
+    expect((await db.exerciseAttempts.toArray()).filter(attempt => !attempt.redo)).toHaveLength(4)
+  })
+
+  describe('redo queue', () => {
+    async function fixture(tilesExtra: object = {}) {
+      await db.aiConnections.add(connection)
+      const group = nextGroup(await loadCatalog(), new Set())!
+      const refs = group.units.map(unit => unit.ref)
+      const base = proposal(refs)
+      base.exercises[2] = { ...base.exercises[2], ...tilesExtra } as typeof base.exercises[2]
+      structured.requestStructuredJSON.mockResolvedValueOnce(base)
+      const id = await startNewSession()
+      return { id, session: (await db.exerciseSessions.get(id))! }
+    }
+    const cards = async () => (await db.studyCards.toArray()).map(card => ({ ...card }))
+    const wrong = ['学习', '我']
+
+    it('queues a miss once, grades it as before, and never grades or journals a redo', async () => {
+      const { id, session } = await fixture()
+      await advanceExercise(id, 0).catch(() => undefined)
+      const tilesIndex = 2
+      // Answer 0 and 1 correctly to reach the tiles exercise.
+      for (const index of [0, 1]) {
+        const exercise = session.exercises[index]
+        if (exercise.type !== 'choice') throw new Error('expected choice')
+        await submitExerciseAnswer(id, index, exercise.answer)
+        await advanceExercise(id, index)
+      }
+      const journalBefore = await db.journal.count()
+      const miss = await submitExerciseAnswer(id, tilesIndex, wrong)
+      expect(miss).toMatchObject({ correct: false })
+      expect(miss.redo).toBeUndefined()
+      expect(await db.journal.count()).toBeGreaterThan(journalBefore)
+      const missed = (await db.exerciseSessions.get(id))!
+      expect(missed.redos).toHaveLength(1)
+      expect(missed.redos![0]).toMatchObject({ exercise: tilesIndex, round: 1 })
+      expect([...missed.redos![0].shuffled!].sort()).toEqual([0, 1, 2, 3])
+      await advanceExercise(id, tilesIndex)
+      await submitExerciseAnswer(id, 3, ['我', '学习'])
+      await advanceExercise(id, 3)
+      // Position 4 is the redo of exercise 2.
+      const cardsBefore = await cards()
+      const journal = await db.journal.count()
+      const redoMiss = await submitExerciseAnswer(id, 4, wrong)
+      expect(redoMiss).toMatchObject({ correct: false, redo: true })
+      expect(await cards()).toEqual(cardsBefore)
+      expect(await db.journal.count()).toBe(journal)
+      expect((await db.exerciseSessions.get(id))!.redos!.map(redo => redo.round)).toEqual([1, 2])
+      await advanceExercise(id, 4)
+      expect((await submitExerciseAnswer(id, 5, wrong)).redo).toBe(true)
+      // The second redo missed: no third redo is queued, so the lesson ends.
+      expect((await db.exerciseSessions.get(id))!.redos).toHaveLength(2)
+      expect(await cards()).toEqual(cardsBefore)
+      await advanceExercise(id, 5)
+      expect((await db.exerciseSessions.get(id))!.status).toBe('completed')
+    })
+
+    it('keeps the queue and cursor across a reload and resumes on the redo', async () => {
+      const { id } = await fixture()
+      await submitExerciseAnswer(id, 0, 1 - ((await db.exerciseSessions.get(id))!.exercises[0] as { answer: number }).answer)
+      const queued = (await db.exerciseSessions.get(id))!
+      expect(queued.redos).toHaveLength(1)
+      db.close()
+      await db.open()
+      const resumed = (await db.exerciseSessions.get(id))!
+      expect(resumed.redos).toEqual(queued.redos)
+      expect(resumed.cursor).toBe(0)
+      expect(await startNewSessionRaw()).toBe(id)
+    })
+
+    it('rejects an answer for a position beyond the queue', async () => {
+      const { id } = await fixture()
+      await expect(submitExerciseAnswer(id, 9, 0)).rejects.toThrow(/no longer active/)
+    })
   })
 
   it.each(['new', 'review'] as const)('persists shuffled %s choices once and preserves them on resume and grading', async mode => {

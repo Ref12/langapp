@@ -37,7 +37,7 @@ export function History() {
   const lessons = useLiveQuery(async (): Promise<LessonRow[]> => {
     const [sessions, attempts] = await Promise.all([db.exerciseSessions.toArray(), db.exerciseAttempts.toArray()])
     return sessions.map(session => {
-      const mine = attempts.filter(attempt => attempt.sessionId === session.id)
+      const mine = attempts.filter(attempt => attempt.sessionId === session.id && !attempt.redo)
       return { id: session.id, at: session.completedAt ?? session.createdAt, mode: session.mode, items: session.targetRefs.length + session.reviewRefs.length,
           refs: [...session.targetRefs, ...session.reviewRefs],
         exercises: session.exercises.length, answered: mine.length, correct: mine.filter(attempt => attempt.correct).length, status: session.status }

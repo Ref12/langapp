@@ -1,10 +1,11 @@
 import { z } from 'zod'
 import exercisePrompt from '../../../settings/system-prompts/exercises.md?raw'
+import { omit } from '../omit'
 import { requestStructuredJSON } from '../ai/structured'
 import { AITransportError } from '../ai/provider'
 import type { AIConnectionInput } from '../assistant/contracts'
 import { renderExample, type Catalog, type Unit } from './catalog'
-import { exerciseSchema, type Exercise } from './contracts'
+import { exerciseSchema, type Exercise, type TilesExercise } from './contracts'
 
 // AI exercise generation over the learner's known units. The model proposes
 // exercises; the app validates every Chinese string against the allowed
@@ -27,7 +28,7 @@ const proposedChoice = z.object({
 const proposedTiles = z.object({
   id: z.string().min(1).max(200), type: z.literal('tiles'),
   targets: z.array(z.string()).min(1).max(6), translation: z.string(),
-  tiles: z.array(z.string()).min(2).max(16), distractors: z.array(z.string()).max(3), explanation: z.string(),
+  tiles: z.array(z.string()).min(2).max(16), distractors: z.array(z.string()).max(3), acceptedAnswers: z.array(z.string()).max(8).optional(), explanation: z.string(),
 }).strict()
 const proposalSchema = z.object({ exercises: z.array(z.discriminatedUnion('type', [proposedChoice, proposedTiles])).max(40) }).strict()
 
@@ -52,13 +53,14 @@ export const exerciseJSONSchema = {
           },
           {
             type: 'object', additionalProperties: false,
-            required: ['id', 'type', 'targets', 'translation', 'tiles', 'distractors', 'explanation'],
+            required: ['id', 'type', 'targets', 'translation', 'tiles', 'distractors', 'acceptedAnswers', 'explanation'],
             properties: {
               id: stringSchema(200), type: { type: 'string', enum: ['tiles'] },
               targets: { type: 'array', minItems: 1, maxItems: 6, items: stringSchema(200) },
               translation: stringSchema(400),
               tiles: { type: 'array', minItems: 2, maxItems: 16, items: stringSchema(12) },
               distractors: { type: 'array', minItems: 0, maxItems: 3, items: stringSchema(12) },
+              acceptedAnswers: { type: 'array', minItems: 0, maxItems: 4, items: stringSchema(80) },
               explanation: stringSchema(400),
             },
           },
@@ -166,6 +168,8 @@ export function buildGenerationPrompt(input: GenerationInput): { system: string;
         'Every Chinese word in every exercise must come from targets, alsoReview or otherKnownVocabulary. No other words.',
         `Each target must appear in at least two exercises, ideally of different types. Produce about ${count} exercises.`,
         'Reference targets and alsoReview items by their ref string in the targets field.',
+        'The English prompt of a tiles exercise must render every meaning-bearing word of the Chinese answer: 都 is "all", 也 is "also", 了 is shown where English marks it, measure-word quantities are stated ("three cups of tea"). "They rest in the afternoon." is wrong for 她们下午都休息; write "They all rest in the afternoon.".',
+        'For a tiles exercise, put other natural answers built from the same tiles in acceptedAnswers (for example 她们都下午休息 beside 她们下午都休息), or [] when there are none.',
         ...(phrases.length ? ['A target of kind phrase is a whole sentence the learner met: use its words and fragments freely, and build exercises on the phrase itself.'] : []),
       ],
     }),
@@ -186,11 +190,16 @@ function randomIndexes(count: number): number[] {
   return order
 }
 
-function shuffleIndexes(count: number): number[] {
+export function shuffleIndexes(count: number): number[] {
   const order = randomIndexes(count)
   // Avoid presenting the answer order unchanged when there is any alternative.
   if (count > 1 && order.every((value, index) => value === index)) return [...order.slice(1), order[0]]
   return order
+}
+
+/** What an answer is compared by: Han text without spaces or punctuation. */
+export function answerKey(text: string): string {
+  return text.replace(/[\s\p{P}\p{S}]/gu, '')
 }
 
 export function validateProposal(value: unknown, input: GenerationInput): ValidationResult {
@@ -222,7 +231,12 @@ export function validateProposal(value: unknown, input: GenerationInput): Valida
       if ([...tiles, ...distractors].some(tile => !han.test(tile) || !segmenter.covers(tile))) { reject('tile uses vocabulary outside the known set'); continue }
       if (distractors.some(tile => tiles.includes(tile))) { reject('distractor duplicates an answer tile'); continue }
       if (han.test(proposal.translation)) { reject('translation contains Chinese text'); continue }
-      candidate = { ...proposal, targets, tiles, distractors, shuffled: shuffleIndexes(tiles.length + distractors.length) }
+      const main = answerKey(tiles.join(''))
+      // Alternatives face the same checks as the answer; the bad ones are dropped quietly and the exercise stays.
+      const accepted = [...new Map((proposal.acceptedAnswers ?? []).map(answer => [answerKey(answer), answer.replace(/\s+/g, '')] as const)).entries()]
+        .filter(([key, answer]) => key !== main && han.test(answer) && segmenter.covers(answer) && !/[A-Za-z0-9]/.test(key))
+        .map(([, answer]) => answer).slice(0, 4)
+      candidate = { ...omit(proposal, 'acceptedAnswers'), targets, tiles, distractors, ...(accepted.length ? { acceptedAnswers: accepted } : {}), shuffled: shuffleIndexes(tiles.length + distractors.length) }
     }
     const result = exerciseSchema.safeParse(candidate)
     if (!result.success) { reject(result.error.issues.map(issue => issue.message).join('; ').slice(0, 200)); continue }
@@ -258,7 +272,10 @@ export function splitCount(count: number): number[] {
   return Array.from({ length: requests }, (_, index) => base + (index < count - base * requests ? 1 : 0))
 }
 
-/** Generates `count` exercises: one request, or parallel requests of up to 20 whose results are joined. Never one request per word. */
+/**
+ * Generates about `count` exercises: one request, or parallel requests of up to 20 whose results are joined. Never one request per word.
+ * The count is what the model is asked for, not a target: a lesson keeps whatever survives validation (at least MIN_USABLE_EXERCISES per request).
+ */
 export async function generateBatched(connection: AIConnectionInput, input: GenerationInput, count: number, signal?: AbortSignal): Promise<ValidationResult> {
   const sizes = splitCount(count)
   const parts = await Promise.all(sizes.map(async (size, index) => {
@@ -266,6 +283,15 @@ export async function generateBatched(connection: AIConnectionInput, input: Gene
     return sizes.length === 1 ? result : { ...result, exercises: result.exercises.map(exercise => ({ ...exercise, id: `b${index + 1}-${exercise.id}` })) }
   }))
   return { exercises: parts.flatMap(part => part.exercises), rejected: parts.flatMap(part => part.rejected) }
+}
+
+export type AnswerMatch = 'main' | 'alternative' | 'wrong'
+
+/** How a built sentence compares with the exercise's answer: the tiles in order, an accepted alternative, or neither. */
+export function matchTiles(exercise: TilesExercise, tiles: string[]): AnswerMatch {
+  const given = answerKey(tiles.join(''))
+  if (given === answerKey(exercise.tiles.join(''))) return 'main'
+  return (exercise.acceptedAnswers ?? []).some(answer => answerKey(answer) === given) ? 'alternative' : 'wrong'
 }
 
 export function checkAnswer(exercise: Exercise, response: unknown): { correct: boolean; response: string } {
@@ -276,6 +302,5 @@ export function checkAnswer(exercise: Exercise, response: unknown): { correct: b
   }
   if (!Array.isArray(response) || response.some(item => typeof item !== 'string')) throw new Error('Arrange the tiles before checking.')
   const tiles = response as string[]
-  const correct = tiles.length === exercise.tiles.length && tiles.every((tile, index) => tile === exercise.tiles[index])
-  return { correct, response: JSON.stringify(tiles) }
+  return { correct: matchTiles(exercise, tiles) !== 'wrong', response: JSON.stringify(tiles) }
 }

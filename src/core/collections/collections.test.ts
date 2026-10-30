@@ -131,7 +131,7 @@ describe('collections', () => {
     expect(new Set(session.exercises.map(exercise => exercise.id)).size).toBe(12)
     // Without a selection the old cap of 8 words holds.
     structured.requestStructuredJSON.mockClear()
-    await startCollectionSession(id)
+    await startCollectionSession(id, { resume: false })
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
   })
 
