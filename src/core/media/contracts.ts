@@ -60,6 +60,8 @@ export const entryLinksSchema = z.object({
   total: z.number().int().min(0),
   /** Words the AI could not place even on a final retry (a warning, not an error); a later run asks for them again. */
   unresolved: z.array(z.string().min(1).max(60)).max(500).optional(),
+  /** Multi-sense words the model never resolved: linked to their lowest-band sense as a guess, shown as guessed. */
+  guessed: z.array(z.string().min(1).max(60)).max(500).optional(),
   complete: z.boolean(),
   updatedAt: z.number(),
 }).strict()

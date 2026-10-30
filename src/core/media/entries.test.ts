@@ -5,7 +5,7 @@ import { requestStructuredJSON } from '../ai/structured'
 import { resetProfileStorage } from '../../test/profile-storage'
 import type { Catalog } from '../study/catalog'
 import { addSourceEntriesToKnowledge } from '../study/knowledge'
-import { baseOf, collectTokens, entryFrequencies, linkEntries, planLinks, sourceEntryId, validateBatch } from './entries'
+import { baseOf, collectTokens, entryFrequencies, isNamePattern, linkEntries, lowestBand, planLinks, sourceEntryId, validateBatch, validateSenses } from './entries'
 import type { MediaLine } from './contracts'
 import { saveMedia } from './store'
 
@@ -304,5 +304,48 @@ describe('trial quality fixes', () => {
     const entries = new Map((await db.sourceEntries.toArray()).map(entry => [entry.word, entry]))
     expect(entries.get('朕')!.register).toBe('literary')
     expect(entries.get('词0')!.register).toBeUndefined()
+  })
+
+  it('strips 吧/啊/呀/啦/嘛/罢了 endings and skips 姓…的 name phrases, leaving lexicalised words alone', () => {
+    const known = (text: string) => ['是', '真的', '好', '大不了', '太好了'].includes(text)
+    expect(baseOf('是吧', known)).toBe('是')
+    expect(baseOf('真的吗', known)).toBe('真的')
+    expect(baseOf('好啦', known)).toBe('好')
+    expect(baseOf('好罢了', known)).toBe('好')
+    expect(baseOf('大不了', known)).toBeUndefined()
+    expect(baseOf('太好了', known)).toBeUndefined() // 太好 is not known: a real word stays its own headword
+    expect(isNamePattern('姓沈的')).toBe(true)
+    expect(isNamePattern('姓的')).toBe(false)
+  })
+  it('validates the sense-only reply against each word’s own refs and guesses the lowest band otherwise', () => {
+    const sense = (ref: string) => ({ ref, pinyin: 'x', meaning: 'm' })
+    const item = (text: string, refs: string[]) => ({ token: { text, count: 1, lines: [0], pinyin: '', gloss: '' }, senses: refs.map(sense) })
+    const batch = [item('会', ['vocabulary:a', 'vocabulary:b']), item('好', ['vocabulary:c', 'vocabulary:d'])]
+    const answer = validateSenses({ results: [{ text: '会', ref: 'vocabulary:b' }, { text: '好', ref: 'vocabulary:a' }, { text: '又', ref: 'vocabulary:a' }] }, batch)
+    expect([...answer]).toEqual([['会', 'vocabulary:b']])
+    const cat = { units: new Map([['vocabulary:c', { band: '4' }], ['vocabulary:d', { band: '1' }]]) } as unknown as Catalog
+    expect(lowestBand(batch[1].senses, cat)).toBe('vocabulary:d')
+  })
+  it('keeps the literary register only when the reply says so', () => {
+    const batch = [{ token: { text: '陛下', count: 1, lines: [0], pinyin: '', gloss: '' }, senses: [] }, { token: { text: '明日', count: 1, lines: [0], pinyin: '', gloss: '' }, senses: [] }]
+    const word = (text: string, register: string) => ({ text, decision: 'word', ref: '', pinyin: 'x', meanings: ['m'], pos: 'n', example: 0, register })
+    const answer = validateBatch({ results: [word('陛下', 'literary'), word('明日', '')] }, batch)
+    expect(answer.words.get('陛下')!.register).toBe('literary')
+    expect(answer.words.get('明日')!.register).toBeUndefined()
+  })
+  it('ends with one batched sense-only request for multi-sense words the model kept calling "word", and guesses the lowest band when that fails too', async () => {
+    const id = await item([['半', '词0']])
+    const lowBand = { units: new Map([vocab('ban4--half', '半', 'bàn', 'half'), vocab('ban4--partly', '半', 'bàn', 'partly')]) } as unknown as Catalog
+    lowBand.units.get('vocabulary:ban4--partly')!.band = '3'
+    completion.mockImplementation((async (_c: unknown, request: { user: string; name: string }) => {
+      if (request.name === 'media_entries_senses') throw new Error('down')
+      return { results: (JSON.parse(request.user).words as { text: string; examples: { line: number }[] }[]).map(word => ({ text: word.text, decision: 'word', ref: '', pinyin: 'cí', meanings: ['m'], pos: 'noun', example: word.examples[0].line, register: '' })) }
+    }) as never)
+    await run(id, { catalog: lowBand })
+    const saved = (await db.mediaItems.get(id))!.entries!
+    expect(saved.links['半']).toBe('vocabulary:ban4--half')
+    expect(saved.guessed).toEqual(['半'])
+    expect(saved.unresolved).toBeUndefined()
+    expect(completion.mock.calls.filter(call => (call[1] as { name: string }).name === 'media_entries_senses')).toHaveLength(1)
   })
 })

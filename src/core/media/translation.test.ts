@@ -6,7 +6,7 @@ import { resetProfileStorage } from '../../test/profile-storage'
 import { isTranslated, lineView, type Aligned, type MediaLine } from './contracts'
 import { reconcileLine } from './reconcile'
 import { saveMedia } from './store'
-import { applySalvage, clearTranslation, buildChunk, getChunkSize, getConcurrency, mergeChunks, planChunk, planGap, RUN, setChunkSize, setConcurrency, translateMedia, troubleLines, bleeds, normalizePinyin } from './translation'
+import { applySalvage, clearTranslation, buildChunk, getChunkSize, getConcurrency, mergeChunks, planChunk, planGap, RUN, setChunkSize, setConcurrency, translateMedia, troubleLines, bleeds, normalizePinyin, applyFragments } from './translation'
 
 vi.mock('../ai/structured', () => ({ requestStructuredJSON: vi.fn() }))
 const completion = vi.mocked(requestStructuredJSON)
@@ -539,14 +539,23 @@ describe('trial fixes', () => {
       completion.mockImplementation((async (_c: unknown, request: { user: string; name: string }) => {
         if (request.name === 'media_translation_fragments') {
           const asked = JSON.parse(request.user).sentences as { n: number }[]
-          return { r: asked.map(entry => ({ n: entry.n, f: [{ n: 0, t: 'A' }, { n: 1, t: 'B' }, { n: 2, t: 'C' }, { n: 3, t: 'D' }] })) }
+          return { r: asked.map(entry => ({ n: entry.n, f: [{ n: 0, t: 'I never wanted to,' }, { n: 1, t: 'but you begged and begged me,' }, { n: 2, t: 'so I only reluctantly agreed' }, { n: 3, t: 'to let you into the mansion.' }] })) }
         }
         return base
       }) as never)
       await translateMedia(id, new AbortController().signal)
       const saved = (await db.mediaItems.get(id))!.aligned!
-      expect(saved.sentences[0].fragments.map(fragment => fragment.text)).toEqual(['A', 'B', 'C', 'D'])
+      expect(saved.sentences[0].fragments.map(fragment => fragment.text)).toEqual(['I never wanted to,', 'but you begged and begged me,', 'so I only reluctantly agreed', 'to let you into the mansion.'])
       expect(completion.mock.calls.filter(call => call[1].name === 'media_translation_fragments')).toHaveLength(1)
+    })
+    it('rejects shifted follow-up fragments (trial: 2270-2273) and keeps the proportional split', () => {
+      const lines: MediaLine[] = ['怎么不算', '自古聘为妻奔为妾', '也就是殿下仁慈', '才勉强同意让你入府'].map((text, k) => ({ start: k, end: k + 1, text }))
+      const translation = 'Why not? Since ancient times, a woman who is formally betrothed becomes a wife, while one who elopes becomes a concubine. It is only because His Highness is merciful that I reluctantly agreed to let you into the mansion.'
+      const chunk = { sentences: [{ lines: [0, 3] as [number, number], translation, fragments: [] }], tokens: [], upTo: 4, uncovered: [], untokened: [], weak: [], repaired: 0, unsplit: [0] }
+      const shifted = { r: [{ n: 0, f: [{ n: 0, t: 'Why not? Since ancient times,' }, { n: 1, t: 'a woman who is formally betrothed becomes a wife,' }, { n: 2, t: 'while one who elopes becomes a concubine.' }, { n: 3, t: 'It is only because His Highness is merciful that I reluctantly agreed to let you into the mansion.' }] }] }
+      expect(applyFragments(chunk, shifted, lines).fixed).toBe(0)
+      const good = { r: [{ n: 0, f: [{ n: 0, t: 'Why not?' }, { n: 1, t: 'Since ancient times, one betrothed becomes a wife, one who elopes a concubine.' }, { n: 2, t: 'It is only His Highness\'s mercy' }, { n: 3, t: 'that I reluctantly agreed to let you into the mansion.' }] }] }
+      expect(applyFragments(chunk, good, lines).fixed).toBe(1)
     })
     it('falls back to a proportional programmatic split when the follow-up fails', async () => {
       const id = await item(source)

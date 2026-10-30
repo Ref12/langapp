@@ -22,6 +22,13 @@ describe('mergeKnownWords', () => {
   })
 })
 
+describe('mergeKnownWords with the wider dictionary', () => {
+  it('joins 负 + 责 when 负责 is a dictionary word', () => {
+    const result = mergeKnownWords([tok('他'), tok('负'), tok('责'), tok('全')], text => text === '负责')
+    expect(result.items.map(item => item.text)).toEqual(['他', '负责', '全'])
+  })
+})
+
 describe('splitTranslation', () => {
   const lines = ['我本不愿，', '是你苦苦相求，', '我才勉强同意', '让你入府']
   const english = 'I never wanted to, but you begged and begged me, so I only reluctantly agreed to let you into the mansion.'

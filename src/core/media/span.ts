@@ -41,6 +41,13 @@ export interface Proposal {
   score: number
 }
 
+/** Grammar particles and pronouns: real words, but the last thing worth studying from a span. */
+export const FUNCTION_WORDS: ReadonlySet<string> = new Set(['的', '了', '是', '吧', '啊', '呀', '啦', '嘛', '吗', '呢', '我', '你', '他', '她', '它', '我们', '你们', '他们', '她们', '这', '那', '不', '就', '也', '都', '在', '有', '和', '没'])
+
+const hanLength = (text: string) => Array.from(text).filter(char => /\p{Script=Han}/u.test(char)).length
+/** How good a line is as an example: 4-15 Han characters is ideal; shorter or longer is penalised by the distance. */
+const lengthPenalty = (text: string) => { const n = hanLength(text); return n < 4 ? 4 - n : n > 15 ? n - 15 : 0 }
+
 export function proposeSpan(item: Pick<MediaItem, 'aligned' | 'entries' | 'lines'>, known: ReadonlySet<string>, catalog: Pick<Catalog, 'units'>, range: LineRange, count: number = PROPOSAL.default): Proposal[] {
   const links = item.entries?.links ?? {}
   const wanted = (ref: string | undefined): ref is string => !!ref && !known.has(ref) && (ref.startsWith('source:') || catalog.units.get(ref)?.kind === 'vocabulary')
@@ -67,11 +74,12 @@ export function proposeSpan(item: Pick<MediaItem, 'aligned' | 'entries' | 'lines
   for (const [ref, row] of span) {
     const unit = catalog.units.get(ref)
     const band = unit ? Number(unit.band) : 6
-    const best = [...row.lines].sort((a, b) => (unknownIn.get(a) ?? 0) - (unknownIn.get(b) ?? 0) || (item.lines[a]?.text.length ?? 0) - (item.lines[b]?.text.length ?? 0) || a - b)[0]
+    const best = [...row.lines].sort((a, b) => lengthPenalty(item.lines[a]?.text ?? '') - lengthPenalty(item.lines[b]?.text ?? '') || (unknownIn.get(a) ?? 0) - (unknownIn.get(b) ?? 0) || (item.lines[a]?.text.length ?? 0) - (item.lines[b]?.text.length ?? 0) || a - b)[0]
     const inItem = total.get(ref) ?? row.count
-    // Frequency in the span leads, recurrence across the item adds, and a lower band (more basic) adds most for equal counts.
-    const score = row.count * 2 + Math.log2(1 + inItem) + (7 - band) * 1.5
-    proposals.push({ ref, text: unit ? (unit.record as { ch: string }).ch : row.text, pinyin: unit ? (unit.record as { pr: string }).pr : row.pinyin, meaning: unit ? (unit.record as { ds: string }).ds : row.meaning, band: String(band), inSpan: row.count, inItem, example: best, exampleUnknown: unknownIn.get(best) ?? 0, score })
+    // Distinct lines (not raw count) lead, recurrence across the item adds, band 1 weighs only a little; function words go last.
+    const text = unit ? (unit.record as { ch: string }).ch : row.text
+    const score = Math.log2(1 + row.lines.size) * 3 + Math.log2(1 + inItem) + (7 - band) * 0.4 - (FUNCTION_WORDS.has(text) ? 1000 : 0)
+    proposals.push({ ref, text, pinyin: unit ? (unit.record as { pr: string }).pr : row.pinyin, meaning: unit ? (unit.record as { ds: string }).ds : row.meaning, band: String(band), inSpan: row.count, inItem, example: best, exampleUnknown: unknownIn.get(best) ?? 0, score })
   }
   return proposals.sort((a, b) => b.score - a.score || a.ref.localeCompare(b.ref)).slice(0, clampCount(count))
 }
