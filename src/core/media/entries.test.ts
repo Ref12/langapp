@@ -211,3 +211,37 @@ describe('unresolved words, base words and the prompt', () => {
     expect(request.system).toMatch(/Never make an entry for a verb or noun plus a particle/)
   })
 })
+
+describe('a batch that keeps failing', () => {
+  beforeEach(() => completion.mockReset())
+  it('is cut in halves and asked again, and does not stop the run', async () => {
+    const id = await item([unknown(30)])
+    const asked: number[] = []
+    completion.mockImplementation((async (_connection: unknown, request: { user: string }) => {
+      const words = JSON.parse(request.user).words as { text: string; examples: { line: number }[] }[]
+      asked.push(words.length)
+      if (words.length > 8) throw new Error('The AI response was too large. Request less content.')
+      return { results: words.map(word => ({ text: word.text, decision: 'word', ref: '', pinyin: 'cí', meanings: ['w'], pos: 'noun', example: word.examples[0].line })) }
+    }) as never)
+    const summary = await run(id)
+    expect(asked[0]).toBe(30)
+    expect(asked.filter(count => count === 30)).toHaveLength(2) // two tries, then halves
+    expect(asked).toContain(15)
+    expect(summary.created).toBe(30)
+    expect(summary.unresolved).toBe(0)
+    expect((await db.mediaItems.get(id))!.entries!.complete).toBe(true)
+  })
+  it('leaves words it cannot place for the final retry instead of aborting', async () => {
+    const id = await item([unknown(4)])
+    let calls = 0
+    completion.mockImplementation((async (_connection: unknown, request: { user: string }) => {
+      calls++
+      if (calls <= 2) throw new Error('The AI response was too large. Request less content.')
+      const words = JSON.parse(request.user).words as { text: string; examples: { line: number }[] }[]
+      return { results: words.map(word => ({ text: word.text, decision: 'word', ref: '', pinyin: 'cí', meanings: ['w'], pos: 'noun', example: word.examples[0].line })) }
+    }) as never)
+    const summary = await run(id)
+    expect(summary.created).toBe(4)
+    expect(summary.unresolved).toBe(0)
+  })
+})

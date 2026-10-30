@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { requestStructuredJSON, testStructuredJSONConnection } from './structured'
+import { replyLimits, requestStructuredJSON, testStructuredJSONConnection } from './structured'
 
 const connection = {
   apiType: 'chat-completions' as const, baseUrl: 'https://example.test/v1', apiKey: 'fake', model: 'test-model',
@@ -30,6 +30,21 @@ describe('structured JSON requests', () => {
     // JSON mode is requested instead (any chat endpoint knows it); the schema itself goes in the prompt.
     expect(body.response_format).toEqual({ type: 'json_object' })
     expect(body.messages[0].content).toContain(JSON.stringify(schema))
+  })
+
+  it('accepts a long reply that a gateway escaped as \\uXXXX (over 96 KB on the wire) when the output cap allows it, and still bounds an absurd one', async () => {
+    const payload = JSON.stringify({ answer: 1, note: '你好'.repeat(9000) }) // ~18k characters, ~108 KB once every character is escaped
+    const escaped = payload.replace(/\P{ASCII}/gu, char => '\\u' + char.charCodeAt(0).toString(16).padStart(4, '0'))
+    const respond = (text: string) => vi.fn(async () => new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { content: text } }] }).replace(/\P{ASCII}/gu, char => '\\u' + char.charCodeAt(0).toString(16).padStart(4, '0')), { status: 200, headers: { 'Content-Type': 'application/json' } }))
+    vi.stubGlobal('fetch', respond(payload))
+    expect(escaped.length).toBeGreaterThan(96_000)
+    await expect(requestStructuredJSON(connection, { name: 'test', schema, system: 'S', user: 'U', maxOutputTokens: 3000 })).rejects.toThrow(/too large/) // the old fixed bound at a small cap
+    vi.stubGlobal('fetch', respond(payload))
+    await expect(requestStructuredJSON(connection, { name: 'test', schema, system: 'S', user: 'U', maxOutputTokens: 16000 })).resolves.toMatchObject({ answer: 1 })
+    expect(replyLimits(16000).bytes).toBe(384_000)
+    expect(replyLimits(1000).bytes).toBe(96_000)
+    vi.stubGlobal('fetch', respond(JSON.stringify({ answer: 1, note: 'x'.repeat(400_000) })))
+    await expect(requestStructuredJSON(connection, { name: 'test', schema, system: 'S', user: 'U', maxOutputTokens: 16000 })).rejects.toThrow(/too large/)
   })
 
   describe.each(['chat-completions', 'responses'] as const)('%s JSON capability test', apiType => {

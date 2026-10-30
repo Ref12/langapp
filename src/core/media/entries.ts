@@ -8,7 +8,7 @@ import { isTranslated, sourceEntrySchema, type EntryLinks, type MediaItem, type 
 // Exact curriculum matches and words already known as source entries are linked locally. Only the rest goes to the AI,
 // always in batches of many words per request (never one request per word), several batches at a time.
 
-export const ENTRIES = { batch: 80, concurrency: 6, timeoutMs: 90_000, retries: 1, finalBatch: 40 }
+export const ENTRIES = { batch: 80, concurrency: 6, timeoutMs: 90_000, retries: 1, finalBatch: 40, minSplit: 5 }
 
 const han = /\p{Script=Han}/u
 const TAG = '[media-entries]'
@@ -128,7 +128,7 @@ const SYSTEM = `You build dictionary entries for a Mandarin learner from words t
 "words" is a list. Return JSON {"results": [...]} with exactly one result per word, "text" copied exactly.
 Each word has "examples" (line number and text) and maybe "senses" (curriculum entries with a ref, pinyin and meaning).
 Each word comes with the translator's contextual "gloss": use it to pick the sense. Near-duplicate senses (the same meaning worded differently) are equivalent, so any of them is fine.
-A headword is a dictionary word. Never make an entry for a verb or noun plus a particle (进了, 断了, 放了, 好的, 好吗) or for a fragment that is not a word (手上, 这时候, 开了堂): answer "sense" with the base word's sense when one is given, otherwise "skip".
+A headword is a dictionary word. Never make an entry for a verb or noun plus a particle (进了, 断了, 放了, 好的, 好吗) or for a fragment that is not a word (手上, 这时候, 开了堂, 瞒着, 管得了, a verb with a potential complement or aspect marker): answer "sense" with the base word's sense when one is given, otherwise "skip".
 Decide for each word:
 - "sense": the word has "senses" and one of them is the meaning used in its examples. Put that sense's ref in "ref". Leave pinyin "", meanings [], pos "", example -1.
 - "word": a real Mandarin word or expression that no given sense covers (or there are no senses). Give "pinyin" (tone marks, syllables separated by spaces), 1-3 short English "meanings" (a few words each, most common first), "pos" (a short part of speech such as noun, verb, adjective, idiom, measure word) and "example": the line number of the best of its examples. "ref" is "".
@@ -321,23 +321,36 @@ export async function linkEntries(
       outer.removeEventListener('abort', relay)
     }
   }
-  const request = async (index: number, outer: AbortSignal): Promise<BatchAnswer> => {
+  const merge = (x: BatchAnswer, y: BatchAnswer): BatchAnswer => ({
+    senses: new Map([...x.senses, ...y.senses]), words: new Map([...x.words, ...y.words]),
+    skipped: [...x.skipped, ...y.skipped], unresolved: [...x.unresolved, ...y.unresolved],
+  })
+  /** One group of words with a retry; a group that fails twice is cut in halves and each half is asked on its own, down to a few words. Words that still fail come back unresolved. */
+  const solve = async (group: WorkItem[], name: string, outer: AbortSignal): Promise<BatchAnswer> => {
     let last: unknown
     for (let tries = 0; tries <= ENTRIES.retries; tries++) {
       const began = Date.now()
       summary.requests++
       try {
-        const answer = await ask(batches[index], outer)
-        console.info(`${TAG} ${label(index)} ok in ${((Date.now() - began) / 1000).toFixed(1)} s (try ${tries + 1}): ${batches[index].length} words -> ${answer.senses.size} senses, ${answer.words.size} new, ${answer.skipped.length} skipped, ${answer.unresolved.length} unresolved`)
+        const answer = await ask(group, outer)
+        console.info(`${TAG} ${name} ok in ${((Date.now() - began) / 1000).toFixed(1)} s (try ${tries + 1}): ${group.length} words -> ${answer.senses.size} senses, ${answer.words.size} new, ${answer.skipped.length} skipped, ${answer.unresolved.length} unresolved`)
         return answer
       } catch (reason) {
         if (outer.aborted) throw reason
         last = reason
-        console.info(`${TAG} ${label(index)} failed after ${((Date.now() - began) / 1000).toFixed(1)} s (try ${tries + 1}): ${reason instanceof Error ? reason.message : reason}`)
+        console.info(`${TAG} ${name} failed after ${((Date.now() - began) / 1000).toFixed(1)} s (try ${tries + 1}): ${reason instanceof Error ? reason.message : reason}`)
       }
     }
-    throw new Error(`Linking words (${label(index)}) failed: ${last instanceof Error ? last.message : 'unknown error'}`)
+    if (group.length > ENTRIES.minSplit * 2 - 1) {
+      const mid = Math.ceil(group.length / 2)
+      console.info(`${TAG} ${name}: splitting ${group.length} words into ${mid} + ${group.length - mid}`)
+      return merge(await solve(group.slice(0, mid), `${name}a`, outer), await solve(group.slice(mid), `${name}b`, outer))
+    }
+    // Too small to split: these words wait for the final retry instead of ending the run.
+    console.info(`${TAG} ${name}: giving up on ${group.length} word(s) for now: ${last instanceof Error ? last.message : 'unknown error'}`)
+    return { senses: new Map(), words: new Map(), skipped: [], unresolved: group.map(item => item.token.text) }
   }
+  const request = (index: number, outer: AbortSignal): Promise<BatchAnswer> => solve(batches[index], label(index), outer)
 
   const leftOver: string[] = []
   const inner = new AbortController()
@@ -380,6 +393,7 @@ export async function linkEntries(
   signal.throwIfAborted()
   // One final small batch for the words the batches left out: a handful of words, not one request each.
   let stillOpen: string[] = []
+  let finalFailure: unknown
   if (leftOver.length) {
     const byWord = new Map(plan.work.map(item => [item.token.text, item]))
     const again = [...new Set(leftOver)].flatMap(word => byWord.get(word) ?? [])
@@ -407,11 +421,14 @@ export async function linkEntries(
         console.info(`${TAG} final retry: ${group.length} word(s) -> ${answer.senses.size} senses, ${entries.size} new, ${answer.skipped.length} skipped, ${answer.unresolved.length} still unresolved`)
       } catch (reason) {
         if (signal.aborted) throw reason
+        if (!/invalid answer/.test(reason instanceof Error ? reason.message : '')) finalFailure ??= reason
         console.info(`${TAG} final retry failed: ${reason instanceof Error ? reason.message : reason}`)
       }
     }
     await saving.catch(() => undefined)
   }
+  // The service itself failing is an error (the saved words stay, a rerun continues); the model leaving words out is a warning.
+  if (finalFailure) throw new Error(`Linking words failed: ${finalFailure instanceof Error ? finalFailure.message : 'unknown error'}`)
   summary.unresolved = stillOpen.length
   await commit({ links: {}, skipped: [], entries: new Map(), seen: new Map(), unresolved: stillOpen })
   await saving.catch(() => undefined)

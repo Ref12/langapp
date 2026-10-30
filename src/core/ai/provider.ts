@@ -174,8 +174,8 @@ function httpFailureBase(status: number): AITransportError {
   return new AITransportError(`The AI request failed (HTTP ${status}). Check the connection in Settings.`)
 }
 
-export async function readJSON(response: Response, signal: AbortSignal): Promise<unknown> {
-  if (Number(response.headers.get('content-length')) > MAX_RESPONSE_BYTES) {
+export async function readJSON(response: Response, signal: AbortSignal, maxBytes = MAX_RESPONSE_BYTES): Promise<unknown> {
+  if (Number(response.headers.get('content-length')) > maxBytes) {
     void response.body?.cancel().catch(() => undefined)
     return invalid('The AI response was too large. Ask for a shorter response.')
   }
@@ -191,7 +191,7 @@ export async function readJSON(response: Response, signal: AbortSignal): Promise
       const chunk = await abortable(reader.read(), signal)
       if (chunk.done) break
       size += chunk.value.byteLength
-      if (size > MAX_RESPONSE_BYTES) return invalid('The AI response was too large. Ask for a shorter response.')
+      if (size > maxBytes) return invalid('The AI response was too large. Ask for a shorter response.')
       text += decoder.decode(chunk.value, { stream: true })
     }
     if (signal.aborted) throw new AssistantCancelledError()

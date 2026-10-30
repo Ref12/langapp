@@ -10,7 +10,7 @@ import { currentLine, isTranslated, lineView, nudge, offsetAt, withAnchor, type 
 import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
 import { lineUnits } from '../core/media/readings'
-import { translateMedia, getConcurrency, setConcurrency } from '../core/media/translation'
+import { translateMedia, getConcurrency, setConcurrency, getChunkSize, setChunkSize, clearTranslation } from '../core/media/translation'
 import { linkEntries } from '../core/media/entries'
 import { sendTrack, trackFiles, type TrackKind } from '../core/media/tracks'
 import { studyLines } from '../core/collections/store'
@@ -201,18 +201,21 @@ function WordLine({ text, pinyin, lookup, className = 'media-now' }: { className
 /** One line from the AI pass: per-word pinyin and (optionally) glosses, with a tap for the contextual meaning. */
 type EntryInfo = { ref: string; pinyin: string; meaning: string; source: boolean }
 
-function WovenLine({ tokens, pinyin, glosses, className = 'media-now', entryOf }: { tokens: WovenToken[]; pinyin: boolean; glosses: boolean; className?: string; entryOf?: (text: string) => EntryInfo | undefined }) {
+/** The gloss to show for a word: the line's own, else the linked entry's (curriculum or source), else the curriculum's by spelling: pass 1 leaves curriculum words unglossed on purpose. */
+const glossFor = (token: WovenToken, entryOf?: (text: string) => EntryInfo | undefined, curriculum?: ReadonlyMap<string, string>): string => token.meaning || entryOf?.(token.text)?.meaning || curriculum?.get(token.text) || ''
+
+function WovenLine({ tokens, pinyin, glosses, className = 'media-now', entryOf, curriculum }: { tokens: WovenToken[]; pinyin: boolean; glosses: boolean; className?: string; entryOf?: (text: string) => EntryInfo | undefined; curriculum?: ReadonlyMap<string, string> }) {
   const [selected, setSelected] = useState<WovenToken>()
   return <>
     <p className={className} lang="zh-Hans">{tokens.map((token, index) => <span key={index} className="woven-token">
       <ruby className="mandarin-word"><button type="button" className="word" onClick={() => setSelected(token)}>{token.text}</button>
         {pinyin && token.pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt>}</ruby>
-      {glosses && token.meaning && <span className="woven-gloss" data-assistant-exclude>{token.meaning}</span>}
+      {glosses && glossFor(token, entryOf, curriculum) && <span className="woven-gloss" data-assistant-exclude>{glossFor(token, entryOf, curriculum)}</span>}
       {token.trailing}</span>)}</p>
     {selected && (() => {
       // Once pass 2 has run, the tapped word shows its entry (curriculum or from this source); the line's own gloss is the fallback.
       const entry = entryOf?.(selected.text)
-      return entry ? <Picked text={selected.text} pinyin={entry.pinyin} meaning={entry.meaning} note={entry.source ? 'From your media' : 'Curriculum'} context={selected.meaning} /> : <Picked text={selected.text} pinyin={selected.pinyin} meaning={selected.meaning} />
+      return entry ? <Picked text={selected.text} pinyin={entry.pinyin} meaning={entry.meaning} note={entry.source ? 'From your media' : 'Curriculum'} context={selected.meaning} /> : <Picked text={selected.text} pinyin={selected.pinyin} meaning={glossFor(selected, entryOf, curriculum)} />
     })()}
   </>
 }
@@ -248,6 +251,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const [glosses, setGlosses] = useState(() => localStorage.getItem('linguaweave-media-glosses') === 'true')
   const [translating, setTranslating] = useState<{ done: number; total: number; model?: string; active?: { from: number; to: number; startedAt: number }[] } | undefined>()
   const [concurrency, setConcurrencyState] = useState(getConcurrency)
+  const [chunkSize, setChunkSizeState] = useState(getChunkSize)
   const [clock, setClock] = useState(Date.now())
   useEffect(() => { if (!translating?.active?.length) return; const timer = setInterval(() => setClock(Date.now()), 1000); return () => clearInterval(timer) }, [translating?.active?.length])
   const [translateError, setTranslateError] = useState('')
@@ -278,14 +282,20 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
     const controller = new AbortController()
     translateAbort.current = controller
     setTranslateError('')
-    setTranslating({ done: Math.max(0, (aligned?.upTo ?? 0) - missingLines), total: item.lines.length })
+    setTranslating({ done: 0, total: item.lines.length })
     let model: string | undefined
     let finished = false
-    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating(previous => ({ ...previous, done, total, model })), { onModel: name => { model = name; setTranslating(previous => previous && { ...previous, model }) }, onActive: active => setTranslating(previous => previous && { ...previous, active }) }); finished = true }
+    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating(previous => ({ ...previous, done: Math.max(previous?.done ?? 0, done), total, model })), { onModel: name => { model = name; setTranslating(previous => previous && { ...previous, model }) }, onActive: active => setTranslating(previous => previous && { ...previous, active }) }); finished = true }
     catch (reason) { if (!controller.signal.aborted) setTranslateError(reason instanceof Error ? reason.message : 'The translation failed.') }
     finally { setTranslating(undefined) }
     // Pass 2 follows pass 1 automatically.
     if (finished && !controller.signal.aborted) await startLink()
+  }
+  const startOver = async () => {
+    if (!window.confirm('Translate again from scratch? The saved translation and word links for this source are discarded, then both passes run again.')) return
+    translateAbort.current?.abort(); linkAbort.current?.abort()
+    await clearTranslation(item.id)
+    await startTranslate()
   }
   const [trackNote, setTrackNote] = useState('')
   const [trackFallback, setTrackFallback] = useState<TrackKind>()
@@ -436,7 +446,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
               </div>
               {line && <div className="media-overlay-line">{annotated
                 ? (viewOf(current).tokens
-                  ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} className="media-overlay-text" entryOf={entryOf} />
+                  ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} className="media-overlay-text" entryOf={entryOf} curriculum={lookup.meanings} />
                   : <WordLine key={current} text={line.text} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-overlay-text" />)
                 : <p className="media-overlay-text" lang="zh-Hans">{line.text}</p>}
                 {overlayTranslation && viewOf(current).translation && <p className="media-overlay-text media-overlay-second">{viewOf(current).translation!.fragment}</p>}</div>}
@@ -487,17 +497,18 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
                   : <button type="button" className="button secondary" onClick={() => void startLink()}>{linkError ? 'Retry linking words' : item.entries ? 'Continue linking words' : 'Link words'}</button>}
               {linkError && <span className="notice error" role="alert">{linkError}</span>}
               <details className="media-menu"><summary className="button secondary" aria-label="More translation actions">...</summary><div className="media-menu-items">
+                <button type="button" className="button secondary" onClick={() => void startOver()}>Translate again from scratch</button>
                 {item.mediaId && <><button type="button" className="button secondary" onClick={() => void addTrack('translation')}>Add translation to Medusa</button>
                   <button type="button" className="button secondary" onClick={() => void addTrack('pinyin')}>Add pinyin to Medusa</button></>}
                 {(trackFallback || !item.mediaId) && <button type="button" className="button secondary" onClick={() => saveFiles(trackFallback ?? 'translation')}>Save as subtitle file</button>}
               </div></details></>
-            : <><label className="small muted">Requests at once <input type="number" min={1} max={16} value={concurrency} aria-label="Translation requests at once" style={{ width: '4em' }} onChange={event => setConcurrencyState(setConcurrency(Number(event.target.value)))} /></label><button type="button" className="button secondary" onClick={() => void startTranslate()}>{translateError ? (missingLines ? 'Retry failed parts' : 'Retry translating') : missingLines ? `Retry failed parts (${missingLines} lines)` : aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button></>}
+            : <><label className="small muted">Requests at once <input type="number" min={1} max={16} value={concurrency} aria-label="Translation requests at once" style={{ width: '4em' }} onChange={event => setConcurrencyState(setConcurrency(Number(event.target.value)))} /></label><label className="small muted">Lines per request <input type="number" min={20} max={80} value={chunkSize} aria-label="Translation lines per request" style={{ width: '4em' }} onChange={event => setChunkSizeState(setChunkSize(Number(event.target.value)))} /></label><button type="button" className="button secondary" onClick={() => void startTranslate()}>{translateError ? (missingLines ? 'Retry failed parts' : 'Retry translating') : missingLines ? `Retry failed parts (${missingLines} lines)` : aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button></>}
         {translateError && <p className="notice error" role="alert">{translateError}</p>}
         {trackNote && <p className="small muted" role="status">{trackNote}</p>}
       </div>
       {canWatch && <div className="media-footer" hidden={view === 'watch'}>
         {viewOf(current).tokens
-          ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} entryOf={entryOf} />
+          ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} entryOf={entryOf} curriculum={lookup.meanings} />
           : <WordLine key={current} text={line?.text ?? ''} pinyin={workspace.preferences.pinyin} lookup={lookup} />}
         <Fragment key={`f${current}`} translation={viewOf(current).translation} />
         {aligned && <label className="small"><input type="checkbox" checked={glosses} onChange={event => toggleGlosses(event.target.checked)} /> Word meanings</label>}

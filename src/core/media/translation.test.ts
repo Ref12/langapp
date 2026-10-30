@@ -6,7 +6,7 @@ import { resetProfileStorage } from '../../test/profile-storage'
 import { isTranslated, lineView, type Aligned, type MediaLine } from './contracts'
 import { reconcileLine } from './reconcile'
 import { saveMedia } from './store'
-import { applySalvage, buildChunk, getConcurrency, mergeChunks, planChunk, planGap, RUN, setConcurrency, translateMedia, troubleLines } from './translation'
+import { applySalvage, clearTranslation, buildChunk, getChunkSize, getConcurrency, mergeChunks, planChunk, planGap, RUN, setChunkSize, setConcurrency, translateMedia, troubleLines } from './translation'
 
 vi.mock('../ai/structured', () => ({ requestStructuredJSON: vi.fn() }))
 const completion = vi.mocked(requestStructuredJSON)
@@ -40,6 +40,7 @@ beforeEach(async () => {
   await resetProfileStorage()
   await initializeWorkspace()
   completion.mockReset()
+  setChunkSize(22)
   vi.spyOn(console, 'info').mockImplementation(() => undefined)
   Object.assign(RUN, { backoffMs: 0 })
   await saveAIConnection({ baseUrl: 'https://provider.test/v1', apiKey: 'synthetic-key', model: 'test-model', nativeTools: false, structuredOutput: true, storageAcknowledged: true })
@@ -52,10 +53,53 @@ async function item(source: MediaLine[] = lines) {
 
 describe('chunk planning', () => {
   it('windows ~22 lines with read-only context before and look-ahead after', () => {
-    expect(planChunk(130, 0)).toEqual({ from: 0, coreEnd: 22, beforeFrom: 0, windowEnd: 26 })
-    expect(planChunk(130, 22)).toEqual({ from: 22, coreEnd: 44, beforeFrom: 19, windowEnd: 48 })
-    expect(planChunk(130, 126)).toEqual({ from: 126, coreEnd: 130, beforeFrom: 123, windowEnd: 130 })
-    expect(planGap(130, 40, 45)).toEqual({ from: 40, coreEnd: 45, beforeFrom: 37, windowEnd: 45 })
+    expect(planChunk(130, 0, 22, 3, 4)).toEqual({ from: 0, coreEnd: 22, beforeFrom: 0, windowEnd: 26 })
+    expect(planChunk(130, 22, 22, 3, 4)).toEqual({ from: 22, coreEnd: 44, beforeFrom: 19, windowEnd: 48 })
+    expect(planChunk(130, 126, 22, 3, 4)).toEqual({ from: 126, coreEnd: 130, beforeFrom: 123, windowEnd: 130 })
+    expect(planGap(130, 40, 45)).toEqual({ from: 40, coreEnd: 45, beforeFrom: 35, windowEnd: 45 })
+  })
+})
+
+describe('chunk size and overlap', () => {
+  it('defaults to 50 lines with 5 lines of context before and 5 of look-ahead, and keeps the setting between 20 and 80', () => {
+    localStorage.removeItem('media-translation-chunk-size')
+    expect(getChunkSize()).toBe(50)
+    expect(planChunk(200, 50, getChunkSize())).toEqual({ from: 50, coreEnd: 100, beforeFrom: 45, windowEnd: 105 })
+    expect(setChunkSize(5)).toBe(20)
+    expect(setChunkSize(500)).toBe(80)
+    expect(getChunkSize()).toBe(80)
+    expect(setChunkSize(0)).toBe(50)
+    setChunkSize(22)
+  })
+  it('lets the chunk where a sentence starts own it: not one starting in the context, nor one starting in the look-ahead', () => {
+    const plan = planChunk(200, 50, 50, 5, 5)
+    const text = Array.from({ length: 200 }, (_, i) => ({ start: i, end: i + 0.9, text: `第${i}句。` }))
+    const sentence = (first: number, last: number) => ({ l: [first, last], t: `S${first}`, f: [{ n: first, t: `S${first}` }] })
+    const s = [sentence(49, 50), sentence(51, 98), sentence(99, 101), sentence(102, 103)]
+    const chunk = buildChunk({ s, k: tokens(50, 104) }, text, plan)
+    expect(chunk.sentences.map(entry => entry.lines)).toEqual([[51, 98], [99, 101]])
+    expect(chunk.uncovered).toEqual([50])
+    expect(chunk.upTo).toBe(102)
+    expect(chunk.tokens.map(entry => entry.line)).not.toContain(49)
+  })
+  it('saves a sentence that crosses the edge once, from the chunk where it starts, and asks again only for the line the next chunk could not take', async () => {
+    const id = await item(lines.slice(0, 44))
+    completion.mockImplementation(async (_connection, request) => {
+      if (isFollowUp(request as never)) return followAnswer(request as never)
+      const body = bodyOf(request as never)
+      const first = body.lines[0].line
+      const answer = reply(first, first + body.lines.length)
+      if (first === 0) { answer.s[answer.s.length - 1].l = [20, 23]; answer.s[answer.s.length - 1].f = [{ n: 20, t: 'x' }]; answer.k = tokens(0, 24) }
+      if (first === 22) { answer.s[0].l = [22, 23]; answer.s[0].t = 'again' } // the lookahead of the first chunk already owns lines 22-23
+      return answer
+    })
+    await translateMedia(id, new AbortController().signal)
+    const saved = (await db.mediaItems.get(id))!.aligned!
+    const covered = saved.sentences.flatMap(sentence => Array.from({ length: sentence.lines[1] - sentence.lines[0] + 1 }, (_, k) => sentence.lines[0] + k))
+    expect(covered).toEqual(Array.from({ length: 44 }, (_, i) => i))
+    expect(saved.sentences.find(sentence => sentence.lines[0] === 20)!.lines).toEqual([20, 23])
+    expect(saved.sentences.some(sentence => sentence.translation === 'again')).toBe(false)
+    expect(saved.tokens.map(entry => entry.line)).toEqual(Array.from({ length: 44 }, (_, i) => i))
   })
 })
 
@@ -105,7 +149,7 @@ describe('compact tokens', () => {
 })
 
 describe('building a chunk from a reply', () => {
-  const plan = planChunk(130, 0)
+  const plan = planChunk(130, 0, 22, 3, 4)
   it('accepts a complete reply, may end past the core, and rebuilds every line', () => {
     const spilling = reply(0, 22)
     spilling.s[spilling.s.length - 1].l = [20, 23] // starts in the window, ends in the look-ahead
@@ -203,7 +247,7 @@ describe('translateMedia', () => {
     expect(covered).toEqual(lines.map((_, i) => i))
     const sent = windowCalls().map(call => bodyOf(call[1]))
     expect(sent.map(entry => entry.lines[0].line).sort((x, y) => x - y)).toEqual([0, 22, 44, 66, 88, 110])
-    expect(sent.find(entry => entry.lines[0].line === 0)!.lookahead.length).toBe(4)
+    expect(sent.find(entry => entry.lines[0].line === 0)!.lookahead.length).toBe(5)
     const done = progress.mock.calls.map(call => call[0] as number)
     expect(done[0]).toBe(0)
     expect(done[done.length - 1]).toBe(130)
@@ -216,7 +260,7 @@ describe('translateMedia', () => {
     await translateMedia(id, new AbortController().signal)
     const entry = completion.mock.calls.map(call => ({ request: call[1], body: bodyOf(call[1]) })).find(item => item.body.lines[0].line === 22)!
     expect(entry.body.lines[0]).toEqual({ line: 22, text: '第22句。' })
-    expect(entry.body.context.map(line => line.line)).toEqual([19, 20, 21])
+    expect(entry.body.context.map(line => line.line)).toEqual([17, 18, 19, 20, 21])
     expect(entry.request.system).toMatch(/COMPACT JSON/)
     expect(entry.request.system).toMatch(/text\|pinyin\|gloss/)
     expect(entry.request.system).toMatch(/still referring|still|never empty/)
@@ -384,6 +428,76 @@ describe('translateMedia', () => {
     expect(completion).not.toHaveBeenCalled()
     await db.aiConnections.clear()
     await expect(translateMedia(id, new AbortController().signal)).rejects.toThrow(/AI connection/)
+  })
+})
+
+describe('translation progress', () => {
+  it('counts every saved line once: monotonic and ending at the total through overlap, a split window, a gap fill and a retry', async () => {
+    const id = await item()
+    let failedOnce = false
+    completion.mockImplementation(async (_connection, request) => {
+      if (isFollowUp(request as never)) return followAnswer(request as never)
+      const body = bodyOf(request as never)
+      const first = body.lines[0].line
+      const size = body.lines.length
+      if (first === 66 && size > 6) throw new Error('The AI response was too large. Request less content.') // split in halves
+      if (first === 88 && !failedOnce) { failedOnce = true; throw new Error('blip') } // retried
+      const answer = reply(first, first + size)
+      if (first === 0) { answer.s[answer.s.length - 1].l = [20, 23]; answer.s[answer.s.length - 1].f = [{ n: 20, t: 'x' }]; answer.k = tokens(0, 24) } // spills into the next chunk
+      if (first === 22) { answer.s[0].l = [22, 24]; answer.s[0].f = [{ n: 22, t: 'x' }]; answer.s.splice(1, 1) } // overlaps the spill: dropped, leaving line 24 for a gap fill
+      return answer
+    })
+    const progress: number[] = []
+    const totals = new Set<number>()
+    await translateMedia(id, new AbortController().signal, (done, total) => { progress.push(done); totals.add(total) })
+    expect(totals).toEqual(new Set([130]))
+    expect(progress[0]).toBe(0)
+    expect(progress[progress.length - 1]).toBe(130)
+    expect([...progress].sort((x, y) => x - y)).toEqual(progress)
+    expect(Math.max(...progress)).toBe(130)
+    expect(windowCalls().some(call => bodyOf(call[1]).lines.length === 1 && bodyOf(call[1]).lines[0].line === 24)).toBe(true) // the gap fill
+    expect(vi.mocked(console.info).mock.calls.some(call => String(call[0]).includes('splitting into'))).toBe(true)
+  })
+  it('starts a resumed run from the saved count', async () => {
+    const id = await item()
+    completion.mockImplementation(async (_connection, request) => {
+      if (isFollowUp(request as never)) return followAnswer(request as never)
+      const first = bodyOf(request as never).lines[0].line
+      if (first === 44) throw new Error('network down')
+      return answerWindow(_connection, request as never)
+    })
+    await expect(translateMedia(id, new AbortController().signal)).rejects.toThrow()
+    completion.mockImplementation(answerWindow)
+    const progress: number[] = []
+    await translateMedia(id, new AbortController().signal, done => progress.push(done))
+    expect(progress[0]).toBe(130 - 22)
+    expect(progress[progress.length - 1]).toBe(130)
+    expect([...progress].sort((x, y) => x - y)).toEqual(progress)
+  })
+})
+
+describe('starting over', () => {
+  it('discards the saved translation and the word links, so both passes can run again', async () => {
+    const id = await item(lines.slice(0, 22))
+    completion.mockImplementation(answerWindow)
+    await translateMedia(id, new AbortController().signal)
+    await db.mediaItems.update(id, { entries: { links: { 第0句: 'vocabulary:x' }, skipped: [], counts: {}, total: 1, complete: true, updatedAt: 1 } })
+    await clearTranslation(id)
+    const saved = (await db.mediaItems.get(id))!
+    expect(saved.aligned).toBeUndefined()
+    expect(saved.entries).toBeUndefined()
+    completion.mockClear()
+    await translateMedia(id, new AbortController().signal)
+    expect(windowCalls().length).toBeGreaterThan(0)
+    expect(isTranslated((await db.mediaItems.get(id))!.aligned, 22)).toBe(true)
+  })
+  it('asks for consistent pinyin: lower-case titles, one fixed form per name', async () => {
+    const id = await item(lines.slice(0, 22))
+    completion.mockImplementation(answerWindow)
+    await translateMedia(id, new AbortController().signal)
+    const system = (completion.mock.calls[0][1] as { system: string }).system
+    expect(system).toMatch(/titles and common nouns are lower case/)
+    expect(system).toMatch(/Jìngyún, never Jìng Yún/)
   })
 })
 

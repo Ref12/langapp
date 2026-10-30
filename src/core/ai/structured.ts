@@ -12,6 +12,8 @@ export interface StructuredRequest {
   system: string
   user: string
   maxOutputTokens?: number
+  /** Called with the size of the reply text before it is parsed (for diagnostics). */
+  onReply?: (size: { chars: number }) => void
   signal?: AbortSignal
   /** Overrides the default timeout (twice the chat timeout). */
   timeoutMs?: number
@@ -19,6 +21,15 @@ export interface StructuredRequest {
 
 const MAX_REQUEST_LENGTH = 100_000
 const MAX_TEXT_LENGTH = 60_000
+/**
+ * Client-side safety bounds scale with the output cap the caller asked for: a gateway that escapes non-ASCII (\uXXXX, 6 bytes per Chinese character
+ * or tone-marked letter) can make a reply that is well within max_output_tokens exceed a fixed 96 KB body or 60k-character limit.
+ * A token is at most ~4 characters of text and ~24 bytes escaped; the bounds never go below the old fixed ones.
+ */
+export const replyLimits = (maxOutputTokens: number | undefined) => {
+  const tokens = maxOutputTokens ?? 8000
+  return { bytes: Math.max(96_000, tokens * 24), chars: Math.max(MAX_TEXT_LENGTH, tokens * 8) }
+}
 
 function invalid(message: string): never { throw new AITransportError(message) }
 
@@ -136,10 +147,12 @@ export async function requestStructuredJSON(input: AIConnectionInput, request: S
       void response.body?.cancel().catch(() => undefined)
       throw httpFailure(response.status, detail)
     }
-    const value = await readJSON(response, controller.signal)
+    const limits = replyLimits(request.maxOutputTokens)
+    const value = await readJSON(response, controller.signal, limits.bytes)
     const text = (responses ? responsesText(value) : chatText(value)).trim()
     if (!text) return invalid('The AI returned no content. Try again or check the model.')
-    if (text.length > MAX_TEXT_LENGTH) return invalid('The AI reply was too large. Request less content.')
+    request.onReply?.({ chars: text.length })
+    if (text.length > limits.chars) return invalid('The AI reply was too large. Request less content.')
     const parsedReply = parseLooseJSON(text)
     if (parsedReply === undefined) return invalid('The AI reply was not valid JSON. Enable structured output in Settings or choose another model.')
     return parsedReply
