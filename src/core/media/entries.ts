@@ -143,7 +143,10 @@ export function baseOf(word: string, known: (text: string) => boolean): string |
   const chars = Array.from(word)
   if (chars.length < 2 || !PARTICLE_ENDINGS.test(word)) return undefined
   const base = chars.slice(0, -1).join('')
-  return known(base) ? base : undefined
+  if (known(base)) return base
+  // 不好了, 没来过: a negated known word plus a particle.
+  const bare = chars[0] === '不' || chars[0] === '没' ? chars.slice(1, -1).join('') : ''
+  return bare && known(bare) ? bare : undefined
 }
 
 export interface BatchAnswer {
@@ -171,6 +174,8 @@ export function validateBatch(value: unknown, batch: readonly WorkItem[], known:
       continue
     }
     if (result.decision !== 'word') continue
+    // A curriculum word never becomes a source entry (会, 少): it links to its first curriculum sense.
+    if (item.senses.length) { seen.add(item.token.text); answer.senses.set(item.token.text, item.senses[0].ref); continue }
     // Verb or noun + 了/的/吗/呢/过/着 is not a headword when its base is known: no entry of its own (set aside, not retried).
     if (baseOf(item.token.text, known)) { seen.add(item.token.text); answer.skipped.push(item.token.text); continue }
     const pinyin = typeof result.pinyin === 'string' ? result.pinyin.trim() : ''

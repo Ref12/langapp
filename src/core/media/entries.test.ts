@@ -245,3 +245,10 @@ describe('a batch that keeps failing', () => {
     expect(summary.unresolved).toBe(0)
   })
 })
+
+describe('trial fixes', () => {
+  it('drops a negated known word plus a particle', () => {
+    expect(baseOf('不好了', w => w === '好')).toBe('好')
+    expect(baseOf('会', () => true)).toBeUndefined()
+  })
+})

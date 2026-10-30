@@ -6,7 +6,7 @@ import { resetProfileStorage } from '../../test/profile-storage'
 import { isTranslated, lineView, type Aligned, type MediaLine } from './contracts'
 import { reconcileLine } from './reconcile'
 import { saveMedia } from './store'
-import { applySalvage, clearTranslation, buildChunk, getChunkSize, getConcurrency, mergeChunks, planChunk, planGap, RUN, setChunkSize, setConcurrency, translateMedia, troubleLines } from './translation'
+import { applySalvage, clearTranslation, buildChunk, getChunkSize, getConcurrency, mergeChunks, planChunk, planGap, RUN, setChunkSize, setConcurrency, translateMedia, troubleLines, bleeds, normalizePinyin } from './translation'
 
 vi.mock('../ai/structured', () => ({ requestStructuredJSON: vi.fn() }))
 const completion = vi.mocked(requestStructuredJSON)
@@ -513,5 +513,18 @@ describe('lineView', () => {
     expect(lineView(aligned, 0).tokens).toHaveLength(1)
     expect(lineView(aligned, 9)).toEqual({ tokens: undefined })
     expect(lineView(undefined, 0)).toEqual({})
+  })
+})
+
+describe('trial fixes', () => {
+  it('flags a fragment far longer than its line', () => {
+    expect(bleeds("Today, I'm taking you in, so listen to what I say.", '今日')).toBe(true)
+    expect(bleeds('Today', '今日')).toBe(false)
+  })
+  it('normalises pinyin to the most frequent spelling', () => {
+    const tok = (pinyin: string) => ({ text: '镇国公府', pinyin, meaning: '', trailing: '' })
+    const { tokens, changed } = normalizePinyin([{ line: 0, items: [tok('a')] }, { line: 1, items: [tok('b')] }, { line: 2, items: [tok('b')] }])
+    expect(changed).toBe(1)
+    expect(tokens.every(entry => entry.items[0].pinyin === 'b')).toBe(true)
   })
 })
