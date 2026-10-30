@@ -6,7 +6,7 @@ import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { PracticeSnippet } from '../components/assistant/SnippetActions'
 import { Pinyin } from '../components/Pinyin'
 import { useCatalog } from '../components/study/useCatalog'
-import { currentLine, lineView, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SourceEntry, type SyncAnchor, type WovenToken } from '../core/media/contracts'
+import { currentLine, isTranslated, lineView, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SourceEntry, type SyncAnchor, type WovenToken } from '../core/media/contracts'
 import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
 import { lineUnits } from '../core/media/readings'
@@ -246,14 +246,17 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const [annotated, setAnnotated] = useState(false)
   const [overlayTranslation, setOverlayTranslation] = useState(false)
   const [glosses, setGlosses] = useState(() => localStorage.getItem('linguaweave-media-glosses') === 'true')
-  const [translating, setTranslating] = useState<{ done: number; total: number; model?: string } | undefined>()
+  const [translating, setTranslating] = useState<{ done: number; total: number; model?: string; active?: { from: number; to: number; startedAt: number }[] } | undefined>()
+  const [clock, setClock] = useState(Date.now())
+  useEffect(() => { if (!translating?.active?.length) return; const timer = setInterval(() => setClock(Date.now()), 1000); return () => clearInterval(timer) }, [translating?.active?.length])
   const [translateError, setTranslateError] = useState('')
   const [studyTitle, setStudyTitle] = useState(false)
   const hasChineseTitle = /[\u3400-\u9fff]/.test(item.title)
   const translateAbort = useRef<AbortController>()
   useEffect(() => () => translateAbort.current?.abort(), [])
   const aligned = item.aligned
-  const translated = aligned ? aligned.upTo >= item.lines.length : false
+  const translated = isTranslated(aligned, item.lines.length)
+  const missingLines = aligned?.missing?.reduce((sum, [from, to]) => sum + to - from, 0) ?? 0
   const [linking, setLinking] = useState<{ done: number; total: number; model?: string } | undefined>()
   const [linkError, setLinkError] = useState('')
   const linkAbort = useRef<AbortController>()
@@ -274,10 +277,10 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
     const controller = new AbortController()
     translateAbort.current = controller
     setTranslateError('')
-    setTranslating({ done: aligned?.upTo ?? 0, total: item.lines.length })
+    setTranslating({ done: Math.max(0, (aligned?.upTo ?? 0) - missingLines), total: item.lines.length })
     let model: string | undefined
     let finished = false
-    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating({ done, total, model }), { onModel: name => { model = name; setTranslating(previous => previous && { ...previous, model }) } }); finished = true }
+    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating(previous => ({ ...previous, done, total, model })), { onModel: name => { model = name; setTranslating(previous => previous && { ...previous, model }) }, onActive: active => setTranslating(previous => previous && { ...previous, active }) }); finished = true }
     catch (reason) { if (!controller.signal.aborted) setTranslateError(reason instanceof Error ? reason.message : 'The translation failed.') }
     finally { setTranslating(undefined) }
     // Pass 2 follows pass 1 automatically.
@@ -471,6 +474,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
       <div className="media-toolbar">
         {translating
           ? <><progress max={translating.total} value={translating.done} aria-label="Translation progress" /><span className="small muted">Translating {translating.done} of {translating.total} lines{translating.model ? ` with ${translating.model}` : ''}...</span>
+            {translating.active?.map(window => <span key={window.from} className="small muted">Translating lines {window.from + 1}-{window.to}... ({Math.max(0, Math.round((clock - window.startedAt) / 1000))}s)</span>)}
             <button type="button" className="button secondary" onClick={() => translateAbort.current?.abort()}>Cancel</button></>
           : translated
             ? <><span className="small muted">AI translation ready.</span>
@@ -486,7 +490,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
                   <button type="button" className="button secondary" onClick={() => void addTrack('pinyin')}>Add pinyin to Medusa</button></>}
                 {(trackFallback || !item.mediaId) && <button type="button" className="button secondary" onClick={() => saveFiles(trackFallback ?? 'translation')}>Save as subtitle file</button>}
               </div></details></>
-            : <button type="button" className="button secondary" onClick={() => void startTranslate()}>{translateError ? 'Retry translating' : aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button>}
+            : <button type="button" className="button secondary" onClick={() => void startTranslate()}>{translateError ? (missingLines ? 'Retry failed parts' : 'Retry translating') : missingLines ? `Retry failed parts (${missingLines} lines)` : aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button>}
         {translateError && <p className="notice error" role="alert">{translateError}</p>}
         {trackNote && <p className="small muted" role="status">{trackNote}</p>}
       </div>

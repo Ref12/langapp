@@ -67,6 +67,10 @@ export interface ToolResult {
 export interface CompletionOptions {
   signal?: AbortSignal
   toolChoice?: 'none' | 'lookup_words'
+  /** Overrides the default request timeout. */
+  timeoutMs?: number
+  /** Include the provider's own error message (key and header values redacted) in a failure; for the connection test, where the person needs it. */
+  showDetail?: boolean
 }
 
 /** One learner turn. Only normalized calls/results cross this boundary; never provider continuation. */
@@ -144,7 +148,23 @@ export function abortable<T>(promise: Promise<T>, signal: AbortSignal): Promise<
   })
 }
 
-export function httpFailure(status: number): AITransportError {
+/** The provider's own error message from a failed response (never the request), shortened. */
+export async function failureDetail(response: Response, secrets: readonly string[] = []): Promise<string> {
+  try {
+    const text = (await response.text()).slice(0, 2000)
+    let message = text
+    try { const parsed = JSON.parse(text) as { error?: { message?: unknown } | string; message?: unknown }; const found = typeof parsed.error === 'string' ? parsed.error : parsed.error?.message ?? parsed.message; if (typeof found === 'string') message = found } catch { /* plain text */ }
+    for (const secret of secrets) if (secret.length >= 4) message = message.split(secret).join('[redacted]')
+    return message.replace(/\s+/g, ' ').trim().slice(0, 300)
+  } catch { return '' }
+}
+
+export function httpFailure(status: number, detail = ''): AITransportError {
+  const error = httpFailureBase(status)
+  return detail ? new AITransportError(`${error.message} (HTTP ${status}: ${detail})`) : error
+}
+
+function httpFailureBase(status: number): AITransportError {
   if (status === 401 || status === 403) return new AITransportError('The AI service rejected authentication. Check your API key and model permissions in Settings.')
   if (status === 429) return new AITransportError('The AI service is rate limited or out of quota. Check your quota and try again later.')
   if (status === 400 || status === 422) return new AITransportError('The AI service rejected this request. Check the model and selected native-tool / structured-output capabilities in Settings.')
@@ -349,7 +369,7 @@ function requestBody(connection: AIConnectionInput, items: unknown[], options: C
 async function requestCompletion(connection: AIConnectionInput, body: string, options: CompletionOptions): Promise<ParsedCompletion> {
   const controller = new AbortController()
   let timedOut = false
-  const timeout = setTimeout(() => { timedOut = true; controller.abort() }, REQUEST_TIMEOUT_MS)
+  const timeout = setTimeout(() => { timedOut = true; controller.abort() }, options.timeoutMs ?? REQUEST_TIMEOUT_MS)
   const forwardAbort = () => controller.abort()
   options.signal?.addEventListener('abort', forwardAbort, { once: true })
   if (options.signal?.aborted) controller.abort()
@@ -361,9 +381,10 @@ async function requestCompletion(connection: AIConnectionInput, body: string, op
       body, signal: controller.signal, redirect: 'error', credentials: requestCredentials(connection.baseUrl), referrerPolicy: 'no-referrer', cache: 'no-store',
     }), controller.signal)
     if (!response.ok) {
+      const detail = options.showDetail ? await failureDetail(response, [connection.apiKey, ...(connection.headers ?? []).map(header => header.value)]) : ''
       void response.body?.cancel().catch(() => undefined)
       if ((response.status === 400 || response.status === 422) && /"(image_url|input_image)"/.test(body)) throw new AIImagesRejectedError()
-      throw httpFailure(response.status)
+      throw httpFailure(response.status, detail)
     }
     const value = await readJSON(response, controller.signal)
     return connection.apiType === 'responses' ? parseResponsesCompletion(value, connection.nativeTools) : parseChatCompletion(value, connection.nativeTools)
@@ -432,13 +453,16 @@ export function createAssistantModelClient(input: AIConnectionInput, messages: T
   }
 }
 
+/** A connection test waits longer than a chat turn: a slow model is not a broken one. */
+export const TEST_TIMEOUT_MS = 120_000
+
 export async function testAIConnection(input: AIConnectionInput, signal?: AbortSignal): Promise<void> {
   const messages: TutorMessage[] = [
     { role: 'system', content: REPLY_INSTRUCTIONS },
     { role: 'user', content: input.nativeTools ? 'Synthetic capability test. Call lookup_words with query "test", then reply with a text block saying Connection ready.' : 'Synthetic capability test. Reply with a text block saying Connection ready.' },
   ]
   const client = createAssistantModelClient(input, messages)
-  const first = await client.complete([], { signal, ...(input.nativeTools ? { toolChoice: 'lookup_words' as const } : {}) })
+  const first = await client.complete([], { signal, timeoutMs: TEST_TIMEOUT_MS, showDetail: true, ...(input.nativeTools ? { toolChoice: 'lookup_words' as const } : {}) })
   if (!input.nativeTools) {
     if (first.kind !== 'reply') return invalid('The connection did not return a supported reply.')
     return
@@ -448,6 +472,6 @@ export async function testAIConnection(input: AIConnectionInput, signal?: AbortS
   }
   const final = await client.complete([{
     callId: first.calls[0].id, output: '{"synthetic":true,"words":[],"note":"Capability test only; no learner data was read."}',
-  }], { signal, toolChoice: 'none' })
+  }], { signal, timeoutMs: TEST_TIMEOUT_MS, showDetail: true, toolChoice: 'none' })
   if (final.kind !== 'reply') return invalid('The AI service did not finish the native-tool exchange. Disable native tools or choose a compatible model, then test again.')
 }

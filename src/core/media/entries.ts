@@ -2,7 +2,7 @@ import { aiConnectionSchema, type AIConnection } from '../assistant/contracts'
 import { requestStructuredJSON } from '../ai/structured'
 import { db } from '../database'
 import { loadCatalog, type Catalog } from '../study/catalog'
-import { sourceEntrySchema, type EntryLinks, type MediaItem, type SourceEntry } from './contracts'
+import { isTranslated, sourceEntrySchema, type EntryLinks, type MediaItem, type SourceEntry } from './contracts'
 
 // Pass 2 of the annotated source: every distinct word of an item is linked to a curriculum unit or a source entry.
 // Exact curriculum matches and words already known as source entries are linked locally. Only the rest goes to the AI,
@@ -199,7 +199,7 @@ export async function linkEntries(
   signal.throwIfAborted()
   const original = await db.mediaItems.get(id)
   if (!original) throw new Error('This media is no longer saved.')
-  if (!original.aligned || original.aligned.upTo < original.lines.length) throw new Error('Translate the whole source first; the words come from that pass.')
+  if (!original.aligned || !isTranslated(original.aligned, original.lines.length)) throw new Error('Translate the whole source first; the words come from that pass.')
   const stamp = original.aligned.updatedAt
   const tokens = collectTokens(original)
   const byText = new Map(tokens.map(token => [token.text, token]))

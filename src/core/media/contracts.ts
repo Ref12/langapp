@@ -23,9 +23,14 @@ export const alignedSchema = z.object({
   tokens: z.array(z.object({ line: z.number().int().min(0), items: z.array(wovenTokenSchema).max(300) }).strict()).max(30_000),
   /** Lines before this index are translated; a run resumes from here. */
   upTo: z.number().int().min(0),
+  /** Line ranges [from, to) below `upTo` whose translation failed; a later run fills just these. */
+  missing: z.array(z.tuple([z.number().int().min(0), z.number().int().min(0)])).max(2000).optional(),
   updatedAt: z.number(),
 }).strict()
 export type Aligned = z.infer<typeof alignedSchema>
+
+/** Every line translated: the run reached the end and no range is left over. */
+export const isTranslated = (aligned: Pick<Aligned, 'upTo' | 'missing'> | undefined, lineCount: number): boolean => !!aligned && aligned.upTo >= lineCount && !aligned.missing?.length
 
 /** A word drawn from a media source that is not in the curriculum. It is a dictionary entry, never a curriculum unit. */
 export const sourceEntrySchema = z.object({
