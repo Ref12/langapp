@@ -105,7 +105,7 @@ export interface GenerationInput {
   phrases?: PhraseTarget[]
 }
 
-export interface PhraseTarget { ref: string; text: string; translation?: string }
+export interface PhraseTarget { ref: string; text: string; translation?: string; /** Set for a single word drawn from a media source (a source entry); absent for a whole sentence. */ pinyin?: string }
 
 /** Every substring of a phrase's Han runs (up to 12 characters) counts as known text for that phrase's exercises. */
 function phraseForms(phrases: PhraseTarget[] = []): string[] {
@@ -154,7 +154,7 @@ export function buildGenerationPrompt(input: GenerationInput): { system: string;
       mode: input.mode,
       requestedExercises: count,
       targets: [...input.targets.map(unit => describeUnit(input.catalog, unit)),
-        ...phrases.map(phrase => ({ ref: phrase.ref, kind: 'phrase', chinese: phrase.text, ...(phrase.translation ? { meaning: phrase.translation } : {}) }))],
+        ...phrases.map(phrase => ({ ref: phrase.ref, kind: phrase.pinyin ? 'word' : 'phrase', chinese: phrase.text, ...(phrase.pinyin ? { pinyin: phrase.pinyin } : {}), ...(phrase.translation ? { meaning: phrase.translation } : {}) }))],
       alsoReview: input.review.map(unit => describeUnit(input.catalog, unit)),
       otherKnownVocabulary: vocabulary.map(unit => unit.kind === 'vocabulary' ? `${unit.record.ch} (${unit.record.pr}): ${unit.record.ds}` : ''),
       otherKnownGrammar: otherGrammar.slice(0, 60).map(unit => unit.kind === 'grammar' ? `${unit.record.pt}: ${unit.record.ds}` : ''),

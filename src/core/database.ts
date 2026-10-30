@@ -13,7 +13,7 @@ import type { MemoryGame } from './games/memory'
 import type { DefenderGame } from './games/defender'
 import type { PotionsGame, PotionsProgress } from './games/potions'
 import type { JournalEvent } from './backup/journal'
-import type { MediaItem } from './media/contracts'
+import type { MediaItem, SourceEntry } from './media/contracts'
 import type { Collection, CollectionItem } from './collections/contracts'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
@@ -61,6 +61,7 @@ export class LearningDatabase extends Dexie {
   mediaItems!: EntityTable<MediaItem, 'id'>
   collections!: EntityTable<Collection, 'id'>
   collectionItems!: EntityTable<CollectionItem, 'id'>
+  sourceEntries!: EntityTable<SourceEntry, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -107,6 +108,7 @@ export class LearningDatabase extends Dexie {
     this.version(16).stores({ assistantImages: '&id, threadId, messageId' })
     this.version(17).stores({ mediaItems: '&id, savedAt' })
     this.version(18).stores({ collections: '&id, mediaId, updatedAt', collectionItems: '&id, collectionId, ref' })
+    this.version(19).stores({ sourceEntries: '&id, word' })
   }
 }
 

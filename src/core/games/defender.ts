@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { advanceRun, allowsPinyinAnnotations, ANSWER_BANK_SIZE, createRun, leadingWord, paceAt, pauseRun, resumeRun, SHIELDS, submitTranslation, type Settings, type Word } from '../../../shared/defender-engine'
 import { distinctWords, gameWordSchema } from './game-vocabulary'
-import { requireUnit, type Catalog } from '../study/catalog'
+import { type Catalog } from '../study/catalog'
 import type { Workspace } from '../model'
 
 export { answerText, directionForms, isDirection, allowsPinyinAnnotations, leadingWord, promptText, SHIELDS } from '../../../shared/defender-engine'
@@ -47,8 +47,8 @@ export type DefenderGame = z.infer<typeof defenderGameSchema>
 
 export function defenderKnowledgeWords(catalog: Catalog, workspace: Workspace): Word[] {
   const words = workspace.knowledge.flatMap(entry => {
-    const unit = requireUnit(catalog, entry.ref)
-    if (unit.kind !== 'vocabulary') return []
+    const unit = catalog.units.get(entry.ref)
+    if (unit?.kind !== 'vocabulary') return []
     return [{ id: unit.ref, character: unit.record.ch, pinyin: unit.record.pr.normalize('NFC'), meaning: unit.record.ds }]
   })
   return distinctWords(words).map(word => ({ ...word, englishAnswers: [word.meaning] }))

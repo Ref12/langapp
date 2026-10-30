@@ -80,6 +80,7 @@ export async function readUnjournaledState(database: LearningDatabase): Promise<
     threads: await readInBatches(database.assistantThreads), messages: await readInBatches(database.assistantMessages),
     runs: await readInBatches(database.assistantRuns), library: await readInBatches(database.libraryBooks, 20),
     media: await readInBatches(database.mediaItems, 20),
+    sourceEntries: await readInBatches(database.sourceEntries, 500),
     collections: await readCollectionsState(database),
   } as unknown as UnjournaledState
 }

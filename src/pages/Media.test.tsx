@@ -340,6 +340,25 @@ describe('Media page', () => {
     expect(within(screen.getByTestId('media-lines-scroll')).getAllByText(/Hello,|I am a student\.|Goodbye\./)).toHaveLength(3)
   })
 
+  it('shows the linked entry when a woven word is tapped once pass 2 has run', async () => {
+    await db.sourceEntries.add({ id: 'sabc1', word: '\u5b66\u751f', pinyin: 'xué sheng', meanings: ['pupil', 'learner'], pos: 'noun', sources: [{ mediaId: 'x', title: 'A drama', line: 1, text: '\u6211\u662f\u5b66\u751f' }], createdAt: 1, updatedAt: 1 })
+    const id = await saveMedia({ ...result, aligned, entries: { links: { '\u5b66\u751f': 'source:sabc1' }, skipped: [], counts: { 'source:sabc1': 1 }, total: 4, complete: false, updatedAt: 2 } } as never)
+    window.location.hash = `#media/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByRole('heading', { name: 'A drama', level: 1 })
+    player.time = 4.5
+    const footer = () => document.querySelector('.media-footer') as HTMLElement
+    await waitFor(() => expect(footer().querySelectorAll('.woven-token')).toHaveLength(3))
+    // A word without a link still shows the line's own gloss; a linked one shows its entry and where it comes from.
+    await user.click(footer().querySelectorAll('.woven-token .word')[0])
+    expect(within(footer()).getByText(/\/ I$/)).toBeInTheDocument()
+    await user.click(footer().querySelectorAll('.woven-token .word')[2])
+    await waitFor(() => expect(within(footer()).getByText(/pupil; learner/)).toBeInTheDocument())
+    expect(within(footer()).getByText('From your media')).toBeInTheDocument()
+    expect(within(footer()).getByText(/here: student/)).toBeInTheDocument()
+  })
+
   it('offers the fragment as a second subtitle line and in the Learn picker, and woven tokens when annotated', async () => {
     const id = await saveMedia({ ...result, aligned } as never)
     window.location.hash = `#media/${id}`

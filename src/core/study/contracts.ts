@@ -9,15 +9,17 @@ export type StudyDomain = typeof STUDY_DOMAINS[number]
 export const unitLabelSchema = z.string().min(1).max(200).regex(/^[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
 export const unitKindSchema = z.enum(['vocabulary', 'grammar'])
 // `phrase:` refs name a collection's free phrase (see core/collections); they have no curriculum record.
-export const unitRefSchema = z.string().regex(/^(?:vocabulary|grammar|phrase):[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
+// `source:` refs name an entry drawn from a media source (see core/media/entries); it has no curriculum record either.
+export const unitRefSchema = z.string().regex(/^(?:vocabulary|grammar|phrase|source):[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
 export const bandSchema = z.enum(['1', '2', '3', '4', '5', '6'])
 const timestamp = z.number().int().nonnegative()
 const id = z.string().min(1).max(200)
 
 export const knowledgeEntrySchema = z.object({
   ref: unitRefSchema,
-  kind: unitKindSchema,
+  kind: z.enum(['vocabulary', 'grammar', 'source']),
   lb: unitLabelSchema,
+  /** Source entries sit beyond the curriculum bands and use '6'. */
   band: bandSchema,
   addedAt: timestamp,
   source: z.enum(['new', 'dictionary']),
@@ -128,8 +130,12 @@ export type StudyBackup = z.infer<typeof studyBackupSchema>
 export type UnitKind = z.infer<typeof unitKindSchema>
 export type Band = z.infer<typeof bandSchema>
 
-export function unitRef(kind: UnitKind, lb: string): string {
+export function unitRef(kind: UnitKind | 'source', lb: string): string {
   return `${kind}:${lb}`
+}
+
+export function isSourceRef(ref: string): boolean {
+  return ref.startsWith('source:')
 }
 
 export function isPhraseRef(ref: string): boolean {

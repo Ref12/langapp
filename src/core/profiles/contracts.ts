@@ -6,7 +6,7 @@ import { validateAssistant, validateCollections, validateStudy, validateWorkspac
 import { studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
 import { profileMetadataSchema } from './identity'
 import { librarySchema } from '../library/contracts'
-import { mediaItemSchema } from '../media/contracts'
+import { mediaItemSchema, sourceEntrySchema } from '../media/contracts'
 import { collectionsBackupSchema } from '../collections/contracts'
 
 export const MAX_PROFILE_BYTES = 10 * 1024 * 1024
@@ -29,6 +29,7 @@ export const profileDataSchema = z.object({
   conversations: assistantBackupSchema,
   library: librarySchema.default([]),
   media: z.array(mediaItemSchema).max(500).default([]),
+  sourceEntries: z.array(sourceEntrySchema).max(100_000).default([]),
   collections: collectionsBackupSchema.default({ collections: [], items: [], cards: [] }),
 }).strict()
 
@@ -55,7 +56,7 @@ const attemptSchema = workspaceSchema.shape.attempts.element.omit({ wordId: true
   .extend({ lb: unitLabelSchema, answerLb: unitLabelSchema })
 const studyKnowledgeSchema = studyBackupSchema.shape.knowledge.element.omit({ ref: true })
 const studyCardSchema = studyBackupSchema.shape.cards.element.omit({ id: true, ref: true })
-  .extend({ kind: unitKindSchema, lb: unitLabelSchema })
+  .extend({ kind: unitKindSchema.or(z.literal('source')), lb: unitLabelSchema })
 
 // The wire format uses labels; normalized snapshots retain database keys in memory.
 export const profileYamlSchema = profileDataSchema.extend({

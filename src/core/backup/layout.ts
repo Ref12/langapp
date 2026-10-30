@@ -10,6 +10,19 @@ import type { CharacterState } from '../characters/contracts'
 import type { ExerciseAttempt, KnowledgeEntry, StudyCard } from '../study/contracts'
 import { eventLine, parseJournal, replay, replayFrom, type JournalEvent } from './journal'
 import type { LoadedBackup } from './files'
+import type { SourceEntry } from '../media/contracts'
+
+const SOURCE_ENTRY_CHUNK = 500
+/** Source entries are many and small: stored in files of up to 500, ordered by id so unchanged chunks stay byte-identical. */
+export function sourceEntryFiles(entries: readonly SourceEntry[]): [string, string][] {
+  const sorted = [...entries].sort((a, b) => a.id.localeCompare(b.id))
+  const out: [string, string][] = []
+  for (let from = 0; from < sorted.length; from += SOURCE_ENTRY_CHUNK) {
+    out.push([`source-entries/${String(from / SOURCE_ENTRY_CHUNK).padStart(4, '0')}.yaml`, stringify({ entries: sorted.slice(from, from + SOURCE_ENTRY_CHUNK) }, { aliasDuplicateObjects: false, lineWidth: 0 })])
+  }
+  return out
+}
+export const isSourceEntryFile = (path: string) => path.startsWith('source-entries/')
 
 // Version 2 layout inside profiles/<profile-id>/ (every file is YAML):
 //   manifest.yaml                    cursor (last journal seq covered), the snapshot's cursor and the segments after it
@@ -62,7 +75,7 @@ export interface UnjournaledState {
   attempts: ProfileSnapshot['knowledge']['attempts']; exerciseSessions: ProfileSnapshot['knowledge']['study']['sessions']
   practiceHistory: NonNullable<ProfileSnapshot['conversations']['practiceHistory']>
   threads: ProfileSnapshot['conversations']['threads']; messages: ProfileSnapshot['conversations']['messages']
-  runs: ProfileSnapshot['conversations']['runs']; library: ProfileSnapshot['library']; media: ProfileSnapshot['media']
+  runs: ProfileSnapshot['conversations']['runs']; library: ProfileSnapshot['library']; media: ProfileSnapshot['media']; sourceEntries: ProfileSnapshot['sourceEntries']
   collections: ProfileSnapshot['collections']
 }
 
@@ -113,6 +126,7 @@ export function buildFilesV2(input: BuildInput): BuildOutput {
     conversations: { threads: u.threads, messages: u.messages, runs: u.runs, ...(u.practiceHistory.length ? { practiceHistory: u.practiceHistory } : {}) },
     library: u.library,
     media: u.media,
+    sourceEntries: u.sourceEntries,
     collections: u.collections,
   } as ProfileSnapshot
   const whole = toProfileYaml(assembled) as unknown as { knowledge: Record<string, unknown> & { study: Record<string, unknown> & { sessions: { id: string }[] } }; conversations: { threads: { id: string }[]; messages: { threadId: string }[]; runs: { threadId: string }[]; practiceHistory?: unknown[] }; library: { id: string }[]; media: { id: string }[]; collections: CollectionsBackup }
@@ -132,6 +146,7 @@ export function buildFilesV2(input: BuildInput): BuildOutput {
   if (whole.conversations.practiceHistory?.length) files.set('conversations/practice-history.yaml', dump({ practiceHistory: whole.conversations.practiceHistory }))
   for (const book of whole.library) files.set(`library/${safeName(book.id)}.yaml`, dump(book))
   for (const item of whole.media) files.set(`media/${safeName(item.id)}.yaml`, dump(item))
+  for (const [path, text] of sourceEntryFiles(u.sourceEntries)) files.set(path, text)
   for (const part of splitCollections(whole.collections)) files.set(`collections/${safeName(part.id)}.yaml`, dump(part.value))
 
   // The log: the new segment(s) only; segments already in the repository are kept as they are.
@@ -174,6 +189,7 @@ export function loadBackupV2(files: Map<string, string>, profileFallback: Profil
   const conversations = { threads: [] as unknown[], messages: [] as unknown[], runs: [] as unknown[], practiceHistory: [] as unknown[] }
   const library: unknown[] = []
   const media: unknown[] = []
+  const sourceEntries: unknown[] = []
   const collectionParts: CollectionsBackup[] = []
   for (const [path, text] of [...files].sort(([a], [b]) => a.localeCompare(b))) {
     if (path.startsWith('state/exercise-sessions/')) sessions.push(parse(text))
@@ -183,6 +199,7 @@ export function loadBackupV2(files: Map<string, string>, profileFallback: Profil
       conversations.threads.push(item.thread); conversations.messages.push(...item.messages); conversations.runs.push(...item.runs)
     } else if (path.startsWith('library/')) library.push(parse(text))
     else if (path.startsWith('media/')) media.push(parse(text))
+    else if (isSourceEntryFile(path)) sourceEntries.push(...(parse(text) as { entries: unknown[] }).entries)
     else if (path.startsWith('collections/')) collectionParts.push(parse(text) as CollectionsBackup)
   }
   const rest = { ...conversations, ...(conversations.practiceHistory.length ? {} : { practiceHistory: undefined }) }
@@ -190,7 +207,7 @@ export function loadBackupV2(files: Map<string, string>, profileFallback: Profil
   const wire = {
     format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: 0, profile, settings: settingsFile.settings,
     knowledge: { ...stateFile.knowledge, characterStates: snapshotFile.knowledge.characterStates, study: { ...snapshotFile.knowledge.study, sessions } },
-    conversations: rest, library, media, collections: joinCollections(collectionParts),
+    conversations: rest, library, media, sourceEntries, collections: joinCollections(collectionParts),
   }
   const base = parseProfileYaml(dump(wire))
   const tail: JournalEvent[] = []

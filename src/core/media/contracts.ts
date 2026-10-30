@@ -27,6 +27,35 @@ export const alignedSchema = z.object({
 }).strict()
 export type Aligned = z.infer<typeof alignedSchema>
 
+/** A word drawn from a media source that is not in the curriculum. It is a dictionary entry, never a curriculum unit. */
+export const sourceEntrySchema = z.object({
+  id: z.string().regex(/^s[a-z0-9]+$/).max(40),
+  word: z.string().min(1).max(60),
+  pinyin: z.string().min(1).max(160),
+  meanings: z.array(z.string().min(1).max(120)).min(1).max(3),
+  pos: z.string().max(30),
+  /** One example per source the word came from. */
+  sources: z.array(z.object({ mediaId: z.string().max(200), title: z.string().max(500), line: z.number().int().min(0), text: z.string().min(1).max(2000) }).strict()).min(1).max(100),
+  createdAt: z.number(),
+  updatedAt: z.number(),
+}).strict()
+export type SourceEntry = z.infer<typeof sourceEntrySchema>
+
+/** Pass 2 result for one item: which entry each distinct token links to, plus counts per entry. */
+export const entryLinksSchema = z.object({
+  /** token text -> `vocabulary:...` (curriculum) or `source:...` (source entry). */
+  links: z.record(z.string().min(1).max(60), z.string().min(1).max(120)),
+  /** Tokens the AI judged not to be words (names, segmentation artefacts). */
+  skipped: z.array(z.string().min(1).max(60)).max(40_000),
+  /** Occurrences per entry ref across the whole item. */
+  counts: z.record(z.string(), z.number().int().min(0)),
+  /** Distinct tokens in the last run, and whether every one is resolved. */
+  total: z.number().int().min(0),
+  complete: z.boolean(),
+  updatedAt: z.number(),
+}).strict()
+export type EntryLinks = z.infer<typeof entryLinksSchema>
+
 export const mediaResultSchema = z.object({
   url: z.string().min(1).max(4000),
   title: z.string().min(1).max(500),
@@ -42,6 +71,7 @@ export const mediaResultSchema = z.object({
   sync: z.array(syncAnchorSchema).max(2000).optional(),
   syncDirty: z.boolean().optional(),
   aligned: alignedSchema.optional(),
+  entries: entryLinksSchema.optional(),
 }).passthrough()
 export type MediaResult = z.infer<typeof mediaResultSchema>
 export type MediaLine = z.infer<typeof mediaLineSchema>

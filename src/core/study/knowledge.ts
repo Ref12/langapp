@@ -3,6 +3,8 @@ import { addEvent, exerciseAttemptEvent, reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
 import type { AIConnection } from '../assistant/contracts'
 import { loadCatalog, requireUnit, type Catalog, type StudyGroup, type Unit } from './catalog'
+import type { PhraseTarget } from './exercises'
+import { isSourceRef } from './contracts'
 import {
   cardId, unitRef, type Band, type ExerciseAttempt, type ExerciseSession, type KnowledgeEntry, type StudyCard, type StudyDomain,
 } from './contracts'
@@ -13,6 +15,19 @@ import { emptySchedulingState, schedule, type Rating, type SchedulingState } fro
 // Adding an item to the knowledge set makes it eligible for review; it asserts nothing about proficiency.
 
 export const DOMAIN: StudyDomain = 'reading'
+/** Curriculum units among these refs; source entries and phrases have no curriculum record. */
+export function curriculumUnits(catalog: Catalog, refs: Iterable<string>): Unit[] {
+  return [...new Set(refs)].flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit] : [] })
+}
+
+/** The exercise targets for source entries in the knowledge set: each is its own word, with its meanings as the translation. */
+export async function sourceTargets(refs: Iterable<string>): Promise<PhraseTarget[]> {
+  const wanted = [...new Set(refs)].filter(isSourceRef)
+  if (!wanted.length) return []
+  const entries = await db.sourceEntries.bulkGet(wanted.map(ref => ref.slice('source:'.length)))
+  return entries.flatMap(entry => entry ? [{ ref: `source:${entry.id}`, text: entry.word, translation: entry.meanings.join('; '), pinyin: entry.pinyin }] : [])
+}
+
 export const REVIEW_ITEMS_PER_SESSION = 8
 export const RECENT_REVIEW_ITEMS = 4
 const RECENT_NEW_SESSIONS = 2
@@ -60,6 +75,26 @@ async function addUnits(units: Unit[], source: KnowledgeEntry['source'], now: nu
     added.push(unit.ref)
   }
   return added
+}
+
+/** Adds words drawn from media sources to the knowledge set, like curriculum units: an entry, a card and a journal event. */
+export async function addSourceEntriesToKnowledge(refs: string[]): Promise<string[]> {
+  const ids = [...new Set(refs)].map(ref => { if (!isSourceRef(ref)) throw new Error('That is not a source entry.'); return ref.slice('source:'.length) })
+  return db.transaction('rw', db.sourceEntries, db.knowledge, db.studyCards, db.journal, async () => {
+    const now = Date.now()
+    const added: string[] = []
+    for (const id of ids) {
+      if (!await db.sourceEntries.get(id)) throw new Error('That word is no longer saved from its source.')
+      const ref = `source:${id}`
+      if (await db.knowledge.get(ref)) continue
+      const entry: KnowledgeEntry = { ref, kind: 'source', lb: id, band: '6', addedAt: now, source: 'dictionary' }
+      await db.knowledge.add(entry)
+      await recordJournal(addEvent(entry))
+      if (!await db.studyCards.get(cardId(ref, DOMAIN))) await db.studyCards.add(newCard(ref, now))
+      added.push(ref)
+    }
+    return added
+  })
 }
 
 /** Adds curriculum units to the knowledge set from the Dictionary. Existing entries are unchanged. */
@@ -114,10 +149,10 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
   if (!next) throw new Error('Every available curriculum group is already in your knowledge set.')
   const sessions = await db.exerciseSessions.toArray()
   const targetRefs = next.units.map(unit => unit.ref)
-  const reviewRefs = recentReviewRefs(sessions, new Set(targetRefs)).filter(ref => known.has(ref))
-  const allowed = [...new Map([...known, ...targetRefs].map(ref => [ref, requireUnit(catalog, ref)])).values()]
+  const reviewRefs = recentReviewRefs(sessions, new Set(targetRefs)).filter(ref => known.has(ref) && catalog.units.has(ref))
+  const allowed = curriculumUnits(catalog, [...known, ...targetRefs])
   const generated = await generateExercises(connection, {
-    mode: 'new', targets: next.units, review: reviewRefs.map(ref => requireUnit(catalog, ref)), allowed, catalog,
+    mode: 'new', targets: next.units, review: reviewRefs.map(ref => requireUnit(catalog, ref)), allowed, catalog, phrases: await sourceTargets(known),
   }, signal)
   const now = Date.now()
   return db.transaction('rw', db.knowledge, db.studyCards, db.exerciseSessions, db.journal, async () => {
@@ -145,17 +180,19 @@ export async function startReviewSession(now: number, anyway = false, signal?: A
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
   const cards = (anyway ? await db.studyCards.where('domain').equals(DOMAIN).toArray() : await dueCards(now))
-    .filter(card => known.has(card.ref) && catalog.units.has(card.ref))
+    .filter(card => known.has(card.ref) && (catalog.units.has(card.ref) || isSourceRef(card.ref)))
     .sort((a, b) => a.due - b.due || a.ref.localeCompare(b.ref))
-  const targets = cards.slice(0, REVIEW_ITEMS_PER_SESSION).map(card => requireUnit(catalog, card.ref))
-  if (!targets.length) throw new Error(known.size ? 'Nothing is due for review right now.' : 'Your knowledge set is empty. Start with New, or add items from the Dictionary.')
-  const allowed = [...known].map(ref => requireUnit(catalog, ref))
-  const generated = await generateExercises(connection, { mode: 'review', targets, review: [], allowed, catalog }, signal)
+  const chosen = cards.slice(0, REVIEW_ITEMS_PER_SESSION)
+  const targets = chosen.flatMap(card => catalog.units.has(card.ref) ? [requireUnit(catalog, card.ref)] : [])
+  const sourceWords = await sourceTargets(chosen.map(card => card.ref))
+  if (!targets.length && !sourceWords.length) throw new Error(known.size ? 'Nothing is due for review right now.' : 'Your knowledge set is empty. Start with New, or add items from the Dictionary.')
+  const allowed = curriculumUnits(catalog, known)
+  const generated = await generateExercises(connection, { mode: 'review', targets, review: [], allowed, catalog, phrases: sourceWords }, signal)
   return db.transaction('rw', db.exerciseSessions, async () => {
     const resumed = await activeSession('review')
     if (resumed) return resumed.id
     return saveSession({
-      id: crypto.randomUUID(), mode: 'review', domain: DOMAIN, targetRefs: targets.map(unit => unit.ref), reviewRefs: [],
+      id: crypto.randomUUID(), mode: 'review', domain: DOMAIN, targetRefs: [...targets.map(unit => unit.ref), ...sourceWords.map(word => word.ref)], reviewRefs: [],
       exercises: generated.exercises, cursor: 0, status: 'active', model: connection.model, rejected: generated.rejected, createdAt: Date.now(),
     })
   })
@@ -169,10 +206,10 @@ export async function startRedoSession(sourceId: string, signal?: AbortSignal): 
   const connection = await requireConnection()
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
-  const targets = source.targetRefs.map(ref => requireUnit(catalog, ref))
-  const review = source.reviewRefs.map(ref => requireUnit(catalog, ref))
-  const allowed = [...new Map([...known, ...source.targetRefs, ...source.reviewRefs].map(ref => [ref, requireUnit(catalog, ref)])).values()]
-  const generated = await generateExercises(connection, { mode: source.mode, targets, review, allowed, catalog }, signal)
+  const targets = curriculumUnits(catalog, source.targetRefs)
+  const review = curriculumUnits(catalog, source.reviewRefs)
+  const allowed = curriculumUnits(catalog, [...known, ...source.targetRefs, ...source.reviewRefs])
+  const generated = await generateExercises(connection, { mode: source.mode, targets, review, allowed, catalog, phrases: await sourceTargets([...source.targetRefs, ...source.reviewRefs]) }, signal)
   return saveSession({
     id: crypto.randomUUID(), mode: source.mode, domain: source.domain, ...(source.groupId ? { groupId: source.groupId } : {}),
     targetRefs: source.targetRefs, reviewRefs: source.reviewRefs, exercises: generated.exercises, cursor: 0, status: 'active',

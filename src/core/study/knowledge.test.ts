@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../database'
 import { loadCatalog } from './catalog'
-import { addToKnowledge, advanceExercise, discardSession, dueCards, groupProgress, nextGroup, startNewSession, startReviewSession, submitExerciseAnswer } from './knowledge'
+import { addSourceEntriesToKnowledge, addToKnowledge, advanceExercise, discardSession, dueCards, groupProgress, nextGroup, startNewSession, startReviewSession, submitExerciseAnswer } from './knowledge'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)
@@ -56,6 +56,26 @@ describe('knowledge set and sessions', () => {
     expect(cards.map(card => card.state)).toEqual(['new', 'new'])
     expect((await dueCards(Date.now())).length).toBe(2)
     await expect(addToKnowledge(['vocabulary:nope--nothing'])).rejects.toThrow(/Unknown curriculum unit/)
+  })
+
+  it('reviews a word from your media like a curriculum item, offering it to the generator as a word target', async () => {
+    await db.aiConnections.put(connection)
+    await db.sourceEntries.add({ id: 'sabc1', word: '咖啡厅', pinyin: 'kāfēitīng', meanings: ['cafe'], pos: 'noun', sources: [{ mediaId: 'm', title: 'Clip', line: 0, text: '我去咖啡厅' }], createdAt: 1, updatedAt: 1 })
+    await addSourceEntriesToKnowledge(['source:sabc1'])
+    const ref = 'source:sabc1'
+    structured.requestStructuredJSON.mockResolvedValue({ exercises: [
+      { id: 'c1', type: 'choice', targets: [ref], direction: 'zh-to-en', question: '咖啡厅', options: ['cafe', 'school'], answer: 0, explanation: '咖啡厅 means cafe.' },
+      { id: 'c2', type: 'choice', targets: [ref], direction: 'en-to-zh', question: 'cafe', options: ['咖啡厅', '咖啡'], answer: 0, explanation: 'cafe' },
+      { id: 't1', type: 'tiles', targets: [ref], translation: 'a cafe', tiles: ['咖啡厅', '咖啡'], distractors: [], explanation: 'cafe' },
+      { id: 't2', type: 'tiles', targets: [ref], translation: 'a cafe again', tiles: ['咖啡', '咖啡厅'], distractors: [], explanation: 'cafe' },
+    ] })
+    const id = await startReviewSession(Date.now() + 1000, true)
+    const session = (await db.exerciseSessions.get(id))!
+    expect(session.targetRefs).toEqual([ref])
+    expect(JSON.parse(structured.requestStructuredJSON.mock.calls[0][1].user).targets).toEqual([{ ref, kind: 'word', chinese: '咖啡厅', pinyin: 'kāfēitīng', meaning: 'cafe' }])
+    const first = session.exercises[session.cursor]
+    await submitExerciseAnswer(id, session.cursor, first.type === 'choice' ? first.answer : first.tiles)
+    expect((await db.studyCards.get('source:sabc1:reading'))?.reps).toBe(1)
   })
 
   it('requires an AI connection before generating a session', async () => {

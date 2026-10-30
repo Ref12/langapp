@@ -6,11 +6,12 @@ import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { PracticeSnippet } from '../components/assistant/SnippetActions'
 import { Pinyin } from '../components/Pinyin'
 import { useCatalog } from '../components/study/useCatalog'
-import { currentLine, lineView, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SyncAnchor, type WovenToken } from '../core/media/contracts'
+import { currentLine, lineView, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SourceEntry, type SyncAnchor, type WovenToken } from '../core/media/contracts'
 import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
 import { lineUnits } from '../core/media/readings'
 import { translateMedia } from '../core/media/translation'
+import { linkEntries } from '../core/media/entries'
 import { sendTrack, trackFiles, type TrackKind } from '../core/media/tracks'
 import { studyLines } from '../core/collections/store'
 import { removeMedia, saveMedia, saveSync } from '../core/media/store'
@@ -178,8 +179,8 @@ const PAUSE_KEY = 'linguaweave-media-pause-after-line'
 /** Where a tapped word can be looked up in the Dictionary (characters, when it is one). */
 const dictionaryLink = (text: string) => `#dictionary/${Array.from(text).length === 1 ? 'characters' : 'vocabulary'}/all?q=${encodeURIComponent(text)}`
 
-function Picked({ text, pinyin, meaning }: { text: string; pinyin?: string; meaning?: string }) {
-  return <p className="notice media-picked" role="status"><strong lang="zh-Hans">{text}</strong>{pinyin && <> <Pinyin text={pinyin} /></>}{meaning ? <> / {meaning}</> : null} <a href={dictionaryLink(text)}>Look up in Dictionary</a></p>
+function Picked({ text, pinyin, meaning, note, context }: { text: string; pinyin?: string; meaning?: string; note?: string; context?: string }) {
+  return <p className="notice media-picked" role="status"><strong lang="zh-Hans">{text}</strong>{pinyin && <> <Pinyin text={pinyin} /></>}{meaning ? <> / {meaning}</> : null}{note && <span className="tag"> {note}</span>}{context && context !== meaning && <span className="small muted"> (here: {context})</span>} <a href={dictionaryLink(text)}>Look up in Dictionary</a></p>
 }
 
 /** A line with a reading and a tap target on every Han character: catalog words as words, everything else character by character. */
@@ -198,7 +199,9 @@ function WordLine({ text, pinyin, lookup, className = 'media-now' }: { className
 }
 
 /** One line from the AI pass: per-word pinyin and (optionally) glosses, with a tap for the contextual meaning. */
-function WovenLine({ tokens, pinyin, glosses, className = 'media-now' }: { tokens: WovenToken[]; pinyin: boolean; glosses: boolean; className?: string }) {
+type EntryInfo = { ref: string; pinyin: string; meaning: string; source: boolean }
+
+function WovenLine({ tokens, pinyin, glosses, className = 'media-now', entryOf }: { tokens: WovenToken[]; pinyin: boolean; glosses: boolean; className?: string; entryOf?: (text: string) => EntryInfo | undefined }) {
   const [selected, setSelected] = useState<WovenToken>()
   return <>
     <p className={className} lang="zh-Hans">{tokens.map((token, index) => <span key={index} className="woven-token">
@@ -206,7 +209,11 @@ function WovenLine({ tokens, pinyin, glosses, className = 'media-now' }: { token
         {pinyin && token.pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt>}</ruby>
       {glosses && token.meaning && <span className="woven-gloss" data-assistant-exclude>{token.meaning}</span>}
       {token.trailing}</span>)}</p>
-    {selected && <Picked text={selected.text} pinyin={selected.pinyin} meaning={selected.meaning} />}
+    {selected && (() => {
+      // Once pass 2 has run, the tapped word shows its entry (curriculum or from this source); the line's own gloss is the fallback.
+      const entry = entryOf?.(selected.text)
+      return entry ? <Picked text={selected.text} pinyin={entry.pinyin} meaning={entry.meaning} note={entry.source ? 'From your media' : 'Curriculum'} context={selected.meaning} /> : <Picked text={selected.text} pinyin={selected.pinyin} meaning={selected.meaning} />
+    })()}
   </>
 }
 
@@ -247,6 +254,21 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   useEffect(() => () => translateAbort.current?.abort(), [])
   const aligned = item.aligned
   const translated = aligned ? aligned.upTo >= item.lines.length : false
+  const [linking, setLinking] = useState<{ done: number; total: number; model?: string } | undefined>()
+  const [linkError, setLinkError] = useState('')
+  const linkAbort = useRef<AbortController>()
+  useEffect(() => () => linkAbort.current?.abort(), [])
+  const startLink = async () => {
+    linkAbort.current?.abort()
+    const controller = new AbortController()
+    linkAbort.current = controller
+    setLinkError('')
+    setLinking({ done: 0, total: item.entries?.total ?? 0 })
+    let model: string | undefined
+    try { await linkEntries(item.id, controller.signal, (done, total) => setLinking({ done, total, model }), { onModel: name => { model = name; setLinking(previous => previous && { ...previous, model }) } }) }
+    catch (reason) { if (!controller.signal.aborted) setLinkError(reason instanceof Error ? reason.message : 'Linking the words failed.') }
+    finally { setLinking(undefined) }
+  }
   const startTranslate = async () => {
     translateAbort.current?.abort()
     const controller = new AbortController()
@@ -254,9 +276,12 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
     setTranslateError('')
     setTranslating({ done: aligned?.upTo ?? 0, total: item.lines.length })
     let model: string | undefined
-    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating({ done, total, model }), { onModel: name => { model = name; setTranslating(previous => previous && { ...previous, model }) } }) }
+    let finished = false
+    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating({ done, total, model }), { onModel: name => { model = name; setTranslating(previous => previous && { ...previous, model }) } }); finished = true }
     catch (reason) { if (!controller.signal.aborted) setTranslateError(reason instanceof Error ? reason.message : 'The translation failed.') }
     finally { setTranslating(undefined) }
+    // Pass 2 follows pass 1 automatically.
+    if (finished && !controller.signal.aborted) await startLink()
   }
   const [trackNote, setTrackNote] = useState('')
   const [trackFallback, setTrackFallback] = useState<TrackKind>()
@@ -287,6 +312,17 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const dirtyOnOpen = useRef(item.syncDirty)
   const canWatch = !!item.hasVideo && !!item.videoPath && !videoFailed
   const { catalog } = useCatalog()
+  const sourceWords = useLiveQuery(async () => {
+    const refs = [...new Set(Object.values(item.entries?.links ?? {}))].filter(ref => ref.startsWith('source:')).map(ref => ref.slice('source:'.length))
+    return new Map<string, SourceEntry>((await db.sourceEntries.bulkGet(refs)).flatMap(entry => entry ? [[`source:${entry.id}`, entry] as [string, SourceEntry]] : []))
+  }, [item.entries?.updatedAt])
+  const entryOf = useCallback((text: string): EntryInfo | undefined => {
+    const ref = item.entries?.links[text]
+    if (!ref) return undefined
+    if (ref.startsWith('source:')) { const entry = sourceWords?.get(ref); return entry && { ref, pinyin: entry.pinyin, meaning: entry.meanings.join('; '), source: true } }
+    const unit = catalog?.units.get(ref)
+    return unit?.kind === 'vocabulary' ? { ref, pinyin: unit.record.pr, meaning: unit.record.ds, source: false } : undefined
+  }, [item.entries, sourceWords, catalog])
   const lookup = useMemo(() => {
     const readings = new Map<string, Set<string>>()
     const meanings = new Map<string, string>()
@@ -396,7 +432,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
               </div>
               {line && <div className="media-overlay-line">{annotated
                 ? (viewOf(current).tokens
-                  ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} className="media-overlay-text" />
+                  ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} className="media-overlay-text" entryOf={entryOf} />
                   : <WordLine key={current} text={line.text} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-overlay-text" />)
                 : <p className="media-overlay-text" lang="zh-Hans">{line.text}</p>}
                 {overlayTranslation && viewOf(current).translation && <p className="media-overlay-text media-overlay-second">{viewOf(current).translation!.fragment}</p>}</div>}
@@ -438,6 +474,13 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
             <button type="button" className="button secondary" onClick={() => translateAbort.current?.abort()}>Cancel</button></>
           : translated
             ? <><span className="small muted">AI translation ready.</span>
+              {linking
+                ? <><progress max={Math.max(linking.total, 1)} value={linking.done} aria-label="Word linking progress" /><span className="small muted">Linking words {linking.done} of {linking.total}{linking.model ? ` with ${linking.model}` : ''}...</span>
+                  <button type="button" className="button secondary" onClick={() => linkAbort.current?.abort()}>Cancel</button></>
+                : item.entries?.complete
+                  ? <span className="small muted">{item.entries.total} words linked.</span>
+                  : <button type="button" className="button secondary" onClick={() => void startLink()}>{linkError ? 'Retry linking words' : item.entries ? 'Continue linking words' : 'Link words'}</button>}
+              {linkError && <span className="notice error" role="alert">{linkError}</span>}
               <details className="media-menu"><summary className="button secondary" aria-label="More translation actions">...</summary><div className="media-menu-items">
                 {item.mediaId && <><button type="button" className="button secondary" onClick={() => void addTrack('translation')}>Add translation to Medusa</button>
                   <button type="button" className="button secondary" onClick={() => void addTrack('pinyin')}>Add pinyin to Medusa</button></>}
@@ -449,7 +492,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
       </div>
       {canWatch && <div className="media-footer" hidden={view === 'watch'}>
         {viewOf(current).tokens
-          ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} />
+          ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} entryOf={entryOf} />
           : <WordLine key={current} text={line?.text ?? ''} pinyin={workspace.preferences.pinyin} lookup={lookup} />}
         <Fragment key={`f${current}`} translation={viewOf(current).translation} />
         {aligned && <label className="small"><input type="checkbox" checked={glosses} onChange={event => toggleGlosses(event.target.checked)} /> Word meanings</label>}

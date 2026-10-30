@@ -83,6 +83,39 @@ describe('dictionary characters', () => {
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.dictionaryScope).toBe('all'))
   })
 
+  const sourceWord = { id: 'sabc1', word: '\u5496\u5561\u5385', pinyin: 'kāfēitīng', meanings: ['cafe'], pos: 'noun', sources: [{ mediaId: 'm1', title: 'A drama', line: 0, text: '\u6211\u4eec\u53bb\u5496\u5561\u5385' }], createdAt: 1, updatedAt: 1 }
+
+  it('lists words from your media in their own scope and in search results, with source and example', async () => {
+    const user = userEvent.setup()
+    window.location.hash = 'dictionary/vocabulary/all'
+    await db.sourceEntries.add(sourceWord)
+    render(<Harness />)
+    // Not shown in the plain full list, but a search finds them next to the curriculum.
+    await screen.findByRole('button', { name: 'From your media (1)' })
+    expect(document.querySelector('[data-unit="source:sabc1"]')).toBeNull()
+    await user.type(screen.getByRole('searchbox', { name: 'Search dictionary' }), 'cafe')
+    await waitFor(() => expect(document.querySelector('[data-unit="source:sabc1"]')).not.toBeNull())
+    await user.clear(screen.getByRole('searchbox', { name: 'Search dictionary' }))
+    await user.click(screen.getByRole('button', { name: 'From your media (1)' }))
+    expect(window.location.hash).toBe('#dictionary/vocabulary/media')
+    const card = await waitFor(() => { const found = document.querySelector('[data-unit="source:sabc1"]') as HTMLElement; expect(found).not.toBeNull(); return found })
+    expect(within(card).getByText('cafe')).toBeInTheDocument()
+    expect(within(card).getByText(/A drama/)).toBeInTheDocument()
+    expect(within(card).getByText('\u6211\u4eec\u53bb\u5496\u5561\u5385')).toBeInTheDocument()
+    expect(document.querySelectorAll('[data-unit]')).toHaveLength(1)
+  })
+
+  it('adds a word from your media to the knowledge set with its card', async () => {
+    const user = userEvent.setup()
+    window.location.hash = 'dictionary/vocabulary/media'
+    await db.sourceEntries.add(sourceWord)
+    render(<Harness />)
+    await user.click(await screen.findByRole('button', { name: 'Add to knowledge set' }))
+    await screen.findByRole('button', { name: 'In your knowledge set' })
+    expect(await db.knowledge.get('source:sabc1')).toMatchObject({ kind: 'source', source: 'dictionary' })
+    expect(await db.studyCards.get('source:sabc1:reading')).toBeDefined()
+  })
+
   it('scopes the list to items in collections without adding them to the knowledge set', async () => {
     const user = userEvent.setup()
     window.location.hash = 'dictionary/vocabulary/all'

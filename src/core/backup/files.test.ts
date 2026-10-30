@@ -59,6 +59,20 @@ describe('backup files', () => {
     expect(loadBackup(files, profile).snapshot.media).toEqual([item])
   })
 
+  it('keeps source entries and their knowledge entries across a backup', () => {
+    const entry = { id: 'sabc1', word: '咖啡厅', pinyin: 'kāfēitīng', meanings: ['cafe'], pos: 'noun', sources: [{ mediaId: 'm', title: 'Clip', line: 0, text: '去咖啡厅' }], createdAt: 1, updatedAt: 1 }
+    const base = snapshotAt(0)
+    const known = { ref: 'source:sabc1', kind: 'source' as const, lb: 'sabc1', band: '6' as const, addedAt: 3, source: 'dictionary' as const }
+    const card = { id: 'source:sabc1:reading', ref: 'source:sabc1', domain: 'reading' as const, due: 3, stability: 0, difficulty: 0, reps: 0, lapses: 0, state: 'new' as const, updatedAt: 3 }
+    const snapshot = { ...base, sourceEntries: [entry], knowledge: { ...base.knowledge, study: { ...base.knowledge.study, knowledge: [...base.knowledge.study.knowledge, known], cards: [...base.knowledge.study.cards, card] } } }
+    const files = buildBackupFiles(snapshot, [])
+    expect([...files.keys()]).toContain('source-entries/0000.yaml')
+    const loaded = loadBackup(files, profile).snapshot
+    expect(loaded.sourceEntries).toEqual([entry])
+    expect(loaded.knowledge.study.knowledge).toContainEqual(known)
+    expect(loaded.knowledge.study.cards).toContainEqual(card)
+  })
+
   it('restores the checkpoint plus the journal entries after it', () => {
     const files = buildBackupFiles(snapshotAt(5), events.slice(0, 5))
     // The journal advanced after the checkpoint: later lines were appended to the segments.
