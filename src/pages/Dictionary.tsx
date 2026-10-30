@@ -25,7 +25,7 @@ function searchText(unit: Unit): string {
     : `${unit.record.pt} ${unit.record.pr} ${unit.record.ds} ${unit.record.lb}`)
 }
 
-export function Dictionary({ workspace, now, run, busy, section, initialScope }: PageProps & { section?: string; initialScope?: string }) {
+export function Dictionary({ workspace, now, run, busy, section, initialScope, initialQuery }: PageProps & { section?: string; initialScope?: string; initialQuery?: string }) {
   const { catalog, error } = useCatalog()
   const kind: UnitKind | 'characters' = section === 'characters' ? 'characters' : section === 'grammar' ? 'grammar' : 'vocabulary'
   const explicit = initialScope === 'knowledge' || initialScope === 'all' || initialScope === 'collections' ? initialScope : undefined
@@ -37,7 +37,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope }:
   }, [explicit, workspace.preferences.dictionaryScope])
   const go = (section: string, next: 'all' | 'knowledge' | 'collections') => { window.location.hash = `dictionary/${section}/${next}` }
   const [band, setBand] = useState('all')
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(initialQuery ?? '')
   const [limit, setLimit] = useState(PAGE)
   const [drawing, setDrawing] = useState(false)
   const known = new Set(workspace.knowledge.map(entry => entry.ref))

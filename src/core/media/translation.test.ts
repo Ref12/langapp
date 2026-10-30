@@ -75,43 +75,85 @@ describe('chunk validation', () => {
 })
 
 describe('translateMedia', () => {
-  it('chunks the item, de-duplicates the overlap, and saves a chunk at a time', async () => {
+  const windowOf = (request: { user: string }) => JSON.parse(request.user) as { context: { line: number }[]; lines: { line: number }[]; lookahead: { line: number }[] }
+
+  it('runs windows in parallel, saves them in order, and trims the overlap a spilling sentence leaves', async () => {
     const id = await item()
     completion.mockImplementation(async (_connection, request) => {
-      const body = JSON.parse(request.user) as { lines: { line: number }[]; lookahead: { line: number }[] }
+      const body = windowOf(request)
       const first = body.lines[0].line
+      // The first window ends two lines into the next one, as a sentence crossing the edge would.
       return reply(first, first + body.lines.length + (first === 0 ? 2 : 0))
     })
     const progress = vi.fn()
-    await translateMedia(id, new AbortController().signal, progress)
+    const models = vi.fn()
+    await translateMedia(id, new AbortController().signal, progress, { onModel: models })
+    expect(models).toHaveBeenCalledWith('test-model')
     const saved = (await db.mediaItems.get(id))!.aligned!
     expect(saved.upTo).toBe(130)
     expect(saved.tokens.map(entry => entry.line)).toEqual(lines.map((_, i) => i))
     const covered = saved.sentences.flatMap(sentence => Array.from({ length: sentence.lines[1] - sentence.lines[0] + 1 }, (_, k) => sentence.lines[0] + k))
     expect(covered).toEqual(lines.map((_, i) => i))
-    const sent = completion.mock.calls.map(call => JSON.parse(call[1].user) as { context: { line: number }[]; lines: { line: number }[]; lookahead: { line: number }[] })
-    expect(sent[1].lines[0].line).toBe(62)
-    expect(sent[1].context.map(entry => entry.line)).toEqual([58, 59, 60, 61])
+    const sent = completion.mock.calls.map(call => windowOf(call[1]))
+    expect(sent.map(entry => entry.lines[0].line).sort((x, y) => x - y)).toContain(60)
     expect(sent[0].lookahead.length).toBe(6)
-    expect(progress).toHaveBeenLastCalledWith(130, 130)
+    const done = progress.mock.calls.map(call => call[0] as number)
+    expect(done[0]).toBe(0)
+    expect(done[done.length - 1]).toBe(130)
+    expect([...done].sort((x, y) => x - y)).toEqual(done)
   })
 
-  it('keeps finished chunks when cancelled or failed, then resumes from where it stopped', async () => {
-    const id = await item()
-    let calls = 0
+  it('has several requests in flight at once, bounded by the concurrency', async () => {
+    const big: MediaLine[] = Array.from({ length: 600 }, (_, i) => ({ start: i, end: i + 0.9, text: `第${i}句。` }))
+    const id = await saveMedia({ url: 'https://example.com/b', title: 'B', extractor: 'x', source: 'captions', language: 'zh-Hans', lines: big } as never)
+    let active = 0, peak = 0
     completion.mockImplementation(async (_connection, request) => {
-      const body = JSON.parse(request.user) as { lines: { line: number }[] }
-      const first = body.lines[0].line
-      if (++calls === 2) throw new Error('network down')
-      return reply(first, first + body.lines.length)
+      active++; peak = Math.max(peak, active)
+      await new Promise(resolve => setTimeout(resolve, 5))
+      active--
+      const first = windowOf(request).lines[0].line
+      const count = windowOf(request).lines.length
+      return { sentences: reply(first, first + count).sentences, tokens: Array.from({ length: count }, (_, k) => ({ line: first + k, items: [{ text: `第${first + k}句`, pinyin: '', meaning: '', trailing: '。' }] })) }
     })
-    await expect(translateMedia(id, new AbortController().signal)).rejects.toThrow('network down')
+    await translateMedia(id, new AbortController().signal, undefined, { concurrency: 3 })
+    expect(peak).toBe(3)
+    expect((await db.mediaItems.get(id))!.aligned!.upTo).toBe(600)
+  })
+
+  it('retries a failed window once, then stops with a clear error and keeps the finished prefix', async () => {
+    const id = await item()
+    completion.mockImplementation(async (_connection, request) => {
+      const first = windowOf(request).lines[0].line
+      if (first === 60) throw new Error('network down')
+      return reply(first, first + windowOf(request).lines.length)
+    })
+    await expect(translateMedia(id, new AbortController().signal)).rejects.toThrow(/lines 61-120 failed: network down/)
+    expect(completion.mock.calls.filter(call => windowOf(call[1]).lines[0].line === 60)).toHaveLength(2)
     expect((await db.mediaItems.get(id))!.aligned!.upTo).toBe(60)
     completion.mockClear()
+    completion.mockImplementation(async (_connection, request) => reply(windowOf(request).lines[0].line, windowOf(request).lines[0].line + windowOf(request).lines.length))
     await translateMedia(id, new AbortController().signal)
-    expect(completion).toHaveBeenCalledTimes(2)
-    expect(JSON.parse(completion.mock.calls[0][1].user).lines[0].line).toBe(60)
+    expect(windowOf(completion.mock.calls[0][1]).lines[0].line).toBe(60)
     expect((await db.mediaItems.get(id))!.aligned!.upTo).toBe(130)
+  })
+
+  it('succeeds when the retry works', async () => {
+    const id = await item()
+    const seen = new Set<number>()
+    completion.mockImplementation(async (_connection, request) => {
+      const first = windowOf(request).lines[0].line
+      if (first === 60 && !seen.has(first)) { seen.add(first); throw new Error('blip') }
+      return reply(first, first + windowOf(request).lines.length)
+    })
+    await translateMedia(id, new AbortController().signal)
+    expect((await db.mediaItems.get(id))!.aligned!.upTo).toBe(130)
+  })
+
+  it('times out a window that never answers instead of hanging', async () => {
+    const id = await item()
+    completion.mockImplementation((_connection, request) => new Promise((_resolve, reject) => request.signal?.addEventListener('abort', () => reject(new Error('aborted')))))
+    await expect(translateMedia(id, new AbortController().signal, undefined, { timeoutMs: 20 })).rejects.toThrow(/did not answer within/)
+    expect((await db.mediaItems.get(id))!.aligned).toBeUndefined()
   })
 
   it('stops on abort and refuses without an AI connection', async () => {

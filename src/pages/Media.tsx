@@ -6,10 +6,10 @@ import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { PracticeSnippet } from '../components/assistant/SnippetActions'
 import { Pinyin } from '../components/Pinyin'
 import { useCatalog } from '../components/study/useCatalog'
-import { annotate } from '../core/study/annotate'
 import { currentLine, lineView, nudge, offsetAt, withAnchor, type MediaItem, type MediaLine, type SyncAnchor, type WovenToken } from '../core/media/contracts'
 import { HELPER_INSTALL_PAGE, normalizeMediaUrl, HelperUnreachable, appUrl, createJob, fetchSync, helperIntentUrl, launcher, parseTranscriptFile, probeHelper, putSync, timing, videoUrl, waitForJob, type JobStatus } from '../core/media/helper'
 import { nextInterval, nextLines } from '../core/media/study'
+import { lineUnits } from '../core/media/readings'
 import { translateMedia } from '../core/media/translation'
 import { sendTrack, trackFiles, type TrackKind } from '../core/media/tracks'
 import { studyLines } from '../core/collections/store'
@@ -175,17 +175,25 @@ function MediaJob({ id }: { id: string }) {
 
 const PAUSE_KEY = 'linguaweave-media-pause-after-line'
 
+/** Where a tapped word can be looked up in the Dictionary (characters, when it is one). */
+const dictionaryLink = (text: string) => `#dictionary/${Array.from(text).length === 1 ? 'characters' : 'vocabulary'}/all?q=${encodeURIComponent(text)}`
+
+function Picked({ text, pinyin, meaning }: { text: string; pinyin?: string; meaning?: string }) {
+  return <p className="notice media-picked" role="status"><strong lang="zh-Hans">{text}</strong>{pinyin && <> <Pinyin text={pinyin} /></>}{meaning ? <> / {meaning}</> : null} <a href={dictionaryLink(text)}>Look up in Dictionary</a></p>
+}
+
+/** A line with a reading and a tap target on every Han character: catalog words as words, everything else character by character. */
 function WordLine({ text, pinyin, lookup, className = 'media-now' }: { className?: string; text: string; pinyin: boolean; lookup: { readings: Map<string, Set<string>>; meanings: Map<string, string> } }) {
-  const [selected, setSelected] = useState<{ text: string; pinyin: string; meaning: string }>()
+  const [selected, setSelected] = useState<{ text: string; pinyin?: string; meaning?: string }>()
+  const units = useMemo(() => lineUnits(text, lookup.readings), [text, lookup.readings])
   return <>
-    <p className={className} lang="zh-Hans">{annotate(text, lookup.readings).map((segment, index) => {
-      const meaning = lookup.meanings.get(segment.text)
-      if (!segment.pinyin || !meaning) return <span key={index}>{segment.text}</span>
-      const pick = () => setSelected({ text: segment.text, pinyin: segment.pinyin!, meaning })
-      return <ruby key={index} className="mandarin-word"><button type="button" className="word" onClick={pick}>{segment.text}</button>
-        {pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={segment.pinyin} /></rt>}</ruby>
+    <p className={className} lang="zh-Hans">{units.map((unit, index) => {
+      if (!unit.pinyin) return <span key={index} className="media-plain">{unit.text}</span>
+      const meaning = lookup.meanings.get(unit.text)
+      return <ruby key={index} className="mandarin-word"><button type="button" className="word" onClick={() => setSelected({ text: unit.text, pinyin: unit.pinyin, meaning })}>{unit.text}</button>
+        {pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={unit.pinyin} /></rt>}</ruby>
     })}</p>
-    {selected && <p className="notice" role="status"><strong lang="zh-Hans">{selected.text}</strong> <Pinyin text={selected.pinyin} /> / {selected.meaning}</p>}
+    {selected && <Picked {...selected} />}
   </>
 }
 
@@ -198,7 +206,7 @@ function WovenLine({ tokens, pinyin, glosses, className = 'media-now' }: { token
         {pinyin && token.pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt>}</ruby>
       {glosses && token.meaning && <span className="woven-gloss" data-assistant-exclude>{token.meaning}</span>}
       {token.trailing}</span>)}</p>
-    {selected && <p className="notice" role="status"><strong lang="zh-Hans">{selected.text}</strong> <Pinyin text={selected.pinyin} /> / {selected.meaning}</p>}
+    {selected && <Picked text={selected.text} pinyin={selected.pinyin} meaning={selected.meaning} />}
   </>
 }
 
@@ -231,8 +239,10 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const [annotated, setAnnotated] = useState(false)
   const [overlayTranslation, setOverlayTranslation] = useState(false)
   const [glosses, setGlosses] = useState(() => localStorage.getItem('linguaweave-media-glosses') === 'true')
-  const [translating, setTranslating] = useState<{ done: number; total: number } | undefined>()
+  const [translating, setTranslating] = useState<{ done: number; total: number; model?: string } | undefined>()
   const [translateError, setTranslateError] = useState('')
+  const [studyTitle, setStudyTitle] = useState(false)
+  const hasChineseTitle = /[\u3400-\u9fff]/.test(item.title)
   const translateAbort = useRef<AbortController>()
   useEffect(() => () => translateAbort.current?.abort(), [])
   const aligned = item.aligned
@@ -243,7 +253,8 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
     translateAbort.current = controller
     setTranslateError('')
     setTranslating({ done: aligned?.upTo ?? 0, total: item.lines.length })
-    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating({ done, total })) }
+    let model: string | undefined
+    try { await translateMedia(item.id, controller.signal, (done, total) => setTranslating({ done, total, model }), { onModel: name => { model = name; setTranslating(previous => previous && { ...previous, model }) } }) }
     catch (reason) { if (!controller.signal.aborted) setTranslateError(reason instanceof Error ? reason.message : 'The translation failed.') }
     finally { setTranslating(undefined) }
   }
@@ -371,30 +382,6 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const source = (text: string) => ({ text, locale: 'zh-Hans' as const, title: item.title, route })
   const candidates = item.lines.map((entry, index) => ({ entry, index })).slice(Math.max(0, current), Math.max(0, current) + 120)
   return <>
-    <PageHeading eyebrow="Media" title={item.title}>{item.lines.length} lines / <a href="#media">All media</a></PageHeading>
-    {/[\u3400-\u9fff]/.test(item.title) && <div className="media-title-teach">
-      <WordLine text={item.title} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-title-line" />
-      <PracticeSnippet source={source(item.title)} />
-    </div>}
-    {canWatch && <div className="media-views" role="group" aria-label="Watch view">
-      <button type="button" className="button secondary" aria-pressed={view === 'learn'} onClick={() => setView('learn')}>Learning</button>
-      <button type="button" className="button secondary" aria-pressed={view === 'lines'} onClick={() => setView('lines')}>Lines</button>
-      <button type="button" className="button secondary" aria-pressed={view === 'watch'} onClick={enterWatch}>Fullscreen</button>
-    </div>}
-    <div className="media-translate">
-      {translating
-        ? <><progress max={translating.total} value={translating.done} aria-label="Translation progress" /><span className="small muted">Translating {translating.done} of {translating.total} lines...</span>
-          <button type="button" className="button secondary" onClick={() => translateAbort.current?.abort()}>Cancel</button></>
-        : translated
-          ? <><span className="small muted">AI translation ready.</span>
-            {item.mediaId && <><button type="button" className="button secondary" onClick={() => void addTrack('translation')}>Add translation to Medusa</button>
-              <button type="button" className="button secondary" onClick={() => void addTrack('pinyin')}>Add pinyin to Medusa</button></>}
-            {trackFallback && <button type="button" className="button secondary" onClick={() => saveFiles(trackFallback)}>Save as subtitle file</button>}
-            {!item.mediaId && <button type="button" className="button secondary" onClick={() => saveFiles('translation')}>Save as subtitle file</button>}</>
-          : <button type="button" className="button secondary" onClick={() => void startTranslate()}>{aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button>}
-      {translateError && <p className="notice error" role="alert">{translateError}</p>}
-      {trackNote && <p className="small muted" role="status">{trackNote}</p>}
-    </div>
     <div className="media-watch" ref={container} data-view={view}>
       <div className="media-pin">
         {canWatch
@@ -434,6 +421,32 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
           </div>}
       </div>
       {studied && <p className="notice" role="status">{studied}</p>}
+      {canWatch && <div className="media-views" role="group" aria-label="Watch view">
+        <button type="button" aria-pressed={view === 'learn'} onClick={() => setView('learn')}>Learning</button>
+        <button type="button" aria-pressed={view === 'lines'} onClick={() => setView('lines')}>Lines</button>
+        <button type="button" aria-pressed={view === 'watch'} onClick={enterWatch}>Fullscreen</button>
+      </div>}
+      <div className="media-toolbar">
+        {translating
+          ? <><progress max={translating.total} value={translating.done} aria-label="Translation progress" /><span className="small muted">Translating {translating.done} of {translating.total} lines{translating.model ? ` with ${translating.model}` : ''}...</span>
+            <button type="button" className="button secondary" onClick={() => translateAbort.current?.abort()}>Cancel</button></>
+          : translated
+            ? <><span className="small muted">AI translation ready.</span>
+              <details className="media-menu"><summary className="button secondary" aria-label="More translation actions">...</summary><div className="media-menu-items">
+                {item.mediaId && <><button type="button" className="button secondary" onClick={() => void addTrack('translation')}>Add translation to Medusa</button>
+                  <button type="button" className="button secondary" onClick={() => void addTrack('pinyin')}>Add pinyin to Medusa</button></>}
+                {(trackFallback || !item.mediaId) && <button type="button" className="button secondary" onClick={() => saveFiles(trackFallback ?? 'translation')}>Save as subtitle file</button>}
+              </div></details></>
+            : <button type="button" className="button secondary" onClick={() => void startTranslate()}>{translateError ? 'Retry translating' : aligned?.upTo ? `Continue translating (${aligned.upTo} of ${item.lines.length} done)` : 'Translate with AI'}</button>}
+        {translateError && <p className="notice error" role="alert">{translateError}</p>}
+        {trackNote && <p className="small muted" role="status">{trackNote}</p>}
+      </div>
+      <h1 className="media-title" lang={/[\u3400-\u9fff]/.test(item.title) ? 'zh-Hans' : undefined}>{item.title}</h1>
+      <p className="small muted media-title-meta">{item.lines.length} lines / <a href="#media">All media</a>{hasChineseTitle && <> / <button type="button" className="link-button" aria-expanded={studyTitle} onClick={() => setStudyTitle(value => !value)}>Study the title</button></>}</p>
+      {hasChineseTitle && studyTitle && <div className="media-title-teach">
+        <WordLine text={item.title} pinyin={workspace.preferences.pinyin} lookup={lookup} className="media-title-line" />
+        <PracticeSnippet source={source(item.title)} />
+      </div>}
       {canWatch && <div className="media-footer" hidden={view === 'watch'}>
         {viewOf(current).tokens
           ? <WovenLine key={current} tokens={viewOf(current).tokens!} pinyin={workspace.preferences.pinyin} glosses={glosses} />
@@ -441,15 +454,14 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
         <Fragment key={`f${current}`} translation={viewOf(current).translation} />
         {aligned && <label className="small"><input type="checkbox" checked={glosses} onChange={event => toggleGlosses(event.target.checked)} /> Word meanings</label>}
         {line && <PracticeSnippet source={source(line.text)} learn={lineLearn(line, current)} />}
-        <div className="media-controls">
-          <button className="button secondary" disabled={!line} onClick={() => line && seek(line, current)}>Replay line</button>
-          <label><input type="checkbox" checked={pauseAfter} onChange={event => toggle(event.target.checked)} /> Pause after each line</label>
-        </div>
-        <div className="media-controls" role="group" aria-label="Subtitle sync">
+        <div className="media-controls media-controls-row" role="group" aria-label="Playback and subtitle sync">
+          <button className="button secondary" disabled={!line} onClick={() => line && seek(line, current)}>Replay</button>
+          <label className="small"><input type="checkbox" checked={pauseAfter} onChange={event => toggle(event.target.checked)} /> Pause after each line</label>
           <button className="button secondary" onClick={() => shift(-0.25)}>Earlier</button>
           <button className="button secondary" onClick={() => shift(0.25)}>Later</button>
-          <button className="button secondary" onClick={resetHere}>Reset here</button>
-          <button className="button secondary" onClick={() => apply([])}>Reset all</button>
+          <details className="media-menu"><summary className="button secondary" aria-label="More sync options">Reset</summary><div className="media-menu-items">
+            <button className="button secondary" onClick={resetHere}>Reset here</button>
+            <button className="button secondary" onClick={() => apply([])}>Reset all</button></div></details>
           <span className="small muted">{offsetAt(sync, now()) >= 0 ? '+' : ''}{offsetAt(sync, now()).toFixed(2)} s</span>
         </div>
       </div>}

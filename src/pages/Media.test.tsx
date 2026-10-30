@@ -210,11 +210,41 @@ describe('Media page', () => {
     const id = await saveMedia({ ...result, title: '你好' } as never)
     window.location.hash = `#media/${id}`
     render(<App />)
+    const user = userEvent.setup()
     await screen.findByRole('heading', { name: '你好', level: 1 })
+    expect(document.querySelector('.media-title-teach')).toBeNull()
+    await user.click(screen.getByRole('button', { name: 'Study the title' }))
     const teach = document.querySelector('.media-title-teach') as HTMLElement
     expect(teach).not.toBeNull()
     expect(teach.querySelector('[lang="zh-Hans"]')).toHaveTextContent('你好')
     expect(teach.querySelector('button[aria-label^="Hear"], button[title^="Hear"]')).not.toBeNull()
+  })
+
+  it('puts the video first, then the compact title, the segmented switcher and the toolbar', async () => {
+    const id = await saveMedia({ ...result, title: '一部很长很长的电视剧标题'.repeat(6) } as never)
+    window.location.hash = `#media/${id}`
+    render(<App />)
+    await screen.findByRole('heading', { level: 1 })
+    const order = ['.media-stage', '.media-title', '.media-views', '.media-toolbar', '.media-footer'].map(selector => document.querySelector(selector) as HTMLElement)
+    expect(order.every(Boolean)).toBe(true)
+    order.slice(1).forEach((node, index) => expect(order[index].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy())
+    expect(document.querySelector('.media-title-teach')).toBeNull()
+  })
+
+  it('gives every Chinese character a reading and a tap target, even outside the catalog', async () => {
+    const id = await saveMedia({ ...result, lines: [{ start: 0, end: 2, text: '白眼狼，守寡了。' }, ...result.lines.slice(1)] } as never)
+    window.location.hash = `#media/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByRole('heading', { level: 1 })
+    player.time = 0.5
+    const footer = () => document.querySelector('.media-footer') as HTMLElement
+    await waitFor(() => expect(footer().querySelectorAll('.word').length).toBeGreaterThanOrEqual(6))
+    const words = [...footer().querySelectorAll('.word')].map(node => node.textContent)
+    expect(words).toEqual(expect.arrayContaining(['白', '眼', '狼', '守', '寡', '了']))
+    expect([...footer().querySelectorAll('.media-now rt')].every(node => !!node.textContent)).toBe(true)
+    await user.click([...footer().querySelectorAll('.word')].find(node => node.textContent === '狼')!)
+    expect(within(footer()).getByRole('link', { name: 'Look up in Dictionary' })).toHaveAttribute('href', '#dictionary/characters/all?q=%E7%8B%BC')
   })
 
   it('switches between the learning, lines and watch views, toggling the fullscreen API', async () => {
