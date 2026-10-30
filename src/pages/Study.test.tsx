@@ -109,7 +109,7 @@ describe('New and Review', () => {
     await user.click(screen.getByRole('button', { name: 'Discard My phrases · Review' }))
     await waitFor(async () => expect((await db.exerciseSessions.get('col'))!.status).toBe('abandoned'))
     expect(confirm).toHaveBeenCalledTimes(2)
-    expect(screen.queryByRole('button', { name: 'Discard My phrases · Review' })).not.toBeInTheDocument()
+    await waitFor(() => expect(screen.queryByRole('button', { name: 'Discard My phrases · Review' })).not.toBeInTheDocument())
   })
 
   it('asks for an AI connection before any session can start', async () => {
