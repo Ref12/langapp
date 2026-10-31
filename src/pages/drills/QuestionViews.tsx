@@ -17,7 +17,8 @@ import { StrokeOrder } from './StrokeOrder'
 import { StrokePad } from './StrokePad'
 import { type ConvoAnswer, type Outcome, type Q, type QData, type TextAnswer, type WriteAnswer } from './tasks'
 
-export interface QState { answer?: unknown; status: 'open' | 'marking' | 'done'; outcome?: Outcome }
+/** `suggested`: what the automatic check made of a typed answer; `chosen`: the mark selected to confirm (starts as the suggestion). */
+export interface QState { answer?: unknown; status: 'open' | 'marking' | 'done'; outcome?: Outcome; suggested?: Mark; chosen?: Mark }
 export interface ViewContext { readings: Map<string, Set<string>>; pinyinOn: boolean; catalogChars: Set<string>; workspace: Workspace }
 export interface ViewProps { q: Q; quiz: boolean; state: QState; ctx: ViewContext; onAnswer: (answer: unknown) => void; onMark: (mark: Mark) => void }
 
@@ -26,6 +27,17 @@ const noop = () => undefined
 export function SelfMark({ onMark, chosen }: { onMark: (mark: Mark) => void; chosen?: Mark }) {
   return <div className="dr-selfmark" role="group" aria-label="Mark your answer">
     {MARKS.map(mark => <button key={mark} type="button" aria-pressed={chosen === mark} className={`button secondary dr-mark dr-mark-${mark}`} onClick={() => onMark(mark)}>{MARK_LABEL[mark]}</button>)}
+  </div>
+}
+
+/** A typed answer after Check: the expected answer, the automatic verdict and the three marks, the suggested one preselected. */
+function Confirm({ state, onMark, children }: { state: QState; onMark: (mark: Mark) => void; children?: ReactNode }) {
+  if (state.status !== 'marking') return null
+  return <div className="notice answer-feedback dr-result dr-confirm" role="status">
+    <p><strong>{state.suggested ? `Checked automatically: ${MARK_LABEL[state.suggested]}` : 'Could not be checked automatically'}</strong></p>
+    {children}
+    <p className="small muted">Confirm with Next, or choose another mark.</p>
+    <SelfMark onMark={onMark} chosen={state.chosen} />
   </div>
 }
 
@@ -59,7 +71,7 @@ function TextInput({ label, value, disabled, onChange, placeholder, lang }: { la
     <input type="text" value={value} disabled={disabled} lang={lang} placeholder={placeholder} autoCapitalize="none" autoCorrect="off" spellCheck={false} onChange={event => onChange(event.target.value)} /></label>
 }
 
-function FreeView({ data, state, onAnswer }: ViewProps & { data: Extract<QData, { t: 'free' }> }) {
+function FreeView({ data, state, onAnswer, onMark }: ViewProps & { data: Extract<QData, { t: 'free' }> }) {
   const [text, setText] = useState((state.answer as TextAnswer | undefined)?.text ?? '')
   const [hinted, setHinted] = useState(false)
   const zh = data.direction === 'zh-to-en'
@@ -70,11 +82,12 @@ function FreeView({ data, state, onAnswer }: ViewProps & { data: Extract<QData, 
     <TextInput label={zh ? 'Type the English meaning' : 'Type the Chinese, or its pinyin'} value={text} disabled={locked} lang={zh ? 'en' : undefined} onChange={value => set(value)} />
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
       {hinted && <span className="small" lang="zh-Hans"><Pinyin text={data.item.py} />{zh ? '' : ''}</span>}</div>}
+    <Confirm state={state} onMark={onMark}><p lang="zh-Hans">{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Confirm>
     <Result state={state}><p lang="zh-Hans">{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Result>
   </>
 }
 
-function PinyinView({ data, state, onAnswer }: ViewProps & { data: Extract<QData, { t: 'pinyin' }> }) {
+function PinyinView({ data, state, onAnswer, onMark }: ViewProps & { data: Extract<QData, { t: 'pinyin' }> }) {
   const [text, setText] = useState((state.answer as TextAnswer | undefined)?.text ?? '')
   const [hinted, setHinted] = useState(false)
   const locked = state.status !== 'open'
@@ -85,6 +98,7 @@ function PinyinView({ data, state, onAnswer }: ViewProps & { data: Extract<QData
     <TextInput label="Type the pinyin with tone marks or numbers (ni3 hao3)" value={text} disabled={locked} placeholder="nǐ hǎo" onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
       {hinted && <span className="small">Letters only: <strong>{toneless}</strong></span>}</div>}
+    <Confirm state={state} onMark={onMark}><p>The pinyin is <strong><Pinyin text={data.item.py} /></strong>.</p></Confirm>
     <Result state={state}><p>The pinyin is <strong><Pinyin text={data.item.py} /></strong>.</p></Result>
   </>
 }
@@ -167,7 +181,7 @@ function TranslateView({ data, state, ctx, onAnswer, onMark }: ViewProps & { dat
     {state.status !== 'open' && <div className="dr-model-box"><p className="small muted">Model answer</p>
       <p className="dr-model" lang="zh-Hans">{data.sentence.zh}</p><p className="small"><Pinyin text={tidyPinyin(data.sentence.py)} /></p>
       {text && <p className="small muted">You wrote: <span lang="zh-Hans">{text}</span></p>}</div>}
-    {state.status === 'marking' && <SelfMark onMark={onMark} />}
+    {state.status === 'marking' && (state.suggested ? <Confirm state={state} onMark={onMark} /> : <SelfMark onMark={onMark} chosen={state.chosen} />)}
     <Result state={state}>{state.outcome && state.outcome.correct && sentenceExact(text, data) ? <p className="small">Exact match, marked automatically.</p> : null}</Result>
   </>
 }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, Headphones, Languages, MessageSquareText, PenLine, Repeat, RotateCcw, Trash2, Type, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, Headphones, Languages, MessageSquareText, PenLine, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
 import { navigate } from '../../core/routing'
 import { itemCount } from '../../core/collections/terms'
@@ -20,7 +20,7 @@ import { DrillRun } from './DrillRun'
 import { availability } from './tasks'
 import './drills.css'
 
-const ICONS: Record<string, LucideIcon> = { Languages, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
+const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
 const setRoute = (id: string, page = '') => `drills/set/${id}${page ? `/${page}` : ''}`
 const CURRICULUM = 'curriculum'
 

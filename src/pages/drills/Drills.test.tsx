@@ -109,6 +109,66 @@ describe('doing drills', () => {
     expect(JSON.stringify((await getDrillSet(set.id))!.progress.meanings!.results)).toBe(before)
   }, 40000)
 
+  it('Match pairs is its own type: Word meanings has no Match style, and a board is graded per item', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    window.location.hash = `#drills/set/${set.id}`
+    render(<App />)
+    const row = (await screen.findByText('Match pairs', {}, { timeout: 8000 })).closest('li')!
+    await user.click(within(row).getByRole('link', { name: 'Start' }))
+    const board = await screen.findByRole('group', { name: 'Pairs to match' })
+    expect(board.style.getPropertyValue('--match-rows')).not.toBe('')
+    const cells = within(board).getAllByRole('button')
+    expect(cells.every(cell => cell.classList.contains('match-cell'))).toBe(true)
+    // Pair every left cell by trying the right column in turn: wrong tries are charged as misses, the pass still finishes.
+    for (let guard = 0; guard < 80 && !screen.queryByRole('region', { name: 'Pass finished' }); guard++) {
+      const next = screen.queryByRole('button', { name: /^(Next|Finish)$/ })
+      if (next) { await user.click(next); continue }
+      const group = screen.queryByRole('group', { name: 'Pairs to match' })
+      if (!group) continue
+      const [first, second] = [within(group).getByRole('group', { name: 'First column' }), within(group).getByRole('group', { name: 'Second column' })]
+      const left = within(first).getAllByRole('button').find(cell => !(cell as HTMLButtonElement).disabled)
+      if (!left) { await new Promise(resolve => setTimeout(resolve, 50)); continue }
+      for (const right of within(second).getAllByRole('button')) {
+        if ((left as HTMLButtonElement).disabled) break
+        if ((right as HTMLButtonElement).disabled) continue
+        await user.click(left); await user.click(right)
+      }
+    }
+    expect(await screen.findByRole('region', { name: 'Pass finished' })).toBeInTheDocument()
+    expect(Object.keys((await getDrillSet(set.id))!.progress.match?.results ?? {}).length).toBeGreaterThan(0)
+  }, 60000)
+
+  it('Word meanings keeps Choose and Type only', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    window.location.hash = `#drills/set/${set.id}/run/meanings`
+    render(<App />)
+    const style = await screen.findByRole('group', { name: 'Style' })
+    expect(within(style).getAllByRole('button').map(button => button.textContent)).toEqual(['Choose', 'Type'])
+    await user.click(within(style).getByRole('button', { name: 'Type' }))
+    expect(screen.getByRole('group', { name: 'Direction' })).toBeInTheDocument()
+  }, 40000)
+
+  it('a typed answer preselects the automatic mark, and the chosen override is what is graded', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    window.location.hash = `#drills/set/${set.id}/run/meanings`
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Type' }))
+    await user.type(await screen.findByRole('textbox'), 'zzz wrong')
+    await user.click(screen.getByRole('button', { name: 'Check answer' }))
+    const marks = await screen.findByRole('group', { name: 'Mark your answer' })
+    expect(screen.getByText(/Checked automatically: Missed/)).toBeInTheDocument()
+    expect(within(marks).getByRole('button', { name: 'Missed' })).toHaveAttribute('aria-pressed', 'true')
+    expect(Object.keys((await getDrillSet(set.id))!.progress.meanings?.results ?? {})).toHaveLength(0)
+    await user.click(within(marks).getByRole('button', { name: 'Got it' }))
+    expect(within(marks).getByRole('button', { name: 'Got it' })).toHaveAttribute('aria-pressed', 'true')
+    await user.click(screen.getByRole('button', { name: /^(Next|Finish)$/ }))
+    const results = Object.values((await getDrillSet(set.id))!.progress.meanings!.results)
+    expect(results).toEqual(['got'])
+  }, 40000)
+
   it('Write it elsewhere: a hint turns Got it into Needed a hint', async () => {
     const user = userEvent.setup()
     const set = await newSet()

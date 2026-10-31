@@ -9,7 +9,7 @@ import { markCharactersWritten, recordDrillResult, recordRedo, recordWriteChar }
 import { guidedChars } from '../../core/drills/write-queue'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { QuestionView, type QState, type ViewContext } from './QuestionViews'
-import { DEFAULT_OPTIONS, applicable, catalogCharacters, isAuto, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
+import { DEFAULT_OPTIONS, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
 
 interface RunProps {
   set: DrillSet
@@ -75,6 +75,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
   const patch = (key: string, state: Partial<QState>) => setStates(current => ({ ...current, [key]: { ...(current[key] ?? { status: 'open' as const }), ...state } }))
   const check = (q: Q, answer: unknown) => {
     const result = grade(q, answer)
+    if (needsConfirm(q)) { const suggested = suggestedMark(result); patch(q.key, { answer, status: 'marking', suggested, chosen: suggested }); return }
     if (result === 'self') { patch(q.key, { answer, status: 'marking' }); return }
     patch(q.key, { answer, status: 'done', outcome: result })
     record(result, q)
@@ -84,6 +85,9 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
     patch(q.key, { status: 'done', outcome })
     record(outcome, q)
   }
+  // Typed answers: tapping a mark only selects it; Next (or Confirm marks in a quiz) records the selected one.
+  const pick = (q: Q, chosen: Mark) => { if (needsConfirm(q)) patch(q.key, { chosen }); else mark(q, chosen) }
+  const confirm = (q: Q) => { const chosen = states[q.key]?.chosen; if (chosen) mark(q, chosen) }
   const answer = (q: Q, value: unknown) => {
     if (quiz || !isAuto(q)) { patch(q.key, { answer: value }); return }
     if (value !== undefined && !states[q.key]?.outcome && states[q.key]?.status !== 'marking') check(q, value)
@@ -92,10 +96,10 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
 
   const toolbar = <div className="dr-toolbar dr-modes-bar">
     {type === 'meanings' && <>
-      <div className="segmented dr-modes" role="group" aria-label="Style">{(['choice', 'match', 'free'] as const).map(style =>
-        <button key={style} type="button" aria-pressed={options.style === style} onClick={() => change({ ...options, style })}>{style === 'choice' ? 'Choose' : style === 'match' ? 'Match' : 'Type'}</button>)}</div>
-      {options.style !== 'match' && <div className="segmented dr-modes" role="group" aria-label="Direction">{(['zh-to-en', 'en-to-zh'] as const).map(direction =>
-        <button key={direction} type="button" aria-pressed={options.direction === direction} onClick={() => change({ ...options, direction })}>{direction === 'zh-to-en' ? '中 → English' : 'English → 中'}</button>)}</div>}</>}
+      <div className="segmented dr-modes" role="group" aria-label="Style">{(['choice', 'free'] as const).map(style =>
+        <button key={style} type="button" aria-pressed={options.style === style} onClick={() => change({ ...options, style })}>{style === 'choice' ? 'Choose' : 'Type'}</button>)}</div>
+      <div className="segmented dr-modes" role="group" aria-label="Direction">{(['zh-to-en', 'en-to-zh'] as const).map(direction =>
+        <button key={direction} type="button" aria-pressed={options.direction === direction} onClick={() => change({ ...options, direction })}>{direction === 'zh-to-en' ? '中 → English' : 'English → 中'}</button>)}</div></>}
     {type === 'write' && <>
       <div className="segmented dr-modes" role="group" aria-label="What to write">{(['chars', 'words'] as const).map(writeUnit =>
         <button key={writeUnit} type="button" aria-pressed={options.writeUnit === writeUnit} onClick={() => change({ ...options, writeUnit })}>{writeUnit === 'chars' ? 'Characters' : 'Whole words'}</button>)}</div>
@@ -127,13 +131,15 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
 
   if (quiz) {
     const answered = queue.filter(q => states[q.key]?.answer !== undefined || states[q.key]?.status === 'marking' || states[q.key]?.status === 'done').length
+    const toConfirm = queue.filter(q => needsConfirm(q) && states[q.key]?.status === 'marking')
     const checked = queue.some(q => (states[q.key]?.status ?? 'open') !== 'open')
     const checkAll = () => { for (const q of queue) { const state = states[q.key]; if (state?.answer !== undefined && (state.status ?? 'open') === 'open') check(q, state.answer) } }
     return <div className="dr" data-assistant-exclude>{header}{toolbar}
       <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel"><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{TITLES[q.data.t]}</h2></div>
-        <QuestionView q={q} quiz state={states[q.key] ?? { status: 'open' }} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => mark(q, chosen)} /></li>)}</ol>
+        <QuestionView q={q} quiz state={states[q.key] ?? { status: 'open' }} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} /></li>)}</ol>
       <div className="dr-sticky" role="region" aria-label="Quiz progress"><span><strong>{answered} of {queue.length}</strong> answered</span>
-        <button type="button" className="button primary" disabled={answered === 0 || (checked && queue.every(q => (states[q.key]?.status ?? 'open') !== 'open'))} onClick={checkAll}>Check all</button></div></div>
+        {toConfirm.length > 0 ? <button type="button" className="button primary" disabled={toConfirm.some(q => !states[q.key]?.chosen)} onClick={() => toConfirm.forEach(confirm)}>Confirm marks</button>
+          : <button type="button" className="button primary" disabled={answered === 0 || (checked && queue.every(q => (states[q.key]?.status ?? 'open') !== 'open'))} onClick={checkAll}>Check all</button>}</div></div>
   }
 
   const q = queue[index]
@@ -143,9 +149,10 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
     <progress aria-label="Progress" value={index} max={queue.length} />
     {toolbar}
     <h2 className="small dr-qtitle">{TITLES[q.data.t]}</h2>
-    <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => mark(q, chosen)} />
+    <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
     <div className="dr-actions">
-      {state.status === 'done' ? <button type="button" className="button primary" onClick={() => setIndex(index + 1)}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>
+      {state.status === 'marking' && needsConfirm(q) ? <button type="button" className="button primary" disabled={!state.chosen} onClick={() => { confirm(q); setIndex(index + 1) }}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>
+      : state.status === 'done' ? <button type="button" className="button primary" onClick={() => setIndex(index + 1)}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>
         : !isAuto(q) ? <button type="button" className="button primary" disabled={!canCheck} onClick={() => check(q, state.answer)}>Check answer</button> : null}
     </div></section></div>
 }

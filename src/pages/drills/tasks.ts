@@ -11,7 +11,7 @@ import { guidedChars, newCharacters, writeQueue } from '../../core/drills/write-
 
 // Builds the questions of each drill type from a set's items and content, and grades answers. Pure code: the pages only show it.
 
-export type Style = 'choice' | 'match' | 'free'
+export type Style = 'choice' | 'free'
 export type Direction = 'zh-to-en' | 'en-to-zh'
 /** 'paper' is shown as Write elsewhere: the learner writes anywhere, then checks and self-marks. */
 export type WriteMode = 'pad' | 'paper'
@@ -68,7 +68,7 @@ export const appearsIn = (item: ItemInfo, text: string) => item.kind !== 'gramma
 /** The items a type covers, given what the set has: vocabulary for built-in types, items with a sentence for the sentence types, items met in the conversations. */
 export function applicable(type: DrillTypeId, items: readonly ItemInfo[], content: Pick<DrillContent, 'sentences' | 'conversations'>): ItemInfo[] {
   switch (type) {
-    case 'meanings': return items.filter(item => item.kind === 'vocabulary')
+    case 'meanings': case 'match': return items.filter(item => item.kind === 'vocabulary')
     case 'pinyin': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && item.py)
     case 'write': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && content.sentences[item.ref] && han.test(item.zh))
     case 'translate': case 'repeat': return items.filter(item => content.sentences[item.ref])
@@ -103,16 +103,16 @@ export function buildQuestions(type: DrillTypeId, input: { setId: string; items:
   const rng = createRng(ITEM_SEED(`${setId}:${type}`))
   const order = [...items].sort(() => rng() - 0.5)
   const q = (key: string, refs: string[], data: QData): Q => ({ key, type, refs, data })
-  if (type === 'meanings') {
+  if (type === 'meanings' || type === 'match') {
     const units = order.flatMap(item => { const unit = catalog.units.get(item.ref); return unit && isVocabulary(unit) ? [unit] : [] })
     const pool = [...catalog.units.values()].filter(isVocabulary)
-    if (options.style === 'free') return units.map(unit => q(`free-${unit.ref}`, [unit.ref], { t: 'free', item: order.find(item => item.ref === unit.ref)!, direction: options.direction }))
-    if (options.style === 'match') {
+    if (type === 'meanings' && options.style === 'free') return units.map(unit => q(`free-${unit.ref}`, [unit.ref], { t: 'free', item: order.find(item => item.ref === unit.ref)!, direction: options.direction }))
+    if (type === 'match') {
       const out: Q[] = []
       matchGroups<VocabularyUnit>(units).forEach((group, index) => {
         const match = buildMatch({ focus: group, pool, known, mode: 'zh-en', seed: ITEM_SEED(`${setId}:m${index}`), id: `${setId}-match-${index}` })
         if (match) out.push(q(`match-${index}`, group.map(unit => unit.ref), { t: 'match', exercise: match }))
-        else for (const unit of group) out.push(q(`free-${unit.ref}`, [unit.ref], { t: 'free', item: order.find(item => item.ref === unit.ref)!, direction: options.direction }))
+        else for (const unit of group) out.push(q(`free-${unit.ref}`, [unit.ref], { t: 'free', item: order.find(item => item.ref === unit.ref)!, direction: 'zh-to-en' }))
       })
       return out
     }
@@ -186,3 +186,12 @@ export const catalogCharacters = () => new Set(characterAssetIndex.map(asset => 
 
 /** Questions whose answer is complete the moment it is given: no Check button in one-at-a-time format. */
 export const isAuto = (q: Q) => q.data.t === 'match' || q.data.t === 'repeat' || q.data.t === 'write' || q.data.t === 'convo'
+
+/** Typed answers that are checked automatically, then confirmed or overridden by the learner's own mark. */
+export const needsConfirm = (q: Q) => q.data.t === 'free' || q.data.t === 'pinyin' || q.data.t === 'translate'
+/** The mark the automatic check suggests, or undefined when it cannot tell. */
+export const suggestedMark = (result: Outcome | 'self'): Mark | undefined => {
+  if (result === 'self') return undefined
+  const marks = Object.values(result.marks)
+  return marks.includes('missed') ? 'missed' : marks.includes('hint') ? 'hint' : 'got'
+}

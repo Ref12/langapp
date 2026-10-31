@@ -123,3 +123,5 @@
 
 /* Answer screens: a tap or long-press on the pad, the revealed character or a button must never start a text selection (it opens the phrase-practice toolbar). */
 .dr-run button, .dr-pad, .dr-pad *, .dr-order, .dr-order *, .dr-reveal, .dr-strokepad, .dr-selfmark { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.dr-confirm { display: block; }
+.dr-confirm > * + * { margin-top: 8px; }
