@@ -13,6 +13,8 @@ export const collectionSchema = z.object({
   /** `show` collections are created on the first add from a media item and link back to it. */
   kind: z.enum(['show', 'user']),
   mediaId: id.optional(),
+  /** The full original title (e.g. a show's) when the name is a short English one; shown small and muted. */
+  subtitle: z.string().trim().min(1).max(500).optional(),
   createdAt: timestamp,
   updatedAt: timestamp,
 }).strict()

@@ -136,6 +136,8 @@ export const exerciseSessionSchema = z.object({
   exerciseCount: z.number().int().min(1).max(80).optional(),
   /** Set when the session practises a collection; such sessions never count as the daily New/Review session. */
   collectionId: id.optional(),
+  /** Set when the session practises lines picked from media without any study set: the items the lesson is made of. */
+  lines: z.array(z.object({ ref: unitRefSchema, text: z.string().max(2000).optional(), translation: z.string().max(2000).optional() }).strict()).max(40).optional(),
   /** A collection lesson's order: the exercise index where each phase (words, grammar, the line itself) starts. */
   phases: z.array(z.object({ kind: z.enum(['words', 'grammar', 'line']), start: z.number().int().nonnegative() }).strict()).max(3).optional(),
 }).strict()

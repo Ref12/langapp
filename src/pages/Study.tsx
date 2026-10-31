@@ -222,7 +222,7 @@ function StartFooter({ session, run, busy, begin }: Pick<PageProps, 'run' | 'bus
 }
 
 function SessionIntroduction({ catalog, session, workspace, run, busy, now, begin }: PageProps & { catalog: Catalog; session: ExerciseSession; begin: () => void }) {
-  if (session.collectionId) return <CollectionIntroduction catalog={catalog} session={session} workspace={workspace} run={run} busy={busy} now={now} begin={begin} />
+  if (session.collectionId || session.lines) return <CollectionIntroduction catalog={catalog} session={session} workspace={workspace} run={run} busy={busy} now={now} begin={begin} />
   const group = session.groupId ? catalog.groups.get(session.groupId) : undefined
   const units = unitsOf(catalog, session.targetRefs)
   const examplesFor = (ref: string) => (group?.group.examples ?? []).filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))

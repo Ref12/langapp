@@ -8,14 +8,15 @@ import { TERM } from '../collections/terms'
 export type SessionOrigin =
   | { kind: 'new' | 'review' }
   | { kind: 'collection'; collectionId: string }
+  | { kind: 'lines' }
   | { kind: 'redo' }
 
 export const originOf = (session: ExerciseSession): SessionOrigin =>
-  session.redoOf ? { kind: 'redo' } : session.collectionId ? { kind: 'collection', collectionId: session.collectionId } : { kind: session.mode }
+  session.redoOf ? { kind: 'redo' } : session.collectionId ? { kind: 'collection', collectionId: session.collectionId } : session.lines ? { kind: 'lines' } : { kind: session.mode }
 
 /** One key per origin; a collection has one per mode. */
 export const originKey = (session: ExerciseSession): string =>
-  session.redoOf ? 'redo' : session.collectionId ? `collection:${session.collectionId}:${session.mode}` : session.mode
+  session.redoOf ? 'redo' : session.collectionId ? `collection:${session.collectionId}:${session.mode}` : session.lines ? 'lines' : session.mode
 
 const day = (time: number) => new Date(time).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
 
@@ -38,11 +39,12 @@ export function describeSession(session: ExerciseSession, all: ExerciseSession[]
   } else if (origin.kind === 'collection') {
     const collection = collections.find(item => item.id === origin.collectionId)
     title = `${collection?.name ?? TERM.Singular} · ${session.mode === 'new' ? 'New' : 'Review'}`
-  } else title = session.mode === 'new' ? 'New items' : 'Review'
+  } else if (origin.kind === 'lines') title = 'Lines from media'
+  else title = session.mode === 'new' ? 'New items' : 'Review'
   return { session, origin, title, items: itemsLine(catalog, session.targetRefs), started: day(session.createdAt) }
 }
 
-const rank = (origin: SessionOrigin) => origin.kind === 'new' ? 0 : origin.kind === 'review' ? 1 : origin.kind === 'collection' ? 2 : 3
+const rank = (origin: SessionOrigin) => origin.kind === 'new' ? 0 : origin.kind === 'review' ? 1 : origin.kind === 'collection' || origin.kind === 'lines' ? 2 : 3
 
 /** Unfinished sessions, curriculum first, then collections, then the redo; newest first within each. Every session is kept. */
 export function resumeRows(sessions: ExerciseSession[], collections: Collection[], catalog?: Catalog): ResumeRow[] {

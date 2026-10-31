@@ -2,10 +2,19 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../database'
 import { loadCatalog, renderExample } from '../study/catalog'
 import { addLines } from './store'
-import { showCollection, studyLines as studyLinesRaw } from './store'
+import { studyLines as studyLinesRaw } from './store'
 import { findCatalogUnits } from './extract'
 import { phraseRef } from './contracts'
 import { whenGenerated } from '../study/generation'
+
+/** A legacy show collection, as older versions created them. */
+async function showCollection(mediaId: string, title: string) {
+  const now = Date.now()
+  const collection = { id: crypto.randomUUID(), name: title, kind: 'show' as const, mediaId, createdAt: now, updatedAt: now }
+  await db.collections.add(collection)
+  return collection
+}
+
 const studyLines = async (...args: Parameters<typeof studyLinesRaw>) => { const id = await studyLinesRaw(...args); await whenGenerated(id); return id }
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))

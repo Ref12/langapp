@@ -21,11 +21,11 @@ function newCard(ref: string, now: number): StudyCard {
   return { id: cardId(ref, DOMAIN), ref, domain: DOMAIN, ...emptySchedulingState(now), updatedAt: now }
 }
 
-export async function createCollection(name: string): Promise<Collection> {
+export async function createCollection(name: string, extra: { subtitle?: string; mediaId?: string } = {}): Promise<Collection> {
   const clean = name.trim()
   if (!clean) throw new Error(`Name the ${TERM.singular}.`)
   const now = Date.now()
-  const collection: Collection = { id: crypto.randomUUID(), name: clean.slice(0, 120), kind: 'user', createdAt: now, updatedAt: now }
+  const collection: Collection = { id: crypto.randomUUID(), name: clean.slice(0, 120), kind: 'user', ...(extra.mediaId ? { mediaId: extra.mediaId } : {}), ...(extra.subtitle?.trim() ? { subtitle: extra.subtitle.trim().slice(0, 500) } : {}), createdAt: now, updatedAt: now }
   await db.collections.add(collection)
   return collection
 }
@@ -45,18 +45,6 @@ export async function deleteCollection(id: string): Promise<void> {
   await db.transaction('rw', db.collections, db.collectionItems, async () => {
     await db.collectionItems.where('collectionId').equals(id).delete()
     await db.collections.delete(id)
-  })
-}
-
-/** The show's collection, created on first use. */
-export async function showCollection(mediaId: string, title: string): Promise<Collection> {
-  return db.transaction('rw', db.collections, async () => {
-    const existing = await db.collections.where('mediaId').equals(mediaId).first()
-    if (existing) return existing
-    const now = Date.now()
-    const collection: Collection = { id: crypto.randomUUID(), name: title.trim().slice(0, 120) || 'Show', kind: 'show', mediaId, createdAt: now, updatedAt: now }
-    await db.collections.add(collection)
-    return collection
   })
 }
 
@@ -224,8 +212,7 @@ export async function collectionResult(session: ExerciseSession, signal?: AbortS
   const connection = await db.aiConnections.get('assistant')
   if (!connection) throw new Error('Connect an AI model in Settings before generating exercises. The app does not include a built-in model.')
   const catalog = await loadCatalog()
-  const collectionId = session.collectionId!
-  const items = (await db.collectionItems.bulkGet(session.targetRefs.map(ref => itemId(collectionId, ref)))).flatMap(item => item ? [item] : [])
+  const items = session.lines ? linesAsItems(session.lines) : (await db.collectionItems.bulkGet(session.targetRefs.map(ref => itemId(session.collectionId!, ref)))).flatMap(item => item ? [item] : [])
   if (!items.length) throw new Error(`The items of this ${TERM.singular} lesson are gone.`)
   const rank = (ref: string) => isPhraseRef(ref) ? 2 : ref.startsWith('grammar:') ? 1 : 0
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
@@ -268,17 +255,54 @@ export async function collectionResult(session: ExerciseSession, signal?: AbortS
   return { exercises: emit ? fill : [...joined, ...fill], rejected: emit ? [] : rejected, appended: true, ...(phases ? { phases } : {}), ...(failure ? { notice: failure.message.slice(0, 600) } : {}) }
 }
 
-/** Media.tsx calls this from a line's menu: adds the lines (each carries its media source) to their show's collection, then starts practice on them. */
-export async function studyLines(lines: LineInput[], signal?: AbortSignal): Promise<string> {
-  const first = lines.find(line => line.source)?.source
-  if (!first) throw new Error('These lines have no media to collect them under.')
-  const collection = await showCollection(first.mediaId, first.title)
-  await addLines(collection.id, lines)
+/** The items of a lines lesson as collection items, so one generator serves both; they belong to no collection and are never saved. */
+function linesAsItems(lines: NonNullable<ExerciseSession['lines']>): CollectionItem[] {
+  return lines.map(line => ({ id: itemId('lines', line.ref), collectionId: 'lines', ref: line.ref, ...(line.text ? { text: line.text } : {}), ...(line.translation ? { translation: line.translation } : {}), addedAt: 0 }))
+}
+
+/**
+ * Starts a lesson on lines from media without creating or changing any study set: the lesson keeps its own items (the lines and the curriculum words found in them),
+ * and its cards are the shared ones. Words first, then grammar, then the lines.
+ */
+export async function startLinesSession(inputs: { ref: string; text?: string; translation?: string }[], signal?: AbortSignal): Promise<string> {
+  const connection = await db.aiConnections.get('assistant')
+  if (!connection) throw new Error('Connect an AI model in Settings before generating exercises. The app does not include a built-in model.')
   const catalog = await loadCatalog()
-  const refs = new Set<string>()
-  for (const line of lines) {
-    refs.add(phraseRef(line.text))
-    for (const unit of findCatalogUnits([line.text], catalog)) refs.add(unit.ref)
+  const unique = [...new Map(inputs.map(input => [input.ref, input])).values()].filter(input => isPhraseRef(input.ref) ? !!input.text : isSourceRef(input.ref) || catalog.units.has(input.ref))
+  const rank = (ref: string) => isPhraseRef(ref) ? 2 : ref.startsWith('grammar:') ? 1 : 0
+  const lines = [...unique.filter(input => rank(input.ref) === 0), ...unique.filter(input => rank(input.ref) === 1).slice(0, 3), ...unique.filter(input => rank(input.ref) === 2).slice(0, 3)].slice(0, 40)
+  if (!lines.length) throw new Error('These lines have nothing to practice yet.')
+  const refs = lines.map(line => line.ref)
+  const id = crypto.randomUUID()
+  const now = Date.now()
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  const opening = await openingExercises(catalog, known, { id, targetRefs: refs }, linesAsItems(lines))
+  const session: ExerciseSession = {
+    id, mode: 'review', domain: DOMAIN, lines, targetRefs: refs, reviewRefs: [], exercises: opening, ...(opening.length ? { phases: [{ kind: 'words' as const, start: 0 }] } : {}), cursor: 0, status: 'active',
+    model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: await exerciseCountPreference(),
   }
-  return startCollectionSession(collection.id, { itemIds: [...refs].map(ref => itemId(collection.id, ref)) }, signal)
+  await db.transaction('rw', db.exerciseSessions, db.studyCards, async () => {
+    for (const ref of refs) if (!await db.studyCards.get(cardId(ref, DOMAIN))) await db.studyCards.add(newCard(ref, now))
+    await db.exerciseSessions.add(session)
+  })
+  void runGeneration(id, (own, emit) => collectionResult(session, signal ? AbortSignal.any([signal, own]) : own, emit))
+  return id
+}
+
+/** The inputs of a lines lesson for subtitle lines: each line as a phrase, plus the catalog units found in it. */
+export async function lineInputs(lines: LineInput[]): Promise<{ ref: string; text?: string; translation?: string }[]> {
+  const catalog = await loadCatalog()
+  const out: { ref: string; text?: string; translation?: string }[] = []
+  for (const line of lines) {
+    const text = line.text.replace(/\s+/g, ' ').trim()
+    if (!text) continue
+    out.push({ ref: phraseRef(text), text, ...(line.translation?.trim() ? { translation: line.translation.trim() } : {}) })
+    for (const unit of findCatalogUnits([text], catalog)) out.push({ ref: unit.ref })
+  }
+  return out
+}
+
+/** "Study now" on media lines: practice starts at once on those lines. No study set is created or changed. */
+export async function studyLines(lines: LineInput[], signal?: AbortSignal): Promise<string> {
+  return startLinesSession(await lineInputs(lines), signal)
 }

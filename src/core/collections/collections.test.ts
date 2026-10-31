@@ -2,12 +2,21 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../database'
 import { startReviewSession as startReviewSessionRaw, submitExerciseAnswer, advanceExercise } from '../study/knowledge'
 import { cardId } from '../study/contracts'
-import { addLines, createCollection, deleteCollection, dueItems, promoteItems, removeItems, renameCollection, showCollection, startCollectionSession as startCollectionSessionRaw, studyLines as studyLinesRaw } from './store'
+import { addLines, createCollection, deleteCollection, dueItems, promoteItems, removeItems, renameCollection, startCollectionSession as startCollectionSessionRaw, studyLines as studyLinesRaw } from './store'
 import { itemId, phraseRef } from './contracts'
 import { initializeWorkspace } from '../database'
 import { exportActiveProfile, restoreActiveProfile } from '../profiles/store'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
 import { whenGenerated } from '../study/generation'
+
+/** A legacy show collection, as older versions created them. */
+async function showCollection(mediaId: string, title: string) {
+  const now = Date.now()
+  const collection = { id: crypto.randomUUID(), name: title, kind: 'show' as const, mediaId, createdAt: now, updatedAt: now }
+  await db.collections.add(collection)
+  return collection
+}
+
 const startReviewSession = async (...args: Parameters<typeof startReviewSessionRaw>) => { const id = await startReviewSessionRaw(...args); await whenGenerated(id); return id }
 const startCollectionSession = async (...args: Parameters<typeof startCollectionSessionRaw>) => { const id = await startCollectionSessionRaw(...args); await whenGenerated(id); return id }
 const studyLines = async (...args: Parameters<typeof studyLinesRaw>) => { const id = await studyLinesRaw(...args); await whenGenerated(id); return id }
@@ -54,7 +63,6 @@ describe('collections', () => {
 
   it('creates a show collection on first add and extracts catalog units from lines', async () => {
     const first = await showCollection('m1', 'Drama')
-    expect(await showCollection('m1', 'Drama')).toEqual(first)
     expect(first).toMatchObject({ kind: 'show', mediaId: 'm1' })
     const result = await addLines(first.id, [line])
     expect(result.phrases).toBe(1)
@@ -74,10 +82,11 @@ describe('collections', () => {
   it('practises a collection without touching the knowledge set, and reschedules the shared cards', async () => {
     await db.aiConnections.add(connection)
     structured.requestStructuredJSON.mockImplementation(async (_c: unknown, request: { user: string }) => proposalFor(JSON.parse(request.user).targets.map((target: { ref: string }) => target.ref)))
-    const id = (await showCollection('m1', 'Drama')).id
     const sessionId = await studyLines([line])
     const session = (await db.exerciseSessions.get(sessionId))!
-    expect(session.collectionId).toBe(id)
+    expect(session.collectionId).toBeUndefined()
+    expect(await db.collections.count()).toBe(0)
+    expect(await db.collectionItems.count()).toBe(0)
     expect(session.targetRefs).toContain(phrase)
     expect(await db.knowledge.count()).toBe(0)
     await submitExerciseAnswer(sessionId, 0, 0)

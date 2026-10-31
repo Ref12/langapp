@@ -10,6 +10,7 @@ import { cardId, isPhraseRef } from '../core/study/contracts'
 import { DOMAIN } from '../core/study/knowledge'
 import { useCatalog } from '../components/study/useCatalog'
 import { unitMeaning, unitTitle } from '../core/study/catalog'
+import { renameMediaNamedSets } from '../core/collections/naming'
 import { createCollection, deleteCollection, dueItems, promoteItems, removeItems, renameCollection, startCollectionSession } from '../core/collections/store'
 import type { CollectionItem } from '../core/collections/contracts'
 import { TERM, itemCount } from '../core/collections/terms'
@@ -51,6 +52,7 @@ function RenameForm({ initial, busy, save, cancel, label }: { initial: string; b
 function List({ busy, run, now }: Pick<PageProps, 'busy' | 'run' | 'now'>) {
   const [name, setName] = useState('')
   const [editing, setEditing] = useState<string>()
+  useEffect(() => { void renameMediaNamedSets().catch(() => undefined) }, [])
   const rows = useLiveQuery(async () => {
     const collections = await db.collections.orderBy('updatedAt').reverse().toArray()
     return Promise.all(collections.map(async collection => ({ collection, count: await db.collectionItems.where('collectionId').equals(collection.id).count(), due: (await dueItems(collection.id, now)).length })))
@@ -67,6 +69,7 @@ function List({ busy, run, now }: Pick<PageProps, 'busy' | 'run' | 'now'>) {
         ? <RenameForm initial={collection.name} busy={busy} label={`${TERM.Singular} name`} cancel={() => setEditing(undefined)} save={value => void run(async () => { await renameCollection(collection.id, value); setEditing(undefined) })} />
         : <a className="col-link" href={`#collections/${collection.id}`}>
           <span className="col-name">{collection.name}</span>
+          {collection.subtitle && <span className="small muted col-subtitle" lang="zh-Hans">{collection.subtitle}</span>}
           <span className="small muted">{collection.kind === 'show' ? 'Show' : 'Mine'} · {itemCount(count)} · {due} due</span>
         </a>}
       {editing !== collection.id && <RowMenu name={collection.name} disabled={busy} onRename={() => setEditing(collection.id)}
@@ -114,6 +117,7 @@ function Detail({ id, busy, run, now }: PageProps & { id: string }) {
         ? <RenameForm initial={collection.name} busy={busy} label={`${TERM.Singular} name`} cancel={() => setRenaming(false)} save={value => void run(async () => { await renameCollection(id, value); setRenaming(false) })} />
         : <div className="col-head-text">
           <h1>{collection.name}</h1>
+        {collection.subtitle && <p className="small muted col-subtitle" lang="zh-Hans">{collection.subtitle}</p>}
           <p className="small muted">{itemCount(items.length)} · {dueCount} due{collection.mediaId && <> · <a className="text-link" href={`#media/${collection.mediaId}`}>Open the media</a></>}</p>
         </div>}
       {!renaming && <RowMenu name={collection.name} disabled={busy} onRename={() => setRenaming(true)} onDelete={() => { if (confirmDelete()) void run(async () => { await deleteCollection(id); navigate('collections') }) }} />}

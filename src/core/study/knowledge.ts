@@ -117,7 +117,7 @@ async function requireConnection(): Promise<AIConnection> {
 
 async function activeSession(mode: ExerciseSession['mode']): Promise<ExerciseSession | undefined> {
   // A redo is a repeat, never the curriculum's current step, so it does not count as the unfinished session.
-  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode && !session.redoOf && !session.collectionId).sortBy('createdAt').then(rows => rows[0])
+  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode && !session.redoOf && !session.collectionId && !session.lines).sortBy('createdAt').then(rows => rows[0])
 }
 
 function recentReviewRefs(sessions: ExerciseSession[], exclude: Set<string>): string[] {
