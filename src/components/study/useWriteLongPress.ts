@@ -1,7 +1,6 @@
 import { useRef, type PointerEvent, type MouseEvent } from 'react'
-import { hasGuide, isHan } from '../../core/characters/writing-route'
-import { writingRoute } from '../../core/characters/dictionary'
-import { navigate } from '../../core/routing'
+import { isHan } from '../../core/characters/writing-route'
+import { openWritingSheet } from '../../core/characters/writing-sheet'
 
 export const LONG_PRESS_MS = 500
 
@@ -30,7 +29,7 @@ export function wordAt(text: string, offset: number | undefined): { word: string
 }
 
 /** Phone only: a 500 ms touch press on Chinese text opens the writing exercise for the word; a tap does nothing extra. */
-export function useWriteLongPress(route: string) {
+export function useWriteLongPress() {
   const timer = useRef<number>()
   const fired = useRef(false)
   const cancel = () => { window.clearTimeout(timer.current); timer.current = undefined }
@@ -43,11 +42,8 @@ export function useWriteLongPress(route: string) {
       timer.current = window.setTimeout(() => {
         const text = currentTarget.textContent ?? ''
         const { word } = wordAt(text, offsetAt({ clientX, clientY }, currentTarget))
-        const chars = Array.from(word)
-        const index = chars.findIndex(character => isHan(character) && hasGuide(character))
-        if (index < 0) return
+        if (!openWritingSheet(word)) return
         fired.current = true
-        navigate(writingRoute(chars[index], 'all', { word, index, back: route }).slice(1))
       }, LONG_PRESS_MS)
     },
     onPointerUp: cancel, onPointerCancel: cancel, onPointerMove: cancel, onPointerLeave: cancel,

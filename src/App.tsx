@@ -26,6 +26,7 @@ import { Defender } from './pages/Defender'
 import { Potions } from './pages/Potions'
 import { Dictionary } from './pages/Dictionary'
 import { Writing } from './pages/Writing'
+import { WritingSheetHost } from './components/WritingSheet'
 import { Settings } from './pages/Settings'
 import { LevelDetail } from './pages/Curriculum'
 import { Assistant, AssistantSidebar } from './pages/Assistant'
@@ -215,6 +216,7 @@ function WorkspaceApp() {
           {currentPage}
         </main>
       </div>
+      <WritingSheetHost workspace={workspace} busy={busy} now={now} run={run} />
       <PlaybackStatus debug={preferences.speechDebugMessages ?? false} />
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}

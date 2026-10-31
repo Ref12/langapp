@@ -67,7 +67,7 @@ async function finishGuidedPhases() {
 describe('writing exercise', () => {
   const spoken = () => speak.mock.calls.map(call => call[0].text)
   it('speaks the character after every finished stroke, accepted or missed, but not on undo', async () => {
-    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
     stroke()
     await waitFor(() => expect(spoken()).toEqual(['\u4e00']))
     fireEvent.click(screen.getByRole('button', { name: 'Next' }))
@@ -84,7 +84,7 @@ describe('writing exercise', () => {
     beforeEach(() => { vibrate = vi.fn(); Object.defineProperty(navigator, 'vibrate', { value: vibrate, configurable: true, writable: true }) })
     afterEach(() => { delete (navigator as { vibrate?: unknown }).vibrate })
     it('buzzes briefly for an accepted stroke and longer for a miss', async () => {
-      render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
       stroke()
       expect(vibrate).toHaveBeenLastCalledWith(20)
       fireEvent.click(screen.getByRole('button', { name: 'Next' }))
@@ -95,18 +95,18 @@ describe('writing exercise', () => {
       expect(vibrate).toHaveBeenCalledTimes(2)
     })
     it('stays silent when the preference is off', () => {
-      render(<WritingPlayer {...props} workspace={{ ...props.workspace, preferences: { ...props.workspace.preferences, haptics: false } }} asset={asset} back="dictionary/characters" />)
+      render(<WritingPlayer {...props} workspace={{ ...props.workspace, preferences: { ...props.workspace.preferences, haptics: false } }} asset={asset} backHref="#dictionary/characters" />)
       stroke()
       expect(vibrate).not.toHaveBeenCalled()
     })
     it('does not fail when vibrate is unavailable', () => {
       delete (navigator as { vibrate?: unknown }).vibrate
-      render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
       expect(() => stroke()).not.toThrow()
     })
   })
   it('does not speak on undo', async () => {
-    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
     stroke()
     await waitFor(() => expect(speak).toHaveBeenCalledTimes(1))
     fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
@@ -114,7 +114,7 @@ describe('writing exercise', () => {
     expect(speak).toHaveBeenCalledTimes(1)
   })
   it('mutes, stops playback, persists the preference and stays silent', async () => {
-    const view = render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    const view = render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
     stroke()
     await waitFor(() => expect(getPlaybackState().activeId).toBeTruthy())
     const mute = screen.getByRole('button', { name: 'Mute automatic character audio' })
@@ -124,7 +124,7 @@ describe('writing exercise', () => {
     expect(cancel).toHaveBeenCalled()
     expect(getPlaybackState().activeId).toBeUndefined()
     const workspace = await loadWorkspace()
-    view.rerender(<WritingPlayer {...props} workspace={workspace} asset={asset} back="dictionary/characters" />)
+    view.rerender(<WritingPlayer {...props} workspace={workspace} asset={asset} backHref="#dictionary/characters" />)
     expect(screen.getByRole('button', { name: 'Unmute automatic character audio' })).toHaveAttribute('aria-pressed', 'true')
     speak.mockClear()
     fireEvent.click(screen.getByRole('button', { name: 'Next' }))
@@ -134,7 +134,7 @@ describe('writing exercise', () => {
   })
   it('completes nine repetitions and saves practice without changing reading or manual knowledge', async () => {
     const onNext = vi.fn()
-    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters/knowledge" onNext={onNext} />)
+    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters/knowledge" onNext={onNext} />)
     expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled()
     await finishGuidedPhases()
     expect(screen.getByTestId('stroke-guides').children).toHaveLength(0)
@@ -153,7 +153,7 @@ describe('writing exercise', () => {
     expect(await db.characterStates.count()).toBe(1)
   })
   it('reveals memory hints only after two committed misses, keeps undo assistance, and clears it on reset', async () => {
-    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
     await finishGuidedPhases()
     const pad = screen.getByRole('img', { name: 'Handwriting area' })
     fireEvent.pointerDown(pad, { pointerId: 1, button: 0, clientX: 0, clientY: 0 })
@@ -174,7 +174,7 @@ describe('writing exercise', () => {
     expect(screen.getByTestId('stroke-guides').children).toHaveLength(0)
   })
   it('cancels on blur, lost capture, Escape and resize; ignores secondary pointers', () => {
-    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
     const pad = screen.getByRole('img', { name: 'Handwriting area' })
     for (const interrupt of [
       () => fireEvent.blur(window), () => fireEvent.lostPointerCapture(pad, { pointerId: 1 }),
@@ -192,7 +192,7 @@ describe('writing exercise', () => {
   })
   it('reveals just the missed stroke and hides the following guide in memory', async () => {
     const twoStrokes: CharacterAsset = { ...asset, strokeCount: 2, paths: ['M10 50 L90 50', 'M50 10 L50 90'] }
-    render(<WritingPlayer {...props} asset={twoStrokes} back="dictionary/characters" />)
+    render(<WritingPlayer {...props} asset={twoStrokes} backHref="#dictionary/characters" />)
     for (let index = 0; index < 6; index++) {
       stroke()
       stroke([50, 10], [50, 90])
@@ -210,7 +210,7 @@ describe('writing exercise', () => {
   })
   it('does not turn watching stroke order into a completed stroke', async () => {
     const user = userEvent.setup()
-    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
     await user.click(screen.getByRole('button', { name: 'Watch stroke order' }))
     expect(screen.getByRole('status')).toHaveTextContent('Watching stroke 1')
     stroke()
@@ -222,7 +222,7 @@ describe('writing exercise', () => {
     const errors: unknown[] = []
     props.run = async operation => { try { await operation() } catch (error) { errors.push(error) } }
     const add = vi.spyOn(db.characterStates, 'put').mockRejectedValueOnce(new Error('Storage full'))
-    render(<WritingPlayer {...props} asset={asset} back="dictionary/characters" />)
+    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
     for (let index = 0; index < 9; index++) {
       stroke()
       fireEvent.click(screen.getByRole('button', { name: index === 8 ? 'Finish' : 'Next' }))
@@ -253,7 +253,7 @@ describe('writing exercise', () => {
     const step = () => document.querySelector('.writing-statusline > span')?.textContent
 
     it('walks repetitions then phases forward and back, with Previous disabled at the very start', () => {
-      render(<WritingPlayer {...props} asset={asset} back="dictionary" />)
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" />)
       expect(step()).toBe('Full guide \u00b7 1/3')
       expect(screen.getByRole('button', { name: 'Previous' })).toBeDisabled()
       const seen: string[] = []
@@ -270,7 +270,7 @@ describe('writing exercise', () => {
       expect(screen.getByRole('button', { name: 'Previous' })).toBeDisabled()
     })
     it('resets the strokes of a repetition when stepping back', () => {
-      render(<WritingPlayer {...props} asset={asset} back="dictionary" />)
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" />)
       stroke(); next()
       stroke()
       expect(screen.getByRole('button', { name: 'Next' })).toBeEnabled()
@@ -280,7 +280,7 @@ describe('writing exercise', () => {
     })
     it('saves once when the nine repetitions end, then moves on; stepping back and forward does not save twice', async () => {
       const onNext = vi.fn()
-      render(<WritingPlayer {...props} asset={asset} back="dictionary" onNext={onNext} />)
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" onNext={onNext} />)
       for (let index = 0; index < 9; index++) { stroke(); next() }
       await waitFor(() => expect(onNext).toHaveBeenCalledTimes(1))
       previous()
@@ -289,18 +289,18 @@ describe('writing exercise', () => {
       expect((await db.characterStates.get('\u4e00'))?.practiceCompletions).toBe(1)
     })
     it('labels the final step Next while another character follows, Finish otherwise', () => {
-      const view = render(<WritingPlayer {...props} asset={asset} back="dictionary" last={false} />)
+      const view = render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" last={false} />)
       for (let index = 0; index < 8; index++) { stroke(); next() }
       expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled()
       view.unmount()
     })
     it('points Back at the back route', () => {
-      render(<WritingPlayer {...props} asset={asset} back="lessons/new" />)
+      render(<WritingPlayer {...props} asset={asset} backHref="#lessons/new" />)
       expect(screen.getByRole('link', { name: 'Back' })).toHaveAttribute('href', '#lessons/new')
     })
     it('puts the explanatory text and licences link behind the ? sheet', async () => {
       const user = userEvent.setup()
-      render(<WritingPlayer {...props} asset={asset} back="dictionary" />)
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" />)
       expect(screen.queryByRole('link', { name: 'Artwork sources and licenses' })).not.toBeInTheDocument()
       await user.click(screen.getByRole('button', { name: 'About this exercise' }))
       expect(screen.getByRole('link', { name: 'Artwork sources and licenses' })).toBeInTheDocument()

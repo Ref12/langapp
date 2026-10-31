@@ -8,9 +8,9 @@ import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Pinyin } from '../Pinyin'
 import { useWriteLongPress } from './useWriteLongPress'
 
-export function ExampleLine({ catalog, example, pinyin, route, actions }: { catalog: Catalog; example: Omit<AuthoredExample, 'id'>; pinyin: boolean; route?: string; actions?: ReactNode }) {
+export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Catalog; example: Omit<AuthoredExample, 'id'>; pinyin: boolean; route?: string; actions?: ReactNode }) {
   const rendered = renderExample(catalog, example)
-  const press = useWriteLongPress(route ?? window.location.hash.slice(1))
+  const press = useWriteLongPress()
   const text = <>
     <p lang="zh-Hans" className="example" {...press}>{rendered.text}</p>
     {pinyin && <p className="small muted" data-assistant-exclude><Pinyin text={rendered.pinyin} /></p>}
@@ -26,7 +26,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   hideStatus?: boolean
 }) {
   const known = Boolean(card)
-  const press = useWriteLongPress(route)
+  const press = useWriteLongPress()
   const title = unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt
   const own = unit.kind === 'grammar' ? [unit.record.ex] : []
   const shown = [...own, ...examples.filter(example => !own.some(item => item.translation === example.translation))]

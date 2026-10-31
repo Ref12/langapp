@@ -1,6 +1,7 @@
 import { Pencil, Plus, X } from 'lucide-react'
 import { PracticeSnippet } from '../assistant/SnippetActions'
-import { writingRoute, type DictionaryCharacter } from '../../core/characters/dictionary'
+import { openWritingSheet } from '../../core/characters/writing-sheet'
+import { type DictionaryCharacter } from '../../core/characters/dictionary'
 import { addCharacterToKnowledge, removeManualCharacter } from '../../core/characters/store'
 import type { CharacterState } from '../../core/characters/contracts'
 import type { PageProps } from '../shared'
@@ -26,7 +27,7 @@ export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, 
         <span className="tag">{automatic ? 'From your words' : manual ? 'Added manually' : 'Not in your set'}</span></div>
         <p className="small muted character-artwork-state">{asset ? `${asset.strokeCount} ${asset.strokeCount === 1 ? 'stroke' : 'strokes'}${state && state.practiceCompletions > 0 ? ` / ${state.practiceCompletions} ${state.practiceCompletions === 1 ? 'round' : 'rounds'} written` : ''}` : 'Stroke guide not available'}</p></div>
       <PracticeSnippet practiceMode="speak" source={{ text: character, meaning: first?.record.ds, locale: 'zh-Hans', title: `Character: ${character}`, route }}
-        onWrite={asset ? () => { window.location.hash = writingRoute(character, scope).slice(1) } : undefined}
+        onWrite={asset ? () => { openWritingSheet(character, { scope, remember: false }) } : undefined}
         learn={automatic || manual ? null : <button type="button" className="button secondary snippet-button" disabled={busy} onClick={() => void run(() => addCharacterToKnowledge(character))}><Plus size={15} />Learn</button>} />
     </div>
     <div className="character-word-context">
@@ -34,7 +35,7 @@ export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, 
         : <p className="small muted">No word in the current app bands.</p>}
     </div>
     <div className="character-card-actions">
-      {asset ? <a className="button primary" href={writingRoute(character, scope)} aria-label={`Practice writing ${character}`}><Pencil size={16} />Practice writing</a>
+      {asset ? <button type="button" className="button primary" aria-label={`Practice writing ${character}`} onClick={() => { openWritingSheet(character, { scope, remember: false }) }}><Pencil size={16} />Practice writing</button>
         : <button className="button secondary" disabled>Guide unavailable</button>}
       {manual ? <button className="button secondary" disabled={busy} onClick={() => void run(() => removeManualCharacter(character))}
         aria-label={`Remove manual addition ${character}`}><X size={16} />Remove</button>

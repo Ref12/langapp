@@ -312,7 +312,7 @@ describe('first usable Assistant', () => {
     expect((await db.assistantThreads.get(prepared.id))?.draft).toContain(getWord('zh:rain').native)
   })
 
-  it.each(['conversation', 'shadow'] as const)('opens the Write practice sheet from the %s phrase menu and its word links open writing practice, coming back to the conversation', async mode => {
+  it.each(['conversation', 'shadow'] as const)('opens the Write practice sheet from the %s phrase menu and its word buttons open writing practice as a sheet over the conversation', async mode => {
     const id = await createConversation()
     await updateThread(id, { mode })
     await db.assistantMessages.add({
@@ -325,12 +325,14 @@ describe('first usable Assistant', () => {
     const reply = await screen.findByRole('article', { name: 'Assistant reply' })
     const block = within(reply).getByText('\u8336').closest<HTMLDivElement>('.speech-block')!
     await userEvent.setup().click(openPhraseActions(block).getByRole('button', { name: 'Write' }))
-    expect(window.location.hash).not.toContain('back=')
-    await userEvent.setup().click(await screen.findByRole('link', { name: /Write \u8336/ }))
-    await waitFor(() => expect(window.location.hash).toContain('back='))
-    const hash = decodeURIComponent(window.location.hash)
-    expect(hash).toContain('\u8336')
-    expect(hash).toContain(`back=conversation/${id}`)
+    const before = window.location.hash
+    await userEvent.setup().click(await screen.findByRole('button', { name: /Write \u8336/ }))
+    const sheet = await screen.findByRole('dialog', { name: 'Writing practice' })
+    expect(window.location.hash).toBe(before)
+    await userEvent.setup().click(within(sheet).getByRole('button', { name: 'Back' }))
+    expect(screen.queryByRole('dialog', { name: 'Writing practice' })).toBeNull()
+    expect(await screen.findByRole('button', { name: /Write \u8336/ })).toBeInTheDocument()
+    expect(window.location.hash).toBe(before)
   })
 
   it.each(['conversation', 'shadow'] as const)('uses Ask without Explain more in %s phrase menus and appends context to the current chat', async mode => {

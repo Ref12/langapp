@@ -31,16 +31,36 @@ const go = (route: string) => { window.location.replace(`#${route}`) }
 
 export function Writing({ codepoint, scope, query, ...props }: PageProps & { codepoint?: string; scope?: string; query?: string }) {
   const character = routeCharacter(codepoint)
+  const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
+  const { word, index, back: requestedBack } = useMemo(() => parseWritingQuery(query, character), [query, character])
+  const back = requestedBack ?? `dictionary/characters/${scopeName}`
+  const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack })
+  return <WritingStage {...props} character={character} word={word} index={index} remember={!!query?.includes('word=')} backHref={`#${back}`}
+    skipHref={at => `#${routeFor(at)}`} onGo={at => go(routeFor(at))} onFinish={() => go(back)} />
+}
+
+export interface WritingStageProps {
+  character?: string
+  word: string[]
+  index: number
+  /** Remember the word as a written phrase (when it came from a word). */
+  remember: boolean
+  backHref?: string
+  skipHref?: (at: number) => string
+  onBack?: () => void
+  onClose?: () => void
+  onGo: (at: number) => void
+  onFinish: () => void
+}
+
+/** The writing exercise for one character of a word, independent of how it was reached (hash route or overlay sheet). */
+export function WritingStage({ character, word, index, remember, backHref, skipHref, onBack, onClose, onGo, onFinish, ...props }: PageProps & WritingStageProps) {
   const playable = hasAsset(character) ? character : undefined
   const [asset, setAsset] = useState<CharacterAsset>()
   const [error, setError] = useState('')
   const [retry, setRetry] = useState(0)
-  const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
-  const { word, index, back: requestedBack } = useMemo(() => parseWritingQuery(query, character), [query, character])
-  const back = requestedBack ?? `dictionary/characters/${scopeName}`
-  const phrase = query?.includes('word=') ? word.join('') : ''
+  const phrase = remember ? word.join('') : ''
   useEffect(() => { if (phrase) void rememberWrittenPhrase(phrase).catch(() => undefined) }, [phrase])
-  const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack })
   const nextIndex = word.length ? neighbourIndex(word, index, 1) : undefined
   const previousIndex = word.length ? neighbourIndex(word, index, -1) : undefined
   useEffect(() => {
@@ -51,26 +71,32 @@ export function Writing({ codepoint, scope, query, ...props }: PageProps & { cod
       reason => { if (!disposed) setError(reason instanceof Error ? reason.message : String(reason)) })
     return () => { disposed = true }
   }, [playable, retry])
+  const backControl = onBack ? <button type="button" className="button secondary" onClick={onBack}>Back</button>
+    : backHref ? <a className="button secondary" href={backHref}>Back</a> : onClose ? <button type="button" className="button secondary" onClick={onClose}>Close</button> : null
   if (!playable) return <EmptyState title="This stroke guide is not available.">
     <p>{character && word.length ? `No guide for ${character}.` : 'No character was substituted. Choose an available guide from the dictionary.'}</p>
-    <div className="button-row">{nextIndex !== undefined && <a className="button primary" href={`#${routeFor(nextIndex)}`}>Skip to next character</a>}
-      <a className="button secondary" href={`#${back}`}>Back</a></div></EmptyState>
-  if (error) return <EmptyState title="The stroke guide could not be loaded."><p role="alert">{error}</p><div className="button-row"><button className="button primary" onClick={() => setRetry(value => value + 1)}>Retry</button><a className="button secondary" href={`#${back}`}>Back</a></div></EmptyState>
+    <div className="button-row">{nextIndex !== undefined && (skipHref ? <a className="button primary" href={skipHref(nextIndex)}>Skip to next character</a>
+      : <button type="button" className="button primary" onClick={() => onGo(nextIndex)}>Skip to next character</button>)}
+      {backControl}</div></EmptyState>
+  if (error) return <EmptyState title="The stroke guide could not be loaded."><p role="alert">{error}</p><div className="button-row"><button className="button primary" onClick={() => setRetry(value => value + 1)}>Retry</button>{backControl}</div></EmptyState>
   const han = word.filter(isHan)
   const skipped = word.filter(item => isHan(item) && !hasAsset(item))
   const hanPosition = word.slice(0, index + 1).filter(isHan).length
-  return asset ? <WritingPlayer key={asset.character} {...props} asset={asset} back={back}
+  return asset ? <WritingPlayer key={asset.character} {...props} asset={asset} backHref={backHref} onBack={onBack} onClose={onClose}
     place={han.length > 1 ? { number: hanPosition, total: han.length } : undefined} skipped={skipped}
     hasPrevious={previousIndex !== undefined} last={nextIndex === undefined}
-    onPrevious={() => { if (previousIndex === undefined) return; arrival = { character: word[previousIndex], phase: PHASES.length - 1, repetition: REPETITIONS - 1, saved: true, at: Date.now() }; go(routeFor(previousIndex)) }}
-    onNext={() => { if (nextIndex === undefined) { go(back); return } arrival = { character: word[nextIndex], phase: 0, repetition: 0, saved: false, at: Date.now() }; go(routeFor(nextIndex)) }} />
+    onPrevious={() => { if (previousIndex === undefined) return; arrival = { character: word[previousIndex], phase: PHASES.length - 1, repetition: REPETITIONS - 1, saved: true, at: Date.now() }; onGo(previousIndex) }}
+    onNext={() => { if (nextIndex === undefined) { onFinish(); return } arrival = { character: word[nextIndex], phase: 0, repetition: 0, saved: false, at: Date.now() }; onGo(nextIndex) }} />
     : <p role="status">Loading stroke guide...</p>
 }
 
 export interface WritingPlayerProps {
   asset: CharacterAsset
-  /** Route (no "#") for the Back link. */
-  back: string
+  /** Hash link for the Back control (routed page). */
+  backHref?: string
+  /** Overlay sheet: Back is a button, and X closes the sheet. */
+  onBack?: () => void
+  onClose?: () => void
   place?: { number: number; total: number }
   skipped?: string[]
   hasPrevious?: boolean
@@ -81,7 +107,7 @@ export interface WritingPlayerProps {
   onNext?: () => void
 }
 
-export function WritingPlayer({ asset, back, place, skipped = [], hasPrevious = false, last = true, onPrevious, onNext, workspace, run, busy }: PageProps & WritingPlayerProps) {
+export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onNext, workspace, run, busy }: PageProps & WritingPlayerProps) {
   const guides = useMemo(() => asset.paths.map(makeStrokeGuide), [asset.paths])
   const [arrived] = useState(() => takeArrival(asset.character))
   const [round, setRound] = useState<WritingRound>(() => arrived ? { ...newWritingRound(), phase: arrived.phase, repetition: arrived.repetition } : newWritingRound())
@@ -217,7 +243,8 @@ export function WritingPlayer({ asset, back, place, skipped = [], hasPrevious = 
 
   return <div className="writing-page" data-assistant-exclude>
     <header className="writing-header">
-      <a className="text-link writing-back" href={`#${back}`} aria-label="Back" title="Back"><ArrowLeft size={16} />Back</a>
+      {onBack ? <button type="button" className="text-link writing-back" onClick={onBack} aria-label="Back" title="Back"><ArrowLeft size={16} />Back</button>
+        : backHref ? <a className="text-link writing-back" href={backHref} aria-label="Back" title="Back"><ArrowLeft size={16} />Back</a> : null}
       <p className="writing-title">
         <span className={hidden ? 'writing-title-hidden' : 'writing-title-character'} lang={hidden ? undefined : 'zh-Hans'} aria-label={hidden ? 'From memory' : undefined}>{hidden ? '\u25a1' : asset.character}</span>
         {word?.kind === 'vocabulary' && <span className="writing-title-word">
@@ -225,6 +252,7 @@ export function WritingPlayer({ asset, back, place, skipped = [], hasPrevious = 
           {workspace.preferences.pinyin && <> <Pinyin text={word.record.pr} /></>} <span className="muted">{word.record.ds}</span></span>}
       </p>
       <button className="icon-button writing-help-button" type="button" aria-label="About this exercise" title="About this exercise" aria-expanded={help} aria-controls="writing-sheet" onClick={() => setHelp(value => !value)}><CircleHelp size={18} /></button>
+      {onClose && <button className="icon-button" type="button" aria-label="Close writing" title="Close writing" onClick={onClose}><X size={20} /></button>}
       {help && <div id="writing-sheet" className="writing-sheet" role="dialog" aria-label="About this exercise">
         <button className="icon-button writing-sheet-close" type="button" aria-label="Close" onClick={() => setHelp(false)}><X size={16} /></button>
         <p id="writing-help"><strong>{PHASES[round.phase]}.</strong> {phaseHelp}</p>

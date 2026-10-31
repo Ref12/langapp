@@ -70,3 +70,6 @@ main.writing-main { padding: 8px 12px; max-width: 640px; }
 .handwriting-character { font-size: 32px; line-height: 1.1; }
 .handwriting-reading { font-size: 12px; color: var(--muted); }
 .search-field button.search-draw { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex: none; border: 0; background: transparent; color: var(--accent); font-weight: 600; padding: 8px 0 8px 4px; min-height: 40px; }
+.practice-playlist.writing-overlay[open] { display: flex; flex-direction: column; width: min(720px, calc(100vw - 24px)); height: calc(100dvh - 16px); }
+.writing-overlay-content { padding-top: 6px; }
+@media (max-width: 640px) { .practice-playlist.writing-overlay[open] { width: 100%; height: calc(100dvh - max(12px, env(safe-area-inset-top))); } }

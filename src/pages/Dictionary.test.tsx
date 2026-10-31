@@ -5,7 +5,9 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
 import { buildCatalog, catalogCounts, type BandData } from '../core/study/catalog'
 import { Dictionary } from './Dictionary'
+import { WritingSheetHost } from '../components/WritingSheet'
 import { Writing } from './Writing'
+import { closeWritingSheet } from '../core/characters/writing-sheet'
 import { useRoute } from '../core/routing'
 
 const source = vi.hoisted(() => ({ catalog: undefined as ReturnType<typeof buildCatalog> | undefined }))
@@ -35,8 +37,10 @@ function Harness() {
   if (!workspace) return null
   const [page, section, scope] = route.split('/')
   const props = { workspace, now: 1, busy: false, run: async (operation: () => Promise<void>) => { await operation() } }
-  return page === 'writing' ? <Writing {...props} codepoint={section} scope={scope} /> : <Dictionary {...props} section={section} initialScope={scope} />
+  return <>{page === 'writing' ? <Writing {...props} codepoint={section} scope={scope} /> : <Dictionary {...props} section={section} initialScope={scope} />}<WritingSheetHost {...props} /></>
 }
+
+afterEach(() => { act(() => closeWritingSheet()) })
 
 beforeEach(async () => {
   await db.delete()
@@ -166,6 +170,16 @@ describe('dictionary characters', () => {
     expect(screen.getByRole('button', { name: `Vocabulary (${catalogCounts.vocabulary.toLocaleString('en-US')})` })).toBeInTheDocument()
     expect(screen.getByRole('option', { name: /^HSK 1 \(\d[\d,]*\)$/ })).toBeInTheDocument()
   })
+  it('opens Practice writing as a sheet in place, without leaving the dictionary', async () => {
+    const user = userEvent.setup()
+    window.location.hash = 'dictionary/characters/all'
+    render(<Harness />)
+    const card = await screen.findByRole('article', { name: 'Character \u8336' })
+    await user.click(within(card).getByRole('button', { name: 'Practice writing \u8336' }))
+    expect(await screen.findByRole('img', { name: 'Handwriting area' })).toBeInTheDocument()
+    expect(window.location.hash).toBe('#dictionary/characters/all')
+    expect(screen.getByRole('article', { name: 'Character \u8336' })).toBe(card)
+  })
   // Flaky under CI load ("My knowledge set (2)" not found, 2026-10-29; passed in the two previous runs). Skipped until fixed properly.
   it.skip('saves independent manual additions and retains automatic membership when unpinned', async () => {
     const user = userEvent.setup()
@@ -246,10 +260,10 @@ describe('dictionary characters', () => {
     await user.click(await screen.findByRole('button', { name: 'My knowledge set (1)' }))
     await user.type(screen.getByRole('searchbox', { name: 'Search dictionary' }), 'teacup')
     expect(screen.getAllByRole('article')).toHaveLength(1)
-    await user.click(screen.getByRole('link', { name: 'Practice writing \u8336' }))
+    await user.click(screen.getByRole('button', { name: 'Practice writing \u8336' }))
     await screen.findByRole('img', { name: 'Handwriting area' })
-    expect(window.location.hash).toBe('#writing/8336/knowledge')
-    await user.click(screen.getByRole('link', { name: 'Back' }))
+    expect(window.location.hash).toBe('#dictionary/characters/knowledge')
+    await user.click(screen.getByRole('button', { name: 'Close writing practice' }))
     await screen.findByRole('heading', { name: 'Characters, one stroke at a time.' })
     expect(screen.getByRole('button', { name: 'My knowledge set (1)' })).toHaveAttribute('aria-pressed', 'true')
     await waitFor(() => expect(db.isOpen()).toBe(true))
