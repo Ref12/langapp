@@ -19,16 +19,30 @@ export const STUDY_SET_LIMIT = 40
 export const MAX_UNFINISHED_SETS = 8
 
 export type DrillSource = { kind: 'new'; from?: string } | { kind: 'review'; from?: string } | { kind: 'study-set'; collectionId: string }
+  /** An explicit list of items drilled again, from a past lesson (its session id) or an earlier drill set (its id). */
+  | { kind: 'refs'; refs: readonly string[]; origin: { kind: 'lesson' | 'drill'; id: string } }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 export const shortDate = (time: number) => { const date = new Date(time); return `${date.getDate()} ${MONTHS[date.getMonth()]}` }
 export const originLabel = (source: DrillSource['kind']) => source === 'review' ? 'Reviews' : 'New items'
 
-function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'createdAt'> & { collectionId?: string }): DrillSet {
+function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'createdAt'> & { collectionId?: string; originId?: string }): DrillSet {
   return { ...fields, status: 'active', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, updatedAt: fields.createdAt }
 }
 
-async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[] }> {
+async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source'] }> {
+  if (source.kind === 'refs') {
+    const refs = [...new Set(source.refs)].slice(0, STUDY_SET_LIMIT)
+    if (!refs.length) throw new Error('There are no items to drill.')
+    if (source.origin.kind === 'lesson') {
+      const session = await db.exerciseSessions.get(source.origin.id)
+      if (!session) throw new Error('That lesson could not be found.')
+      return { refs, title: `From lesson · ${shortDate(session.completedAt ?? session.createdAt)}`, originId: source.origin.id, setSource: 'lesson' }
+    }
+    const earlier = await db.drillSets.get(source.origin.id)
+    if (!earlier) throw new Error('That drill set could not be found.')
+    return { refs, title: `Again: ${earlier.title.replace(/^Again: /, '')}`.slice(0, 200), originId: source.origin.id, setSource: earlier.source === 'new' || earlier.source === 'lesson' ? earlier.source : 'drill' }
+  }
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
   if (source.kind === 'review' && source.from) {
@@ -74,7 +88,7 @@ export async function createDrillSet(source: DrillSource, now = Date.now()): Pro
   const catalog = await loadCatalog()
   if (chosen.promote) await promoteItems(chosen.promote)
   const id = crypto.randomUUID()
-  const set = emptySet({ id, source: source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}) })
+  const set = emptySet({ id, source: source.kind === 'refs' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) })
   await db.transaction('rw', [db.drillSets, db.knowledge, db.studyCards, db.journal], async () => {
     if (source.kind === 'new' && !source.from) {
       const units = chosen.refs.flatMap(ref => catalog.units.get(ref) ?? [])
@@ -184,7 +198,7 @@ export async function finishDrillSet(id: string): Promise<void> {
 /** Abandons an unfinished set. Results already recorded keep their scheduling effect. */
 export async function discardDrillSet(id: string): Promise<void> {
   cancelContent(id)
-  await mutate(id, set => set.status !== 'active' ? undefined : { ...set, status: 'abandoned', completedAt: Date.now() })
+  await mutate(id, set => set.status !== 'active' ? undefined : { ...set, status: 'abandoned', completedAt: Date.now(), discarded: true })
 }
 
 export const retryContent = (id: string) => startContent(id)

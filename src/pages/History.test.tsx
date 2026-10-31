@@ -174,3 +174,38 @@ it('redoes a lesson from its History row with the same items and opens the new s
   const created = (await db.exerciseSessions.toArray()).find(item => item.id !== 'sess-x')!
   expect(created).toMatchObject({ mode: 'review', targetRefs: refs, redoOf: 'sess-x' })
 })
+
+const wordRefs = ['vocabulary:wo3--me', 'vocabulary:xue2-xi2--study']
+const drillSet = (fields: Record<string, unknown>) => ({ id: 'ds', source: 'new', title: 'New items · 31 Oct', refs: wordRefs, status: 'active', format: 'single', progress: {}, content: { state: 'no-ai', sentences: {}, conversations: [] }, createdAt: 100, updatedAt: 100, ...fields })
+
+it('drills a past lesson from its History row: a set of the lesson items opens with its intro cards', async () => {
+  await db.exerciseSessions.add({ id: 'sess-d', mode: 'new', domain: 'reading', targetRefs: [wordRefs[0]], reviewRefs: [wordRefs[1]], exercises: [], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: Date.UTC(2026, 9, 30, 12), completedAt: Date.UTC(2026, 9, 30, 12) } as never)
+  render(<App />)
+  fireEvent.click(await screen.findByRole('button', { name: 'Drill lesson session New items' }))
+  await waitFor(() => expect(window.location.hash).toMatch(/^#drills\/set\//))
+  const set = (await db.drillSets.toArray())[0]
+  expect(set).toMatchObject({ refs: wordRefs, source: 'lesson', originId: 'sess-d', title: 'From lesson · 30 Oct' })
+  expect(await screen.findByRole('heading', { name: 'From lesson · 30 Oct' })).toBeInTheDocument()
+  expect(await screen.findByRole('link', { name: /Intro cards/ })).toHaveAttribute('href', `#drills/set/${set.id}/intro`)
+})
+
+it('lists drill sets with their items and score line, filters to Drills, and drills a set again', async () => {
+  await db.drillSets.bulkAdd([
+    drillSet({ id: 'ds', progress: { meanings: { results: { [wordRefs[0]]: 'got', [wordRefs[1]]: 'hint' }, scope: wordRefs, done: true, redos: 0 }, write: { results: { [wordRefs[0]]: 'missed' }, chars: { 我: { mark: 'missed', cue: wordRefs[0] } }, scope: wordRefs, done: false, redos: 0 } } }),
+    drillSet({ id: 'gone', title: 'Discarded', status: 'abandoned', discarded: true, createdAt: 50 }),
+    drillSet({ id: 'aside', title: 'Set aside one', status: 'abandoned', createdAt: 60 }),
+  ] as never)
+  render(<App />)
+  fireEvent.click(await screen.findByRole('button', { name: 'Drills' }))
+  const row = (await screen.findByText('New items · 31 Oct')).closest('li')!
+  await waitFor(() => expect(row).toHaveTextContent('学习'))
+  expect(row).toHaveTextContent('我')
+  expect(row).toHaveTextContent('Word meanings 2/2 · Write it 0/1')
+  expect(screen.queryByText('Discarded')).toBeNull()
+  expect(screen.getByText('Set aside one')).toBeInTheDocument()
+  expect(within(row).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#drills/set/ds')
+  fireEvent.click(within(row).getByRole('button', { name: /again/ }))
+  await waitFor(() => expect(window.location.hash).toMatch(/^#drills\/set\/(?!ds)/))
+  const again = (await db.drillSets.toArray()).find(set => set.originId === 'ds')!
+  expect(again).toMatchObject({ title: 'Again: New items · 31 Oct', refs: wordRefs, status: 'active', progress: {} })
+})

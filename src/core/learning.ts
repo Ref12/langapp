@@ -27,7 +27,7 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (next.promptAutoPlay !== undefined && typeof next.promptAutoPlay !== 'boolean') throw new Error('Choose whether prompt auto-play is on or off.')
   if (next.practiceMode !== undefined && next.practiceMode !== 'speak' && next.practiceMode !== 'write') throw new Error('Choose Speak or Write practice.')
     if (next.dictionaryScope !== undefined && !['all', 'knowledge'].includes(next.dictionaryScope)) throw new Error('Choose a Dictionary scope.')
-    if (next.historyFilter !== undefined && !['all', 'speak', 'write', 'lessons'].includes(next.historyFilter)) throw new Error('Choose a History filter.')
+    if (next.historyFilter !== undefined && !['all', 'speak', 'write', 'lessons', 'drills'].includes(next.historyFilter)) throw new Error('Choose a History filter.')
     await db.preferences.put(next)
   })
 }

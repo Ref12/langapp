@@ -68,7 +68,7 @@ export interface Preferences {
 /** Play the Chinese prompt on entering an exercise that has a Hear button for it. Default off. */
 promptAutoPlay?: boolean
   practiceMode?: 'speak' | 'write'
-  historyFilter?: 'all' | 'speak' | 'write' | 'lessons'
+  historyFilter?: 'all' | 'speak' | 'write' | 'lessons' | 'drills'
   dictionaryScope?: 'all' | 'knowledge'
 }
 

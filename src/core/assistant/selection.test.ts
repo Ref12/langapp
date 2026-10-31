@@ -27,6 +27,20 @@ describe('context selection', () => {
     expect(select(root)).toBe('\u8336\u3002')
   })
 
+  it('offers nothing for a selection that starts or ends inside an excluded area, such as a Drills answer screen', () => {
+    const root = document.createElement('main')
+    root.innerHTML = '<p>\u4f60\u597d</p><div data-assistant-exclude><p id="inside">\u5b66\u4e60</p></div>'
+    document.body.append(root)
+    const inside = root.querySelector('#inside')!
+    const range = document.createRange()
+    range.setStart(root.querySelector('p')!.firstChild!, 0)
+    range.setEnd(inside.firstChild!, 2)
+    const selection = window.getSelection()!
+    selection.removeAllRanges(); selection.addRange(range)
+    expect(selectedSnippet(selection, root)).toBeUndefined()
+    expect(select(root, inside)).toBeUndefined()
+  })
+
   it('never offers selected-text help for a protected unaided question', () => {
     const root = document.createElement('main')
     root.innerHTML = '<div data-assistant-protected="true"><p>\u8336</p></div><p>Afterward</p>'

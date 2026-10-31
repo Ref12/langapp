@@ -109,7 +109,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
       <span className="small muted">{quiz ? 'Quiz' : queue.length ? `Question ${Math.min(index + 1, queue.length)} of ${queue.length}` : ''}</span></div>
   </>
 
-  if (!queue.length) return <div className="dr"><section className="panel dr-run">{header}<p role="status">{graded && progress && scope.length ? 'Every item in this type already has a result.' : 'There is nothing to practise here.'}</p>
+  if (!queue.length) return <div className="dr" data-assistant-exclude><section className="panel dr-run">{header}<p role="status">{graded && progress && scope.length ? 'Every item in this type already has a result.' : 'There is nothing to practise here.'}</p>
     <div className="dr-actions"><a className="button primary" href={backHref}>Back to the set</a></div></section></div>
 
   const counts = { got: 0, hint: 0, missed: 0 } as Record<Mark, number>
@@ -123,13 +123,13 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
     {graded ? <p className="small muted">Recorded in your knowledge and review schedule. {set.progress[type] ? (() => { const s = scoreOf(countMarks({ progress: { [type]: set.progress[type]! } }, [type])); return `Score: ${s.correct} of ${s.total}.` })() : ''}</p>
       : <p className="small muted">Ungraded practice: your score and schedule are unchanged.</p>}
     <div className="button-row"><a className="button primary" href={backHref}>Back to the set</a></div></section>
-  if (finishedAll) return <div className="dr">{header}{summary}</div>
+  if (finishedAll) return <div className="dr" data-assistant-exclude>{header}{summary}</div>
 
   if (quiz) {
     const answered = queue.filter(q => states[q.key]?.answer !== undefined || states[q.key]?.status === 'marking' || states[q.key]?.status === 'done').length
     const checked = queue.some(q => (states[q.key]?.status ?? 'open') !== 'open')
     const checkAll = () => { for (const q of queue) { const state = states[q.key]; if (state?.answer !== undefined && (state.status ?? 'open') === 'open') check(q, state.answer) } }
-    return <div className="dr">{header}{toolbar}
+    return <div className="dr" data-assistant-exclude>{header}{toolbar}
       <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel"><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{TITLES[q.data.t]}</h2></div>
         <QuestionView q={q} quiz state={states[q.key] ?? { status: 'open' }} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => mark(q, chosen)} /></li>)}</ol>
       <div className="dr-sticky" role="region" aria-label="Quiz progress"><span><strong>{answered} of {queue.length}</strong> answered</span>
@@ -139,7 +139,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
   const q = queue[index]
   const state = states[q.key] ?? { status: 'open' as const }
   const canCheck = !isAuto(q) && state.status === 'open' && state.answer !== undefined
-  return <div className="dr"><section className="panel dr-run">{header}
+  return <div className="dr" data-assistant-exclude><section className="panel dr-run">{header}
     <progress aria-label="Progress" value={index} max={queue.length} />
     {toolbar}
     <h2 className="small dr-qtitle">{TITLES[q.data.t]}</h2>

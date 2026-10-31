@@ -76,6 +76,29 @@ describe('creating drill sets', () => {
   })
 })
 
+describe('drilling past items', () => {
+  it('a lesson and an earlier drill set can be drilled again from their items, titled from the origin', async () => {
+    const refs = ['vocabulary:wo3--me', 'vocabulary:ni3--you']
+    const at = Date.UTC(2026, 9, 30, 12)
+    await db.exerciseSessions.add({ id: 'lesson-1', mode: 'new', status: 'completed', targetRefs: [refs[0]], reviewRefs: [refs[1], refs[0]], exercises: [], createdAt: at, completedAt: at } as never)
+    const fromLesson = await created({ kind: 'refs', refs: [refs[0], refs[1], refs[0]], origin: { kind: 'lesson', id: 'lesson-1' } }, at + 1000)
+    expect(fromLesson.title).toBe('From lesson · 30 Oct')
+    expect(fromLesson.source).toBe('lesson')
+    expect(fromLesson.originId).toBe('lesson-1')
+    expect(fromLesson.refs).toEqual(refs)
+    const earlier = await created({ kind: 'new' }, Date.UTC(2026, 9, 31, 12))
+    const again = await created({ kind: 'refs', refs: earlier.refs, origin: { kind: 'drill', id: earlier.id } }, Date.UTC(2026, 10, 1))
+    expect(again.title).toBe('Again: New items · 31 Oct')
+    expect(again.source).toBe('new')
+    expect(again.originId).toBe(earlier.id)
+    expect(again.refs).toEqual(earlier.refs)
+    const twice = await created({ kind: 'refs', refs: again.refs, origin: { kind: 'drill', id: again.id } })
+    expect(twice.title).toBe('Again: New items · 31 Oct')
+    await expect(createDrillSet({ kind: 'refs', refs: [], origin: { kind: 'lesson', id: 'lesson-1' } })).rejects.toThrow(/no items/)
+    await expect(createDrillSet({ kind: 'refs', refs, origin: { kind: 'lesson', id: 'gone' } })).rejects.toThrow(/lesson could not be found/)
+  })
+})
+
 describe('unfinished sets', () => {
   it('lists, resumes, discards and keeps the number of unfinished sets bounded', async () => {
     await addToKnowledge(['vocabulary:wo3--me'])

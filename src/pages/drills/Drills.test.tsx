@@ -268,6 +268,15 @@ describe('Write it by character', () => {
 describe('no sideways overflow at 390 px', () => {
   const LONG = '大婚撞破未婚夫和繼妹，我轉身嫁給他昏迷的四叔'
   const fits = () => { const root = document.documentElement; return root.scrollWidth <= root.clientWidth }
+  it('marks the answer screens as excluded from selected-text help, so Write elsewhere never opens phrase practice by accident', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    window.location.hash = `#drills/set/${id}/run/write`
+    render(<App />)
+    const title = await screen.findByText('Write it', { selector: 'h2' })
+    expect(title.closest('[data-assistant-exclude]')).not.toBeNull()
+  })
+
   it('keeps Drills home and the set screen inside the screen, with a long Chinese study-set name', async () => {
     window.innerWidth = 390
     await db.collections.put({ id: 'long', name: LONG, createdAt: 1, updatedAt: 1 } as never)

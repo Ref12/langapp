@@ -59,8 +59,10 @@ export const contentSchema = z.object({
 
 export const drillSetSchema = z.object({
   id,
-  source: z.enum(['new', 'review', 'study-set']),
+  source: z.enum(['new', 'review', 'study-set', 'lesson', 'drill']),
   collectionId: id.optional(),
+  /** lesson: the lesson session drilled; drill: the earlier drill set drilled again. */
+  originId: id.optional(),
   /** The origin and date shown in lists: "New items · 30 Oct", "Reviews · 28 Oct" or the study set's name. */
   title: z.string().trim().min(1).max(200),
   refs: z.array(unitRefSchema).min(1).max(60),
@@ -71,6 +73,8 @@ export const drillSetSchema = z.object({
   createdAt: timestamp,
   updatedAt: timestamp,
   completedAt: timestamp.optional(),
+  /** Thrown away by the user (History hides it); a set only set aside to make room stays listed. */
+  discarded: z.boolean().optional(),
 }).strict()
 
 export const drillSetsBackupSchema = z.array(drillSetSchema).max(2000)

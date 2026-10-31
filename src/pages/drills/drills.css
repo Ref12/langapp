@@ -120,3 +120,6 @@
 .dr-order-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .dr-order-svg { width: min(100%, 150px); }
 .dr-missed-chars { text-align: left; }
+
+/* Answer screens: a tap or long-press on the pad, the revealed character or a button must never start a text selection (it opens the phrase-practice toolbar). */
+.dr-run button, .dr-pad, .dr-pad *, .dr-order, .dr-order *, .dr-reveal, .dr-strokepad, .dr-selfmark { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }

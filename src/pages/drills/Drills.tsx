@@ -65,7 +65,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
 /** New-item sets open on the lesson's intro cards; review and study-set sets keep their items out of sight until asked. */
 function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & { set: DrillSet; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
   const [shown, setShown] = useState(false)
-  const fresh = set.source === 'new'
+  const fresh = set.source === 'new' || set.source === 'lesson'
   const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start drilling <ArrowRight size={16} /></a>
   const detail = describeItems(items, workspace.characterStates) || itemCount(items.length)
   const examplesFor = (ref: string) => (catalog.orderedGroups.find(entry => entry.group.units.some(unit => unit.ref === ref))?.group.examples ?? [])
@@ -104,8 +104,8 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
     <a className="back-link" href="#drills"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
     <PageHeading eyebrow="Drill set" title={set.title} action={<button type="button" className="button secondary" disabled={busy} onClick={finish}>Finish set</button>}>{describeItems(items, workspace.characterStates) || itemCount(set.refs.length)} · {done.length} of {DRILL_TYPES.length} types done</PageHeading>
     <div className="dr-toolbar dr-setbar">
-      {set.source === 'new' && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><BookOpen size={16} /> Intro cards</a>}
-      {set.source !== 'new' && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><Eye size={16} /> Items</a>}
+      {(set.source === 'new' || set.source === 'lesson') && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><BookOpen size={16} /> Intro cards</a>}
+      {set.source !== 'new' && set.source !== 'lesson' && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><Eye size={16} /> Items</a>}
       <div className="dr-format"><span className="eyebrow">Format for the next Start</span><div className="segmented" role="group" aria-label="Format">
         <button type="button" aria-pressed={!quiz} onClick={() => void run(async () => { await setFormat(set.id, 'single') })}>One at a time</button>
         <button type="button" aria-pressed={quiz} onClick={() => void run(async () => { await setFormat(set.id, 'quiz') })}>Quiz</button></div></div></div>

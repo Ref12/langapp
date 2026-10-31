@@ -17,7 +17,9 @@ export function selectedSnippet(selection: Selection | null, root: HTMLElement):
   const range = selection.getRangeAt(0)
   if (!root.contains(range.startContainer) || !root.contains(range.endContainer)) return undefined
   const start = range.startContainer instanceof Element ? range.startContainer : range.startContainer.parentElement
-  if (start?.closest('rt, rp, input, textarea, select, [contenteditable], [data-assistant-exclude]')) return undefined
+  const finish = range.endContainer instanceof Element ? range.endContainer : range.endContainer.parentElement
+  const excluded = 'rt, rp, input, textarea, select, [contenteditable], [data-assistant-exclude]'
+  if (start?.closest(excluded) || finish?.closest(excluded)) return undefined
   for (const node of root.querySelectorAll('[data-assistant-protected="true"]')) {
     if (range.intersectsNode(node)) return undefined
   }
