@@ -50,7 +50,7 @@ describe('a collection lesson', () => {
     const text = await grammarLine(); LINE.text = text
     const sessionId = await studyLines([{ text, translation: 'x', source: { mediaId: 'm1', title: 'Drama', line: 1, start: 1, text } }])
     const session = (await db.exerciseSessions.get(sessionId))!
-    const kinds = session.exercises.map(exercise => exercise.targets[0].split(':')[0])
+    const kinds = session.exercises.filter(exercise => !exercise.id.startsWith('local-')).map(exercise => exercise.targets[0].split(':')[0])
     expect(kinds).toEqual([...kinds].sort((a, b) => ['vocabulary', 'grammar', 'phrase'].indexOf(a) - ['vocabulary', 'grammar', 'phrase'].indexOf(b)))
     expect(session.phases!.map(phase => phase.kind)).toEqual(['words', 'grammar', 'line'])
     expect(session.phases![0].start).toBe(0)

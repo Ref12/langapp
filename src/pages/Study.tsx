@@ -139,7 +139,6 @@ function MatchQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
   const left: MatchCell[] = exercise.pairs.map(pair => ({ ref: pair.ref, text: pair.left, side: 'left' }))
   const right: MatchCell[] = exercise.order.map(index => ({ ref: exercise.pairs[index].ref, text: exercise.pairs[index].right, side: 'right' }))
   const sideOf = (cell: MatchCell) => cell.side === 'left' ? leftSide : rightSide
-  const done = locked.length === exercise.pairs.length
   const tap = (cell: MatchCell) => {
     if (busy || attempt || locked.includes(cell.ref)) return
     setWrong(undefined)
@@ -147,7 +146,13 @@ function MatchQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
       try { playBrowserSpeech(speechId, sideOf(cell) === 'zh' ? cell.text : chinese(cell.ref), 'zh-Hans') } catch (reason) { console.error('Match speech failed.', reason) }
     }
     if (!selected || selected.side === cell.side) { setSelected(cell); return }
-    if (selected.ref === cell.ref) { setLocked([...locked, cell.ref]); setSelected(undefined); return }
+    if (selected.ref === cell.ref) {
+      const next = [...locked, cell.ref]
+      setLocked(next); setSelected(undefined)
+      // The last pair locking finishes the exercise: the misses so far are the response.
+      if (next.length === exercise.pairs.length) submit(misses)
+      return
+    }
     setMisses([...misses, selected.ref])
     setWrong([selected.ref + ':' + selected.side, cell.ref + ':' + cell.side])
     setSelected(undefined)
@@ -162,13 +167,12 @@ function MatchQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
     </button>
   }
   return <>
-    <p className="practice-prompt" lang="en">Match each pair: tap one, then its partner.</p>
     <div className="match-board" role="group" aria-label="Pairs to match">
       <div className="match-column" role="group" aria-label="First column">{left.map(cellView)}</div>
       <div className="match-column" role="group" aria-label="Second column">{right.map(cellView)}</div>
     </div>
     {wrong && <p className="small muted match-hint" role="status">Not a pair. Try again.</p>}
-    <AnswerButton result={attempt?.correct} busy={busy} ready={done} onCheck={() => submit(misses)} onNext={next} />
+    {attempt && <AnswerButton result={attempt.correct} busy={busy} ready onCheck={() => undefined} onNext={next} />}
   </>
 }
 
@@ -293,9 +297,9 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
     {session.aiNotice && noticeShown && <p className="notice small ai-notice" role="status">{session.aiNotice} <button type="button" className="text-link" onClick={() => { setNoticeShown(false); void dismissAiNotice(session.id) }}>Dismiss</button></p>}
     {running ? <progress aria-label="Session progress" /> : <progress aria-label="Session progress" value={session.cursor} max={total} />}
     <div className="practice-question-content">
-      <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : 'Which Mandarin matches?' : exercise.type === 'match' ? 'Match the pairs.' : 'Arrange the tiles to translate this.'}</h2>
+      <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : 'Which Mandarin matches?' : exercise.type === 'match' ? 'Match the pairs: tap one, then its partner.' : 'Arrange the tiles to translate this.'}</h2>
       <div className="button-row practice-tools">
-        <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>
+        {!(exercise.type === 'match' && exercise.mode === 'zh-py') && <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>}
         {(exercise.type === 'tiles' || (exercise.type === 'match' && exercise.mode !== 'py-en')) && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
           onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute tiles' : 'Speak tiles'}</button>}
         {hasPrompt && <button type="button" className="button secondary snippet-button" aria-pressed={promptSpeech} disabled={busy}

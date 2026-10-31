@@ -127,8 +127,9 @@ describe('collections', () => {
     expect(asked.map(chunk => chunk.length)).toEqual([8, 8, 4])
     const session = (await db.exerciseSessions.get(sessionId))!
     expect(new Set(session.targetRefs)).toEqual(new Set(refs))
-    expect(session.exercises).toHaveLength(12)
-    expect(new Set(session.exercises.map(exercise => exercise.id)).size).toBe(12)
+    const ai = session.exercises.filter(exercise => !exercise.id.startsWith('local-'))
+    expect(ai).toHaveLength(12)
+    expect(new Set(session.exercises.map(exercise => exercise.id)).size).toBe(session.exercises.length)
     // Without a selection the old cap of 8 words holds.
     structured.requestStructuredJSON.mockClear()
     await startCollectionSession(id, { resume: false })

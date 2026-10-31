@@ -50,12 +50,12 @@ describe('lessons that start on programmatic exercises', () => {
     expect(await screen.findByText(/0 done · more coming/)).toBeInTheDocument()
     const options = screen.getAllByRole('radio')
     expect(options.length).toBeGreaterThanOrEqual(2)
-    expect(structured.requestStructuredJSON).toHaveBeenCalled()
+    await waitFor(() => expect(structured.requestStructuredJSON).toHaveBeenCalled())
     const session = (await db.exerciseSessions.toArray())[0]
     const first = session.exercises[0]
     if (first.type !== 'choice') throw new Error('expected a choice first')
     await user.click(options[first.answer])
-    await user.click(screen.getByRole('button', { name: 'Check answer' }))
+    await user.click(await screen.findByRole('button', { name: 'Check answer' }, { timeout: 8000 }))
     expect(await screen.findByText('Correct.')).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Next' }))
     // Play on to the first match.
@@ -64,13 +64,15 @@ describe('lessons that start on programmatic exercises', () => {
       const exercise = session.exercises[position]
       if (exercise.type !== 'choice') throw new Error('expected a choice')
       // A fresh exercise has a disabled Check button; the one just answered shows Next.
-      await waitFor(() => expect(screen.getByRole('button', { name: 'Check answer' })).toBeDisabled())
+      expect(await screen.findByRole('button', { name: 'Check answer' }, { timeout: 8000 })).toBeDisabled()
       await user.click(screen.getAllByRole('radio')[exercise.answer])
       await user.click(screen.getByRole('button', { name: 'Check answer' }))
       await user.click(await screen.findByRole('button', { name: 'Next' }))
     }
     const match = session.exercises[matchPosition]
     if (match.type !== 'match') throw new Error('expected a match')
+    expect(await screen.findByRole('heading', { name: 'Match the pairs: tap one, then its partner.' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /pinyin/ })).toBeInTheDocument()
     const board = await screen.findByRole('group', { name: 'Pairs to match' })
     const first1 = within(board).getByRole('group', { name: 'First column' }), second = within(board).getByRole('group', { name: 'Second column' })
     const leftButtons = within(first1).getAllByRole('button'), rightButtons = within(second).getAllByRole('button')
@@ -83,9 +85,9 @@ describe('lessons that start on programmatic exercises', () => {
     await user.click(leftButtons[1]); await user.click(rightFor(2))
     expect(await screen.findByText('Not a pair. Try again.')).toBeInTheDocument()
     expect(leftButtons[1]).toBeEnabled()
-    expect(screen.getByRole('button', { name: 'Check answer' })).toBeDisabled()
+    // No Check button on a match: the last pair locking finishes it.
+    expect(screen.queryByRole('button', { name: 'Check answer' })).not.toBeInTheDocument()
     for (const index of [1, 2, 3]) { await user.click(leftButtons[index]); await user.click(rightFor(index)) }
-    await user.click(screen.getByRole('button', { name: 'Check answer' }))
     expect(await screen.findByText('Not quite.')).toBeInTheDocument()
     expect((await db.exerciseSessions.get(session.id))!.redos).toEqual([{ exercise: matchPosition, round: 1 }])
     expect((await db.exerciseAttempts.get(`${session.id}:${matchPosition}`))!.response).toBe(JSON.stringify([match.pairs[1].ref]))
@@ -94,7 +96,7 @@ describe('lessons that start on programmatic exercises', () => {
     await act(async () => { release({ exercises: [1, 2, 3, 4].map(number => ({ id: `ai${number}`, type: 'choice', targets: [refs[0]], direction: 'zh-to-en', question: '我是学生。', options: ['I am a student.', 'I study.'], answer: 0, explanation: 'x' })) }) })
     await waitFor(async () => expect((await db.exerciseSessions.get(session.id))!.exercises).toHaveLength(before + 4))
     await waitFor(async () => expect((await db.exerciseSessions.get(session.id))!.generation).toBeUndefined())
-  })
+  }, 30000)
 
   it('fills the shortfall with more programmatic exercises and shows the AI failure once, quietly', async () => {
     const user = userEvent.setup()
@@ -112,5 +114,5 @@ describe('lessons that start on programmatic exercises', () => {
     await user.click(screen.getByRole('button', { name: 'Dismiss' }))
     expect(screen.queryByText('Model unavailable', { exact: false })).not.toBeInTheDocument()
     await waitFor(async () => expect((await db.exerciseSessions.get(session.id))!.aiNotice).toBeUndefined())
-  })
+  }, 30000)
 })

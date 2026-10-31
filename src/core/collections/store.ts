@@ -1,11 +1,13 @@
 import { db } from '../database'
 import { loadCatalog, requireUnit } from '../study/catalog'
-import { cardId, isPhraseRef, isSourceRef, type ExerciseSession, type StudyCard } from '../study/contracts'
+import { cardId, isPhraseRef, isSourceRef, type Exercise, type ExerciseSession, type StudyCard } from '../study/contracts'
 import { emptySchedulingState } from '../study/fsrs'
 import { DOMAIN, addToKnowledge, sourceTargets } from '../study/knowledge'
-import { generateBatched, type PhraseTarget } from '../study/exercises'
-import { exerciseCountPreference, runGeneration, type GenerationResult } from '../study/generation'
-import { orderByPhase } from './phases'
+import { generateStreaming, type PhraseTarget } from '../study/exercises'
+import { exerciseCountPreference, runGeneration, type Emit, type GenerationResult } from '../study/generation'
+import { fillLocalExercises, isVocabulary, localVocabularyExercises, seedFrom, vocabularyInPhrases, type LocalInput, type VocabularyUnit } from '../study/local-exercises'
+import type { Catalog, Unit } from '../study/catalog'
+import { orderByPhase, phaseOf } from './phases'
 import { findCatalogUnits } from './extract'
 import { TERM } from './terms'
 import { itemId, phraseRef, type Collection, type CollectionItem, type CollectionSource } from './contracts'
@@ -160,26 +162,65 @@ export async function startCollectionSession(collectionId: string, options: { it
   const refs = items.map(item => item.ref)
   const id = crypto.randomUUID()
   const now = Date.now()
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  const opening = await openingExercises(catalog, known, { id, targetRefs: refs }, items)
   const session: ExerciseSession = {
-    id, mode: 'review', domain: DOMAIN, collectionId, targetRefs: refs, reviewRefs: [], exercises: [], cursor: 0, status: 'active',
+    id, mode: 'review', domain: DOMAIN, collectionId, targetRefs: refs, reviewRefs: [], exercises: opening, ...(opening.length ? { phases: [{ kind: 'words' as const, start: 0 }] } : {}), cursor: 0, status: 'active',
     model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: await exerciseCountPreference(),
   }
   await db.transaction('rw', db.exerciseSessions, db.studyCards, async () => {
     for (const ref of refs) if (!await db.studyCards.get(cardId(ref, DOMAIN))) await db.studyCards.add(newCard(ref, now))
     await db.exerciseSessions.add(session)
   })
-  void runGeneration(id, own => collectionResult(session, signal ? AbortSignal.any([signal, own]) : own))
+  void runGeneration(id, (own, emit) => collectionResult(session, signal ? AbortSignal.any([signal, own]) : own, emit))
   return id
+}
+
+/** A source-entry word that carries pinyin, as a vocabulary unit the local builders can drill. */
+function sourceUnits(entries: { id: string; word: string; pinyin?: string; meanings: string[] }[]): VocabularyUnit[] {
+  return entries.flatMap(entry => entry.pinyin?.trim() && entry.meanings.length ? [{ kind: 'vocabulary' as const, ref: `source:${entry.id}`, band: '6' as const, record: { id: entry.id, ch: entry.word, pr: entry.pinyin.trim(), ds: entry.meanings.join('; '), lb: entry.id } }] : [])
+}
+
+/** What the programmatic exercises are built from: the set's curriculum words and source words with pinyin; with none, the known words found in its whole lines. */
+async function localInput(catalog: Catalog, known: Set<string>, session: Pick<ExerciseSession, 'id' | 'targetRefs'>, items: CollectionItem[]): Promise<LocalInput> {
+  const refs = new Set(session.targetRefs)
+  const entries = (await db.sourceEntries.bulkGet(session.targetRefs.filter(isSourceRef).map(ref => ref.slice('source:'.length)))).flatMap(entry => entry ? [entry] : [])
+  const own: Unit[] = [...session.targetRefs.flatMap(ref => { const unit = catalog.units.get(ref); return unit && isVocabulary(unit) ? [unit] : [] }), ...sourceUnits(entries)]
+  const curriculum = [...catalog.units.values()].filter(isVocabulary)
+  const lines = items.filter(item => refs.has(item.ref) && isPhraseRef(item.ref) && item.text).map(item => ({ text: item.text! }))
+  const knownVocabulary = curriculum.filter(unit => known.has(unit.ref))
+  const targets = own.length ? own : vocabularyInPhrases(lines, knownVocabulary.length ? knownVocabulary : curriculum)
+  return { targets, pool: [...curriculum, ...sourceUnits(entries)], known, seed: seedFrom(session.id) }
+}
+
+/** The exercises a study-set lesson opens on, built in code before any AI request. */
+async function openingExercises(catalog: Catalog, known: Set<string>, session: Pick<ExerciseSession, 'id' | 'targetRefs'>, items: CollectionItem[]): Promise<Exercise[]> {
+  return localVocabularyExercises(await localInput(catalog, known, session, items))
 }
 
 /** The smallest share of a lesson's exercises a word chunk gets, so every chunk's request stays usable. */
 const MIN_CHUNK_EXERCISES = 6
 
+/** Phases for the final list when its exercises already sit in lesson order (the local words first); undefined when streaming interleaved them. */
+function phasesIfOrdered(exercises: Exercise[]): ExerciseSession['phases'] {
+  const order = ['words', 'grammar', 'line']
+  const phases: NonNullable<ExerciseSession['phases']> = []
+  let last = 0
+  for (const [index, exercise] of exercises.entries()) {
+    const kind = phaseOf(exercise), rank = order.indexOf(kind)
+    if (rank < last) return undefined
+    last = rank
+    if (!phases.some(phase => phase.kind === kind)) phases.push({ kind, start: index })
+  }
+  return phases
+}
+
 /**
- * Writes the exercises for a collection session from its saved items. Words go in chunks of at most MAX_COLLECTION_TARGETS, one request per chunk,
- * run together; grammar and phrases ride with the first chunk. The lesson's exercise count is shared across the chunks.
+ * Streams the AI's exercises for a collection session into the saved session batch by batch. Words go in chunks of at most MAX_COLLECTION_TARGETS,
+ * one request per chunk, run together; grammar and phrases ride with the first chunk. A batch is put in lesson order (words, grammar, the line) before it joins.
+ * A failure or shortfall is filled with more programmatic vocabulary exercises, and the failure is a quiet notice.
  */
-export async function collectionResult(session: ExerciseSession, signal?: AbortSignal): Promise<GenerationResult> {
+export async function collectionResult(session: ExerciseSession, signal?: AbortSignal, emit?: Emit): Promise<GenerationResult> {
   const connection = await db.aiConnections.get('assistant')
   if (!connection) throw new Error('Connect an AI model in Settings before generating exercises. The app does not include a built-in model.')
   const catalog = await loadCatalog()
@@ -187,7 +228,7 @@ export async function collectionResult(session: ExerciseSession, signal?: AbortS
   const items = (await db.collectionItems.bulkGet(session.targetRefs.map(ref => itemId(collectionId, ref)))).flatMap(item => item ? [item] : [])
   if (!items.length) throw new Error(`The items of this ${TERM.singular} lesson are gone.`)
   const rank = (ref: string) => isPhraseRef(ref) ? 2 : ref.startsWith('grammar:') ? 1 : 0
-  const known = (await db.knowledge.toArray()).map(entry => entry.ref)
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
   const targetsOf = (part: CollectionItem[]) => part.filter(item => !isPhraseRef(item.ref) && !isSourceRef(item.ref)).map(item => requireUnit(catalog, item.ref))
   const phrasesOf = async (part: CollectionItem[]): Promise<PhraseTarget[]> => [...await sourceTargets(part.map(item => item.ref)), ...part.filter(item => isPhraseRef(item.ref)).map(item => ({ ref: item.ref, text: item.text!, ...(item.translation ? { translation: item.translation } : {}) }))]
   const words = items.filter(item => rank(item.ref) === 0)
@@ -197,14 +238,34 @@ export async function collectionResult(session: ExerciseSession, signal?: AbortS
   chunks[0] = [...chunks[0], ...rest]
   const total = session.exerciseCount ?? await exerciseCountPreference()
   const share = Math.max(MIN_CHUNK_EXERCISES, Math.ceil(total / chunks.length))
-  const parts = await Promise.all(chunks.map(async (part, index) => {
-    const targets = targetsOf(part)
-    const allowed = [...new Map([...known, ...targets.map(unit => unit.ref)].filter(ref => catalog.units.has(ref)).map(ref => [ref, requireUnit(catalog, ref)])).values()]
-    const result = await generateBatched(connection, { mode: 'review', targets, review: [], allowed, catalog, phrases: await phrasesOf(part) }, share, signal)
-    return chunks.length === 1 ? result : { ...result, exercises: result.exercises.map(exercise => ({ ...exercise, id: `${index + 1}-${exercise.id}` })) }
+  let delivered = 0
+  let failure: Error | undefined
+  const rejected: string[] = []
+  const joined: Exercise[] = []
+  await Promise.all(chunks.map(async (part, index) => {
+    try {
+      const targets = targetsOf(part)
+      const allowed = [...new Map([...known, ...targets.map(unit => unit.ref)].filter(ref => catalog.units.has(ref)).map(ref => [ref, requireUnit(catalog, ref)])).values()]
+      const outcome = await generateStreaming(connection, { mode: 'review', targets, review: [], allowed, catalog, phrases: await phrasesOf(part) }, share, signal, async batch => {
+        const prefixed = chunks.length === 1 ? batch.exercises : batch.exercises.map(exercise => ({ ...exercise, id: `${index + 1}-${exercise.id}` }))
+        const ordered = orderByPhase(prefixed).exercises
+        if (emit) await emit(ordered, batch.rejected)
+        else { joined.push(...ordered); rejected.push(...batch.rejected) }
+      })
+      delivered += outcome.delivered
+      failure ??= outcome.failure
+    } catch (reason) {
+      failure ??= reason instanceof Error ? reason : new Error('The exercises could not be generated.')
+    }
   }))
-  const ordered = orderByPhase(parts.flatMap(part => part.exercises))
-  return { exercises: ordered.exercises, phases: ordered.phases, rejected: parts.flatMap(part => part.rejected) }
+  if (signal?.aborted) return { exercises: [], rejected: [], appended: true }
+  const have = session.exercises.length + delivered
+  const current = (await db.exerciseSessions.get(session.id))?.exercises ?? session.exercises
+  const complete = !failure && have >= total
+  const fill = complete ? [] : fillLocalExercises(await localInput(catalog, known, session, items), Math.max(0, total - have))
+  if (failure && !have && !fill.length) throw failure
+  const phases = phasesIfOrdered([...current, ...(emit ? [] : joined), ...fill])
+  return { exercises: emit ? fill : [...joined, ...fill], rejected: emit ? [] : rejected, appended: true, ...(phases ? { phases } : {}), ...(failure ? { notice: failure.message.slice(0, 600) } : {}) }
 }
 
 /** Media.tsx calls this from a line's menu: adds the lines (each carries its media source) to their show's collection, then starts practice on them. */
