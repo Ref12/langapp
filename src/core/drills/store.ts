@@ -16,7 +16,7 @@ export const STUDY_SET_LIMIT = 40
 /** Unfinished sets kept at once; starting another quietly sets the oldest untouched one aside. */
 export const MAX_UNFINISHED_SETS = 8
 
-export type DrillSource = { kind: 'new'; from?: string } | { kind: 'review' } | { kind: 'study-set'; collectionId: string }
+export type DrillSource = { kind: 'new'; from?: string } | { kind: 'review'; from?: string } | { kind: 'study-set'; collectionId: string }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 export const shortDate = (time: number) => { const date = new Date(time); return `${date.getDate()} ${MONTHS[date.getMonth()]}` }
@@ -29,6 +29,15 @@ function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'c
 async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[] }> {
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  if (source.kind === 'review' && source.from) {
+    const collection = await db.collections.get(source.from)
+    if (!collection) throw new Error('That study set could not be found.')
+    const inSet = new Set((await db.collectionItems.where('collectionId').equals(source.from).toArray()).map(item => item.ref))
+    const cards = (await dueCards(now)).filter(card => inSet.has(card.ref) && known.has(card.ref) && (catalog.units.has(card.ref) || isSourceRef(card.ref) || isPhraseRef(card.ref)))
+      .sort((a, b) => a.due - b.due || a.ref.localeCompare(b.ref)).slice(0, REVIEW_SET_SIZE)
+    if (!cards.length) throw new Error(`Nothing in ${collection.name} is due for review right now.`)
+    return { refs: cards.map(card => card.ref), title: `Reviews · ${shortDate(now)}`, collectionId: source.from }
+  }
   if (source.kind === 'review') {
     const cards = (await dueCards(now)).filter(card => known.has(card.ref) && (catalog.units.has(card.ref) || isSourceRef(card.ref)))
       .sort((a, b) => a.due - b.due || a.ref.localeCompare(b.ref)).slice(0, REVIEW_SET_SIZE)

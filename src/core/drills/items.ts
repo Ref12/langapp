@@ -67,6 +67,9 @@ function exampleIndex(catalog: Catalog) {
   return index
 }
 
+/** Pinyin sentences join punctuation to the syllable before it: "wǒ shì xué sheng 。" reads "wǒ shì xué sheng。". */
+export const tidyPinyin = (text: string) => text.replace(/\s+([。，、！？；：．,.!?;:)）」』”’])/gu, '$1').replace(/([(（「『“‘])\s+/gu, '$1')
+
 /** The catalog's own example sentence for an item: the shortest that uses it. Free phrases are their own sentence when they have a translation. */
 export function catalogSentence(catalog: Catalog, item: ItemInfo): Sentence | undefined {
   if (item.kind === 'phrase') return item.en ? { zh: item.zh, py: item.py, en: item.en, source: 'catalog' } : undefined

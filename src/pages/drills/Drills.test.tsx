@@ -164,3 +164,34 @@ describe('summary', () => {
     await waitFor(async () => expect((await getDrillSet(set.id))!.status).toBe('completed'))
   }, 40000)
 })
+
+describe('Learning from', () => {
+  it('sits above both rows and drives the New words and Reviews counts and starts', async () => {
+    const user = userEvent.setup()
+    await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you', 'vocabulary:ta1--he'])
+    await db.collections.put({ id: 'c1', name: 'Introductions', createdAt: 1, updatedAt: 1 } as never)
+    await db.collectionItems.bulkPut([
+      { id: 'i1', collectionId: 'c1', ref: 'vocabulary:wo3--me', addedAt: 1 }, { id: 'i2', collectionId: 'c1', ref: 'vocabulary:ni3--you', addedAt: 2 },
+      { id: 'i3', collectionId: 'c1', ref: 'vocabulary:hao3--good', addedAt: 3 },
+    ] as never)
+    window.location.hash = '#drills'
+    render(<App />)
+    const select = await screen.findByLabelText('Learning from')
+    const card = select.closest('section')!
+    const rows = within(card).getAllByRole('listitem')
+    // The selector comes before both rows.
+    expect(select.compareDocumentPosition(rows[0]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(await within(card).findByText(/curriculum items/)).toBeInTheDocument()
+    expect(within(card).getByText(/items? due · titles hidden/)).toBeInTheDocument()
+    await within(select).findByRole('option', { name: 'Introductions' })
+    await user.selectOptions(select, 'c1')
+    expect(await within(card).findByText(/new items? in Introductions/)).toBeInTheDocument()
+    expect(within(card).getByText(/2 items due in Introductions/)).toBeInTheDocument()
+    await user.click(within(card).getByRole('button', { name: 'Start reviews' }))
+    await waitFor(() => expect(window.location.hash).toMatch(/^#drills\/set\//))
+    const sets = await db.drillSets.toArray()
+    expect(sets).toHaveLength(1)
+    expect(sets[0].source).toBe('review')
+    expect([...sets[0].refs].sort()).toEqual(['vocabulary:ni3--you', 'vocabulary:wo3--me'])
+  }, 40000)
+})

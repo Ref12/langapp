@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Eye, Mic, PenLine, Pause, Play, RotateCcw, SkipForward, Square, Volume2 } from 'lucide-react'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
@@ -9,6 +9,7 @@ import { startSpeechCapture, speechCaptureSupported, type SpeechCaptureSession }
 import { MARK_LABEL, MARKS, type Mark } from '../../core/drills/contracts'
 import type { ExerciseAttempt } from '../../core/study/contracts'
 import { Pinyin } from '../../components/Pinyin'
+import { tidyPinyin } from '../../core/drills/items'
 import { ChoiceQuestion, MatchQuestion } from '../Study'
 import { StrokePad } from './StrokePad'
 import { type ConvoAnswer, type Outcome, type Q, type QData, type TextAnswer, type WriteAnswer } from './tasks'
@@ -86,9 +87,23 @@ function PinyinView({ data, state, onAnswer }: ViewProps & { data: Extract<QData
 }
 
 /** The prompt sentence in pinyin only, with the target highlighted. */
-function PinyinSentence({ py, target }: { py: string; target: string }) {
+/** A word's syllables with the one being written highlighted and the ones already written quieter. step undefined: the whole word. */
+function WordMark({ text, step }: { text: string; step?: number }) {
+  const parts = text.split(/(\s+)/)
+  const syllables = parts.filter((_, index) => index % 2 === 0)
+  if (step === undefined || syllables.length < 2) return <mark className="dr-target">{text}</mark>
+  let at = -1
+  return <>{parts.map((part, index) => {
+    if (index % 2) return part
+    at++
+    return at === step ? <mark key={index} className="dr-target">{part}</mark> : at < step ? <span key={index} className="dr-written">{part}</span> : part
+  })}</>
+}
+
+function PinyinSentence({ py: raw, target, step }: { py: string; target: string; step?: number }) {
+  const py = tidyPinyin(raw)
   const at = target ? py.toLowerCase().indexOf(target.toLowerCase()) : -1
-  return <p className="dr-pinyin-prompt" lang="zh-Latn-pinyin">{at < 0 ? py : <>{py.slice(0, at)}<mark className="dr-target">{py.slice(at, at + target.length)}</mark>{py.slice(at + target.length)}</>}</p>
+  return <p className="dr-pinyin-prompt" lang="zh-Latn-pinyin">{at < 0 ? py : <>{py.slice(0, at)}<WordMark text={py.slice(at, at + target.length)} step={step} />{py.slice(at + target.length)}</>}</p>
 }
 
 function WriteView({ data, state, onAnswer, onMark, quiz }: ViewProps & { data: Extract<QData, { t: 'write' }> }) {
@@ -97,12 +112,16 @@ function WriteView({ data, state, onAnswer, onMark, quiz }: ViewProps & { data: 
   const locked = state.status !== 'open'
   const [written, setWritten] = useState(false)
   const showChars = revealed || state.status !== 'open'
+  const [stroke, setStroke] = useState<{ index: number; total: number }>()
+  const onStep = useCallback((index: number, total: number) => setStroke({ index, total }), [])
+  const syllables = data.item.py.trim().split(/\s+/).length
+  const step = data.mode === 'pad' && !locked && stroke && stroke.total === syllables ? stroke.index : undefined
   const hint = () => setHinted(true)
   return <>
-    <PinyinSentence py={data.sentence.py} target={data.item.py} />
+    <PinyinSentence py={data.sentence.py} target={data.item.py} step={step} />
     <div className="dr-center"><HearButton text={data.sentence.zh} locale="zh-Hans" label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
-    <p className="small dr-center">Write <mark className="dr-target">{data.item.py}</mark>{data.item.en ? <> <span className="muted">({data.item.en})</span></> : null}</p>
-    {data.mode === 'pad' && !locked && <StrokePad key={data.item.ref} text={data.item.zh} onDone={result => onAnswer({ misses: result.misses, hinted: hinted || result.hinted } satisfies WriteAnswer)} />}
+    <p className="small dr-center">Write <WordMark text={data.item.py} step={step} />{data.item.en ? <> <span className="muted">({data.item.en})</span></> : null}</p>
+    {data.mode === 'pad' && !locked && <StrokePad key={data.item.ref} text={data.item.zh} onStep={onStep} onDone={result => onAnswer({ misses: result.misses, hinted: hinted || result.hinted } satisfies WriteAnswer)} />}
     {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it on paper, then check.</p>
       {quiz ? <button type="button" className="button secondary" aria-pressed={written} onClick={() => { setWritten(!written); onAnswer(written ? undefined : { misses: 0, hinted, paper: true } satisfies WriteAnswer) }}>{written ? 'Written ✓' : 'I have written it'}</button>
         : <button type="button" className="button primary" onClick={() => onAnswer({ misses: 0, hinted, paper: true } satisfies WriteAnswer)}>Show answer</button>}</div>}
@@ -143,7 +162,7 @@ function TranslateView({ data, state, ctx, onAnswer, onMark }: ViewProps & { dat
       {speechCaptureSupported() ? <button type="button" className="button secondary" onClick={speak}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser.</p>}</div>}
     {!locked && method === 'write' && <HandwritingPad allowed={allowed} onPick={character => set(text + character)} onClose={() => setMethod('type')} />}
     {state.status !== 'open' && <div className="dr-model-box"><p className="small muted">Model answer</p>
-      <p className="dr-model" lang="zh-Hans">{data.sentence.zh}</p><p className="small"><Pinyin text={data.sentence.py} /></p>
+      <p className="dr-model" lang="zh-Hans">{data.sentence.zh}</p><p className="small"><Pinyin text={tidyPinyin(data.sentence.py)} /></p>
       {text && <p className="small muted">You wrote: <span lang="zh-Hans">{text}</span></p>}</div>}
     {state.status === 'marking' && <SelfMark onMark={onMark} />}
     <Result state={state}>{state.outcome && state.outcome.correct && sentenceExact(text, data) ? <p className="small">Exact match, marked automatically.</p> : null}</Result>
@@ -179,7 +198,7 @@ function RepeatView({ data, quiz, state, onAnswer }: ViewProps & { data: Extract
       <button type="button" className="button secondary" aria-label="Skip to the end" onClick={() => { player.current?.stop?.(); onAnswer(true) }}><SkipForward size={28} /></button>
     </div>
     {quiz && state.status === 'open' && <label className="dr-check"><input type="checkbox" checked={Boolean(state.answer)} onChange={event => onAnswer(event.target.checked ? true : undefined)} /> I said it aloud</label>}
-    <Result state={state}><p lang="zh-Hans">{data.sentence.zh} <Pinyin text={data.sentence.py} /> <span lang="en" className="muted">{data.sentence.en}</span></p><p className="small muted">Repeating is practice only; nothing was checked.</p></Result>
+    <Result state={state}><p lang="zh-Hans">{data.sentence.zh} <Pinyin text={tidyPinyin(data.sentence.py)} /> <span lang="en" className="muted">{data.sentence.en}</span></p><p className="small muted">Repeating is practice only; nothing was checked.</p></Result>
   </>
 }
 
@@ -223,7 +242,7 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
       {playing >= 0 && <button type="button" className="button secondary" onClick={() => { token.current++; stopBrowserSpeech(); setPlaying(-1) }}><Square size={16} /> Stop</button>}
       {!locked && <button type="button" className="button secondary" aria-pressed={shown} onClick={() => { setShown(!shown); setHinted(true) }}>{shown ? 'Hide transcript' : 'Show transcript (hint)'}</button>}</div>}
     {(!listen || shown || locked) && <ul className="dr-lines">{talk.lines.map((line, index) => visible(index) || (!listen) && index < upTo ? <li key={index}>
-      <strong>{line.who}</strong><span lang="zh-Hans">{line.zh}</span><span className="small muted">{ctx.pinyinOn || listen ? <Pinyin text={line.py} /> : null}{' '}{(locked || listen) && line.en}</span></li> : null)}</ul>}
+      <strong>{line.who}</strong><span lang="zh-Hans">{line.zh}</span><span className="small muted">{ctx.pinyinOn || listen ? <Pinyin text={tidyPinyin(line.py)} /> : null}{' '}{(locked || listen) && line.en}</span></li> : null)}</ul>}
     {questionsShown.map(index => { const item = talk.questions[index]; return <fieldset key={index} className="answer-options dr-inline" disabled={locked}><legend className="small">{item.question}</legend>
       {item.options.map((option, optionIndex) => <label key={optionIndex} className={`answer-option ${picked[index] === optionIndex ? 'selected' : ''} ${locked && optionIndex === item.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={`q${index}`} checked={picked[index] === optionIndex} onChange={() => choose(index, optionIndex)} /><span lang="en">{option}</span></label>)}</fieldset> })}

@@ -170,13 +170,14 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const [from, setFrom] = useState(CURRICULUM)
   const [asking, setAsking] = useState<string>()
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
-  const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref)).length
   const wordsDue = workspace.words.filter(word => word.dueAt <= now).length
   const unfinished = unfinishedSets(sets)
   const next = catalog ? nextGroup(catalog, known) : undefined
   const progress = catalog ? groupProgress(catalog, known) : undefined
   const fromSet = from !== CURRICULUM ? collections.find(entry => entry.id === from) : undefined
   const fresh = fromSet ? collectionItems.filter(item => item.collectionId === fromSet.id && !known.has(item.ref)).length : next?.newUnits.length ?? 0
+  const inFrom = fromSet ? new Set(collectionItems.filter(item => item.collectionId === fromSet.id).map(item => item.ref)) : undefined
+  const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref))).length
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
   const countsOf = (id: string) => collectionItems.filter(item => item.collectionId === id)
   return <div className="dr">
@@ -185,15 +186,16 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     {connection === null && <p className="notice small" role="status">Sentence and conversation drills are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
     <div className="dr-columns">
       <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
+        <div className="dr-from dr-from-top"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
+          <select value={from} aria-label="Learning from" onChange={event => setFrom(event.target.value)}><option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label></div>
         <ul className="dr-rows">
-          <li><div><strong>New words</strong><span className="small muted">{catalog ? fresh ? `Next ${Math.min(fresh, NEW_SET_SIZE)} ${fromSet ? 'items' : 'curriculum items'}${!fromSet && progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
+          <li><div><strong>New words</strong><span className="small muted">{catalog ? fresh ? fromSet ? `Next ${Math.min(fresh, NEW_SET_SIZE)} of ${fresh} new ${fresh === 1 ? 'item' : 'items'} in ${fromSet.name}` : `Next ${Math.min(fresh, NEW_SET_SIZE)} curriculum items${progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
             <button type="button" className="button primary" aria-label="Start new words" disabled={busy || !fresh} onClick={() => start({ kind: 'new', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
-          <li><div><strong>Reviews</strong><span className="small muted">{due} {due === 1 ? 'item' : 'items'} due · titles hidden</span></div>
-            <button type="button" className="button primary" aria-label="Start reviews" disabled={busy || !due} onClick={() => start({ kind: 'review' })}>Start <ArrowRight size={16} /></button></li>
+          <li><div><strong>Reviews</strong><span className="small muted">{due} {due === 1 ? 'item' : 'items'} due{fromSet ? ` in ${fromSet.name}` : ''} · titles hidden</span></div>
+            <button type="button" className="button primary" aria-label="Start reviews" disabled={busy || !due} onClick={() => start({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
         </ul>
-        <div className="dr-from"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
-          <select value={from} aria-label="Learning from" onChange={event => setFrom(event.target.value)}><option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
-          <p className="small muted">New words come from this source. {TERM.Plural} can also be started on their own:</p>
+        <div className="dr-from">
+          <p className="small muted">{TERM.Plural} can also be started whole:</p>
           {collections.length === 0 ? <p className="small muted">No {TERM.plural} yet. <a className="text-link" href="#collections">Create one</a>.</p>
             : <ul className="dr-rows">{collections.map(entry => { const own = countsOf(entry.id); const learned = own.filter(item => known.has(item.ref)).length
               return <li key={entry.id}><div><strong>{entry.name}</strong><span className="small muted">{itemCount(own.length)} · {learned} learned</span></div>

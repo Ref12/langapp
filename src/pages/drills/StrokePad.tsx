@@ -7,7 +7,7 @@ import { hasGuide, isHan } from '../../core/characters/writing-route'
 import '../writing.css'
 
 /** Draw the target characters from memory, no outline: each stroke is checked against the character's stroke data. Two misses on a stroke reveal it (a hint). */
-export function StrokePad({ text, disabled, onDone }: { text: string; disabled?: boolean; onDone: (result: { misses: number; hinted: boolean }) => void }) {
+export function StrokePad({ text, disabled, onDone, onStep }: { text: string; disabled?: boolean; onDone: (result: { misses: number; hinted: boolean }) => void; onStep?: (index: number, total: number) => void }) {
   const characters = useMemo(() => Array.from(text).filter(character => isHan(character) && hasGuide(character)), [text])
   const [index, setIndex] = useState(0)
   const [paths, setPaths] = useState<string[]>()
@@ -18,6 +18,7 @@ export function StrokePad({ text, disabled, onDone }: { text: string; disabled?:
   const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
   const finished = useRef(false)
   const character = characters[index]
+  useEffect(() => { onStep?.(index, characters.length) }, [index, characters.length, onStep])
   useEffect(() => {
     let live = true
     setPaths(undefined)
@@ -63,7 +64,7 @@ export function StrokePad({ text, disabled, onDone }: { text: string; disabled?:
   }
   const status = error || (done ? 'Written.' : !guides.length ? 'Loading the stroke guide…' : round.feedback || `Stroke ${round.completed + 1} of ${guides.length}. Write it from memory.`)
   return <div className="dr-strokepad">
-    <p className="small muted" aria-live="polite">Character {Math.min(index + 1, characters.length)} of {characters.length} · {status}</p>
+    <p className="small muted" aria-live="polite">{status}</p>
     <svg viewBox="0 0 100 100" className="writing-pad dr-pad-svg" role="img" aria-label="Handwriting area" tabIndex={0} onPointerDown={start} onPointerMove={move} onPointerUp={end}
       onPointerCancel={() => { pointer.current = undefined; setInk([]) }}>
       <path d="M50 0 V100 M0 50 H100 M0 0 L100 100 M100 0 L0 100" className="writing-gridlines" />
