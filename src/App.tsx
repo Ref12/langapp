@@ -1,6 +1,6 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, ChevronRight, Clapperboard, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sparkles, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, ChevronRight, Clapperboard, Dumbbell, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { requestPersistence } from './core/backup/service'
 import { removeBackgroundBackupRegistrations } from './core/backup/cleanup'
@@ -33,6 +33,8 @@ import { Assistant, AssistantSidebar } from './pages/Assistant'
 import { History } from './pages/History'
 import { Media } from './pages/Media'
 import { Collections } from './pages/Collections'
+import { Drills } from './pages/drills/Drills'
+import { DRILLS_LABEL } from './core/drills/contracts'
 import { TERM } from './core/collections/terms'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
 import { DraftStatus } from './components/assistant/DraftStatus'
@@ -51,7 +53,7 @@ import './components/assistant/assistant.css'
 const navigation = [
   { id: 'overview', label: 'Overview', icon: Home },
   { id: 'lessons', label: 'Lessons', icon: BookOpen },
-  { id: 'practice', label: 'Practice', icon: Sparkles },
+  { id: 'drills', label: DRILLS_LABEL, icon: Dumbbell },
   { id: 'library', label: 'Library', icon: LibraryBig },
   { id: 'media', label: 'Media', icon: Clapperboard },
   { id: 'collections', label: TERM.Plural, icon: Layers },
@@ -106,6 +108,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   if (page === 'settings') return <Settings {...props} />
   if (page === 'media') return <Media {...props} route={routePath} />
   if (page === 'collections') return <Collections {...props} route={routePath} />
+  if (page === 'drills') return <Drills {...props} route={routePath} />
   if (page === 'history') return <History />
   if (page === 'conversation') return <Assistant threadId={id} returnRoute={returnRoute} headerTarget={assistantHeader} />
   return <NotFound />
@@ -134,7 +137,7 @@ function WorkspaceApp() {
   }, [])
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
-  const section = route === 'practice/mahjong' ? 'games' : page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page === 'writing' ? 'dictionary' : page
+  const section = route === 'practice/mahjong' ? 'games' : page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' || page === 'practice' ? 'drills' : page === 'writing' ? 'dictionary' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
@@ -184,7 +187,7 @@ function WorkspaceApp() {
   const workspaceNavigation = <>
         <p className="workspace-label">YOUR WORKSPACE</p>
         <nav className="primary-nav" aria-label="Main navigation">{navigation.map(item => <a href={`#${item.id}`} key={item.id} aria-current={section === item.id ? 'page' : undefined} title={item.label}>
-          <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
+          <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'drills' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
         <div className="sidebar-bottom"><BackupNow />
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>

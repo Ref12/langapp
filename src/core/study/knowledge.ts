@@ -69,7 +69,7 @@ function newCard(ref: string, now: number): StudyCard {
   return { id: cardId(ref, DOMAIN), ref, domain: DOMAIN, ...emptySchedulingState(now), updatedAt: now }
 }
 
-async function addUnits(units: Unit[], source: KnowledgeEntry['source'], now: number): Promise<string[]> {
+export async function addUnits(units: Unit[], source: KnowledgeEntry['source'], now: number): Promise<string[]> {
   const added: string[] = []
   for (const unit of units) {
     if (await db.knowledge.get(unit.ref)) continue

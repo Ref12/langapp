@@ -65,15 +65,17 @@ export function Study({ workspace, now, run, busy }: PageProps) {
   </>
 }
 
-interface Annotation { readings: Map<string, Set<string>>; pinyin: boolean }
+export interface Annotation { readings: Map<string, Set<string>>; pinyin: boolean }
 
-function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak }: Annotation & { speak: boolean; exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
+/** `bare` leaves out the Check/Next button (a drill page supplies its own) and reports the selection through `onSelect`. */
+export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak, bare, onSelect, name = 'answer' }: Annotation & { name?: string; bare?: boolean; onSelect?: (index: number) => void; speak: boolean; exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const [selected, setSelected] = useState(attempt ? Number(attempt.response) : -1)
   const chineseQuestion = exercise.direction === 'zh-to-en'
   const speechId = useId()
   useEffect(() => () => { if (getPlaybackState().activeId === speechId) stopBrowserSpeech() }, [speechId])
   const choose = (index: number) => {
     setSelected(index)
+    onSelect?.(index)
     if (!speak || chineseQuestion) return
     try { playBrowserSpeech(speechId, exercise.options[index], 'zh-Hans') } catch (reason) { console.error('Choice speech failed.', reason) }
   }
@@ -83,13 +85,13 @@ function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyi
       : <p className="practice-prompt" lang="en">{exercise.question}</p>}
     <fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
       {exercise.options.map((option, index) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${attempt && index === exercise.answer ? 'correct-option' : ''}`}>
-        <input type="radio" name="answer" value={index} checked={selected === index} onChange={() => choose(index)} />
+        <input type="radio" name={name} value={index} checked={selected === index} onChange={() => choose(index)} />
         {chineseQuestion ? <span lang="en">{option}</span> : <span><AnnotatedChinese text={option} readings={readings} pinyin={pinyin} /></span>}
         {!chineseQuestion && <HearButton text={option} locale="zh-Hans" label={`Hear option ${index + 1}`} iconOnly />}
         <span className="answer-option-mark">{attempt && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
       </label>)}
     </fieldset>
-    <AnswerButton result={attempt?.correct} busy={busy} ready={selected >= 0} onCheck={() => submit(selected)} onNext={next} />
+    {!bare && <AnswerButton result={attempt?.correct} busy={busy} ready={selected >= 0} onCheck={() => submit(selected)} onNext={next} />}
   </>
 }
 
@@ -128,7 +130,7 @@ function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
 interface MatchCell { ref: string; text: string; side: 'left' | 'right' }
 
 /** Tap one cell, then one in the other column. A right pair locks; a wrong one is a miss charged to the first cell tapped, and the lesson goes on. */
-function MatchQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak, chinese }: Annotation & { speak: boolean; exercise: MatchExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean; chinese: (ref: string) => string }) {
+export function MatchQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak, chinese, bare }: Annotation & { bare?: boolean; speak: boolean; exercise: MatchExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean; chinese: (ref: string) => string }) {
   const [locked, setLocked] = useState<string[]>(() => attempt ? exercise.pairs.map(pair => pair.ref) : [])
   const [selected, setSelected] = useState<MatchCell>()
   const [wrong, setWrong] = useState<[string, string]>()
@@ -172,7 +174,7 @@ function MatchQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
       <div className="match-column" role="group" aria-label="Second column">{right.map(cellView)}</div>
     </div>
     {wrong && <p className="small muted match-hint" role="status">Not a pair. Try again.</p>}
-    {attempt && <AnswerButton result={attempt.correct} busy={busy} ready onCheck={() => undefined} onNext={next} />}
+    {attempt && !bare && <AnswerButton result={attempt.correct} busy={busy} ready onCheck={() => undefined} onNext={next} />}
   </>
 }
 
