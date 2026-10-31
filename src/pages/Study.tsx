@@ -3,11 +3,12 @@ import { useAIConnection } from '../components/study/useAIConnection'
 import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { navigate } from '../core/routing'
 import { type Catalog, type Unit } from '../core/study/catalog'
-import { cardId, isPhraseRef, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type TilesExercise } from '../core/study/contracts'
+import { cardId, isPhraseRef, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type MatchExercise, type TilesExercise } from '../core/study/contracts'
 import { timeSave } from '../core/backup/diagnostics'
 import { matchTiles } from '../core/study/exercises'
+import { matchSides } from '../core/study/local-exercises'
 import { MAX_REDOS_PER_EXERCISE, playItem, queueLength, redosRemaining } from '../core/study/redo'
-import { advanceExercise, discardSession, DOMAIN, startRedoSession, submitExerciseAnswer } from '../core/study/knowledge'
+import { advanceExercise, discardSession, dismissAiNotice, DOMAIN, settleInterrupted, startRedoSession, submitExerciseAnswer } from '../core/study/knowledge'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { ResumeList } from '../components/study/ResumeList'
 import { UnitCard } from '../components/study/UnitCard'
@@ -124,6 +125,53 @@ function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin
   </>
 }
 
+interface MatchCell { ref: string; text: string; side: 'left' | 'right' }
+
+/** Tap one cell, then one in the other column. A right pair locks; a wrong one is a miss charged to the first cell tapped, and the lesson goes on. */
+function MatchQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak, chinese }: Annotation & { speak: boolean; exercise: MatchExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean; chinese: (ref: string) => string }) {
+  const [locked, setLocked] = useState<string[]>(() => attempt ? exercise.pairs.map(pair => pair.ref) : [])
+  const [selected, setSelected] = useState<MatchCell>()
+  const [wrong, setWrong] = useState<[string, string]>()
+  const [misses, setMisses] = useState<string[]>([])
+  const speechId = useId()
+  useEffect(() => () => { if (getPlaybackState().activeId === speechId) stopBrowserSpeech() }, [speechId])
+  const [leftSide, rightSide] = matchSides(exercise.mode)
+  const left: MatchCell[] = exercise.pairs.map(pair => ({ ref: pair.ref, text: pair.left, side: 'left' }))
+  const right: MatchCell[] = exercise.order.map(index => ({ ref: exercise.pairs[index].ref, text: exercise.pairs[index].right, side: 'right' }))
+  const sideOf = (cell: MatchCell) => cell.side === 'left' ? leftSide : rightSide
+  const done = locked.length === exercise.pairs.length
+  const tap = (cell: MatchCell) => {
+    if (busy || attempt || locked.includes(cell.ref)) return
+    setWrong(undefined)
+    if (speak && sideOf(cell) !== 'en') {
+      try { playBrowserSpeech(speechId, sideOf(cell) === 'zh' ? cell.text : chinese(cell.ref), 'zh-Hans') } catch (reason) { console.error('Match speech failed.', reason) }
+    }
+    if (!selected || selected.side === cell.side) { setSelected(cell); return }
+    if (selected.ref === cell.ref) { setLocked([...locked, cell.ref]); setSelected(undefined); return }
+    setMisses([...misses, selected.ref])
+    setWrong([selected.ref + ':' + selected.side, cell.ref + ':' + cell.side])
+    setSelected(undefined)
+  }
+  const cellView = (cell: MatchCell) => {
+    const key = cell.ref + ':' + cell.side
+    const state = locked.includes(cell.ref) ? 'match-locked' : wrong?.includes(key) ? 'match-wrong' : selected && selected.ref === cell.ref && selected.side === cell.side ? 'match-selected' : ''
+    const side = sideOf(cell)
+    return <button key={key} type="button" className={`tile match-cell ${state}`} aria-pressed={state === 'match-selected'} disabled={busy || Boolean(attempt) || locked.includes(cell.ref)}
+      lang={side === 'en' ? 'en' : side === 'zh' ? 'zh-Hans' : undefined} onClick={() => tap(cell)}>
+      {side === 'zh' ? <AnnotatedChinese text={cell.text} readings={readings} pinyin={pinyin} /> : cell.text}{locked.includes(cell.ref) && <CheckCircle2 size={14} aria-label="Matched" />}
+    </button>
+  }
+  return <>
+    <p className="practice-prompt" lang="en">Match each pair: tap one, then its partner.</p>
+    <div className="match-board" role="group" aria-label="Pairs to match">
+      <div className="match-column" role="group" aria-label="First column">{left.map(cellView)}</div>
+      <div className="match-column" role="group" aria-label="Second column">{right.map(cellView)}</div>
+    </div>
+    {wrong && <p className="small muted match-hint" role="status">Not a pair. Try again.</p>}
+    <AnswerButton result={attempt?.correct} busy={busy} ready={done} onCheck={() => submit(misses)} onNext={next} />
+  </>
+}
+
 /** A collection lesson opens like a lesson: the words (new ones in full, known ones compact), then the grammar, then the line itself. */
 function CollectionIntroduction({ catalog, session, workspace, run, busy, now, begin }: PageProps & { catalog: Catalog; session: ExerciseSession; begin: () => void }) {
   const known = new Set(workspace.knowledge.map(entry => entry.ref))
@@ -151,12 +199,12 @@ function CollectionIntroduction({ catalog, session, workspace, run, busy, now, b
 
 /** The always-visible bottom bar of a lesson's introduction: disabled while the AI writes the exercises, Try again if that failed or was interrupted, Start when ready. */
 function StartFooter({ session, run, busy, begin }: Pick<PageProps, 'run' | 'busy'> & { session: ExerciseSession; begin: () => void }) {
-  const ready = !session.generation && session.exercises.length > 0
-  const running = session.generation === 'running' && isGenerating(session.id)
+  const ready = session.exercises.length > 0
+  const running = !ready && session.generation === 'running' && isGenerating(session.id)
   const parts = Math.max(1, session.phases?.length ?? 1)
   const count = session.exerciseCount
   return <div className="start-panel" role="region" aria-label="Start the exercises">
-    {ready && <p className="small muted">{session.exercises.length} exercises in {parts} {parts === 1 ? 'part' : 'parts'}. You can start without reading every card.</p>}
+    {ready && <p className="small muted">{session.generation === 'running' ? `${session.exercises.length} exercises ready, more coming. You can start now.` : `${session.exercises.length} exercises in ${parts} ${parts === 1 ? 'part' : 'parts'}. You can start without reading every card.`}</p>}
     {running && <p className="small muted" role="status">Your AI model is writing {count ? `${count} exercises` : 'the exercises'}. The cards above are ready to read.</p>}
     {!ready && !running && <p className="small error-text" role="alert">{session.generation === 'failed' && session.generationError ? session.generationError : 'The exercises were not finished, for example because the page was reloaded while they were being written.'}</p>}
     {ready || running
@@ -232,20 +280,23 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
       }
     })
   }
-  const correctSentence = exercise.type === 'tiles' ? exercise.tiles.join('') : exercise.options[exercise.answer]
+  const correctSentence = exercise.type === 'tiles' ? exercise.tiles.join('') : exercise.type === 'match' ? exercise.pairs.map(pair => `${pair.left} = ${pair.right}`).join('; ') : exercise.options[exercise.answer]
   const alternative = Boolean(attempt?.correct && exercise.type === 'tiles' && matchTiles(exercise, JSON.parse(attempt.response) as string[]) === 'alternative')
   const practised = [...new Set(exercise.targets.map(ref => { const unit = catalog.units.get(ref); return !unit ? 'phrase' : unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt }))].join(' / ')
   const total = queueLength(session)
-  const chineseAnswer = exercise.type === 'tiles' || exercise.direction === 'en-to-zh'
+  const chineseAnswer = exercise.type === 'tiles' || (exercise.type === 'choice' && exercise.direction === 'en-to-zh')
+  const running = session.generation === 'running'
+  const [noticeShown, setNoticeShown] = useState(true)
   return <div className="practice-player answer-player panel" data-assistant-protected={!attempt ? 'true' : undefined}>
-    <div className="card-topline"><span className="eyebrow">{phase ? `${PHASE_LABEL[phase.kind].toUpperCase()} (${phase.number + 1}/${session.phases!.length})` : session.mode === 'new' ? 'NEW ITEMS' : 'REVIEW'} / {exercise.type === 'choice' ? 'CHOOSE' : 'BUILD THE SENTENCE'}</span>
-      <span className="small muted">{redo && <span className="badge redo-badge">Redo</span>} Exercise {session.cursor + 1} of {total}{toRedo > 0 && ` · ${toRedo} to redo`}</span></div>
-    <progress aria-label="Session progress" value={session.cursor} max={total} />
+    <div className="card-topline"><span className="eyebrow">{phase ? `${PHASE_LABEL[phase.kind].toUpperCase()} (${phase.number + 1}/${session.phases!.length})` : session.mode === 'new' ? 'NEW ITEMS' : 'REVIEW'} / {exercise.type === 'choice' ? 'CHOOSE' : exercise.type === 'match' ? 'MATCH' : 'BUILD THE SENTENCE'}</span>
+      <span className="small muted">{redo && <span className="badge redo-badge">Redo</span>} {running ? `${session.cursor + (attempt ? 1 : 0)} done · more coming` : `Exercise ${session.cursor + 1} of ${total}`}{!running && toRedo > 0 && ` · ${toRedo} to redo`}</span></div>
+    {session.aiNotice && noticeShown && <p className="notice small ai-notice" role="status">{session.aiNotice} <button type="button" className="text-link" onClick={() => { setNoticeShown(false); void dismissAiNotice(session.id) }}>Dismiss</button></p>}
+    {running ? <progress aria-label="Session progress" /> : <progress aria-label="Session progress" value={session.cursor} max={total} />}
     <div className="practice-question-content">
-      <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : 'Which Mandarin matches?' : 'Arrange the tiles to translate this.'}</h2>
+      <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : 'Which Mandarin matches?' : exercise.type === 'match' ? 'Match the pairs.' : 'Arrange the tiles to translate this.'}</h2>
       <div className="button-row practice-tools">
         <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>
-        {exercise.type === 'tiles' && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
+        {(exercise.type === 'tiles' || (exercise.type === 'match' && exercise.mode !== 'py-en')) && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
           onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute tiles' : 'Speak tiles'}</button>}
         {hasPrompt && <button type="button" className="button secondary snippet-button" aria-pressed={promptSpeech} disabled={busy}
           onClick={() => { if (promptSpeech) stopBrowserSpeech(); void run(() => savePreferences({ promptAutoPlay: !promptSpeech })) }}>{promptSpeech ? 'Auto-play' : 'Auto-play off'}</button>}
@@ -254,7 +305,10 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
         {hasPrompt && <HearButton text={exercise.question} locale="zh-Hans" label="Hear the Chinese" />}
       </div>
     </div>
-    {exercise.type === 'choice'
+    {exercise.type === 'match'
+      ? <MatchQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} speak={tileSpeech}
+        chinese={ref => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : '' }} />
+      : exercise.type === 'choice'
       ? <ChoiceQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} speak={tileSpeech} />
       : <TilesQuestion key={`${session.id}:${session.cursor}`} exercise={exercise} attempt={attempt} submit={next} next={() => next()} busy={busy} readings={readings} pinyin={pinyin} speak={tileSpeech} />}
     {attempt && <div className={`notice answer-feedback${attempt.correct ? ' success' : ''}`} role="status">
@@ -298,6 +352,9 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
   const { catalog, error } = useCatalog()
   const [started, setStarted] = useState(false)
   const [pinyin, setPinyin] = useState(false)
+  const stalled = session.status === 'active' && session.generation === 'running' && session.exercises.length > 0 && !isGenerating(session.id)
+  // After a reload the "running" flag has no request behind it: carry on with programmatic exercises.
+  useEffect(() => { if (stalled) void settleInterrupted(session.id) }, [stalled, session.id])
   const allAttempts = workspace.exerciseAttempts.filter(attempt => attempt.sessionId === session.id)
   // The score counts first tries only; redo answers do not change it.
   const attempts = allAttempts.filter(attempt => !attempt.redo)
@@ -325,6 +382,7 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
     </>
   }
   const attempt = allAttempts.find(item => item.index === session.cursor)
+  const waiting = !playItem(session, session.cursor)
   const readings = readingIndex([...new Set([...workspace.knowledge.map(entry => entry.ref), ...session.targetRefs, ...session.reviewRefs])]
     .flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit] : [] }))
   if (session.exercises.length === 0 || (session.cursor === 0 && !attempt && !started)) {
@@ -333,7 +391,8 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
   return <>
     <div className="card-topline session-topline"><a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
       <button className="button secondary" disabled={busy} onClick={() => void run(() => discardSession(session.id))}><X size={16} /> Quit lesson</button></div>
-    <ExercisePlayer key={`${session.id}:${session.cursor}`} {...props} catalog={catalog} attempt={attempt} readings={readings} pinyin={pinyin} setPinyin={setPinyin} />
+    {waiting ? <div className="practice-player panel" role="status"><p className="small muted">{session.cursor} done · more coming</p><progress aria-label="Session progress" /><p>Your AI model is still writing the rest of this lesson. The next exercise appears here as soon as it is ready.</p></div> :
+    <ExercisePlayer key={`${session.id}:${session.cursor}`} {...props} catalog={catalog} attempt={attempt} readings={readings} pinyin={pinyin} setPinyin={setPinyin} />}
     <details className="lesson-overview"><summary><Sparkles size={16} /> Items in this session</summary>
       <div className="word-grid">{unitsOf(catalog, [...session.targetRefs, ...session.reviewRefs]).map(unit => { const ref = unit.ref; return <UnitCard key={ref} catalog={catalog} unit={unit} compact
         card={workspace.studyCards.find(card => card.id === cardId(ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={props.now} run={run} busy={busy} route={`lessons/session/${session.id}`} /> })}</div>

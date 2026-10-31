@@ -6,6 +6,9 @@ import { whenGenerated } from './generation'
 const startNewSession = async (...args: Parameters<typeof startNewSessionRaw>) => { const id = await startNewSessionRaw(...args); await whenGenerated(id); return id }
 const startReviewSession = async (...args: Parameters<typeof startReviewSessionRaw>) => { const id = await startReviewSessionRaw(...args); await whenGenerated(id); return id }
 
+// These tests cover the AI path alone; the programmatic opening set has its own tests (local-exercises.test.ts, local-lesson.test.ts).
+vi.mock('./local-exercises', async importOriginal => ({ ...await importOriginal<typeof import('./local-exercises')>(), localVocabularyExercises: () => [], fillLocalExercises: () => [] }))
+
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)
 vi.mock('./catalog', async importOriginal => {
@@ -77,7 +80,7 @@ describe('knowledge set and sessions', () => {
     expect(session.targetRefs).toEqual([ref])
     expect(JSON.parse(structured.requestStructuredJSON.mock.calls[0][1].user).targets).toEqual([{ ref, kind: 'word', chinese: '咖啡厅', pinyin: 'kāfēitīng', meaning: 'cafe' }])
     const first = session.exercises[session.cursor]
-    await submitExerciseAnswer(id, session.cursor, first.type === 'choice' ? first.answer : first.tiles)
+    await submitExerciseAnswer(id, session.cursor, first.type === 'choice' ? first.answer : first.type === 'tiles' ? first.tiles : [])
     expect((await db.studyCards.get('source:sabc1:reading'))?.reps).toBe(1)
   })
 
@@ -265,7 +268,7 @@ describe('knowledge set and sessions', () => {
     const first = await startNewSession()
     const exercises = (await db.exerciseSessions.get(first))!.exercises
     for (const [index, exercise] of exercises.entries()) {
-      await submitExerciseAnswer(first, index, exercise.type === 'choice' ? exercise.answer : exercise.tiles)
+      await submitExerciseAnswer(first, index, exercise.type === 'choice' ? exercise.answer : exercise.type === 'tiles' ? exercise.tiles : [])
       await advanceExercise(first, index)
     }
     await expect(startReviewSession(Date.now())).rejects.toThrow(/Nothing is due/)

@@ -1,17 +1,19 @@
 import { TERM } from '../collections/terms'
 import { db } from '../database'
+import { omit } from '../omit'
 import { addEvent, exerciseAttemptEvent, reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
 import type { AIConnection } from '../assistant/contracts'
 import { loadCatalog, requireUnit, type Catalog, type StudyGroup, type Unit } from './catalog'
 import type { PhraseTarget } from './exercises'
-import { isSourceRef } from './contracts'
+import { isSourceRef, type Exercise } from './contracts'
 import {
   cardId, unitRef, type Band, type ExerciseAttempt, type ExerciseSession, type KnowledgeEntry, type StudyCard, type StudyDomain,
 } from './contracts'
-import { checkAnswer, generateBatched, shuffleIndexes } from './exercises'
+import { checkAnswer, generateStreaming, missedRefs, shuffleIndexes } from './exercises'
+import { fillLocalExercises, isVocabulary, localVocabularyExercises, seedFrom, vocabularyInPhrases, type LocalInput } from './local-exercises'
 import { playItem, queueLength, redoFor } from './redo'
-import { cancelGeneration, exerciseCountPreference, runGeneration, type GenerationResult } from './generation'
+import { cancelGeneration, exerciseCountPreference, isGenerating, runGeneration, type Emit, type GenerationResult } from './generation'
 import { emptySchedulingState, schedule, type Rating, type SchedulingState } from './fsrs'
 
 // Knowledge set, next-group selection, review selection and exercise sessions.
@@ -162,26 +164,77 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
       .filter(session => session.mode === 'new' && !session.redoOf && session.groupId === next.group.id).first()
     if (resumed) return resumed.id
     await addUnits(next.newUnits, 'new', now)
+    const sessionId = crypto.randomUUID()
     created = {
-      id: crypto.randomUUID(), mode: 'new', domain: DOMAIN, groupId: next.group.id, targetRefs, reviewRefs,
-      exercises: [], cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: count,
+      id: sessionId, mode: 'new', domain: DOMAIN, groupId: next.group.id, targetRefs, reviewRefs,
+      exercises: openingExercises(catalog, known, { id: sessionId, targetRefs }, []), cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: count,
     }
     return saveSession(created)
   })
-  if (created) { const session = created; void runGeneration(id, own => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own)) }
+  if (created) { const session = created; void runGeneration(id, (own, emit) => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own, emit)) }
   return id
 }
 
-/** Writes the exercises for a New, Review or redo session from its saved targets; also what Try again runs. */
-export async function lessonResult(session: ExerciseSession, signal?: AbortSignal): Promise<GenerationResult> {
-  const connection = await requireConnection()
+/** What the programmatic exercises are built from: the lesson's vocabulary (or, with none, the known vocabulary found in its phrases) and the curriculum as the pool. */
+function localInput(catalog: Catalog, known: Set<string>, session: Pick<ExerciseSession, 'id' | 'targetRefs'>, phrases: PhraseTarget[]): LocalInput {
+  const ownTargets = curriculumUnits(catalog, session.targetRefs).filter(isVocabulary)
+  const pool = [...catalog.units.values()].filter(isVocabulary)
+  const targets = ownTargets.length ? ownTargets : vocabularyInPhrases(phrases, curriculumUnits(catalog, known))
+  return { targets, pool, known, seed: seedFrom(session.id) }
+}
+
+/** The exercises a lesson opens on, built in code before any AI request: empty when there is no vocabulary to drill. */
+export function openingExercises(catalog: Catalog, known: Set<string>, session: Pick<ExerciseSession, 'id' | 'targetRefs'>, phrases: PhraseTarget[]): Exercise[] {
+  return localVocabularyExercises(localInput(catalog, known, session, phrases))
+}
+
+/** Streams the AI's exercises into the saved session batch by batch; on failure the shortfall is filled with more programmatic exercises. Also what Try again runs. */
+export async function lessonResult(session: ExerciseSession, signal?: AbortSignal, emit?: Emit): Promise<GenerationResult> {
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
   const targets = curriculumUnits(catalog, session.targetRefs)
   const review = curriculumUnits(catalog, session.reviewRefs)
   const allowed = curriculumUnits(catalog, [...known, ...session.targetRefs, ...session.reviewRefs])
   const phrases = await sourceTargets(session.mode === 'new' ? known : [...session.targetRefs, ...session.reviewRefs])
-  return generateBatched(connection, { mode: session.mode, targets, review, allowed, catalog, phrases }, session.exerciseCount ?? await exerciseCountPreference(), signal)
+  const count = session.exerciseCount ?? await exerciseCountPreference()
+  let delivered = 0
+  let rejected: string[] = []
+  let failure: Error | undefined
+  try {
+    const connection = await requireConnection()
+    const outcome = await generateStreaming(connection, { mode: session.mode, targets, review, allowed, catalog, phrases }, count, signal, async batch => {
+      if (emit) await emit(batch.exercises, batch.rejected)
+      else rejected.push(...batch.rejected)
+    })
+    delivered = outcome.delivered; failure = outcome.failure
+    if (emit) rejected = []
+  } catch (reason) {
+    failure = reason instanceof Error ? reason : new Error('The exercises could not be generated.')
+  }
+  if (signal?.aborted) return { exercises: [], rejected: [], appended: true }
+  const have = session.exercises.length + delivered
+  if (!failure) return emit ? { exercises: [], rejected: [], appended: true } : { exercises: [], rejected, appended: true }
+  const fill = fillLocalExercises(localInput(catalog, known, session, phrases), Math.max(0, count - have))
+  if (!have && !fill.length) throw failure
+  // A lesson that already has something to play carries on; the failure is a quiet note, shown once.
+  return { exercises: fill, rejected, appended: true, notice: failure.message.slice(0, 600) }
+}
+
+/** After a reload a lesson's "running" flag has no request behind it: finish it with programmatic exercises and a quiet note. */
+export async function settleInterrupted(sessionId: string): Promise<void> {
+  if (isGenerating(sessionId)) return
+  const catalog = await loadCatalog()
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  const session = await db.exerciseSessions.get(sessionId)
+  if (!session || session.status !== 'active' || session.generation !== 'running' || !session.exercises.length) return
+  const phrases = await sourceTargets(session.mode === 'new' ? known : [...session.targetRefs, ...session.reviewRefs])
+  const fill = fillLocalExercises(localInput(catalog, known, session, phrases), Math.max(0, (session.exerciseCount ?? await exerciseCountPreference()) - session.exercises.length))
+  await db.transaction('rw', db.exerciseSessions, async () => {
+    const current = await db.exerciseSessions.get(sessionId)
+    if (!current || current.status !== 'active' || current.generation !== 'running') return
+    const settled: ExerciseSession = { ...omit(current, 'generation', 'generationError'), exercises: [...current.exercises, ...fill], aiNotice: 'The AI part of this lesson was interrupted, so it carries on with vocabulary practice.' }
+    await db.exerciseSessions.put(settled.cursor >= queueLength(settled) ? { ...settled, status: 'completed', completedAt: Date.now() } : settled)
+  })
 }
 
 export async function dueCards(now: number): Promise<StudyCard[]> {
@@ -207,13 +260,15 @@ export async function startReviewSession(now: number, anyway = false, signal?: A
   const id = await db.transaction('rw', db.exerciseSessions, async () => {
     const resumed = await activeSession('review')
     if (resumed) return resumed.id
+    const sessionId = crypto.randomUUID()
+    const sessionTargets = [...targets.map(unit => unit.ref), ...sourceWords.map(word => word.ref)]
     created = {
-      id: crypto.randomUUID(), mode: 'review', domain: DOMAIN, targetRefs: [...targets.map(unit => unit.ref), ...sourceWords.map(word => word.ref)], reviewRefs: [],
-      exercises: [], cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: Date.now(), generation: 'running', exerciseCount: count,
+      id: sessionId, mode: 'review', domain: DOMAIN, targetRefs: sessionTargets, reviewRefs: [],
+      exercises: openingExercises(catalog, known, { id: sessionId, targetRefs: sessionTargets }, sourceWords), cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: Date.now(), generation: 'running', exerciseCount: count,
     }
     return saveSession(created)
   })
-  if (created) { const session = created; void runGeneration(id, own => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own)) }
+  if (created) { const session = created; void runGeneration(id, (own, emit) => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own, emit)) }
   return id
 }
 
@@ -226,13 +281,17 @@ export async function startRedoSession(sourceId: string, signal?: AbortSignal): 
   // A redo is only a repeat: starting another replaces the unfinished one.
   const previous = await db.exerciseSessions.where('status').equals('active').filter(item => !!item.redoOf).toArray()
   for (const item of previous) await discardSession(item.id)
+  const catalog = await loadCatalog()
+  const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+  const redoId = crypto.randomUUID()
   const id = await saveSession({
-    id: crypto.randomUUID(), mode: source.mode, domain: source.domain, ...(source.groupId ? { groupId: source.groupId } : {}),
-    targetRefs: source.targetRefs, reviewRefs: source.reviewRefs, exercises: [], cursor: 0, status: 'active',
+    id: redoId, mode: source.mode, domain: source.domain, ...(source.groupId ? { groupId: source.groupId } : {}),
+    targetRefs: source.targetRefs, reviewRefs: source.reviewRefs,
+    exercises: openingExercises(catalog, known, { id: redoId, targetRefs: source.targetRefs }, await sourceTargets(source.mode === 'new' ? known : [...source.targetRefs, ...source.reviewRefs])), cursor: 0, status: 'active',
     model: connection.model, rejected: [], createdAt: Date.now(), redoOf: source.id, generation: 'running', exerciseCount: await exerciseCountPreference(),
   })
   const session = (await db.exerciseSessions.get(id))!
-  void runGeneration(id, own => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own))
+  void runGeneration(id, (own, emit) => lessonResult(session, signal ? AbortSignal.any([signal, own]) : own, emit))
   return id
 }
 
@@ -262,8 +321,10 @@ export async function submitExerciseAnswer(sessionId: string, index: number, res
     // Collection practice schedules the shared card but journals reviews only for items in the knowledge set.
     const inKnowledge = new Set((await db.knowledge.bulkGet(exercise.targets)).flatMap(entry => entry ? [entry.ref] : []))
     await recordJournal(exerciseAttemptEvent(attempt))
-    const rating: Rating = result.correct ? 3 : 1
+    const missed = exercise.type === 'match' ? new Set(missedRefs(exercise, response)) : undefined
     for (const ref of exercise.targets) {
+      // A match charges each wrong pairing to one item; the other items in it were matched cleanly.
+      const rating: Rating = (missed ? !missed.has(ref) : result.correct) ? 3 : 1
       const card = await db.studyCards.get(cardId(ref, DOMAIN))
       if (!card) continue // Items removed from the knowledge set are not rescheduled.
       await db.studyCards.put({ ...card, ...schedule(schedulingState(card), rating, now), updatedAt: now })
@@ -280,7 +341,8 @@ export async function advanceExercise(sessionId: string, index: number): Promise
     if (!session) throw new Error('Exercise session not found.')
     if (session.status === 'completed' || session.cursor > index) return
     if (session.cursor !== index || !await db.exerciseAttempts.get(`${sessionId}:${index}`)) throw new Error('Check your answer before continuing.')
-    if (index < queueLength(session) - 1) {
+    if (index < queueLength(session) - 1 || session.generation === 'running') {
+      // While the AI is still adding exercises the cursor may wait just past the last one.
       await db.exerciseSessions.put({ ...session, cursor: index + 1 })
     } else {
       await db.exerciseSessions.put({ ...session, status: 'completed', completedAt: Date.now() })
@@ -296,4 +358,10 @@ export async function discardSession(sessionId: string): Promise<void> {
     if (!session || session.status !== 'active') return
     await db.exerciseSessions.put({ ...session, status: 'abandoned', completedAt: Date.now() })
   })
+}
+
+/** Hides the quiet note about the AI part of a lesson once the learner has seen it. */
+export async function dismissAiNotice(sessionId: string): Promise<void> {
+  const session = await db.exerciseSessions.get(sessionId)
+  if (session?.aiNotice) await db.exerciseSessions.put(omit(session, 'aiNotice'))
 }

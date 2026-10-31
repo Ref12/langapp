@@ -470,3 +470,10 @@ select { padding: 10px; }
 }
 
 .redo-badge { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 999px; background: var(--accent, #2563eb); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: .4px; }
+
+.match-board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.match-column { display: flex; flex-direction: column; gap: 8px; }
+.match-cell { justify-content: center; text-align: center; min-height: 48px; width: 100%; gap: 6px; }
+.match-selected { outline: 2px solid var(--accent, #2563eb); }
+.match-locked { opacity: 0.55; border-color: var(--success, #16a34a); }
+.match-wrong { border-color: var(--danger, #dc2626); background: color-mix(in srgb, var(--danger, #dc2626) 14%, transparent); }

@@ -5,7 +5,7 @@ import { requestStructuredJSON } from '../ai/structured'
 import { AITransportError } from '../ai/provider'
 import type { AIConnectionInput } from '../assistant/contracts'
 import { renderExample, type Catalog, type Unit } from './catalog'
-import { exerciseSchema, type Exercise, type TilesExercise } from './contracts'
+import { exerciseSchema, type Exercise, type MatchExercise, type TilesExercise } from './contracts'
 
 // AI exercise generation over the learner's known units. The model proposes
 // exercises; the app validates every Chinese string against the allowed
@@ -73,6 +73,8 @@ export const exerciseJSONSchema = {
 export interface Segmenter {
   /** Returns true when every Han run in the text is a concatenation of allowed forms. */
   covers(text: string): boolean
+  /** The known forms found in the text, left to right, longest first at each position; characters no form covers are skipped. */
+  segment(text: string): string[]
   forms: Set<string>
 }
 
@@ -92,6 +94,18 @@ export function createSegmenter(forms: Iterable<string>): Segmenter {
   }
   return {
     forms: set,
+    segment(text: string) {
+      const found: string[] = []
+      for (const run of text.match(/\p{Script=Han}+/gu) ?? []) {
+        let start = 0
+        while (start < run.length) {
+          let length = Math.min(longest, run.length - start)
+          while (length > 0 && !set.has(run.slice(start, start + length))) length--
+          if (length > 0) { found.push(run.slice(start, start + length)); start += length } else start++
+        }
+      }
+      return found
+    },
     covers(text: string) {
       const runs = text.match(/\p{Script=Han}+/gu) ?? []
       return runs.every(segmentable)
@@ -276,13 +290,36 @@ export function splitCount(count: number): number[] {
  * Generates about `count` exercises: one request, or parallel requests of up to 20 whose results are joined. Never one request per word.
  * The count is what the model is asked for, not a target: a lesson keeps whatever survives validation (at least MIN_USABLE_EXERCISES per request).
  */
-export async function generateBatched(connection: AIConnectionInput, input: GenerationInput, count: number, signal?: AbortSignal): Promise<ValidationResult> {
+export async function generateBatched(connection: AIConnectionInput, input: GenerationInput, count: number, signal?: AbortSignal, onBatch?: (batch: ValidationResult) => void | Promise<void>): Promise<ValidationResult> {
   const sizes = splitCount(count)
   const parts = await Promise.all(sizes.map(async (size, index) => {
     const result = await generateExercises(connection, { ...input, count: size }, signal)
-    return sizes.length === 1 ? result : { ...result, exercises: result.exercises.map(exercise => ({ ...exercise, id: `b${index + 1}-${exercise.id}` })) }
+    const part = sizes.length === 1 ? result : { ...result, exercises: result.exercises.map(exercise => ({ ...exercise, id: `b${index + 1}-${exercise.id}` })) }
+    // Each batch is handed over as it arrives, so a lesson does not wait for its slowest request.
+    await onBatch?.(part)
+    return part
   }))
   return { exercises: parts.flatMap(part => part.exercises), rejected: parts.flatMap(part => part.rejected) }
+}
+
+/** Like generateBatched, but a failed batch does not discard the others: every batch that succeeds is delivered, and the first failure is returned. */
+export async function generateStreaming(connection: AIConnectionInput, input: GenerationInput, count: number, signal: AbortSignal | undefined, onBatch: (batch: ValidationResult) => void | Promise<void>): Promise<{ delivered: number; rejected: string[]; failure?: Error }> {
+  const sizes = splitCount(count)
+  let delivered = 0
+  const rejected: string[] = []
+  let failure: Error | undefined
+  await Promise.all(sizes.map(async (size, index) => {
+    try {
+      const result = await generateExercises(connection, { ...input, count: size }, signal)
+      const part = sizes.length === 1 ? result : { ...result, exercises: result.exercises.map(exercise => ({ ...exercise, id: `b${index + 1}-${exercise.id}` })) }
+      rejected.push(...part.rejected)
+      await onBatch(part)
+      delivered += part.exercises.length
+    } catch (reason) {
+      failure ??= reason instanceof Error ? reason : new Error('The exercises could not be generated.')
+    }
+  }))
+  return { delivered, rejected, ...(failure ? { failure } : {}) }
 }
 
 export type AnswerMatch = 'main' | 'alternative' | 'wrong'
@@ -294,12 +331,29 @@ export function matchTiles(exercise: TilesExercise, tiles: string[]): AnswerMatc
   return (exercise.acceptedAnswers ?? []).some(answer => answerKey(answer) === given) ? 'alternative' : 'wrong'
 }
 
+/**
+ * A match response is the list of refs the learner paired wrongly (one entry per wrong pairing, charged to the item of the cell tapped first). Empty is a clean match.
+ * Unknown refs are refused; the whole exercise is correct only with no misses.
+ */
+export function missedRefs(exercise: MatchExercise, response: unknown): string[] {
+  if (!Array.isArray(response) || response.some(item => typeof item !== 'string')) throw new Error('Pair every word before checking.')
+  const refs = new Set(exercise.pairs.map(pair => pair.ref))
+  if (response.some(ref => !refs.has(ref as string))) throw new Error('That pairing does not belong to this exercise.')
+  return response as string[]
+}
+
+function checkMatch(exercise: MatchExercise, response: unknown): { correct: boolean; response: string } {
+  const misses = missedRefs(exercise, response)
+  return { correct: misses.length === 0, response: JSON.stringify(misses) }
+}
+
 export function checkAnswer(exercise: Exercise, response: unknown): { correct: boolean; response: string } {
   if (exercise.type === 'choice') {
     const index = typeof response === 'number' ? response : Number.NaN
     if (!Number.isInteger(index) || index < 0 || index >= exercise.options.length) throw new Error('Choose one of the available answers.')
     return { correct: index === exercise.answer, response: String(index) }
   }
+  if (exercise.type === 'match') return checkMatch(exercise, response)
   if (!Array.isArray(response) || response.some(item => typeof item !== 'string')) throw new Error('Arrange the tiles before checking.')
   const tiles = response as string[]
   return { correct: matchTiles(exercise, tiles) !== 'wrong', response: JSON.stringify(tiles) }

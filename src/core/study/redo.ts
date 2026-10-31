@@ -9,14 +9,15 @@ export const MAX_REDOS_PER_EXERCISE = 2
 export interface PlayItem { exercise: Exercise; /** Index into session.exercises. */ index: number; redo: number }
 
 /** The number of positions in the session: the exercises, then the queued redos. */
-export function queueLength(session: Pick<ExerciseSession, 'exercises' | 'redos'>): number {
-  return session.exercises.length + (session.redos?.length ?? 0)
+export function queueLength(session: Pick<ExerciseSession, 'exercises' | 'redos' | 'generation'>): number {
+  // While the AI is still adding exercises the redos wait: they sit after the last exercise, which is not known yet.
+  return session.exercises.length + (session.generation === 'running' ? 0 : session.redos?.length ?? 0)
 }
 
-export function playItem(session: Pick<ExerciseSession, 'exercises' | 'redos'>, position: number): PlayItem | undefined {
+export function playItem(session: Pick<ExerciseSession, 'exercises' | 'redos' | 'generation'>, position: number): PlayItem | undefined {
   if (!Number.isInteger(position) || position < 0) return undefined
   if (position < session.exercises.length) return { exercise: session.exercises[position], index: position, redo: 0 }
-  const redo = session.redos?.[position - session.exercises.length]
+  const redo = session.generation === 'running' ? undefined : session.redos?.[position - session.exercises.length]
   const exercise = redo && session.exercises[redo.exercise]
   if (!redo || !exercise) return undefined
   return { exercise: exercise.type === 'tiles' && redo.shuffled ? { ...exercise, shuffled: redo.shuffled } : exercise, index: redo.exercise, redo: redo.round }

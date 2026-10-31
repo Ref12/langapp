@@ -10,6 +10,9 @@ import * as speech from '../core/assistant/speech'
 import { savePreferences } from '../core/learning'
 import { addToKnowledge, nextGroup } from '../core/study/knowledge'
 
+// These tests cover the AI path alone; the programmatic opening set has its own tests (local-exercises.test.ts, local-lesson.test.ts).
+vi.mock('../core/study/local-exercises', async importOriginal => ({ ...await importOriginal<typeof import('../core/study/local-exercises')>(), localVocabularyExercises: () => [], fillLocalExercises: () => [] }))
+
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../core/ai/structured', () => structured)
 
@@ -27,7 +30,7 @@ beforeEach(async () => {
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
-async function seedExercise(type: Exercise['type']) {
+async function seedExercise(type: 'choice' | 'tiles') {
   const refs = ['vocabulary:wo3--me', 'vocabulary:xue2-xi2--study']
   await addToKnowledge(refs)
   const exercise: Exercise = type === 'choice'
@@ -42,7 +45,7 @@ async function seedExercise(type: Exercise['type']) {
   return session
 }
 
-async function chooseAnswer(user: ReturnType<typeof userEvent.setup>, type: Exercise['type'], correct = true) {
+async function chooseAnswer(user: ReturnType<typeof userEvent.setup>, type: 'choice' | 'tiles', correct = true) {
   if (type === 'choice') {
     await user.click(screen.getByRole('radio', { name: correct ? 'I' : 'you' }))
   } else {
@@ -161,7 +164,7 @@ describe('New and Review', () => {
       { id: 'c4', type: 'choice', targets: [refs[0]], direction: 'zh-to-en', question: '我是学生。', options: ['I am a student.', 'I study.'], answer: 0, explanation: 'y' },
     ] })
     expect(await within(footer).findByRole('button', { name: 'Start' })).toBeEnabled()
-    expect(within(footer).getByText(/4 exercises in 1 part/)).toBeInTheDocument()
+    expect(await within(footer).findByText(/4 exercises in 1 part/)).toBeInTheDocument()
   })
 
   it('introduces the next group, plays generated exercises and records the results', async () => {

@@ -6,6 +6,9 @@ import { isGenerating, whenGenerated } from './generation'
 import { splitCount } from './exercises'
 import { retryGeneration } from './retry'
 
+// These tests cover the AI path alone; the programmatic opening set has its own tests (local-exercises.test.ts, local-lesson.test.ts).
+vi.mock('./local-exercises', async importOriginal => ({ ...await importOriginal<typeof import('./local-exercises')>(), localVocabularyExercises: () => [], fillLocalExercises: () => [] }))
+
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)
 

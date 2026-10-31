@@ -69,10 +69,27 @@ export const tilesExerciseSchema = z.object({
   explanation: explanationText,
 }).strict()
 
-export const exerciseSchema = z.discriminatedUnion('type', [choiceExerciseSchema, tilesExerciseSchema])
+export const MATCH_MODE_VALUES = ['zh-en', 'zh-py', 'py-en'] as const
+
+/** Built in code, never by the AI: 4 or 5 pairs; the left column is the pairs in order, the right column shows each pair's right text in `order`. */
+export const matchExerciseSchema = z.object({
+  id: id,
+  type: z.literal('match'),
+  targets: z.array(unitRefSchema).min(1).max(6),
+  mode: z.enum(MATCH_MODE_VALUES),
+  pairs: z.array(z.object({ ref: unitRefSchema, left: z.string().trim().min(1).max(200), right: z.string().trim().min(1).max(200) }).strict()).min(4).max(5),
+  /** A permutation of the pair indexes: the order the right column is shown in. */
+  order: z.array(z.number().int().min(0).max(4)).min(4).max(5),
+  explanation: explanationText,
+}).strict()
+
+export const exerciseSchema = z.discriminatedUnion('type', [choiceExerciseSchema, tilesExerciseSchema, matchExerciseSchema])
   .superRefine((exercise, context) => {
     const issue = (message: string) => context.addIssue({ code: z.ZodIssueCode.custom, message })
-    if (exercise.type === 'choice') {
+    if (exercise.type === 'match') {
+      const count = exercise.pairs.length
+      if (exercise.order.length !== count || new Set(exercise.order).size !== count || exercise.order.some(index => index >= count)) issue('Order must be a permutation of the pairs')
+    } else if (exercise.type === 'choice') {
       if (exercise.answer >= exercise.options.length) issue('Answer index is out of range')
       if (new Set(exercise.options.map(option => option.trim())).size !== exercise.options.length) issue('Options must be distinct')
     } else {
@@ -100,7 +117,7 @@ export const exerciseSessionSchema = z.object({
   groupId: id.optional(),
   targetRefs: z.array(unitRefSchema).min(1).max(40),
   reviewRefs: z.array(unitRefSchema).max(40),
-  exercises: z.array(exerciseSchema).max(80),
+  exercises: z.array(exerciseSchema).max(140),
   cursor: z.number().int().nonnegative(),
   /** Missed exercises queued after the last one. The cursor runs on through them; redos are never graded or scheduled again. */
   redos: z.array(redoSchema).max(160).optional(),
@@ -113,6 +130,8 @@ export const exerciseSessionSchema = z.object({
   /** Set while the exercises are being written ('running') or after the attempt failed; absent once the exercises are filled in. */
   generation: z.enum(['running', 'failed']).optional(),
   generationError: z.string().max(600).optional(),
+  /** Set when the AI could not finish its part of a lesson that already had programmatic exercises; shown once, quietly. */
+  aiNotice: z.string().max(600).optional(),
   /** The number of exercises asked for, from the lesson preference when the session was saved. */
   exerciseCount: z.number().int().min(1).max(80).optional(),
   /** Set when the session practises a collection; such sessions never count as the daily New/Review session. */
@@ -144,7 +163,9 @@ export type KnowledgeEntry = z.infer<typeof knowledgeEntrySchema>
 export type StudyCard = z.infer<typeof studyCardSchema>
 export type ChoiceExercise = z.infer<typeof choiceExerciseSchema>
 export type TilesExercise = z.infer<typeof tilesExerciseSchema>
-export type Exercise = ChoiceExercise | TilesExercise
+export type MatchExercise = z.infer<typeof matchExerciseSchema>
+export type MatchMode = MatchExercise['mode']
+export type Exercise = ChoiceExercise | TilesExercise | MatchExercise
 export type Redo = z.infer<typeof redoSchema>
 export type ExerciseSession = z.infer<typeof exerciseSessionSchema>
 export type ExerciseAttempt = z.infer<typeof exerciseAttemptSchema>
