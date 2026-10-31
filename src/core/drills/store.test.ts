@@ -4,7 +4,7 @@ import { addToKnowledge, DOMAIN } from '../study/knowledge'
 import { cardId } from '../study/contracts'
 import { addUnitsToCollection, createCollection } from '../collections/store'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
-import { discardDrillSet, createDrillSet, finishDrillSet, getDrillSet, MAX_UNFINISHED_SETS, NEW_SET_SIZE, recordDrillResult, recordRedo, setFormat, unfinishedSets } from './store'
+import { recordWriteChar, discardDrillSet, createDrillSet, finishDrillSet, getDrillSet, MAX_UNFINISHED_SETS, NEW_SET_SIZE, recordDrillResult, recordRedo, setFormat, unfinishedSets } from './store'
 import { whenContent } from './content'
 import { countMarks, scoreOf } from './contracts'
 
@@ -27,11 +27,11 @@ afterEach(() => vi.restoreAllMocks())
 const created = async (...args: Parameters<typeof createDrillSet>) => { const id = await createDrillSet(...args); await whenContent(id); return (await getDrillSet(id))! }
 
 describe('creating drill sets', () => {
-  it('New words takes the next curriculum items into the knowledge set', async () => {
+  it('New items takes the next curriculum items into the knowledge set', async () => {
     const set = await created({ kind: 'new' }, Date.UTC(2026, 9, 30, 12))
     expect(set.refs.length).toBeGreaterThan(0)
     expect(set.refs.length).toBeLessThanOrEqual(NEW_SET_SIZE)
-    expect(set.title).toBe('New words · 30 Oct')
+    expect(set.title).toBe('New items · 30 Oct')
     expect(set.source).toBe('new')
     expect(await db.knowledge.bulkGet(set.refs)).toSatisfy((rows: unknown[]) => rows.every(Boolean))
     // The catalog's own example sentences fill most items without any AI; with no connection the rest is said to be unavailable.
@@ -169,5 +169,27 @@ describe('backup', () => {
     await db.open()
     expect(await db.knowledge.count()).toBe(1)
     expect(await db.drillSets.count()).toBe(0)
+  })
+})
+
+describe('Write it by character', () => {
+  it('gives a word the worst result of its characters, once every one has a result, and finishes when each word has one', async () => {
+    const set = await created({ kind: 'new' })
+    const [a, b] = set.refs
+    const words = [{ ref: a, chars: ['学', '生'] }, { ref: b, chars: ['学', '习'] }]
+    const scope = [a, b]
+    expect(await recordWriteChar(set.id, '学', 'got', a, words, scope)).toEqual({ graded: true })
+    expect((await getDrillSet(set.id))!.progress.write!.results).toEqual({})
+    await recordWriteChar(set.id, '生', 'hint', a, words, scope)
+    let saved = (await getDrillSet(set.id))!.progress.write!
+    expect(saved.results).toEqual({ [a]: 'hint' })
+    expect(saved.done).toBe(false)
+    await recordWriteChar(set.id, '习', 'missed', b, words, scope)
+    saved = (await getDrillSet(set.id))!.progress.write!
+    expect(saved.results).toEqual({ [a]: 'hint', [b]: 'missed' })
+    expect(saved.done).toBe(true)
+    expect(Object.keys(saved.chars!).sort()).toEqual(['学', '生', '习'].sort())
+    expect(countMarks({ progress: { write: saved } })).toEqual({ got: 1, hint: 1, missed: 1 })
+    expect(await recordWriteChar(set.id, '习', 'got', b, words, scope)).toEqual({ graded: false })
   })
 })

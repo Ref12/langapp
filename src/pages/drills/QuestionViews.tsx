@@ -11,11 +11,14 @@ import type { ExerciseAttempt } from '../../core/study/contracts'
 import { Pinyin } from '../../components/Pinyin'
 import { tidyPinyin } from '../../core/drills/items'
 import { ChoiceQuestion, MatchQuestion } from '../Study'
+import type { Workspace } from '../../core/model'
+import { markCharactersWritten } from '../../core/drills/store'
+import { StrokeOrder } from './StrokeOrder'
 import { StrokePad } from './StrokePad'
 import { type ConvoAnswer, type Outcome, type Q, type QData, type TextAnswer, type WriteAnswer } from './tasks'
 
 export interface QState { answer?: unknown; status: 'open' | 'marking' | 'done'; outcome?: Outcome }
-export interface ViewContext { readings: Map<string, Set<string>>; pinyinOn: boolean; catalogChars: Set<string> }
+export interface ViewContext { readings: Map<string, Set<string>>; pinyinOn: boolean; catalogChars: Set<string>; workspace: Workspace }
 export interface ViewProps { q: Q; quiz: boolean; state: QState; ctx: ViewContext; onAnswer: (answer: unknown) => void; onMark: (mark: Mark) => void }
 
 const noop = () => undefined
@@ -86,50 +89,50 @@ function PinyinView({ data, state, onAnswer }: ViewProps & { data: Extract<QData
   </>
 }
 
-/** The prompt sentence in pinyin only, with the target highlighted. */
-/** A word's syllables with the one being written highlighted and the ones already written quieter. step undefined: the whole word. */
-function WordMark({ text, step }: { text: string; step?: number }) {
-  const parts = text.split(/(\s+)/)
-  const syllables = parts.filter((_, index) => index % 2 === 0)
-  if (step === undefined || syllables.length < 2) return <mark className="dr-target">{text}</mark>
-  let at = -1
-  return <>{parts.map((part, index) => {
-    if (index % 2) return part
-    at++
-    return at === step ? <mark key={index} className="dr-target">{part}</mark> : at < step ? <span key={index} className="dr-written">{part}</span> : part
-  })}</>
-}
-
-function PinyinSentence({ py: raw, target, step }: { py: string; target: string; step?: number }) {
+/** The pinyin sentence with the target accented: one syllable of the cue word (`syllable`), or the whole word when it is unset. The rest reads as plain sentence text. */
+function PinyinSentence({ py: raw, target, syllable }: { py: string; target: string; syllable?: number }) {
   const py = tidyPinyin(raw)
   const at = target ? py.toLowerCase().indexOf(target.toLowerCase()) : -1
-  return <p className="dr-pinyin-prompt" lang="zh-Latn-pinyin">{at < 0 ? py : <>{py.slice(0, at)}<WordMark text={py.slice(at, at + target.length)} step={step} />{py.slice(at + target.length)}</>}</p>
+  if (at < 0) return <p className="dr-pinyin-prompt" lang="zh-Latn-pinyin">{py}</p>
+  const word = py.slice(at, at + target.length)
+  const parts = word.split(/(\s+)/)
+  const syllables = parts.filter((_, index) => index % 2 === 0).length
+  let seen = -1
+  return <p className="dr-pinyin-prompt" lang="zh-Latn-pinyin">{py.slice(0, at)}{syllable === undefined || syllables < 2 ? <mark className="dr-target">{word}</mark>
+    : parts.map((part, index) => { if (index % 2) return part; seen++; return seen === syllable ? <mark key={index} className="dr-target">{part}</mark> : part })}{py.slice(at + target.length)}</p>
 }
 
-function WriteView({ data, state, onAnswer, onMark, quiz }: ViewProps & { data: Extract<QData, { t: 'write' }> }) {
+function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { data: Extract<QData, { t: 'write' }> }) {
   const [hinted, setHinted] = useState(false)
   const [revealed, setRevealed] = useState(false)
   const locked = state.status !== 'open'
   const [written, setWritten] = useState(false)
-  const showChars = revealed || state.status !== 'open'
+  const [taught, setTaught] = useState(false)
+  const showChars = revealed || locked
   const [stroke, setStroke] = useState<{ index: number; total: number }>()
   const onStep = useCallback((index: number, total: number) => setStroke({ index, total }), [])
-  const syllables = data.item.py.trim().split(/\s+/).length
-  const step = data.mode === 'pad' && !locked && stroke && stroke.total === syllables ? stroke.index : undefined
+  const syllableList = data.item.py.trim().split(/\s+/)
+  const target = data.char ?? data.item.zh
+  const aligned = syllableList.length === Array.from(data.item.zh).filter(character => /\p{Script=Han}/u.test(character)).length
+  // Characters mode: the one syllable. Whole words on the pad: the syllable of the character being written. Whole words elsewhere: the whole word.
+  const syllable = data.char !== undefined ? (aligned ? data.index : undefined)
+    : data.mode === 'pad' && !locked && syllableList.length > 1 && aligned ? (stroke && stroke.total === syllableList.length ? stroke.index : 0) : undefined
+  const prompt = syllable === undefined ? data.item.py : syllableList[syllable]
   const hint = () => setHinted(true)
+  const done = (result: { misses: number; hinted: boolean }) => onAnswer({ misses: result.misses, hinted: hinted || result.hinted, taught } satisfies WriteAnswer)
   return <>
-    <PinyinSentence py={data.sentence.py} target={data.item.py} step={step} />
+    <PinyinSentence py={data.sentence.py} target={data.item.py} syllable={syllable} />
     <div className="dr-center"><HearButton text={data.sentence.zh} locale="zh-Hans" label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
-    <p className="small dr-center">Write <WordMark text={data.item.py} step={step} />{data.item.en ? <> <span className="muted">({data.item.en})</span></> : null}</p>
-    {data.mode === 'pad' && !locked && <StrokePad key={data.item.ref} text={data.item.zh} onStep={onStep} onDone={result => onAnswer({ misses: result.misses, hinted: hinted || result.hinted } satisfies WriteAnswer)} />}
-    {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it on paper, then check.</p>
+    <p className="small dr-center dr-write-line">Write <mark className="dr-target">{prompt}</mark></p>
+    {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} teach={data.fresh} workspace={ctx.workspace} onTaught={character => { setTaught(true); void markCharactersWritten([character]) }} onStep={onStep} onDone={done} />}
+    {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it anywhere, then check your answer.</p>
       {quiz ? <button type="button" className="button secondary" aria-pressed={written} onClick={() => { setWritten(!written); onAnswer(written ? undefined : { misses: 0, hinted, paper: true } satisfies WriteAnswer) }}>{written ? 'Written ✓' : 'I have written it'}</button>
-        : <button type="button" className="button primary" onClick={() => onAnswer({ misses: 0, hinted, paper: true } satisfies WriteAnswer)}>Show answer</button>}</div>}
+        : <button type="button" className="button primary" onClick={() => onAnswer({ misses: 0, hinted, paper: true } satisfies WriteAnswer)}>Check answer</button>}</div>}
     {!locked && <div className="button-row dr-hints"><span className="small muted">Hints (counts as Needed a hint):</span>
       <button type="button" className="button secondary" aria-pressed={revealed} onClick={() => { setRevealed(true); hint() }}><Eye size={16} /> Reveal</button>
-      <button type="button" className="button secondary" onClick={() => { hint(); openWritingSheet(data.item.zh, { remember: false }) }}><PenLine size={16} /> Writing practice</button>
+      <button type="button" className="button secondary" onClick={() => { hint(); openWritingSheet(target, { remember: false }) }}><PenLine size={16} /> Writing practice</button>
       {data.mode === 'pad' && <button type="button" className="button secondary" onClick={() => onAnswer({ misses: 0, hinted, skipped: true } satisfies WriteAnswer)}>Give up</button>}</div>}
-    {showChars && <p className="dr-reveal"><span className="dr-zh" lang="zh-Hans">{data.item.zh}</span></p>}
+    {showChars && (data.mode === 'paper' && locked ? <StrokeOrder text={target} /> : <p className="dr-reveal"><span className="dr-zh" lang="zh-Hans">{target}</span></p>)}
     {state.status === 'marking' && <SelfMark onMark={onMark} />}
     <Result state={state} />
   </>

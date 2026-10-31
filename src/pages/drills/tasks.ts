@@ -7,21 +7,26 @@ import { buildChoice, buildMatch, createRng, isVocabulary, matchGroups, seedFrom
 import type { Conversation, DrillContent, DrillTypeId, Mark, Sentence } from '../../core/drills/contracts'
 import { drillType } from '../../core/drills/contracts'
 import type { ItemInfo } from '../../core/drills/items'
+import { guidedChars, newCharacters, writeQueue } from '../../core/drills/write-queue'
 
 // Builds the questions of each drill type from a set's items and content, and grades answers. Pure code: the pages only show it.
 
 export type Style = 'choice' | 'match' | 'free'
 export type Direction = 'zh-to-en' | 'en-to-zh'
+/** 'paper' is shown as Write elsewhere: the learner writes anywhere, then checks and self-marks. */
 export type WriteMode = 'pad' | 'paper'
-export interface Options { style: Style; direction: Direction; writeMode: WriteMode }
-export const DEFAULT_OPTIONS: Options = { style: 'choice', direction: 'zh-to-en', writeMode: 'pad' }
+/** Characters: every distinct character once, shuffled across words. Whole words: each word's characters in order. */
+export type WriteUnit = 'chars' | 'words'
+export interface Options { style: Style; direction: Direction; writeMode: WriteMode; writeUnit: WriteUnit }
+export const DEFAULT_OPTIONS: Options = { style: 'choice', direction: 'zh-to-en', writeMode: 'pad', writeUnit: 'chars' }
 
 export type QData =
   | { t: 'choice'; exercise: ChoiceExercise }
   | { t: 'match'; exercise: MatchExercise }
   | { t: 'free'; item: ItemInfo; direction: Direction }
   | { t: 'pinyin'; item: ItemInfo }
-  | { t: 'write'; item: ItemInfo; sentence: Sentence; mode: WriteMode }
+  /** `char` set: one character of the cue word `item` (at syllable `index`); unset: the whole word. `fresh`: the characters written that the learner has never written from memory. */
+  | { t: 'write'; item: ItemInfo; sentence: Sentence; mode: WriteMode; char?: string; index?: number; fresh: string[] }
   | { t: 'translate'; item: ItemInfo; sentence: Sentence }
   | { t: 'repeat'; item: ItemInfo; sentence: Sentence }
   | { t: 'convo'; conversation: Conversation; mode: 'listen' | 'read' }
@@ -30,7 +35,7 @@ export type QData =
 export interface Q { key: string; type: DrillTypeId; refs: string[]; data: QData }
 export interface Outcome { marks: Record<string, Mark>; correct: boolean }
 
-export interface WriteAnswer { misses: number; hinted: boolean; skipped?: boolean; paper?: boolean }
+export interface WriteAnswer { misses: number; hinted: boolean; skipped?: boolean; paper?: boolean; /** The character was taught by the guided steps first. */ taught?: boolean }
 export interface ConvoAnswer { picked: number[]; hinted: boolean }
 export interface TextAnswer { text: string; hinted?: boolean }
 
@@ -89,7 +94,9 @@ export function availability(type: DrillTypeId, items: readonly ItemInfo[], cont
 const ITEM_SEED = (key: string) => seedFrom(key)
 
 /** The questions of a type for the given items. */
-export function buildQuestions(type: DrillTypeId, input: { setId: string; items: readonly ItemInfo[]; catalog: Catalog; known: Set<string>; content: DrillContent; options: Options; refs?: readonly string[] }): Q[] {
+export function buildQuestions(type: DrillTypeId, input: { setId: string; items: readonly ItemInfo[]; catalog: Catalog; known: Set<string>; content: DrillContent; options: Options; refs?: readonly string[]
+  /** Write it: the stroke practice's saved characters (what is new), the pass number (rotates the cue words) and the characters that already have a first-pass result. */
+  charStates?: readonly { character: string; practiceCompletions: number }[]; pass?: number; charsDone?: ReadonlySet<string> }): Q[] {
   const { setId, catalog, known, content, options } = input
   const only = input.refs ? new Set(input.refs) : undefined
   const items = applicable(type, input.items, content).filter(item => !only || only.has(item.ref))
@@ -115,7 +122,15 @@ export function buildQuestions(type: DrillTypeId, input: { setId: string; items:
     })
   }
   if (type === 'pinyin') return order.map(item => q(`pinyin-${item.ref}`, [item.ref], { t: 'pinyin', item }))
-  if (type === 'write') return order.map(item => q(`write-${item.ref}`, [item.ref], { t: 'write', item, sentence: content.sentences[item.ref], mode: options.writeMode }))
+  if (type === 'write') {
+    const fresh = new Set(newCharacters(items.map(item => item.zh), input.charStates ?? []))
+    if (options.writeUnit === 'words') return order.map(item => q(`write-${item.ref}`, [item.ref], { t: 'write', item, sentence: content.sentences[item.ref], mode: options.writeMode, fresh: guidedChars(item.zh).filter(char => fresh.has(char)) }))
+    const byRef = new Map(items.map(item => [item.ref, item]))
+    return writeQueue(items, { seed: `${setId}:write`, pass: input.pass ?? 0, skip: input.charsDone }).map(entry => {
+      const item = byRef.get(entry.cue)!
+      return q(`write-char-${entry.char}`, [entry.char], { t: 'write', item, sentence: content.sentences[item.ref], mode: options.writeMode, char: entry.char, index: entry.index, fresh: fresh.has(entry.char) ? [entry.char] : [] })
+    })
+  }
   if (type === 'translate') return order.map(item => q(`translate-${item.ref}`, [item.ref], { t: 'translate', item, sentence: content.sentences[item.ref] }))
   if (type === 'repeat') return order.map(item => q(`repeat-${item.ref}`, [item.ref], { t: 'repeat', item, sentence: content.sentences[item.ref] }))
   return content.conversations.flatMap((conversation, index) => {
@@ -146,6 +161,7 @@ export function grade(question: Q, answer: unknown): Outcome | 'self' {
     case 'write': {
       const result = answer as WriteAnswer
       if (data.mode === 'paper' || result.paper) return 'self'
+      if (result.taught && !result.skipped && !result.hinted) return all('got')
       return all(result.skipped ? 'missed' : result.hinted || result.misses > 3 ? 'hint' : 'got')
     }
     case 'translate': return sentenceMatches((answer as TextAnswer).text, data.sentence) ? all('got') : 'self'

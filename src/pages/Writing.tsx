@@ -105,14 +105,16 @@ export interface WritingPlayerProps {
   onPrevious?: () => void
   /** Called once the character's nine repetitions are saved (or were already) and Next is pressed. */
   onNext?: () => void
+  /** Drills teach a new character: watch the stroke order, then trace the outline once. Next finishes there; nothing is saved by the player. */
+  teach?: boolean
 }
 
-export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onNext, workspace, run, busy }: PageProps & WritingPlayerProps) {
+export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onNext, teach = false, workspace, run, busy }: PageProps & WritingPlayerProps) {
   const guides = useMemo(() => asset.paths.map(makeStrokeGuide), [asset.paths])
   const [arrived] = useState(() => takeArrival(asset.character))
   const [round, setRound] = useState<WritingRound>(() => arrived ? { ...newWritingRound(), phase: arrived.phase, repetition: arrived.repetition } : newWritingRound())
   const [ink, setInk] = useState<Point[]>([])
-  const [replay, setReplay] = useState<number | null>(null)
+  const [replay, setReplay] = useState<number | null>(teach ? 0 : null)
   const [saving, setSaving] = useState(false)
   const [help, setHelp] = useState(false)
   const saveLock = useRef(false)
@@ -137,7 +139,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   const state = workspace.characterStates.find(entry => entry.character === asset.character)
   const atStart = round.phase === 0 && round.repetition === 0 && !round.finished
   const canPrevious = !saving && !busy && (!atStart || hasPrevious)
-  const finalStep = isLastStep(round)
+  const finalStep = teach ? round.phase === 0 && round.repetition === 0 : isLastStep(round)
 
   const cancelStroke = useCallback(() => {
     const active = pointer.current
@@ -217,6 +219,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
     cancelStroke()
     setReplay(null)
     if (!finalStep) { setRound(advanceRound(round, guides.length)); return }
+ if (teach) { onNext?.(); return }
     if (saved.current) { onNext?.(); return }
     saveLock.current = true
     setSaving(true)

@@ -7,7 +7,9 @@ import { reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
 import { promoteItems } from '../collections/store'
 import { isPhraseRef } from '../study/contracts'
+import { recordCharacterPractice } from '../characters/store'
 import { cancelContent, startContent } from './content'
+import { worstMark } from './write-queue'
 import { MARK_RATING, drillSetSchema, type DrillFormat, type DrillSet, type DrillTypeId, type Mark } from './contracts'
 
 export const NEW_SET_SIZE = 10
@@ -20,7 +22,7 @@ export type DrillSource = { kind: 'new'; from?: string } | { kind: 'review'; fro
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 export const shortDate = (time: number) => { const date = new Date(time); return `${date.getDate()} ${MONTHS[date.getMonth()]}` }
-export const originLabel = (source: DrillSource['kind']) => source === 'review' ? 'Reviews' : 'New words'
+export const originLabel = (source: DrillSource['kind']) => source === 'review' ? 'Reviews' : 'New items'
 
 function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'createdAt'> & { collectionId?: string }): DrillSet {
   return { ...fields, status: 'active', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, updatedAt: fields.createdAt }
@@ -41,13 +43,13 @@ async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: str
   if (source.kind === 'review') {
     const cards = (await dueCards(now)).filter(card => known.has(card.ref) && (catalog.units.has(card.ref) || isSourceRef(card.ref)))
       .sort((a, b) => a.due - b.due || a.ref.localeCompare(b.ref)).slice(0, REVIEW_SET_SIZE)
-    if (!cards.length) throw new Error(known.size ? 'Nothing is due for review right now.' : 'Your knowledge set is empty. Start with New words, or add items from the Dictionary.')
+    if (!cards.length) throw new Error(known.size ? 'Nothing is due for review right now.' : 'Your knowledge set is empty. Start with New items, or add items from the Dictionary.')
     return { refs: cards.map(card => card.ref), title: `Reviews · ${shortDate(now)}` }
   }
   if (source.kind === 'new' && !source.from) {
     const next = nextGroup(catalog, known)
     if (!next) throw new Error('Every available curriculum group is already in your knowledge set.')
-    return { refs: next.newUnits.slice(0, NEW_SET_SIZE).map(unit => unit.ref), title: `New words · ${shortDate(now)}` }
+    return { refs: next.newUnits.slice(0, NEW_SET_SIZE).map(unit => unit.ref), title: `New items · ${shortDate(now)}` }
   }
   const collectionId = source.kind === 'new' ? source.from! : source.collectionId
   const collection = await db.collections.get(collectionId)
@@ -57,7 +59,7 @@ async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: str
     const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))
     const fresh = items.filter(item => isPhraseRef(item.ref) ? !(cards.get(item.ref)?.reps) : !known.has(item.ref)).slice(0, NEW_SET_SIZE)
     if (!fresh.length) throw new Error(`Every item in this study set is already in your knowledge set.`)
-    return { refs: fresh.map(item => item.ref), title: `New words · ${shortDate(now)}`, collectionId, promote: fresh.map(item => item.id) }
+    return { refs: fresh.map(item => item.ref), title: `New items · ${shortDate(now)}`, collectionId, promote: fresh.map(item => item.id) }
   }
   if (!items.length) throw new Error('This study set has no items yet.')
   const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))
@@ -104,6 +106,16 @@ function schedulingState(card: StudyCard): SchedulingState {
   return { due: card.due, stability: card.stability, difficulty: card.difficulty, reps: card.reps, lapses: card.lapses, state: card.state, lastReview: card.lastReview }
 }
 
+/** Schedules one item's first-pass result like a lesson answer. Runs inside the callers' transaction. */
+async function reviewItem(setId: string, type: DrillTypeId, ref: string, mark: Mark, now: number): Promise<void> {
+  const rating = MARK_RATING[mark]
+  const card = await db.studyCards.get(cardId(ref, DOMAIN))
+  if (card) {
+    await db.studyCards.put({ ...card, ...schedule(schedulingState(card), rating, now), updatedAt: now })
+    if (await db.knowledge.get(ref)) await recordJournal(reviewEvent(ref, rating, now, `drill:${setId}:${type}`))
+  }
+}
+
 /**
  * Records one item's result in a drill type. Only the first pass of a type is graded: it is stored in the set and scheduled like a lesson answer
  * (Got it = Good, Needed a hint = Hard, Missed = Again). Once the type is done, or the item already has a result, nothing changes (a redo is ungraded).
@@ -118,14 +130,44 @@ export async function recordDrillResult(setId: string, type: DrillTypeId, ref: s
     const covered = current.scope.length ? current.scope : [...scope]
     const done = covered.every(item => results[item])
     await db.drillSets.put({ ...set, updatedAt: now, progress: { ...set.progress, [type]: { ...current, scope: covered, results, done, ...(done ? { finishedAt: now } : {}) } } })
-    const rating = MARK_RATING[mark]
-    const card = await db.studyCards.get(cardId(ref, DOMAIN))
-    if (card) {
-      await db.studyCards.put({ ...card, ...schedule(schedulingState(card), rating, now), updatedAt: now })
-      if (await db.knowledge.get(ref)) await recordJournal(reviewEvent(ref, rating, now, `drill:${setId}:${type}`))
-    }
+    await reviewItem(setId, type, ref, mark, now)
     return { graded: true }
   })
+}
+
+/**
+ * Write it in Characters mode: records one character's first-pass result. A word of the set gets its result for the type, the worst of its
+ * characters, as soon as every one of its characters has one; the type is done when every word has a result.
+ */
+export async function recordWriteChar(setId: string, char: string, mark: Mark, cue: string, words: readonly { ref: string; chars: readonly string[] }[], scope: readonly string[], now = Date.now()): Promise<{ graded: boolean }> {
+  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal], async () => {
+    const set = await db.drillSets.get(setId)
+    if (!set || set.status !== 'active') return { graded: false }
+    const current = set.progress.write ?? { results: {}, scope: [...scope], done: false, redos: 0 }
+    if (current.done || current.chars?.[char]) return { graded: false }
+    const chars = { ...current.chars, [char]: { mark, cue } }
+    const results = { ...current.results }
+    const completed: [string, Mark][] = []
+    for (const word of words) {
+      if (results[word.ref] || !word.chars.includes(char) || !word.chars.every(each => chars[each])) continue
+      results[word.ref] = worstMark(word.chars.map(each => chars[each].mark))
+      completed.push([word.ref, results[word.ref]])
+    }
+    const covered = current.scope.length ? current.scope : [...scope]
+    const done = covered.every(item => results[item])
+    await db.drillSets.put({ ...set, updatedAt: now, progress: { ...set.progress, write: { ...current, scope: covered, results, chars, done, ...(done ? { finishedAt: now } : {}) } } })
+    for (const [ref, result] of completed) await reviewItem(setId, 'write', ref, result, now)
+    return { graded: true }
+  })
+}
+
+/** Characters written successfully in a graded pass, or taught by the guided steps, stop being new: one stroke-practice completion each, once. */
+export async function markCharactersWritten(characters: readonly string[]): Promise<void> {
+  for (const character of new Set(characters)) {
+    const state = await db.characterStates.get(character)
+    if (state && state.practiceCompletions > 0) continue
+    await recordCharacterPractice(character).catch(() => undefined)
+  }
 }
 
 /** Counts a Redo of a finished type. The score is untouched. */

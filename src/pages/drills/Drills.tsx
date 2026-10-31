@@ -14,6 +14,7 @@ import { DOMAIN, groupProgress, nextGroup } from '../../core/study/knowledge'
 import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
+import { describeItems } from '../../core/drills/write-queue'
 import { MAX_UNFINISHED_SETS, NEW_SET_SIZE, createDrillSet, discardDrillSet, finishDrillSet, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
 import { availability } from './tasks'
@@ -66,8 +67,7 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
   const [shown, setShown] = useState(false)
   const fresh = set.source === 'new'
   const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start drilling <ArrowRight size={16} /></a>
-  const words = items.filter(item => item.kind === 'vocabulary').length
-  const detail = `${itemCount(items.length)}: ${words} ${words === 1 ? 'word' : 'words'}, ${items.length - words} other`
+  const detail = describeItems(items, workspace.characterStates) || itemCount(items.length)
   const examplesFor = (ref: string) => (catalog.orderedGroups.find(entry => entry.group.units.some(unit => unit.ref === ref))?.group.examples ?? [])
     .filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
   return <div className="dr">
@@ -92,7 +92,7 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
   </div>
 }
 
-function SetScreen({ set, items, run, busy }: PageProps & { set: DrillSet; items: ItemInfo[] }) {
+function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: DrillSet; items: ItemInfo[] }) {
   const content = effectiveContent(set)
   const connection = useAIConnection()
   const quiz = set.format === 'quiz'
@@ -102,7 +102,7 @@ function SetScreen({ set, items, run, busy }: PageProps & { set: DrillSet; items
   const finish = () => void run(async () => { await finishDrillSet(set.id); navigate(setRoute(set.id, 'summary')) })
   return <div className="dr">
     <a className="back-link" href="#drills"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
-    <PageHeading eyebrow="Drill set" title={set.title} action={<button type="button" className="button secondary" disabled={busy} onClick={finish}>Finish set</button>}>{itemCount(set.refs.length)} · {done.length} of {DRILL_TYPES.length} types done</PageHeading>
+    <PageHeading eyebrow="Drill set" title={set.title} action={<button type="button" className="button secondary" disabled={busy} onClick={finish}>Finish set</button>}>{describeItems(items, workspace.characterStates) || itemCount(set.refs.length)} · {done.length} of {DRILL_TYPES.length} types done</PageHeading>
     <div className="dr-toolbar dr-setbar">
       {set.source === 'new' && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><BookOpen size={16} /> Intro cards</a>}
       {set.source !== 'new' && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><Eye size={16} /> Items</a>}
@@ -161,6 +161,12 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
   </div>
 }
 
+/** The breakdown of an unfinished set's items under its title. */
+function UnfinishedInfo({ set, typesDone, characterStates }: { set: DrillSet; typesDone: number; characterStates: PageProps['workspace']['characterStates'] }) {
+  const items = useItems(set)
+  return <span className="small muted dr-wrap">{(items && describeItems(items, characterStates)) || itemCount(set.refs.length)} · {typesDone} of {DRILL_TYPES.length} types done</span>
+}
+
 function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const { catalog, error } = useCatalog()
   const connection = useAIConnection()
@@ -178,8 +184,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const fresh = fromSet ? collectionItems.filter(item => item.collectionId === fromSet.id && !known.has(item.ref)).length : next?.newUnits.length ?? 0
   const inFrom = fromSet ? new Set(collectionItems.filter(item => item.collectionId === fromSet.id).map(item => item.ref)) : undefined
   const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref))).length
+  const breakdown = catalog && !fromSet && next ? (() => { const text = describeItems(next.newUnits.slice(0, NEW_SET_SIZE).map(unit => unit.kind === 'vocabulary' ? { kind: 'vocabulary' as const, zh: unit.record.ch } : { kind: 'grammar' as const, zh: unit.record.pt }), workspace.characterStates); return text ? ` (${text})` : '' })() : ''
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
-  const countsOf = (id: string) => collectionItems.filter(item => item.collectionId === id)
   return <div className="dr">
     <PageHeading eyebrow="Practice" title={DRILLS_LABEL}>Drill sets of words and grammar patterns. Pick a type, do every item, pick another.</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
@@ -189,22 +195,16 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         <div className="dr-from dr-from-top"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
           <select value={from} aria-label="Learning from" onChange={event => setFrom(event.target.value)}><option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label></div>
         <ul className="dr-rows">
-          <li><div><strong>New words</strong><span className="small muted">{catalog ? fresh ? fromSet ? `Next ${Math.min(fresh, NEW_SET_SIZE)} of ${fresh} new ${fresh === 1 ? 'item' : 'items'} in ${fromSet.name}` : `Next ${Math.min(fresh, NEW_SET_SIZE)} curriculum items${progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
-            <button type="button" className="button primary" aria-label="Start new words" disabled={busy || !fresh} onClick={() => start({ kind: 'new', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
+          <li><div><strong>New items</strong><span className="small muted">{catalog ? fresh ? fromSet ? `Next ${Math.min(fresh, NEW_SET_SIZE)} of ${fresh} new ${fresh === 1 ? 'item' : 'items'} in ${fromSet.name}` : `Next ${Math.min(fresh, NEW_SET_SIZE)} curriculum items${breakdown}${progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
+            <button type="button" className="button primary" aria-label="Start new items" disabled={busy || !fresh} onClick={() => start({ kind: 'new', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
           <li><div><strong>Reviews</strong><span className="small muted">{due} {due === 1 ? 'item' : 'items'} due{fromSet ? ` in ${fromSet.name}` : ''} · titles hidden</span></div>
             <button type="button" className="button primary" aria-label="Start reviews" disabled={busy || !due} onClick={() => start({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
         </ul>
-        <div className="dr-from">
-          <p className="small muted">{TERM.Plural} can also be started whole:</p>
-          {collections.length === 0 ? <p className="small muted">No {TERM.plural} yet. <a className="text-link" href="#collections">Create one</a>.</p>
-            : <ul className="dr-rows">{collections.map(entry => { const own = countsOf(entry.id); const learned = own.filter(item => known.has(item.ref)).length
-              return <li key={entry.id}><div><strong>{entry.name}</strong><span className="small muted">{itemCount(own.length)} · {learned} learned</span></div>
-                <button type="button" className="button secondary" aria-label={`Start ${entry.name}`} disabled={busy || !own.length} onClick={() => start({ kind: 'study-set', collectionId: entry.id })}>Start</button></li> })}</ul>}</div>
       </section>
       <section className="panel dr-panel" aria-labelledby="dr-unfinished"><h2 id="dr-unfinished">Unfinished sets</h2>
         {unfinished.length === 0 ? <p className="muted small">No unfinished sets.</p> : <div className="resume-list">{unfinished.map(set => { const typesDone = Object.values(set.progress).filter(entry => entry.done).length
           return <div className="resume-row" key={set.id}>
-            <a className="resume-main" href={`#${setRoute(set.id)}`}><div><strong>{set.title}</strong><span className="small muted">{itemCount(set.refs.length)} · {typesDone} of {DRILL_TYPES.length} types done</span></div><ArrowRight size={18} /></a>
+            <a className="resume-main" href={`#${setRoute(set.id)}`}><div><strong>{set.title}</strong><UnfinishedInfo set={set} typesDone={typesDone} characterStates={workspace.characterStates} /></div><ArrowRight size={18} /></a>
             {asking === set.id
               ? <span className="dr-confirm"><button type="button" className="button secondary" disabled={busy} onClick={() => { setAsking(undefined); void run(() => discardDrillSet(set.id)) }}>Discard</button><button type="button" className="button secondary" onClick={() => setAsking(undefined)}>Keep</button></span>
               : <button type="button" className="icon-button" aria-label={`Discard ${set.title}`} onClick={() => setAsking(set.id)}><Trash2 size={17} /></button>}

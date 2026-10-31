@@ -21,6 +21,8 @@ const timestamp = z.number().int().nonnegative()
 /** First-pass results of one drill type. Once `done`, redos are ungraded and never change these. */
 export const typeProgressSchema = z.object({
   results: z.record(unitRefSchema, markSchema),
+  /** Write it in Characters mode: each character's first-pass result. A word's result is the worst of its characters. */
+  chars: z.record(z.string().min(1).max(2), z.object({ mark: markSchema, cue: unitRefSchema }).strict()).optional(),
   /** The refs this type covered when it was started; it is done when each has a result. */
   scope: z.array(unitRefSchema).max(80),
   done: z.boolean(),
@@ -59,7 +61,7 @@ export const drillSetSchema = z.object({
   id,
   source: z.enum(['new', 'review', 'study-set']),
   collectionId: id.optional(),
-  /** The origin and date shown in lists: "New words · 30 Oct", "Reviews · 28 Oct" or the study set's name. */
+  /** The origin and date shown in lists: "New items · 30 Oct", "Reviews · 28 Oct" or the study set's name. */
   title: z.string().trim().min(1).max(200),
   refs: z.array(unitRefSchema).min(1).max(60),
   status: z.enum(['active', 'completed', 'abandoned']),
@@ -99,7 +101,8 @@ export const countMarks = (set: Pick<DrillSet, 'progress'>, types?: readonly Dri
   const counts: Record<Mark, number> = { got: 0, hint: 0, missed: 0 }
   for (const [type, progress] of Object.entries(set.progress) as [DrillTypeId, TypeProgress][]) {
     if (types && !types.includes(type)) continue
-    for (const mark of Object.values(progress.results)) counts[mark]++
+    // Write it in Characters mode counts characters; otherwise its items.
+    for (const mark of progress.chars ? Object.values(progress.chars).map(entry => entry.mark) : Object.values(progress.results)) counts[mark]++
   }
   return counts
 }

@@ -4,10 +4,12 @@ import { loadCharacterAsset } from '../../core/characters/assets'
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../../core/characters/geometry'
 import { commitStroke, memoryHint, newWritingRound, type WritingRound } from '../../core/characters/practice'
 import { hasGuide, isHan } from '../../core/characters/writing-route'
+import type { Workspace } from '../../core/model'
+import { TeachCharacter } from './Teach'
 import '../writing.css'
 
 /** Draw the target characters from memory, no outline: each stroke is checked against the character's stroke data. Two misses on a stroke reveal it (a hint). */
-export function StrokePad({ text, disabled, onDone, onStep }: { text: string; disabled?: boolean; onDone: (result: { misses: number; hinted: boolean }) => void; onStep?: (index: number, total: number) => void }) {
+export function StrokePad({ text, disabled, onDone, onStep, teach, workspace, onTaught }: { text: string; disabled?: boolean; /** New characters to teach before they are written from memory (needs workspace). */ teach?: readonly string[]; workspace?: Workspace; onTaught?: (character: string) => void; onDone: (result: { misses: number; hinted: boolean }) => void; onStep?: (index: number, total: number) => void }) {
   const characters = useMemo(() => Array.from(text).filter(character => isHan(character) && hasGuide(character)), [text])
   const [index, setIndex] = useState(0)
   const [paths, setPaths] = useState<string[]>()
@@ -18,6 +20,8 @@ export function StrokePad({ text, disabled, onDone, onStep }: { text: string; di
   const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
   const finished = useRef(false)
   const character = characters[index]
+  const [handled, setHandled] = useState<ReadonlySet<string>>(new Set())
+  const teaching = Boolean(workspace && character && teach?.includes(character) && !handled.has(character))
   useEffect(() => { onStep?.(index, characters.length) }, [index, characters.length, onStep])
   useEffect(() => {
     let live = true
@@ -27,13 +31,15 @@ export function StrokePad({ text, disabled, onDone, onStep }: { text: string; di
     return () => { live = false }
   }, [character])
   const guides = useMemo(() => (paths ?? []).map(makeStrokeGuide), [paths])
-  const hint = memoryHint(round) && round.completed < guides.length
+  const hint = memoryHint(round) && round.completed < guides.length && !teaching
   useEffect(() => { if (hint) totals.current.hinted = true }, [hint])
   useEffect(() => {
     if (!guides.length || round.completed < guides.length) return
     if (index + 1 < characters.length) { setIndex(index + 1); setRound({ ...newWritingRound(), phase: 2 }); return }
     if (!finished.current) { finished.current = true; onDone({ ...totals.current }) }
   }, [round.completed, guides.length, index, characters.length, onDone])
+  if (teaching && workspace) return <TeachCharacter key={character} character={character} workspace={workspace}
+    onTaught={() => { onTaught?.(character); setHandled(new Set([...handled, character])) }} onSkip={() => setHandled(new Set([...handled, character]))} />
   if (!characters.length) return <p className="small muted" role="status">There is no stroke guide for these characters. Write it on paper instead.</p>
   const done = finished.current
   const start = (event: ReactPointerEvent<SVGSVGElement>) => {

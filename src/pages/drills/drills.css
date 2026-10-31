@@ -105,3 +105,18 @@
 .dr-table td:last-child { white-space: nowrap; width: 1%; }
 .dr-table .button { min-height: 32px; padding: 4px 10px; }
 .dr .button-row { margin-top: 10px; }
+
+/* Nothing in Drills may push the page sideways: grid and flex children shrink, long names wrap. */
+.dr, .dr-columns > *, .dr-panel, .dr-run, .dr-source, .resume-list, .resume-row, .resume-main, .page-heading > div { min-width: 0; max-width: 100%; }
+.dr-source select { width: 100%; max-width: 100%; min-width: 0; text-overflow: ellipsis; }
+.dr-panel h2, .dr-rows strong, .dr-rows .small, .resume-main strong, .resume-main .small, .dr .page-heading h1, .dr .page-heading p, .dr-wrap, .back-link { overflow-wrap: anywhere; }
+.resume-main > div { min-width: 0; display: grid; }
+.dr-columns { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (max-width: 760px) { .dr-columns { grid-template-columns: minmax(0, 1fr); } }
+.dr-write-line { overflow-wrap: anywhere; }
+.dr-teach { display: grid; gap: 8px; min-width: 0; }
+.dr-order { display: grid; justify-items: center; gap: 8px; }
+.dr-order-text .dr-zh { font-size: 32px; }
+.dr-order-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.dr-order-svg { width: min(100%, 150px); }
+.dr-missed-chars { text-align: left; }
