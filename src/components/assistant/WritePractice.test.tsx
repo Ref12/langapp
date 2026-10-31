@@ -11,16 +11,18 @@ const source = (text: string) => ({ text, locale: 'zh-Hans' as const, title: 'Wo
 beforeEach(async () => { await db.delete(); await db.open(); await initializeWorkspace() })
 afterEach(() => { closeWritingSheet(); cleanup(); vi.unstubAllGlobals() })
 
+// The word rows wait on the dictionary's first load, which can take a few seconds on a busy CI runner.
+const ROWS_TIMEOUT = 10_000
+
 describe('Write mode of the Practice sheet', () => {
-  // Skipped 2026-10-31: flaky under CI load; the word rows did not appear within findByRole's 1 s timeout (deploy run 41188457783).
-  it.skip('offers Speak and Write, lists each word with pinyin and opens the writing sheet in place', async () => {
+  it('offers Speak and Write, lists each word with pinyin and opens the writing sheet in place', async () => {
     render(<PracticeSnippet source={source('\u5b66\u751f \u8001\u5e08')} />)
     fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     const write = await screen.findByRole('button', { name: 'Write' })
     expect(screen.getByRole('button', { name: 'Speak' })).toHaveAttribute('aria-pressed', 'true')
     fireEvent.click(write)
     const before = window.location.hash
-    const button = await screen.findByRole('button', { name: /Write \u5b66\u751f/ })
+    const button = await screen.findByRole('button', { name: /Write \u5b66\u751f/ }, { timeout: ROWS_TIMEOUT })
     expect(screen.queryByRole('link', { name: /Write / })).toBeNull()
     fireEvent.click(button)
     expect(getWritingSheet()).toMatchObject({ word: ['\u5b66', '\u751f'], index: 0, fromList: true })
@@ -33,7 +35,7 @@ describe('Write mode of the Practice sheet', () => {
     render(<PracticeSnippet source={source('\u5b66\u751f\uff0c\u8001\u5e08\u3002')} />)
     fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
     fireEvent.click(await screen.findByRole('button', { name: 'Write' }))
-    const links = await screen.findAllByRole('button', { name: /^Write \S/ })
+    const links = await screen.findAllByRole('button', { name: /^Write \S/ }, { timeout: ROWS_TIMEOUT })
     expect(links.map(link => link.textContent)).toEqual(['Write \u5b66\u751f', 'Write \u8001\u5e08'])
     fireEvent.click(links[1])
     expect(getWritingSheet()?.word.join('')).toBe('\u8001\u5e08')
