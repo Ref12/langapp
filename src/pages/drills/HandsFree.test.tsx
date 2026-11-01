@@ -24,7 +24,7 @@ beforeEach(async () => {
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.useRealTimers() })
 
-async function openRun(settings: Record<string, unknown> = { pause: 'short', repeats: 1, grammar: true, introductions: false }, extra: Record<string, unknown> = { started: true }) {
+async function openRun(settings: Record<string, unknown> = { pause: 'short', repeats: 1, sectionIntros: 'off' }, extra: Record<string, unknown> = { started: true }) {
   const now = Date.now()
   await db.handsfreeRuns.put({ id: 'run1', title: 'Hands-free · 1 Nov', refs, source: 'review', seed: 5, settings, status: 'active', started: false, position: 0, createdAt: now, updatedAt: now, ...extra } as never)
   window.location.hash = '#practice/handsfree/run1'
@@ -42,7 +42,7 @@ describe('Hands-free player', () => {
     await waitFor(() => expect(play).toBeEnabled())
     expect(phase()).toBe('Introducing 1 of 3')
     fireEvent.click(play)
-    await waitFor(() => expect(said[0]).toBe('This is how you say'))
+    await waitFor(() => expect(said[0]).toMatch(/^This is how you say, /))
     expect(await screen.findByRole('button', { name: 'Pause' })).toBeInTheDocument()
     await waitFor(() => expect(document.querySelector('.hf-prompt')).toHaveTextContent('我'), { timeout: 4000 })
     await advance(3500)
@@ -153,14 +153,14 @@ describe('Hands-free player', () => {
     fireEvent.click(start)
     await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/handsfree\//))
     const [run] = await db.handsfreeRuns.toArray()
-    expect(run).toMatchObject({ source: 'new', started: false, status: 'active', settings: { pause: 'normal', repeats: 3, grammar: true } })
+    expect(run).toMatchObject({ source: 'new', started: false, status: 'active', settings: { pause: 'normal', repeats: 3, itemWording: 'full', sectionIntros: 'full', emphasis: 'pauses' } })
     expect(run.addOnComplete?.length).toBeGreaterThan(0)
     expect(await db.knowledge.count()).toBe(before)
     expect(await createHandsfreeRun({ kind: 'new' })).toBeTruthy()
   })
 
   it('opens an unstarted run on the intro cards with an item list, and Start listening plays', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true, introductions: false }, {})
+    await openRun({ pause: 'short', repeats: 1, sectionIntros: 'off' }, {})
     render(<App />)
     const start = await screen.findByRole('button', { name: /Start listening/ })
     const list = await screen.findByLabelText('All items')
@@ -168,14 +168,14 @@ describe('Hands-free player', () => {
     await waitFor(() => expect(document.querySelectorAll('[data-unit]')).toHaveLength(3))
     expect(screen.queryByRole('button', { name: 'Play' })).toBeNull()
     fireEvent.click(start)
-    await waitFor(() => expect(said[0]).toBe('This is how you say'))
+    await waitFor(() => expect(said[0]).toMatch(/^This is how you say, /))
     expect(await screen.findByRole('button', { name: 'Pause' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Items/ })).toBeInTheDocument()
     expect((await db.handsfreeRuns.get('run1'))!.started).toBe(true)
   })
 
   it('goes straight to the player for a run that has started, with an Items button for the cards', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true, introductions: false }, { started: true, position: 1 })
+    await openRun({ pause: 'short', repeats: 1, sectionIntros: 'off' }, { started: true, position: 1 })
     render(<App />)
     expect(await screen.findByRole('button', { name: 'Resume' })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /Start listening/ })).toBeNull()
@@ -187,7 +187,7 @@ describe('Hands-free player', () => {
     let release: (() => void) | undefined
     vi.mocked(speech.playBrowserSpeechToEnd).mockImplementation((_id, text) => {
       said.push(text)
-      if (text !== '我') return Promise.resolve({ status: 'completed' })
+      if (!text.startsWith('This is how you say')) return Promise.resolve({ status: 'completed' })
       return new Promise(resolve => { release = () => resolve({ status: 'completed' }) })
     })
     await openRun()
@@ -197,22 +197,28 @@ describe('Hands-free player', () => {
     expect(document.querySelector('.hf-prompt')).toHaveTextContent('me')
     fireEvent.click(play)
     await waitFor(() => expect(said.length).toBeGreaterThan(0))
+    // the English frame is still being spoken: no Chinese or pinyin yet
     expect(screen.queryByTestId('hf-pinyin')).toBeNull()
     expect(document.querySelector('.hf-prompt')).not.toHaveTextContent('我')
+    release?.()
     await waitFor(() => expect(said).toContain('我'), { timeout: 4000 })
     expect(await screen.findByTestId('hf-pinyin')).toHaveTextContent('wǒ')
     expect(document.querySelector('.hf-prompt')).toHaveTextContent('我')
-    release?.()
   })
 
   it('shows the voice pickers and speeds in the page settings, and saves them with the run', async () => {
     await openRun()
     render(<App />)
     await screen.findByRole('button', { name: 'Play' })
-    expect(screen.queryByLabelText('Frame voice')).toBeNull()
+    expect(screen.queryByLabelText('English voice')).toBeNull()
     const dialog = await openSettings()
-    for (const name of ['Frame voice', 'Emphasis voice', 'Chinese voice']) expect(within(dialog).getByLabelText(name)).toBeInTheDocument()
-    expect(within(dialog).getByLabelText('Emphasis speed')).toHaveValue('0.8')
+    for (const name of ['English voice', 'Chinese voice']) expect(within(dialog).getByLabelText(name)).toBeInTheDocument()
+    // no separate emphasis voice; the emphasis speed only appears for Slower and louder
+    expect(within(dialog).queryByLabelText('Emphasis voice')).toBeNull()
+    expect(within(dialog).queryByLabelText('Emphasis speed')).toBeNull()
+    expect(within(dialog).queryByLabelText('Include grammar')).toBeNull()
+    fireEvent.change(within(dialog).getByLabelText('Emphasise the English word'), { target: { value: 'loud' } })
+    expect(await within(dialog).findByLabelText('Emphasis speed')).toHaveValue('0.8')
     expect(within(dialog).getByLabelText('Chinese speed')).toHaveValue('0.5')
     expect(within(dialog).getByLabelText('Repeats')).toHaveValue('1')
     fireEvent.change(within(dialog).getByLabelText('Emphasis speed'), { target: { value: '0.7' } })
@@ -227,13 +233,14 @@ describe('Hands-free player', () => {
     const details = panel.querySelector('details')!
     details.open = true
     fireEvent(details, new Event('toggle'))
-    for (const name of ['Frame voice', 'Emphasis voice', 'Chinese voice', 'Emphasis speed', 'Chinese speed']) expect(within(panel).getByLabelText(name)).toBeInTheDocument()
+    for (const name of ['English voice', 'Chinese voice', 'Chinese speed', 'Emphasise the English word']) expect(within(panel).getByLabelText(name)).toBeInTheDocument()
+    expect(within(panel).queryByLabelText('Emphasis voice')).toBeNull()
     fireEvent.change(within(panel).getByLabelText('Repeats'), { target: { value: '5' } })
     expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ repeats: 5 })
   })
 
   it('lists an unfinished run on Practice home, resumes it at the saved prompt, and discards it', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true, introductions: false }, { started: true, status: 'abandoned', position: 3 })
+    await openRun({ pause: 'short', repeats: 1, sectionIntros: 'off' }, { started: true, status: 'abandoned', position: 3 })
     window.location.hash = '#practice'
     render(<App />)
     const section = (await screen.findByRole('heading', { name: 'Unfinished sets' })).closest('section')!
@@ -265,7 +272,7 @@ describe('Hands-free player', () => {
 
   it('finishes a New items run with the added-items line, and adds them to the knowledge set once', async () => {
     const id = await createHandsfreeRun({ kind: 'new', count: 3 })
-    await db.handsfreeRuns.update(id, { settings: { pause: 'short', repeats: 1, grammar: false }, started: true })
+    await db.handsfreeRuns.update(id, { settings: { pause: 'short', repeats: 1, sectionIntros: 'off' }, started: true })
     const before = await db.knowledge.count()
     window.location.hash = '#practice/handsfree/' + id
     render(<App />)
@@ -281,32 +288,36 @@ describe('Hands-free player', () => {
   })
 
   it('shows the section introduction as the header until the first prompt, then the prompt', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true })
+    await openRun({ pause: 'short', repeats: 1 })
     render(<App />)
     const play = await screen.findByRole('button', { name: 'Play' })
     await waitFor(() => expect(play).toBeEnabled())
     fireEvent.click(play)
-    await waitFor(() => expect(said[0]).toMatch(/^In the following section you will hear the English meaning/))
-    await waitFor(() => expect(said).toContain('This is how you say'), { timeout: 4000 })
+    await waitFor(() => expect(said[0]).toMatch(/^Introducing new words\. You'll hear the English/))
+    await waitFor(() => expect(said.some(text => text.startsWith('This is how you say, '))).toBe(true), { timeout: 4000 })
     expect(document.querySelector('.hf-prompt')).not.toHaveClass('hf-section')
   })
 
-  it('has Section introductions and Explain each item in the page settings and in Settings, both on by default', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true })
+  it('has the item wording, section introductions and emphasis choices in the page settings and in Settings, Full, Full and Pauses only by default', async () => {
+    await openRun({ pause: 'short', repeats: 1 })
     render(<App />)
     await screen.findByRole('button', { name: 'Play' })
     const dialog = await openSettings()
-    for (const name of ['Section introductions', 'Explain each item']) expect(within(dialog).getByLabelText(name)).toBeChecked()
-    fireEvent.click(within(dialog).getByLabelText('Explain each item'))
-    await waitFor(() => expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ explain: false }))
-    await waitFor(async () => expect((await db.handsfreeRuns.get('run1'))!.settings).toMatchObject({ explain: false }))
+    expect(within(dialog).getByLabelText('Wording around each item')).toHaveValue('full')
+    expect(within(dialog).getByLabelText('Section introductions')).toHaveValue('full')
+    expect(within(dialog).getByLabelText('Emphasise the English word')).toHaveValue('pauses')
+    fireEvent.change(within(dialog).getByLabelText('Wording around each item'), { target: { value: 'abridged' } })
+    await waitFor(() => expect(within(dialog).getByLabelText('Wording around each item')).toHaveValue('abridged'))
+    fireEvent.change(within(dialog).getByLabelText('Section introductions'), { target: { value: 'header' } })
+    await waitFor(() => expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ itemWording: 'abridged', sectionIntros: 'header' }))
+    await waitFor(async () => expect((await db.handsfreeRuns.get('run1'))!.settings).toMatchObject({ itemWording: 'abridged', sectionIntros: 'header' }))
     cleanup()
     localStorage.removeItem('handsfree.settings')
     window.location.hash = '#settings'
     render(<App />)
     const panel = await screen.findByRole('region', { name: 'Hands-free settings' })
-    expect(within(panel).getByLabelText('Section introductions')).toBeChecked()
-    expect(within(panel).getByLabelText('Explain each item')).toBeChecked()
+    expect(within(panel).getByLabelText('Wording around each item')).toHaveValue('full')
+    expect(within(panel).getByLabelText('Section introductions')).toHaveValue('full')
   })
 
   it('opens the settings dialog from a button in the player, and closes it', async () => {
@@ -317,7 +328,7 @@ describe('Hands-free player', () => {
     expect(document.querySelector('section.hf-settings')).toBeNull()
     const dialog = await openSettings()
     expect(within(dialog).getByText('Changes apply from the next prompt.')).toBeInTheDocument()
-    for (const name of ['Pause length', 'Repeats', 'Section introductions', 'Explain each item']) expect(within(dialog).getByLabelText(name)).toBeInTheDocument()
+    for (const name of ['Pause length', 'Repeats', 'Section introductions', 'Wording around each item', 'Emphasise the English word']) expect(within(dialog).getByLabelText(name)).toBeInTheDocument()
     fireEvent.click(within(dialog).getByRole('button', { name: 'Close settings' }))
     expect(screen.queryByRole('dialog', { name: 'Hands-free settings' })).toBeNull()
   })
@@ -325,7 +336,7 @@ describe('Hands-free player', () => {
   it('applies a changed Repeats from the next prompt of a run in progress, and resumes at the matching prompt', async () => {
     const { buildRunScript } = await import('../../core/handsfree/store')
     const { promptKeyAt, findPrompt } = await import('../../core/handsfree/script')
-    await openRun({ pause: 'short', repeats: 1, grammar: true, introductions: false }, { started: true, position: 1 })
+    await openRun({ pause: 'short', repeats: 1, sectionIntros: 'off' }, { started: true, position: 1 })
     const before = (await buildRunScript((await db.handsfreeRuns.get('run1'))!)).script
     render(<App />)
     await screen.findByRole('button', { name: 'Resume' })

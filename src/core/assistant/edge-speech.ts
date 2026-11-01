@@ -105,7 +105,7 @@ function textChunks(text: string): string[] {
 
 export function startEdgeSpeech(
   text: string, preference: EdgeVoicePreference, locale: SpeechLocale, rate: number,
-  phase: (value: EdgePlaybackPhase) => void, anyRate = false,
+  phase: (value: EdgePlaybackPhase) => void, anyRate = false, volume = 1,
 ): EdgeSpeechPlayback {
   const controller = new AbortController()
   let element: HTMLAudioElement | undefined
@@ -148,6 +148,7 @@ export function startEdgeSpeech(
     controller.signal.addEventListener('abort', abort, { once: true })
     try {
       const audio = new Audio()
+      audio.volume = Math.max(0, Math.min(1, volume))
       element = audio
       objectUrl = URL.createObjectURL(blob)
       audio.src = objectUrl

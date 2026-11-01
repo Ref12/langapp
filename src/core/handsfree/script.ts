@@ -1,14 +1,15 @@
-import { DEFAULT_EMPHASIS_RATE, DEFAULT_ZH_RATE, type HandsfreeSettings } from './contracts'
+import { DEFAULT_EMPHASIS_RATE, DEFAULT_ZH_RATE, FRAME_VOLUME, normalizeHandsfreeSettings, type HandsfreeSettings } from './contracts'
 
 /** One item of the run as the script needs it: Chinese form, English gloss and what kind of item it is. */
-export interface ScriptItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; en: string }
+/** `example` is the English of a short sentence that uses a vocabulary word ("Let's rest."), spoken as "as in ..." in the full item wording. */
+export interface ScriptItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; en: string; example?: string }
 /** A grammar pattern's example sentence from the catalog, by the pattern's ref. */
 export interface ScriptSentence { zh: string; en: string }
 
 export type PromptAct = 'intro' | 'toEnglish' | 'toChinese'
 export type Phase = 'intro' | 'recall' | 'scramble' | 'grammar' | 'mixed'
 export type Segment =
-  | { kind: 'say'; locale: 'en-US' | 'zh-Hans'; text: string; rate: number; /** Part of a section introduction: shown on screen as the section header until the first prompt is spoken. */ section?: boolean; /** Which voice speaks it: the English frame, the English key word, or Chinese. */ voice: 'frame' | 'emphasis' | 'zh'; /** The English answer to a Chinese prompt: the display shows it when this starts, not before. */ answer?: boolean }
+  | { kind: 'say'; locale: 'en-US' | 'zh-Hans'; text: string; rate: number; /** 0 to 1; unset is full volume. The English frame is quieter than its key word only when the key word is its own utterance (emphasis Slower and louder). */ volume?: number; /** Part of a section introduction: shown on screen as the section header (`header`, with `detail` under it) until the first prompt is spoken. */ section?: boolean; header?: string; detail?: string; /** Which voice speaks it: the one English voice, or Chinese. */ voice: 'frame' | 'zh'; /** The English answer to a Chinese prompt: the display shows it when this starts, not before. */ answer?: boolean }
   /** `ms` is the estimate. With `measure`, the player also times the model text it has just spoken and waits whichever is longer: that time x `factor` + `gap`, or `ms`. */
   | { kind: 'pause'; ms: number; measure?: { factor: number; gap: number } }
   | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string; /** The item this prompt practises and how, for practice counts (see ACTIVITY in skill-map). */ ref?: string; act?: PromptAct }
@@ -19,28 +20,36 @@ export interface Script {
   promptStarts: number[]
 }
 
+/** The short spoken and on-screen header of each section: 2 to 4 words. */
+export const SECTION_HEADER: Record<Phase, string> = { intro: 'Introducing new words', recall: 'Recall in order', scramble: 'Mixed-order recall', grammar: 'Grammar patterns', mixed: 'Final mix' }
 export const PHASE_LABEL: Record<Phase, string> = { intro: 'Introducing', recall: 'Recall', scramble: 'Scrambled recall', grammar: 'Grammar', mixed: 'Mixed round' }
 /** The Chinese speed the estimate of a syllable's time (500 ms) is calibrated to; slower speech is estimated longer. */
 export const ZH_REFERENCE_RATE = 0.85
 /** The gap between the frame and the key word, in ms. */
 export const FRAME_GAP_MS = 300
 export const SECTION_GAP_MS = 600
-/** What each section is and what you do in it, spoken by the frame voice and shown as the section header. */
+/** What each section contains and what you do in it: spoken after the header in the Full section introductions, and shown under it. */
 export const SECTION_INTRO: Record<Phase, string> = {
-  intro: 'In the following section you will hear the English meaning followed by its Mandarin equivalent. Repeat the Mandarin, building up to the full phrase.',
-  recall: "Now you'll hear the English. Say the Mandarin before you hear it.",
-  scramble: 'Now in random order, in both directions. Answer before you hear it.',
-  grammar: "Now a grammar pattern. You'll hear an example sentence in English, then in Mandarin. Repeat it, building up to the full sentence.",
-  mixed: "Last, words and sentences together, in random order and in both directions. Answer before you hear it.",
+  intro: "You'll hear the English, then the Mandarin. Repeat the Mandarin, building up to the full phrase.",
+  recall: "You'll hear the English. Say the Mandarin before you hear it.",
+  scramble: 'In random order, in both directions. Answer before you hear it.',
+  grammar: "You'll hear an example sentence in English, then in Mandarin. Repeat it, building up to the full sentence.",
+  mixed: 'Words and sentences together, in random order and in both directions. Answer before you hear it.',
 }
+/** A usage example longer than this many words is not spoken: it would bury the word it is for. */
+export const MAX_EXAMPLE_WORDS = 8
 const SPEAKABLE = /[\p{L}\p{N}]/u
-const EDGE_PUNCTUATION = /^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu
 /** Gaps added after twice the spoken length of an answer, per pause length. */
 export const GAP_MS = { short: 800, normal: 1500, long: 2600 }
 export const SCALE = { short: 0.7, normal: 1, long: 1.4 }
 const ZH_SYLLABLE_MS = 500
 const EN_WORD_MS = 420
 export const SPACING = [1, 3, 6] as const
+
+/** A usable usage example: present and short enough not to bury its word. */
+const usable = (example: string | undefined) => !!example && example.trim().split(/\s+/).length <= MAX_EXAMPLE_WORDS
+/** The first clause of an explanation: "It's a measure word, used for ..." is "It's a measure word." */
+const firstClause = (text: string) => { const first = text.split(/[,;:(]/)[0].trim().replace(/[.。]+$/, ''); return first ? `${first}.` : text }
 
 const HAN = /\p{Script=Han}/u
 /** Chinese characters of a text, punctuation left out: one per syllable. */
@@ -90,21 +99,20 @@ function shuffle<T>(list: readonly T[], random: () => number): T[] {
 }
 
 /** `description` is set for descriptive items (particles, measure words): `en` is then the whole gloss. */
-interface Word { zh: string; en: string; description?: string; ref?: string }
+interface Word { zh: string; en: string; description?: string; ref?: string; /** A short English sentence using the word; spoken as "as in" in the full wording. */ example?: string }
 type Card = { text: Word; dir: 'e2z' | 'z2e' }
 
 export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonly<Record<string, ScriptSentence | undefined>>, settings: HandsfreeSettings, seed: number): Script {
   const random = rng(seed)
   const zhRate = settings.zhRate ?? DEFAULT_ZH_RATE
   const emphasisRate = settings.emphasisRate ?? DEFAULT_EMPHASIS_RATE
-  const introductions = settings.introductions !== false
-  const explain = settings.explain !== false
+  const { itemWording: wording, sectionIntros, emphasis } = normalizeHandsfreeSettings(settings)
+  const loud = emphasis === 'loud'
   // Characters-only items (no Chinese or no English to say) are left out.
   const words: Word[] = items.filter(item => item.kind !== 'grammar' && syllables(item.zh).length && (introExplanation(item) ? item.en.trim() : shortGloss(item.en)))
-    .map((item): Word => { const description = introExplanation(item); return description ? { zh: item.zh, en: asDescription(item.en), description, ref: item.ref } : { zh: item.zh, en: shortGloss(item.en), ref: item.ref } })
-  const sentences: Word[] = settings.grammar
-    ? items.flatMap(item => { const found = item.kind === 'grammar' ? sentenceOf[item.ref] : undefined; return found && syllables(found.zh).length && found.en.trim() ? [{ zh: found.zh, en: found.en.trim(), ref: item.ref }] : [] })
-    : []
+    .map((item): Word => { const description = introExplanation(item); return description ? { zh: item.zh, en: asDescription(item.en), description, ref: item.ref } : { zh: item.zh, en: shortGloss(item.en), ref: item.ref, ...(usable(item.example) ? { example: item.example!.trim() } : {}) } })
+  // Grammar is part of the lesson: a pattern in the set always has its phase when the catalog has a sentence for it.
+  const sentences: Word[] = items.flatMap(item => { const found = item.kind === 'grammar' ? sentenceOf[item.ref] : undefined; return found && syllables(found.zh).length && found.en.trim() ? [{ zh: found.zh, en: found.en.trim(), ref: item.ref }] : [] })
 
   const segments: Segment[] = []
   const promptStarts: number[] = []
@@ -115,21 +123,32 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   /** Nothing is spoken that has no letters or Chinese characters in it: the voice would read "?" or ":" aloud. */
   const speakable = (text: string) => SPEAKABLE.test(text)
   const say = (segment: Extract<Segment, { kind: 'say' }>) => { if (speakable(segment.text)) segments.push(segment) }
-  /** A frame piece beside the gloss: leading and trailing punctuation is dropped ("in Mandarin:" is said "in Mandarin", "?" is not said). */
-  const sayFrame = (text: string) => say({ kind: 'say', locale: 'en-US', text: text.replace(EDGE_PUNCTUATION, ''), rate: 1, voice: 'frame' })
-  /** The English key word or explanation: its own voice, slower. */
-  const sayKey = (text: string, answer = false) => say({ kind: 'say', locale: 'en-US', text, rate: emphasisRate, voice: 'emphasis', ...(answer ? { answer: true } : {}) })
+  /** One English utterance, in the one English voice. */
+  const sayEn = (text: string, options: { rate?: number; volume?: number; answer?: boolean } = {}) => say({ kind: 'say', locale: 'en-US', text, rate: options.rate ?? 1, voice: 'frame', ...(options.volume !== undefined ? { volume: options.volume } : {}), ...(options.answer ? { answer: true } : {}) })
+  /** The English key word on its own (an answer or an explanation): slower and louder when emphasis asks for it, else plain. */
+  const sayKey = (text: string, answer = false) => loud ? sayEn(text, { rate: emphasisRate, volume: 1, answer }) : sayEn(text, { answer })
   const sayZh = (text: string, rate = zhRate) => say({ kind: 'say', locale: 'zh-Hans', text, rate, voice: 'zh' })
-  /** A frame, a short gap, the key, a gap, and the rest of the frame: "This is how you say" / rest / "in Mandarin:". */
-  const framed = (before: string, key: string, after: string, keep = false) => { if (!explain && !keep) { sayKey(key); return } if (speakable(before)) { sayFrame(before); gap() } sayKey(key); if (speakable(after)) { gap(); sayFrame(after) } }
+  /**
+   * A frame around the English key: "This is how you say, rest. In Mandarin." Normally ONE utterance, so the voice does not wind up again for each piece
+   * and the commas and full stops make the pauses; the key is stressed by those pauses alone. (Commas and full stops give a clear, short pause in Chrome's
+   * voices; an ellipsis is read inconsistently, and a lone "?" or ":" piece is read aloud, so there are none.) With emphasis Slower and louder the key is its own
+   * utterance, at the emphasis speed and full volume, and the frame around it is quieter.
+   */
+  const frame = (lead: string, keyText: string, mark: '.' | '?', tail = '') => {
+    const key = keyText.replace(/[.!?。]+$/, '')
+    if (!loud) { sayEn(`${lead}, ${key}${mark}${tail ? ` ${tail}` : ''}`); return }
+    sayEn(lead, { volume: FRAME_VOLUME }); gap(); sayKey(key); if (tail) { gap(); sayEn(tail, { volume: FRAME_VOLUME }) }
+  }
   const introduced = new Set<Phase>()
   const mark = (phase: Phase, index: number, total: number, prompt: string, item?: Word, act?: PromptAct) => {
     promptStarts.push(segments.length)
     segments.push({ kind: 'marker', phase, index, total, prompt, ...(item?.ref && act ? { ref: item.ref, act } : {}) })
-    // The first prompt of a section starts with what the section is and what to do.
-    if (introductions && !introduced.has(phase) && index === 1) {
+    // The first prompt of a section starts with its short header and, in Full, what it contains and what to do. Header only says the header; Off says nothing.
+    if (sectionIntros !== 'off' && !introduced.has(phase) && index === 1) {
       introduced.add(phase)
-      say({ kind: 'say', locale: 'en-US', text: SECTION_INTRO[phase], rate: 1, voice: 'frame', section: true })
+      const header = SECTION_HEADER[phase]
+      const detail = SECTION_INTRO[phase]
+      say({ kind: 'say', locale: 'en-US', text: sectionIntros === 'full' ? `${header}. ${detail}` : `${header}.`, rate: 1, voice: 'frame', section: true, header, ...(sectionIntros === 'full' ? { detail } : {}) })
       segments.push({ kind: 'pause', ms: SECTION_GAP_MS })
     }
   }
@@ -152,19 +171,30 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     buildUp(zh, steps)
     for (let again = 1; again < settings.repeats; again++) repeatAfter(zh)
   }
-  /** The question for a word: how to say it, or for a descriptive item which word has that description. */
+  /** The question for a word: how to say it, or for a descriptive item which word has that description. Abridged is "English, rest."; Off is the bare gloss. */
   const ask = (word: Word, lead = '') => {
     if (word.description) {
       const article = /^(an?|the) /i.test(word.en) ? '' : /^[aeiou]/i.test(word.en) ? 'an ' : 'a '
-      framed(`${lead}Which word is ${article}`.trimEnd(), `${word.en.charAt(0).toLowerCase()}${word.en.slice(1)}`, '?', true)
-    } else framed(`${lead ? 'And how' : 'How'} do you say`, word.en, '?')
+      const description = `${word.en.charAt(0).toLowerCase()}${word.en.slice(1)}`
+      if (wording === 'full') sayEn(`${lead}Which word is ${article}${description}?`)
+      else if (wording === 'abridged') frame('English', description, '.')
+      else sayKey(description)
+    } else if (wording === 'off') sayKey(word.en)
+    else if (wording === 'abridged') frame('English', word.en, '.')
+    else frame(`${lead ? 'And how' : 'How'} do you say`, word.en, '?')
     pause(word.zh, 'zh-Hans')
   }
-  /** Chinese to English: a descriptive item is asked what it does, and answered with its explanation. */
+  /** Chinese to English: just the Chinese, then the pause ("English?" would only add a start-up delay). A descriptive item is asked what it does, and answered with its explanation. */
   const askBack = (word: Word) => {
-    if (word.description) { sayFrame('What does'); sayZh(word.zh); sayFrame('do?') } else sayZh(word.zh)
+    if (word.description && wording === 'full') { sayEn('What does'); sayZh(word.zh); sayEn('do?') } else sayZh(word.zh)
     pause(word.en, 'en-US')
     sayKey(word.description ?? word.en, true)
+  }
+  /** The line before the Chinese when an item is introduced. Full adds a usage example where the word has a short one. */
+  const introLine = (en: string, example?: string) => {
+    if (wording === 'off') sayKey(en)
+    else if (wording === 'abridged') frame('English', en, '.', 'Mandarin.')
+    else frame('This is how you say', en, '.', `${example ? `As in, ${example.replace(/[.!?。\s]+$/, '')}. ` : ''}In Mandarin.`)
   }
   const answer = (word: Word) => repeatAfter(word.zh)
   const playCard = (card: Card, index: number, total: number, phase: Phase) => {
@@ -177,11 +207,12 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     const total = words.length
     mark('intro', at + 1, total, word.en, word, 'intro')
     if (word.description) {
-      if (explain) sayFrame("Here's"); repeatAfter(word.zh, zhRate); sayKey(word.description)
+      if (wording !== 'off') sayEn("Here's")
+      repeatAfter(word.zh, zhRate); sayKey(wording === 'abridged' ? firstClause(word.description) : word.description)
       buildUp(word.zh, syllables(word.zh).length)
       for (let again = 1; again < Math.max(2, settings.repeats); again++) repeatAfter(word.zh)
     } else {
-      framed('This is how you say', word.en, 'in Mandarin:')
+      introLine(word.en, word.example)
       teach(word.zh, syllables(word.zh).length)
     }
     if (at > 0) {
@@ -201,7 +232,7 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   // 4. Grammar, only when the set has a pattern with a catalog sentence: the same whole, build-up, repeats structure.
   sentences.forEach((sentence, at) => {
     mark('grammar', at + 1, sentences.length, sentence.en, sentence, 'intro')
-    framed('This is how you say', sentence.en, 'in Mandarin:')
+    introLine(sentence.en)
     teach(sentence.zh, 3)
     mark('grammar', at + 1, sentences.length, sentence.en, sentence, 'toChinese')
     ask(sentence); answer(sentence)

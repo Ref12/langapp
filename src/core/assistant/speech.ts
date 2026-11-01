@@ -29,6 +29,8 @@ export interface SpeechOptions {
   voice?: SpeechVoicePreference
   /** Honour `rate` for English too (it is otherwise spoken at its own pace). */
   anyRate?: boolean
+  /** 0 to 1; unset is full volume. */
+  volume?: number
 }
 export type PlaybackOutcome = { status: 'completed' | 'cancelled' } | { status: 'error'; error: string }
 
@@ -270,7 +272,7 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
     if (voice) utterance.voice = voice
     utterance.lang = voice ? voiceLocale(voice.lang)!.tag.toString() : locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
     utterance.rate = (locale === 'en-US' && !request.options?.anyRate) || !Number.isFinite(rate) ? 1 : Math.max(0.1, Math.min(10, rate))
-    utterance.volume = 1
+    utterance.volume = Number.isFinite(request.options?.volume) ? Math.max(0, Math.min(1, request.options!.volume!)) : 1
     if (warmth?.key !== warmKey || idleMs < 0 || idleMs >= speechWarmIdleMs) {
       warmup = new SpeechSynthesisUtterance(locale === 'zh-Hans' ? '准备好了。' : 'Ready to begin.')
       if (voice) warmup.voice = voice
@@ -421,7 +423,7 @@ function beginBrowserSpeech(
     current = request
     request.edge = startEdgeSpeech(text, selected, locale, rate, phase => {
       if (current === request) publish({ activeId: id, phase, voiceKind: 'edge' })
-    }, options?.anyRate)
+    }, options?.anyRate, options?.volume)
     void request.edge.done.then(outcome => {
       if (current !== request) return
       if (outcome.status === 'error') {

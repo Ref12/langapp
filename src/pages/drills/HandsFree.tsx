@@ -5,7 +5,7 @@ import { db } from '../../core/database'
 import { EmptyState, PageHeading, type PageProps } from '../../components/shared'
 import { useCatalog } from '../../components/study/useCatalog'
 import { HandsfreeSettingsForm } from '../../components/handsfree/HandsfreeSettingsForm'
-import { type HandsfreeRun, type HandsfreeSettings } from '../../core/handsfree/contracts'
+import { normalizeHandsfreeSettings, type HandsfreeRun, type HandsfreeSettings } from '../../core/handsfree/contracts'
 import { buildRunScript, completeHandsfreeRun, saveHandsfreeSettings, updateHandsfreeRun } from '../../core/handsfree/store'
 import { addedLine } from '../../core/handsfree/summary'
 import { resolveVoices } from '../../core/handsfree/voices'
@@ -26,7 +26,7 @@ const TICK_MS = 100
 const HAN_TEXT = /\p{Script=Han}/u
 
 /** What has been spoken of the current prompt's answer: Chinese (shown with pinyin) from the moment it starts, or the English answer. */
-interface Heard { zh?: string; en?: string; /** The section introduction being spoken: shown as the header until the first prompt. */ section?: string }
+interface Heard { zh?: string; en?: string; /** The section introduction being spoken: shown as the header until the first prompt. */ section?: string; /** What the section contains, under its header (the Full section introductions). */ detail?: string }
 const hasHan = (text: string) => HAN_TEXT.test(text)
 
 /** The player's display, also the pocket-mode screen: the phase, the prompt, then the answer once it is being spoken. */
@@ -37,6 +37,7 @@ function Display({ phase, prompt, heard, done, total, position, added, className
     <p className="hf-phase" role="status">{phase}</p>
     {!done && zh && !hasHan(prompt) && prompt && <p className="hf-cue">{prompt}</p>}
     <p className={'hf-prompt' + (heard.section && !done ? ' hf-section' : '')} lang={!done && hasHan(main) ? 'zh-Hans' : undefined}>{main}</p>
+    {!done && heard.section && heard.detail && <p className="hf-cue" data-testid="hf-section-detail">{heard.detail}</p>}
     {!done && zh && <p className="hf-pinyin" data-testid="hf-pinyin">{toPinyin(zh, { toneType: 'symbol' })}</p>}
     {!done && heard.en && <p className="hf-answer" data-testid="hf-answer">{heard.en}</p>}
     {done && added && <p className="hf-added" role="status">{added}</p>}
@@ -52,7 +53,7 @@ export function HandsFree({ runId, ...props }: PageProps & { runId?: string }) {
   return <Player key={run.id} hf={run} {...props} />
 }
 
-const settingsKey = (settings: HandsfreeSettings) => `${settings.repeats}:${settings.grammar}:${settings.introductions}:${settings.explain}:${settings.emphasisRate}:${settings.zhRate}`
+const settingsKey = (settings: HandsfreeSettings) => (() => { const s = normalizeHandsfreeSettings(settings); return `${s.repeats}:${s.itemWording}:${s.sectionIntros}:${s.emphasis}:${s.emphasisRate}:${s.zhRate}` })()
 
 function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { hf: HandsfreeRun }) {
   const { catalog } = useCatalog()
@@ -114,9 +115,9 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
         }
         void updateHandsfreeRun(runId, { status: 'active', ...(next.status === 'playing' ? { started: true } : {}), position: next.prompt })
       }
-    }, startRef.current, () => resolveVoices(voicesRef.current.settings, voicesRef.current.saved, typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices() : []),
+    }, startRef.current, () => resolveVoices(voicesRef.current.settings, voicesRef.current.saved),
     // The answer shows only when its segment starts: Chinese with pinyin, or the English answer to a Chinese prompt.
-    segment => setHeard(before => !segment ? (before.zh || before.en || before.section ? {} : before) : segment.section ? { section: segment.text } : segment.locale === 'zh-Hans' ? { zh: segment.text } : segment.answer ? { ...before, en: segment.text } : before.section ? {} : before))
+    segment => setHeard(before => !segment ? (before.zh || before.en || before.section ? {} : before) : segment.section ? { section: segment.header ?? segment.text, ...(segment.detail ? { detail: segment.detail } : {}) } : segment.locale === 'zh-Hans' ? { zh: segment.text } : segment.answer ? { ...before, en: segment.text } : before.section ? {} : before))
     playerRef.current = player
     return () => {
       const at = player.state()

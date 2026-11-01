@@ -1,5 +1,5 @@
 import { db } from '../database'
-import { loadCatalog } from '../study/catalog'
+import { loadCatalog, type Catalog } from '../study/catalog'
 import { chooseRefs, shortDate, type DrillSource } from '../drills/store'
 import { catalogSentence, loadItems } from '../drills/items'
 import { promoteItems } from '../collections/store'
@@ -92,6 +92,25 @@ export async function completeHandsfreeRun(id: string, position: number, now = D
   }
 }
 
+/**
+ * The English of the shortest authored example that uses a vocabulary word ("Let's rest."), preferring an example in the word's own lesson group and then any group.
+ * Ties go to the earlier example, so the choice is stable. Whether it is short enough to speak is the script's call.
+ */
+export function exampleFor(catalog: Catalog, ref: string): { example?: string } {
+  const words = (text: string) => text.trim().split(/\s+/).length
+  const best = (groups: readonly Catalog['orderedGroups'][number][]) => {
+    let found: string | undefined
+    for (const { group } of groups) for (const example of group.examples) {
+      if (!example.translation.trim() || !example.segments.some(segment => `vocabulary:${segment.word}` === ref)) continue
+      if (found === undefined || words(example.translation) < words(found)) found = example.translation.trim()
+    }
+    return found
+  }
+  const own = catalog.orderedGroups.filter(({ group }) => group.units.some(unit => unit.ref === ref))
+  const example = best(own) ?? best(catalog.orderedGroups)
+  return example ? { example } : {}
+}
+
 /** The run's script: its items from the catalog, grammar sentences from the catalog examples. */
 export async function buildRunScript(run: HandsfreeRun): Promise<{ script: Script; items: ScriptItem[] }> {
   const catalog = await loadCatalog()
@@ -101,6 +120,6 @@ export async function buildRunScript(run: HandsfreeRun): Promise<{ script: Scrip
     const sentence = item.kind === 'grammar' ? catalogSentence(catalog, item) : undefined
     if (sentence) sentences[item.ref] = { zh: sentence.zh, en: sentence.en }
   }
-  const items: ScriptItem[] = found.map(item => ({ ref: item.ref, kind: item.kind, zh: item.zh, en: item.en }))
+  const items: ScriptItem[] = found.map(item => ({ ref: item.ref, kind: item.kind, zh: item.zh, en: item.en, ...(item.kind === 'vocabulary' ? exampleFor(catalog, item.ref) : {}) }))
   return { script: generateScript(items, sentences, run.settings, run.seed), items }
 }

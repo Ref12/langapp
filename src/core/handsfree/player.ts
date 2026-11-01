@@ -74,7 +74,7 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
       if (segment.kind === 'pause') { timer = setTimeout(() => step(index + 1), pauseLength(segment, lastSpoken)); return }
       onSpeak(segment)
       const began = Date.now()
-      void playBrowserSpeechToEnd(id, segment.text, segment.locale, segment.rate, { voice: getVoices()[segment.voice], anyRate: true }).then(result => {
+      void playBrowserSpeechToEnd(id, segment.text, segment.locale, segment.rate, { voice: getVoices()[segment.voice], anyRate: true, ...(segment.volume !== undefined ? { volume: segment.volume } : {}) }).then(result => {
         if (request !== version) return
         if (result.status === 'completed') { lastSpoken = Date.now() - began; timer = setTimeout(() => step(index + 1), 0) }
         else if (result.status === 'error') publish({ status: 'error', prompt, error: result.error })
