@@ -26,7 +26,7 @@ describe('adding a media line to a study set', () => {
     await user.click(screen.getByRole('button', { name: 'Save' }))
     await waitFor(async () => expect(await db.collections.count()).toBe(1))
     expect(await db.collections.toArray()).toMatchObject([{ name: 'Knight', subtitle: '大婚撞破未婚夫', kind: 'user' }])
-    expect(await db.collectionItems.count()).toBeGreaterThan(0)
+    await waitFor(async () => expect(await db.collectionItems.count()).toBeGreaterThan(0))
   })
 
   it('adds to an existing set picked from the list', async () => {
