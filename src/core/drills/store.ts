@@ -1,7 +1,8 @@
 import { db } from '../database'
 import { loadCatalog } from '../study/catalog'
 import { cardId, isSourceRef, type StudyCard } from '../study/contracts'
-import { addUnits, dueCards, DOMAIN, nextGroup } from '../study/knowledge'
+import { addUnits, dueCards, DOMAIN } from '../study/knowledge'
+import { fillByWords, NEW_COUNT_DEFAULT } from '../study/daily'
 import { schedule, type SchedulingState } from '../study/fsrs'
 import { reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
@@ -12,13 +13,12 @@ import { cancelContent, startContent } from './content'
 import { worstMark } from './write-queue'
 import { MARK_RATING, drillSetSchema, type DrillFormat, type DrillSet, type DrillTypeId, type Mark } from './contracts'
 
-export const NEW_SET_SIZE = 10
 export const REVIEW_SET_SIZE = 12
 export const STUDY_SET_LIMIT = 40
 /** Unfinished sets kept at once; starting another quietly sets the oldest untouched one aside. */
 export const MAX_UNFINISHED_SETS = 8
 
-export type DrillSource = { kind: 'new'; from?: string } | { kind: 'review'; from?: string } | { kind: 'study-set'; collectionId: string }
+export type DrillSource = { kind: 'new'; from?: string; /** How many new words the set holds (1 to 20, default 5); grammar comes along. */ count?: number } | { kind: 'review'; from?: string } | { kind: 'study-set'; collectionId: string }
   /** An explicit list of items drilled again, from a past lesson (its session id) or an earlier drill set (its id). */
   | { kind: 'refs'; refs: readonly string[]; origin: { kind: 'lesson' | 'drill'; id: string } }
 
@@ -60,10 +60,11 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
     if (!cards.length) throw new Error(known.size ? 'Nothing is due for review right now.' : 'Your knowledge set is empty. Start with New items, or add items from the Dictionary.')
     return { refs: cards.map(card => card.ref), title: `Reviews · ${shortDate(now)}` }
   }
+  const count = Math.min(20, Math.max(1, source.kind === 'new' ? source.count ?? NEW_COUNT_DEFAULT : NEW_COUNT_DEFAULT))
   if (source.kind === 'new' && !source.from) {
-    const next = nextGroup(catalog, known)
-    if (!next) throw new Error('Every available curriculum group is already in your knowledge set.')
-    return { refs: next.newUnits.slice(0, NEW_SET_SIZE).map(unit => unit.ref), title: `New items · ${shortDate(now)}` }
+    const refs = fillByWords(catalog, known, count)
+    if (!refs.length) throw new Error('Every available curriculum group is already in your knowledge set.')
+    return { refs, title: `New items · ${shortDate(now)}` }
   }
   const collectionId = source.kind === 'new' ? source.from! : source.collectionId
   const collection = await db.collections.get(collectionId)
@@ -71,7 +72,14 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
   const items = (await db.collectionItems.where('collectionId').equals(collectionId).toArray()).sort((a, b) => a.addedAt - b.addedAt)
   if (source.kind === 'new') {
     const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))
-    const fresh = items.filter(item => isPhraseRef(item.ref) ? !(cards.get(item.ref)?.reps) : !known.has(item.ref)).slice(0, NEW_SET_SIZE)
+    const fresh = items.filter(item => isPhraseRef(item.ref) ? !(cards.get(item.ref)?.reps) : !known.has(item.ref))
+    const picked: typeof fresh = []
+    let words = 0
+    for (const item of fresh) {
+      if (!item.ref.startsWith('grammar:')) { if (words >= count) continue; words++ }
+      picked.push(item)
+    }
+    fresh.splice(0, fresh.length, ...picked)
     if (!fresh.length) throw new Error(`Every item in this study set is already in your knowledge set.`)
     return { refs: fresh.map(item => item.ref), title: `New items · ${shortDate(now)}`, collectionId, promote: fresh.map(item => item.id) }
   }

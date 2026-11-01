@@ -6,16 +6,18 @@ import { navigate } from '../../core/routing'
 import { itemCount } from '../../core/collections/terms'
 import { TERM } from '../../core/collections/terms'
 import { useCatalog } from '../../components/study/useCatalog'
+import { KnowledgeCounts } from '../../components/study/KnowledgeCounts'
 import { UnitCard } from '../../components/study/UnitCard'
 import { useAIConnection } from '../../components/study/useAIConnection'
 import { EmptyState, PageHeading, type PageProps } from '../../components/shared'
 import { cardId } from '../../core/study/contracts'
 import { DOMAIN, groupProgress, nextGroup } from '../../core/study/knowledge'
+import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByWords, loadNewCount, saveNewCount } from '../../core/study/daily'
 import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems } from '../../core/drills/write-queue'
-import { MAX_UNFINISHED_SETS, NEW_SET_SIZE, createDrillSet, discardDrillSet, finishDrillSet, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
+import { MAX_UNFINISHED_SETS, createDrillSet, discardDrillSet, finishDrillSet, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
 import { createHandsfreeRun } from '../../core/handsfree/store'
 import { availability } from './tasks'
@@ -182,14 +184,21 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const next = catalog ? nextGroup(catalog, known) : undefined
   const progress = catalog ? groupProgress(catalog, known) : undefined
   const fromSet = from !== CURRICULUM ? collections.find(entry => entry.id === from) : undefined
+  const [count, setCountState] = useState(loadNewCount)
+  const [typed, setTyped] = useState(String(count))
+  const setCount = (value: number) => { const next = clampCount(value); setCountState(next); setTyped(String(next)); saveNewCount(next) }
+  const batch = catalog && !fromSet && next ? fillByWords(catalog, known, count) : []
+  const batchCounts = countItems(batch.map(ref => ({ kind: ref.startsWith('grammar:') ? 'grammar' as const : 'vocabulary' as const })))
   const fresh = fromSet ? collectionItems.filter(item => item.collectionId === fromSet.id && !known.has(item.ref)).length : next?.newUnits.length ?? 0
   const inFrom = fromSet ? new Set(collectionItems.filter(item => item.collectionId === fromSet.id).map(item => item.ref)) : undefined
   const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref))).length
-  const breakdown = catalog && !fromSet && next ? (() => { const text = describeItems(next.newUnits.slice(0, NEW_SET_SIZE).map(unit => unit.kind === 'vocabulary' ? { kind: 'vocabulary' as const, zh: unit.record.ch } : { kind: 'grammar' as const, zh: unit.record.pt }), workspace.characterStates); return text ? ` (${text})` : '' })() : ''
+  const breakdown = catalog && !fromSet && next ? (() => { const text = describeItems(batch.flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit.kind === 'vocabulary' ? { kind: 'vocabulary' as const, zh: unit.record.ch } : { kind: 'grammar' as const, zh: unit.record.pt }] : [] }), workspace.characterStates); return text ? ` (${text})` : '' })() : ''
+  const newSource = (): DrillSource => ({ kind: 'new', count, ...(fromSet ? { from: fromSet.id } : {}) })
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
   const startHandsfree = (source: DrillSource) => void run(async () => { navigate(`practice/handsfree/${await createHandsfreeRun(source)}`) })
   return <div className="dr">
     <PageHeading eyebrow="Study" title={DRILLS_LABEL}>Practice sets of words and grammar patterns. Pick a type, do every item, pick another.</PageHeading>
+    <KnowledgeCounts knowledge={workspace.knowledge} />
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
     <div className="dr-from dr-from-top"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
@@ -197,15 +206,17 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     <section className="panel dr-panel dr-programs" aria-labelledby="dr-programs"><h2 id="dr-programs">Programs</h2>
       <ul className="dr-rows">
         <li><div><strong>Hands-free</strong><span className="small muted">Listen and answer aloud, with no screen. Words, recall, then grammar{fromSet ? ` from ${fromSet.name}` : ''}.</span></div>
-          <span className="button-row"><button type="button" className="button primary" aria-label="Hands-free new items" disabled={busy || !fresh} onClick={() => startHandsfree({ kind: 'new', ...(fromSet ? { from: fromSet.id } : {}) })}>New items</button>
+          <span className="button-row"><button type="button" className="button primary" aria-label="Hands-free new items" disabled={busy || !fresh} onClick={() => startHandsfree(newSource())}>New items</button>
             <button type="button" className="button secondary" aria-label="Hands-free reviews" disabled={busy || !due} onClick={() => startHandsfree({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Reviews</button></span></li>
       </ul>
     </section>
     <div className="dr-columns">
       <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
         <ul className="dr-rows">
-          <li><div><strong>New items</strong><span className="small muted">{catalog ? fresh ? fromSet ? `Next ${Math.min(fresh, NEW_SET_SIZE)} of ${fresh} new ${fresh === 1 ? 'item' : 'items'} in ${fromSet.name}` : `Next ${Math.min(fresh, NEW_SET_SIZE)} curriculum items${breakdown}${progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
-            <button type="button" className="button primary" aria-label="Start new items" disabled={busy || !fresh} onClick={() => start({ kind: 'new', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
+          <li><div><strong>New items</strong><span className="small muted">{catalog ? fresh ? fromSet ? `Next ${Math.min(fresh, count)} words from ${fromSet.name}, ${fresh} new ${fresh === 1 ? 'item' : 'items'} left` : `Next ${batchCounts.words} curriculum ${batchCounts.words === 1 ? 'word' : 'words'}${breakdown}${progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
+            <button type="button" className="button primary" aria-label="Start new items" disabled={busy || !fresh} onClick={() => start(newSource())}>Start <ArrowRight size={16} /></button></li>
+          <li className="dr-count"><div role="group" aria-label="New words per set" className="dr-count-picker"><span className="small muted">New words per set</span><span className="segmented">{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
+            <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label="Number of new words" value={typed} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') { const next = clampCount(event.target.value); setCountState(next); saveNewCount(next) } }} onBlur={() => setTyped(String(count))} /></div></li>
           <li><div><strong>Reviews</strong><span className="small muted">{due} {due === 1 ? 'item' : 'items'} due{fromSet ? ` in ${fromSet.name}` : ''} · titles hidden</span></div>
             <button type="button" className="button primary" aria-label="Start reviews" disabled={busy || !due} onClick={() => start({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
         </ul>

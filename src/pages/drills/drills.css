@@ -141,3 +141,8 @@
 .hf-pocket p { margin: 0; color: #2a2a2a; font-size: 0.85rem; }
 .hf-pocket.holding p { color: #6a6a6a; }
 .dr-programs .dr-rows li:first-child { border-top: 0; }
+
+.dr-known { margin: 0 0 0.75rem; color: var(--muted, inherit); }
+.dr-known-words { font-size: 1.6rem; color: var(--text, inherit); }
+.dr-count-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.dr-count-picker input { width: 4.5rem; }

@@ -1,4 +1,6 @@
 import { ArrowRight, BookOpen, RotateCcw, Sprout, Sparkles } from 'lucide-react'
+import { KnowledgeCounts } from '../components/study/KnowledgeCounts'
+import { countItems } from '../core/study/daily'
 import { curriculumWords } from '../data/curriculum'
 import { RestoreOffer } from '../components/BackupPanel'
 import { PageHeading, type PageProps } from '../components/shared'
@@ -38,7 +40,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
       </article>
     </section>
     <section className="stats-strip" aria-label="Your actual learning progress">
-      <div><Sprout /><strong>{workspace.knowledge.length}<small>items in your knowledge set</small></strong></div>
+      <div><Sprout /><strong>{countItems(workspace.knowledge).words}<small>words in your knowledge set</small><KnowledgeCounts knowledge={workspace.knowledge} rest /></strong></div>
       <div><BookOpen /><strong>{lessonsDone}<small>new-item lessons finished</small></strong></div>
       <div><RotateCcw /><strong>{reviewsThisWeek}<small>reviews finished in the last 7 days</small></strong></div>
     </section>

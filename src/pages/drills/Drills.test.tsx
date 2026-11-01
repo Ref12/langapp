@@ -32,6 +32,44 @@ async function newSet() {
   return (await getDrillSet(id))!
 }
 
+describe('Practice home New items count', () => {
+  it('offers chips 3/5/10/15/20, defaults to 5, clamps a typed value and remembers it', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    const group = await screen.findByRole('group', { name: 'New words per set' })
+    expect(within(group).getAllByRole('button').map(button => button.textContent)).toEqual(['3', '5', '10', '15', '20'])
+    expect(within(group).getByRole('button', { name: '5' })).toHaveAttribute('aria-pressed', 'true')
+    await user.click(within(group).getByRole('button', { name: '15' }))
+    expect(localStorage.getItem('practice.newWords')).toBe('15')
+    const field = screen.getByRole('spinbutton', { name: 'Number of new words' })
+    await user.clear(field)
+    await user.type(field, '99')
+    await user.tab()
+    expect(field).toHaveValue(20)
+    expect(localStorage.getItem('practice.newWords')).toBe('20')
+    cleanup()
+    render(<App />)
+    expect(await screen.findByRole('spinbutton', { name: 'Number of new words' })).toHaveValue(20)
+    expect(within(await screen.findByRole('group', { name: 'New words per set' })).getByRole('button', { name: '20' })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('starts a set with the chosen number of words and shows the counts line', async () => {
+    const user = userEvent.setup()
+    await addToKnowledge(['vocabulary:wo3--me'])
+    render(<App />)
+    expect(await screen.findByLabelText('Your knowledge set')).toHaveTextContent(/^1 word · 0 grammar · 1 character$/)
+    await user.click(within(await screen.findByRole('group', { name: 'New words per set' })).getByRole('button', { name: '10' }))
+    const start = await screen.findByRole('button', { name: 'Start new items' })
+    await waitFor(() => expect(start).toBeEnabled())
+    await user.click(start)
+    await screen.findByRole('heading', { name: /^New items · / })
+    const set = (await db.drillSets.toArray())[0]
+    const words = set.refs.filter(ref => !ref.startsWith('grammar:')).length
+    expect(words).toBeGreaterThanOrEqual(10)
+    expect(words).toBeLessThanOrEqual(12)
+  })
+})
+
 describe('Practice home', () => {
   it('sends the old #drills links to Practice', async () => {
     window.location.hash = '#drills/set/gone'
@@ -253,11 +291,11 @@ describe('Learning from', () => {
     const rows = within(card).getAllByRole('listitem')
     // The selector comes before both rows.
     expect(select.compareDocumentPosition(rows[0]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-    expect(await within(card).findByText(/curriculum items/)).toBeInTheDocument()
+    expect(await within(card).findByText(/curriculum words?/)).toBeInTheDocument()
     expect(within(card).getByText(/items? due · titles hidden/)).toBeInTheDocument()
     await within(select).findByRole('option', { name: 'Introductions' })
     await user.selectOptions(select, 'c1')
-    expect(await within(card).findByText(/new items? in Introductions/)).toBeInTheDocument()
+    expect(await within(card).findByText(/words? from Introductions/)).toBeInTheDocument()
     expect(within(card).getByText(/2 items due in Introductions/)).toBeInTheDocument()
     await user.click(within(card).getByRole('button', { name: 'Start reviews' }))
     await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\//))

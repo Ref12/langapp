@@ -32,7 +32,7 @@ describe('Overview on the study model', () => {
     render(<App />)
     const next = await screen.findByRole('article', { name: 'Next step' })
     expect(await within(next).findByText(/new items to add/)).toBeInTheDocument()
-    expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0items in your knowledge set')
+    expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0words in your knowledge set0 grammar · 0 characters')
     expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0new-item lessons finished')
     expect(screen.getByText('Nothing due. Go to Lessons')).toHaveAttribute('href', '#lessons')
     expect(screen.getByRole('button', { name: /Start new items/ })).toBeDisabled()

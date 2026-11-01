@@ -4,7 +4,7 @@ import { addToKnowledge, DOMAIN } from '../study/knowledge'
 import { cardId } from '../study/contracts'
 import { addUnitsToCollection, createCollection } from '../collections/store'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
-import { recordWriteChar, discardDrillSet, createDrillSet, finishDrillSet, getDrillSet, MAX_UNFINISHED_SETS, NEW_SET_SIZE, recordDrillResult, recordRedo, setFormat, unfinishedSets } from './store'
+import { recordWriteChar, discardDrillSet, createDrillSet, finishDrillSet, getDrillSet, MAX_UNFINISHED_SETS, recordDrillResult, recordRedo, setFormat, unfinishedSets } from './store'
 import { whenContent } from './content'
 import { countMarks, scoreOf } from './contracts'
 
@@ -26,11 +26,35 @@ afterEach(() => vi.restoreAllMocks())
 
 const created = async (...args: Parameters<typeof createDrillSet>) => { const id = await createDrillSet(...args); await whenContent(id); return (await getDrillSet(id))! }
 
+describe('New items fill to the chosen word count', () => {
+  const day = new Date(2026, 9, 30, 12).getTime()
+  const words = (refs: string[]) => refs.filter(ref => !ref.startsWith('grammar:')).length
+
+  it('takes groups in order up to the count, with grammar riding along uncounted', async () => {
+    const set = await created({ kind: 'new', count: 12 }, day)
+    expect(words(set.refs)).toBeGreaterThanOrEqual(12)
+    expect(words(set.refs)).toBeLessThanOrEqual(14)
+    expect(set.refs.some(ref => ref.startsWith('grammar:'))).toBe(true)
+    expect(set.refs.length).toBeGreaterThan(8)
+  })
+
+  it('defaults to 5 words, clamps to 1-20, and builds sets of 20 words', async () => {
+    const dflt = await created({ kind: 'new' }, day)
+    expect(words(dflt.refs)).toBeGreaterThanOrEqual(1)
+    expect(words(dflt.refs)).toBeLessThanOrEqual(7)
+    const big = await created({ kind: 'new', count: 50 }, day + 1000)
+    expect(words(big.refs)).toBeGreaterThanOrEqual(20)
+    expect(words(big.refs)).toBeLessThanOrEqual(22)
+    const one = await created({ kind: 'new', count: 0 }, day + 2000)
+    expect(words(one.refs)).toBeGreaterThanOrEqual(1)
+  })
+})
+
 describe('creating drill sets', () => {
   it('New items takes the next curriculum items into the knowledge set', async () => {
     const set = await created({ kind: 'new' }, Date.UTC(2026, 9, 30, 12))
     expect(set.refs.length).toBeGreaterThan(0)
-    expect(set.refs.length).toBeLessThanOrEqual(NEW_SET_SIZE)
+    expect(set.refs.length).toBeLessThanOrEqual(60)
     expect(set.title).toBe('New items · 30 Oct')
     expect(set.source).toBe('new')
     expect(await db.knowledge.bulkGet(set.refs)).toSatisfy((rows: unknown[]) => rows.every(Boolean))

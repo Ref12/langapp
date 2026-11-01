@@ -17,6 +17,17 @@ const spoken = (script: { segments: Segment[]; promptStarts: number[] }, prompt:
   return script.segments.slice(script.promptStarts[prompt], end).flatMap(segment => segment.kind === 'say' ? [segment.text] : [])
 }
 
+describe('Hands-free script with 20 words', () => {
+  it('builds every phase and keeps the scrambled recall spaced out', () => {
+    const many = Array.from({ length: 20 }, (_, n) => word(n + 1, `词${n}`, `meaning ${n}`))
+    const { script, markers } = prompts([...many, GRAMMAR])
+    const scramble = markers.filter(marker => marker.phase === 'scramble')
+    expect(new Set(scramble.map(marker => marker.prompt)).size).toBeGreaterThanOrEqual(20)
+    expect(new Set(markers.filter(marker => marker.phase === 'recall').map(marker => marker.prompt)).size).toBeGreaterThanOrEqual(20)
+    expect(script.segments.length).toBeGreaterThan(100)
+  })
+})
+
 describe('Hands-free script', () => {
   it('runs the five phases in order, each prompt starting with its marker', () => {
     const { script, markers } = prompts([...WORDS, GRAMMAR])
