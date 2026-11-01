@@ -9,7 +9,7 @@ A program is an ordered flow over one item set. It may use the Practice drill ty
 ## Item set
 
 The words, grammar patterns and characters a program works on. It comes from the same sources as a practice set:
-- New items or Reviews (with Learning from);
+- New items or Reviews (with Learning from). The **What you'll practise** panel at the top of Practice home is the one place this is chosen: source, New items / Reviews, how many, a live summary of the actual selection ("7 items · 5 words, 2 grammar · 1 lesson · 4 new characters", or "10 of 22 due") and **View items** (a dialog with the lesson intro cards and the list). Start (practice set) and Start (Hands-free) both use exactly that selection. **New items** counts items, words and grammar patterns together, as a minimum: whole curriculum lessons are added in order until at least N items are held, and a lesson is never split (so the set can run over N). Chips 5/10/15/20, typed 1–20, default 5. **Reviews** caps the due items at N (default 10). Each mode remembers its own count. Practice by skill keeps its own skill, size and strategy and is separate from the selection;
 - a study set;
 - a past lesson or practice set from History.
 
@@ -24,6 +24,8 @@ The pattern is always the same: **prompt → pause (you answer aloud) → the an
 ### Flow
 
 A run opens on the **intro cards** (the same cards a lesson uses for new items) with a compact list of every item, then **Start listening**, which is always visible. A run that has already started goes straight to the player, with an **Items** button to see the cards again.
+
+**Settings** is a button inside the player (next to Pocket mode) that opens a sheet on phones and a popover on desktop with every Hands-free setting. A changed setting applies from the **next prompt** of the run in progress: the script is rebuilt, the current prompt is found again in it by phase, item and direction, and playback carries on from there with the new script. Settings → Hands-free keeps the defaults for new runs.
 
 **Section introductions** (a setting, on by default): at the start of each section the frame voice says what is coming and what you do ("In the following section you will hear the English meaning followed by its Mandarin equivalent. Repeat the Mandarin, building up to the full phrase."), and the same text shows on screen as the header until the first prompt.
 
@@ -66,7 +68,7 @@ Each pause is sized to the text you have to say, in syllables for Chinese and wo
   - progress ("Introducing 3 of 8", "Recall 12 of 30");
   - the current prompt in large text, for a glance. The answer is not shown early: the question and your pause show only the prompt (English for English → Chinese, characters for Chinese → English). When a Chinese segment starts, its **characters are shown large with pinyin under them**; when the English answer to a Chinese prompt starts, the English appears.
 - **Pocket mode** is the same display full screen on a dark background. It keeps the screen awake and ignores taps. **Hold anywhere for 3 seconds to exit**: a ring fills round a 3 → 2 → 1 count, and letting go early cancels it. The first version keeps the screen on, because browser speech is likely to stop when the screen locks. Real screen-off playback would need the run rendered to audio ahead of time; that is a later step.
-- The run gets a History entry (its word list) with **Again** to replay it. An unfinished run shows under **Unfinished sets** on Practice home with **Resume** (at the saved prompt) and **Discard**.
+- The run gets a History entry (its word list) with **Again** to replay it. An unfinished run shows under **Unfinished sets** on Practice home in the same row pattern as practice sets: title and a meta line ("Hands-free · 6 items · stopped at prompt 5") on the left, a → Resume icon button (at the saved prompt) and a trash icon button on the right. Discard asks on its own line under the meta ("Discard this set?" with Discard and Keep).
 
 ### Grading
 

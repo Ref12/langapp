@@ -32,42 +32,87 @@ async function newSet() {
   return (await getDrillSet(id))!
 }
 
-describe('Practice home New items count', () => {
-  it('offers chips 3/5/10/15/20, defaults to 5, clamps a typed value and remembers it', async () => {
+describe('What you will practise', () => {
+  it('offers chips 5/10/15/20, defaults to 5, clamps a typed value, remembers it, and migrates the old stored key', async () => {
+    localStorage.setItem('practice.newWords', '10')
     const user = userEvent.setup()
     render(<App />)
-    const group = await screen.findByRole('group', { name: 'New words per set' })
-    expect(within(group).getAllByRole('button').map(button => button.textContent)).toEqual(['3', '5', '10', '15', '20'])
-    expect(within(group).getByRole('button', { name: '5' })).toHaveAttribute('aria-pressed', 'true')
+    const group = await screen.findByRole('group', { name: 'New items per set' })
+    expect(within(group).getAllByRole('button').map(button => button.textContent)).toEqual(['5', '10', '15', '20'])
+    expect(within(group).getByRole('button', { name: '10' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByText('at least — whole lessons are kept together')).toBeInTheDocument()
     await user.click(within(group).getByRole('button', { name: '15' }))
-    expect(localStorage.getItem('practice.newWords')).toBe('15')
-    const field = screen.getByRole('spinbutton', { name: 'Number of new words' })
+    expect(localStorage.getItem('practice.newItems')).toBe('15')
+    const field = screen.getByRole('spinbutton', { name: 'Number of new items' })
     await user.clear(field)
     await user.type(field, '99')
     await user.tab()
     expect(field).toHaveValue(20)
-    expect(localStorage.getItem('practice.newWords')).toBe('20')
+    expect(localStorage.getItem('practice.newItems')).toBe('20')
     cleanup()
     render(<App />)
-    expect(await screen.findByRole('spinbutton', { name: 'Number of new words' })).toHaveValue(20)
-    expect(within(await screen.findByRole('group', { name: 'New words per set' })).getByRole('button', { name: '20' })).toHaveAttribute('aria-pressed', 'true')
+    expect(await screen.findByRole('spinbutton', { name: 'Number of new items' })).toHaveValue(20)
   })
 
-  it('starts a set with the chosen number of words and shows the counts line', async () => {
+  it('shows the actual selection as items, words, grammar and lessons, and remembers the count separately for Reviews', async () => {
     const user = userEvent.setup()
     await addToKnowledge(['vocabulary:wo3--me'])
     render(<App />)
-    expect(await screen.findByLabelText('Your knowledge set')).toHaveTextContent(/^1 word · 0 grammar · 1 character$/)
-    await user.click(within(await screen.findByRole('group', { name: 'New words per set' })).getByRole('button', { name: '10' }))
-    const start = await screen.findByRole('button', { name: 'Start new items' })
-    await waitFor(() => expect(start).toBeEnabled())
-    await user.click(start)
+    const summary = await screen.findByTestId('selection-summary')
+    await waitFor(() => expect(summary).toHaveTextContent(/^\d+ items? · \d+ words?, \d+ grammar · \d+ lessons?/))
+    await user.click(within(await screen.findByRole('group', { name: 'New items per set' })).getByRole('button', { name: '10' }))
+    const text = summary.textContent!
+    expect(Number(/^(\d+) item/.exec(text)![1])).toBeGreaterThanOrEqual(10)
+    await user.click(screen.getByRole('button', { name: 'Reviews' }))
+    const reviews = await screen.findByRole('group', { name: 'Reviews per set' })
+    expect(within(reviews).getByRole('button', { name: '10' })).toHaveAttribute('aria-pressed', 'true')
+    await user.click(within(reviews).getByRole('button', { name: '5' }))
+    expect(localStorage.getItem('practice.reviewCount')).toBe('5')
+    expect(localStorage.getItem('practice.newItems')).toBe('10')
+    expect(screen.getByTestId('selection-summary')).toHaveTextContent('1 of 1 due')
+    await user.click(screen.getByRole('button', { name: 'New items' }))
+    expect(within(await screen.findByRole('group', { name: 'New items per set' })).getByRole('button', { name: '10' })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('View items shows the intro cards of exactly the selection, and Start creates a set with those refs', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(within(await screen.findByRole('group', { name: 'New items per set' })).getByRole('button', { name: '5' }))
+    const view = await screen.findByRole('button', { name: /View items/ })
+    await waitFor(() => expect(view).toBeEnabled())
+    const count = Number(/^(\d+) item/.exec(screen.getByTestId('selection-summary').textContent!)![1])
+    await user.click(view)
+    const dialog = await screen.findByRole('dialog', { name: 'Items you will practise' })
+    await waitFor(() => expect(within(dialog).getAllByRole('listitem').length).toBe(count))
+    await waitFor(() => expect(dialog.querySelectorAll('.study-unit-card, .word-card').length).toBe(count))
+    const shown = [...dialog.querySelectorAll('.hf-item-zh')].map(node => node.textContent)
+    await user.click(within(dialog).getByRole('button', { name: 'Close items' }))
+    expect(screen.queryByRole('dialog')).toBeNull()
+    await user.click(await screen.findByRole('button', { name: 'Start practice set' }))
     await screen.findByRole('heading', { name: /^New items · / })
     const set = (await db.drillSets.toArray())[0]
-    const words = set.refs.filter(ref => !ref.startsWith('grammar:')).length
-    expect(words).toBeGreaterThanOrEqual(10)
-    expect(words).toBeLessThanOrEqual(12)
-  })
+    expect(set.refs).toHaveLength(count)
+    const items = await (await import('../../core/drills/items')).loadItems(set.refs, await (await import('../../core/study/catalog')).loadCatalog())
+    expect(items.map(item => item.zh)).toEqual(shown)
+  }, 40000)
+
+  it('Hands-free Start creates a run with the selected refs, and Reviews mode selects the due items', async () => {
+    const user = userEvent.setup()
+    await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Reviews' }))
+    const card = (await screen.findByRole('heading', { name: 'What you\'ll practise' })).closest('section')!
+    expect(card).toBeTruthy()
+    await user.click(await screen.findByRole('button', { name: 'New items' }))
+    await waitFor(() => expect(screen.getByTestId('selection-summary')).toHaveTextContent(/items?/))
+    const count = Number(/^(\d+) item/.exec(screen.getByTestId('selection-summary').textContent!)![1])
+    await user.click(screen.getByRole('button', { name: 'Start Hands-free' }))
+    await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/handsfree\//))
+    const runs = await db.handsfreeRuns.toArray()
+    expect(runs).toHaveLength(1)
+    expect(runs[0].refs).toHaveLength(count)
+    expect(runs[0].addOnComplete).toEqual(runs[0].refs)
+  }, 40000)
 })
 
 describe('Practice home', () => {
@@ -86,7 +131,7 @@ describe('Practice home', () => {
     expect(nav.getByRole('link', { name: /Practice/ })).toHaveAttribute('aria-current', 'page')
     expect(screen.getByRole('link', { name: /Classic practice/ })).toHaveAttribute('href', '#review')
     expect(screen.getByRole('link', { name: 'Mahjong' })).toHaveAttribute('href', '#practice/mahjong')
-    const start = await screen.findByRole('button', { name: 'Start new items' })
+    const start = await screen.findByRole('button', { name: 'Start practice set' })
     await waitFor(() => expect(start).toBeEnabled())
     await user.click(start)
     expect(await screen.findByRole('heading', { name: /^New items · \d+ \w{3}$/ })).toBeInTheDocument()
@@ -100,7 +145,14 @@ describe('Practice home', () => {
     const unfinished = await screen.findByRole('heading', { name: 'Unfinished sets' })
     const row = unfinished.closest('section')!
     expect(await within(row).findByText(/New items · \d+ \w{3}/)).toBeInTheDocument()
+    const line = row.querySelector('.resume-row')!
+    // title and meta on the left; resume and discard are same-size icon buttons on the right
+    expect([...line.children].map(child => child.className)).toEqual(['resume-text', 'icon-button', 'icon-button'])
     await user.click(within(row).getByRole('button', { name: /^Discard New items/ }))
+    const confirm = within(row).getByRole('group', { name: /^Discard New items.*\?$/ })
+    expect(confirm.parentElement).toBe(line)
+    expect(confirm).toHaveTextContent('Discard this set?')
+    expect(within(confirm).getAllByRole('button').map(button => button.textContent)).toEqual(['Discard', 'Keep'])
     expect(within(row).getByRole('button', { name: 'Keep' })).toBeInTheDocument()
     await user.click(within(row).getByRole('button', { name: 'Keep' }))
     expect(within(row).getByText(/New items/)).toBeInTheDocument()
@@ -276,7 +328,7 @@ describe('summary', () => {
 })
 
 describe('Learning from', () => {
-  it('sits above both rows and drives the New items and Reviews counts and starts', async () => {
+  it('is the top panel, drives the selection in both modes, and Start uses it', async () => {
     const user = userEvent.setup()
     await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you', 'vocabulary:ta1--he'])
     await db.collections.put({ id: 'c1', name: 'Introductions', createdAt: 1, updatedAt: 1 } as never)
@@ -287,17 +339,16 @@ describe('Learning from', () => {
     window.location.hash = '#practice'
     render(<App />)
     const select = await screen.findByLabelText('Learning from')
-    const card = (await screen.findByRole('heading', { name: 'Start a set' })).closest('section')!
-    const rows = within(card).getAllByRole('listitem')
-    // The selector comes before both rows.
-    expect(select.compareDocumentPosition(rows[0]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-    expect(await within(card).findByText(/curriculum words?/)).toBeInTheDocument()
-    expect(within(card).getByText(/items? due · titles hidden/)).toBeInTheDocument()
+    const panel = (await screen.findByRole('heading', { name: "What you'll practise" })).closest('section')!
+    expect(panel.contains(select)).toBe(true)
+    const programs = screen.getByRole('heading', { name: 'Programs' }).closest('section')!
+    expect(select.compareDocumentPosition(programs) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     await within(select).findByRole('option', { name: 'Introductions' })
     await user.selectOptions(select, 'c1')
-    expect(await within(card).findByText(/words? from Introductions/)).toBeInTheDocument()
-    expect(within(card).getByText(/2 items due in Introductions/)).toBeInTheDocument()
-    await user.click(within(card).getByRole('button', { name: 'Start reviews' }))
+    await waitFor(() => expect(screen.getByTestId('selection-summary')).toHaveTextContent(/^1 item · 1 word, 0 grammar/))
+    await user.click(within(panel).getByRole('button', { name: 'Reviews' }))
+    await waitFor(() => expect(screen.getByTestId('selection-summary')).toHaveTextContent('2 of 2 due'))
+    await user.click(screen.getByRole('button', { name: 'Start practice set' }))
     await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\//))
     const sets = await db.drillSets.toArray()
     expect(sets).toHaveLength(1)

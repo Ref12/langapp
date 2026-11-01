@@ -26,27 +26,34 @@ afterEach(() => vi.restoreAllMocks())
 
 const created = async (...args: Parameters<typeof createDrillSet>) => { const id = await createDrillSet(...args); await whenContent(id); return (await getDrillSet(id))! }
 
-describe('New items fill to the chosen word count', () => {
+describe('New items fill by items, whole lessons', () => {
   const day = new Date(2026, 9, 30, 12).getTime()
-  const words = (refs: string[]) => refs.filter(ref => !ref.startsWith('grammar:')).length
 
-  it('takes groups in order up to the count, with grammar riding along uncounted', async () => {
+  it('holds at least the count in items, grammar included, and ends on a lesson boundary', async () => {
     const set = await created({ kind: 'new', count: 12 }, day)
-    expect(words(set.refs)).toBeGreaterThanOrEqual(12)
-    expect(words(set.refs)).toBeLessThanOrEqual(14)
+    expect(set.refs.length).toBeGreaterThanOrEqual(12)
     expect(set.refs.some(ref => ref.startsWith('grammar:'))).toBe(true)
-    expect(set.refs.length).toBeGreaterThan(8)
+    const catalog = await (await import('../study/catalog')).loadCatalog()
+    let taken = 0
+    const boundaries = new Set<number>()
+    for (const { group } of catalog.orderedGroups) { taken += group.units.length; boundaries.add(taken); if (taken >= set.refs.length) break }
+    expect(boundaries.has(set.refs.length)).toBe(true)
   })
 
-  it('defaults to 5 words, clamps to 1-20, and builds sets of 20 words', async () => {
+  it('defaults to 5 items, clamps to 1-20, and starts from the refs a picker showed', async () => {
     const dflt = await created({ kind: 'new' }, day)
-    expect(words(dflt.refs)).toBeGreaterThanOrEqual(1)
-    expect(words(dflt.refs)).toBeLessThanOrEqual(7)
+    expect(dflt.refs.length).toBeGreaterThanOrEqual(5)
     const big = await created({ kind: 'new', count: 50 }, day + 1000)
-    expect(words(big.refs)).toBeGreaterThanOrEqual(20)
-    expect(words(big.refs)).toBeLessThanOrEqual(22)
+    expect(big.refs.length).toBeGreaterThanOrEqual(20)
     const one = await created({ kind: 'new', count: 0 }, day + 2000)
-    expect(words(one.refs)).toBeGreaterThanOrEqual(1)
+    expect(one.refs.length).toBeGreaterThanOrEqual(1)
+  })
+
+  it('uses exactly the given refs when the picker passes them', async () => {
+    const catalog = await (await import('../study/catalog')).loadCatalog()
+    const refs = (await import('../study/daily')).fillByItems(catalog, new Set(), 10)
+    const set = await created({ kind: 'new', count: 10, refs }, day + 3000)
+    expect(set.refs).toEqual(refs)
   })
 })
 

@@ -10,27 +10,26 @@ const rateLabel = (rate: number) => `${rate}x`
 const withRate = (rates: number[], current: number) => rates.includes(current) ? rates : [...rates, current].sort((a, b) => a - b)
 
 /** Hands-free settings: pause, repeats, grammar and the voices. Used on the Hands-free page (contextual) and in Settings. */
-export function HandsfreeSettingsForm({ settings, onChange, structureLocked = false, collapsible = false }: { settings: HandsfreeSettings; onChange: (next: HandsfreeSettings) => void; structureLocked?: boolean; collapsible?: boolean }) {
+export function HandsfreeSettingsForm({ settings, onChange, collapsible = false }: { settings: HandsfreeSettings; onChange: (next: HandsfreeSettings) => void; collapsible?: boolean }) {
   const [open, setOpen] = useState(!collapsible)
   return <>
-    <PauseFields settings={settings} onChange={onChange} structureLocked={structureLocked} />
+    <PauseFields settings={settings} onChange={onChange} />
     {collapsible ? <details open={open} onToggle={event => setOpen(event.currentTarget.open)}><summary>Voices and speeds</summary>{open && <VoiceFields settings={settings} onChange={onChange} />}</details>
       : <VoiceFields settings={settings} onChange={onChange} />}
   </>
 }
 
-function PauseFields({ settings, onChange, structureLocked }: { settings: HandsfreeSettings; onChange: (next: HandsfreeSettings) => void; structureLocked: boolean }) {
+function PauseFields({ settings, onChange }: { settings: HandsfreeSettings; onChange: (next: HandsfreeSettings) => void }) {
   return <>
     <label><span className="eyebrow accent">Pause length</span>
       <select value={settings.pause} aria-label="Pause length" onChange={event => onChange({ ...settings, pause: event.target.value as HandsfreeSettings['pause'] })}>
         {PAUSE_LENGTHS.map(length => <option key={length} value={length}>{length[0].toUpperCase() + length.slice(1)}</option>)}</select></label>
     <label><span className="eyebrow accent">Repeats of each word and sentence</span>
-      <select value={settings.repeats} aria-label="Repeats" disabled={structureLocked} onChange={event => onChange({ ...settings, repeats: Number(event.target.value) })}>
+      <select value={settings.repeats} aria-label="Repeats" onChange={event => onChange({ ...settings, repeats: Number(event.target.value) })}>
         {[1, 2, 3, 4, 5].map(count => <option key={count} value={count}>{count}</option>)}</select></label>
     <label className="hf-check"><input type="checkbox" checked={settings.introductions !== false} onChange={event => onChange({ ...settings, introductions: event.target.checked })} /> Section introductions</label>
     <label className="hf-check"><input type="checkbox" checked={settings.explain !== false} onChange={event => onChange({ ...settings, explain: event.target.checked })} /> Explain each item</label>
-    <label className="hf-check"><input type="checkbox" checked={settings.grammar} disabled={structureLocked} onChange={event => onChange({ ...settings, grammar: event.target.checked })} /> Include grammar</label>
-    {structureLocked && <p className="small muted">Repeats and grammar are fixed once a run has started, so it resumes where you left it.</p>}
+    <label className="hf-check"><input type="checkbox" checked={settings.grammar} onChange={event => onChange({ ...settings, grammar: event.target.checked })} /> Include grammar</label>
   </>
 }
 

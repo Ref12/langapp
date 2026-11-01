@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, Headphones, ListChecks, Moon, Pause, Play, SkipBack, SkipForward } from 'lucide-react'
+import { ArrowLeft, Headphones, ListChecks, Moon, Pause, Play, Settings as SettingsIcon, SkipBack, SkipForward } from 'lucide-react'
 import { db } from '../../core/database'
 import { EmptyState, PageHeading, type PageProps } from '../../components/shared'
 import { useCatalog } from '../../components/study/useCatalog'
@@ -12,10 +12,11 @@ import { resolveVoices } from '../../core/handsfree/voices'
 import { pinyin as toPinyin } from 'pinyin-pro'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { IntroCards } from './IntroCards'
+import { Sheet } from './Sheet'
 import { ACTIVITY_SKILLS, PROMPT_SKILLS } from '../../core/study/skill-map'
 import { recordRunPractice } from '../../core/study/skills'
 import { createHandsfreePlayer, type HandsfreeState } from '../../core/handsfree/player'
-import { PHASE_LABEL, type Script } from '../../core/handsfree/script'
+import { PHASE_LABEL, findPrompt, promptKeyAt, type Script } from '../../core/handsfree/script'
 import { createWakeLockController } from '../../core/pocket/wake-lock'
 import './drills.css'
 
@@ -71,6 +72,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   const [error, setError] = useState('')
   const [state, setState] = useState<HandsfreeState>({ status: 'idle', prompt: run.position })
   const [pocket, setPocket] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
   const [heard, setHeard] = useState<Heard>({})
   const scriptRef = useRef<Script>({ segments: [], promptStarts: [] })
   const runId = run.id
@@ -79,7 +81,16 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   // The script follows the run's own seed and settings, so leaving and coming back plays the same run. Changing the pause length keeps its shape.
   useEffect(() => {
     let live = true
-    void buildRunScript(run).then(({ script: built }) => { if (live) { scriptRef.current = built; setScript(built) } }, cause => { if (live) setError(cause instanceof Error ? cause.message : 'The run could not be prepared.') })
+    const before = scriptRef.current
+    const at = playerRef.current?.state().prompt ?? 0
+    const key = promptKeyAt(before, at)
+    void buildRunScript(run).then(({ script: built }) => {
+      if (!live) return
+      scriptRef.current = built
+      setScript(built)
+      // A changed setting rebuilds the script; this prompt keeps its place in it (phase, item, direction), and the next one comes from the new script.
+      if (before.promptStarts.length) playerRef.current?.rebase(findPrompt(built, key, at))
+    }, cause => { if (live) setError(cause instanceof Error ? cause.message : 'The run could not be prepared.') })
     return () => { live = false }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [run.refs.join(','), run.seed, structure, pauseLength])
@@ -161,11 +172,10 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
         <button type="button" className="button primary hf-play" aria-label={playing ? 'Pause' : done ? 'Play again' : state.prompt > 0 ? 'Resume' : 'Play'} disabled={!script || !total} onClick={() => playing ? playerRef.current?.pause() : playerRef.current?.play()}>{playing ? <Pause size={26} /> : <Play size={26} />}</button>
         <button type="button" className="button secondary icon-only" aria-label="Skip" disabled={!script || done} onClick={() => playerRef.current?.skip()}><SkipForward size={22} /></button>
       </div>
-      <button type="button" className="button secondary" onClick={() => setPocket(true)}><Moon size={16} /> Pocket mode</button>
+      <div className="hf-tools"><button type="button" className="button secondary" aria-haspopup="dialog" onClick={() => setSettingsOpen(true)}><SettingsIcon size={16} /> Settings</button>
+        <button type="button" className="button secondary" onClick={() => setPocket(true)}><Moon size={16} /> Pocket mode</button></div>
     </section>
-    <section className="panel hf-settings" aria-label="Settings">
-      <HandsfreeSettingsForm settings={run.settings} onChange={change} structureLocked={run.started} />
-    </section>
+    {settingsOpen && <Sheet title="Settings" label="Hands-free settings" onClose={() => setSettingsOpen(false)} footer={<p className="small muted">Changes apply from the next prompt.</p>}><HandsfreeSettingsForm settings={run.settings} onChange={change} /></Sheet>}
     {pocket && <PocketOverlay onExit={() => setPocket(false)}><Display phase={phaseLine} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} className="hf-pocket-display" /></PocketOverlay>}
   </div>
 }

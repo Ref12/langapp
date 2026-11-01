@@ -24,6 +24,8 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
   let version = 0
   let cancelling = false
   let disposed = false
+  /** When the script is swapped mid-prompt, the prompt after the current one is counted in the new script. */
+  let shift = 0
   let lease: AudioLease | undefined
   const publish = (next: HandsfreeState) => {
     if (next.status !== 'playing') { lease?.release(); lease = undefined }
@@ -31,6 +33,7 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
     changed(state)
   }
   const cancel = (all = false) => {
+    shift = 0
     ++version
     clearTimeout(timer)
     timer = undefined
@@ -65,7 +68,7 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
     let lastSpoken: number | undefined
     const step = (index: number) => {
       if (request !== version) return
-      if (index >= end) { timer = setTimeout(() => { if (request === version) play(prompt + 1) }, 0); return }
+      if (index >= end) { timer = setTimeout(() => { if (request === version) { const next = prompt + 1 + shift; shift = 0; play(next) } }, 0); return }
       const segment = script.segments[index]
       if (segment.kind === 'marker') { onSpeak(undefined); step(index + 1); return }
       if (segment.kind === 'pause') { timer = setTimeout(() => step(index + 1), pauseLength(segment, lastSpoken)); return }
@@ -118,6 +121,12 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
     /** One prompt back (or forward): the prompt starts over from its beginning. */
     back: () => go(state.prompt - 1),
     skip: () => go(state.prompt + 1),
+    /** The script was rebuilt: this prompt is now number `prompt`. What is being said finishes as it is; the next prompt comes from the new script. */
+    rebase: (prompt: number) => {
+      if (disposed || state.status === 'completed' || state.status === 'idle' || prompt === state.prompt) return
+      if (state.status === 'playing') shift += prompt - state.prompt
+      publish({ ...state, prompt })
+    },
     state: () => state,
     dispose: () => {
       disposed = true

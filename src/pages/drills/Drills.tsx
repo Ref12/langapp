@@ -11,14 +11,17 @@ import { UnitCard } from '../../components/study/UnitCard'
 import { useAIConnection } from '../../components/study/useAIConnection'
 import { EmptyState, PageHeading, type PageProps } from '../../components/shared'
 import { cardId } from '../../core/study/contracts'
-import { DOMAIN, groupProgress, nextGroup } from '../../core/study/knowledge'
-import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByWords, loadNewCount, saveNewCount } from '../../core/study/daily'
+import { DOMAIN } from '../../core/study/knowledge'
+import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, lessonCount, loadNewCount, loadReviewCount, saveNewCount, saveReviewCount } from '../../core/study/daily'
 import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems } from '../../core/drills/write-queue'
 import { MAX_UNFINISHED_SETS, createDrillSet, discardDrillSet, finishDrillSet, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
+import { IntroCards } from './IntroCards'
+import { Sheet } from './Sheet'
+import { isPhraseRef, isSourceRef } from '../../core/study/contracts'
 import { createHandsfreeRun, discardHandsfreeRun, unfinishedHandsfreeRuns } from '../../core/handsfree/store'
 import { availability } from './tasks'
 import { SKILLS, SKILL_LABEL, SKILL_SIZES, STRATEGY_LABEL, PICK_STRATEGIES, drillSkills, type Skill } from '../../core/study/skill-map'
@@ -176,6 +179,17 @@ function UnfinishedInfo({ set, typesDone, characterStates }: { set: DrillSet; ty
   return <span className="small muted dr-wrap">{(items && describeItems(items, characterStates)) || itemCount(set.refs.length)} · {typesDone} of {DRILL_TYPES.length} types done</span>
 }
 
+/** One unfinished set or Hands-free run: title and meta on the left, the resume and discard icon buttons on the right; the discard question is its own line below. */
+function UnfinishedRow({ title, href, meta, asking, busy, onAsk, onKeep, onDiscard }: { title: string; href: string; meta: ReactNode; asking: boolean; busy: boolean; onAsk: () => void; onKeep: () => void; onDiscard: () => void }) {
+  return <div className="resume-row">
+    <div className="resume-text"><strong>{title}</strong>{meta}</div>
+    <a className="icon-button" href={href} aria-label={`Resume ${title}`}><ArrowRight size={18} /></a>
+    <button type="button" className="icon-button" aria-label={`Discard ${title}`} aria-expanded={asking} onClick={onAsk}><Trash2 size={17} /></button>
+    {asking && <div className="dr-confirm" role="group" aria-label={`Discard ${title}?`}><span>Discard this set?</span>
+      <button type="button" className="button secondary" disabled={busy} onClick={onDiscard}>Discard</button><button type="button" className="button secondary" onClick={onKeep}>Keep</button></div>}
+  </div>
+}
+
 function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const { catalog, error } = useCatalog()
   const connection = useAIConnection()
@@ -188,23 +202,39 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
   const wordsDue = workspace.words.filter(word => word.dueAt <= now).length
   const unfinished = unfinishedSets(sets)
-  const next = catalog ? nextGroup(catalog, known) : undefined
-  const progress = catalog ? groupProgress(catalog, known) : undefined
   const fromSet = from !== CURRICULUM ? collections.find(entry => entry.id === from) : undefined
-  const [count, setCountState] = useState(loadNewCount)
-  const [typed, setTyped] = useState(String(count))
-  const setCount = (value: number) => { const next = clampCount(value); setCountState(next); setTyped(String(next)); saveNewCount(next) }
-  const batch = catalog && !fromSet && next ? fillByWords(catalog, known, count) : []
-  const batchCounts = countItems(batch.map(ref => ({ kind: ref.startsWith('grammar:') ? 'grammar' as const : 'vocabulary' as const })))
-  const fresh = fromSet ? collectionItems.filter(item => item.collectionId === fromSet.id && !known.has(item.ref)).length : next?.newUnits.length ?? 0
+  const [mode, setMode] = useState<'new' | 'review'>('new')
+  const [counts, setCounts] = useState({ new: loadNewCount(), review: loadReviewCount() })
+  const [typed, setTyped] = useState(String(counts.new))
+  const [viewing, setViewing] = useState(false)
+  const count = counts[mode]
+  const setCount = (value: number) => { const next = clampCount(value); setCounts(before => ({ ...before, [mode]: next })); setTyped(String(next)); if (mode === 'new') saveNewCount(next); else saveReviewCount(next) }
+  const pickMode = (next: 'new' | 'review') => { setMode(next); setTyped(String(counts[next])) }
   const inFrom = fromSet ? new Set(collectionItems.filter(item => item.collectionId === fromSet.id).map(item => item.ref)) : undefined
-  const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref))).length
-  const breakdown = catalog && !fromSet && next ? (() => { const text = describeItems(batch.flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit.kind === 'vocabulary' ? { kind: 'vocabulary' as const, zh: unit.record.ch } : { kind: 'grammar' as const, zh: unit.record.pt }] : [] }), workspace.characterStates); return text ? ` (${text})` : '' })() : ''
+  const dueRefs = useMemo(() => workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref)) && (!catalog || catalog.units.has(card.ref) || isSourceRef(card.ref) || isPhraseRef(card.ref)))
+    .sort((a, b) => a.due - b.due || a.ref.localeCompare(b.ref)).map(card => card.ref),
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [workspace.studyCards, now, known, catalog, from, collectionItems])
+  const freshFromSet = fromSet ? collectionItems.filter(item => item.collectionId === fromSet.id && !known.has(item.ref)).sort((a, b) => a.addedAt - b.addedAt).map(item => item.ref) : []
+  /** The one selection: View items shows it and Start creates exactly it. */
+  const selection = useMemo(() => !catalog ? [] : mode === 'review' ? dueRefs.slice(0, count) : fromSet ? freshFromSet.slice(0, count) : fillByItems(catalog, known, count),
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [catalog, mode, count, dueRefs, from, known, collectionItems])
+  const selectionUnits = selection.flatMap(ref => { const unit = catalog?.units.get(ref); return unit ? [unit] : [] })
+  const selectionCounts = countItems(selection.map(ref => ({ kind: ref.startsWith('grammar:') ? 'grammar' as const : 'vocabulary' as const })))
+  const newCharacters = catalog ? describeItems(selectionUnits.map(unit => ({ kind: unit.kind, zh: unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt })), workspace.characterStates).match(/\d+ new characters?/)?.[0] : undefined
+  const lessons = catalog && !fromSet && mode === 'new' ? lessonCount(catalog, selection) : 0
+  const itemsNoun = (n: number) => `${n} ${n === 1 ? 'item' : 'items'}`
+  const summary = !catalog ? 'Loading the curriculum...'
+    : mode === 'review' ? (dueRefs.length ? `${selection.length} of ${dueRefs.length} due` : 'Nothing is due for review right now')
+    : !selection.length ? (fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here')
+    : [itemsNoun(selection.length), `${selectionCounts.words} ${selectionCounts.words === 1 ? 'word' : 'words'}, ${selectionCounts.grammar} grammar`, lessons ? `${lessons} ${lessons === 1 ? 'lesson' : 'lessons'}` : '', newCharacters ?? ''].filter(Boolean).join(' · ')
+  const nothing = !selection.length
   const [skill, setSkill] = useState<Skill>('reading')
   const [size, setSize] = useState<number>(10)
   const [strategy, setStrategy] = useState<typeof PICK_STRATEGIES[number]>('least')
   const skillSource = (): DrillSource => ({ kind: 'skill', skill, size, strategy })
-  const newSource = (): DrillSource => ({ kind: 'new', count, ...(fromSet ? { from: fromSet.id } : {}) })
+  const selectionSource = (): DrillSource => mode === 'review' ? { kind: 'review', refs: selection, ...(fromSet ? { from: fromSet.id } : {}) } : { kind: 'new', count, refs: selection, ...(fromSet ? { from: fromSet.id } : {}) }
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
   const startHandsfree = (source: DrillSource) => void run(async () => { navigate(`practice/handsfree/${await createHandsfreeRun(source)}`) })
   return <div className="dr">
@@ -212,47 +242,43 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     <KnowledgeCounts knowledge={workspace.knowledge} />
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
-    <div className="dr-from dr-from-top"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
-          <select value={from} aria-label="Learning from" onChange={event => setFrom(event.target.value)}><option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label></div>
+    <section className="panel dr-panel dr-select" aria-labelledby="dr-select"><h2 id="dr-select">What you'll practise</h2>
+      <label className="dr-source"><span className="eyebrow accent">Learning from</span>
+        <select value={from} aria-label="Learning from" onChange={event => setFrom(event.target.value)}><option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
+      <div className="segmented" role="group" aria-label="What to practise"><button type="button" aria-pressed={mode === 'new'} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button></div>
+      <div role="group" aria-label={mode === 'new' ? 'New items per set' : 'Reviews per set'} className="dr-count-picker">
+        <span className="dr-count-label"><span className="small">{mode === 'new' ? 'New items per set' : 'Reviews per set'}</span><span className="small muted">{mode === 'new' ? 'at least — whole lessons are kept together' : 'at most, the most overdue first'}</span></span>
+        <span className="segmented">{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
+        <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label={mode === 'new' ? 'Number of new items' : 'Number of reviews'} value={typed} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') setCount(Number(event.target.value)) }} onBlur={() => setTyped(String(count))} /></div>
+      <p className="dr-summary" role="status" data-testid="selection-summary">{summary}</p>
+      <div className="button-row"><button type="button" className="button secondary" disabled={nothing} onClick={() => setViewing(true)}><Eye size={16} /> View items</button></div>
+    </section>
+    {viewing && catalog && <ViewItems refs={selection} catalog={catalog} onClose={() => setViewing(false)} workspace={workspace} now={now} run={run} busy={busy} />}
     <section className="panel dr-panel dr-programs" aria-labelledby="dr-programs"><h2 id="dr-programs">Programs</h2>
       <ul className="dr-rows">
-        <li><div><strong>Hands-free</strong><span className="small muted">Listen and answer aloud, with no screen. Words, recall, then grammar{fromSet ? ` from ${fromSet.name}` : ''}.</span></div>
-          <span className="button-row"><button type="button" className="button primary" aria-label="Hands-free new items" disabled={busy || !fresh} onClick={() => startHandsfree(newSource())}>New items</button>
-            <button type="button" className="button secondary" aria-label="Hands-free least practised (listening)" disabled={busy || !known.size} onClick={() => startHandsfree({ kind: 'skill', skill: 'listening', size: 10, strategy: 'least' })}>Least practised (listening)</button>
-            <button type="button" className="button secondary" aria-label="Hands-free reviews" disabled={busy || !due} onClick={() => startHandsfree({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Reviews</button></span></li>
+        <li><div><strong>Hands-free</strong><span className="small muted">Listen and answer aloud, with no screen. Uses the items above: words, recall, then grammar.</span></div>
+          <span className="button-row"><button type="button" className="button primary" aria-label="Start Hands-free" disabled={busy || nothing} onClick={() => startHandsfree(selectionSource())}>Start <ArrowRight size={16} /></button>
+            <button type="button" className="button secondary" aria-label="Hands-free least practised (listening)" disabled={busy || !known.size} onClick={() => startHandsfree({ kind: 'skill', skill: 'listening', size: 10, strategy: 'least' })}>Least practised (listening)</button></span></li>
       </ul>
     </section>
     <div className="dr-columns">
       <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
         <ul className="dr-rows">
-          <li><div><strong>New items</strong><span className="small muted">{catalog ? fresh ? fromSet ? `Next ${Math.min(fresh, count)} words from ${fromSet.name}, ${fresh} new ${fresh === 1 ? 'item' : 'items'} left` : `Next ${batchCounts.words} curriculum ${batchCounts.words === 1 ? 'word' : 'words'}${breakdown}${progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
-            <button type="button" className="button primary" aria-label="Start new items" disabled={busy || !fresh} onClick={() => start(newSource())}>Start <ArrowRight size={16} /></button></li>
-          <li className="dr-count"><div role="group" aria-label="New words per set" className="dr-count-picker"><span className="small muted">New words per set</span><span className="segmented">{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
-            <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label="Number of new words" value={typed} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') { const next = clampCount(event.target.value); setCountState(next); saveNewCount(next) } }} onBlur={() => setTyped(String(count))} /></div></li>
-          <li className="dr-skill"><div><strong>Practice by skill</strong><span className="small muted">{known.size ? `${Math.min(size, known.size)} of your ${known.size} items, ${strategy === 'least' ? 'least practised first' : 'added in the last 3 days'}` : 'Add items to your knowledge set first'}</span>
+          <li><div><strong>Practice set</strong><span className="small muted">{summary}</span></div>
+            <button type="button" className="button primary" aria-label="Start practice set" disabled={busy || nothing} onClick={() => start(selectionSource())}>Start <ArrowRight size={16} /></button></li>
+          <li className="dr-skill dr-skill-block"><div><strong>Practice by skill</strong><span className="small muted dr-skill-note">Picks its own items by skill, not from the selection above. </span><span className="small muted">{known.size ? `${Math.min(size, known.size)} of your ${known.size} items, ${strategy === 'least' ? 'least practised first' : 'added in the last 3 days'}` : 'Add items to your knowledge set first'}</span>
             <span className="dr-skill-pickers"><select aria-label="Skill" value={skill} onChange={event => setSkill(event.target.value as Skill)}>{SKILLS.map(entry => <option key={entry} value={entry}>{SKILL_LABEL[entry]}</option>)}</select>
               <select aria-label="Set size" value={size} onChange={event => setSize(Number(event.target.value))}>{SKILL_SIZES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select>
               <select aria-label="Strategy" value={strategy} onChange={event => setStrategy(event.target.value as typeof strategy)}>{PICK_STRATEGIES.map(entry => <option key={entry} value={entry}>{STRATEGY_LABEL[entry]}</option>)}</select></span></div>
             <button type="button" className="button primary" aria-label="Start practice by skill" disabled={busy || !known.size} onClick={() => start(skillSource())}>Start <ArrowRight size={16} /></button></li>
-          <li><div><strong>Reviews</strong><span className="small muted">{due} {due === 1 ? 'item' : 'items'} due{fromSet ? ` in ${fromSet.name}` : ''} · titles hidden</span></div>
-            <button type="button" className="button primary" aria-label="Start reviews" disabled={busy || !due} onClick={() => start({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
         </ul>
       </section>
       <section className="panel dr-panel" aria-labelledby="dr-unfinished"><h2 id="dr-unfinished">Unfinished sets</h2>
         {unfinished.length === 0 && handsfreeRuns.length === 0 ? <p className="muted small">No unfinished sets.</p> : <div className="resume-list">{unfinished.map(set => { const typesDone = Object.values(set.progress).filter(entry => entry.done).length
-          return <div className="resume-row" key={set.id}>
-            <a className="resume-main" href={`#${setRoute(set.id)}`}><div><strong>{set.title}</strong><UnfinishedInfo set={set} typesDone={typesDone} characterStates={workspace.characterStates} /></div><ArrowRight size={18} /></a>
-            {asking === set.id
-              ? <span className="dr-confirm"><button type="button" className="button secondary" disabled={busy} onClick={() => { setAsking(undefined); void run(() => discardDrillSet(set.id)) }}>Discard</button><button type="button" className="button secondary" onClick={() => setAsking(undefined)}>Keep</button></span>
-              : <button type="button" className="icon-button" aria-label={`Discard ${set.title}`} onClick={() => setAsking(set.id)}><Trash2 size={17} /></button>}
-          </div> })}
-          {handsfreeRuns.map(item => <div className="resume-row" key={item.id}>
-            <div className="resume-main"><div><strong>{item.title}</strong><span className="small muted dr-wrap">Hands-free · {itemCount(item.refs.length)} · stopped at prompt {item.position + 1}</span></div></div>
-            <a className="button secondary" href={`#practice/handsfree/${item.id}`} aria-label={`Resume ${item.title}`}>Resume</a>
-            {asking === item.id
-              ? <span className="dr-confirm"><button type="button" className="button secondary" disabled={busy} onClick={() => { setAsking(undefined); void run(() => discardHandsfreeRun(item.id)) }}>Discard</button><button type="button" className="button secondary" onClick={() => setAsking(undefined)}>Keep</button></span>
-              : <button type="button" className="icon-button" aria-label={`Discard ${item.title}`} onClick={() => setAsking(item.id)}><Trash2 size={17} /></button>}
-          </div>)}</div>}
+          return <UnfinishedRow key={set.id} title={set.title} href={`#${setRoute(set.id)}`} meta={<UnfinishedInfo set={set} typesDone={typesDone} characterStates={workspace.characterStates} />}
+            asking={asking === set.id} busy={busy} onAsk={() => setAsking(set.id)} onKeep={() => setAsking(undefined)} onDiscard={() => { setAsking(undefined); void run(() => discardDrillSet(set.id)) }} /> })}
+          {handsfreeRuns.map(item => <UnfinishedRow key={item.id} title={item.title} href={`#practice/handsfree/${item.id}`} meta={<span className="small muted dr-wrap">Hands-free · {itemCount(item.refs.length)} · stopped at prompt {item.position + 1}</span>}
+            asking={asking === item.id} busy={busy} onAsk={() => setAsking(item.id)} onKeep={() => setAsking(undefined)} onDiscard={() => { setAsking(undefined); void run(() => discardHandsfreeRun(item.id)) }} />)}</div>}
         {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
       </section>
     </div>
@@ -262,3 +288,16 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
 }
 
 export type { ReactNode }
+
+/** The intro cards and compact list for exactly the selected items, in a dialog. */
+function ViewItems({ refs, catalog, onClose, workspace, now, run, busy }: Pick<PageProps, 'workspace' | 'now' | 'run' | 'busy'> & { refs: readonly string[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']>; onClose: () => void }) {
+  const [items, setItems] = useState<ItemInfo[]>()
+  useEffect(() => {
+    let live = true
+    void loadItems([...refs], catalog).then(found => { if (live) setItems(found) })
+    return () => { live = false }
+  }, [refs, catalog])
+  return <Sheet title="Items" label="Items you will practise" wide onClose={onClose}>
+    {items ? <IntroCards items={items} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route="practice" /> : <p className="small muted" role="status">Opening the intro cards...</p>}
+  </Sheet>
+}

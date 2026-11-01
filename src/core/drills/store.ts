@@ -2,7 +2,7 @@ import { db } from '../database'
 import { loadCatalog } from '../study/catalog'
 import { cardId, isSourceRef, type StudyCard } from '../study/contracts'
 import { addUnits, dueCards, DOMAIN } from '../study/knowledge'
-import { fillByWords, NEW_COUNT_DEFAULT } from '../study/daily'
+import { fillByItems, NEW_COUNT_DEFAULT } from '../study/daily'
 import { schedule, type SchedulingState } from '../study/fsrs'
 import { reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
@@ -20,7 +20,7 @@ export const STUDY_SET_LIMIT = 40
 /** Unfinished sets kept at once; starting another quietly sets the oldest untouched one aside. */
 export const MAX_UNFINISHED_SETS = 8
 
-export type DrillSource = { kind: 'new'; from?: string; /** How many new words the set holds (1 to 20, default 5); grammar comes along. */ count?: number } | { kind: 'review'; from?: string } | { kind: 'study-set'; collectionId: string }
+export type DrillSource = { kind: 'new'; from?: string; /** At least this many new items (1 to 20, default 5), whole lessons only. */ count?: number; /** The items the picker showed: used as they are, so what was viewed is what starts. */ refs?: readonly string[] } | { kind: 'review'; from?: string; refs?: readonly string[] } | { kind: 'study-set'; collectionId: string }
   /** An explicit list of items drilled again, from a past lesson (its session id) or an earlier drill set (its id). */
   /** Practice by skill: the size least practised (or recently added) items in a skill. */
   | { kind: 'skill'; skill: Skill; size: number; strategy: 'least' | 'recent' }
@@ -52,6 +52,7 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
     if (!earlier) throw new Error('That practice set could not be found.')
     return { refs, title: `Again: ${earlier.title.replace(/^Again: /, '')}`.slice(0, 200), originId: source.origin.id, setSource: earlier.source === 'new' || earlier.source === 'lesson' ? earlier.source : 'drill' }
   }
+  if (source.kind === 'review' && source.refs?.length) return { refs: [...source.refs], title: `Reviews · ${shortDate(now)}`, ...(source.from ? { collectionId: source.from } : {}) }
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
   if (source.kind === 'review' && source.from) {
@@ -71,7 +72,7 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
   }
   const count = Math.min(20, Math.max(1, source.kind === 'new' ? source.count ?? NEW_COUNT_DEFAULT : NEW_COUNT_DEFAULT))
   if (source.kind === 'new' && !source.from) {
-    const refs = fillByWords(catalog, known, count)
+    const refs = source.refs?.length ? [...source.refs] : fillByItems(catalog, known, count)
     if (!refs.length) throw new Error('Every available curriculum group is already in your knowledge set.')
     return { refs, title: `New items · ${shortDate(now)}` }
   }
@@ -82,13 +83,7 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
   if (source.kind === 'new') {
     const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))
     const fresh = items.filter(item => isPhraseRef(item.ref) ? !(cards.get(item.ref)?.reps) : !known.has(item.ref))
-    const picked: typeof fresh = []
-    let words = 0
-    for (const item of fresh) {
-      if (!item.ref.startsWith('grammar:')) { if (words >= count) continue; words++ }
-      picked.push(item)
-    }
-    fresh.splice(0, fresh.length, ...picked)
+    if (source.refs?.length) { const wanted = new Set(source.refs); fresh.splice(0, fresh.length, ...fresh.filter(item => wanted.has(item.ref))) } else fresh.splice(count)
     if (!fresh.length) throw new Error(`Every item in this study set is already in your knowledge set.`)
     return { refs: fresh.map(item => item.ref), title: `New items · ${shortDate(now)}`, collectionId, promote: fresh.map(item => item.id) }
   }

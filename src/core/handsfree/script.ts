@@ -214,6 +214,30 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   return { segments, promptStarts }
 }
 
+/** A prompt's identity across scripts built with different settings: its phase, item and direction, and which time that card has come round in the phase. */
+export function promptKeyAt(script: Script, prompt: number): string | undefined {
+  const marker = script.segments[script.promptStarts[prompt]]
+  if (marker?.kind !== 'marker') return undefined
+  let occurrence = 0
+  for (let at = 0; at <= prompt; at++) {
+    const other = script.segments[script.promptStarts[at]]
+    if (other?.kind === 'marker' && other.phase === marker.phase && other.ref === marker.ref && other.act === marker.act) occurrence++
+  }
+  return `${marker.phase}|${marker.ref ?? marker.prompt}|${marker.act ?? ''}|${occurrence}`
+}
+/** The prompt in a new script that is the same prompt as `key` was; failing that, the nearest in the same phase, else the same place counted from the start. */
+export function findPrompt(script: Script, key: string | undefined, fallback: number): number {
+  const count = script.promptStarts.length
+  if (key) {
+    for (let at = 0; at < count; at++) if (promptKeyAt(script, at) === key) return at
+    const [phase, ref, act] = key.split('|')
+    const marker = (at: number) => { const found = script.segments[script.promptStarts[at]]; return found?.kind === 'marker' ? found : undefined }
+    for (let at = 0; at < count; at++) { const found = marker(at); if (found && found.phase === phase && (found.ref ?? found.prompt) === ref && (found.act ?? '') === act) return at }
+    for (let at = 0; at < count; at++) if (marker(at)?.phase === phase) return at
+  }
+  return Math.max(0, Math.min(fallback, count - 1))
+}
+
 /** Orders cards so that each comes back after 1, then 3, then 6 other prompts (sooner only when the pool has run dry). */
 export function scrambleWithSpacing<T>(first: readonly T[]): T[] {
   const pool = [...first]
