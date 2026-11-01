@@ -5,7 +5,7 @@ import { VoiceSelect } from '../assistant/VoiceSettings'
 import { useVoiceCatalog } from '../assistant/voice-catalog'
 
 const EMPHASIS_RATES = [0.6, 0.7, 0.8, 0.9, 1]
-const ZH_RATES = [0.6, 0.7, 0.85, 1, 1.1]
+const ZH_RATES = [0.5, 0.6, 0.7, 0.85, 1]
 const rateLabel = (rate: number) => `${rate}x`
 const withRate = (rates: number[], current: number) => rates.includes(current) ? rates : [...rates, current].sort((a, b) => a - b)
 
@@ -27,6 +27,8 @@ function PauseFields({ settings, onChange, structureLocked }: { settings: Handsf
     <label><span className="eyebrow accent">Repeats of each word and sentence</span>
       <select value={settings.repeats} aria-label="Repeats" disabled={structureLocked} onChange={event => onChange({ ...settings, repeats: Number(event.target.value) })}>
         {[1, 2, 3, 4, 5].map(count => <option key={count} value={count}>{count}</option>)}</select></label>
+    <label className="hf-check"><input type="checkbox" checked={settings.introductions !== false} onChange={event => onChange({ ...settings, introductions: event.target.checked })} /> Section introductions</label>
+    <label className="hf-check"><input type="checkbox" checked={settings.explain !== false} onChange={event => onChange({ ...settings, explain: event.target.checked })} /> Explain each item</label>
     <label className="hf-check"><input type="checkbox" checked={settings.grammar} disabled={structureLocked} onChange={event => onChange({ ...settings, grammar: event.target.checked })} /> Include grammar</label>
     {structureLocked && <p className="small muted">Repeats and grammar are fixed once a run has started, so it resumes where you left it.</p>}
   </>

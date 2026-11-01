@@ -24,7 +24,7 @@ beforeEach(async () => {
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.useRealTimers() })
 
-async function openRun(settings: Record<string, unknown> = { pause: 'short', repeats: 1, grammar: true }, extra: Record<string, unknown> = { started: true }) {
+async function openRun(settings: Record<string, unknown> = { pause: 'short', repeats: 1, grammar: true, introductions: false }, extra: Record<string, unknown> = { started: true }) {
   const now = Date.now()
   await db.handsfreeRuns.put({ id: 'run1', title: 'Hands-free · 1 Nov', refs, source: 'review', seed: 5, settings, status: 'active', started: false, position: 0, createdAt: now, updatedAt: now, ...extra } as never)
   window.location.hash = '#practice/handsfree/run1'
@@ -155,7 +155,7 @@ describe('Hands-free player', () => {
   })
 
   it('opens an unstarted run on the intro cards with an item list, and Start listening plays', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true }, {})
+    await openRun({ pause: 'short', repeats: 1, grammar: true, introductions: false }, {})
     render(<App />)
     const start = await screen.findByRole('button', { name: /Start listening/ })
     const list = await screen.findByLabelText('All items')
@@ -170,7 +170,7 @@ describe('Hands-free player', () => {
   })
 
   it('goes straight to the player for a run that has started, with an Items button for the cards', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true }, { started: true, position: 1 })
+    await openRun({ pause: 'short', repeats: 1, grammar: true, introductions: false }, { started: true, position: 1 })
     render(<App />)
     expect(await screen.findByRole('button', { name: 'Resume' })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /Start listening/ })).toBeNull()
@@ -206,7 +206,7 @@ describe('Hands-free player', () => {
     await screen.findByRole('button', { name: 'Play' })
     for (const name of ['Frame voice', 'Emphasis voice', 'Chinese voice']) expect(screen.getByLabelText(name)).toBeInTheDocument()
     expect(screen.getByLabelText('Emphasis speed')).toHaveValue('0.8')
-    expect(screen.getByLabelText('Chinese speed')).toHaveValue('0.85')
+    expect(screen.getByLabelText('Chinese speed')).toHaveValue('0.5')
     expect(screen.getByLabelText('Repeats')).toHaveValue('1')
     fireEvent.change(screen.getByLabelText('Emphasis speed'), { target: { value: '0.7' } })
     await waitFor(async () => expect((await db.handsfreeRuns.get('run1'))!.settings).toMatchObject({ emphasisRate: 0.7 }))
@@ -226,7 +226,7 @@ describe('Hands-free player', () => {
   })
 
   it('lists an unfinished run on Practice home, resumes it at the saved prompt, and discards it', async () => {
-    await openRun({ pause: 'short', repeats: 1, grammar: true }, { started: true, status: 'abandoned', position: 3 })
+    await openRun({ pause: 'short', repeats: 1, grammar: true, introductions: false }, { started: true, status: 'abandoned', position: 3 })
     window.location.hash = '#practice'
     render(<App />)
     const section = (await screen.findByRole('heading', { name: 'Unfinished sets' })).closest('section')!
@@ -258,5 +258,33 @@ describe('Hands-free player', () => {
     const run = (await db.handsfreeRuns.get(id))!
     expect(await db.knowledge.count()).toBe(before + run.addedRefs!.length)
     expect(run.addedRefs!.length).toBeGreaterThan(0)
+  })
+
+  it('shows the section introduction as the header until the first prompt, then the prompt', async () => {
+    await openRun({ pause: 'short', repeats: 1, grammar: true })
+    render(<App />)
+    const play = await screen.findByRole('button', { name: 'Play' })
+    await waitFor(() => expect(play).toBeEnabled())
+    fireEvent.click(play)
+    await waitFor(() => expect(said[0]).toMatch(/^In the following section you will hear the English meaning/))
+    await waitFor(() => expect(said).toContain('This is how you say'), { timeout: 4000 })
+    expect(document.querySelector('.hf-prompt')).not.toHaveClass('hf-section')
+  })
+
+  it('has Section introductions and Explain each item in the page settings and in Settings, both on by default', async () => {
+    await openRun({ pause: 'short', repeats: 1, grammar: true })
+    render(<App />)
+    await screen.findByRole('button', { name: 'Play' })
+    for (const name of ['Section introductions', 'Explain each item']) expect(screen.getByLabelText(name)).toBeChecked()
+    fireEvent.click(screen.getByLabelText('Explain each item'))
+    await waitFor(() => expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ explain: false }))
+    await waitFor(async () => expect((await db.handsfreeRuns.get('run1'))!.settings).toMatchObject({ explain: false }))
+    cleanup()
+    localStorage.removeItem('handsfree.settings')
+    window.location.hash = '#settings'
+    render(<App />)
+    const panel = await screen.findByRole('region', { name: 'Hands-free settings' })
+    expect(within(panel).getByLabelText('Section introductions')).toBeChecked()
+    expect(within(panel).getByLabelText('Explain each item')).toBeChecked()
   })
 })

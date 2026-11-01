@@ -7,7 +7,7 @@ export interface ScriptSentence { zh: string; en: string }
 
 export type Phase = 'intro' | 'recall' | 'scramble' | 'grammar' | 'mixed'
 export type Segment =
-  | { kind: 'say'; locale: 'en-US' | 'zh-Hans'; text: string; rate: number; /** Which voice speaks it: the English frame, the English key word, or Chinese. */ voice: 'frame' | 'emphasis' | 'zh'; /** The English answer to a Chinese prompt: the display shows it when this starts, not before. */ answer?: boolean }
+  | { kind: 'say'; locale: 'en-US' | 'zh-Hans'; text: string; rate: number; /** Part of a section introduction: shown on screen as the section header until the first prompt is spoken. */ section?: boolean; /** Which voice speaks it: the English frame, the English key word, or Chinese. */ voice: 'frame' | 'emphasis' | 'zh'; /** The English answer to a Chinese prompt: the display shows it when this starts, not before. */ answer?: boolean }
   /** `ms` is the estimate. With `measure`, the player also times the model text it has just spoken and waits whichever is longer: that time x `factor` + `gap`, or `ms`. */
   | { kind: 'pause'; ms: number; measure?: { factor: number; gap: number } }
   | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string }
@@ -19,10 +19,21 @@ export interface Script {
 }
 
 export const PHASE_LABEL: Record<Phase, string> = { intro: 'Introducing', recall: 'Recall', scramble: 'Scrambled recall', grammar: 'Grammar', mixed: 'Mixed round' }
-/** Chinese speed of the slow first pass, relative to the normal one. */
-export const SLOW_FACTOR = 0.7
+/** The Chinese speed the estimate of a syllable's time (500 ms) is calibrated to; slower speech is estimated longer. */
+export const ZH_REFERENCE_RATE = 0.85
 /** The gap between the frame and the key word, in ms. */
 export const FRAME_GAP_MS = 300
+export const SECTION_GAP_MS = 600
+/** What each section is and what you do in it, spoken by the frame voice and shown as the section header. */
+export const SECTION_INTRO: Record<Phase, string> = {
+  intro: 'In the following section you will hear the English meaning followed by its Mandarin equivalent. Repeat the Mandarin, building up to the full phrase.',
+  recall: "Now you'll hear the English. Say the Mandarin before you hear it.",
+  scramble: 'Now in random order, in both directions. Answer before you hear it.',
+  grammar: "Now a grammar pattern. You'll hear an example sentence in English, then in Mandarin. Repeat it, building up to the full sentence.",
+  mixed: "Last, words and sentences together, in random order and in both directions. Answer before you hear it.",
+}
+const SPEAKABLE = /[\p{L}\p{N}]/u
+const EDGE_PUNCTUATION = /^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu
 /** Gaps added after twice the spoken length of an answer, per pause length. */
 export const GAP_MS = { short: 800, normal: 1500, long: 2600 }
 export const SCALE = { short: 0.7, normal: 1, long: 1.4 }
@@ -53,7 +64,7 @@ const asDescription = (ds: string) => ds.replace(/\s+/g, ' ').trim().replace(/[.
 
 /** About how long a text takes to say, in ms, at a Chinese speed (1 is the voice's own speed; English is spoken at its own pace). */
 export function spokenMs(text: string, locale: 'en-US' | 'zh-Hans', rate = DEFAULT_ZH_RATE) {
-  return locale === 'zh-Hans' ? Math.max(1, syllables(text).length) * ZH_SYLLABLE_MS * (DEFAULT_ZH_RATE / rate) : Math.max(1, text.trim().split(/\s+/).length) * EN_WORD_MS
+  return locale === 'zh-Hans' ? Math.max(1, syllables(text).length) * ZH_SYLLABLE_MS * (ZH_REFERENCE_RATE / rate) : Math.max(1, text.trim().split(/\s+/).length) * EN_WORD_MS
 }
 /** The pause that lets you say `text` yourself: twice its spoken length plus a gap, by the setting. About 3.5 s for two syllables and 7.5 s for six at Normal. */
 export function pauseFor(text: string, locale: 'en-US' | 'zh-Hans', pause: HandsfreeSettings['pause'], rate = DEFAULT_ZH_RATE) {
@@ -85,7 +96,8 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   const random = rng(seed)
   const zhRate = settings.zhRate ?? DEFAULT_ZH_RATE
   const emphasisRate = settings.emphasisRate ?? DEFAULT_EMPHASIS_RATE
-  const slowRate = Math.round(zhRate * SLOW_FACTOR * 100) / 100
+  const introductions = settings.introductions !== false
+  const explain = settings.explain !== false
   // Characters-only items (no Chinese or no English to say) are left out.
   const words: Word[] = items.filter(item => item.kind !== 'grammar' && syllables(item.zh).length && (introExplanation(item) ? item.en.trim() : shortGloss(item.en)))
     .map((item): Word => { const description = introExplanation(item); return description ? { zh: item.zh, en: asDescription(item.en), description } : { zh: item.zh, en: shortGloss(item.en) } })
@@ -99,15 +111,26 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   const pause = (text: string, locale: 'en-US' | 'zh-Hans', rate = zhRate, measured = false) => segments.push({ kind: 'pause', ms: pauseFor(text, locale, settings.pause, rate),
     ...(measured ? { measure: { factor: 2 * SCALE[settings.pause], gap: GAP_MS[settings.pause] } } : {}) })
   const gap = () => segments.push({ kind: 'pause', ms: FRAME_GAP_MS })
-  const sayFrame = (text: string) => segments.push({ kind: 'say', locale: 'en-US', text, rate: 1, voice: 'frame' })
+  /** Nothing is spoken that has no letters or Chinese characters in it: the voice would read "?" or ":" aloud. */
+  const speakable = (text: string) => SPEAKABLE.test(text)
+  const say = (segment: Extract<Segment, { kind: 'say' }>) => { if (speakable(segment.text)) segments.push(segment) }
+  /** A frame piece beside the gloss: leading and trailing punctuation is dropped ("in Mandarin:" is said "in Mandarin", "?" is not said). */
+  const sayFrame = (text: string) => say({ kind: 'say', locale: 'en-US', text: text.replace(EDGE_PUNCTUATION, ''), rate: 1, voice: 'frame' })
   /** The English key word or explanation: its own voice, slower. */
-  const sayKey = (text: string, answer = false) => segments.push({ kind: 'say', locale: 'en-US', text, rate: emphasisRate, voice: 'emphasis', ...(answer ? { answer: true } : {}) })
-  const sayZh = (text: string, rate = zhRate) => segments.push({ kind: 'say', locale: 'zh-Hans', text, rate, voice: 'zh' })
+  const sayKey = (text: string, answer = false) => say({ kind: 'say', locale: 'en-US', text, rate: emphasisRate, voice: 'emphasis', ...(answer ? { answer: true } : {}) })
+  const sayZh = (text: string, rate = zhRate) => say({ kind: 'say', locale: 'zh-Hans', text, rate, voice: 'zh' })
   /** A frame, a short gap, the key, a gap, and the rest of the frame: "This is how you say" / rest / "in Mandarin:". */
-  const framed = (before: string, key: string, after: string) => { if (before) { sayFrame(before); gap() } sayKey(key); if (after) { gap(); sayFrame(after) } }
+  const framed = (before: string, key: string, after: string, keep = false) => { if (!explain && !keep) { sayKey(key); return } if (speakable(before)) { sayFrame(before); gap() } sayKey(key); if (speakable(after)) { gap(); sayFrame(after) } }
+  const introduced = new Set<Phase>()
   const mark = (phase: Phase, index: number, total: number, prompt: string) => {
     promptStarts.push(segments.length)
     segments.push({ kind: 'marker', phase, index, total, prompt })
+    // The first prompt of a section starts with what the section is and what to do.
+    if (introductions && !introduced.has(phase) && index === 1) {
+      introduced.add(phase)
+      say({ kind: 'say', locale: 'en-US', text: SECTION_INTRO[phase], rate: 1, voice: 'frame', section: true })
+      segments.push({ kind: 'pause', ms: SECTION_GAP_MS })
+    }
   }
   /** Says a Chinese text and leaves a pause to repeat it, sized to the text and to how long the model text actually took. */
   const repeatAfter = (zh: string, rate = zhRate) => { sayZh(zh, rate); pause(zh, 'zh-Hans', rate, true) }
@@ -119,12 +142,12 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     for (let step = 1; step < steps; step++) {
       const keep = Math.max(1, Math.round(han.length * step / steps))
       if (keep >= han.length) break
-      repeatAfter(chars.slice(han[han.length - keep]).join(''), slowRate)
+      repeatAfter(chars.slice(han[han.length - keep]).join(''), zhRate)
     }
   }
   /** The repeat-after structure of a phrase: the whole phrase slowly, the build-up from the end, then the whole phrase again at normal speed until `repeats` whole repeats are done. */
   const teach = (zh: string, steps: number, firstAlready = false) => {
-    if (!firstAlready) repeatAfter(zh, slowRate)
+    if (!firstAlready) repeatAfter(zh, zhRate)
     buildUp(zh, steps)
     for (let again = 1; again < settings.repeats; again++) repeatAfter(zh)
   }
@@ -132,7 +155,7 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   const ask = (word: Word, lead = '') => {
     if (word.description) {
       const article = /^(an?|the) /i.test(word.en) ? '' : /^[aeiou]/i.test(word.en) ? 'an ' : 'a '
-      framed(`${lead}Which word is ${article}`.trimEnd(), `${word.en.charAt(0).toLowerCase()}${word.en.slice(1)}`, '?')
+      framed(`${lead}Which word is ${article}`.trimEnd(), `${word.en.charAt(0).toLowerCase()}${word.en.slice(1)}`, '?', true)
     } else framed(`${lead ? 'And how' : 'How'} do you say`, word.en, '?')
     pause(word.zh, 'zh-Hans')
   }
@@ -153,7 +176,7 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     const total = words.length
     mark('intro', at + 1, total, word.en)
     if (word.description) {
-      sayFrame("Here's"); repeatAfter(word.zh, slowRate); sayKey(word.description)
+      if (explain) sayFrame("Here's"); repeatAfter(word.zh, zhRate); sayKey(word.description)
       buildUp(word.zh, syllables(word.zh).length)
       for (let again = 1; again < Math.max(2, settings.repeats); again++) repeatAfter(word.zh)
     } else {

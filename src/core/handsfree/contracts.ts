@@ -12,6 +12,10 @@ export const handsfreeSettingsSchema = z.object({
   /** Whole-phrase repeat-afters of each word and sentence, the first one included. */
   repeats: z.number().int().min(1).max(5),
   grammar: z.boolean(),
+  /** A short spoken description at the start of each section (default on; a run saved without it gets them). */
+  introductions: z.boolean().optional(),
+  /** The wording around each item, "This is how you say ... in Mandarin" and "How do you say ...?" (default on). Off leaves just the gloss. */
+  explain: z.boolean().optional(),
   /** English voice for the frame ("This is how you say"); unset follows the English voice in Settings. */
   frameVoice: speechVoicePreferenceSchema.optional(),
   /** English voice for the key word (the gloss) and explanations; unset picks an English voice other than the frame voice, where there is one. */
@@ -22,9 +26,10 @@ export const handsfreeSettingsSchema = z.object({
   zhRate: z.number().min(0.5).max(1.25).optional(),
 }).strict()
 export type HandsfreeSettings = z.infer<typeof handsfreeSettingsSchema>
-export const DEFAULT_HANDSFREE_SETTINGS: HandsfreeSettings = { pause: 'normal', repeats: 3, grammar: true, emphasisRate: 0.8, zhRate: 0.85 }
+export const DEFAULT_HANDSFREE_SETTINGS: HandsfreeSettings = { pause: 'normal', repeats: 3, grammar: true, introductions: true, explain: true, emphasisRate: 0.8, zhRate: 0.5 }
 export const DEFAULT_EMPHASIS_RATE = 0.8
-export const DEFAULT_ZH_RATE = 0.85
+/** Half speed: the whole phrase, the build-up and the repeats all use the Chinese speed setting itself. */
+export const DEFAULT_ZH_RATE = 0.5
 
 export const handsfreeRunSchema = z.object({
   id: z.string().min(1).max(100),

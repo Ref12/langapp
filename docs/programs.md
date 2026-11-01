@@ -25,9 +25,13 @@ The pattern is always the same: **prompt → pause (you answer aloud) → the an
 
 A run opens on the **intro cards** (the same cards a lesson uses for new items) with a compact list of every item, then **Start listening**, which is always visible. A run that has already started goes straight to the player, with an **Items** button to see the cards again.
 
-The English key word is split from its frame so it stands out: "This is how you say" (frame voice) → short gap (300 ms) → **the gloss** (emphasis voice, slower) → gap → "in Mandarin:". Recall is "How do you say" → **gloss** → "?". Descriptive explanations ("It's a sentence ending for…") use the emphasis voice too.
+**Section introductions** (a setting, on by default): at the start of each section the frame voice says what is coming and what you do ("In the following section you will hear the English meaning followed by its Mandarin equivalent. Repeat the Mandarin, building up to the full phrase."), and the same text shows on screen as the header until the first prompt.
 
-Every word and sentence is repeated the same way: **the whole phrase (slow) → pause; the build-up from the end (only for 3+ syllables), each step → pause; then the whole phrase again at normal speed**, until the **Repeats** setting is reached (whole-phrase repeat-afters in total, the first included; 1–5, default 3).
+**Explain each item** (a setting, on by default): the wording around each item. Off, the intro is the gloss then the Mandarin structure, recall is just the gloss, and Chinese → English is just the Chinese. Descriptive items keep their explanation sentence. Nothing that has no letters or Chinese characters is ever spoken (no "?" or ":" read aloud).
+
+The English key word is split from its frame so it stands out: "This is how you say" (frame voice) → short gap (300 ms) → **the gloss** (emphasis voice, slower) → gap → "in Mandarin" (punctuation is trimmed off the frame pieces, so "?" and ":" are never read out). Recall is "How do you say" → **gloss**. Descriptive explanations ("It's a sentence ending for…") use the emphasis voice too.
+
+Every word and sentence is repeated the same way: **the whole phrase → pause; the build-up from the end (only for 3+ syllables), each step → pause; then the whole phrase again at normal speed**, until the **Repeats** setting is reached (whole-phrase repeat-afters in total, the first included; 1–5, default 3).
 
 1. **Introduce each word, in order**, with the structure above. After each new word, recall the previous one once: "And how do you say *work*?" → pause → answer. (The user liked this; keep it.)
 2. **Recall in order.**
@@ -45,14 +49,15 @@ When a run whose source was New items (or a study set's new items) **reaches the
 
 ### Pauses
 
-Each pause is sized to the text you have to say, in syllables for Chinese and words for English: about **2× the spoken length plus a gap**. At Normal that is about 3.5 s for a two-syllable word and 7.5 s for a six-syllable sentence (500 ms per syllable at the default Chinese speed, 1.5 s gap). The estimate is slower-aware: slower Chinese speech gets longer pauses. After model text, the player also times how long it actually took to speak and waits whichever is longer, that time × 2 or the estimate. Short, Normal and Long scale the 2× part by 0.7, 1 and 1.4 and use gaps of 0.8 s, 1.5 s and 2.6 s.
+Each pause is sized to the text you have to say, in syllables for Chinese and words for English: about **2× the spoken length plus a gap**. At Normal and Chinese speed 0.85 that is about 3.5 s for a two-syllable word and 7.5 s for a six-syllable sentence (500 ms per syllable, 1.5 s gap); at the default half speed it is about 4.9 s and 10.7 s. The estimate is slower-aware: slower Chinese speech gets longer pauses. After model text, the player also times how long it actually took to speak and waits whichever is longer, that time × 2 or the estimate. Short, Normal and Long scale the 2× part by 0.7, 1 and 1.4 and use gaps of 0.8 s, 1.5 s and 2.6 s.
 
 ### Settings
 
 - **Pause length:** Short, Normal or Long (above).
 - **Repeats** of each word and sentence: 1 to 5, default 3.
 - **Include grammar:** on or off.
-- **Frame voice** (English), **Emphasis voice** (English; by default a different English voice from the frame voice, where the device has one), **Emphasis speed** (default 0.8×), **Chinese voice** and **Chinese speed**. An unset voice follows the saved voice for its language (Settings → Voices). They are shown on the Hands-free page and in Settings → Hands-free (the defaults a new run starts with), using the same pickers as Settings → Voices.
+- **Section introductions** and **Explain each item** (above), on the Hands-free page and in Settings.
+- **Frame voice** (English), **Emphasis voice** (English; by default a different English voice from the frame voice, where the device has one), **Emphasis speed** (default 0.8×), **Chinese voice** and **Chinese speed** (default **0.5**, half speed; the whole phrase, the build-up and the repeats all use it as set, and pauses lengthen with it). An unset voice follows the saved voice for its language (Settings → Voices). They are shown on the Hands-free page and in Settings → Hands-free (the defaults a new run starts with), using the same pickers as Settings → Voices.
 
 ### Screen
 

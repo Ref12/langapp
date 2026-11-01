@@ -23,17 +23,17 @@ const TICK_MS = 100
 const HAN_TEXT = /\p{Script=Han}/u
 
 /** What has been spoken of the current prompt's answer: Chinese (shown with pinyin) from the moment it starts, or the English answer. */
-interface Heard { zh?: string; en?: string }
+interface Heard { zh?: string; en?: string; /** The section introduction being spoken: shown as the header until the first prompt. */ section?: string }
 const hasHan = (text: string) => HAN_TEXT.test(text)
 
 /** The player's display, also the pocket-mode screen: the phase, the prompt, then the answer once it is being spoken. */
 function Display({ phase, prompt, heard, done, total, position, added, className = '' }: { phase: string; prompt: string; heard: Heard; done: boolean; total: number; position: number; added: string; className?: string }) {
   const zh = heard.zh
-  const main = done ? 'Well done.' : zh ?? prompt
+  const main = done ? 'Well done.' : heard.section ?? zh ?? prompt
   return <div className={'hf-display ' + className}>
     <p className="hf-phase" role="status">{phase}</p>
     {!done && zh && !hasHan(prompt) && prompt && <p className="hf-cue">{prompt}</p>}
-    <p className="hf-prompt" lang={!done && hasHan(main) ? 'zh-Hans' : undefined}>{main}</p>
+    <p className={'hf-prompt' + (heard.section && !done ? ' hf-section' : '')} lang={!done && hasHan(main) ? 'zh-Hans' : undefined}>{main}</p>
     {!done && zh && <p className="hf-pinyin" data-testid="hf-pinyin">{toPinyin(zh, { toneType: 'symbol' })}</p>}
     {!done && heard.en && <p className="hf-answer" data-testid="hf-answer">{heard.en}</p>}
     {done && added && <p className="hf-added" role="status">{added}</p>}
@@ -49,7 +49,7 @@ export function HandsFree({ runId, ...props }: PageProps & { runId?: string }) {
   return <Player key={run.id} hf={run} {...props} />
 }
 
-const settingsKey = (settings: HandsfreeSettings) => `${settings.repeats}:${settings.grammar}:${settings.emphasisRate}:${settings.zhRate}`
+const settingsKey = (settings: HandsfreeSettings) => `${settings.repeats}:${settings.grammar}:${settings.introductions}:${settings.explain}:${settings.emphasisRate}:${settings.zhRate}`
 
 function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { hf: HandsfreeRun }) {
   const { catalog } = useCatalog()
@@ -98,7 +98,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
       }
     }, startRef.current, () => resolveVoices(voicesRef.current.settings, voicesRef.current.saved, typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices() : []),
     // The answer shows only when its segment starts: Chinese with pinyin, or the English answer to a Chinese prompt.
-    segment => setHeard(before => !segment ? (before.zh || before.en ? {} : before) : segment.locale === 'zh-Hans' ? { zh: segment.text } : segment.answer ? { ...before, en: segment.text } : before))
+    segment => setHeard(before => !segment ? (before.zh || before.en || before.section ? {} : before) : segment.section ? { section: segment.text } : segment.locale === 'zh-Hans' ? { zh: segment.text } : segment.answer ? { ...before, en: segment.text } : before.section ? {} : before))
     playerRef.current = player
     return () => {
       const at = player.state()
