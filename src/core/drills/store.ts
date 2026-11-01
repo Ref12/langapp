@@ -11,6 +11,8 @@ import { isPhraseRef } from '../study/contracts'
 import { recordCharacterPractice } from '../characters/store'
 import { cancelContent, startContent } from './content'
 import { worstMark } from './write-queue'
+import { drillSkills, recordSkillPractice, SKILL_LABEL, STRATEGY_LABEL, type Skill } from '../study/skills'
+import { pickItems } from '../study/skill-pick'
 import { MARK_RATING, drillSetSchema, type DrillFormat, type DrillSet, type DrillTypeId, type Mark } from './contracts'
 
 export const REVIEW_SET_SIZE = 12
@@ -20,6 +22,8 @@ export const MAX_UNFINISHED_SETS = 8
 
 export type DrillSource = { kind: 'new'; from?: string; /** How many new words the set holds (1 to 20, default 5); grammar comes along. */ count?: number } | { kind: 'review'; from?: string } | { kind: 'study-set'; collectionId: string }
   /** An explicit list of items drilled again, from a past lesson (its session id) or an earlier drill set (its id). */
+  /** Practice by skill: the size least practised (or recently added) items in a skill. */
+  | { kind: 'skill'; skill: Skill; size: number; strategy: 'least' | 'recent' }
   | { kind: 'refs'; refs: readonly string[]; origin: { kind: 'lesson' | 'drill'; id: string } }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -30,7 +34,12 @@ function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'c
   return { ...fields, status: 'active', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, updatedAt: fields.createdAt }
 }
 
-export async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source'] }> {
+export async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source']; emphasis?: Skill }> {
+  if (source.kind === 'skill') {
+    const refs = await pickItems(source.skill, source.size, source.strategy, now)
+    if (!refs.length) throw new Error(source.strategy === 'recent' ? 'Nothing was added to your knowledge set in the last 3 days.' : 'Your knowledge set is empty. Start with New items, or add items from the Dictionary.')
+    return { refs, title: `${STRATEGY_LABEL[source.strategy]} · ${SKILL_LABEL[source.skill]}`, setSource: 'drill', emphasis: source.skill }
+  }
   if (source.kind === 'refs') {
     const refs = [...new Set(source.refs)].slice(0, STUDY_SET_LIMIT)
     if (!refs.length) throw new Error('There are no items to practice.')
@@ -96,7 +105,7 @@ export async function createDrillSet(source: DrillSource, now = Date.now()): Pro
   const catalog = await loadCatalog()
   if (chosen.promote) await promoteItems(chosen.promote)
   const id = crypto.randomUUID()
-  const set = emptySet({ id, source: source.kind === 'refs' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) })
+  const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}) }
   await db.transaction('rw', [db.drillSets, db.knowledge, db.studyCards, db.journal], async () => {
     if (source.kind === 'new' && !source.from) {
       const units = chosen.refs.flatMap(ref => catalog.units.get(ref) ?? [])
@@ -143,7 +152,7 @@ async function reviewItem(setId: string, type: DrillTypeId, ref: string, mark: M
  * (Got it = Good, Needed a hint = Hard, Missed = Again). Once the type is done, or the item already has a result, nothing changes (a redo is ungraded).
  */
 export async function recordDrillResult(setId: string, type: DrillTypeId, ref: string, mark: Mark, scope: readonly string[], now = Date.now()): Promise<{ graded: boolean }> {
-  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal], async () => {
+  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
     const set = await db.drillSets.get(setId)
     if (!set || set.status !== 'active') return { graded: false }
     const current = set.progress[type] ?? { results: {}, scope: [...scope], done: false, redos: 0 }
@@ -153,6 +162,8 @@ export async function recordDrillResult(setId: string, type: DrillTypeId, ref: s
     const done = covered.every(item => results[item])
     await db.drillSets.put({ ...set, updatedAt: now, progress: { ...set.progress, [type]: { ...current, scope: covered, results, done, ...(done ? { finishedAt: now } : {}) } } })
     await reviewItem(setId, type, ref, mark, now)
+    // The first pass of a type counts once per item; redos and retries are ungraded and add nothing.
+    await recordSkillPractice([ref], drillSkills(type), now)
     return { graded: true }
   })
 }
@@ -162,7 +173,7 @@ export async function recordDrillResult(setId: string, type: DrillTypeId, ref: s
  * characters, as soon as every one of its characters has one; the type is done when every word has a result.
  */
 export async function recordWriteChar(setId: string, char: string, mark: Mark, cue: string, words: readonly { ref: string; chars: readonly string[] }[], scope: readonly string[], now = Date.now()): Promise<{ graded: boolean }> {
-  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal], async () => {
+  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
     const set = await db.drillSets.get(setId)
     if (!set || set.status !== 'active') return { graded: false }
     const current = set.progress.write ?? { results: {}, scope: [...scope], done: false, redos: 0 }
@@ -178,7 +189,7 @@ export async function recordWriteChar(setId: string, char: string, mark: Mark, c
     const covered = current.scope.length ? current.scope : [...scope]
     const done = covered.every(item => results[item])
     await db.drillSets.put({ ...set, updatedAt: now, progress: { ...set.progress, write: { ...current, scope: covered, results, chars, done, ...(done ? { finishedAt: now } : {}) } } })
-    for (const [ref, result] of completed) await reviewItem(setId, 'write', ref, result, now)
+    for (const [ref, result] of completed) { await reviewItem(setId, 'write', ref, result, now); await recordSkillPractice([ref], drillSkills('write'), now) }
     return { graded: true }
   })
 }

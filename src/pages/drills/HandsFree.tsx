@@ -12,6 +12,8 @@ import { resolveVoices } from '../../core/handsfree/voices'
 import { pinyin as toPinyin } from 'pinyin-pro'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { IntroCards } from './IntroCards'
+import { ACTIVITY_SKILLS, PROMPT_SKILLS } from '../../core/study/skill-map'
+import { recordRunPractice } from '../../core/study/skills'
 import { createHandsfreePlayer, type HandsfreeState } from '../../core/handsfree/player'
 import { PHASE_LABEL, type Script } from '../../core/handsfree/script'
 import { createWakeLockController } from '../../core/pocket/wake-lock'
@@ -94,6 +96,11 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
       if (next.status === 'completed') void completeHandsfreeRun(runId, total).catch(cause => setError(cause instanceof Error ? cause.message : 'The new items could not be added to your knowledge set.'))
       else if (next.status === 'playing' || next.status === 'paused') {
         lastSaved.current = next.prompt
+        // Each prompt counts its item once per run (listening or speaking by the prompt's kind).
+        if (next.status === 'playing') {
+          const at = scriptRef.current.segments[scriptRef.current.promptStarts[next.prompt]]
+          if (at?.kind === 'marker' && at.ref && at.act) void recordRunPractice(runId, [at.ref], PROMPT_SKILLS[at.act]).catch(() => undefined)
+        }
         void updateHandsfreeRun(runId, { status: 'active', ...(next.status === 'playing' ? { started: true } : {}), position: next.prompt })
       }
     }, startRef.current, () => resolveVoices(voicesRef.current.settings, voicesRef.current.saved, typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices() : []),
@@ -128,6 +135,12 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   }, [listening, script, total])
 
   useMediaSession(run.title, marker ? `${PHASE_LABEL[marker.phase]} ${marker.index} of ${marker.total}` : '', playerRef, !!script)
+
+  const introRefs = run.refs.join(',')
+  useEffect(() => {
+    if (view === 'intro' && items) void recordRunPractice(runId, run.refs, ACTIVITY_SKILLS.introCard).catch(() => undefined)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view, !!items, introRefs])
 
   if (view === 'intro') return <div className="dr hf">
     <a className="back-link" href="#practice"><ArrowLeft size={16} /> Practice</a>

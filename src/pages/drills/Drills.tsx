@@ -21,6 +21,9 @@ import { MAX_UNFINISHED_SETS, createDrillSet, discardDrillSet, finishDrillSet, r
 import { DrillRun } from './DrillRun'
 import { createHandsfreeRun, discardHandsfreeRun, unfinishedHandsfreeRuns } from '../../core/handsfree/store'
 import { availability } from './tasks'
+import { SKILLS, SKILL_LABEL, SKILL_SIZES, STRATEGY_LABEL, PICK_STRATEGIES, drillSkills, type Skill } from '../../core/study/skill-map'
+import { ACTIVITY_SKILLS } from '../../core/study/skill-map'
+import { recordSetIntro } from '../../core/study/skills'
 import './drills.css'
 
 const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
@@ -69,6 +72,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
 function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & { set: DrillSet; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
   const [shown, setShown] = useState(false)
   const fresh = set.source === 'new' || set.source === 'lesson'
+  useEffect(() => { if (fresh) void recordSetIntro(set.id, set.refs, ACTIVITY_SKILLS.introCard).catch(() => undefined) }, [fresh, set.id, set.refs])
   const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start practicing <ArrowRight size={16} /></a>
   const detail = describeItems(items, workspace.characterStates) || itemCount(items.length)
   const examplesFor = (ref: string) => (catalog.orderedGroups.find(entry => entry.group.units.some(unit => unit.ref === ref))?.group.examples ?? [])
@@ -100,6 +104,8 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const connection = useAIConnection()
   const quiz = set.format === 'quiz'
   const rows = DRILL_TYPES.map(entry => ({ entry, avail: availability(entry.id, items, content), progress: set.progress[entry.id] }))
+  // A Practice by skill set lists the types for its skill first.
+  if (set.emphasis) rows.sort((a, b) => Number(drillSkills(b.entry.id).includes(set.emphasis!)) - Number(drillSkills(a.entry.id).includes(set.emphasis!)))
   const done = rows.filter(row => row.progress?.done)
   const todo = rows.filter(row => !row.progress?.done)
   const finish = () => void run(async () => { await finishDrillSet(set.id); navigate(setRoute(set.id, 'summary')) })
@@ -115,7 +121,7 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
     {content.state === 'running' && <p className="small muted" role="status">Writing sentences and conversations with your AI model ({content.done ?? 0} of {content.total ?? 0} requests done). Types that need them say when they are ready.</p>}
     {content.state === 'no-ai' && connection === null && <p className="notice small" role="status">No AI model is connected, so only the types built from the catalog are available. <a className="text-link" href="#settings">Connect one in Settings</a>.</p>}
     <div className="dr-columns">
-      <section className="panel dr-panel" aria-labelledby="dr-types"><h2 id="dr-types">Pick a practice type</h2><p className="small muted">Any order. Each type covers the items of the set it applies to.</p>
+      <section className="panel dr-panel" aria-labelledby="dr-types"><h2 id="dr-types">Pick a practice type</h2><p className="small muted">{set.emphasis ? `${SKILL_LABEL[set.emphasis]} types first. ` : ''}Any order. Each type covers the items of the set it applies to.</p>
         <ul className="dr-rows">{todo.map(({ entry, avail, progress }) => { const Icon = ICONS[entry.icon]; const ready = avail.state === 'ready'
           return <li key={entry.id}><Icon size={20} aria-hidden="true" />
             <div><strong>{entry.name}</strong><span className="small muted">{ready ? `${entry.blurb} · ${avail.count} ${avail.count === 1 ? 'item' : 'items'}${progress ? ` · ${Object.keys(progress.results).length} of ${progress.scope.length} done` : ''}` : avail.message}</span>
@@ -194,6 +200,10 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const inFrom = fromSet ? new Set(collectionItems.filter(item => item.collectionId === fromSet.id).map(item => item.ref)) : undefined
   const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref))).length
   const breakdown = catalog && !fromSet && next ? (() => { const text = describeItems(batch.flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit.kind === 'vocabulary' ? { kind: 'vocabulary' as const, zh: unit.record.ch } : { kind: 'grammar' as const, zh: unit.record.pt }] : [] }), workspace.characterStates); return text ? ` (${text})` : '' })() : ''
+  const [skill, setSkill] = useState<Skill>('reading')
+  const [size, setSize] = useState<number>(10)
+  const [strategy, setStrategy] = useState<typeof PICK_STRATEGIES[number]>('least')
+  const skillSource = (): DrillSource => ({ kind: 'skill', skill, size, strategy })
   const newSource = (): DrillSource => ({ kind: 'new', count, ...(fromSet ? { from: fromSet.id } : {}) })
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
   const startHandsfree = (source: DrillSource) => void run(async () => { navigate(`practice/handsfree/${await createHandsfreeRun(source)}`) })
@@ -208,6 +218,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
       <ul className="dr-rows">
         <li><div><strong>Hands-free</strong><span className="small muted">Listen and answer aloud, with no screen. Words, recall, then grammar{fromSet ? ` from ${fromSet.name}` : ''}.</span></div>
           <span className="button-row"><button type="button" className="button primary" aria-label="Hands-free new items" disabled={busy || !fresh} onClick={() => startHandsfree(newSource())}>New items</button>
+            <button type="button" className="button secondary" aria-label="Hands-free least practised (listening)" disabled={busy || !known.size} onClick={() => startHandsfree({ kind: 'skill', skill: 'listening', size: 10, strategy: 'least' })}>Least practised (listening)</button>
             <button type="button" className="button secondary" aria-label="Hands-free reviews" disabled={busy || !due} onClick={() => startHandsfree({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Reviews</button></span></li>
       </ul>
     </section>
@@ -218,6 +229,11 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
             <button type="button" className="button primary" aria-label="Start new items" disabled={busy || !fresh} onClick={() => start(newSource())}>Start <ArrowRight size={16} /></button></li>
           <li className="dr-count"><div role="group" aria-label="New words per set" className="dr-count-picker"><span className="small muted">New words per set</span><span className="segmented">{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
             <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label="Number of new words" value={typed} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') { const next = clampCount(event.target.value); setCountState(next); saveNewCount(next) } }} onBlur={() => setTyped(String(count))} /></div></li>
+          <li className="dr-skill"><div><strong>Practice by skill</strong><span className="small muted">{known.size ? `${Math.min(size, known.size)} of your ${known.size} items, ${strategy === 'least' ? 'least practised first' : 'added in the last 3 days'}` : 'Add items to your knowledge set first'}</span>
+            <span className="dr-skill-pickers"><select aria-label="Skill" value={skill} onChange={event => setSkill(event.target.value as Skill)}>{SKILLS.map(entry => <option key={entry} value={entry}>{SKILL_LABEL[entry]}</option>)}</select>
+              <select aria-label="Set size" value={size} onChange={event => setSize(Number(event.target.value))}>{SKILL_SIZES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select>
+              <select aria-label="Strategy" value={strategy} onChange={event => setStrategy(event.target.value as typeof strategy)}>{PICK_STRATEGIES.map(entry => <option key={entry} value={entry}>{STRATEGY_LABEL[entry]}</option>)}</select></span></div>
+            <button type="button" className="button primary" aria-label="Start practice by skill" disabled={busy || !known.size} onClick={() => start(skillSource())}>Start <ArrowRight size={16} /></button></li>
           <li><div><strong>Reviews</strong><span className="small muted">{due} {due === 1 ? 'item' : 'items'} due{fromSet ? ` in ${fromSet.name}` : ''} · titles hidden</span></div>
             <button type="button" className="button primary" aria-label="Start reviews" disabled={busy || !due} onClick={() => start({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
         </ul>

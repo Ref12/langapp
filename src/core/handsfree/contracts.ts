@@ -53,6 +53,8 @@ export const handsfreeRunSchema = z.object({
   addOnComplete: z.array(z.string().min(1).max(200)).max(200).optional(),
   /** Study-set item ids to promote into the knowledge set on completion, as a lesson does. */
   promote: z.array(z.string().min(1).max(200)).max(200).optional(),
+  /** Practice-count pairs ("ref|skill") this run has already counted, so a replay adds nothing. */
+  practiced: z.array(z.string().max(220)).max(500).optional(),
   /** True once the user set an unfinished run aside from Practice home. */
   discarded: z.boolean().optional(),
   /** Set once, when completion added items; a replayed run never adds them again. */

@@ -7,6 +7,7 @@ import { cardStatus, unitKindLabel } from '../../core/study/labels'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Pinyin } from '../Pinyin'
 import { SaveActions } from '../collections/SaveToMenu'
+import { SkillCounts } from './SkillCounts'
 import { useWriteLongPress } from './useWriteLongPress'
 
 export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Catalog; example: Omit<AuthoredExample, 'id'>; pinyin: boolean; route?: string; actions?: ReactNode }) {
@@ -43,6 +44,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
       </div>
       {vocabulary && snippet}
     </div>
+    {known && !hideStatus && <SkillCounts itemRef={unit.ref} />}
     {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} actions={<PracticeSnippet source={{ text: renderExample(catalog, example).text, meaning: example.translation, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />} />)}
     {!hideStatus && <SaveActions refs={[unit.ref]} name={title} title={unit.record.ds} primary={<button className="button secondary full-width" disabled={busy || known} onClick={() => void run(() => addToKnowledge([unit.ref]))}>
         {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}

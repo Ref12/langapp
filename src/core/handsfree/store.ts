@@ -26,7 +26,7 @@ export async function createHandsfreeRun(source: DrillSource, now = Date.now()):
   const chosen = await chooseRefs(source, now)
   const id = crypto.randomUUID()
   const run: HandsfreeRun = {
-    id, title: `Hands-free · ${shortDate(now)}`, refs: chosen.refs, source: source.kind === 'refs' ? chosen.setSource! : source.kind,
+    id, title: source.kind === 'skill' ? `Hands-free · ${chosen.title}` : `Hands-free · ${shortDate(now)}`, refs: chosen.refs, source: source.kind === 'refs' || source.kind === 'skill' ? chosen.setSource! : source.kind,
     ...(chosen.originId ? { originId: chosen.originId } : {}),
     ...(source.kind === 'new' ? { addOnComplete: chosen.refs, ...(chosen.promote ? { promote: chosen.promote } : {}) } : {}), seed: Math.floor(Math.random() * 2 ** 31),
     settings: loadHandsfreeSettings(), status: 'active', started: false, position: 0, createdAt: now, updatedAt: now,

@@ -14,6 +14,8 @@ import { checkAnswer, generateStreaming, missedRefs, shuffleIndexes } from './ex
 import { fillLocalExercises, isVocabulary, localVocabularyExercises, seedFrom, vocabularyInPhrases, type LocalInput } from './local-exercises'
 import { playItem, queueLength, redoFor } from './redo'
 import { cancelGeneration, exerciseCountPreference, isGenerating, runGeneration, type Emit, type GenerationResult } from './generation'
+import { ACTIVITY_SKILLS } from './skill-map'
+import { recordSkillPractice } from './skills'
 import { emptySchedulingState, schedule, type Rating, type SchedulingState } from './fsrs'
 
 // Knowledge set, next-group selection, review selection and exercise sessions.
@@ -300,7 +302,7 @@ function schedulingState(card: StudyCard): SchedulingState {
 }
 
 export async function submitExerciseAnswer(sessionId: string, index: number, response: unknown): Promise<ExerciseAttempt> {
-  return db.transaction('rw', db.exerciseSessions, db.exerciseAttempts, db.studyCards, db.knowledge, db.journal, async () => {
+  return db.transaction('rw', [db.exerciseSessions, db.exerciseAttempts, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
     const id = `${sessionId}:${index}`
     const existing = await db.exerciseAttempts.get(id)
     if (existing) return existing
@@ -321,6 +323,8 @@ export async function submitExerciseAnswer(sessionId: string, index: number, res
     // Collection practice schedules the shared card but journals reviews only for items in the knowledge set.
     const inKnowledge = new Set((await db.knowledge.bulkGet(exercise.targets)).flatMap(entry => entry ? [entry.ref] : []))
     await recordJournal(exerciseAttemptEvent(attempt))
+    // Once per item per exercise: a miss comes back as a redo, which returned above and adds nothing.
+    await recordSkillPractice(exercise.targets, ACTIVITY_SKILLS.lessonExercise, now)
     const missed = exercise.type === 'match' ? new Set(missedRefs(exercise, response)) : undefined
     for (const ref of exercise.targets) {
       // A match charges each wrong pairing to one item; the other items in it were matched cleanly.

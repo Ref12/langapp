@@ -5,12 +5,13 @@ export interface ScriptItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phr
 /** A grammar pattern's example sentence from the catalog, by the pattern's ref. */
 export interface ScriptSentence { zh: string; en: string }
 
+export type PromptAct = 'intro' | 'toEnglish' | 'toChinese'
 export type Phase = 'intro' | 'recall' | 'scramble' | 'grammar' | 'mixed'
 export type Segment =
   | { kind: 'say'; locale: 'en-US' | 'zh-Hans'; text: string; rate: number; /** Part of a section introduction: shown on screen as the section header until the first prompt is spoken. */ section?: boolean; /** Which voice speaks it: the English frame, the English key word, or Chinese. */ voice: 'frame' | 'emphasis' | 'zh'; /** The English answer to a Chinese prompt: the display shows it when this starts, not before. */ answer?: boolean }
   /** `ms` is the estimate. With `measure`, the player also times the model text it has just spoken and waits whichever is longer: that time x `factor` + `gap`, or `ms`. */
   | { kind: 'pause'; ms: number; measure?: { factor: number; gap: number } }
-  | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string }
+  | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string; /** The item this prompt practises and how, for practice counts (see ACTIVITY in skill-map). */ ref?: string; act?: PromptAct }
 
 export interface Script {
   segments: Segment[]
@@ -89,7 +90,7 @@ function shuffle<T>(list: readonly T[], random: () => number): T[] {
 }
 
 /** `description` is set for descriptive items (particles, measure words): `en` is then the whole gloss. */
-interface Word { zh: string; en: string; description?: string }
+interface Word { zh: string; en: string; description?: string; ref?: string }
 type Card = { text: Word; dir: 'e2z' | 'z2e' }
 
 export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonly<Record<string, ScriptSentence | undefined>>, settings: HandsfreeSettings, seed: number): Script {
@@ -100,9 +101,9 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   const explain = settings.explain !== false
   // Characters-only items (no Chinese or no English to say) are left out.
   const words: Word[] = items.filter(item => item.kind !== 'grammar' && syllables(item.zh).length && (introExplanation(item) ? item.en.trim() : shortGloss(item.en)))
-    .map((item): Word => { const description = introExplanation(item); return description ? { zh: item.zh, en: asDescription(item.en), description } : { zh: item.zh, en: shortGloss(item.en) } })
+    .map((item): Word => { const description = introExplanation(item); return description ? { zh: item.zh, en: asDescription(item.en), description, ref: item.ref } : { zh: item.zh, en: shortGloss(item.en), ref: item.ref } })
   const sentences: Word[] = settings.grammar
-    ? items.flatMap(item => { const found = item.kind === 'grammar' ? sentenceOf[item.ref] : undefined; return found && syllables(found.zh).length && found.en.trim() ? [{ zh: found.zh, en: found.en.trim() }] : [] })
+    ? items.flatMap(item => { const found = item.kind === 'grammar' ? sentenceOf[item.ref] : undefined; return found && syllables(found.zh).length && found.en.trim() ? [{ zh: found.zh, en: found.en.trim(), ref: item.ref }] : [] })
     : []
 
   const segments: Segment[] = []
@@ -122,9 +123,9 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   /** A frame, a short gap, the key, a gap, and the rest of the frame: "This is how you say" / rest / "in Mandarin:". */
   const framed = (before: string, key: string, after: string, keep = false) => { if (!explain && !keep) { sayKey(key); return } if (speakable(before)) { sayFrame(before); gap() } sayKey(key); if (speakable(after)) { gap(); sayFrame(after) } }
   const introduced = new Set<Phase>()
-  const mark = (phase: Phase, index: number, total: number, prompt: string) => {
+  const mark = (phase: Phase, index: number, total: number, prompt: string, item?: Word, act?: PromptAct) => {
     promptStarts.push(segments.length)
-    segments.push({ kind: 'marker', phase, index, total, prompt })
+    segments.push({ kind: 'marker', phase, index, total, prompt, ...(item?.ref && act ? { ref: item.ref, act } : {}) })
     // The first prompt of a section starts with what the section is and what to do.
     if (introductions && !introduced.has(phase) && index === 1) {
       introduced.add(phase)
@@ -167,14 +168,14 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   }
   const answer = (word: Word) => repeatAfter(word.zh)
   const playCard = (card: Card, index: number, total: number, phase: Phase) => {
-    if (card.dir === 'e2z') { mark(phase, index, total, card.text.en); ask(card.text); answer(card.text) }
-    else { mark(phase, index, total, card.text.zh); askBack(card.text) }
+    if (card.dir === 'e2z') { mark(phase, index, total, card.text.en, card.text, 'toChinese'); ask(card.text); answer(card.text) }
+    else { mark(phase, index, total, card.text.zh, card.text, 'toEnglish'); askBack(card.text) }
   }
 
   // 1. Introduce each word in order, then recall the one before it.
   words.forEach((word, at) => {
     const total = words.length
-    mark('intro', at + 1, total, word.en)
+    mark('intro', at + 1, total, word.en, word, 'intro')
     if (word.description) {
       if (explain) sayFrame("Here's"); repeatAfter(word.zh, zhRate); sayKey(word.description)
       buildUp(word.zh, syllables(word.zh).length)
@@ -184,13 +185,13 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
       teach(word.zh, syllables(word.zh).length)
     }
     if (at > 0) {
-      mark('intro', at + 1, total, words[at - 1].en)
+      mark('intro', at + 1, total, words[at - 1].en, words[at - 1], 'toChinese')
       ask(words[at - 1], 'And '); answer(words[at - 1])
     }
   })
 
   // 2. Recall in order.
-  words.forEach((word, at) => { mark('recall', at + 1, words.length, word.en); ask(word); answer(word) })
+  words.forEach((word, at) => { mark('recall', at + 1, words.length, word.en, word, 'toChinese'); ask(word); answer(word) })
 
   // 3. Scrambled, both directions; each card returns after 1, then 3, then 6 other prompts.
   const cards: Card[] = words.flatMap(text => [{ text, dir: 'e2z' as const }, { text, dir: 'z2e' as const }])
@@ -199,10 +200,10 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
 
   // 4. Grammar, only when the set has a pattern with a catalog sentence: the same whole, build-up, repeats structure.
   sentences.forEach((sentence, at) => {
-    mark('grammar', at + 1, sentences.length, sentence.en)
+    mark('grammar', at + 1, sentences.length, sentence.en, sentence, 'intro')
     framed('This is how you say', sentence.en, 'in Mandarin:')
     teach(sentence.zh, 3)
-    mark('grammar', at + 1, sentences.length, sentence.en)
+    mark('grammar', at + 1, sentences.length, sentence.en, sentence, 'toChinese')
     ask(sentence); answer(sentence)
   })
 

@@ -1,4 +1,4 @@
-import Dexie, { type EntityTable } from 'dexie'
+import Dexie, { type EntityTable, type Table } from 'dexie'
 import { omit } from './omit'
 import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type Preferences, type ReadingProgress, type WordState, type Workspace } from './model'
 import type { AIConnection, AIEndpoint, AssistantImage, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
@@ -16,6 +16,7 @@ import type { JournalEvent } from './backup/journal'
 import type { MediaItem, SourceEntry } from './media/contracts'
 import type { Collection, CollectionItem } from './collections/contracts'
 import type { DrillSet } from './drills/contracts'
+import type { Skill, SkillPractice } from './study/skill-map'
 import type { HandsfreeRun } from './handsfree/contracts'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
@@ -66,6 +67,7 @@ export class LearningDatabase extends Dexie {
   sourceEntries!: EntityTable<SourceEntry, 'id'>
   drillSets!: EntityTable<DrillSet, 'id'>
   handsfreeRuns!: EntityTable<HandsfreeRun, 'id'>
+  skillPractice!: Table<SkillPractice, [string, Skill]>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -117,6 +119,8 @@ export class LearningDatabase extends Dexie {
     this.version(20).stores({ drillSets: '&id, status, createdAt' })
     // Hands-free runs are new data too.
     this.version(21).stores({ handsfreeRuns: '&id, status, createdAt' })
+    // Per-skill practice counts are new data too: nothing is backfilled, every item starts at zero.
+    this.version(22).stores({ skillPractice: '[ref+skill], skill' })
   }
 }
 

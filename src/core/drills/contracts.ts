@@ -73,6 +73,10 @@ export const drillSetSchema = z.object({
   createdAt: timestamp,
   updatedAt: timestamp,
   completedAt: timestamp.optional(),
+  /** Set once the set's intro cards have counted as reading practice. */
+  introSeen: z.boolean().optional(),
+  /** Skills the set opens emphasised (a Practice by skill set): its drill types for them are listed first. */
+  emphasis: z.enum(['reading', 'listening', 'speaking', 'writing']).optional(),
   /** Thrown away by the user (History hides it); a set only set aside to make room stays listed. */
   discarded: z.boolean().optional(),
 }).strict()
