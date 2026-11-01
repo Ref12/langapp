@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { aiApiTypeSchema, aiConnectionInputSchema, aiEndpointNameSchema, MAX_AI_ENDPOINTS, MAX_AI_HEADERS, type AIAPIType, type AIEndpoint, type AIHeader } from '../../core/assistant/contracts'
 import { LOCAL_SETTINGS_FILE } from '../../core/local-settings-contracts'
-import { addAIEndpoint, deleteAIEndpoint, listAIEndpoints, renameAIEndpoint, setActiveAIEndpoint, updateAIEndpoint, type AIEndpointList } from '../../core/assistant/endpoints'
+import { addAIEndpoint, deleteAIEndpoint, duplicateAIEndpoint, listAIEndpoints, renameAIEndpoint, setActiveAIEndpoint, updateAIEndpoint, type AIEndpointList } from '../../core/assistant/endpoints'
 import { testAIConnection } from '../../core/ai/provider'
 import { testStructuredJSONConnection } from '../../core/ai/structured'
 import { LocalAISetupContext } from './local-ai-setup-context'
@@ -26,26 +26,22 @@ function HeadersEditor({ headers, onChange }: { headers: AIHeader[]; onChange: (
   </div>
 }
 
-function ConnectionForm({ connection, seed, active, defaultName, atLimit, busy, onBusyChange, onSelect, onDuplicate, onMessage }: ConnectionSettingsProps & { connection?: AIEndpoint; seed?: AIEndpoint; active: boolean; defaultName: string; atLimit: boolean; onSelect: (id: string | undefined) => void; onDuplicate: (source: AIEndpoint) => void; onMessage: (message: string) => void }) {
-  // A duplicate seed prefills a new-endpoint form; a saved connection edits in place.
-  const base = connection ?? seed
-  const modelRef = useRef<HTMLInputElement>(null)
-  const [name, setName] = useState(connection?.name ?? (seed ? `${seed.name} copy`.slice(0, 80) : defaultName))
-  const [headers, setHeaders] = useState<AIHeader[]>(base?.headers ?? [])
-  const [apiType, setApiType] = useState<AIAPIType>(base?.apiType ?? 'chat-completions')
-  const [baseUrl, setBaseUrl] = useState(base?.baseUrl ?? 'https://api.openai.com/v1')
-  const [apiKey, setApiKey] = useState(base?.apiKey ?? '')
-  const [model, setModel] = useState(base?.model ?? '')
-  const [nativeTools, setNativeTools] = useState(base?.nativeTools ?? false)
-  const [structuredOutput, setStructuredOutput] = useState(base?.structuredOutput ?? false)
-  const [acknowledged, setAcknowledged] = useState(Boolean(base))
+function ConnectionForm({ connection, active, defaultName, busy, onBusyChange, onSelect, onMessage }: ConnectionSettingsProps & { connection?: AIEndpoint; active: boolean; defaultName: string; onSelect: (id: string | undefined) => void; onMessage: (message: string) => void }) {
+  const [name, setName] = useState(connection?.name ?? defaultName)
+  const [headers, setHeaders] = useState<AIHeader[]>(connection?.headers ?? [])
+  const [apiType, setApiType] = useState<AIAPIType>(connection?.apiType ?? 'chat-completions')
+  const [baseUrl, setBaseUrl] = useState(connection?.baseUrl ?? 'https://api.openai.com/v1')
+  const [apiKey, setApiKey] = useState(connection?.apiKey ?? '')
+  const [model, setModel] = useState(connection?.model ?? '')
+  const [nativeTools, setNativeTools] = useState(connection?.nativeTools ?? false)
+  const [structuredOutput, setStructuredOutput] = useState(connection?.structuredOutput ?? false)
+  const [acknowledged, setAcknowledged] = useState(Boolean(connection))
   const [pending, setPending] = useState(false)
   const [notice, setNotice] = useState('')
   const [error, setError] = useState('')
   const [removing, setRemoving] = useState(false)
   const controller = useRef<AbortController>()
   useEffect(() => () => controller.current?.abort(), [])
-  useEffect(() => { if (seed) { modelRef.current?.focus(); modelRef.current?.select() } }, [seed])
   const input = () => aiConnectionInputSchema.parse({ apiType, baseUrl, apiKey, model, nativeTools, structuredOutput, headers, storageAcknowledged: acknowledged })
   const perform = async (action: 'test' | 'save' | 'remove') => {
     if (busy || pending) return
@@ -97,7 +93,7 @@ function ConnectionForm({ connection, seed, active, defaultName, atLimit, busy, 
       <p className="small muted">Select the API your endpoint supports. The app never silently switches protocols.</p>
       <label>API base URL<input type="url" required value={baseUrl} onChange={event => setBaseUrl(event.target.value)} placeholder="https://your-provider.example/v1" autoComplete="off" /></label>
       <label>API key<input type="password" required value={apiKey} onChange={event => setApiKey(event.target.value)} autoComplete="off" spellCheck={false} /></label>
-      <label>Model<input ref={modelRef} required value={model} onChange={event => setModel(event.target.value)} placeholder="Model identifier from your provider" autoComplete="off" /></label>
+      <label>Model<input required value={model} onChange={event => setModel(event.target.value)} placeholder="Model identifier from your provider" autoComplete="off" /></label>
       <label className="toggle"><input type="checkbox" checked={nativeTools} onChange={event => setNativeTools(event.target.checked)} /> My endpoint supports native tool calling</label>
       <p className="small muted">Enables read-only word, lesson, and learning-context lookups. No tools can change scores or save generated content.</p>
       <label className="toggle"><input type="checkbox" checked={structuredOutput} onChange={event => setStructuredOutput(event.target.checked)} /> My endpoint supports strict JSON-schema responses</label>
@@ -110,10 +106,8 @@ function ConnectionForm({ connection, seed, active, defaultName, atLimit, busy, 
       <button type="submit" className="button primary" disabled={pending || busy}>{connection ? 'Save endpoint' : 'Add endpoint'}</button>
       <button type="button" className="button secondary" disabled={pending || busy} onClick={() => void perform('test')}>Test connection</button>
       {pending && <button type="button" className="button secondary" disabled={!controller.current} onClick={() => controller.current?.abort()}>Cancel test</button>}
-      {connection && <button type="button" className="button secondary" disabled={pending || busy || atLimit} aria-describedby={atLimit ? 'duplicate-limit' : undefined} onClick={() => onDuplicate(connection)}>Duplicate</button>}
       {connection && <button type="button" className="button secondary" disabled={pending || busy} onClick={() => setRemoving(true)}>Delete endpoint</button>}
     </div>
-    {connection && atLimit && <p id="duplicate-limit" className="small muted">Duplicate is unavailable: the limit of {MAX_AI_ENDPOINTS} endpoints is reached. Delete one first.</p>}
     {removing && <div className="notice"><p>Delete this endpoint, including its saved key and headers? Conversations and learning progress will remain.</p>
       <div className="button-row"><button type="button" className="button secondary" disabled={pending || busy} onClick={() => void perform('remove')}>Confirm removal</button>
         <button type="button" className="button secondary" disabled={pending || busy} onClick={() => setRemoving(false)}>Keep endpoint</button></div>
@@ -128,8 +122,6 @@ export function AIConnectionSettings({ busy, onBusyChange }: ConnectionSettingsP
   const list = useLiveQuery<AIEndpointList | undefined>(() => localSetup === 'loading' ? undefined : listAIEndpoints(), [localSetup])
   const [selectedId, setSelectedId] = useState<string | undefined>()
   const [creating, setCreating] = useState(false)
-  const [seed, setSeed] = useState<AIEndpoint | undefined>()
-  const [seedCount, setSeedCount] = useState(0)
   const [renaming, setRenaming] = useState<string | undefined>()
   const [renameValue, setRenameValue] = useState('')
   const [message, setMessage] = useState('')
@@ -145,8 +137,7 @@ export function AIConnectionSettings({ busy, onBusyChange }: ConnectionSettingsP
     setError('')
     try { await work(); setMessage(done) } catch (reason) { setError(reason instanceof Error ? reason.message : 'The endpoint action could not be completed.') }
   }
-  const select = (id: string | undefined) => { setCreating(false); setSeed(undefined); setSelectedId(id) }
-  const duplicate = (source: AIEndpoint) => { setSeed(source); setSeedCount(count => count + 1); setCreating(true); setMessage(''); setError('') }
+  const select = (id: string | undefined) => { setCreating(false); setSelectedId(id) }
   return <section aria-label="AI connection settings">
     {(localSetup === 'loaded' || localSetup === 'error') && <p className={localSetup === 'error' ? 'small connection-error' : 'small muted'} role={localSetup === 'error' ? 'alert' : 'status'}>
       {localSetup === 'loaded'
@@ -165,7 +156,8 @@ export function AIConnectionSettings({ busy, onBusyChange }: ConnectionSettingsP
         </li>)}
       </ul>
       <div className="button-row">
-        <button type="button" className="button secondary" disabled={busy || endpoints.length >= MAX_AI_ENDPOINTS} onClick={() => { setSeed(undefined); setCreating(true); setMessage(''); setError('') }}>New endpoint</button>
+        <button type="button" className="button secondary" disabled={busy || endpoints.length >= MAX_AI_ENDPOINTS} onClick={() => { setCreating(true); setMessage(''); setError('') }}>New endpoint</button>
+        {selected && <button type="button" className="button secondary" disabled={busy || endpoints.length >= MAX_AI_ENDPOINTS} onClick={() => void act(async () => { select((await duplicateAIEndpoint(selected.id)).id) }, 'Endpoint duplicated. The copy is not active.')}>Duplicate</button>}
         {selected && <button type="button" className="button secondary" disabled={busy} onClick={() => { setRenaming(selected.id); setRenameValue(selected.name) }}>Rename</button>}
       </div>
       {renaming && <form className="button-row" onSubmit={event => { event.preventDefault(); void act(async () => { await renameAIEndpoint(renaming, renameValue); setRenaming(undefined) }, 'Endpoint renamed.') }}>
@@ -176,6 +168,6 @@ export function AIConnectionSettings({ busy, onBusyChange }: ConnectionSettingsP
       {message && <p role="status" className="small">{message}</p>}
       {error && <p role="alert" className="connection-error">{error}</p>}
     </div>
-    <ConnectionForm seed={creating ? seed : undefined} atLimit={endpoints.length >= MAX_AI_ENDPOINTS} onDuplicate={duplicate} key={creating ? `new:${seedCount}` : `${selected?.id ?? 'none'}:${selected?.revision ?? ''}:${selected?.name ?? ''}`} connection={selected} active={selected?.id === activeId} defaultName={endpoints.length ? '' : 'Default'} busy={busy} onBusyChange={onBusyChange} onSelect={select} onMessage={text => { setError(''); setMessage(text) }} />
+    <ConnectionForm key={creating ? 'new' : `${selected?.id ?? 'none'}:${selected?.revision ?? ''}:${selected?.name ?? ''}`} connection={selected} active={selected?.id === activeId} defaultName={endpoints.length ? '' : 'Default'} busy={busy} onBusyChange={onBusyChange} onSelect={select} onMessage={text => { setError(''); setMessage(text) }} />
   </section>
 }
