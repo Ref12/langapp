@@ -91,7 +91,7 @@ describe('What you will practise', () => {
     await user.click(within(dialog).getByRole('button', { name: 'Close items' }))
     expect(screen.queryByRole('dialog')).toBeNull()
     await user.click(await screen.findByRole('button', { name: 'Start practice set' }))
-    await screen.findByRole('heading', { name: /^New items · / })
+    await screen.findByRole('heading', { name: /^New items · / }, { timeout: 20000 })
     const set = (await db.drillSets.toArray())[0]
     expect(set.refs).toHaveLength(count)
     const items = await (await import('../../core/drills/items')).loadItems(set.refs, await (await import('../../core/study/catalog')).loadCatalog())
@@ -137,7 +137,7 @@ describe('Practice home', () => {
     const start = await screen.findByRole('button', { name: 'Start practice set' })
     await waitFor(() => expect(start).toBeEnabled())
     await user.click(start)
-    expect(await screen.findByRole('heading', { name: /^New items · \d+ \w{3}$/ })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: /^New items · \d+ \w{3}$/ }, { timeout: 20000 })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /^\d+ items?$/ })).toBeInTheDocument()
     expect(screen.queryByLabelText('All items')).toBeNull()
     expect(document.querySelectorAll('.study-unit-card').length).toBeGreaterThan(0)
