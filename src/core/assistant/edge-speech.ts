@@ -105,7 +105,7 @@ function textChunks(text: string): string[] {
 
 export function startEdgeSpeech(
   text: string, preference: EdgeVoicePreference, locale: SpeechLocale, rate: number,
-  phase: (value: EdgePlaybackPhase) => void,
+  phase: (value: EdgePlaybackPhase) => void, anyRate = false,
 ): EdgeSpeechPlayback {
   const controller = new AbortController()
   let element: HTMLAudioElement | undefined
@@ -187,7 +187,7 @@ export function startEdgeSpeech(
     }
     for (const chunk of textChunks(text)) {
       controller.signal.throwIfAborted()
-      const input = localTtsRequestSchema.safeParse({ text: chunk, voice: preference.voice, rate: locale === 'en-US' ? 1 : rate })
+      const input = localTtsRequestSchema.safeParse({ text: chunk, voice: preference.voice, rate: locale === 'en-US' && !anyRate ? 1 : rate })
       if (!input.success) throw new EdgeSpeechError('This text, voice, or speaking speed is not supported by Edge TTS.')
       phase('loading-audio')
       controller.signal.throwIfAborted()

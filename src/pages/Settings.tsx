@@ -4,6 +4,7 @@ import { PageHeading, type PageProps } from '../components/shared'
 import { AIConnectionSettings } from '../components/assistant/AIConnectionSettings'
 import { SpeechConnectionSettings } from '../components/assistant/SpeechConnectionSettings'
 import { VoiceSettings } from '../components/assistant/VoiceSettings'
+import { HandsfreeDefaults } from '../components/handsfree/HandsfreeSettingsForm'
 import { ProfileSettings } from '../components/ProfileSettings'
 import { BackupPanel } from '../components/BackupPanel'
 import { Diagnostics } from '../components/Diagnostics'
@@ -53,6 +54,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       <p className="small muted">Vocabulary in lessons, meaning practice, reading, and the dictionary shows pinyin until it reaches Learned: unaided correct answers on three separate days across both recognition activities. Character-selection questions hide pinyin until the answer is revealed or checked. A miss or revealed answer brings pronunciation support back. Revealing an answer is still recorded as assistance.</p>
     </section>
     <VoiceSettings workspace={workspace} busy={busy} run={run} />
+    <HandsfreeDefaults />
     <AIConnectionSettings busy={workspaceBusy || profileBusy || speechBusy} onBusyChange={setAIBusy} />
     <SpeechConnectionSettings busy={workspaceBusy || profileBusy || aiBusy} onBusyChange={setSpeechBusy} />
     <Diagnostics />

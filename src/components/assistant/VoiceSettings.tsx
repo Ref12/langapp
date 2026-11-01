@@ -1,8 +1,7 @@
-import { useContext, useEffect, useId, useState } from 'react'
+import { useContext, useId, useState } from 'react'
 import { isEdgeVoice, type SpeechLocale, type SpeechVoicePreference } from '../../core/assistant/contracts'
-import { browserVoiceKey, browserVoiceMatches, clearVoiceCache, languageMatches, speechVoiceKey, watchBrowserVoices, type BrowserVoiceState } from '../../core/assistant/speech'
-import { edgeTtsAvailable, loadEdgeVoices } from '../../core/assistant/edge-speech'
-import type { EdgeVoice } from '../../core/local-tts-contracts'
+import { browserVoiceKey, browserVoiceMatches, clearVoiceCache, languageMatches, speechVoiceKey } from '../../core/assistant/speech'
+import { useVoiceCatalog, voiceLabel } from './voice-catalog'
 import { savePreferences } from '../../core/learning'
 import type { PageProps } from '../shared'
 import { LocalSpeechRateSetupContext, LocalSpeechVoicesSetupContext } from './local-ai-setup-context'
@@ -13,31 +12,43 @@ const languages: { locale: SpeechLocale; label: string }[] = [
   { locale: 'en-US', label: 'English' },
 ]
 
-function voiceLabel(voice: SpeechVoicePreference) {
-  return isEdgeVoice(voice) ? `${voice.voice} — Edge TTS (Online)`
-    : `${voice.name} — ${voice.lang} — ${voice.localService ? 'Local' : 'Online'}`
+/** One voice picker for a language, with Automatic and the browser and Edge voices; `onPick` gets the chosen voice or undefined for Automatic. */
+export function VoiceSelect({ locale, label, value, onPick, disabled, automatic = 'Automatic (local first)', catalog }: {
+  locale: SpeechLocale; label: string; value?: SpeechVoicePreference; onPick: (voice: SpeechVoicePreference | undefined) => void; disabled?: boolean; automatic?: string
+  catalog: ReturnType<typeof useVoiceCatalog>
+}) {
+  const id = useId()
+  const { state, edge, edgeAvailable } = catalog
+  const voices = [...new Map(state.voices.filter(voice => browserVoiceMatches(voice, locale)).map(voice => [browserVoiceKey(voice), voice])).values()]
+    .sort((left, right) => Number(right.localService) - Number(left.localService) || left.name.localeCompare(right.name) || left.lang.localeCompare(right.lang))
+  const edgeVoices = edgeAvailable ? edge.voices.filter(voice => languageMatches(voice.locale, locale))
+    .sort((left, right) => left.locale.localeCompare(right.locale) || left.name.localeCompare(right.name)) : []
+  const key = value ? speechVoiceKey(value) : ''
+  const listed = value && (isEdgeVoice(value) ? edgeVoices.some(voice => voice.id === value.voice) : voices.some(voice => browserVoiceKey(voice) === key))
+  return <label htmlFor={id}>{label}
+    <select id={id} disabled={disabled} value={key} onChange={event => {
+      const picked = event.target.value
+      const voice = voices.find(item => browserVoiceKey(item) === picked)
+      const edgeVoice = edgeVoices.find(item => `edge:${item.id}` === picked)
+      onPick(edgeVoice ? { provider: 'edge', voice: edgeVoice.id } : voice ? { voiceURI: voice.voiceURI, name: voice.name, lang: voice.lang, localService: voice.localService } : undefined)
+    }}>
+      <option value="">{automatic}</option>
+      {value && !listed && <option value={key} disabled>{voiceLabel(value)} — {isEdgeVoice(value) && edgeAvailable && edge.loading ? 'Loading' : 'Unavailable'}</option>}
+      {voices.length > 0 && <optgroup label="Browser voices">
+        {voices.map(voice => <option key={browserVoiceKey(voice)} value={browserVoiceKey(voice)}>{voiceLabel(voice)}</option>)}
+      </optgroup>}
+      {edgeVoices.length > 0 && <optgroup label="Edge TTS (online)">
+        {edgeVoices.map(voice => <option key={voice.id} value={`edge:${voice.id}`}>{voice.name} — {voice.gender} — Edge TTS</option>)}
+      </optgroup>}
+    </select></label>
 }
 
 export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspace' | 'busy' | 'run'>) {
   const id = useId()
   const speedSetup = useContext(LocalSpeechRateSetupContext)
   const voiceSetup = useContext(LocalSpeechVoicesSetupContext)
-  const [state, setState] = useState<BrowserVoiceState>({ voices: [], loading: true })
-  const edgeAvailable = edgeTtsAvailable()
-  const [edge, setEdge] = useState<{ voices: EdgeVoice[]; loading: boolean; error?: string }>({ voices: [], loading: edgeAvailable })
   const [refresh, setRefresh] = useState(0)
-  useEffect(() => watchBrowserVoices(setState), [refresh])
-  useEffect(() => {
-    if (!edgeAvailable) return
-    const controller = new AbortController()
-    setEdge({ voices: [], loading: true })
-    void loadEdgeVoices(controller.signal).then(voices => {
-      if (!controller.signal.aborted) setEdge({ voices, loading: false })
-    }, error => {
-      if (!controller.signal.aborted) setEdge({ voices: [], loading: false, error: error instanceof Error ? error.message : 'The Edge voice catalog could not be loaded.' })
-    })
-    return () => controller.abort()
-  }, [edgeAvailable, refresh])
+  const { state, edge, edgeAvailable } = useVoiceCatalog(refresh)
 
   return <section className="panel settings-form" aria-labelledby={`${id}-heading`}>
     <h2 id={`${id}-heading`}>Hear voices</h2>

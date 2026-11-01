@@ -19,7 +19,7 @@ import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems } from '../../core/drills/write-queue'
 import { MAX_UNFINISHED_SETS, createDrillSet, discardDrillSet, finishDrillSet, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
-import { createHandsfreeRun } from '../../core/handsfree/store'
+import { createHandsfreeRun, discardHandsfreeRun, unfinishedHandsfreeRuns } from '../../core/handsfree/store'
 import { availability } from './tasks'
 import './drills.css'
 
@@ -174,6 +174,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const { catalog, error } = useCatalog()
   const connection = useAIConnection()
   const sets = useLiveQuery(() => db.drillSets.toArray(), []) ?? []
+  const handsfreeRuns = unfinishedHandsfreeRuns(useLiveQuery(() => db.handsfreeRuns.toArray(), []) ?? [])
   const collections = useLiveQuery(() => db.collections.toArray(), []) ?? []
   const collectionItems = useLiveQuery(() => db.collectionItems.toArray(), []) ?? []
   const [from, setFrom] = useState(CURRICULUM)
@@ -222,13 +223,20 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         </ul>
       </section>
       <section className="panel dr-panel" aria-labelledby="dr-unfinished"><h2 id="dr-unfinished">Unfinished sets</h2>
-        {unfinished.length === 0 ? <p className="muted small">No unfinished sets.</p> : <div className="resume-list">{unfinished.map(set => { const typesDone = Object.values(set.progress).filter(entry => entry.done).length
+        {unfinished.length === 0 && handsfreeRuns.length === 0 ? <p className="muted small">No unfinished sets.</p> : <div className="resume-list">{unfinished.map(set => { const typesDone = Object.values(set.progress).filter(entry => entry.done).length
           return <div className="resume-row" key={set.id}>
             <a className="resume-main" href={`#${setRoute(set.id)}`}><div><strong>{set.title}</strong><UnfinishedInfo set={set} typesDone={typesDone} characterStates={workspace.characterStates} /></div><ArrowRight size={18} /></a>
             {asking === set.id
               ? <span className="dr-confirm"><button type="button" className="button secondary" disabled={busy} onClick={() => { setAsking(undefined); void run(() => discardDrillSet(set.id)) }}>Discard</button><button type="button" className="button secondary" onClick={() => setAsking(undefined)}>Keep</button></span>
               : <button type="button" className="icon-button" aria-label={`Discard ${set.title}`} onClick={() => setAsking(set.id)}><Trash2 size={17} /></button>}
-          </div> })}</div>}
+          </div> })}
+          {handsfreeRuns.map(item => <div className="resume-row" key={item.id}>
+            <div className="resume-main"><div><strong>{item.title}</strong><span className="small muted dr-wrap">Hands-free · {itemCount(item.refs.length)} · stopped at prompt {item.position + 1}</span></div></div>
+            <a className="button secondary" href={`#practice/handsfree/${item.id}`} aria-label={`Resume ${item.title}`}>Resume</a>
+            {asking === item.id
+              ? <span className="dr-confirm"><button type="button" className="button secondary" disabled={busy} onClick={() => { setAsking(undefined); void run(() => discardHandsfreeRun(item.id)) }}>Discard</button><button type="button" className="button secondary" onClick={() => setAsking(undefined)}>Keep</button></span>
+              : <button type="button" className="icon-button" aria-label={`Discard ${item.title}`} onClick={() => setAsking(item.id)}><Trash2 size={17} /></button>}
+          </div>)}</div>}
         {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
       </section>
     </div>

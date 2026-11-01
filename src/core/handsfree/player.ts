@@ -1,6 +1,14 @@
 import { getPlaybackState, playBrowserSpeechToEnd, stopBrowserSpeech, subscribeSpeechInterruption } from '../assistant/speech'
 import { acquireAudio, type AudioLease } from '../assistant/audio-owner'
-import type { Script } from './script'
+import type { SpeechVoicePreference } from '../assistant/contracts'
+import type { Script, Segment } from './script'
+
+/** The voices a script's segments ask for; an unset one follows the saved voice for its language. */
+export type HandsfreeVoices = Partial<Record<Extract<Segment, { kind: 'say' }>['voice'], SpeechVoicePreference>>
+/** How long a pause lasts: its estimate, or when the model text just spoken was timed, that time x factor + gap if longer. */
+export function pauseLength(segment: Extract<Segment, { kind: 'pause' }>, spokenMs?: number) {
+  return segment.measure && spokenMs ? Math.max(segment.ms, Math.round(spokenMs * segment.measure.factor + segment.measure.gap)) : segment.ms
+}
 
 export interface HandsfreeState {
   status: 'idle' | 'playing' | 'paused' | 'completed' | 'error'
@@ -10,7 +18,7 @@ export interface HandsfreeState {
 }
 
 /** Plays a script prompt by prompt with browser speech, holding the app's audio lease while it runs. Back and skip move by prompt. */
-export function createHandsfreePlayer(id: string, getScript: () => Script, changed: (state: HandsfreeState) => void, startAt = 0) {
+export function createHandsfreePlayer(id: string, getScript: () => Script, changed: (state: HandsfreeState) => void, startAt = 0, getVoices: () => HandsfreeVoices = () => ({}), onSpeak: (segment: Extract<Segment, { kind: 'say' }> | undefined) => void = () => undefined) {
   let state: HandsfreeState = { status: 'idle', prompt: startAt }
   let timer: ReturnType<typeof setTimeout> | undefined
   let version = 0
@@ -54,15 +62,18 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
     const end = promptEnd(script, prompt)
     if (state.status !== 'playing' || state.prompt !== prompt) publish({ status: 'playing', prompt })
     if (request !== version || disposed || !lease?.isCurrent()) return
+    let lastSpoken: number | undefined
     const step = (index: number) => {
       if (request !== version) return
       if (index >= end) { timer = setTimeout(() => { if (request === version) play(prompt + 1) }, 0); return }
       const segment = script.segments[index]
-      if (segment.kind === 'marker') { step(index + 1); return }
-      if (segment.kind === 'pause') { timer = setTimeout(() => step(index + 1), segment.ms); return }
-      void playBrowserSpeechToEnd(id, segment.text, segment.locale, segment.rate).then(result => {
+      if (segment.kind === 'marker') { onSpeak(undefined); step(index + 1); return }
+      if (segment.kind === 'pause') { timer = setTimeout(() => step(index + 1), pauseLength(segment, lastSpoken)); return }
+      onSpeak(segment)
+      const began = Date.now()
+      void playBrowserSpeechToEnd(id, segment.text, segment.locale, segment.rate, { voice: getVoices()[segment.voice], anyRate: true }).then(result => {
         if (request !== version) return
-        if (result.status === 'completed') timer = setTimeout(() => step(index + 1), 0)
+        if (result.status === 'completed') { lastSpoken = Date.now() - began; timer = setTimeout(() => step(index + 1), 0) }
         else if (result.status === 'error') publish({ status: 'error', prompt, error: result.error })
         else publish({ status: 'paused', prompt })
       }).catch(cause => {

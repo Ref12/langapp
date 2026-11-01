@@ -10,6 +10,8 @@ interface PlaybackState {
 }
 interface PlaybackRequest {
   id: string
+  /** The voice and speed this request asked for, instead of the saved voice for its language. */
+  options?: SpeechOptions
   locale: SpeechLocale
   synthesis?: SpeechSynthesis
   edge?: EdgeSpeechPlayback
@@ -21,6 +23,12 @@ interface PlaybackRequest {
 }
 interface BrowserPlaybackRequest extends PlaybackRequest {
   synthesis: SpeechSynthesis
+}
+/** Per-request voice and speed: Hands-free speaks English in more than one voice, and slows some of it. */
+export interface SpeechOptions {
+  voice?: SpeechVoicePreference
+  /** Honour `rate` for English too (it is otherwise spoken at its own pace). */
+  anyRate?: boolean
 }
 export type PlaybackOutcome = { status: 'completed' | 'cancelled' } | { status: 'error'; error: string }
 
@@ -175,7 +183,7 @@ export function watchBrowserVoices(listener: (state: BrowserVoiceState) => void)
   return dispose
 }
 
-function preferredVoice(voices: SpeechSynthesisVoice[], locale: SpeechLocale, voiceKind: 'local' | 'online') {
+export function preferredVoice(voices: SpeechSynthesisVoice[], locale: SpeechLocale, voiceKind: 'local' | 'online') {
   const preference = (voice: SpeechSynthesisVoice) => {
     const tag = voiceLocale(voice.lang)!.tag
     if (tag.baseName === locale) return 0
@@ -261,7 +269,7 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
     utterance = new SpeechSynthesisUtterance(text)
     if (voice) utterance.voice = voice
     utterance.lang = voice ? voiceLocale(voice.lang)!.tag.toString() : locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
-    utterance.rate = locale === 'en-US' || !Number.isFinite(rate) ? 1 : Math.max(0.1, Math.min(10, rate))
+    utterance.rate = (locale === 'en-US' && !request.options?.anyRate) || !Number.isFinite(rate) ? 1 : Math.max(0.1, Math.min(10, rate))
     utterance.volume = 1
     if (warmth?.key !== warmKey || idleMs < 0 || idleMs >= speechWarmIdleMs) {
       warmup = new SpeechSynthesisUtterance(locale === 'zh-Hans' ? '准备好了。' : 'Ready to begin.')
@@ -382,13 +390,14 @@ export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale
   beginBrowserSpeech(id, text, locale, rate)
 }
 
-export function playBrowserSpeechToEnd(id: string, text: string, locale: SpeechLocale, rate?: number): Promise<PlaybackOutcome> {
-  return new Promise(resolve => beginBrowserSpeech(id, text, locale, rate, resolve))
+export function playBrowserSpeechToEnd(id: string, text: string, locale: SpeechLocale, rate?: number, options?: SpeechOptions): Promise<PlaybackOutcome> {
+  return new Promise(resolve => beginBrowserSpeech(id, text, locale, rate, resolve, options))
 }
 
 function beginBrowserSpeech(
   id: string, text: string, locale: SpeechLocale, rate: number = defaultSpeechRate ?? 1,
   finish?: (outcome: PlaybackOutcome) => void,
+  options?: SpeechOptions,
 ) {
   const rejectPlayback = (error: string) => {
     publish({ error })
@@ -406,13 +415,13 @@ function beginBrowserSpeech(
     rejectPlayback('Choose a non-empty passage of at most 8,000 characters to hear.')
     return
   }
-  const selected = voicePreferences[locale]
+  const selected = options?.voice ?? voicePreferences[locale]
   if (isEdgeVoice(selected)) {
-    const request: PlaybackRequest = { id, locale, finish }
+    const request: PlaybackRequest = { id, locale, finish, options }
     current = request
     request.edge = startEdgeSpeech(text, selected, locale, rate, phase => {
       if (current === request) publish({ activeId: id, phase, voiceKind: 'edge' })
-    })
+    }, options?.anyRate)
     void request.edge.done.then(outcome => {
       if (current !== request) return
       if (outcome.status === 'error') {
@@ -432,7 +441,7 @@ function beginBrowserSpeech(
     rejectPlayback('Speech playback is not available in this browser.')
     return
   }
-  const request: BrowserPlaybackRequest = { id, locale, synthesis, finish }
+  const request: BrowserPlaybackRequest = { id, locale, synthesis, finish, options }
   current = request
   const deadline = performance.now() + voiceWaitMs
   let expired = false
@@ -458,9 +467,11 @@ function beginBrowserSpeech(
         ?? (finishedWaiting ? online : undefined)
     if (voice) {
       // Cache identifiers, not native objects: revalidate against the current browser list on every Hear.
-      const cache = voiceCache.get(synthesis) ?? new Map<SpeechLocale, string>()
-      cache.set(locale, browserVoiceKey(voice))
-      voiceCache.set(synthesis, cache)
+      if (!options?.voice) {
+        const cache = voiceCache.get(synthesis) ?? new Map<SpeechLocale, string>()
+        cache.set(locale, browserVoiceKey(voice))
+        voiceCache.set(synthesis, cache)
+      }
       startSpeaking(request, voice, text, locale, rate)
     } else if (!selected && !online) {
       // Voice enumeration can be empty/incomplete on Android. Keep speak in the tap's call stack.

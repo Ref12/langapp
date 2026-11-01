@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { DEFAULT_HANDSFREE_SETTINGS } from './contracts'
-import { generateScript, introExplanation, scrambleWithSpacing, shortGloss, SPACING, type Phase, type ScriptItem, type Segment } from './script'
+import { FRAME_GAP_MS, generateScript, introExplanation, pauseFor, scrambleWithSpacing, shortGloss, SPACING, type Phase, type ScriptItem, type Segment } from './script'
 
 const word = (n: number, zh: string, en: string): ScriptItem => ({ ref: `vocabulary:w${n}`, kind: 'vocabulary', zh, en })
 const WORDS = [word(1, '休息', 'rest; break'), word(2, '工作', 'work'), word(3, '学生', 'student'), word(4, '电视机', 'television set'), word(5, '朋友', 'friend'),
   word(6, '喝水', 'drink water'), word(7, '回家', 'go home'), word(8, '吃饭', 'eat a meal')]
+const GRAMMAR_ITEM: ScriptItem = { ref: 'grammar:s-all', kind: 'grammar', zh: 'x', en: 'x' }
 const GRAMMAR: ScriptItem = { ref: 'grammar:s-shi4-n', kind: 'grammar', zh: '<subject> + 是 + <noun>', en: 'identity' }
 const SENTENCES = { [GRAMMAR.ref]: { zh: '我是学生。', en: 'I am a student.' } }
 
@@ -38,37 +39,80 @@ describe('Hands-free script', () => {
     expect(markers.filter(marker => marker.phase === 'recall').map(marker => marker.prompt)).toEqual(['rest', 'work', 'student', 'television set', 'friend', 'drink water', 'go home', 'eat a meal'])
   })
 
-  it('introduces each word with its shortest gloss, slow then normal, and recalls the previous word after each new one', () => {
+  it('introduces each word with its shortest gloss, the whole phrase slowly then again at normal speed, and recalls the previous word after each new one', () => {
     const { script, markers } = prompts(WORDS)
     expect(shortGloss('rest; break')).toBe('rest')
     const intro = markers.map((marker, at) => ({ marker, at })).filter(entry => entry.marker.phase === 'intro')
-    expect(spoken(script, intro[0].at)[0]).toBe('This is how you say rest in Mandarin:')
+    expect(spoken(script, intro[0].at).slice(0, 3)).toEqual(['This is how you say', 'rest', 'in Mandarin:'])
     const say = script.segments.slice(script.promptStarts[intro[0].at], script.promptStarts[intro[0].at + 1]).filter(segment => segment.kind === 'say')
-    expect(say.map(segment => segment.kind === 'say' && segment.rate)).toEqual([1, 0.6, 0.85])
+    expect(say.map(segment => segment.kind === 'say' && segment.rate)).toEqual([1, 0.8, 1, 0.6, 0.85, 0.85])
     // the second word is followed by a recall prompt for the first
     expect(intro[1].marker.index).toBe(2)
-    expect(spoken(script, intro[2].at)).toEqual(['And how do you say rest?', '休息'])
+    expect(spoken(script, intro[2].at)).toEqual(['And how do you say', 'rest', '?', '休息'])
     expect(intro.filter(entry => entry.marker.index === 8)).toHaveLength(2)
   })
 
   it('builds words of three or more syllables up from the end, and leaves shorter ones whole', () => {
     const { script, markers } = prompts([word(4, '电视机', 'television set'), word(1, '休息', 'rest')])
     const first = spoken(script, markers.findIndex(marker => marker.phase === 'intro'))
-    expect(first).toEqual(['This is how you say television set in Mandarin:', '机', '视机', '电视机', '电视机'])
+    expect(first).toEqual(['This is how you say', 'television set', 'in Mandarin:', '电视机', '机', '视机', '电视机', '电视机'])
     const second = spoken(script, markers.findIndex(marker => marker.phase === 'intro' && marker.index === 2))
-    expect(second).toEqual(['This is how you say rest in Mandarin:', '休息', '休息'])
+    expect(second).toEqual(['This is how you say', 'rest', 'in Mandarin:', '休息', '休息', '休息'])
   })
 
-  it('repeats each new word as many times as the setting says', () => {
-    const { script, markers } = prompts([word(1, '休息', 'rest')], {}, { ...DEFAULT_HANDSFREE_SETTINGS, repeats: 3 })
-    expect(spoken(script, markers.findIndex(marker => marker.phase === 'intro')).filter(text => text === '休息')).toHaveLength(6)
+  it('repeats the whole phrase 3 times by default, and as many as the setting says (1 to 5)', () => {
+    expect(DEFAULT_HANDSFREE_SETTINGS.repeats).toBe(3)
+    for (const repeats of [1, 2, 3, 5]) {
+      const { script, markers } = prompts([word(1, '休息', 'rest')], {}, { ...DEFAULT_HANDSFREE_SETTINGS, repeats })
+      expect(spoken(script, markers.findIndex(marker => marker.phase === 'intro')).filter(text => text === '休息')).toHaveLength(repeats)
+    }
+  })
+
+  it('says the whole phrase first (slow), then the build-up from the end, then the whole phrase again at normal speed', () => {
+    const { script, markers } = prompts([word(4, '电视机', 'television set')], {}, { ...DEFAULT_HANDSFREE_SETTINGS, repeats: 4 })
+    const at = markers.findIndex(marker => marker.phase === 'intro')
+    const zh = script.segments.slice(script.promptStarts[at], script.promptStarts[at + 1]).flatMap(segment => segment.kind === 'say' && segment.voice === 'zh' ? [[segment.text, segment.rate]] : [])
+    expect(zh).toEqual([['电视机', 0.6], ['机', 0.6], ['视机', 0.6], ['电视机', 0.85], ['电视机', 0.85], ['电视机', 0.85]])
+  })
+
+  it('splits the frame from the English key word: frame voice, a short gap, the key in the slower emphasis voice, a gap, the rest', () => {
+    const { script, markers } = prompts([word(1, '休息', 'rest')], {}, { ...DEFAULT_HANDSFREE_SETTINGS, emphasisRate: 0.7 })
+    const at = markers.findIndex(marker => marker.phase === 'intro')
+    const head = script.segments.slice(script.promptStarts[at] + 1, script.promptStarts[at] + 6)
+    expect(head).toEqual([
+      { kind: 'say', locale: 'en-US', text: 'This is how you say', rate: 1, voice: 'frame' }, { kind: 'pause', ms: FRAME_GAP_MS },
+      { kind: 'say', locale: 'en-US', text: 'rest', rate: 0.7, voice: 'emphasis' }, { kind: 'pause', ms: FRAME_GAP_MS },
+      { kind: 'say', locale: 'en-US', text: 'in Mandarin:', rate: 1, voice: 'frame' }])
+    const recall = markers.findIndex(marker => marker.phase === 'recall')
+    const asked = script.segments.slice(script.promptStarts[recall] + 1, script.promptStarts[recall] + 6).flatMap(segment => segment.kind === 'say' ? [[segment.text, segment.voice]] : [])
+    expect(asked).toEqual([['How do you say', 'frame'], ['rest', 'emphasis'], ['?', 'frame']])
+    // the English answer and a descriptive explanation use the emphasis voice too
+    const back = markers.findIndex(marker => marker.phase === 'scramble' && marker.prompt === '休息')
+    expect(script.segments.slice(script.promptStarts[back], script.promptStarts[back + 1]).filter(segment => segment.kind === 'say').map(segment => segment.kind === 'say' && segment.voice)).toEqual(['zh', 'emphasis'])
+    const particle = word(9, '吧', 'sentence ending for a suggestion')
+    const explained = prompts([particle]).script
+    expect(explained.segments.some(segment => segment.kind === 'say' && segment.voice === 'emphasis' && segment.text.startsWith("It's a sentence ending"))).toBe(true)
+  })
+
+  it('sizes each pause to what is to be said: about twice the spoken length plus a gap, longer for longer phrases, and measured after model text', () => {
+    // two syllables at Normal is about 3.5 s; six is about 7.5 s
+    expect(pauseFor('休息', 'zh-Hans', 'normal')).toBe(3500)
+    expect(pauseFor('我们都是学生', 'zh-Hans', 'normal')).toBe(7500)
+    expect(pauseFor('休息', 'zh-Hans', 'short')).toBeLessThan(pauseFor('休息', 'zh-Hans', 'normal'))
+    expect(pauseFor('休息', 'zh-Hans', 'long')).toBeGreaterThan(pauseFor('休息', 'zh-Hans', 'normal'))
+    expect(pauseFor('休息', 'zh-Hans', 'normal', 0.6)).toBeGreaterThan(pauseFor('休息', 'zh-Hans', 'normal'))
+    expect(pauseFor('rest and work today', 'en-US', 'normal')).toBeGreaterThan(pauseFor('rest', 'en-US', 'normal'))
+    const long = generateScript([GRAMMAR_ITEM, word(1, '休息', 'rest')], { [GRAMMAR_ITEM.ref]: { zh: '我们都是学生。', en: 'We are all students.' } }, DEFAULT_HANDSFREE_SETTINGS, 1)
+    const afterSay = (text: string) => { const at = long.segments.findIndex(segment => segment.kind === 'say' && segment.text === text); return long.segments[at + 1] as Extract<Segment, { kind: 'pause' }> }
+    expect(afterSay('休息').ms).toBeLessThan(afterSay('我们都是学生。').ms)
+    expect(afterSay('休息').measure).toEqual({ factor: 2, gap: 1500 })
   })
 
   it('scrambles recall in both directions, and brings each card back after 1, 3 and 6 other prompts', () => {
     const { script, markers } = prompts(WORDS)
     const scramble = markers.map((marker, at) => ({ marker, at })).filter(entry => entry.marker.phase === 'scramble')
     expect(scramble).toHaveLength(WORDS.length * 2 * 4)
-    const key = (at: number) => { const said = spoken(script, at); return said[0].startsWith('How do you say') ? `e2z:${said[0]}` : `z2e:${said[0]}` }
+    const key = (at: number) => { const said = spoken(script, at); return said[0] === 'How do you say' ? `e2z:${said[1]}` : `z2e:${said[0]}` }
     expect(new Set(scramble.map(entry => key(entry.at).slice(0, 3)))).toEqual(new Set(['e2z', 'z2e']))
     const seen = new Map<string, number[]>()
     scramble.forEach((entry, position) => seen.set(key(entry.at), [...(seen.get(key(entry.at)) ?? []), position]))
@@ -95,8 +139,8 @@ describe('Hands-free script', () => {
     const { script, markers } = prompts([...WORDS, GRAMMAR])
     const grammar = markers.map((marker, at) => ({ marker, at })).filter(entry => entry.marker.phase === 'grammar')
     expect(grammar).toHaveLength(2)
-    expect(spoken(script, grammar[0].at)).toEqual(["Here's how you say I am a student.", '生。', '是学生。', '我是学生。', '我是学生。'])
-    expect(spoken(script, grammar[1].at)).toEqual(['How do you say I am a student.?', '我是学生。'])
+    expect(spoken(script, grammar[0].at)).toEqual(['This is how you say', 'I am a student.', 'in Mandarin:', '我是学生。', '生。', '是学生。', '我是学生。', '我是学生。'])
+    expect(spoken(script, grammar[1].at)).toEqual(['How do you say', 'I am a student.', '?', '我是学生。'])
     expect(markers.filter(marker => marker.phase === 'mixed')).toHaveLength((WORDS.length + 1) * 2)
   })
 
@@ -104,11 +148,11 @@ describe('Hands-free script', () => {
     const particle = word(9, '吧', 'sentence ending for a suggestion, tentative judgement or seeking confirmation')
     const { script, markers } = prompts([particle, WORDS[0]])
     const intro = markers.findIndex(marker => marker.phase === 'intro')
-    expect(spoken(script, intro)).toEqual(["Here's", '吧', "It's a sentence ending for a suggestion, tentative judgement or seeking confirmation.", '吧'])
+    expect(spoken(script, intro)).toEqual(["Here's", '吧', "It's a sentence ending for a suggestion, tentative judgement or seeking confirmation.", '吧', '吧'])
     expect(introExplanation({ en: 'rest; break' })).toBeUndefined()
     expect(introExplanation({ en: 'measure word for people' })).toBe("It's a measure word for people.")
     const recall = markers.findIndex(marker => marker.phase === 'recall')
-    expect(spoken(script, recall)[0]).toBe('Which word is a sentence ending for a suggestion, tentative judgement or seeking confirmation?')
+    expect(spoken(script, recall).slice(0, 3)).toEqual(['Which word is a', 'sentence ending for a suggestion, tentative judgement or seeking confirmation', '?'])
     const back = markers.map((marker, at) => ({ marker, at })).filter(entry => entry.marker.phase === 'scramble' && entry.marker.prompt === '吧')
     expect(back.length).toBeGreaterThan(0)
     expect(spoken(script, back[0].at)).toEqual(['What does', '吧', 'do?', "It's a sentence ending for a suggestion, tentative judgement or seeking confirmation."])
@@ -130,5 +174,14 @@ describe('Hands-free script', () => {
     const total = (list: number[]) => list.reduce((sum, ms) => sum + ms, 0)
     expect(total(pauses('short'))).toBeLessThan(total(pauses('normal')))
     expect(total(pauses('normal'))).toBeLessThan(total(pauses('long')))
+  })
+
+  it('marks the English answer to a Chinese prompt, so the display reveals it only when it is spoken', () => {
+    const { script, markers } = prompts([word(1, '休息', 'rest')])
+    const back = markers.findIndex(marker => marker.phase === 'scramble' && marker.prompt === '休息')
+    const say = script.segments.slice(script.promptStarts[back], script.promptStarts[back + 1]).filter((segment): segment is Extract<Segment, { kind: 'say' }> => segment.kind === 'say')
+    expect(say.map(segment => [segment.text, segment.answer ?? false])).toEqual([['休息', false], ['rest', true]])
+    // frame and question segments are never answers
+    expect(script.segments.filter(segment => segment.kind === 'say' && segment.voice === 'frame').every(segment => segment.kind === 'say' && !segment.answer)).toBe(true)
   })
 })
