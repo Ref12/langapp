@@ -5,6 +5,7 @@ import type { StudyCard } from '../../core/study/contracts'
 import { cardStatus } from '../../core/study/labels'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Pinyin } from '../Pinyin'
+import { SaveActions } from '../collections/SaveToMenu'
 
 /** A word drawn from one of the learner's media sources: not part of the curriculum, but it can join the knowledge set. */
 export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, route }: {
@@ -24,8 +25,8 @@ export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, ro
       <PracticeSnippet source={{ text: entry.word, meaning, locale: 'zh-Hans', title: `From your media: ${meaning}`, route }} knowledge={false} />
     </div>
     {example && <div className="study-example"><p lang="zh-Hans" className="example">{example.text}</p><p className="small muted">{example.title}{entry.sources.length > 1 ? ` and ${entry.sources.length - 1} more` : ''}</p></div>}
-    <button className="button secondary full-width" disabled={busy || known} onClick={() => void run(async () => { await addSourceEntriesToKnowledge([`source:${entry.id}`]) })}>
-      {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}
-    </button>
+    <SaveActions refs={[`source:${entry.id}`]} name={entry.word} title={meaning} primary={<button className="button secondary full-width" disabled={busy || known} onClick={() => void run(async () => { await addSourceEntriesToKnowledge([`source:${entry.id}`]) })}>
+        {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}
+      </button>} />
   </article>
 }

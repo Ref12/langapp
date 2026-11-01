@@ -42,12 +42,12 @@ describe('Write mode of the Practice sheet', () => {
     expect(document.querySelector('.practice-write')!.textContent).not.toMatch(/[\uff0c\u3002]/)
   })
 
-  it('opens Write mode directly from the Write menu item; the menu order is Ask, Practice, Write, Learn', async () => {
+  it('opens Write mode directly from the Write menu item; the menu order is Ask, Practice, Write, Learn, Save', async () => {
     render(<PracticeSnippet source={source('\u5b66\u751f')} />)
     const menu = openPhraseActions()
     await menu.findByRole('button', { name: 'Learn' })
     const names = menu.getAllByRole('button').map(b => b.textContent)
-    expect(names).toEqual(['Ask', 'Practice', 'Write', 'Learn'])
+    expect(names).toEqual(['Ask', 'Practice', 'Write', 'Learn', 'Save…'])
     fireEvent.click(menu.getByRole('button', { name: 'Write' }))
     expect(await screen.findByRole('button', { name: 'Write', pressed: true })).toBeInTheDocument()
     expect(document.querySelector('.practice-write')).not.toBeNull()

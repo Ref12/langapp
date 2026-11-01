@@ -5,6 +5,7 @@ import { addToKnowledge } from '../../core/study/knowledge'
 import type { Catalog } from '../../core/study/catalog'
 import { useCatalog } from '../study/useCatalog'
 import { useWriteWords } from './useWriteWords'
+import { SaveToMenu } from '../collections/SaveToMenu'
 
 interface Row { text: string; pinyin: string; ref?: string; meaning?: string }
 
@@ -57,6 +58,7 @@ export function PhraseKnowledge({ text, romanization, label = 'Learn' }: { text:
     {addable.length > 0 && <button type="button" className="button secondary snippet-button" title="Add this phrase's words to your knowledge set" disabled={busy} aria-expanded={direct ? undefined : open}
       onClick={() => direct ? void add(addable) : setOpen(value => !value)}>
       <Plus size={15} />{label}</button>}
+      {refs.length > 0 && <SaveToMenu refs={refs} name={refs.length === 1 ? rows.find(row => row.ref)?.text : 'phrase words'} title={rows.find(row => row.meaning)?.meaning} label="Save…" className="snippet-button" />}
     {open && !direct && addable.length > 0 && <ul className="phrase-knowledge-list" aria-label="Words to add">
       <li><button type="button" className="button secondary snippet-button" disabled={busy} onClick={() => void add(addable)}>Add all</button></li>
       {remaining.map(row => <li key={row.text}>

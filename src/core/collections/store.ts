@@ -79,13 +79,17 @@ export async function addLines(collectionId: string, lines: LineInput[]): Promis
   })
 }
 
-/** Adds curriculum units (e.g. from a search) to a collection. */
+/** Adds curriculum units (e.g. from a search) and words saved from media to a collection; the collection counts as updated. */
 export async function addUnitsToCollection(collectionId: string, refs: string[]): Promise<void> {
   const catalog = await loadCatalog()
-  refs.forEach(ref => requireUnit(catalog, ref))
+  refs.filter(ref => !isSourceRef(ref)).forEach(ref => requireUnit(catalog, ref))
+  const sourceIds = refs.filter(isSourceRef).map(ref => ref.slice('source:'.length))
   const now = Date.now()
-  await db.transaction('rw', db.collections, db.collectionItems, db.studyCards, async () => {
-    if (!await db.collections.get(collectionId)) throw new Error('That collection no longer exists.')
+  await db.transaction('rw', db.collections, db.collectionItems, db.studyCards, db.sourceEntries, async () => {
+    const collection = await db.collections.get(collectionId)
+    if (!collection) throw new Error('That collection no longer exists.')
+    if ((await db.sourceEntries.bulkGet(sourceIds)).some(entry => !entry)) throw new Error('That word is no longer saved from its source.')
+    await db.collections.put({ ...collection, updatedAt: now })
     for (const ref of refs) {
       if (await db.collectionItems.get(itemId(collectionId, ref))) continue
       await db.collectionItems.add({ id: itemId(collectionId, ref), collectionId, ref, addedAt: now })

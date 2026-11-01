@@ -38,9 +38,9 @@ export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, 
       {asset ? <button type="button" className="button primary" aria-label={`Practice writing ${character}`} onClick={() => { openWritingSheet(character, { scope, remember: false }) }}><Pencil size={16} />Practice writing</button>
         : <button className="button secondary" disabled>Guide unavailable</button>}
       {manual ? <button className="button secondary" disabled={busy} onClick={() => void run(() => removeManualCharacter(character))}
-        aria-label={`Remove manual addition ${character}`}><X size={16} />Remove</button>
-        : <button className="button secondary" disabled={busy} onClick={() => void run(() => addCharacterToKnowledge(character))}
-          aria-label={automatic ? `Keep ${character} independently` : `Add ${character} to knowledge set`}><Plus size={16} />{automatic ? 'Keep' : 'Add'}</button>}
+          aria-label={`Remove manual addition ${character}`}><X size={16} />Remove</button>
+          : <button className="button secondary" disabled={busy} onClick={() => void run(() => addCharacterToKnowledge(character))}
+            aria-label={automatic ? `Keep ${character} independently` : `Add ${character} to knowledge set`}><Plus size={16} />{automatic ? 'Keep' : 'Add'}</button>}
     </div>
     <details className="character-more"><summary>About this character</summary>
       <p>{asset ? (asset.reviewed ? 'Reviewed prototype guide.' : 'Source-derived guide; not individually reviewed.') : 'No stroke guide is available; none is substituted.'} {words.length ? `In ${words.length} curriculum word ${words.length === 1 ? 'sense' : 'senses'}.` : 'From the prepared character collection.'}</p>

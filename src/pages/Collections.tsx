@@ -6,7 +6,7 @@ import { navigate } from '../core/routing'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { PracticeSnippet } from '../components/assistant/SnippetActions'
 import { cardStatus } from '../core/study/labels'
-import { cardId, isPhraseRef } from '../core/study/contracts'
+import { cardId, isPhraseRef, isSourceRef } from '../core/study/contracts'
 import { DOMAIN } from '../core/study/knowledge'
 import { useCatalog } from '../components/study/useCatalog'
 import { unitMeaning, unitTitle } from '../core/study/catalog'
@@ -82,8 +82,9 @@ function Item({ item, selected, toggle, now, catalog }: { item: CollectionItem; 
   const card = useLiveQuery(() => db.studyCards.get(cardId(item.ref, DOMAIN)), [item.ref])
   const known = useLiveQuery(async () => Boolean(await db.knowledge.get(item.ref)), [item.ref])
   const unit = catalog?.units.get(item.ref)
-  const text = isPhraseRef(item.ref) ? item.text ?? '' : unit ? unitTitle(unit) : item.ref
-  const meaning = isPhraseRef(item.ref) ? item.translation : unit ? unitMeaning(unit) : undefined
+    const entry = useLiveQuery(async () => isSourceRef(item.ref) ? (await db.sourceEntries.get(item.ref.slice('source:'.length))) ?? null : null, [item.ref])
+    const text = isPhraseRef(item.ref) ? item.text ?? '' : unit ? unitTitle(unit) : entry ? entry.word : item.ref
+    const meaning = isPhraseRef(item.ref) ? item.translation : unit ? unitMeaning(unit) : entry ? entry.meanings.join('; ') : undefined
   return <li className="col-item" data-selected={selected}>
     <input type="checkbox" checked={selected} onChange={toggle} aria-label={`Select ${text}`} />
     <div className="col-item-text">
