@@ -104,7 +104,7 @@ export function PracticeSessionPage(props: PageProps & { session: PracticeSessio
   const next = lesson?.curriculum ? nextCurriculumLesson(workspace) : undefined
   if (session.status !== 'completed') return <PracticeQuestion key={`${session.id}:${session.cursor}`} {...props} attempt={attempts.find(attempt => attempt.question === session.cursor)} />
   return <>
-    <a href="#practice" className="back-link"><ArrowLeft size={16} /> Practice</a>
+    <a href="#review" className="back-link"><ArrowLeft size={16} /> Practice</a>
     <PageHeading eyebrow="SMALL MOMENTS, REAL MOMENTUM" title={title}>Read, recall, and give yourself room to learn.</PageHeading>
     <section className="panel completion">
       <CheckCircle2 size={44} className="accent" /><h2>One more step forward.</h2>

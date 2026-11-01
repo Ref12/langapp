@@ -16,7 +16,7 @@ vi.mock('../../core/characters/assets', async importOriginal => ({ ...await impo
 
 beforeEach(async () => {
   localStorage.clear()
-  window.location.hash = '#drills'
+  window.location.hash = '#practice'
   await db.delete()
   await db.open()
   structured.requestStructuredJSON.mockReset()
@@ -32,15 +32,21 @@ async function newSet() {
   return (await getDrillSet(id))!
 }
 
-describe('Drills home', () => {
-  it('is the Drills nav entry, starts a new-words set on its intro cards, then lists it as unfinished', async () => {
+describe('Practice home', () => {
+  it('sends the old #drills links to Practice', async () => {
+    window.location.hash = '#drills/set/gone'
+    render(<App />)
+    expect(await screen.findByText('This practice set is not available')).toBeInTheDocument()
+    expect(window.location.hash).toBe('#practice/set/gone')
+  })
+
+  it('is the Practice nav entry, starts a new-words set on its intro cards, then lists it as unfinished', async () => {
     const user = userEvent.setup()
     render(<App />)
-    expect(await screen.findByRole('heading', { name: 'Drills', level: 1 })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Practice', level: 1 })).toBeInTheDocument()
     const nav = within(screen.getByRole('navigation', { name: 'Main navigation' }))
-    expect(nav.getByRole('link', { name: /Drills/ })).toHaveAttribute('aria-current', 'page')
-    expect(nav.queryByRole('link', { name: /^Practice/ })).toBeNull()
-    expect(screen.getByRole('link', { name: /Classic practice/ })).toHaveAttribute('href', '#practice')
+    expect(nav.getByRole('link', { name: /Practice/ })).toHaveAttribute('aria-current', 'page')
+    expect(screen.getByRole('link', { name: /Classic practice/ })).toHaveAttribute('href', '#review')
     expect(screen.getByRole('link', { name: 'Mahjong' })).toHaveAttribute('href', '#practice/mahjong')
     const start = await screen.findByRole('button', { name: 'Start new items' })
     await waitFor(() => expect(start).toBeEnabled())
@@ -48,11 +54,11 @@ describe('Drills home', () => {
     expect(await screen.findByRole('heading', { name: /^New items · \d+ \w{3}$/ })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /Intro cards/ })).toBeInTheDocument()
     expect(document.querySelectorAll('.study-unit-card').length).toBeGreaterThan(0)
-    await user.click(screen.getAllByRole('link', { name: /Start drilling/ })[0])
-    expect(await screen.findByRole('heading', { name: 'Pick a drill type' })).toBeInTheDocument()
+    await user.click(screen.getAllByRole('link', { name: /Start practicing/ })[0])
+    expect(await screen.findByRole('heading', { name: 'Pick a practice type' })).toBeInTheDocument()
     // There is no "Learning from" selector on the set screen.
     expect(screen.queryByLabelText('Learning from')).toBeNull()
-    await user.click(within(screen.getByRole('navigation', { name: 'Main navigation' })).getByRole('link', { name: /Drills/ }))
+    await user.click(within(screen.getByRole('navigation', { name: 'Main navigation' })).getByRole('link', { name: /Practice/ }))
     const unfinished = await screen.findByRole('heading', { name: 'Unfinished sets' })
     const row = unfinished.closest('section')!
     expect(await within(row).findByText(/New items · \d+ \w{3}/)).toBeInTheDocument()
@@ -69,7 +75,7 @@ describe('Drills home', () => {
     const user = userEvent.setup()
     await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])
     const id = await createDrillSet({ kind: 'review' }, Date.now() + 1000)
-    window.location.hash = `#drills/set/${id}/intro`
+    window.location.hash = `#practice/set/${id}/intro`
     render(<App />)
     expect(await screen.findByText(/items hidden/)).toBeInTheDocument()
     expect(screen.queryByText('我')).toBeNull()
@@ -84,7 +90,7 @@ describe('doing drills', () => {
   it('does a Word meanings pass: the type moves to Done with its score, and Redo stays ungraded', async () => {
     const user = userEvent.setup()
     const set = await newSet()
-    window.location.hash = `#drills/set/${set.id}`
+    window.location.hash = `#practice/set/${set.id}`
     render(<App />)
     await user.click((await screen.findAllByRole('link', { name: 'Start' }, { timeout: 8000 }))[0])
     for (let guard = 0; guard < 30; guard++) {
@@ -112,7 +118,7 @@ describe('doing drills', () => {
   it('Match pairs is its own type: Word meanings has no Match style, and a board is graded per item', async () => {
     const user = userEvent.setup()
     const set = await newSet()
-    window.location.hash = `#drills/set/${set.id}`
+    window.location.hash = `#practice/set/${set.id}`
     render(<App />)
     const row = (await screen.findByText('Match pairs', {}, { timeout: 8000 })).closest('li')!
     await user.click(within(row).getByRole('link', { name: 'Start' }))
@@ -142,7 +148,7 @@ describe('doing drills', () => {
   it('Word meanings keeps Choose and Type only', async () => {
     const user = userEvent.setup()
     const set = await newSet()
-    window.location.hash = `#drills/set/${set.id}/run/meanings`
+    window.location.hash = `#practice/set/${set.id}/run/meanings`
     render(<App />)
     const style = await screen.findByRole('group', { name: 'Style' })
     expect(within(style).getAllByRole('button').map(button => button.textContent)).toEqual(['Choose', 'Type'])
@@ -153,7 +159,7 @@ describe('doing drills', () => {
   it('a typed answer preselects the automatic mark, and the chosen override is what is graded', async () => {
     const user = userEvent.setup()
     const set = await newSet()
-    window.location.hash = `#drills/set/${set.id}/run/meanings`
+    window.location.hash = `#practice/set/${set.id}/run/meanings`
     render(<App />)
     await user.click(await screen.findByRole('button', { name: 'Type' }))
     await user.type(await screen.findByRole('textbox'), 'zzz wrong')
@@ -172,7 +178,7 @@ describe('doing drills', () => {
   it('Write it elsewhere: a hint turns Got it into Needed a hint', async () => {
     const user = userEvent.setup()
     const set = await newSet()
-    window.location.hash = `#drills/set/${set.id}/run/write`
+    window.location.hash = `#practice/set/${set.id}/run/write`
     render(<App />)
     await user.click(await screen.findByRole('button', { name: 'Whole words' }, { timeout: 8000 }))
     await user.click(screen.getByRole('button', { name: 'Write elsewhere' }))
@@ -191,7 +197,7 @@ describe('doing drills', () => {
     const user = userEvent.setup()
     const set = await newSet()
     await db.drillSets.put({ ...set, format: 'quiz' })
-    window.location.hash = `#drills/set/${set.id}/run/meanings`
+    window.location.hash = `#practice/set/${set.id}/run/meanings`
     render(<App />)
     const bar = await screen.findByRole('region', { name: 'Quiz progress' }, { timeout: 8000 })
     const total = document.querySelectorAll('.dr-quiz > li').length
@@ -213,7 +219,7 @@ describe('summary', () => {
     const set = await newSet()
     const [first, second, third] = set.refs
     await db.drillSets.put({ ...set, progress: { meanings: { results: { [first]: 'got', [second]: 'hint', [third]: 'missed' }, scope: [first, second, third], done: true, redos: 0 } } })
-    window.location.hash = `#drills/set/${set.id}/summary`
+    window.location.hash = `#practice/set/${set.id}/summary`
     render(<App />)
     expect(await screen.findByText('2 / 3')).toBeInTheDocument()
     const stats = document.querySelector('.dr-stats')!
@@ -240,7 +246,7 @@ describe('Learning from', () => {
       { id: 'i1', collectionId: 'c1', ref: 'vocabulary:wo3--me', addedAt: 1 }, { id: 'i2', collectionId: 'c1', ref: 'vocabulary:ni3--you', addedAt: 2 },
       { id: 'i3', collectionId: 'c1', ref: 'vocabulary:hao3--good', addedAt: 3 },
     ] as never)
-    window.location.hash = '#drills'
+    window.location.hash = '#practice'
     render(<App />)
     const select = await screen.findByLabelText('Learning from')
     const card = select.closest('section')!
@@ -254,7 +260,7 @@ describe('Learning from', () => {
     expect(await within(card).findByText(/new items? in Introductions/)).toBeInTheDocument()
     expect(within(card).getByText(/2 items due in Introductions/)).toBeInTheDocument()
     await user.click(within(card).getByRole('button', { name: 'Start reviews' }))
-    await waitFor(() => expect(window.location.hash).toMatch(/^#drills\/set\//))
+    await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\//))
     const sets = await db.drillSets.toArray()
     expect(sets).toHaveLength(1)
     expect(sets[0].source).toBe('review')
@@ -275,7 +281,7 @@ describe('Write it by character', () => {
   it('asks each character once, prompting only its syllable, and grades words by their worst character', async () => {
     const user = userEvent.setup()
     const id = await sharedSet('review')
-    window.location.hash = `#drills/set/${id}/run/write`
+    window.location.hash = `#practice/set/${id}/run/write`
     render(<App />)
     // Reviews default to Write elsewhere, and to Characters.
     expect(await screen.findByRole('button', { name: 'Characters', pressed: true }, { timeout: 8000 })).toBeInTheDocument()
@@ -306,7 +312,7 @@ describe('Write it by character', () => {
   it('Whole words mode accents the whole word on paper and remembers the choice', async () => {
     const user = userEvent.setup()
     const id = await sharedSet('review')
-    window.location.hash = `#drills/set/${id}/run/write`
+    window.location.hash = `#practice/set/${id}/run/write`
     render(<App />)
     await user.click(await screen.findByRole('button', { name: 'Whole words' }, { timeout: 8000 }))
     expect(document.querySelector('.dr-write-line')!.textContent).toMatch(/^Write \S+ \S+$/)
@@ -317,7 +323,7 @@ describe('Write it by character', () => {
   it('new-item sets open on the pad, where an unwritten character is taught first, and can be skipped', async () => {
     const user = userEvent.setup()
     const id = await sharedSet('new')
-    window.location.hash = `#drills/set/${id}/run/write`
+    window.location.hash = `#practice/set/${id}/run/write`
     render(<App />)
     expect(await screen.findByRole('button', { name: 'Handwriting pad', pressed: true }, { timeout: 8000 })).toBeInTheDocument()
     await user.click(await screen.findByRole('button', { name: 'I already know how to write this' }, { timeout: 8000 }))
@@ -331,18 +337,18 @@ describe('no sideways overflow at 390 px', () => {
   it('marks the answer screens as excluded from selected-text help, so Write elsewhere never opens phrase practice by accident', async () => {
     const id = await createDrillSet({ kind: 'new' })
     await whenContent(id)
-    window.location.hash = `#drills/set/${id}/run/write`
+    window.location.hash = `#practice/set/${id}/run/write`
     render(<App />)
     const title = await screen.findByText('Write it', { selector: 'h2' })
     expect(title.closest('[data-assistant-exclude]')).not.toBeNull()
   })
 
-  it('keeps Drills home and the set screen inside the screen, with a long Chinese study-set name', async () => {
+  it('keeps Practice home and the set screen inside the screen, with a long Chinese study-set name', async () => {
     window.innerWidth = 390
     await db.collections.put({ id: 'long', name: LONG, createdAt: 1, updatedAt: 1 } as never)
     const set = await newSet()
     await db.drillSets.put({ ...set, title: LONG })
-    window.location.hash = '#drills'
+    window.location.hash = '#practice'
     const view = render(<App />)
     await screen.findByLabelText('Learning from')
     expect(fits()).toBe(true)
@@ -351,7 +357,7 @@ describe('no sideways overflow at 390 px', () => {
     expect(screen.queryByRole('button', { name: `Start ${LONG}` })).toBeNull()
     // Every row of the card keeps its own text inside it (jsdom has no layout, so check the wrapping rules are on the elements).
     for (const element of view.container.querySelectorAll('.dr-rows strong, .resume-main strong, .dr-source select')) expect(element.closest('.dr-panel')).not.toBeNull()
-    window.location.hash = `#drills/set/${set.id}`
+    window.location.hash = `#practice/set/${set.id}`
     expect(await screen.findByRole('heading', { name: LONG }, { timeout: 8000 })).toBeInTheDocument()
     expect(fits()).toBe(true)
   }, 40000)

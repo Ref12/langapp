@@ -33,14 +33,14 @@ function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'c
 async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source'] }> {
   if (source.kind === 'refs') {
     const refs = [...new Set(source.refs)].slice(0, STUDY_SET_LIMIT)
-    if (!refs.length) throw new Error('There are no items to drill.')
+    if (!refs.length) throw new Error('There are no items to practice.')
     if (source.origin.kind === 'lesson') {
       const session = await db.exerciseSessions.get(source.origin.id)
       if (!session) throw new Error('That lesson could not be found.')
       return { refs, title: `From lesson · ${shortDate(session.completedAt ?? session.createdAt)}`, originId: source.origin.id, setSource: 'lesson' }
     }
     const earlier = await db.drillSets.get(source.origin.id)
-    if (!earlier) throw new Error('That drill set could not be found.')
+    if (!earlier) throw new Error('That practice set could not be found.')
     return { refs, title: `Again: ${earlier.title.replace(/^Again: /, '')}`.slice(0, 200), originId: source.origin.id, setSource: earlier.source === 'new' || earlier.source === 'lesson' ? earlier.source : 'drill' }
   }
   const catalog = await loadCatalog()

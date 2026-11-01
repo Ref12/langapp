@@ -27,7 +27,7 @@ describe('context selection', () => {
     expect(select(root)).toBe('\u8336\u3002')
   })
 
-  it('offers nothing for a selection that starts or ends inside an excluded area, such as a Drills answer screen', () => {
+  it('offers nothing for a selection that starts or ends inside an excluded area, such as a Practice answer screen', () => {
     const root = document.createElement('main')
     root.innerHTML = '<p>\u4f60\u597d</p><div data-assistant-exclude><p id="inside">\u5b66\u4e60</p></div>'
     document.body.append(root)

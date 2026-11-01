@@ -14,7 +14,7 @@ export function CurriculumMap({ workspace }: PageProps) {
       <p className="eyebrow accent">{next ? 'YOUR NEXT SMALL LESSON' : 'KEEP YOUR BEGINNER WORDS FRESH'}</p>
       <h2>{next?.title ?? 'You have practiced every beginner lesson.'}</h2>
       <p>{next ? 'About 5-8 new senses at a time, with a short review of earlier words already in your learning set.' : 'Later retrieval still matters. Recognition practice does not demonstrate the course goals on its own.'}</p>
-      <a className="button primary" href={next ? `#lesson/${next.id}` : '#practice'}>{next ? 'Continue your path' : 'Review your learning set'} <ArrowRight size={16} /></a>
+      <a className="button primary" href={next ? `#lesson/${next.id}` : '#review'}>{next ? 'Continue your path' : 'Review your learning set'} <ArrowRight size={16} /></a>
     </section>
     <section className="curriculum-phase" aria-labelledby="hsk-readiness">
       <div className="section-heading"><div><p className="eyebrow accent">EXAM PREPARATION</p><h2 id="hsk-readiness">{curriculum.hskReadiness.title}</h2></div>

@@ -3,7 +3,7 @@ import { unitRefSchema } from '../study/contracts'
 
 // Drill sets: a fixed list of study items drilled by type. Stored in the local database (drillSets) and carried in backups.
 
-export const DRILLS_LABEL = 'Drills'
+export const DRILLS_LABEL = 'Practice'
 
 export const DRILL_TYPE_IDS = ['meanings', 'match', 'write', 'pinyin', 'translate', 'repeat', 'listen', 'read'] as const
 export type DrillTypeId = typeof DRILL_TYPE_IDS[number]

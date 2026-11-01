@@ -21,7 +21,7 @@ import { availability } from './tasks'
 import './drills.css'
 
 const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
-const setRoute = (id: string, page = '') => `drills/set/${id}${page ? `/${page}` : ''}`
+const setRoute = (id: string, page = '') => `practice/set/${id}${page ? `/${page}` : ''}`
 const CURRICULUM = 'curriculum'
 
 function useItems(set: DrillSet | undefined | null): ItemInfo[] | undefined {
@@ -43,8 +43,8 @@ export function Drills(props: PageProps & { route: string }) {
   const [, kind, id, page, type] = path.split('/')
   const set = useLiveQuery(async () => id ? (await db.drillSets.get(id)) ?? null : null, [id])
   if (kind !== 'set' || !id) return <DrillsHome {...props} />
-  if (set === undefined) return <div className="opening-workspace" role="status">Opening the drill set...</div>
-  if (set === null) return <EmptyState title="This drill set is not available"><p>It may have been discarded or removed from this workspace.</p><a className="button primary" href={`#${'drills'}`}>Back to {DRILLS_LABEL}</a></EmptyState>
+  if (set === undefined) return <div className="opening-workspace" role="status">Opening the practice set...</div>
+  if (set === null) return <EmptyState title="This practice set is not available"><p>It may have been discarded or removed from this workspace.</p><a className="button primary" href={`#practice`}>Back to {DRILLS_LABEL}</a></EmptyState>
   return <SetPage {...props} set={set} page={page} type={type as DrillTypeId | undefined} query={props.route.split('?')[1] ?? ''} />
 }
 
@@ -52,7 +52,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
   const { catalog, error } = useCatalog()
   const items = useItems(set)
   if (error) return <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>
-  if (!catalog || !items) return <div className="opening-workspace" role="status">Opening the drill set...</div>
+  if (!catalog || !items) return <div className="opening-workspace" role="status">Opening the practice set...</div>
   if (page === 'intro') return <Intro {...props} set={set} items={items} catalog={catalog} />
   if (page === 'run' && type && DRILL_TYPES.some(entry => entry.id === type)) {
     const only = new URLSearchParams(query).get('missed') ? Object.entries(set.progress[type]?.results ?? {}).filter(([, mark]) => mark === 'missed').map(([ref]) => ref) : undefined
@@ -66,12 +66,12 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
 function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & { set: DrillSet; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
   const [shown, setShown] = useState(false)
   const fresh = set.source === 'new' || set.source === 'lesson'
-  const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start drilling <ArrowRight size={16} /></a>
+  const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start practicing <ArrowRight size={16} /></a>
   const detail = describeItems(items, workspace.characterStates) || itemCount(items.length)
   const examplesFor = (ref: string) => (catalog.orderedGroups.find(entry => entry.group.units.some(unit => unit.ref === ref))?.group.examples ?? [])
     .filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
   return <div className="dr">
-    <a className="back-link" href={`#${'drills'}`}><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
+    <a className="back-link" href={`#practice`}><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
     <PageHeading eyebrow={fresh ? 'New set' : set.source === 'review' ? 'Review set' : TERM.Singular} title={set.title} action={start}>{detail}. {fresh ? 'Read the intro cards first.' : 'Your items are hidden so the list gives no hints.'}</PageHeading>
     {fresh ? <>
       <h2 className="dr-h2">Intro cards <span className="small muted">1–{items.length} of {items.length}</span></h2>
@@ -101,8 +101,8 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const todo = rows.filter(row => !row.progress?.done)
   const finish = () => void run(async () => { await finishDrillSet(set.id); navigate(setRoute(set.id, 'summary')) })
   return <div className="dr">
-    <a className="back-link" href="#drills"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
-    <PageHeading eyebrow="Drill set" title={set.title} action={<button type="button" className="button secondary" disabled={busy} onClick={finish}>Finish set</button>}>{describeItems(items, workspace.characterStates) || itemCount(set.refs.length)} · {done.length} of {DRILL_TYPES.length} types done</PageHeading>
+    <a className="back-link" href="#practice"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
+    <PageHeading eyebrow="Practice set" title={set.title} action={<button type="button" className="button secondary" disabled={busy} onClick={finish}>Finish set</button>}>{describeItems(items, workspace.characterStates) || itemCount(set.refs.length)} · {done.length} of {DRILL_TYPES.length} types done</PageHeading>
     <div className="dr-toolbar dr-setbar">
       {(set.source === 'new' || set.source === 'lesson') && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><BookOpen size={16} /> Intro cards</a>}
       {set.source !== 'new' && set.source !== 'lesson' && <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}><Eye size={16} /> Items</a>}
@@ -112,7 +112,7 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
     {content.state === 'running' && <p className="small muted" role="status">Writing sentences and conversations with your AI model ({content.done ?? 0} of {content.total ?? 0} requests done). Types that need them say when they are ready.</p>}
     {content.state === 'no-ai' && connection === null && <p className="notice small" role="status">No AI model is connected, so only the types built from the catalog are available. <a className="text-link" href="#settings">Connect one in Settings</a>.</p>}
     <div className="dr-columns">
-      <section className="panel dr-panel" aria-labelledby="dr-types"><h2 id="dr-types">Pick a drill type</h2><p className="small muted">Any order. Each type covers the items of the set it applies to.</p>
+      <section className="panel dr-panel" aria-labelledby="dr-types"><h2 id="dr-types">Pick a practice type</h2><p className="small muted">Any order. Each type covers the items of the set it applies to.</p>
         <ul className="dr-rows">{todo.map(({ entry, avail, progress }) => { const Icon = ICONS[entry.icon]; const ready = avail.state === 'ready'
           return <li key={entry.id}><Icon size={20} aria-hidden="true" />
             <div><strong>{entry.name}</strong><span className="small muted">{ready ? `${entry.blurb} · ${avail.count} ${avail.count === 1 ? 'item' : 'items'}${progress ? ` · ${Object.keys(progress.results).length} of ${progress.scope.length} done` : ''}` : avail.message}</span>
@@ -142,10 +142,10 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
   const missedType = DRILL_TYPES.find(entry => Object.values(set.progress[entry.id]?.results ?? {}).includes('missed'))
   const active = set.status === 'active'
   return <div className="dr">
-    <a className="back-link" href={active ? `#${setRoute(set.id)}` : '#drills'}><ArrowLeft size={16} /> {active ? set.title : DRILLS_LABEL}</a>
+    <a className="back-link" href={active ? `#${setRoute(set.id)}` : '#practice'}><ArrowLeft size={16} /> {active ? set.title : DRILLS_LABEL}</a>
     <PageHeading eyebrow={active ? 'Summary so far' : set.status === 'abandoned' ? 'Set ended early' : 'Set finished'} title={set.title}>{itemCount(set.refs.length)}. Practice results, not a measure of proficiency.</PageHeading>
     <section className="panel completion" aria-label="Score"><CheckCircle2 size={40} className="accent" aria-hidden="true" />
-      <p className="completion-count">{score.total ? `${score.correct} / ${score.total}` : 'No answers yet'}</p><p>{score.total ? 'correct on the first pass (Got it and Needed a hint)' : 'Pick a drill type to start.'}</p>
+      <p className="completion-count">{score.total ? `${score.correct} / ${score.total}` : 'No answers yet'}</p><p>{score.total ? 'correct on the first pass (Got it and Needed a hint)' : 'Pick a practice type to start.'}</p>
       <p className="dr-stats"><span><strong>{counts.got}</strong>{MARK_LABEL.got}</span><span><strong>{counts.hint}</strong>{MARK_LABEL.hint}</span><span><strong>{counts.missed}</strong>{MARK_LABEL.missed}</span></p></section>
     <section className="panel dr-panel"><h2>By type</h2>
       <table className="dr-table"><thead><tr><th>Type</th><th>Score</th><th title="Got it · Needed a hint · Missed">Got · Hint · Missed</th><th /></tr></thead>
@@ -156,8 +156,8 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
       {revisit.length === 0 ? <p className="small muted">{score.total ? 'Nothing to revisit: every answer was Got it.' : 'Nothing yet.'}</p>
         : <ul className="dr-rows">{revisit.map(({ item, mark }) => <li key={item.ref}><div><strong lang="zh-Hans" className="dr-zh">{item.zh}</strong><span className="small muted">{item.py} {item.en}</span></div><span className={`tag dr-tag-${mark}`}>{MARK_LABEL[mark]}</span></li>)}</ul>}
       {missedType && <div className="button-row"><a className="button secondary" href={`#${setRoute(set.id, `run/${missedType.id}?missed=1`)}`}>Practise missed (ungraded)</a></div>}</section>
-    <div className="button-row">{active && <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await finishDrillSet(set.id); navigate('drills') })}>Finish set</button>}
-      <a className="button secondary" href="#drills">{DRILLS_LABEL} home</a></div>
+    <div className="button-row">{active && <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await finishDrillSet(set.id); navigate('practice') })}>Finish set</button>}
+      <a className="button secondary" href="#practice">{DRILLS_LABEL} home</a></div>
   </div>
 }
 
@@ -187,9 +187,9 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const breakdown = catalog && !fromSet && next ? (() => { const text = describeItems(next.newUnits.slice(0, NEW_SET_SIZE).map(unit => unit.kind === 'vocabulary' ? { kind: 'vocabulary' as const, zh: unit.record.ch } : { kind: 'grammar' as const, zh: unit.record.pt }), workspace.characterStates); return text ? ` (${text})` : '' })() : ''
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
   return <div className="dr">
-    <PageHeading eyebrow="Practice" title={DRILLS_LABEL}>Drill sets of words and grammar patterns. Pick a type, do every item, pick another.</PageHeading>
+    <PageHeading eyebrow="Study" title={DRILLS_LABEL}>Practice sets of words and grammar patterns. Pick a type, do every item, pick another.</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
-    {connection === null && <p className="notice small" role="status">Sentence and conversation drills are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
+    {connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
     <div className="dr-columns">
       <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
         <div className="dr-from dr-from-top"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
@@ -213,7 +213,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
       </section>
     </div>
     <section className="panel dr-classic"><div><strong>Classic practice</strong><span className="small muted">Word-recognition sessions, the due badge and Mahjong keep working as before.</span></div>
-      <div className="button-row"><a className="button secondary" href="#practice">Classic practice {wordsDue > 0 && <span className="tag">{wordsDue} due</span>}</a><a className="button secondary" href="#practice/mahjong">Mahjong</a></div></section>
+      <div className="button-row"><a className="button secondary" href="#review">Classic practice {wordsDue > 0 && <span className="tag">{wordsDue} due</span>}</a><a className="button secondary" href="#practice/mahjong">Mahjong</a></div></section>
   </div>
 }
 

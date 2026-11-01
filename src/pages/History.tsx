@@ -18,11 +18,11 @@ import { createDrillSet } from '../core/drills/store'
 
 type Filter = 'all' | 'speak' | 'write' | 'lessons' | 'drills'
 const FILTERS: { id: Filter; label: string }[] = [
-  { id: 'all', label: 'All' }, { id: 'speak', label: 'Spoken' }, { id: 'write', label: 'Written' }, { id: 'lessons', label: 'Lessons' }, { id: 'drills', label: 'Drills' },
+  { id: 'all', label: 'All' }, { id: 'speak', label: 'Spoken' }, { id: 'write', label: 'Written' }, { id: 'lessons', label: 'Lessons' }, { id: 'drills', label: 'Practice' },
 ]
 const EMPTY: Record<Filter, string> = {
   all: 'Open Phrase Practice from the Assistant or a text selection, or finish a lesson, to add something here.',
-  speak: 'No spoken phrases yet.', write: 'No written phrases yet.', lessons: 'No lesson sessions yet.', drills: 'No drill sets yet.',
+  speak: 'No spoken phrases yet.', write: 'No written phrases yet.', lessons: 'No lesson sessions yet.', drills: 'No practice sets yet.',
 }
 
 interface LessonRow { id: string; at: number; mode: 'new' | 'review'; items: number; refs: string[]; exercises: number; answered: number; correct: number; status: string }
@@ -62,7 +62,7 @@ export function History() {
   const [drilling, setDrilling] = useState('')
   const drill = (key: string, source: Parameters<typeof createDrillSet>[0]) => {
     setError(''); setDrilling(key)
-    createDrillSet(source).then(id => navigate(`drills/set/${id}`), cause => setError(cause instanceof Error ? cause.message : 'The drill set could not be created.')).finally(() => setDrilling(''))
+    createDrillSet(source).then(id => navigate(`practice/set/${id}`), cause => setError(cause instanceof Error ? cause.message : 'The practice set could not be created.')).finally(() => setDrilling(''))
   }
   const redo = (id: string) => {
     setError(''); setRedoing(id)
@@ -89,7 +89,7 @@ export function History() {
   ].sort((a, b) => b.at - a.at) : []
   return <section className="phrase-history">
     <div className="page-heading"><div><p className="eyebrow">HISTORY</p><h1>Recently practiced</h1>
-      <p>Phrases you spoke or wrote, your lessons and your drill sets, most recent first.</p></div></div>
+      <p>Phrases you spoke or wrote, your lessons and your practice sets, most recent first.</p></div></div>
     <div className="segmented history-filters" role="group" aria-label="Show">
       {FILTERS.map(item => <button key={item.id} type="button" className={filter === item.id ? 'active' : ''} aria-pressed={filter === item.id} onClick={() => choose(item.id)}>{item.label}</button>)}
     </div>
@@ -97,16 +97,16 @@ export function History() {
     {!ready ? <p role="status">Loading history...</p>
       : !rows.length ? <div className="empty-state"><h2>{filter === 'all' ? 'No phrases yet' : EMPTY[filter]}</h2>
         {filter === 'all' && <p>{EMPTY.all}</p>}
-        <a className="button secondary" href={filter === 'lessons' ? '#lessons' : filter === 'drills' ? '#drills' : '#conversation'}>{filter === 'lessons' ? 'Open Lessons' : filter === 'drills' ? 'Open Drills' : 'Open Assistant'}</a></div>
+        <a className="button secondary" href={filter === 'lessons' ? '#lessons' : filter === 'drills' ? '#practice' : '#conversation'}>{filter === 'lessons' ? 'Open Lessons' : filter === 'drills' ? 'Open Practice' : 'Open Assistant'}</a></div>
         : <ol className="phrase-history-list">{rows.map(row => row.type === 'drill'
           ? <li key={`drill:${row.set.id}`} className="phrase-history-entry history-lesson">
-            <span><span className="history-chips"><span className="chip">Drill</span>{row.set.status === 'completed' && <span className="chip">Finished</span>}{row.set.status === 'abandoned' && <span className="chip">Set aside</span>}</span>
+            <span><span className="history-chips"><span className="chip">Practice</span>{row.set.status === 'completed' && <span className="chip">Finished</span>}{row.set.status === 'abandoned' && <span className="chip">Set aside</span>}</span>
               <strong>{row.set.title}</strong>
               <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time>
               {wordList(catalog, row.set.refs)}
               {scoreLine(row.set) && <span className="small muted history-score">{scoreLine(row.set)}</span>}</span>
-            {row.set.status === 'active' && <a className="button secondary" href={`#drills/set/${row.set.id}`} aria-label={`Resume ${row.set.title}`}>Resume</a>}
-            <button type="button" className="button secondary" disabled={drilling !== ''} aria-label={`Drill ${row.set.title} again`} onClick={() => drill(row.set.id, { kind: 'refs', refs: row.set.refs, origin: { kind: 'drill', id: row.set.id } })}>{drilling === row.set.id ? 'Preparing...' : 'Drill these again'}</button>
+            {row.set.status === 'active' && <a className="button secondary" href={`#practice/set/${row.set.id}`} aria-label={`Resume ${row.set.title}`}>Resume</a>}
+            <button type="button" className="button secondary" disabled={drilling !== ''} aria-label={`Practice ${row.set.title} again`} onClick={() => drill(row.set.id, { kind: 'refs', refs: row.set.refs, origin: { kind: 'drill', id: row.set.id } })}>{drilling === row.set.id ? 'Preparing...' : 'Practice again'}</button>
           </li>
           : row.type === 'lesson'
           ? <li key={`lesson:${row.lesson.id}`} className="phrase-history-entry history-lesson">
@@ -118,7 +118,7 @@ export function History() {
                 <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time></span>
             <a className="button secondary" href={`#lessons/session/${row.lesson.id}`} aria-label={`Open lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`}>Open</a>
               <button type="button" className="button secondary" disabled={!connection || redoing !== ''} aria-label={`Redo lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`} title={connection === null ? 'Connect an AI model in Settings to redo exercises.' : undefined} onClick={() => redo(row.lesson.id)}>{redoing === row.lesson.id ? 'Preparing...' : 'Redo'}</button>
-              <button type="button" className="button secondary" disabled={drilling !== ''} aria-label={`Drill lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`} onClick={() => drill(row.lesson.id, { kind: 'refs', refs: row.lesson.refs, origin: { kind: 'lesson', id: row.lesson.id } })}>{drilling === row.lesson.id ? 'Preparing...' : 'Drill these'}</button>
+              <button type="button" className="button secondary" disabled={drilling !== ''} aria-label={`Practice lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`} onClick={() => drill(row.lesson.id, { kind: 'refs', refs: row.lesson.refs, origin: { kind: 'lesson', id: row.lesson.id } })}>{drilling === row.lesson.id ? 'Preparing...' : 'Practice these'}</button>
           </li>
           : <li key={`phrase:${row.entry.text}`} className="phrase-history-entry">
             <span><span className="history-chips">
