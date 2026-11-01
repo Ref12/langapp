@@ -30,7 +30,7 @@ function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'c
   return { ...fields, status: 'active', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, updatedAt: fields.createdAt }
 }
 
-async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source'] }> {
+export async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source'] }> {
   if (source.kind === 'refs') {
     const refs = [...new Set(source.refs)].slice(0, STUDY_SET_LIMIT)
     if (!refs.length) throw new Error('There are no items to practice.')

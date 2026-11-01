@@ -125,3 +125,19 @@
 .dr-run button, .dr-pad, .dr-pad *, .dr-order, .dr-order *, .dr-reveal, .dr-strokepad, .dr-selfmark { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .dr-confirm { display: block; }
 .dr-confirm > * + * { margin-top: 8px; }
+
+/* Hands-free */
+.hf-stage { display: grid; gap: 14px; justify-items: center; text-align: center; }
+.hf-phase { margin: 0; font-weight: 600; }
+.hf-prompt { margin: 0; font-size: clamp(1.8rem, 9vw, 2.8rem); line-height: 1.25; min-height: 3.2em; display: flex; align-items: center; justify-content: center; overflow-wrap: anywhere; }
+.hf-stage progress { width: 100%; }
+.hf-controls { display: flex; gap: 16px; align-items: center; justify-content: center; }
+.hf-controls .button { min-width: 56px; min-height: 56px; border-radius: 50%; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.hf-play { min-width: 72px; min-height: 72px; }
+.hf-settings { display: grid; gap: 12px; }
+.hf-settings label { display: grid; gap: 4px; }
+.hf-settings .hf-check { display: flex; align-items: center; gap: 8px; }
+.hf-pocket { position: fixed; inset: 0; z-index: 1000; background: #050505; touch-action: none; user-select: none; -webkit-user-select: none; display: grid; place-items: center; }
+.hf-pocket p { margin: 0; color: #2a2a2a; font-size: 0.85rem; }
+.hf-pocket.holding p { color: #6a6a6a; }
+.dr-programs .dr-rows li:first-child { border-top: 0; }

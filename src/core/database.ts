@@ -16,6 +16,7 @@ import type { JournalEvent } from './backup/journal'
 import type { MediaItem, SourceEntry } from './media/contracts'
 import type { Collection, CollectionItem } from './collections/contracts'
 import type { DrillSet } from './drills/contracts'
+import type { HandsfreeRun } from './handsfree/contracts'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
 export interface BackupConfigRecord {
@@ -64,6 +65,7 @@ export class LearningDatabase extends Dexie {
   collectionItems!: EntityTable<CollectionItem, 'id'>
   sourceEntries!: EntityTable<SourceEntry, 'id'>
   drillSets!: EntityTable<DrillSet, 'id'>
+  handsfreeRuns!: EntityTable<HandsfreeRun, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -113,6 +115,8 @@ export class LearningDatabase extends Dexie {
     this.version(19).stores({ sourceEntries: '&id, word' })
     // Drill sets are new data: no existing table is read or rewritten, so everything saved before stays as it was.
     this.version(20).stores({ drillSets: '&id, status, createdAt' })
+    // Hands-free runs are new data too.
+    this.version(21).stores({ handsfreeRuns: '&id, status, createdAt' })
   }
 }
 

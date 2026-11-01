@@ -249,7 +249,7 @@ describe('Learning from', () => {
     window.location.hash = '#practice'
     render(<App />)
     const select = await screen.findByLabelText('Learning from')
-    const card = select.closest('section')!
+    const card = (await screen.findByRole('heading', { name: 'Start a set' })).closest('section')!
     const rows = within(card).getAllByRole('listitem')
     // The selector comes before both rows.
     expect(select.compareDocumentPosition(rows[0]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
@@ -356,7 +356,7 @@ describe('no sideways overflow at 390 px', () => {
     expect(screen.queryByText(/can also be started whole/)).toBeNull()
     expect(screen.queryByRole('button', { name: `Start ${LONG}` })).toBeNull()
     // Every row of the card keeps its own text inside it (jsdom has no layout, so check the wrapping rules are on the elements).
-    for (const element of view.container.querySelectorAll('.dr-rows strong, .resume-main strong, .dr-source select')) expect(element.closest('.dr-panel')).not.toBeNull()
+    for (const element of view.container.querySelectorAll('.dr-rows strong, .resume-main strong, .dr-source select')) expect(element.closest('.dr-panel, .dr-from')).not.toBeNull()
     window.location.hash = `#practice/set/${set.id}`
     expect(await screen.findByRole('heading', { name: LONG }, { timeout: 8000 })).toBeInTheDocument()
     expect(fits()).toBe(true)

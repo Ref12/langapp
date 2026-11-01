@@ -34,6 +34,7 @@ import { History } from './pages/History'
 import { Media } from './pages/Media'
 import { Collections } from './pages/Collections'
 import { Drills } from './pages/drills/Drills'
+import { HandsFree } from './pages/drills/HandsFree'
 import { DRILLS_LABEL } from './core/drills/contracts'
 import { TERM } from './core/collections/terms'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
@@ -98,6 +99,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   if (page === 'games' && id === 'defender') return <Defender {...props} />
   if (page === 'games' && id === 'potions') return <Potions {...props} />
   if (page === 'games' && !id) return <Games />
+  if (page === 'practice' && id === 'handsfree') return <HandsFree {...props} runId={lessonPage} />
   if (page === 'practice' && (!id || id === 'set')) return <Drills {...props} route={routePath} />
   if (page === 'practice' && id) {
     const session = props.workspace.sessions.find(item => item.id === id)

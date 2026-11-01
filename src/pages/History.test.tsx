@@ -209,3 +209,18 @@ it('lists drill sets with their items and score line, filters to Practice, and p
   const again = (await db.drillSets.toArray()).find(set => set.originId === 'ds')!
   expect(again).toMatchObject({ title: 'Again: New items · 31 Oct', refs: wordRefs, status: 'active', progress: {} })
 })
+
+it('lists started Hands-free runs with their items, resumes a stopped one, and replays one with Again; unstarted runs stay out', async () => {
+  const run = (fields: Record<string, unknown>) => ({ id: 'hf', title: 'Hands-free · 1 Nov', refs: wordRefs, source: 'review', seed: 1, settings: { pause: 'normal', repeats: 1, grammar: true }, status: 'completed', started: true, position: 4, createdAt: 200, updatedAt: 200, ...fields })
+  await db.handsfreeRuns.bulkAdd([run({}), run({ id: 'stopped', title: 'Hands-free · 2 Nov', status: 'abandoned', createdAt: 300 }), run({ id: 'fresh', title: 'Hands-free · 3 Nov', started: false, status: 'active', createdAt: 400 })] as never)
+  render(<App />)
+  const row = (await screen.findByText('Hands-free · 1 Nov')).closest('li')!
+  await waitFor(() => expect(row).toHaveTextContent('学习'))
+  expect(row).toHaveTextContent('Finished')
+  expect(screen.queryByText('Hands-free · 3 Nov')).toBeNull()
+  expect(within(screen.getByText('Hands-free · 2 Nov').closest('li')!).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/handsfree/stopped')
+  fireEvent.click(within(row).getByRole('button', { name: /again/ }))
+  await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/handsfree\/(?!hf$)/))
+  const again = (await db.handsfreeRuns.toArray()).find(item => item.originId === 'hf')!
+  expect(again).toMatchObject({ refs: wordRefs, status: 'active', started: false, position: 0 })
+})

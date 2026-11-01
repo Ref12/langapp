@@ -17,6 +17,7 @@ import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems } from '../../core/drills/write-queue'
 import { MAX_UNFINISHED_SETS, NEW_SET_SIZE, createDrillSet, discardDrillSet, finishDrillSet, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
+import { createHandsfreeRun } from '../../core/handsfree/store'
 import { availability } from './tasks'
 import './drills.css'
 
@@ -186,14 +187,22 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref))).length
   const breakdown = catalog && !fromSet && next ? (() => { const text = describeItems(next.newUnits.slice(0, NEW_SET_SIZE).map(unit => unit.kind === 'vocabulary' ? { kind: 'vocabulary' as const, zh: unit.record.ch } : { kind: 'grammar' as const, zh: unit.record.pt }), workspace.characterStates); return text ? ` (${text})` : '' })() : ''
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
+  const startHandsfree = (source: DrillSource) => void run(async () => { navigate(`practice/handsfree/${await createHandsfreeRun(source)}`) })
   return <div className="dr">
     <PageHeading eyebrow="Study" title={DRILLS_LABEL}>Practice sets of words and grammar patterns. Pick a type, do every item, pick another.</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
+    <div className="dr-from dr-from-top"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
+          <select value={from} aria-label="Learning from" onChange={event => setFrom(event.target.value)}><option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label></div>
+    <section className="panel dr-panel dr-programs" aria-labelledby="dr-programs"><h2 id="dr-programs">Programs</h2>
+      <ul className="dr-rows">
+        <li><div><strong>Hands-free</strong><span className="small muted">Listen and answer aloud, with no screen. Words, recall, then grammar{fromSet ? ` from ${fromSet.name}` : ''}.</span></div>
+          <span className="button-row"><button type="button" className="button primary" aria-label="Hands-free new items" disabled={busy || !fresh} onClick={() => startHandsfree({ kind: 'new', ...(fromSet ? { from: fromSet.id } : {}) })}>New items</button>
+            <button type="button" className="button secondary" aria-label="Hands-free reviews" disabled={busy || !due} onClick={() => startHandsfree({ kind: 'review', ...(fromSet ? { from: fromSet.id } : {}) })}>Reviews</button></span></li>
+      </ul>
+    </section>
     <div className="dr-columns">
       <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
-        <div className="dr-from dr-from-top"><label className="dr-source"><span className="eyebrow accent">Learning from</span>
-          <select value={from} aria-label="Learning from" onChange={event => setFrom(event.target.value)}><option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label></div>
         <ul className="dr-rows">
           <li><div><strong>New items</strong><span className="small muted">{catalog ? fresh ? fromSet ? `Next ${Math.min(fresh, NEW_SET_SIZE)} of ${fresh} new ${fresh === 1 ? 'item' : 'items'} in ${fromSet.name}` : `Next ${Math.min(fresh, NEW_SET_SIZE)} curriculum items${breakdown}${progress ? ` · group ${Math.min(progress.completed + 1, progress.total)} of ${progress.total}` : ''}` : fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here' : 'Loading the curriculum...'}</span></div>
             <button type="button" className="button primary" aria-label="Start new items" disabled={busy || !fresh} onClick={() => start({ kind: 'new', ...(fromSet ? { from: fromSet.id } : {}) })}>Start <ArrowRight size={16} /></button></li>
