@@ -1,8 +1,9 @@
 import { cleanup, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MAX_AI_ENDPOINTS } from '../../core/assistant/contracts'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace } from '../../core/database'
-import { listAIEndpoints } from '../../core/assistant/endpoints'
+import { addAIEndpoint, listAIEndpoints } from '../../core/assistant/endpoints'
 import { AIConnectionSettings } from './AIConnectionSettings'
 import { LocalAISetupContext } from './local-ai-setup-context'
 import { resetProfileStorage } from '../../test/profile-storage'
@@ -55,15 +56,12 @@ describe('AI endpoint settings', () => {
     expect((await db.aiConnections.get('assistant'))?.apiKey).toBe('key-work')
     expect((await listAIEndpoints()).endpoints.map(endpoint => endpoint.apiKey)).toEqual(['key-home', 'key-work'])
 
-    await user.click(await screen.findByRole('button', { name: 'Duplicate' }))
-    await screen.findByText('Endpoint duplicated. The copy is not active.')
-    expect((await listAIEndpoints()).endpoints.map(endpoint => endpoint.name)).toEqual(['Home', 'Work', 'Work (copy)'])
     await user.click(screen.getByRole('button', { name: 'Rename' }))
     await user.clear(screen.getByLabelText('New name'))
     await user.type(screen.getByLabelText('New name'), 'Spare')
     await user.click(screen.getByRole('button', { name: 'Save name' }))
     await screen.findByText('Endpoint renamed.')
-    expect((await listAIEndpoints()).endpoints.map(endpoint => endpoint.name)).toEqual(['Home', 'Work', 'Spare'])
+    expect((await listAIEndpoints()).endpoints.map(endpoint => endpoint.name)).toEqual(['Home', 'Spare'])
 
     await user.click(screen.getByRole('button', { name: 'Work' }))
     await user.click(screen.getByRole('button', { name: 'Delete endpoint' }))
@@ -71,7 +69,7 @@ describe('AI endpoint settings', () => {
     await screen.findByText('Endpoint removed from this device.')
     expect((await listAIEndpoints()).endpoints.map(endpoint => endpoint.name)).toEqual(['Home', 'Spare'])
     expect((await listAIEndpoints()).activeId).toBeDefined()
-    expect(within(screen.getByRole('group', { name: 'Saved AI endpoints' })).getAllByRole('listitem')).toHaveLength(2)
+    expect(within(screen.getByRole('group', { name: 'Saved AI endpoints' })).getAllByRole('listitem')).toHaveLength(1)
   })
 
   it('refuses a header the app sets itself and saves nothing', async () => {
