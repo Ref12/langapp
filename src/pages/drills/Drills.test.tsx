@@ -83,9 +83,11 @@ describe('What you will practise', () => {
     const count = Number(/^(\d+) item/.exec(screen.getByTestId('selection-summary').textContent!)![1])
     await user.click(view)
     const dialog = await screen.findByRole('dialog', { name: 'Items you will practise' })
-    await waitFor(() => expect(within(dialog).getAllByRole('listitem').length).toBe(count))
+    // just the cards under a count heading: no separate list of everything above them
+    expect(await within(dialog).findByRole('heading', { name: `${count} ${count === 1 ? 'item' : 'items'}` })).toBeInTheDocument()
+    expect(within(dialog).queryByLabelText('All items')).toBeNull()
     await waitFor(() => expect(dialog.querySelectorAll('.study-unit-card, .word-card').length).toBe(count))
-    const shown = [...dialog.querySelectorAll('.hf-item-zh')].map(node => node.textContent)
+    const shown = [...dialog.querySelectorAll('[data-unit]')].map(card => card.getAttribute('data-unit'))
     await user.click(within(dialog).getByRole('button', { name: 'Close items' }))
     expect(screen.queryByRole('dialog')).toBeNull()
     await user.click(await screen.findByRole('button', { name: 'Start practice set' }))
@@ -93,7 +95,8 @@ describe('What you will practise', () => {
     const set = (await db.drillSets.toArray())[0]
     expect(set.refs).toHaveLength(count)
     const items = await (await import('../../core/drills/items')).loadItems(set.refs, await (await import('../../core/study/catalog')).loadCatalog())
-    expect(items.map(item => item.zh)).toEqual(shown)
+    expect(set.refs).toEqual(shown)
+    expect(items).toHaveLength(count)
   }, 40000)
 
   it('Hands-free Start creates a run with the selected refs, and Reviews mode selects the due items', async () => {
@@ -135,7 +138,8 @@ describe('Practice home', () => {
     await waitFor(() => expect(start).toBeEnabled())
     await user.click(start)
     expect(await screen.findByRole('heading', { name: /^New items · \d+ \w{3}$/ })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /Intro cards/ })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /^\d+ items?$/ })).toBeInTheDocument()
+    expect(screen.queryByLabelText('All items')).toBeNull()
     expect(document.querySelectorAll('.study-unit-card').length).toBeGreaterThan(0)
     await user.click(screen.getAllByRole('link', { name: /Start practicing/ })[0])
     expect(await screen.findByRole('heading', { name: 'Pick a practice type' })).toBeInTheDocument()

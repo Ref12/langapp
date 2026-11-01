@@ -159,12 +159,12 @@ describe('Hands-free player', () => {
     expect(await createHandsfreeRun({ kind: 'new' })).toBeTruthy()
   })
 
-  it('opens an unstarted run on the intro cards with an item list, and Start listening plays', async () => {
+  it('opens an unstarted run on the intro cards under a count heading, with no list of all items, and Start listening plays', async () => {
     await openRun({ pause: 'short', repeats: 1, sectionIntros: 'off' }, {})
     render(<App />)
     const start = await screen.findByRole('button', { name: /Start listening/ })
-    const list = await screen.findByLabelText('All items')
-    expect(within(list).getAllByRole('listitem')).toHaveLength(3)
+    expect(await screen.findByRole('heading', { name: '3 items' })).toBeInTheDocument()
+    expect(screen.queryByLabelText('All items')).toBeNull()
     await waitFor(() => expect(document.querySelectorAll('[data-unit]')).toHaveLength(3))
     expect(screen.queryByRole('button', { name: 'Play' })).toBeNull()
     fireEvent.click(start)

@@ -84,7 +84,7 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
     <a className="back-link" href={`#practice`}><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
     <PageHeading eyebrow={fresh ? 'New set' : set.source === 'review' ? 'Review set' : TERM.Singular} title={set.title} action={start}>{detail}. {fresh ? 'Read the intro cards first.' : 'Your items are hidden so the list gives no hints.'}</PageHeading>
     {fresh ? <>
-      <h2 className="dr-h2">Intro cards <span className="small muted">1–{items.length} of {items.length}</span></h2>
+      <h2 className="dr-h2">{items.length} {items.length === 1 ? 'item' : 'items'}</h2>
       <div className="word-grid">{items.map(item => {
         const unit = catalog.units.get(item.ref)
         return unit ? <UnitCard key={item.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(item.ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={now}

@@ -23,7 +23,7 @@ The pattern is always the same: **prompt → pause (you answer aloud) → the an
 
 ### Flow
 
-A run opens on the **intro cards** (the same cards a lesson uses for new items) with a compact list of every item, then **Start listening**, which is always visible. A run that has already started goes straight to the player, with an **Items** button to see the cards again.
+A run opens on the **intro cards** (the same cards a lesson uses for new items) under a count heading ("6 items"), with no separate list of every item above them, then **Start listening**, which is always visible. A run that has already started goes straight to the player, with an **Items** button to see the cards again.
 
 **Settings** is a button inside the player (next to Pocket mode) that opens a sheet on phones and a popover on desktop with every Hands-free setting. A changed setting applies from the **next prompt** of the run in progress: the script is rebuilt, the current prompt is found again in it by phase, item and direction, and playback carries on from there with the new script. Settings → Hands-free keeps the defaults for new runs.
 
