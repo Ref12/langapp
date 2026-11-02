@@ -1,10 +1,12 @@
 import '@testing-library/jest-dom/vitest'
 import 'fake-indexeddb/auto'
-import { cleanup } from '@testing-library/react'
+import { cleanup, configure } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
 
 // Without vitest globals, Testing Library does not unmount after each test; mounted live queries then fire after jsdom teardown ("window is not defined").
 afterEach(() => { cleanup() })
+// CI runs the whole suite in parallel and is slow; the 1 s default for findBy/waitFor made page tests fail at random.
+configure({ asyncUtilTimeout: 5000 })
 
 if (typeof window !== 'undefined') window.scrollTo = vi.fn()
 
