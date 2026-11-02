@@ -4,10 +4,11 @@ import { loadCharacterAsset } from '../../core/characters/assets'
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../../core/characters/geometry'
 import { commitStroke, memoryHint, newWritingRound, type WritingRound } from '../../core/characters/practice'
 import { hasGuide, isHan } from '../../core/characters/writing-route'
+import { haptic } from '../../core/haptics'
 import '../writing.css'
 
 /** Draw the target characters from memory, no outline: each stroke is checked against the character's stroke data. Two misses on a stroke reveal it (a hint). */
-export function StrokePad({ text, disabled, onDone, onStep }: { text: string; disabled?: boolean; onDone: (result: { misses: number; hinted: boolean }) => void; onStep?: (index: number, total: number) => void }) {
+export function StrokePad({ text, disabled, haptics = true, onDone, onStep }: { text: string; disabled?: boolean; haptics?: boolean; onDone: (result: { misses: number; hinted: boolean }) => void; onStep?: (index: number, total: number) => void }) {
   const characters = useMemo(() => Array.from(text).filter(character => isHan(character) && hasGuide(character)), [text])
   const [index, setIndex] = useState(0)
   const [paths, setPaths] = useState<string[]>()
@@ -60,6 +61,7 @@ export function StrokePad({ text, disabled, onDone, onStep }: { text: string; di
     setInk([])
     const next = commitStroke(round, active.points, guides)
     if (next.completed === round.completed) totals.current.misses++
+    if (next !== round) haptic(next.completed > round.completed ? 'success' : 'error', haptics)
     setRound(next)
   }
   const status = error || (done ? 'Written.' : !guides.length ? 'Loading the stroke guide…' : round.feedback || `Stroke ${round.completed + 1} of ${guides.length}. Write it from memory.`)

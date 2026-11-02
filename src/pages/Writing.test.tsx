@@ -204,6 +204,15 @@ describe('writing exercise', () => {
       stroke()
       expect(vibrate).not.toHaveBeenCalled()
     })
+    it('buzzes for every stroke in teach mode too (Learn to write, Practise writing), in every phase', () => {
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" teach />)
+      stroke()
+      expect(vibrate).toHaveBeenLastCalledWith(20)
+      fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+      stroke([0, 0], [1, 1])
+      expect(vibrate).toHaveBeenLastCalledWith(60)
+      expect(vibrate).toHaveBeenCalledTimes(2)
+    })
     it('does not fail when vibrate is unavailable', () => {
       delete (navigator as { vibrate?: unknown }).vibrate
       render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
@@ -367,11 +376,9 @@ describe('writing exercise', () => {
       expect((await db.characterStates.get('\u4e00'))?.practiceCompletions).toBe(1)
     })
     describe('teach mode', () => {
-      const stopDemo = () => fireEvent.click(screen.getByRole('button', { name: 'Stop demonstration' }))
       it('runs every phase three times, then hands over without saving', async () => {
         const onNext = vi.fn()
         render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" teach onNext={onNext} />)
-        stopDemo()
         const seen = [step()]
         for (let index = 0; index < 8; index++) { stroke(); next(); seen.push(step()) }
         expect(seen).toEqual(['Full guide \u00b7 1/3', 'Full guide \u00b7 2/3', 'Full guide \u00b7 3/3', 'One stroke at a time \u00b7 1/3', 'One stroke at a time \u00b7 2/3', 'One stroke at a time \u00b7 3/3', 'From memory \u00b7 1/3', 'From memory \u00b7 2/3', 'From memory \u00b7 3/3'])
@@ -380,10 +387,22 @@ describe('writing exercise', () => {
         expect(onNext).toHaveBeenCalledTimes(1)
         expect(await db.characterStates.count()).toBe(0)
       })
+      it('does not start the stroke-order animation on arrival, and Next stays enabled during an on-demand replay (pressing it stops the replay and moves on)', async () => {
+        const onNext = vi.fn()
+        render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" teach onNext={onNext} />)
+        expect(screen.queryByRole('button', { name: 'Stop demonstration' })).toBeNull()
+        expect(screen.getByRole('button', { name: 'Watch stroke order' })).toBeInTheDocument()
+        expect(screen.getByRole('status')).not.toHaveTextContent('Watching stroke')
+        expect(screen.getByRole('button', { name: 'Next' })).toBeEnabled()
+        fireEvent.click(screen.getByRole('button', { name: 'Watch stroke order' }))
+        expect(screen.getByRole('status')).toHaveTextContent('Watching stroke 1')
+        expect(screen.getByRole('button', { name: 'Next' })).toBeEnabled()
+        fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+        expect(onNext).toHaveBeenCalledTimes(1)
+      })
       it('lets Next skip the rest of the loop at any point, even before the stroke is traced', () => {
         const onNext = vi.fn()
         render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" teach onNext={onNext} />)
-        stopDemo()
         stroke(); next(); stroke(); next(); stroke(); next()
         expect(step()).toBe('One stroke at a time \u00b7 1/3')
         expect(screen.getByRole('button', { name: 'Next' })).toBeEnabled()

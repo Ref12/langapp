@@ -121,7 +121,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   const [arrived] = useState(() => takeArrival(asset.character))
   const [round, setRound] = useState<WritingRound>(() => arrived ? { ...newWritingRound(), phase: arrived.phase, repetition: arrived.repetition } : newWritingRound())
   const [ink, setInk] = useState<Point[]>([])
-  const [replay, setReplay] = useState<number | null>(teach ? 0 : null)
+  const [replay, setReplay] = useState<number | null>(null)
   const [saving, setSaving] = useState(false)
   const [help, setHelp] = useState(false)
   const saveLock = useRef(false)
@@ -337,7 +337,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>
         <span className="writing-progress" data-complete={completed || round.finished ? '' : undefined} title={round.finished ? 'Saved' : completed ? 'Complete' : 'Stroke progress'} aria-hidden="true">{(completed || round.finished) && <Check size={15} />}{progress}</span>
         <button className="button secondary writing-step" title="Previous repetition, phase or character" aria-label="Previous" disabled={!canPrevious} onClick={previous}><ChevronLeft size={18} /><span>Prev</span></button>
-        <button className="button primary writing-step" title={finalStep && last ? 'Finish and save' : 'Next repetition, phase or character'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={(!completed && !teach) || saving || busy || replay !== null || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>
+        <button className="button primary writing-step" title={finalStep && last ? 'Finish and save' : 'Next repetition, phase or character'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={(!completed && !teach) || saving || busy || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>
       </div>
       <p id="writing-status" className="writing-feedback" role="status" aria-live="polite">{status}</p>
     </section>
