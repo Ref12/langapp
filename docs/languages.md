@@ -332,6 +332,70 @@ A single `LangConfig` (script, reading system, writing mode, function words, ana
 
 Stage 1 touches: curriculum source + generator, `catalog.ts`, new `core/lang/*`, exercises. It does not touch cards, FSRS, or backups.
 
+## 8b. Keeping the count small and countable
+
+**Principle: count only what has to be learned on its own. Everything derivable is depth, not a new item.**
+
+| Thing | Item? | Where it lives |
+|---|---|---|
+| Lexeme (hablar, casa, rojo) | **Yes**, 1 each | `vocabulary:` |
+| Form from known lemma + known regular rule (hablé, casas, rojas) | No | derived; shows as depth on the lexeme |
+| Paradigm rule / construction (es-pres-ar, ir a + inf) | **Yes**, few | `grammar:` |
+| Per-word fact (gender, plural class, measure word, government) | No | field on the lexeme, quizzed as depth |
+| Irregular | Yes, **grouped** (below) | one item per verb + tense paradigm |
+| Fixed multi-word item / idiom (dar igual, give up) | Yes, 1 each | `phrasal` construction |
+| Everything the section "forms" generates (~50 per verb) | No | form table, never stored as items |
+
+### Irregulars: one item per verb + paradigm, not per form
+
+Change to §2.3: the irregular item is the *paradigm cell group*, not the single form. `vocabulary:es-ir--go` stays the lexeme; `vocabulary:es-ir--go.pret` ("ir, preterite": fui fuiste fue fuimos fuisteis fueron) is one item; `...pres` another. Its form list is data; the form-to-features exercise still asks single forms, but all credit goes to the one item.
+
+| Irregularity | Own item? | Reason |
+|---|---|---|
+| Suppletive verbs (ser, ir; en: be, go/went) | Yes, per tense | forms share no stem with the lemma; nothing to derive |
+| Frequent irregular preterites (estar, tener, hacer, decir, poder…) | Yes, **one per verb** (preterite) | stem + shared endings (-e -iste -o -imos -ieron): learned as "stem estuv/tuv/hic/dij…", one fact |
+| Irregular 1sg present only (tengo, hago, digo, veo) | **No**: fold into the lexeme | one extra fact on the lemma, shown as a field ("1sg: tengo") |
+| Stem changers (e>ie, o>ue: querer, poder) | **No**: feature on the lexeme (`stemchange: e-ie`) + 1 shared rule item for all | rule covers every verb with the flag |
+| Past participles (hecho, dicho, visto; en: gone, seen) | No: fold into the lexeme as a field | single form |
+| Irregular plurals/gender (día m, mano f; en: child/children) | No: field on the noun | one fact |
+| Orthographic (-car/-gar/-zar; busqué, pagué) | No: **one** rule item each | regular as spelling rule |
+
+### Rough counts per level
+
+Chinese is exact (our generated catalog: `vocabulary` / `grammar` per HSK band, cumulative in brackets). Spanish and English are **estimates**. Sources: Instituto Cervantes PCIC publishes inventories (nociones generales/específicas, gramática) per level but **no official word total**; English Profile's EVP/EGP likewise gives a searchable database, not a count (EGP is "over 1,200" structure–level mappings; EVP list totals below come from a third-party CEFR-tagged list, A1 1,047 · A2 1,206 · B1 2,088 · B2 2,378 · C1 910 · C2 869). Our Spanish/English figures count **lexemes only** (not forms, not senses) and are my planning guess, to be tightened when we author the inventories.
+
+| Level | Chinese words (cum.) | Chinese grammar | Spanish words (est.) | Spanish grammar + constructions (est.) | Spanish grouped irregulars (est.) | Spanish total (est.) | English words (EVP list) | English grammar (est.) |
+|---|---|---|---|---|---|---|---|---|
+| A1 / HSK 1 | 364 (364) | 97 | 600–800 | 25–35 | 15–20 | **~700–850** | 1,047 | ~40 |
+| A2 / HSK 2 | 281 (645) | 101 | +700–900 | +30–40 | +20–30 | **~1,500–1,800 cum.** | +1,206 | ~+60 |
+| B1 / HSK 3 | 638 (1,283) | 143 | +1,300–1,700 | +40–60 | +20–30 | **~3,000–3,500 cum.** | +2,088 | ~+100 |
+| B2 / HSK 4 | 1,314 (2,597) | 143 | +2,000–2,500 | +40–60 | +10–20 | **~5,200–6,000 cum.** | +2,378 | ~+150 |
+| C1 / HSK 5 | 2,227 (4,824) | 113 | +3,000–4,000 | +30–50 | few | not sized | +910 (list) | not sized |
+| C2 / HSK 6 | 2,273 (7,097) | 76 | not sized | not sized | few | not sized | +869 (list) | not sized |
+
+Reading: for beginner levels the Spanish count is **the same order of magnitude as Chinese HSK 1–3** (Chinese 1,283 words + 341 grammar; Spanish at B1 roughly 3,000 with ~100 rules and ~60 grouped irregulars). Without the principle, Spanish A1 would be 600–800 words × ~15 forms ≈ 10,000 "items"; with it the added cost is the rules and irregular groups, **under 15%** on top of the word count. HSK band 1 "grammar" is a curated slot-pattern set, so Chinese and Spanish grammar counts are comparable only loosely.
+
+### How depth shows without adding to the count
+
+| Depth | Shown as | Counted? |
+|---|---|---|
+| Forms of a verb | progress ring on the lexeme: forms practised / forms available for **known** rules (hablar 7/12) | No; the ring is the only thing that grows |
+| Gender / plural class / measure word | small field chip on the word, quizzed inside lessons | No |
+| New rule unlocks forms | rings on existing words move; a rule is one new item | 1 (the rule) |
+| Irregular group | a badge on the lexeme ("irregular preterite", tap to learn) | 1, only for the justified cases above |
+| Home screen counter | "words / rules / irregulars known", the three numbers in the table | the count the user sees |
+
+Review scheduling stays per ref (§4.1): practising *hablé* touches lexeme and rule; it never creates a card.
+
+### Chinese gaps deepen existing items
+
+| Gap | Today | Treatment | New items? |
+|---|---|---|---|
+| Tones / sandhi (不, 一, 3rd-tone) | reading string `pr` | tone shown as part of the word's pronunciation depth; sandhi is a note on 不/一 and one rule item per sandhi class (3, not per word) | ~3 rules |
+| Components / radicals | in the character data (`core/characters`) | depth on the word's characters (a ring "components seen") | 0 |
+| Measure words | none | `features.classifier` on the noun (§6); 个 etc. stay existing words | 0 |
+| Collocations (吃饭, 做饭) | covered only by examples | a `phrasal` item only when meaning is not derivable; otherwise a "goes with" list on the word | few |
+
 ## 9. Open questions (for the user)
 
 - **Q1. Display of forms in lessons.** Teach a verb as *hablar* only, or as a conjugation table at first meeting? (Product choice; affects stage 1 UI.)
@@ -342,6 +406,9 @@ Stage 1 touches: curriculum source + generator, `catalog.ts`, new `core/lang/*`,
 - **Q6. Accents.** Is *esta* accepted for *está*? (Recommend "almost", not wrong, in early levels.)
 - **Q7. Source of authoring data.** Hand-authored YAML vs seed from a licensed Spanish dictionary + spaCy. Licence and effort decision.
 - **Q8. Target audience languages.** English-speaker learning Spanish only, or other native languages (affects glosses and prompts)?
+- **Q9. (new) What does the home counter show?** Words / rules / irregulars known as three numbers, or one total? Recommend three: it keeps the countable feel and shows the depth rings separately.
+- **Q10. (new) Level cut-off for the Spanish estimates.** Do we author to PCIC A1–B1 first (~3,000 lexemes) or smaller? (Product choice; settles stage 1 size.)
+- Q3 and Q4 are partly settled by §8b: depth lives on the lexeme as a ring; rules and irregular groups are the only extra cards.
 
 ## 10. Recommendations (technical, no decision needed)
 
