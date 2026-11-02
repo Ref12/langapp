@@ -26,6 +26,19 @@ Status: idea, captured 2026-11-02. Not scheduled. Nothing here is built.
 7. **Lessons carry precomputed phrases.** Each lesson's phrases are computed ahead of time and shipped with the curriculum, so a lesson is a study set of sorts: its words, its patterns and its phrases. The curriculum's example sentences (`group.examples`, `exampleIndex` in `src/core/drills/items.ts`) are the starting point. A session made from a lesson starts with those phrases as items; no AI call is needed for them.
 8. **Sessions generate, study sets keep.** In a practice session you can generate more phrases. They belong to the session, and you can save them back into the study set (or the lesson's set) when you want to keep them; nothing is written back without asking.
 
+## AI at build time, not learning time
+The user (2026-11-02): most content should be pre-generated, and AI should mostly make new content that then works exactly like the pre-generated content, so learning rarely waits on a model. Exercises could be built from phrases plus extra data attached to them.
+
+Shape:
+- **Enrich phrases, don't pre-generate exercises.** Each phrase carries precomputed data: segmentation, pinyin, translation, word alignment, grammar tags, accepted alternative answers (translations, word orders), and distractors. Exercises are deterministic templates over that data (sentence builder, fill in the blank, listen and pick, translate, dictation), built instantly on the device.
+- **Pre-generate only what a template can't derive:** comprehension questions for a passage (Listen and answer, Read and answer) and conversations. Store them with the passage.
+- **Distractors by heuristics,** checked once at build time: words sharing a character, same pinyin with a different tone, same radical, same part of speech, near meanings. Every candidate is checked against the phrase's accepted answers so it can't be a correct alternative (synonyms, other valid forms or orders). The AI does that check in batches when the data is built, not while you practise.
+- **Generated content takes the same path.** "Generate more" makes phrases, enriches them in the same batched step in the background, and adds them as normal items. You never wait in the middle of an exercise; a batch arrives and joins the pool.
+- **Grading:** check against the accepted answers first. Only an answer not in the list goes to the AI (or is marked "check"), and an accepted new answer is added to the list.
+- **What stays live AI:** generating new material, judging unexpected answers, conversation and explanations on request.
+
+Today most practice types already run without a model (on a set page with no AI connected, everything but Listen and answer and Read and answer can start); those two and the conversations wait on `effectiveContent`, written per set.
+
 ## Naming
 - **Set** = a kept collection of items (study set).
 - **Session** = practice on some items, made up of exercises (today's "practice set"; types are exercises).
