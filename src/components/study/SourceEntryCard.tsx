@@ -1,16 +1,18 @@
 import { Check, Plus } from 'lucide-react'
 import { addSourceEntriesToKnowledge } from '../../core/study/knowledge'
 import type { SourceEntry } from '../../core/media/contracts'
-import type { StudyCard } from '../../core/study/contracts'
+import type { AddedByIndex } from '../../core/study/addedby'
+import { AddedByLine } from './AddedByLine'
+import type { KnowledgeEntry, StudyCard } from '../../core/study/contracts'
 import { cardStatus } from '../../core/study/labels'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Pinyin } from '../Pinyin'
 import { SaveActions } from '../collections/SaveToMenu'
 
 /** A word drawn from one of the learner's media sources: not part of the curriculum, but it can join the knowledge set. */
-export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, route }: {
+export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, route, added, addedIndex }: {
   entry: SourceEntry; known: boolean; card?: StudyCard; pinyin: boolean; now?: number
-  run: (operation: () => Promise<void>) => Promise<void>; busy: boolean; route: string
+  run: (operation: () => Promise<void>) => Promise<void>; busy: boolean; route: string; added?: KnowledgeEntry; addedIndex?: AddedByIndex
 }) {
   const example = entry.sources[0]
   const meaning = entry.meanings.join('; ')
@@ -24,6 +26,7 @@ export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, ro
       </div>
       <PracticeSnippet source={{ text: entry.word, meaning, locale: 'zh-Hans', title: `From your media: ${meaning}`, route }} knowledge={false} />
     </div>
+    {added && <AddedByLine entry={added} index={addedIndex} />}
     {example && <div className="study-example"><p lang="zh-Hans" className="example">{example.text}</p><p className="small muted">{example.title}{entry.sources.length > 1 ? ` and ${entry.sources.length - 1} more` : ''}</p></div>}
     <SaveActions refs={[`source:${entry.id}`]} name={entry.word} title={meaning} primary={<button className="button secondary full-width" disabled={busy || known} onClick={() => void run(async () => { await addSourceEntriesToKnowledge([`source:${entry.id}`]) })}>
         {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}

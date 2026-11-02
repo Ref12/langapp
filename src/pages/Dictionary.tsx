@@ -7,6 +7,7 @@ import { normalizeSearch } from '../core/search'
 import { formatPinyin } from '../core/pinyin'
 import { catalogBands, catalogCounts, type Unit } from '../core/study/catalog'
 import { cardId, type UnitKind } from '../core/study/contracts'
+import { buildAddedByIndex } from '../core/study/addedby'
 import { DOMAIN } from '../core/study/knowledge'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { UnitCard } from '../components/study/UnitCard'
@@ -44,6 +45,9 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const [query, setQuery] = useState(initialQuery ?? '')
   const [limit, setLimit] = useState(PAGE)
   const [drawing, setDrawing] = useState(false)
+  // One lookup for every card on the page, rebuilt when the lessons, sets or knowledge set change.
+  const addedIndex = useLiveQuery(buildAddedByIndex, [])
+  const entries = new Map(workspace.knowledge.map(entry => [entry.ref, entry]))
   const known = new Set(workspace.knowledge.map(entry => entry.ref))
   const inScope = (ref: string) => scope === 'all' || (scope === 'knowledge' ? known.has(ref) : collected.has(ref))
   const characters = useMemo(() => catalog ? dictionaryCharacters(catalog, undefined, workspace.characterStates) : [], [catalog, workspace.characterStates])
@@ -103,11 +107,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
-      pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
+      added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
     {catalog && kind !== 'characters' && scope !== 'media' && <div className="word-grid">{matches.slice(0, limit).map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
-      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact />)}</div>}
+      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact />)}</div>}
     {scope !== 'media' && sourceMatches.length > 0 && <><h2 className="small muted">From your media</h2><div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
-      pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/${scope}`} />)}</div></>}
+      added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/${scope}`} />)}</div></>}
     {catalog && kind === 'characters' && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <CharacterCard key={entry.character} entry={entry}
       automatic={characterSet?.automatic.has(entry.character) ?? false} manual={characterSet?.manual.has(entry.character) ?? false}
       state={workspace.characterStates.find(state => state.character === entry.character)} scope={scope === 'collections' || scope === 'media' ? 'all' : scope} pinyin={workspace.preferences.pinyin} run={run} busy={busy} />)}</div>}

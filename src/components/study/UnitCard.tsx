@@ -2,11 +2,13 @@ import type { ReactNode } from 'react'
 import { Check, Plus } from 'lucide-react'
 import { addToKnowledge } from '../../core/study/knowledge'
 import { renderExample, type AuthoredExample, type Catalog, type Unit } from '../../core/study/catalog'
-import type { StudyCard } from '../../core/study/contracts'
+import type { KnowledgeEntry, StudyCard } from '../../core/study/contracts'
 import { cardStatus, unitKindLabel } from '../../core/study/labels'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Pinyin } from '../Pinyin'
 import { SaveActions } from '../collections/SaveToMenu'
+import type { AddedByIndex } from '../../core/study/addedby'
+import { AddedByLine } from './AddedByLine'
 import { SkillCounts } from './SkillCounts'
 import { useWriteLongPress } from './useWriteLongPress'
 
@@ -21,11 +23,14 @@ export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Ca
   return <div className="study-example">{actions ? <div className="phrase-row"><div className="phrase-row-text">{text}</div>{actions}</div> : text}</div>
 }
 
-export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false }: {
+export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false, entry, addedIndex }: {
   catalog: Catalog; unit: Unit; card?: StudyCard; pinyin: boolean; now?: number; examples?: Omit<AuthoredExample, 'id'>[]
   run: (operation: () => Promise<void>) => Promise<void>; busy: boolean; route: string; compact?: boolean
   /** Hide the knowledge-set state (badge and button) where it is the same for every card, e.g. a lesson's introduction. */
   hideStatus?: boolean
+  /** The knowledge entry, when known: shows when and by what it was added. */
+  entry?: KnowledgeEntry
+  addedIndex?: AddedByIndex
 }) {
   const known = Boolean(card)
   const press = useWriteLongPress()
@@ -44,6 +49,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
       </div>
       {vocabulary && snippet}
     </div>
+    {entry && <AddedByLine entry={entry} index={addedIndex} />}
     {known && !hideStatus && <SkillCounts itemRef={unit.ref} />}
     {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} actions={<PracticeSnippet source={{ text: renderExample(catalog, example).text, meaning: example.translation, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />} />)}
     {!hideStatus && <SaveActions refs={[unit.ref]} name={title} title={unit.record.ds} primary={<button className="button secondary full-width" disabled={busy || known} onClick={() => void run(() => addToKnowledge([unit.ref]))}>

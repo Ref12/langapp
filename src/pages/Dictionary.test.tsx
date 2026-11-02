@@ -59,6 +59,17 @@ beforeEach(async () => {
 afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 
 describe('dictionary characters', () => {
+  it('shows when a word was added and links to what added it', async () => {
+    window.location.hash = 'dictionary/vocabulary/knowledge'
+    await db.knowledge.add({ ref: 'vocabulary:tea', kind: 'vocabulary', lb: 'tea', band: '1', addedAt: Date.UTC(2026, 10, 2, 12), source: 'new' })
+    await db.studyCards.add({ id: 'reading:vocabulary:tea', ref: 'vocabulary:tea', domain: 'reading', due: 1, stability: 0, difficulty: 0, reps: 0, lapses: 0, state: 'new', updatedAt: 1 })
+    await db.drillSets.add({ id: 's1', source: 'new', title: 'New items · 2 Nov', refs: ['vocabulary:tea'], status: 'completed', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, createdAt: Date.UTC(2026, 10, 2, 11), updatedAt: Date.UTC(2026, 10, 2, 12), completedAt: Date.UTC(2026, 10, 2, 12), addedRefs: ['vocabulary:tea'] })
+    render(<Harness />)
+    const line = await screen.findByText(/Added Nov 2, 2026/)
+    expect(line).toHaveTextContent('Added Nov 2, 2026 · by practice set: New items · 2 Nov')
+    expect(within(line).getByRole('link')).toHaveAttribute('href', '#practice/set/s1')
+  })
+
   it('opens on My knowledge set for the knowledge hash and on the full list otherwise', async () => {
     window.location.hash = 'dictionary/vocabulary/knowledge'
     const view = render(<Harness />)
