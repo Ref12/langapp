@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { unitRefSchema } from '../study/contracts'
+import { handsfreeSettingsSchema } from '../handsfree/contracts'
 
 // Drill sets: a fixed list of study items drilled by type. Stored in the local database (drillSets) and carried in backups.
 
@@ -57,6 +58,23 @@ export const contentSchema = z.object({
   conversations: z.array(conversationSchema).max(6),
 }).strict()
 
+/** The Hands-free activity of a set: the same player as before, with its own seed, settings and resume position. Present once Hands-free has been opened. */
+export const handsfreeActivitySchema = z.object({
+  /** Fixes the scrambled order, so a resumed or replayed run is the same run. */
+  seed: z.number().int().min(0).max(2 ** 31),
+  settings: handsfreeSettingsSchema,
+  /** True once Play was pressed. */
+  started: z.boolean(),
+  /** Index of the prompt to resume at. */
+  position: z.number().int().min(0),
+  /** Set when a run reached its end. */
+  done: z.boolean(),
+  finishedAt: timestamp.optional(),
+  /** Practice-count pairs ("ref|skill") already counted, so a replay adds nothing. */
+  practiced: z.array(z.string().max(220)).max(500).optional(),
+}).strict()
+export type HandsfreeActivity = z.infer<typeof handsfreeActivitySchema>
+
 export const drillSetSchema = z.object({
   id,
   source: z.enum(['new', 'review', 'study-set', 'lesson', 'drill']),
@@ -65,7 +83,7 @@ export const drillSetSchema = z.object({
   originId: id.optional(),
   /** The origin and date shown in lists: "New items · 30 Oct", "Reviews · 28 Oct" or the study set's name. */
   title: z.string().trim().min(1).max(200),
-  refs: z.array(unitRefSchema).min(1).max(60),
+  refs: z.array(unitRefSchema).min(1).max(200),
   status: z.enum(['active', 'completed', 'abandoned']),
   format: z.enum(['single', 'quiz']),
   progress: z.record(drillTypeSchema, typeProgressSchema),
@@ -73,6 +91,10 @@ export const drillSetSchema = z.object({
   createdAt: timestamp,
   updatedAt: timestamp,
   completedAt: timestamp.optional(),
+  /** The Hands-free activity: its settings and where it stopped. */
+  handsfree: handsfreeActivitySchema.optional(),
+  /** Made by the Hands-free shortcut: it is finished when its Hands-free activity reaches the end. */
+  shortcut: z.literal('handsfree').optional(),
   /** Set once the set's intro cards have counted as reading practice. */
   introSeen: z.boolean().optional(),
   /** Skills the set opens emphasised (a Practice by skill set): its drill types for them are listed first. */
@@ -82,7 +104,7 @@ export const drillSetSchema = z.object({
   /** Set when the user removed the set from History; it also leaves Unfinished sets. Results already recorded stay. */
   removedAt: z.number().optional(),
   /** A New items set's own items: they join the knowledge set when the set is finished, never at creation. */
-  addOnFinish: z.array(unitRefSchema).max(60).optional(),
+  addOnFinish: z.array(unitRefSchema).max(200).optional(),
   /** Study-set item ids promoted into the knowledge set when the set is finished. */
   promote: z.array(z.string().min(1).max(200)).max(200).optional(),
   /** Set once, when finishing added items (empty when it added none); a set finished again never adds them twice. Sets from before this field are worked out from the knowledge entries. */

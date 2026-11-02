@@ -33,7 +33,7 @@ async function newSet() {
 }
 
 describe('Recent sets', () => {
-  it('lists a completed set with Open, Save and Remove from knowledge set, and the removal confirms', async () => {
+  it('lists a completed set with Open and Save, and Remove from knowledge set in its ⋯ menu, which confirms', async () => {
     const user = userEvent.setup()
     const set = await newSet()
     await finishDrillSet(set.id)
@@ -47,18 +47,22 @@ describe('Recent sets', () => {
     expect(within(row as HTMLElement).getByText(/Practice set ·/)).toBeInTheDocument()
     expect(within(row as HTMLElement).getByRole('link', { name: /^Open New items/ })).toHaveAttribute('href', `#practice/set/${set.id}`)
     expect(within(row as HTMLElement).getByRole('button', { name: /^Save New items/ })).toBeInTheDocument()
-    expect(screen.getByText('No unfinished sets.')).toBeInTheDocument()
-    await user.click(await within(row as HTMLElement).findByRole('button', { name: /^Remove New items.* from knowledge set$/ }))
+    expect(within(row as HTMLElement).queryByText('In progress')).toBeNull()
+    expect(within(row as HTMLElement).queryByRole('link', { name: /^Resume/ })).toBeNull()
+    await user.click(await within(row as HTMLElement).findByRole('button', { name: /^More for New items/ }))
+    expect(within(row as HTMLElement).queryByRole('menuitem', { name: /^Discard/ })).toBeNull()
+    await user.click(await within(row as HTMLElement).findByRole('menuitem', { name: /^Remove New items.* from knowledge set$/ }))
     const dialog = screen.getByRole('dialog', { name: 'Remove from knowledge set' })
     expect(dialog).toHaveTextContent(/^Remove .*from your knowledge set\? Their reviews go too; your practice history stays\./)
     await user.click(within(dialog).getByRole('button', { name: 'Cancel' }))
     expect(await db.knowledge.count()).toBe(added.length)
-    await user.click(within(row as HTMLElement).getByRole('button', { name: /from knowledge set$/ }))
+    await user.click(within(row as HTMLElement).getByRole('menuitem', { name: /from knowledge set$/ }))
     await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Remove' }))
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
     expect(await db.knowledge.count()).toBe(0)
     expect(await db.studyCards.count()).toBe(0)
-    await waitFor(() => expect(within(row as HTMLElement).queryByRole('button', { name: /from knowledge set$/ })).toBeNull())
+    // nothing left to remove: the ⋯ menu goes away with it
+    await waitFor(() => expect(within(row as HTMLElement).queryByRole('button', { name: /^More for/ })).toBeNull())
     expect(within(row as HTMLElement).getByRole('link', { name: /^Open New items/ })).toBeInTheDocument()
   }, 40000)
 })
@@ -141,11 +145,12 @@ describe('What you will practise', () => {
     await waitFor(() => expect(screen.getByTestId('selection-summary')).toHaveTextContent(/items?/))
     const count = Number(/^(\d+) item/.exec(screen.getByTestId('selection-summary').textContent!)![1])
     await user.click(screen.getByRole('button', { name: 'Start Hands-free' }))
-    await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/handsfree\//))
-    const runs = await db.handsfreeRuns.toArray()
+    await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\/[^/]+\/handsfree$/))
+    const runs = await db.drillSets.toArray()
     expect(runs).toHaveLength(1)
     expect(runs[0].refs).toHaveLength(count)
-    expect(runs[0].addOnComplete).toEqual(runs[0].refs)
+    expect(runs[0].addOnFinish).toEqual(runs[0].refs)
+    expect(runs[0].shortcut).toBe('handsfree')
   }, 40000)
 })
 
@@ -157,7 +162,7 @@ describe('Practice home', () => {
     expect(window.location.hash).toBe('#practice/set/gone')
   })
 
-  it('is the Practice nav entry, starts a new-words set on its intro cards, then lists it as unfinished', async () => {
+  it('is the Practice nav entry, starts a new-words set on its intro cards, then lists it in Recent sets as In progress', async () => {
     const user = userEvent.setup()
     render(<App />)
     expect(await screen.findByRole('heading', { name: 'Practice', level: 1 })).toBeInTheDocument()
@@ -177,25 +182,34 @@ describe('Practice home', () => {
     // There is no "Learning from" selector on the set screen.
     expect(screen.queryByLabelText('Learning from')).toBeNull()
     await user.click(within(screen.getByRole('navigation', { name: 'Main navigation' })).getByRole('link', { name: /Practice/ }))
-    const unfinished = await screen.findByRole('heading', { name: 'Unfinished sets' })
-    const row = unfinished.closest('section')!
-    expect(await within(row).findByText(/New items · \d+ \w{3}/)).toBeInTheDocument()
-    const line = row.querySelector('.resume-row')!
-    // title and meta on the left; resume and discard are same-size icon buttons on the right
-    expect([...line.children].map(child => child.className)).toEqual(['resume-text', 'icon-button', 'icon-button'])
-    await user.click(within(row).getByRole('button', { name: /^Discard New items/ }))
+    expect(screen.queryByRole('heading', { name: 'Unfinished sets' })).toBeNull()
+    const recent = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
+    expect(await within(recent).findByText(/New items · \d+ \w{3}/)).toBeInTheDocument()
+    const line = recent.querySelector('.resume-row')!
+    // title and meta on the left; Resume, Save and the ⋯ menu are same-size controls on the right
+    expect([...line.children].map(child => child.className.split(' ')[0])).toEqual(['resume-text', 'icon-button', 'button', 'row-menu'])
+    expect(line.querySelector('.resume-text')).toHaveTextContent('In progress')
+    expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 8 types done/)
+    expect(within(recent).getByRole('link', { name: /^Resume New items/ })).toBeInTheDocument()
+    expect(within(recent).queryByRole('link', { name: /^Open New items/ })).toBeNull()
+    expect(within(recent).queryByRole('button', { name: /^Discard New items/ })).toBeNull()
+    const openMenu = () => user.click(within(recent).getByRole('button', { name: /^More for New items/ }))
+    await openMenu()
+    await user.click(within(recent).getByRole('menuitem', { name: /^Discard New items/ }))
     const confirm = screen.getByRole('dialog', { name: 'Discard this set?' })
     expect(within(confirm).getAllByRole('button').map(button => button.textContent)).toEqual(['Cancel', 'Discard'])
     expect(within(confirm).getByRole('button', { name: 'Cancel' })).toHaveFocus()
     await user.click(within(confirm).getByRole('button', { name: 'Cancel' }))
     expect(screen.queryByRole('dialog')).toBeNull()
-    expect(within(row).getByText(/New items/)).toBeInTheDocument()
-    await user.click(within(row).getByRole('button', { name: /^Discard New items/ }))
+    expect(within(recent).getByText(/New items/)).toBeInTheDocument()
+    await openMenu()
+    await user.click(within(recent).getByRole('menuitem', { name: /^Discard New items/ }))
     await user.keyboard('{Escape}')
     expect(screen.queryByRole('dialog')).toBeNull()
-    await user.click(within(row).getByRole('button', { name: /^Discard New items/ }))
+    await openMenu()
+    await user.click(within(recent).getByRole('menuitem', { name: /^Discard New items/ }))
     await user.click(within(screen.getByRole('dialog', { name: 'Discard this set?' })).getByRole('button', { name: 'Discard' }))
-    expect(await within(row).findByText('No unfinished sets.')).toBeInTheDocument()
+    expect(await within(recent).findByText('No sets yet.')).toBeInTheDocument()
   }, 40000)
 
   it('hides the items of a review set until Show words', async () => {

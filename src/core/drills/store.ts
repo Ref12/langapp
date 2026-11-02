@@ -13,7 +13,8 @@ import { cancelContent, startContent } from './content'
 import { worstMark } from './write-queue'
 import { drillSkills, recordSkillPractice, SKILL_LABEL, STRATEGY_LABEL, type Skill } from '../study/skills'
 import { pickItems } from '../study/skill-pick'
-import { MARK_RATING, drillSetSchema, type DrillFormat, type DrillSet, type DrillTypeId, type Mark } from './contracts'
+import { DEFAULT_HANDSFREE_SETTINGS } from '../handsfree/contracts'
+import { MARK_RATING, drillSetSchema, type HandsfreeActivity, type DrillFormat, type DrillSet, type DrillTypeId, type Mark } from './contracts'
 
 export const REVIEW_SET_SIZE = 12
 export const STUDY_SET_LIMIT = 40
@@ -94,12 +95,12 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
   return { refs: chosen.map(item => item.ref), title: collection.name, collectionId }
 }
 
-/** Creates a drill set from a source and starts writing its sentences in the background. New items join the knowledge set only when the set is finished (finishDrillSet). */
-export async function createDrillSet(source: DrillSource, now = Date.now()): Promise<string> {
+/** Creates a drill set from a source and starts writing its sentences in the background. New items join the knowledge set only when the set is finished (finishDrillSet). `handsfree` makes a set of the Hands-free shortcut: it opens on that activity and is finished when it reaches its end. */
+export async function createDrillSet(source: DrillSource, now = Date.now(), options: { handsfree?: HandsfreeActivity } = {}): Promise<string> {
   const chosen = await chooseRefs(source, now)
   const id = crypto.randomUUID()
-  const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}),
-    ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}) }
+  const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' ? chosen.setSource! : source.kind, title: options.handsfree ? (source.kind === 'skill' ? `Hands-free · ${chosen.title}` : `Hands-free · ${shortDate(now)}`) : chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}),
+    ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}), ...(options.handsfree ? { handsfree: options.handsfree, shortcut: 'handsfree' as const } : {}) }
   await db.transaction('rw', [db.drillSets], async () => {
     await db.drillSets.add(drillSetSchema.parse(set))
     const unfinished = (await db.drillSets.where('status').equals('active').sortBy('createdAt')).filter(item => item.id !== id)
@@ -107,7 +108,7 @@ export async function createDrillSet(source: DrillSource, now = Date.now()): Pro
       if (!Object.keys(old.progress).length) await db.drillSets.put({ ...old, status: 'abandoned', completedAt: now })
     }
   })
-  void startContent(id)
+  if (!options.handsfree) void startContent(id)
   return id
 }
 
@@ -142,11 +143,11 @@ async function reviewItem(setId: string, type: DrillTypeId, ref: string, mark: M
  * (Got it = Good, Needed a hint = Hard, Missed = Again). Once the type is done, or the item already has a result, nothing changes (a redo is ungraded).
  */
 export async function recordDrillResult(setId: string, type: DrillTypeId, ref: string, mark: Mark, scope: readonly string[], now = Date.now()): Promise<{ graded: boolean }> {
-  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
+  const result = await db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
     const set = await db.drillSets.get(setId)
-    if (!set || set.status !== 'active') return { graded: false }
+    if (!set || set.status === 'abandoned') return { graded: false, finished: false }
     const current = set.progress[type] ?? { results: {}, scope: [...scope], done: false, redos: 0 }
-    if (current.done || current.results[ref]) return { graded: false }
+    if (current.done || current.results[ref]) return { graded: false, finished: false }
     const results = { ...current.results, [ref]: mark }
     const covered = current.scope.length ? current.scope : [...scope]
     const done = covered.every(item => results[item])
@@ -154,8 +155,10 @@ export async function recordDrillResult(setId: string, type: DrillTypeId, ref: s
     await reviewItem(setId, type, ref, mark, now)
     // The first pass of a type counts once per item; redos and retries are ungraded and add nothing.
     await recordSkillPractice([ref], drillSkills(type), now)
-    return { graded: true }
+    return { graded: true, finished: done }
   })
+  await introduceAfterFirst(setId, result.finished, now)
+  return { graded: result.graded }
 }
 
 /**
@@ -163,11 +166,11 @@ export async function recordDrillResult(setId: string, type: DrillTypeId, ref: s
  * characters, as soon as every one of its characters has one; the type is done when every word has a result.
  */
 export async function recordWriteChar(setId: string, char: string, mark: Mark, cue: string, words: readonly { ref: string; chars: readonly string[] }[], scope: readonly string[], now = Date.now()): Promise<{ graded: boolean }> {
-  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
+  const result = await db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
     const set = await db.drillSets.get(setId)
-    if (!set || set.status !== 'active') return { graded: false }
+    if (!set || set.status === 'abandoned') return { graded: false, finished: false }
     const current = set.progress.write ?? { results: {}, scope: [...scope], done: false, redos: 0 }
-    if (current.done || current.chars?.[char]) return { graded: false }
+    if (current.done || current.chars?.[char]) return { graded: false, finished: false }
     const chars = { ...current.chars, [char]: { mark, cue } }
     const results = { ...current.results }
     const completed: [string, Mark][] = []
@@ -180,8 +183,10 @@ export async function recordWriteChar(setId: string, char: string, mark: Mark, c
     const done = covered.every(item => results[item])
     await db.drillSets.put({ ...set, updatedAt: now, progress: { ...set.progress, write: { ...current, scope: covered, results, chars, done, ...(done ? { finishedAt: now } : {}) } } })
     for (const [ref, result] of completed) { await reviewItem(setId, 'write', ref, result, now); await recordSkillPractice([ref], drillSkills('write'), now) }
-    return { graded: true }
+    return { graded: true, finished: done }
   })
+  await introduceAfterFirst(setId, result.finished, now)
+  return { graded: result.graded }
 }
 
 /** Characters written successfully in a graded pass, or taught by the guided steps, stop being new: one stroke-practice completion each, once. */
@@ -201,16 +206,17 @@ export async function recordRedo(setId: string, type: DrillTypeId): Promise<void
 export const setFormat = (id: string, format: DrillFormat) => mutate(id, set => set.format === format ? undefined : { ...set, format })
 
 /**
- * Completes a set and, the first time only, introduces its New items to the knowledge set (a New items set's own items, or the study-set items it
- * promotes). Returns the refs this completion added; a set finished again, or with nothing to add, returns an empty list. Abandoned sets add nothing.
+ * Introduces a set's New items to the knowledge set (a New items set's own items, or the study-set items it promotes), once: the first time an
+ * activity of the set is finished. Returns the refs this call added; a set already introduced, or with nothing to add, returns an empty list.
  */
-export async function finishDrillSet(id: string, now = Date.now()): Promise<string[]> {
+export async function introduceSetItems(id: string, now = Date.now()): Promise<string[]> {
   const claimed = await db.transaction('rw', db.drillSets, async () => {
     const set = await db.drillSets.get(id)
-    if (!set || set.status === 'completed') return undefined
+    if (!set || set.status === 'abandoned') return undefined
     const owed = !!(set.addOnFinish?.length || set.promote?.length) && set.addedRefs === undefined
-    await db.drillSets.put(drillSetSchema.parse({ ...set, status: 'completed', completedAt: now, updatedAt: now, ...(owed ? { addedRefs: [] } : {}) }))
-    return owed ? set : undefined
+    if (!owed) return undefined
+    await db.drillSets.put(drillSetSchema.parse({ ...set, addedRefs: [] }))
+    return set
   })
   if (!claimed) return []
   try {
@@ -229,6 +235,20 @@ export async function finishDrillSet(id: string, now = Date.now()): Promise<stri
   }
 }
 
+/** A drill type that has just been finished is an activity finished: the first one introduces the items. A failure here is retried when the set is finished. */
+async function introduceAfterFirst(setId: string, finished: boolean, now: number): Promise<void> {
+  if (finished) await introduceSetItems(setId, now).catch(() => undefined)
+}
+
+/** Completes a set and, if no activity has done it yet, introduces its items. Returns the refs this completion added. Abandoned sets add nothing. */
+export async function finishDrillSet(id: string, now = Date.now()): Promise<string[]> {
+  await db.transaction('rw', db.drillSets, async () => {
+    const set = await db.drillSets.get(id)
+    if (set && set.status !== 'completed') await db.drillSets.put(drillSetSchema.parse({ ...set, status: 'completed', completedAt: now, updatedAt: now }))
+  })
+  return introduceSetItems(id, now)
+}
+
 /** Abandons an unfinished set. Results already recorded keep their scheduling effect. */
 export async function discardDrillSet(id: string): Promise<void> {
   cancelContent(id)
@@ -236,7 +256,59 @@ export async function discardDrillSet(id: string): Promise<void> {
 }
 
 export const retryContent = (id: string) => startContent(id)
-export const unfinishedSets = (sets: readonly DrillSet[]) => sets.filter(set => set.status === 'active' && !set.removedAt).sort((a, b) => b.createdAt - a.createdAt)
+/** Sets under way: active, not removed, and not a Hands-free shortcut set that was never started. */
+export const unfinishedSets = (sets: readonly DrillSet[]) => sets.filter(set => set.status === 'active' && !set.removedAt && !(set.shortcut && !set.handsfree?.started)).sort((a, b) => b.createdAt - a.createdAt)
 
-/** Where a History row sends you: #practice?from=lesson:<id> | drill:<id> | handsfree:<id>. Practice home pre-fills its panel from it. */
-export const practiceFrom = (kind: 'lesson' | 'drill' | 'handsfree', id: string) => `practice?from=${kind}:${id}`
+/** Where a History row sends you: #practice?from=lesson:<id> | drill:<id>. Practice home pre-fills its panel from it. */
+export const practiceFrom = (kind: 'lesson' | 'drill', id: string) => `practice?from=${kind}:${id}`
+
+// ---- The Hands-free activity ----
+
+
+/** A fresh Hands-free activity, with the settings last used on this device unless given. */
+export const newHandsfreeActivity = (settings = DEFAULT_HANDSFREE_SETTINGS, seed = Math.floor(Math.random() * 2 ** 31)): HandsfreeActivity => ({ seed, settings, started: false, position: 0, done: false })
+
+/** Opens (creating it when the set has none) the set's Hands-free activity. */
+export async function ensureHandsfree(setId: string, settings: HandsfreeActivity['settings']): Promise<void> {
+  await db.transaction('rw', db.drillSets, async () => {
+    const set = await db.drillSets.get(setId)
+    if (set && !set.handsfree) await db.drillSets.put(drillSetSchema.parse({ ...set, handsfree: newHandsfreeActivity(settings), updatedAt: Date.now() }))
+  })
+}
+
+/** Updates the Hands-free activity (position, settings, started). An unfinished set that is stopped part-way stays active and resumes at its saved prompt. */
+export async function updateHandsfree(setId: string, change: Partial<Pick<HandsfreeActivity, 'started' | 'position' | 'settings'>>, now = Date.now()): Promise<void> {
+  await db.transaction('rw', db.drillSets, async () => {
+    const set = await db.drillSets.get(setId)
+    if (!set?.handsfree) return
+    await db.drillSets.put(drillSetSchema.parse({ ...set, handsfree: { ...set.handsfree, ...change }, updatedAt: now }))
+  })
+}
+
+/** Starts the Hands-free activity over from the first prompt (Play again): a new order, and it can finish once more. */
+export async function restartHandsfree(setId: string): Promise<void> {
+  await db.transaction('rw', db.drillSets, async () => {
+    const set = await db.drillSets.get(setId)
+    if (set?.handsfree) await db.drillSets.put(drillSetSchema.parse({ ...set, handsfree: { ...set.handsfree, seed: Math.floor(Math.random() * 2 ** 31), started: false, position: 0, done: false }, updatedAt: Date.now() }))
+  })
+}
+
+/**
+ * A Hands-free run reached its end: the activity is done and, the first time any activity of the set finishes, the set's items are introduced.
+ * A set made by the Hands-free shortcut is finished with it. Returns the refs this added.
+ */
+export async function finishHandsfree(setId: string, position: number, now = Date.now()): Promise<string[]> {
+  await db.transaction('rw', db.drillSets, async () => {
+    const set = await db.drillSets.get(setId)
+    if (!set?.handsfree) return
+    await db.drillSets.put(drillSetSchema.parse({ ...set, updatedAt: now, handsfree: { ...set.handsfree, started: true, position, done: true, finishedAt: set.handsfree.finishedAt ?? now },
+      ...(set.shortcut && set.status === 'active' ? { status: 'completed', completedAt: now } : {}) }))
+  })
+  return introduceSetItems(setId, now)
+}
+
+/** Sets with a Hands-free activity that was started and not finished, on sets still unfinished. */
+export const handsfreeStopped = (set: DrillSet) => !!set.handsfree?.started && !set.handsfree.done
+
+/** Where Resume and Open go for a set: a Hands-free shortcut set that is not finished opens on its Hands-free activity, any other on its page. */
+export const resumeRoute = (set: Pick<DrillSet, 'id' | 'shortcut' | 'status'>) => set.shortcut && set.status === 'active' ? `practice/set/${set.id}/handsfree` : `practice/set/${set.id}`

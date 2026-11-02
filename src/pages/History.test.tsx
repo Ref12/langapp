@@ -215,18 +215,18 @@ it('lists drill sets with their items and score line, filters to Practice, and o
   expect(await screen.findByTestId('selection-summary')).toHaveTextContent('2 of 2 items')
 })
 
-it('lists started Hands-free runs with their items, resumes a stopped one, and Practice opens Practice home filled from it; unstarted runs stay out', async () => {
-  const run = (fields: Record<string, unknown>) => ({ id: 'hf', title: 'Hands-free · 1 Nov', refs: wordRefs, source: 'review', seed: 1, settings: { pause: 'normal', repeats: 1, grammar: true }, status: 'completed', started: true, position: 4, createdAt: 200, updatedAt: 200, ...fields })
-  await db.handsfreeRuns.bulkAdd([run({}), run({ id: 'stopped', title: 'Hands-free · 2 Nov', status: 'abandoned', createdAt: 300 }), run({ id: 'fresh', title: 'Hands-free · 3 Nov', started: false, status: 'active', createdAt: 400 })] as never)
+it('lists Hands-free sets (a shortcut activity) with their items, resumes a stopped one on its Hands-free activity; never-started ones stay out', async () => {
+  const set = (fields: Record<string, unknown>) => ({ id: 'hf', title: 'Hands-free · 1 Nov', refs: wordRefs, source: 'review', status: 'completed', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, shortcut: 'handsfree', handsfree: { seed: 1, settings: { pause: 'normal', repeats: 1 }, started: true, position: 4, done: true }, createdAt: 200, updatedAt: 200, completedAt: 200, ...fields })
+  await db.drillSets.bulkAdd([set({}), set({ id: 'stopped', title: 'Hands-free · 2 Nov', status: 'active', completedAt: undefined, createdAt: 300, handsfree: { seed: 1, settings: { pause: 'normal', repeats: 1 }, started: true, position: 4, done: false } }),
+    set({ id: 'fresh', title: 'Hands-free · 3 Nov', status: 'abandoned', discarded: true, createdAt: 400, handsfree: { seed: 1, settings: { pause: 'normal', repeats: 1 }, started: false, position: 0, done: false } })] as never)
   render(<App />)
   const row = (await screen.findByText('Hands-free · 1 Nov')).closest('li')!
   await waitFor(() => expect(row).toHaveTextContent('学习'))
   expect(row).toHaveTextContent('Finished')
   expect(screen.queryByText('Hands-free · 3 Nov')).toBeNull()
-  expect(within(screen.getByText('Hands-free · 2 Nov').closest('li')!).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/handsfree/stopped')
-  expect(within(row).queryByRole('button', { name: /again/i })).toBeNull()
+  expect(within(screen.getByText('Hands-free · 2 Nov').closest('li')!).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/set/stopped/handsfree')
   fireEvent.click(within(row).getByRole('link', { name: /^Practice Hands-free/ }))
-  await waitFor(() => expect(window.location.hash).toBe('#practice?from=handsfree:hf'))
+  await waitFor(() => expect(window.location.hash).toBe('#practice?from=drill:hf'))
   await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Hands-free · 1 Jan/))
 })
 

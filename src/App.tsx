@@ -6,7 +6,7 @@ import { requestPersistence } from './core/backup/service'
 import { removeBackgroundBackupRegistrations } from './core/backup/cleanup'
 import { recordStartup, timePhase } from './core/backup/diagnostics'
 import { savePreferences } from './core/learning'
-import { useRoute } from './core/routing'
+import { redirect, useRoute } from './core/routing'
 import { lessons, stories } from './data/mandarin'
 import { curriculumLevels } from './data/curriculum'
 import { EmptyState, type PageProps } from './components/shared'
@@ -34,7 +34,6 @@ import { History } from './pages/History'
 import { Media } from './pages/Media'
 import { Collections } from './pages/Collections'
 import { Drills } from './pages/drills/Drills'
-import { HandsFree } from './pages/drills/HandsFree'
 import { DRILLS_LABEL } from './core/drills/contracts'
 import { TERM } from './core/collections/terms'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
@@ -99,7 +98,8 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   if (page === 'games' && id === 'defender') return <Defender {...props} />
   if (page === 'games' && id === 'potions') return <Potions {...props} />
   if (page === 'games' && !id) return <Games />
-  if (page === 'practice' && id === 'handsfree') return <HandsFree {...props} runId={lessonPage} />
+  // Hands-free is an activity of a practice set now. Old links (#practice/handsfree/<run id>) land on the migrated set's Hands-free activity.
+  if (page === 'practice' && id === 'handsfree') return <Redirect to={lessonPage ? `practice/set/${lessonPage}/handsfree` : 'practice'} />
   if (page === 'practice' && (!id || id === 'set')) return <Drills {...props} route={routePath} />
   if (page === 'practice' && id) {
     const session = props.workspace.sessions.find(item => item.id === id)
@@ -284,4 +284,9 @@ export default function App() {
       ? <LocalAIConnectionSetup onImported={markLocalSettingsImported}><WorkspaceApp /></LocalAIConnectionSetup>
       : <WorkspaceApp />}
   </WorkspaceBoundary></> : <div className="opening-workspace" role="status">Opening your Mandarin workspace...</div>
+}
+
+function Redirect({ to }: { to: string }) {
+  useEffect(() => redirect(to), [to])
+  return <div className="opening-workspace" role="status">Opening...</div>
 }

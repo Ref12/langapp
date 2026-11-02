@@ -23,3 +23,9 @@ export function useRoute(): string {
 export function navigate(route: string): void {
   window.location.hash = route
 }
+
+/** Replaces the current route without leaving the old one in the history, so Back does not return to a redirect. */
+export function redirect(route: string): void {
+  window.history.replaceState(null, '', `#${route}`)
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+}

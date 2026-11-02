@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, Headphones, Languages, MessageSquareText, PenLine, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
@@ -17,7 +17,7 @@ import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillS
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems } from '../../core/drills/write-queue'
-import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
+import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, resumeRoute, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
@@ -25,7 +25,9 @@ import { ConfirmDialog } from '../../components/ConfirmDialog'
 import { SaveToMenu } from '../../components/collections/SaveToMenu'
 import { RemoveFromKnowledge } from '../../components/study/RemoveFromKnowledge'
 import { isPhraseRef, isSourceRef } from '../../core/study/contracts'
-import { createHandsfreeRun, discardHandsfreeRun, unfinishedHandsfreeRuns } from '../../core/handsfree/store'
+import { loadHandsfreeSettings } from '../../core/handsfree/store'
+import { HandsFree } from './HandsFree'
+import { runAddedRefs } from '../../core/study/knowledge'
 import { availability } from './tasks'
 import { SKILLS, SKILL_LABEL, SKILL_SIZES, STRATEGY_LABEL, PICK_STRATEGIES, drillSkills, type Skill } from '../../core/study/skill-map'
 import { ACTIVITY_SKILLS } from '../../core/study/skill-map'
@@ -73,6 +75,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
     const only = new URLSearchParams(query).get('missed') ? Object.entries(set.progress[type]?.results ?? {}).filter(([, mark]) => mark === 'missed').map(([ref]) => ref) : undefined
     return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} only={only} backHref={`#${setRoute(set.id)}`} />
   }
+  if (page === 'handsfree') return <HandsFree {...props} set={set} />
   if (page === 'summary' || set.status !== 'active') return <Summary {...props} set={set} items={items} />
   return <SetScreen {...props} set={set} items={items} />
 }
@@ -182,25 +185,43 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
 /** The breakdown of an unfinished set's items under its title. */
 function UnfinishedInfo({ set, typesDone, characterStates }: { set: DrillSet; typesDone: number; characterStates: PageProps['workspace']['characterStates'] }) {
   const items = useItems(set)
-  return <span className="small muted dr-wrap">{(items && describeItems(items, characterStates)) || itemCount(set.refs.length)} · {typesDone} of {DRILL_TYPES.length} types done</span>
+  const stopped = !!set.handsfree?.started && !set.handsfree.done
+  const what = (items && describeItems(items, characterStates)) || itemCount(set.refs.length)
+  return <span className="small muted dr-wrap">{stopped && set.shortcut ? `Hands-free · ${what} · stopped at prompt ${set.handsfree!.position + 1}` : `${what} · ${typesDone} of ${DRILL_TYPES.length} types done${stopped ? ` · Hands-free stopped at prompt ${set.handsfree!.position + 1}` : ''}`}</span>
 }
 
-/** One unfinished set or Hands-free run: title and meta on the left, the resume and discard icon buttons on the right. Discard asks in a dialog. */
-function UnfinishedRow({ title, href, meta, onAsk }: { title: string; href: string; meta: ReactNode; onAsk: () => void }) {
-  return <div className="resume-row">
-    <div className="resume-text"><strong>{title}</strong>{meta}</div>
-    <a className="icon-button" href={href} aria-label={`Resume ${title}`}><ArrowRight size={18} /></a>
-    <button type="button" className="icon-button" aria-label={`Discard ${title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={17} /></button>
+/** The ⋯ overflow of a row: a small menu of the actions that need a decision (Discard, Remove from knowledge set), closed with Escape or a click elsewhere. */
+function RowMenu({ name, children }: { name: string; children: ReactNode }) {
+  const [open, setOpen] = useState(false)
+  const box = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!open) return
+    const close = (event: Event) => { if (event.type === 'keydown' ? (event as KeyboardEvent).key === 'Escape' : !box.current?.contains(event.target as Node)) setOpen(false) }
+    document.addEventListener('keydown', close); document.addEventListener('pointerdown', close)
+    return () => { document.removeEventListener('keydown', close); document.removeEventListener('pointerdown', close) }
+  }, [open])
+  return <div className="row-menu" ref={box}>
+    <button type="button" className="icon-button" aria-label={`More for ${name}`} aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>⋯</button>
+    {open && <div className="row-menu-list" role="menu" aria-label={`Actions for ${name}`}>{children}</div>}
   </div>
 }
 
-/** One completed set or Hands-free run: the same row layout, with Open, Save to study set and Remove from knowledge set as icons. */
-function RecentRow({ kind, id, title, href, meta, refs }: { kind: 'drill' | 'handsfree'; id: string; title: string; href: string; meta: ReactNode; refs: readonly string[] }) {
+/** One set, unfinished or finished, in the one Recent sets list: title (In progress when unfinished) and meta on the left; Resume or Open, Save to study set and the ⋯ menu on the right. */
+function SetRow({ set, characterStates, onAsk }: { set: DrillSet; characterStates: PageProps['workspace']['characterStates']; onAsk: () => void }) {
+  const unfinished = set.status === 'active'
+  const removable = useLiveQuery(() => runAddedRefs('drill', set.id), [set.id, set.addedRefs])
+  const typesDone = Object.values(set.progress).filter(entry => entry.done).length
   return <div className="resume-row">
-    <div className="resume-text"><strong>{title}</strong>{meta}</div>
-    <a className="icon-button" href={href} aria-label={`Open ${title}`} title="Open"><ArrowRight size={18} /></a>
-    <SaveToMenu refs={[...new Set(refs)]} name={title} />
-    <RemoveFromKnowledge kind={kind} id={id} name={title} icon />
+    <div className="resume-text"><strong>{set.title}{unfinished && <span className="tag in-progress">In progress</span>}</strong>
+      {unfinished ? <UnfinishedInfo set={set} typesDone={typesDone} characterStates={characterStates} />
+        : <span className="small muted dr-wrap">{set.shortcut ? 'Hands-free' : 'Practice set'} · {itemCount(set.refs.length)} · {shortDate(set.completedAt ?? set.updatedAt)}</span>}</div>
+    {unfinished ? <a className="icon-button" href={`#${resumeRoute(set)}`} aria-label={`Resume ${set.title}`} title="Resume"><ArrowRight size={18} /></a>
+      : <a className="icon-button" href={`#${setRoute(set.id)}`} aria-label={`Open ${set.title}`} title="Open"><ArrowRight size={18} /></a>}
+    <SaveToMenu refs={[...new Set(set.refs)]} name={set.title} />
+    {(unfinished || !!removable?.length) && <RowMenu name={set.title}>
+      {unfinished ? <button type="button" role="menuitem" className="menu-item" aria-label={`Discard ${set.title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={15} /> Discard</button>
+        : <RemoveFromKnowledge kind="drill" id={set.id} name={set.title} menuItem />}
+    </RowMenu>}
   </div>
 }
 
@@ -208,7 +229,6 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const { catalog, error } = useCatalog()
   const connection = useAIConnection()
   const sets = useLiveQuery(() => db.drillSets.toArray(), []) ?? []
-  const handsfreeRuns = unfinishedHandsfreeRuns(useLiveQuery(() => db.handsfreeRuns.toArray(), []) ?? [])
   const collections = useLiveQuery(() => db.collections.toArray(), []) ?? []
   const collectionItems = useLiveQuery(() => db.collectionItems.toArray(), []) ?? []
   const [from, setFrom] = useState(CURRICULUM)
@@ -218,21 +238,19 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     const at = originParam.indexOf(':'); const kind = originParam.slice(0, at), id = originParam.slice(at + 1)
     if (at < 0 || !id) return null
     if (kind === 'lesson') { const item = await db.exerciseSessions.get(id); return item ? { label: `Lesson · ${shortDate(item.completedAt ?? item.createdAt)}`, refs: [...new Set([...item.targetRefs, ...item.reviewRefs])] } : null }
-    if (kind === 'drill') { const item = await db.drillSets.get(id); return item ? { label: `Practice set · ${shortDate(item.createdAt)}`, refs: [...new Set(item.refs)] } : null }
-    if (kind === 'handsfree') { const item = await db.handsfreeRuns.get(id); return item ? { label: `Hands-free · ${shortDate(item.createdAt)}`, refs: [...new Set(item.refs)] } : null }
+    if (kind === 'drill' || kind === 'handsfree') { const item = await db.drillSets.get(id); return item ? { label: `${item.shortcut ? 'Hands-free' : 'Practice set'} · ${shortDate(item.createdAt)}`, refs: [...new Set(item.refs)] } : null }
     return null
   }, [originParam]) ?? null
   const [all, setAll] = useState(true)
   useEffect(() => setAll(true), [originParam])
-  const [asking, setAsking] = useState<{ id: string; title: string; handsfree: boolean }>()
+  const [asking, setAsking] = useState<{ id: string; title: string }>()
+  const unfinished = unfinishedSets(sets)
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
   const wordsDue = workspace.words.filter(word => word.dueAt <= now).length
-  const unfinished = unfinishedSets(sets)
-  const allHandsfree = useLiveQuery(() => db.handsfreeRuns.toArray(), []) ?? []
-  const recent = [
-    ...sets.filter(set => set.status === 'completed' && !set.removedAt).map(set => ({ kind: 'drill' as const, id: set.id, title: set.title, refs: set.refs, at: set.completedAt ?? set.updatedAt, href: `#${setRoute(set.id)}`, label: 'Practice set' })),
-    ...allHandsfree.filter(run => run.status === 'completed' && !run.removedAt).map(run => ({ kind: 'handsfree' as const, id: run.id, title: run.title, refs: run.refs, at: run.completedAt ?? run.updatedAt, href: `#practice/handsfree/${run.id}`, label: 'Hands-free' })),
-  ].sort((a, b) => b.at - a.at).slice(0, RECENT_SETS)
+  // One list: every unfinished set, then the finished ones, by last activity; the last RECENT_SETS finished ones are kept.
+  const touched = (set: DrillSet) => set.updatedAt
+  const finished = sets.filter(set => set.status === 'completed' && !set.removedAt).sort((a, b) => touched(b) - touched(a)).slice(0, RECENT_SETS)
+  const recent = [...unfinished, ...finished].sort((a, b) => touched(b) - touched(a))
   const fromSet = !origin && from !== CURRICULUM ? collections.find(entry => entry.id === from) : undefined
   const [chosenMode, setMode] = useState<'new' | 'review'>('new')
   const mode = origin ? 'review' : chosenMode
@@ -268,7 +286,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const skillSource = (): DrillSource => ({ kind: 'skill', skill, size, strategy })
   const selectionSource = (): DrillSource => mode === 'review' ? { kind: 'review', refs: selection, ...(fromSet ? { from: fromSet.id } : {}) } : { kind: 'new', count, refs: selection, ...(fromSet ? { from: fromSet.id } : {}) }
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
-  const startHandsfree = (source: DrillSource) => void run(async () => { navigate(`practice/handsfree/${await createHandsfreeRun(source)}`) })
+  /** The Hands-free shortcut: a practice set from the selection, opened straight on its Hands-free activity. */
+  const startHandsfree = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source, Date.now(), { handsfree: newHandsfreeActivity(loadHandsfreeSettings()) }), 'handsfree')) })
   return <div className="dr">
     <PageHeading eyebrow="Study" title={DRILLS_LABEL}>Practice sets of words and grammar patterns. Pick a type, do every item, pick another.</PageHeading>
     <KnowledgeCounts knowledge={workspace.knowledge} />
@@ -306,23 +325,16 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         </ul>
       </section>
       <div className="dr-stack">
-      <section className="panel dr-panel" aria-labelledby="dr-unfinished"><h2 id="dr-unfinished">Unfinished sets</h2>
-        {unfinished.length === 0 && handsfreeRuns.length === 0 ? <p className="muted small">No unfinished sets.</p> : <div className="resume-list">{unfinished.map(set => { const typesDone = Object.values(set.progress).filter(entry => entry.done).length
-          return <UnfinishedRow key={set.id} title={set.title} href={`#${setRoute(set.id)}`} meta={<UnfinishedInfo set={set} typesDone={typesDone} characterStates={workspace.characterStates} />}
-            onAsk={() => setAsking({ id: set.id, title: set.title, handsfree: false })} /> })}
-          {handsfreeRuns.map(item => <UnfinishedRow key={item.id} title={item.title} href={`#practice/handsfree/${item.id}`} meta={<span className="small muted dr-wrap">Hands-free · {itemCount(item.refs.length)} · stopped at prompt {item.position + 1}</span>}
-            onAsk={() => setAsking({ id: item.id, title: item.title, handsfree: true })} />)}</div>}
-        {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
-      </section>
       <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sets</h2>
-        {recent.length === 0 ? <p className="muted small">No finished sets yet.</p> : <div className="resume-list">{recent.map(item =>
-          <RecentRow key={item.id} kind={item.kind} id={item.id} title={item.title} href={item.href} refs={item.refs} meta={<span className="small muted dr-wrap">{item.label} · {itemCount(item.refs.length)} · {shortDate(item.at)}</span>} />)}</div>}
+        {recent.length === 0 ? <p className="muted small">No sets yet.</p> : <div className="resume-list">{recent.map(set =>
+          <SetRow key={set.id} set={set} characterStates={workspace.characterStates} onAsk={() => setAsking({ id: set.id, title: set.title })} />)}</div>}
+        {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
       </section>
       </div>
     </div>
     {asking && <ConfirmDialog title="Discard this set?" confirmLabel="Discard" busy={busy} onCancel={() => setAsking(undefined)}
       detail={<>{asking.title} moves out of Unfinished sets. What you practised so far stays in History.</>}
-      onConfirm={() => { const item = asking; setAsking(undefined); void run(() => item.handsfree ? discardHandsfreeRun(item.id) : discardDrillSet(item.id)) }} />}
+      onConfirm={() => { const item = asking; setAsking(undefined); void run(() => discardDrillSet(item.id)) }} />}
     <section className="panel dr-classic"><div><strong>Classic practice</strong><span className="small muted">Word-recognition sessions, the due badge and Mahjong keep working as before.</span></div>
       <div className="button-row"><a className="button secondary" href="#review">Classic practice {wordsDue > 0 && <span className="tag">{wordsDue} due</span>}</a><a className="button secondary" href="#practice/mahjong">Mahjong</a></div></section>
   </div>

@@ -52,7 +52,9 @@ describe('session lifecycle', () => {
     const shell = (await db.exerciseSessions.get(id))!
     expect(shell).toMatchObject({ exercises: [], generation: 'running', exerciseCount: 20, targetRefs: refs })
     expect(isGenerating(id)).toBe(true)
-    expect(await db.knowledge.count()).toBe(refs.length)
+    // the lesson's items join the knowledge set when it is finished, not when it starts
+    expect(await db.knowledge.count()).toBe(0)
+    expect(shell.addOnFinish).toEqual(refs)
     release(proposal(refs))
     await whenGenerated(id)
     const filled = (await db.exerciseSessions.get(id))!

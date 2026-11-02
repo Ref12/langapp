@@ -144,6 +144,8 @@ export const exerciseSessionSchema = z.object({
   removedAt: timestamp.optional(),
   /** The items this lesson added to the knowledge set when it started (none that were already known). Older sessions are worked out from the knowledge entries. */
   addedRefs: z.array(unitRefSchema).max(200).optional(),
+  /** A New lesson's own items, which join the knowledge set when the lesson is finished (not when it starts). Absent on lessons from before, which added them at the start. */
+  addOnFinish: z.array(unitRefSchema).max(200).optional(),
 }).strict()
 
 export const exerciseAttemptSchema = z.object({

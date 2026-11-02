@@ -1,9 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace } from './database'
 import { exportWorkspaceBackup, restoreBackup } from './backup'
-import { createDrillSet, getDrillSet, unfinishedSets } from './drills/store'
+import { createDrillSet, getDrillSet, newHandsfreeActivity, unfinishedSets, updateHandsfree } from './drills/store'
 import { whenContent } from './drills/content'
-import { createHandsfreeRun, unfinishedHandsfreeRuns, updateHandsfreeRun } from './handsfree/store'
 import { rememberPracticePhrase } from './assistant/practice-history'
 import { removeHistoryItems, restoreHistoryItems } from './history-removal'
 import { addToKnowledge } from './study/knowledge'
@@ -20,7 +19,7 @@ const lesson = (id: string) => ({
 
 async function seed() {
   const setId = await createDrillSet({ kind: 'new', count: 5 }); await whenContent(setId)
-  const runId = await createHandsfreeRun({ kind: 'new', count: 3 }); await updateHandsfreeRun(runId, { started: true })
+  const runId = await createDrillSet({ kind: 'new', count: 3 }, Date.now(), { handsfree: newHandsfreeActivity() }); await updateHandsfree(runId, { started: true })
   await db.exerciseSessions.add(lesson('les1'))
   await rememberPracticePhrase({ type: 'speech', text: '你好', locale: 'zh-Hans', meaning: 'Hello' }, 1)
   return { setId, runId }
@@ -33,13 +32,13 @@ describe('removing History items', () => {
     await addToKnowledge(['vocabulary:wo3--me'])
     const before = await learning()
     expect(before).not.toBe('[[],[],[],[]]')
-    await removeHistoryItems([`drill:${setId}`, `handsfree:${runId}`, 'lesson:les1', 'phrase:你好'], 99)
+    await removeHistoryItems([`drill:${setId}`, `drill:${runId}`, 'lesson:les1', 'phrase:你好'], 99)
     expect((await getDrillSet(setId))?.removedAt).toBe(99)
-    expect((await db.handsfreeRuns.get(runId))?.removedAt).toBe(99)
+    expect((await db.drillSets.get(runId))?.removedAt).toBe(99)
     expect((await db.exerciseSessions.get('les1'))?.removedAt).toBe(99)
     expect((await db.practiceHistory.get('你好'))?.removedAt).toBe(99)
     expect(await learning()).toBe(before)
-    await restoreHistoryItems([`drill:${setId}`, `handsfree:${runId}`, 'lesson:les1', 'phrase:你好'])
+    await restoreHistoryItems([`drill:${setId}`, `drill:${runId}`, 'lesson:les1', 'phrase:你好'])
     expect((await getDrillSet(setId))?.removedAt).toBeUndefined()
     expect((await db.practiceHistory.get('你好'))?.removedAt).toBeUndefined()
     expect(await learning()).toBe(before)
@@ -47,21 +46,19 @@ describe('removing History items', () => {
 
   it('removed sets and Hands-free runs leave Unfinished sets', async () => {
     const { setId, runId } = await seed()
-    expect(unfinishedSets(await db.drillSets.toArray()).map(set => set.id)).toEqual([setId])
-    expect(unfinishedHandsfreeRuns(await db.handsfreeRuns.toArray()).map(run => run.id)).toEqual([runId])
-    await removeHistoryItems([`drill:${setId}`, `handsfree:${runId}`])
+    expect(unfinishedSets(await db.drillSets.toArray()).map(set => set.id).sort()).toEqual([setId, runId].sort())
+    await removeHistoryItems([`drill:${setId}`, `drill:${runId}`])
     expect(unfinishedSets(await db.drillSets.toArray())).toHaveLength(0)
-    expect(unfinishedHandsfreeRuns(await db.handsfreeRuns.toArray())).toHaveLength(0)
   })
 
   it('removedAt survives a backup export and restore, and the removal persists after reload', async () => {
     const { setId, runId } = await seed()
-    await removeHistoryItems([`drill:${setId}`, `handsfree:${runId}`, 'lesson:les1', 'phrase:你好'], 77)
+    await removeHistoryItems([`drill:${setId}`, `drill:${runId}`, 'lesson:les1', 'phrase:你好'], 77)
     const text = await exportWorkspaceBackup()
-    await db.drillSets.clear(); await db.handsfreeRuns.clear(); await db.exerciseSessions.clear(); await db.practiceHistory.clear()
+    await db.drillSets.clear(); await db.exerciseSessions.clear(); await db.practiceHistory.clear()
     await restoreBackup(text)
     expect((await db.drillSets.get(setId))?.removedAt).toBe(77)
-    expect((await db.handsfreeRuns.get(runId))?.removedAt).toBe(77)
+    expect((await db.drillSets.get(runId))?.removedAt).toBe(77)
     expect((await db.exerciseSessions.get('les1'))?.removedAt).toBe(77)
     expect((await db.practiceHistory.get('你好'))?.removedAt).toBe(77)
   })

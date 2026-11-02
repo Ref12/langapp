@@ -192,8 +192,8 @@ describe('New and Review', () => {
     await screen.findByRole('heading', { name: 'Meet your new items.' })
     await screen.findByRole('button', { name: 'Start' }, { timeout: 5000 })
     expect(structured.requestStructuredJSON).toHaveBeenCalledTimes(1)
-    expect(await db.knowledge.count()).toBe(refs.length)
-    // Starting added every item, so the per-card knowledge-set state is not repeated on this page.
+    // The lesson's items join the knowledge set when it is finished, not when it starts; the cards do not show per-card knowledge-set state.
+    expect(await db.knowledge.count()).toBe(0)
     expect(screen.queryByRole('button', { name: /knowledge set/ })).not.toBeInTheDocument()
     expect(screen.queryByText('Eligible for review')).not.toBeInTheDocument()
     expect(screen.getByRole('region', { name: 'Start the exercises' })).toContainElement(screen.getByRole('button', { name: 'Start' }))

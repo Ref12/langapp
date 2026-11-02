@@ -106,9 +106,10 @@ describe('knowledge set and sessions', () => {
     expect(session.groupId).toBe(group.group.id)
     expect(session.exercises.map(exercise => exercise.id)).toEqual(['c1', 'c2', 't1', 't2'])
     expect(session.rejected).toEqual([])
-    expect((await db.knowledge.toArray()).map(entry => entry.source)).toEqual(group.units.map(() => 'new'))
-
-    const before = (await db.studyCards.get(`${session.exercises[0].targets[0]}:reading`))!
+    // the lesson's items join the knowledge set when it is finished, not when it starts
+    expect(await db.knowledge.count()).toBe(0)
+    expect(session.addOnFinish).toEqual(group.units.map(unit => unit.ref))
+    const before = (await db.studyCards.get(`${session.exercises[0].targets[0]}:reading`)) ?? { id: `${session.exercises[0].targets[0]}:reading`, due: 0 }
     const [first, second] = session.exercises
     if (first.type !== 'choice' || second.type !== 'choice') throw new Error('expected choices')
     const attempt = await submitExerciseAnswer(id, 0, first.answer)
@@ -145,6 +146,9 @@ describe('knowledge set and sessions', () => {
     const finished = (await db.exerciseSessions.get(id))!
     expect(finished.status).toBe('completed')
     expect(finished.completedAt).toBeDefined()
+    // finishing introduced them, once, and recorded what it added
+    expect((await db.knowledge.toArray()).map(entry => entry.source)).toEqual(group.units.map(() => 'new'))
+    expect(finished.addedRefs).toEqual(group.units.map(unit => unit.ref))
     expect(await db.exerciseAttempts.count()).toBe(6)
     expect((await db.exerciseAttempts.toArray()).filter(attempt => !attempt.redo)).toHaveLength(4)
   })

@@ -15,8 +15,7 @@ import { Pinyin } from '../components/Pinyin'
 import { DRILL_TYPES, countMarks, scoreOf, type DrillSet } from '../core/drills/contracts'
 import { SaveToMenu } from '../components/collections/SaveToMenu'
 import { RemoveFromKnowledge } from '../components/study/RemoveFromKnowledge'
-import { practiceFrom } from '../core/drills/store'
-import type { HandsfreeRun } from '../core/handsfree/contracts'
+import { practiceFrom, resumeRoute } from '../core/drills/store'
 
 type Filter = 'all' | 'speak' | 'write' | 'lessons' | 'drills'
 const FILTERS: { id: Filter; label: string }[] = [
@@ -30,7 +29,7 @@ const EMPTY: Record<Filter, string> = {
 interface LessonRow { id: string; at: number; mode: 'new' | 'review'; items: number; refs: string[]; exercises: number; answered: number; correct: number; status: string }
 export const HISTORY_PAGE_SIZE = 30
 const FILTER_IDS = FILTERS.map(item => item.id)
-const rowKey = (row: Row): HistoryKey => row.type === 'phrase' ? `phrase:${row.entry.text}` : row.type === 'lesson' ? `lesson:${row.lesson.id}` : row.type === 'drill' ? `drill:${row.set.id}` : `handsfree:${row.run.id}`
+const rowKey = (row: Row): HistoryKey => row.type === 'phrase' ? `phrase:${row.entry.text}` : row.type === 'lesson' ? `lesson:${row.lesson.id}` : `drill:${row.set.id}`
 const dayStart = (at: number) => { const d = new Date(at); d.setHours(0, 0, 0, 0); return d.getTime() }
 /** Today, Yesterday, then the date. */
 function dayLabel(at: number, now = Date.now()): string {
@@ -45,7 +44,7 @@ function readLocation(route: string): { filter?: Filter; page: number } {
 }
 const locate = (filter: Filter, page: number) => `history?f=${filter}${page > 1 ? `&p=${page}` : ''}`
 
-type Row = { type: 'phrase'; at: number; entry: PracticeHistoryEntry } | { type: 'lesson'; at: number; lesson: LessonRow } | { type: 'drill'; at: number; set: DrillSet } | { type: 'handsfree'; at: number; run: HandsfreeRun }
+type Row = { type: 'phrase'; at: number; entry: PracticeHistoryEntry } | { type: 'lesson'; at: number; lesson: LessonRow } | { type: 'drill'; at: number; set: DrillSet }
 
 /** Every item of a past lesson or drill set, as characters with pinyin: history hides nothing. */
 function wordList(catalog: Catalog | undefined, refs: readonly string[]) {
@@ -71,7 +70,6 @@ export function History() {
     })
   }, [])
   const sets = useLiveQuery(() => db.drillSets.toArray().then(all => all.filter(set => !set.discarded && !set.removedAt)), [])
-  const hfRuns = useLiveQuery(() => db.handsfreeRuns.toArray().then(all => all.filter(run => run.started && !run.removedAt)), [])
   const stored = useLiveQuery(() => db.preferences.get('workspace').then(item => item?.historyFilter ?? 'all'), [])
   const where = readLocation(useRoute())
   const filter: Filter = where.filter ?? stored ?? 'all'
@@ -103,13 +101,12 @@ export function History() {
       setError(cause instanceof Error ? cause.message : 'Other audio could not be stopped. Try Practice again.')
     }
   }
-  const ready = entries && lessons && sets && hfRuns && stored
+  const ready = entries && lessons && sets && stored
   const rows: Row[] = ready ? [
     ...(filter === 'lessons' || filter === 'drills' ? [] : entries.filter(entry => filter === 'all' || entryKinds(entry)[filter] !== undefined)
       .map((entry): Row => ({ type: 'phrase', at: filter === 'all' ? entry.lastOpenedAt : entryKinds(entry)[filter]!, entry }))),
     ...(filter === 'all' || filter === 'lessons' ? lessons.map((lesson): Row => ({ type: 'lesson', at: lesson.at, lesson })) : []),
     ...(filter === 'all' || filter === 'drills' ? sets.map((set): Row => ({ type: 'drill', at: set.createdAt, set })) : []),
-    ...(filter === 'all' || filter === 'drills' ? (hfRuns ?? []).map((run): Row => ({ type: 'handsfree', at: run.createdAt, run })) : []),
   ].sort((a, b) => b.at - a.at) : []
   const pages = Math.max(1, Math.ceil(rows.length / HISTORY_PAGE_SIZE))
   const page = Math.min(where.page, pages)
@@ -145,26 +142,14 @@ export function History() {
         {filter === 'all' && <p>{EMPTY.all}</p>}
         <a className="button secondary" href={filter === 'lessons' ? '#lessons' : filter === 'drills' ? '#practice' : '#conversation'}>{filter === 'lessons' ? 'Open Lessons' : filter === 'drills' ? 'Open Practice' : 'Open Assistant'}</a></div>
         : <>{groups.map(group => <div key={group.label} className="history-group"><h2 className="history-day">{group.label}</h2>
-        <ol className="phrase-history-list">{group.rows.map(row => row.type === 'handsfree'
-          ? <li key={`handsfree:${row.run.id}`} className="phrase-history-entry history-lesson">
-            <span><span className="history-chips"><span className="chip">Hands-free</span>{row.run.status === 'completed' ? <span className="chip">Finished</span> : <span className="chip">Stopped</span>}</span>
-              <strong>{row.run.title}</strong>
-              <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time>
-              {wordList(catalog, row.run.refs)}</span>
-            {row.run.status !== 'completed' && <a className="button secondary" href={`#practice/handsfree/${row.run.id}`} aria-label={`Resume ${row.run.title}`}>Resume</a>}
-            <a className="button secondary" href={`#${practiceFrom('handsfree', row.run.id)}`} aria-label={`Practice ${row.run.title}`}>Practice</a>
-            <SaveToMenu refs={[...new Set(row.run.refs)]} name={row.run.title} label="Save to study set" />
-            <RemoveFromKnowledge kind="handsfree" id={row.run.id} name={row.run.title} />
-            {tools(row, row.run.title)}
-          </li>
-          : row.type === 'drill'
+        <ol className="phrase-history-list">{group.rows.map(row => row.type === 'drill'
           ? <li key={`drill:${row.set.id}`} className="phrase-history-entry history-lesson">
-            <span><span className="history-chips"><span className="chip">Practice</span>{row.set.status === 'completed' && <span className="chip">Finished</span>}{row.set.status === 'abandoned' && <span className="chip">Set aside</span>}</span>
+            <span><span className="history-chips"><span className="chip">{row.set.shortcut ? 'Hands-free' : 'Practice'}</span>{row.set.handsfree?.started && row.set.status === 'active' && <span className="chip">Stopped</span>}{row.set.status === 'completed' && <span className="chip">Finished</span>}{row.set.status === 'abandoned' && <span className="chip">Set aside</span>}</span>
               <strong>{row.set.title}</strong>
               <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time>
               {wordList(catalog, row.set.refs)}
               {scoreLine(row.set) && <span className="small muted history-score">{scoreLine(row.set)}</span>}</span>
-            {row.set.status === 'active' && <a className="button secondary" href={`#practice/set/${row.set.id}`} aria-label={`Resume ${row.set.title}`}>Resume</a>}
+            {row.set.status === 'active' && <a className="button secondary" href={`#${resumeRoute(row.set)}`} aria-label={`Resume ${row.set.title}`}>Resume</a>}
             <a className="button secondary" href={`#${practiceFrom('drill', row.set.id)}`} aria-label={`Practice ${row.set.title}`}>Practice</a>
             <SaveToMenu refs={[...new Set(row.set.refs)]} name={row.set.title} label="Save to study set" />
             <RemoveFromKnowledge kind="drill" id={row.set.id} name={row.set.title} />

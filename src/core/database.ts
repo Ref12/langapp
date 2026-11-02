@@ -17,7 +17,7 @@ import type { MediaItem, SourceEntry } from './media/contracts'
 import type { Collection, CollectionItem } from './collections/contracts'
 import type { DrillSet } from './drills/contracts'
 import type { Skill, SkillPractice } from './study/skill-map'
-import type { HandsfreeRun } from './handsfree/contracts'
+import { handsfreeRunToSet } from './handsfree/migrate'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
 export interface BackupConfigRecord {
@@ -66,7 +66,6 @@ export class LearningDatabase extends Dexie {
   collectionItems!: EntityTable<CollectionItem, 'id'>
   sourceEntries!: EntityTable<SourceEntry, 'id'>
   drillSets!: EntityTable<DrillSet, 'id'>
-  handsfreeRuns!: EntityTable<HandsfreeRun, 'id'>
   skillPractice!: Table<SkillPractice, [string, Skill]>
 
   constructor(name = 'linguaweave-next') {
@@ -121,6 +120,12 @@ export class LearningDatabase extends Dexie {
     this.version(21).stores({ handsfreeRuns: '&id, status, createdAt' })
     // Per-skill practice counts are new data too: nothing is backfilled, every item starts at zero.
     this.version(22).stores({ skillPractice: '[ref+skill], skill' })
+    // Hands-free runs become practice sets whose Hands-free activity keeps the run's position and settings (same id, so old routes still resolve).
+    this.version(23).stores({ handsfreeRuns: null }).upgrade(async transaction => {
+      const runs = await transaction.table('handsfreeRuns').toArray()
+      const sets = runs.flatMap(run => { const set = handsfreeRunToSet(run); return set ? [set] : [] })
+      if (sets.length) await transaction.table('drillSets').bulkPut(sets)
+    })
   }
 }
 

@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, Headphones, ListChecks, Moon, Pause, Play, Settings as SettingsIcon, SkipBack, SkipForward } from 'lucide-react'
-import { db } from '../../core/database'
-import { EmptyState, PageHeading, type PageProps } from '../../components/shared'
+import { PageHeading, type PageProps } from '../../components/shared'
 import { useCatalog } from '../../components/study/useCatalog'
 import { HandsfreeSettingsForm } from '../../components/handsfree/HandsfreeSettingsForm'
-import { normalizeHandsfreeSettings, type HandsfreeRun, type HandsfreeSettings } from '../../core/handsfree/contracts'
-import { buildRunScript, completeHandsfreeRun, saveHandsfreeSettings, updateHandsfreeRun } from '../../core/handsfree/store'
+import { normalizeHandsfreeSettings, type HandsfreeSettings } from '../../core/handsfree/contracts'
+import { buildRunScript, loadHandsfreeSettings, saveHandsfreeSettings } from '../../core/handsfree/store'
+import { ensureHandsfree, finishHandsfree, updateHandsfree } from '../../core/drills/store'
+import type { DrillSet } from '../../core/drills/contracts'
 import { addedLine } from '../../core/handsfree/summary'
 import { resolveVoices } from '../../core/handsfree/voices'
 import { pinyin as toPinyin } from 'pinyin-pro'
@@ -46,16 +46,23 @@ function Display({ phase, prompt, heard, done, total, position, added, className
 }
 
 
-export function HandsFree({ runId, ...props }: PageProps & { runId?: string }) {
-  const run = useLiveQuery(async () => runId ? (await db.handsfreeRuns.get(runId)) ?? null : null, [runId])
-  if (run === undefined) return <div className="opening-workspace" role="status">Opening Hands-free...</div>
-  if (run === null) return <EmptyState title="This Hands-free run is not available"><p>It may have been removed from this workspace.</p><a className="button primary" href="#practice">Back to Practice</a></EmptyState>
+/** What the player works from: a set's items with its Hands-free activity's seed, settings and saved position. */
+interface Run { id: string; title: string; refs: string[]; seed: number; settings: HandsfreeSettings; started: boolean; position: number; addedRefs?: string[]; back: string; shortcut: boolean }
+const runOf = (set: DrillSet): Run | undefined => set.handsfree ? { id: set.id, title: set.title, refs: set.refs, seed: set.handsfree.seed, settings: set.handsfree.settings, started: set.handsfree.started, position: set.handsfree.position,
+  ...(set.addedRefs ? { addedRefs: set.addedRefs } : {}), back: set.shortcut ? '#practice' : `#practice/set/${set.id}`, shortcut: !!set.shortcut } : undefined
+
+/** The Hands-free activity of a set. The activity is created the first time it is opened. */
+export function HandsFree({ set, ...props }: PageProps & { set: DrillSet }) {
+  const missing = !set.handsfree
+  useEffect(() => { if (missing) void ensureHandsfree(set.id, loadHandsfreeSettings()) }, [missing, set.id])
+  const run = runOf(set)
+  if (!run) return <div className="opening-workspace" role="status">Opening Hands-free...</div>
   return <Player key={run.id} hf={run} {...props} />
 }
 
 const settingsKey = (settings: HandsfreeSettings) => (() => { const s = normalizeHandsfreeSettings(settings); return `${s.repeats}:${s.itemWording}:${s.sectionIntros}:${s.emphasis}:${s.emphasisRate}:${s.zhRate}` })()
 
-function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { hf: HandsfreeRun }) {
+function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { hf: Run }) {
   const { catalog } = useCatalog()
   const [items, setItems] = useState<ItemInfo[]>()
   // A run that has not started opens on its intro cards; one that has goes straight to the player, with an Items button to see them again.
@@ -105,7 +112,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
       if (next.status === 'error') setError(next.error ?? 'Audio could not be played.')
       if (next.status === 'playing') setError('')
       const total = scriptRef.current.promptStarts.length
-      if (next.status === 'completed') void completeHandsfreeRun(runId, total).catch(cause => setError(cause instanceof Error ? cause.message : 'The new items could not be added to your knowledge set.'))
+      if (next.status === 'completed') void finishHandsfree(runId, total).catch(cause => setError(cause instanceof Error ? cause.message : 'The new items could not be added to your knowledge set.'))
       else if (next.status === 'playing' || next.status === 'paused') {
         lastSaved.current = next.prompt
         // Each prompt counts its item once per run (listening or speaking by the prompt's kind).
@@ -113,17 +120,15 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
           const at = scriptRef.current.segments[scriptRef.current.promptStarts[next.prompt]]
           if (at?.kind === 'marker' && at.ref && at.act) void recordRunPractice(runId, [at.ref], PROMPT_SKILLS[at.act]).catch(() => undefined)
         }
-        void updateHandsfreeRun(runId, { status: 'active', ...(next.status === 'playing' ? { started: true } : {}), position: next.prompt })
+        void updateHandsfree(runId, { ...(next.status === 'playing' ? { started: true } : {}), position: next.prompt })
       }
     }, startRef.current, () => resolveVoices(voicesRef.current.settings, voicesRef.current.saved),
     // The answer shows only when its segment starts: Chinese with pinyin, or the English answer to a Chinese prompt.
     segment => setHeard(before => !segment ? (before.zh || before.en || before.section ? {} : before) : segment.section ? { section: segment.header ?? segment.text, ...(segment.detail ? { detail: segment.detail } : {}) } : segment.locale === 'zh-Hans' ? { zh: segment.text } : segment.answer ? { ...before, en: segment.text } : before.section ? {} : before))
     playerRef.current = player
     return () => {
-      const at = player.state()
       player.dispose()
-      // Leaving mid-run keeps it in History as stopped, and the position for coming back.
-      if (at.status !== 'completed') void db.handsfreeRuns.get(runId).then(current => current?.started && current.status !== 'completed' ? updateHandsfreeRun(runId, { status: 'abandoned', position: lastSaved.current }) : undefined)
+      // Leaving mid-run needs no write: the position is saved on every prompt, so the set stays unfinished at its saved prompt.
     }
   }, [runId])
 
@@ -135,7 +140,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   }, [script, state.prompt, state.status, total, run.started])
   const done = state.status === 'completed'
   const playing = state.status === 'playing'
-  const change = (next: HandsfreeSettings) => { saveHandsfreeSettings(next); void updateHandsfreeRun(run.id, { settings: next }) }
+  const change = (next: HandsfreeSettings) => { saveHandsfreeSettings(next); void updateHandsfree(run.id, { settings: next }) }
 
   const phaseLine = done ? 'Finished' : marker ? PHASE_LABEL[marker.phase] + ' ' + marker.index + ' of ' + marker.total : script ? 'Ready' : 'Preparing...'
   // Start listening plays at once when the script is ready, or as soon as it is.
@@ -155,15 +160,15 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   }, [view, !!items, introRefs])
 
   if (view === 'intro') return <div className="dr hf">
-    <a className="back-link" href="#practice"><ArrowLeft size={16} /> Practice</a>
+    <a className="back-link" href={run.back}><ArrowLeft size={16} /> {run.shortcut ? 'Practice' : run.title}</a>
     <PageHeading eyebrow="Hands-free" title={run.title}>Here is everything you will hear. Read the cards first, or skip them and listen.</PageHeading>
     {error && <p className="notice error" role="alert">{error}</p>}
-    {catalog && items ? <IntroCards items={items} catalog={catalog} workspace={workspace} now={now} run={perform} busy={busy} route={`practice/handsfree/${run.id}`} /> : <p className="small muted" role="status">Opening the intro cards...</p>}
+    {catalog && items ? <IntroCards items={items} catalog={catalog} workspace={workspace} now={now} run={perform} busy={busy} route={`practice/set/${run.id}/handsfree`} /> : <p className="small muted" role="status">Opening the intro cards...</p>}
     <div className="hf-startbar"><button type="button" className="button primary" onClick={startListening}><Headphones size={18} /> Start listening</button></div>
   </div>
 
   return <div className="dr hf">
-    <a className="back-link" href="#practice"><ArrowLeft size={16} /> Practice</a>
+    <a className="back-link" href={run.back}><ArrowLeft size={16} /> {run.shortcut ? 'Practice' : run.title}</a>
     <PageHeading eyebrow="Hands-free" title={run.title} action={<button type="button" className="button secondary" onClick={() => { playerRef.current?.pause(); setView('intro') }}><ListChecks size={16} /> Items</button>}>Listen, answer aloud, hear the answer, repeat it. Nothing is graded.</PageHeading>
     {error && <p className="notice error" role="alert">{error}</p>}
     <section className="panel hf-stage" aria-label="Now playing" aria-live="polite">

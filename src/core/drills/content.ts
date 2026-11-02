@@ -92,7 +92,7 @@ export function startContent(setId: string): Promise<void> {
 
 async function generate(setId: string, signal: AbortSignal): Promise<void> {
   const set = await db.drillSets.get(setId)
-  if (!set || set.status !== 'active') return
+  if (!set || set.status === 'abandoned') return
   const catalog = await loadCatalog()
   const items = await loadItems(set.refs, catalog)
   const sentences: Record<string, Sentence> = { ...set.content.sentences }

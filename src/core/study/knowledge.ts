@@ -17,7 +17,6 @@ import { cancelGeneration, exerciseCountPreference, isGenerating, runGeneration,
 import { ACTIVITY_SKILLS } from './skill-map'
 import { recordSkillPractice } from './skills'
 import type { DrillSet } from '../drills/contracts'
-import type { HandsfreeRun } from '../handsfree/contracts'
 import { emptySchedulingState, schedule, type Rating, type SchedulingState } from './fsrs'
 
 // Knowledge set, next-group selection, review selection and exercise sessions.
@@ -154,9 +153,11 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
   const connection = await requireConnection()
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
-  const next = nextGroup(catalog, known)
-  if (!next) throw new Error('Every available curriculum group is already in your knowledge set.')
   const sessions = await db.exerciseSessions.toArray()
+  // Items of lessons still under way join the knowledge set when those lessons finish, but the next group must not be the same one.
+  const pending = new Set(sessions.filter(session => session.status === 'active' && session.addedRefs === undefined).flatMap(session => session.addOnFinish ?? []))
+  const next = nextGroup(catalog, new Set([...known, ...pending]))
+  if (!next) throw new Error('Every available curriculum group is already in your knowledge set.')
   const targetRefs = next.units.map(unit => unit.ref)
   const reviewRefs = recentReviewRefs(sessions, new Set(targetRefs)).filter(ref => known.has(ref) && catalog.units.has(ref))
   const now = Date.now()
@@ -167,11 +168,11 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
     const resumed = resume ? await activeSession('new') : await db.exerciseSessions.where('status').equals('active')
       .filter(session => session.mode === 'new' && !session.redoOf && session.groupId === next.group.id).first()
     if (resumed) return resumed.id
-    const addedRefs = await addUnits(next.newUnits, 'new', now)
+    const addOnFinish = next.newUnits.map(unit => unit.ref)
     const sessionId = crypto.randomUUID()
     created = {
       id: sessionId, mode: 'new', domain: DOMAIN, groupId: next.group.id, targetRefs, reviewRefs,
-      exercises: openingExercises(catalog, known, { id: sessionId, targetRefs }, []), cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: count, addedRefs,
+      exercises: openingExercises(catalog, known, { id: sessionId, targetRefs }, []), cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: count, addOnFinish,
     }
     return saveSession(created)
   })
@@ -233,12 +234,15 @@ export async function settleInterrupted(sessionId: string): Promise<void> {
   if (!session || session.status !== 'active' || session.generation !== 'running' || !session.exercises.length) return
   const phrases = await sourceTargets(session.mode === 'new' ? known : [...session.targetRefs, ...session.reviewRefs])
   const fill = fillLocalExercises(localInput(catalog, known, session, phrases), Math.max(0, (session.exerciseCount ?? await exerciseCountPreference()) - session.exercises.length))
-  await db.transaction('rw', db.exerciseSessions, async () => {
+  const finished = await db.transaction('rw', db.exerciseSessions, async () => {
     const current = await db.exerciseSessions.get(sessionId)
-    if (!current || current.status !== 'active' || current.generation !== 'running') return
+    if (!current || current.status !== 'active' || current.generation !== 'running') return false
     const settled: ExerciseSession = { ...omit(current, 'generation', 'generationError'), exercises: [...current.exercises, ...fill], aiNotice: 'The AI part of this lesson was interrupted, so it carries on with vocabulary practice.' }
-    await db.exerciseSessions.put(settled.cursor >= queueLength(settled) ? { ...settled, status: 'completed', completedAt: Date.now() } : settled)
+    const done = settled.cursor >= queueLength(settled)
+    await db.exerciseSessions.put(done ? { ...settled, status: 'completed', completedAt: Date.now() } : settled)
+    return done
   })
+  if (finished) await introduceLessonItems(sessionId)
 }
 
 export async function dueCards(now: number): Promise<StudyCard[]> {
@@ -331,7 +335,9 @@ export async function submitExerciseAnswer(sessionId: string, index: number, res
     for (const ref of exercise.targets) {
       // A match charges each wrong pairing to one item; the other items in it were matched cleanly.
       const rating: Rating = (missed ? !missed.has(ref) : result.correct) ? 3 : 1
-      const card = await db.studyCards.get(cardId(ref, DOMAIN))
+      let card = await db.studyCards.get(cardId(ref, DOMAIN))
+      // A lesson's own items join the knowledge set when it is finished, but their first answers schedule them all the same: the card is made now and kept.
+      if (!card && session.addOnFinish?.includes(ref)) { card = newCard(ref, now); await db.studyCards.add(card) }
       if (!card) continue // Items removed from the knowledge set are not rescheduled.
       await db.studyCards.put({ ...card, ...schedule(schedulingState(card), rating, now), updatedAt: now })
       if (inKnowledge.has(ref)) await recordJournal(reviewEvent(ref, rating, now, id))
@@ -342,7 +348,9 @@ export async function submitExerciseAnswer(sessionId: string, index: number, res
 
 export async function advanceExercise(sessionId: string, index: number): Promise<void> {
   if (!Number.isInteger(index) || index < 0) throw new Error('Invalid exercise position.')
-  await db.transaction('rw', db.exerciseSessions, db.exerciseAttempts, async () => {
+  const catalog = await loadCatalog()
+  // The last answer completes the lesson and introduces its items in one step, so nothing sees a finished lesson whose items are not yet known.
+  await db.transaction('rw', [db.exerciseSessions, db.exerciseAttempts, db.knowledge, db.studyCards, db.journal], async () => {
     const session = await db.exerciseSessions.get(sessionId)
     if (!session) throw new Error('Exercise session not found.')
     if (session.status === 'completed' || session.cursor > index) return
@@ -351,9 +359,35 @@ export async function advanceExercise(sessionId: string, index: number): Promise
       // While the AI is still adding exercises the cursor may wait just past the last one.
       await db.exerciseSessions.put({ ...session, cursor: index + 1 })
     } else {
-      await db.exerciseSessions.put({ ...session, status: 'completed', completedAt: Date.now() })
+      const now = Date.now()
+      const owed = !!session.addOnFinish?.length && session.addedRefs === undefined
+      const added = owed ? await addUnits(curriculumUnits(catalog, session.addOnFinish!), 'new', now) : undefined
+      await db.exerciseSessions.put({ ...session, status: 'completed', completedAt: now, ...(added ? { addedRefs: added } : {}) })
     }
   })
+}
+
+/**
+ * A finished New lesson adds its items to the knowledge set, once, and records what it added (addedRefs). Lessons from before this rule
+ * added their items when they started and are left as they are. Returns the refs added.
+ */
+export async function introduceLessonItems(sessionId: string, now = Date.now()): Promise<string[]> {
+  const claimed = await db.transaction('rw', db.exerciseSessions, async () => {
+    const session = await db.exerciseSessions.get(sessionId)
+    if (!session?.addOnFinish?.length || session.addedRefs !== undefined || session.status === 'abandoned') return undefined
+    await db.exerciseSessions.put({ ...session, addedRefs: [] })
+    return session
+  })
+  if (!claimed) return []
+  try {
+    const catalog = await loadCatalog()
+    const added = await db.transaction('rw', [db.knowledge, db.studyCards, db.journal], () => addUnits(curriculumUnits(catalog, claimed.addOnFinish!), 'new', now))
+    await db.exerciseSessions.update(sessionId, { addedRefs: added })
+    return added
+  } catch (cause) {
+    await db.exerciseSessions.update(sessionId, { addedRefs: undefined })
+    throw cause
+  }
 }
 
 /** Abandons an unfinished session. Recorded answers keep their scheduling effect. */
@@ -377,7 +411,7 @@ export async function dismissAiNotice(sessionId: string): Promise<void> {
 /** How close an entry's addedAt must be to the run's own time to count as added by it (the run adds with its own clock reading, or a moment later). */
 const ADDED_WINDOW_MS = 5000
 
-export type RunKind = 'lesson' | 'drill' | 'handsfree'
+export type RunKind = 'lesson' | 'drill'
 
 /**
  * The refs a run added to the knowledge set that are still there. A run that recorded what it added (addedRefs) is believed, but an item
@@ -385,13 +419,15 @@ export type RunKind = 'lesson' | 'drill' | 'handsfree'
  * those of its items that were added (as New items, or as a study set's promotion) at the moment the run began or completed.
  */
 export async function runAddedRefs(kind: RunKind, id: string): Promise<string[]> {
-  const run = kind === 'lesson' ? await db.exerciseSessions.get(id) : kind === 'drill' ? await db.drillSets.get(id) : await db.handsfreeRuns.get(id)
+  const run = kind === 'lesson' ? await db.exerciseSessions.get(id) : await db.drillSets.get(id)
   if (!run) return []
-  let refs: readonly string[], at: number | undefined, recorded: boolean, anySource = false
+  let refs: readonly string[] = [], at: number | undefined, recorded = false, anySource = false
   if (kind === 'lesson') {
     const session = run as ExerciseSession
     if (session.mode !== 'new' || session.collectionId || session.lines || session.redoOf) return []
-    refs = session.addedRefs ?? session.targetRefs; at = session.createdAt; recorded = !!session.addedRefs
+    // A lesson under the finish rule adds its items when completed (and has nothing yet while unfinished); older ones added them when they started.
+    if (session.addOnFinish && session.addedRefs === undefined) return []
+    refs = session.addedRefs ?? session.targetRefs; at = session.addOnFinish ? session.completedAt : session.createdAt; recorded = !!session.addedRefs
   } else if (kind === 'drill') {
     const set = run as DrillSet
     recorded = set.addedRefs !== undefined
@@ -399,11 +435,6 @@ export async function runAddedRefs(kind: RunKind, id: string): Promise<string[]>
     // Before introduce-on-finish a New items set added at creation; one over a study set promoted its items (as dictionary entries).
     if (!recorded && (set.source !== 'new' || set.originId)) return []
     anySource = !!set.collectionId
-  } else {
-    const hf = run as HandsfreeRun
-    recorded = hf.addedRefs !== undefined
-    refs = hf.addedRefs ?? (hf.addOnComplete ?? []); at = hf.completedAt
-    anySource = !!hf.promote?.length
   }
   if (at === undefined || !refs.length) return []
   const entries = (await db.knowledge.bulkGet([...new Set(refs)])).flatMap(entry => entry ? [entry] : [])

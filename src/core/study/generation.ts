@@ -54,9 +54,9 @@ export function runGeneration(sessionId: string, build: (signal: AbortSignal, em
   const job = (async () => {
     try {
       const result = await build(controller.signal, emit)
-      await db.transaction('rw', db.exerciseSessions, async () => {
+      const finished = await db.transaction('rw', db.exerciseSessions, async () => {
         const session = await db.exerciseSessions.get(sessionId)
-        if (!session || session.status !== 'active' || session.generation !== 'running') return
+        if (!session || session.status !== 'active' || session.generation !== 'running') return false
         const settled: ExerciseSession = {
           ...omit(session, 'generation', 'generationError'),
           exercises: result.appended ? [...session.exercises, ...result.exercises] : result.exercises,
@@ -64,8 +64,12 @@ export function runGeneration(sessionId: string, build: (signal: AbortSignal, em
           ...(result.phases ? { phases: result.phases } : {}), ...(result.notice ? { aiNotice: result.notice } : {}),
         }
         // A learner who already played everything and was waiting for more is done when nothing more came.
-        await db.exerciseSessions.put(settled.cursor >= queueLength(settled) && settled.exercises.length > 0 ? { ...settled, status: 'completed', completedAt: Date.now() } : settled)
+        const done = settled.cursor >= queueLength(settled) && settled.exercises.length > 0
+        await db.exerciseSessions.put(done ? { ...settled, status: 'completed', completedAt: Date.now() } : settled)
+        return done
       })
+      // A lesson finished by waiting for its last exercises introduces its items too.
+      if (finished) await (await import('./knowledge')).introduceLessonItems(sessionId)
     } catch (reason) {
       if (controller.signal.aborted) return
       const message = (reason instanceof Error ? reason.message : 'The exercises could not be generated.').slice(0, 600)

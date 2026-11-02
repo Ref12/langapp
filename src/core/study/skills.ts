@@ -21,16 +21,16 @@ export async function recordSkillPractice(refs: readonly string[], skills: reado
   await db.transaction('rw', db.skillPractice, () => bump(unique(refs.flatMap(ref => skills.map(skill => ({ ref, skill })))), now))
 }
 
-/** Counts pairs once per Hands-free run: the run remembers which (item, skill) pairs it has counted, so a replay or resume adds nothing. */
-export async function recordRunPractice(runId: string, refs: readonly string[], skills: readonly Skill[], now = Date.now()): Promise<number> {
-  return db.transaction('rw', [db.handsfreeRuns, db.skillPractice], async () => {
-    const run = await db.handsfreeRuns.get(runId)
-    if (!run) return 0
-    const seen = new Set(run.practiced ?? [])
+/** Counts pairs once per set's Hands-free activity: it remembers which (item, skill) pairs it has counted, so a replay or resume adds nothing. */
+export async function recordRunPractice(setId: string, refs: readonly string[], skills: readonly Skill[], now = Date.now()): Promise<number> {
+  return db.transaction('rw', [db.drillSets, db.skillPractice], async () => {
+    const set = await db.drillSets.get(setId)
+    if (!set?.handsfree) return 0
+    const seen = new Set(set.handsfree.practiced ?? [])
     const fresh = unique(refs.flatMap(ref => skills.map(skill => ({ ref, skill })))).filter(pair => !seen.has(pair.ref + '|' + pair.skill))
     if (!fresh.length) return 0
     await bump(fresh, now)
-    await db.handsfreeRuns.update(runId, { practiced: [...seen, ...fresh.map(pair => pair.ref + '|' + pair.skill)].slice(-500) })
+    await db.drillSets.update(setId, { handsfree: { ...set.handsfree, practiced: [...seen, ...fresh.map(pair => pair.ref + '|' + pair.skill)].slice(-500) } })
     return fresh.length
   })
 }

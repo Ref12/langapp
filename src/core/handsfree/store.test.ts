@@ -2,7 +2,9 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { db, initializeWorkspace } from '../database'
 import { resetProfileStorage } from '../../test/profile-storage'
 import { addedLine } from './summary'
-import { completeHandsfreeRun, createHandsfreeRun, discardHandsfreeRun, exampleFor, loadHandsfreeSettings, repeatHandsfreeRun, unfinishedHandsfreeRuns, updateHandsfreeRun } from './store'
+import { exampleFor, loadHandsfreeSettings } from './store'
+import { createDrillSet, discardDrillSet, ensureHandsfree, finishHandsfree, handsfreeStopped, newHandsfreeActivity, recordDrillResult, restartHandsfree, resumeRoute, unfinishedSets, updateHandsfree } from '../drills/store'
+import { introduceLessonItems, startNewSession } from '../study/knowledge'
 import { handsfreeSettingsSchema, normalizeHandsfreeSettings } from './contracts'
 import { generateScript } from './script'
 import type { Catalog } from '../study/catalog'
@@ -13,39 +15,81 @@ beforeEach(async () => {
   await initializeWorkspace()
 })
 
-describe('Hands-free store: knowledge set', () => {
-  it('adds a New items run to the knowledge set only when it is completed, and only once', async () => {
+const shortcut = (count = 3) => createDrillSet({ kind: 'new', count }, Date.now(), { handsfree: newHandsfreeActivity() })
+
+describe('Hands-free as a practice-set activity: knowledge set', () => {
+  it('adds a New items set to the knowledge set only when its Hands-free activity ends, and only once', async () => {
     const before = await db.knowledge.count()
-    const id = await createHandsfreeRun({ kind: 'new', count: 3 })
-    const run = (await db.handsfreeRuns.get(id))!
-    expect(run.addOnComplete?.length).toBeGreaterThan(0)
+    const id = await shortcut()
+    const set = (await db.drillSets.get(id))!
+    expect(set).toMatchObject({ shortcut: 'handsfree', status: 'active', handsfree: { started: false, done: false } })
+    expect(set.addOnFinish?.length).toBeGreaterThan(0)
     expect(await db.knowledge.count()).toBe(before)
-    await updateHandsfreeRun(id, { status: 'active', started: true, position: 4 })
+    await updateHandsfree(id, { started: true, position: 4 })
     expect(await db.knowledge.count()).toBe(before)
-    const added = await completeHandsfreeRun(id, 10)
-    expect(added.length).toBe(run.addOnComplete!.length)
+    const added = await finishHandsfree(id, 10)
+    expect(added.length).toBe(set.addOnFinish!.length)
     expect(await db.knowledge.count()).toBe(before + added.length)
-    expect((await db.handsfreeRuns.get(id))).toMatchObject({ status: 'completed', addedRefs: added })
-    // completing it again, or playing it again, adds nothing more
-    expect(await completeHandsfreeRun(id, 10)).toEqual([])
-    const again = await repeatHandsfreeRun(id)
-    expect((await db.handsfreeRuns.get(again))!.addOnComplete).toBeUndefined()
-    expect(await completeHandsfreeRun(again, 10)).toEqual([])
+    expect(await db.drillSets.get(id)).toMatchObject({ status: 'completed', addedRefs: added, handsfree: { done: true, position: 10 } })
+    // finishing it again, or playing it again, adds nothing more
+    expect(await finishHandsfree(id, 10)).toEqual([])
+    await restartHandsfree(id)
+    expect((await db.drillSets.get(id))!.handsfree).toMatchObject({ started: false, position: 0, done: false })
+    expect(await finishHandsfree(id, 10)).toEqual([])
     expect(await db.knowledge.count()).toBe(before + added.length)
   })
 
-  it('adds nothing for an abandoned or discarded run, nor for a review run', async () => {
+  it('introduces the items when ANY activity first finishes: a drill type finishing does it, a later Hands-free finish adds nothing', async () => {
     const before = await db.knowledge.count()
-    const id = await createHandsfreeRun({ kind: 'new', count: 3 })
-    await updateHandsfreeRun(id, { status: 'active', started: true, position: 2 })
-    expect(unfinishedHandsfreeRuns(await db.handsfreeRuns.toArray()).map(run => run.id)).toEqual([id])
-    await updateHandsfreeRun(id, { status: 'abandoned' })
-    expect(unfinishedHandsfreeRuns(await db.handsfreeRuns.toArray())).toHaveLength(1)
-    await discardHandsfreeRun(id)
-    expect(unfinishedHandsfreeRuns(await db.handsfreeRuns.toArray())).toHaveLength(0)
+    const id = await createDrillSet({ kind: 'new', count: 3 })
+    const set = (await db.drillSets.get(id))!
+    expect(await db.knowledge.count()).toBe(before)
+    // a partly done type adds nothing; completing every item of the type does
+    await recordDrillResult(id, 'pinyin', set.refs[0], 'got', set.refs)
+    if (set.refs.length > 1) expect(await db.knowledge.count()).toBe(before)
+    for (const ref of set.refs.slice(1)) await recordDrillResult(id, 'pinyin', ref, 'got', set.refs)
+    const added = (await db.drillSets.get(id))!.addedRefs!
+    expect(added.length).toBeGreaterThan(0)
+    expect(await db.knowledge.count()).toBe(before + added.length)
+    await ensureHandsfree(id, loadHandsfreeSettings())
+    expect(await finishHandsfree(id, 5)).toEqual([])
+    // a regular set is not finished by its Hands-free activity
+    expect((await db.drillSets.get(id))!.status).toBe('active')
+    expect(await db.knowledge.count()).toBe(before + added.length)
+  })
+
+  it('a partly played Hands-free set stays unfinished and keeps its prompt; one never started is not listed; a discarded one adds nothing', async () => {
+    const before = await db.knowledge.count()
+    const id = await shortcut()
+    expect(unfinishedSets(await db.drillSets.toArray())).toHaveLength(0)
+    await updateHandsfree(id, { started: true, position: 2 })
+    expect(unfinishedSets(await db.drillSets.toArray()).map(set => set.id)).toEqual([id])
+    expect(handsfreeStopped((await db.drillSets.get(id))!)).toBe(true)
+    expect(resumeRoute((await db.drillSets.get(id))!)).toBe(`practice/set/${id}/handsfree`)
+    expect((await db.drillSets.get(id))!.handsfree!.position).toBe(2)
+    await discardDrillSet(id)
+    expect(unfinishedSets(await db.drillSets.toArray())).toHaveLength(0)
     expect(await db.knowledge.count()).toBe(before)
   })
 
+  it('a lesson adds its items when finished, not when started', async () => {
+    const connection = { id: 'assistant', model: 'm' } as never
+    await db.aiConnections.put({ id: 'assistant', endpointId: 'default', name: 'x', baseUrl: 'http://x', apiKey: 'k', model: 'm' } as never)
+    void connection
+    const before = await db.knowledge.count()
+    const id = await startNewSession()
+    const session = (await db.exerciseSessions.get(id))!
+    expect(session.addOnFinish?.length).toBeGreaterThan(0)
+    expect(session.addedRefs).toBeUndefined()
+    expect(await db.knowledge.count()).toBe(before)
+    const added = await introduceLessonItems(id)
+    expect(added.length).toBe(session.addOnFinish!.length)
+    expect(await db.knowledge.count()).toBe(before + added.length)
+    expect(await introduceLessonItems(id)).toEqual([])
+  })
+})
+
+describe('Hands-free finish line', () => {
   it('words the finish line from what was added', () => {
     expect(addedLine([...Array.from({ length: 5 }, (_, at) => 'vocabulary:w' + at), 'grammar:g1'])).toBe('Added 5 words and 1 grammar pattern to your knowledge set')
     expect(addedLine(['vocabulary:w1'])).toBe('Added 1 word to your knowledge set')
@@ -72,12 +116,12 @@ describe('Hands-free settings migration', () => {
   it('reads stored old settings from the device, and a saved run with old booleans plays like the new Full or Off wording', async () => {
     localStorage.setItem('handsfree.settings', JSON.stringify({ pause: 'long', repeats: 4, grammar: false, introductions: false, explain: true, emphasisRate: 0.7 }))
     expect(loadHandsfreeSettings()).toMatchObject({ pause: 'long', repeats: 4, itemWording: 'full', sectionIntros: 'off', emphasisRate: 0.7 })
-    const id = await createHandsfreeRun({ kind: 'new', count: 3 })
-    const run = (await db.handsfreeRuns.get(id))!
-    expect(run.settings).not.toHaveProperty('grammar')
-    // an old run in the database still resumes: its booleans are read as the new choices
-    await db.handsfreeRuns.update(id, { settings: { pause: 'short', repeats: 1, grammar: false, explain: false, introductions: true } as never })
-    const old = (await db.handsfreeRuns.get(id))!.settings
+    const id = await shortcut()
+    const set = (await db.drillSets.get(id))!
+    expect(set.handsfree!.settings).not.toHaveProperty('grammar')
+    // an old activity in the database still resumes: its booleans are read as the new choices
+    await db.drillSets.update(id, { handsfree: { ...set.handsfree!, settings: { pause: 'short', repeats: 1, grammar: false, explain: false, introductions: true } as never } })
+    const old = (await db.drillSets.get(id))!.handsfree!.settings
     const words = [{ ref: 'vocabulary:w1', kind: 'vocabulary' as const, zh: '休息', en: 'rest' }]
     const said = (settings: typeof old) => generateScript(words, {}, settings, 1).segments.flatMap(segment => segment.kind === 'say' ? [segment.text] : [])
     expect(said(old)).toContain('rest')

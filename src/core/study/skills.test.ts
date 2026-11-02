@@ -19,7 +19,7 @@ describe('skill practice store', () => {
   })
 
   it('counts a Hands-free run once per item and skill, however often it plays', async () => {
-    await db.handsfreeRuns.add({ id: 'r', title: 't', refs: ['vocabulary:a'], source: 'new', seed: 1, settings: { pause: 'normal', repeats: 3 }, status: 'active', started: true, position: 0, createdAt: 1, updatedAt: 1 })
+    await db.drillSets.add({ id: 'r', title: 't', refs: ['vocabulary:a'], source: 'new', status: 'active', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, createdAt: 1, updatedAt: 1, shortcut: 'handsfree', handsfree: { seed: 1, settings: { pause: 'normal', repeats: 3 }, started: true, position: 0, done: false } })
     expect(await recordRunPractice('r', ['vocabulary:a'], PROMPT_SKILLS.toEnglish)).toBe(1)
     expect(await recordRunPractice('r', ['vocabulary:a'], PROMPT_SKILLS.toEnglish)).toBe(0)
     expect(await recordRunPractice('r', ['vocabulary:a'], PROMPT_SKILLS.toChinese)).toBe(1)

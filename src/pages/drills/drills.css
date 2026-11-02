@@ -199,3 +199,11 @@
 .dr-programs .dr-rows li > .button-row { margin-top: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .dr-stack { display: grid; gap: 14px; min-width: 0; }
 .resume-row > .save-trigger.icon-only { flex: 0 0 44px; width: 44px; min-width: 0; height: 44px; padding: 0; border: 0; background: transparent; color: var(--text-secondary); }
+
+/* Recent sets: the ⋯ overflow of a row and the In progress tag */
+.resume-row .row-menu { position: relative; flex: 0 0 44px; }
+.resume-row .row-menu > .icon-button { font-size: 1.25rem; line-height: 1; }
+.row-menu-list { position: absolute; right: 0; top: 100%; z-index: 20; min-width: 220px; display: grid; padding: 4px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface, #fff); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); }
+.row-menu-list .menu-item { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.row-menu-list .menu-item:hover { background: var(--surface-raised); }
+.resume-row .resume-text strong .in-progress { margin-left: 8px; vertical-align: middle; font-weight: 500; }

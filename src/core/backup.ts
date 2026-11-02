@@ -1,4 +1,5 @@
 import Dexie, { type Transaction } from 'dexie'
+import { handsfreeRunToSet } from './handsfree/migrate'
 import { db, loadWorkspace } from './database'
 import type { Workspace } from './model'
 import { clearUnsavedDrafts } from './assistant/drafts'
@@ -11,7 +12,7 @@ export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from
 function exportableTables() {
   return [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
     db.assistantThreads, db.assistantMessages, db.assistantRuns,
-    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks, db.practiceHistory, db.sudokuGames, db.collections, db.collectionItems, db.drillSets, db.handsfreeRuns, db.skillPractice]
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks, db.practiceHistory, db.sudokuGames, db.collections, db.collectionItems, db.drillSets, db.skillPractice]
 }
 
 export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<string> {
@@ -28,11 +29,10 @@ export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<str
     }
     const sudokuBoards = await listSavedSudokuBoards()
     const drillSets = await db.drillSets.toArray()
-    const handsfreeRuns = await db.handsfreeRuns.toArray()
     const skillPractice = await db.skillPractice.toArray()
     const collections = await readCollectionsState(db)
     const known = new Set(workspace.knowledge.map(entry => entry.ref))
-    return exportBackup({ ...workspace, studyCards: knowledgeCards(workspace.studyCards, known), library: await db.libraryBooks.toArray(), ...(collections.collections.length ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(handsfreeRuns.length ? { handsfreeRuns } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, assistant)
+    return exportBackup({ ...workspace, studyCards: knowledgeCards(workspace.studyCards, known), library: await db.libraryBooks.toArray(), ...(collections.collections.length ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, assistant)
   })
 }
 
@@ -74,8 +74,10 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
       await db.collections.bulkAdd(workspace.collections?.collections ?? [])
       await db.collectionItems.bulkAdd(workspace.collections?.items ?? [])
       for (const card of workspace.collections?.cards ?? []) await db.studyCards.put(richerCard(await db.studyCards.get(card.id), card))
-      await db.drillSets.bulkAdd(workspace.drillSets ?? [])
-      await db.handsfreeRuns.bulkAdd(workspace.handsfreeRuns ?? [])
+      // A backup from before Hands-free became an activity carries runs: they come back as sets.
+      const known = new Set((workspace.drillSets ?? []).map(set => set.id))
+      const legacy = (workspace.handsfreeRuns ?? []).flatMap(run => { const set = handsfreeRunToSet(run); return set && !known.has(set.id) ? [set] : [] })
+      await db.drillSets.bulkAdd([...(workspace.drillSets ?? []), ...legacy])
       await db.skillPractice.bulkAdd(workspace.skillPractice ?? [])
       await db.exerciseSessions.bulkAdd(study.sessions)
       await db.exerciseAttempts.bulkAdd(study.attempts)

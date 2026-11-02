@@ -45,8 +45,8 @@ describe('Practice by skill', () => {
     const button = await screen.findByRole('button', { name: 'Hands-free least practised (listening)' })
     await waitFor(() => expect(button).toBeEnabled())
     await user.click(button)
-    await waitFor(async () => expect(await db.handsfreeRuns.count()).toBe(1))
-    expect((await db.handsfreeRuns.toArray())[0].refs).toEqual(['vocabulary:wo3--me'])
+    await waitFor(async () => expect(await db.drillSets.count()).toBe(1))
+    expect((await db.drillSets.toArray())[0].refs).toEqual(['vocabulary:wo3--me'])
   })
 })
 
