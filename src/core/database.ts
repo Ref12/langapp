@@ -18,6 +18,7 @@ import type { Collection, CollectionItem } from './collections/contracts'
 import type { DrillSet } from './drills/contracts'
 import type { Skill, SkillPractice } from './study/skill-map'
 import { handsfreeRunToSet } from './handsfree/migrate'
+import { sourceTitle } from './drills/title'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
 export interface BackupConfigRecord {
@@ -125,6 +126,10 @@ export class LearningDatabase extends Dexie {
       const runs = await transaction.table('handsfreeRuns').toArray()
       const sets = runs.flatMap(run => { const set = handsfreeRunToSet(run); return set ? [set] : [] })
       if (sets.length) await transaction.table('drillSets').bulkPut(sets)
+    })
+    // Sets made by the Hands-free shortcut were titled after the practice type; they take their source's title.
+    this.version(24).stores({}).upgrade(async transaction => {
+      await transaction.table('drillSets').toCollection().modify((set: { title: string; source?: string; emphasis?: unknown }) => { set.title = sourceTitle(set).title })
     })
   }
 }

@@ -126,7 +126,7 @@ describe('Hands-free settings migration', () => {
     const said = (settings: typeof old) => generateScript(words, {}, settings, 1).segments.flatMap(segment => segment.kind === 'say' ? [segment.text] : [])
     expect(said(old)).toContain('rest')
     expect(said(old).some(text => text.startsWith('This is how you say'))).toBe(false)
-    expect(said(old)[0]).toMatch(/^Introducing new words\./)
+    expect(said(old)[0]).toMatch(/^Hands-free lesson\./)
   })
 })
 

@@ -23,7 +23,7 @@ The pattern is always the same: **prompt → pause (you answer aloud) → the an
 
 ### Flow
 
-The Hands-free button on Practice home creates a practice set from the current selection (a **Hands-free-only set**, `shortcut: 'handsfree'`) and opens it straight on its Hands-free activity at `#practice/set/<id>/handsfree`. Any other set reaches the same activity from its own page. A run opens on the **intro cards** (the same cards a lesson uses for new items) under a count heading ("6 items"), with no separate list of every item above them, then **Start listening**, which is always visible. A run that has already started goes straight to the player, with an **Items** button to see the cards again.
+The Hands-free button on Practice home creates a practice set from the current selection (a **Hands-free-only set**, `shortcut: 'handsfree'`) and opens it straight on its Hands-free activity at `#practice/set/<id>/handsfree`. Any other set reaches the same activity from its own page. A run opens on the **intro cards** (the same cards a lesson uses for new items) under a count heading ("6 items"), with no separate list of every item above them, then **Start listening**, which is always visible. A run that has already started goes straight to the player, with a **View items** button to see the cards again.
 
 **Settings** is a button inside the player (next to Pocket mode) that opens a sheet on phones and a popover on desktop with every Hands-free setting. A changed setting applies from the **next prompt** of the run in progress: the script is rebuilt, the current prompt is found again in it by phase, item and direction, and playback carries on from there with the new script. Settings → Hands-free keeps the defaults for new runs.
 
@@ -35,17 +35,31 @@ The Hands-free button on Practice home creates a practice set from the current s
 
 Every word and sentence is repeated the same way: **the whole phrase → pause; the build-up from the end (only for 3+ syllables), each step → pause; then the whole phrase again at normal speed**, until the **Repeats** setting is reached (whole-phrase repeat-afters in total, the first included; 1–5, default 3).
 
-1. **Introduce each word, in order**, with the structure above. After each new word, recall the previous one once: "And how do you say *work*?" → pause → answer. (The user liked this; keep it.)
-2. **Recall in order.**
-   - English → Chinese for every word: "How do you say *rest*?" → pause → answer → pause to repeat.
-3. **Recall scrambled, both directions.**
-   - English → Chinese and Chinese → English, mixed, in random order.
-   - A word comes back after 1, then 3, then 6 other prompts, so recall is spaced out.
-4. **Grammar pattern** (when the set has one).
-   - "This is how you say *I'm resting at home* in Mandarin:", then the sentence with the same whole, build-up, repeats structure.
-   - Then it is recalled like a word: "How do you say *I'm resting at home*?"
-   - Sentences come from the catalog examples for the pattern. AI-made substitution prompts ("Now say *I'm working at home*") are a later step.
-5. **Mixed round.** Words and sentences together, scrambled, both directions. This ends the run.
+Hands-free is **two practice types** in a set's list, each with its own activity (`handsfree` = Introduction, `handsfreeRecall` = Recall) and Start / Continue / Restart. Both follow the run's Wording, Section introductions and Emphasis settings, and both open at `#practice/set/<id>/handsfree` (Introduction) or `.../recall`. The shortcut on Practice home opens **Introduction for New items and Recall for Reviews**. The back link of both goes to the set page (its title), shortcut sets included.
+
+**The phrase of a word.** Each vocabulary word may have a **lesson phrase**: the same example a lesson shows for it, chosen as the *shortest* curriculum example that has an English translation and whose words are **all in the set or the knowledge set**. It is skipped when there is none, or when it is longer than about 12 syllables. Grammar patterns use their catalog sentence, as before. Words, phrases and grammar sentences are the run's *entities*.
+
+#### Hands-free introduction (a hands-free lesson)
+
+One run, one progress count, in set order:
+1. **Introduce each entity**: a word ("This is how you say, rest. As in, let's rest. In Mandarin." + the Chinese with whole / build-up / repeats), then its phrase right after it ("Here's a phrase: let's rest." + the same build-up and repeats), then a grammar sentence like a phrase. Particles and measure words are explained as before.
+2. **Recall each entity twice more**, once each way (English → Chinese, Chinese → English), scrambled with no entity twice in a row.
+
+A 10-word set with no phrases or grammar has 10 + 20 = **30 prompts**; each phrase or grammar sentence adds 3 (1 introduction, 2 recalls).
+
+#### Hands-free recall
+
+One scrambled pool over words, their phrases and grammar sentences, **both directions**, each card coming back after 1, then 3, then 6 other prompts (4 appearances per card). **The first time a card comes up it carries its context**: for a word "How do you say, rest, as in, let's rest?", for a phrase "How do you say: let's rest?"; later times are bare ("How do you say, rest?"). There is no Final mix. Each card is played 4 times (SPACING 1, 3, 6), so a 10-word set with no phrases or grammar has 10 words × 2 directions × 4 = **80 prompts**; each phrase or grammar sentence adds 8.
+
+#### Chinese → English prompts
+
+Full: "What does *休息* mean?" (a descriptive item: "What does … do?"); Abridged: the Chinese, then "In English?"; Off: the Chinese alone. On screen the instruction line reads "What does it mean? Say it in English."
+
+#### On screen
+
+An instruction line under the progress ("New word: repeat after me", "New phrase: repeat after me", "Say it in Mandarin", "What does it mean? Say it in English.", "Recall the one before") and a **New** / **Review** tag on item prompts (New = not in the knowledge set when the run started). The eye icon on the stage pauses and opens the current item's intro card in a sheet. **View items** (Eye icon) opens the items view, whose sticky bar says **Start listening** before the run has started and **Continue listening** after.
+
+**Existing runs.** A set's old `handsfree` activity is the Introduction activity. A run saved in the earlier mixed layout (no `layout: 3`) opens without errors at the top of its Introduction (its old position means nothing in the new script) and is marked `layout: 3`; a finished run stays finished. Changing a setting mid-run keeps the place through `findPrompt`. Old backups import unchanged (`layout` is optional).
 
 When the Hands-free activity **reaches the end** it is done, and the set's New items join the knowledge set if no other activity of the set has introduced them yet (see below); the finish screen says "Added 5 words and 1 grammar pattern to your knowledge set". A Hands-free-only set is also finished by it; in a regular set the set stays open for its other activities. Stopping part-way leaves the set unfinished at its saved prompt. **Play again** restarts the activity in a new order and adds nothing twice. A discarded set adds nothing.
 

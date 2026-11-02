@@ -70,8 +70,8 @@ export const handsfreeActivitySchema = z.object({
   /** Set when a run reached its end. */
   done: z.boolean(),
   finishedAt: timestamp.optional(),
-  /** 2 once `position` counts each section introduction as its own prompt; a run saved before that has none, and is converted when opened. */
-  layout: z.literal(2).optional(),
+  /** 3 once the run is the mixed flow (Introduction / Recall); an older run (none or 2) has a different script, so it is reset to the top when opened. */
+  layout: z.union([z.literal(2), z.literal(3)]).optional(),
   /** Practice-count pairs ("ref|skill") already counted, so a replay adds nothing. */
   practiced: z.array(z.string().max(220)).max(500).optional(),
 }).strict()
@@ -95,6 +95,8 @@ export const drillSetSchema = z.object({
   completedAt: timestamp.optional(),
   /** The Hands-free activity: its settings and where it stopped. */
   handsfree: handsfreeActivitySchema.optional(),
+  /** The Hands-free recall activity (the Hands-free activity above is the Introduction). */
+  handsfreeRecall: handsfreeActivitySchema.optional(),
   /** Made by the Hands-free shortcut: it is finished when its Hands-free activity reaches the end. */
   shortcut: z.literal('handsfree').optional(),
   /** Set once the set's intro cards have counted as reading practice. */

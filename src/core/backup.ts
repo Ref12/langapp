@@ -1,5 +1,6 @@
 import Dexie, { type Transaction } from 'dexie'
 import { handsfreeRunToSet } from './handsfree/migrate'
+import { sourceTitle } from './drills/title'
 import { db, loadWorkspace } from './database'
 import type { Workspace } from './model'
 import { clearUnsavedDrafts } from './assistant/drafts'
@@ -77,7 +78,7 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
       // A backup from before Hands-free became an activity carries runs: they come back as sets.
       const known = new Set((workspace.drillSets ?? []).map(set => set.id))
       const legacy = (workspace.handsfreeRuns ?? []).flatMap(run => { const set = handsfreeRunToSet(run); return set && !known.has(set.id) ? [set] : [] })
-      await db.drillSets.bulkAdd([...(workspace.drillSets ?? []), ...legacy])
+      await db.drillSets.bulkAdd([...(workspace.drillSets ?? []), ...legacy].map(sourceTitle))
       await db.skillPractice.bulkAdd(workspace.skillPractice ?? [])
       await db.exerciseSessions.bulkAdd(study.sessions)
       await db.exerciseAttempts.bulkAdd(study.attempts)

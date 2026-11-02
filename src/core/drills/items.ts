@@ -37,7 +37,7 @@ export async function loadItems(refs: readonly string[], catalog?: Catalog): Pro
   return items
 }
 
-const exampleIndexes = new WeakMap<Catalog, Map<string, { text: string; pinyin: string; translation: string }[]>>()
+const exampleIndexes = new WeakMap<Catalog, Map<string, { text: string; pinyin: string; translation: string; /** The vocabulary refs the example is made of. */ words: string[] }[]>>()
 
 /** Every authored example by the vocabulary refs and grammar labels it uses, built once per catalog. */
 function exampleIndex(catalog: Catalog) {
@@ -48,7 +48,7 @@ function exampleIndex(catalog: Catalog) {
     try {
       const rendered = renderExample(catalog, example)
       const list = index!.get(ref) ?? []
-      list.push({ ...rendered, translation: example.translation })
+      list.push({ ...rendered, translation: example.translation, words: example.segments.flatMap(segment => segment.word ? [`vocabulary:${segment.word}`] : []) })
       index!.set(ref, list)
     } catch { /* an example that cannot be rendered is not offered */ }
   }
@@ -76,4 +76,16 @@ export function catalogSentence(catalog: Catalog, item: ItemInfo): Sentence | un
   if (item.kind === 'source') return undefined
   const best = [...(exampleIndex(catalog).get(item.ref) ?? [])].sort((a, b) => a.text.length - b.text.length)[0]
   return best ? { zh: best.text, py: best.pinyin, en: best.translation, source: 'catalog' } : undefined
+}
+
+/** A lesson phrase longer than this many syllables is not offered in Hands-free. */
+export const MAX_PHRASE_SYLLABLES = 12
+/**
+ * The phrase a lesson shows for a vocabulary word: its shortest authored example (as catalogSentence picks) among those made only of words in `allowed`
+ * (the set's own words and the knowledge set), none when there is no such example or it is longer than MAX_PHRASE_SYLLABLES syllables.
+ */
+export function lessonPhrase(catalog: Catalog, ref: string, allowed: ReadonlySet<string>): { zh: string; en: string } | undefined {
+  const best = [...(exampleIndex(catalog).get(ref) ?? [])].filter(example => example.translation.trim() && example.words.every(word => allowed.has(word))).sort((a, b) => a.text.length - b.text.length)[0]
+  if (!best || Array.from(best.text).filter(char => /\p{Script=Han}/u.test(char)).length > MAX_PHRASE_SYLLABLES) return undefined
+  return { zh: best.text, en: best.translation.trim() }
 }

@@ -1,7 +1,7 @@
 import { loadCatalog, type Catalog } from '../study/catalog'
-import { catalogSentence, loadItems } from '../drills/items'
+import { catalogSentence, lessonPhrase, loadItems } from '../drills/items'
 import { DEFAULT_HANDSFREE_SETTINGS, handsfreeSettingsSchema, type HandsfreeRun, type HandsfreeSettings } from './contracts'
-import { generateScript, type Script, type ScriptItem, type ScriptSentence } from './script'
+import { generateScript, type Script, type ScriptItem, type ScriptMode, type ScriptSentence } from './script'
 
 const SETTINGS_KEY = 'handsfree.settings'
 
@@ -36,15 +36,19 @@ export function exampleFor(catalog: Catalog, ref: string): { example?: string } 
   return example ? { example } : {}
 }
 
-/** The run's script: its items from the catalog, grammar sentences from the catalog examples. */
-export async function buildRunScript(run: Pick<HandsfreeRun, 'refs' | 'settings' | 'seed'>): Promise<{ script: Script; items: ScriptItem[] }> {
+/** The run's script: its items from the catalog, grammar sentences and each word's lesson phrase from the catalog examples. `known` is the knowledge set, whose words a lesson phrase may also use. */
+export async function buildRunScript(run: Pick<HandsfreeRun, 'refs' | 'settings' | 'seed'>, mode: ScriptMode = 'introduction', known: ReadonlySet<string> = new Set()): Promise<{ script: Script; items: ScriptItem[] }> {
   const catalog = await loadCatalog()
   const found = await loadItems(run.refs, catalog)
+  const allowed = new Set([...known, ...run.refs])
   const sentences: Record<string, ScriptSentence | undefined> = {}
   for (const item of found) {
     const sentence = item.kind === 'grammar' ? catalogSentence(catalog, item) : undefined
     if (sentence) sentences[item.ref] = { zh: sentence.zh, en: sentence.en }
   }
-  const items: ScriptItem[] = found.map(item => ({ ref: item.ref, kind: item.kind, zh: item.zh, en: item.en, ...(item.kind === 'vocabulary' ? exampleFor(catalog, item.ref) : {}) }))
-  return { script: generateScript(items, sentences, run.settings, run.seed), items }
+  const items: ScriptItem[] = found.map(item => {
+    const phrase = item.kind === 'vocabulary' ? lessonPhrase(catalog, item.ref, allowed) : undefined
+    return { ref: item.ref, kind: item.kind, zh: item.zh, en: item.en, ...(item.kind === 'vocabulary' ? exampleFor(catalog, item.ref) : {}), ...(phrase ? { phrase } : {}) }
+  })
+  return { script: generateScript(items, sentences, run.settings, run.seed, mode), items }
 }

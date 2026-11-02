@@ -126,6 +126,10 @@
 /* Hands-free */
 .hf-stage { display: grid; gap: 14px; justify-items: center; text-align: center; }
 .hf-phase { margin: 0; font-weight: 600; }
+.hf-instruction { margin: 0; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.hf-tag { flex: none; white-space: nowrap; font-size: 0.75rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; opacity: 0.8; }
+.hf-tag.hf-new { opacity: 1; background: var(--accent, #0b6b5d); color: #fff; border-color: transparent; }
+.hf-pocket .hf-instruction { color: #9fb0c0; }
 .hf-prompt { margin: 0; font-size: clamp(1.8rem, 9vw, 2.8rem); line-height: 1.25; min-height: 3.2em; display: flex; align-items: center; justify-content: center; overflow-wrap: anywhere; }
 .hf-stage progress { width: 100%; }
 .hf-controls { display: flex; gap: 16px; align-items: center; justify-content: center; }
@@ -169,6 +173,8 @@
 .resume-row { flex-wrap: wrap; gap: 4px 8px; }
 .resume-row .resume-text { flex: 1 1 0; min-width: 0; display: grid; gap: 4px; overflow-wrap: anywhere; }
 .resume-row .resume-text .small { margin-top: 0; }
+/* Narrow screens: the text keeps the full width and the icon buttons sit on their own line under it. */
+@media (max-width: 520px) { .resume-row .resume-text { flex: 1 0 100%; } }
 .resume-row > .icon-button { flex: 0 0 44px; }
 .resume-row .dr-confirm { flex: 1 0 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 4px; }
 .resume-row .dr-confirm span { flex: 1 1 auto; }

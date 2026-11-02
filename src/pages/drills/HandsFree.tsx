@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { ArrowLeft, Headphones, ListChecks, Moon, Pause, Play, Settings as SettingsIcon, SkipBack, SkipForward } from 'lucide-react'
+import { ArrowLeft, Eye, Headphones, Moon, Pause, Play, Settings as SettingsIcon, SkipBack, SkipForward } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
 import { useCatalog } from '../../components/study/useCatalog'
 import { HandsfreeSettingsForm } from '../../components/handsfree/HandsfreeSettingsForm'
 import { normalizeHandsfreeSettings, type HandsfreeSettings } from '../../core/handsfree/contracts'
 import { buildRunScript, loadHandsfreeSettings, saveHandsfreeSettings } from '../../core/handsfree/store'
-import { ensureHandsfree, finishHandsfree, updateHandsfree } from '../../core/drills/store'
+import { activityOf, handsfreeRoute, ensureHandsfree, finishHandsfree, updateHandsfree, type HandsfreeKind } from '../../core/drills/store'
 import type { DrillSet } from '../../core/drills/contracts'
 import { addedLine } from '../../core/handsfree/summary'
 import { resolveVoices } from '../../core/handsfree/voices'
@@ -16,7 +16,7 @@ import { Sheet } from './Sheet'
 import { ACTIVITY_SKILLS, PROMPT_SKILLS } from '../../core/study/skill-map'
 import { recordRunPractice } from '../../core/study/skills'
 import { createHandsfreePlayer, type HandsfreeState } from '../../core/handsfree/player'
-import { PHASE_LABEL, findPrompt, positionAfterHeaders, promptKeyAt, type Script } from '../../core/handsfree/script'
+import { findPrompt, promptKeyAt, type Script } from '../../core/handsfree/script'
 import { createWakeLockController } from '../../core/pocket/wake-lock'
 import './drills.css'
 
@@ -28,15 +28,22 @@ const HAN_TEXT = /\p{Script=Han}/u
 /** What has been spoken of the current prompt's answer: Chinese (shown with pinyin) from the moment it starts, or the English answer. */
 interface Heard { zh?: string; en?: string; /** The section introduction being spoken: shown as the header until the first prompt. */ section?: string; /** What the section contains, under its header (the Full section introductions). */ detail?: string }
 /** A section introduction (index 0) shows its header in place of the progress; an item shows "Phase N of M". */
-const progressLabel = (marker: { phase: keyof typeof PHASE_LABEL; index: number; total: number; prompt: string }) => marker.index === 0 ? marker.prompt : `${PHASE_LABEL[marker.phase]} ${marker.index} of ${marker.total}`
+const progressLabel = (marker: { index: number; total: number; prompt: string }) => marker.index === 0 ? marker.prompt : `${marker.index} of ${marker.total}`
+/** The one-line instruction for the current prompt. */
+export function instructionOf(marker: { index: number; act?: string; item?: string } | undefined): string {
+  if (!marker || marker.index === 0 || !marker.act) return ''
+  if (marker.act === 'intro') return `New ${marker.item === 'phrase' ? 'phrase' : marker.item === 'grammar' ? 'sentence' : 'word'}: repeat after me`
+  return marker.act === 'toChinese' ? 'Say it in Mandarin' : 'What does it mean? Say it in English.'
+}
 const hasHan = (text: string) => HAN_TEXT.test(text)
 
 /** The player's display, also the pocket-mode screen: the phase, the prompt, then the answer once it is being spoken. */
-function Display({ phase, prompt, heard, done, total, position, added, className = '' }: { phase: string; prompt: string; heard: Heard; done: boolean; total: number; position: number; added: string; className?: string }) {
+function Display({ phase, instruction = '', fresh, prompt, heard, done, total, position, added, className = '' }: { phase: string; instruction?: string; /** True for a new item, false for a review one, undefined for no tag. */ fresh?: boolean; prompt: string; heard: Heard; done: boolean; total: number; position: number; added: string; className?: string }) {
   const zh = heard.zh
   const main = done ? 'Well done.' : heard.section ?? zh ?? prompt
   return <div className={'hf-display ' + className}>
     <p className="hf-phase" role="status">{phase}</p>
+    {!done && instruction && <p className="hf-instruction" data-testid="hf-instruction">{fresh !== undefined && <span className={'hf-tag' + (fresh ? ' hf-new' : '')} data-testid="hf-tag">{fresh ? 'New' : 'Review'}</span>} {instruction}</p>}
     {!done && zh && !hasHan(prompt) && prompt && <p className="hf-cue">{prompt}</p>}
     <p className={'hf-prompt' + (heard.section && !done ? ' hf-section' : '')} lang={!done && hasHan(main) ? 'zh-Hans' : undefined}>{main}</p>
     {!done && heard.section && heard.detail && <p className="hf-cue" data-testid="hf-section-detail">{heard.detail}</p>}
@@ -49,36 +56,34 @@ function Display({ phase, prompt, heard, done, total, position, added, className
 
 
 /** What the player works from: a set's items with its Hands-free activity's seed, settings and saved position. */
-interface Run { id: string; title: string; refs: string[]; seed: number; settings: HandsfreeSettings; started: boolean; position: number; layout?: 2; addedRefs?: string[]; back: string; shortcut: boolean }
-const runOf = (set: DrillSet): Run | undefined => set.handsfree ? { id: set.id, title: set.title, refs: set.refs, seed: set.handsfree.seed, settings: set.handsfree.settings, started: set.handsfree.started, position: set.handsfree.position, ...(set.handsfree.layout ? { layout: set.handsfree.layout } : {}),
-  ...(set.addedRefs ? { addedRefs: set.addedRefs } : {}), back: set.shortcut ? '#practice' : `#practice/set/${set.id}`, shortcut: !!set.shortcut } : undefined
+interface Run { id: string; title: string; refs: string[]; seed: number; settings: HandsfreeSettings; started: boolean; position: number; layout?: 2 | 3; kind: HandsfreeKind; addedRefs?: string[]; back: string; shortcut: boolean }
+const runOf = (set: DrillSet, kind: HandsfreeKind): Run | undefined => { const activity = activityOf(set, kind); return activity ? { kind, id: set.id, title: set.title, refs: set.refs, seed: activity.seed, settings: activity.settings, started: activity.started, position: activity.position, ...(activity.layout ? { layout: activity.layout } : {}),
+  ...(set.addedRefs ? { addedRefs: set.addedRefs } : {}), back: `#practice/set/${set.id}`, shortcut: !!set.shortcut } : undefined }
 
 /** The Hands-free activity of a set. The activity is created the first time it is opened. */
-export function HandsFree({ set, ...props }: PageProps & { set: DrillSet }) {
-  const missing = !set.handsfree
-  useEffect(() => { if (missing) void ensureHandsfree(set.id, loadHandsfreeSettings()) }, [missing, set.id])
-  const run = runOf(set)
-  // A run saved before section introductions became steps has its position counted without them: convert it once, then play.
-  const stale = !!run && run.layout !== 2
+export function HandsFree({ set, kind = 'introduction', ...props }: PageProps & { set: DrillSet; kind?: HandsfreeKind }) {
+  const missing = !activityOf(set, kind)
+  useEffect(() => { if (missing) void ensureHandsfree(set.id, loadHandsfreeSettings(), kind) }, [missing, set.id, kind])
+  const run = runOf(set, kind)
+  // A run saved before the mixed flow has a different script, so its place in it means nothing: it opens at the top (a finished or unstarted run is unchanged otherwise).
+  const stale = !!run && run.layout !== 3
   useEffect(() => {
     if (!run || !stale) return
     let live = true
-    void (async () => {
-      let position = run.position
-      if (run.started && run.position > 0) { try { position = positionAfterHeaders((await buildRunScript(run)).script, run.position) } catch { /* keep the saved position */ } }
-      if (live) await updateHandsfree(run.id, { layout: 2, position })
-    })()
+    void (async () => { if (live) await updateHandsfree(run.id, { layout: 3, position: 0 }, Date.now(), run.kind) })()
     return () => { live = false }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [run?.id, stale])
   if (!run || stale) return <div className="opening-workspace" role="status">Opening Hands-free...</div>
-  return <Player key={run.id} hf={run} {...props} />
+  return <Player key={run.id + run.kind} hf={run} {...props} />
 }
 
 const settingsKey = (settings: HandsfreeSettings) => (() => { const s = normalizeHandsfreeSettings(settings); return `${s.repeats}:${s.itemWording}:${s.sectionIntros}:${s.emphasis}:${s.emphasisRate}:${s.zhRate}` })()
 
 function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { hf: Run }) {
   const { catalog } = useCatalog()
+  // New or Review is judged against the knowledge set as it was when the run opened.
+  const startKnown = useRef<ReadonlySet<string>>(new Set(workspace.knowledge.map(entry => entry.ref)))
   const [items, setItems] = useState<ItemInfo[]>()
   // A run that has not started opens on its intro cards; one that has goes straight to the player, with an Items button to see them again.
   const [view, setView] = useState<'intro' | 'player'>(run.started ? 'player' : 'intro')
@@ -107,7 +112,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
     const before = scriptRef.current
     const at = playerRef.current?.state().prompt ?? 0
     const key = promptKeyAt(before, at)
-    void buildRunScript(run).then(({ script: built }) => {
+    void buildRunScript(run, run.kind, startKnown.current).then(({ script: built }) => {
       if (!live) return
       scriptRef.current = built
       setScript(built)
@@ -127,15 +132,15 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
       if (next.status === 'error') setError(next.error ?? 'Audio could not be played.')
       if (next.status === 'playing') setError('')
       const total = scriptRef.current.promptStarts.length
-      if (next.status === 'completed') void finishHandsfree(runId, total).catch(cause => setError(cause instanceof Error ? cause.message : 'The new items could not be added to your knowledge set.'))
+      if (next.status === 'completed') void finishHandsfree(runId, total, Date.now(), run.kind).catch(cause => setError(cause instanceof Error ? cause.message : 'The new items could not be added to your knowledge set.'))
       else if (next.status === 'playing' || next.status === 'paused') {
         lastSaved.current = next.prompt
         // Each prompt counts its item once per run (listening or speaking by the prompt's kind).
         if (next.status === 'playing') {
           const at = scriptRef.current.segments[scriptRef.current.promptStarts[next.prompt]]
-          if (at?.kind === 'marker' && at.ref && at.act) void recordRunPractice(runId, [at.ref], PROMPT_SKILLS[at.act]).catch(() => undefined)
+          if (at?.kind === 'marker' && at.ref && at.act) void recordRunPractice(runId, [at.ref], PROMPT_SKILLS[at.act], Date.now(), run.kind).catch(() => undefined)
         }
-        void updateHandsfree(runId, { ...(next.status === 'playing' ? { started: true } : {}), position: next.prompt })
+        void updateHandsfree(runId, { ...(next.status === 'playing' ? { started: true } : {}), position: next.prompt }, Date.now(), run.kind)
       }
     }, startRef.current, () => resolveVoices(voicesRef.current.settings, voicesRef.current.saved),
     // The answer shows only when its segment starts: Chinese with pinyin, or the English answer to a Chinese prompt.
@@ -153,9 +158,19 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
     const segment = script.segments[script.promptStarts[Math.min(state.prompt, total - 1)]]
     return segment?.kind === 'marker' ? segment : undefined
   }, [script, state.prompt, state.status, total, run.started])
+  const eyebrow = run.kind === 'recall' ? 'Hands-free recall' : 'Hands-free lesson'
   const done = state.status === 'completed'
   const playing = state.status === 'playing'
-  const change = (next: HandsfreeSettings) => { saveHandsfreeSettings(next); void updateHandsfree(run.id, { settings: next }) }
+  const change = (next: HandsfreeSettings) => { saveHandsfreeSettings(next); void updateHandsfree(run.id, { settings: next }, Date.now(), run.kind) }
+  const instruction = instructionOf(marker)
+  const fresh = marker && marker.index > 0 && marker.ref && marker.act ? !startKnown.current.has(marker.ref) : undefined
+  const [eyeItem, setEyeItem] = useState<ItemInfo>()
+  /** The eye: pauses, and shows the current item's intro card (a phrase shows its word's card). */
+  const viewCurrent = () => {
+    playerRef.current?.pause()
+    const found = marker?.ref ? items?.find(item => item.ref === marker.ref) : undefined
+    if (found) setEyeItem(found)
+  }
 
   const phaseLine = done ? 'Finished' : marker ? progressLabel(marker) : script ? 'Ready' : 'Preparing...'
   // Start listening plays at once when the script is ready, or as soon as it is.
@@ -175,29 +190,31 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   }, [view, !!items, introRefs])
 
   if (view === 'intro') return <div className="dr hf">
-    <a className="back-link" href={run.back}><ArrowLeft size={16} /> {run.shortcut ? 'Practice' : run.title}</a>
-    <PageHeading eyebrow="Hands-free" title={run.title}>Here is everything you will hear. Read the cards first, or skip them and listen.</PageHeading>
+    <a className="back-link" href={run.back}><ArrowLeft size={16} /> {run.title}</a>
+    <PageHeading eyebrow={eyebrow} title={run.title}>Here is everything you will hear. Read the cards first, or skip them and listen.</PageHeading>
     {error && <p className="notice error" role="alert">{error}</p>}
-    {catalog && items ? <IntroCards items={items} catalog={catalog} workspace={workspace} now={now} run={perform} busy={busy} route={`practice/set/${run.id}/handsfree`} /> : <p className="small muted" role="status">Opening the intro cards...</p>}
-    <div className="hf-startbar"><button type="button" className="button primary" onClick={startListening}><Headphones size={18} /> Start listening</button></div>
+    {catalog && items ? <IntroCards items={items} catalog={catalog} workspace={workspace} now={now} run={perform} busy={busy} route={`practice/set/${run.id}/${handsfreeRoute(run.kind)}`} /> : <p className="small muted" role="status">Opening the intro cards...</p>}
+    <div className="hf-startbar"><button type="button" className="button primary" onClick={startListening}><Headphones size={18} /> {run.started ? 'Continue listening' : 'Start listening'}</button></div>
   </div>
 
   return <div className="dr hf">
-    <a className="back-link" href={run.back}><ArrowLeft size={16} /> {run.shortcut ? 'Practice' : run.title}</a>
-    <PageHeading eyebrow="Hands-free" title={run.title} action={<button type="button" className="button secondary" onClick={() => { playerRef.current?.pause(); setView('intro') }}><ListChecks size={16} /> Items</button>}>Listen, answer aloud, hear the answer, repeat it. Nothing is graded.</PageHeading>
+    <a className="back-link" href={run.back}><ArrowLeft size={16} /> {run.title}</a>
+    <PageHeading eyebrow={eyebrow} title={run.title} action={<button type="button" className="button secondary" onClick={() => { playerRef.current?.pause(); setView('intro') }}><Eye size={16} /> View items</button>}>Listen, answer aloud, hear the answer, repeat it. Nothing is graded.</PageHeading>
     {error && <p className="notice error" role="alert">{error}</p>}
     <section className="panel hf-stage" aria-label="Now playing" aria-live="polite">
-      <Display phase={phaseLine} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} />
+      <Display phase={phaseLine} instruction={instruction} fresh={fresh} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} />
       <div className="hf-controls">
         <button type="button" className="button secondary icon-only" aria-label="Back" disabled={!script || state.prompt <= 0 && !done} onClick={() => playerRef.current?.back()}><SkipBack size={22} /></button>
         <button type="button" className="button primary hf-play" aria-label={playing ? 'Pause' : done ? 'Play again' : state.prompt > 0 ? 'Resume' : 'Play'} disabled={!script || !total} onClick={() => playing ? playerRef.current?.pause() : playerRef.current?.play()}>{playing ? <Pause size={26} /> : <Play size={26} />}</button>
         <button type="button" className="button secondary icon-only" aria-label="Skip" disabled={!script || done} onClick={() => playerRef.current?.skip()}><SkipForward size={22} /></button>
       </div>
-      <div className="hf-tools"><button type="button" className="button secondary" aria-haspopup="dialog" onClick={() => setSettingsOpen(true)}><SettingsIcon size={16} /> Settings</button>
+      <div className="hf-tools"><button type="button" className="button secondary" aria-label="View this item" title="View this item" disabled={!marker?.ref || !items} onClick={viewCurrent}><Eye size={16} /> This item</button>
+        <button type="button" className="button secondary" aria-haspopup="dialog" onClick={() => setSettingsOpen(true)}><SettingsIcon size={16} /> Settings</button>
         <button type="button" className="button secondary" onClick={() => setPocket(true)}><Moon size={16} /> Pocket mode</button></div>
     </section>
+    {eyeItem && catalog && <Sheet title="This item" label="Current item" onClose={() => setEyeItem(undefined)}><IntroCards items={[eyeItem]} catalog={catalog} workspace={workspace} now={now} run={perform} busy={busy} route={`practice/set/${run.id}/${handsfreeRoute(run.kind)}`} /></Sheet>}
     {settingsOpen && <Sheet title="Settings" label="Hands-free settings" onClose={() => setSettingsOpen(false)} footer={<p className="small muted">Changes apply from the next prompt.</p>}><HandsfreeSettingsForm settings={run.settings} onChange={change} /></Sheet>}
-    {pocket && <PocketOverlay onExit={() => setPocket(false)}><Display phase={phaseLine} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} className="hf-pocket-display" /></PocketOverlay>}
+    {pocket && <PocketOverlay onExit={() => setPocket(false)}><Display phase={phaseLine} instruction={instruction} fresh={fresh} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} className="hf-pocket-display" /></PocketOverlay>}
   </div>
 }
 

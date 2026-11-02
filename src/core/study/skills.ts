@@ -22,15 +22,17 @@ export async function recordSkillPractice(refs: readonly string[], skills: reado
 }
 
 /** Counts pairs once per set's Hands-free activity: it remembers which (item, skill) pairs it has counted, so a replay or resume adds nothing. */
-export async function recordRunPractice(setId: string, refs: readonly string[], skills: readonly Skill[], now = Date.now()): Promise<number> {
+export async function recordRunPractice(setId: string, refs: readonly string[], skills: readonly Skill[], now = Date.now(), kind: 'introduction' | 'recall' = 'introduction'): Promise<number> {
+  const field = kind === 'recall' ? 'handsfreeRecall' as const : 'handsfree' as const
   return db.transaction('rw', [db.drillSets, db.skillPractice], async () => {
     const set = await db.drillSets.get(setId)
-    if (!set?.handsfree) return 0
-    const seen = new Set(set.handsfree.practiced ?? [])
+    const activity = set?.[field]
+    if (!activity) return 0
+    const seen = new Set(activity.practiced ?? [])
     const fresh = unique(refs.flatMap(ref => skills.map(skill => ({ ref, skill })))).filter(pair => !seen.has(pair.ref + '|' + pair.skill))
     if (!fresh.length) return 0
     await bump(fresh, now)
-    await db.drillSets.update(setId, { handsfree: { ...set.handsfree, practiced: [...seen, ...fresh.map(pair => pair.ref + '|' + pair.skill)].slice(-500) } })
+    await db.drillSets.put({ ...set, [field]: { ...activity, practiced: [...seen, ...fresh.map(pair => pair.ref + '|' + pair.skill)].slice(-500) } })
     return fresh.length
   })
 }

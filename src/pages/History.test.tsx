@@ -227,7 +227,7 @@ it('lists Hands-free sets (a shortcut activity) with their items, resumes a stop
   expect(within(screen.getByText('Hands-free · 2 Nov').closest('li')!).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/set/stopped/handsfree')
   fireEvent.click(within(row).getByRole('link', { name: /^Practice Hands-free/ }))
   await waitFor(() => expect(window.location.hash).toBe('#practice?from=drill:hf'))
-  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Hands-free · 1 Jan/))
+  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Practice set · 1 Jan/))
 })
 
 

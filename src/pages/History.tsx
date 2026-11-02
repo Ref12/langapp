@@ -143,7 +143,7 @@ export function History() {
         : <>{groups.map(group => <div key={group.label} className="history-group"><h2 className="history-day">{group.label}</h2>
         <ol className="phrase-history-list">{group.rows.map(row => row.type === 'drill'
           ? <li key={`drill:${row.set.id}`} className="phrase-history-entry history-lesson">
-            <span><span className="history-chips"><span className="chip">{row.set.shortcut ? 'Hands-free' : 'Practice'}</span>{row.set.handsfree?.started && row.set.status === 'active' && <span className="chip">Stopped</span>}{row.set.status === 'completed' && <span className="chip">Finished</span>}{row.set.status === 'abandoned' && <span className="chip">Set aside</span>}</span>
+            <span><span className="history-chips"><span className="chip">Practice</span>{(row.set.handsfree?.started || row.set.handsfreeRecall?.started) && row.set.status === 'active' && <span className="chip">Stopped</span>}{row.set.status === 'completed' && <span className="chip">Finished</span>}{row.set.status === 'abandoned' && <span className="chip">Set aside</span>}</span>
               <strong>{row.set.title}</strong>
               <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time>
               {wordList(catalog, row.set.refs)}
