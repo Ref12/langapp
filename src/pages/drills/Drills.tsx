@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, MessageSquareText, PenLine, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, MessageSquareText, PenLine, Play, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
 import { navigate, useRoute } from '../../core/routing'
 import { itemCount } from '../../core/collections/terms'
@@ -13,11 +13,11 @@ import { EmptyState, PageHeading, type PageProps } from '../../components/shared
 import { cardId } from '../../core/study/contracts'
 import { DOMAIN } from '../../core/study/knowledge'
 import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, lessonCount, loadNewCount, loadReviewCount, saveNewCount, saveReviewCount } from '../../core/study/daily'
-import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId } from '../../core/drills/contracts'
+import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId, type TypeProgress } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems } from '../../core/drills/write-queue'
-import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, ensureHandsfree, restartHandsfree, resumeRoute, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
+import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, ensureHandsfree, restartHandsfree, restartDrillType, resumeRoute, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
@@ -130,6 +130,14 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const hfStopped = !!hf?.started && !hfDone
   const openHf = (again: boolean) => void run(async () => { if (again) await restartHandsfree(set.id); else await ensureHandsfree(set.id, loadHandsfreeSettings()); navigate(setRoute(set.id, 'handsfree')) })
   const hfCount = itemCount(set.refs.length)
+  const [restarting, setRestarting] = useState<{ type: DrillTypeId; name: string; answers: number }>()
+  const answersOf = (progress: TypeProgress | undefined) => Object.keys(progress?.results ?? {}).length
+  /** Restart of a started type: asks first when it has answers; a done type opens again without asking. */
+  const restartType = (entry: { id: DrillTypeId; name: string }, progress: TypeProgress | undefined) => {
+    const answers = answersOf(progress)
+    if (progress && !progress.done && answers > 0) setRestarting({ type: entry.id, name: entry.name, answers })
+    else void run(async () => { if (progress && !progress.done) await restartDrillType(set.id, entry.id); navigate(setRoute(set.id, `run/${entry.id}`)) })
+  }
   const finish = () => void run(async () => { await finishDrillSet(set.id); navigate(setRoute(set.id, 'summary')) })
   return <div className="dr">
     <a className="back-link" href="#practice"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
@@ -146,25 +154,34 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
       <section className="panel dr-panel" aria-labelledby="dr-types"><h2 id="dr-types">Pick a practice type</h2><p className="small muted">{set.emphasis ? `${SKILL_LABEL[set.emphasis]} types first. ` : ''}Any order. Each type covers the items of the set it applies to.</p>
         <ul className="dr-rows">{!hfDone && <li><Headphones size={20} aria-hidden="true" />
               <div><strong>Hands-free</strong><span className="small muted">Listen and repeat, screen optional · {hfCount}{hfStopped ? ` · stopped at prompt ${hf!.position + 1}` : ''}</span></div>
-              <button type="button" className="button primary" disabled={busy} onClick={() => openHf(false)}>{hfStopped ? `Continue at prompt ${hf!.position + 1}` : 'Start'}</button></li>}
+              <span className="dr-actions">{hfStopped
+                ? <><button type="button" className="icon-button" disabled={busy} aria-label={`Continue Hands-free at prompt ${hf!.position + 1}`} title={`Continue at prompt ${hf!.position + 1}`} onClick={() => openHf(false)}><ArrowRight size={18} /></button>
+                  <button type="button" className="icon-button" disabled={busy} aria-label="Restart Hands-free" title="Restart" onClick={() => openHf(true)}><RotateCcw size={18} /></button></>
+                : <button type="button" className="icon-button" disabled={busy} aria-label="Start Hands-free" title="Start" onClick={() => openHf(false)}><Play size={18} /></button>}</span></li>}
             {todo.map(({ entry, avail, progress }) => { const Icon = ICONS[entry.icon]; const ready = avail.state === 'ready'
           return <li key={entry.id}><Icon size={20} aria-hidden="true" />
             <div><strong>{entry.name}</strong><span className="small muted">{ready ? `${entry.blurb} · ${avail.count} ${avail.count === 1 ? 'item' : 'items'}${progress ? ` · ${Object.keys(progress.results).length} of ${progress.scope.length} done` : ''}` : avail.message}</span>
               {avail.state === 'running' && <progress aria-label={`${entry.name} progress`} value={content.done ?? 0} max={Math.max(1, content.total ?? 1)} />}</div>
-            {ready ? <a className="button primary" href={`#${setRoute(set.id, `run/${entry.id}`)}`}>{progress ? 'Continue' : quiz ? 'Quiz' : 'Start'}</a>
-              : avail.state === 'failed' ? <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { void retryContent(set.id) })}><RotateCcw size={14} /> Try again</button>
-                : <button type="button" className="button secondary" disabled>{avail.state === 'running' ? 'Writing…' : 'Not available'}</button>}</li> })}
+            <span className="dr-actions">{ready ? (progress
+                ? <><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Continue ${entry.name}`} title="Continue"><ArrowRight size={18} /></a>
+                  <button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => restartType(entry, progress)}><RotateCcw size={18} /></button></>
+                : <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Start ${entry.name}${quiz ? ' as a quiz' : ''}`} title={quiz ? 'Start as a quiz' : 'Start'}><Play size={18} /></a>)
+              : avail.state === 'failed' ? <button type="button" className="icon-button" disabled={busy} aria-label={`Try again ${entry.name}`} title="Try again" onClick={() => void run(async () => { void retryContent(set.id) })}><RotateCcw size={18} /></button>
+                : <button type="button" className="icon-button" disabled aria-label={`${entry.name} ${avail.state === 'running' ? 'is being written' : 'is not available'}`} title={avail.state === 'running' ? 'Writing…' : 'Not available'}><Play size={18} /></button>}</span></li> })}
           {todo.length === 0 && hfDone && <li><p className="small muted">Every type is done. Finish the set to see your summary, or redo any type.</p></li>}</ul></section>
       <section className="panel dr-panel" aria-labelledby="dr-done"><h2 id="dr-done">Done</h2>
-        {done.length === 0 && !hfDone && <p className="small muted">Finished types move here with their score and a Redo.</p>}
+        {done.length === 0 && !hfDone && <p className="small muted">Finished types move here with their score and a Restart.</p>}
         <ul className="dr-rows">{hfDone && <li><CheckCircle2 size={20} className="accent" aria-hidden="true" />
               <div><strong>Hands-free</strong><span className="small muted">Played to the end</span></div>
-              <button type="button" className="button secondary" disabled={busy} onClick={() => openHf(true)}>Play again</button></li>}
+              <span className="dr-actions"><button type="button" className="icon-button" disabled={busy} aria-label="Restart Hands-free" title="Restart" onClick={() => openHf(true)}><RotateCcw size={18} /></button></span></li>}
             {done.map(({ entry, progress }) => { const counts = countMarks({ progress: { [entry.id]: progress! } }, [entry.id]); const score = scoreOf(counts)
           return <li key={entry.id}><CheckCircle2 size={20} className="accent" aria-hidden="true" />
             <div><strong>{entry.name}</strong><span className="small muted">{score.correct} of {score.total} correct · {counts.got} {MARK_LABEL.got.toLowerCase()}, {counts.hint} hint, {counts.missed} missed</span></div>
-            <a className="button secondary" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Redo ${entry.name}`}>Redo</a></li> })}</ul></section>
+            <span className="dr-actions"><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Restart ${entry.name}`} title="Restart"><RotateCcw size={18} /></a></span></li> })}</ul></section>
     </div>
+    {restarting && <ConfirmDialog title={`Restart ${restarting.name}?`} confirmLabel="Restart" busy={busy} onCancel={() => setRestarting(undefined)}
+      detail={<>Your {restarting.answers} {restarting.answers === 1 ? 'answer' : 'answers'} so far stay in your history.</>}
+      onConfirm={() => { const item = restarting; setRestarting(undefined); void run(async () => { await restartDrillType(set.id, item.type); navigate(setRoute(set.id, `run/${item.type}`)) }) }} />}
   </div>
 }
 

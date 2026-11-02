@@ -203,6 +203,20 @@ export async function recordRedo(setId: string, type: DrillTypeId): Promise<void
   await mutate(setId, set => { const current = set.progress[type]; return current ? { ...set, progress: { ...set.progress, [type]: { ...current, redos: current.redos + 1 } } } : undefined })
 }
 
+/**
+ * Restarts a type that was started but not finished: its answers so far are cleared so it opens fresh. What was already recorded keeps its scheduling
+ * effect (the review cards and practice counts are not undone), as Discard leaves them.
+ */
+export async function restartDrillType(setId: string, type: DrillTypeId): Promise<void> {
+  await mutate(setId, set => {
+    const current = set.progress[type]
+    if (!current || current.done) return undefined
+    const progress = { ...set.progress }
+    delete progress[type]
+    return { ...set, progress }
+  })
+}
+
 export const setFormat = (id: string, format: DrillFormat) => mutate(id, set => set.format === format ? undefined : { ...set, format })
 
 /**

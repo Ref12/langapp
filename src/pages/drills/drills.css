@@ -207,3 +207,6 @@
 .row-menu-list .menu-item { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .row-menu-list .menu-item:hover { background: var(--surface-raised); }
 .resume-row .resume-text strong .in-progress { margin-left: 8px; vertical-align: middle; font-weight: 500; }
+
+/* Icon actions at the right of a practice-type row, like the Recent sets rows. */
+.dr-actions { display: inline-flex; gap: 6px; flex: none; align-items: center; }
