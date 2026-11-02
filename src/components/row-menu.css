@@ -1,0 +1,5 @@
+.row-menu { position: relative; flex: 0 0 44px; }
+.row-menu > .icon-button { font-size: 1.25rem; line-height: 1; }
+.row-menu-list { position: absolute; right: 0; top: 100%; z-index: 20; min-width: 220px; display: grid; padding: 4px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface, #fff); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); }
+.row-menu-list .menu-item { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.row-menu-list .menu-item:hover { background: var(--surface-raised); }

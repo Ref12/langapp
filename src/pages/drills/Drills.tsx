@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, MessageSquareText, PenLine, Play, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
@@ -21,6 +21,7 @@ import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finish
 import { DrillRun } from './DrillRun'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
+import { RowMenu } from '../../components/RowMenu'
 import { ConfirmDialog } from '../../components/ConfirmDialog'
 import { SaveToMenu } from '../../components/collections/SaveToMenu'
 import { RemoveFromKnowledge } from '../../components/study/RemoveFromKnowledge'
@@ -221,22 +222,6 @@ function UnfinishedInfo({ set, typesDone, characterStates }: { set: DrillSet; ty
   const stopped = !!set.handsfree?.started && !set.handsfree.done
   const what = (items && describeItems(items, characterStates)) || itemCount(set.refs.length)
   return <span className="small muted dr-wrap">{stopped && set.shortcut ? `Hands-free · ${what} · stopped at prompt ${set.handsfree!.position + 1}` : `${what} · ${typesDone} of ${TYPE_COUNT} types done${stopped ? ` · Hands-free stopped at prompt ${set.handsfree!.position + 1}` : ''}`}</span>
-}
-
-/** The ⋯ overflow of a row: a small menu of the actions that need a decision (Discard, Remove from knowledge set), closed with Escape or a click elsewhere. */
-function RowMenu({ name, children }: { name: string; children: ReactNode }) {
-  const [open, setOpen] = useState(false)
-  const box = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    if (!open) return
-    const close = (event: Event) => { if (event.type === 'keydown' ? (event as KeyboardEvent).key === 'Escape' : !box.current?.contains(event.target as Node)) setOpen(false) }
-    document.addEventListener('keydown', close); document.addEventListener('pointerdown', close)
-    return () => { document.removeEventListener('keydown', close); document.removeEventListener('pointerdown', close) }
-  }, [open])
-  return <div className="row-menu" ref={box}>
-    <button type="button" className="icon-button" aria-label={`More for ${name}`} aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>⋯</button>
-    {open && <div className="row-menu-list" role="menu" aria-label={`Actions for ${name}`}>{children}</div>}
-  </div>
 }
 
 /** One set, unfinished or finished, in the one Recent sets list: title (In progress when unfinished) and meta on the left; Resume or Open, Save to study set and the ⋯ menu on the right. */

@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
+import { ArrowRight, EyeOff, Dumbbell } from 'lucide-react'
+import { RowMenu } from '../components/RowMenu'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
 import { practiceHistoryEntrySchema, type PracticeHistoryEntry } from '../core/assistant/contracts'
@@ -75,18 +77,17 @@ export function History() {
   const filter: Filter = where.filter ?? stored ?? 'all'
   const [selecting, setSelecting] = useState(false)
   const [picked, setPicked] = useState<ReadonlySet<HistoryKey>>(new Set())
-  const [menu, setMenu] = useState<HistoryKey | null>(null)
   const [undo, setUndo] = useState<{ keys: HistoryKey[]; label: string } | null>(null)
   useEffect(() => { if (!undo) return; const timer = setTimeout(() => setUndo(null), 10000); return () => clearTimeout(timer) }, [undo])
   const [practice, setPractice] = useState<PracticeHistoryEntry>()
   const [error, setError] = useState('')
   const { catalog } = useCatalog()
   const choose = (next: Filter) => {
-    setPicked(new Set()); setMenu(null); navigate(locate(next, 1))
+    setPicked(new Set()); navigate(locate(next, 1))
     void savePreferences({ historyFilter: next }).catch(cause => setError(cause instanceof Error ? cause.message : 'The filter could not be saved.'))
   }
   const remove = (keys: HistoryKey[], label: string) => {
-    setError(''); setMenu(null)
+    setError('');
     removeHistoryItems(keys).then(() => { setUndo({ keys, label }); setPicked(new Set()) }, cause => setError(cause instanceof Error ? cause.message : 'Could not remove from History.'))
   }
   const restore = () => { if (!undo) return; const { keys } = undo; setUndo(null); restoreHistoryItems(keys).catch(cause => setError(cause instanceof Error ? cause.message : 'Could not undo.')) }
@@ -113,18 +114,16 @@ export function History() {
   const shown = rows.slice((page - 1) * HISTORY_PAGE_SIZE, page * HISTORY_PAGE_SIZE)
   const groups: { label: string; rows: Row[] }[] = []
   for (const row of shown) { const label = dayLabel(row.at); const last = groups[groups.length - 1]; if (last && last.label === label) last.rows.push(row); else groups.push({ label, rows: [row] }) }
-  const go = (next: number) => { setMenu(null); navigate(locate(filter, next)); window.scrollTo?.({ top: 0 }) }
+  const go = (next: number) => { navigate(locate(filter, next)); window.scrollTo?.({ top: 0 }) }
   const pageKeys = shown.map(rowKey)
   const allPicked = pageKeys.length > 0 && pageKeys.every(key => picked.has(key))
   const toggle = (key: HistoryKey) => setPicked(prev => { const next = new Set(prev); if (next.has(key)) next.delete(key); else next.add(key); return next })
-  /** The tail of every row: a checkbox in Select mode, otherwise the ⋯ menu with Remove from History. */
-  const tools = (row: Row, name: string) => { const key = rowKey(row)
+  /** The tail of every row: a checkbox in Select mode, otherwise the ⋯ menu (Remove from knowledge set when it applies, Remove from history). */
+  const tools = (row: Row, name: string, extra?: ReactNode) => { const key = rowKey(row)
     return selecting
       ? <label className="history-pick"><input type="checkbox" checked={picked.has(key)} onChange={() => toggle(key)} aria-label={`Select ${name}`} /></label>
-      : <span className="history-more"><button type="button" className="icon-button" aria-label={`More for ${name}`} aria-expanded={menu === key} onClick={() => setMenu(menu === key ? null : key)}>⋯</button>
-        {menu === key && <span className="history-confirm" role="group" aria-label="Remove from History">
-          <span className="small muted">Removes it from History only. What you learned stays.</span>
-          <button type="button" className="button secondary" onClick={() => remove([key], name)}>Remove from history</button></span>}</span> }
+      : <RowMenu name={name}>{extra}
+        <button type="button" role="menuitem" className="menu-item" title="Removes it from History only. What you learned stays." aria-label={`Remove ${name} from history`} onClick={() => remove([key], name)}><EyeOff size={15} /> Remove from history</button></RowMenu> }
   return <section className="phrase-history">
     <div className="page-heading"><div><p className="eyebrow">HISTORY</p><h1>Recently practiced</h1>
       <p>Phrases you spoke or wrote, your lessons and your practice sets, most recent first.</p></div></div>
@@ -133,7 +132,7 @@ export function History() {
     </div>
     {error && <p className="notice error" role="alert">{error}</p>}
     {ready && rows.length > 0 && <div className="history-bar">
-      <button type="button" className="button secondary" aria-pressed={selecting} onClick={() => { setSelecting(!selecting); setPicked(new Set()); setMenu(null) }}>{selecting ? 'Done' : 'Select'}</button>
+      <button type="button" className="button secondary" aria-pressed={selecting} onClick={() => { setSelecting(!selecting); setPicked(new Set()); }}>{selecting ? 'Done' : 'Select'}</button>
       {selecting && <><button type="button" className="button secondary" onClick={() => setPicked(allPicked ? new Set() : new Set(pageKeys))}>{allPicked ? 'Clear this page' : 'Select all on this page'}</button>
         <button type="button" className="button" disabled={!picked.size} onClick={() => remove([...picked], `${picked.size} items`)}>Remove selected ({picked.size})</button>
         <span className="small muted history-bar-note">Removes them from History only. What you learned stays.</span></>}</div>}
@@ -149,11 +148,11 @@ export function History() {
               <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time>
               {wordList(catalog, row.set.refs)}
               {scoreLine(row.set) && <span className="small muted history-score">{scoreLine(row.set)}</span>}</span>
-            {row.set.status === 'active' && <a className="button secondary" href={`#${resumeRoute(row.set)}`} aria-label={`Resume ${row.set.title}`}>Resume</a>}
-            <a className="button secondary" href={`#${practiceFrom('drill', row.set.id)}`} aria-label={`Practice ${row.set.title}`}>Practice</a>
-            <SaveToMenu refs={[...new Set(row.set.refs)]} name={row.set.title} label="Save to study set" />
-            <RemoveFromKnowledge kind="drill" id={row.set.id} name={row.set.title} />
-            {tools(row, row.set.title)}
+            <span className="history-actions">
+              {row.set.status === 'active' && <a className="icon-button" href={`#${resumeRoute(row.set)}`} aria-label={`Resume ${row.set.title}`} title="Resume"><ArrowRight size={18} /></a>}
+              <a className="icon-button" href={`#${practiceFrom('drill', row.set.id)}`} aria-label={`Practice ${row.set.title}`} title="Practice"><Dumbbell size={18} /></a>
+              <SaveToMenu refs={[...new Set(row.set.refs)]} name={row.set.title} />
+              {tools(row, row.set.title, <RemoveFromKnowledge kind="drill" id={row.set.id} name={row.set.title} menuItem />)}</span>
           </li>
           : row.type === 'lesson'
           ? <li key={`lesson:${row.lesson.id}`} className="phrase-history-entry history-lesson">
@@ -163,11 +162,11 @@ export function History() {
                 {row.lesson.answered > 0 ? ` · score ${row.lesson.correct}/${row.lesson.answered}` : ''}{row.lesson.status === 'completed' ? '' : ` · ${row.lesson.status}`}</span>
               {wordList(catalog, row.lesson.refs)}
                 <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time></span>
-            <a className="button secondary" href={`#lessons/session/${row.lesson.id}`} aria-label={`Open lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`}>Open</a>
-              <a className="button secondary" href={`#${practiceFrom('lesson', row.lesson.id)}`} aria-label={`Practice lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`}>Practice</a>
-              <SaveToMenu refs={[...new Set(row.lesson.refs)]} name="lesson" label="Save to study set" />
-              <RemoveFromKnowledge kind="lesson" id={row.lesson.id} name={row.lesson.mode === 'new' ? 'New items lesson' : 'Review lesson'} />
-              {tools(row, row.lesson.mode === 'new' ? 'New items lesson' : 'Review lesson')}
+            <span className="history-actions">
+              <a className="icon-button" href={`#lessons/session/${row.lesson.id}`} aria-label={`Open lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`} title="Open"><ArrowRight size={18} /></a>
+              <a className="icon-button" href={`#${practiceFrom('lesson', row.lesson.id)}`} aria-label={`Practice lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`} title="Practice"><Dumbbell size={18} /></a>
+              <SaveToMenu refs={[...new Set(row.lesson.refs)]} name="lesson" />
+              {tools(row, row.lesson.mode === 'new' ? 'New items lesson' : 'Review lesson', <RemoveFromKnowledge kind="lesson" id={row.lesson.id} name={row.lesson.mode === 'new' ? 'New items lesson' : 'Review lesson'} menuItem />)}</span>
           </li>
           : <li key={`phrase:${row.entry.text}`} className="phrase-history-entry">
             <span><span className="history-chips">

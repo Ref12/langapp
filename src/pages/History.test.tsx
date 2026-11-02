@@ -268,8 +268,8 @@ it('removes one row through its menu with the learned-stays line, shows Undo, an
   await rememberPracticePhrase({ type: 'speech', text: '再见', locale: 'zh-Hans' }, 1)
   render(<App />)
   fireEvent.click(await screen.findByRole('button', { name: 'More for 你好' }))
-  expect(screen.getByText('Removes it from History only. What you learned stays.')).toBeInTheDocument()
-  fireEvent.click(screen.getByRole('button', { name: 'Remove from history' }))
+  expect(screen.getByRole('menuitem', { name: 'Remove 你好 from history' })).toHaveAttribute('title', 'Removes it from History only. What you learned stays.')
+  fireEvent.click(screen.getByRole('menuitem', { name: 'Remove 你好 from history' }))
   await waitFor(() => expect(screen.queryByRole('button', { name: 'Practice 你好' })).toBeNull())
   expect(screen.getByRole('button', { name: 'Practice 再见' })).toBeInTheDocument()
   expect((await db.practiceHistory.get('你好'))?.removedAt).toBeGreaterThan(0)
@@ -278,7 +278,7 @@ it('removes one row through its menu with the learned-stays line, shows Undo, an
   await screen.findByRole('button', { name: 'Practice 再见' })
   expect(screen.queryByRole('button', { name: 'Practice 你好' })).toBeNull()
   fireEvent.click(screen.getByRole('button', { name: 'More for 再见' }))
-  fireEvent.click(screen.getByRole('button', { name: 'Remove from history' }))
+  fireEvent.click(screen.getByRole('menuitem', { name: 'Remove 再见 from history' }))
   fireEvent.click(await screen.findByRole('button', { name: 'Undo' }))
   await waitFor(async () => expect((await db.practiceHistory.get('再见'))?.removedAt).toBeUndefined())
   expect(await screen.findByRole('button', { name: 'Practice 再见' })).toBeInTheDocument()
@@ -304,3 +304,32 @@ it('Select mode removes the picked rows in bulk, selects all on the page, and Un
   expect(screen.getByRole('button', { name: 'Practice 词000' })).toBeInTheDocument()
   expect(await db.practiceHistory.filter(entry => !!entry.removedAt).count()).toBe(0)
 }, 30000)
+
+it('puts a lesson row actions on one row: Open and Practice icons, the Save icon, then the ⋯ menu with Remove from knowledge set and Remove from history', async () => {
+  await db.exerciseSessions.add({ id: 'sess-m', mode: 'new', domain: 'reading', targetRefs: [wordRefs[0]], reviewRefs: [], exercises: [], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 5, completedAt: 6, addedRefs: [wordRefs[0]] } as never)
+  await db.knowledge.put({ ref: wordRefs[0], kind: 'vocabulary', lb: 'wo3--me', band: '1', addedAt: 6, source: 'new' } as never)
+  render(<App />)
+  const row = (await screen.findByRole('link', { name: /Open lesson session/ })).closest('li')!
+  const actions = row.querySelector('.history-actions')!
+  const names = [...actions.querySelectorAll('a, button')].map(node => node.getAttribute('aria-label'))
+  expect(names[0]).toMatch(/^Open lesson session/); expect(names[1]).toMatch(/^Practice lesson session/); expect(names[2]).toMatch(/Save/); expect(names[names.length - 1]).toBe('More for New items lesson')
+  expect(within(row).queryByRole('button', { name: /knowledge set/ })).toBeNull()
+  fireEvent.click(within(row).getByRole('button', { name: 'More for New items lesson' }))
+  const menu = screen.getByRole('menu', { name: 'Actions for New items lesson' })
+  await within(menu).findByRole('menuitem', { name: /from knowledge set/ })
+  expect(within(menu).getAllByRole('menuitem').map(item => item.textContent?.trim())).toEqual(['Remove from knowledge set', 'Remove from history'])
+  fireEvent.click(within(menu).getByRole('menuitem', { name: /Remove New items lesson from knowledge set/ }))
+  expect(await screen.findByRole('dialog', { name: 'Remove from knowledge set' })).toBeInTheDocument()
+})
+
+it('names the section in the top banner instead of Workspace', async () => {
+  render(<App />)
+  await screen.findByRole('heading', { name: 'No phrases yet' })
+  const banner = () => document.querySelector('.breadcrumb')!.textContent
+  expect(banner()).toBe('History')
+  for (const [route, title] of [['#dictionary', 'Dictionary'], ['#writing', 'Dictionary'], ['#practice', 'Practice'], ['#collections', 'Study sets'], ['#settings', 'Settings'], ['#unknown-page', 'Overview']] as const) {
+    await go(route)
+    await waitFor(() => expect(banner()).toBe(title))
+    expect(document.querySelector('.topbar')).not.toHaveTextContent('Workspace')
+  }
+})

@@ -1,6 +1,6 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, ChevronRight, Clapperboard, Dumbbell, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, Clapperboard, Dumbbell, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { requestPersistence } from './core/backup/service'
 import { removeBackgroundBackupRegistrations } from './core/backup/cleanup'
@@ -140,7 +140,7 @@ function WorkspaceApp() {
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
   const section = route === 'practice/mahjong' ? 'games' : page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' || page === 'practice' ? 'practice' : page === 'writing' ? 'dictionary' : page
-  const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
+  const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Overview')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
   useEffect(() => {
@@ -210,7 +210,7 @@ function WorkspaceApp() {
       <div className="workspace"><header className="topbar"><div className="topbar-leading">
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
-          : <div className="breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>{label}</strong></div>}</div>
+          : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
         <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
