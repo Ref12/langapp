@@ -81,6 +81,8 @@ export const handsfreeRunSchema = z.object({
   practiced: z.array(z.string().max(220)).max(500).optional(),
   /** True once the user set an unfinished run aside from Practice home. */
   discarded: z.boolean().optional(),
+  /** Set when the user removed the run from History; it also leaves Unfinished sets. */
+  removedAt: z.number().optional(),
   /** Set once, when completion added items; a replayed run never adds them again. */
   addedRefs: z.array(z.string().min(1).max(200)).max(200).optional(),
 }).strict()

@@ -183,7 +183,7 @@ function WorkspaceApp() {
   const collapsed = preferences.sidebarCollapsed
   const due = workspace.words.filter(word => word.dueAt <= now).length
   const busy = pending > 0
-  const currentPage = <CurrentPage key={route} route={route} returnRoute={returnRoute.current} assistantHeader={assistantHeader} workspace={workspace} busy={busy} now={now} run={run} />
+  const currentPage = <CurrentPage key={route.replace(/^(history)\?.*$/, '$1')} route={route} returnRoute={returnRoute.current} assistantHeader={assistantHeader} workspace={workspace} busy={busy} now={now} run={run} />
   const practicing = (page === 'practice' && workspace.sessions.some(session => session.id === route.split('/')[1] && session.status === 'active'))
     || (page === 'lessons' && workspace.exerciseSessions.some(session => session.id === route.split('/')[2] && session.status === 'active'))
   const workspaceNavigation = <>

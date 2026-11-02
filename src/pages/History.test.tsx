@@ -125,6 +125,7 @@ it('shows kind chips and the standard actions, filters by kind and lessons, and 
   render(<App />)
   expect(await screen.findByRole('link', { name: /Open lesson session/ })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: 'Lessons' })).toHaveAttribute('aria-pressed', 'true')
+  await go('history') // a filter in the hash wins; a bare #history follows the saved preference
   await db.preferences.update('workspace', { historyFilter: 'write' })
   expect(await screen.findByText('茶')).toBeInTheDocument()
   expect(screen.queryByText('你好')).not.toBeInTheDocument()
@@ -147,49 +148,53 @@ it('reopens a phrase last written in Write mode', async () => {
   expect(await within(popup).findByRole('list', { name: 'Words to write' })).toBeInTheDocument()
 })
 
-it('previews item text on a lesson row and redoes it from the row', async () => {
+it('previews item text on a lesson row, which offers Open, Practice and Save to study set but no Redo, Practice these or Hands-free', async () => {
   await db.exerciseSessions.add({
     id: 'sess-r', mode: 'review', domain: 'reading', targetRefs: ['vocabulary:wo3--me'], reviewRefs: [], exercises: [{ id: 'c', type: 'choice', targets: ['vocabulary:wo3--me'], direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'x' }],
     cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 5, completedAt: 6,
   } as never)
   render(<App />)
   const open = await screen.findByRole('link', { name: /Open lesson session/ })
-  await waitFor(() => expect(open.closest('li')).toHaveTextContent('我'))
-  expect(open.closest('li')?.textContent).not.toContain('--')
-  expect(await screen.findByRole('button', { name: /Redo lesson session/ })).toBeDisabled()
-})
-
-it('redoes a lesson from its History row with the same items and opens the new session', async () => {
-  const refs = ['vocabulary:wo3--me', 'vocabulary:xue2-xi2--study']
-  const exercise = { id: 'c', type: 'choice', targets: refs, direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'x' }
-  await db.knowledge.bulkAdd(refs.map(ref => ({ ref, kind: 'vocabulary', lb: ref, band: 1, addedAt: 1, source: 'dictionary' })) as never)
-  await db.exerciseSessions.add({ id: 'sess-x', mode: 'review', domain: 'reading', targetRefs: refs, reviewRefs: [], exercises: [exercise], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 5, completedAt: 6 } as never)
-  await db.aiConnections.add({ id: 'assistant', revision: 'r1', updatedAt: 1, apiType: 'chat-completions', baseUrl: 'https://example.test/v1', apiKey: 'k', model: 'test-model', nativeTools: false, structuredOutput: true, storageAcknowledged: true })
-  structured.requestStructuredJSON.mockResolvedValueOnce({ exercises: ['a', 'b', 'c', 'd'].map(id => ({ ...exercise, id })) })
-  render(<App />)
-  const redo = await screen.findByRole('button', { name: /Redo lesson session/ })
-  await waitFor(() => expect(redo).toBeEnabled())
-  fireEvent.click(redo)
-  await waitFor(() => expect(window.location.hash).toMatch(/^#lessons\/session\/(?!sess-x)/))
-  const created = (await db.exerciseSessions.toArray()).find(item => item.id !== 'sess-x')!
-  expect(created).toMatchObject({ mode: 'review', targetRefs: refs, redoOf: 'sess-x' })
+  const row = open.closest('li')!
+  await waitFor(() => expect(row).toHaveTextContent('我'))
+  expect(row.textContent).not.toContain('--')
+  expect(within(row).getByRole('link', { name: /Practice lesson session/ })).toBeInTheDocument()
+  expect(within(row).getByRole('button', { name: /Save .* to study set|Save/ })).toBeInTheDocument()
+  expect(within(row).queryByRole('button', { name: /Redo|Practice these|Hands-free/ })).toBeNull()
 })
 
 const wordRefs = ['vocabulary:wo3--me', 'vocabulary:xue2-xi2--study']
 const drillSet = (fields: Record<string, unknown>) => ({ id: 'ds', source: 'new', title: 'New items · 31 Oct', refs: wordRefs, status: 'active', format: 'single', progress: {}, content: { state: 'no-ai', sentences: {}, conversations: [] }, createdAt: 100, updatedAt: 100, ...fields })
 
-it('practices a past lesson from its History row: a set of the lesson items opens with its intro cards', async () => {
+it('Practice on a lesson row opens Practice home filled from that lesson: Reviews, All, and Start makes a set of exactly its refs; the source survives a reload', async () => {
   await db.exerciseSessions.add({ id: 'sess-d', mode: 'new', domain: 'reading', targetRefs: [wordRefs[0]], reviewRefs: [wordRefs[1]], exercises: [], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: Date.UTC(2026, 9, 30, 12), completedAt: Date.UTC(2026, 9, 30, 12) } as never)
   render(<App />)
-  fireEvent.click(await screen.findByRole('button', { name: 'Practice lesson session New items' }))
+  fireEvent.click(await screen.findByRole('link', { name: 'Practice lesson session New items' }))
+  await waitFor(() => expect(window.location.hash).toBe('#practice?from=lesson:sess-d'))
+  const source = await screen.findByRole('combobox', { name: 'Learning from' })
+  await waitFor(() => expect(source).toHaveDisplayValue(/Lesson · 30 Oct/))
+  expect(screen.getByRole('button', { name: 'Reviews' })).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true')
+  expect(await screen.findByTestId('selection-summary')).toHaveTextContent('2 of 2 items from Lesson · 30 Oct')
+  cleanup()
+  render(<App />)
+  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Lesson · 30 Oct/))
+  fireEvent.click(await screen.findByRole('button', { name: 'Start practice set' }))
   await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\//))
-  const set = (await db.drillSets.toArray())[0]
-  expect(set).toMatchObject({ refs: wordRefs, source: 'lesson', originId: 'sess-d', title: 'From lesson · 30 Oct' })
-  expect(await screen.findByRole('heading', { name: 'From lesson · 30 Oct' })).toBeInTheDocument()
-  expect(await screen.findByRole('link', { name: /Intro cards/ })).toHaveAttribute('href', `#practice/set/${set.id}/intro`)
+  expect((await db.drillSets.toArray())[0].refs).toEqual(wordRefs)
 })
 
-it('lists drill sets with their items and score line, filters to Practice, and practices a set again', async () => {
+it('Save to study set on a lesson row adds all its refs to a new study set', async () => {
+  await db.exerciseSessions.add({ id: 'sess-s', mode: 'new', domain: 'reading', targetRefs: [wordRefs[0]], reviewRefs: [wordRefs[1]], exercises: [], cursor: 0, status: 'completed', model: 'm', rejected: [], createdAt: 5, completedAt: 6 } as never)
+  render(<App />)
+  const row = (await screen.findByRole('link', { name: /Open lesson session/ })).closest('li')!
+  fireEvent.click(within(row).getByRole('button', { name: /Save/ }))
+  fireEvent.click(await screen.findByRole('button', { name: /New study set/ }))
+  fireEvent.click(await screen.findByRole('button', { name: 'Create' }))
+  await waitFor(async () => expect((await db.collectionItems.toArray()).map(item => item.ref).sort()).toEqual([...wordRefs].sort()))
+})
+
+it('lists drill sets with their items and score line, filters to Practice, and offers Practice, and Practice opens Practice home filled from the set', async () => {
   await db.drillSets.bulkAdd([
     drillSet({ id: 'ds', progress: { meanings: { results: { [wordRefs[0]]: 'got', [wordRefs[1]]: 'hint' }, scope: wordRefs, done: true, redos: 0 }, write: { results: { [wordRefs[0]]: 'missed' }, chars: { 我: { mark: 'missed', cue: wordRefs[0] } }, scope: wordRefs, done: false, redos: 0 } } }),
     drillSet({ id: 'gone', title: 'Discarded', status: 'abandoned', discarded: true, createdAt: 50 }),
@@ -204,13 +209,13 @@ it('lists drill sets with their items and score line, filters to Practice, and p
   expect(screen.queryByText('Discarded')).toBeNull()
   expect(screen.getByText('Set aside one')).toBeInTheDocument()
   expect(within(row).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/set/ds')
-  fireEvent.click(within(row).getByRole('button', { name: /again/ }))
-  await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\/(?!ds)/))
-  const again = (await db.drillSets.toArray()).find(set => set.originId === 'ds')!
-  expect(again).toMatchObject({ title: 'Again: New items · 31 Oct', refs: wordRefs, status: 'active', progress: {} })
+  fireEvent.click(within(row).getByRole('link', { name: /^Practice New items/ }))
+  await waitFor(() => expect(window.location.hash).toBe('#practice?from=drill:ds'))
+  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Practice set · 1 Jan/))
+  expect(await screen.findByTestId('selection-summary')).toHaveTextContent('2 of 2 items')
 })
 
-it('lists started Hands-free runs with their items, resumes a stopped one, and replays one with Again; unstarted runs stay out', async () => {
+it('lists started Hands-free runs with their items, resumes a stopped one, and Practice opens Practice home filled from it; unstarted runs stay out', async () => {
   const run = (fields: Record<string, unknown>) => ({ id: 'hf', title: 'Hands-free · 1 Nov', refs: wordRefs, source: 'review', seed: 1, settings: { pause: 'normal', repeats: 1, grammar: true }, status: 'completed', started: true, position: 4, createdAt: 200, updatedAt: 200, ...fields })
   await db.handsfreeRuns.bulkAdd([run({}), run({ id: 'stopped', title: 'Hands-free · 2 Nov', status: 'abandoned', createdAt: 300 }), run({ id: 'fresh', title: 'Hands-free · 3 Nov', started: false, status: 'active', createdAt: 400 })] as never)
   render(<App />)
@@ -219,8 +224,83 @@ it('lists started Hands-free runs with their items, resumes a stopped one, and r
   expect(row).toHaveTextContent('Finished')
   expect(screen.queryByText('Hands-free · 3 Nov')).toBeNull()
   expect(within(screen.getByText('Hands-free · 2 Nov').closest('li')!).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/handsfree/stopped')
-  fireEvent.click(within(row).getByRole('button', { name: /again/ }))
-  await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/handsfree\/(?!hf$)/))
-  const again = (await db.handsfreeRuns.toArray()).find(item => item.originId === 'hf')!
-  expect(again).toMatchObject({ refs: wordRefs, status: 'active', started: false, position: 0 })
+  expect(within(row).queryByRole('button', { name: /again/i })).toBeNull()
+  fireEvent.click(within(row).getByRole('link', { name: /^Practice Hands-free/ }))
+  await waitFor(() => expect(window.location.hash).toBe('#practice?from=handsfree:hf'))
+  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Hands-free · 1 Jan/))
 })
+
+
+async function seedPhrases(count: number, base = new Date(2026, 5, 10, 12).getTime()) {
+  await db.practiceHistory.bulkAdd(Array.from({ length: count }, (_, i) => {
+    const text = `词${String(i).padStart(3, '0')}`
+    return { text, phrase: { type: 'speech', text, locale: 'zh-Hans' }, rate: 1, lastOpenedAt: base - i * 3_600_000 }
+  }) as never)
+}
+
+it('paginates 30 rows per page, newest first, under date headers, with the page in the URL hash', async () => {
+  const now = Date.now()
+  await seedPhrases(70, now - 3_600_000)
+  render(<App />)
+  expect(await screen.findByText('Page 1 of 3')).toBeInTheDocument()
+  expect(screen.getAllByRole('listitem')).toHaveLength(30)
+  expect(screen.getByRole('button', { name: 'Practice 词000' })).toBeInTheDocument()
+  expect(screen.getAllByRole('heading', { level: 2 })[0]).toHaveTextContent(/^(Today|Yesterday)$/)
+  expect(screen.getByRole('button', { name: 'Newer' })).toBeDisabled()
+  fireEvent.click(screen.getByRole('button', { name: 'Older' }))
+  expect(await screen.findByText('Page 2 of 3')).toBeInTheDocument()
+  expect(window.location.hash).toBe('#history?f=all&p=2')
+  expect(screen.getByRole('button', { name: 'Practice 词030' })).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Oldest' }))
+  expect(await screen.findByText('Page 3 of 3')).toBeInTheDocument()
+  expect(screen.getAllByRole('listitem')).toHaveLength(10)
+  expect(screen.getByRole('button', { name: 'Practice 词069' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Older' })).toBeDisabled()
+  // Back returns to the same page: the page comes from the hash, so loading it directly lands there.
+  cleanup()
+  await go('history?f=all&p=2')
+  render(<App />)
+  expect(await screen.findByText('Page 2 of 3')).toBeInTheDocument()
+})
+
+it('removes one row through its menu with the learned-stays line, shows Undo, and keeps it hidden after reload', async () => {
+  await rememberPracticePhrase(phrase, 1)
+  await rememberPracticePhrase({ type: 'speech', text: '再见', locale: 'zh-Hans' }, 1)
+  render(<App />)
+  fireEvent.click(await screen.findByRole('button', { name: 'More for 你好' }))
+  expect(screen.getByText('Removes it from History only. What you learned stays.')).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: 'Remove from history' }))
+  await waitFor(() => expect(screen.queryByRole('button', { name: 'Practice 你好' })).toBeNull())
+  expect(screen.getByRole('button', { name: 'Practice 再见' })).toBeInTheDocument()
+  expect((await db.practiceHistory.get('你好'))?.removedAt).toBeGreaterThan(0)
+  cleanup()
+  render(<App />)
+  await screen.findByRole('button', { name: 'Practice 再见' })
+  expect(screen.queryByRole('button', { name: 'Practice 你好' })).toBeNull()
+  fireEvent.click(screen.getByRole('button', { name: 'More for 再见' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Remove from history' }))
+  fireEvent.click(await screen.findByRole('button', { name: 'Undo' }))
+  await waitFor(async () => expect((await db.practiceHistory.get('再见'))?.removedAt).toBeUndefined())
+  expect(await screen.findByRole('button', { name: 'Practice 再见' })).toBeInTheDocument()
+  expect((await db.practiceHistory.get('再见'))?.removedAt).toBeUndefined()
+})
+
+it('Select mode removes the picked rows in bulk, selects all on the page, and Undo brings them back', async () => {
+  await seedPhrases(35)
+  render(<App />)
+  fireEvent.click(await screen.findByRole('button', { name: 'Select' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Select all on this page' }))
+  expect(screen.getByRole('button', { name: 'Remove selected (30)' })).toBeEnabled()
+  fireEvent.click(screen.getByRole('button', { name: 'Clear this page' }))
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Select 词000' }))
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Select 词001' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Remove selected (2)' }))
+  await act(async () => { await new Promise(r => setTimeout(r, 800)) })
+  expect(screen.queryByRole('button', { name: 'Practice 词000' })).toBeNull()
+  expect(screen.getByText(/Removed 2 items from History/)).toBeInTheDocument()
+  expect(await db.practiceHistory.filter(entry => !!entry.removedAt).count()).toBe(2)
+  fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
+  await act(async () => { await new Promise(r => setTimeout(r, 800)) })
+  expect(screen.getByRole('button', { name: 'Practice 词000' })).toBeInTheDocument()
+  expect(await db.practiceHistory.filter(entry => !!entry.removedAt).count()).toBe(0)
+}, 30000)

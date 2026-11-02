@@ -140,6 +140,8 @@ export const exerciseSessionSchema = z.object({
   lines: z.array(z.object({ ref: unitRefSchema, text: z.string().max(2000).optional(), translation: z.string().max(2000).optional() }).strict()).max(40).optional(),
   /** A collection lesson's order: the exercise index where each phase (words, grammar, the line itself) starts. */
   phases: z.array(z.object({ kind: z.enum(['words', 'grammar', 'line']), start: z.number().int().nonnegative() }).strict()).max(3).optional(),
+  /** Set when the user removed the session from History (a soft delete: attempts and scheduling are untouched). */
+  removedAt: timestamp.optional(),
 }).strict()
 
 export const exerciseAttemptSchema = z.object({

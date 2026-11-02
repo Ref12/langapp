@@ -57,7 +57,7 @@ export async function updateHandsfreeRun(id: string, change: Partial<Pick<Handsf
 }
 
 /** Runs that were started and not finished, newest first: what Practice home offers to resume. */
-export const unfinishedHandsfreeRuns = (runs: readonly HandsfreeRun[]) => runs.filter(run => run.started && run.status !== 'completed' && !run.discarded).sort((a, b) => b.updatedAt - a.updatedAt)
+export const unfinishedHandsfreeRuns = (runs: readonly HandsfreeRun[]) => runs.filter(run => run.started && run.status !== 'completed' && !run.discarded && !run.removedAt).sort((a, b) => b.updatedAt - a.updatedAt)
 
 /** Sets a run aside from Practice home. It stays in History as stopped. */
 export const discardHandsfreeRun = (id: string) => updateHandsfreeRun(id, { discarded: true, status: 'abandoned' })

@@ -68,6 +68,8 @@ export const practiceHistoryEntrySchema = z.object({
   /** Last time each kind of practice was used; absent on older entries, which count as spoken. */
   kinds: z.object({ speak: timestamp.optional(), write: timestamp.optional() }).strict().optional(),
   chain: practiceChainSchema.optional(),
+  /** Set when the user removed the phrase from History (a soft delete: nothing learned is touched). Practising it again clears it. */
+  removedAt: timestamp.optional(),
 }).strict().refine(entry => entry.text === entry.phrase.text && (!entry.chain || entry.chain.text === entry.text),
   'History must retain the exact practiced phrase.')
 export type PracticeHistoryEntry = z.infer<typeof practiceHistoryEntrySchema>

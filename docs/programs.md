@@ -102,3 +102,10 @@ A program can be declarative JSON: steps with item selectors such as `missedIn`.
 - **Quiz as a top-level thing.** The user sees quiz as a thing of its own rather than a mode of the drill types. Where it lives is not decided.
 - **Relation to lessons.** Programs, together with History practice, may replace lessons. Not decided.
 - **Screen-off audio.** This decides whether Hands-free needs rendered audio (a TTS service) instead of browser speech.
+
+## History (pagination, removal, practising from a row)
+
+- History is paged, 30 rows a page, newest first, grouped under Today / Yesterday / dates. The filter and page live in the hash (`#history?f=lessons&p=3`), so Back returns to the same page.
+- **Remove from history** (the ⋯ menu, or Select mode with checkboxes) is a soft delete: `removedAt` is stamped on the practiceHistory entry, exercise session, drill set or Hands-free run. It never touches the knowledge set, cards, review schedule, practice counts or attempts. Undo clears it. `removedAt` is part of backups. Removed sets and runs also leave Unfinished sets.
+- Lesson rows offer Open, Practice and Save to study set (the Save menu, with every ref of the row); set and Hands-free rows offer Practice and Save to study set, plus Resume while unfinished.
+- **Practice** goes to Practice home with the panel pre-filled, not to a set: `#practice?from=lesson:<id>` (or `drill:<id>`, `handsfree:<id>`). "Learning from" shows "Lesson · 30 Oct" while it applies, mode is Reviews, and the count has an All chip (default). Start and Hands-free Start then use exactly those items.

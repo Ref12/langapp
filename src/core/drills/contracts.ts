@@ -79,6 +79,8 @@ export const drillSetSchema = z.object({
   emphasis: z.enum(['reading', 'listening', 'speaking', 'writing']).optional(),
   /** Thrown away by the user (History hides it); a set only set aside to make room stays listed. */
   discarded: z.boolean().optional(),
+  /** Set when the user removed the set from History; it also leaves Unfinished sets. Results already recorded stay. */
+  removedAt: z.number().optional(),
 }).strict()
 
 export const drillSetsBackupSchema = z.array(drillSetSchema).max(2000)

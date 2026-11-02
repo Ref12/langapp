@@ -216,4 +216,7 @@ export async function discardDrillSet(id: string): Promise<void> {
 }
 
 export const retryContent = (id: string) => startContent(id)
-export const unfinishedSets = (sets: readonly DrillSet[]) => sets.filter(set => set.status === 'active').sort((a, b) => b.createdAt - a.createdAt)
+export const unfinishedSets = (sets: readonly DrillSet[]) => sets.filter(set => set.status === 'active' && !set.removedAt).sort((a, b) => b.createdAt - a.createdAt)
+
+/** Where a History row sends you: #practice?from=lesson:<id> | drill:<id> | handsfree:<id>. Practice home pre-fills its panel from it. */
+export const practiceFrom = (kind: 'lesson' | 'drill' | 'handsfree', id: string) => `practice?from=${kind}:${id}`
