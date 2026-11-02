@@ -6,6 +6,7 @@ import { db } from '../../core/database'
 import { addToKnowledge } from '../../core/study/knowledge'
 import { whenContent } from '../../core/drills/content'
 import { createDrillSet, finishDrillSet, getDrillSet } from '../../core/drills/store'
+import { DEFAULT_HANDSFREE_SETTINGS } from '../../core/handsfree/contracts'
 import * as speech from '../../core/assistant/speech'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
@@ -189,7 +190,7 @@ describe('Practice home', () => {
     // title and meta on the left; Resume, Save and the ⋯ menu are same-size controls on the right
     expect([...line.children].map(child => child.className.split(' ')[0])).toEqual(['resume-text', 'icon-button', 'button', 'row-menu'])
     expect(line.querySelector('.resume-text')).toHaveTextContent('In progress')
-    expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 8 types done/)
+    expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 9 types done/)
     expect(within(recent).getByRole('link', { name: /^Resume New items/ })).toBeInTheDocument()
     expect(within(recent).queryByRole('link', { name: /^Open New items/ })).toBeNull()
     expect(within(recent).queryByRole('button', { name: /^Discard New items/ })).toBeNull()
@@ -375,6 +376,61 @@ describe('summary', () => {
     expect(within(revisit).getByRole('link', { name: 'Practise missed (ungraded)' })).toHaveAttribute('href', expect.stringContaining('run/meanings?missed=1'))
     await user.click(screen.getByRole('button', { name: 'Finish set' }))
     await waitFor(async () => expect((await getDrillSet(set.id))!.status).toBe('completed'))
+  }, 40000)
+})
+
+describe('Hands-free row and finished sets', () => {
+  it('lists Hands-free first on the set page, starts it, and counts it among the types', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    window.location.hash = `#practice/set/${set.id}`
+    render(<App />)
+    const types = (await screen.findByRole('heading', { name: 'Pick a practice type' })).closest('section')!
+    const rows = within(types).getAllByRole('listitem')
+    expect(rows[0]).toHaveTextContent('Hands-free')
+    expect(rows[0]).toHaveTextContent('Listen and repeat, screen optional')
+    expect(document.body).toHaveTextContent('0 of 9 types done')
+    await user.click(within(rows[0]).getByRole('button', { name: 'Start' }))
+    await waitFor(() => expect(window.location.hash).toBe(`#practice/set/${set.id}/handsfree`))
+    expect((await getDrillSet(set.id))!.handsfree).toBeDefined()
+  }, 40000)
+
+  it('continues a stopped Hands-free run at its prompt; a done one sits in Done with Play again', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    await db.drillSets.put({ ...set, handsfree: { seed: 1, settings: DEFAULT_HANDSFREE_SETTINGS, started: true, position: 2, done: false } } as never)
+    window.location.hash = `#practice/set/${set.id}`
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Continue at prompt 3' }))
+    await waitFor(() => expect(window.location.hash).toBe(`#practice/set/${set.id}/handsfree`))
+    cleanup()
+    const now = (await getDrillSet(set.id))!
+    await db.drillSets.put({ ...now, handsfree: { ...now.handsfree!, done: true, position: 9 } } as never)
+    window.location.hash = `#practice/set/${set.id}`
+    render(<App />)
+    const done = (await screen.findByRole('heading', { name: 'Done' })).closest('section')!
+    expect(done).toHaveTextContent('Played to the end')
+    expect(document.body).toHaveTextContent('1 of 9 types done')
+    await user.click(within(done).getByRole('button', { name: 'Play again' }))
+    await waitFor(async () => expect((await getDrillSet(set.id))!.handsfree).toMatchObject({ done: false, started: false, position: 0 }))
+  }, 40000)
+
+  it('opens a finished set on its types list with a Summary button, and an untried type starts', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    await finishDrillSet(set.id)
+    const knowledge = await db.knowledge.count()
+    window.location.hash = `#practice/set/${set.id}`
+    render(<App />)
+    expect(await screen.findByRole('heading', { name: 'Pick a practice type' })).toBeInTheDocument()
+    expect(document.body).toHaveTextContent('Finished')
+    expect(screen.getByRole('link', { name: 'Summary' })).toHaveAttribute('href', `#practice/set/${set.id}/summary`)
+    expect(screen.queryByRole('button', { name: 'Finish set' })).toBeNull()
+    expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument()
+    await user.click(screen.getAllByRole('link', { name: /^(Start|Quiz)$/ })[0])
+    expect(window.location.hash).toMatch(/\/run\//)
+    expect((await getDrillSet(set.id))!.status).toBe('completed')
+    expect(await db.knowledge.count()).toBe(knowledge)
   }, 40000)
 })
 
