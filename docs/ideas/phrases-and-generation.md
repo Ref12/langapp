@@ -9,6 +9,7 @@ Status: idea, captured 2026-11-02. Not scheduled. Nothing here is built.
 - That is a reason to keep finished practice types in the set page (done, with Redo) rather than tidying them away.
 - Naming: "session" describes the practice container better than "set"; "set" feels like something inside it.
 - Organisation is open: phrases might be just another item kind, addable to a study set or to a session itself, and a session might track how often each item was met and prefer the ones just added.
+- Lessons should have their phrases precomputed, making each lesson a study set of sorts. Practice sessions can generate more phrases and optionally save them back into the study set.
 
 ## Current state (for contrast)
 - Items are vocabulary and grammar refs (`vocabulary:<word>`, `grammar:<label>`). A practice set (`DrillSet`) has a fixed `refs` list, per-type progress, and AI content written once for the whole set (`effectiveContent`).
@@ -22,6 +23,8 @@ Status: idea, captured 2026-11-02. Not scheduled. Nothing here is built.
 4. **Exercises that take phrases:** listening, read aloud, dictation, translate, Repeat after me, and Hands-free. Word-only exercises (Word meanings, Learn to write, Say the pinyin) keep using the breakdown.
 5. **Grammar drill** = a session focused on one pattern: generate N uses from known vocabulary, then "more". The generator says when it can't make a new one, instead of us estimating capacity up front.
 6. **Finished is per batch.** A finished exercise can be redone with new material, which the Done check plus Redo already supports.
+7. **Lessons carry precomputed phrases.** Each lesson's phrases are computed ahead of time and shipped with the curriculum, so a lesson is a study set of sorts: its words, its patterns and its phrases. The curriculum's example sentences (`group.examples`, `exampleIndex` in `src/core/drills/items.ts`) are the starting point. A session made from a lesson starts with those phrases as items; no AI call is needed for them.
+8. **Sessions generate, study sets keep.** In a practice session you can generate more phrases. They belong to the session, and you can save them back into the study set (or the lesson's set) when you want to keep them; nothing is written back without asking.
 
 ## Naming
 - **Set** = a kept collection of items (study set).
@@ -29,7 +32,8 @@ Status: idea, captured 2026-11-02. Not scheduled. Nothing here is built.
 - The rename is user-facing text first (Recent sets → Recent sessions, Practice set → Practice session); code and DB names (`DrillSet`, `drillSets`) can stay.
 
 ## Open questions
-- Does a phrase added in a session also go into the knowledge set or a study set automatically, or only on Save?
-- How many generated phrases per "more", and do they persist after the session ends (likely yes, as items)?
+- Does a phrase added in a session also go into the knowledge set automatically, or only on Save? (Study sets: only on Save, per point 8.)
+- How many generated phrases per "more", and do unsaved ones persist with the session after it ends?
+- Which lesson phrases to precompute: all curriculum examples for the lesson, or a filtered few (only known or in-lesson words, a length cap, as `lessonPhrase` in Hands-free already does)?
 - How does a phrase's mastery relate to its words' scores: separate card, or derived?
 - Which media capture flow adds a phrase (subtitle line tap, selection)?
