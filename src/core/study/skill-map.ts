@@ -19,7 +19,7 @@ export const STRATEGY_LABEL: Record<typeof PICK_STRATEGIES[number], string> = { 
 
 /** The skills each drill type counts towards. Match pairs and Word meanings show Chinese, so they are reading. */
 export const DRILL_SKILLS: Record<string, readonly Skill[]> = {
-  meanings: ['reading'], match: ['reading'], write: ['writing'], pinyin: ['speaking'], translate: ['writing'],
+  meanings: ['reading'], match: ['reading'], learn: ['writing'], write: ['writing'], pinyin: ['speaking'], translate: ['writing'],
   repeat: ['speaking'], listen: ['listening'], read: ['reading'],
 }
 /** Other activities. Hands-free: intro cards and Chinese to English prompts are listening; English to Chinese and repeat-after are speaking. */

@@ -1,39 +1,8 @@
 import { hasGuide, isHan } from '../characters/writing-route'
-import { createRng, seedFrom } from '../study/local-exercises'
 import type { Mark } from './contracts'
 
 /** The characters of a word that Write it can check stroke by stroke: Han characters with a stroke guide. */
 export const guidedChars = (zh: string, has: (character: string) => boolean = hasGuide): string[] => Array.from(zh).filter(character => isHan(character) && has(character))
-
-export interface WriteChar {
-  char: string
-  /** The word whose pinyin sentence cues this character. */
-  cue: string
-  /** The character's place among the cue word's Han characters (its syllable). */
-  index: number
-  /** Every word of the set that contains the character. */
-  words: string[]
-}
-
-/**
- * The Characters queue of Write it: every distinct guided character of the words, once, shuffled across words (stable for a seed and pass).
- * A character shared by several words is cued by a different one of them on each pass. Characters in `skip` already have a result.
- */
-export function writeQueue(words: readonly { ref: string; zh: string }[], options: { seed: string; pass: number; skip?: ReadonlySet<string>; has?: (character: string) => boolean }): WriteChar[] {
-  const owners = new Map<string, { ref: string; zh: string }[]>()
-  for (const word of words) for (const char of new Set(guidedChars(word.zh, options.has))) {
-    if (options.skip?.has(char)) continue
-    owners.set(char, [...(owners.get(char) ?? []), word])
-  }
-  const entries = [...owners.entries()].sort((a, b) => a[0].codePointAt(0)! - b[0].codePointAt(0)!).map(([char, list]): WriteChar => {
-    const sorted = [...list].sort((a, b) => a.ref.localeCompare(b.ref))
-    const cue = sorted[Math.abs(options.pass) % sorted.length]
-    return { char, cue: cue.ref, index: Array.from(cue.zh).filter(isHan).indexOf(char), words: sorted.map(word => word.ref) }
-  })
-  const rng = createRng(seedFrom(`${options.seed}:${options.pass}`))
-  for (let at = entries.length - 1; at > 0; at--) { const other = Math.floor(rng() * (at + 1)); [entries[at], entries[other]] = [entries[other], entries[at]] }
-  return entries
-}
 
 const SEVERITY: Record<Mark, number> = { got: 0, hint: 1, missed: 2 }
 /** A word's result for Write it: the worst of its characters' results. */

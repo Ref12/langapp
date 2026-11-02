@@ -1,6 +1,7 @@
 import { db } from '../database'
 import { requestStructuredJSON } from '../ai/structured'
-import { loadCatalog } from '../study/catalog'
+import { loadCatalog, type Catalog } from '../study/catalog'
+import { createSegmenter, type Segmenter } from '../study/exercises'
 import { catalogSentence, loadItems, type ItemInfo } from './items'
 import { conversationSchema, type Conversation, type DrillContent, type DrillSet, type Sentence } from './contracts'
 
@@ -10,6 +11,10 @@ import { conversationSchema, type Conversation, type DrillContent, type DrillSet
 export const SENTENCES_PER_REQUEST = 15
 const MAX_CONVERSATION_ITEMS = 12
 const han = /\p{Script=Han}/u
+/** Words in the prompt are capped, most relevant first: the set's own band, then the most recently added. Validation always uses the whole knowledge set. */
+export const MAX_KNOWN_IN_PROMPT = 300
+/** Function characters allowed in AI practice material beside the known words (lessons allow only known words; these are the particles and pronouns every sentence needs). */
+export const FUNCTION_CHARACTERS = '的了吗呢吧是不很也都和在有这那我你他她们个'
 const inflight = new Map<string, Promise<void>>()
 const controllers = new Map<string, AbortController>()
 
@@ -48,8 +53,28 @@ const conversationJSON = {
 
 const SYSTEM = 'You write short Mandarin practice material for an English-speaking learner. Use simple, natural, everyday Chinese. Pinyin has tone marks and spaces between syllables. English has no Chinese characters. Reply with JSON only.'
 
+export interface Allowed { segmenter: Segmenter; prompt: string[] }
+
+/** The vocabulary AI practice material may use: the set's items, the learner's known curriculum words and the function characters. */
+export function allowedVocabulary(catalog: Catalog, items: readonly ItemInfo[], knownRefs: readonly { ref: string; band?: string; addedAt?: number }[]): Allowed {
+  const forms = new Set<string>(Array.from(FUNCTION_CHARACTERS))
+  const own = new Set(items.map(item => item.ref))
+  const bands = new Set(items.flatMap(item => { const unit = catalog.units.get(item.ref); return unit ? [unit.band] : [] }))
+  for (const item of items) {
+    forms.add(item.zh)
+    for (const run of item.zh.match(/\p{Script=Han}+/gu) ?? []) for (const char of run) forms.add(char)
+  }
+  const words = [...knownRefs].sort((a, b) => Number(bands.has(b.band as never)) - Number(bands.has(a.band as never)) || (b.addedAt ?? 0) - (a.addedAt ?? 0))
+    .flatMap(entry => { const unit = catalog.units.get(entry.ref); return unit?.kind === 'vocabulary' && !own.has(unit.ref) ? [unit.record] : [] })
+  for (const record of words) forms.add(record.ch)
+  const prompt = words.slice(0, MAX_KNOWN_IN_PROMPT).map(record => `${record.ch} (${record.pr}): ${record.ds}`)
+  return { segmenter: createSegmenter(forms), prompt }
+}
+
+const RULE = 'Every Chinese word must come from the items, otherKnownVocabulary or the basic function characters 的了吗呢吧是不很也都和在有这那我你他她们个. No other words.'
+
 /** Validates the model's sentences against what was asked: a known ref, Chinese text that contains the item, pinyin and plain English. */
-export function validSentences(value: unknown, asked: readonly ItemInfo[]): Record<string, Sentence> {
+export function validSentences(value: unknown, asked: readonly ItemInfo[], allowed?: Segmenter): Record<string, Sentence> {
   const result: Record<string, Sentence> = {}
   const rows = (value as { sentences?: unknown })?.sentences
   if (!Array.isArray(rows)) return result
@@ -60,18 +85,20 @@ export function validSentences(value: unknown, asked: readonly ItemInfo[]): Reco
     if (typeof zh !== 'string' || typeof py !== 'string' || typeof en !== 'string') continue
     if (!han.test(zh) || zh.length > 60 || !py.trim() || !en.trim() || han.test(en) || han.test(py)) continue
     if (item.kind !== 'grammar' && !zh.includes(item.zh)) continue
+    if (allowed && !allowed.covers(zh)) continue
     result[item.ref] = { zh: zh.trim(), py: py.trim(), en: en.trim(), source: 'ai' }
   }
   return result
 }
 
-export function validConversations(value: unknown): Conversation[] {
+export function validConversations(value: unknown, allowed?: Segmenter): Conversation[] {
   const rows = (value as { conversations?: unknown })?.conversations
   if (!Array.isArray(rows)) return []
   return rows.flatMap(row => {
     const parsed = conversationSchema.safeParse(row)
     if (!parsed.success) return []
     const conversation = parsed.data
+    if (allowed && !conversation.lines.every(line => allowed.covers(line.zh)) ) return []
     const questions = conversation.questions.filter(question => question.after < conversation.lines.length && question.answer < question.options.length && new Set(question.options).size === question.options.length)
     return questions.length ? [{ ...conversation, questions }] : []
   })
@@ -97,6 +124,7 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
   const items = await loadItems(set.refs, catalog)
   const sentences: Record<string, Sentence> = { ...set.content.sentences }
   for (const item of items) if (!sentences[item.ref]) { const found = catalogSentence(catalog, item); if (found) sentences[item.ref] = found }
+  const allowed = allowedVocabulary(catalog, items, await db.knowledge.toArray())
   const gaps = items.filter(item => !sentences[item.ref] && item.kind !== 'phrase')
   const wantConversations = set.content.conversations.length === 0
   const connection = await db.aiConnections.get('assistant')
@@ -116,8 +144,8 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
     ...chunks.map(async chunk => {
       try {
         const value = await requestStructuredJSON(connection, { name: 'drill_sentences', schema: sentenceSchemaJSON, system: SYSTEM, signal, maxOutputTokens: 3000,
-          user: `Write exactly one short sentence (at most 14 characters) for each item below. The Chinese sentence must contain the item's form. Return {"sentences":[{"ref","zh","py","en"}]} with the ref copied from the item.\n${JSON.stringify(chunk.map(item => ({ ref: item.ref, form: item.zh, pinyin: item.py, meaning: item.en })))}` })
-        const found = validSentences(value, chunk)
+          user: `Write exactly one short sentence (at most 14 characters) for each item below. The Chinese sentence must contain the item's form. ${RULE} Return {"sentences":[{"ref","zh","py","en"}]} with the ref copied from the item.\n${JSON.stringify({ items: chunk.map(item => ({ ref: item.ref, form: item.zh, pinyin: item.py, meaning: item.en })), otherKnownVocabulary: allowed.prompt })}` })
+        const found = validSentences(value, chunk, allowed.segmenter)
         await patch(setId, content => ({ ...content, sentences: { ...content.sentences, ...found } }))
       } catch (reason) { note(reason) }
       await finished()
@@ -126,8 +154,8 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
       try {
         const subject = items.slice(0, MAX_CONVERSATION_ITEMS)
         const value = await requestStructuredJSON(connection, { name: 'drill_conversations', schema: conversationJSON, system: SYSTEM, signal, maxOutputTokens: 4000,
-          user: `Write 2 short conversations (4 to 6 lines each, speakers A and B) that use these study items between them. After some lines add a comprehension question in English with 2 to 4 options; "after" is the 0-based index of the line it follows and "answer" the 0-based index of the right option. Each conversation has 2 questions.\n${JSON.stringify(subject.map(item => ({ form: item.zh, pinyin: item.py, meaning: item.en })))}` })
-        const found = validConversations(value)
+          user: `Write 2 short conversations (4 to 6 lines each, speakers A and B) that use these study items between them. After some lines add a comprehension question in English with 2 to 4 options; "after" is the 0-based index of the line it follows and "answer" the 0-based index of the right option. Each conversation has 2 questions. ${RULE} The English questions and options may use any English.\n${JSON.stringify({ items: subject.map(item => ({ form: item.zh, pinyin: item.py, meaning: item.en })), otherKnownVocabulary: allowed.prompt })}` })
+        const found = validConversations(value, allowed.segmenter)
         if (!found.length) throw new Error('The AI produced no usable conversation.')
         await patch(setId, content => ({ ...content, conversations: found }))
       } catch (reason) { note(reason) }

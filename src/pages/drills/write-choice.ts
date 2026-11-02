@@ -1,16 +1,17 @@
 import type { DrillSet } from '../../core/drills/contracts'
-import type { Options, WriteMode, WriteUnit } from './tasks'
+import type { Options, WriteMode } from './tasks'
 
-// Write it remembers what the learner chose last: Characters or Whole words, and, for reviews, the writing mode.
+// Write it remembers the writing mode last chosen. The older saved options (Characters / Whole words, Learn | Test) are dropped.
 const KEY = 'drills.write'
-interface Saved { unit?: WriteUnit; reviewMode?: WriteMode }
+interface Saved { mode?: WriteMode; /** Earlier versions: the Test writing mode. */ reviewMode?: WriteMode }
 const read = (): Saved => { try { return JSON.parse(localStorage.getItem(KEY) ?? '{}') as Saved } catch { return {} } }
 
-/** The Write it options a set starts with: new-item sets use the pad (new characters are taught there); other sets use the last mode used for reviews, Write elsewhere at first. */
-export function loadWriteChoice(source: DrillSet['source']): Pick<Options, 'writeMode' | 'writeUnit'> {
+/** The Write it options a set starts with: the last writing mode used, else the pad for new-item and lesson sets and Write elsewhere for the rest. */
+export function loadWriteChoice(source: DrillSet['source']): Pick<Options, 'writeMode'> {
   const saved = read()
-  return { writeUnit: saved.unit === 'words' ? 'words' : 'chars', writeMode: source === 'new' ? 'pad' : saved.reviewMode === 'pad' ? 'pad' : 'paper' }
+  const mode = saved.mode ?? saved.reviewMode
+  return { writeMode: mode === 'pad' || mode === 'paper' ? mode : source === 'new' || source === 'lesson' ? 'pad' : 'paper' }
 }
-export function saveWriteChoice(source: DrillSet['source'], options: Pick<Options, 'writeMode' | 'writeUnit'>): void {
-  try { localStorage.setItem(KEY, JSON.stringify({ ...read(), unit: options.writeUnit, ...(source === 'new' ? {} : { reviewMode: options.writeMode }) })) } catch { /* storage unavailable */ }
+export function saveWriteChoice(options: Pick<Options, 'writeMode'>): void {
+  try { localStorage.setItem(KEY, JSON.stringify({ mode: options.writeMode })) } catch { /* storage unavailable */ }
 }

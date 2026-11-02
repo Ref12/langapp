@@ -2,7 +2,9 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNod
 import { Eye, Mic, PenLine, Pause, Play, RotateCcw, SkipForward, Square, Volume2 } from 'lucide-react'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
-import { openWritingSheet } from '../../core/characters/writing-sheet'
+import { guidedChars } from '../../core/drills/write-queue'
+import { IntroCard } from './IntroCards'
+import { CharacterLoop } from './Teach'
 import { createGuidedAudio, type GuidedAudioState } from '../../core/guided-audio'
 import { getPlaybackState, playBrowserSpeechToEnd, stopBrowserSpeech } from '../../core/assistant/speech'
 import { startSpeechCapture, speechCaptureSupported, type SpeechCaptureSession } from '../../core/assistant/speech-capture'
@@ -12,6 +14,8 @@ import { Pinyin } from '../../components/Pinyin'
 import { tidyPinyin } from '../../core/drills/items'
 import { ChoiceQuestion, MatchQuestion } from '../Study'
 import type { Workspace } from '../../core/model'
+import type { Catalog } from '../../core/study/catalog'
+import type { PageProps } from '../../components/shared'
 import { markCharactersWritten } from '../../core/drills/store'
 import { StrokeOrder } from './StrokeOrder'
 import { StrokePad } from './StrokePad'
@@ -19,7 +23,7 @@ import { type ConvoAnswer, type Outcome, type Q, type QData, type TextAnswer, ty
 
 /** `suggested`: what the automatic check made of a typed answer; `chosen`: the mark selected to confirm (starts as the suggestion). */
 export interface QState { answer?: unknown; status: 'open' | 'marking' | 'done'; outcome?: Outcome; suggested?: Mark; chosen?: Mark }
-export interface ViewContext { readings: Map<string, Set<string>>; pinyinOn: boolean; catalogChars: Set<string>; workspace: Workspace }
+export interface ViewContext { readings: Map<string, Set<string>>; pinyinOn: boolean; catalogChars: Set<string>; workspace: Workspace; catalog: Catalog; now: number; run: PageProps['run']; busy: boolean }
 export interface ViewProps { q: Q; quiz: boolean; state: QState; ctx: ViewContext; onAnswer: (answer: unknown) => void; onMark: (mark: Mark) => void }
 
 const noop = () => undefined
@@ -116,37 +120,57 @@ function PinyinSentence({ py: raw, target, syllable }: { py: string; target: str
     : parts.map((part, index) => { if (index % 2) return part; seen++; return seen === syllable ? <mark key={index} className="dr-target">{part}</mark> : part })}{py.slice(at + target.length)}</p>
 }
 
+/** Learn to write: the word's intro card, then the full writing loop for each of its characters in order. Next and "I already know how to write this" skip ahead. */
+function LearnView({ data, state, ctx, onAnswer }: ViewProps & { data: Extract<QData, { t: 'learn' }> }) {
+  const [started, setStarted] = useState(false)
+  const characters = useMemo(() => guidedChars(data.item.zh), [data.item.zh])
+  const locked = state.status !== 'open'
+  const finish = () => onAnswer({ misses: 0, hinted: false } satisfies WriteAnswer)
+  return <>
+    <IntroCard item={data.item} catalog={ctx.catalog} workspace={ctx.workspace} now={ctx.now} run={ctx.run} busy={ctx.busy} route="#practice" />
+    {!locked && !started && <div className="button-row dr-center">
+      {characters.length ? <button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button>
+        : <><p className="small muted">There is no stroke guide for these characters.</p><button type="button" className="button primary" onClick={finish}>Continue</button></>}</div>}
+    {!locked && started && <CharacterLoop characters={characters} workspace={ctx.workspace} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
+    <Result state={state} />
+  </>
+}
+
 function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { data: Extract<QData, { t: 'write' }> }) {
   const [hinted, setHinted] = useState(false)
   const [revealed, setRevealed] = useState(false)
+  const [practising, setPractising] = useState(false)
   const locked = state.status !== 'open'
   const [written, setWritten] = useState(false)
-  const [taught, setTaught] = useState(false)
-  const showChars = revealed || locked
   const [stroke, setStroke] = useState<{ index: number; total: number }>()
   const onStep = useCallback((index: number, total: number) => setStroke({ index, total }), [])
   const syllableList = data.item.py.trim().split(/\s+/)
-  const target = data.char ?? data.item.zh
+  const target = data.item.zh
   const aligned = syllableList.length === Array.from(data.item.zh).filter(character => /\p{Script=Han}/u.test(character)).length
-  // Characters mode: the one syllable. Whole words on the pad: the syllable of the character being written. Whole words elsewhere: the whole word.
-  const syllable = data.char !== undefined ? (aligned ? data.index : undefined)
-    : data.mode === 'pad' && !locked && syllableList.length > 1 && aligned ? (stroke && stroke.total === syllableList.length ? stroke.index : 0) : undefined
+  // On the pad: the syllable of the character being written. Elsewhere: the whole word.
+  const syllable = data.mode === 'pad' && !locked && syllableList.length > 1 && aligned ? (stroke && stroke.total === syllableList.length ? stroke.index : 0) : undefined
   const prompt = syllable === undefined ? data.item.py : syllableList[syllable]
-  const hint = () => setHinted(true)
-  const done = (result: { misses: number; hinted: boolean }) => onAnswer({ misses: result.misses, hinted: hinted || result.hinted, taught } satisfies WriteAnswer)
+  const done = (result: { misses: number; hinted: boolean }) => onAnswer({ misses: result.misses, hinted: hinted || result.hinted } satisfies WriteAnswer)
+  const characters = useMemo(() => guidedChars(target), [target])
+  if (practising && !locked) return <>
+    <p className="small dr-center muted">Practising {target}. This counts as Needed a hint.</p>
+    <CharacterLoop characters={characters} workspace={ctx.workspace} onTaught={character => { void markCharactersWritten([character]) }} onDone={() => setPractising(false)} />
+    <div className="button-row dr-center"><button type="button" className="button secondary" onClick={() => setPractising(false)}>Back to the question</button></div>
+  </>
   return <>
     <PinyinSentence py={data.sentence.py} target={data.item.py} syllable={syllable} />
+    {revealed && !locked && <p className="dr-center dr-sentence-zh" lang="zh-Hans">{data.sentence.zh}</p>}
     <div className="dr-center"><HearButton text={data.sentence.zh} locale="zh-Hans" label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
     <p className="small dr-center dr-write-line">Write <mark className="dr-target">{prompt}</mark></p>
-    {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} teach={data.fresh} workspace={ctx.workspace} onTaught={character => { setTaught(true); void markCharactersWritten([character]) }} onStep={onStep} onDone={done} />}
+    {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} onStep={onStep} onDone={done} />}
     {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it anywhere, then check your answer.</p>
       {quiz ? <button type="button" className="button secondary" aria-pressed={written} onClick={() => { setWritten(!written); onAnswer(written ? undefined : { misses: 0, hinted, paper: true } satisfies WriteAnswer) }}>{written ? 'Written ✓' : 'I have written it'}</button>
         : <button type="button" className="button primary" onClick={() => onAnswer({ misses: 0, hinted, paper: true } satisfies WriteAnswer)}>Check answer</button>}</div>}
     {!locked && <div className="button-row dr-hints"><span className="small muted">Hints (counts as Needed a hint):</span>
-      <button type="button" className="button secondary" aria-pressed={revealed} onClick={() => { setRevealed(true); hint() }}><Eye size={16} /> Reveal</button>
-      <button type="button" className="button secondary" onClick={() => { hint(); openWritingSheet(target, { remember: false }) }}><PenLine size={16} /> Writing practice</button>
+      <button type="button" className="button secondary" aria-pressed={revealed} onClick={() => { setRevealed(true); setHinted(true) }}><Eye size={16} /> Reveal</button>
+      <button type="button" className="button secondary" disabled={!characters.length} onClick={() => { setHinted(true); setPractising(true) }}><PenLine size={16} /> Practise writing</button>
       {data.mode === 'pad' && <button type="button" className="button secondary" onClick={() => onAnswer({ misses: 0, hinted, skipped: true } satisfies WriteAnswer)}>Give up</button>}</div>}
-    {showChars && (data.mode === 'paper' && locked ? <StrokeOrder text={target} /> : <p className="dr-reveal"><span className="dr-zh" lang="zh-Hans">{target}</span></p>)}
+    {locked && (data.mode === 'paper' ? <StrokeOrder text={target} /> : <p className="dr-reveal"><span className="dr-zh" lang="zh-Hans">{target}</span></p>)}
     {state.status === 'marking' && <SelfMark onMark={onMark} />}
     <Result state={state} />
   </>
@@ -274,6 +298,7 @@ export function QuestionView(props: ViewProps) {
     case 'match': return <MatchView {...props} data={data} />
     case 'free': return <FreeView {...props} data={data} />
     case 'pinyin': return <PinyinView {...props} data={data} />
+    case 'learn': return <LearnView {...props} data={data} />
     case 'write': return <WriteView {...props} data={data} />
     case 'translate': return <TranslateView {...props} data={data} />
     case 'repeat': return <RepeatView {...props} data={data} />

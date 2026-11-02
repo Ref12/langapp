@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, Headphones, Languages, MessageSquareText, PenLine, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, MessageSquareText, PenLine, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
 import { navigate, useRoute } from '../../core/routing'
 import { itemCount } from '../../core/collections/terms'
@@ -34,7 +34,7 @@ import { ACTIVITY_SKILLS } from '../../core/study/skill-map'
 import { recordSetIntro } from '../../core/study/skills'
 import './drills.css'
 
-const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
+const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, GraduationCap, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
 const setRoute = (id: string, page = '') => `practice/set/${id}${page ? `/${page}` : ''}`
 /** Completed sets listed on Practice home. */
 const RECENT_SETS = 10
@@ -73,7 +73,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
   if (page === 'intro') return <Intro {...props} set={set} items={items} catalog={catalog} />
   if (page === 'run' && type && DRILL_TYPES.some(entry => entry.id === type)) {
     const only = new URLSearchParams(query).get('missed') ? Object.entries(set.progress[type]?.results ?? {}).filter(([, mark]) => mark === 'missed').map(([ref]) => ref) : undefined
-    return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} only={only} backHref={`#${setRoute(set.id)}`} />
+    return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} now={props.now} run={props.run} busy={props.busy} only={only} backHref={`#${setRoute(set.id)}`} />
   }
   if (page === 'handsfree') return <HandsFree {...props} set={set} />
   if (page === 'summary' || set.status === 'abandoned') return <Summary {...props} set={set} items={items} />

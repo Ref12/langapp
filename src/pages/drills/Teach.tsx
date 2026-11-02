@@ -4,8 +4,8 @@ import type { Workspace } from '../../core/model'
 import { WritingPlayer } from '../Writing'
 
 /**
- * Teaches a new character with the writing practice's own player: watch the stroke order, then trace over the outline. "I already know how
- * to write this" skips it. The player is the one the Writing page uses (teach mode), not a second teacher.
+ * Teaches a character with the writing practice's own player: the full loop, every phase (full guide, next-stroke guide, from memory) three
+ * times. Next skips ahead; "I already know how to write this" skips the character. The player is the one the Writing page uses (teach mode).
  */
 export function TeachCharacter({ character, workspace, onTaught, onSkip }: { character: string; workspace: Workspace; onTaught: () => void; onSkip: () => void }) {
   const [asset, setAsset] = useState<CharacterAsset>()
@@ -19,8 +19,20 @@ export function TeachCharacter({ character, workspace, onTaught, onSkip }: { cha
   if (error) return <p className="small error-text" role="alert">{error} <button type="button" className="button secondary" onClick={onSkip}>Continue</button></p>
   if (!asset) return <p className="small muted" role="status">Loading the stroke guide…</p>
   return <div className="dr-teach">
-    <p className="small dr-center"><strong>New character.</strong> Watch the stroke order, then trace it. Next you will write it from memory.</p>
+    <p className="small dr-center">Watch the stroke order, then practise it three times each with the full guide, the next-stroke guide and from memory. Next skips ahead.</p>
     <WritingPlayer key={character} asset={asset} teach workspace={workspace} busy={false} now={Date.now()} run={operation => operation()} onNext={onTaught} />
     <div className="button-row dr-center"><button type="button" className="button secondary" onClick={onSkip}>I already know how to write this</button></div>
   </div>
+}
+
+/** The writing loop for each of some characters in order, `Character 2 of 3` above it. `onTaught` is called per character that was practised. */
+export function CharacterLoop({ characters, workspace, onTaught, onDone }: { characters: readonly string[]; workspace: Workspace; onTaught: (character: string) => void; onDone: () => void }) {
+  const [index, setIndex] = useState(0)
+  const character = characters[index]
+  const advance = () => { if (index + 1 < characters.length) setIndex(index + 1); else onDone() }
+  if (!character) return null
+  return <>
+    {characters.length > 1 && <p className="small muted dr-center" role="status">Character {index + 1} of {characters.length}</p>}
+    <TeachCharacter key={character} character={character} workspace={workspace} onTaught={() => { onTaught(character); advance() }} onSkip={advance} />
+  </>
 }

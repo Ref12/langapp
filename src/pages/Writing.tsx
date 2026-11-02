@@ -105,7 +105,7 @@ export interface WritingPlayerProps {
   onPrevious?: () => void
   /** Called once the character's nine repetitions are saved (or were already) and Next is pressed. */
   onNext?: () => void
-  /** Drills teach a new character: watch the stroke order, then trace the outline once. Next finishes there; nothing is saved by the player. */
+  /** Drills teach a new character with the whole practice loop (every phase, every repetition). Next skips ahead and goes on; nothing is saved by the player. */
   teach?: boolean
 }
 
@@ -139,7 +139,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   const state = workspace.characterStates.find(entry => entry.character === asset.character)
   const atStart = round.phase === 0 && round.repetition === 0 && !round.finished
   const canPrevious = !saving && !busy && (!atStart || hasPrevious)
-  const finalStep = teach ? round.phase === 0 && round.repetition === 0 : isLastStep(round)
+  const finalStep = isLastStep(round)
 
   const cancelStroke = useCallback(() => {
     const active = pointer.current
@@ -215,11 +215,12 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
     else onPrevious?.()
   }
   function next() {
-    if (!completed || saveLock.current || round.finished) return
+    if ((!completed && !teach) || saveLock.current || round.finished) return
     cancelStroke()
     setReplay(null)
+    // Teaching runs the whole loop; Next skips what is left of it (also before the stroke is finished) and goes on.
+    if (teach && (!completed || finalStep)) { onNext?.(); return }
     if (!finalStep) { setRound(advanceRound(round, guides.length)); return }
- if (teach) { onNext?.(); return }
     if (saved.current) { onNext?.(); return }
     saveLock.current = true
     setSaving(true)
@@ -242,7 +243,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   const phaseHelp = round.phase === 0 ? 'Trace the outlines in order. Start at the blue dot and follow the arrow.'
     : round.phase === 1 ? 'Only the next stroke is shown. Complete it to reveal the following guide.'
       : 'Write the character you just practiced. Two misses on the same stroke reveal its guide; later strokes stay hidden.'
-  const progress = round.finished ? 'Saved' : completed ? 'Complete' : `${round.completed}/${guides.length}`
+  const progress = round.finished || completed ? '' : `${round.completed}/${guides.length}`
 
   return <div className="writing-page" data-assistant-exclude>
     <header className="writing-header">
@@ -304,9 +305,9 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <button className="icon-button" title="Undo last stroke" aria-label="Undo" disabled={!round.completed || round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: Math.max(0, value.completed - 1), feedback: '' })) }}><Undo2 size={18} /></button>
         <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>
-        <span className="writing-progress" data-complete={completed ? '' : undefined} title="Stroke progress" aria-hidden="true">{completed && <Check size={15} />}{progress}</span>
+        <span className="writing-progress" data-complete={completed || round.finished ? '' : undefined} title={round.finished ? 'Saved' : completed ? 'Complete' : 'Stroke progress'} aria-hidden="true">{(completed || round.finished) && <Check size={15} />}{progress}</span>
         <button className="button secondary writing-step" title="Previous repetition, phase or character" aria-label="Previous" disabled={!canPrevious} onClick={previous}><ChevronLeft size={18} /><span>Prev</span></button>
-        <button className="button primary writing-step" title={finalStep && last ? 'Finish and save' : 'Next repetition, phase or character'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={!completed || saving || busy || replay !== null || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>
+        <button className="button primary writing-step" title={finalStep && last ? 'Finish and save' : 'Next repetition, phase or character'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={(!completed && !teach) || saving || busy || replay !== null || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>
       </div>
       <p id="writing-status" className="writing-feedback" role="status" aria-live="polite">{status}</p>
     </section>

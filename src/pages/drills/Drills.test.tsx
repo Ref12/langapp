@@ -190,7 +190,7 @@ describe('Practice home', () => {
     // title and meta on the left; Resume, Save and the ⋯ menu are same-size controls on the right
     expect([...line.children].map(child => child.className.split(' ')[0])).toEqual(['resume-text', 'icon-button', 'button', 'row-menu'])
     expect(line.querySelector('.resume-text')).toHaveTextContent('In progress')
-    expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 9 types done/)
+    expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 10 types done/)
     expect(within(recent).getByRole('link', { name: /^Resume New items/ })).toBeInTheDocument()
     expect(within(recent).queryByRole('link', { name: /^Open New items/ })).toBeNull()
     expect(within(recent).queryByRole('button', { name: /^Discard New items/ })).toBeNull()
@@ -322,12 +322,11 @@ describe('doing drills', () => {
     const set = await newSet()
     window.location.hash = `#practice/set/${set.id}/run/write`
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Whole words' }, { timeout: 8000 }))
-    await user.click(screen.getByRole('button', { name: 'Write elsewhere' }))
+    await user.click(await screen.findByRole('button', { name: 'Write elsewhere' }, { timeout: 8000 }))
     // The prompt is pinyin only.
     expect(document.querySelector('.dr-pinyin-prompt')?.textContent).not.toMatch(/\p{Script=Han}/u)
     await user.click(screen.getByRole('button', { name: /Reveal/ }))
-    expect(document.querySelector('.dr-reveal .dr-zh')?.textContent).toMatch(/\p{Script=Han}/u)
+    expect(document.querySelector('.dr-sentence-zh')?.textContent).toMatch(/\p{Script=Han}/u)
     await user.click(screen.getByRole('button', { name: 'Check answer' }))
     expect(await screen.findByLabelText('Stroke order')).toBeInTheDocument()
     await user.click(await screen.findByRole('button', { name: 'Got it' }))
@@ -389,7 +388,7 @@ describe('Hands-free row and finished sets', () => {
     const rows = within(types).getAllByRole('listitem')
     expect(rows[0]).toHaveTextContent('Hands-free')
     expect(rows[0]).toHaveTextContent('Listen and repeat, screen optional')
-    expect(document.body).toHaveTextContent('0 of 9 types done')
+    expect(document.body).toHaveTextContent('0 of 10 types done')
     await user.click(within(rows[0]).getByRole('button', { name: 'Start' }))
     await waitFor(() => expect(window.location.hash).toBe(`#practice/set/${set.id}/handsfree`))
     expect((await getDrillSet(set.id))!.handsfree).toBeDefined()
@@ -410,7 +409,7 @@ describe('Hands-free row and finished sets', () => {
     render(<App />)
     const done = (await screen.findByRole('heading', { name: 'Done' })).closest('section')!
     expect(done).toHaveTextContent('Played to the end')
-    expect(document.body).toHaveTextContent('1 of 9 types done')
+    expect(document.body).toHaveTextContent('1 of 10 types done')
     await user.click(within(done).getByRole('button', { name: 'Play again' }))
     await waitFor(async () => expect((await getDrillSet(set.id))!.handsfree).toMatchObject({ done: false, started: false, position: 0 }))
   }, 40000)
@@ -464,7 +463,7 @@ describe('Learning from', () => {
   }, 40000)
 })
 
-describe('Write it by character', () => {
+describe('Learn to write and Write it', () => {
   const ref = { sheng: 'vocabulary:xue2-sheng5--student', xi: 'vocabulary:xue2-xi2--study' }
   async function sharedSet(source: 'review' | 'new') {
     const set = await newSet()
@@ -473,57 +472,86 @@ describe('Write it by character', () => {
     await db.drillSets.put({ ...set, id, source, refs: [ref.sheng, ref.xi], progress: {}, content: { state: 'ready', sentences, conversations: [] } })
     return id
   }
+  const open = async (id: string, type: string) => { window.location.hash = `#practice/set/${id}/run/${type}`; render(<App />) }
 
-  it('asks each character once, prompting only its syllable, and grades words by their worst character', async () => {
-    const user = userEvent.setup()
-    const id = await sharedSet('review')
-    window.location.hash = `#practice/set/${id}/run/write`
+  it('Learn to write is listed before Write it on the set page', async () => {
+    const id = await sharedSet('new')
+    window.location.hash = `#practice/set/${id}`
     render(<App />)
-    // Reviews default to Write elsewhere, and to Characters.
-    expect(await screen.findByRole('button', { name: 'Characters', pressed: true }, { timeout: 8000 })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Write elsewhere', pressed: true })).toBeInTheDocument()
-    expect(screen.getByText('Question 1 of 3')).toBeInTheDocument()
-    const marks = ['got', 'hint', 'missed'] as const
-    const labels = { got: 'Got it', hint: 'Needed a hint', missed: 'Missed' }
-    const asked: string[] = []
-    for (let step = 0; step < 3; step++) {
-      expect(document.querySelectorAll('.dr-pinyin-prompt mark')).toHaveLength(1)
-      const line = document.querySelector('.dr-write-line')!.textContent!
-      expect(line).toMatch(/^Write \S+$/)
-      asked.push(line)
-      await user.click(screen.getByRole('button', { name: 'Check answer' }))
-      await user.click(await screen.findByRole('button', { name: labels[marks[step]] }))
-      await user.click(await screen.findByRole('button', { name: step === 2 ? 'Finish' : 'Next' }))
-    }
-    expect(new Set(asked).size).toBe(3)
-    expect(await screen.findByRole('heading', { name: /Write it done/ })).toBeInTheDocument()
-    expect(screen.getByText('Missed characters')).toBeInTheDocument()
-    const saved = (await getDrillSet(id))!.progress.write!
-    expect(Object.keys(saved.chars!)).toHaveLength(3)
-    expect(Object.keys(saved.results)).toHaveLength(2)
-    expect(Object.values(saved.results)).toContain('missed')
-    expect(saved.done).toBe(true)
-  }, 60000)
-
-  it('Whole words mode accents the whole word on paper and remembers the choice', async () => {
-    const user = userEvent.setup()
-    const id = await sharedSet('review')
-    window.location.hash = `#practice/set/${id}/run/write`
-    render(<App />)
-    await user.click(await screen.findByRole('button', { name: 'Whole words' }, { timeout: 8000 }))
-    expect(document.querySelector('.dr-write-line')!.textContent).toMatch(/^Write \S+ \S+$/)
-    expect(document.querySelector('.dr-pinyin-prompt mark')!.textContent).toMatch(/\S+ \S+/)
-    expect(localStorage.getItem('drills.write')).toContain('words')
+    const learn = await screen.findByText('Learn to write', undefined, { timeout: 8000 })
+    expect(learn.compareDocumentPosition(screen.getByText('Write it')) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   }, 40000)
 
-  it('new-item sets open on the pad, where an unwritten character is taught first, and can be skipped', async () => {
+  it('Learn to write shows the word card, then the full loop for each character, and records Got it', async () => {
     const user = userEvent.setup()
     const id = await sharedSet('new')
-    window.location.hash = `#practice/set/${id}/run/write`
-    render(<App />)
-    expect(await screen.findByRole('button', { name: 'Handwriting pad', pressed: true }, { timeout: 8000 })).toBeInTheDocument()
-    await user.click(await screen.findByRole('button', { name: 'I already know how to write this' }, { timeout: 8000 }))
-    expect(await screen.findByRole('img', { name: 'Handwriting area' })).toBeInTheDocument()
+    await open(id, 'learn')
+    expect(await screen.findByText('Question 1 of 2', undefined, { timeout: 8000 })).toBeInTheDocument()
+    expect(document.querySelector('.study-unit-card')).not.toBeNull()
+    expect(screen.queryByRole('img', { name: 'Handwriting area' })).toBeNull()
+    await user.click(screen.getByRole('button', { name: /Learn to write it/ }))
+    expect(await screen.findByText(/Character 1 of 2/)).toBeInTheDocument()
+    expect((await screen.findAllByText(/Full guide/, undefined, { timeout: 8000 })).length).toBeGreaterThan(0)
+    expect(document.querySelector('.writing-statusline')).toHaveTextContent('Full guide · 1/3')
+    await user.click(screen.getByRole('button', { name: 'I already know how to write this' }))
+    expect(await screen.findByText(/Character 2 of 2/)).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'I already know how to write this' }))
+    expect(await screen.findByText('Got it')).toBeInTheDocument()
+    await waitFor(async () => expect(Object.values((await db.drillSets.get(id))!.progress.learn?.results ?? {})).toEqual(['got']))
+  }, 40000)
+
+  it('Next in the loop skips ahead to the next character and marks the character as written', async () => {
+    const user = userEvent.setup()
+    const id = await sharedSet('new')
+    await open(id, 'learn')
+    await user.click(await screen.findByRole('button', { name: /Learn to write it/ }, { timeout: 8000 }))
+    await screen.findAllByText(/Full guide/, undefined, { timeout: 8000 })
+    await user.click(screen.getByRole('button', { name: 'Stop demonstration' }))
+    await user.click(screen.getByRole('button', { name: 'Next' }))
+    expect(await screen.findByText(/Character 2 of 2/)).toBeInTheDocument()
+    await waitFor(async () => expect((await db.characterStates.count())).toBeGreaterThan(0))
+  }, 40000)
+
+  it('Write it is a test only: no Learn / Test switch, no teaching, Write elsewhere for reviews', async () => {
+    const id = await sharedSet('review')
+    await open(id, 'write')
+    expect(await screen.findByRole('button', { name: 'Write elsewhere', pressed: true }, { timeout: 8000 })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Learn' })).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Test' })).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Characters' })).toBeNull()
+    expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
+    expect(document.querySelector('.dr-write-line')!.textContent).toMatch(/^Write \S+ \S+$/)
+  }, 40000)
+
+  it('a new-item set opens Write it on the pad straight away, without teaching', async () => {
+    const id = await sharedSet('new')
+    await open(id, 'write')
+    expect(await screen.findByRole('img', { name: 'Handwriting area' }, { timeout: 8000 })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'I already know how to write this' })).toBeNull()
+  }, 40000)
+
+  it('Reveal shows the Chinese sentence and counts as a hint', async () => {
+    const user = userEvent.setup()
+    const id = await sharedSet('review')
+    await open(id, 'write')
+    await user.click(await screen.findByRole('button', { name: /Reveal/ }, { timeout: 8000 }))
+    expect(document.querySelector('.dr-sentence-zh')).toHaveTextContent(/^(他是学生。|我学习中文。)$/)
+    await user.click(screen.getByRole('button', { name: 'Check answer' }))
+    await user.click(screen.getByRole('button', { name: 'Got it' }))
+    expect(await screen.findByText('Needed a hint')).toBeInTheDocument()
+  }, 40000)
+
+  it('Practise writing opens the loop inline, returns to the question and counts as a hint', async () => {
+    const user = userEvent.setup()
+    const id = await sharedSet('review')
+    await open(id, 'write')
+    await user.click(await screen.findByRole('button', { name: /Practise writing/ }, { timeout: 8000 }))
+    expect((await screen.findAllByText(/Full guide/, undefined, { timeout: 8000 })).length).toBeGreaterThan(0)
+    await user.click(screen.getByRole('button', { name: 'Back to the question' }))
+    expect(await screen.findByRole('button', { name: 'Check answer' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Check answer' }))
+    await user.click(screen.getByRole('button', { name: 'Got it' }))
+    expect(await screen.findByText('Needed a hint')).toBeInTheDocument()
   }, 40000)
 })
 

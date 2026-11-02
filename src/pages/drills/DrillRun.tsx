@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
 import type { Workspace } from '../../core/model'
+import type { PageProps } from '../../components/shared'
 import { readingIndex } from '../../core/study/annotate'
 import type { Catalog } from '../../core/study/catalog'
 import { MARK_LABEL, countMarks, drillType, scoreOf, type DrillSet, type DrillTypeId, type Mark } from '../../core/drills/contracts'
 import type { ItemInfo } from '../../core/drills/items'
-import { markCharactersWritten, recordDrillResult, recordRedo, recordWriteChar } from '../../core/drills/store'
-import { guidedChars } from '../../core/drills/write-queue'
+import { recordDrillResult, recordRedo } from '../../core/drills/store'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { QuestionView, type QState, type ViewContext } from './QuestionViews'
 import { DEFAULT_OPTIONS, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
 
-interface RunProps {
+interface RunProps extends Pick<PageProps, 'now' | 'run' | 'busy'> {
   set: DrillSet
   type: DrillTypeId
   items: ItemInfo[]
@@ -23,23 +23,20 @@ interface RunProps {
 }
 
 const TITLES: Record<string, string> = {
-  choice: 'Choose the answer', match: 'Match the pairs', free: 'Type the answer', pinyin: 'Type the pinyin', write: 'Write it', translate: 'Translate into Chinese', repeat: 'Repeat after me', convo: 'Answer the questions',
+  choice: 'Choose the answer', match: 'Match the pairs', free: 'Type the answer', pinyin: 'Type the pinyin', learn: 'Learn to write', write: 'Write it', translate: 'Translate into Chinese', repeat: 'Repeat after me', convo: 'Answer the questions',
 }
 
 /** One drill type over the items of a set: one at a time, or as a single page answered in bulk. The first pass of a type is graded; a redo is not. */
-export function DrillRun({ set, type, items, catalog, workspace, only, backHref }: RunProps) {
+export function DrillRun({ set, type, items, catalog, workspace, only, backHref, now, run, busy }: RunProps) {
   const progress = set.progress[type]
   // Fixed when the pass starts: finishing it marks the type done, which must not turn its own summary into a redo.
   const [graded] = useState(() => !only && !progress?.done)
   const scope = useMemo(() => applicable(type, items, set.content).map(item => item.ref), [type, items, set.content])
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
-  // Write elsewhere is the default for reviews (or the last mode used for them); new items start on the pad, so new characters can be taught.
   const [options, setOptions] = useState<Options>(() => ({ ...DEFAULT_OPTIONS, ...(type === 'write' ? loadWriteChoice(set.source) : {}) }))
-  const writeWords = useMemo(() => applicable('write', items, set.content).map(item => ({ ref: item.ref, chars: guidedChars(item.zh) })), [items, set.content])
   const build = useCallback((next: Options) => {
     const left = only ?? (graded ? scope.filter(ref => !progress?.results[ref]) : undefined)
-    return buildQuestions(type, { setId: set.id, items, catalog, known, content: set.content, options: next, refs: left, charStates: workspace.characterStates, pass: graded ? 0 : (progress?.redos ?? 0) + 1,
-      charsDone: graded && progress?.chars ? new Set(Object.keys(progress.chars)) : undefined })
+    return buildQuestions(type, { setId: set.id, items, catalog, known, content: set.content, options: next, refs: left })
   // The queue is fixed when a pass starts or an option changes; results arriving later must not reshuffle it.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, set.id, items, catalog])
@@ -55,20 +52,13 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
     void recordRedo(set.id, type)
   }, [graded, only, set.id, type])
   const ctx: ViewContext = useMemo(() => ({
-    readings: readingIndex([...new Set([...known, ...set.refs])].flatMap(ref => catalog.units.get(ref) ?? [])), pinyinOn: workspace.preferences.pinyin, catalogChars: catalogCharacters(), workspace,
-  }), [workspace, known, set.refs, catalog])
-  const change = (next: Options) => { if (type === 'write') saveWriteChoice(set.source, next); setOptions(next); setQueue(build(next)); setStates({}); setIndex(0) }
+    readings: readingIndex([...new Set([...known, ...set.refs])].flatMap(ref => catalog.units.get(ref) ?? [])), pinyinOn: workspace.preferences.pinyin, catalogChars: catalogCharacters(), workspace, catalog, now, run, busy,
+  }), [workspace, known, set.refs, catalog, now, run, busy])
+  const change = (next: Options) => { if (type === 'write') saveWriteChoice(next); setOptions(next); setQueue(build(next)); setStates({}); setIndex(0) }
 
-  const record = (outcome: Outcome, q: Q) => {
+  const record = (outcome: Outcome) => {
     setLocal(current => ({ ...current, ...outcome.marks }))
-    const data = q.data
-    if (data.t === 'write' && data.char !== undefined) {
-      const mark = outcome.marks[data.char]
-      if (graded) { void recordWriteChar(set.id, data.char, mark, data.item.ref, writeWords, scope); if (mark !== 'missed') void markCharactersWritten([data.char]) }
-      return
-    }
     for (const [ref, mark] of Object.entries(outcome.marks)) {
-      if (graded && data.t === 'write' && mark !== 'missed') void markCharactersWritten(guidedChars(data.item.zh))
       void recordDrillResult(set.id, type, ref, mark, scope)
     }
   }
@@ -78,12 +68,12 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
     if (needsConfirm(q)) { const suggested = suggestedMark(result); patch(q.key, { answer, status: 'marking', suggested, chosen: suggested }); return }
     if (result === 'self') { patch(q.key, { answer, status: 'marking' }); return }
     patch(q.key, { answer, status: 'done', outcome: result })
-    record(result, q)
+    record(result)
   }
   const mark = (q: Q, chosen: Mark) => {
     const outcome = selfGrade(q, states[q.key]?.answer, chosen)
     patch(q.key, { status: 'done', outcome })
-    record(outcome, q)
+    record(outcome)
   }
   // Typed answers: tapping a mark only selects it; Next (or Confirm marks in a quiz) records the selected one.
   const pick = (q: Q, chosen: Mark) => { if (needsConfirm(q)) patch(q.key, { chosen }); else mark(q, chosen) }
@@ -101,8 +91,6 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
       <div className="segmented dr-modes" role="group" aria-label="Direction">{(['zh-to-en', 'en-to-zh'] as const).map(direction =>
         <button key={direction} type="button" aria-pressed={options.direction === direction} onClick={() => change({ ...options, direction })}>{direction === 'zh-to-en' ? '中 → English' : 'English → 中'}</button>)}</div></>}
     {type === 'write' && <>
-      <div className="segmented dr-modes" role="group" aria-label="What to write">{(['chars', 'words'] as const).map(writeUnit =>
-        <button key={writeUnit} type="button" aria-pressed={options.writeUnit === writeUnit} onClick={() => change({ ...options, writeUnit })}>{writeUnit === 'chars' ? 'Characters' : 'Whole words'}</button>)}</div>
       <div className="segmented dr-modes" role="group" aria-label="Writing">{(['pad', 'paper'] as const).map(writeMode =>
         <button key={writeMode} type="button" aria-pressed={options.writeMode === writeMode} onClick={() => change({ ...options, writeMode })}>{writeMode === 'pad' ? 'Handwriting pad' : 'Write elsewhere'}</button>)}</div></>}
   </div>
@@ -118,12 +106,10 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref 
 
   const counts = { got: 0, hint: 0, missed: 0 } as Record<Mark, number>
   for (const value of Object.values(local)) counts[value]++
-  const missedChars = queue.flatMap(q => q.data.t === 'write' && q.data.char !== undefined && local[q.data.char] === 'missed' ? [[q.data.char, q.data.item.ref] as const] : [])
   const finishedAll = quiz ? queue.every(q => states[q.key]?.status === 'done') : index >= queue.length
   const summary = <section className="panel completion dr-end-panel" aria-label="Pass finished"><CheckCircle2 size={36} className="accent" aria-hidden="true" />
     <h2>{graded ? `${name} done` : 'Redo finished'}</h2>
     <p className="dr-stats"><span><strong>{counts.got}</strong>{MARK_LABEL.got}</span><span><strong>{counts.hint}</strong>{MARK_LABEL.hint}</span><span><strong>{counts.missed}</strong>{MARK_LABEL.missed}</span></p>
-    {missedChars.length > 0 && <div className="dr-missed-chars"><h3 className="small">Missed characters</h3><ul className="dr-rows">{missedChars.map(([char, cue]) => <li key={char}><strong lang="zh-Hans" className="dr-zh">{char}</strong><span className="small muted" lang="zh-Hans">in {items.find(item => item.ref === cue)?.zh ?? cue}</span></li>)}</ul></div>}
     {graded ? <p className="small muted">Recorded in your knowledge and review schedule. {set.progress[type] ? (() => { const s = scoreOf(countMarks({ progress: { [type]: set.progress[type]! } }, [type])); return `Score: ${s.correct} of ${s.total}.` })() : ''}</p>
       : <p className="small muted">Ungraded practice: your score and schedule are unchanged.</p>}
     <div className="button-row"><a className="button primary" href={backHref}>Back to the set</a></div></section>

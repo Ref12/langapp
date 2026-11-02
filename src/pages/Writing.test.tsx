@@ -288,6 +288,31 @@ describe('writing exercise', () => {
       await waitFor(() => expect(onNext).toHaveBeenCalledTimes(2))
       expect((await db.characterStates.get('\u4e00'))?.practiceCompletions).toBe(1)
     })
+    describe('teach mode', () => {
+      const stopDemo = () => fireEvent.click(screen.getByRole('button', { name: 'Stop demonstration' }))
+      it('runs every phase three times, then hands over without saving', async () => {
+        const onNext = vi.fn()
+        render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" teach onNext={onNext} />)
+        stopDemo()
+        const seen = [step()]
+        for (let index = 0; index < 8; index++) { stroke(); next(); seen.push(step()) }
+        expect(seen).toEqual(['Full guide \u00b7 1/3', 'Full guide \u00b7 2/3', 'Full guide \u00b7 3/3', 'One stroke at a time \u00b7 1/3', 'One stroke at a time \u00b7 2/3', 'One stroke at a time \u00b7 3/3', 'From memory \u00b7 1/3', 'From memory \u00b7 2/3', 'From memory \u00b7 3/3'])
+        expect(onNext).not.toHaveBeenCalled()
+        stroke(); next()
+        expect(onNext).toHaveBeenCalledTimes(1)
+        expect(await db.characterStates.count()).toBe(0)
+      })
+      it('lets Next skip the rest of the loop at any point, even before the stroke is traced', () => {
+        const onNext = vi.fn()
+        render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" teach onNext={onNext} />)
+        stopDemo()
+        stroke(); next(); stroke(); next(); stroke(); next()
+        expect(step()).toBe('One stroke at a time \u00b7 1/3')
+        expect(screen.getByRole('button', { name: 'Next' })).toBeEnabled()
+        next()
+        expect(onNext).toHaveBeenCalledTimes(1)
+      })
+    })
     it('labels the final step Next while another character follows, Finish otherwise', () => {
       const view = render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" last={false} />)
       for (let index = 0; index < 8; index++) { stroke(); next() }

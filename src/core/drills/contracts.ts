@@ -6,7 +6,7 @@ import { handsfreeSettingsSchema } from '../handsfree/contracts'
 
 export const DRILLS_LABEL = 'Practice'
 
-export const DRILL_TYPE_IDS = ['meanings', 'match', 'write', 'pinyin', 'translate', 'repeat', 'listen', 'read'] as const
+export const DRILL_TYPE_IDS = ['meanings', 'match', 'learn', 'write', 'pinyin', 'translate', 'repeat', 'listen', 'read'] as const
 export type DrillTypeId = typeof DRILL_TYPE_IDS[number]
 export const drillTypeSchema = z.enum(DRILL_TYPE_IDS)
 
@@ -126,7 +126,8 @@ export type DrillFormat = DrillSet['format']
 export const DRILL_TYPES: { id: DrillTypeId; name: string; blurb: string; icon: string; needs: 'none' | 'sentences' | 'conversations' }[] = [
   { id: 'meanings', name: 'Word meanings', blurb: 'Chinese ↔ English: choose or type', icon: 'Languages', needs: 'none' },
   { id: 'match', name: 'Match pairs', blurb: 'Join each word to its meaning, a board at a time', icon: 'Shuffle', needs: 'none' },
-  { id: 'write', name: 'Write it', blurb: 'A pinyin sentence, write the highlighted word', icon: 'PenLine', needs: 'sentences' },
+  { id: 'learn', name: 'Learn to write', blurb: 'Each word, then its characters: watch, trace, write from memory', icon: 'GraduationCap', needs: 'none' },
+  { id: 'write', name: 'Write it', blurb: 'A pinyin sentence, write the highlighted word from memory', icon: 'PenLine', needs: 'sentences' },
   { id: 'pinyin', name: 'Say the pinyin', blurb: 'See the word, type its pinyin', icon: 'Type', needs: 'none' },
   { id: 'translate', name: 'Translate sentences', blurb: 'English to Chinese: type, speak or write', icon: 'MessageSquareText', needs: 'sentences' },
   { id: 'repeat', name: 'Repeat after me', blurb: 'Timed audio loop, nothing to look at', icon: 'Repeat', needs: 'sentences' },

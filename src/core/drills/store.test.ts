@@ -105,7 +105,7 @@ describe('creating drill sets', () => {
   it('writes only the missing sentences and the conversations with the AI, in batches', async () => {
     await db.aiConnections.put(connection)
     structured.requestStructuredJSON.mockImplementation(async (_connection, request: { name: string }) => request.name === 'drill_conversations'
-      ? { conversations: [{ title: 'Hello', lines: [{ who: 'A', zh: '你好', py: 'nǐ hǎo', en: 'Hello' }, { who: 'B', zh: '我是学生。', py: 'wǒ shì xué shēng', en: 'I am a student.' }],
+      ? { conversations: [{ title: 'Hello', lines: [{ who: 'A', zh: '你是我', py: 'nǐ shì wǒ', en: 'Hello' }, { who: 'B', zh: '我是你。', py: 'wǒ shì nǐ', en: 'I am you.' }],
         questions: [{ after: 1, question: 'Who is a student?', options: ['A', 'B'], answer: 1 }] }] }
       : { sentences: [] })
     const set = await created({ kind: 'new' })
