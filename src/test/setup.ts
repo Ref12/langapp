@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom/vitest'
 import 'fake-indexeddb/auto'
-import { vi } from 'vitest'
+import { cleanup } from '@testing-library/react'
+import { afterEach, vi } from 'vitest'
+
+// Without vitest globals, Testing Library does not unmount after each test; mounted live queries then fire after jsdom teardown ("window is not defined").
+afterEach(() => { cleanup() })
 
 if (typeof window !== 'undefined') window.scrollTo = vi.fn()
 
