@@ -1,8 +1,12 @@
-import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { initializeWorkspace, loadWorkspace, db } from '../core/database'
 import { Writing, WritingPlayer } from './Writing'
+import { savePreferences } from '../core/learning'
+import { resetCharacterMeanings } from '../core/characters/meanings'
+import { writingSpeechMode } from '../core/writing-speech'
+import { PageSettingsButton, PageSettingsProvider } from '../components/PageSettings'
 import type { CharacterAsset } from '../core/characters/assets'
 import type { PageProps } from '../components/shared'
 import { withAutoCompletedSpeechPreparation } from '../test/mock-speech-preparation'
@@ -39,7 +43,7 @@ beforeEach(async () => {
   speak = vi.fn(); cancel = vi.fn()
   vi.stubGlobal('speechSynthesis', withAutoCompletedSpeechPreparation(Object.assign(new EventTarget(), { getVoices: () => [voice], speak, cancel })))
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
-  stopBrowserSpeech(); setSpeechVoicePreferences(); clearVoiceCache()
+  stopBrowserSpeech(); setSpeechVoicePreferences(); clearVoiceCache(); resetCharacterMeanings()
   captured = false
   vi.spyOn(SVGElement.prototype, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 100))
   Object.defineProperties(SVGElement.prototype, {
@@ -66,8 +70,12 @@ async function finishGuidedPhases() {
 
 describe('writing exercise', () => {
   const spoken = () => speak.mock.calls.map(call => call[0].text)
-  it('speaks the character after every finished stroke, accepted or missed, but not on undo', async () => {
-    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
+  const withMode = async (mode: 'transitions' | 'stroke' | 'off') => { await savePreferences({ writingSpeech: mode }); props = { ...props, workspace: await loadWorkspace() } }
+  const player = () => render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
+  it('every stroke mode speaks after every finished stroke, accepted or missed, but not on undo', async () => {
+    await withMode('stroke')
+    player()
+    await waitFor(() => expect(speak).not.toHaveBeenCalled())
     stroke()
     await waitFor(() => expect(spoken()).toEqual(['\u4e00']))
     fireEvent.click(screen.getByRole('button', { name: 'Next' }))
@@ -78,6 +86,103 @@ describe('writing exercise', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Watch stroke order' }))
     await new Promise(resolve => setTimeout(resolve, 20))
     expect(speak).toHaveBeenCalledTimes(2)
+  })
+  it('the default says the character at transitions: when shown and when a repetition is completed, never per stroke', async () => {
+    const view = render(<WritingPlayer {...props} asset={{ ...asset, strokeCount: 2, paths: ['M10 30 L90 30', 'M10 70 L90 70'] }} backHref="#dictionary/characters" />)
+    await waitFor(() => expect(spoken()).toEqual(['\u4e00']))
+    stroke([10, 30], [90, 30])
+    await new Promise(resolve => setTimeout(resolve, 30))
+    expect(spoken()).toEqual(['\u4e00'])
+    stroke([10, 70], [90, 70])
+    await waitFor(() => expect(spoken()).toEqual(['\u4e00', '\u4e00']))
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    await new Promise(resolve => setTimeout(resolve, 30))
+    expect(spoken()).toHaveLength(2)
+    view.unmount()
+  })
+  describe('character meaning', () => {
+    const table = (meanings: Record<string, [string, string]>) => vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ meanings }))))
+    it('shows the character\'s own pinyin and short meaning, with the word line kept', async () => {
+      table({ '\u4e00': ['y\u012b', 'one; a, an; alone'] })
+      render(<WritingPlayer {...props} asset={asset} inWord backHref="#d" />)
+      const line = await screen.findByTestId('character-meaning')
+      expect(line).toHaveTextContent('\u4e00 y\u012b \u00b7 one; a, an; alone')
+    })
+    it('is not shown for a single-character word, where the word line already says it', async () => {
+      table({ '\u4e00': ['y\u012b', 'one; a, an; alone'] })
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
+      await new Promise(resolve => setTimeout(resolve, 30))
+      expect(screen.queryByTestId('character-meaning')).toBeNull()
+    })
+    it('is absent without breaking the player when the character has no definition', async () => {
+      table({})
+      render(<WritingPlayer {...props} asset={asset} inWord backHref="#d" />)
+      await new Promise(resolve => setTimeout(resolve, 30))
+      expect(screen.queryByTestId('character-meaning')).toBeNull()
+      expect(screen.getByRole('img', { name: 'Handwriting area' })).toBeInTheDocument()
+    })
+    it('is absent when the table cannot be loaded', async () => {
+      vi.stubGlobal('fetch', vi.fn(async () => new Response('', { status: 404 })))
+      render(<WritingPlayer {...props} asset={asset} inWord backHref="#d" />)
+      await new Promise(resolve => setTimeout(resolve, 30))
+      expect(screen.queryByTestId('character-meaning')).toBeNull()
+    })
+  })
+  it('Off is silent', async () => {
+    await withMode('off')
+    player()
+    stroke()
+    await new Promise(resolve => setTimeout(resolve, 30))
+    expect(speak).not.toHaveBeenCalled()
+  })
+  it('does not speak on undo', async () => {
+    await withMode('stroke')
+    player()
+    stroke()
+    await waitFor(() => expect(speak).toHaveBeenCalledTimes(1))
+    fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
+    await new Promise(resolve => setTimeout(resolve, 20))
+    expect(speak).toHaveBeenCalledTimes(1)
+  })
+  it('the quick mute switches Off and back to the last non-Off choice, stops playback and stays silent', async () => {
+    await withMode('stroke')
+    const view = player()
+    stroke()
+    await waitFor(() => expect(getPlaybackState().activeId).toBeTruthy())
+    const mute = screen.getByRole('button', { name: 'Mute automatic character audio' })
+    expect(mute).toHaveAttribute('aria-pressed', 'false')
+    fireEvent.click(mute)
+    await waitFor(async () => expect((await loadWorkspace()).preferences).toMatchObject({ writingSpeech: 'off', writingSpeechResume: 'stroke' }))
+    expect(cancel).toHaveBeenCalled()
+    expect(getPlaybackState().activeId).toBeUndefined()
+    const workspace = await loadWorkspace()
+    view.rerender(<WritingPlayer {...props} workspace={workspace} asset={asset} backHref="#dictionary/characters" />)
+    const unmute = screen.getByRole('button', { name: 'Unmute automatic character audio' })
+    expect(unmute).toHaveAttribute('aria-pressed', 'true')
+    speak.mockClear()
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
+    stroke()
+    await new Promise(resolve => setTimeout(resolve, 20))
+    expect(speak).not.toHaveBeenCalled()
+    fireEvent.click(unmute)
+    await waitFor(async () => expect((await loadWorkspace()).preferences.writingSpeech).toBe('stroke'))
+  })
+  it('reads the older writingAutoSpeak: false as Off and anything else as At transitions', () => {
+    expect(writingSpeechMode({ writingAutoSpeak: false })).toBe('off')
+    expect(writingSpeechMode({ writingAutoSpeak: true })).toBe('transitions')
+    expect(writingSpeechMode({})).toBe('transitions')
+    expect(writingSpeechMode({ writingSpeech: 'stroke', writingAutoSpeak: false })).toBe('stroke')
+  })
+  it('the Writing page contextual settings hold the Say the character control', async () => {
+    const user = userEvent.setup()
+    const run = async (operation: () => Promise<void>) => { await operation() }
+    render(<PageSettingsProvider><PageSettingsButton route="writing/4e00" label="Writing" page="writing" workspace={props.workspace} busy={false} run={run} /><Writing {...props} codepoint="4e00" /></PageSettingsProvider>)
+    await user.click(await screen.findByRole('button', { name: 'Workspace settings' }))
+    const select = await screen.findByRole('combobox', { name: 'Say the character' })
+    expect(select).toHaveValue('transitions')
+    expect(within(select).getAllByRole('option').map(option => option.textContent)).toEqual(['At transitions', 'Every stroke', 'Off'])
+    await user.selectOptions(select, 'stroke')
+    await waitFor(async () => expect((await loadWorkspace()).preferences.writingSpeech).toBe('stroke'))
   })
   describe('haptics', () => {
     let vibrate: ReturnType<typeof vi.fn>
@@ -104,33 +209,6 @@ describe('writing exercise', () => {
       render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
       expect(() => stroke()).not.toThrow()
     })
-  })
-  it('does not speak on undo', async () => {
-    render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
-    stroke()
-    await waitFor(() => expect(speak).toHaveBeenCalledTimes(1))
-    fireEvent.click(screen.getByRole('button', { name: 'Undo' }))
-    await new Promise(resolve => setTimeout(resolve, 20))
-    expect(speak).toHaveBeenCalledTimes(1)
-  })
-  it('mutes, stops playback, persists the preference and stays silent', async () => {
-    const view = render(<WritingPlayer {...props} asset={asset} backHref="#dictionary/characters" />)
-    stroke()
-    await waitFor(() => expect(getPlaybackState().activeId).toBeTruthy())
-    const mute = screen.getByRole('button', { name: 'Mute automatic character audio' })
-    expect(mute).toHaveAttribute('aria-pressed', 'false')
-    fireEvent.click(mute)
-    await waitFor(async () => expect((await loadWorkspace()).preferences.writingAutoSpeak).toBe(false))
-    expect(cancel).toHaveBeenCalled()
-    expect(getPlaybackState().activeId).toBeUndefined()
-    const workspace = await loadWorkspace()
-    view.rerender(<WritingPlayer {...props} workspace={workspace} asset={asset} backHref="#dictionary/characters" />)
-    expect(screen.getByRole('button', { name: 'Unmute automatic character audio' })).toHaveAttribute('aria-pressed', 'true')
-    speak.mockClear()
-    fireEvent.click(screen.getByRole('button', { name: 'Next' }))
-    stroke()
-    await new Promise(resolve => setTimeout(resolve, 20))
-    expect(speak).not.toHaveBeenCalled()
   })
   it('completes nine repetitions and saves practice without changing reading or manual knowledge', async () => {
     const onNext = vi.fn()

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerE
 import { ArrowLeft, Check, ChevronLeft, ChevronRight, CircleHelp, Eraser, Play, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react'
 import { characterAssetIndex, characterAttributionUrl, loadCharacterAsset, type CharacterAsset } from '../core/characters/assets'
 import { recordCharacterPractice } from '../core/characters/store'
+import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '../core/characters/meanings'
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/characters/geometry'
 import { advanceRound, commitStroke, isLastStep, memoryHint, newWritingRound, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
 import { buildWritingRoute, isHan, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
@@ -10,8 +11,11 @@ import { EmptyState, type PageProps } from '../components/shared'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { haptic } from '../core/haptics'
 import { savePreferences } from '../core/learning'
+import { writingSpeechMode, writingSpeechResume } from '../core/writing-speech'
 import { rememberWrittenPhrase } from '../core/assistant/practice-history'
 import { Pinyin } from '../components/Pinyin'
+import { usePageSettings } from '../components/page-settings-context'
+import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
 import './writing.css'
 
 function routeCharacter(codepoint?: string): string | undefined {
@@ -30,6 +34,7 @@ function takeArrival(character: string) {
 const go = (route: string) => { window.location.replace(`#${route}`) }
 
 export function Writing({ codepoint, scope, query, ...props }: PageProps & { codepoint?: string; scope?: string; query?: string }) {
+  usePageSettings({ title: 'Writing settings', content: <WritingSpeechSelect workspace={props.workspace} busy={props.busy} run={props.run} /> })
   const character = routeCharacter(codepoint)
   const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
   const { word, index, back: requestedBack } = useMemo(() => parseWritingQuery(query, character), [query, character])
@@ -107,9 +112,11 @@ export interface WritingPlayerProps {
   onNext?: () => void
   /** Drills teach a new character with the whole practice loop (every phase, every repetition). Next skips ahead and goes on; nothing is saved by the player. */
   teach?: boolean
+  /** The word being written has more than one character: show this character's own pinyin and meaning. (`place` implies it.) */
+  inWord?: boolean
 }
 
-export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onNext, teach = false, workspace, run, busy }: PageProps & WritingPlayerProps) {
+export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onNext, teach = false, inWord = false, workspace, run, busy }: PageProps & WritingPlayerProps) {
   const guides = useMemo(() => asset.paths.map(makeStrokeGuide), [asset.paths])
   const [arrived] = useState(() => takeArrival(asset.character))
   const [round, setRound] = useState<WritingRound>(() => arrived ? { ...newWritingRound(), phase: arrived.phase, repetition: arrived.repetition } : newWritingRound())
@@ -123,7 +130,11 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
   const marker = useId().replace(/:/g, '')
   const speechId = useId()
-  const autoSpeak = workspace.preferences.writingAutoSpeak !== false
+  const speech = writingSpeechMode(workspace.preferences)
+  const autoSpeak = speech !== 'off'
+  const speechRef = useRef(speech)
+  speechRef.current = speech
+  const say = useCallback(() => { try { playBrowserSpeech(speechId, asset.character, 'zh-Hans') } catch { /* blocked speech stays silent */ } }, [speechId, asset.character])
   useEffect(() => () => {
     if (getPlaybackState().activeId === speechId) stopBrowserSpeech()
   }, [speechId])
@@ -132,6 +143,17 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   }, [autoSpeak, speechId])
   const { catalog } = useCatalog()
   const word = useMemo(() => catalog ? [...catalog.units.values()].find(unit => unit.kind === 'vocabulary' && unit.record.ch.includes(asset.character)) : undefined, [catalog, asset.character])
+  const [meaning, setMeaning] = useState<CharacterMeaning>()
+  useEffect(() => {
+    let live = true
+    setMeaning(undefined)
+    void loadCharacterMeaning(asset.character).then(value => { if (live) setMeaning(value) }, () => undefined)
+    return () => { live = false }
+  }, [asset.character])
+  // The character as a word of its own: the dictionary's senses first, the curriculum's meaning after them.
+  const own = useMemo(() => catalog ? [...catalog.units.values()].find(unit => unit.kind === 'vocabulary' && unit.record.ch === asset.character) : undefined, [catalog, asset.character])
+  const ownPinyin = meaning?.pinyin || (own?.kind === 'vocabulary' ? own.record.pr : undefined)
+  const ownMeaning = combineMeanings(meaning?.meaning, own?.kind === 'vocabulary' ? own.record.ds : undefined)
   const completed = round.completed === guides.length
   const hint = memoryHint(round) && !completed
   const hidden = round.phase === 2 && !round.finished
@@ -161,6 +183,13 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
       pointer.current = undefined
     }
   }, [cancelStroke])
+  // At transitions: when the character is first shown, and when a repetition is completed (all its strokes written).
+  useEffect(() => { if (speechRef.current === 'transitions') say() }, [say])
+  const wasCompleted = useRef(false)
+  useEffect(() => {
+    if (completed && !wasCompleted.current && speechRef.current === 'transitions') say()
+    wasCompleted.current = completed
+  }, [completed, say])
   useEffect(() => {
     if (replay === null) return
     const timer = window.setTimeout(() => setReplay(value => value === null || value >= guides.length - 1 ? null : value + 1), 800)
@@ -203,8 +232,8 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
     const next = commitStroke(round, active.points, guides)
     if (next !== round) haptic(next.completed > round.completed ? 'success' : 'error', workspace.preferences.haptics !== false)
     setRound(value => commitStroke(value, active.points, guides))
-    // Every finished stroke, accepted or missed, says the character; blocked speech stays silent.
-    if (autoSpeak) { try { playBrowserSpeech(speechId, asset.character, 'zh-Hans') } catch { /* ignore */ } }
+    // Every stroke mode: each finished stroke, accepted or missed, says the character. At transitions never speaks per stroke.
+    if (speech === 'stroke') say()
   }
   function previous() {
     if (!canPrevious) return
@@ -267,6 +296,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <a className="text-link" href={characterAttributionUrl} target="_blank" rel="noreferrer">Artwork sources and licenses</a>
       </div>}
     </header>
+    {(inWord || !!place) && ownMeaning && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}
     <section className="writing-workbench" aria-label="Writing exercise">
       <div className="writing-statusline">
         <span><strong>{PHASES[round.phase]}</strong> &middot; {round.repetition + 1}/{REPETITIONS}</span>
@@ -301,7 +331,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
       <div className="writing-controls" role="toolbar" aria-label="Writing controls">
         <button className="icon-button" aria-label={`${autoSpeak ? 'Mute' : 'Unmute'} automatic character audio`} aria-pressed={!autoSpeak}
           title={autoSpeak ? 'Mute automatic character audio' : 'Unmute automatic character audio'} disabled={busy}
-          onClick={() => { if (autoSpeak) stopBrowserSpeech(); void run(() => savePreferences({ writingAutoSpeak: !autoSpeak })) }}>{autoSpeak ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
+          onClick={() => { if (autoSpeak) stopBrowserSpeech(); void run(() => savePreferences(autoSpeak ? { writingSpeech: 'off', writingSpeechResume: speech as 'transitions' | 'stroke' } : { writingSpeech: writingSpeechResume(workspace.preferences) })) }}>{autoSpeak ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
         <button className="icon-button" title="Undo last stroke" aria-label="Undo" disabled={!round.completed || round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: Math.max(0, value.completed - 1), feedback: '' })) }}><Undo2 size={18} /></button>
         <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>

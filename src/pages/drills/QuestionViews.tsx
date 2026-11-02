@@ -24,7 +24,11 @@ import { type ConvoAnswer, type Outcome, type Q, type QData, type TextAnswer, ty
 /** `suggested`: what the automatic check made of a typed answer; `chosen`: the mark selected to confirm (starts as the suggestion). */
 export interface QState { answer?: unknown; status: 'open' | 'marking' | 'done'; outcome?: Outcome; suggested?: Mark; chosen?: Mark }
 export interface ViewContext { readings: Map<string, Set<string>>; pinyinOn: boolean; catalogChars: Set<string>; workspace: Workspace; catalog: Catalog; now: number; run: PageProps['run']; busy: boolean }
-export interface ViewProps { q: Q; quiz: boolean; state: QState; ctx: ViewContext; onAnswer: (answer: unknown) => void; onMark: (mark: Mark) => void }
+export interface ViewProps { q: Q; quiz: boolean; state: QState; ctx: ViewContext; onAnswer: (answer: unknown) => void; onMark: (mark: Mark) => void
+  /** Learn to write: go back to the previous word (its last character). */
+  onPrevious?: () => void
+  /** Learn to write: this word was entered by going back, so it opens at its last character. */
+  arrive?: 'last' }
 
 const noop = () => undefined
 
@@ -121,17 +125,18 @@ function PinyinSentence({ py: raw, target, syllable }: { py: string; target: str
 }
 
 /** Learn to write: the word's intro card, then the full writing loop for each of its characters in order. Next and "I already know how to write this" skip ahead. */
-function LearnView({ data, state, ctx, onAnswer }: ViewProps & { data: Extract<QData, { t: 'learn' }> }) {
-  const [started, setStarted] = useState(false)
+function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps & { data: Extract<QData, { t: 'learn' }> }) {
+  const [started, setStarted] = useState(arrive === 'last')
   const characters = useMemo(() => guidedChars(data.item.zh), [data.item.zh])
   const locked = state.status !== 'open'
-  const finish = () => onAnswer({ misses: 0, hinted: false } satisfies WriteAnswer)
+  // A word that already has its result stays as it is when revisited; the loop is only for another look.
+  const finish = () => { setStarted(false); if (!locked) onAnswer({ misses: 0, hinted: false } satisfies WriteAnswer) }
   return <>
     <IntroCard item={data.item} catalog={ctx.catalog} workspace={ctx.workspace} now={ctx.now} run={ctx.run} busy={ctx.busy} route="#practice" />
     {!locked && !started && <div className="button-row dr-center">
       {characters.length ? <button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button>
         : <><p className="small muted">There is no stroke guide for these characters.</p><button type="button" className="button primary" onClick={finish}>Continue</button></>}</div>}
-    {!locked && started && <CharacterLoop characters={characters} workspace={ctx.workspace} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
+    {started && <CharacterLoop characters={characters} workspace={ctx.workspace} startAtEnd={arrive === 'last'} onPreviousWord={onPrevious} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
     <Result state={state} />
   </>
 }

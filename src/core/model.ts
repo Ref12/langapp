@@ -2,6 +2,7 @@ import type { SpeechRate, SpeechVoicePreferences } from './assistant/contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import type { CharacterState } from './characters/contracts'
 import type { PinyinFormat } from './pinyin'
+import type { WritingSpeech } from './writing-speech'
 
 export const LANGUAGE = 'zh-Hans' as const
 export type ReadingMode = 'source' | 'weave' | 'target'
@@ -59,7 +60,12 @@ export interface Preferences {
   defaultSpeechRate?: SpeechRate
   speechDebugMessages?: boolean
   sudokuAutoSpeak?: boolean
+  /** Older on/off form of `writingSpeech`; false reads as Off. */
   writingAutoSpeak?: boolean
+  /** Say the character: at transitions (default), every stroke, or off. */
+  writingSpeech?: WritingSpeech
+  /** The last non-Off `writingSpeech`, what the quick mute restores. */
+  writingSpeechResume?: 'transitions' | 'stroke'
   haptics?: boolean
   /** Exercises written for each lesson (new, review, collection, span): 8 to 40, default 20. */
   exercisesPerLesson?: number

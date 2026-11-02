@@ -43,6 +43,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   const [queue, setQueue] = useState<Q[]>(() => build(options))
   const [states, setStates] = useState<Record<string, QState>>({})
   const [index, setIndex] = useState(0)
+  const [arrived, setArrived] = useState<string>()
   const [local, setLocal] = useState<Record<string, Mark>>({})
   const quiz = set.format === 'quiz'
   const counted = useRef(false)
@@ -135,7 +136,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     <progress aria-label="Progress" value={index} max={queue.length} />
     {toolbar}
     <h2 className="small dr-qtitle">{TITLES[q.data.t]}</h2>
-    <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
+    <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} arrive={arrived === q.key ? 'last' : undefined} onPrevious={type === 'learn' && index > 0 ? () => { setArrived(queue[index - 1].key); setIndex(index - 1) } : undefined} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
     <div className="dr-actions">
       {state.status === 'marking' && needsConfirm(q) ? <button type="button" className="button primary" disabled={!state.chosen} onClick={() => { confirm(q); setIndex(index + 1) }}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>
       : state.status === 'done' ? <button type="button" className="button primary" onClick={() => setIndex(index + 1)}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>

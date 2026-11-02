@@ -192,6 +192,7 @@ function attribution(notice, lock, derivedHash) {
 <style>body{font:1rem/1.6 system-ui;max-width:70ch;margin:2rem auto;padding:0 1rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}a{overflow-wrap:anywhere}</style></head><body>
 <h1>Chinese writing artwork: attribution and source</h1>
 <p>Copyright (C) 1999 Arphic Technology Co., Ltd. Derived through Make Me a Hanzi by Shaunak Kishore and contributors and Hanzi Writer Data by David Chanin.</p>
+<p>Character pinyin and short meanings shown beside the guides come from the Unicode Unihan database (Unicode License v3, <a href="https://www.unicode.org/license.txt">notice</a>; Copyright 1991-2026 Unicode, Inc.).</p>
 <p>These source-derived guides are not professionally reviewed handwriting instruction. Only five default variants retain pre-existing user-review evidence (一、人、杯、茶、雨); the 2026-09-15 date is a carry-forward attestation, not the unknown original review date. All other defaults are unreviewed. No recognition or mastery claim is made.</p>
 <p>Source and derived artwork are freely available under the <a href="hanzi-writer-ARPHICPL.TXT">unaltered ARPHIC PUBLIC LICENSE</a>, AS IS, without warranty. You may copy, modify and redistribute under its conditions; preserve its copyright, license, and prominent dated modification notices and make modifications freely available. Independent application/implementation code and vocabulary have separate licensing; the artwork license is not replaced by a code license.</p>
 <h2>Modification notices</h2><pre>${escape(notice)}</pre>

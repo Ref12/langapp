@@ -219,3 +219,11 @@
   local_source_lock: upstream/writing/source-lock.yaml
   local_source_archive: upstream/writing/hanzi-writer-selected.zip
   local_recipes: characters/recipes/reviewed-prototype.yaml
+- id: zh-unihan-meanings
+  title: 'Unicode Unihan database 18.0.0 (Unihan_Readings.txt, kMandarin and kDefinition)'
+  url: https://www.unicode.org/Public/18.0.0/ucd/Unihan.zip
+  license: Unicode License v3 (permissive; notice retained in public/licenses/unicode-license-v3.txt)
+  usage: 'Each character with a stroke guide shows its own pinyin (first kMandarin reading) and a short meaning (first three senses of kDefinition) in the writing practice; a character that is itself a curriculum word shows the curriculum meaning instead. Generated into public/characters/chinese/meanings.generated.json by scripts/generate-character-meanings.mjs.'
+  attribution: Copyright 1991-2026 Unicode, Inc. Unicode License v3.
+  retrieved_on: '2026-11-02'
+  sha256: 4c93ea9c1f636451729a840978f1667a53886af37ba854fdcce109721c63d43e
