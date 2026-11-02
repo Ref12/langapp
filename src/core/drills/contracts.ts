@@ -70,6 +70,8 @@ export const handsfreeActivitySchema = z.object({
   /** Set when a run reached its end. */
   done: z.boolean(),
   finishedAt: timestamp.optional(),
+  /** 2 once `position` counts each section introduction as its own prompt; a run saved before that has none, and is converted when opened. */
+  layout: z.literal(2).optional(),
   /** Practice-count pairs ("ref|skill") already counted, so a replay adds nothing. */
   practiced: z.array(z.string().max(220)).max(500).optional(),
 }).strict()

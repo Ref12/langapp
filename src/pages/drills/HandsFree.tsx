@@ -16,7 +16,7 @@ import { Sheet } from './Sheet'
 import { ACTIVITY_SKILLS, PROMPT_SKILLS } from '../../core/study/skill-map'
 import { recordRunPractice } from '../../core/study/skills'
 import { createHandsfreePlayer, type HandsfreeState } from '../../core/handsfree/player'
-import { PHASE_LABEL, findPrompt, promptKeyAt, type Script } from '../../core/handsfree/script'
+import { PHASE_LABEL, findPrompt, positionAfterHeaders, promptKeyAt, type Script } from '../../core/handsfree/script'
 import { createWakeLockController } from '../../core/pocket/wake-lock'
 import './drills.css'
 
@@ -27,6 +27,8 @@ const HAN_TEXT = /\p{Script=Han}/u
 
 /** What has been spoken of the current prompt's answer: Chinese (shown with pinyin) from the moment it starts, or the English answer. */
 interface Heard { zh?: string; en?: string; /** The section introduction being spoken: shown as the header until the first prompt. */ section?: string; /** What the section contains, under its header (the Full section introductions). */ detail?: string }
+/** A section introduction (index 0) shows its header in place of the progress; an item shows "Phase N of M". */
+const progressLabel = (marker: { phase: keyof typeof PHASE_LABEL; index: number; total: number; prompt: string }) => marker.index === 0 ? marker.prompt : `${PHASE_LABEL[marker.phase]} ${marker.index} of ${marker.total}`
 const hasHan = (text: string) => HAN_TEXT.test(text)
 
 /** The player's display, also the pocket-mode screen: the phase, the prompt, then the answer once it is being spoken. */
@@ -47,8 +49,8 @@ function Display({ phase, prompt, heard, done, total, position, added, className
 
 
 /** What the player works from: a set's items with its Hands-free activity's seed, settings and saved position. */
-interface Run { id: string; title: string; refs: string[]; seed: number; settings: HandsfreeSettings; started: boolean; position: number; addedRefs?: string[]; back: string; shortcut: boolean }
-const runOf = (set: DrillSet): Run | undefined => set.handsfree ? { id: set.id, title: set.title, refs: set.refs, seed: set.handsfree.seed, settings: set.handsfree.settings, started: set.handsfree.started, position: set.handsfree.position,
+interface Run { id: string; title: string; refs: string[]; seed: number; settings: HandsfreeSettings; started: boolean; position: number; layout?: 2; addedRefs?: string[]; back: string; shortcut: boolean }
+const runOf = (set: DrillSet): Run | undefined => set.handsfree ? { id: set.id, title: set.title, refs: set.refs, seed: set.handsfree.seed, settings: set.handsfree.settings, started: set.handsfree.started, position: set.handsfree.position, ...(set.handsfree.layout ? { layout: set.handsfree.layout } : {}),
   ...(set.addedRefs ? { addedRefs: set.addedRefs } : {}), back: set.shortcut ? '#practice' : `#practice/set/${set.id}`, shortcut: !!set.shortcut } : undefined
 
 /** The Hands-free activity of a set. The activity is created the first time it is opened. */
@@ -56,7 +58,20 @@ export function HandsFree({ set, ...props }: PageProps & { set: DrillSet }) {
   const missing = !set.handsfree
   useEffect(() => { if (missing) void ensureHandsfree(set.id, loadHandsfreeSettings()) }, [missing, set.id])
   const run = runOf(set)
-  if (!run) return <div className="opening-workspace" role="status">Opening Hands-free...</div>
+  // A run saved before section introductions became steps has its position counted without them: convert it once, then play.
+  const stale = !!run && run.layout !== 2
+  useEffect(() => {
+    if (!run || !stale) return
+    let live = true
+    void (async () => {
+      let position = run.position
+      if (run.started && run.position > 0) { try { position = positionAfterHeaders((await buildRunScript(run)).script, run.position) } catch { /* keep the saved position */ } }
+      if (live) await updateHandsfree(run.id, { layout: 2, position })
+    })()
+    return () => { live = false }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [run?.id, stale])
+  if (!run || stale) return <div className="opening-workspace" role="status">Opening Hands-free...</div>
   return <Player key={run.id} hf={run} {...props} />
 }
 
@@ -142,7 +157,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   const playing = state.status === 'playing'
   const change = (next: HandsfreeSettings) => { saveHandsfreeSettings(next); void updateHandsfree(run.id, { settings: next }) }
 
-  const phaseLine = done ? 'Finished' : marker ? PHASE_LABEL[marker.phase] + ' ' + marker.index + ' of ' + marker.total : script ? 'Ready' : 'Preparing...'
+  const phaseLine = done ? 'Finished' : marker ? progressLabel(marker) : script ? 'Ready' : 'Preparing...'
   // Start listening plays at once when the script is ready, or as soon as it is.
   const startListening = () => { setView('player'); setListening(true) }
   useEffect(() => {
@@ -151,7 +166,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
     playerRef.current?.play()
   }, [listening, script, total])
 
-  useMediaSession(run.title, marker ? `${PHASE_LABEL[marker.phase]} ${marker.index} of ${marker.total}` : '', playerRef, !!script)
+  useMediaSession(run.title, marker ? progressLabel(marker) : '', playerRef, !!script)
 
   const introRefs = run.refs.join(',')
   useEffect(() => {

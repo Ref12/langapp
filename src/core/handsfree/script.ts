@@ -141,16 +141,18 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   }
   const introduced = new Set<Phase>()
   const mark = (phase: Phase, index: number, total: number, prompt: string, item?: Word, act?: PromptAct) => {
-    promptStarts.push(segments.length)
-    segments.push({ kind: 'marker', phase, index, total, prompt, ...(item?.ref && act ? { ref: item.ref, act } : {}) })
-    // The first prompt of a section starts with its short header and, in Full, what it contains and what to do. Header only says the header; Off says nothing.
+    // A section's introduction is its own step (index 0, no item) before its first prompt, so Next from it lands on item 1. In Full it says the header and what the section contains; Header says the header; Off has no step.
     if (sectionIntros !== 'off' && !introduced.has(phase) && index === 1) {
       introduced.add(phase)
       const header = SECTION_HEADER[phase]
       const detail = SECTION_INTRO[phase]
+      promptStarts.push(segments.length)
+      segments.push({ kind: 'marker', phase, index: 0, total, prompt: header })
       say({ kind: 'say', locale: 'en-US', text: sectionIntros === 'full' ? `${header}. ${detail}` : `${header}.`, rate: 1, voice: 'frame', section: true, header, ...(sectionIntros === 'full' ? { detail } : {}) })
       segments.push({ kind: 'pause', ms: SECTION_GAP_MS })
     }
+    promptStarts.push(segments.length)
+    segments.push({ kind: 'marker', phase, index, total, prompt, ...(item?.ref && act ? { ref: item.ref, act } : {}) })
   }
   /** Says a Chinese text and leaves a pause to repeat it, sized to the text and to how long the model text actually took. */
   const repeatAfter = (zh: string, rate = zhRate) => { sayZh(zh, rate); pause(zh, 'zh-Hans', rate, true) }
@@ -243,6 +245,18 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   mixed.forEach((card, at) => playCard(card, at + 1, mixed.length, 'mixed'))
 
   return { segments, promptStarts }
+}
+
+/** Converts a position saved before section introductions were steps of their own (item prompts only) to the prompt of the same item now. */
+export function positionAfterHeaders(script: Script, oldPosition: number): number {
+let seen = 0
+for (let at = 0; at < script.promptStarts.length; at++) {
+  const marker = script.segments[script.promptStarts[at]]
+  if (marker?.kind === 'marker' && marker.index === 0) continue
+  if (seen === oldPosition) return at
+  seen++
+}
+return script.promptStarts.length
 }
 
 /** A prompt's identity across scripts built with different settings: its phase, item and direction, and which time that card has come round in the phase. */

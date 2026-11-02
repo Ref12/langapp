@@ -314,6 +314,27 @@ describe('Hands-free player', () => {
     expect(document.querySelector('.hf-prompt')).not.toHaveClass('hf-section')
   })
 
+  it('counts a section introduction as its own step: the header replaces the progress, Next goes to item 1 and Back returns to the header', async () => {
+    await openRun({ pause: 'short', repeats: 1, sectionIntros: 'full' }, { started: true, layout: 2 })
+    render(<App />)
+    const play = await screen.findByRole('button', { name: 'Play' })
+    await waitFor(() => expect(play).toBeEnabled())
+    expect(phase()).toBe('Introducing new words')
+    fireEvent.click(screen.getByRole('button', { name: 'Skip' }))
+    await waitFor(() => expect(phase()).toBe('Introducing 1 of 3'))
+    fireEvent.click(screen.getByRole('button', { name: 'Back' }))
+    await waitFor(() => expect(phase()).toBe('Introducing new words'))
+    expect((await hf()).position).toBe(0)
+  })
+
+  it('converts a position saved before header steps once, to the same item', async () => {
+    await openRun({ pause: 'short', repeats: 1, sectionIntros: 'full' }, { started: true, position: 1 })
+    render(<App />)
+    await waitFor(async () => expect(await hf()).toMatchObject({ layout: 2, position: 2 }))
+    await screen.findByRole('button', { name: 'Resume' })
+    await waitFor(() => expect(phase()).toBe('Introducing 2 of 3'))
+  })
+
   it('has the item wording, section introductions and emphasis choices in the page settings and in Settings, Full, Full and Pauses only by default', async () => {
     await openRun({ pause: 'short', repeats: 1 })
     render(<App />)

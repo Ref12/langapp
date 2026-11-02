@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { DEFAULT_HANDSFREE_SETTINGS, type HandsfreeSettings } from './contracts'
-import { FRAME_GAP_MS, MAX_EXAMPLE_WORDS, SECTION_HEADER, SECTION_INTRO, generateScript, introExplanation, pauseFor, scrambleWithSpacing, shortGloss, SPACING, type Phase, type ScriptItem, type Segment } from './script'
+import { FRAME_GAP_MS, MAX_EXAMPLE_WORDS, SECTION_HEADER, SECTION_INTRO, generateScript, introExplanation, positionAfterHeaders, pauseFor, scrambleWithSpacing, shortGloss, SPACING, type Phase, type ScriptItem, type Segment } from './script'
 
 const word = (n: number, zh: string, en: string): ScriptItem => ({ ref: `vocabulary:w${n}`, kind: 'vocabulary', zh, en })
 const WORDS = [word(1, '休息', 'rest; break'), word(2, '工作', 'work'), word(3, '学生', 'student'), word(4, '电视机', 'television set'), word(5, '朋友', 'friend'),
@@ -229,8 +229,8 @@ describe('Hands-free script', () => {
     expect(full.map(entry => entry.segment.text)).toEqual(phases.map(phase => `${SECTION_HEADER[phase]}. ${SECTION_INTRO[phase]}`))
     expect(full.map(entry => entry.segment.kind === 'say' && [entry.segment.header, entry.segment.detail])).toEqual(phases.map(phase => [SECTION_HEADER[phase], SECTION_INTRO[phase]]))
     expect(full.every(entry => entry.segment.kind === 'say' && entry.segment.voice === 'frame' && entry.segment.locale === 'en-US')).toBe(true)
-    // each one is the first thing said after the first prompt's marker of its section, with a pause after it
-    for (const { at, script } of full) { expect(script.segments[at - 1]).toMatchObject({ kind: 'marker', index: 1 }); expect(script.segments[at + 1]).toMatchObject({ kind: 'pause' }) }
+    // each one is the first thing said after its own step's marker (index 0), before the section's first item, with a pause after it
+    for (const { at, script } of full) { expect(script.segments[at - 1]).toMatchObject({ kind: 'marker', index: 0 }); expect(script.segments[at + 1]).toMatchObject({ kind: 'pause' }) }
     expect(Object.values(SECTION_HEADER).map(header => header.split(' ').length).every(words => words >= 2 && words <= 4)).toBe(true)
     expect(SECTION_HEADER).toEqual({ intro: 'Introducing new words', recall: 'Recall in order', scramble: 'Mixed-order recall', grammar: 'Grammar patterns', mixed: 'Final mix' })
     const header = sections({ ...DEFAULT_HANDSFREE_SETTINGS, sectionIntros: 'header' })
@@ -300,5 +300,28 @@ describe('Hands-free script', () => {
     // slower speech gets longer pauses
     const pauses = (rate: number) => prompts([word(1, '休息', 'rest')], {}, { ...PLAIN, zhRate: rate }).script.segments.flatMap(segment => segment.kind === 'pause' && segment.ms > FRAME_GAP_MS ? [segment.ms] : [])
     expect(pauses(0.5)[0]).toBeGreaterThan(pauses(1)[0])
+  })
+
+  it('makes each section introduction its own step before item 1, and none when Off', () => {
+    const items = [...WORDS, GRAMMAR]
+    const marks = (settings: HandsfreeSettings) => { const { script } = prompts(items, SENTENCES, settings); return script.promptStarts.map(at => script.segments[at]).flatMap(m => m.kind === 'marker' ? [m] : []) }
+    const full = marks({ ...DEFAULT_HANDSFREE_SETTINGS })
+    const headers = full.filter(m => m.index === 0)
+    expect(headers.map(m => m.prompt)).toEqual(Object.values(SECTION_HEADER))
+    expect(headers.every(m => !m.ref)).toBe(true)
+    full.forEach((m, at) => { if (m.index === 0) expect(full[at + 1]).toMatchObject({ phase: m.phase, index: 1 }) })
+    expect(marks({ ...DEFAULT_HANDSFREE_SETTINGS, sectionIntros: 'header' }).filter(m => m.index === 0)).toHaveLength(5)
+    const off = marks({ ...DEFAULT_HANDSFREE_SETTINGS, sectionIntros: 'off' })
+    expect(off.some(m => m.index === 0)).toBe(false)
+    expect(off).toHaveLength(full.length - 5)
+  })
+
+  it('converts a position saved without header steps to the same item', () => {
+    const { script } = prompts([...WORDS, GRAMMAR], SENTENCES, { ...DEFAULT_HANDSFREE_SETTINGS })
+    const at = (n: number) => script.segments[script.promptStarts[positionAfterHeaders(script, n)]]
+    expect(at(0)).toMatchObject({ phase: 'intro', index: 1 })
+    expect(at(1)).toMatchObject({ phase: 'intro', index: 2 })
+    expect(positionAfterHeaders(script, 0)).toBe(1)
+    expect(positionAfterHeaders(script, 1000)).toBe(script.promptStarts.length)
   })
 })

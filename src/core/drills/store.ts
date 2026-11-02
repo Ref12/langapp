@@ -266,7 +266,7 @@ export const practiceFrom = (kind: 'lesson' | 'drill', id: string) => `practice?
 
 
 /** A fresh Hands-free activity, with the settings last used on this device unless given. */
-export const newHandsfreeActivity = (settings = DEFAULT_HANDSFREE_SETTINGS, seed = Math.floor(Math.random() * 2 ** 31)): HandsfreeActivity => ({ seed, settings, started: false, position: 0, done: false })
+export const newHandsfreeActivity = (settings = DEFAULT_HANDSFREE_SETTINGS, seed = Math.floor(Math.random() * 2 ** 31)): HandsfreeActivity => ({ seed, settings, started: false, position: 0, done: false, layout: 2 })
 
 /** Opens (creating it when the set has none) the set's Hands-free activity. */
 export async function ensureHandsfree(setId: string, settings: HandsfreeActivity['settings']): Promise<void> {
@@ -277,7 +277,7 @@ export async function ensureHandsfree(setId: string, settings: HandsfreeActivity
 }
 
 /** Updates the Hands-free activity (position, settings, started). An unfinished set that is stopped part-way stays active and resumes at its saved prompt. */
-export async function updateHandsfree(setId: string, change: Partial<Pick<HandsfreeActivity, 'started' | 'position' | 'settings'>>, now = Date.now()): Promise<void> {
+export async function updateHandsfree(setId: string, change: Partial<Pick<HandsfreeActivity, 'started' | 'position' | 'settings' | 'layout'>>, now = Date.now()): Promise<void> {
   await db.transaction('rw', db.drillSets, async () => {
     const set = await db.drillSets.get(setId)
     if (!set?.handsfree) return
