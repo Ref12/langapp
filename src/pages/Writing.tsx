@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { ArrowLeft, Check, ChevronLeft, ChevronRight, CircleHelp, Eraser, Play, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react'
+import { ArrowLeft, Check, ChevronLeft, ChevronRight, CircleHelp, Eraser, Play, SkipBack, SkipForward, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react'
 import { characterAssetIndex, characterAttributionUrl, loadCharacterAsset, type CharacterAsset } from '../core/characters/assets'
 import { recordCharacterPractice } from '../core/characters/store'
 import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '../core/characters/meanings'
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/characters/geometry'
-import { advanceRound, commitStroke, isLastStep, memoryHint, newWritingRound, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
+import { allPartsWritten, commitStroke, isLastStep, memoryHint, newWritingRound, nextPart, partIndex, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
 import { buildWritingRoute, isHan, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
 import { useCatalog } from '../components/study/useCatalog'
 import { EmptyState, type PageProps } from '../components/shared'
@@ -91,6 +91,8 @@ export function WritingStage({ character, word, index, remember, backHref, skipH
     place={han.length > 1 ? { number: hanPosition, total: han.length } : undefined} skipped={skipped}
     hasPrevious={previousIndex !== undefined} last={nextIndex === undefined}
     onPrevious={() => { if (previousIndex === undefined) return; arrival = { character: word[previousIndex], phase: PHASES.length - 1, repetition: REPETITIONS - 1, saved: true, at: Date.now() }; onGo(previousIndex) }}
+    onPreviousCharacter={previousIndex === undefined ? undefined : () => { arrival = { character: word[previousIndex], phase: 0, repetition: 0, saved: false, at: Date.now() }; onGo(previousIndex) }}
+    onNextCharacter={nextIndex === undefined ? undefined : () => { arrival = { character: word[nextIndex], phase: 0, repetition: 0, saved: false, at: Date.now() }; onGo(nextIndex) }}
     onNext={() => { if (nextIndex === undefined) { onFinish(); return } arrival = { character: word[nextIndex], phase: 0, repetition: 0, saved: false, at: Date.now() }; onGo(nextIndex) }} />
     : <p role="status">Loading stroke guide...</p>
 }
@@ -107,16 +109,20 @@ export interface WritingPlayerProps {
   hasPrevious?: boolean
   /** No later character to advance to: Next on the final step finishes. */
   last?: boolean
+  /** Prev on the first part: the previous character's last part. */
   onPrevious?: () => void
-  /** Called once the character's nine repetitions are saved (or were already) and Next is pressed. */
-  onNext?: () => void
-  /** Drills teach a new character with the whole practice loop (every phase, every repetition). Next skips ahead and goes on; nothing is saved by the player. */
+  /** Jump to the previous / next character (its first part). The button is hidden when absent. */
+  onPreviousCharacter?: () => void
+  onNextCharacter?: () => void
+  /** Next on the ninth part. recorded: every part was written (and, outside teach mode, saved by the player). */
+  onNext?: (recorded: boolean) => void
+  /** Drills teach a new character with the whole practice loop. Prev/Next step through its nine parts; nothing is saved by the player (onNext reports whether every part was written). */
   teach?: boolean
   /** The word being written has more than one character: show this character's own pinyin and meaning. (`place` implies it.) */
   inWord?: boolean
 }
 
-export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onNext, teach = false, inWord = false, workspace, run, busy }: PageProps & WritingPlayerProps) {
+export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onPreviousCharacter, onNextCharacter, onNext, teach = false, inWord = false, workspace, run, busy }: PageProps & WritingPlayerProps) {
   const guides = useMemo(() => asset.paths.map(makeStrokeGuide), [asset.paths])
   const [arrived] = useState(() => takeArrival(asset.character))
   const [round, setRound] = useState<WritingRound>(() => arrived ? { ...newWritingRound(), phase: arrived.phase, repetition: arrived.repetition } : newWritingRound())
@@ -125,6 +131,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   const [saving, setSaving] = useState(false)
   const [help, setHelp] = useState(false)
   const saveLock = useRef(false)
+  const written = useRef(new Set<number>())
   const saved = useRef(arrived?.saved ?? false)
   const svg = useRef<SVGSVGElement>(null)
   const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
@@ -239,18 +246,23 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
     if (!canPrevious) return
     cancelStroke()
     setReplay(null)
+    if (completed) written.current.add(partIndex(round))
     const earlier = previousRound(round)
     if (earlier) setRound(earlier)
     else onPrevious?.()
   }
   function next() {
-    if ((!completed && !teach) || saveLock.current || round.finished) return
+    if (saveLock.current || round.finished) return
     cancelStroke()
     setReplay(null)
-    // Teaching runs the whole loop; Next skips what is left of it (also before the stroke is finished) and goes on.
-    if (teach && (!completed || finalStep)) { onNext?.(); return }
-    if (!finalStep) { setRound(advanceRound(round, guides.length)); return }
-    if (saved.current) { onNext?.(); return }
+    if (completed) written.current.add(partIndex(round))
+    const later = nextPart(round)
+    if (later) { setRound(later); return }
+    // The ninth part: practice counts only when every part was actually written.
+    const wroteAll = allPartsWritten(written.current)
+    if (teach) { onNext?.(wroteAll); return }
+    if (saved.current) { onNext?.(true); return }
+    if (!wroteAll) { onNext?.(false); return }
     saveLock.current = true
     setSaving(true)
     void run(async () => {
@@ -258,7 +270,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         await recordCharacterPractice(asset.character)
         saved.current = true
         setRound(value => ({ ...value, finished: true, feedback: '' }))
-        onNext?.()
+        onNext?.(true)
       } finally {
         saveLock.current = false
         setSaving(false)
@@ -289,7 +301,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
       {help && <div id="writing-sheet" className="writing-sheet" role="dialog" aria-label="About this exercise">
         <button className="icon-button writing-sheet-close" type="button" aria-label="Close" onClick={() => setHelp(false)}><X size={16} /></button>
         <p id="writing-help"><strong>{PHASES[round.phase]}.</strong> {phaseHelp}</p>
-        <p>Three repetitions in each of three phases: full guide, one stroke at a time, then memory. Use a mouse, touch or pen. Next advances once the character is complete; Previous steps back.</p>
+        <p>Three repetitions in each of three phases: full guide, one stroke at a time, then memory: nine parts per character. Use a mouse, touch or pen. Prev and Next move back and forward through those parts, finished or not; the skip-back and skip-forward buttons jump to the previous or next character. A character is saved only when all nine parts were written.</p>
         <p>Watching stroke order is optional and does not count as tracing. Press Escape to cancel an in-progress stroke. Leaving this page restarts an unfinished round.</p>
         <p>{asset.reviewed ? 'This guide retains the earlier prototype artwork review.' : 'Source-derived artwork; this character has not received an individual visual review.'} Matching is a tracing aid, not handwriting recognition.</p>
         {state && state.practiceCompletions > 0 && <p>Completed rounds: {state.practiceCompletions}</p>}
@@ -336,9 +348,13 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>
         <span className="writing-progress" data-complete={completed || round.finished ? '' : undefined} title={round.finished ? 'Saved' : completed ? 'Complete' : 'Stroke progress'} aria-hidden="true">{(completed || round.finished) && <Check size={15} />}{progress}</span>
-        <button className="button secondary writing-step" title="Previous repetition, phase or character" aria-label="Previous" disabled={!canPrevious} onClick={previous}><ChevronLeft size={18} /><span>Prev</span></button>
-        <button className="button primary writing-step" title={finalStep && last ? 'Finish and save' : 'Next repetition, phase or character'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={(!completed && !teach) || saving || busy || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>
+        <button className="button secondary writing-step" title="Previous part" aria-label="Previous" disabled={!canPrevious} onClick={previous}><ChevronLeft size={18} /><span>Prev</span></button>
+        <button className="button primary writing-step" title={finalStep && last ? 'Finish' : 'Next part'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={saving || busy || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>
       </div>
+      {(onPreviousCharacter || onNextCharacter) && <div className="writing-characters" role="toolbar" aria-label="Character controls">
+        {onPreviousCharacter ? <button type="button" className="button secondary writing-char" title="Previous character" aria-label="Previous character" disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(null); onPreviousCharacter() }}><SkipBack size={18} /><span>Previous character</span></button> : <span />}
+        {onNextCharacter ? <button type="button" className="button secondary writing-char" title="Next character" aria-label="Next character" disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(null); onNextCharacter() }}><span>Next character</span><SkipForward size={18} /></button> : <span />}
+      </div>}
       <p id="writing-status" className="writing-feedback" role="status" aria-live="polite">{status}</p>
     </section>
   </div>

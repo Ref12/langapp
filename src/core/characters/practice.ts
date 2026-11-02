@@ -42,3 +42,22 @@ export function previousRound(round: WritingRound): WritingRound | undefined {
   return undefined
 }
 export const isLastStep = (round: WritingRound): boolean => round.phase === PHASES.length - 1 && round.repetition === REPETITIONS - 1
+
+export const PART_COUNT = PHASES.length * REPETITIONS
+/** The part (0-8) a round is on: phase-major, three repetitions per phase. */
+export const partIndex = (round: WritingRound): number => round.phase * REPETITIONS + round.repetition
+
+/** The next part, clean, whether or not this part's strokes were written; undefined after the last part. */
+export function nextPart(round: WritingRound): WritingRound | undefined {
+  const reset = { completed: 0, misses: [] as number[], finished: false, feedback: '' }
+  if (round.finished) return undefined
+  if (round.repetition < REPETITIONS - 1) return { ...round, repetition: round.repetition + 1, ...reset }
+  if (round.phase < PHASES.length - 1) return { ...round, phase: round.phase + 1, repetition: 0, ...reset }
+  return undefined
+}
+
+/** Practice is recorded only when every one of the nine parts was actually written (a Set of part indexes). */
+export const allPartsWritten = (written: ReadonlySet<number>): boolean => {
+  for (let part = 0; part < PART_COUNT; part++) if (!written.has(part)) return false
+  return true
+}

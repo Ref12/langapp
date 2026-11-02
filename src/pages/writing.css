@@ -75,3 +75,6 @@ main.writing-main { padding: 8px 12px; max-width: 640px; }
 .practice-playlist.writing-overlay[open] { display: flex; flex-direction: column; width: min(720px, calc(100vw - 24px)); height: calc(100dvh - 16px); }
 .writing-overlay-content { padding-top: 6px; }
 @media (max-width: 640px) { .practice-playlist.writing-overlay[open] { width: 100%; height: calc(100dvh - max(12px, env(safe-area-inset-top))); } }
+
+.writing-characters { width: var(--writing-pad); display: flex; justify-content: space-between; gap: 4px; }
+.writing-characters .writing-char { min-height: 36px; padding: 4px 10px; gap: 6px; white-space: nowrap; font-size: 13px; }

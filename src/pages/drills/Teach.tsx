@@ -5,9 +5,9 @@ import { WritingPlayer } from '../Writing'
 
 /**
  * Teaches a character with the writing practice's own player: the full loop, every phase (full guide, next-stroke guide, from memory) three
- * times. Next skips ahead; "I already know how to write this" skips the character. The player is the one the Writing page uses (teach mode).
+ * times. Prev/Next step through the nine parts; the character buttons skip to the neighbouring character. The player is the one the Writing page uses (teach mode).
  */
-export function TeachCharacter({ character, workspace, onTaught, onSkip, onPrevious, inWord = false }: { character: string; workspace: Workspace; onTaught: () => void; onSkip: () => void; onPrevious?: () => void; inWord?: boolean }) {
+export function TeachCharacter({ character, workspace, onTaught, onNextCharacter, onPrevious, onPreviousCharacter, inWord = false }: { character: string; workspace: Workspace; onTaught: (recorded: boolean) => void; onNextCharacter: () => void; onPrevious?: () => void; onPreviousCharacter?: () => void; inWord?: boolean }) {
   const [asset, setAsset] = useState<CharacterAsset>()
   const [error, setError] = useState('')
   useEffect(() => {
@@ -16,12 +16,11 @@ export function TeachCharacter({ character, workspace, onTaught, onSkip, onPrevi
     loadCharacterAsset(character).then(value => { if (live) setAsset(value) }, reason => { if (live) setError(reason instanceof Error ? reason.message : 'The stroke guide could not be loaded.') })
     return () => { live = false }
   }, [character])
-  if (error) return <p className="small error-text" role="alert">{error} <button type="button" className="button secondary" onClick={onSkip}>Continue</button></p>
+  if (error) return <p className="small error-text" role="alert">{error} <button type="button" className="button secondary" onClick={onNextCharacter}>Continue</button></p>
   if (!asset) return <p className="small muted" role="status">Loading the stroke guide…</p>
   return <div className="dr-teach">
-    <p className="small dr-center">Watch the stroke order, then practise it three times each with the full guide, the next-stroke guide and from memory. Next skips ahead.</p>
-    <WritingPlayer key={character} asset={asset} teach inWord={inWord} hasPrevious={!!onPrevious} onPrevious={onPrevious} workspace={workspace} busy={false} now={Date.now()} run={operation => operation()} onNext={onTaught} />
-    <div className="button-row dr-center"><button type="button" className="button secondary" onClick={onSkip}>I already know how to write this</button></div>
+    <p className="small dr-center">Watch the stroke order, then practise it three times each with the full guide, the next-stroke guide and from memory. Prev and Next move through those nine parts; the skip buttons jump to the previous or next character.</p>
+    <WritingPlayer key={character} asset={asset} teach inWord={inWord} hasPrevious={!!onPrevious} onPrevious={onPrevious} onPreviousCharacter={onPreviousCharacter} onNextCharacter={onNextCharacter} workspace={workspace} busy={false} now={Date.now()} run={operation => operation()} onNext={onTaught} />
   </div>
 }
 
@@ -35,6 +34,6 @@ export function CharacterLoop({ characters, workspace, onTaught, onDone, onPrevi
   if (!character) return null
   return <>
     {characters.length > 1 && <p className="small muted dr-center" role="status">Character {index + 1} of {characters.length}</p>}
-    <TeachCharacter key={character} inWord={characters.length > 1} onPrevious={previous} character={character} workspace={workspace} onTaught={() => { onTaught(character); advance() }} onSkip={advance} />
+    <TeachCharacter key={character} inWord={characters.length > 1} onPrevious={previous} character={character} workspace={workspace} onPreviousCharacter={previous} onNextCharacter={advance} onTaught={recorded => { if (recorded) onTaught(character); advance() }} />
   </>
 }
