@@ -260,7 +260,7 @@ describe('Hands-free player', () => {
     expect(row.querySelector('.resume-text')).toHaveTextContent('Hands-free · 1 Nov')
     expect(row.querySelector('.resume-text')).toHaveTextContent('In progress')
     expect(row.querySelector('.resume-text')).toHaveTextContent(/3 words.* · \d of \d+ types done/)
-    expect(row.querySelector('.resume-text')).not.toHaveTextContent(/stopped|Hands-free introduction/)
+    expect(row.querySelector('.resume-text')).not.toHaveTextContent(/stopped/)
     expect(within(section).getByRole('link', { name: 'Open set Hands-free · 1 Nov' })).toHaveAttribute('href', '#practice/set/run1')
     // Resume is the main icon button, Discard lives in the ⋯ menu
     expect(within(section).queryByRole('button', { name: /^(Resume|Play)$/ })).toBeNull()

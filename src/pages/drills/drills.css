@@ -175,7 +175,9 @@
 .resume-row .resume-text .small { margin-top: 0; }
 /* Narrow screens: the text keeps the full width and the icon buttons sit on their own line under it. */
 @media (max-width: 520px) { .resume-row .resume-text { flex: 1 0 100%; } }
-.resume-row > .icon-button { flex: 0 0 44px; }
+.resume-row .resume-actions { flex: 1 0 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 6px 8px; }
+.resume-row .resume-actions .small-button { min-height: 36px; padding: 6px 12px; font-size: 0.9rem; gap: 6px; }
+.resume-row .resume-actions > .save-trigger.icon-only, .resume-row .resume-actions > .icon-button { flex: 0 0 40px; }
 .resume-row .dr-confirm { flex: 1 0 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 4px; }
 .resume-row .dr-confirm span { flex: 1 1 auto; }
 .resume-row .dr-confirm .button { margin: 0; align-self: center; }
@@ -204,10 +206,19 @@
 .dr-programs .dr-rows li > div { flex: 1 1 100%; }
 .dr-programs .dr-rows li > .button-row { margin-top: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .dr-stack { display: grid; gap: 14px; min-width: 0; }
-.resume-row > .save-trigger.icon-only { flex: 0 0 44px; width: 44px; min-width: 0; height: 44px; padding: 0; border: 0; background: transparent; color: var(--text-secondary); }
+.resume-row .resume-actions > .save-trigger.icon-only { flex: 0 0 44px; width: 44px; min-width: 0; height: 44px; padding: 0; border: 0; background: transparent; color: var(--text-secondary); }
 
 /* Recent sets: the ⋯ overflow of a row and the In progress tag */
 .resume-row .resume-text strong .in-progress { margin-left: 8px; vertical-align: middle; font-weight: 500; }
 
 /* Icon actions at the right of a practice-type row, like the Recent sets rows. */
 .dr-actions { display: inline-flex; gap: 6px; flex: none; align-items: center; }
+.dr-icon { position: relative; display: inline-flex; flex: 0 0 auto; }
+.dr-icon .dr-check { position: absolute; right: -6px; bottom: -6px; color: var(--success, #1a7f37); background: var(--surface, #fff); border-radius: 50%; }
+.dr-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.resume-row .resume-actions { gap: 6px; }
+.resume-row .resume-actions .small-button { padding: 6px 10px; gap: 5px; }
+.resume-row .resume-actions > .save-trigger.icon-only, .resume-row .resume-actions > .row-menu, .resume-row .resume-actions > .row-menu > .icon-button { flex: 0 0 36px; width: 36px; min-width: 0; height: 36px; }
+.resume-row .resume-actions { gap: 6px 4px; }
+.resume-row .resume-actions .small-button { padding: 6px 9px; }
+.resume-row .resume-actions > .save-trigger.icon-only, .resume-row .resume-actions > .row-menu, .resume-row .resume-actions > .row-menu > .icon-button { flex-basis: 32px; width: 32px; height: 36px; }

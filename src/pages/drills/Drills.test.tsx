@@ -47,16 +47,20 @@ describe('Recent sets rows', () => {
     expect(continueOf({ ...set, status: 'completed', handsfree: hf({}) } as never)).toBeUndefined()
   })
 
-  it('shows an unfinished shortcut set with the same words line, Continue and Open set, and never the practice type', async () => {
+  it('shows an unfinished shortcut set with the words line, "left off in", Continue <type>, Open set and View items', async () => {
     const set = await newSet()
     await db.drillSets.put({ ...set, shortcut: 'handsfree', title: 'Hands-free · 1 Nov', handsfree: hf({ position: 3 }) } as never)
     render(<App />)
     const recent = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
     const row = (await within(recent).findByText('Hands-free · 1 Nov')).closest('.resume-row') as HTMLElement
     expect(row.querySelector('.resume-text')).toHaveTextContent(/types done/)
-    expect(row.querySelector('.resume-text')).not.toHaveTextContent(/stopped|Hands-free introduction/)
+    expect(row.querySelector('.resume-text')).not.toHaveTextContent(/stopped/)
     expect(within(row).getByRole('link', { name: 'Continue Hands-free introduction at prompt 4' })).toHaveAttribute('href', `#practice/set/${set.id}/handsfree`)
-    expect(within(row).getByRole('link', { name: /^Open set / })).toHaveAttribute('href', `#practice/set/${set.id}`)
+    expect(row.querySelector('.resume-text')).toHaveTextContent('left off in Hands-free introduction')
+      expect(within(row).getByRole('link', { name: 'Continue Hands-free introduction at prompt 4' })).toHaveTextContent('Continue Hands-free introduction')
+      expect(within(row).getByRole('link', { name: /^Open set / })).toHaveAttribute('href', `#practice/set/${set.id}`)
+      expect(within(row).getByRole('link', { name: /^Open set / })).toHaveClass('secondary')
+      expect(within(row).getByRole('link', { name: /^View items in / })).toHaveAttribute('href', `#practice/set/${set.id}/intro`)
   })
 
   it('writes the sentences of a shortcut set when its page opens, so every practice type is offered', async () => {
@@ -85,7 +89,9 @@ describe('Recent sets', () => {
     expect(within(row as HTMLElement).queryByText(/Hands-free|Practice set/)).toBeNull()
     expect(within(row as HTMLElement).queryByRole('link', { name: /^Continue/ })).toBeNull()
     expect(within(row as HTMLElement).getByRole('link', { name: /^Open set New items/ })).toHaveAttribute('href', `#practice/set/${set.id}`)
-    expect(within(row as HTMLElement).getByRole('button', { name: /^Save New items/ })).toBeInTheDocument()
+    expect(within(row as HTMLElement).getByRole('link', { name: /^Open set New items/ })).toHaveClass('primary')
+      expect(within(row as HTMLElement).getByRole('link', { name: /^View items in New items/ })).toHaveAttribute('href', expect.stringMatching(/\/intro(\?show=1)?$/))
+      expect(within(row as HTMLElement).getByRole('button', { name: /^Save New items/ })).toBeInTheDocument()
     expect(within(row as HTMLElement).queryByText('In progress')).toBeNull()
     expect(within(row as HTMLElement).queryByRole('link', { name: /^Resume/ })).toBeNull()
     await user.click(await within(row as HTMLElement).findByRole('button', { name: /^More for New items/ }))
@@ -226,7 +232,7 @@ describe('Practice home', () => {
     expect(await within(recent).findByText(/New items/)).toBeInTheDocument()
     const line = recent.querySelector('.resume-row')!
     // title and meta on the left; Resume, Save and the ⋯ menu are same-size controls on the right
-    expect([...line.children].map(child => child.className.split(' ')[0])).toEqual(['resume-text', 'icon-button', 'button', 'row-menu'])
+    expect([...line.children].map(child => child.className.split(' ')[0])).toEqual(['resume-text', 'resume-actions'])
     expect(line.querySelector('.resume-text')).toHaveTextContent('In progress')
     expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 11 types done/)
     // nothing started yet: no Continue, but Open set is always there
@@ -286,10 +292,10 @@ describe('doing drills', () => {
     expect(saved.progress.meanings?.done).toBe(true)
     const before = JSON.stringify(saved.progress.meanings!.results)
     await user.click(screen.getByRole('link', { name: 'Back to the set' }))
-    const done = (await screen.findByRole('heading', { name: 'Done' })).closest('section')!
+    const done = (await screen.findByRole('heading', { name: 'Pick a practice type' })).closest('section')!
     expect(within(done).getByText('Word meanings')).toBeInTheDocument()
     expect(within(done).getByText(/of \d+ correct/)).toBeInTheDocument()
-    await user.click(within(done).getByRole('link', { name: 'Restart Word meanings' }))
+    await user.click(within(done).getByRole('link', { name: 'Redo Word meanings, done' }))
     expect(await screen.findByText(/REDO, NOT GRADED/)).toBeInTheDocument()
     await user.click((await screen.findAllByRole('radio'))[1])
     await user.click(screen.getByRole('button', { name: 'Check answer' }))
@@ -447,8 +453,8 @@ describe('Type row icons', () => {
     const types = (await screen.findByRole('heading', { name: 'Pick a practice type' })).closest('section')!
     expect(within(types).getByRole('button', { name: 'Start Hands-free introduction' })).toHaveAttribute('title', 'Start')
     expect(within(types).getByRole('link', { name: 'Continue Word meanings' })).toHaveAttribute('title', 'Continue')
-    const done = (await screen.findByRole('heading', { name: 'Done' })).closest('section')!
-    expect(within(done).getByRole('link', { name: /^Restart / })).toBeInTheDocument()
+    const done = (await screen.findByRole('heading', { name: 'Pick a practice type' })).closest('section')!
+    expect(within(done).getByRole('link', { name: /^Redo .*, done$/ })).toBeInTheDocument()
     await user.click(within(types).getByRole('button', { name: 'Restart Word meanings' }))
     const dialog = await screen.findByRole('dialog', { name: 'Restart Word meanings?' })
     expect(dialog).toHaveTextContent('Your 2 answers so far stay in your history.')
@@ -489,7 +495,7 @@ describe('Hands-free row and finished sets', () => {
     expect((await getDrillSet(set.id))!.handsfree).toBeDefined()
   }, 40000)
 
-  it('continues a stopped Hands-free run at its prompt; a done one sits in Done with Restart', async () => {
+  it('continues a stopped Hands-free run at its prompt; a done one gets a Done badge and Redo', async () => {
     const user = userEvent.setup()
     const set = await newSet()
     await db.drillSets.put({ ...set, handsfree: { seed: 1, settings: DEFAULT_HANDSFREE_SETTINGS, started: true, position: 2, done: false } } as never)
@@ -502,10 +508,10 @@ describe('Hands-free row and finished sets', () => {
     await db.drillSets.put({ ...now, handsfree: { ...now.handsfree!, done: true, position: 9 } } as never)
     window.location.hash = `#practice/set/${set.id}`
     render(<App />)
-    const done = (await screen.findByRole('heading', { name: 'Done' })).closest('section')!
+    const done = (await screen.findByRole('heading', { name: 'Pick a practice type' })).closest('section')!
     expect(done).toHaveTextContent('Played to the end')
     expect(document.body).toHaveTextContent('1 of 11 types done')
-    await user.click(within(done).getByRole('button', { name: 'Restart Hands-free introduction' }))
+    await user.click(within(done).getByRole('button', { name: 'Redo Hands-free introduction, done' }))
     await waitFor(async () => expect((await getDrillSet(set.id))!.handsfree).toMatchObject({ done: false, started: false, position: 0 }))
   }, 40000)
 

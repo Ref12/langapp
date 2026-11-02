@@ -100,7 +100,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   if (page === 'games' && !id) return <Games />
   // Hands-free is an activity of a practice set now. Old links (#practice/handsfree/<run id>) land on the migrated set's Hands-free activity.
   if (page === 'practice' && id === 'handsfree') return <Redirect to={lessonPage ? `practice/set/${lessonPage}/handsfree` : 'practice'} />
-  if (page === 'practice' && (!id || id === 'set')) return <Drills {...props} route={routePath} />
+  if (page === 'practice' && (!id || id === 'set')) return <Drills {...props} route={route} />
   if (page === 'practice' && id) {
     const session = props.workspace.sessions.find(item => item.id === id)
     return session ? <PracticeSessionPage {...props} session={session} /> : <NotFound />

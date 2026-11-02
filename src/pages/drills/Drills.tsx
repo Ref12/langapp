@@ -72,7 +72,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
   const items = useItems(set)
   if (error) return <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>
   if (!catalog || !items) return <div className="opening-workspace" role="status">Opening the practice set...</div>
-  if (page === 'intro') return <Intro {...props} set={set} items={items} catalog={catalog} />
+  if (page === 'intro') return <Intro {...props} set={set} showWords={new URLSearchParams(query).get('show') === '1'} items={items} catalog={catalog} />
   if (page === 'run' && type && DRILL_TYPES.some(entry => entry.id === type)) {
     const only = new URLSearchParams(query).get('missed') ? Object.entries(set.progress[type]?.results ?? {}).filter(([, mark]) => mark === 'missed').map(([ref]) => ref) : undefined
     return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} now={props.now} run={props.run} busy={props.busy} only={only} backHref={`#${setRoute(set.id)}`} />
@@ -84,8 +84,8 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
 }
 
 /** New-item sets open on the lesson's intro cards; review and study-set sets keep their items out of sight until asked. */
-function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & { set: DrillSet; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
-  const [shown, setShown] = useState(false)
+function Intro({ set, items, catalog, workspace, now, run, busy, showWords = false }: PageProps & { set: DrillSet; showWords?: boolean; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
+  const [shown, setShown] = useState(showWords)
   const fresh = set.source === 'new' || set.source === 'lesson'
   useEffect(() => { if (fresh) void recordSetIntro(set.id, set.refs, ACTIVITY_SKILLS.introCard).catch(() => undefined) }, [fresh, set.id, set.refs])
   const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start practicing <ArrowRight size={16} /></a>
@@ -130,12 +130,9 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const rows = DRILL_TYPES.map(entry => ({ entry, avail: availability(entry.id, items, content), progress: set.progress[entry.id] }))
   // A Practice by skill set lists the types for its skill first.
   if (set.emphasis) rows.sort((a, b) => Number(drillSkills(b.entry.id).includes(set.emphasis!)) - Number(drillSkills(a.entry.id).includes(set.emphasis!)))
-  const done = rows.filter(row => row.progress?.done)
-  const todo = rows.filter(row => !row.progress?.done)
   const finished = set.status === 'completed'
   // A set made by the Hands-free shortcut starts without its sentences; opening its page writes them, so every practice type is there like for any other set.
   useEffect(() => { if (set.shortcut && set.content.state === 'pending') void startContent(set.id) }, [set.id, set.shortcut, set.content.state])
-  const hfDoneAll = HANDSFREE_TYPES.every(entry => activityOf(set, entry.kind)?.done)
   const openHf = (again: boolean, kind: HandsfreeKind) => void run(async () => { if (again) await restartHandsfree(set.id, kind); else await ensureHandsfree(set.id, loadHandsfreeSettings(), kind); navigate(setRoute(set.id, handsfreeRoute(kind))) })
   const hfCount = itemCount(set.refs.length)
   const [restarting, setRestarting] = useState<{ type: DrillTypeId; name: string; answers: number }>()
@@ -147,6 +144,35 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
     else void run(async () => { if (progress && !progress.done) await restartDrillType(set.id, entry.id); navigate(setRoute(set.id, `run/${entry.id}`)) })
   }
   const finish = () => void run(async () => { await finishDrillSet(set.id); navigate(setRoute(set.id, 'summary')) })
+  const doneBadge = (icon: ReactNode) => <span className="dr-icon">{icon}<CheckCircle2 size={14} className="dr-check" aria-hidden="true" /></span>
+  type Entry = { rank: number; node: ReactNode }
+  const entries: Entry[] = [
+    ...HANDSFREE_TYPES.map((entry): Entry => { const hf = activityOf(set, entry.kind); const stopped = !!hf?.started && !hf.done
+      if (hf?.done) return { rank: 2, node: <li key={entry.kind} className="dr-done">{doneBadge(<Headphones size={20} aria-hidden="true" />)}
+        <div><strong>{entry.name}</strong><span className="small muted"><span className="dr-sr">Done. </span>Played to the end</span></div>
+        <span className="dr-actions"><button type="button" className="icon-button" disabled={busy} aria-label={`Redo ${entry.name}, done`} title="Redo" onClick={() => openHf(true, entry.kind)}><RotateCcw size={18} /></button></span></li> }
+      return { rank: stopped ? 0 : 1, node: <li key={entry.kind}><Headphones size={20} aria-hidden="true" />
+        <div><strong>{entry.name}</strong><span className="small muted">{entry.blurb} · {hfCount}{stopped ? ` · stopped at prompt ${hf!.position + 1}` : ''}</span></div>
+        <span className="dr-actions">{stopped
+          ? <><button type="button" className="icon-button" disabled={busy} aria-label={`Continue ${entry.name} at prompt ${hf!.position + 1}`} title={`Continue at prompt ${hf!.position + 1}`} onClick={() => openHf(false, entry.kind)}><ArrowRight size={18} /></button>
+            <button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => openHf(true, entry.kind)}><RotateCcw size={18} /></button></>
+          : <button type="button" className="icon-button" disabled={busy} aria-label={`Start ${entry.name}`} title="Start" onClick={() => openHf(false, entry.kind)}><Play size={18} /></button>}</span></li> } }),
+    ...rows.map(({ entry, avail, progress }): Entry => { const Icon = ICONS[entry.icon]; const ready = avail.state === 'ready'
+      if (progress?.done) { const counts = countMarks({ progress: { [entry.id]: progress } }, [entry.id]); const score = scoreOf(counts)
+        return { rank: 2, node: <li key={entry.id} className="dr-done">{doneBadge(<Icon size={20} aria-hidden="true" />)}
+          <div><strong>{entry.name}</strong><span className="small muted"><span className="dr-sr">Done. </span>{score.correct} of {score.total} correct · {counts.got} {MARK_LABEL.got.toLowerCase()}, {counts.hint} hint, {counts.missed} missed</span></div>
+          <span className="dr-actions"><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Redo ${entry.name}, done`} title="Redo"><RotateCcw size={18} /></a></span></li> } }
+      return { rank: progress ? 0 : 1, node: <li key={entry.id}><Icon size={20} aria-hidden="true" />
+        <div><strong>{entry.name}</strong><span className="small muted">{ready ? `${entry.blurb} · ${avail.count} ${avail.count === 1 ? 'item' : 'items'}${progress ? ` · ${Object.keys(progress.results).length} of ${progress.scope.length} done` : ''}` : avail.message}</span>
+          {avail.state === 'running' && <progress aria-label={`${entry.name} progress`} value={content.done ?? 0} max={Math.max(1, content.total ?? 1)} />}</div>
+        <span className="dr-actions">{ready ? (progress
+            ? <><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Continue ${entry.name}`} title="Continue"><ArrowRight size={18} /></a>
+              <button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => restartType(entry, progress)}><RotateCcw size={18} /></button></>
+            : <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Start ${entry.name}${quiz ? ' as a quiz' : ''}`} title={quiz ? 'Start as a quiz' : 'Start'}><Play size={18} /></a>)
+          : avail.state === 'failed' ? <button type="button" className="icon-button" disabled={busy} aria-label={`Try again ${entry.name}`} title="Try again" onClick={() => void run(async () => { void retryContent(set.id) })}><RotateCcw size={18} /></button>
+            : <button type="button" className="icon-button" disabled aria-label={`${entry.name} ${avail.state === 'running' ? 'is being written' : 'is not available'}`} title={avail.state === 'running' ? 'Writing…' : 'Not available'}><Play size={18} /></button>}</span></li> } }),
+  ].sort((x, y) => x.rank - y.rank)
+  const todoCount = entries.filter(item => item.rank < 2).length
   return <div className="dr">
     <a className="back-link" href="#practice"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
     <PageHeading eyebrow={finished ? 'Finished' : 'Practice set'} title={set.title} action={finished ? <a className="button secondary" href={`#${setRoute(set.id, 'summary')}`}>Summary</a> : <button type="button" className="button secondary" disabled={busy} onClick={finish}>Finish set</button>}>{describeItems(items, workspace.characterStates) || itemCount(set.refs.length)} · {typesDoneOf(set)} of {TYPE_COUNT} types done</PageHeading>
@@ -158,36 +184,9 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
         <button type="button" aria-pressed={quiz} onClick={() => void run(async () => { await setFormat(set.id, 'quiz') })}>Quiz</button></div></div></div>
     {content.state === 'running' && <p className="small muted" role="status">Writing sentences and conversations with your AI model ({content.done ?? 0} of {content.total ?? 0} requests done). Types that need them say when they are ready.</p>}
     {content.state === 'no-ai' && connection === null && <p className="notice small" role="status">No AI model is connected, so only the types built from the catalog are available. <a className="text-link" href="#settings">Connect one in Settings</a>.</p>}
-    <div className="dr-columns">
-      <section className="panel dr-panel" aria-labelledby="dr-types"><h2 id="dr-types">Pick a practice type</h2><p className="small muted">{set.emphasis ? `${SKILL_LABEL[set.emphasis]} types first. ` : ''}Any order. Each type covers the items of the set it applies to.</p>
-        <ul className="dr-rows">{HANDSFREE_TYPES.filter(entry => !activityOf(set, entry.kind)?.done).map(entry => { const hf = activityOf(set, entry.kind); const stopped = !!hf?.started
-          return <li key={entry.kind}><Headphones size={20} aria-hidden="true" />
-              <div><strong>{entry.name}</strong><span className="small muted">{entry.blurb} · {hfCount}{stopped ? ` · stopped at prompt ${hf!.position + 1}` : ''}</span></div>
-              <span className="dr-actions">{stopped
-                ? <><button type="button" className="icon-button" disabled={busy} aria-label={`Continue ${entry.name} at prompt ${hf!.position + 1}`} title={`Continue at prompt ${hf!.position + 1}`} onClick={() => openHf(false, entry.kind)}><ArrowRight size={18} /></button>
-                  <button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => openHf(true, entry.kind)}><RotateCcw size={18} /></button></>
-                : <button type="button" className="icon-button" disabled={busy} aria-label={`Start ${entry.name}`} title="Start" onClick={() => openHf(false, entry.kind)}><Play size={18} /></button>}</span></li> })}
-            {todo.map(({ entry, avail, progress }) => { const Icon = ICONS[entry.icon]; const ready = avail.state === 'ready'
-          return <li key={entry.id}><Icon size={20} aria-hidden="true" />
-            <div><strong>{entry.name}</strong><span className="small muted">{ready ? `${entry.blurb} · ${avail.count} ${avail.count === 1 ? 'item' : 'items'}${progress ? ` · ${Object.keys(progress.results).length} of ${progress.scope.length} done` : ''}` : avail.message}</span>
-              {avail.state === 'running' && <progress aria-label={`${entry.name} progress`} value={content.done ?? 0} max={Math.max(1, content.total ?? 1)} />}</div>
-            <span className="dr-actions">{ready ? (progress
-                ? <><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Continue ${entry.name}`} title="Continue"><ArrowRight size={18} /></a>
-                  <button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => restartType(entry, progress)}><RotateCcw size={18} /></button></>
-                : <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Start ${entry.name}${quiz ? ' as a quiz' : ''}`} title={quiz ? 'Start as a quiz' : 'Start'}><Play size={18} /></a>)
-              : avail.state === 'failed' ? <button type="button" className="icon-button" disabled={busy} aria-label={`Try again ${entry.name}`} title="Try again" onClick={() => void run(async () => { void retryContent(set.id) })}><RotateCcw size={18} /></button>
-                : <button type="button" className="icon-button" disabled aria-label={`${entry.name} ${avail.state === 'running' ? 'is being written' : 'is not available'}`} title={avail.state === 'running' ? 'Writing…' : 'Not available'}><Play size={18} /></button>}</span></li> })}
-          {todo.length === 0 && hfDoneAll && <li><p className="small muted">Every type is done. Finish the set to see your summary, or redo any type.</p></li>}</ul></section>
-      <section className="panel dr-panel" aria-labelledby="dr-done"><h2 id="dr-done">Done</h2>
-        {done.length === 0 && !HANDSFREE_TYPES.some(entry => activityOf(set, entry.kind)?.done) && <p className="small muted">Finished types move here with their score and a Restart.</p>}
-        <ul className="dr-rows">{HANDSFREE_TYPES.filter(entry => activityOf(set, entry.kind)?.done).map(entry => <li key={entry.kind}><CheckCircle2 size={20} className="accent" aria-hidden="true" />
-              <div><strong>{entry.name}</strong><span className="small muted">Played to the end</span></div>
-              <span className="dr-actions"><button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => openHf(true, entry.kind)}><RotateCcw size={18} /></button></span></li>)}
-            {done.map(({ entry, progress }) => { const counts = countMarks({ progress: { [entry.id]: progress! } }, [entry.id]); const score = scoreOf(counts)
-          return <li key={entry.id}><CheckCircle2 size={20} className="accent" aria-hidden="true" />
-            <div><strong>{entry.name}</strong><span className="small muted">{score.correct} of {score.total} correct · {counts.got} {MARK_LABEL.got.toLowerCase()}, {counts.hint} hint, {counts.missed} missed</span></div>
-            <span className="dr-actions"><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Restart ${entry.name}`} title="Restart"><RotateCcw size={18} /></a></span></li> })}</ul></section>
-    </div>
+    <section className="panel dr-panel" aria-labelledby="dr-types"><h2 id="dr-types">Pick a practice type</h2><p className="small muted">{set.emphasis ? `${SKILL_LABEL[set.emphasis]} types first. ` : ''}In progress first, then not started, then done. Each type covers the items of the set it applies to.</p>
+      <ul className="dr-rows">{entries.map(item => item.node)}
+        {todoCount === 0 && <li><p className="small muted">Every type is done. Finish the set to see your summary, or redo any type.</p></li>}</ul></section>
     {restarting && <ConfirmDialog title={`Restart ${restarting.name}?`} confirmLabel="Restart" busy={busy} onCancel={() => setRestarting(undefined)}
       detail={<>Your {restarting.answers} {restarting.answers === 1 ? 'answer' : 'answers'} so far stay in your history.</>}
       onConfirm={() => { const item = restarting; setRestarting(undefined); void run(async () => { await restartDrillType(set.id, item.type); navigate(setRoute(set.id, `run/${item.type}`)) }) }} />}
@@ -226,20 +225,21 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
 
 /** What the set is about, never which practice type: its items, the types done and the date. */
 function SetMeta({ set, typesDone, characterStates }: { set: DrillSet; typesDone: number; characterStates: PageProps['workspace']['characterStates'] }) {
+  const leftOff = continueOf(set)?.type
   const items = useItems(set)
   const what = (items && describeItems(items, characterStates)) || itemCount(set.refs.length)
-  return <span className="small muted dr-wrap">{what} · {typesDone} of {TYPE_COUNT} types done · {shortDate(set.completedAt ?? set.updatedAt)}</span>
+  return <span className="small muted dr-wrap">{what} · {typesDone} of {TYPE_COUNT} types done{leftOff && <> · left off in {leftOff}</>} · {shortDate(set.completedAt ?? set.updatedAt)}</span>
 }
 
 /** Where Continue goes for an unfinished set: the Hands-free activity or practice type last left part-way, if any. */
-export function continueOf(set: DrillSet): { route: string; label: string } | undefined {
+export function continueOf(set: DrillSet): { route: string; label: string; type: string } | undefined {
   if (set.status !== 'active') return undefined
-  for (const entry of HANDSFREE_TYPES) if (handsfreeStopped(set, entry.kind)) return { route: `practice/set/${set.id}/${handsfreeRoute(entry.kind)}`, label: `Continue ${entry.name} at prompt ${activityOf(set, entry.kind)!.position + 1}` }
+  for (const entry of HANDSFREE_TYPES) if (handsfreeStopped(set, entry.kind)) return { route: `practice/set/${set.id}/${handsfreeRoute(entry.kind)}`, label: `Continue ${entry.name} at prompt ${activityOf(set, entry.kind)!.position + 1}`, type: entry.name }
   const type = DRILL_TYPES.find(entry => set.progress[entry.id] && !set.progress[entry.id]!.done)
-  return type ? { route: setRoute(set.id, `run/${type.id}`), label: `Continue ${type.name}` } : undefined
+  return type ? { route: setRoute(set.id, `run/${type.id}`), label: `Continue ${type.name}`, type: type.name } : undefined
 }
 
-/** One set, unfinished or finished, in the one Recent sets list: title (In progress when unfinished) and a line about its words on the left; Continue (when there is something to continue), Open set, Save to study set and the ⋯ menu on the right. */
+/** One set, unfinished or finished, in the one Recent sets list: title (In progress when unfinished) and a meta line on top (with "left off in <type>" when a type is part-way); below it a left-aligned group of labelled buttons: Continue <type> (only when something is part-way; primary), Open set (the set page with its practice types; primary when there is no Continue), View items (straight to the items; review sets show their words at once via ?show=1), then the Save to icon menu and the ⋯ menu. */
 function SetRow({ set, characterStates, onAsk }: { set: DrillSet; characterStates: PageProps['workspace']['characterStates']; onAsk: () => void }) {
   const unfinished = set.status === 'active'
   const removable = useLiveQuery(() => runAddedRefs('drill', set.id), [set.id, set.addedRefs])
@@ -248,13 +248,16 @@ function SetRow({ set, characterStates, onAsk }: { set: DrillSet; characterState
   return <div className="resume-row">
     <div className="resume-text"><strong>{set.title}{unfinished && <span className="tag in-progress">In progress</span>}</strong>
       <SetMeta set={set} typesDone={typesDone} characterStates={characterStates} /></div>
-    {next && <a className="icon-button" href={`#${next.route}`} aria-label={next.label} title={next.label}><ArrowRight size={18} /></a>}
-    <a className="icon-button" href={`#${setRoute(set.id)}`} aria-label={`Open set ${set.title}`} title="Open set"><ListChecks size={18} /></a>
-    <SaveToMenu refs={[...new Set(set.refs)]} name={set.title} />
+  <div className="resume-actions">
+    {next && <a className="button primary small-button" href={`#${next.route}`} aria-label={next.label} title={next.label}><ArrowRight size={16} /> Continue {next.type}</a>}
+    <a className={`button ${next ? 'secondary' : 'primary'} small-button`} href={`#${setRoute(set.id)}`} aria-label={`Open set ${set.title}`}><ListChecks size={16} /> Open set</a>
+    <a className="button secondary small-button" href={`#${setRoute(set.id, 'intro')}${set.source !== 'new' && set.source !== 'lesson' ? '?show=1' : ''}`} aria-label={`View items in ${set.title}`}><Eye size={16} /> View items</a>
+      <SaveToMenu refs={[...new Set(set.refs)]} name={set.title} />
     {(unfinished || !!removable?.length) && <RowMenu name={set.title}>
       {unfinished ? <button type="button" role="menuitem" className="menu-item" aria-label={`Discard ${set.title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={15} /> Discard</button>
         : <RemoveFromKnowledge kind="drill" id={set.id} name={set.title} menuItem />}
     </RowMenu>}
+  </div>
   </div>
 }
 
