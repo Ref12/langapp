@@ -197,3 +197,5 @@
 .dr-programs .dr-rows li { flex-wrap: wrap; }
 .dr-programs .dr-rows li > div { flex: 1 1 100%; }
 .dr-programs .dr-rows li > .button-row { margin-top: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.dr-stack { display: grid; gap: 14px; min-width: 0; }
+.resume-row > .save-trigger.icon-only { flex: 0 0 44px; width: 44px; min-width: 0; height: 44px; padding: 0; border: 0; background: transparent; color: var(--text-secondary); }

@@ -94,18 +94,13 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
   return { refs: chosen.map(item => item.ref), title: collection.name, collectionId }
 }
 
-/** Creates a drill set from a source and starts writing its sentences in the background. New items join the knowledge set, as a lesson's do. */
+/** Creates a drill set from a source and starts writing its sentences in the background. New items join the knowledge set only when the set is finished (finishDrillSet). */
 export async function createDrillSet(source: DrillSource, now = Date.now()): Promise<string> {
   const chosen = await chooseRefs(source, now)
-  const catalog = await loadCatalog()
-  if (chosen.promote) await promoteItems(chosen.promote)
   const id = crypto.randomUUID()
-  const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}) }
-  await db.transaction('rw', [db.drillSets, db.knowledge, db.studyCards, db.journal], async () => {
-    if (source.kind === 'new' && !source.from) {
-      const units = chosen.refs.flatMap(ref => catalog.units.get(ref) ?? [])
-      await addUnits(units, 'new', now)
-    }
+  const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}),
+    ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}) }
+  await db.transaction('rw', [db.drillSets], async () => {
     await db.drillSets.add(drillSetSchema.parse(set))
     const unfinished = (await db.drillSets.where('status').equals('active').sortBy('createdAt')).filter(item => item.id !== id)
     for (const old of unfinished.slice(0, Math.max(0, unfinished.length - (MAX_UNFINISHED_SETS - 1)))) {
@@ -205,8 +200,33 @@ export async function recordRedo(setId: string, type: DrillTypeId): Promise<void
 
 export const setFormat = (id: string, format: DrillFormat) => mutate(id, set => set.format === format ? undefined : { ...set, format })
 
-export async function finishDrillSet(id: string): Promise<void> {
-  await mutate(id, set => set.status === 'completed' ? undefined : { ...set, status: 'completed', completedAt: Date.now() })
+/**
+ * Completes a set and, the first time only, introduces its New items to the knowledge set (a New items set's own items, or the study-set items it
+ * promotes). Returns the refs this completion added; a set finished again, or with nothing to add, returns an empty list. Abandoned sets add nothing.
+ */
+export async function finishDrillSet(id: string, now = Date.now()): Promise<string[]> {
+  const claimed = await db.transaction('rw', db.drillSets, async () => {
+    const set = await db.drillSets.get(id)
+    if (!set || set.status === 'completed') return undefined
+    const owed = !!(set.addOnFinish?.length || set.promote?.length) && set.addedRefs === undefined
+    await db.drillSets.put(drillSetSchema.parse({ ...set, status: 'completed', completedAt: now, updatedAt: now, ...(owed ? { addedRefs: [] } : {}) }))
+    return owed ? set : undefined
+  })
+  if (!claimed) return []
+  try {
+    const before = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+    if (claimed.promote?.length) await promoteItems(claimed.promote)
+    else {
+      const catalog = await loadCatalog()
+      await db.transaction('rw', [db.knowledge, db.studyCards, db.journal], () => addUnits((claimed.addOnFinish ?? []).flatMap(ref => catalog.units.get(ref) ?? []), 'new', now))
+    }
+    const added = (await db.knowledge.toArray()).map(entry => entry.ref).filter(ref => !before.has(ref))
+    await db.drillSets.update(id, { addedRefs: added })
+    return added
+  } catch (cause) {
+    await db.drillSets.update(id, { addedRefs: undefined })
+    throw cause
+  }
 }
 
 /** Abandons an unfinished set. Results already recorded keep their scheduling effect. */

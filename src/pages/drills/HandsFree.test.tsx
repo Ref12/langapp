@@ -259,12 +259,8 @@ describe('Hands-free player', () => {
     window.location.hash = '#practice'
     const again = (await screen.findByRole('heading', { name: 'Unfinished sets' })).closest('section')!
     fireEvent.click(await within(again).findByRole('button', { name: 'Discard Hands-free · 1 Nov' }))
-    // the question is its own full-width line under the meta; the title does not move
-    const confirm = within(again).getByRole('group', { name: 'Discard Hands-free · 1 Nov?' })
-    expect(confirm.parentElement).toBe(again.querySelector('.resume-row'))
-    expect(confirm).toHaveTextContent('Discard this set?')
+    const confirm = screen.getByRole('dialog', { name: 'Discard this set?' })
     expect(confirm.querySelectorAll('button')).toHaveLength(2)
-    expect(again.querySelector('.resume-text')).toHaveTextContent('Hands-free · 1 Nov')
     fireEvent.click(within(confirm).getByRole('button', { name: 'Discard' }))
     await waitFor(() => expect(within(again).queryByRole('link', { name: /Resume Hands-free/ })).toBeNull())
     expect((await db.handsfreeRuns.get('run1'))!.discarded).toBe(true)

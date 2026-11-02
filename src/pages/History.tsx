@@ -14,6 +14,7 @@ import { removeHistoryItems, restoreHistoryItems, type HistoryKey } from '../cor
 import { Pinyin } from '../components/Pinyin'
 import { DRILL_TYPES, countMarks, scoreOf, type DrillSet } from '../core/drills/contracts'
 import { SaveToMenu } from '../components/collections/SaveToMenu'
+import { RemoveFromKnowledge } from '../components/study/RemoveFromKnowledge'
 import { practiceFrom } from '../core/drills/store'
 import type { HandsfreeRun } from '../core/handsfree/contracts'
 
@@ -153,6 +154,7 @@ export function History() {
             {row.run.status !== 'completed' && <a className="button secondary" href={`#practice/handsfree/${row.run.id}`} aria-label={`Resume ${row.run.title}`}>Resume</a>}
             <a className="button secondary" href={`#${practiceFrom('handsfree', row.run.id)}`} aria-label={`Practice ${row.run.title}`}>Practice</a>
             <SaveToMenu refs={[...new Set(row.run.refs)]} name={row.run.title} label="Save to study set" />
+            <RemoveFromKnowledge kind="handsfree" id={row.run.id} name={row.run.title} />
             {tools(row, row.run.title)}
           </li>
           : row.type === 'drill'
@@ -165,6 +167,7 @@ export function History() {
             {row.set.status === 'active' && <a className="button secondary" href={`#practice/set/${row.set.id}`} aria-label={`Resume ${row.set.title}`}>Resume</a>}
             <a className="button secondary" href={`#${practiceFrom('drill', row.set.id)}`} aria-label={`Practice ${row.set.title}`}>Practice</a>
             <SaveToMenu refs={[...new Set(row.set.refs)]} name={row.set.title} label="Save to study set" />
+            <RemoveFromKnowledge kind="drill" id={row.set.id} name={row.set.title} />
             {tools(row, row.set.title)}
           </li>
           : row.type === 'lesson'
@@ -178,6 +181,7 @@ export function History() {
             <a className="button secondary" href={`#lessons/session/${row.lesson.id}`} aria-label={`Open lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`}>Open</a>
               <a className="button secondary" href={`#${practiceFrom('lesson', row.lesson.id)}`} aria-label={`Practice lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`}>Practice</a>
               <SaveToMenu refs={[...new Set(row.lesson.refs)]} name="lesson" label="Save to study set" />
+              <RemoveFromKnowledge kind="lesson" id={row.lesson.id} name={row.lesson.mode === 'new' ? 'New items lesson' : 'Review lesson'} />
               {tools(row, row.lesson.mode === 'new' ? 'New items lesson' : 'Review lesson')}
           </li>
           : <li key={`phrase:${row.entry.text}`} className="phrase-history-entry">

@@ -142,6 +142,8 @@ export const exerciseSessionSchema = z.object({
   phases: z.array(z.object({ kind: z.enum(['words', 'grammar', 'line']), start: z.number().int().nonnegative() }).strict()).max(3).optional(),
   /** Set when the user removed the session from History (a soft delete: attempts and scheduling are untouched). */
   removedAt: timestamp.optional(),
+  /** The items this lesson added to the knowledge set when it started (none that were already known). Older sessions are worked out from the knowledge entries. */
+  addedRefs: z.array(unitRefSchema).max(200).optional(),
 }).strict()
 
 export const exerciseAttemptSchema = z.object({

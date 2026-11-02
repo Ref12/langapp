@@ -58,13 +58,20 @@ describe('New items fill by items, whole lessons', () => {
 })
 
 describe('creating drill sets', () => {
-  it('New items takes the next curriculum items into the knowledge set', async () => {
+  it('New items adds nothing to the knowledge set until the set is finished, and then only once', async () => {
     const set = await created({ kind: 'new' }, Date.UTC(2026, 9, 30, 12))
     expect(set.refs.length).toBeGreaterThan(0)
     expect(set.refs.length).toBeLessThanOrEqual(60)
     expect(set.title).toBe('New items · 30 Oct')
     expect(set.source).toBe('new')
+    expect(await db.knowledge.bulkGet(set.refs)).toSatisfy((rows: unknown[]) => rows.every(row => !row))
+    expect(await db.studyCards.count()).toBe(0)
+    const added = await finishDrillSet(set.id, Date.UTC(2026, 9, 30, 13))
+    expect([...added].sort()).toEqual([...set.refs].sort())
     expect(await db.knowledge.bulkGet(set.refs)).toSatisfy((rows: unknown[]) => rows.every(Boolean))
+    expect((await getDrillSet(set.id))!.addedRefs).toEqual(added)
+    expect(await finishDrillSet(set.id)).toEqual([])
+    expect(await db.knowledge.count()).toBe(set.refs.length)
     // The catalog's own example sentences fill most items without any AI; with no connection the rest is said to be unavailable.
     expect(Object.keys(set.content.sentences).length).toBeGreaterThan(0)
     expect(set.content.state).toBe('no-ai')
@@ -89,6 +96,8 @@ describe('creating drill sets', () => {
     expect(fresh.source).toBe('new')
     expect(fresh.collectionId).toBe(collection.id)
     expect(fresh.refs).toHaveLength(3)
+    expect(await db.knowledge.get('vocabulary:wo3--me')).toBeUndefined()
+    await finishDrillSet(fresh.id)
     expect((await db.knowledge.get('vocabulary:wo3--me'))?.ref).toBe('vocabulary:wo3--me')
     await expect(createDrillSet({ kind: 'new', from: collection.id })).rejects.toThrow(/already in your knowledge set/)
   })

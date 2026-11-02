@@ -5,7 +5,7 @@ import App from '../../App'
 import { db } from '../../core/database'
 import { addToKnowledge } from '../../core/study/knowledge'
 import { whenContent } from '../../core/drills/content'
-import { createDrillSet, getDrillSet } from '../../core/drills/store'
+import { createDrillSet, finishDrillSet, getDrillSet } from '../../core/drills/store'
 import * as speech from '../../core/assistant/speech'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
@@ -31,6 +31,37 @@ async function newSet() {
   await whenContent(id)
   return (await getDrillSet(id))!
 }
+
+describe('Recent sets', () => {
+  it('lists a completed set with Open, Save and Remove from knowledge set, and the removal confirms', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    await finishDrillSet(set.id)
+    const added = (await getDrillSet(set.id))!.addedRefs!
+    expect(added.length).toBeGreaterThan(0)
+    expect(await db.knowledge.count()).toBe(added.length)
+    render(<App />)
+    const recent = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
+    await within(recent).findByText(/Practice set ·/)
+    const row = recent.querySelector('.resume-row')!
+    expect(within(row as HTMLElement).getByText(/Practice set ·/)).toBeInTheDocument()
+    expect(within(row as HTMLElement).getByRole('link', { name: /^Open New items/ })).toHaveAttribute('href', `#practice/set/${set.id}`)
+    expect(within(row as HTMLElement).getByRole('button', { name: /^Save New items/ })).toBeInTheDocument()
+    expect(screen.getByText('No unfinished sets.')).toBeInTheDocument()
+    await user.click(await within(row as HTMLElement).findByRole('button', { name: /^Remove New items.* from knowledge set$/ }))
+    const dialog = screen.getByRole('dialog', { name: 'Remove from knowledge set' })
+    expect(dialog).toHaveTextContent(/^Remove .*from your knowledge set\? Their reviews go too; your practice history stays\./)
+    await user.click(within(dialog).getByRole('button', { name: 'Cancel' }))
+    expect(await db.knowledge.count()).toBe(added.length)
+    await user.click(within(row as HTMLElement).getByRole('button', { name: /from knowledge set$/ }))
+    await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Remove' }))
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+    expect(await db.knowledge.count()).toBe(0)
+    expect(await db.studyCards.count()).toBe(0)
+    await waitFor(() => expect(within(row as HTMLElement).queryByRole('button', { name: /from knowledge set$/ })).toBeNull())
+    expect(within(row as HTMLElement).getByRole('link', { name: /^Open New items/ })).toBeInTheDocument()
+  }, 40000)
+})
 
 describe('What you will practise', () => {
   it('offers chips 5/10/15/20, defaults to 5, clamps a typed value, remembers it, and migrates the old stored key', async () => {
@@ -153,15 +184,17 @@ describe('Practice home', () => {
     // title and meta on the left; resume and discard are same-size icon buttons on the right
     expect([...line.children].map(child => child.className)).toEqual(['resume-text', 'icon-button', 'icon-button'])
     await user.click(within(row).getByRole('button', { name: /^Discard New items/ }))
-    const confirm = within(row).getByRole('group', { name: /^Discard New items.*\?$/ })
-    expect(confirm.parentElement).toBe(line)
-    expect(confirm).toHaveTextContent('Discard this set?')
-    expect(within(confirm).getAllByRole('button').map(button => button.textContent)).toEqual(['Discard', 'Keep'])
-    expect(within(row).getByRole('button', { name: 'Keep' })).toBeInTheDocument()
-    await user.click(within(row).getByRole('button', { name: 'Keep' }))
+    const confirm = screen.getByRole('dialog', { name: 'Discard this set?' })
+    expect(within(confirm).getAllByRole('button').map(button => button.textContent)).toEqual(['Cancel', 'Discard'])
+    expect(within(confirm).getByRole('button', { name: 'Cancel' })).toHaveFocus()
+    await user.click(within(confirm).getByRole('button', { name: 'Cancel' }))
+    expect(screen.queryByRole('dialog')).toBeNull()
     expect(within(row).getByText(/New items/)).toBeInTheDocument()
     await user.click(within(row).getByRole('button', { name: /^Discard New items/ }))
-    await user.click(within(row).getByRole('button', { name: 'Discard' }))
+    await user.keyboard('{Escape}')
+    expect(screen.queryByRole('dialog')).toBeNull()
+    await user.click(within(row).getByRole('button', { name: /^Discard New items/ }))
+    await user.click(within(screen.getByRole('dialog', { name: 'Discard this set?' })).getByRole('button', { name: 'Discard' }))
     expect(await within(row).findByText('No unfinished sets.')).toBeInTheDocument()
   }, 40000)
 

@@ -21,6 +21,9 @@ import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finish
 import { DrillRun } from './DrillRun'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
+import { ConfirmDialog } from '../../components/ConfirmDialog'
+import { SaveToMenu } from '../../components/collections/SaveToMenu'
+import { RemoveFromKnowledge } from '../../components/study/RemoveFromKnowledge'
 import { isPhraseRef, isSourceRef } from '../../core/study/contracts'
 import { createHandsfreeRun, discardHandsfreeRun, unfinishedHandsfreeRuns } from '../../core/handsfree/store'
 import { availability } from './tasks'
@@ -31,6 +34,8 @@ import './drills.css'
 
 const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
 const setRoute = (id: string, page = '') => `practice/set/${id}${page ? `/${page}` : ''}`
+/** Completed sets listed on Practice home. */
+const RECENT_SETS = 10
 const CURRICULUM = 'curriculum'
 const ORIGIN = 'origin'
 
@@ -180,14 +185,22 @@ function UnfinishedInfo({ set, typesDone, characterStates }: { set: DrillSet; ty
   return <span className="small muted dr-wrap">{(items && describeItems(items, characterStates)) || itemCount(set.refs.length)} · {typesDone} of {DRILL_TYPES.length} types done</span>
 }
 
-/** One unfinished set or Hands-free run: title and meta on the left, the resume and discard icon buttons on the right; the discard question is its own line below. */
-function UnfinishedRow({ title, href, meta, asking, busy, onAsk, onKeep, onDiscard }: { title: string; href: string; meta: ReactNode; asking: boolean; busy: boolean; onAsk: () => void; onKeep: () => void; onDiscard: () => void }) {
+/** One unfinished set or Hands-free run: title and meta on the left, the resume and discard icon buttons on the right. Discard asks in a dialog. */
+function UnfinishedRow({ title, href, meta, onAsk }: { title: string; href: string; meta: ReactNode; onAsk: () => void }) {
   return <div className="resume-row">
     <div className="resume-text"><strong>{title}</strong>{meta}</div>
     <a className="icon-button" href={href} aria-label={`Resume ${title}`}><ArrowRight size={18} /></a>
-    <button type="button" className="icon-button" aria-label={`Discard ${title}`} aria-expanded={asking} onClick={onAsk}><Trash2 size={17} /></button>
-    {asking && <div className="dr-confirm" role="group" aria-label={`Discard ${title}?`}><span>Discard this set?</span>
-      <button type="button" className="button secondary" disabled={busy} onClick={onDiscard}>Discard</button><button type="button" className="button secondary" onClick={onKeep}>Keep</button></div>}
+    <button type="button" className="icon-button" aria-label={`Discard ${title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={17} /></button>
+  </div>
+}
+
+/** One completed set or Hands-free run: the same row layout, with Open, Save to study set and Remove from knowledge set as icons. */
+function RecentRow({ kind, id, title, href, meta, refs }: { kind: 'drill' | 'handsfree'; id: string; title: string; href: string; meta: ReactNode; refs: readonly string[] }) {
+  return <div className="resume-row">
+    <div className="resume-text"><strong>{title}</strong>{meta}</div>
+    <a className="icon-button" href={href} aria-label={`Open ${title}`} title="Open"><ArrowRight size={18} /></a>
+    <SaveToMenu refs={[...new Set(refs)]} name={title} />
+    <RemoveFromKnowledge kind={kind} id={id} name={title} icon />
   </div>
 }
 
@@ -211,10 +224,15 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   }, [originParam]) ?? null
   const [all, setAll] = useState(true)
   useEffect(() => setAll(true), [originParam])
-  const [asking, setAsking] = useState<string>()
+  const [asking, setAsking] = useState<{ id: string; title: string; handsfree: boolean }>()
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
   const wordsDue = workspace.words.filter(word => word.dueAt <= now).length
   const unfinished = unfinishedSets(sets)
+  const allHandsfree = useLiveQuery(() => db.handsfreeRuns.toArray(), []) ?? []
+  const recent = [
+    ...sets.filter(set => set.status === 'completed' && !set.removedAt).map(set => ({ kind: 'drill' as const, id: set.id, title: set.title, refs: set.refs, at: set.completedAt ?? set.updatedAt, href: `#${setRoute(set.id)}`, label: 'Practice set' })),
+    ...allHandsfree.filter(run => run.status === 'completed' && !run.removedAt).map(run => ({ kind: 'handsfree' as const, id: run.id, title: run.title, refs: run.refs, at: run.completedAt ?? run.updatedAt, href: `#practice/handsfree/${run.id}`, label: 'Hands-free' })),
+  ].sort((a, b) => b.at - a.at).slice(0, RECENT_SETS)
   const fromSet = !origin && from !== CURRICULUM ? collections.find(entry => entry.id === from) : undefined
   const [chosenMode, setMode] = useState<'new' | 'review'>('new')
   const mode = origin ? 'review' : chosenMode
@@ -287,15 +305,24 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
             <button type="button" className="button primary" aria-label="Start practice by skill" disabled={busy || !known.size} onClick={() => start(skillSource())}>Start <ArrowRight size={16} /></button></li>
         </ul>
       </section>
+      <div className="dr-stack">
       <section className="panel dr-panel" aria-labelledby="dr-unfinished"><h2 id="dr-unfinished">Unfinished sets</h2>
         {unfinished.length === 0 && handsfreeRuns.length === 0 ? <p className="muted small">No unfinished sets.</p> : <div className="resume-list">{unfinished.map(set => { const typesDone = Object.values(set.progress).filter(entry => entry.done).length
           return <UnfinishedRow key={set.id} title={set.title} href={`#${setRoute(set.id)}`} meta={<UnfinishedInfo set={set} typesDone={typesDone} characterStates={workspace.characterStates} />}
-            asking={asking === set.id} busy={busy} onAsk={() => setAsking(set.id)} onKeep={() => setAsking(undefined)} onDiscard={() => { setAsking(undefined); void run(() => discardDrillSet(set.id)) }} /> })}
+            onAsk={() => setAsking({ id: set.id, title: set.title, handsfree: false })} /> })}
           {handsfreeRuns.map(item => <UnfinishedRow key={item.id} title={item.title} href={`#practice/handsfree/${item.id}`} meta={<span className="small muted dr-wrap">Hands-free · {itemCount(item.refs.length)} · stopped at prompt {item.position + 1}</span>}
-            asking={asking === item.id} busy={busy} onAsk={() => setAsking(item.id)} onKeep={() => setAsking(undefined)} onDiscard={() => { setAsking(undefined); void run(() => discardHandsfreeRun(item.id)) }} />)}</div>}
+            onAsk={() => setAsking({ id: item.id, title: item.title, handsfree: true })} />)}</div>}
         {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
       </section>
+      <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sets</h2>
+        {recent.length === 0 ? <p className="muted small">No finished sets yet.</p> : <div className="resume-list">{recent.map(item =>
+          <RecentRow key={item.id} kind={item.kind} id={item.id} title={item.title} href={item.href} refs={item.refs} meta={<span className="small muted dr-wrap">{item.label} · {itemCount(item.refs.length)} · {shortDate(item.at)}</span>} />)}</div>}
+      </section>
+      </div>
     </div>
+    {asking && <ConfirmDialog title="Discard this set?" confirmLabel="Discard" busy={busy} onCancel={() => setAsking(undefined)}
+      detail={<>{asking.title} moves out of Unfinished sets. What you practised so far stays in History.</>}
+      onConfirm={() => { const item = asking; setAsking(undefined); void run(() => item.handsfree ? discardHandsfreeRun(item.id) : discardDrillSet(item.id)) }} />}
     <section className="panel dr-classic"><div><strong>Classic practice</strong><span className="small muted">Word-recognition sessions, the due badge and Mahjong keep working as before.</span></div>
       <div className="button-row"><a className="button secondary" href="#review">Classic practice {wordsDue > 0 && <span className="tag">{wordsDue} due</span>}</a><a className="button secondary" href="#practice/mahjong">Mahjong</a></div></section>
   </div>

@@ -1,7 +1,7 @@
 import { TERM } from '../collections/terms'
 import { db } from '../database'
 import { omit } from '../omit'
-import { addEvent, exerciseAttemptEvent, reviewEvent } from '../backup/journal'
+import { addEvent, exerciseAttemptEvent, removeEvent, reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
 import type { AIConnection } from '../assistant/contracts'
 import { loadCatalog, requireUnit, type Catalog, type StudyGroup, type Unit } from './catalog'
@@ -16,6 +16,8 @@ import { playItem, queueLength, redoFor } from './redo'
 import { cancelGeneration, exerciseCountPreference, isGenerating, runGeneration, type Emit, type GenerationResult } from './generation'
 import { ACTIVITY_SKILLS } from './skill-map'
 import { recordSkillPractice } from './skills'
+import type { DrillSet } from '../drills/contracts'
+import type { HandsfreeRun } from '../handsfree/contracts'
 import { emptySchedulingState, schedule, type Rating, type SchedulingState } from './fsrs'
 
 // Knowledge set, next-group selection, review selection and exercise sessions.
@@ -165,11 +167,11 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
     const resumed = resume ? await activeSession('new') : await db.exerciseSessions.where('status').equals('active')
       .filter(session => session.mode === 'new' && !session.redoOf && session.groupId === next.group.id).first()
     if (resumed) return resumed.id
-    await addUnits(next.newUnits, 'new', now)
+    const addedRefs = await addUnits(next.newUnits, 'new', now)
     const sessionId = crypto.randomUUID()
     created = {
       id: sessionId, mode: 'new', domain: DOMAIN, groupId: next.group.id, targetRefs, reviewRefs,
-      exercises: openingExercises(catalog, known, { id: sessionId, targetRefs }, []), cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: count,
+      exercises: openingExercises(catalog, known, { id: sessionId, targetRefs }, []), cursor: 0, status: 'active', model: connection.model, rejected: [], createdAt: now, generation: 'running', exerciseCount: count, addedRefs,
     }
     return saveSession(created)
   })
@@ -368,4 +370,69 @@ export async function discardSession(sessionId: string): Promise<void> {
 export async function dismissAiNotice(sessionId: string): Promise<void> {
   const session = await db.exerciseSessions.get(sessionId)
   if (session?.aiNotice) await db.exerciseSessions.put(omit(session, 'aiNotice'))
+}
+
+// ---- Revoking: take what a run added back out of the knowledge set ----
+
+/** How close an entry's addedAt must be to the run's own time to count as added by it (the run adds with its own clock reading, or a moment later). */
+const ADDED_WINDOW_MS = 5000
+
+export type RunKind = 'lesson' | 'drill' | 'handsfree'
+
+/**
+ * The refs a run added to the knowledge set that are still there. A run that recorded what it added (addedRefs) is believed, but an item
+ * re-added later by something else is not its to remove; an older run without the field is worked out from the entries themselves:
+ * those of its items that were added (as New items, or as a study set's promotion) at the moment the run began or completed.
+ */
+export async function runAddedRefs(kind: RunKind, id: string): Promise<string[]> {
+  const run = kind === 'lesson' ? await db.exerciseSessions.get(id) : kind === 'drill' ? await db.drillSets.get(id) : await db.handsfreeRuns.get(id)
+  if (!run) return []
+  let refs: readonly string[], at: number | undefined, recorded: boolean, anySource = false
+  if (kind === 'lesson') {
+    const session = run as ExerciseSession
+    if (session.mode !== 'new' || session.collectionId || session.lines || session.redoOf) return []
+    refs = session.addedRefs ?? session.targetRefs; at = session.createdAt; recorded = !!session.addedRefs
+  } else if (kind === 'drill') {
+    const set = run as DrillSet
+    recorded = set.addedRefs !== undefined
+    refs = set.addedRefs ?? set.refs; at = recorded ? set.completedAt : set.createdAt
+    // Before introduce-on-finish a New items set added at creation; one over a study set promoted its items (as dictionary entries).
+    if (!recorded && (set.source !== 'new' || set.originId)) return []
+    anySource = !!set.collectionId
+  } else {
+    const hf = run as HandsfreeRun
+    recorded = hf.addedRefs !== undefined
+    refs = hf.addedRefs ?? (hf.addOnComplete ?? []); at = hf.completedAt
+    anySource = !!hf.promote?.length
+  }
+  if (at === undefined || !refs.length) return []
+  const entries = (await db.knowledge.bulkGet([...new Set(refs)])).flatMap(entry => entry ? [entry] : [])
+  return entries.filter(entry => (recorded ? entry.addedAt <= at + ADDED_WINDOW_MS : Math.abs(entry.addedAt - at) <= ADDED_WINDOW_MS) && (recorded || anySource || entry.source === 'new')).map(entry => entry.ref)
+}
+
+/** Removes items from the knowledge set and deletes their study cards, in one transaction, with a journal event each. Attempts, history and skill counts stay. Returns the refs removed. */
+export async function removeFromKnowledge(refs: readonly string[], now = Date.now()): Promise<string[]> {
+  return db.transaction('rw', db.knowledge, db.studyCards, db.journal, async () => {
+    const removed: string[] = []
+    for (const ref of new Set(refs)) {
+      if (!await db.knowledge.get(ref)) continue
+      await db.knowledge.delete(ref)
+      await db.studyCards.delete(cardId(ref, DOMAIN))
+      await recordJournal(removeEvent(ref, now))
+      removed.push(ref)
+    }
+    return removed
+  })
+}
+
+/** Revokes a lesson, practice set or Hands-free run: removes only what it added, never what was already known. */
+export async function removeRunFromKnowledge(kind: RunKind, id: string, now = Date.now()): Promise<string[]> {
+  return removeFromKnowledge(await runAddedRefs(kind, id), now)
+}
+
+/** "5 words and 1 grammar pattern": what a set of refs is, for the confirmation. */
+export function describeRefs(refs: readonly string[]): string {
+  const grammar = refs.filter(ref => ref.startsWith('grammar:')).length
+  const words = refs.length - grammar
+  return [words ? `${words} word${words === 1 ? '' : 's'}` : '', grammar ? `${grammar} grammar pattern${grammar === 1 ? '' : 's'}` : ''].filter(Boolean).join(' and ')
 }

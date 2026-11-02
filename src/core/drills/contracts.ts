@@ -81,6 +81,12 @@ export const drillSetSchema = z.object({
   discarded: z.boolean().optional(),
   /** Set when the user removed the set from History; it also leaves Unfinished sets. Results already recorded stay. */
   removedAt: z.number().optional(),
+  /** A New items set's own items: they join the knowledge set when the set is finished, never at creation. */
+  addOnFinish: z.array(unitRefSchema).max(60).optional(),
+  /** Study-set item ids promoted into the knowledge set when the set is finished. */
+  promote: z.array(z.string().min(1).max(200)).max(200).optional(),
+  /** Set once, when finishing added items (empty when it added none); a set finished again never adds them twice. Sets from before this field are worked out from the knowledge entries. */
+  addedRefs: z.array(unitRefSchema).max(200).optional(),
 }).strict()
 
 export const drillSetsBackupSchema = z.array(drillSetSchema).max(2000)

@@ -127,6 +127,7 @@ export function replay(events: JournalEvent[], state: ReplayState = emptyReplayS
       }
       case 'remove':
         state.knowledge.delete(String(event.ref))
+        state.cards.delete(cardId(String(event.ref), 'reading')) // Revoked items lose their reviews with them.
         break
       case 'review': {
         const run = SCHEDULERS[String(event.sched) as keyof typeof SCHEDULERS]
