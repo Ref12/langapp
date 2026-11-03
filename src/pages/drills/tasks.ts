@@ -2,7 +2,7 @@ import { characterAssetIndex } from '../../core/characters/assets'
 import { formatPinyin } from '../../core/pinyin'
 import type { Catalog } from '../../core/study/catalog'
 import type { ChoiceExercise, MatchExercise } from '../../core/study/contracts'
-import { missedRefs } from '../../core/study/exercises'
+import { isChoiceCorrect, missedRefs } from '../../core/study/exercises'
 import { buildChoice, buildMatch, createRng, isVocabulary, matchGroups, seedFrom, type VocabularyUnit } from '../../core/study/local-exercises'
 import type { Conversation, DrillContent, DrillTypeId, Mark, Sentence } from '../../core/drills/contracts'
 import { drillType } from '../../core/drills/contracts'
@@ -135,7 +135,7 @@ export function grade(question: Q, answer: unknown): Outcome | 'self' {
   const all = (mark: Mark): Outcome => ({ marks: Object.fromEntries(question.refs.map(ref => [ref, mark])), correct: mark !== 'missed' })
   const data = question.data
   switch (data.t) {
-    case 'choice': return all(answer === data.exercise.answer ? 'got' : 'missed')
+    case 'choice': return all(typeof answer === 'number' && isChoiceCorrect(data.exercise, answer) ? 'got' : 'missed')
     case 'match': {
       const missed = new Set(missedRefs(data.exercise, answer))
       return { marks: Object.fromEntries(question.refs.map(ref => [ref, missed.has(ref) ? 'missed' : 'got'])), correct: missed.size === 0 }

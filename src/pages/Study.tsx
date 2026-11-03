@@ -5,7 +5,7 @@ import { navigate } from '../core/routing'
 import { type Catalog, type Unit } from '../core/study/catalog'
 import { cardId, isPhraseRef, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type MatchExercise, type TilesExercise } from '../core/study/contracts'
 import { timeSave } from '../core/backup/diagnostics'
-import { matchTiles } from '../core/study/exercises'
+import { matchTiles, visibleOptions } from '../core/study/exercises'
 import { matchSides } from '../core/study/local-exercises'
 import { MAX_REDOS_PER_EXERCISE, playItem, queueLength, redosRemaining } from '../core/study/redo'
 import { advanceExercise, discardSession, dismissAiNotice, DOMAIN, settleInterrupted, startRedoSession, submitExerciseAnswer } from '../core/study/knowledge'
@@ -84,7 +84,7 @@ export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings
       ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.question} readings={readings} pinyin={pinyin} /></p>
       : <p className="practice-prompt" lang="en">{exercise.question}</p>}
     <fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
-      {exercise.options.map((option, index) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${attempt && index === exercise.answer ? 'correct-option' : ''}`}>
+      {visibleOptions(exercise).map(index => [exercise.options[index], index] as const).map(([option, index]) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${attempt && index === exercise.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={name} value={index} checked={selected === index} onChange={() => choose(index)} />
         {chineseQuestion ? <span lang="en">{option}</span> : <span><AnnotatedChinese text={option} readings={readings} pinyin={pinyin} /></span>}
         {!chineseQuestion && <HearButton text={option} locale="zh-Hans" label={`Hear option ${index + 1}`} iconOnly />}

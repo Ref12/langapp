@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { buildCatalog, requireUnit, type BandData } from './catalog'
-import { buildGenerationPrompt, checkAnswer, createSegmenter, matchTiles, validateProposal, type GenerationInput } from './exercises'
+import { buildGenerationPrompt, checkAnswer, createSegmenter, matchTiles, validateProposal, type GenerationInput, isChoiceCorrect, visibleOptions } from './exercises'
 import type { TilesExercise } from './contracts'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
@@ -190,3 +190,39 @@ describe('accepted answers', () => {
   })
 })
 
+
+describe('choice options that repeat the answer', () => {
+  const choice = (direction: 'zh-to-en' | 'en-to-zh', question: string, options: string[], answer = 0) =>
+    ({ exercises: [{ id: 'c1', type: 'choice', targets: ['vocabulary:xue2-sheng5--student'], direction, question, options, answer, explanation: '学生 means student.' }] })
+
+  it('rejects options that differ only in punctuation (Chinese side)', () => {
+    const result = validateProposal(choice('en-to-zh', 'I am a student.', ['我是学生。', '我是学生', '我是学生！']), input)
+    expect(result.exercises).toHaveLength(0)
+    expect(result.rejected[0]).toMatch(/options repeat the answer apart from punctuation/)
+  })
+
+  it('rejects options that differ only in case or punctuation (English side)', () => {
+    const result = validateProposal(choice('zh-to-en', '我是学生。', ['I am a student.', 'i am a student', 'I am a teacher.']), input)
+    expect(result.rejected[0]).toMatch(/apart from punctuation/)
+  })
+
+  it('keeps a choice whose options are really different', () => {
+    expect(validateProposal(choice('zh-to-en', '我是学生。', ['I am a student.', 'I am a teacher.']), input).exercises).toHaveLength(1)
+  })
+
+  it('shows a saved exercise without the copies and grades a copy as correct', () => {
+    const saved = { direction: 'en-to-zh' as const, options: ['我是学生。', '我是学生！', '我是老师。'], answer: 1 }
+    expect(visibleOptions(saved)).toEqual([1, 2])
+    expect(isChoiceCorrect(saved, 0)).toBe(true)
+    expect(isChoiceCorrect(saved, 2)).toBe(false)
+    const exercise = { id: 'c', type: 'choice' as const, targets: ['vocabulary:xue2-sheng5--student'], question: 'I am a student.', explanation: 'x', ...saved }
+    expect(checkAnswer(exercise, 0).correct).toBe(true)
+    expect(checkAnswer(exercise, 2).correct).toBe(false)
+  })
+
+  it('does the same on the English side', () => {
+    const saved = { direction: 'zh-to-en' as const, options: ['I am a student', 'i am a student.', 'You are a teacher'], answer: 0 }
+    expect(visibleOptions(saved)).toEqual([0, 2])
+    expect(isChoiceCorrect(saved, 1)).toBe(true)
+  })
+})

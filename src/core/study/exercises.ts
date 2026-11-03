@@ -216,6 +216,29 @@ export function answerKey(text: string): string {
   return text.replace(/[\s\p{P}\p{S}]/gu, '')
 }
 
+/** What two choice options are compared by: Han side as answerKey, English side lowercased without punctuation or spaces. */
+export function optionKey(text: string, language: 'zh' | 'en'): string {
+  return language === 'zh' ? answerKey(text) : text.toLowerCase().replace(/[\s\p{P}\p{S}]/gu, '')
+}
+
+type ChoiceLike = { direction: 'zh-to-en' | 'en-to-zh'; options: string[]; answer: number }
+const optionLanguage = (exercise: ChoiceLike) => exercise.direction === 'zh-to-en' ? 'en' : 'zh'
+
+/** Indexes into exercise.options to show: every option except extra copies of the correct one (same text apart from punctuation), in their order. */
+export function visibleOptions(exercise: ChoiceLike): number[] {
+  const language = optionLanguage(exercise)
+  const correct = optionKey(exercise.options[exercise.answer] ?? '', language)
+  return exercise.options.map((_, index) => index).filter(index => index === exercise.answer || optionKey(exercise.options[index], language) !== correct)
+}
+
+/** Whether picking this option is right: the answer, or a copy of it that differs only in punctuation (a saved exercise may hold one). */
+export function isChoiceCorrect(exercise: ChoiceLike, index: number): boolean {
+  if (index === exercise.answer) return true
+  const language = optionLanguage(exercise)
+  const picked = exercise.options[index]
+  return picked !== undefined && optionKey(picked, language) === optionKey(exercise.options[exercise.answer] ?? '', language)
+}
+
 export function validateProposal(value: unknown, input: GenerationInput): ValidationResult {
   const parsed = proposalSchema.safeParse(value)
   if (!parsed.success) throw new AITransportError('The AI returned exercises in an unsupported shape. Enable structured output in Settings or try again.')
@@ -238,6 +261,7 @@ export function validateProposal(value: unknown, input: GenerationInput): Valida
       if (chinese.some(text => !han.test(text))) { reject('Chinese side has no Chinese text'); continue }
       if (chinese.some(text => !segmenter.covers(text))) { reject('uses vocabulary outside the known set'); continue }
       if (english.some(text => han.test(text))) { reject('English side contains Chinese text'); continue }
+      if (new Set(proposal.options.map(option => optionKey(option, proposal.direction === 'zh-to-en' ? 'en' : 'zh'))).size !== proposal.options.length) { reject('options repeat the answer apart from punctuation'); continue }
       candidate = { ...proposal, targets }
     } else {
       const tiles = proposal.tiles.map(tile => tile.trim())
@@ -351,7 +375,7 @@ export function checkAnswer(exercise: Exercise, response: unknown): { correct: b
   if (exercise.type === 'choice') {
     const index = typeof response === 'number' ? response : Number.NaN
     if (!Number.isInteger(index) || index < 0 || index >= exercise.options.length) throw new Error('Choose one of the available answers.')
-    return { correct: index === exercise.answer, response: String(index) }
+    return { correct: isChoiceCorrect(exercise, index), response: String(index) }
   }
   if (exercise.type === 'match') return checkMatch(exercise, response)
   if (!Array.isArray(response) || response.some(item => typeof item !== 'string')) throw new Error('Arrange the tiles before checking.')
