@@ -21,6 +21,63 @@ const all = allowed + '\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b'
 beforeEach(() => { resetHandwritingEngine(); localStorage.clear() })
 afterEach(() => { delete nav.queryHandwritingRecognizer; delete nav.createHandwritingRecognizer })
 
+describe('Google engine', () => {
+  const reply = (body: unknown, ok = true, status = 200) => vi.fn(async () => ({ ok, status, json: async () => body }))
+  afterEach(() => vi.unstubAllGlobals())
+  it('sends pad-pixel ink with times, keeps allowed single characters in Google order, and tops up from the built-in matcher', async () => {
+    const fetchMock = reply(['SUCCESS', [['id', ['\u9e23', '\u9e23\u9e1f', '+', '\u9e1f', '\u9e23', '\u4e0d'], [], {}]]])
+    vi.stubGlobal('fetch', fetchMock)
+    const result = await recognizeStrokes(builtin(), [[[10, 10], [50, 50]], [[0, 100], [100, 0]]], all, { times: [[0, 20], [40, 60]], inputType: 'touch' }, 8, 'google')
+    expect(result.engine).toBe('google')
+    expect(result.indicator).toBe('Recognizer: Google (online)')
+    expect(result.candidates.map(item => item.character + item.engine[0])).toEqual(['\u9e23g', '\u9e1fg', '\u4e00b', '\u4e8cb', '\u4e09b', '\u56dbb', '\u4e94b', '\u516db'])
+    const [url, init] = fetchMock.mock.calls[0] as unknown as [string, { method: string; body: string; headers: Record<string, string> }]
+    expect(url).toBe('https://inputtools.google.com/request?ime=handwriting&app=translate&cs=1&oe=UTF-8')
+    expect(init.method).toBe('POST'); expect(init.headers['Content-Type']).toBe('application/json')
+    const body = JSON.parse(init.body) as { requests: { ink: number[][][]; language: string; max_num_results: number; writing_guide: object }[] }
+    expect(body.requests[0]).toMatchObject({ language: 'zh_CN', max_num_results: 10, writing_guide: { writing_area_width: 300, writing_area_height: 300 } })
+    expect(body.requests[0].ink).toEqual([[[30, 150], [30, 150], [0, 20]], [[0, 300], [300, 0], [40, 60]]])
+    const report = await handwritingReport() as { lookups: { engine: string; googleCandidates: number; googleMs: number }[] }
+    expect(report.lookups[0]).toMatchObject({ engine: 'google', googleCandidates: 2 })
+    expect(typeof report.lookups[0].googleMs).toBe('number')
+  })
+  it('falls back to the built-in matcher and says why on non-SUCCESS, HTTP errors, offline and timeouts', async () => {
+    const cases: [string, ReturnType<typeof vi.fn>][] = [
+      ['Google unavailable: ERROR', reply(['ERROR'])],
+      ['Google unavailable: HTTP 500', reply(null, false, 500)],
+      ['Google unavailable: offline or blocked', vi.fn(async () => { throw new TypeError('Failed to fetch') })],
+    ]
+    for (const [text, mock] of cases) {
+      vi.stubGlobal('fetch', mock)
+      const result = await recognizeStrokes(builtin(), drawing, all, timing, 8, 'google')
+      expect(result.engine).toBe('builtin')
+      expect(result.indicator).toBe('Recognizer: built-in matcher \u00b7 ' + text)
+      expect(result.candidates).toHaveLength(8)
+    }
+    vi.useFakeTimers()
+    vi.stubGlobal('fetch', vi.fn((_url: string, init: { signal: AbortSignal }) => new Promise((_resolve, reject) => init.signal.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError'))))))
+    const pending = recognizeStrokes(builtin(), drawing, all, timing, 8, 'google')
+    await vi.advanceTimersByTimeAsync(3100)
+    expect((await pending).indicator).toBe('Recognizer: built-in matcher \u00b7 Google unavailable: timed out after 3 s')
+    vi.useRealTimers()
+    expect(((await handwritingReport()) as { lookups: { error?: string }[] }).lookups[0].error).toBe('Google: timed out after 3 s')
+  })
+  it('stops a stale request when the caller aborts it', async () => {
+    vi.stubGlobal('fetch', vi.fn((_url: string, init: { signal: AbortSignal }) => new Promise((_resolve, reject) => init.signal.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError'))))))
+    const control = new AbortController()
+    const pending = recognizeStrokes(builtin(), drawing, all, timing, 8, 'google', control.signal)
+    control.abort()
+    await expect(pending).rejects.toMatchObject({ name: 'AbortError' })
+  })
+  it('is never called in Auto, Chrome or Built-in mode', async () => {
+    const fetchMock = reply(['SUCCESS', [['id', ['\u9e23']]]])
+    vi.stubGlobal('fetch', fetchMock)
+    for (const mode of ['auto', 'chrome', 'builtin'] as const) await recognizeStrokes(builtin(), drawing, all, timing, 8, mode)
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+  it('remembers the Google choice per device', () => { saveMode('google'); expect(readMode()).toBe('google') })
+})
+
 describe('handwriting engine', () => {
   it('puts Chrome candidates first, keeps only allowed single characters, and tops up from the built-in matcher', async () => {
     const chrome = chromeWith(async () => [{ text: '\u9e23' }, { text: '\u9e23\u9e1f' }, { text: 'x' }, { text: '\u9e1f' }, { text: '\u9e23' }, { text: '\u4e0d' }])

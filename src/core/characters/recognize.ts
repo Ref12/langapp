@@ -33,6 +33,10 @@ const SKIP_SLOPE = 1.2
 const RERANK = 16
 const FULL_SCORE = 400
 const ROUGH_STROKE = 6
+/** A drawn stroke may sit this far (frame units) from its guide stroke's place before the distance counts it all; beyond it the extra is a plain error. */
+const SHIFT_MAX = 22
+/** Cost per frame unit of that allowed shift, so the true position still wins between two close candidates. */
+const SHIFT_COST = 0.4
 
 export interface RecognitionFile { schemaVersion: number; points: number; characters: Record<string, string> }
 
@@ -124,15 +128,25 @@ export function decodeRecognitionIndex(file: RecognitionFile): RecognitionIndex 
   return { points: file.points, glyphs }
 }
 
+/**
+ * Distance between a drawn stroke and a guide stroke, direction-agnostic. The drawn stroke may be slid by up to
+ * SHIFT_MAX toward the guide (a crossbar drawn high or low is still that crossbar), at SHIFT_COST per unit slid.
+ */
 function strokeDistance(a: Float32Array, b: Float32Array): number {
   const count = a.length / 2
+  let ax = 0, ay = 0, bx = 0, by = 0
+  for (let k = 0; k < count; k++) { ax += a[k * 2]; ay += a[k * 2 + 1]; bx += b[k * 2]; by += b[k * 2 + 1] }
+  let dx = (bx - ax) / count, dy = (by - ay) / count
+  const length = Math.hypot(dx, dy)
+  if (length > SHIFT_MAX) { dx *= SHIFT_MAX / length; dy *= SHIFT_MAX / length }
+  const slid = Math.min(length, SHIFT_MAX)
   let forward = 0, backward = 0
   for (let k = 0; k < count; k++) {
     const m = (count - 1 - k) * 2
-    forward += Math.hypot(a[k * 2] - b[k * 2], a[k * 2 + 1] - b[k * 2 + 1])
-    backward += Math.hypot(a[k * 2] - b[m], a[k * 2 + 1] - b[m + 1])
+    forward += Math.hypot(a[k * 2] + dx - b[k * 2], a[k * 2 + 1] + dy - b[k * 2 + 1])
+    backward += Math.hypot(a[k * 2] + dx - b[m], a[k * 2 + 1] + dy - b[m + 1])
   }
-  return Math.min(forward / count, backward / count + REVERSED)
+  return Math.min(forward / count, backward / count + REVERSED) + SHIFT_COST * slid
 }
 
 /** Minimum-cost assignment on a square matrix (Hungarian algorithm, O(n^3)). */

@@ -8,7 +8,7 @@ import { Pinyin } from '../Pinyin'
 
 const DEBOUNCE_MS = 150
 const SLOTS = 8
-const engineLabel: Record<EngineName, string> = { chrome: 'Chrome', builtin: 'built-in matcher' }
+const engineLabel: Record<EngineName, string> = { chrome: 'Chrome', google: 'Google', builtin: 'built-in matcher' }
 
 /** Draw a character with a finger or pen; stroke order, direction and neatness do not matter. */
 export function HandwritingPad({ allowed, onPick, onClose }: {
@@ -22,6 +22,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
   const [results, setResults] = useState<Candidate[]>([])
   const [mode, setMode] = useState<EngineMode>(readMode)
   const [used, setUsed] = useState<EngineName>()
+  const [indicator, setIndicator] = useState<string>()
   const [probed, setProbed] = useState(false)
   const [, setTick] = useState(0)
   const candidates = useMemo(() => results.map(item => item.character), [results])
@@ -48,13 +49,14 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
   useEffect(() => {
     const request = ++latest.current
     if (!strokes.length) { setResults([]); setStatus('Draw the character with your finger. Any stroke order works.'); return }
+    const controller = new AbortController()
     const timer = window.setTimeout(() => {
       setStatus('Looking...')
       const timing: InkTiming = { times: strokes.map(stroke => times.current.get(stroke) ?? []), inputType: inputType.current }
       if (!recognizer.current) return
-      void recognizeStrokes(recognizer.current, strokes, allowedText, timing, SLOTS, mode).then(result => {
+      void recognizeStrokes(recognizer.current, strokes, allowedText, timing, SLOTS, mode, controller.signal).then(result => {
         if (request !== latest.current) return
-        setResults(result.candidates); setUsed(result.engine)
+        setResults(result.candidates); setUsed(result.engine); setIndicator(result.indicator)
         setStatus(result.candidates.length ? 'Tap the character you meant.' : 'No match. Try again or clear.')
       }, reason => {
         if (request !== latest.current) return
@@ -62,7 +64,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
         setStatus(reason instanceof Error ? reason.message : 'Handwriting lookup is unavailable.')
       })
     }, DEBOUNCE_MS)
-    return () => window.clearTimeout(timer)
+    return () => { window.clearTimeout(timer); controller.abort() }
   }, [strokes, allowedText, mode])
 
   const cancel = useCallback(() => {
@@ -132,17 +134,18 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
     </svg>
     <p id="handwriting-status" className="handwriting-status small muted" role="status" aria-live="polite">{status}</p>
     <p className="handwriting-engine small muted" data-testid="handwriting-engine">
-      <span>{indicatorText(mode, used)}</span>
+      <span>{indicator ?? indicatorText(mode, used)}</span>
       <span role="group" aria-label="Recognizer" className="handwriting-engine-toggle">
-        {(['auto', 'chrome', 'builtin'] as const).map(value => <button key={value} type="button" className="handwriting-engine-option" aria-pressed={mode === value}
-          disabled={value === 'chrome' && probed && !chromeAvailable()} onClick={() => { saveMode(value); setMode(value); setTick(tick => tick + 1) }}>{value === 'auto' ? 'Auto' : value === 'chrome' ? 'Chrome' : 'Built-in'}</button>)}
+        {(['auto', 'chrome', 'google', 'builtin'] as const).map(value => <button key={value} type="button" className="handwriting-engine-option" aria-pressed={mode === value}
+          disabled={value === 'chrome' && probed && !chromeAvailable()} onClick={() => { saveMode(value); setMode(value); setIndicator(undefined); setUsed(undefined); setTick(tick => tick + 1) }}>{value === 'auto' ? 'Auto' : value === 'chrome' ? 'Chrome' : value === 'google' ? 'Google' : 'Built-in'}</button>)}
       </span>
     </p>
+    {mode === 'google' && <p className="small muted" data-testid="handwriting-google-note">Google: unofficial handwriting service; your strokes are sent to Google.</p>}
     <ul className="handwriting-candidates" aria-label="Candidate characters">
       {Array.from({ length: SLOTS }, (_, slot) => {
         const item = results[slot]
         const character = item?.character
-        const topUp = used === 'chrome' && item?.engine === 'builtin'
+        const topUp = used !== 'builtin' && used !== undefined && item?.engine === 'builtin'
         return <li key={slot}>{character && <button type="button" className={'handwriting-candidate' + (topUp ? ' topped-up' : '')} title={'From ' + engineLabel[item.engine]} aria-label={`${character}, from ${engineLabel[item.engine]}`} onClick={() => { cancel(); setStrokes([]); onPick(character) }}>
           <span lang="zh-Hans" className="handwriting-character">{character}</span>
           <span className="handwriting-reading"><Pinyin text={readings.get(character) ?? ''} /></span></button>}</li>

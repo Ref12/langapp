@@ -55,6 +55,27 @@ describe('handwriting recognizer', () => {
     }
   }, 30_000)
 
+  it('puts simple characters drawn cleanly, and slightly off, first or within the top three', () => {
+    const simple = [...'一二三十人入八口日大小中山女']
+    for (const character of simple) expect(recognize(index, medians(character))[0].character, character).toBe(character)
+    let jitter = 11
+    const wobble = () => (jitter = (jitter * 1664525 + 1013904223) >>> 0) / 4294967296 - 0.5
+    for (const character of simple) for (let round = 0; round < 3; round++) {
+      const drawn = medians(character).map(stroke => { const dx = wobble() * 8, dy = wobble() * 8; return stroke.map(([x, y]): Point => [x + dx, y + dy]) })
+      expect(recognize(index, drawn).slice(0, 3).map(match => match.character), character).toContain(character)
+    }
+  }, 30_000)
+
+  it('still finds 十 when the crossbar is drawn well above or below the middle', () => {
+    const line = (from: Point, to: Point): Point[] => Array.from({ length: 12 }, (_, i): Point => [from[0] + (to[0] - from[0]) * i / 11, from[1] + (to[1] - from[1]) * i / 11])
+    const attempt = [line([20, 30], [80, 30]), line([50, 20], [50, 85])]
+    expect(recognize(index, attempt).slice(0, 3).map(match => match.character), 'high crossbar, short stem').toContain('\u5341')
+    for (const height of [25, 30, 40, 50, 60]) {
+      const drawn = [line([15, height], [85, height]), line([50, 10], [50, 90])]
+      expect(recognize(index, drawn).slice(0, 3).map(match => match.character), 'bar at ' + height).toContain('\u5341')
+    }
+  })
+
   it('only offers allowed characters, never more than the limit', () => {
     const allowed = new Set([...'休本体未末'])
     const matches = recognize(index, shuffled(medians('休')), { allowed, limit: 3 })
