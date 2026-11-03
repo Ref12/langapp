@@ -91,7 +91,13 @@ export async function restartGeneration(sessionId: string, build: (session: Exer
   const rest = omit(session, 'generationError')
   // The request is registered before the first write, so the page never sees "running" without a request behind it.
   void runGeneration(sessionId, async (_signal, emit) => {
-    await db.exerciseSessions.put({ ...rest, generation: 'running' })
+    // Discarding an empty set deletes it: never write the session back after that.
+    const stillThere = await db.transaction('rw', db.exerciseSessions, async () => {
+      if (!await db.exerciseSessions.get(sessionId)) return false
+      await db.exerciseSessions.put({ ...rest, generation: 'running' })
+      return true
+    })
+    if (!stillThere) throw new Error('This lesson was discarded.')
     return build({ ...rest, generation: 'running' }, emit)
   })
 }

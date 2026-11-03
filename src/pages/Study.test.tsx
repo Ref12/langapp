@@ -94,7 +94,7 @@ describe('New and Review', () => {
     expect((await db.exerciseSessions.get('old-redo'))!.status).toBe('active')
   })
 
-  it('lists unfinished lessons by origin and Discard abandons one after confirming', async () => {
+  it('lists unfinished lessons by origin and Discard removes an empty one after confirming', async () => {
     const user = userEvent.setup()
     const base = { domain: 'reading' as const, targetRefs: [], reviewRefs: [], exercises: [], cursor: 0, status: 'active' as const, model: 'm', rejected: [] }
     await db.collections.add({ id: 'c1', name: 'My phrases', kind: 'user', createdAt: 1, updatedAt: 1 })
@@ -111,7 +111,8 @@ describe('New and Review', () => {
     await user.click(screen.getByRole('button', { name: 'Discard My phrases · Review' }))
     expect((await db.exerciseSessions.get('col'))!.status).toBe('active')
     await user.click(screen.getByRole('button', { name: 'Discard My phrases · Review' }))
-    await waitFor(async () => expect((await db.exerciseSessions.get('col'))!.status).toBe('abandoned'))
+    // An empty set (nothing generated yet) is deleted, not kept as an abandoned shell.
+    await waitFor(async () => expect(await db.exerciseSessions.get('col')).toBeUndefined())
     expect(confirm).toHaveBeenCalledTimes(2)
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Discard My phrases · Review' })).not.toBeInTheDocument())
   })

@@ -80,8 +80,22 @@ describe('unfinished session origins', () => {
     expect((await db.exerciseSessions.get(two))!.status).toBe('active')
   })
 
-  it('discard abandons the session, stops its generation and keeps answers', async () => {
-    await db.exerciseSessions.add(session({ id: 'g', generation: 'running' }))
+  it('discarding an empty set still generating deletes it, stops generation and nothing recreates it', async () => {
+    await db.exerciseSessions.add(session({ id: 'e', generation: 'running' }))
+    let seen: AbortSignal | undefined
+    let finish!: (value: { exercises: never[]; rejected: string[] }) => void
+    const job = runGeneration('e', signal => { seen = signal; return new Promise(resolve => { finish = resolve as typeof finish }) })
+    await discardSession('e')
+    expect(seen!.aborted).toBe(true)
+    expect(await db.exerciseSessions.get('e')).toBeUndefined()
+    finish({ exercises: [], rejected: [] })
+    await job
+    expect(await db.exerciseSessions.count()).toBe(0)
+  })
+
+  it('discard abandons a set that has exercises, stops its generation and keeps answers', async () => {
+    const exercise = { id: 'x', type: 'choice', targets: ['vocabulary:wo3--me'], direction: 'zh-to-en', question: '我', options: ['me', 'you'], answer: 0, explanation: 'Me.' } as ExerciseSession['exercises'][number]
+    await db.exerciseSessions.add(session({ id: 'g', generation: 'running', exercises: [exercise] }))
     await db.exerciseAttempts.add({ id: 'g:0', sessionId: 'g', index: 0, refs: [], response: '0', correct: true, createdAt: 1 } as never)
     let seen: AbortSignal | undefined
     void runGeneration('g', signal => { seen = signal; return new Promise(() => undefined) })
