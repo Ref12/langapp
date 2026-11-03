@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
+import { buildOrigins } from '../../../scripts/generate-character-origins.mjs'
 
 describe('generated character origins', () => {
   it('cover every built-in guide character, and 鸣 comes from the HSK 7-9 word 共鸣', () => {
@@ -9,4 +10,8 @@ describe('generated character origins', () => {
     expect(origins['\u9e23']).toEqual(['7-9', '\u5171\u9e23', 'w'])
     expect(origins['\u4e00'][0]).toBe('1')
   })
+  it('is exactly what the generator reproduces from the curriculum inventory', () => {
+    const file = JSON.parse(readFileSync('public/characters/chinese/origins.generated.json', 'utf8')) as { origins: unknown }
+    expect(file.origins).toEqual(buildOrigins())
+  }, 60_000)
 })
