@@ -31,6 +31,10 @@ Unchecked items remain open for scoping and follow-up.
   and what the recipient receives before implementation.
 - [ ] **Import Anki decks:** Bring existing Anki study material into the app;
   scope supported card types, media, and progress handling.
+- [ ] **Complete dictionary and character set (2026-11-03):** Dictionary
+  scopes My knowledge set / Curriculum / Full, with Full a general Chinese
+  dictionary (e.g. CC-CEDICT) and every Hanzi Writer character, not just the
+  3,001 curriculum ones. See [ideas/full-dictionary.md](ideas/full-dictionary.md).
 
 ### Learning plans and practice
 
