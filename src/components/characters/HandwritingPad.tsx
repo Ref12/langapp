@@ -3,10 +3,12 @@ import { Eraser, Undo2, X } from 'lucide-react'
 import { pinyin } from 'pinyin-pro'
 import { distance, writingPoint, type Point } from '../../core/characters/geometry'
 import { createHandwritingRecognizer, type HandwritingRecognizer } from '../../core/characters/handwriting'
+import { chromeAvailable, indicatorText, probeChromeHandwriting, readMode, recognizeStrokes, saveMode, type Candidate, type EngineMode, type EngineName, type InkTiming } from '../../core/characters/handwritingEngine'
 import { Pinyin } from '../Pinyin'
 
 const DEBOUNCE_MS = 150
 const SLOTS = 8
+const engineLabel: Record<EngineName, string> = { chrome: 'Chrome', builtin: 'built-in matcher' }
 
 /** Draw a character with a finger or pen; stroke order, direction and neatness do not matter. */
 export function HandwritingPad({ allowed, onPick, onClose }: {
@@ -17,7 +19,15 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
 }) {
   const [strokes, setStrokes] = useState<Point[][]>([])
   const [ink, setInk] = useState<Point[]>([])
-  const [candidates, setCandidates] = useState<string[]>([])
+  const [results, setResults] = useState<Candidate[]>([])
+  const [mode, setMode] = useState<EngineMode>(readMode)
+  const [used, setUsed] = useState<EngineName>()
+  const [probed, setProbed] = useState(false)
+  const [, setTick] = useState(0)
+  const candidates = useMemo(() => results.map(item => item.character), [results])
+  const times = useRef(new WeakMap<Point[], number[]>())
+  const origin = useRef(0)
+  const inputType = useRef<InkTiming['inputType']>('touch')
   const [status, setStatus] = useState('Draw the character with your finger. Any stroke order works.')
   const svg = useRef<SVGSVGElement>(null)
   const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
@@ -28,6 +38,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
 
   useEffect(() => {
     recognizer.current = createHandwritingRecognizer()
+    void probeChromeHandwriting().then(() => setProbed(true), () => setProbed(true))
     return () => { recognizer.current?.dispose(); recognizer.current = undefined }
   }, [])
   useEffect(() => {
@@ -36,21 +47,23 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
   }, [])
   useEffect(() => {
     const request = ++latest.current
-    if (!strokes.length) { setCandidates([]); setStatus('Draw the character with your finger. Any stroke order works.'); return }
+    if (!strokes.length) { setResults([]); setStatus('Draw the character with your finger. Any stroke order works.'); return }
     const timer = window.setTimeout(() => {
       setStatus('Looking...')
-      recognizer.current?.recognize(strokes, allowedText).then(matches => {
+      const timing: InkTiming = { times: strokes.map(stroke => times.current.get(stroke) ?? []), inputType: inputType.current }
+      if (!recognizer.current) return
+      void recognizeStrokes(recognizer.current, strokes, allowedText, timing, SLOTS, mode).then(result => {
         if (request !== latest.current) return
-        setCandidates(matches.slice(0, SLOTS).map(match => match.character))
-        setStatus(matches.length ? 'Tap the character you meant.' : 'No match. Try again or clear.')
+        setResults(result.candidates); setUsed(result.engine)
+        setStatus(result.candidates.length ? 'Tap the character you meant.' : 'No match. Try again or clear.')
       }, reason => {
         if (request !== latest.current) return
-        setCandidates([])
+        setResults([])
         setStatus(reason instanceof Error ? reason.message : 'Handwriting lookup is unavailable.')
       })
     }, DEBOUNCE_MS)
     return () => window.clearTimeout(timer)
-  }, [strokes, allowedText])
+  }, [strokes, allowedText, mode])
 
   const cancel = useCallback(() => {
     const active = pointer.current
@@ -71,6 +84,10 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
     const bounds = event.currentTarget.getBoundingClientRect()
     if (!bounds.width || !bounds.height) return
     const points = [writingPoint(event.clientX, event.clientY, bounds)]
+    const now = performance.now()
+    if (!strokes.length) origin.current = now
+    inputType.current = event.pointerType === 'pen' ? 'stylus' : event.pointerType === 'mouse' ? 'mouse' : 'touch'
+    times.current.set(points, [Math.round(now - origin.current)])
     pointer.current = { id: event.pointerId, points, bounds }
     event.currentTarget.setPointerCapture(event.pointerId)
     setInk(points)
@@ -81,6 +98,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
     const point = writingPoint(event.clientX, event.clientY, active.bounds)
     if (distance(active.points[active.points.length - 1], point) >= 0.35) {
       active.points.push(point)
+      times.current.get(active.points)?.push(Math.round(performance.now() - origin.current))
       setInk([...active.points])
     }
   }
@@ -88,6 +106,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
     const active = pointer.current
     if (!active || active.id !== event.pointerId) return
     active.points.push(writingPoint(event.clientX, event.clientY, active.bounds))
+    times.current.get(active.points)?.push(Math.round(performance.now() - origin.current))
     pointer.current = undefined
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
     setInk([])
@@ -112,10 +131,19 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
       {ink.length > 0 && <polyline points={ink.map(point => point.join(',')).join(' ')} className="writing-ink" aria-hidden="true" />}
     </svg>
     <p id="handwriting-status" className="handwriting-status small muted" role="status" aria-live="polite">{status}</p>
+    <p className="handwriting-engine small muted" data-testid="handwriting-engine">
+      <span>{indicatorText(mode, used)}</span>
+      <span role="group" aria-label="Recognizer" className="handwriting-engine-toggle">
+        {(['auto', 'chrome', 'builtin'] as const).map(value => <button key={value} type="button" className="handwriting-engine-option" aria-pressed={mode === value}
+          disabled={value === 'chrome' && probed && !chromeAvailable()} onClick={() => { saveMode(value); setMode(value); setTick(tick => tick + 1) }}>{value === 'auto' ? 'Auto' : value === 'chrome' ? 'Chrome' : 'Built-in'}</button>)}
+      </span>
+    </p>
     <ul className="handwriting-candidates" aria-label="Candidate characters">
       {Array.from({ length: SLOTS }, (_, slot) => {
-        const character = candidates[slot]
-        return <li key={slot}>{character && <button type="button" className="handwriting-candidate" onClick={() => { cancel(); setStrokes([]); onPick(character) }}>
+        const item = results[slot]
+        const character = item?.character
+        const topUp = used === 'chrome' && item?.engine === 'builtin'
+        return <li key={slot}>{character && <button type="button" className={'handwriting-candidate' + (topUp ? ' topped-up' : '')} title={'From ' + engineLabel[item.engine]} aria-label={`${character}, from ${engineLabel[item.engine]}`} onClick={() => { cancel(); setStrokes([]); onPick(character) }}>
           <span lang="zh-Hans" className="handwriting-character">{character}</span>
           <span className="handwriting-reading"><Pinyin text={readings.get(character) ?? ''} /></span></button>}</li>
       })}

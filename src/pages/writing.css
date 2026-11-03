@@ -98,3 +98,10 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
   .writing-controls .writing-step span { display: none; }
   .writing-controls .writing-step { padding: 4px 8px; }
 }
+.handwriting-engine { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; margin: 2px 0 6px; }
+.handwriting-engine-toggle { display: inline-flex; gap: 2px; }
+.handwriting-engine-option { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 6px; padding: 2px 8px; font-size: 0.75rem; min-height: 24px; }
+.handwriting-engine-option[aria-pressed="true"] { color: var(--text); background: var(--surface-raised); }
+.handwriting-engine-option:disabled { opacity: 0.4; }
+.handwriting-candidate.topped-up { position: relative; border-style: dashed; }
+.handwriting-candidate.topped-up::after { content: ''; position: absolute; top: 4px; right: 4px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }

@@ -1,4 +1,5 @@
 import { redactImageData } from '../assistant/images'
+import { handwritingReport } from '../characters/handwritingEngine'
 import { addMark, loadMarks, loadRuns, loadStatus, type BackupStatus, type RunRecord, type TimingMark } from './state'
 
 // Small rolling record of how long things take on this device, for Settings → Diagnostics. Startup phases and
@@ -49,6 +50,7 @@ export interface DiagnosticsReport {
   startup: unknown[]
   saves: { check: unknown[]; next: unknown[] }
   backupRuns: unknown[]
+  handwriting?: unknown
 }
 
 export async function collectDiagnostics(profileId?: string): Promise<DiagnosticsReport> {
@@ -67,6 +69,7 @@ export async function collectDiagnostics(profileId?: string): Promise<Diagnostic
       next: of('next').map(mark => ({ at: stamp(mark.at), ms: mark.ms })),
     },
     backupRuns: runs.slice(0, 20).map(describeRun),
+    handwriting: await handwritingReport().catch(error => ({ error: redact(error instanceof Error ? error.message : String(error)) })),
   }
   // Belt and braces: nothing keyed like a credential may appear in the output.
   return JSON.parse(JSON.stringify(report, (key, value) => secretKeys.test(key) && key !== 'publishMs' ? '[redacted]' : value)) as DiagnosticsReport

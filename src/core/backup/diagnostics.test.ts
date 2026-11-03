@@ -16,6 +16,11 @@ describe('diagnostics', () => {
     expect(report.backupRuns[0]).toMatchObject({ trigger: 'manual', readMs: 100, buildMs: 50, publishMs: 850, apiCalls: 1, journalEventsSent: 24 })
   })
 
+  it('has a handwriting section without ink or characters', async () => {
+    const report = await collectDiagnostics('p')
+    expect(report.handwriting).toMatchObject({ chromeApiPresent: false, mode: 'auto', engineInUse: 'builtin', lookups: expect.any(Array) })
+  })
+
   it('never contains the backup token or other credentials', async () => {
     await saveStatus('p', { lastError: 'GitHub said Bearer ghp_abcdefghijklmnop401 token github_pat_ABC123 failed' })
     await addRun({ profileId: 'p', trigger: 'manual', startedAt: 1, endedAt: 2, totalMs: 1, readMs: 0, buildMs: 0, publishMs: 0, calls: [], journalEvents: 0, filesChanged: 0, bytes: 0, snapshot: 'none', full: false, outcome: 'error', note: 'Bearer ghp_secretsecret failed' })
