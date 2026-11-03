@@ -1,19 +1,32 @@
+import { useEffect, useState } from 'react'
 import { Pencil, Plus, X } from 'lucide-react'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { openWritingSheet } from '../../core/characters/writing-sheet'
 import { type DictionaryCharacter } from '../../core/characters/dictionary'
 import { addCharacterToKnowledge, removeManualCharacter } from '../../core/characters/store'
+import { loadCharacterMeaning, type CharacterMeaning } from '../../core/characters/meanings'
+import { loadCharacterOrigin, provenanceLine, type CharacterOrigin } from '../../core/characters/origins'
 import type { CharacterState } from '../../core/characters/contracts'
 import type { PageProps } from '../shared'
 
 import { Pinyin } from '../Pinyin'
 
-export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, run, busy }: {
-  entry: DictionaryCharacter; automatic: boolean; manual: boolean; state?: CharacterState
+export function CharacterCard({ entry, automatic, manual, state, known, scope, pinyin, run, busy }: {
+  entry: DictionaryCharacter; automatic: boolean; manual: boolean; state?: CharacterState; known?: ReadonlySet<string>
   scope: 'all' | 'knowledge'; pinyin: boolean
 } & Pick<PageProps, 'run' | 'busy'>) {
   const { character, asset, words } = entry
   const first = words[0]
+  const [origin, setOrigin] = useState<CharacterOrigin>()
+  const [gloss, setGloss] = useState<CharacterMeaning>()
+  useEffect(() => {
+    let live = true
+    void loadCharacterOrigin(character).then(value => { if (live) setOrigin(value) }, () => undefined)
+    void loadCharacterMeaning(character).then(value => { if (live) setGloss(value) }, () => undefined)
+    return () => { live = false }
+  }, [character])
+  const knownWords = [...new Set(words.filter(item => known?.has(item.ref)).map(item => item.record.ch))]
+  const provenance = provenanceLine({ entry, knownWords, state, origin })
   const route = `dictionary/characters/${scope}`
   // One word line: its own Hear and "..." menu beside the text, like an example line on a vocabulary card.
   const wordLine = (item: DictionaryCharacter['words'][number], extra = '') => <div className="phrase-row character-word-line" key={item.ref}>
@@ -24,7 +37,8 @@ export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, 
     <div className="phrase-row character-head">
       <h3 lang="zh-Hans" className="character-native">{character}</h3>
       <div className="phrase-row-text"><div className="card-topline"><span className="eyebrow">U+{character.codePointAt(0)!.toString(16).toUpperCase()}</span>
-        <span className="tag">{automatic ? 'From your words' : manual ? 'Added manually' : 'Not in your set'}</span></div>
+        <span className="tag">{automatic || manual ? 'In your set' : 'Not in your set'}</span></div>
+        <p className="small character-provenance" data-testid="character-provenance">{provenance || 'Source not recorded.'}</p>
         <p className="small muted character-artwork-state">{asset ? `${asset.strokeCount} ${asset.strokeCount === 1 ? 'stroke' : 'strokes'}${state && state.practiceCompletions > 0 ? ` / ${state.practiceCompletions} ${state.practiceCompletions === 1 ? 'round' : 'rounds'} written` : ''}` : 'Stroke guide not available'}</p></div>
       <PracticeSnippet practiceMode="speak" source={{ text: character, meaning: first?.record.ds, locale: 'zh-Hans', title: `Character: ${character}`, route }}
         onWrite={asset ? () => { openWritingSheet(character, { scope, remember: false }) } : undefined}
@@ -32,7 +46,8 @@ export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, 
     </div>
     <div className="character-word-context">
       {first ? wordLine(first, words.length > 1 ? ` (+${words.length - 1} more)` : '')
-        : <p className="small muted">No word in the current app bands.</p>}
+        : gloss ? <p className="small phrase-row-text"><span className="muted">Character gloss: </span>{pinyin && <><Pinyin text={gloss.pinyin} /><span className="muted"> · </span></>}<span className="muted">{gloss.meaning}</span></p>
+          : <p className="small muted">No word in the current app bands.</p>}
     </div>
     <div className="character-card-actions">
       {asset ? <button type="button" className="button primary" aria-label={`Practice writing ${character}`} onClick={() => { openWritingSheet(character, { scope, remember: false }) }}><Pencil size={16} />Practice writing</button>
@@ -43,7 +58,7 @@ export function CharacterCard({ entry, automatic, manual, state, scope, pinyin, 
             aria-label={automatic ? `Keep ${character} independently` : `Add ${character} to knowledge set`}><Plus size={16} />{automatic ? 'Keep' : 'Add'}</button>}
     </div>
     <details className="character-more"><summary>About this character</summary>
-      <p>{asset ? (asset.reviewed ? 'Reviewed prototype guide.' : 'Source-derived guide; not individually reviewed.') : 'No stroke guide is available; none is substituted.'} {words.length ? `In ${words.length} curriculum word ${words.length === 1 ? 'sense' : 'senses'}.` : 'From the prepared character collection.'}</p>
+      <p>{asset ? (asset.reviewed ? 'Reviewed prototype guide.' : 'Source-derived guide; not individually reviewed.') : 'No stroke guide is available; none is substituted.'} {words.length ? `In ${words.length} curriculum word ${words.length === 1 ? 'sense' : 'senses'}.` : 'Not in the app\'s HSK 1\u20136 word bands.'}</p>
       {words.slice(1, 4).map(item => wordLine(item))}
       {automatic && <p className="character-membership-note">{manual ? 'Also added manually. Removing the manual addition keeps it here while a known word uses it.' : 'Included automatically. Keep it independently to retain it even if your word set changes.'}</p>}
     </details>
