@@ -83,7 +83,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
   return <SetScreen {...props} set={set} items={items} />
 }
 
-/** New-item sets open on the lesson's intro cards; review and study-set sets keep their items out of sight until asked. */
+/** Every set shows its items as the intro cards. New-item sets show them at once (and record the introduction); review and study-set sets keep them out of sight until asked, unless opened from Recent sets with ?show=1. */
 function Intro({ set, items, catalog, workspace, now, run, busy, showWords = false }: PageProps & { set: DrillSet; showWords?: boolean; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
   const [shown, setShown] = useState(showWords)
   const fresh = set.source === 'new' || set.source === 'lesson'
@@ -95,8 +95,9 @@ function Intro({ set, items, catalog, workspace, now, run, busy, showWords = fal
   return <div className="dr">
     <a className="back-link" href={`#${setRoute(set.id)}`}><ArrowLeft size={16} /> {set.title}</a>
     <PageHeading eyebrow={fresh ? 'New set' : set.source === 'review' ? 'Review set' : TERM.Singular} title={set.title} action={start}>{detail}. {fresh ? 'Read the intro cards first.' : 'Your items are hidden so the list gives no hints.'}</PageHeading>
-    {fresh ? <>
-      <h2 className="dr-h2">{items.length} {items.length === 1 ? 'item' : 'items'}</h2>
+    {fresh || shown ? <>
+      {fresh ? <h2 className="dr-h2">{items.length} {items.length === 1 ? 'item' : 'items'}</h2>
+        : <div className="dr-toolbar"><h2 className="dr-h2">{items.length} {items.length === 1 ? 'item' : 'items'}</h2><button type="button" className="button secondary" aria-expanded={shown} onClick={() => setShown(false)}><EyeOff size={16} /> Hide words</button></div>}
       <div className="word-grid">{items.map(item => {
         const unit = catalog.units.get(item.ref)
         return unit ? <UnitCard key={item.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(item.ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={now}
@@ -106,10 +107,8 @@ function Intro({ set, items, catalog, workspace, now, run, busy, showWords = fal
       })}</div>
       <div className="button-row dr-end">{start}</div>
     </> : <section className="panel dr-panel">
-      <div className="dr-toolbar"><h2>Items</h2><button type="button" className="button secondary" aria-expanded={shown} onClick={() => setShown(!shown)}>{shown ? <><EyeOff size={16} /> Hide words</> : <><Eye size={16} /> Show words</>}</button></div>
-      {shown ? <table className="dr-table"><thead><tr><th>Item</th><th>Pinyin</th><th>Meaning</th></tr></thead>
-        <tbody>{items.map(item => <tr key={item.ref}><td lang="zh-Hans" className="dr-zh">{item.zh}</td><td>{item.py || '–'}</td><td>{item.en}</td></tr>)}</tbody></table>
-        : <div className="notice"><p><strong>{itemCount(items.length)} hidden.</strong> The list is kept out of sight so it does not give hints. Show it only if you want to look first.</p></div>}
+      <div className="dr-toolbar"><h2>Items</h2><button type="button" className="button secondary" aria-expanded={shown} onClick={() => setShown(true)}><Eye size={16} /> Show words</button></div>
+      <div className="notice"><p><strong>{itemCount(items.length)} hidden.</strong> The list is kept out of sight so it does not give hints. Show it only if you want to look first.</p></div>
     </section>}
   </div>
 }
@@ -210,10 +209,10 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
       <p className="completion-count">{score.total ? `${score.correct} / ${score.total}` : 'No answers yet'}</p><p>{score.total ? 'correct on the first pass (Got it and Needed a hint)' : 'Pick a practice type to start.'}</p>
       <p className="dr-stats"><span><strong>{counts.got}</strong>{MARK_LABEL.got}</span><span><strong>{counts.hint}</strong>{MARK_LABEL.hint}</span><span><strong>{counts.missed}</strong>{MARK_LABEL.missed}</span></p></section>
     <section className="panel dr-panel"><h2>By type</h2>
-      <table className="dr-table"><thead><tr><th>Type</th><th>Score</th><th title="Got it · Needed a hint · Missed">Got · Hint · Missed</th><th /></tr></thead>
+      <table className="dr-table"><thead><tr><th>Type</th><th>Score</th><th title="Got it · Needed a hint · Missed">Got · Hint · Missed</th><th className="dr-action-cell" /></tr></thead>
         <tbody>{DRILL_TYPES.map(entry => { const progress = set.progress[entry.id]; const c = countMarks({ progress: progress ? { [entry.id]: progress } : {} }, [entry.id]); const s = scoreOf(c)
           return <tr key={entry.id}><td>{entry.name}</td><td>{progress ? `${s.correct}/${s.total}${progress.done ? '' : ' (partial)'}` : '–'}</td><td>{progress ? `${c.got} · ${c.hint} · ${c.missed}` : '–'}</td>
-            <td>{progress?.done ? <a className="button secondary" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Redo ${entry.name}`}>Redo</a> : null}</td></tr> })}</tbody></table></section>
+            <td className="dr-action-cell">{progress?.done ? <a className="button secondary" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Redo ${entry.name}`}>Redo</a> : null}</td></tr> })}</tbody></table></section>
     <section className="panel dr-panel"><h2>Items to revisit</h2>
       {revisit.length === 0 ? <p className="small muted">{score.total ? 'Nothing to revisit: every answer was Got it.' : 'Nothing yet.'}</p>
         : <ul className="dr-rows">{revisit.map(({ item, mark }) => <li key={item.ref}><div><strong lang="zh-Hans" className="dr-zh">{item.zh}</strong><span className="small muted">{item.py} {item.en}</span></div><span className={`tag dr-tag-${mark}`}>{MARK_LABEL[mark]}</span></li>)}</ul>}

@@ -258,6 +258,19 @@ describe('Practice home', () => {
     expect(await within(recent).findByText('No sets yet.')).toBeInTheDocument()
   }, 40000)
 
+  it('opens a review set from Recent sets (?show=1) on the intro cards, not a table, and records no introduction', async () => {
+    await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])
+    const id = await createDrillSet({ kind: 'review' }, Date.now() + 1000)
+    window.location.hash = `#practice/set/${id}/intro?show=1`
+    render(<App />)
+    expect(await screen.findByText('我')).toBeInTheDocument()
+    expect(screen.queryByRole('table')).toBeNull()
+    expect(screen.queryByText(/items hidden/)).toBeNull()
+    expect(screen.queryByText(/Read the intro cards first/)).toBeNull()
+    expect(screen.getByRole('button', { name: /Hide words/ })).toHaveAttribute('aria-expanded', 'true')
+    expect(await db.exerciseSessions.count() + await db.practiceHistory.count()).toBe(0)
+  }, 40000)
+
   it('hides the items of a review set until Show words', async () => {
     const user = userEvent.setup()
     await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])

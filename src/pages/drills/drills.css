@@ -100,8 +100,9 @@
 @media (max-width: 760px) { .dr-table { font-size: 12px; } .dr-table th, .dr-table td { padding: 6px 4px; } }
 
 .dr-quiz { margin-bottom: 12px; }
-.dr-table td:last-child { text-align: right; }
-.dr-table td:last-child { white-space: nowrap; width: 1%; }
+.dr-table .dr-action-cell { text-align: right; white-space: nowrap; width: 1%; }
+.dr-table th { white-space: nowrap; }
+.dr-table td { vertical-align: top; }
 .dr-table .button { min-height: 32px; padding: 4px 10px; }
 .dr .button-row { margin-top: 10px; }
 
