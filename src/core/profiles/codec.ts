@@ -2,7 +2,8 @@ import { stringify } from 'yaml'
 import { omit } from '../omit'
 import { z } from 'zod'
 import { CONTENT_VERSION } from '../../data/content-version'
-import { interruptImportedRuns, readBackup, splitStudy } from '../backup-codec'
+import { exercisePositionValid, interruptImportedRuns, readBackup, splitStudy } from '../backup-codec'
+import { exerciseSessionSchema } from '../study/contracts'
 import { localSettingsSchema } from '../local-settings-contracts'
 import { parsePlainYaml } from '../yaml'
 import { MAX_PROFILE_BYTES, PROFILE_FORMAT, PROFILE_VERSION, profileDataSchema, profileSnapshotSchema, profileYamlSchema, type ProfileSnapshot } from './contracts'
@@ -59,10 +60,51 @@ export function createEmptyProfile(profile: ProfileMetadata, localSettings?: z.i
   }
 }
 
+/** What a failed parse may say: our own check messages, and for schema issues only the path and kind, never a value. */
+function describeFailure(error: unknown): string {
+  if (!(error instanceof z.ZodError)) return INVALID_PROFILE
+  const issue = error.issues[0]
+  if (!issue) return INVALID_PROFILE
+  if (issue.code === 'custom') return `Invalid profile YAML: ${issue.message}`
+  const path = issue.path.map(part => typeof part === 'number' ? `[${part}]` : String(part).slice(0, 40)).join('.').replace(/\.\[/g, '[')
+  return `Invalid profile YAML: unexpected data (${issue.code}) at ${path || 'the top level'}.`
+}
+
+/**
+ * Practice sessions are progress, not knowledge: one that cannot be read (bad shape or position) is left out, with its answers,
+ * so it never blocks a restore. Returns the ids skipped.
+ */
+function dropUnreadableSessions(value: unknown): string[] {
+  if (typeof value !== 'object' || value === null) return []
+  const study = (value as { knowledge?: { study?: { sessions?: unknown; attempts?: unknown } } }).knowledge?.study
+  if (!study || !Array.isArray(study.sessions)) return []
+  const kept: unknown[] = []
+  const seen = new Set<string>()
+  const skipped: string[] = []
+  for (const raw of study.sessions) {
+    const parsed = exerciseSessionSchema.safeParse(raw)
+    if (parsed.success && exercisePositionValid(parsed.data) && !seen.has(parsed.data.id)) { seen.add(parsed.data.id); kept.push(raw) }
+    else skipped.push(typeof raw === 'object' && raw !== null && typeof (raw as { id?: unknown }).id === 'string' ? (raw as { id: string }).id : '?')
+  }
+  if (!skipped.length) return []
+  study.sessions = kept
+  if (Array.isArray(study.attempts)) {
+    const gone = new Set(skipped.filter(id => !seen.has(id)))
+    study.attempts = study.attempts.filter(attempt => !(typeof attempt === 'object' && attempt !== null && gone.has((attempt as { sessionId?: string }).sessionId ?? '')))
+  }
+  return skipped
+}
+
 export function parseProfileYaml(text: string): ProfileSnapshot {
+  return parseProfileYamlReport(text).snapshot
+}
+
+/** As parseProfileYaml, also reporting how many unreadable practice sessions were left out. */
+export function parseProfileYamlReport(text: string): { snapshot: ProfileSnapshot; skippedSessions: number } {
   checkSize(text)
   try {
     const value = parsePlainYaml(text)
+    const skippedSessions = dropUnreadableSessions(value).length
     const version = typeof value === 'object' && value !== null && 'version' in value ? value.version : undefined
     const snapshot = normalizeEndpoints(profileSnapshotSchema.parse(version === 1
       ? { ...legacyProfileSchema.parse(value), version: PROFILE_VERSION }
@@ -72,10 +114,10 @@ export function parseProfileYaml(text: string): ProfileSnapshot {
           : version === 4 ? { ...singleConnectionProfileSchema.parse(value), version: PROFILE_VERSION }
             : profileYamlSchema.parse(value))))
     interruptImportedRuns(snapshot.conversations)
-    return snapshot
-  } catch {
-    // Parser/schema diagnostics may contain source text, including credentials.
-    throw new Error(INVALID_PROFILE)
+    return { snapshot, skippedSessions }
+  } catch (error) {
+    // Parser/schema diagnostics may contain source text, including credentials: only describeFailure's output is shown.
+    throw new Error(describeFailure(error))
   }
 }
 

@@ -3,7 +3,7 @@ import { Download, Upload } from 'lucide-react'
 import type { PageProps } from './shared'
 import { restoreBackup } from '../core/backup'
 import { MAX_PROFILE_BYTES, type ProfileSnapshot } from '../core/profiles/contracts'
-import { fromLegacyBackup, parseProfileYaml, serializeProfileYaml } from '../core/profiles/codec'
+import { fromLegacyBackup, parseProfileYamlReport, serializeProfileYaml } from '../core/profiles/codec'
 import type { ProfileMetadata } from '../core/profiles/identity'
 import {
   createProfile, exportActiveProfile, getActiveProfile, importNewProfile,
@@ -18,6 +18,7 @@ import { LocalAISetupContext, LocalSpeechSetupContext, LocalSpeechRateSetupConte
 interface PendingImport {
   yaml: string
   snapshot: ProfileSnapshot
+  skippedSessions: number
   legacy?: string
 }
 
@@ -101,8 +102,9 @@ export function ProfileSettings({ busy, reload = () => window.location.reload(),
         legacy = typeof header === 'object' && header !== null && 'format' in header && header.format === 'linguaweave-next-backup'
       } catch { throw new Error('The selected JSON backup is invalid.') }
     }
-    const snapshot = legacy ? fromLegacyBackup(text, active) : parseProfileYaml(text)
-    setImporting({ snapshot, yaml: legacy ? serializeProfileYaml(snapshot) : text, ...(legacy ? { legacy: text } : {}) })
+    const report = legacy ? { snapshot: fromLegacyBackup(text, active), skippedSessions: 0 } : parseProfileYamlReport(text)
+    const { snapshot, skippedSessions } = report
+    setImporting({ snapshot, skippedSessions, yaml: legacy ? serializeProfileYaml(snapshot) : text, ...(legacy ? { legacy: text } : {}) })
     setImportName(snapshot.profile.name)
     setServerExport(undefined)
   }
@@ -215,6 +217,7 @@ export function ProfileSettings({ busy, reload = () => window.location.reload(),
       </div>}
     </> : <p className="small muted">Data-folder operations require the local development server. Browser profile downloads and imports still work here.</p>}
     {importing && <div className="notice"><h3>Import profile snapshot?</h3>
+      {importing.skippedSessions > 0 && <p role="status">{importing.skippedSessions === 1 ? '1 practice session couldn\'t be read and was skipped.' : `${importing.skippedSessions} practice sessions couldn't be read and were skipped.`}</p>}
       <p>{importing.snapshot.profile.name}: {importing.snapshot.knowledge.study.knowledge.length} knowledge items, {importing.snapshot.conversations.threads.length} conversations, {importing.snapshot.library.length} imported books. Replacing this profile replaces its settings, progress, conversation history, and personal library, including saved translations.</p>
       <p>{importing.legacy ? 'This older JSON backup does not change saved credentials.' : 'Imported connection settings and credentials replace the current profile connections. Missing connections are cleared.'} Imported requests never restart automatically.</p>
       <div className="button-row"><button type="button" className="button primary" disabled={disabled} onClick={() => void perform(async signal => {

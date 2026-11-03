@@ -340,5 +340,8 @@ describe('knowledge set and sessions', () => {
     const id = await startNewSession()
     // The shell is saved at once; the failure is recorded on it so the page can offer Try again.
     expect(await db.exerciseSessions.get(id)).toMatchObject({ exercises: [], generation: 'failed', generationError: expect.stringMatching(/only 0 usable exercises \(1 rejected\)/) })
+    // Discarding a set that never got an exercise leaves nothing behind (an empty abandoned session used to be saved).
+    await discardSession(id)
+    expect(await db.exerciseSessions.get(id)).toBeUndefined()
   })
 })

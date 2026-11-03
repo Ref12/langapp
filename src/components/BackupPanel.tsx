@@ -76,7 +76,7 @@ export function RestorePicker({ config, reload = () => window.location.reload() 
     {loaded && <div className="notice" role="alertdialog" aria-label="Confirm restore">
       <p><strong>Replace this device's profile?</strong> This restores {loaded.snapshot.knowledge.study.knowledge.length} knowledge items, {loaded.snapshot.knowledge.study.cards.length} study cards and {loaded.snapshot.conversations.threads.length} conversations
         {loaded.mode === 'journal' ? ' (rebuilt from the whole journal because the checkpoint could not be read)' : loaded.tailEvents ? ` (checkpoint plus ${loaded.tailEvents} later journal events)` : ' (from the checkpoint)'}.
-        Everything currently stored for this profile in this browser is replaced. A copy of the current data downloads first.</p>
+        {loaded.skippedSessions ? ` ${loaded.skippedSessions === 1 ? '1 practice session couldn\'t be read and was skipped.' : `${loaded.skippedSessions} practice sessions couldn't be read and were skipped.`}` : ''} Everything currently stored for this profile in this browser is replaced. A copy of the current data downloads first.</p>
       <div className="button-row">
         <button type="button" className="button primary" disabled={working} onClick={() => void attempt(async () => {
           await stopForProfileChange()

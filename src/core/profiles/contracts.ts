@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { CONTENT_VERSION } from '../../data/content-version'
 import { aiConnectionInputSchema, aiEndpointsExportSchema, assistantBackupSchema } from '../assistant/contracts'
 import { speechConnectionInputSchema } from '../assistant/speech-contracts'
-import { validateAssistant, validateCollections, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
+import { BackupValidationError, validateAssistant, validateCollections, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
 import { studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
 import { profileMetadataSchema } from './identity'
 import { librarySchema } from '../library/contracts'
@@ -41,8 +41,9 @@ export const profileSnapshotSchema = profileDataSchema.superRefine((snapshot, co
     validateCollections(snapshot.collections)
     validateAssistant(snapshot.conversations)
     if (snapshot.settings.aiConnection && snapshot.settings.aiEndpoints) throw new Error('Both AI connection shapes present.')
-  } catch {
-    context.addIssue({ code: 'custom', message: 'Profile data contains invalid relationships.' })
+  } catch (error) {
+    // Only our own checks carry a message that is safe to show; anything else stays generic.
+    context.addIssue({ code: 'custom', message: error instanceof BackupValidationError ? error.message : 'Profile data contains invalid relationships.' })
   }
 })
 

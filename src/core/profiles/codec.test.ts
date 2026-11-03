@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { parse, stringify } from 'yaml'
 import { exportBackup } from '../backup-codec'
-import { createEmptyProfile, fromLegacyBackup, parseProfileYaml, serializeProfileYaml } from './codec'
+import { createEmptyProfile, fromLegacyBackup, parseProfileYaml, parseProfileYamlReport, serializeProfileYaml } from './codec'
 import { MAX_PROFILE_BYTES, PROFILE_VERSION, profileSnapshotSchema, profileYamlSchema } from './contracts'
 import { profileIdSchema, profileMetadataSchema } from './identity'
 import { populatedProfile } from './test-fixtures'
@@ -263,5 +263,50 @@ describe('profile identity and YAML snapshots', () => {
       const pure = await import('./codec')
       expect(pure.parseProfileYaml(pure.serializeProfileYaml(populatedProfile())).profile.name).toBe('Synthetic profile')
     } finally { vi.unstubAllGlobals() }
+  })
+
+  describe('practice sessions that are empty or unreadable', () => {
+    const emptySession = { id: '55f2aaaa-0000-4000-8000-000000000001', mode: 'new' as const, domain: 'reading' as const, targetRefs: ['vocabulary:tea'], reviewRefs: [],
+      exercises: [], cursor: 0, status: 'abandoned' as const, model: 'synthetic-model', rejected: [], createdAt: 1, completedAt: 2 }
+    const withSession = (session: object) => {
+      const snapshot = populatedProfile()
+      return { ...snapshot, knowledge: { ...snapshot.knowledge, study: { ...snapshot.knowledge.study, sessions: [...snapshot.knowledge.study.sessions, session] } } }
+    }
+
+    it('round-trips an abandoned session with no exercises', () => {
+      const snapshot = withSession(emptySession) as ReturnType<typeof populatedProfile>
+      const parsed = parseProfileYaml(serializeProfileYaml(snapshot))
+      expect(parsed).toEqual(snapshot)
+      expect(parsed.knowledge.study.sessions.map(session => session.id)).toContain(emptySession.id)
+    })
+
+    it('skips a session with a bad position, and its answers, and reports it', () => {
+      const snapshot = populatedProfile()
+      const text = serializeProfileYaml(snapshot)
+      const value = parse(text)
+      value.knowledge.study.sessions.push({ ...emptySession, cursor: 3 })
+      const report = parseProfileYamlReport(stringify(value))
+      expect(report.skippedSessions).toBe(1)
+      expect(report.snapshot).toEqual(snapshot)
+      expect(parseProfileYaml(stringify(value)).knowledge.study.sessions).toHaveLength(snapshot.knowledge.study.sessions.length)
+      value.knowledge.study.sessions.push({ id: 'broken', synthetic: 'synthetic-secret' })
+      expect(parseProfileYamlReport(stringify(value)).skippedSessions).toBe(2)
+    })
+
+    it('names the failed check without echoing imported values', () => {
+      const value = parse(serializeProfileYaml(populatedProfile()))
+      value.knowledge.study.attempts.push({ id: 'synthetic-secret:0', sessionId: 'synthetic-secret', index: 0 })
+      try { parseProfileYaml(stringify(value)); throw new Error('should fail') } catch (error) {
+        expect(String(error)).toMatch(/^Error: Invalid profile YAML: /)
+        expect(String(error)).not.toContain('synthetic-secret')
+      }
+      const settings = parse(serializeProfileYaml(populatedProfile()))
+      settings.settings.aiConnection = { ...settings.settings.aiConnection, storageAcknowledged: 'synthetic-secret' }
+      settings.version = 1
+      try { parseProfileYaml(stringify(settings)); throw new Error('should fail') } catch (error) {
+        expect(String(error)).toContain('Invalid profile YAML: ')
+        expect(String(error)).not.toContain('synthetic-secret')
+      }
+    })
   })
 })

@@ -1,6 +1,6 @@
 import { parse, stringify } from 'yaml'
 import { CONTENT_VERSION } from '../../data/content-version'
-import { parseProfileYaml } from '../profiles/codec'
+import { parseProfileYamlReport } from '../profiles/codec'
 import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from '../profiles/contracts'
 import type { ProfileMetadata } from '../profiles/identity'
 import { toProfileYaml } from '../profiles/vocabulary'
@@ -14,6 +14,13 @@ import type { SourceEntry } from '../media/contracts'
 
 const SOURCE_ENTRY_CHUNK = 500
 /** Source entries are many and small: stored in files of up to 500, ordered by id so unchanged chunks stay byte-identical. */
+/** After sessions were skipped, answers journalled for them go too. */
+export function keepAttempts<T extends { sessionId: string }>(sessions: { id: string }[], attempts: T[], skipped: number): T[] {
+  if (!skipped) return attempts
+  const ids = new Set(sessions.map(session => session.id))
+  return attempts.filter(attempt => ids.has(attempt.sessionId))
+}
+
 export function sourceEntryFiles(entries: readonly SourceEntry[]): [string, string][] {
   const sorted = [...entries].sort((a, b) => a.id.localeCompare(b.id))
   const out: [string, string][] = []
@@ -209,7 +216,8 @@ export function loadBackupV2(files: Map<string, string>, profileFallback: Profil
     knowledge: { ...stateFile.knowledge, characterStates: snapshotFile.knowledge.characterStates, study: { ...snapshotFile.knowledge.study, sessions } },
     conversations: rest, library, media, sourceEntries, collections: joinCollections(collectionParts),
   }
-  const base = parseProfileYaml(dump(wire))
+  const report = parseProfileYamlReport(dump(wire))
+  const base = report.snapshot
   const tail: JournalEvent[] = []
   for (const segment of [...manifest.segments].sort((a, b) => a.from - b.from)) {
     if (segment.to <= snapshotFile.cursor) continue
@@ -221,6 +229,6 @@ export function loadBackupV2(files: Map<string, string>, profileFallback: Profil
   const state = replay(tail, replayFrom({ knowledge: base.knowledge.study.knowledge, cards: base.knowledge.study.cards, attempts: base.knowledge.study.attempts, characters: base.knowledge.characterStates }))
   const snapshot: ProfileSnapshot = { ...base, settings: settingsFile.settings, knowledge: { ...base.knowledge,
     characterStates: [...state.characters.values()],
-    study: { ...base.knowledge.study, knowledge: [...state.knowledge.values()], cards: [...state.cards.values()], attempts: [...state.exerciseAttempts.values()] } } }
-  return { snapshot, journal: tail, mode: 'checkpoint', tailEvents: tail.length, ...(settingsFile.backup ? { backup: settingsFile.backup } : {}), profile: meta }
+    study: { ...base.knowledge.study, knowledge: [...state.knowledge.values()], cards: [...state.cards.values()], attempts: keepAttempts(base.knowledge.study.sessions, [...state.exerciseAttempts.values()], report.skippedSessions) } } }
+  return { snapshot, journal: tail, mode: 'checkpoint', tailEvents: tail.length, ...(report.skippedSessions ? { skippedSessions: report.skippedSessions } : {}), ...(settingsFile.backup ? { backup: settingsFile.backup } : {}), profile: meta }
 }

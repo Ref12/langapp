@@ -1,9 +1,9 @@
 import { parse, stringify } from 'yaml'
 import { CONTENT_VERSION } from '../../data/content-version'
-import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from '../profiles/codec'
+import { createEmptyProfile, parseProfileYaml, parseProfileYamlReport, serializeProfileYaml } from '../profiles/codec'
 import type { ProfileSnapshot } from '../profiles/contracts'
 import type { ProfileMetadata } from '../profiles/identity'
-import { isSourceEntryFile, loadBackupV2, sourceEntryFiles } from './layout'
+import { isSourceEntryFile, keepAttempts, loadBackupV2, sourceEntryFiles } from './layout'
 import { joinCollections, splitCollections } from '../collections/snapshot'
 import type { CollectionsBackup } from '../collections/contracts'
 import { parseJournal, replay, replayFrom, serializeJournal, toSegments, type JournalEvent } from './journal'
@@ -77,6 +77,8 @@ export interface LoadedBackup {
   tailEvents: number
   backup?: BackupConnection
   profile: Partial<ProfileMetadata>
+  /** Practice sessions that could not be read and were left out (knowledge, cards, attempts and settings are never skipped). */
+  skippedSessions?: number
 }
 
 function readJournal(files: Map<string, string>): JournalEvent[] {
@@ -116,10 +118,13 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
 
   let snapshot: ProfileSnapshot | undefined
   let tailEvents = 0
+  let skippedSessions = 0
   try {
     const checkpoint = parse(required(files, 'checkpoint.yaml')) as { format: string; version: number; journal: { position: number }; profile: Record<string, unknown> }
     if (checkpoint.format !== CHECKPOINT_FORMAT || checkpoint.version !== 1 || !Number.isInteger(checkpoint.journal?.position)) throw new Error('Unsupported checkpoint.')
-    const base = parseProfileYaml(dump({ ...checkpoint.profile, contentVersion: CONTENT_VERSION, conversations: rest, library, media, sourceEntries, collections }))
+    const report = parseProfileYamlReport(dump({ ...checkpoint.profile, contentVersion: CONTENT_VERSION, conversations: rest, library, media, sourceEntries, collections }))
+    const base = report.snapshot
+    skippedSessions = report.skippedSessions
     const tail = journal.slice(checkpoint.journal.position)
     const state = replay(tail, replayFrom({
       knowledge: base.knowledge.study.knowledge, cards: base.knowledge.study.cards,
@@ -127,9 +132,10 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
     }))
     snapshot = { ...base, settings: settingsFile.settings, knowledge: { ...base.knowledge,
       characterStates: [...state.characters.values()],
-      study: { ...base.knowledge.study, knowledge: [...state.knowledge.values()], cards: [...state.cards.values()], attempts: [...state.exerciseAttempts.values()] } } }
+      study: { ...base.knowledge.study, knowledge: [...state.knowledge.values()], cards: [...state.cards.values()], attempts: keepAttempts(base.knowledge.study.sessions, [...state.exerciseAttempts.values()], skippedSessions) } } }
     tailEvents = tail.length
   } catch {
+    skippedSessions = 0
     snapshot = undefined // Format changed or file damaged: rebuild from the journal below.
   }
   let mode: LoadedBackup['mode'] = 'checkpoint'
@@ -145,5 +151,5 @@ export function loadBackup(files: Map<string, string>, profileFallback: ProfileM
     snapshot = parseProfileYaml(dump({ ...(parse(serializeProfileYaml(snapshot)) as object), conversations: rest, library, media, sourceEntries, collections }))
     tailEvents = journal.length
   }
-  return { snapshot: parseProfileYaml(serializeProfileYaml(snapshot)), journal, mode, tailEvents, ...(settingsFile.backup ? { backup: settingsFile.backup } : {}), profile: meta }
+  return { snapshot: parseProfileYaml(serializeProfileYaml(snapshot)), journal, mode, tailEvents, ...(skippedSessions ? { skippedSessions } : {}), ...(settingsFile.backup ? { backup: settingsFile.backup } : {}), profile: meta }
 }

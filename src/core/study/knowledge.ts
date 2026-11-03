@@ -396,6 +396,8 @@ export async function discardSession(sessionId: string): Promise<void> {
   await db.transaction('rw', db.exerciseSessions, async () => {
     const session = await db.exerciseSessions.get(sessionId)
     if (!session || session.status !== 'active') return
+    // A set that never got an exercise (abandoned while still being written, or after it failed) has nothing worth keeping.
+    if (!session.exercises.length && !session.redos?.length) { await db.exerciseSessions.delete(sessionId); return }
     await db.exerciseSessions.put({ ...session, status: 'abandoned', completedAt: Date.now() })
   })
 }

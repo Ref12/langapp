@@ -80,26 +80,38 @@ function withStudy(workspace: z.infer<typeof workspaceSchema>, study: StudyBacku
   return { ...workspace, knowledge: study.knowledge, studyCards: study.cards, exerciseSessions: study.sessions, exerciseAttempts: study.attempts }
 }
 
+/** A failed check of ours. Its message is fixed text (plus a short id), never source text, so it is safe to show. */
+export class BackupValidationError extends Error {
+  constructor(message: string, detail?: string) { super(detail ? `${message.replace(/\.$/, '')} (${detail}).` : message); this.name = 'BackupValidationError' }
+}
+export const shortId = (id: string) => id.length > 8 ? `${id.slice(0, 8)}…` : id
+
+/** A session with nothing to play and nothing to redo is a valid, empty set at cursor 0 (opened, then abandoned before it filled). */
+export function exercisePositionValid(session: { cursor: number; exercises: unknown[]; redos?: unknown[] }): boolean {
+  const total = session.exercises.length + (session.redos?.length ?? 0)
+  return total === 0 ? session.cursor === 0 : session.cursor < total
+}
+
 export function validateStudy(study: StudyBackup) {
   unique(study.knowledge.map(entry => entry.ref), 'knowledge items')
   unique(study.cards.map(card => card.id), 'study cards')
   unique(study.sessions.map(session => session.id), 'exercise sessions')
   unique(study.attempts.map(attempt => attempt.id), 'exercise answers')
   for (const entry of study.knowledge) {
-    if (entry.ref !== `${entry.kind}:${entry.lb}`) throw new Error('Backup knowledge entry has inconsistent labels.')
+    if (entry.ref !== `${entry.kind}:${entry.lb}`) throw new BackupValidationError('Backup knowledge entry has inconsistent labels.')
   }
   const known = new Set(study.knowledge.map(entry => entry.ref))
   for (const card of study.cards) {
-    if (card.id !== `${card.ref}:${card.domain}` || !known.has(card.ref)) throw new Error('Backup study card does not belong to a knowledge item.')
+    if (card.id !== `${card.ref}:${card.domain}` || !known.has(card.ref)) throw new BackupValidationError('Backup study card does not belong to a knowledge item.')
   }
   const sessions = new Map(study.sessions.map(session => [session.id, session]))
   for (const session of study.sessions) {
-    if (session.cursor >= session.exercises.length + (session.redos?.length ?? 0)) throw new Error('Backup has an invalid exercise position.')
+    if (!exercisePositionValid(session)) throw new BackupValidationError('Backup has an invalid exercise position.', `exercise session ${shortId(session.id)}`)
   }
   for (const attempt of study.attempts) {
     const session = sessions.get(attempt.sessionId)
     if (!session || attempt.id !== `${attempt.sessionId}:${attempt.index}` || attempt.index >= session.exercises.length + (session.redos?.length ?? 0)) {
-      throw new Error('Backup contains an exercise answer without its session.')
+      throw new BackupValidationError('Backup contains an exercise answer without its session.')
     }
   }
 }
@@ -110,13 +122,13 @@ export function validateCollections(collections: CollectionsBackup) {
   unique(collections.cards.map(card => card.id), 'collection cards')
   const ids = new Set(collections.collections.map(collection => collection.id))
   for (const item of collections.items) {
-    if (!ids.has(item.collectionId) || item.id !== `${item.collectionId}|${item.ref}`) throw new Error('Backup contains an inconsistent collection item.')
+    if (!ids.has(item.collectionId) || item.id !== `${item.collectionId}|${item.ref}`) throw new BackupValidationError('Backup contains an inconsistent collection item.')
   }
-  for (const card of collections.cards) if (card.id !== `${card.ref}:${card.domain}`) throw new Error('Backup contains an inconsistent collection card.')
+  for (const card of collections.cards) if (card.id !== `${card.ref}:${card.domain}`) throw new BackupValidationError('Backup contains an inconsistent collection card.')
 }
 
 function unique(values: unknown[], label: string) {
-  if (new Set(values).size !== values.length) throw new Error(`Backup contains duplicate ${label}.`)
+  if (new Set(values).size !== values.length) throw new BackupValidationError(`Backup contains duplicate ${label}.`)
 }
 
 function validateLessonReference(id: string) {
@@ -133,16 +145,16 @@ export function validateAssistant(assistant: AssistantBackup) {
   const messages = new Map(assistant.messages.map(message => [message.id, message]))
   const runs = new Map(assistant.runs.map(run => [run.id, run]))
   for (const message of assistant.messages) {
-    if (!threads.has(message.threadId)) throw new Error('Backup Assistant message refers to a missing conversation.')
-    if (message.practice && (message.role !== 'user' || message.intent !== 'repeat')) throw new Error('Backup practice attempts must be learner repetition messages.')
-    if (message.role !== 'assistant' && message.status !== 'completed') throw new Error('Backup contains an invalid user or event message status.')
-    if (message.role === 'event' && message.runId !== undefined) throw new Error('Backup mode events cannot belong to an Assistant run.')
-    if (message.status === 'pending' && !message.runId) throw new Error('Backup contains an unowned pending Assistant message.')
+    if (!threads.has(message.threadId)) throw new BackupValidationError('Backup Assistant message refers to a missing conversation.')
+    if (message.practice && (message.role !== 'user' || message.intent !== 'repeat')) throw new BackupValidationError('Backup practice attempts must be learner repetition messages.')
+    if (message.role !== 'assistant' && message.status !== 'completed') throw new BackupValidationError('Backup contains an invalid user or event message status.')
+    if (message.role === 'event' && message.runId !== undefined) throw new BackupValidationError('Backup mode events cannot belong to an Assistant run.')
+    if (message.status === 'pending' && !message.runId) throw new BackupValidationError('Backup contains an unowned pending Assistant message.')
     if (message.runId !== undefined) {
       const run = runs.get(message.runId)
       if (!run || run.threadId !== message.threadId
         || (message.role === 'user' ? run.userMessageId : run.assistantMessageId) !== message.id) {
-        throw new Error('Backup contains inconsistent Assistant message ownership.')
+        throw new BackupValidationError('Backup contains inconsistent Assistant message ownership.')
       }
     }
   }
@@ -152,12 +164,12 @@ export function validateAssistant(assistant: AssistantBackup) {
     if (!threads.has(run.threadId) || !user || !reply || user.role !== 'user' || reply.role !== 'assistant'
       || user.threadId !== run.threadId || reply.threadId !== run.threadId
       || user.runId !== run.id || reply.runId !== run.id || user.sequence >= reply.sequence) {
-      throw new Error('Backup contains inconsistent Assistant run ownership or message references.')
+      throw new BackupValidationError('Backup contains inconsistent Assistant run ownership or message references.')
     }
     const status = run.status === 'running' ? 'pending'
       : run.status === 'awaiting-learner' ? 'completed'
         : run.status === 'cancelled' ? 'cancelled' : 'failed'
-    if (reply.status !== status) throw new Error('Backup contains inconsistent Assistant run and message statuses.')
+    if (reply.status !== status) throw new BackupValidationError('Backup contains inconsistent Assistant run and message statuses.')
   }
 }
 
@@ -180,12 +192,12 @@ export function validateWorkspace(workspace: z.infer<typeof workspaceSchema>) {
     getWord(word.wordId)
     unique(word.successfulDays, 'practice days')
     unique(word.successfulActivities, 'practice activities')
-    if (word.independentCorrect > word.attempts) throw new Error('Backup word counts are inconsistent.')
+    if (word.independentCorrect > word.attempts) throw new BackupValidationError('Backup word counts are inconsistent.')
   }
   for (const reading of workspace.readings) {
     const story = getStory(reading.storyId)
     unique(reading.completed, 'completed passages')
-    if ([reading.passage, ...reading.completed].some(index => index >= story.passages.length)) throw new Error('Backup refers to a missing passage.')
+    if ([reading.passage, ...reading.completed].some(index => index >= story.passages.length)) throw new BackupValidationError('Backup refers to a missing passage.')
   }
   workspace.lessons.forEach(lesson => validateLessonReference(lesson.lessonId))
   unique(workspace.words.map(word => word.wordId), 'words')
@@ -198,28 +210,28 @@ export function validateWorkspace(workspace: z.infer<typeof workspaceSchema>) {
   const sessions = new Map(workspace.sessions.map(session => [session.id, session]))
   const attempts = new Map(workspace.attempts.map(attempt => [attempt.id, attempt]))
   for (const session of workspace.sessions) {
-    if (session.cursor >= session.questions.length) throw new Error('Backup has an invalid practice position.')
+    if (session.cursor >= session.questions.length) throw new BackupValidationError('Backup has an invalid practice position.')
     if (session.kind === 'lesson') {
-      if (!session.lessonId || !workspace.lessons.some(lesson => lesson.lessonId === session.lessonId)) throw new Error('Backup is missing a lesson for its practice session.')
+      if (!session.lessonId || !workspace.lessons.some(lesson => lesson.lessonId === session.lessonId)) throw new BackupValidationError('Backup is missing a lesson for its practice session.')
       validateLessonReference(session.lessonId)
-    } else if (session.lessonId) throw new Error('A vocabulary review cannot claim lesson completion.')
+    } else if (session.lessonId) throw new BackupValidationError('A vocabulary review cannot claim lesson completion.')
     for (const [index, item] of session.questions.entries()) {
       getWord(item.wordId)
       item.options.forEach(getWord)
       unique(item.options, 'answer options')
-      if (!wordIds.has(item.wordId) || !item.options.includes(item.wordId)) throw new Error('Backup practice is missing a learning item or correct option.')
+      if (!wordIds.has(item.wordId) || !item.options.includes(item.wordId)) throw new BackupValidationError('Backup practice is missing a learning item or correct option.')
       const answered = attempts.has(`${session.id}:${index}`)
-      if ((index < session.cursor || session.status === 'completed') && !answered) throw new Error('Backup is missing a saved practice answer.')
-      if (index > session.cursor && answered) throw new Error('Backup has an answer beyond the saved practice position.')
+      if ((index < session.cursor || session.status === 'completed') && !answered) throw new BackupValidationError('Backup is missing a saved practice answer.')
+      if (index > session.cursor && answered) throw new BackupValidationError('Backup has an answer beyond the saved practice position.')
     }
-    if (session.status === 'completed' && (session.cursor !== session.questions.length - 1 || session.completedAt === undefined)) throw new Error('Backup has an incomplete finished session.')
+    if (session.status === 'completed' && (session.cursor !== session.questions.length - 1 || session.completedAt === undefined)) throw new BackupValidationError('Backup has an incomplete finished session.')
   }
   for (const attempt of workspace.attempts) {
     const item = sessions.get(attempt.sessionId)?.questions[attempt.question]
     if (!item || attempt.id !== `${attempt.sessionId}:${attempt.question}` || item.wordId !== attempt.wordId
       || item.activity !== attempt.activity || !item.options.includes(attempt.answerId)
       || attempt.correct !== (attempt.answerId === item.wordId) || attempt.assisted !== item.revealed) {
-      throw new Error('Backup contains an inconsistent practice answer.')
+      throw new BackupValidationError('Backup contains an inconsistent practice answer.')
     }
   }
 }

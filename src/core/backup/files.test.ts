@@ -1,4 +1,4 @@
-import { parse } from 'yaml'
+import { parse, stringify } from 'yaml'
 import { describe, expect, it } from 'vitest'
 import { createEmptyProfile } from '../profiles/codec'
 import { populatedProfile } from '../profiles/test-fixtures'
@@ -100,5 +100,27 @@ describe('backup files', () => {
     const files = buildBackupFiles(snapshotAt(2), events.slice(0, 2))
     files.delete('settings.yaml')
     expect(() => loadBackup(files, profile)).toThrow(/settings.yaml/)
+  })
+
+  it('restores a backup holding an abandoned empty exercise session', () => {
+    const snapshot = populatedProfile()
+    const empty = { id: '55f2aaaa-0000-4000-8000-000000000001', mode: 'new' as const, domain: 'reading' as const, targetRefs: ['vocabulary:tea'], reviewRefs: [],
+      exercises: [], cursor: 0, status: 'abandoned' as const, model: 'm', rejected: [], createdAt: 1, completedAt: 2 }
+    snapshot.knowledge.study.sessions.push(empty)
+    const loaded = loadBackup(buildBackupFiles(snapshot, []), profile)
+    expect(loaded.snapshot.knowledge.study.sessions.map(session => session.id)).toContain(empty.id)
+    expect(loaded.skippedSessions).toBeUndefined()
+  })
+
+  it('restores with an unreadable exercise session left out and reports it', () => {
+    const files = buildBackupFiles(populatedProfile(), [])
+    const checkpoint = parse(files.get('checkpoint.yaml')!)
+    const [good] = checkpoint.profile.knowledge.study.sessions
+    checkpoint.profile.knowledge.study.sessions.push({ ...good, id: 'bad-session', cursor: 9 })
+    files.set('checkpoint.yaml', stringify(checkpoint))
+    const loaded = loadBackup(files, profile)
+    expect(loaded.skippedSessions).toBe(1)
+    expect(loaded.snapshot.knowledge.study.sessions.map(session => session.id)).toEqual([good.id])
+    expect(loaded.snapshot.knowledge.study.knowledge).toEqual(populatedProfile().knowledge.study.knowledge)
   })
 })
