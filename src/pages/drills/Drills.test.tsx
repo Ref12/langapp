@@ -90,7 +90,7 @@ describe('Recent sets', () => {
     expect(within(row as HTMLElement).queryByRole('link', { name: /^Continue/ })).toBeNull()
     expect(within(row as HTMLElement).getByRole('link', { name: /^Open set New items/ })).toHaveAttribute('href', `#practice/set/${set.id}`)
     expect(within(row as HTMLElement).getByRole('link', { name: /^Open set New items/ })).toHaveClass('primary')
-      expect(within(row as HTMLElement).getByRole('link', { name: /^View items in New items/ })).toHaveAttribute('href', expect.stringMatching(/\/intro(\?show=1)?$/))
+      expect(within(row as HTMLElement).getByRole('link', { name: /^View items in New items/ })).toHaveAttribute('href', expect.stringMatching(/\/intro$/))
       expect(within(row as HTMLElement).getByRole('button', { name: /^Save New items/ })).toBeInTheDocument()
     expect(within(row as HTMLElement).queryByText('In progress')).toBeNull()
     expect(within(row as HTMLElement).queryByRole('link', { name: /^Resume/ })).toBeNull()
@@ -258,35 +258,33 @@ describe('Practice home', () => {
     expect(await within(recent).findByText('No sets yet.')).toBeInTheDocument()
   }, 40000)
 
-  it('opens a review set from Recent sets (?show=1) on the intro cards, not a table, and records no introduction', async () => {
-    await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])
-    const id = await createDrillSet({ kind: 'review' }, Date.now() + 1000)
-    window.location.hash = `#practice/set/${id}/intro?show=1`
-    render(<App />)
-    expect(await screen.findByText('我')).toBeInTheDocument()
-    expect(screen.queryByRole('table')).toBeNull()
-    expect(screen.queryByText(/items hidden/)).toBeNull()
-    expect(screen.queryByText(/Read the intro cards first/)).toBeNull()
-    expect(screen.getByRole('button', { name: /Hide words/ })).toHaveAttribute('aria-expanded', 'true')
-    expect(await db.exerciseSessions.count() + await db.practiceHistory.count()).toBe(0)
-  }, 40000)
-
-  it('hides the items of a review set until Show words', async () => {
+  it('lists a review set as headword tiles with no meanings, reveals one on tap and all with the toggle, and records no introduction', async () => {
     const user = userEvent.setup()
     await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])
     const id = await createDrillSet({ kind: 'review' }, Date.now() + 1000)
     window.location.hash = `#practice/set/${id}/intro`
     render(<App />)
-    expect(await screen.findByText(/items hidden/)).toBeInTheDocument()
-    expect(screen.queryByText('我')).toBeNull()
-    await user.click(screen.getByRole('button', { name: /Show words/ }))
-    expect(await screen.findByText('我')).toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: /Hide words/ }))
-    expect(screen.queryByText('我')).toBeNull()
+    const tile = await screen.findByRole('button', { name: /^我/ })
+    expect(screen.getByRole('button', { name: /^你/ })).toBeInTheDocument()
+    expect(tile).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByText(/hidden/)).toBeNull()
+    expect(screen.queryByText('wǒ')).toBeNull()
+    const tiles = tile.closest('ul') as HTMLElement
+    expect(tiles.textContent).not.toMatch(/(?<![a-z])me|you|wǒ|nǐ/i)
+    await user.click(tile)
+    expect(tile).toHaveAttribute('aria-expanded', 'true')
+    await waitFor(() => expect(tiles.textContent).toMatch(/(?<![a-z])me/i))
+    expect(tiles.textContent).not.toMatch(/you/i)
+    await user.click(tile)
+    expect(tiles.textContent).not.toMatch(/(?<![a-z])me/i)
+    await user.click(screen.getByRole('button', { name: 'Show all meanings' }))
+    await waitFor(() => expect(tiles.textContent).toMatch(/you/i))
+    expect(tiles.textContent).toMatch(/(?<![a-z])me/i)
+    await user.click(screen.getByRole('button', { name: 'Hide meanings' }))
+    expect(tiles.textContent).not.toMatch(/\b(me|you)\b/i)
+    expect(await db.exerciseSessions.count() + await db.practiceHistory.count()).toBe(0)
   }, 40000)
-})
 
-describe('doing drills', () => {
   it('does a Word meanings pass: the type moves to Done with its score, and Redo stays ungraded', async () => {
     const user = userEvent.setup()
     const set = await newSet()

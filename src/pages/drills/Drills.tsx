@@ -72,7 +72,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
   const items = useItems(set)
   if (error) return <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>
   if (!catalog || !items) return <div className="opening-workspace" role="status">Opening the practice set...</div>
-  if (page === 'intro') return <Intro {...props} set={set} showWords={new URLSearchParams(query).get('show') === '1'} items={items} catalog={catalog} />
+  if (page === 'intro') return <Intro {...props} set={set} items={items} catalog={catalog} />
   if (page === 'run' && type && DRILL_TYPES.some(entry => entry.id === type)) {
     const only = new URLSearchParams(query).get('missed') ? Object.entries(set.progress[type]?.results ?? {}).filter(([, mark]) => mark === 'missed').map(([ref]) => ref) : undefined
     return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} now={props.now} run={props.run} busy={props.busy} only={only} backHref={`#${setRoute(set.id)}`} />
@@ -83,32 +83,40 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
   return <SetScreen {...props} set={set} items={items} />
 }
 
-/** Every set shows its items as the intro cards. New-item sets show them at once (and record the introduction); review and study-set sets keep them out of sight until asked, unless opened from Recent sets with ?show=1. */
-function Intro({ set, items, catalog, workspace, now, run, busy, showWords = false }: PageProps & { set: DrillSet; showWords?: boolean; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
-  const [shown, setShown] = useState(showWords)
+/** New-item and lesson sets show their items as intro cards at once (and record the introduction). Review and study-set sets list the headwords as tiles; a tap reveals that item's card, and one toggle reveals all. Nothing is remembered between visits. */
+function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & { set: DrillSet; items: ItemInfo[]; catalog: NonNullable<ReturnType<typeof useCatalog>['catalog']> }) {
+  const [open, setOpen] = useState<ReadonlySet<string>>(new Set())
   const fresh = set.source === 'new' || set.source === 'lesson'
   useEffect(() => { if (fresh) void recordSetIntro(set.id, set.refs, ACTIVITY_SKILLS.introCard).catch(() => undefined) }, [fresh, set.id, set.refs])
   const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start practicing <ArrowRight size={16} /></a>
   const detail = describeItems(items, workspace.characterStates) || itemCount(items.length)
   const examplesFor = (ref: string) => (catalog.orderedGroups.find(entry => entry.group.units.some(unit => unit.ref === ref))?.group.examples ?? [])
     .filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
+  const card = (item: ItemInfo) => {
+    const unit = catalog.units.get(item.ref)
+    return unit ? <UnitCard key={item.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(entry => entry.id === cardId(item.ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={now}
+      examples={examplesFor(item.ref)} run={run} busy={busy} route={setRoute(set.id, 'intro')} hideStatus />
+      : <article key={item.ref} className="word-card"><div className="card-topline"><span className="eyebrow">{item.kind}</span></div><h3 lang="zh-Hans" className="word-native">{item.zh}</h3>
+        {item.py && <p className="study-pinyin small muted">{item.py}</p>}<p className="word-meaning">{item.en}</p></article>
+  }
+  const count = `${items.length} ${items.length === 1 ? 'item' : 'items'}`
+  const allOpen = items.length > 0 && items.every(item => open.has(item.ref))
+  const toggle = (ref: string) => setOpen(previous => { const next = new Set(previous); if (!next.delete(ref)) next.add(ref); return next })
   return <div className="dr">
     <a className="back-link" href={`#${setRoute(set.id)}`}><ArrowLeft size={16} /> {set.title}</a>
-    <PageHeading eyebrow={fresh ? 'New set' : set.source === 'review' ? 'Review set' : TERM.Singular} title={set.title} action={start}>{detail}. {fresh ? 'Read the intro cards first.' : 'Your items are hidden so the list gives no hints.'}</PageHeading>
-    {fresh || shown ? <>
-      {fresh ? <h2 className="dr-h2">{items.length} {items.length === 1 ? 'item' : 'items'}</h2>
-        : <div className="dr-toolbar"><h2 className="dr-h2">{items.length} {items.length === 1 ? 'item' : 'items'}</h2><button type="button" className="button secondary" aria-expanded={shown} onClick={() => setShown(false)}><EyeOff size={16} /> Hide words</button></div>}
-      <div className="word-grid">{items.map(item => {
-        const unit = catalog.units.get(item.ref)
-        return unit ? <UnitCard key={item.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(item.ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={now}
-          examples={examplesFor(item.ref)} run={run} busy={busy} route={setRoute(set.id, 'intro')} hideStatus />
-          : <article key={item.ref} className="word-card"><div className="card-topline"><span className="eyebrow">{item.kind}</span></div><h3 lang="zh-Hans" className="word-native">{item.zh}</h3>
-            {item.py && <p className="study-pinyin small muted">{item.py}</p>}<p className="word-meaning">{item.en}</p></article>
-      })}</div>
+    <PageHeading eyebrow={fresh ? 'New set' : set.source === 'review' ? 'Review set' : TERM.Singular} title={set.title} action={start}>{detail}. {fresh ? 'Read the intro cards first.' : 'Tap an item to see its meaning.'}</PageHeading>
+    {fresh ? <>
+      <h2 className="dr-h2">{count}</h2>
+      <div className="word-grid">{items.map(card)}</div>
       <div className="button-row dr-end">{start}</div>
     </> : <section className="panel dr-panel">
-      <div className="dr-toolbar"><h2>Items</h2><button type="button" className="button secondary" aria-expanded={shown} onClick={() => setShown(true)}><Eye size={16} /> Show words</button></div>
-      <div className="notice"><p><strong>{itemCount(items.length)} hidden.</strong> The list is kept out of sight so it does not give hints. Show it only if you want to look first.</p></div>
+      <div className="dr-toolbar"><h2 className="dr-h2">{count}. Tap one to see its meaning.</h2>
+        <button type="button" className="button secondary" onClick={() => setOpen(allOpen ? new Set() : new Set(items.map(item => item.ref)))}>{allOpen ? <><EyeOff size={16} /> Hide meanings</> : <><Eye size={16} /> Show all meanings</>}</button></div>
+      <ul className="dr-tiles">{items.map(item => <li key={item.ref} className={open.has(item.ref) ? 'open' : undefined}>
+        <button type="button" className="dr-tile" aria-expanded={open.has(item.ref)} onClick={() => toggle(item.ref)}>
+          <span lang="zh-Hans" className="dr-tile-zh">{item.zh}</span><span className="dr-tile-kind">{item.kind}</span></button>
+        {open.has(item.ref) && <div className="dr-tile-card">{card(item)}</div>}</li>)}</ul>
+      <div className="button-row dr-end">{start}</div>
     </section>}
   </div>
 }
@@ -238,7 +246,7 @@ export function continueOf(set: DrillSet): { route: string; label: string; type:
   return type ? { route: setRoute(set.id, `run/${type.id}`), label: `Continue ${type.name}`, type: type.name } : undefined
 }
 
-/** One set, unfinished or finished, in the one Recent sets list: title (In progress when unfinished) and a meta line on top (with "left off in <type>" when a type is part-way); below it a left-aligned group of labelled buttons: Continue <type> (only when something is part-way; primary), Open set (the set page with its practice types; primary when there is no Continue), View items (straight to the items; review sets show their words at once via ?show=1), then the Save to icon menu and the ⋯ menu. */
+/** One set, unfinished or finished, in the one Recent sets list: title (In progress when unfinished) and a meta line on top (with "left off in <type>" when a type is part-way); below it a left-aligned group of labelled buttons: Continue <type> (only when something is part-way; primary), Open set (the set page with its practice types; primary when there is no Continue), View items (straight to the items page; review and study sets list their words as tiles, meanings a tap away), then the Save to icon menu and the ⋯ menu. */
 function SetRow({ set, characterStates, onAsk }: { set: DrillSet; characterStates: PageProps['workspace']['characterStates']; onAsk: () => void }) {
   const unfinished = set.status === 'active'
   const removable = useLiveQuery(() => runAddedRefs('drill', set.id), [set.id, set.addedRefs])
@@ -250,7 +258,7 @@ function SetRow({ set, characterStates, onAsk }: { set: DrillSet; characterState
   <div className="resume-actions">
     {next && <a className="button primary small-button" href={`#${next.route}`} aria-label={next.label} title={next.label}><ArrowRight size={16} /> Continue {next.type}</a>}
     <a className={`button ${next ? 'secondary' : 'primary'} small-button`} href={`#${setRoute(set.id)}`} aria-label={`Open set ${set.title}`}><ListChecks size={16} /> Open set</a>
-    <a className="button secondary small-button" href={`#${setRoute(set.id, 'intro')}${set.source !== 'new' && set.source !== 'lesson' ? '?show=1' : ''}`} aria-label={`View items in ${set.title}`}><Eye size={16} /> View items</a>
+    <a className="button secondary small-button" href={`#${setRoute(set.id, 'intro')}`} aria-label={`View items in ${set.title}`}><Eye size={16} /> View items</a>
       <SaveToMenu refs={[...new Set(set.refs)]} name={set.title} />
     {(unfinished || !!removable?.length) && <RowMenu name={set.title}>
       {unfinished ? <button type="button" role="menuitem" className="menu-item" aria-label={`Discard ${set.title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={15} /> Discard</button>

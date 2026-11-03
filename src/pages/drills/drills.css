@@ -223,3 +223,13 @@
 .resume-row .resume-actions { gap: 6px 4px; }
 .resume-row .resume-actions .small-button { padding: 6px 9px; }
 .resume-row .resume-actions > .save-trigger.icon-only, .resume-row .resume-actions > .row-menu, .resume-row .resume-actions > .row-menu > .icon-button { flex-basis: 32px; width: 32px; height: 36px; }
+
+/* Review and study-set items: headword tiles, a tap opens the card in place. */
+.dr-tiles { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; }
+.dr-tiles li { min-width: 0; }
+.dr-tiles li.open { grid-column: 1 / -1; order: 0; }
+.dr-tile { width: 100%; min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px 6px; border: 1px solid var(--line, #d0d5dd); border-radius: 10px; background: var(--surface, #fff); color: inherit; font: inherit; cursor: pointer; }
+.dr-tile[aria-expanded="true"] { border-color: var(--accent, #2f6fed); }
+.dr-tile-zh { font-size: 1.5rem; line-height: 1.2; overflow-wrap: anywhere; text-align: center; }
+.dr-tile-kind { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.6; }
+.dr-tile-card { margin-top: 8px; }
