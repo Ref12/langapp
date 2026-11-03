@@ -78,3 +78,23 @@ main.writing-main { padding: 8px 12px; max-width: 640px; }
 
 .writing-characters { width: var(--writing-pad); display: flex; justify-content: space-between; gap: 4px; }
 .writing-characters .writing-char { min-height: 36px; padding: 4px 10px; gap: 6px; white-space: nowrap; font-size: 13px; }
+
+/* Nothing in the player may widen its panel: the pad, controls and progress follow the container, so no child's min-content may push it out. */
+main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 100%; }
+.writing-page section, .writing-page .panel { min-width: 0; }
+.writing-controls, .writing-characters, .writing-statusline, .writing-feedback, .writing-skipped { max-width: 100%; min-width: 0; }
+.writing-controls .writing-progress { flex: 1 1 0; min-width: 0; overflow: hidden; }
+.writing-char-short { display: none; }
+@media (max-width: 430px) {
+  .writing-controls { gap: 3px; }
+  .writing-controls .icon-button { width: 36px; height: 40px; }
+  .writing-controls .writing-step { padding: 4px 6px; }
+  .writing-characters .writing-char { padding: 4px 8px; gap: 4px; min-width: 0; flex: 0 1 auto; }
+  .writing-char-long { display: none; }
+  .writing-char-short { display: inline; }
+}
+@media (max-width: 380px) {
+  .writing-controls .icon-button { width: 34px; }
+  .writing-controls .writing-step span { display: none; }
+  .writing-controls .writing-step { padding: 4px 8px; }
+}
