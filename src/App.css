@@ -480,3 +480,12 @@ select { padding: 10px; }
 .match-selected { outline: 2px solid var(--accent, #2563eb); }
 .match-locked { opacity: 0.55; border-color: var(--success, #16a34a); }
 .match-wrong { border-color: var(--danger, #dc2626); background: color-mix(in srgb, var(--danger, #dc2626) 14%, transparent); }
+
+.page-actions { display: flex; }
+.page-actions .action-menu-popup { padding: 4px; gap: 0; min-width: 160px; border-radius: 8px; }
+.page-actions-list { display: grid; }
+.page-actions-item { display: flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 10px 4px 6px; border: 0; border-radius: 6px; background: none; color: var(--text); font: inherit; font-size: 14px; text-align: left; cursor: pointer; white-space: nowrap; }
+.page-actions-item:hover, .page-actions-item:focus-visible { background: var(--surface-2, #8882); }
+.page-actions-item:disabled { opacity: .5; cursor: default; }
+.page-actions-check { width: 14px; height: 14px; display: inline-flex; flex: none; }
+.topbar:has(.page-actions .action-menu-trigger[aria-expanded="true"]) { z-index: 30; }

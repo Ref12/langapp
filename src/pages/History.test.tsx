@@ -288,7 +288,9 @@ it('removes one row through its menu with the learned-stays line, shows Undo, an
 it('Select mode removes the picked rows in bulk, selects all on the page, and Undo brings them back', async () => {
   await seedPhrases(35)
   render(<App />)
-  fireEvent.click(await screen.findByRole('button', { name: 'Select' }))
+  expect(screen.queryByRole('button', { name: 'Select' })).toBeNull()
+  fireEvent.click(await screen.findByRole('button', { name: 'Page actions' }))
+  fireEvent.click(screen.getByRole('menuitemcheckbox', { name: 'Select items' }))
   fireEvent.click(screen.getByRole('button', { name: 'Select all on this page' }))
   expect(screen.getByRole('button', { name: 'Remove selected (30)' })).toBeEnabled()
   fireEvent.click(screen.getByRole('button', { name: 'Clear this page' }))

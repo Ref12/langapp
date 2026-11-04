@@ -32,6 +32,8 @@ vi.mock('../core/characters/assets', () => ({
   loadCharacterAsset: async (character: string) => ({ character, strokeCount: 1, reviewed: true, variant: 'reviewed-monoline', paths: ['M10 50 L90 50'] }),
 }))
 
+import { PageActionsMenu, PageActionsProvider } from '../components/PageActionsMenu'
+
 function Harness() {
   const workspace = useLiveQuery(loadWorkspace, [])
   const route = useRoute()
@@ -40,7 +42,7 @@ function Harness() {
   const [page, section, scope] = path.split('/')
   const write = new URLSearchParams(query).get('write') ?? undefined
   const props = { workspace, now: 1, busy: false, run: async (operation: () => Promise<void>) => { await operation() } }
-  return <>{page === 'writing' ? <Writing {...props} codepoint={section} scope={scope} /> : <Dictionary {...props} section={section} initialScope={scope} initialWrite={write} />}<WritingSheetHost {...props} /></>
+  return <PageActionsProvider><PageActionsMenu />{page === 'writing' ? <Writing {...props} codepoint={section} scope={scope} /> : <Dictionary {...props} section={section} initialScope={scope} initialWrite={write} />}<WritingSheetHost {...props} /></PageActionsProvider>
 }
 
 afterEach(() => { act(() => closeWritingSheet()) })
@@ -99,6 +101,32 @@ describe('dictionary characters', () => {
     await user.click(screen.getByRole('button', { name: 'Full list' }))
     expect(window.location.hash).toBe('#dictionary/vocabulary/all')
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.dictionaryScope).toBe('all'))
+  })
+
+  it('moves Select into the page menu; the bar keeps Done, and Done leaves selection mode', async () => {
+    const user = userEvent.setup()
+    window.location.hash = 'dictionary/characters/knowledge'
+    render(<Harness />)
+    await screen.findByRole('button', { name: /^My knowledge set \(/ })
+    expect(screen.queryByRole('button', { name: 'Select' })).toBeNull()
+    await user.click(screen.getByRole('button', { name: 'Page actions' }))
+    const item = screen.getByRole('menuitemcheckbox', { name: 'Select items' })
+    expect(item).toHaveAttribute('aria-checked', 'false')
+    await user.click(item)
+    expect(screen.queryByRole('menuitemcheckbox', { name: 'Select items' })).toBeNull()
+    expect(screen.getByRole('toolbar', { name: 'Select' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Page actions' }))
+    expect(screen.getByRole('menuitemcheckbox', { name: 'Select items' })).toHaveAttribute('aria-checked', 'true')
+    await user.keyboard('{Escape}')
+    await user.click(screen.getByRole('button', { name: 'Done' }))
+    expect(screen.queryByRole('toolbar', { name: 'Select' })).toBeNull()
+  })
+
+  it('has no page menu on Grammar, which has nothing to select', async () => {
+    window.location.hash = 'dictionary/grammar/all'
+    render(<Harness />)
+    await screen.findByRole('button', { name: /^Grammar/ })
+    expect(screen.queryByRole('button', { name: 'Page actions' })).toBeNull()
   })
 
   const sourceWord = { id: 'sabc1', word: '\u5496\u5561\u5385', pinyin: 'kāfēitīng', meanings: ['cafe'], pos: 'noun', sources: [{ mediaId: 'm1', title: 'A drama', line: 0, text: '\u6211\u4eec\u53bb\u5496\u5561\u5385' }], createdAt: 1, updatedAt: 1 }

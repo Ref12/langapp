@@ -3,6 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
 import { savePreferences } from '../core/learning'
 import { PenLine, Search } from 'lucide-react'
+import { usePageActions } from '../components/page-actions-context'
 import { makeMatcher, ownCharacterData, FALLBACK, type SearchTarget } from '../core/dictionary-search'
 import { catalogBands, catalogCounts, type Unit } from '../core/study/catalog'
 import { cardId, type UnitKind } from '../core/study/contracts'
@@ -137,6 +138,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const pageEntries: [string, string][] = kind === 'characters' ? characterMatches.slice(0, limit).map(entry => [entry.character, entry.character] as [string, string])
     : [...(scope === 'media' ? [] : matches.slice(0, limit).flatMap(unit => unit.kind === 'vocabulary' ? [[unit.ref, unit.record.ch] as [string, string]] : [])), ...sourceMatches.slice(0, limit).map(entry => [`source:${entry.id}`, entry.word] as [string, string])]
     const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
+  usePageActions(selectable ? [{ id: 'select', label: 'Select items', checked: selecting, onSelect: () => { setSelecting(!selecting); setPicked(new Map()) } }] : [])
   return <>
     <PageHeading eyebrow="THE WHOLE CURRICULUM" title={kind === 'characters' ? 'Characters, one stroke at a time.' : 'Vocabulary and grammar, by band.'}>
       {kind === 'characters' ? 'Your character set includes characters from words in your knowledge set, plus any you add manually. Practice their strokes here; inclusion does not claim writing proficiency.'
@@ -158,8 +160,8 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button></div>
       <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>
     </div>
-    {selectable && <div className="select-bar" role="toolbar" aria-label="Select">
-      <button type="button" className="button secondary" aria-pressed={selecting} onClick={() => { setSelecting(!selecting); setPicked(new Map()) }}>{selecting ? 'Done' : 'Select'}</button>
+    {selectable && selecting && <div className="select-bar" role="toolbar" aria-label="Select">
+      <button type="button" className="button secondary" onClick={() => { setSelecting(false); setPicked(new Map()) }}>Done</button>
       {selecting && !picked.size && <button type="button" className="button secondary" onClick={() => setPicked(new Map(pageEntries))}>Select all on this page</button>}
       {selecting && picked.size > 0 && <>
         <span className="select-count" role="status">{picked.size} selected</span>

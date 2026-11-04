@@ -11,6 +11,7 @@ import { lessons, stories } from './data/mandarin'
 import { curriculumLevels } from './data/curriculum'
 import { EmptyState, type PageProps } from './components/shared'
 import { PageSettingsButton, PageSettingsProvider } from './components/PageSettings'
+import { PageActionsMenu, PageActionsProvider } from './components/PageActionsMenu'
 import { MobileNavigation } from './components/MobileNavigation'
 import { Overview } from './pages/Overview'
 import { Library, Reader } from './pages/Reading'
@@ -195,7 +196,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><BackupNow />
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>
         </>
-  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><PageSettingsProvider>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><PageSettingsProvider><PageActionsProvider>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -215,6 +216,7 @@ function WorkspaceApp() {
         <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
+          <PageActionsMenu />
           <PageSettingsButton route={route} label={label} page={page} workspace={workspace} busy={busy} run={run} />
         </div></header>
         <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : route === 'games/potions' ? 'potions-main' : practicing ? 'practice-main' : page === 'writing' ? 'writing-main' : page === 'lesson' ? 'lesson-main' : undefined}>
@@ -228,7 +230,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </PageSettingsProvider></PinyinFormatContext.Provider>
+  </PageActionsProvider></PageSettingsProvider></PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

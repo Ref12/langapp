@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { ArrowRight, EyeOff, Dumbbell } from 'lucide-react'
 import { RowMenu } from '../components/RowMenu'
+import { usePageActions } from '../components/page-actions-context'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
 import { practiceHistoryEntrySchema, type PracticeHistoryEntry } from '../core/assistant/contracts'
@@ -132,6 +133,7 @@ export function History() {
       ? <label className="history-pick"><input type="checkbox" checked={picked.has(key)} onChange={() => toggle(key)} aria-label={`Select ${name}`} /></label>
       : <RowMenu name={name}>{extra}
         <button type="button" role="menuitem" className="menu-item" title="Removes it from History only. What you learned stays." aria-label={`Remove ${name} from history`} onClick={() => remove([key], name)}><EyeOff size={15} /> Remove from history</button></RowMenu> }
+  usePageActions(ready && rows.length > 0 ? [{ id: 'select', label: 'Select items', checked: selecting, onSelect: () => { setSelecting(!selecting); setPicked(new Set()) } }] : [])
   return <section className="phrase-history">
     <div className="page-heading"><div><p className="eyebrow">HISTORY</p><h1>Recently practiced</h1>
       <p>Phrases you spoke or wrote, your lessons and your practice sets, most recent first.</p></div></div>
@@ -139,11 +141,11 @@ export function History() {
       {FILTERS.map(item => <button key={item.id} type="button" className={filter === item.id ? 'active' : ''} aria-pressed={filter === item.id} onClick={() => choose(item.id)}>{item.label}</button>)}
     </div>
     {error && <p className="notice error" role="alert">{error}</p>}
-    {ready && rows.length > 0 && <div className="history-bar">
-      <button type="button" className="button secondary" aria-pressed={selecting} onClick={() => { setSelecting(!selecting); setPicked(new Set()); }}>{selecting ? 'Done' : 'Select'}</button>
-      {selecting && <><button type="button" className="button secondary" onClick={() => setPicked(allPicked ? new Set() : new Set(pageKeys))}>{allPicked ? 'Clear this page' : 'Select all on this page'}</button>
+    {ready && rows.length > 0 && selecting && <div className="history-bar">
+      <button type="button" className="button secondary" onClick={() => { setSelecting(false); setPicked(new Set()) }}>Done</button>
+      <><button type="button" className="button secondary" onClick={() => setPicked(allPicked ? new Set() : new Set(pageKeys))}>{allPicked ? 'Clear this page' : 'Select all on this page'}</button>
         <button type="button" className="button" disabled={!picked.size} onClick={() => remove([...picked], `${picked.size} items`)}>Remove selected ({picked.size})</button>
-        <span className="small muted history-bar-note">Removes them from History only. What you learned stays.</span></>}</div>}
+        <span className="small muted history-bar-note">Removes them from History only. What you learned stays.</span></></div>}
     {!ready ? <p role="status">Loading history...</p>
       : !rows.length ? <div className="empty-state"><h2>{filter === 'all' ? 'No phrases yet' : EMPTY[filter]}</h2>
         {filter === 'all' && <p>{EMPTY.all}</p>}
