@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { ArrowLeft, Check, ChevronLeft, ChevronRight, CircleHelp, Eraser, Play, SkipBack, SkipForward, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react'
+import { ArrowLeft, Check, ChevronLeft, ChevronRight, CircleHelp, Eraser, Palette, Play, SkipBack, SkipForward, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react'
 import { characterAssetIndex, characterAttributionUrl, loadCharacterAsset, type CharacterAsset } from '../core/characters/assets'
 import { recordCharacterPractice } from '../core/characters/store'
 import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '../core/characters/meanings'
@@ -14,6 +14,9 @@ import { savePreferences } from '../core/learning'
 import { writingSpeechMode, writingSpeechResume } from '../core/writing-speech'
 import { rememberWrittenPhrase } from '../core/assistant/practice-history'
 import { Pinyin } from '../components/Pinyin'
+import { Decomposition } from '../components/characters/Decomposition'
+import { useComponentData } from '../components/characters/useComponentData'
+import { partColour, strokeParts } from '../core/characters/components'
 import { usePageSettings } from '../components/page-settings-context'
 import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
 import './writing.css'
@@ -165,6 +168,9 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
   const hint = memoryHint(round) && !completed
   const hidden = round.phase === 2 && !round.finished
   const current = guides[round.completed]
+  const colour = workspace.preferences.writingColourParts === true
+  const { data: partData } = useComponentData()
+  const owners = useMemo(() => partData ? strokeParts(partData, asset.character, guides.length) : [], [partData, asset.character, guides.length])
   const state = workspace.characterStates.find(entry => entry.character === asset.character)
   const atStart = round.phase === 0 && round.repetition === 0 && !round.finished
   const canPrevious = !saving && !busy && (!atStart || hasPrevious)
@@ -309,6 +315,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
       </div>}
     </header>
     {(inWord || !!place) && ownMeaning && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}
+    <div className="writing-parts"><Decomposition character={asset.character} colour={colour} label="Parts" hideLabel="Parts" maskHead={hidden} /></div>
     <section className="writing-workbench" aria-label="Writing exercise">
       <div className="writing-statusline">
         <span><strong>{PHASES[round.phase]}</strong> &middot; {round.repetition + 1}/{REPETITIONS}</span>
@@ -328,9 +335,9 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <g aria-hidden="true" data-testid="stroke-guides">
           {guides.map((guide, index) => {
             const visible = replay !== null ? index <= replay : round.finished || index < round.completed || round.phase === 0 || (round.phase === 1 || hint) && index === round.completed
-            return visible ? <path key={`${index}-${replay}`} d={guide.path} data-stroke={index}
+            return visible ? <path key={`${index}-${replay}`} d={guide.path} data-stroke={index} data-part={colour ? owners[index] : undefined}
               className={`writing-guide${replay !== null ? index === replay ? ' replaying' : ' replayed' : index < round.completed ? ' completed' : ''}`}
-              strokeDasharray={replay === index ? guide.length : undefined} style={replay === index ? { '--stroke-length': guide.length } as React.CSSProperties : undefined} /> : null
+              strokeDasharray={replay === index ? guide.length : undefined} style={{ ...(replay === index ? { '--stroke-length': guide.length } : {}), ...(colour && owners[index] !== undefined ? { stroke: partColour(owners[index]!) } : {}) } as React.CSSProperties} /> : null
           })}
         </g>
         {current && replay === null && !round.finished && (!hidden || hint) && <g aria-hidden="true" className="writing-direction">
@@ -344,7 +351,8 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <button className="icon-button" aria-label={`${autoSpeak ? 'Mute' : 'Unmute'} automatic character audio`} aria-pressed={!autoSpeak}
           title={autoSpeak ? 'Mute automatic character audio' : 'Unmute automatic character audio'} disabled={busy}
           onClick={() => { if (autoSpeak) stopBrowserSpeech(); void run(() => savePreferences(autoSpeak ? { writingSpeech: 'off', writingSpeechResume: speech as 'transitions' | 'stroke' } : { writingSpeech: writingSpeechResume(workspace.preferences) })) }}>{autoSpeak ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
-        <button className="icon-button" title="Undo last stroke" aria-label="Undo" disabled={!round.completed || round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: Math.max(0, value.completed - 1), feedback: '' })) }}><Undo2 size={18} /></button>
+        <button className={`icon-button${colour ? ' is-on' : ''}`} title="Colour parts" aria-label="Colour parts" aria-pressed={colour} disabled={busy} onClick={() => { void run(() => savePreferences({ writingColourParts: !colour })) }}><Palette size={18} /></button>
+      <button className="icon-button" title="Undo last stroke" aria-label="Undo" disabled={!round.completed || round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: Math.max(0, value.completed - 1), feedback: '' })) }}><Undo2 size={18} /></button>
         <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>
         <span className="writing-progress" data-complete={completed || round.finished ? '' : undefined} title={round.finished ? 'Saved' : completed ? 'Complete' : 'Stroke progress'} aria-hidden="true">{(completed || round.finished) && <Check size={15} />}{progress}</span>

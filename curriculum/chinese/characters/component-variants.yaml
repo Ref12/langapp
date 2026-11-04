@@ -1,0 +1,854 @@
+# Positional and variant forms of components (reviewed table).
+# Draft produced by: node scripts/build-components.mjs --draft-variants=<file>; reviewed and edited by hand, 2026-11-04.
+# kind: positional = bound shape used in a fixed slot of a larger character; simplified = simplified counterpart of a traditional radical
+#       (also positional when it is a bound form such as 讠); variant = other recorded alternative form of a Kangxi radical.
+# positional: true when the form is a bound shape (not a free character of our set) or was named as positional in the task brief.
+# positions: occurrences by IDS slot in the decomposition trees of our ~3,000 characters (all nesting levels). The two 阝 rows are split by
+# position (left = 阜 mound, right = 邑 city); examples come from the decomposition trees.
+# Form -> radical relations come only from the task brief, Unicode data (CJKRadicals.txt simplified rows, Radicals Supplement
+# character names) and Unihan; no share-alike source is used.
+variants:
+  - form: "亻"
+    cp: "U+4EBB"
+    block: "URO"
+    parent: "人"
+    parent_cp: "U+4EBA"
+    kangxi_radical: 9
+    positions:
+      - { slot: left, count: 146 }
+      - { slot: top, count: 7 }
+    uses: 153
+    kind: positional
+    positional: true
+    examples: ["亿", "什", "仁", "仅", "仆", "仇"]
+    name_en: "man; people; mankind"
+    name_pinyin: "rén"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "氵"
+    cp: "U+6C35"
+    block: "URO"
+    parent: "水"
+    parent_cp: "U+6C34"
+    kangxi_radical: 85
+    positions:
+      - { slot: left, count: 169 }
+    uses: 169
+    kind: positional
+    positional: true
+    examples: ["婆", "染", "梁", "汁", "汇", "汉"]
+    name_en: "water, liquid, lotion, juice"
+    name_pinyin: "shuǐ"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "氺"
+    cp: "U+6C3A"
+    block: "URO"
+    parent: "水"
+    parent_cp: "U+6C34"
+    kangxi_radical: 85
+    positions:
+      - { slot: bottom, count: 14 }
+    uses: 14
+    kind: positional
+    positional: true
+    examples: ["剥", "康", "录", "慷", "求", "泰"]
+    name_en: "water, liquid, lotion, juice"
+    name_pinyin: "shuǐ"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "忄"
+    cp: "U+5FC4"
+    block: "URO"
+    parent: "心"
+    parent_cp: "U+5FC3"
+    kangxi_radical: 61
+    positions:
+      - { slot: left, count: 50 }
+    uses: 50
+    kind: positional
+    positional: true
+    examples: ["忆", "忙", "忧", "快", "怀", "怕"]
+    name_en: "heart; mind, intelligence; soul"
+    name_pinyin: "xīn"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "⺗"
+    cp: "U+2E97"
+    block: "CJK Radicals Supplement"
+    parent: "心"
+    parent_cp: "U+5FC3"
+    kangxi_radical: 61
+    positions:
+      - { slot: bottom, count: 4 }
+    uses: 4
+    kind: positional
+    positional: true
+    examples: ["恭", "慕", "添", "舔"]
+    name_en: "heart; mind, intelligence; soul"
+    name_pinyin: "xīn"
+    unicode_name: "CJK RADICAL HEART TWO"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "Unicode UnicodeData 18.0.0: character name; relation to the radical from the name / CJKRadicals.txt"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "扌"
+    cp: "U+624C"
+    block: "URO"
+    parent: "手"
+    parent_cp: "U+624B"
+    kangxi_radical: 64
+    positions:
+      - { slot: left, count: 186 }
+      - { slot: overlay-a, count: 8 }
+    uses: 194
+    kind: positional
+    positional: true
+    examples: ["举", "俄", "势", "哦", "哲", "啦"]
+    name_en: "hand"
+    name_pinyin: "shǒu"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "灬"
+    cp: "U+706C"
+    block: "URO"
+    parent: "火"
+    parent_cp: "U+706B"
+    kangxi_radical: 86
+    positions:
+      - { slot: bottom, count: 25 }
+    uses: 25
+    kind: positional
+    positional: true
+    examples: ["杰", "点", "烈", "热", "烹", "焦"]
+    name_en: "fire, flame; burn; anger, rage"
+    name_pinyin: "huǒ"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "刂"
+    cp: "U+5202"
+    block: "URO"
+    parent: "刀"
+    parent_cp: "U+5200"
+    kangxi_radical: 18
+    positions:
+      - { slot: right, count: 57 }
+      - { slot: left, count: 5 }
+      - { slot: middle, count: 2 }
+    uses: 64
+    kind: positional
+    positional: true
+    examples: ["例", "侧", "倒", "偷", "刊", "刑"]
+    name_en: "knife; old coin; measure"
+    name_pinyin: "dāo"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "讠"
+    cp: "U+8BA0"
+    block: "URO"
+    parent: "言"
+    parent_cp: "U+8A00"
+    kangxi_radical: 149
+    positions:
+      - { slot: left, count: 73 }
+    uses: 73
+    kind: positional
+    positional: true
+    examples: ["储", "狱", "罚", "蔼", "计", "订"]
+    name_en: "words, speech; speak, say"
+    name_pinyin: "yán"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "钅"
+    cp: "U+9485"
+    block: "URO"
+    parent: "金"
+    parent_cp: "U+91D1"
+    kangxi_radical: 167
+    positions:
+      - { slot: left, count: 43 }
+    uses: 43
+    kind: positional
+    positional: true
+    examples: ["衔", "针", "钉", "钓", "钙", "钞"]
+    name_en: "gold; metals in general; money"
+    name_pinyin: "jīn"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "饣"
+    cp: "U+9963"
+    block: "URO"
+    parent: "食"
+    parent_cp: "U+98DF"
+    kangxi_radical: 184
+    positions:
+      - { slot: left, count: 19 }
+    uses: 19
+    kind: positional
+    positional: true
+    examples: ["蚀", "饥", "饪", "饭", "饮", "饰"]
+    name_en: "eat; meal; food"
+    name_pinyin: "shí"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "衤"
+    cp: "U+8864"
+    block: "URO"
+    parent: "衣"
+    parent_cp: "U+8863"
+    kangxi_radical: 145
+    positions:
+      - { slot: left, count: 13 }
+    uses: 13
+    kind: positional
+    positional: true
+    examples: ["初", "补", "衫", "衬", "袍", "袖"]
+    name_en: "clothes, clothing; cover, skin"
+    name_pinyin: "yī"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "礻"
+    cp: "U+793B"
+    block: "URO"
+    parent: "示"
+    parent_cp: "U+793A"
+    kangxi_radical: 113
+    positions:
+      - { slot: left, count: 13 }
+    uses: 13
+    kind: positional
+    positional: true
+    examples: ["礼", "社", "祀", "祈", "祖", "祝"]
+    name_en: "show, manifest; demonstrate"
+    name_pinyin: "shì"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "犭"
+    cp: "U+72AD"
+    block: "URO"
+    parent: "犬"
+    parent_cp: "U+72AC"
+    kangxi_radical: 94
+    positions:
+      - { slot: left, count: 23 }
+      - { slot: bottom, count: 2 }
+    uses: 25
+    kind: positional
+    positional: true
+    examples: ["犯", "犹", "狂", "狈", "狗", "狠"]
+    name_en: "dog; radical number 94"
+    name_pinyin: "quǎn"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "罒"
+    cp: "U+7F52"
+    block: "URO"
+    parent: "网"
+    parent_cp: "U+7F51"
+    kangxi_radical: 122
+    positions:
+      - { slot: top, count: 20 }
+    uses: 20
+    kind: positional
+    positional: true
+    examples: ["嚼", "德", "愣", "慢", "摆", "曙"]
+    name_en: "net; network"
+    name_pinyin: "wǎng"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "爫"
+    cp: "U+722B"
+    block: "URO"
+    parent: "爪"
+    parent_cp: "U+722A"
+    kangxi_radical: 87
+    positions:
+      - { slot: top, count: 30 }
+    uses: 30
+    kind: positional
+    positional: true
+    examples: ["乳", "俘", "受", "嚼", "妥", "孵"]
+    name_en: "claw, nail, talon; animal feet"
+    name_pinyin: "zhǎo"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "月"
+    cp: "U+6708"
+    block: "URO"
+    parent: "肉"
+    parent_cp: "U+8089"
+    kangxi_radical: 130
+    positions:
+      - { slot: left, count: 21 }
+      - { slot: right, count: 21 }
+      - { slot: top, count: 14 }
+      - { slot: bottom, count: 9 }
+    uses: 65
+    kind: shape-alias
+    positional: true
+    examples: []
+    alias_of: "⺼"
+    note: "In print 肉 as a component looks like 月. Make Me a Hanzi encodes the flesh component as ⺼ U+2EBC (97 uses, see the ⺼ row) and uses 月 U+6708 for the moon (朗 朝 期 朦 胧 have the 月 radical with hint 'moon'); 月 also occurs as a plain shape in other characters. Whether a given 月 is the moon, flesh or neither is not marked in the source for those, so 月 is listed here only as the printed form of 肉 and has no examples: use the ⺼ row for flesh-component examples."
+    name_en: "meat"
+    name_pinyin: "ròu"
+    sources:
+      - "MMAH dictionary.txt bddc96d: flesh component is ⺼ (U+2EBC), moon is 月"
+      - "form named in the task brief"
+  - form: "艹"
+    cp: "U+8279"
+    block: "URO"
+    parent: "艸"
+    parent_cp: "U+8278"
+    kangxi_radical: 140
+    positions:
+      - { slot: top, count: 119 }
+      - { slot: bottom, count: 4 }
+    uses: 123
+    kind: positional
+    positional: true
+    examples: ["劳", "募", "匿", "卉", "哎", "唠"]
+    name_en: "grass"
+    name_pinyin: "cǎo"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "辶"
+    cp: "U+8FB6"
+    block: "URO"
+    parent: "辵"
+    parent_cp: "U+8FB5"
+    kangxi_radical: 162
+    positions:
+      - { slot: enclosing-bottom-left, count: 76 }
+    uses: 76
+    kind: positional
+    positional: true
+    examples: ["巡", "篷", "糙", "缝", "腿", "莲"]
+    name_en: "walk; walking"
+    name_pinyin: "chuò"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "阝"
+    cp: "U+961D"
+    block: "URO"
+    parent: "阜"
+    parent_cp: "U+961C"
+    kangxi_radical: 170
+    positions:
+      - { slot: left, count: 41 }
+    uses: 41
+    kind: positional
+    positional: true
+    examples: ["队", "阱", "防", "阳", "阴", "阵"]
+    name_en: "mound; abundant, ample, numerous"
+    name_pinyin: "fù"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "阝"
+    cp: "U+961D"
+    block: "URO"
+    parent: "邑"
+    parent_cp: "U+9091"
+    kangxi_radical: 163
+    positions:
+      - { slot: right, count: 17 }
+    uses: 17
+    kind: positional
+    positional: true
+    examples: ["那", "邦", "邪", "邮", "邻", "郁"]
+    name_en: "area; district; city"
+    name_pinyin: "yì"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "form and parent named in the task brief (hand-confirmed against the slot counts)"
+  - form: "丬"
+    cp: "U+4E2C"
+    block: "URO"
+    parent: "爿"
+    parent_cp: "U+723F"
+    kangxi_radical: 90
+    positions:
+      - { slot: left, count: 10 }
+    uses: 10
+    kind: positional
+    positional: true
+    examples: ["壮", "奖", "妆", "寝", "将", "桨"]
+    name_en: "half of tree trunk"
+    name_pinyin: "pán"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "纟"
+    cp: "U+7E9F"
+    block: "URO"
+    parent: "糸"
+    parent_cp: "U+7CF8"
+    kangxi_radical: 120
+    positions:
+      - { slot: left, count: 69 }
+    uses: 69
+    kind: positional
+    positional: true
+    examples: ["纠", "红", "纤", "约", "级", "纪"]
+    name_en: "silk"
+    name_pinyin: "mì"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "见"
+    cp: "U+89C1"
+    block: "URO"
+    parent: "見"
+    parent_cp: "U+898B"
+    kangxi_radical: 147
+    positions:
+      - { slot: right, count: 6 }
+      - { slot: bottom, count: 5 }
+    uses: 11
+    kind: simplified
+    positional: false
+    examples: ["宽", "搅", "现", "窥", "舰", "观"]
+    name_en: "see, observe, behold; perceive"
+    name_pinyin: "jiàn"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "贝"
+    cp: "U+8D1D"
+    block: "URO"
+    parent: "貝"
+    parent_cp: "U+8C9D"
+    kangxi_radical: 154
+    positions:
+      - { slot: bottom, count: 39 }
+      - { slot: left, count: 27 }
+      - { slot: right, count: 5 }
+    uses: 71
+    kind: simplified
+    positional: false
+    examples: ["侦", "侧", "债", "则", "勋", "厕"]
+    name_en: "sea shell; money, currency"
+    name_pinyin: "bèi"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "车"
+    cp: "U+8F66"
+    block: "URO"
+    parent: "車"
+    parent_cp: "U+8ECA"
+    kangxi_radical: 159
+    positions:
+      - { slot: left, count: 20 }
+      - { slot: inside, count: 7 }
+      - { slot: bottom, count: 6 }
+    uses: 33
+    kind: simplified
+    positional: false
+    examples: ["军", "崭", "库", "惭", "挥", "斩"]
+    name_en: "cart, vehicle; carry in a cart"
+    name_pinyin: "chē"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "长"
+    cp: "U+957F"
+    block: "URO"
+    parent: "長"
+    parent_cp: "U+9577"
+    kangxi_radical: 168
+    positions:
+      - { slot: right, count: 5 }
+    uses: 5
+    kind: simplified
+    positional: false
+    examples: ["帐", "张", "涨", "胀", "账"]
+    name_en: "long; length; excel in"
+    name_pinyin: "zhǎng"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "门"
+    cp: "U+95E8"
+    block: "URO"
+    parent: "門"
+    parent_cp: "U+9580"
+    kangxi_radical: 169
+    positions:
+      - { slot: enclosing-top, count: 22 }
+    uses: 22
+    kind: simplified
+    positional: false
+    examples: ["们", "搁", "润", "澜", "简", "闪"]
+    name_en: "gate, door, entrance, opening"
+    name_pinyin: "mén"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "韦"
+    cp: "U+97E6"
+    block: "URO"
+    parent: "韋"
+    parent_cp: "U+97CB"
+    kangxi_radical: 178
+    positions:
+      - { slot: right, count: 3 }
+      - { slot: inside, count: 2 }
+    uses: 5
+    kind: positional
+    positional: true
+    examples: ["伟", "围", "纬", "讳", "违", "韧"]
+    name_en: "tanned leather; surname"
+    name_pinyin: "wéi"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "页"
+    cp: "U+9875"
+    block: "URO"
+    parent: "頁"
+    parent_cp: "U+9801"
+    kangxi_radical: 181
+    positions:
+      - { slot: right, count: 28 }
+    uses: 28
+    kind: simplified
+    positional: false
+    examples: ["倾", "巅", "濒", "烦", "硕", "顶"]
+    name_en: "page, sheet, leaf"
+    name_pinyin: "yè"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "风"
+    cp: "U+98CE"
+    block: "URO"
+    parent: "風"
+    parent_cp: "U+98A8"
+    kangxi_radical: 182
+    positions:
+      - { slot: right, count: 3 }
+    uses: 3
+    kind: simplified
+    positional: false
+    examples: ["疯", "讽", "飘", "飙"]
+    name_en: "wind; air; manners, atmosphere"
+    name_pinyin: "fēng"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "马"
+    cp: "U+9A6C"
+    block: "URO"
+    parent: "馬"
+    parent_cp: "U+99AC"
+    kangxi_radical: 187
+    positions:
+      - { slot: left, count: 16 }
+      - { slot: right, count: 4 }
+      - { slot: inside, count: 2 }
+      - { slot: bottom, count: 2 }
+    uses: 24
+    kind: simplified
+    positional: false
+    examples: ["吗", "妈", "码", "腾", "蚂", "闯"]
+    name_en: "horse; surname"
+    name_pinyin: "mǎ"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "鱼"
+    cp: "U+9C7C"
+    block: "URO"
+    parent: "魚"
+    parent_cp: "U+9B5A"
+    kangxi_radical: 195
+    positions:
+      - { slot: left, count: 2 }
+    uses: 2
+    kind: simplified
+    positional: false
+    examples: ["渔", "鲁", "鲜", "鲨", "鳄"]
+    name_en: "fish; surname"
+    name_pinyin: "yú"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "鸟"
+    cp: "U+9E1F"
+    block: "URO"
+    parent: "鳥"
+    parent_cp: "U+9CE5"
+    kangxi_radical: 196
+    positions:
+      - { slot: right, count: 8 }
+      - { slot: enclosing-top-right, count: 2 }
+    uses: 10
+    kind: simplified
+    positional: false
+    examples: ["岛", "捣", "鸡", "鸣", "鸦", "鸭"]
+    name_en: "bird"
+    name_pinyin: "niǎo"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "黄"
+    cp: "U+9EC4"
+    block: "URO"
+    parent: "黃"
+    parent_cp: "U+9EC3"
+    kangxi_radical: 201
+    positions:
+      - { slot: top, count: 2 }
+    uses: 2
+    kind: simplified
+    positional: false
+    examples: ["勤", "横", "谨"]
+    name_en: "yellow; surname"
+    name_pinyin: "huáng"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "黾"
+    cp: "U+9EFE"
+    block: "URO"
+    parent: "黽"
+    parent_cp: "U+9EFD"
+    kangxi_radical: 205
+    positions:
+      - { slot: right, count: 2 }
+    uses: 2
+    kind: positional
+    positional: true
+    examples: ["绳", "蝇"]
+    name_en: "to strive; to endeavor"
+    name_pinyin: "miǎn"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "齐"
+    cp: "U+9F50"
+    block: "URO"
+    parent: "齊"
+    parent_cp: "U+9F4A"
+    kangxi_radical: 210
+    positions:
+      - { slot: right, count: 2 }
+    uses: 2
+    kind: simplified
+    positional: false
+    examples: ["剂", "挤", "济"]
+    name_en: "even, uniform, of equal length"
+    name_pinyin: "qí"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "齿"
+    cp: "U+9F7F"
+    block: "URO"
+    parent: "齒"
+    parent_cp: "U+9F52"
+    kangxi_radical: 211
+    positions:
+      - { slot: left, count: 1 }
+    uses: 1
+    kind: simplified
+    positional: false
+    examples: ["龄"]
+    name_en: "teeth; gears, cogs; age"
+    name_pinyin: "chǐ"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "龙"
+    cp: "U+9F99"
+    block: "URO"
+    parent: "龍"
+    parent_cp: "U+9F8D"
+    kangxi_radical: 212
+    positions:
+      - { slot: right, count: 3 }
+      - { slot: top, count: 3 }
+      - { slot: bottom, count: 2 }
+    uses: 8
+    kind: simplified
+    positional: false
+    examples: ["咙", "垄", "宠", "庞", "拢", "笼"]
+    name_en: "dragon"
+    name_pinyin: "lóng"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "CJKRadicals.txt 18.0.0: simplified-radical row ties the form to the radical"
+  - form: "⺈"
+    cp: "U+2E88"
+    block: "CJK Radicals Supplement"
+    parent: "刀"
+    parent_cp: "U+5200"
+    kangxi_radical: 18
+    positions:
+      - { slot: top, count: 86 }
+    uses: 86
+    kind: positional
+    positional: true
+    examples: ["争", "你", "像", "免", "兔", "冤"]
+    name_en: "knife; old coin; measure"
+    name_pinyin: "dāo"
+    unicode_name: "CJK RADICAL KNIFE ONE"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "Unicode UnicodeData 18.0.0: character name; relation to the radical from the name / CJKRadicals.txt"
+  - form: "⺌"
+    cp: "U+2E8C"
+    block: "CJK Radicals Supplement"
+    parent: "小"
+    parent_cp: "U+5C0F"
+    kangxi_radical: 42
+    positions:
+      - { slot: top, count: 35 }
+    uses: 35
+    kind: positional
+    positional: true
+    examples: ["俏", "倘", "光", "削", "哨", "堂"]
+    name_en: "small, tiny, insignificant"
+    name_pinyin: "xiǎo"
+    unicode_name: "CJK RADICAL SMALL ONE"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "Unicode UnicodeData 18.0.0: character name; relation to the radical from the name / CJKRadicals.txt"
+  - form: "⺍"
+    cp: "U+2E8D"
+    block: "CJK Radicals Supplement"
+    parent: "小"
+    parent_cp: "U+5C0F"
+    kangxi_radical: 42
+    positions:
+      - { slot: middle, count: 9 }
+      - { slot: top, count: 7 }
+    uses: 16
+    kind: positional
+    positional: true
+    examples: ["举", "俭", "兴", "剑", "学", "应"]
+    name_en: "small, tiny, insignificant"
+    name_pinyin: "xiǎo"
+    unicode_name: "CJK RADICAL SMALL TWO"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "Unicode UnicodeData 18.0.0: character name; relation to the radical from the name / CJKRadicals.txt"
+  - form: "⺮"
+    cp: "U+2EAE"
+    block: "CJK Radicals Supplement"
+    parent: "竹"
+    parent_cp: "U+7AF9"
+    kangxi_radical: 118
+    positions:
+      - { slot: top, count: 30 }
+    uses: 30
+    kind: positional
+    positional: true
+    examples: ["竿", "笑", "笔", "笛", "符", "笨"]
+    name_en: "bamboo; flute"
+    name_pinyin: "zhú"
+    unicode_name: "CJK RADICAL BAMBOO"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "Unicode UnicodeData 18.0.0: character name; relation to the radical from the name / CJKRadicals.txt"
+  - form: "⺳"
+    cp: "U+2EB3"
+    block: "CJK Radicals Supplement"
+    parent: "网"
+    parent_cp: "U+7F51"
+    kangxi_radical: 122
+    positions:
+      - { slot: top, count: 2 }
+    uses: 2
+    kind: positional
+    positional: true
+    examples: ["深", "罕"]
+    name_en: "net; network"
+    name_pinyin: "wǎng"
+    unicode_name: "CJK RADICAL NET THREE"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "Unicode UnicodeData 18.0.0: character name; relation to the radical from the name / CJKRadicals.txt"
+  - form: "⺼"
+    cp: "U+2EBC"
+    block: "CJK Radicals Supplement"
+    parent: "肉"
+    parent_cp: "U+8089"
+    kangxi_radical: 130
+    positions:
+      - { slot: left, count: 56 }
+      - { slot: bottom, count: 32 }
+      - { slot: inside, count: 5 }
+      - { slot: right, count: 4 }
+    uses: 97
+    kind: positional
+    positional: true
+    examples: ["俏", "削", "哨", "啃", "婿", "宵"]
+    name_en: "flesh; meat"
+    name_pinyin: "ròu"
+    unicode_name: "CJK RADICAL MEAT"
+    sources:
+      - "MMAH dictionary.txt bddc96d: slot counts from decomposition trees of our set"
+      - "Unihan 18.0.0 kDefinition/kMandarin of the parent radical character: name_en, name_pinyin"
+      - "Unicode UnicodeData 18.0.0: character name; relation to the radical from the name / CJKRadicals.txt"

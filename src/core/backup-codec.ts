@@ -28,6 +28,7 @@ export const workspaceSchema = z.object({
     writingAutoSpeak: z.boolean().optional(),
     writingSpeech: z.enum(['transitions', 'stroke', 'off']).optional(),
     writingSpeechResume: z.enum(['transitions', 'stroke']).optional(),
+    writingColourParts: z.boolean().optional(),
     haptics: z.boolean().optional(),
     exercisesPerLesson: z.number().int().min(8).max(40).optional(),
     sudokuShowPinyin: z.boolean().optional(),

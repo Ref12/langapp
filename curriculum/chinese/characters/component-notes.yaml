@@ -1,0 +1,17 @@
+# Components with no meaning of their own (reviewed). Anything not listed here and without a source meaning is "unknown",
+# except components that occur in a single character and have no definition at all, which the build tags `unique-shape`.
+# kind: placeholder = simplification stand-in for a complex part of the traditional form (does not carry the meaning or sound);
+#       structural = stroke group that only exists to build other components.
+# Corroboration (the build checks the examples contain the form): Make Me a Hanzi gives these characters the hint
+# "Simplified form of ..." with 又 as neither semantic nor phonetic part.
+components:
+  - form: "又"
+    kind: placeholder
+    examples: ["汉", "鸡", "对", "难", "欢", "观", "戏", "劝"]
+    meaning: "again, also (as a free character); no meaning in these characters"
+    source: "task brief (汉/鸡/对); examples checked against Make Me a Hanzi hints 'Simplified form of ...'"
+  - form: "丷"
+    kind: structural
+    examples: ["前", "单", "并", "兑"]
+    meaning: "a pair of dots; Unihan lists it as an archaic form of 八 'eight', but in these characters it is only a stroke group"
+    source: "task brief; Unihan 18.0.0 kDefinition of U+4E37"

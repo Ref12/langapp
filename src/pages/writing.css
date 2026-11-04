@@ -1,4 +1,4 @@
-.character-native { font-family: "Kaiti SC", KaiTi, STKaiti, serif; font-size: 40px; font-weight: 400; line-height: 1.1; margin: 0; }
+.character-native { font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 40px; font-weight: 400; line-height: 1.1; margin: 0; }
 .character-card { display: flex; flex-direction: column; }
 .character-artwork-state { text-align: center; }
 .character-word-context { flex: 1; overflow-wrap: anywhere; }
@@ -19,9 +19,9 @@ main.writing-main { padding: 8px 12px; max-width: 640px; }
 .writing-header { position: relative; display: flex; align-items: center; gap: 8px; min-height: 40px; }
 .writing-back { display: inline-flex; align-items: center; gap: 3px; min-height: 32px; font-size: 12px; color: var(--muted); flex-shrink: 0; }
 .writing-title { flex: 1; min-width: 0; margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; overflow: hidden; }
-.writing-title-character, .writing-title-hidden { font-family: "Kaiti SC", KaiTi, STKaiti, serif; font-size: 30px; line-height: 1; flex-shrink: 0; }
+.writing-title-character, .writing-title-hidden { font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 30px; line-height: 1; flex-shrink: 0; }
 .writing-meaning { margin: 0; line-height: 1.4; overflow-wrap: anywhere; }
-.writing-meaning [lang] { font-family: "Kaiti SC", KaiTi, STKaiti, serif; font-size: 18px; }
+.writing-meaning [lang] { font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 18px; }
 .writing-title-word { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .writing-help-button { width: 32px; height: 32px; min-height: 32px; flex-shrink: 0; }
 .writing-sheet { position: absolute; z-index: 20; top: 100%; right: 0; width: min(360px, calc(100vw - 24px)); max-height: 70dvh; overflow-y: auto; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); box-shadow: 0 8px 28px #0004; font-size: 12px; line-height: 1.5; }
@@ -37,7 +37,7 @@ main.writing-main { padding: 8px 12px; max-width: 640px; }
 .writing-phases li[data-done] { background: var(--accent); opacity: .55; }
 .writing-phases li[aria-current] { background: var(--accent); opacity: 1; }
 .writing-skipped { margin: 0; width: var(--writing-pad); }
-.writing-page { --writing-pad: min(100%, 520px, max(220px, calc(100dvh - 255px))); }
+.writing-page { --writing-pad: min(100%, 520px, max(220px, calc(100dvh - 285px))); }
 .writing-pad { display: block; width: var(--writing-pad); aspect-ratio: 1; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: crosshair; }
 .writing-gridlines { fill: none; stroke: var(--line); stroke-width: .3; stroke-dasharray: 1.5 1.5; }
 .writing-guide { fill: none; stroke: var(--line-strong); stroke-width: 5.5; stroke-linecap: round; stroke-linejoin: round; }
@@ -110,6 +110,14 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
 .character-card-actions button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
 .character-head .tag.can-write { color: var(--accent); border-color: var(--accent); }
 
+.writing-parts { min-width: 0; }
+.writing-parts .cmp { margin: 0; }
+.writing-parts .cmp-line { margin: 2px 0; }
+
+/* The drill player sits under the app bar: scroll it flush, and leave room for the whole stack (name line, parts, controls) on short phones. */
+.dr-teach-player { scroll-margin-top: 60px; }
+.dr-teach-player .writing-page { --writing-pad: min(100%, 520px, max(220px, calc(100dvh - 340px))); }
+
 /* Dictionary select mode */
 .select-bar { position: sticky; top: 57px; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 0; margin: 4px 0; background: var(--bg, var(--surface, Canvas)); }
 .select-bar .select-count { font-weight: 600; }
@@ -123,3 +131,19 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
 .word-grid .select-item > .word-card { flex: 1; }
 .select-bar .button { min-height: 40px; padding: 6px 12px; font-size: 0.9rem; }
 .select-bar { border-bottom: 1px solid var(--border, rgba(128,128,128,.3)); }
+
+/* Dictionary card: meaning first, one usage, the rest behind the info button. */
+.character-head { align-items: flex-start; }
+.character-head-tools { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.character-head-tools .icon-button.character-info-button { width: 32px; height: 32px; min-height: 32px; border: 1px solid var(--line); border-radius: 6px; }
+.character-reading { margin: 0; min-height: 0; font-size: 15px; }
+.character-reading:empty { display: none; }
+.character-meaning { margin: 2px 0 4px; font-size: 15px; font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; }
+.character-head .card-topline { margin: 2px 0 0; display: flex; gap: 6px; flex-wrap: wrap; }
+.character-word-context { margin: 6px 0; }
+.character-word-context > .character-more-words { font-size: 12px; min-height: 28px; }
+.character-info { margin-top: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-raised); }
+.character-info p { margin: 4px 0; }
+
+/* Colour parts: clearly filled while on. */
+.writing-controls .icon-button.is-on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }

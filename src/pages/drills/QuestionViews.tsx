@@ -5,6 +5,7 @@ import { HandwritingPad } from '../../components/characters/HandwritingPad'
 import { guidedChars } from '../../core/drills/write-queue'
 import { IntroCard } from './IntroCards'
 import { CharacterLoop } from './Teach'
+import { WordParts } from './CharacterIntro'
 import { createGuidedAudio, type GuidedAudioState } from '../../core/guided-audio'
 import { getPlaybackState, playBrowserSpeechToEnd, stopBrowserSpeech } from '../../core/assistant/speech'
 import { startSpeechCapture, speechCaptureSupported, type SpeechCaptureSession } from '../../core/assistant/speech-capture'
@@ -132,7 +133,8 @@ function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps
   // A word that already has its result stays as it is when revisited; the loop is only for another look.
   const finish = () => { setStarted(false); if (!locked) onAnswer({ misses: 0, hinted: false } satisfies WriteAnswer) }
   return <>
-    <IntroCard item={data.item} catalog={ctx.catalog} workspace={ctx.workspace} now={ctx.now} run={ctx.run} busy={ctx.busy} route="#practice" />
+    {!started && <IntroCard item={data.item} catalog={ctx.catalog} workspace={ctx.workspace} now={ctx.now} run={ctx.run} busy={ctx.busy} route="#practice" />}
+      {!started && <WordParts word={data.item.zh} />}
     {!locked && !started && <div className="button-row dr-center">
       {characters.length ? <button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button>
         : <><p className="small muted">{data.chars ? 'You have already written these characters.' : 'There is no stroke guide for these characters.'}</p><button type="button" className="button primary" onClick={finish}>Continue</button></>}</div>}

@@ -239,3 +239,17 @@
 .resume-row .resume-actions > .icon-button { flex: 0 0 40px; width: 40px; height: 40px; }
 .resume-row .resume-actions > .icon-button.primary-icon { background: var(--accent); color: var(--on-accent); }
 .resume-row .resume-actions > .icon-button.primary-icon:hover { filter: brightness(1.1); }
+
+.char-intro { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 12px 14px; display: grid; gap: 6px; min-width: 0; }
+.char-intro .eyebrow { margin: 0; }
+.char-intro-top { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; align-items: center; }
+.char-intro-glyph { display: grid; place-items: center; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-inset); font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 80px; line-height: 1; }
+.char-intro-name { font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 34px; font-weight: 400; margin: 0; line-height: 1.1; }
+.char-intro-reading, .char-intro-info p { margin: 2px 0; line-height: 1.4; }
+.char-intro-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.word-parts { display: grid; gap: 4px; margin: 4px 0 8px; }
+.word-parts .eyebrow { margin: 6px 0 0; }
+.word-part-char { border-top: 1px solid var(--line); padding-top: 4px; }
+.word-part-head { margin: 0; }
+.word-part-glyph { font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 26px; }
+@media (min-width: 900px) { .char-intro { max-width: 640px; margin-inline: auto; } .char-intro-top { grid-template-columns: 160px minmax(0, 1fr); } .char-intro-glyph { font-size: 112px; } }

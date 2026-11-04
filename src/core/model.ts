@@ -67,6 +67,8 @@ export interface Preferences {
   /** The last non-Off `writingSpeech`, what the quick mute restores. */
   writingSpeechResume?: 'transitions' | 'stroke'
   haptics?: boolean
+  /** Writing player: colour each stroke by its character part (the Palette button). Off by default. */
+  writingColourParts?: boolean
   /** Exercises written for each lesson (new, review, collection, span): 8 to 40, default 20. */
   exercisesPerLesson?: number
   sudokuShowPinyin?: boolean
