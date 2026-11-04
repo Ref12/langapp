@@ -493,3 +493,5 @@ select { padding: 10px; }
 .page-actions-description { font-size: 12px; line-height: 1.3; color: var(--muted); white-space: normal; max-width: 240px; }
 .page-actions-item:has(.page-actions-description) { align-items: flex-start; padding-block: 6px; }
 .page-actions-item:has(.page-actions-description) .page-actions-check { margin-top: 3px; }
+.start-panel > .button-row { flex: 0 0 auto; }
+@media (max-width: 760px) { .start-panel > .button-row { justify-content: center; flex-wrap: wrap; } .start-panel > .button-row .button { flex: 1 1 auto; justify-content: center; } }

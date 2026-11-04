@@ -135,9 +135,10 @@ function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps
   return <>
     {!started && <IntroCard item={data.item} catalog={ctx.catalog} workspace={ctx.workspace} now={ctx.now} run={ctx.run} busy={ctx.busy} route="#practice" />}
       {!started && <WordParts word={data.item.zh} />}
-    {!locked && !started && <div className="button-row dr-center">
-      {characters.length ? <button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button>
-        : <><p className="small muted">{data.chars ? 'You have already written these characters.' : 'There is no stroke guide for these characters.'}</p><button type="button" className="button primary" onClick={finish}>Continue</button></>}</div>}
+    {!locked && !started && <div className="start-panel" role="region" aria-label="Learn to write">
+      {characters.length ? <><p className="small muted">{characters.length === 1 ? '1 character to learn.' : `${characters.length} characters to learn.`} Watch, trace, then write from memory.</p>
+        <div className="button-row"><button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button></div></>
+        : <><p className="small muted">{data.chars ? 'You have already written these characters.' : 'There is no stroke guide for these characters.'}</p><div className="button-row"><button type="button" className="button primary" onClick={finish}>Continue</button></div></>}</div>}
     {started && <CharacterLoop characters={characters} workspace={ctx.workspace} startAtEnd={arrive === 'last'} menu onPreviousWord={onPrevious} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
     <Result state={state} />
   </>

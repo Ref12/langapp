@@ -5,7 +5,7 @@ import { setCharacterWriteState } from '../../core/characters/store'
 import { usePageActions } from '../../components/page-actions-context'
 import { WritingPlayer } from '../Writing'
 import { reportLoadFailure } from '../../core/appUpdate'
-import { CharacterIntro } from './CharacterIntro'
+import { CharacterIntro, CharacterIntroBar } from './CharacterIntro'
 
 /**
  * Teaches a character with the writing practice's own player: the full loop, every phase (full guide, next-stroke guide, from memory) three
@@ -52,8 +52,9 @@ export function CharacterLoop({ characters, workspace, onTaught, onDone, onPrevi
   if (!character) return null
   // The intro comes first for each character; arriving at the end from the next word's Previous goes straight to the loop.
   if (!introduced.has(character)) return <>
-    <CharacterIntro key={character} character={character} position={characters.length > 1 ? { number: index + 1, total: characters.length } : undefined} onStart={() => setIntroduced(current => new Set(current).add(character))} onKnown={known} />
+    <CharacterIntro key={character} character={character} position={characters.length > 1 ? { number: index + 1, total: characters.length } : undefined} pinned onStart={() => setIntroduced(current => new Set(current).add(character))} onKnown={known} />
     {previous && <p className="dr-center"><button type="button" className="button secondary small-button" onClick={previous}>Previous</button></p>}
+    <CharacterIntroBar character={character} status={characters.length > 1 ? `Character ${index + 1} of ${characters.length}. Trace it, then write it from memory.` : 'Trace it, then write it from memory.'} onStart={() => setIntroduced(current => new Set(current).add(character))} onKnown={known} />
   </>
   return <>
     {characters.length > 1 && <p className="small muted dr-center" role="status">Character {index + 1} of {characters.length}</p>}
