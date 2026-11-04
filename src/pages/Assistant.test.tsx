@@ -599,7 +599,7 @@ describe('first usable Assistant', () => {
     expect(fetch).toHaveBeenCalledTimes(1)
   })
 
-  it('does not offer contextual help until a practice answer is checked or revealed', async () => {
+  it('leaves the practice question selectable and offers phrase actions once the answer is checked or revealed', async () => {
     await trackWord('zh:tea', 'test')
     const id = await startPractice('all')
     window.location.hash = `practice/${id}`
@@ -607,10 +607,9 @@ describe('first usable Assistant', () => {
     render(<App />)
     await screen.findByRole('button', { name: 'Show answer' })
     expect(screen.queryByRole('button', { name: 'Phrase actions' })).not.toBeInTheDocument()
-    expect(document.querySelector('[data-assistant-protected="true"]')).not.toBeNull()
+    expect(document.querySelector('[data-assistant-protected]')).toBeNull()
     await user.click(screen.getByRole('button', { name: 'Show answer' }))
     await screen.findByRole('button', { name: 'Phrase actions' })
-    expect(document.querySelector('[data-assistant-protected="true"]')).toBeNull()
     await user.click(openPhraseActions().getByRole('button', { name: 'Ask' }))
     await screen.findByRole('textbox', { name: 'Message Assistant' })
     expect((await db.sessions.get(id))?.questions[0].revealed).toBe(true)
