@@ -27,13 +27,6 @@ const TITLES: Record<string, string> = {
   choice: 'Choose the answer', match: 'Match the pairs', free: 'Type the answer', pinyin: 'Type the pinyin', learn: 'Learn to write', write: 'Write it', translate: 'Translate into Chinese', repeat: 'Repeat after me', convo: 'Answer the questions',
 }
 
-/** Selecting a drill question's text stays possible before it is answered, minus Ask (and Hear where hearing gives the answer away). */
-function guard(q: Q, state?: QState): { 'data-assistant-protected'?: 'restricted'; 'data-assistant-no-hear'?: '' } {
-  if ((state?.status ?? 'open') !== 'open') return {}
-  const leaks = q.data.t === 'pinyin' || (q.data.t === 'convo' && q.data.mode === 'listen')
-  return { 'data-assistant-protected': 'restricted', ...(leaks ? { 'data-assistant-no-hear': '' as const } : {}) }
-}
-
 /** One drill type over the items of a set: one at a time, or as a single page answered in bulk. The first pass of a type is graded; a redo is not. */
 export function DrillRun({ set, type, items, catalog, workspace, only, backHref, now, run, busy }: RunProps) {
   const progress = set.progress[type]
@@ -130,7 +123,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     const checked = queue.some(q => (states[q.key]?.status ?? 'open') !== 'open')
     const checkAll = () => { for (const q of queue) { const state = states[q.key]; if (state?.answer !== undefined && (state.status ?? 'open') === 'open') check(q, state.answer) } }
     return <div className="dr">{header}{toolbar}
-      <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel" {...guard(q, states[q.key])}><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{TITLES[q.data.t]}</h2></div>
+      <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel"><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{TITLES[q.data.t]}</h2></div>
         <QuestionView q={q} quiz state={states[q.key] ?? { status: 'open' }} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} /></li>)}</ol>
       <div className="dr-sticky" role="region" aria-label="Quiz progress"><span><strong>{answered} of {queue.length}</strong> answered</span>
         {toConfirm.length > 0 ? <button type="button" className="button primary" disabled={toConfirm.some(q => !states[q.key]?.chosen)} onClick={() => toConfirm.forEach(confirm)}>Confirm marks</button>
@@ -144,7 +137,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   return <div className="dr"><section className="panel dr-run">{header}
     <progress aria-label="Progress" value={index} max={queue.length} />
     {toolbar}
-    <div className="dr-question" {...(q.data.t === 'write' || q.data.t === 'learn' ? { 'data-assistant-exclude': '' } : guard(q, state))}>
+    <div className="dr-question" {...(q.data.t === 'write' || q.data.t === 'learn' ? { 'data-assistant-exclude': '' } : {})}>
     <h2 className="small dr-qtitle">{TITLES[q.data.t]}</h2>
     <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} arrive={arrived === q.key ? 'last' : undefined} onPrevious={type === 'learn' && index > 0 ? () => { setArrived(queue[index - 1].key); setIndex(index - 1) } : undefined} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
     </div>

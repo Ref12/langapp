@@ -35,9 +35,9 @@ afterEach(() => {
   vi.restoreAllMocks(); vi.unstubAllGlobals()
 })
 
-function Harness({ route = 'reader/test', text = '你好，朋友。', protectedText = false, level = 'true' }: { route?: string; text?: string; protectedText?: boolean; level?: string }) {
+function Harness({ route = 'reader/test', text = '你好，朋友。', protectedText = false }: { route?: string; text?: string; protectedText?: boolean }) {
   return <>
-    <main id="main" tabIndex={-1}><p id="source-text" data-assistant-protected={protectedText ? level : undefined}>{text}</p>
+    <main id="main" tabIndex={-1}><p id="source-text" data-assistant-protected={protectedText ? 'true' : undefined}>{text}</p>
       <p id="ruby-text"><ruby>茶<rt>chá</rt></ruby>。<span data-assistant-exclude>Hear</span></p></main>
     <SelectionActions route={route} title="Test source" rate={0.25} />
   </>
@@ -241,28 +241,6 @@ it('still drops the toolbar when the selection collapses with no pointer on it (
   await select()
   await collapse()
   expect(screen.queryByRole('toolbar')).not.toBeInTheDocument()
-})
-
-it('shows the bar on a restricted exercise without Ask, and with Ask elsewhere', async () => {
-  const { unmount } = render(<Harness protectedText level="restricted" />)
-  await select()
-  const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
-  expect(within(toolbar).getByRole('button', { name: /^Hear/ })).toBeInTheDocument()
-  const menu = openPhraseActions(toolbar)
-  expect(menu.getByRole('button', { name: 'Practice' })).toBeInTheDocument()
-  expect(menu.getByRole('button', { name: 'Write' })).toBeInTheDocument()
-  expect(menu.queryByRole('button', { name: 'Ask' })).toBeNull()
-  unmount(); cleanup()
-  render(<Harness />)
-  await select()
-  expect(openPhraseActions(await screen.findByRole('toolbar', { name: 'Selected text actions' })).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
-})
-
-it('hides Hear where the restricted area says hearing would leak the answer', async () => {
-  render(<main id="main"><p id="source-text" data-assistant-protected="restricted" data-assistant-no-hear>你好</p><SelectionActions route="reader/test" title="T" /></main>)
-  await select()
-  const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
-  expect(within(toolbar).queryByRole('button', { name: /^Hear/ })).toBeNull()
 })
 
 it('does not centre the bar with a transform: that makes it the containing block of the fixed ⋯ popup, which then opens off screen', async () => {

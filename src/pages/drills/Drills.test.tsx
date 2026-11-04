@@ -322,12 +322,10 @@ describe('Practice home', () => {
       const options = await screen.findAllByRole('radio').catch(() => [])
       if (!options.length) break
       await user.click(options[0])
-      // Selecting a question is allowed before it is answered (without Ask); once answered it is unrestricted.
-      expect(options[0].closest('[data-assistant-protected]')).toHaveAttribute('data-assistant-protected', 'restricted')
-      expect(options[0].closest('[data-assistant-exclude]')).toBeNull()
+      // Questions are open to selection help (Ask included) before and after answering; only the chrome is excluded.
+      expect(options[0].closest('[data-assistant-protected], [data-assistant-exclude]')).toBeNull()
       expect(document.querySelector('.dr .back-link')!.closest('[data-assistant-exclude]')).not.toBeNull()
       await user.click(screen.getByRole('button', { name: 'Check answer' }))
-      await waitFor(() => expect(options[0].closest('[data-assistant-protected]')).toBeNull())
       await user.click(await screen.findByRole('button', { name: /^(Next|Finish)$/ }))
     }
     expect(await screen.findByRole('region', { name: 'Pass finished' })).toBeInTheDocument()

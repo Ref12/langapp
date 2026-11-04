@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { selectedSnippet, selectionAccess, selectionPracticeUnavailable, snippetLocale } from './selection'
+import { selectedSnippet, selectionPracticeUnavailable, snippetLocale } from './selection'
 
 afterEach(() => { document.body.replaceChildren(); window.getSelection()?.removeAllRanges() })
 
@@ -72,33 +72,5 @@ describe('context selection', () => {
     expect(selectionPracticeUnavailable('你'.repeat(3001))).toContain('3,000')
     expect(selectionPracticeUnavailable('hello')).toContain('Mandarin')
     expect(selectionPracticeUnavailable('お茶')).toContain('Mandarin')
-  })
-})
-
-describe('protection levels', () => {
-  const access = (html: string) => {
-    const root = document.createElement('main')
-    root.innerHTML = html
-    document.body.append(root)
-    const range = document.createRange()
-    range.selectNodeContents(root)
-    const selection = window.getSelection()!
-    selection.removeAllRanges(); selection.addRange(range)
-    return selectionAccess(selection, root)
-  }
-  it('blocks a fully protected area (game boards)', () => {
-    expect(access('<div data-assistant-protected="true">\u4f60\u597d</div>')).toBeUndefined()
-  })
-  it('lets a restricted area be selected but withholds Ask', () => {
-    expect(access('<div data-assistant-protected="restricted">\u4f60\u597d</div>')).toEqual({ text: '\u4f60\u597d', ask: false, hear: true })
-  })
-  it('withholds Hear too where the area says hearing gives the answer away', () => {
-    expect(access('<div data-assistant-protected="restricted" data-assistant-no-hear>\u4f60\u597d</div>')).toEqual({ text: '\u4f60\u597d', ask: false, hear: false })
-  })
-  it('a full block wins over a restricted area in the same selection', () => {
-    expect(access('<div data-assistant-protected="restricted">a</div><div data-assistant-protected="true">b</div>')).toBeUndefined()
-  })
-  it('offers everything outside protected areas', () => {
-    expect(access('<p>\u4f60\u597d</p>')).toEqual({ text: '\u4f60\u597d', ask: true, hear: true })
   })
 })

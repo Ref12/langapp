@@ -61,7 +61,7 @@ function PracticeQuestion({ session, attempt: persistedAttempt, workspace, run, 
       }
     })
   }
-  return <div className="practice-player answer-player panel" data-assistant-protected={!question.revealed && !attempt ? 'restricted' : undefined}>
+  return <div className="practice-player answer-player panel">
     <div className="card-topline"><span className="eyebrow">READING / {meaning ? 'RECOGNIZE A MEANING' : 'RECOGNIZE A WORD'}</span><span className="small muted">Question {session.cursor + 1} of {session.questions.length}</span></div>
     <progress aria-label="Practice progress" value={session.cursor} max={session.questions.length} />
     <div className="practice-question-content">
