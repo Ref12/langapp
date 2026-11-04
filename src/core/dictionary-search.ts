@@ -37,7 +37,8 @@ function matchReading(query: string, syllables: readonly Syllable[]): 0 | 1 | 2 
     if (k === syllables.length) return
     const syllable = syllables[k]
     const rest = query.slice(at)
-    const forms = [syllable.marked.normalize('NFC'), `${syllable.base}${syllable.tone}`, ...(syllable.tone === '5' ? [`${syllable.base}0`] : []), syllable.base]
+    const marked = syllable.marked.normalize('NFC')
+    const forms = [marked, `${marked}${syllable.tone}`, `${syllable.base}${syllable.tone}`, ...(syllable.tone === '5' ? [`${syllable.base}0`] : []), syllable.base]
     for (const form of new Set(forms)) if (rest.startsWith(form)) go(k + 1, at + form.length)
     if (syllable.base.startsWith(rest) && best < 1) best = 1
   }

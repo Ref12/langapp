@@ -281,7 +281,7 @@ describe('Mandarin learning loop', () => {
     expect(screen.getByRole('button', { name: 'Add to learning set' })).toBeEnabled()
   })
 
-  it('saves appearance and searches tone-marked pinyin without requiring accents', async () => {
+  it('saves appearance and searches numbered pinyin without requiring accents', async () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('heading', { name: 'Make the language yours.' })
@@ -291,7 +291,7 @@ describe('Mandarin learning loop', () => {
     await go('dictionary')
     await screen.findByRole('searchbox', { name: 'Search dictionary' })
     await screen.findByText(/^\d+ items$/)
-    await user.type(screen.getByRole('searchbox', { name: 'Search dictionary' }), 'cha2--tea')
+    await user.type(screen.getByRole('searchbox', { name: 'Search dictionary' }), 'cha2')
     expect(await screen.findByRole('heading', { name: '茶' })).toBeInTheDocument()
     cleanup()
     render(<App />)

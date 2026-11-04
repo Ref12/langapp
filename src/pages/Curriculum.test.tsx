@@ -257,7 +257,7 @@ describe('curriculum experience', () => {
     expect(await db.words.count()).toBe(0)
   })
 
-  it('searches the v2 dictionary by pinyin or label and adds items to the knowledge set', async () => {
+  it('searches the v2 dictionary by pinyin or meaning (not by label) and adds items to the knowledge set', async () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('heading', { name: 'Your Mandarin path.' })
@@ -269,6 +269,9 @@ describe('curriculum experience', () => {
     expect(await screen.findByRole('heading', { name: '咖啡' })).toBeInTheDocument()
     await user.clear(search)
     await user.type(search, 'xue2-sheng5--student')
+    expect(await screen.findByText('No matching items')).toBeInTheDocument() // labels are not searched
+    await user.clear(search)
+    await user.type(search, 'xue2sheng5')
     await waitFor(() => expect(screen.getAllByRole('article')).toHaveLength(1))
     expect(screen.getByRole('heading', { name: '学生' })).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Add to knowledge set' }))
@@ -278,7 +281,7 @@ describe('curriculum experience', () => {
     await user.click(screen.getByRole('button', { name: /^Grammar \(\d+\)$/ }))
     await screen.findByRole('button', { name: /^Grammar \(\d+\)$/, pressed: true })
     const grammarSearch = screen.getByRole('searchbox', { name: 'Search dictionary' })
-    await user.type(grammarSearch, 's-shi4-n--identity')
+    await user.type(grammarSearch, 'classify with a noun')
     await waitFor(() => expect(screen.getAllByRole('article')).toHaveLength(1))
     expect(screen.getByRole('article').textContent).toContain('I am a student.')
     await user.click(screen.getByRole('button', { name: /^My knowledge set \(0\)$/ }))
