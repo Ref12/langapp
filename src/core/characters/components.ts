@@ -26,8 +26,11 @@ const url = () => `${import.meta.env?.BASE_URL ?? '/'}characters/chinese/compone
 /** For tests: forget the loaded tables. */
 export const resetComponentData = () => { table = undefined; glyphTable = undefined; formIndex = undefined }
 
+/** The parts file, retried once: a flaky or briefly offline network is the usual failure ("Failed to fetch"). */
+const fetchOnce = () => fetch(url()).catch(() => fetch(url()))
+
 export function loadComponentData(): Promise<ComponentData> {
-  table ??= fetch(url()).then(response => response.ok ? response.json() as Promise<ComponentData> : Promise.reject(new Error(`The character parts could not be loaded (${response.status}).`)))
+  table ??= fetchOnce().then(response => response.ok ? response.json() as Promise<ComponentData> : Promise.reject(new Error(`The character parts could not be loaded (${response.status}).`)))
     .then(data => data?.characters && data.components ? data : Promise.reject(new Error('The character parts file is not in the expected format.')))
     .catch(reason => { table = undefined; throw reason })
   return table

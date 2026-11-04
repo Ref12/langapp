@@ -36,3 +36,6 @@
 .cmp-box.nested { min-height: 34px; grid-template-columns: 28px minmax(0, 1fr); }
 .cmp-box.nested .cmp-bg { width: 28px; height: 28px; font-size: 21px; }
 .cmp-missing { color: var(--muted); }
+.cmp-row-plain { align-items: center; justify-content: space-between; }
+.cmp-colour { width: 32px; height: 32px; min-height: 32px; border: 1px solid var(--line); border-radius: 6px; flex-shrink: 0; }
+.cmp-colour.is-on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }

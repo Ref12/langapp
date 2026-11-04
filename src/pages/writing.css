@@ -147,3 +147,6 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
 
 /* Colour parts: clearly filled while on. */
 .writing-controls .icon-button.is-on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+.update-bar { position: fixed; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom)); z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface-raised, var(--surface)); box-shadow: 0 8px 28px #0004; }
+.update-bar .button { min-height: 36px; padding: 4px 12px; }

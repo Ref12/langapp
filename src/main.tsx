@@ -1,8 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import { installUpdateGuard } from './core/appUpdate'
 import '../docs/mockups/theme.css'
 
+installUpdateGuard()
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)
 
 // Production builds ship the scoped service worker; the dev server does not.

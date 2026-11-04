@@ -55,7 +55,7 @@ function Box({ part, colourIndex, colour, nested, data, glyphsOpen, onForms, sou
 }
 
 /** The character's decomposition: a text line, expanding to boxes (glyph, meaning, role). One component for every card. */
-export function Decomposition({ character, colour = false, label = 'Show decomposition', hideLabel = 'Hide decomposition', defaultOpen = false, onOpenChange, maskHead = false }: { maskHead?: boolean;
+export function Decomposition({ character, colour = false, label = 'Show decomposition', hideLabel = 'Hide decomposition', defaultOpen = false, onOpenChange, maskHead = false, extra }: { maskHead?: boolean; extra?: React.ReactNode;
   character: string; colour?: boolean; label?: string; hideLabel?: string; defaultOpen?: boolean; onOpenChange?: (open: boolean) => void
 }) {
   const { data, glyphs, error } = useComponentData()
@@ -72,13 +72,16 @@ export function Decomposition({ character, colour = false, label = 'Show decompo
     return () => { live = false }
   }, [parts])
   const toggle = () => { setOpen(value => { onOpenChange?.(!value); return !value }) }
-  if (error) return <p className="small muted cmp-error">{error}</p>
-  if (!data) return <p className="small muted cmp-error">Loading the parts\u2026</p>
-  if (!parts.length) return <p className="small muted cmp-line" data-testid="decomposition-none">{character} is a single shape; there is nothing to split.</p>
+  const withExtra = (node: React.ReactNode) => extra ? <div className="cmp-row cmp-row-plain">{node}{extra}</div> : node
+  // Never the raw network error: a quiet line (the Colour parts toggle, if given, stays on it).
+  if (error) return withExtra(<p className="small muted cmp-error">Parts unavailable offline</p>)
+  if (!data) return withExtra(<p className="small muted cmp-error">Loading the parts\u2026</p>)
+  if (!parts.length) return withExtra(<p className="small muted cmp-line" data-testid="decomposition-none">{character} is a single shape; there is nothing to split.</p>)
   return <div className="cmp" data-testid="decomposition">
     <div className="cmp-row">
       <p className="cmp-line" onClick={event => { if (!(event.target as HTMLElement).closest('a')) toggle() }}><Line character={character} parts={parts} colour={colour} sounds={sounds} maskHead={maskHead} /></p>
       <button type="button" className="cmp-toggle" aria-expanded={open} onClick={toggle}>{open ? hideLabel : label} <span aria-hidden="true">{open ? '\u25b4' : '\u25be'}</span></button>
+      {extra}
     </div>
     {open && <div className="cmp-boxes">{parts.map(part => <Box key={part.key} part={part} colourIndex={part.index} colour={colour} nested={false} data={data} sounds={sounds}
       glyphsOpen={formsOpen.has(part.key)} onForms={() => setFormsOpen(current => { const next = new Set(current); if (next.has(part.key)) next.delete(part.key); else next.add(part.key); return next })} />)}</div>}

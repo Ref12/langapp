@@ -21,6 +21,28 @@ export const stubFiles = () => {
 beforeEach(() => { resetComponentData(); resetCharacterMeanings(); stubFiles() })
 afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 
+describe('Decomposition when the parts file cannot be fetched', () => {
+  it('retries once, then recovers', async () => {
+    const real = stubFiles()
+    let first = true
+    vi.stubGlobal('fetch', vi.fn((input: RequestInfo | URL) => { if (String(input).includes('components.generated') && first) { first = false; return Promise.reject(new TypeError('Failed to fetch')) } return real(input) }))
+    render(<Decomposition character="河" />)
+    await waitFor(() => expect(document.querySelector('.cmp-line')).toHaveTextContent('河 = 氵 water + 可 kě'))
+  })
+  it('shows a quiet line, never the raw "Failed to fetch"; the extra control stays on the line', async () => {
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
+    render(<Decomposition character="河" extra={<button type="button" aria-label="Colour parts">c</button>} />)
+    expect(await screen.findByText('Parts unavailable offline')).toBeInTheDocument()
+    expect(screen.queryByText(/Failed to fetch/)).toBeNull()
+    expect(screen.getByRole('button', { name: 'Colour parts' }).closest('.cmp-row')).not.toBeNull()
+  })
+  it('puts an extra control after the Parts toggle on the decomposition line', async () => {
+    render(<Decomposition character="河" label="Parts" hideLabel="Parts" extra={<button type="button" aria-label="Colour parts">c</button>} />)
+    const toggle = await screen.findByRole('button', { name: /Parts/ })
+    expect(toggle.nextElementSibling).toBe(screen.getByRole('button', { name: 'Colour parts' }))
+  })
+})
+
 describe('Decomposition', () => {
   it('starts as a text line: 河 = 氵 water + 可 kě', async () => {
     render(<Decomposition character="河" />)

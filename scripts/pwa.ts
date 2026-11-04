@@ -8,9 +8,12 @@ import type { Plugin } from 'vite'
  * touches IndexedDB, so learning data is never cleared.
  */
 export function pwa(): Plugin {
+  // One id per build: baked into the bundle (`__APP_BUILD__`) and published as version.json, so a running tab can tell whether a newer deploy exists.
+  const build = Date.now().toString(36)
   return {
     name: 'langapp-pwa',
     apply: 'build',
+    config: () => ({ define: { __APP_BUILD__: JSON.stringify(build) } }),
     transformIndexHtml: () => [
       { tag: 'link', attrs: { rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' }, injectTo: 'head' },
     ],

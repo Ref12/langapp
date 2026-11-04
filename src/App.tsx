@@ -49,6 +49,7 @@ import { BackupNow } from './components/BackupNow'
 import { SetupLinkStatus } from './components/SetupQr'
 import './App.css'
 import './components/assistant/assistant.css'
+import { UpdateBar } from './components/UpdateBar'
 
 const navigation = [
   { id: 'overview', label: 'Overview', icon: Home },
@@ -222,7 +223,8 @@ function WorkspaceApp() {
         </main>
       </div>
       <WritingSheetHost workspace={workspace} busy={busy} now={now} run={run} />
-      <PlaybackStatus debug={preferences.speechDebugMessages ?? false} />
+      <UpdateBar />
+        <PlaybackStatus debug={preferences.speechDebugMessages ?? false} />
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>

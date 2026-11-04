@@ -315,7 +315,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
       </div>}
     </header>
     {(inWord || !!place) && ownMeaning && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}
-    <div className="writing-parts"><Decomposition character={asset.character} colour={colour} label="Parts" hideLabel="Parts" maskHead={hidden} /></div>
+    <div className="writing-parts"><Decomposition character={asset.character} colour={colour} label="Parts" hideLabel="Parts" maskHead={hidden} extra={<button className={`icon-button cmp-colour${colour ? ' is-on' : ''}`} title="Colour parts" aria-label="Colour parts" aria-pressed={colour} disabled={busy} onClick={() => { void run(() => savePreferences({ writingColourParts: !colour })) }}><Palette size={18} /></button>} /></div>
     <section className="writing-workbench" aria-label="Writing exercise">
       <div className="writing-statusline">
         <span><strong>{PHASES[round.phase]}</strong> &middot; {round.repetition + 1}/{REPETITIONS}</span>
@@ -337,7 +337,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
             const visible = replay !== null ? index <= replay : round.finished || index < round.completed || round.phase === 0 || (round.phase === 1 || hint) && index === round.completed
             return visible ? <path key={`${index}-${replay}`} d={guide.path} data-stroke={index} data-part={colour ? owners[index] : undefined}
               className={`writing-guide${replay !== null ? index === replay ? ' replaying' : ' replayed' : index < round.completed ? ' completed' : ''}`}
-              strokeDasharray={replay === index ? guide.length : undefined} style={{ ...(replay === index ? { '--stroke-length': guide.length } : {}), ...(colour && owners[index] !== undefined ? { stroke: partColour(owners[index]!) } : {}) } as React.CSSProperties} /> : null
+              strokeDasharray={replay === index ? guide.length : undefined} style={{ ...(replay === index ? { '--stroke-length': guide.length } : {}), ...(colour && owners[index] !== undefined ? { stroke: partColour(owners[index]!), ...(replay === null && !round.finished && index >= round.completed ? { strokeOpacity: 0.4 } : {}) } : {}) } as React.CSSProperties} /> : null
           })}
         </g>
         {current && replay === null && !round.finished && (!hidden || hint) && <g aria-hidden="true" className="writing-direction">
@@ -351,7 +351,6 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <button className="icon-button" aria-label={`${autoSpeak ? 'Mute' : 'Unmute'} automatic character audio`} aria-pressed={!autoSpeak}
           title={autoSpeak ? 'Mute automatic character audio' : 'Unmute automatic character audio'} disabled={busy}
           onClick={() => { if (autoSpeak) stopBrowserSpeech(); void run(() => savePreferences(autoSpeak ? { writingSpeech: 'off', writingSpeechResume: speech as 'transitions' | 'stroke' } : { writingSpeech: writingSpeechResume(workspace.preferences) })) }}>{autoSpeak ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
-        <button className={`icon-button${colour ? ' is-on' : ''}`} title="Colour parts" aria-label="Colour parts" aria-pressed={colour} disabled={busy} onClick={() => { void run(() => savePreferences({ writingColourParts: !colour })) }}><Palette size={18} /></button>
       <button className="icon-button" title="Undo last stroke" aria-label="Undo" disabled={!round.completed || round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: Math.max(0, value.completed - 1), feedback: '' })) }}><Undo2 size={18} /></button>
         <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>

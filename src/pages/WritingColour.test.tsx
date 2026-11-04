@@ -28,6 +28,12 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 const palette = () => screen.getByRole('button', { name: 'Colour parts' })
 
 describe('Colour parts in the writing player', () => {
+  it('sits on the decomposition line, not in the toolbar beside Undo', async () => {
+    render(<WritingPlayer {...props} asset={assetFor('河')} backHref="#x" />)
+    await screen.findByText(/氵/, { selector: '.cmp-glyph' })
+    expect(palette().closest('.cmp-row')).not.toBeNull()
+    expect(palette().closest('[role="toolbar"]')).toBeNull()
+  })
   it('is off by default: the Palette button is not pressed and no stroke is coloured', async () => {
     render(<WritingPlayer {...props} asset={assetFor('河')} backHref="#x" />)
     await screen.findByText(/氵/, { selector: '.cmp-glyph' })
@@ -73,5 +79,17 @@ describe('Colour parts in the writing player', () => {
     const guides = [...document.querySelectorAll('.writing-guide')] as SVGPathElement[]
     expect(guides.length).toBeGreaterThan(0)
     expect(guides.every(guide => guide.style.stroke.startsWith('var(--part-c'))).toBe(true)
+  })
+  it('with colour on, unwritten strokes are the part colour dimmed, written ones full', async () => {
+    const user = userEvent.setup()
+    await db.preferences.update('workspace', { writingColourParts: true })
+    props = { ...props, workspace: await loadWorkspace() }
+    render(<WritingPlayer {...props} asset={assetFor('河')} backHref="#x" />)
+    await screen.findByText(/氵/, { selector: '.cmp-glyph' })
+    const guides = () => [...document.querySelectorAll<SVGPathElement>('.writing-guide[data-part]')]
+    expect(guides().length).toBeGreaterThan(1)
+    expect(guides().every(path => path.style.strokeOpacity === '0.4')).toBe(true)
+    expect(guides().every(path => path.style.stroke !== '')).toBe(true)
+    void user
   })
 })

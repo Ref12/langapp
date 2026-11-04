@@ -3,6 +3,7 @@ import { loadCharacterAsset, type CharacterAsset } from '../../core/characters/a
 import type { Workspace } from '../../core/model'
 import { setCharacterWriteKnown } from '../../core/characters/store'
 import { WritingPlayer } from '../Writing'
+import { reportLoadFailure } from '../../core/appUpdate'
 import { CharacterIntro } from './CharacterIntro'
 
 /**
@@ -15,7 +16,7 @@ export function TeachCharacter({ character, workspace, onTaught, onNextCharacter
   useEffect(() => {
     let live = true
     setAsset(undefined)
-    loadCharacterAsset(character).then(value => { if (live) setAsset(value) }, reason => { if (live) setError(reason instanceof Error ? reason.message : 'The stroke guide could not be loaded.') })
+    loadCharacterAsset(character).then(value => { if (live) setAsset(value) }, reason => { void reportLoadFailure(reason); if (live) setError('The stroke guide is unavailable offline. Check your connection and try again.') })
     return () => { live = false }
   }, [character])
   const player = useRef<HTMLDivElement>(null)

@@ -114,7 +114,10 @@
 .dr-columns { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 @media (max-width: 760px) { .dr-columns { grid-template-columns: minmax(0, 1fr); } }
 .dr-write-line { overflow-wrap: anywhere; }
-.dr-teach { display: grid; gap: 8px; min-width: 0; }
+.dr-teach { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; min-width: 0; }
+/* A grid's implicit column is `auto` (min-content), so the player's nowrap title and toolbar widened every ancestor past the phone: pin the column to the container. */
+.dr-teach > *, .dr-teach-player { min-width: 0; max-width: 100%; }
+.dr-run { grid-template-columns: minmax(0, 1fr); }
 .dr-order { display: grid; justify-items: center; gap: 8px; }
 .dr-order-text .dr-zh { font-size: 32px; }
 .dr-order-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
