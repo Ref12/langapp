@@ -307,7 +307,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
       {help && <div id="writing-sheet" className="writing-sheet" role="dialog" aria-label="About this exercise">
         <button className="icon-button writing-sheet-close" type="button" aria-label="Close" onClick={() => setHelp(false)}><X size={16} /></button>
         <p id="writing-help"><strong>{PHASES[round.phase]}.</strong> {phaseHelp}</p>
-        <p>Three repetitions in each of three phases: full guide, one stroke at a time, then memory: nine parts per character. Use a mouse, touch or pen. Prev and Next move back and forward through those parts, finished or not; the skip-back and skip-forward buttons jump to the previous or next character. A character is saved only when all nine parts were written.</p>
+        <p>Three repetitions in each of three phases: full guide, one stroke at a time, then memory: nine parts per character. Use a mouse, touch or pen. Previous and Next move back and forward through those parts, finished or not.{(onPreviousCharacter || onNextCharacter) ? ' The skip-back and skip-forward buttons jump to the previous or next character.' : ' The ⋮ menu at the top can mark the character as one you can already write, skip it, or go back.'} A character is saved only when all nine parts were written.</p>
         <p>Watching stroke order is optional and does not count as tracing. Press Escape to cancel an in-progress stroke. Leaving this page restarts an unfinished round.</p>
         <p>{asset.reviewed ? 'This guide retains the earlier prototype artwork review.' : 'Source-derived artwork; this character has not received an individual visual review.'} Matching is a tracing aid, not handwriting recognition.</p>
         {state && state.practiceCompletions > 0 && <p>Completed rounds: {state.practiceCompletions}</p>}
@@ -348,6 +348,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         {ink.length > 0 && <polyline points={ink.map(point => point.join(',')).join(' ')} className="writing-ink" aria-hidden="true" />}
       </svg>
       <div className="writing-controls" role="toolbar" aria-label="Writing controls">
+        <button className="button secondary writing-step" title="Previous part" aria-label="Previous" disabled={!canPrevious} onClick={previous}><ChevronLeft size={18} /><span>Prev</span></button>
         <button className="icon-button" aria-label={`${autoSpeak ? 'Mute' : 'Unmute'} automatic character audio`} aria-pressed={!autoSpeak}
           title={autoSpeak ? 'Mute automatic character audio' : 'Unmute automatic character audio'} disabled={busy}
           onClick={() => { if (autoSpeak) stopBrowserSpeech(); void run(() => savePreferences(autoSpeak ? { writingSpeech: 'off', writingSpeechResume: speech as 'transitions' | 'stroke' } : { writingSpeech: writingSpeechResume(workspace.preferences) })) }}>{autoSpeak ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
@@ -355,7 +356,6 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>
         <span className="writing-progress" data-complete={completed || round.finished ? '' : undefined} title={round.finished ? 'Saved' : completed ? 'Complete' : 'Stroke progress'} aria-hidden="true">{(completed || round.finished) && <Check size={15} />}{progress}</span>
-        <button className="button secondary writing-step" title="Previous part" aria-label="Previous" disabled={!canPrevious} onClick={previous}><ChevronLeft size={18} /><span>Prev</span></button>
         <button className="button primary writing-step" title={finalStep && last ? 'Finish' : 'Next part'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={saving || busy || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>
       </div>
       {(onPreviousCharacter || onNextCharacter) && <div className="writing-characters" role="toolbar" aria-label="Character controls">

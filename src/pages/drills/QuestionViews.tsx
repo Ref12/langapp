@@ -138,7 +138,7 @@ function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps
     {!locked && !started && <div className="button-row dr-center">
       {characters.length ? <button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button>
         : <><p className="small muted">{data.chars ? 'You have already written these characters.' : 'There is no stroke guide for these characters.'}</p><button type="button" className="button primary" onClick={finish}>Continue</button></>}</div>}
-    {started && <CharacterLoop characters={characters} workspace={ctx.workspace} startAtEnd={arrive === 'last'} onPreviousWord={onPrevious} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
+    {started && <CharacterLoop characters={characters} workspace={ctx.workspace} startAtEnd={arrive === 'last'} menu onPreviousWord={onPrevious} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
     <Result state={state} />
   </>
 }

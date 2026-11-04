@@ -24,5 +24,6 @@ function PageActionItem({ action, close }: { action: PageAction; close: (restore
   const checkable = action.checked !== undefined
   return <button type="button" role={checkable ? 'menuitemcheckbox' : 'menuitem'} aria-checked={checkable ? action.checked : undefined}
     className="page-actions-item" disabled={action.disabled} onClick={() => { action.onSelect(); close() }}>
-    <span className="page-actions-check" aria-hidden="true">{action.checked && <Check size={14} />}</span>{action.label}</button>
+    <span className="page-actions-check" aria-hidden="true">{action.checked && <Check size={14} />}</span>
+    <span className="page-actions-text"><span>{action.label}</span>{action.description && <small className="page-actions-description">{action.description}</small>}</span></button>
 }

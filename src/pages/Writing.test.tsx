@@ -430,6 +430,14 @@ describe('writing exercise', () => {
       expect(await db.characterStates.count()).toBe(0)
       expect(screen.getByRole('status')).not.toHaveTextContent('Practice saved')
     })
+    it('puts Previous at the far left of the toolbar, before Hear, and Next at the far right', () => {
+      render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" onNext={vi.fn()} />)
+      const buttons = within(screen.getByRole('toolbar', { name: 'Writing controls' })).getAllByRole('button').map(button => button.getAttribute('aria-label') ?? button.textContent)
+      expect(buttons[0]).toBe('Previous')
+      expect(buttons.at(-1)).toBe('Next')
+      expect(buttons.indexOf('Previous')).toBeLessThan(buttons.findIndex(label => /automatic character audio/.test(label ?? '')))
+    })
+
     it('Previous character and Next character are shown only where there is somewhere to go', () => {
       const view = render(<WritingPlayer {...props} asset={asset} backHref="#dictionary" />)
       expect(screen.queryByRole('button', { name: 'Previous character' })).toBeNull()

@@ -6,6 +6,13 @@ import { usePageActions } from './page-actions-context'
 
 afterEach(cleanup)
 
+it('renders an item description under its label', async () => {
+  function Described() { usePageActions([{ id: 'x', label: 'Skip for now', description: 'It stays Not yet.', onSelect: () => undefined }]); return null }
+  render(<PageActionsProvider><PageActionsMenu /><Described /></PageActionsProvider>)
+  await userEvent.setup().click(screen.getByRole('button', { name: 'Page actions' }))
+  expect(screen.getByRole('menuitem', { name: /Skip for now/ })).toHaveTextContent('It stays Not yet.')
+})
+
 function Page({ onPlain, onToggle, checked }: { onPlain: () => void; onToggle: () => void; checked: boolean }) {
   usePageActions([{ id: 'a', label: 'Import', onSelect: onPlain }, { id: 'b', label: 'List view', checked, onSelect: onToggle }])
   return <p>page</p>
@@ -19,6 +26,7 @@ it('is absent without registered actions', () => {
 it('lists plain and checkable items, runs one and closes on select, Escape and outside tap; vanishes on unmount', async () => {
   const user = userEvent.setup()
   const plain = vi.fn(), toggle = vi.fn()
+  void plain
   const view = render(<PageActionsProvider><PageActionsMenu /><button>Elsewhere</button><Page onPlain={plain} onToggle={toggle} checked /></PageActionsProvider>)
   const trigger = screen.getByRole('button', { name: 'Page actions' })
   await user.click(trigger)
