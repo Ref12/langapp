@@ -26,7 +26,7 @@ function readingsOf(target: SearchTarget): readonly (readonly Syllable[])[] {
   return value
 }
 
-const PINYIN_QUERY = /^[\p{Script=Latin}:'\-0-5\u0300-\u0304\u030c]+$/u
+const PINYIN_QUERY = /^(?:[\p{Script=Latin}\p{M}:'\-0-5])+$/u
 
 /** 0 no match, 1 query is a prefix of the reading, 2 the whole reading. A toneless syllable fits any tone; a number or tone mark fits only that tone. */
 function matchReading(query: string, syllables: readonly Syllable[]): 0 | 1 | 2 {
