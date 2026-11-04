@@ -216,6 +216,11 @@ describe('dictionary characters', () => {
     cleanup(); window.location.hash = 'dictionary/characters/knowledge'
     render(<Harness />)
     expect(await screen.findByRole('button', { name: 'Can write 2' })).toHaveAttribute('aria-pressed', 'true')
+    // All clears the remembered choice (a bare route would otherwise fall back to Can write).
+    await user.click(screen.getByRole('button', { name: 'All 3' }))
+    await waitFor(() => expect(screen.getByRole('button', { name: 'All 3' })).toHaveAttribute('aria-pressed', 'true'))
+    await waitFor(() => expect(names()).toHaveLength(3))
+    await waitFor(async () => expect((await db.preferences.toCollection().first())?.characterWriteFilter).toBe('all'))
     // Not shown in the Full list.
     await user.click(await screen.findByRole('button', { name: 'Full list' }))
     await waitFor(() => expect(screen.queryByRole('group', { name: 'Writing filter' })).toBeNull())

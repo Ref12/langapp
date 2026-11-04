@@ -168,7 +168,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button type="button" className="button secondary" onClick={() => setPicked(new Map())}>Clear</button></>}
     </div>}
     {kind === 'characters' && scope === 'knowledge' && <div className="segmented" role="group" aria-label="Writing filter">
-      <button aria-pressed={writeFilter === 'all'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'all') }}>All {setCharacters.length}</button>
+      <button aria-pressed={writeFilter === 'all'} onClick={() => { setLimit(PAGE); void savePreferences({ characterWriteFilter: 'all' }).catch(() => undefined); go('characters', 'knowledge', 'all') }}>All {setCharacters.length}</button>
       <button aria-pressed={writeFilter === 'can'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'can') }}>Can write {canWriteCount}</button>
       <button aria-pressed={writeFilter === 'not'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'not') }}>Not yet {setCharacters.length - canWriteCount}</button>
     </div>}
