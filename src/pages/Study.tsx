@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { useAIConnection } from '../components/study/useAIConnection'
-import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { navigate } from '../core/routing'
 import { type Catalog, type Unit } from '../core/study/catalog'
 import { cardId, isPhraseRef, type ChoiceExercise, type Exercise, type ExerciseAttempt, type ExerciseSession, type MatchExercise, type TilesExercise } from '../core/study/contracts'
@@ -165,7 +165,7 @@ export function MatchQuestion({ exercise, attempt, submit, next, busy, readings,
     const side = sideOf(cell)
     return <button key={key} type="button" className={`tile match-cell ${state}`} aria-pressed={state === 'match-selected'} disabled={busy || Boolean(attempt) || locked.includes(cell.ref)}
       lang={side === 'en' ? 'en' : side === 'zh' ? 'zh-Hans' : undefined} onClick={() => tap(cell)}>
-      {side === 'zh' ? <AnnotatedChinese text={cell.text} readings={readings} pinyin={pinyin} /> : <span className="match-gloss">{cell.text}</span>}{locked.includes(cell.ref) && <CheckCircle2 size={14} aria-label="Matched" />}
+      {side === 'zh' ? <AnnotatedChinese text={cell.text} readings={readings} pinyin={pinyin} /> : <span className="match-gloss">{cell.text}</span>}{locked.includes(cell.ref) && <Check className="match-check" size={16} aria-label="Matched" />}
     </button>
   }
   return <>
