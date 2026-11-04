@@ -109,7 +109,8 @@ describe('dictionary characters', () => {
     render(<Harness />)
     await screen.findByRole('button', { name: /^My knowledge set \(/ })
     expect(screen.queryByRole('button', { name: 'Select' })).toBeNull()
-    await user.click(screen.getByRole('button', { name: 'Page actions' }))
+    // The page registers its menu from an effect, after the first render.
+    await user.click(await screen.findByRole('button', { name: 'Page actions' }))
     const item = screen.getByRole('menuitemcheckbox', { name: 'Select items' })
     expect(item).toHaveAttribute('aria-checked', 'false')
     await user.click(item)
