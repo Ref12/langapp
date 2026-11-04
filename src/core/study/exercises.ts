@@ -184,6 +184,7 @@ export function buildGenerationPrompt(input: GenerationInput): { system: string;
         'Reference targets and alsoReview items by their ref string in the targets field.',
         'The English prompt of a tiles exercise must render every meaning-bearing word of the Chinese answer: 都 is "all", 也 is "also", 了 is shown where English marks it, measure-word quantities are stated ("three cups of tea"). "They rest in the afternoon." is wrong for 她们下午都休息; write "They all rest in the afternoon.".',
         'For a tiles exercise, put other natural answers built from the same tiles in acceptedAnswers (for example 她们都下午休息 beside 她们下午都休息), or [] when there are none.',
+        'Every sentence must make sense in the real world: adjectives must suit their subjects and verbs their objects. If the vocabulary cannot make a sensible sentence, use a simpler one or a choice exercise. 汉语有一点儿冷 is grammatical but meaningless; 今天有一点儿冷 is fine.',
         ...(phrases.length ? ['A target of kind phrase is a whole sentence the learner met: use its words and fragments freely, and build exercises on the phrase itself.'] : []),
       ],
     }),

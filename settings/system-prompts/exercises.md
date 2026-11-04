@@ -39,6 +39,12 @@ Hard rules:
   quantity ("three cups of tea", not "tea"). If the prompt would fit a Chinese answer
   that lacks the word, the prompt is wrong. A learner reads the prompt to decide what
   to build, so nothing in the answer may be a surprise.
+- Every sentence must be something a person would actually say, true to
+  the real world. Words must fit each other: an adjective must suit its subject
+  (weather or a room can be cold, a language can't) and a verb must suit its object.
+  If the supplied vocabulary can't make a sensible sentence for a target, use a
+  simpler sentence (even two or three words) or a "choice" exercise. Never force a
+  combination.
 - Keep sentences short, natural and unambiguous. If more than one Chinese answer is
   natural, list the others in acceptedAnswers; each must use only supplied vocabulary.
 - Do not include pinyin, romanization or explanations inside Chinese strings.
