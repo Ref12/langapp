@@ -219,7 +219,7 @@ describe('isolated named browser profiles', () => {
     await characters.addCharacterToKnowledge('𠀀')
     const exported = parseProfileYaml(await store.exportActiveProfile())
     expect(exported.knowledge.characterStates).toEqual([
-      { character: '茶', practiceCompletions: 1, lastPracticedAt: expect.any(Number) },
+      { character: '茶', practiceCompletions: 1, lastPracticedAt: expect.any(Number), writeState: 'can' },
       { character: '𠀀', manualAddedAt: expect.any(Number), practiceCompletions: 0 },
     ])
     await store.restoreActiveProfile(serializeProfileYaml(createEmptyProfile(profile)))
