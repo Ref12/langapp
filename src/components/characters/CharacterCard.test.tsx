@@ -37,10 +37,22 @@ describe('CharacterCard provenance', () => {
 })
 
 describe('CharacterCard I can write this and Keep', () => {
+    it('treats a practised character as Can write, and the toggle turns it off (to cannot)', async () => {
+      stubTables()
+      const run = vi.fn((operation: () => Promise<unknown>) => operation())
+      const { db } = await import('../../core/database')
+      await db.characterStates.put({ character: '\u9e23', practiceCompletions: 3, lastPracticedAt: 5 })
+      render(<CharacterCard {...props} run={run as never} entry={{ character: '\u9e23', asset, words: [], bands: [] }} automatic={false} manual={false} state={{ character: '\u9e23', practiceCompletions: 3, lastPracticedAt: 5 }} />)
+      expect(screen.getByText('Can write')).toBeInTheDocument()
+      expect(screen.getByText(/Practised 3×/)).toBeInTheDocument()
+      await userEvent.setup().click(screen.getByRole('button', { name: /^I can write \u9e23/ }))
+      await vi.waitFor(async () => expect((await db.characterStates.get('\u9e23'))?.writeState).toBe('cannot'))
+      expect((await db.characterStates.get('\u9e23'))?.practiceCompletions).toBe(3)
+    })
   it('shows a Can write tag and a pressed toggle when flagged, and the toggle runs the undoable action', async () => {
     stubTables()
     const run = vi.fn()
-    render(<CharacterCard {...props} run={run} entry={{ character: '\u9e23', asset, words: [], bands: [] }} automatic={false} manual={false} state={{ character: '\u9e23', practiceCompletions: 0, writeKnown: true }} />)
+    render(<CharacterCard {...props} run={run} entry={{ character: '\u9e23', asset, words: [], bands: [] }} automatic={false} manual={false} state={{ character: '\u9e23', practiceCompletions: 0, writeState: 'can' }} />)
     expect(screen.getByText('Can write')).toBeInTheDocument()
     const toggle = screen.getByRole('button', { name: /^I can write \u9e23/ })
     expect(toggle).toHaveAttribute('aria-pressed', 'true')
@@ -52,6 +64,7 @@ describe('CharacterCard I can write this and Keep', () => {
     const user = userEvent.setup()
     const { unmount } = render(<CharacterCard {...props} entry={{ character: '\u8336', asset, words: [word], bands: ['1'] }} automatic manual={false} known={new Set(['vocabulary:tea-cup'])} />)
     expect(screen.queryByText('Can write')).toBeNull()
+      expect(screen.getByText('Not yet')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^I can write \u8336/ })).toHaveAttribute('aria-pressed', 'false')
     expect(screen.queryByRole('button', { name: /^Keep/ })).toBeNull()
     await user.click(screen.getByRole('button', { name: /^More for Character/ }))

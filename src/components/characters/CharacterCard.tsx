@@ -4,13 +4,14 @@ import { RowMenu } from '../RowMenu'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { openWritingSheet } from '../../core/characters/writing-sheet'
 import { type DictionaryCharacter } from '../../core/characters/dictionary'
-import { addCharacterToKnowledge, removeManualCharacter, setCharacterWriteKnown } from '../../core/characters/store'
+import { addCharacterToKnowledge, removeManualCharacter, setCharacterWriteState } from '../../core/characters/store'
 import { loadCharacterMeaning, type CharacterMeaning } from '../../core/characters/meanings'
 import { loadCharacterOrigin, provenanceLine, type CharacterOrigin } from '../../core/characters/origins'
 import type { CharacterState } from '../../core/characters/contracts'
 import type { PageProps } from '../shared'
 
 import { Pinyin } from '../Pinyin'
+import { canWrite } from '../../core/drills/write-queue'
 
 export function CharacterCard({ entry, automatic, manual, state, known, scope, pinyin, run, busy }: {
   entry: DictionaryCharacter; automatic: boolean; manual: boolean; state?: CharacterState; known?: ReadonlySet<string>
@@ -18,6 +19,7 @@ export function CharacterCard({ entry, automatic, manual, state, known, scope, p
 } & Pick<PageProps, 'run' | 'busy'>) {
   const { character, asset, words } = entry
   const first = words[0]
+    const can = canWrite(state)
   const [origin, setOrigin] = useState<CharacterOrigin>()
   const [gloss, setGloss] = useState<CharacterMeaning>()
   useEffect(() => {
@@ -38,9 +40,9 @@ export function CharacterCard({ entry, automatic, manual, state, known, scope, p
     <div className="phrase-row character-head">
       <h3 lang="zh-Hans" className="character-native">{character}</h3>
       <div className="phrase-row-text"><div className="card-topline"><span className="eyebrow">U+{character.codePointAt(0)!.toString(16).toUpperCase()}</span>
-        <span className="tag">{automatic || manual ? 'In your set' : 'Not in your set'}</span>{state?.writeKnown && <span className="tag can-write">Can write</span>}</div>
+        <span className="tag">{automatic || manual ? 'In your set' : 'Not in your set'}</span><span className={can ? 'tag can-write' : 'tag not-yet'}>{can ? 'Can write' : 'Not yet'}</span></div>
         <p className="small character-provenance" data-testid="character-provenance">{provenance || 'Source not recorded.'}</p>
-        <p className="small muted character-artwork-state">{asset ? `${asset.strokeCount} ${asset.strokeCount === 1 ? 'stroke' : 'strokes'}${state && state.practiceCompletions > 0 ? ` / ${state.practiceCompletions} ${state.practiceCompletions === 1 ? 'round' : 'rounds'} written` : ''}` : 'Stroke guide not available'}</p></div>
+        <p className="small muted character-artwork-state">{asset ? `${asset.strokeCount} ${asset.strokeCount === 1 ? 'stroke' : 'strokes'}${state && state.practiceCompletions > 0 ? ` / Practised ${state.practiceCompletions}×` : ''}` : 'Stroke guide not available'}</p></div>
       <PracticeSnippet practiceMode="speak" source={{ text: character, meaning: first?.record.ds, locale: 'zh-Hans', title: `Character: ${character}`, route }}
         onWrite={asset ? () => { openWritingSheet(character, { scope, remember: false }) } : undefined}
         learn={automatic || manual ? null : <button type="button" className="button secondary snippet-button" disabled={busy} onClick={() => void run(() => addCharacterToKnowledge(character))}><Plus size={15} />Learn</button>} />
@@ -53,8 +55,8 @@ export function CharacterCard({ entry, automatic, manual, state, known, scope, p
     <div className="character-card-actions">
       {asset ? <button type="button" className="button primary" aria-label={`Practice writing ${character}`} onClick={() => { openWritingSheet(character, { scope, remember: false }) }}><Pencil size={16} />Practice writing</button>
         : <button className="button secondary" disabled>Guide unavailable</button>}
-      <button type="button" className="button secondary" aria-pressed={!!state?.writeKnown} disabled={busy} title={state?.writeKnown ? 'Counted as written. Tap to undo.' : 'Marks it as written without practice.'}
-        aria-label={state?.writeKnown ? `I can write ${character} (on)` : `I can write ${character}`} onClick={() => void run(() => setCharacterWriteKnown(character, !state?.writeKnown))}><Check size={16} />I can write this</button>
+      <button type="button" className="button secondary" aria-pressed={can} disabled={busy} title={can ? 'Counted as can write. Tap to mark Not yet.' : 'Marks it as can write.'}
+          aria-label={can ? `I can write ${character} (on)` : `I can write ${character}`} onClick={() => void run(() => setCharacterWriteState(character, can ? 'cannot' : 'can'))}><Check size={16} />I can write this</button>
       {manual ? <button className="button secondary" disabled={busy} onClick={() => void run(() => removeManualCharacter(character))}
           aria-label={`Remove manual addition ${character}`}><X size={16} />Remove</button>
         : !automatic && <button className="button secondary" disabled={busy} onClick={() => void run(() => addCharacterToKnowledge(character))}

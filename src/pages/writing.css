@@ -109,3 +109,15 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
 .character-card-actions .row-menu { margin-left: auto; }
 .character-card-actions button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
 .character-head .tag.can-write { color: var(--accent); border-color: var(--accent); }
+
+/* Dictionary select mode */
+.select-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 0; margin: 4px 0; background: var(--bg, var(--surface, Canvas)); }
+.select-bar .select-count { font-weight: 600; }
+.select-item { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.select-item.picked > :not(.select-row) { outline: 2px solid var(--accent); border-radius: 12px; }
+.select-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.select-row:empty { display: none; }
+.select-pick { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; }
+.select-pick input { width: 22px; height: 22px; }
+.tag.not-yet { color: var(--muted, inherit); }
+.word-grid .select-item > .word-card { flex: 1; }

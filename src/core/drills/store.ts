@@ -9,6 +9,7 @@ import { recordJournal } from '../backup/journal-store'
 import { promoteItems } from '../collections/store'
 import { isPhraseRef } from '../study/contracts'
 import { recordCharacterPractice } from '../characters/store'
+import { canWrite } from './write-queue'
 import { cancelContent, startContent } from './content'
 import { worstMark } from './write-queue'
 import { drillSkills, recordSkillPractice, SKILL_LABEL, STRATEGY_LABEL, type Skill } from '../study/skills'
@@ -197,11 +198,11 @@ export async function recordWriteChar(setId: string, char: string, mark: Mark, c
   return { graded: result.graded }
 }
 
-/** Characters written successfully in a graded pass, or taught by the guided steps, stop being new: one stroke-practice completion each, once. */
+/** Characters the learner wrote in full in the Learn to write loop (all nine parts; the caller only passes those): each gets one stroke-practice completion, which also says 'can write'. A character that already can be written is left alone. Write it answers never call this. */
 export async function markCharactersWritten(characters: readonly string[]): Promise<void> {
   for (const character of new Set(characters)) {
     const state = await db.characterStates.get(character)
-    if (state && state.practiceCompletions > 0) continue
+    if (canWrite(state)) continue
     await recordCharacterPractice(character).catch(() => undefined)
   }
 }

@@ -13,7 +13,9 @@ import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { UnitCard } from '../components/study/UnitCard'
 import { SourceEntryCard } from '../components/study/SourceEntryCard'
 import { useCatalog } from '../components/study/useCatalog'
-import { writtenCharacters } from '../core/drills/write-queue'
+import { guidedChars, writtenCharacters } from '../core/drills/write-queue'
+import { setCharactersWriteState, undoWriteChanges, type WriteChange } from '../core/characters/store'
+import { hasGuide } from '../core/characters/writing-route'
 import { characterKnowledge, dictionaryCharacters } from '../core/characters/dictionary'
 import { characterAttributionUrl } from '../core/characters/assets'
 import { CharacterCard } from '../components/characters/CharacterCard'
@@ -52,6 +54,12 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const [query, setQuery] = useState(initialQuery ?? '')
   const [limit, setLimit] = useState(PAGE)
   const [drawing, setDrawing] = useState(false)
+  // Select mode (like History's): picked maps an item's key to its text (the character, or the word) so a bulk action knows what to mark.
+  const [selecting, setSelecting] = useState(false)
+  const [picked, setPicked] = useState<ReadonlyMap<string, string>>(new Map())
+  const [undo, setUndo] = useState<{ changes: WriteChange[]; label: string } | null>(null)
+  useEffect(() => { setSelecting(false); setPicked(new Map()) }, [kind, scope])
+  useEffect(() => { if (!undo) return; const timer = setTimeout(() => setUndo(null), 10000); return () => clearTimeout(timer) }, [undo])
   // One lookup for every card on the page, rebuilt when the lessons, sets or knowledge set change.
   const addedIndex = useLiveQuery(buildAddedByIndex, [])
   const entries = new Map(workspace.knowledge.map(entry => [entry.ref, entry]))
@@ -92,6 +100,28 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const sourceMatches = byRank(sourceEntries.filter(entry => (!normalized || normalizeSearch(`${entry.word} ${entry.pinyin} ${entry.meanings.join(' ')} ${entry.sources.map(source => source.title).join(' ')}`).includes(normalized) || matchesReading(entry.pinyin))
     && (scope === 'media' || (kind === 'vocabulary' && !!normalized && (scope === 'all' || (scope === 'knowledge' && known.has(`source:${entry.id}`)) || (scope === 'collections' && collected.has(`source:${entry.id}`)))))), entry => rank('', [entry.word]))
   const count = scope === 'media' ? sourceMatches.length : (kind === 'characters' ? characterMatches.length : matches.length)
+  const selectable = scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
+  const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })
+  const pickRow = (key: string, text: string, label: string) => selecting
+    ? <label className="select-pick"><input type="checkbox" checked={picked.has(key)} onChange={() => togglePick(key, text)} aria-label={`Select ${label}`} /><span className="small">{picked.has(key) ? 'Selected' : 'Select'}</span></label> : null
+  const wordCharacters = (zh: string) => guidedChars(zh, hasGuide)
+  /** A vocabulary card's derived tag: Can write when all its guided characters can be written, otherwise how many are left. */
+  const writeTag = (zh: string) => { const chars = wordCharacters(zh); if (!chars.length) return null
+    const left = new Set(chars.filter(character => !written.has(character))).size
+    return left ? <span className="tag not-yet">{left} to write</span> : <span className="tag can-write">Can write</span> }
+  const bulk = (state: 'can' | 'cannot') => {
+    const targets = [...new Set([...picked.values()].flatMap(text => kind === 'characters' ? [text] : wordCharacters(text)))]
+    void run(async () => {
+      const changes = await setCharactersWriteState(targets, state)
+      const label = `${changes.length} ${changes.length === 1 ? 'character' : 'characters'}`
+      setUndo({ changes, label: changes.length ? `Marked ${label} ${state === 'can' ? 'can write' : 'not yet'}.` : `Nothing to change: they were already ${state === 'can' ? 'can write' : 'not yet'}.` })
+      setPicked(new Map())
+    })
+  }
+  const restore = () => { if (!undo) return; const { changes } = undo; setUndo(null); void run(() => undoWriteChanges(changes)) }
+  const pageEntries: [string, string][] = kind === 'characters' ? characterMatches.slice(0, limit).map(entry => [entry.character, entry.character] as [string, string])
+    : [...(scope === 'media' ? [] : matches.slice(0, limit).flatMap(unit => unit.kind === 'vocabulary' ? [[unit.ref, unit.record.ch] as [string, string]] : [])), ...sourceMatches.slice(0, limit).map(entry => [`source:${entry.id}`, entry.word] as [string, string])]
+  const allPicked = pageEntries.length > 0 && pageEntries.every(([key]) => picked.has(key))
   const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
   return <>
     <PageHeading eyebrow="THE WHOLE CURRICULUM" title={kind === 'characters' ? 'Characters, one stroke at a time.' : 'Vocabulary and grammar, by band.'}>
@@ -114,6 +144,16 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button></div>
       <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>
     </div>
+    {selectable && <div className="select-bar" role="toolbar" aria-label="Select">
+      <button type="button" className="button secondary" aria-pressed={selecting} onClick={() => { setSelecting(!selecting); setPicked(new Map()) }}>{selecting ? 'Done' : 'Select'}</button>
+      {selecting && !picked.size && <button type="button" className="button secondary" onClick={() => setPicked(new Map(pageEntries))}>Select all on this page</button>}
+      {selecting && picked.size > 0 && <>
+        <span className="select-count" role="status">{picked.size} selected</span>
+        <button type="button" className="button primary" disabled={busy} onClick={() => bulk('can')}>{kind === 'characters' ? 'Mark can write' : 'Mark characters can write'}</button>
+        <button type="button" className="button secondary" disabled={busy} onClick={() => bulk('cannot')}>{kind === 'characters' ? 'Mark not yet' : 'Mark characters not yet'}</button>
+        <button type="button" className="button secondary" onClick={() => setPicked(allPicked ? new Map() : new Map(pageEntries))}>{allPicked ? 'Clear this page' : 'Select all on this page'}</button>
+        <button type="button" className="button secondary" onClick={() => setPicked(new Map())}>Clear</button></>}
+    </div>}
     {kind === 'characters' && scope === 'knowledge' && <div className="segmented" role="group" aria-label="Writing filter">
       <button aria-pressed={writeFilter === 'all'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'all') }}>All {setCharacters.length}</button>
       <button aria-pressed={writeFilter === 'can'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'can') }}>Can write {canWriteCount}</button>
@@ -124,13 +164,14 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     <p className="small muted" role="status">{catalog ? `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
-    {catalog && kind !== 'characters' && scope !== 'media' && <div className="word-grid">{matches.slice(0, limit).map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
-      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact />)}</div>}
+    {catalog && kind !== 'characters' && scope !== 'media' && <div className="word-grid">{matches.slice(0, limit).map(unit => <div key={unit.ref} className={`select-item${picked.has(unit.ref) ? ' picked' : ''}`}>{unit.kind === 'vocabulary' && <div className="select-row">{pickRow(unit.ref, unit.record.ch, unit.record.ch)}{writeTag(unit.record.ch)}</div>}<UnitCard catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
+      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact /></div>)}</div>}
     {scope !== 'media' && sourceMatches.length > 0 && <><h2 className="small muted">From your media</h2><div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/${scope}`} />)}</div></>}
-    {catalog && kind === 'characters' && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <CharacterCard key={entry.character} entry={entry}
+    {catalog && kind === 'characters' && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <div key={entry.character} className={`select-item${picked.has(entry.character) ? ' picked' : ''}`}>{selecting && <div className="select-row">{pickRow(entry.character, entry.character, entry.character)}</div>}<CharacterCard entry={entry}
       automatic={characterSet?.automatic.has(entry.character) ?? false} manual={characterSet?.manual.has(entry.character) ?? false}
-      state={workspace.characterStates.find(state => state.character === entry.character)} known={known} scope={scope === 'collections' || scope === 'media' ? 'all' : scope} pinyin={workspace.preferences.pinyin} run={run} busy={busy} />)}</div>}
+      state={workspace.characterStates.find(state => state.character === entry.character)} known={known} scope={scope === 'collections' || scope === 'media' ? 'all' : scope} pinyin={workspace.preferences.pinyin} run={run} busy={busy} /></div>)}</div>}
+    {undo && <p className="history-toast" role="status">{undo.label}{undo.changes.length > 0 && <> <button type="button" className="button secondary" onClick={restore}>Undo</button></>}</p>}
     {count > limit && <div className="button-row"><button className="button secondary" onClick={() => setLimit(limit + PAGE)}>Show more ({count - limit} remaining)</button></div>}
     {catalog && !count && <EmptyState title={scope === 'collections' && !collected.size ? `No ${TERM.plural} items yet` : scope === 'knowledge' && !knownCounts[kind] ? 'Your knowledge set is empty' : 'No matching items'}><p>{scope === 'knowledge' && !knownCounts[kind] ? kind === 'characters' ? 'Add a character from the full list, or add a word to your knowledge set.' : 'Add items here, or start with New in Lessons.' : 'Try another search, band, or section.'}</p><a href="#lessons" className="button secondary">Go to Lessons</a></EmptyState>}
     <p className="page-footnote">{kind === 'characters' ? <>Guided writing records completed practice, not mastery or an FSRS writing schedule. Most guides are source-derived and unreviewed. <a href={characterAttributionUrl} target="_blank" rel="noreferrer">Artwork sources and licenses</a>.</>

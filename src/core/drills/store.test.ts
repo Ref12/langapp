@@ -4,7 +4,8 @@ import { addToKnowledge, DOMAIN } from '../study/knowledge'
 import { cardId } from '../study/contracts'
 import { addUnitsToCollection, createCollection } from '../collections/store'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
-import { recordWriteChar, discardDrillSet, createDrillSet, finishDrillSet, getDrillSet, MAX_UNFINISHED_SETS, recordDrillResult, recordRedo, setFormat, unfinishedSets } from './store'
+import { recordWriteChar, markCharactersWritten, discardDrillSet, createDrillSet, finishDrillSet, getDrillSet, MAX_UNFINISHED_SETS, recordDrillResult, recordRedo, setFormat, unfinishedSets } from './store'
+import { setCharacterWriteState } from '../characters/store'
 import { whenContent } from './content'
 import { countMarks, scoreOf } from './contracts'
 
@@ -254,5 +255,24 @@ describe('Write it by character', () => {
     expect(Object.keys(saved.chars!).sort()).toEqual(['学', '生', '习'].sort())
     expect(countMarks({ progress: { write: saved } })).toEqual({ got: 1, hint: 1, missed: 1 })
     expect(await recordWriteChar(set.id, '习', 'got', b, words, scope)).toEqual({ graded: false })
+  })
+
+  it('a correct Write it answer never marks characters written: only the Learn to write loop does', async () => {
+    const set = await created({ kind: 'new' })
+    const [a] = set.refs
+    await recordWriteChar(set.id, '学', 'got', a, [{ ref: a, chars: ['学'] }], [a])
+    expect(await db.characterStates.toArray()).toEqual([])
+  })
+})
+
+describe('markCharactersWritten (Learn to write, every part written)', () => {
+  it('records one completion and says can write; leaves a character that already can alone; re-marks one set to cannot', async () => {
+    await markCharactersWritten(['学', '学'])
+    expect(await db.characterStates.get('学')).toMatchObject({ practiceCompletions: 1, writeState: 'can' })
+    await markCharactersWritten(['学'])
+    expect((await db.characterStates.get('学'))?.practiceCompletions).toBe(1)
+    await setCharacterWriteState('学', 'cannot')
+    await markCharactersWritten(['学'])
+    expect(await db.characterStates.get('学')).toMatchObject({ practiceCompletions: 2, writeState: 'can' })
   })
 })

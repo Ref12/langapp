@@ -8,11 +8,13 @@ const SEVERITY: Record<Mark, number> = { got: 0, hint: 1, missed: 2 }
 /** A word's result for Write it: the worst of its characters' results. */
 export const worstMark = (marks: readonly Mark[]): Mark => marks.reduce<Mark>((worst, mark) => SEVERITY[mark] > SEVERITY[worst] ? mark : worst, 'got')
 
-/** The characters the learner has written successfully (stroke practice, or Drills: a saved practice completion) or says they can already write (writeKnown). */
-/** A character's writing state: practice completions, or the learner's own "I can write this" flag. */
-export type WriteState = { character: string; practiceCompletions: number; writeKnown?: boolean }
+/** A character's writing state as the UI sees it: exactly two values. `writeState` is the learner's explicit answer; unset falls back to practice history. (`writeKnown` is the old flag, read as 'can'.) */
+export type WriteState = { character: string; practiceCompletions: number; writeState?: 'can' | 'cannot'; writeKnown?: boolean }
+/** The one definition of "can write": 'can', or no explicit answer and at least one completed practice. */
+export const canWrite = (state: WriteState | undefined): boolean =>
+  !state ? false : state.writeState ? state.writeState === 'can' : state.writeKnown === true || state.practiceCompletions > 0
 export const writtenCharacters = (states: readonly WriteState[]): Set<string> =>
-  new Set(states.filter(state => state.practiceCompletions > 0 || state.writeKnown).map(state => state.character))
+  new Set(states.filter(canWrite).map(state => state.character))
 
 /** Distinct characters of these words that Write it can teach: guided Han characters never written successfully. */
 export function newCharacters(words: readonly string[], states: readonly WriteState[], has?: (character: string) => boolean): string[] {

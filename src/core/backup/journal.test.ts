@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { db, initializeWorkspace } from '../database'
 import { initializeProfiles } from '../profiles/store'
 import { addToKnowledge, submitExerciseAnswer, advanceExercise } from '../study/knowledge'
-import { appendToSegment, eventLine, parseJournal, replay, reviewEvent, segmentName, serializeJournal, toSegments, type JournalEvent } from './journal'
+import { appendToSegment, replayFrom, eventLine, parseJournal, replay, reviewEvent, segmentName, serializeJournal, toSegments, type JournalEvent } from './journal'
 
 const add = (t: string, ref: string): JournalEvent => ({ t, op: 'add', ref, band: 1, source: 'new' })
 
@@ -48,10 +48,13 @@ describe('YAML journal', () => {
     const char = (at: string, character: string, action: string): JournalEvent => ({ t: at, op: 'char', character, action })
     const state = replay([char('2026-10-19T00:00:00.000Z', '茶', 'writeKnown'), char('2026-10-19T00:00:01.000Z', '雨', 'practice'), char('2026-10-19T00:00:02.000Z', '雨', 'writeKnown'),
       char('2026-10-19T00:00:03.000Z', '雨', 'writeUnknown'), char('2026-10-19T00:00:04.000Z', '字', 'writeKnown'), char('2026-10-19T00:00:05.000Z', '字', 'add'), char('2026-10-19T00:00:06.000Z', '字', 'remove')])
-    expect(state.characters.get('茶')).toEqual({ character: '茶', practiceCompletions: 0, writeKnown: true })
-    expect(state.characters.get('雨')).toMatchObject({ practiceCompletions: 1 })
-    expect(state.characters.get('雨')).not.toHaveProperty('writeKnown')
-    expect(state.characters.get('字')).toEqual({ character: '字', practiceCompletions: 0, writeKnown: true })
+    expect(state.characters.get('茶')).toEqual({ character: '茶', practiceCompletions: 0, writeState: 'can' })
+    expect(state.characters.get('雨')).toMatchObject({ practiceCompletions: 1, writeState: 'cannot' })
+    expect(state.characters.get('字')).toEqual({ character: '字', practiceCompletions: 0, writeState: 'can' })
+    // practising again after 'cannot' makes it 'can'; an old base state with writeKnown reads as 'can'
+    expect(replay([char('2026-10-19T00:00:07.000Z', '雨', 'practice')], state).characters.get('雨')).toMatchObject({ practiceCompletions: 2, writeState: 'can' })
+    const legacy = replayFrom({ knowledge: [], cards: [], attempts: [], characters: [{ character: '猫', practiceCompletions: 0, writeKnown: true } as never] })
+    expect(legacy.characters.get('猫')).toEqual({ character: '猫', practiceCompletions: 0, writeState: 'can' })
   })
 
   it('groups events into monthly segments in order', () => {

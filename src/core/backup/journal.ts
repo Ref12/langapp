@@ -1,7 +1,7 @@
 import { parse, stringify } from 'yaml'
 import { emptySchedulingState, schedule, type Rating } from '../study/fsrs'
 import { cardId, type ExerciseAttempt, type KnowledgeEntry, type StudyCard } from '../study/contracts'
-import type { CharacterState } from '../characters/contracts'
+import { normalizeCharacterState, type CharacterState } from '../characters/contracts'
 import { omit } from '../omit'
 
 // The journal is a top-level YAML sequence with one flow-style event per line,
@@ -107,7 +107,7 @@ export function replayFrom(base: { knowledge: KnowledgeEntry[]; cards: StudyCard
     knowledge: new Map(base.knowledge.map(entry => [entry.ref, entry])),
     cards: new Map(base.cards.map(card => [card.id, card])),
     exerciseAttempts: new Map(base.attempts.map(attempt => [attempt.id, attempt])),
-    characters: new Map(base.characters.map(state => [state.character, state])),
+    characters: new Map(base.characters.map(raw => { const state = normalizeCharacterState(raw); return [state.character, state] as const })),
   }
 }
 
@@ -157,19 +157,17 @@ export function replay(events: JournalEvent[], state: ReplayState = emptyReplayS
           if (current?.manualAddedAt === undefined) state.characters.set(character, { practiceCompletions: 0, ...current, character, manualAddedAt: at })
         } else if (event.action === 'remove') {
           if (current?.manualAddedAt !== undefined) {
-            if (current.practiceCompletions === 0 && !current.writeKnown) state.characters.delete(character)
+            if (current.practiceCompletions === 0 && current.writeState !== 'can') state.characters.delete(character)
             else state.characters.set(character, omit(current, 'manualAddedAt'))
           }
         } else if (event.action === 'practice') {
-          state.characters.set(character, { ...current, character, practiceCompletions: (current?.practiceCompletions ?? 0) + 1, lastPracticedAt: at })
+          state.characters.set(character, { ...current, character, practiceCompletions: (current?.practiceCompletions ?? 0) + 1, lastPracticedAt: at, writeState: 'can' })
         } else if (event.action === 'writeKnown') {
-          state.characters.set(character, { practiceCompletions: 0, ...current, character, writeKnown: true })
+          state.characters.set(character, { practiceCompletions: 0, ...current, character, writeState: 'can' })
         } else if (event.action === 'writeUnknown') {
-          if (current?.writeKnown) {
-            const rest = omit(current, 'writeKnown')
+            const rest = { practiceCompletions: 0, ...current, character, writeState: 'cannot' as const }
             if (rest.practiceCompletions === 0 && rest.manualAddedAt === undefined) state.characters.delete(character)
             else state.characters.set(character, rest)
-          }
         }
         break
       }
