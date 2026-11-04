@@ -281,9 +281,9 @@ function SetRow({ set, characterStates, onAsk, onRemove }: { set: DrillSet; char
     <a className="icon-button" href={`#${setRoute(set.id, 'intro')}`} aria-label={`View items in ${set.title}`} title="View items"><Eye size={18} /></a>
       <SaveToMenu refs={[...new Set(set.refs)]} name={set.title} />
     <RowMenu name={set.title}>
-      {unfinished && <button type="button" role="menuitem" className="menu-item" aria-label={`Discard ${set.title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={15} /> Discard</button>}
+      {unfinished && <button type="button" role="menuitem" className="menu-item" title="Hides it from Recent sessions and History and stops any AI writing still running. What you learned stays." aria-label={`Discard ${set.title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={15} /> Discard</button>}
       {!!removable?.length && <RemoveFromKnowledge kind="drill" id={set.id} name={set.title} menuItem />}
-      <button type="button" role="menuitem" className="menu-item" title="Removes it from Recent sessions and History only. What you learned stays." aria-label={`Remove ${set.title} from Recent sessions`} onClick={onRemove}><EyeOff size={15} /> Remove from Recent sessions</button>
+      {!unfinished && <button type="button" role="menuitem" className="menu-item" title="Removes it from Recent sessions and History only. What you learned stays." aria-label={`Remove ${set.title} from Recent sessions`} onClick={onRemove}><EyeOff size={15} /> Remove from Recent sessions</button>}
     </RowMenu>
   </div>
   </div>
@@ -415,8 +415,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
       </section>
       </div>
     </div>
-    {asking && <ConfirmDialog title="Discard this set?" confirmLabel="Discard" busy={busy} onCancel={() => setAsking(undefined)}
-      detail={<>{asking.title} moves out of Unfinished sets. What you practised so far stays in History.</>}
+    {asking && <ConfirmDialog title="Discard this session?" confirmLabel="Discard" busy={busy} onCancel={() => setAsking(undefined)}
+      detail={<>It leaves Recent sessions and History. What you learned stays.</>}
       onConfirm={() => { const item = asking; setAsking(undefined); void run(() => discardDrillSet(item.id)) }} />}
     <section className="panel dr-classic"><div><strong>Classic practice</strong><span className="small muted">Word-recognition sessions, the due badge and Mahjong keep working as before.</span></div>
       <div className="button-row"><a className="button secondary" href="#review">Classic practice {wordsDue > 0 && <span className="tag">{wordsDue} due</span>}</a><a className="button secondary" href="#practice/mahjong">Mahjong</a></div></section>

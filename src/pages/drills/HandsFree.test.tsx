@@ -273,7 +273,7 @@ describe('Hands-free player', () => {
     const again = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
     fireEvent.click(await within(again).findByRole('button', { name: 'More for Hands-free · 1 Nov' }))
     fireEvent.click(await screen.findByRole('menuitem', { name: 'Discard Hands-free · 1 Nov' }))
-    const confirm = screen.getByRole('dialog', { name: 'Discard this set?' })
+    const confirm = screen.getByRole('dialog', { name: 'Discard this session?' })
     expect(confirm.querySelectorAll('button')).toHaveLength(2)
     fireEvent.click(within(confirm).getByRole('button', { name: 'Discard' }))
     await waitFor(() => expect(within(again).queryByRole('link', { name: /Continue Hands-free/ })).toBeNull())
