@@ -103,6 +103,8 @@ export const drillSetSchema = z.object({
   introSeen: z.boolean().optional(),
   /** Skills the set opens emphasised (a Practice by skill set): its drill types for them are listed first. */
   emphasis: z.enum(['reading', 'listening', 'speaking', 'writing']).optional(),
+  /** An Unwritten characters set: Learn to write teaches only the characters not yet written. */
+  unwritten: z.literal(true).optional(),
   /** Thrown away by the user (History hides it); a set only set aside to make room stays listed. */
   discarded: z.boolean().optional(),
   /** Set when the user removed the set from History; it also leaves Unfinished sets. Results already recorded stay. */

@@ -18,6 +18,7 @@ import { DRILL_TYPES, countMarks, scoreOf, type DrillSet } from '../core/drills/
 import { SaveToMenu } from '../components/collections/SaveToMenu'
 import { RemoveFromKnowledge } from '../components/study/RemoveFromKnowledge'
 import { practiceFrom, resumeRoute } from '../core/drills/store'
+import { newCharacters } from '../core/drills/write-queue'
 
 type Filter = 'all' | 'speak' | 'write' | 'lessons' | 'drills'
 const FILTERS: { id: Filter; label: string }[] = [
@@ -54,6 +55,12 @@ function wordList(catalog: Catalog | undefined, refs: readonly string[]) {
   const words = refs.flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [{ ref, zh: unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt, py: unit.record.pr }] : [] })
   return words.length ? <span className="history-words" lang="zh-Hans">{words.map(word => <span key={word.ref} className="history-word"><span className="speech-native">{word.zh}</span>{word.py && <span className="small muted"><Pinyin text={word.py} /></span>}</span>)}</span> : null
 }
+/** "3 to write": the characters of a row's catalog words that have a stroke guide and were never written. Source words are not counted here. */
+function toWrite(catalog: Catalog | undefined, refs: readonly string[], states: readonly { character: string; practiceCompletions: number }[]): ReactNode {
+  if (!catalog) return null
+  const count = newCharacters(refs.flatMap(ref => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? [unit.record.ch] : [] }), states).length
+  return count ? <span className="small muted history-towrite">{count} to write</span> : null
+}
 /** One short line: each drill type done with its score. */
 function scoreLine(set: DrillSet): string {
   return DRILL_TYPES.flatMap(type => { const progress = set.progress[type.id]; if (!progress) return []
@@ -72,6 +79,7 @@ export function History() {
     })
   }, [])
   const sets = useLiveQuery(() => db.drillSets.toArray().then(all => all.filter(set => !set.discarded && !set.removedAt)), [])
+  const characterStates = useLiveQuery(() => db.characterStates.toArray(), []) ?? []
   const stored = useLiveQuery(() => db.preferences.get('workspace').then(item => item?.historyFilter ?? 'all'), [])
   const where = readLocation(useRoute())
   const filter: Filter = where.filter ?? stored ?? 'all'
@@ -146,7 +154,7 @@ export function History() {
             <span><span className="history-chips"><span className="chip">Practice</span>{(row.set.handsfree?.started || row.set.handsfreeRecall?.started) && row.set.status === 'active' && <span className="chip">Stopped</span>}{row.set.status === 'completed' && <span className="chip">Finished</span>}{row.set.status === 'abandoned' && <span className="chip">Set aside</span>}</span>
               <strong>{row.set.title}</strong>
               <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time>
-              {wordList(catalog, row.set.refs)}
+              {wordList(catalog, row.set.refs)}{toWrite(catalog, row.set.refs, characterStates)}
               {scoreLine(row.set) && <span className="small muted history-score">{scoreLine(row.set)}</span>}</span>
             <span className="history-actions">
               {row.set.status === 'active' && <a className="icon-button" href={`#${resumeRoute(row.set)}`} aria-label={`Resume ${row.set.title}`} title="Resume"><ArrowRight size={18} /></a>}
@@ -160,7 +168,7 @@ export function History() {
               <strong>{row.lesson.mode === 'new' ? 'New items' : 'Review'}</strong>
               <span className="small muted">{row.lesson.items} item{row.lesson.items === 1 ? '' : 's'} · {row.lesson.exercises} exercise{row.lesson.exercises === 1 ? '' : 's'}
                 {row.lesson.answered > 0 ? ` · score ${row.lesson.correct}/${row.lesson.answered}` : ''}{row.lesson.status === 'completed' ? '' : ` · ${row.lesson.status}`}</span>
-              {wordList(catalog, row.lesson.refs)}
+              {wordList(catalog, row.lesson.refs)}{toWrite(catalog, row.lesson.refs, characterStates)}
                 <time className="small muted" dateTime={new Date(row.at).toISOString()}>{new Date(row.at).toLocaleString()}</time></span>
             <span className="history-actions">
               <a className="icon-button" href={`#lessons/session/${row.lesson.id}`} aria-label={`Open lesson session ${row.lesson.mode === 'new' ? 'New items' : 'Review'}`} title="Open"><ArrowRight size={18} /></a>

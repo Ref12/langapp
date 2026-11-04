@@ -17,6 +17,7 @@ import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillS
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems } from '../../core/drills/write-queue'
+import { UNWRITTEN_CHOICES, countUnwritten, loadBacklogWords, loadUnwrittenSize, pickUnwritten, saveUnwrittenSize } from '../../core/drills/unwritten'
 import { startContent } from '../../core/drills/content'
 import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, ensureHandsfree, restartHandsfree, activityOf, handsfreeRoute, type HandsfreeKind, restartDrillType, handsfreeStopped, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
@@ -326,6 +327,16 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const [skill, setSkill] = useState<Skill>('reading')
   const [size, setSize] = useState<number>(10)
   const [strategy, setStrategy] = useState<typeof PICK_STRATEGIES[number]>('least')
+  const [unwrittenSize, setUnwrittenSize] = useState(loadUnwrittenSize)
+  const [backlog, setBacklog] = useState<Awaited<ReturnType<typeof loadBacklogWords>>>()
+  useEffect(() => {
+    if (!catalog) return
+    let live = true
+    void loadBacklogWords(catalog).then(words => { if (live) setBacklog(words) })
+    return () => { live = false }
+  }, [catalog, workspace.knowledge])
+  const unwrittenTotal = backlog ? countUnwritten(backlog, workspace.characterStates) : 0
+  const unwrittenNext = backlog ? pickUnwritten(backlog, workspace.characterStates, unwrittenSize) : undefined
   const skillSource = (): DrillSource => ({ kind: 'skill', skill, size, strategy })
   const selectionSource = (): DrillSource => mode === 'review' ? { kind: 'review', refs: selection, ...(fromSet ? { from: fromSet.id } : {}) } : { kind: 'new', count, refs: selection, ...(fromSet ? { from: fromSet.id } : {}) }
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
@@ -367,6 +378,9 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
               <select aria-label="Set size" value={size} onChange={event => setSize(Number(event.target.value))}>{SKILL_SIZES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select>
               <select aria-label="Strategy" value={strategy} onChange={event => setStrategy(event.target.value as typeof strategy)}>{PICK_STRATEGIES.map(entry => <option key={entry} value={entry}>{STRATEGY_LABEL[entry]}</option>)}</select></span></div>
             <button type="button" className="button primary" aria-label="Start practice by skill" disabled={busy || !known.size} onClick={() => start(skillSource())}>Start <ArrowRight size={16} /></button></li>
+          {unwrittenTotal > 0 && <li className="dr-skill dr-skill-block"><div><strong>Characters to write: {unwrittenTotal}</strong><span className="small muted">From words you know. Starts a set of the oldest words, about {unwrittenSize} new characters{unwrittenNext ? ` (${unwrittenNext.refs.length} ${unwrittenNext.refs.length === 1 ? 'word' : 'words'})` : ''}.</span>
+            <span className="dr-skill-pickers"><select aria-label="Characters per set" value={unwrittenSize} onChange={event => { const next = Number(event.target.value); setUnwrittenSize(next); saveUnwrittenSize(next) }}>{UNWRITTEN_CHOICES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select></span></div>
+            <button type="button" className="button primary" aria-label="Start unwritten characters" disabled={busy} onClick={() => start({ kind: 'unwritten', size: unwrittenSize })}>Start <ArrowRight size={16} /></button></li>}
         </ul>
       </section>
       <div className="dr-stack">

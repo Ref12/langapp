@@ -6,6 +6,7 @@ import { readingIndex } from '../../core/study/annotate'
 import type { Catalog } from '../../core/study/catalog'
 import { MARK_LABEL, countMarks, drillType, scoreOf, type DrillSet, type DrillTypeId, type Mark } from '../../core/drills/contracts'
 import type { ItemInfo } from '../../core/drills/items'
+import { writtenCharacters } from '../../core/drills/write-queue'
 import { recordDrillResult, recordRedo } from '../../core/drills/store'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { QuestionView, type QState, type ViewContext } from './QuestionViews'
@@ -36,7 +37,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   const [options, setOptions] = useState<Options>(() => ({ ...DEFAULT_OPTIONS, ...(type === 'write' ? loadWriteChoice(set.source) : {}) }))
   const build = useCallback((next: Options) => {
     const left = only ?? (graded ? scope.filter(ref => !progress?.results[ref]) : undefined)
-    return buildQuestions(type, { setId: set.id, items, catalog, known, content: set.content, options: next, refs: left })
+    return buildQuestions(type, { setId: set.id, items, catalog, known, content: set.content, options: next, refs: left, ...(set.unwritten ? { written: writtenCharacters(workspace.characterStates) } : {}) })
   // The queue is fixed when a pass starts or an option changes; results arriving later must not reshuffle it.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, set.id, items, catalog])

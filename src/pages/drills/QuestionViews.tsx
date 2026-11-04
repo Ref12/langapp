@@ -127,7 +127,7 @@ function PinyinSentence({ py: raw, target, syllable }: { py: string; target: str
 /** Learn to write: the word's intro card, then the full writing loop for each of its characters in order. Next and "I already know how to write this" skip ahead. */
 function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps & { data: Extract<QData, { t: 'learn' }> }) {
   const [started, setStarted] = useState(arrive === 'last')
-  const characters = useMemo(() => guidedChars(data.item.zh), [data.item.zh])
+  const characters = useMemo(() => data.chars ?? guidedChars(data.item.zh), [data.chars, data.item.zh])
   const locked = state.status !== 'open'
   // A word that already has its result stays as it is when revisited; the loop is only for another look.
   const finish = () => { setStarted(false); if (!locked) onAnswer({ misses: 0, hinted: false } satisfies WriteAnswer) }
@@ -135,7 +135,7 @@ function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps
     <IntroCard item={data.item} catalog={ctx.catalog} workspace={ctx.workspace} now={ctx.now} run={ctx.run} busy={ctx.busy} route="#practice" />
     {!locked && !started && <div className="button-row dr-center">
       {characters.length ? <button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button>
-        : <><p className="small muted">There is no stroke guide for these characters.</p><button type="button" className="button primary" onClick={finish}>Continue</button></>}</div>}
+        : <><p className="small muted">{data.chars ? 'You have already written these characters.' : 'There is no stroke guide for these characters.'}</p><button type="button" className="button primary" onClick={finish}>Continue</button></>}</div>}
     {started && <CharacterLoop characters={characters} workspace={ctx.workspace} startAtEnd={arrive === 'last'} onPreviousWord={onPrevious} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
     <Result state={state} />
   </>

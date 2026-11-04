@@ -13,6 +13,7 @@ import { cancelContent, startContent } from './content'
 import { worstMark } from './write-queue'
 import { drillSkills, recordSkillPractice, SKILL_LABEL, STRATEGY_LABEL, type Skill } from '../study/skills'
 import { pickItems } from '../study/skill-pick'
+import { loadBacklogWords, pickUnwritten } from './unwritten'
 import { DEFAULT_HANDSFREE_SETTINGS } from '../handsfree/contracts'
 import { MARK_RATING, drillSetSchema, type HandsfreeActivity, type DrillFormat, type DrillSet, type DrillTypeId, type Mark } from './contracts'
 
@@ -25,6 +26,8 @@ export type DrillSource = { kind: 'new'; from?: string; /** At least this many n
   /** An explicit list of items drilled again, from a past lesson (its session id) or an earlier drill set (its id). */
   /** Practice by skill: the size least practised (or recently added) items in a skill. */
   | { kind: 'skill'; skill: Skill; size: number; strategy: 'least' | 'recent' }
+  /** Unwritten characters: known words, oldest first, until their unwritten characters add up to `size` (counted once across the set). */
+  | { kind: 'unwritten'; size: number }
   | { kind: 'refs'; refs: readonly string[]; origin: { kind: 'lesson' | 'drill'; id: string } }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -35,11 +38,16 @@ function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'c
   return { ...fields, status: 'active', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, updatedAt: fields.createdAt }
 }
 
-export async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source']; emphasis?: Skill }> {
+export async function chooseRefs(source: DrillSource, now: number): Promise<{ refs: string[]; title: string; collectionId?: string; promote?: string[]; originId?: string; setSource?: DrillSet['source']; emphasis?: Skill; unwritten?: true }> {
   if (source.kind === 'skill') {
     const refs = await pickItems(source.skill, source.size, source.strategy, now)
     if (!refs.length) throw new Error(source.strategy === 'recent' ? 'Nothing was added to your knowledge set in the last 3 days.' : 'Your knowledge set is empty. Start with New items, or add items from the Dictionary.')
     return { refs, title: `${STRATEGY_LABEL[source.strategy]} · ${SKILL_LABEL[source.skill]}`, setSource: 'drill', emphasis: source.skill }
+  }
+  if (source.kind === 'unwritten') {
+    const { refs } = pickUnwritten(await loadBacklogWords(), await db.characterStates.toArray(), source.size)
+    if (!refs.length) throw new Error('Every character in the words you know has been written.')
+    return { refs, title: `Unwritten characters · ${shortDate(now)}`, setSource: 'drill', emphasis: 'writing', unwritten: true }
   }
   if (source.kind === 'refs') {
     const refs = [...new Set(source.refs)].slice(0, STUDY_SET_LIMIT)
@@ -99,7 +107,7 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
 export async function createDrillSet(source: DrillSource, now = Date.now(), options: { handsfree?: HandsfreeActivity; handsfreeRecall?: HandsfreeActivity } = {}): Promise<string> {
   const chosen = await chooseRefs(source, now)
   const id = crypto.randomUUID()
-  const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}),
+  const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' || source.kind === 'unwritten' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}), ...(chosen.unwritten ? { unwritten: true as const } : {}),
     ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}), ...(options.handsfree ? { handsfree: options.handsfree, shortcut: 'handsfree' as const } : {}), ...(options.handsfreeRecall ? { handsfreeRecall: options.handsfreeRecall, shortcut: 'handsfree' as const } : {}) }
   await db.transaction('rw', [db.drillSets], async () => {
     await db.drillSets.add(drillSetSchema.parse(set))

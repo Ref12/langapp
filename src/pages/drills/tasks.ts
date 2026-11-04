@@ -7,6 +7,7 @@ import { buildChoice, buildMatch, createRng, isVocabulary, matchGroups, seedFrom
 import type { Conversation, DrillContent, DrillTypeId, Mark, Sentence } from '../../core/drills/contracts'
 import { drillType } from '../../core/drills/contracts'
 import type { ItemInfo } from '../../core/drills/items'
+import { guidedChars } from '../../core/drills/write-queue'
 
 // Builds the questions of each drill type from a set's items and content, and grades answers. Pure code: the pages only show it.
 
@@ -23,7 +24,7 @@ export type QData =
   | { t: 'free'; item: ItemInfo; direction: Direction }
   | { t: 'pinyin'; item: ItemInfo }
   /** Learn to write: the word's intro card, then the full writing loop for each of its characters. */
-  | { t: 'learn'; item: ItemInfo }
+  | { t: 'learn'; item: ItemInfo; /** The characters to teach, when only some are (an Unwritten characters set skips the ones already written). */ chars?: string[] }
   /** Write it: one word from memory. */
   | { t: 'write'; item: ItemInfo; sentence: Sentence; mode: WriteMode }
   | { t: 'translate'; item: ItemInfo; sentence: Sentence }
@@ -94,7 +95,7 @@ export function availability(type: DrillTypeId, items: readonly ItemInfo[], cont
 const ITEM_SEED = (key: string) => seedFrom(key)
 
 /** The questions of a type for the given items. */
-export function buildQuestions(type: DrillTypeId, input: { setId: string; items: readonly ItemInfo[]; catalog: Catalog; known: Set<string>; content: DrillContent; options: Options; refs?: readonly string[] }): Q[] {
+export function buildQuestions(type: DrillTypeId, input: { setId: string; items: readonly ItemInfo[]; catalog: Catalog; known: Set<string>; content: DrillContent; options: Options; refs?: readonly string[]; /** Characters already written: Learn to write leaves them out. Given only for an Unwritten characters set. */ written?: ReadonlySet<string> }): Q[] {
   const { setId, catalog, known, content, options } = input
   const only = input.refs ? new Set(input.refs) : undefined
   const items = applicable(type, input.items, content).filter(item => !only || only.has(item.ref))
@@ -120,7 +121,7 @@ export function buildQuestions(type: DrillTypeId, input: { setId: string; items:
     })
   }
   if (type === 'pinyin') return order.map(item => q(`pinyin-${item.ref}`, [item.ref], { t: 'pinyin', item }))
-  if (type === 'learn') return items.map(item => q(`learn-${item.ref}`, [item.ref], { t: 'learn', item }))
+  if (type === 'learn') return items.map(item => q(`learn-${item.ref}`, [item.ref], { t: 'learn', item, ...(input.written ? { chars: guidedChars(item.zh).filter(character => !input.written!.has(character)) } : {}) }))
   if (type === 'write') return order.map(item => q(`write-${item.ref}`, [item.ref], { t: 'write', item, sentence: content.sentences[item.ref], mode: options.writeMode }))
   if (type === 'translate') return order.map(item => q(`translate-${item.ref}`, [item.ref], { t: 'translate', item, sentence: content.sentences[item.ref] }))
   if (type === 'repeat') return order.map(item => q(`repeat-${item.ref}`, [item.ref], { t: 'repeat', item, sentence: content.sentences[item.ref] }))
