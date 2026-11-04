@@ -3,8 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
 import { savePreferences } from '../core/learning'
 import { PenLine, Search } from 'lucide-react'
-import { normalizeSearch } from '../core/search'
-import { formatPinyin } from '../core/pinyin'
+import { makeMatcher, ownCharacterData, FALLBACK, type SearchTarget } from '../core/dictionary-search'
 import { catalogBands, catalogCounts, type Unit } from '../core/study/catalog'
 import { cardId, type UnitKind } from '../core/study/contracts'
 import { buildAddedByIndex } from '../core/study/addedby'
@@ -24,12 +23,6 @@ import { TERM } from '../core/collections/terms'
 import './writing.css'
 
 const PAGE = 48
-
-function searchText(unit: Unit): string {
-  return normalizeSearch(unit.kind === 'vocabulary'
-    ? `${unit.record.ch} ${unit.record.pr} ${unit.record.ds} ${unit.record.lb}`
-    : `${unit.record.pt} ${unit.record.pr} ${unit.record.ds} ${unit.record.lb}`)
-}
 
 export function Dictionary({ workspace, now, run, busy, section, initialScope, initialQuery, initialWrite }: PageProps & { section?: string; initialScope?: string; initialQuery?: string; initialWrite?: string }) {
   const { catalog, error } = useCatalog()
@@ -80,25 +73,47 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   // Handwriting candidates stay inside the catalog; the Characters section also honours its scope.
   const drawable = useMemo(() => new Set(characters.filter(entry => scope !== 'knowledge' || characterSet?.all.has(entry.character)).map(entry => entry.character)),
     [characters, characterSet, scope])
-  const normalized = normalizeSearch(query)
-  const pronunciationQuery = normalizeSearch(formatPinyin(query, 'marks'))
-  const matchesReading = (reading: string) => pronunciationQuery !== normalized && normalizeSearch(reading).includes(pronunciationQuery)
-  const rank = (own: string, exact: string[]) => !normalized ? 2 : exact.some(value => normalizeSearch(value) === normalized) ? 0 : normalizeSearch(own).includes(normalized) ? 1 : 2
-  const byRank = <T,>(items: T[], rankOf: (item: T) => number): T[] => items.map((item, index) => ({ item, index, rank: rankOf(item) })).sort((a, b) => a.rank - b.rank || a.index - b.index).map(entry => entry.item)
-  const matches = catalog ? byRank([...catalog.units.values()].filter(unit => unit.kind === kind
-    && inScope(unit.ref)
-    && (band === 'all' || unit.band === band)
-    && (!normalized || searchText(unit).includes(normalized) || matchesReading(unit.record.pr))), unit => rank('', [unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt])) : []
+  const matcher = makeMatcher(query)
+  const bandNumber = (value: string) => Number(value) || 99
+  /** Orders by rank, then knowledge-set items first, then HSK band; ties keep catalog order. */
+  const byRank = <T,>(items: T[], rankOf: (item: T) => number, inSet: (item: T) => boolean, bandOf: (item: T) => number): T[] =>
+    items.map((item, index) => ({ item, index, rank: rankOf(item), set: inSet(item) ? 0 : 1, band: bandOf(item) }))
+      .sort((a, b) => a.rank - b.rank || a.set - b.set || a.band - b.band || a.index - b.index).map(entry => entry.item)
+  const matches = catalog ? (() => {
+    const found: { unit: Extract<Unit, { kind: 'vocabulary' | 'grammar' }>; rank: number }[] = []
+    for (const unit of catalog.units.values()) {
+      if (unit.kind !== kind || !inScope(unit.ref) || (band !== 'all' && unit.band !== band)) continue
+      const rank = matcher.empty ? 0 : matcher.rank({ text: [unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt], pr: unit.record.pr, ds: unit.record.ds })
+      if (rank !== undefined) found.push({ unit, rank })
+    }
+    const ranks = new Map(found.map(entry => [entry.unit, entry.rank]))
+    return byRank(found.map(entry => entry.unit), unit => ranks.get(unit)!, unit => known.has(unit.ref), unit => bandNumber(unit.band))
+  })() : []
   const written = useMemo(() => writtenCharacters(workspace.characterStates), [workspace.characterStates])
   const inWriteFilter = (character: string) => scope !== 'knowledge' || writeFilter === 'all' || (writeFilter === 'can') === written.has(character)
   const setCharacters = characters.filter(entry => characterSet?.all.has(entry.character))
   const canWriteCount = setCharacters.filter(entry => written.has(entry.character)).length
-  const characterMatches = kind === 'characters' ? byRank(characters.filter(entry => (scope !== 'knowledge' || characterSet?.all.has(entry.character)) && inWriteFilter(entry.character)
-    && (band === 'all' || entry.bands.some(value => value === band))
-    && (!normalized || normalizeSearch(`${entry.character} U+${entry.character.codePointAt(0)!.toString(16)} ${entry.words.map(word => `${word.record.ch} ${word.record.pr} ${word.record.ds}`).join(' ')}`).includes(normalized)
-      || entry.words.some(word => matchesReading(word.record.pr)))), entry => { const code = `U+${entry.character.codePointAt(0)!.toString(16)}`; return rank(`${entry.character} ${code}`, [entry.character, code]) }) : []
-  const sourceMatches = byRank(sourceEntries.filter(entry => (!normalized || normalizeSearch(`${entry.word} ${entry.pinyin} ${entry.meanings.join(' ')} ${entry.sources.map(source => source.title).join(' ')}`).includes(normalized) || matchesReading(entry.pinyin))
-    && (scope === 'media' || (kind === 'vocabulary' && !!normalized && (scope === 'all' || (scope === 'knowledge' && known.has(`source:${entry.id}`)) || (scope === 'collections' && collected.has(`source:${entry.id}`)))))), entry => rank('', [entry.word]))
+  // A character's own readings and meanings, from the words that contain it (computed once per character).
+  const ownData = useMemo(() => new Map(characters.map(entry => [entry.character, ownCharacterData(entry.character, entry.words.map(word => word.record))] as const)), [characters])
+  const characterMatches = kind === 'characters' ? (() => {
+    const pool = characters.filter(entry => (scope !== 'knowledge' || characterSet?.all.has(entry.character)) && inWriteFilter(entry.character) && (band === 'all' || entry.bands.some(value => value === band)))
+    const rankOf = (entry: (typeof pool)[number]) => { const own = ownData.get(entry.character); return matcher.rank({ character: entry.character, readings: own?.readings, ds: own?.ds }) }
+    const direct = pool.map(entry => ({ entry, rank: matcher.empty ? 0 : rankOf(entry) })).filter((item): item is { entry: (typeof pool)[number]; rank: number } => item.rank !== undefined)
+    // Only when nothing matches directly: characters whose containing words match, ranked last.
+    const found = direct.length || matcher.empty ? direct : pool.flatMap(entry => entry.words.some(word => matcher.rank({ text: [word.record.ch], pr: word.record.pr, ds: word.record.ds }) !== undefined) ? [{ entry, rank: FALLBACK }] : [])
+    const ranks = new Map(found.map(item => [item.entry, item.rank]))
+    return byRank(found.map(item => item.entry), entry => ranks.get(entry)!, entry => characterSet?.all.has(entry.character) ?? false, entry => Math.min(99, ...entry.bands.map(bandNumber)))
+  })() : []
+  const sourceMatches = (() => {
+    const found = sourceEntries.flatMap(entry => {
+      const target: SearchTarget = { text: [entry.word], pr: entry.pinyin, ds: entry.meanings.join('; ') }
+      const rank = matcher.empty ? 0 : matcher.rank(target)
+      return rank === undefined ? [] : [{ entry, rank }]
+    })
+    const eligible = found.filter(({ entry }) => scope === 'media' || (kind === 'vocabulary' && !matcher.empty && (scope === 'all' || (scope === 'knowledge' && known.has(`source:${entry.id}`)) || (scope === 'collections' && collected.has(`source:${entry.id}`)))))
+    const ranks = new Map(eligible.map(item => [item.entry, item.rank]))
+    return byRank(eligible.map(item => item.entry), entry => ranks.get(entry)!, entry => known.has(`source:${entry.id}`), () => 0)
+  })()
   const count = scope === 'media' ? sourceMatches.length : (kind === 'characters' ? characterMatches.length : matches.length)
   const selectable = scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
   const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })

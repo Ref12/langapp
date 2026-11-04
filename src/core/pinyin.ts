@@ -30,7 +30,7 @@ xi xia xian xiang xiao xie xin xing xiong xiu xu xuan xue xun
 ya yan yang yao ye yi yin ying yo yong you yu yuan yue yun
 za zai zan zang zao ze zei zen zeng zha zhai zhan zhang zhao zhe zhei zhen zheng zhi zhong zhou zhu zhua zhuai zhuan zhuang zhui zhun zhuo zi zong zou zu zuan zui zun zuo`.split(/\s+/))
 
-interface Syllable { marked: string; base: string; tone: string }
+export interface Syllable { marked: string; base: string; tone: string }
 
 function markSyllable(base: string, tone: string): string | undefined {
   // a/e take priority, then the o in ou, otherwise the final vowel.
@@ -100,4 +100,17 @@ function formatSyllables(text: string, format: PinyinFormat): string {
     return parts.map(part => format === 'marks' ? part.marked
       : `${format === 'numbers' ? part.base : part.marked}${part.tone}`).join('')
   })
+}
+
+/** A pinyin field as syllable lists, one per reading (readings are split on / ; , or "or"). A reading that does not parse as pinyin is left out. */
+export function parseReadings(pr: string): Syllable[][] {
+  const readings: Syllable[][] = []
+  for (const reading of pr.split(/\s*(?:[/;,，、]|\bor\b)\s*/)) {
+    const tokens = reading.match(/(?:u:|[\p{Script=Latin}\p{M}])+[0-9]*/giu) ?? []
+    const syllablesOfReading: Syllable[] = []
+    let ok = tokens.length > 0
+    for (const token of tokens) { const parts = splitToken(token); if (!parts) { ok = false; break } syllablesOfReading.push(...parts) }
+    if (ok) readings.push(syllablesOfReading)
+  }
+  return readings
 }
