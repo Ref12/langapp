@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace, loadWorkspace } from '../database'
 import { characterSchema, characterStateSchema, type CharacterState } from './contracts'
-import { addCharacterToKnowledge, recordCharacterPractice, removeManualCharacter } from './store'
+import { addCharacterToKnowledge, recordCharacterPractice, removeManualCharacter, setCharacterWriteKnown } from './store'
 
 beforeEach(async () => {
   await db.delete()
@@ -129,5 +129,31 @@ describe('manual character knowledge and completed writing practice', () => {
     await expect(recordCharacterPractice('茶')).rejects.toThrow('Storage full')
     await expect(removeManualCharacter('茶')).rejects.toThrow('Storage full')
     expect(await db.characterStates.get('茶')).toEqual(before)
+  })
+})
+
+describe('writeKnown ("I can already write this")', () => {
+  it('records the flag without faking practice, and undo removes it and the empty state', async () => {
+    await setCharacterWriteKnown('茶', true)
+    expect(await db.characterStates.get('茶')).toEqual({ character: '茶', practiceCompletions: 0, writeKnown: true })
+    await setCharacterWriteKnown('茶', false)
+    expect(await db.characterStates.get('茶')).toBeUndefined()
+  })
+  it('keeps practice history and manual additions through on and off, and survives removing the manual addition', async () => {
+    await addCharacterToKnowledge('雨'); await recordCharacterPractice('雨')
+    await setCharacterWriteKnown('雨', true)
+    await setCharacterWriteKnown('雨', false)
+    expect(await db.characterStates.get('雨')).toMatchObject({ practiceCompletions: 1, manualAddedAt: expect.any(Number) })
+    expect(await db.characterStates.get('雨')).not.toHaveProperty('writeKnown')
+    await setCharacterWriteKnown('字', true)
+    await addCharacterToKnowledge('字'); await removeManualCharacter('字')
+    expect(await db.characterStates.get('字')).toEqual({ character: '字', practiceCompletions: 0, writeKnown: true })
+  })
+  it('is journaled so a replay reproduces it', async () => {
+    await setCharacterWriteKnown('茶', true)
+    await setCharacterWriteKnown('雨', true); await setCharacterWriteKnown('雨', false)
+    const rows = await db.journal.toArray()
+    expect(JSON.stringify(rows)).toContain('writeKnown')
+    expect(JSON.stringify(rows)).toContain('writeUnknown')
   })
 })

@@ -35,7 +35,7 @@ export async function removeManualCharacter(character: string): Promise<void> {
     const current = await readState(key)
     if (current?.manualAddedAt === undefined) return
     await recordJournal(characterEvent(key, 'remove', Date.now()))
-    if (current.practiceCompletions === 0) {
+    if (current.practiceCompletions === 0 && !current.writeKnown) {
       await db.characterStates.delete(key)
     } else {
       delete current.manualAddedAt
@@ -56,5 +56,24 @@ export async function recordCharacterPractice(character: string): Promise<void> 
       ...current, character: key, practiceCompletions: (current?.practiceCompletions ?? 0) + 1, lastPracticedAt: Date.now(),
     }))
     await recordJournal(characterEvent(key, 'practice', Date.now()))
+  })
+}
+
+/** "I can already write this": the character leaves the unwritten backlog without any practice being recorded. Turning it off restores it. */
+export async function setCharacterWriteKnown(character: string, known: boolean): Promise<void> {
+  const key = requireCharacter(character)
+  await db.transaction('rw', db.characterStates, db.journal, async () => {
+    const current = await readState(key)
+    if (known) {
+      if (current?.writeKnown) return
+      await db.characterStates.put(characterStateSchema.parse({ ...current, character: key, practiceCompletions: current?.practiceCompletions ?? 0, writeKnown: true }))
+      await recordJournal(characterEvent(key, 'writeKnown', Date.now()))
+    } else {
+      if (!current?.writeKnown) return
+      delete current.writeKnown
+      if (current.practiceCompletions === 0 && current.manualAddedAt === undefined) await db.characterStates.delete(key)
+      else await db.characterStates.put(characterStateSchema.parse(current))
+      await recordJournal(characterEvent(key, 'writeUnknown', Date.now()))
+    }
   })
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { loadCharacterAsset, type CharacterAsset } from '../../core/characters/assets'
 import type { Workspace } from '../../core/model'
+import { setCharacterWriteKnown } from '../../core/characters/store'
 import { WritingPlayer } from '../Writing'
 
 /**
@@ -34,6 +35,7 @@ export function CharacterLoop({ characters, workspace, onTaught, onDone, onPrevi
   if (!character) return null
   return <>
     {characters.length > 1 && <p className="small muted dr-center" role="status">Character {index + 1} of {characters.length}</p>}
+    <p className="dr-center"><button type="button" className="button secondary small-button" aria-label={`I can already write ${character}`} onClick={() => { void setCharacterWriteKnown(character, true).catch(() => undefined); advance() }}>I can already write this</button></p>
     <TeachCharacter key={character} inWord={characters.length > 1} onPrevious={previous} character={character} workspace={workspace} onPreviousCharacter={previous} onNextCharacter={advance} onTaught={recorded => { if (recorded) onTaught(character); advance() }} />
   </>
 }

@@ -23,6 +23,7 @@ import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finish
 import { DrillRun } from './DrillRun'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
+import { removeHistoryItems, restoreHistoryItems } from '../../core/history-removal'
 import { RowMenu } from '../../components/RowMenu'
 import { ConfirmDialog } from '../../components/ConfirmDialog'
 import { SaveToMenu } from '../../components/collections/SaveToMenu'
@@ -247,24 +248,26 @@ export function continueOf(set: DrillSet): { route: string; label: string; type:
   return type ? { route: setRoute(set.id, `run/${type.id}`), label: `Continue ${type.name}`, type: type.name } : undefined
 }
 
-/** One set, unfinished or finished, in the one Recent sets list: title (In progress when unfinished) and a meta line on top (with "left off in <type>" when a type is part-way); below it a left-aligned group of labelled buttons: Continue <type> (only when something is part-way; primary), Open set (the set page with its practice types; primary when there is no Continue), View items (straight to the items page; review and study sets list their words as tiles, meanings a tap away), then the Save to icon menu and the ⋯ menu. */
-function SetRow({ set, characterStates, onAsk }: { set: DrillSet; characterStates: PageProps['workspace']['characterStates']; onAsk: () => void }) {
+/** One session (a drill set), unfinished, finished or set aside, in the Recent sessions list: title (In progress when unfinished) and the meta line on top (with "left off in <type>" when a type is part-way); below it a right-aligned row of icon-only buttons, like History's (history-actions, icon-button), each with a full aria-label and tooltip: Continue <type> (only when something is part-way; primary, arrow), Open session (the set page with its practice types; primary when there is no Continue), View items (the items page), Save to, and the ⋯ menu, which every row has: Discard (unfinished), Remove from knowledge set (when the session added items) and Remove from Recent sessions (a soft remove with Undo, like History's). */
+function SetRow({ set, characterStates, onAsk, onRemove }: { set: DrillSet; characterStates: PageProps['workspace']['characterStates']; onAsk: () => void; onRemove: () => void }) {
   const unfinished = set.status === 'active'
   const removable = useLiveQuery(() => runAddedRefs('drill', set.id), [set.id, set.addedRefs])
   const typesDone = typesDoneOf(set)
   const next = continueOf(set)
+  const openLabel = `Open session ${set.title}`
   return <div className="resume-row">
     <div className="resume-text"><strong>{set.title}{unfinished && <span className="tag in-progress">In progress</span>}</strong>
       <SetMeta set={set} typesDone={typesDone} characterStates={characterStates} /></div>
-  <div className="resume-actions">
-    {next && <a className="button primary small-button" href={`#${next.route}`} aria-label={next.label} title={next.label}><ArrowRight size={16} /> Continue {next.type}</a>}
-    <a className={`button ${next ? 'secondary' : 'primary'} small-button`} href={`#${setRoute(set.id)}`} aria-label={`Open set ${set.title}`}><ListChecks size={16} /> Open set</a>
-    <a className="button secondary small-button" href={`#${setRoute(set.id, 'intro')}`} aria-label={`View items in ${set.title}`}><Eye size={16} /> View items</a>
+  <div className="resume-actions history-actions">
+    {next && <a className="icon-button primary-icon" href={`#${next.route}`} aria-label={next.label} title={next.label}><ArrowRight size={18} /></a>}
+    <a className={`icon-button${next ? '' : ' primary-icon'}`} href={`#${setRoute(set.id)}`} aria-label={openLabel} title={openLabel}><ListChecks size={18} /></a>
+    <a className="icon-button" href={`#${setRoute(set.id, 'intro')}`} aria-label={`View items in ${set.title}`} title="View items"><Eye size={18} /></a>
       <SaveToMenu refs={[...new Set(set.refs)]} name={set.title} />
-    {(unfinished || !!removable?.length) && <RowMenu name={set.title}>
-      {unfinished ? <button type="button" role="menuitem" className="menu-item" aria-label={`Discard ${set.title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={15} /> Discard</button>
-        : <RemoveFromKnowledge kind="drill" id={set.id} name={set.title} menuItem />}
-    </RowMenu>}
+    <RowMenu name={set.title}>
+      {unfinished && <button type="button" role="menuitem" className="menu-item" aria-label={`Discard ${set.title}`} aria-haspopup="dialog" onClick={onAsk}><Trash2 size={15} /> Discard</button>}
+      {!!removable?.length && <RemoveFromKnowledge kind="drill" id={set.id} name={set.title} menuItem />}
+      <button type="button" role="menuitem" className="menu-item" title="Removes it from Recent sessions and History only. What you learned stays." aria-label={`Remove ${set.title} from Recent sessions`} onClick={onRemove}><EyeOff size={15} /> Remove from Recent sessions</button>
+    </RowMenu>
   </div>
   </div>
 }
@@ -288,6 +291,9 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const [all, setAll] = useState(true)
   useEffect(() => setAll(true), [originParam])
   const [asking, setAsking] = useState<{ id: string; title: string }>()
+  const [undo, setUndo] = useState<{ id: string; title: string }>()
+  useEffect(() => { if (!undo) return; const timer = setTimeout(() => setUndo(undefined), 10000); return () => clearTimeout(timer) }, [undo])
+  const removeSession = async (set: DrillSet) => { await removeHistoryItems([`drill:${set.id}`]); setUndo({ id: set.id, title: set.title }) }
   const unfinished = unfinishedSets(sets)
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
   const wordsDue = workspace.words.filter(word => word.dueAt <= now).length
@@ -384,9 +390,10 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         </ul>
       </section>
       <div className="dr-stack">
-      <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sets</h2>
-        {recent.length === 0 ? <p className="muted small">No sets yet.</p> : <div className="resume-list">{recent.map(set =>
-          <SetRow key={set.id} set={set} characterStates={workspace.characterStates} onAsk={() => setAsking({ id: set.id, title: set.title })} />)}</div>}
+      <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sessions</h2>
+        {recent.length === 0 ? <p className="muted small">No sessions yet.</p> : <div className="resume-list">{recent.map(set =>
+          <SetRow key={set.id} set={set} characterStates={workspace.characterStates} onAsk={() => setAsking({ id: set.id, title: set.title })} onRemove={() => void removeSession(set)} />)}</div>}
+        {undo && <p className="history-toast" role="status">Removed {undo.title} from Recent sessions. <button type="button" className="button secondary" onClick={() => { void restoreHistoryItems([`drill:${undo.id}`]); setUndo(undefined) }}>Undo</button></p>}
         {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
       </section>
       </div>

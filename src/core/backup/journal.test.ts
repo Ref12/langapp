@@ -44,6 +44,16 @@ describe('YAML journal', () => {
     expect(parseJournal('')).toEqual([])
   })
 
+  it('replays writeKnown and writeUnknown for a character, keeping practice and manual additions', () => {
+    const char = (at: string, character: string, action: string): JournalEvent => ({ t: at, op: 'char', character, action })
+    const state = replay([char('2026-10-19T00:00:00.000Z', '茶', 'writeKnown'), char('2026-10-19T00:00:01.000Z', '雨', 'practice'), char('2026-10-19T00:00:02.000Z', '雨', 'writeKnown'),
+      char('2026-10-19T00:00:03.000Z', '雨', 'writeUnknown'), char('2026-10-19T00:00:04.000Z', '字', 'writeKnown'), char('2026-10-19T00:00:05.000Z', '字', 'add'), char('2026-10-19T00:00:06.000Z', '字', 'remove')])
+    expect(state.characters.get('茶')).toEqual({ character: '茶', practiceCompletions: 0, writeKnown: true })
+    expect(state.characters.get('雨')).toMatchObject({ practiceCompletions: 1 })
+    expect(state.characters.get('雨')).not.toHaveProperty('writeKnown')
+    expect(state.characters.get('字')).toEqual({ character: '字', practiceCompletions: 0, writeKnown: true })
+  })
+
   it('groups events into monthly segments in order', () => {
     const segments = toSegments([add('2026-11-01T00:00:00.000Z', 'a:b'), add('2026-10-31T23:00:00.000Z', 'a:c')])
     expect([...segments.keys()]).toEqual(['journal/2026-10.yaml', 'journal/2026-11.yaml'])

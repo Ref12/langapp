@@ -9,6 +9,11 @@ const word = (ref: string, zh: string, addedAt: number, order = 0): BacklogWord 
 const done = (...characters: string[]) => characters.map(character => ({ character, practiceCompletions: 1 }))
 
 describe('pickUnwritten', () => {
+  it('skips a character flagged writeKnown, and a word whose characters are all flagged', () => {
+    const states = [{ character: '猫', practiceCompletions: 0, writeKnown: true }]
+    expect(pickUnwritten([word('c', '猫', 1), word('b', '狗', 2)], states, 10, has)).toEqual({ refs: ['b'], characters: ['狗'] })
+    expect(countUnwritten([word('c', '猫', 1), word('b', '狗', 2)], states, has)).toBe(1)
+  })
   it('takes the oldest words first, ties in catalog order', () => {
     const words = [word('c', '猫', 3), word('b', '狗', 1, 5), word('a', '鸟', 1, 2)]
     expect(pickUnwritten(words, [], 10, has).refs).toEqual(['a', 'b', 'c'])

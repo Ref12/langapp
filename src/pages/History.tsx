@@ -18,7 +18,7 @@ import { DRILL_TYPES, countMarks, scoreOf, type DrillSet } from '../core/drills/
 import { SaveToMenu } from '../components/collections/SaveToMenu'
 import { RemoveFromKnowledge } from '../components/study/RemoveFromKnowledge'
 import { practiceFrom, resumeRoute } from '../core/drills/store'
-import { newCharacters } from '../core/drills/write-queue'
+import { newCharacters, type WriteState } from '../core/drills/write-queue'
 
 type Filter = 'all' | 'speak' | 'write' | 'lessons' | 'drills'
 const FILTERS: { id: Filter; label: string }[] = [
@@ -56,7 +56,7 @@ function wordList(catalog: Catalog | undefined, refs: readonly string[]) {
   return words.length ? <span className="history-words" lang="zh-Hans">{words.map(word => <span key={word.ref} className="history-word"><span className="speech-native">{word.zh}</span>{word.py && <span className="small muted"><Pinyin text={word.py} /></span>}</span>)}</span> : null
 }
 /** "3 to write": the characters of a row's catalog words that have a stroke guide and were never written. Source words are not counted here. */
-function toWrite(catalog: Catalog | undefined, refs: readonly string[], states: readonly { character: string; practiceCompletions: number }[]): ReactNode {
+function toWrite(catalog: Catalog | undefined, refs: readonly string[], states: readonly WriteState[]): ReactNode {
   if (!catalog) return null
   const count = newCharacters(refs.flatMap(ref => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? [unit.record.ch] : [] }), states).length
   return count ? <span className="small muted history-towrite">{count} to write</span> : null

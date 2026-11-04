@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Pencil, Plus, X } from 'lucide-react'
+import { Check, Pencil, Plus, X } from 'lucide-react'
+import { RowMenu } from '../RowMenu'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { openWritingSheet } from '../../core/characters/writing-sheet'
 import { type DictionaryCharacter } from '../../core/characters/dictionary'
-import { addCharacterToKnowledge, removeManualCharacter } from '../../core/characters/store'
+import { addCharacterToKnowledge, removeManualCharacter, setCharacterWriteKnown } from '../../core/characters/store'
 import { loadCharacterMeaning, type CharacterMeaning } from '../../core/characters/meanings'
 import { loadCharacterOrigin, provenanceLine, type CharacterOrigin } from '../../core/characters/origins'
 import type { CharacterState } from '../../core/characters/contracts'
@@ -37,7 +38,7 @@ export function CharacterCard({ entry, automatic, manual, state, known, scope, p
     <div className="phrase-row character-head">
       <h3 lang="zh-Hans" className="character-native">{character}</h3>
       <div className="phrase-row-text"><div className="card-topline"><span className="eyebrow">U+{character.codePointAt(0)!.toString(16).toUpperCase()}</span>
-        <span className="tag">{automatic || manual ? 'In your set' : 'Not in your set'}</span></div>
+        <span className="tag">{automatic || manual ? 'In your set' : 'Not in your set'}</span>{state?.writeKnown && <span className="tag can-write">Can write</span>}</div>
         <p className="small character-provenance" data-testid="character-provenance">{provenance || 'Source not recorded.'}</p>
         <p className="small muted character-artwork-state">{asset ? `${asset.strokeCount} ${asset.strokeCount === 1 ? 'stroke' : 'strokes'}${state && state.practiceCompletions > 0 ? ` / ${state.practiceCompletions} ${state.practiceCompletions === 1 ? 'round' : 'rounds'} written` : ''}` : 'Stroke guide not available'}</p></div>
       <PracticeSnippet practiceMode="speak" source={{ text: character, meaning: first?.record.ds, locale: 'zh-Hans', title: `Character: ${character}`, route }}
@@ -52,10 +53,16 @@ export function CharacterCard({ entry, automatic, manual, state, known, scope, p
     <div className="character-card-actions">
       {asset ? <button type="button" className="button primary" aria-label={`Practice writing ${character}`} onClick={() => { openWritingSheet(character, { scope, remember: false }) }}><Pencil size={16} />Practice writing</button>
         : <button className="button secondary" disabled>Guide unavailable</button>}
+      <button type="button" className="button secondary" aria-pressed={!!state?.writeKnown} disabled={busy} title={state?.writeKnown ? 'Counted as written. Tap to undo.' : 'Marks it as written without practice.'}
+        aria-label={state?.writeKnown ? `I can write ${character} (on)` : `I can write ${character}`} onClick={() => void run(() => setCharacterWriteKnown(character, !state?.writeKnown))}><Check size={16} />I can write this</button>
       {manual ? <button className="button secondary" disabled={busy} onClick={() => void run(() => removeManualCharacter(character))}
           aria-label={`Remove manual addition ${character}`}><X size={16} />Remove</button>
-          : <button className="button secondary" disabled={busy} onClick={() => void run(() => addCharacterToKnowledge(character))}
-            aria-label={automatic ? `Keep ${character} independently` : `Add ${character} to knowledge set`}><Plus size={16} />{automatic ? 'Keep' : 'Add'}</button>}
+        : !automatic && <button className="button secondary" disabled={busy} onClick={() => void run(() => addCharacterToKnowledge(character))}
+            aria-label={`Add ${character} to knowledge set`}><Plus size={16} />Add</button>}
+      {automatic && !manual && <RowMenu name={`Character ${character}`}>
+        <button type="button" role="menuitem" className="menu-item" disabled={busy} title="It is in your set only because a word you know uses it. This keeps it even if your words change." aria-label={`Keep ${character} even if my words change`}
+          onClick={() => void run(() => addCharacterToKnowledge(character))}><Plus size={15} /> Keep even if my words change</button>
+      </RowMenu>}
     </div>
     <details className="character-more"><summary>About this character</summary>
       <p>{asset ? (asset.reviewed ? 'Reviewed prototype guide.' : 'Source-derived guide; not individually reviewed.') : 'No stroke guide is available; none is substituted.'} {words.length ? `In ${words.length} curriculum word ${words.length === 1 ? 'sense' : 'senses'}.` : 'Not in the app\'s HSK 1\u20136 word bands.'}</p>

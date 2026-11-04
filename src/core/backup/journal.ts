@@ -83,7 +83,7 @@ export const wordAttemptEvent = (attempt: { id: string; sessionId: string; quest
   t: iso(attempt.createdAt), op: 'attempt', kind: 'word', id: attempt.id, session: attempt.sessionId, question: attempt.question,
   word: attempt.wordId, activity: attempt.activity, answer: attempt.answerId, correct: attempt.correct, assisted: attempt.assisted,
 })
-export const characterEvent = (character: string, action: 'add' | 'remove' | 'practice', at: number): JournalEvent =>
+export const characterEvent = (character: string, action: 'add' | 'remove' | 'practice' | 'writeKnown' | 'writeUnknown', at: number): JournalEvent =>
   ({ t: iso(at), op: 'char', character, action })
 export const practiceEvent = (text: string, at: number): JournalEvent => ({ t: iso(at), op: 'practice', text })
 
@@ -157,11 +157,19 @@ export function replay(events: JournalEvent[], state: ReplayState = emptyReplayS
           if (current?.manualAddedAt === undefined) state.characters.set(character, { practiceCompletions: 0, ...current, character, manualAddedAt: at })
         } else if (event.action === 'remove') {
           if (current?.manualAddedAt !== undefined) {
-            if (current.practiceCompletions === 0) state.characters.delete(character)
+            if (current.practiceCompletions === 0 && !current.writeKnown) state.characters.delete(character)
             else state.characters.set(character, omit(current, 'manualAddedAt'))
           }
         } else if (event.action === 'practice') {
           state.characters.set(character, { ...current, character, practiceCompletions: (current?.practiceCompletions ?? 0) + 1, lastPracticedAt: at })
+        } else if (event.action === 'writeKnown') {
+          state.characters.set(character, { practiceCompletions: 0, ...current, character, writeKnown: true })
+        } else if (event.action === 'writeUnknown') {
+          if (current?.writeKnown) {
+            const rest = omit(current, 'writeKnown')
+            if (rest.practiceCompletions === 0 && rest.manualAddedAt === undefined) state.characters.delete(character)
+            else state.characters.set(character, rest)
+          }
         }
         break
       }

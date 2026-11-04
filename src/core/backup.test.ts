@@ -4,7 +4,7 @@ import { exportBackup, exportWorkspaceBackup, MAX_BACKUP_BYTES, readBackup, rest
 import { savePreferences, trackWord } from './learning'
 import { createConversation, saveAIConnection, saveDraft, savePracticeDraft, selectPracticePhrase, updateThread } from './assistant/store'
 import type { AssistantBackup, AssistantMessage, AssistantRun } from './assistant/contracts'
-import { addCharacterToKnowledge, recordCharacterPractice, removeManualCharacter } from './characters/store'
+import { addCharacterToKnowledge, recordCharacterPractice, removeManualCharacter, setCharacterWriteKnown } from './characters/store'
 
 beforeEach(async () => {
   await db.delete()
@@ -403,6 +403,17 @@ describe('cancellable legacy restores', () => {
       const text = await exportWorkspaceBackup(stale)
       expect(readBackup(text).characterStates).toEqual(before.characterStates)
       expect(readBackup(exportBackup(readBackup(text))).characterStates).toEqual(before.characterStates)
+      await setCharacterWriteKnown('字', true)
+      await setCharacterWriteKnown('雨', true)
+      const flagged = await loadWorkspace()
+      expect(flagged.characterStates.filter(state => state.writeKnown).map(state => state.character).sort()).toEqual(['字', '雨'])
+      const flaggedText = await exportWorkspaceBackup(stale)
+      expect(readBackup(flaggedText).characterStates).toEqual(flagged.characterStates)
+      await setCharacterWriteKnown('字', false); await setCharacterWriteKnown('雨', false)
+      await restoreBackup(flaggedText)
+      expect(await db.characterStates.get('字')).toEqual({ character: '字', practiceCompletions: 0, writeKnown: true })
+      expect((await db.characterStates.get('雨'))?.writeKnown).toBe(true)
+      await restoreBackup(text)
       await removeManualCharacter('𠀀')
       await recordCharacterPractice('茶')
       await addCharacterToKnowledge('字')

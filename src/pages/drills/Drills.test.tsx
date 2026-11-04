@@ -34,7 +34,7 @@ async function newSet() {
   return (await getDrillSet(id))!
 }
 
-describe('Recent sets rows', () => {
+describe('Recent sessions rows', () => {
   const hf = (fields: Record<string, unknown>) => ({ seed: 1, settings: DEFAULT_HANDSFREE_SETTINGS, started: true, position: 2, done: false, layout: 3, ...fields })
   it('continueOf: a stopped Hands-free activity first, else the first unfinished type, else nothing; finished sets never', async () => {
     const set = await newSet()
@@ -47,19 +47,21 @@ describe('Recent sets rows', () => {
     expect(continueOf({ ...set, status: 'completed', handsfree: hf({}) } as never)).toBeUndefined()
   })
 
-  it('shows an unfinished shortcut set with the words line, "left off in", Continue <type>, Open set and View items', async () => {
+  it('shows an unfinished shortcut set with the words line, "left off in", Continue <type>, Open session and View items', async () => {
     const set = await newSet()
     await db.drillSets.put({ ...set, shortcut: 'handsfree', title: 'Hands-free · 1 Nov', handsfree: hf({ position: 3 }) } as never)
     render(<App />)
-    const recent = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
+    const recent = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
     const row = (await within(recent).findByText('Hands-free · 1 Nov')).closest('.resume-row') as HTMLElement
     expect(row.querySelector('.resume-text')).toHaveTextContent(/types done/)
     expect(row.querySelector('.resume-text')).not.toHaveTextContent(/stopped/)
     expect(within(row).getByRole('link', { name: 'Continue Hands-free introduction at prompt 4' })).toHaveAttribute('href', `#practice/set/${set.id}/handsfree`)
     expect(row.querySelector('.resume-text')).toHaveTextContent('left off in Hands-free introduction')
-      expect(within(row).getByRole('link', { name: 'Continue Hands-free introduction at prompt 4' })).toHaveTextContent('Continue Hands-free introduction')
-      expect(within(row).getByRole('link', { name: /^Open set / })).toHaveAttribute('href', `#practice/set/${set.id}`)
-      expect(within(row).getByRole('link', { name: /^Open set / })).toHaveClass('secondary')
+      const cont = within(row).getByRole('link', { name: 'Continue Hands-free introduction at prompt 4' })
+      expect(cont).toHaveAttribute('title', 'Continue Hands-free introduction at prompt 4'); expect(cont).toHaveTextContent(/^$/); expect(cont).toHaveClass('icon-button', 'primary-icon')
+      expect(within(row).getByRole('link', { name: /^Open session / })).toHaveAttribute('href', `#practice/set/${set.id}`)
+      expect(within(row).getByRole('link', { name: /^Open session / })).toHaveClass('icon-button'); expect(within(row).getByRole('link', { name: /^Open session / })).toHaveTextContent(/^$/)
+      expect(row.querySelector('.history-actions')).not.toBeNull(); expect(within(row).getByRole('button', { name: /^More for / })).toBeInTheDocument()
       expect(within(row).getByRole('link', { name: /^View items in / })).toHaveAttribute('href', `#practice/set/${set.id}/intro`)
   })
 
@@ -73,7 +75,7 @@ describe('Recent sets rows', () => {
   })
 })
 
-describe('Recent sets', () => {
+describe('Recent sessions', () => {
   it('lists a completed set with Open and Save, and Remove from knowledge set in its ⋯ menu, which confirms', async () => {
     const user = userEvent.setup()
     const set = await newSet()
@@ -82,14 +84,14 @@ describe('Recent sets', () => {
     expect(added.length).toBeGreaterThan(0)
     expect(await db.knowledge.count()).toBe(added.length)
     render(<App />)
-    const recent = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
+    const recent = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
     await within(recent).findByText(/types done · \d+ \w{3}/)
     const row = recent.querySelector('.resume-row')!
     expect(within(row as HTMLElement).getByText(/types done/)).toBeInTheDocument()
     expect(within(row as HTMLElement).queryByText(/Hands-free|Practice set/)).toBeNull()
     expect(within(row as HTMLElement).queryByRole('link', { name: /^Continue/ })).toBeNull()
-    expect(within(row as HTMLElement).getByRole('link', { name: /^Open set New items/ })).toHaveAttribute('href', `#practice/set/${set.id}`)
-    expect(within(row as HTMLElement).getByRole('link', { name: /^Open set New items/ })).toHaveClass('primary')
+    expect(within(row as HTMLElement).getByRole('link', { name: /^Open session New items/ })).toHaveAttribute('href', `#practice/set/${set.id}`)
+    expect(within(row as HTMLElement).getByRole('link', { name: /^Open session New items/ })).toHaveClass('primary-icon')
       expect(within(row as HTMLElement).getByRole('link', { name: /^View items in New items/ })).toHaveAttribute('href', expect.stringMatching(/\/intro$/))
       expect(within(row as HTMLElement).getByRole('button', { name: /^Save New items/ })).toBeInTheDocument()
     expect(within(row as HTMLElement).queryByText('In progress')).toBeNull()
@@ -106,10 +108,35 @@ describe('Recent sets', () => {
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
     expect(await db.knowledge.count()).toBe(0)
     expect(await db.studyCards.count()).toBe(0)
-    // nothing left to remove: the ⋯ menu goes away with it
-    await waitFor(() => expect(within(row as HTMLElement).queryByRole('button', { name: /^More for/ })).toBeNull())
-    expect(within(row as HTMLElement).getByRole('link', { name: /^Open set New items/ })).toBeInTheDocument()
+    // nothing left to remove from the knowledge set: the ⋯ menu stays, with Remove from Recent sessions
+    const more = await within(row as HTMLElement).findByRole('button', { name: /^More for New items/ })
+    if (more.getAttribute('aria-expanded') !== 'true') await user.click(more)
+    await waitFor(() => expect(within(row as HTMLElement).queryByRole('menuitem', { name: /from knowledge set$/ })).toBeNull())
+    await user.click(within(row as HTMLElement).getByRole('menuitem', { name: /^Remove New items.* from Recent sessions$/ }))
+    await waitFor(() => expect(recent.querySelector('.resume-row')).toBeNull())
+    expect((await getDrillSet(set.id))!.removedAt).toBeGreaterThan(0)
+    await user.click(await screen.findByRole('button', { name: 'Undo' }))
+    await waitFor(() => expect(recent.querySelector('.resume-row')).not.toBeNull())
+    expect((await getDrillSet(set.id))!.removedAt).toBeUndefined()
+    expect(within(recent as HTMLElement).getByRole('link', { name: /^Open session New items/ })).toBeInTheDocument()
   }, 40000)
+})
+
+describe('Recent sessions: a finished session with nothing to remove from the knowledge set', () => {
+  it('has the ⋯ menu with Remove from Recent sessions, and icon-only actions with full labels', async () => {
+    const user = userEvent.setup()
+    const set = await newSet()
+    await db.drillSets.put({ ...set, title: 'Unwritten characters · 3 Nov', status: 'completed', completedAt: Date.now(), addedRefs: [] } as never)
+    render(<App />)
+    const recent = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
+    const row = (await within(recent).findByText('Unwritten characters · 3 Nov')).closest('.resume-row') as HTMLElement
+    expect(row.querySelector('.resume-text')).toHaveTextContent(/0 of \d+ types done/)
+    for (const link of within(row).getAllByRole('link')) { expect(link).toHaveTextContent(/^$/); expect(link).toHaveAttribute('title') }
+    expect(within(row).getByRole('link', { name: /^Open session Unwritten characters · 3 Nov/ })).toHaveAttribute('title', expect.stringMatching(/^Open session /))
+    await user.click(within(row).getByRole('button', { name: 'More for Unwritten characters · 3 Nov' }))
+    expect(within(row).queryByRole('menuitem', { name: /^Discard/ })).toBeNull()
+    expect(within(row).getByRole('menuitem', { name: 'Remove Unwritten characters · 3 Nov from Recent sessions' })).toBeInTheDocument()
+  })
 })
 
 describe('What you will practise', () => {
@@ -207,7 +234,7 @@ describe('Practice home', () => {
     expect(window.location.hash).toBe('#practice/set/gone')
   })
 
-  it('is the Practice nav entry, starts a new-words set on its intro cards, then lists it in Recent sets as In progress', async () => {
+  it('is the Practice nav entry, starts a new-words set on its intro cards, then lists it in Recent sessions as In progress', async () => {
     const user = userEvent.setup()
     render(<App />)
     expect(await screen.findByRole('heading', { name: 'Practice', level: 1 })).toBeInTheDocument()
@@ -228,16 +255,16 @@ describe('Practice home', () => {
     expect(screen.queryByLabelText('Learning from')).toBeNull()
     await user.click(within(screen.getByRole('navigation', { name: 'Main navigation' })).getByRole('link', { name: /Practice/ }))
     expect(screen.queryByRole('heading', { name: 'Unfinished sets' })).toBeNull()
-    const recent = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
+    const recent = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
     expect(await within(recent).findByText(/New items/)).toBeInTheDocument()
     const line = recent.querySelector('.resume-row')!
     // title and meta on the left; Resume, Save and the ⋯ menu are same-size controls on the right
     expect([...line.children].map(child => child.className.split(' ')[0])).toEqual(['resume-text', 'resume-actions'])
     expect(line.querySelector('.resume-text')).toHaveTextContent('In progress')
     expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 11 types done/)
-    // nothing started yet: no Continue, but Open set is always there
+    // nothing started yet: no Continue, but Open session is always there
     expect(within(recent).queryByRole('link', { name: /^Continue/ })).toBeNull()
-    expect(within(recent).getByRole('link', { name: /^Open set New items/ })).toBeInTheDocument()
+    expect(within(recent).getByRole('link', { name: /^Open session New items/ })).toBeInTheDocument()
     expect(within(recent).queryByRole('button', { name: /^Discard New items/ })).toBeNull()
     const openMenu = () => user.click(within(recent).getByRole('button', { name: /^More for New items/ }))
     await openMenu()
@@ -255,7 +282,7 @@ describe('Practice home', () => {
     await openMenu()
     await user.click(within(recent).getByRole('menuitem', { name: /^Discard New items/ }))
     await user.click(within(screen.getByRole('dialog', { name: 'Discard this set?' })).getByRole('button', { name: 'Discard' }))
-    expect(await within(recent).findByText('No sets yet.')).toBeInTheDocument()
+    expect(await within(recent).findByText('No sessions yet.')).toBeInTheDocument()
   }, 40000)
 
   it('lists a review set as headword tiles with no meanings, reveals one on tap and all with the toggle, and records no introduction', async () => {

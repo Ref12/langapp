@@ -233,3 +233,9 @@
 .dr-tile-zh { font-size: 1.5rem; line-height: 1.2; overflow-wrap: anywhere; text-align: center; }
 .dr-tile-kind { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.6; }
 .dr-tile-card { margin-top: 8px; }
+
+/* Recent sessions: the right-aligned icon-only row, like History's. */
+.resume-row .resume-actions.history-actions { justify-content: flex-end; gap: 4px; }
+.resume-row .resume-actions > .icon-button { flex: 0 0 40px; width: 40px; height: 40px; }
+.resume-row .resume-actions > .icon-button.primary-icon { background: var(--accent); color: var(--on-accent); }
+.resume-row .resume-actions > .icon-button.primary-icon:hover { filter: brightness(1.1); }

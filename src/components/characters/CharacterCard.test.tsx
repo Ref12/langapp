@@ -1,4 +1,5 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { CharacterCard } from './CharacterCard'
 import { resetCharacterMeanings } from '../../core/characters/meanings'
@@ -32,5 +33,32 @@ describe('CharacterCard provenance', () => {
       state={{ character: '\u8336', manualAddedAt: Date.UTC(2026, 10, 2, 12), practiceCompletions: 0 }} />)
     expect(await screen.findByText('From your words: \u8336\u676f \u00b7 Added manually Nov 2, 2026 \u00b7 Built-in writing guide \u00b7 HSK 1 word \u8336')).toBeInTheDocument()
     expect(screen.queryByText(/Character gloss:/)).not.toBeInTheDocument()
+  })
+})
+
+describe('CharacterCard I can write this and Keep', () => {
+  it('shows a Can write tag and a pressed toggle when flagged, and the toggle runs the undoable action', async () => {
+    stubTables()
+    const run = vi.fn()
+    render(<CharacterCard {...props} run={run} entry={{ character: '\u9e23', asset, words: [], bands: [] }} automatic={false} manual={false} state={{ character: '\u9e23', practiceCompletions: 0, writeKnown: true }} />)
+    expect(screen.getByText('Can write')).toBeInTheDocument()
+    const toggle = screen.getByRole('button', { name: /^I can write \u9e23/ })
+    expect(toggle).toHaveAttribute('aria-pressed', 'true')
+    await userEvent.setup().click(toggle)
+    expect(run).toHaveBeenCalledTimes(1)
+  })
+  it('is off by default, with Keep moved into the ⋯ menu for an automatic character and Add for one not in the set', async () => {
+    stubTables()
+    const user = userEvent.setup()
+    const { unmount } = render(<CharacterCard {...props} entry={{ character: '\u8336', asset, words: [word], bands: ['1'] }} automatic manual={false} known={new Set(['vocabulary:tea-cup'])} />)
+    expect(screen.queryByText('Can write')).toBeNull()
+    expect(screen.getByRole('button', { name: /^I can write \u8336/ })).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.queryByRole('button', { name: /^Keep/ })).toBeNull()
+    await user.click(screen.getByRole('button', { name: /^More for Character/ }))
+    expect(within(screen.getByRole('menu')).getByRole('menuitem', { name: 'Keep \u8336 even if my words change' })).toHaveTextContent('Keep even if my words change')
+    unmount()
+    render(<CharacterCard {...props} entry={{ character: '\u8336', asset, words: [], bands: [] }} automatic={false} manual={false} />)
+    expect(screen.getByRole('button', { name: /^Add \u8336/ })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /^More for/ })).toBeNull()
   })
 })

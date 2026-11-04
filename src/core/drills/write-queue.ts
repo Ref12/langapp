@@ -8,19 +8,21 @@ const SEVERITY: Record<Mark, number> = { got: 0, hint: 1, missed: 2 }
 /** A word's result for Write it: the worst of its characters' results. */
 export const worstMark = (marks: readonly Mark[]): Mark => marks.reduce<Mark>((worst, mark) => SEVERITY[mark] > SEVERITY[worst] ? mark : worst, 'got')
 
-/** The characters the learner has written successfully (stroke practice, or Drills): the ones with a saved practice completion. */
-export const writtenCharacters = (states: readonly { character: string; practiceCompletions: number }[]): Set<string> =>
-  new Set(states.filter(state => state.practiceCompletions > 0).map(state => state.character))
+/** The characters the learner has written successfully (stroke practice, or Drills: a saved practice completion) or says they can already write (writeKnown). */
+/** A character's writing state: practice completions, or the learner's own "I can write this" flag. */
+export type WriteState = { character: string; practiceCompletions: number; writeKnown?: boolean }
+export const writtenCharacters = (states: readonly WriteState[]): Set<string> =>
+  new Set(states.filter(state => state.practiceCompletions > 0 || state.writeKnown).map(state => state.character))
 
 /** Distinct characters of these words that Write it can teach: guided Han characters never written successfully. */
-export function newCharacters(words: readonly string[], states: readonly { character: string; practiceCompletions: number }[], has?: (character: string) => boolean): string[] {
+export function newCharacters(words: readonly string[], states: readonly WriteState[], has?: (character: string) => boolean): string[] {
   const written = writtenCharacters(states)
   return [...new Set(words.flatMap(zh => guidedChars(zh, has)))].filter(char => !written.has(char))
 }
 
 const plural = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`
 /** "4 words · 2 grammar patterns · 5 new characters": what a set of items holds. New characters are the ones Write it will teach. */
-export function describeItems(items: readonly { kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string }[], states: readonly { character: string; practiceCompletions: number }[], has?: (character: string) => boolean): string {
+export function describeItems(items: readonly { kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string }[], states: readonly WriteState[], has?: (character: string) => boolean): string {
   const words = items.filter(item => item.kind === 'vocabulary' || item.kind === 'source')
   const grammar = items.filter(item => item.kind === 'grammar').length
   const phrases = items.filter(item => item.kind === 'phrase').length

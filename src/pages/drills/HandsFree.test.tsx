@@ -249,11 +249,11 @@ describe('Hands-free player', () => {
     expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ repeats: 5 })
   })
 
-  it('lists an unfinished Hands-free set in Recent sets with In progress, resumes it at the saved prompt, and discards it from the ⋯ menu', async () => {
+  it('lists an unfinished Hands-free set in Recent sessions with In progress, resumes it at the saved prompt, and discards it from the ⋯ menu', async () => {
     await openRun({ pause: 'short', repeats: 1, sectionIntros: 'off' }, { started: true, position: 3 })
     window.location.hash = '#practice'
     render(<App />)
-    const section = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
+    const section = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
     expect(screen.queryByRole('heading', { name: 'Unfinished sets' })).toBeNull()
     const resume = await within(section).findByRole('link', { name: 'Continue Hands-free introduction at prompt 4' })
     const row = section.querySelector('.resume-row')!
@@ -261,7 +261,7 @@ describe('Hands-free player', () => {
     expect(row.querySelector('.resume-text')).toHaveTextContent('In progress')
     expect(row.querySelector('.resume-text')).toHaveTextContent(/3 words.* · \d of \d+ types done/)
     expect(row.querySelector('.resume-text')).not.toHaveTextContent(/stopped/)
-    expect(within(section).getByRole('link', { name: 'Open set Hands-free · 1 Nov' })).toHaveAttribute('href', '#practice/set/run1')
+    expect(within(section).getByRole('link', { name: 'Open session Hands-free · 1 Nov' })).toHaveAttribute('href', '#practice/set/run1')
     // Resume is the main icon button, Discard lives in the ⋯ menu
     expect(within(section).queryByRole('button', { name: /^(Resume|Play)$/ })).toBeNull()
     expect(within(section).queryByRole('button', { name: 'Discard Hands-free · 1 Nov' })).toBeNull()
@@ -270,7 +270,7 @@ describe('Hands-free player', () => {
     expect(await screen.findByRole('button', { name: /^(Resume|Play)$/ })).toBeEnabled()
     await waitFor(() => expect(phase()).toMatch(/^\d+ of 15$/))
     window.location.hash = '#practice'
-    const again = (await screen.findByRole('heading', { name: 'Recent sets' })).closest('section')!
+    const again = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
     fireEvent.click(await within(again).findByRole('button', { name: 'More for Hands-free · 1 Nov' }))
     fireEvent.click(await screen.findByRole('menuitem', { name: 'Discard Hands-free · 1 Nov' }))
     const confirm = screen.getByRole('dialog', { name: 'Discard this set?' })

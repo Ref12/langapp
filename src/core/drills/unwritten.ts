@@ -2,7 +2,7 @@ import { db } from '../database'
 import { loadCatalog, type Catalog } from '../study/catalog'
 import { isSourceRef } from '../study/contracts'
 import { loadItems } from './items'
-import { newCharacters } from './write-queue'
+import { newCharacters, type WriteState } from './write-queue'
 
 /** The unwritten-characters backlog: characters in words the learner knows that they have not written yet. Items stay words; characters only decide which words and how many. */
 export const UNWRITTEN_DEFAULT = 8
@@ -14,7 +14,7 @@ export function saveUnwrittenSize(size: number) { try { localStorage.setItem(KEY
 
 /** A known word: when it joined the knowledge set, and its place in the catalog (lesson order) for ties. */
 export interface BacklogWord { ref: string; zh: string; addedAt: number; order: number }
-type States = readonly { character: string; practiceCompletions: number }[]
+type States = readonly WriteState[]
 
 /** Every unwritten guided character across the known words: the total the Practice home shows. */
 export const countUnwritten = (words: readonly BacklogWord[], states: States, has?: (character: string) => boolean): number => newCharacters(words.map(word => word.zh), states, has).length
