@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, ListChecks, MessageSquareText, PenLine, Play, Repeat, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, ListChecks, MessageSquareText, PenLine, Play, Repeat, RefreshCw, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
 import { navigate, useRoute } from '../../core/routing'
 import { itemCount } from '../../core/collections/terms'
@@ -123,6 +123,22 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
   </div>
 }
 
+/** A failed generation reads as failed: short and plain, the transport text stays in the tooltip. */
+const failedLine = (error?: string) => `Couldn't prepare these questions (${error && /unable to reach|timed out/i.test(error) ? 'AI service unreachable' : 'the AI request failed'}).`
+
+/** Retries a failed generation once per page open, when it opens or the app comes back online or regains focus. */
+function useQuietRetry(setId: string, failed: boolean) {
+  const tried = useRef(false)
+  useEffect(() => { tried.current = false }, [setId])
+  useEffect(() => {
+    if (!failed) return
+    const retry = () => { if (tried.current || document.visibilityState === 'hidden' || navigator.onLine === false) return; tried.current = true; void retryContent(setId) }
+    retry()
+    window.addEventListener('online', retry); window.addEventListener('focus', retry); document.addEventListener('visibilitychange', retry)
+    return () => { window.removeEventListener('online', retry); window.removeEventListener('focus', retry); document.removeEventListener('visibilitychange', retry) }
+  }, [setId, failed])
+}
+
 const TYPE_COUNT = DRILL_TYPES.length + 2
 /** The two Hands-free practice types of a set. */
 const HANDSFREE_TYPES: { kind: HandsfreeKind; name: string; blurb: string }[] = [
@@ -136,6 +152,7 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const content = effectiveContent(set)
   const connection = useAIConnection()
   const quiz = set.format === 'quiz'
+  useQuietRetry(set.id, content.state === 'failed' && connection !== null)
   const rows = DRILL_TYPES.map(entry => ({ entry, avail: availability(entry.id, items, content), progress: set.progress[entry.id] }))
   // A Practice by skill set lists the types for its skill first.
   if (set.emphasis) rows.sort((a, b) => Number(drillSkills(b.entry.id).includes(set.emphasis!)) - Number(drillSkills(a.entry.id).includes(set.emphasis!)))
@@ -172,13 +189,13 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
           <div><strong>{entry.name}</strong><span className="small muted"><span className="dr-sr">Done. </span>{score.correct} of {score.total} correct · {counts.got} {MARK_LABEL.got.toLowerCase()}, {counts.hint} hint, {counts.missed} missed</span></div>
           <span className="dr-actions"><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Redo ${entry.name}, done`} title="Redo"><RotateCcw size={18} /></a></span></li> } }
       return { rank: progress ? 0 : 1, node: <li key={entry.id}><Icon size={20} aria-hidden="true" />
-        <div><strong>{entry.name}</strong><span className="small muted">{ready ? `${entry.blurb} · ${avail.count} ${avail.count === 1 ? 'item' : 'items'}${progress ? ` · ${Object.keys(progress.results).length} of ${progress.scope.length} done` : ''}` : avail.message}</span>
+        <div><strong>{entry.name}</strong><span className="small muted">{avail.state === 'failed' ? <span title={content.error}>{failedLine(content.error)}</span> : ready ? `${entry.blurb} · ${avail.count} ${avail.count === 1 ? 'item' : 'items'}${progress ? ` · ${Object.keys(progress.results).length} of ${progress.scope.length} done` : ''}` : avail.message}</span>
           {avail.state === 'running' && <progress aria-label={`${entry.name} progress`} value={content.done ?? 0} max={Math.max(1, content.total ?? 1)} />}</div>
         <span className="dr-actions">{ready ? (progress
             ? <><a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Continue ${entry.name}`} title="Continue"><ArrowRight size={18} /></a>
               <button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => restartType(entry, progress)}><RotateCcw size={18} /></button></>
             : <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Start ${entry.name}${quiz ? ' as a quiz' : ''}`} title={quiz ? 'Start as a quiz' : 'Start'}><Play size={18} /></a>)
-          : avail.state === 'failed' ? <button type="button" className="icon-button" disabled={busy} aria-label={`Try again ${entry.name}`} title="Try again" onClick={() => void run(async () => { void retryContent(set.id) })}><RotateCcw size={18} /></button>
+          : avail.state === 'failed' ? <button type="button" className="button small dr-retry" disabled={busy} aria-label={`Try again ${entry.name}`} title="Try again" onClick={() => void run(async () => { void retryContent(set.id) })}><RefreshCw size={16} /> Try again</button>
             : <button type="button" className="icon-button" disabled aria-label={`${entry.name} ${avail.state === 'running' ? 'is being written' : 'is not available'}`} title={avail.state === 'running' ? 'Writing…' : 'Not available'}><Play size={18} /></button>}</span></li> } }),
   ].sort((x, y) => x.rank - y.rank)
   const todoCount = entries.filter(item => item.rank < 2).length

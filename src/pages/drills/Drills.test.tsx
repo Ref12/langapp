@@ -843,3 +843,37 @@ describe('no sideways overflow at 390 px', () => {
     expect(fits()).toBe(true)
   }, 40000)
 })
+
+describe('A set whose AI content failed', () => {
+  const failTransport = 'Unable to reach the AI service. Check the endpoint, network and browser CORS permissions; redirects are not allowed.'
+  async function failedSet() {
+    const set = await newSet()
+    await db.aiConnections.put({ id: 'assistant', apiType: 'chat', baseUrl: 'https://ai.example/v1', apiKey: 'k', model: 'm', nativeTools: false, structuredOutput: false, headers: [], storageAcknowledged: true, revision: 1 } as never)
+    await db.drillSets.put({ ...set, content: { ...set.content, state: 'failed', error: failTransport } })
+    return set
+  }
+  it('reads as failed (Try again with a refresh icon, a short line), not as a done Redo, and hides the raw transport message', async () => {
+    structured.requestStructuredJSON.mockRejectedValue(new Error(failTransport))
+    const set = await failedSet()
+    window.location.hash = `#practice/set/${set.id}`
+    render(<App />)
+    const retry = (await screen.findAllByRole('button', { name: /^Try again/ }))[0]
+    expect(retry).toHaveTextContent('Try again')
+    expect(retry.querySelector('svg.lucide-refresh-cw')).not.toBeNull()
+    expect(retry.querySelector('svg.lucide-rotate-ccw')).toBeNull()
+    expect((await screen.findAllByText("Couldn't prepare these questions (AI service unreachable).")).length).toBeGreaterThan(0)
+    expect(screen.queryByText(/Check the endpoint, network and browser CORS/)).toBeNull()
+  })
+  it('retries once by itself when the page opens, and not again on focus or online', async () => {
+    structured.requestStructuredJSON.mockRejectedValue(new Error(failTransport))
+    const set = await failedSet()
+    window.location.hash = `#practice/set/${set.id}`
+    render(<App />)
+    await waitFor(() => expect(structured.requestStructuredJSON).toHaveBeenCalled())
+    await whenContent(set.id)
+    const calls = structured.requestStructuredJSON.mock.calls.length
+    window.dispatchEvent(new Event('focus')); window.dispatchEvent(new Event('online'))
+    await whenContent(set.id)
+    expect(structured.requestStructuredJSON.mock.calls.length).toBe(calls)
+  })
+})
