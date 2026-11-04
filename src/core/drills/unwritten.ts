@@ -2,7 +2,7 @@ import { db } from '../database'
 import { loadCatalog, type Catalog } from '../study/catalog'
 import { isSourceRef } from '../study/contracts'
 import { loadItems } from './items'
-import { newCharacters, writtenCharacters } from './write-queue'
+import { newCharacters } from './write-queue'
 
 /** The unwritten-characters backlog: characters in words the learner knows that they have not written yet. Items stay words; characters only decide which words and how many. */
 export const UNWRITTEN_DEFAULT = 8
@@ -24,13 +24,12 @@ export const countUnwritten = (words: readonly BacklogWord[], states: States, ha
  * A word whose unwritten characters are all already covered by earlier picks is skipped. `characters` is what the picked words teach.
  */
 export function pickUnwritten(words: readonly BacklogWord[], states: States, size: number, has?: (character: string) => boolean): { refs: string[]; characters: string[] } {
-  const written = writtenCharacters(states)
   const covered = new Set<string>()
   const refs: string[] = []
   for (const word of [...words].sort((a, b) => a.addedAt - b.addedAt || a.order - b.order || a.ref.localeCompare(b.ref))) {
     if (covered.size >= size) break
     const fresh = newCharacters([word.zh], states, has).filter(character => !covered.has(character))
-    if (!fresh.length || fresh.every(character => written.has(character))) continue
+    if (!fresh.length) continue
     for (const character of fresh) covered.add(character)
     refs.push(word.ref)
   }

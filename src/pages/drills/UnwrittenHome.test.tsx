@@ -28,6 +28,17 @@ describe('Learn to write in an Unwritten characters set', () => {
     expect(only[0].data).toMatchObject({ t: 'learn', chars: [...guidedChars('学生')].filter(c => c !== '学') })
     expect((buildQuestions('learn', input)[0].data as { chars?: string[] }).chars).toBeUndefined()
   })
+  it('teaches a character shared by two words only in the first word', () => {
+    const a = { ref: 'vocabulary:a', kind: 'vocabulary' as const, zh: '学生', py: 'xuésheng', en: 'student' }
+    const b = { ref: 'vocabulary:b', kind: 'vocabulary' as const, zh: '学习', py: 'xuéxí', en: 'study' }
+    const c = { ref: 'vocabulary:c', kind: 'vocabulary' as const, zh: '学', py: 'xué', en: 'learn' }
+    const questions = buildQuestions('learn', { setId: 's', items: [a, b, c], catalog: {} as never, known: new Set<string>(), content: { state: 'ready' as const, sentences: {}, conversations: [] }, options: DEFAULT_OPTIONS, written: new Set<string>() })
+    const chars = questions.map(question => (question.data as { chars: string[] }).chars)
+    expect(chars[0]).toEqual(guidedChars('学生'))
+    expect(chars[1]).toEqual(guidedChars('学习').filter(character => !chars[0].includes(character)))
+    expect(chars[1]).not.toContain('学')
+    expect(chars[2]).toEqual([])
+  })
 })
 
 describe('Characters to write row on Practice home', () => {

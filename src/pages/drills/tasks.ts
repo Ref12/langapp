@@ -121,7 +121,16 @@ export function buildQuestions(type: DrillTypeId, input: { setId: string; items:
     })
   }
   if (type === 'pinyin') return order.map(item => q(`pinyin-${item.ref}`, [item.ref], { t: 'pinyin', item }))
-  if (type === 'learn') return items.map(item => q(`learn-${item.ref}`, [item.ref], { t: 'learn', item, ...(input.written ? { chars: guidedChars(item.zh).filter(character => !input.written!.has(character)) } : {}) }))
+  if (type === 'learn') {
+      // An Unwritten characters set teaches each character once, in the first word (in set order) that has it.
+      const taught = new Set<string>()
+      return items.map(item => {
+        if (!input.written) return q(`learn-${item.ref}`, [item.ref], { t: 'learn', item })
+        const chars = [...new Set(guidedChars(item.zh))].filter(character => !input.written!.has(character) && !taught.has(character))
+        chars.forEach(character => taught.add(character))
+        return q(`learn-${item.ref}`, [item.ref], { t: 'learn', item, chars })
+      })
+    }
   if (type === 'write') return order.map(item => q(`write-${item.ref}`, [item.ref], { t: 'write', item, sentence: content.sentences[item.ref], mode: options.writeMode }))
   if (type === 'translate') return order.map(item => q(`translate-${item.ref}`, [item.ref], { t: 'translate', item, sentence: content.sentences[item.ref] }))
   if (type === 'repeat') return order.map(item => q(`repeat-${item.ref}`, [item.ref], { t: 'repeat', item, sentence: content.sentences[item.ref] }))
