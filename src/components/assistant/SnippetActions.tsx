@@ -5,7 +5,7 @@ import { MessageCircle, MoreHorizontal, PenLine, Repeat2, Square, Volume2, X } f
 import { prepareAssistantDraft } from '../../core/assistant/draft-actions'
 import { practicePhraseSchema, type AssistantSource, type SpeechBlock, type SpeechLocale, type SpeechRate } from '../../core/assistant/contracts'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayback } from '../../core/assistant/speech'
-import { selectedSnippet, selectionPracticeUnavailable, snippetLocale } from '../../core/assistant/selection'
+import { selectionAccess, selectionPracticeUnavailable, snippetLocale, type SelectionAccess } from '../../core/assistant/selection'
 import { navigate } from '../../core/routing'
 import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
 import { interruptAudio } from '../../core/assistant/audio-owner'
@@ -31,11 +31,15 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
 }
 
 /** The phrase's actions, always beside the phrase: an icon Hear button and a "…" menu (Ask, Practice, Write, Learn). */
-export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true, learn }: {
+export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true, learn, ask = true, hear = true }: {
   source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; onWrite?: () => void; practiceDisabled?: boolean; practiceTitle?: string
   knowledge?: boolean
   /** Replaces the Learn item (null hides it), e.g. a character is added to the character set. */
   learn?: ReactNode
+  /** False withholds Ask (it leaves the page and would explain an unanswered exercise). */
+  ask?: boolean
+  /** False withholds Hear (hearing the text would give the answer away). */
+  hear?: boolean
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
@@ -45,9 +49,9 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, 
   const createsConversation = page !== 'conversation' || !currentId
   return <div className="snippet-actions" data-assistant-exclude>
     <div className="snippet-actions-row">
-      {source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} iconOnly label={`Hear ${source.text}`} />}
+      {hear && source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} iconOnly label={`Hear ${source.text}`} />}
       <ActionMenu label="Phrase actions" trigger={<MoreHorizontal size={20} />}>{close => <div className="phrase-menu">
-        <button type="button" className="button secondary snippet-button" disabled={pending || (createsConversation && speedSetup === 'loading')} onClick={() => {
+        {ask && <button type="button" className="button secondary snippet-button" disabled={pending || (createsConversation && speedSetup === 'loading')} onClick={() => {
           setPending(true)
           setError('')
           const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
@@ -56,7 +60,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, 
             else { close(false); onPrepared?.(); navigate(`conversation/${id}`) }
           }, reason => { setError(reason instanceof Error ? reason.message : 'The Assistant draft could not be saved.') })
             .finally(() => setPending(false))
-        }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask'}</button>
+        }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask'}</button>}
         {onPractice && <button type="button" className="button secondary snippet-button" title={practiceTitle} disabled={practiceDisabled} onClick={() => { close(); onPractice() }}>
           <Repeat2 size={15} />Practice
         </button>}
@@ -176,7 +180,9 @@ export function PracticeSnippet({ source, knowledge = true, learn, practiceMode,
 }
 
 export function SelectionActions({ route, title, rate = 1 }: { route: string; title: string; rate?: SpeechRate }) {
-  const [text, setText] = useState<string>()
+  const [access, setAccess] = useState<SelectionAccess>()
+  const text = access?.text
+  const setText = (value: undefined) => setAccess(value)
   const [practice, setPractice] = useState<{ phrase: SpeechBlock; rate: SpeechRate; mode?: 'speak' | 'write' }>()
   const [practiceError, setPracticeError] = useState('')
   const [savedPractice, setSavedPractice] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
@@ -195,7 +201,7 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
       if (pointerHeld.current) return
       if (!outsideTap.current && toolbar.current?.querySelector('[aria-expanded="true"]')) return
       const root = document.getElementById('main')
-      setText(root ? selectedSnippet(window.getSelection(), root) : undefined)
+      setAccess(root ? selectionAccess(window.getSelection(), root) : undefined)
       setPracticeError('')
     }
     const keys = (event: KeyboardEvent) => {
@@ -249,7 +255,7 @@ export function SelectionActions({ route, title, rate = 1 }: { route: string; ti
       onPointerCancelCapture={() => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }}
       onClickCapture={() => { clearTimeout(releaseTimer.current); releaseTimer.current = setTimeout(() => { pointerHeld.current = false }, 400) }}>
       <SnippetActions key={`${route}:${text}`} source={{ text, title: `Selection from ${title}`, route, locale: snippetLocale(text) }}
-        onPrepared={() => setText(undefined)} onPractice={() => openPractice()} onWrite={() => openPractice('write')} practiceDisabled={Boolean(unavailable)}
+        ask={access!.ask} hear={access!.hear} onPrepared={() => setText(undefined)} onPractice={() => openPractice()} onWrite={() => openPractice('write')} practiceDisabled={Boolean(unavailable)}
         practiceTitle={unavailable ?? 'Practice the selected Mandarin text'} />
       <button type="button" className="icon-button" aria-label="Dismiss selected text actions" onClick={() => setText(undefined)}><X size={18} /></button>
       {unavailable && <p className="small muted selection-actions-note">{unavailable}</p>}

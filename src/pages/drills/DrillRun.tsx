@@ -27,6 +27,13 @@ const TITLES: Record<string, string> = {
   choice: 'Choose the answer', match: 'Match the pairs', free: 'Type the answer', pinyin: 'Type the pinyin', learn: 'Learn to write', write: 'Write it', translate: 'Translate into Chinese', repeat: 'Repeat after me', convo: 'Answer the questions',
 }
 
+/** Selecting a drill question's text stays possible before it is answered, minus Ask (and Hear where hearing gives the answer away). */
+function guard(q: Q, state?: QState): { 'data-assistant-protected'?: 'restricted'; 'data-assistant-no-hear'?: '' } {
+  if ((state?.status ?? 'open') !== 'open') return {}
+  const leaks = q.data.t === 'pinyin' || (q.data.t === 'convo' && q.data.mode === 'listen')
+  return { 'data-assistant-protected': 'restricted', ...(leaks ? { 'data-assistant-no-hear': '' as const } : {}) }
+}
+
 /** One drill type over the items of a set: one at a time, or as a single page answered in bulk. The first pass of a type is graded; a redo is not. */
 export function DrillRun({ set, type, items, catalog, workspace, only, backHref, now, run, busy }: RunProps) {
   const progress = set.progress[type]
@@ -86,7 +93,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   }
   const name = drillType(type).name
 
-  const toolbar = <div className="dr-toolbar dr-modes-bar">
+  const toolbar = <div className="dr-toolbar dr-modes-bar" data-assistant-exclude>
     {type === 'meanings' && <>
       <div className="segmented dr-modes" role="group" aria-label="Style">{(['choice', 'free'] as const).map(style =>
         <button key={style} type="button" aria-pressed={options.style === style} onClick={() => change({ ...options, style })}>{style === 'choice' ? 'Choose' : 'Type'}</button>)}</div>
@@ -97,11 +104,11 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
         <button key={writeMode} type="button" aria-pressed={options.writeMode === writeMode} onClick={() => change({ ...options, writeMode })}>{writeMode === 'pad' ? 'Handwriting pad' : 'Write elsewhere'}</button>)}</div></>}
   </div>
 
-  const header = <>
+  const header = <div style={{ display: 'contents' }} data-assistant-exclude>
     <a className="back-link" href={backHref}><ArrowLeft size={16} /> {set.title}</a>
     <div className="card-topline"><span className="eyebrow">{name.toUpperCase()}{graded ? '' : ' · REDO, NOT GRADED'}</span>
       <span className="small muted">{quiz ? 'Quiz' : queue.length ? `Question ${Math.min(index + 1, queue.length)} of ${queue.length}` : ''}</span></div>
-  </>
+  </div>
 
   if (!queue.length) return <div className="dr" data-assistant-exclude><section className="panel dr-run">{header}<p role="status">{graded && progress && scope.length ? 'Every item in this type already has a result.' : 'There is nothing to practise here.'}</p>
     <div className="dr-actions"><a className="button primary" href={backHref}>Back to the set</a></div></section></div>
@@ -122,22 +129,25 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     const toConfirm = queue.filter(q => needsConfirm(q) && states[q.key]?.status === 'marking')
     const checked = queue.some(q => (states[q.key]?.status ?? 'open') !== 'open')
     const checkAll = () => { for (const q of queue) { const state = states[q.key]; if (state?.answer !== undefined && (state.status ?? 'open') === 'open') check(q, state.answer) } }
-    return <div className="dr" data-assistant-exclude>{header}{toolbar}
-      <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel"><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{TITLES[q.data.t]}</h2></div>
+    return <div className="dr">{header}{toolbar}
+      <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel" {...guard(q, states[q.key])}><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{TITLES[q.data.t]}</h2></div>
         <QuestionView q={q} quiz state={states[q.key] ?? { status: 'open' }} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} /></li>)}</ol>
       <div className="dr-sticky" role="region" aria-label="Quiz progress"><span><strong>{answered} of {queue.length}</strong> answered</span>
         {toConfirm.length > 0 ? <button type="button" className="button primary" disabled={toConfirm.some(q => !states[q.key]?.chosen)} onClick={() => toConfirm.forEach(confirm)}>Confirm marks</button>
           : <button type="button" className="button primary" disabled={answered === 0 || (checked && queue.every(q => (states[q.key]?.status ?? 'open') !== 'open'))} onClick={checkAll}>Check all</button>}</div></div>
   }
 
+  // Handwriting screens stay excluded: selecting there is a drawing gesture, never a request for phrase help.
   const q = queue[index]
   const state = states[q.key] ?? { status: 'open' as const }
   const canCheck = !isAuto(q) && state.status === 'open' && state.answer !== undefined
-  return <div className="dr" data-assistant-exclude><section className="panel dr-run">{header}
+  return <div className="dr"><section className="panel dr-run">{header}
     <progress aria-label="Progress" value={index} max={queue.length} />
     {toolbar}
+    <div className="dr-question" {...(q.data.t === 'write' || q.data.t === 'learn' ? { 'data-assistant-exclude': '' } : guard(q, state))}>
     <h2 className="small dr-qtitle">{TITLES[q.data.t]}</h2>
     <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} arrive={arrived === q.key ? 'last' : undefined} onPrevious={type === 'learn' && index > 0 ? () => { setArrived(queue[index - 1].key); setIndex(index - 1) } : undefined} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
+    </div>
     <div className="dr-actions">
       {state.status === 'marking' && needsConfirm(q) ? <button type="button" className="button primary" disabled={!state.chosen} onClick={() => { confirm(q); setIndex(index + 1) }}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>
       : state.status === 'done' ? <button type="button" className="button primary" onClick={() => setIndex(index + 1)}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>

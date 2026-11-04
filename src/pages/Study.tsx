@@ -293,7 +293,9 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
   const chineseAnswer = exercise.type === 'tiles' || (exercise.type === 'choice' && exercise.direction === 'en-to-zh')
   const running = session.generation === 'running'
   const [noticeShown, setNoticeShown] = useState(true)
-  return <div className="practice-player answer-player panel" data-assistant-protected={!attempt ? 'true' : undefined}>
+  return <div className="practice-player answer-player panel" data-assistant-protected={!attempt ? 'restricted' : undefined}
+    // Hearing a Chinese item gives away its pinyin in a Chinese-to-pinyin match.
+    data-assistant-no-hear={!attempt && exercise.type === 'match' && exercise.mode === 'zh-py' ? '' : undefined}>
     <div className="card-topline"><span className="eyebrow">{phase ? `${PHASE_LABEL[phase.kind].toUpperCase()} (${phase.number + 1}/${session.phases!.length})` : session.mode === 'new' ? 'NEW ITEMS' : 'REVIEW'} / {exercise.type === 'choice' ? 'CHOOSE' : exercise.type === 'match' ? 'MATCH' : 'BUILD THE SENTENCE'}</span>
       <span className="small muted">{redo && <span className="badge redo-badge">Redo</span>} {running ? `${session.cursor + (attempt ? 1 : 0)} done · more coming` : `Exercise ${session.cursor + 1} of ${total}`}{!running && toRedo > 0 && ` · ${toRedo} to redo`}</span></div>
     {session.aiNotice && noticeShown && <p className="notice small ai-notice" role="status">{session.aiNotice} <button type="button" className="text-link" onClick={() => { setNoticeShown(false); void dismissAiNotice(session.id) }}>Dismiss</button></p>}

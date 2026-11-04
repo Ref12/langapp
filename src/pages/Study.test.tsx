@@ -288,6 +288,19 @@ describe('New and Review', () => {
     await screen.findByRole('button', { name: `My knowledge set (${refs.filter(ref => ref.startsWith('vocabulary:')).length})` })
   }, 20000)
 
+  it.each(['choice', 'tiles'] as const)('keeps a %s exercise selectable but restricted (no Ask) until it is answered', async type => {
+    const user = userEvent.setup()
+    await seedExercise(type)
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Start' }))
+    const player = () => document.querySelector('.answer-player')!
+    expect(player()).toHaveAttribute('data-assistant-protected', 'restricted')
+    await chooseAnswer(user, type)
+    await user.click(screen.getByRole('button', { name: 'Check answer' }))
+    await screen.findByText('Correct.')
+    expect(player()).not.toHaveAttribute('data-assistant-protected')
+  }, 20000)
+
   it.each(['choice', 'tiles'] as const)('retries failed %s advancement after reload without saving or grading twice', async type => {
     const user = userEvent.setup()
     const session = await seedExercise(type)
