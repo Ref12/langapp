@@ -111,7 +111,7 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
 .character-head .tag.can-write { color: var(--accent); border-color: var(--accent); }
 
 /* Dictionary select mode */
-.select-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 0; margin: 4px 0; background: var(--bg, var(--surface, Canvas)); }
+.select-bar { position: sticky; top: 57px; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 0; margin: 4px 0; background: var(--bg, var(--surface, Canvas)); }
 .select-bar .select-count { font-weight: 600; }
 .select-item { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .select-item.picked > :not(.select-row) { outline: 2px solid var(--accent); border-radius: 12px; }
@@ -121,3 +121,5 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
 .select-pick input { width: 22px; height: 22px; }
 .tag.not-yet { color: var(--muted, inherit); }
 .word-grid .select-item > .word-card { flex: 1; }
+.select-bar .button { min-height: 40px; padding: 6px 12px; font-size: 0.9rem; }
+.select-bar { border-bottom: 1px solid var(--border, rgba(128,128,128,.3)); }

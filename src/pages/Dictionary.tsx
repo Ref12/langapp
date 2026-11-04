@@ -121,8 +121,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const restore = () => { if (!undo) return; const { changes } = undo; setUndo(null); void run(() => undoWriteChanges(changes)) }
   const pageEntries: [string, string][] = kind === 'characters' ? characterMatches.slice(0, limit).map(entry => [entry.character, entry.character] as [string, string])
     : [...(scope === 'media' ? [] : matches.slice(0, limit).flatMap(unit => unit.kind === 'vocabulary' ? [[unit.ref, unit.record.ch] as [string, string]] : [])), ...sourceMatches.slice(0, limit).map(entry => [`source:${entry.id}`, entry.word] as [string, string])]
-  const allPicked = pageEntries.length > 0 && pageEntries.every(([key]) => picked.has(key))
-  const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
+    const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
   return <>
     <PageHeading eyebrow="THE WHOLE CURRICULUM" title={kind === 'characters' ? 'Characters, one stroke at a time.' : 'Vocabulary and grammar, by band.'}>
       {kind === 'characters' ? 'Your character set includes characters from words in your knowledge set, plus any you add manually. Practice their strokes here; inclusion does not claim writing proficiency.'
@@ -151,7 +150,6 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <span className="select-count" role="status">{picked.size} selected</span>
         <button type="button" className="button primary" disabled={busy} onClick={() => bulk('can')}>{kind === 'characters' ? 'Mark can write' : 'Mark characters can write'}</button>
         <button type="button" className="button secondary" disabled={busy} onClick={() => bulk('cannot')}>{kind === 'characters' ? 'Mark not yet' : 'Mark characters not yet'}</button>
-        <button type="button" className="button secondary" onClick={() => setPicked(allPicked ? new Map() : new Map(pageEntries))}>{allPicked ? 'Clear this page' : 'Select all on this page'}</button>
         <button type="button" className="button secondary" onClick={() => setPicked(new Map())}>Clear</button></>}
     </div>}
     {kind === 'characters' && scope === 'knowledge' && <div className="segmented" role="group" aria-label="Writing filter">
