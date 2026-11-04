@@ -13,6 +13,7 @@ import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { UnitCard } from '../components/study/UnitCard'
 import { SourceEntryCard } from '../components/study/SourceEntryCard'
 import { useCatalog } from '../components/study/useCatalog'
+import { writtenCharacters } from '../core/drills/write-queue'
 import { characterKnowledge, dictionaryCharacters } from '../core/characters/dictionary'
 import { characterAttributionUrl } from '../core/characters/assets'
 import { CharacterCard } from '../components/characters/CharacterCard'
@@ -28,7 +29,7 @@ function searchText(unit: Unit): string {
     : `${unit.record.pt} ${unit.record.pr} ${unit.record.ds} ${unit.record.lb}`)
 }
 
-export function Dictionary({ workspace, now, run, busy, section, initialScope, initialQuery }: PageProps & { section?: string; initialScope?: string; initialQuery?: string }) {
+export function Dictionary({ workspace, now, run, busy, section, initialScope, initialQuery, initialWrite }: PageProps & { section?: string; initialScope?: string; initialQuery?: string; initialWrite?: string }) {
   const { catalog, error } = useCatalog()
   const kind: UnitKind | 'characters' = section === 'characters' ? 'characters' : section === 'grammar' ? 'grammar' : 'vocabulary'
   const explicit = initialScope === 'knowledge' || initialScope === 'all' || initialScope === 'collections' || initialScope === 'media' ? initialScope : undefined
@@ -40,7 +41,13 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   useEffect(() => {
     if (explicit && explicit !== 'collections' && explicit !== 'media' && explicit !== workspace.preferences.dictionaryScope) void savePreferences({ dictionaryScope: explicit }).catch(() => undefined)
   }, [explicit, workspace.preferences.dictionaryScope])
-  const go = (section: string, next: 'all' | 'knowledge' | 'collections' | 'media') => { window.location.hash = `dictionary/${section}/${next}` }
+  // The second layer inside "My knowledge set" for Characters: All, Can write (practised or flagged) or Not yet (everything else, including characters without a stroke guide).
+  const explicitWrite = initialWrite === 'all' || initialWrite === 'can' || initialWrite === 'not' ? initialWrite : undefined
+  const writeFilter: 'all' | 'can' | 'not' = explicitWrite ?? workspace.preferences.characterWriteFilter ?? 'all'
+  useEffect(() => {
+    if (explicitWrite && explicitWrite !== workspace.preferences.characterWriteFilter) void savePreferences({ characterWriteFilter: explicitWrite }).catch(() => undefined)
+  }, [explicitWrite, workspace.preferences.characterWriteFilter])
+  const go = (section: string, next: 'all' | 'knowledge' | 'collections' | 'media', write: 'all' | 'can' | 'not' = writeFilter) => { window.location.hash = `dictionary/${section}/${next}${section === 'characters' && next === 'knowledge' && write !== 'all' ? `?write=${write}` : ''}` }
   const [band, setBand] = useState('all')
   const [query, setQuery] = useState(initialQuery ?? '')
   const [limit, setLimit] = useState(PAGE)
@@ -74,7 +81,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     && inScope(unit.ref)
     && (band === 'all' || unit.band === band)
     && (!normalized || searchText(unit).includes(normalized) || matchesReading(unit.record.pr))), unit => rank('', [unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt])) : []
-  const characterMatches = kind === 'characters' ? byRank(characters.filter(entry => (scope !== 'knowledge' || characterSet?.all.has(entry.character))
+  const written = useMemo(() => writtenCharacters(workspace.characterStates), [workspace.characterStates])
+  const inWriteFilter = (character: string) => scope !== 'knowledge' || writeFilter === 'all' || (writeFilter === 'can') === written.has(character)
+  const setCharacters = characters.filter(entry => characterSet?.all.has(entry.character))
+  const canWriteCount = setCharacters.filter(entry => written.has(entry.character)).length
+  const characterMatches = kind === 'characters' ? byRank(characters.filter(entry => (scope !== 'knowledge' || characterSet?.all.has(entry.character)) && inWriteFilter(entry.character)
     && (band === 'all' || entry.bands.some(value => value === band))
     && (!normalized || normalizeSearch(`${entry.character} U+${entry.character.codePointAt(0)!.toString(16)} ${entry.words.map(word => `${word.record.ch} ${word.record.pr} ${word.record.ds}`).join(' ')}`).includes(normalized)
       || entry.words.some(word => matchesReading(word.record.pr)))), entry => { const code = `U+${entry.character.codePointAt(0)!.toString(16)}`; return rank(`${entry.character} ${code}`, [entry.character, code]) }) : []
@@ -103,6 +114,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button></div>
       <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>
     </div>
+    {kind === 'characters' && scope === 'knowledge' && <div className="segmented" role="group" aria-label="Writing filter">
+      <button aria-pressed={writeFilter === 'all'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'all') }}>All {setCharacters.length}</button>
+      <button aria-pressed={writeFilter === 'can'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'can') }}>Can write {canWriteCount}</button>
+      <button aria-pressed={writeFilter === 'not'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'not') }}>Not yet {setCharacters.length - canWriteCount}</button>
+    </div>}
     {drawing && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => select(setQuery)(query + character)} />}
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>

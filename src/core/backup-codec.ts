@@ -36,6 +36,7 @@ export const workspaceSchema = z.object({
     practiceMode: z.enum(['speak', 'write']).optional(),
     historyFilter: z.enum(['all', 'speak', 'write', 'lessons', 'drills']).optional(),
     dictionaryScope: z.enum(['all', 'knowledge']).optional(),
+    characterWriteFilter: z.enum(['all', 'can', 'not']).optional(),
     pinyinFormat: pinyinFormatSchema.optional(),
   }).strict(),
   words: z.array(z.object({

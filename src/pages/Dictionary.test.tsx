@@ -7,6 +7,7 @@ import { buildCatalog, catalogCounts, type BandData } from '../core/study/catalo
 import { Dictionary } from './Dictionary'
 import { WritingSheetHost } from '../components/WritingSheet'
 import { Writing } from './Writing'
+import { addCharacterToKnowledge, recordCharacterPractice, setCharacterWriteKnown } from '../core/characters/store'
 import { closeWritingSheet } from '../core/characters/writing-sheet'
 import { useRoute } from '../core/routing'
 
@@ -35,9 +36,11 @@ function Harness() {
   const workspace = useLiveQuery(loadWorkspace, [])
   const route = useRoute()
   if (!workspace) return null
-  const [page, section, scope] = route.split('/')
+  const [path, query = ''] = route.split('?')
+  const [page, section, scope] = path.split('/')
+  const write = new URLSearchParams(query).get('write') ?? undefined
   const props = { workspace, now: 1, busy: false, run: async (operation: () => Promise<void>) => { await operation() } }
-  return <>{page === 'writing' ? <Writing {...props} codepoint={section} scope={scope} /> : <Dictionary {...props} section={section} initialScope={scope} />}<WritingSheetHost {...props} /></>
+  return <>{page === 'writing' ? <Writing {...props} codepoint={section} scope={scope} /> : <Dictionary {...props} section={section} initialScope={scope} initialWrite={write} />}<WritingSheetHost {...props} /></>
 }
 
 afterEach(() => { act(() => closeWritingSheet()) })
@@ -191,6 +194,31 @@ describe('dictionary characters', () => {
     expect(await screen.findByRole('img', { name: 'Handwriting area' })).toBeInTheDocument()
     expect(window.location.hash).toBe('#dictionary/characters/all')
     expect(screen.getByRole('article', { name: 'Character \u8336' })).toBe(card)
+  })
+  it('filters My knowledge set by writing: counts, membership (practised, flagged, neither) and the remembered choice', async () => {
+    const user = userEvent.setup()
+    await addCharacterToKnowledge('\u8336'); await addCharacterToKnowledge('\u676f'); await addCharacterToKnowledge('\u4e00')
+    await recordCharacterPractice('\u8336')
+    await setCharacterWriteKnown('\u676f', true)
+    window.location.hash = 'dictionary/characters/knowledge'
+    render(<Harness />)
+    const group = await screen.findByRole('group', { name: 'Writing filter' })
+    const names = () => screen.queryAllByRole('article').map(card => card.getAttribute('aria-label'))
+    expect(within(group).getByRole('button', { name: 'All 3' })).toHaveAttribute('aria-pressed', 'true')
+    expect(within(group).getByRole('button', { name: 'Can write 2' })).toBeInTheDocument()
+    await user.click(within(group).getByRole('button', { name: 'Not yet 1' }))
+    await waitFor(() => expect(names()).toEqual(['Character \u4e00']))
+    expect(window.location.hash).toBe('#dictionary/characters/knowledge?write=not')
+    await user.click(within(group).getByRole('button', { name: 'Can write 2' }))
+    await waitFor(() => expect(names().sort()).toEqual(['Character \u676f', 'Character \u8336']))
+    await waitFor(async () => expect((await db.preferences.toCollection().first())?.characterWriteFilter).toBe('can'))
+    // Remembered: a bare knowledge-scope route comes back with Can write.
+    cleanup(); window.location.hash = 'dictionary/characters/knowledge'
+    render(<Harness />)
+    expect(await screen.findByRole('button', { name: 'Can write 2' })).toHaveAttribute('aria-pressed', 'true')
+    // Not shown in the Full list.
+    await user.click(await screen.findByRole('button', { name: 'Full list' }))
+    await waitFor(() => expect(screen.queryByRole('group', { name: 'Writing filter' })).toBeNull())
   })
   // Flaky under CI load ("My knowledge set (2)" not found, 2026-10-29; passed in the two previous runs). Skipped until fixed properly.
   it.skip('saves independent manual additions and retains automatic membership when unpinned', async () => {

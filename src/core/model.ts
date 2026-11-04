@@ -76,6 +76,8 @@ promptAutoPlay?: boolean
   practiceMode?: 'speak' | 'write'
   historyFilter?: 'all' | 'speak' | 'write' | 'lessons' | 'drills'
   dictionaryScope?: 'all' | 'knowledge'
+  /** Dictionary → Characters inside "My knowledge set": All, Can write (practised or flagged) or Not yet. */
+  characterWriteFilter?: 'all' | 'can' | 'not'
 }
 
 export interface WordState {
