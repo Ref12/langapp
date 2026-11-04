@@ -105,3 +105,7 @@ main.writing-main, .writing-page, .writing-page > * { min-width: 0; max-width: 1
 .handwriting-engine-option:disabled { opacity: 0.4; }
 .handwriting-candidate.topped-up { position: relative; border-style: dashed; }
 .handwriting-candidate.topped-up::after { content: ''; position: absolute; top: 4px; right: 4px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+
+.character-card-actions .row-menu { margin-left: auto; }
+.character-card-actions button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.character-head .tag.can-write { color: var(--accent); border-color: var(--accent); }
