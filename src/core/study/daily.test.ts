@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { loadCatalog } from './catalog'
-import { clampCount, describeCounts, fillByItems, lessonCount, loadNewCount, saveNewCount } from './daily'
+import { clampCount, describeCounts, fillByItems, lessonCount, loadNewCount, pickReviews, saveNewCount } from './daily'
 
 beforeEach(() => localStorage.clear())
 
@@ -55,3 +55,21 @@ describe('new words per set', () => {
     expect(describeCounts({ words: 1, grammar: 0 }, 1)).toBe('1 word · 0 grammar · 1 character')
   })
 })
+
+describe('review sets', () => {
+  const DAY = 24 * 60 * 60 * 1000
+  const now = 100 * DAY
+  // Reviewed `ago` days ago with the given stability; due when its interval runs out.
+  const card = (ref: string, ago: number, stability: number, due: number) => ({ ref, due: now + due * DAY, stability, difficulty: 5, reps: 3, lapses: 0, state: 'review' as const, lastReview: now - ago * DAY })
+
+  it('takes the due cards, most overdue first, then fills with the lowest predicted recall', () => {
+    const cards = [
+      card('fresh', 1, 30, 29), card('due-late', 20, 10, -10), card('fading', 9, 10, 1), card('due', 11, 10, -1), card('middling', 5, 10, 5),
+      { ...card('unlearned', 0, 0, 3), state: 'new' as const, lastReview: undefined },
+    ]
+    expect(pickReviews(cards, now, 4)).toEqual({ refs: ['due-late', 'due', 'fading', 'middling'], due: 2, dueTotal: 2, upcoming: 2 })
+    expect(pickReviews(cards, now, 1)).toEqual({ refs: ['due-late'], due: 1, dueTotal: 2, upcoming: 0 })
+    expect(pickReviews(cards, now, 20).refs).toEqual(['due-late', 'due', 'fading', 'middling', 'fresh'])
+  })
+})
+

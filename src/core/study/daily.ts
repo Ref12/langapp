@@ -1,6 +1,7 @@
 import type { KnowledgeEntry } from './contracts'
 import { requireUnit, type Catalog } from './catalog'
 import { unitRef } from './contracts'
+import { retrievability, type SchedulingState } from './fsrs'
 
 export const NEW_COUNT_DEFAULT = 5
 export const NEW_COUNT_MAX = 20
@@ -61,4 +62,15 @@ export function fillByItems(catalog: Catalog, known: ReadonlySet<string>, count:
 export function lessonCount(catalog: Catalog, refs: readonly string[]): number {
   const wanted = new Set(refs)
   return catalog.orderedGroups.filter(({ group }) => group.units.some(unit => wanted.has(unitRef(unit.kind, unit.ref)))).length
+}
+
+/** A review set: the due cards, most overdue first, then, to fill up to `count`, the cards coming up next, lowest predicted recall (FSRS retrievability) first, so each early review is worth the most. */
+export function pickReviews<Card extends SchedulingState & { ref: string }>(cards: readonly Card[], now: number, count: number): { refs: string[]; due: number; dueTotal: number; upcoming: number } {
+  const due = cards.filter(card => card.due <= now).sort((a, b) => a.due - b.due || a.ref.localeCompare(b.ref))
+  const taken = due.slice(0, count)
+  const next = cards.filter(card => card.due > now && card.state !== 'new')
+    .map(card => ({ card, recall: retrievability(card, now) }))
+    .sort((a, b) => a.recall - b.recall || a.card.due - b.card.due || a.card.ref.localeCompare(b.card.ref))
+    .slice(0, count - taken.length).map(entry => entry.card)
+  return { refs: [...taken, ...next].map(card => card.ref), due: taken.length, dueTotal: due.length, upcoming: next.length }
 }

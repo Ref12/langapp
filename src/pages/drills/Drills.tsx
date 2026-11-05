@@ -12,7 +12,7 @@ import { useAIConnection } from '../../components/study/useAIConnection'
 import { EmptyState, PageHeading, type PageProps } from '../../components/shared'
 import { cardId } from '../../core/study/contracts'
 import { DOMAIN } from '../../core/study/knowledge'
-import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, lessonCount, loadNewCount, loadReviewCount, saveNewCount, saveReviewCount } from '../../core/study/daily'
+import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, lessonCount, pickReviews, loadNewCount, loadReviewCount, saveNewCount, saveReviewCount } from '../../core/study/daily'
 import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId, type TypeProgress } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
@@ -328,22 +328,22 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const setCount = (value: number) => { setAll(false); const next = clampCount(value); setCounts(before => ({ ...before, [mode]: next })); setTyped(String(next)); if (mode === 'new') saveNewCount(next); else saveReviewCount(next) }
   const pickMode = (next: 'new' | 'review') => { setMode(next); setTyped(String(counts[next])) }
   const inFrom = fromSet ? new Set(collectionItems.filter(item => item.collectionId === fromSet.id).map(item => item.ref)) : undefined
-  const dueRefs = useMemo(() => workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref) && (!inFrom || inFrom.has(card.ref)) && (!catalog || catalog.units.has(card.ref) || isSourceRef(card.ref) || isPhraseRef(card.ref)))
-    .sort((a, b) => a.due - b.due || a.ref.localeCompare(b.ref)).map(card => card.ref),
+  // Reviews: the due items, then the ones coming up next to fill the count.
+  const reviews = useMemo(() => pickReviews(workspace.studyCards.filter(card => card.domain === DOMAIN && known.has(card.ref) && (!inFrom || inFrom.has(card.ref)) && (!catalog || catalog.units.has(card.ref) || isSourceRef(card.ref) || isPhraseRef(card.ref))), now, counts.review),
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [workspace.studyCards, now, known, catalog, from, collectionItems])
+  [workspace.studyCards, now, known, catalog, from, collectionItems, counts.review])
   const freshFromSet = fromSet ? collectionItems.filter(item => item.collectionId === fromSet.id && !known.has(item.ref)).sort((a, b) => a.addedAt - b.addedAt).map(item => item.ref) : []
   /** The one selection: View items shows it and Start creates exactly it. */
-  const selection = useMemo(() => origin ? (all ? origin.refs : origin.refs.slice(0, count)) : !catalog ? [] : mode === 'review' ? dueRefs.slice(0, count) : fromSet ? freshFromSet.slice(0, count) : fillByItems(catalog, known, count),
+  const selection = useMemo(() => origin ? (all ? origin.refs : origin.refs.slice(0, count)) : !catalog ? [] : mode === 'review' ? reviews.refs : fromSet ? freshFromSet.slice(0, count) : fillByItems(catalog, known, count),
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [catalog, mode, count, dueRefs, from, known, collectionItems, origin, all])
+  [catalog, mode, count, reviews, from, known, collectionItems, origin, all])
   const selectionUnits = selection.flatMap(ref => { const unit = catalog?.units.get(ref); return unit ? [unit] : [] })
   const selectionCounts = countItems(selection.map(ref => ({ kind: ref.startsWith('grammar:') ? 'grammar' as const : 'vocabulary' as const })))
   const newCharacters = catalog ? describeItems(selectionUnits.map(unit => ({ kind: unit.kind, zh: unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt })), workspace.characterStates).match(/\d+ new characters?/)?.[0] : undefined
   const lessons = catalog && !origin && !fromSet && mode === 'new' ? lessonCount(catalog, selection) : 0
   const itemsNoun = (n: number) => `${n} ${n === 1 ? 'item' : 'items'}`
   const summary = origin ? `${selection.length} of ${itemsNoun(origin.refs.length)} from ${origin.label}` : !catalog ? 'Loading the curriculum...'
-    : mode === 'review' ? (dueRefs.length ? `${selection.length} of ${dueRefs.length} due` : 'Nothing is due for review right now')
+    : mode === 'review' ? (!selection.length ? 'Nothing is due for review right now' : [reviews.dueTotal ? `${reviews.due} of ${reviews.dueTotal} due` : 'Nothing due', reviews.upcoming ? `${reviews.upcoming} coming up next` : ''].filter(Boolean).join(' · '))
     : !selection.length ? (fromSet ? `Nothing new left in ${fromSet.name}` : 'Nothing new left here')
     : [itemsNoun(selection.length), `${selectionCounts.words} ${selectionCounts.words === 1 ? 'word' : 'words'}, ${selectionCounts.grammar} grammar`, lessons ? `${lessons} ${lessons === 1 ? 'lesson' : 'lessons'}` : '', newCharacters ?? ''].filter(Boolean).join(' · ')
   const nothing = !selection.length
@@ -377,7 +377,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         <select value={origin ? ORIGIN : from} aria-label="Learning from" onChange={event => { setFrom(event.target.value === ORIGIN ? from : event.target.value); if (origin && event.target.value !== ORIGIN) navigate('practice') }}>{origin && <option value={ORIGIN}>{origin.label}</option>}<option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
       <div className="segmented" role="group" aria-label="What to practise"><button type="button" aria-pressed={mode === 'new'} disabled={!!origin} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button></div>
       <div role="group" aria-label={mode === 'new' ? 'New items per set' : 'Reviews per set'} className="dr-count-picker">
-        <span className="dr-count-label"><span className="small">{mode === 'new' ? 'New items per set' : 'Reviews per set'}</span><span className="small muted">{origin ? 'all of them, or the first few' : mode === 'new' ? 'at least — whole lessons are kept together' : 'at most, the most overdue first'}</span></span>
+        <span className="dr-count-label"><span className="small">{mode === 'new' ? 'New items per set' : 'Reviews per set'}</span><span className="small muted">{origin ? 'all of them, or the first few' : mode === 'new' ? 'at least — whole lessons are kept together' : 'the due ones first, then the ones coming up next'}</span></span>
         <span className="segmented">{origin && <button type="button" aria-pressed={all} onClick={() => { setAll(true) }}>All</button>}{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={!(origin && all) && count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
         <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label={mode === 'new' ? 'Number of new items' : 'Number of reviews'} value={origin && all ? '' : typed} placeholder={origin && all ? 'All' : undefined} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') setCount(Number(event.target.value)) }} onBlur={() => setTyped(String(count))} /></div>
       <p className="dr-summary" role="status" data-testid="selection-summary">{summary}</p>
