@@ -185,22 +185,31 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   }
   /** Says a Chinese text and leaves a pause to repeat it, sized to the text and to how long the model text actually took. */
   const repeatAfter = (zh: string, rate = zhRate) => { sayZh(zh, rate); pause(zh, 'zh-Hans', rate, true) }
-  /** Builds a text up from its end, a few syllables at a time, slowly, each followed by a pause. Not the whole text itself. */
-  const buildUp = (zh: string, steps: number) => {
+  /** The pieces of a text's build-up from its end, a few syllables at a time. Not the whole text itself. */
+  const buildUpPieces = (zh: string, steps: number) => {
     const chars = Array.from(zh)
     const han = chars.map((char, at) => HAN.test(char) ? at : -1).filter(at => at >= 0)
-    if (han.length < 3) return
+    const pieces: string[] = []
+    if (han.length < 3) return pieces
     for (let step = 1; step < steps; step++) {
       const keep = Math.max(1, Math.round(han.length * step / steps))
       if (keep >= han.length) break
-      repeatAfter(chars.slice(han[han.length - keep]).join(''), zhRate)
+      pieces.push(chars.slice(han[han.length - keep]).join(''))
     }
+    return pieces
   }
-  /** The repeat-after structure of a phrase: the whole phrase slowly, the build-up from the end, then the whole phrase again at normal speed until `repeats` whole repeats are done. */
+  /** Builds a text up from its end, slowly, each piece followed by a pause; true when it said anything. */
+  const buildUp = (zh: string, steps: number) => {
+    const pieces = buildUpPieces(zh, steps)
+    for (const piece of pieces) repeatAfter(piece, zhRate)
+    return pieces.length > 0
+  }
+  /** The repeat-after structure of a phrase: the whole phrase slowly, the build-up from the end, then the whole phrase again at normal speed until `repeats` whole repeats are done. With a build-up the first whole phrase is only heard (a short gap, no pause to repeat it), and the build-up always ends on the whole phrase, even with one repeat. */
   const teach = (zh: string, steps: number, firstAlready = false) => {
-    if (!firstAlready) repeatAfter(zh, zhRate)
+    const built = buildUpPieces(zh, steps).length > 0
+    if (!firstAlready) { if (built) { sayZh(zh, zhRate); gap() } else repeatAfter(zh, zhRate) }
     buildUp(zh, steps)
-    for (let again = 1; again < settings.repeats; again++) repeatAfter(zh)
+    for (let again = 1; again < Math.max(built ? 2 : 1, settings.repeats); again++) repeatAfter(zh)
   }
   /** The question for a word: how to say it, or for a descriptive item which word has that description. Abridged is "English, rest."; Off is the bare gloss. */
   const ask = (word: Word, context = false) => {

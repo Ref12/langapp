@@ -56,6 +56,25 @@ describe('Hands-free introduction script', () => {
     expect(rates.slice(1).every(rate => rate === 0.5)).toBe(true)
   })
 
+  it('ends every build-up on the whole phrase, even with one repeat', () => {
+    for (const repeats of [1, 2, 3]) {
+      const { script } = build([word(6, '图书馆', 'library'), REST], 'introduction', { ...PLAIN, repeats })
+      const chinese = (prompt: number) => spoken(script, prompt).filter(text => /\p{Script=Han}/u.test(text))
+      expect(chinese(0).at(-1)).toBe('图书馆')
+      expect(chinese(0)).toContain('书馆')
+      expect(chinese(2).at(-1)).toBe('我们休息吧。')
+    }
+  })
+
+  it('pauses to repeat only after the build-up pieces and the later whole phrases, not the first whole phrase', () => {
+    const { script } = build([word(6, '图书馆', 'library')], 'introduction')
+    const segments = script.segments.slice(script.promptStarts[0], script.promptStarts[1])
+    const first = segments.findIndex(segment => segment.kind === 'say' && segment.text === '图书馆')
+    expect(segments[first + 1]).toEqual({ kind: 'pause', ms: FRAME_GAP_MS })
+    const after = (text: string) => segments.filter((segment, at) => segment.kind === 'say' && segment.text === text && at > first).map(segment => segments[segments.indexOf(segment) + 1])
+    for (const next of [...after('书馆'), ...after('图书馆')]) expect(next.kind === 'pause' && next.ms > FRAME_GAP_MS).toBe(true)
+  })
+
   it('introduces a grammar sentence like a phrase, and a particle with its explanation', () => {
     const { script, markers } = build([word(9, '吗', 'question particle'), GRAMMAR], 'introduction')
     expect(markers[1].item).toBe('grammar')
