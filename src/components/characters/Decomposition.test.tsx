@@ -72,6 +72,15 @@ describe('Decomposition', () => {
     await user.click(document.querySelector('.cmp-line')!)
     expect(document.querySelector('.cmp-boxes')).toBeNull()
   })
+  it('gives a part with a reading Hear and the phrase actions menu', async () => {
+    const user = userEvent.setup()
+    render(<Decomposition character="常" />)
+    await user.click(await screen.findByRole('button', { name: /Show decomposition/ }))
+    const boxes = document.querySelector('.cmp-boxes') as HTMLElement
+    expect(await within(boxes).findByRole('button', { name: 'Hear 巾' })).toBeInTheDocument()
+    expect(await within(boxes).findByRole('button', { name: 'Hear 尚' })).toBeInTheDocument()
+    expect(within(boxes).getAllByRole('button', { name: 'Phrase actions' })).toHaveLength(2)
+  })
   it('娶 shows the sound + meaning role', async () => {
     const user = userEvent.setup()
     render(<Decomposition character="娶" />)

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { describeParts, formsOf, partColour, partPinyin, type ComponentData, type PartView } from '../../core/characters/components'
 import { dictionaryHref, useComponentData } from './useComponentData'
 import { Pinyin } from '../Pinyin'
+import { PracticeSnippet } from '../assistant/SnippetActions'
 import './decomposition.css'
 
 /** One short sense for the text line: "water, liquid, lotion, juice" reads "water". */
@@ -47,6 +48,8 @@ function Box({ part, colourIndex, colour, nested, data, glyphsOpen, onForms, sou
           {part.form && <button type="button" className="cmp-chip form" aria-expanded={glyphsOpen} onClick={onForms}>{formLabel(part)}</button>}
         </span>
       </span>
+      {part.glyph && !part.drawn && sounds[part.glyph] && <span className="cmp-actions"><PracticeSnippet knowledge={false}
+        source={{ text: part.glyph, ...(part.meaning ? { meaning: part.meaning } : {}), locale: 'zh-Hans', title: `Character part: ${part.glyph}`, route: window.location.hash.slice(1).replace(/[^\w:/.-]/g, '') || 'characters' }} /></span>}
       {part.children.length > 0 && <button type="button" className="cmp-expand" aria-expanded={open} onClick={() => setOpen(value => !value)}>{open ? '\u25be' : '\u25b8'} {part.children.length} parts: <span lang="zh-Hans" className="cmp-glyph">{part.children.map(kid => kid.glyph ?? '\u25a1').join(' ')}</span></button>}
     </div>
     {forms.length > 0 && <p className="cmp-forms small">Forms of <span className="cmp-glyph" lang="zh-Hans">{part.form!.of}</span>: {forms.map((row, index) => <span key={row.form}>{index > 0 && ' \u00b7 '}<span className="cmp-glyph" lang="zh-Hans">{row.form}</span>{row.place ? ` ${row.place}` : ''}{row.examples.length ? <> <span className="cmp-glyph" lang="zh-Hans">{row.examples.join(' ')}</span></> : ''}</span>)}</p>}
@@ -66,7 +69,8 @@ export function Decomposition({ character, colour = false, label = 'Show decompo
   useEffect(() => {
     let live = true
     const wanted = new Set<string>()
-    const collect = (list: PartView[]) => list.forEach(part => { if ((part.role === 'sound' || part.role === 'both') && part.glyph && !part.drawn) wanted.add(part.glyph); collect(part.children) })
+    // Every part's reading: the pinyin chip shows it for sound parts, and a part with a reading gets Hear and the ⋯ actions.
+    const collect = (list: PartView[]) => list.forEach(part => { if (part.glyph && !part.drawn) wanted.add(part.glyph); collect(part.children) })
     collect(parts)
     for (const part of wanted) void partPinyin(part).then(value => { if (live && value) setSounds(current => current[part] === value ? current : { ...current, [part]: value }) }, () => undefined)
     return () => { live = false }

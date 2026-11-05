@@ -35,6 +35,10 @@
 .cmp-sub { margin: 2px 0 4px 18px; padding-left: 8px; border-left: 2px solid var(--line-strong); display: grid; gap: 4px; }
 .cmp-box.nested { min-height: 34px; grid-template-columns: 28px minmax(0, 1fr); }
 .cmp-box.nested .cmp-bg { width: 28px; height: 28px; font-size: 21px; }
+/* A part with a reading: Hear and the ⋯ actions (Ask, Practice, Write) at the right. */
+.cmp-box:has(> .cmp-actions) { grid-template-columns: 34px minmax(0, 1fr) auto; }
+.cmp-box.nested:has(> .cmp-actions) { grid-template-columns: 28px minmax(0, 1fr) auto; }
+.cmp-actions { grid-column: 3; grid-row: 1; align-self: center; }
 .cmp-missing { color: var(--muted); }
 .cmp-row-plain { align-items: center; justify-content: space-between; }
 .cmp-colour { width: 32px; height: 32px; min-height: 32px; border: 1px solid var(--line); border-radius: 6px; flex-shrink: 0; }

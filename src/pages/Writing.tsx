@@ -302,17 +302,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
           <span lang="zh-Hans">{hidden ? Array.from(word.record.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : word.record.ch}</span>
           {workspace.preferences.pinyin && <> <Pinyin text={word.record.pr} /></>} <span className="muted">{word.record.ds}</span></span>}
       </p>
-      <button className="icon-button writing-help-button" type="button" aria-label="About this exercise" title="About this exercise" aria-expanded={help} aria-controls="writing-sheet" onClick={() => setHelp(value => !value)}><CircleHelp size={18} /></button>
       {onClose && <button className="icon-button" type="button" aria-label="Close writing" title="Close writing" onClick={onClose}><X size={20} /></button>}
-      {help && <div id="writing-sheet" className="writing-sheet" role="dialog" aria-label="About this exercise">
-        <button className="icon-button writing-sheet-close" type="button" aria-label="Close" onClick={() => setHelp(false)}><X size={16} /></button>
-        <p id="writing-help"><strong>{PHASES[round.phase]}.</strong> {phaseHelp}</p>
-        <p>Three repetitions in each of three phases: full guide, one stroke at a time, then memory: nine parts per character. Use a mouse, touch or pen. Previous and Next move back and forward through those parts, finished or not.{(onPreviousCharacter || onNextCharacter) ? ' The skip-back and skip-forward buttons jump to the previous or next character.' : ' The ⋮ menu at the top can mark the character as one you can already write, skip it, or go back.'} A character is saved only when all nine parts were written.</p>
-        <p>Watching stroke order is optional and does not count as tracing. Press Escape to cancel an in-progress stroke. Leaving this page restarts an unfinished round.</p>
-        <p>{asset.reviewed ? 'This guide retains the earlier prototype artwork review.' : 'Source-derived artwork; this character has not received an individual visual review.'} Matching is a tracing aid, not handwriting recognition.</p>
-        {state && state.practiceCompletions > 0 && <p>Completed rounds: {state.practiceCompletions}</p>}
-        <a className="text-link" href={characterAttributionUrl} target="_blank" rel="noreferrer">Artwork sources and licenses</a>
-      </div>}
     </header>
     {(inWord || !!place) && ownMeaning && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}
     <div className="writing-parts"><Decomposition character={asset.character} colour={colour} label="Parts" hideLabel="Parts" maskHead={hidden} extra={<button className={`icon-button cmp-colour${colour ? ' is-on' : ''}`} title="Colour parts" aria-label="Colour parts" aria-pressed={colour} disabled={busy} onClick={() => { void run(() => savePreferences({ writingColourParts: !colour })) }}><Palette size={18} /></button>} /></div>
@@ -321,6 +311,16 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         <span><strong>{PHASES[round.phase]}</strong> &middot; {round.repetition + 1}/{REPETITIONS}</span>
         <ol className="writing-phases" aria-label="Phase">{PHASES.map((phase, index) => <li key={phase} title={phase} data-done={round.phase > index || round.finished ? '' : undefined} aria-current={round.phase === index ? 'step' : undefined}><span className="visually-hidden">{phase}</span></li>)}</ol>
         {place && <span className="writing-place">Character {place.number} of {place.total}</span>}
+        <button className="icon-button writing-help-button" type="button" aria-label="About this exercise" title="About this exercise" aria-expanded={help} aria-controls="writing-sheet" onClick={() => setHelp(value => !value)}><CircleHelp size={18} /></button>
+        {help && <div id="writing-sheet" className="writing-sheet" role="dialog" aria-label="About this exercise">
+          <button className="icon-button writing-sheet-close" type="button" aria-label="Close" onClick={() => setHelp(false)}><X size={16} /></button>
+          <p id="writing-help"><strong>{PHASES[round.phase]}.</strong> {phaseHelp}</p>
+          <p>Three repetitions in each of three phases: full guide, one stroke at a time, then memory: nine parts per character. Use a mouse, touch or pen. Previous and Next move back and forward through those parts, finished or not.{(onPreviousCharacter || onNextCharacter) ? ' The skip-back and skip-forward buttons jump to the previous or next character.' : ' The ⋮ menu at the top can mark the character as one you can already write, skip it, or go back.'} A character is saved only when all nine parts were written.</p>
+          <p>Watching stroke order is optional and does not count as tracing. Press Escape to cancel an in-progress stroke. Leaving this page restarts an unfinished round.</p>
+          <p>{asset.reviewed ? 'This guide retains the earlier prototype artwork review.' : 'Source-derived artwork; this character has not received an individual visual review.'} Matching is a tracing aid, not handwriting recognition.</p>
+          {state && state.practiceCompletions > 0 && <p>Completed rounds: {state.practiceCompletions}</p>}
+          <a className="text-link" href={characterAttributionUrl} target="_blank" rel="noreferrer">Artwork sources and licenses</a>
+        </div>}
       </div>
       {skipped.length > 0 && <p className="writing-skipped small muted">No guide for {skipped.join(', ')}; skipped.</p>}
       <svg ref={svg} viewBox="0 0 100 100" className="writing-pad" role="img" aria-label="Handwriting area" aria-describedby="writing-status" tabIndex={0}

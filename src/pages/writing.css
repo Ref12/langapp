@@ -23,13 +23,13 @@ main.writing-main { padding: 8px 12px; max-width: 640px; }
 .writing-meaning { margin: 0; line-height: 1.4; overflow-wrap: anywhere; }
 .writing-meaning [lang] { font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 18px; }
 .writing-title-word { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.writing-help-button { width: 32px; height: 32px; min-height: 32px; flex-shrink: 0; }
+.writing-help-button { width: 28px; height: 28px; min-height: 28px; flex-shrink: 0; margin-block: -4px; }
 .writing-sheet { position: absolute; z-index: 20; top: 100%; right: 0; width: min(360px, calc(100vw - 24px)); max-height: 70dvh; overflow-y: auto; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); box-shadow: 0 8px 28px #0004; font-size: 12px; line-height: 1.5; }
 .writing-sheet p { margin: 0 0 8px; }
 .writing-sheet-close { position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; min-height: 28px; }
 .writing-sheet > p:first-of-type { padding-right: 28px; }
 .writing-workbench { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.writing-statusline { width: var(--writing-pad); display: flex; align-items: center; gap: 10px; font-size: 12px; min-height: 20px; }
+.writing-statusline { position: relative; width: var(--writing-pad); display: flex; align-items: center; gap: 10px; font-size: 12px; min-height: 20px; }
 .writing-statusline > span:first-child { flex: 1; }
 .writing-place { color: var(--muted); }
 .writing-phases { list-style: none; display: flex; gap: 3px; padding: 0; margin: 0; }
