@@ -95,3 +95,14 @@ describe('generated component data', () => {
     expect(doc.variants.map(row => row.form)).toEqual(expect.arrayContaining(['亻', '氵', '氺', '忄', '⺗', '扌', '灬', '刂', '讠', '钅', '饣', '衤', '礻', '犭', '罒', '爫', '月', '阝']))
   })
 })
+
+describe('nested groups the source leaves unnamed', () => {
+  it('得 names its right-hand group 㝵 (⿱旦寸) and keeps its parts', () => {
+    const right = data.characters['得'].k![1]
+    expect(right.c).toBe('㝵')
+    expect(right.d).toBe('⿱')
+    expect(right.k!.map(kid => kid.c)).toEqual(['旦', '寸'])
+    expect(data.components['㝵'].status).toBe('meaning')
+    expect(data.components['㝵'].meaning?.en).toMatch(/ancient form of 得/)
+  })
+})

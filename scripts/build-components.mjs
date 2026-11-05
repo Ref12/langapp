@@ -123,7 +123,17 @@ export async function loadSources(cacheDir) {
     const cp = parseInt(f[0], 16)
     if (cp >= 0x2e80 && cp <= 0x2fdf) names2.set(String.fromCodePoint(cp), f[1])
   }
-  return { files, dictionary, graphics, unihan, kangxiToUnified, radicalSupplement, names: names2, radicals: radicalTable({ radicalSupplement, unihan }), supplementVariants: supplementVariants({ radicalSupplement, unihan, names: names2, kangxiToUnified }) }
+  /** Decomposition text (canonical characters) -> the characters Make Me a Hanzi decomposes that way; the lookup for naming nested groups. */
+  const shapeNames = new Map()
+  for (const [char, entry] of dictionary) {
+    const text = entry.decomposition
+    if (!text || text.includes(UNKNOWN) || !parseIds(text)?.op) continue
+    const key = [...text].map(ch => canon(ch, { kangxiToUnified })).join('')
+    const list = shapeNames.get(key) ?? []
+    list.push(canon(char, { kangxiToUnified }))
+    shapeNames.set(key, list)
+  }
+  return { files, dictionary, shapeNames, graphics, unihan, kangxiToUnified, radicalSupplement, names: names2, radicals: radicalTable({ radicalSupplement, unihan }), supplementVariants: supplementVariants({ radicalSupplement, unihan, names: names2, kangxiToUnified }) }
 }
 
 /** The 214 Kangxi radicals: number, ordinary ideograph (CJKRadicals.txt), Unihan meaning and pinyin of that ideograph. */
@@ -155,6 +165,24 @@ export function supplementVariants({ radicalSupplement, unihan, names, kangxiToU
   }
   void kangxiToUnified
   return found
+}
+
+/** The IDS text of a node, expanded to its leaves; null when it holds a placeholder or an unnamed leaf. */
+export function shapeText(node) {
+  if (node.u) return null
+  if (node.k) { const kids = node.k.map(shapeText); return kids.includes(null) ? null : node.d + kids.join('') }
+  return node.c || null
+}
+/** Names each unnamed group node (c '') after the one character whose Make Me a Hanzi decomposition is exactly that group; it keeps its children. */
+export function nameGroups(nodes, shapeNames) {
+  for (const node of nodes) {
+    if (!node.k) continue
+    nameGroups(node.k, shapeNames)
+    if (node.c) continue
+    const text = shapeText(node)
+    const found = text && shapeNames.get(text)
+    if (found?.length === 1) node.c = found[0]
+  }
 }
 
 const canon = (ch, src) => {
@@ -194,6 +222,9 @@ function makeBuilder(src) {
         node.s.push(map[i])
       }
     })
+    // A nested group the source IDS leaves unnamed (得 = ⿰彳⿱旦寸, where ⿱旦寸 is 㝵) is named after the encoded character whose own
+    // decomposition it is, so it shows as that character with its meaning. Groups that no character spells stay unnamed (drawn from strokes).
+    nameGroups(root.k, src.shapeNames)
     // Roles from this entry's own etymology; deeper expansion through each component's own entry.
     const e = entry.etymology
     const expand = (node, depth) => {
@@ -353,6 +384,7 @@ export async function buildComponents({ cacheDir, index, hanziWriter, variantsDo
     const note2 = notes.get(form)
     const hasChar = index.includes(form)
     if (hasChar) info.standalone = true
+    else if (src.unihan.get(form)?.pinyin) info.py = src.unihan.get(form).pinyin // a bound form has no entry in the character meanings table: its reading comes from here
     const uni = src.unihan.get(form)
     const own = src.dictionary.get(form)
     if (radical?.english) info.meaning = { en: radical.english, source: 'unihan-radical', radical: radical.number }

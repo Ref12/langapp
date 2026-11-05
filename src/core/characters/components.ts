@@ -11,13 +11,16 @@ export interface ComponentInfo {
   uses: number
   pos?: Record<string, number>
   standalone?: boolean
+  /** Reading (Unihan kMandarin, tone marks) of a form that is not a character of the set. */
+  py?: string
   meaning?: { en: string; source: string; of?: string }
   none?: 'placeholder' | 'structural' | 'unique-shape'
   status: 'meaning' | 'none' | 'unknown'
   byPosition?: Record<string, { of: string; en: string }>
 }
 export interface ComponentData { characters: Record<string, CharacterComponents>; components: Record<string, ComponentInfo> }
-export interface PartGlyphs { glyphs: Record<string, number> }
+/** glyphs: drawn shapes (Private Use Area code points in the parts font) keyed "character:strokes". missing: parts whose own character neither the parts font nor ordinary phone fonts can be trusted to show; they are drawn too. */
+export interface PartGlyphs { glyphs: Record<string, number>; missing?: string[] }
 
 let table: Promise<ComponentData> | undefined
 let glyphTable: Promise<PartGlyphs> | undefined
@@ -51,6 +54,8 @@ export interface PartView {
   /** No font character: the shape is drawn from the strokes. */
   drawn: boolean
   meaning?: string
+  /** The part's own reading when it has no entry in the character meanings table (a bound form such as 㝵). */
+  reading?: string
   role?: PartRole
   /** The part is a bound form: it never stands alone as a character. */
   bound: boolean
@@ -70,13 +75,17 @@ const SLOTS: Record<string, string[]> = {
 }
 const slotOf = (operator: string | undefined, index: number): string | undefined => operator ? SLOTS[operator]?.[index] : undefined
 
+/** A part the source gave no character and no strokes of its own: a placeholder (？) or an unnamed group whose strokes were not matched. */
+const unmapped = (kid: ComponentNode) => !!kid.u || (!kid.c && kid.s.length === 0)
+
 /** The strokes of a node's children that no sibling claims, for the single part drawn from them (a source placeholder). */
 export function leftoverStrokes(node: { k?: ComponentNode[] }, strokes: number[]): number[] {
   const claimed = new Set((node.k ?? []).filter(kid => !kid.u).flatMap(kid => kid.s))
   return strokes.filter(stroke => !claimed.has(stroke))
 }
 
-const firstSenses = (text: string, count = 2) => text.split(';').slice(0, count).map(sense => sense.trim()).filter(Boolean).join('; ')
+/** The first senses of a Unihan-style gloss: ";" separates senses, and a gloss with none is a comma list (㝵: "(ancient form of 得) to get, complacent, (same as 礙) to obstruct, ...") cut to its first few items. */
+const firstSenses = (text: string, count = 2) => text.includes(';') ? text.split(';').slice(0, count).map(sense => sense.trim()).filter(Boolean).join('; ') : text.split(', ').slice(0, count + 1).join(', ')
 
 /** The parts of a character, one level (each with its own children for nesting), in reading order. */
 export function describeParts(data: ComponentData, character: string, glyphs?: PartGlyphs, hasEntry: (character: string) => boolean = ch => data.components[ch]?.standalone === true): PartView[] {
@@ -86,22 +95,25 @@ export function describeParts(data: ComponentData, character: string, glyphs?: P
     const kids = node.k ?? []
     const views = kids.map((kid, index): PartView => {
       const info = data.components[kid.c]
-      const drawn = !!kid.u
-      const rest = drawn && kids.filter(other => other.u).length === 1 ? leftoverStrokes(node, strokes) : []
-      const code = drawn && rest.length ? glyphs?.glyphs[`${character}:${rest.join(',')}`] : undefined
+      // Drawn from strokes: a placeholder, a group no character names, or a character the fonts cannot show.
+      const lacking = !kid.u && !!kid.c && !!glyphs?.missing?.includes(kid.c)
+      const drawn = !!kid.u || !kid.c || lacking
+      const rest = unmapped(kid) && kids.filter(unmapped).length === 1 ? leftoverStrokes(node, strokes) : []
+      const own = kid.s.length ? kid.s : rest
+      const code = drawn && own.length ? glyphs?.glyphs[`${character}:${own.join(',')}`] : undefined
       const role: PartRole | undefined = alsoSound && kid.c === alsoSound ? 'both' : kid.r === 'semantic' ? 'meaning' : kid.r === 'phonetic' ? 'sound' : type === 'ideographic' && !drawn ? 'meaning' : undefined
       const slot = slotOf(node.d, index)
       const parent = !drawn ? (info?.byPosition && slot ? info.byPosition[slot]?.of : info?.meaning?.of) : undefined
       const variant = !!info && !info.standalone && !!parent && parent !== kid.c
-      const noMeaning = drawn || info?.status === 'none' || (info?.status === 'unknown' && !info.meaning)
+      const noMeaning = (drawn && !lacking) || info?.status === 'none' || (info?.status === 'unknown' && !info.meaning)
       const meaning = noMeaning ? undefined : info?.byPosition && slot && info.byPosition[slot] ? info.byPosition[slot].en : info?.meaning?.en
       const key = `${trail}${index}`
       return {
-        key, glyph: drawn ? (code ? String.fromCodePoint(code) : undefined) : kid.c, strokes: kid.s.length ? kid.s : rest, drawn,
-        meaning: meaning ? firstSenses(meaning) : undefined, role, bound: !drawn && !!info && !info.standalone, noMeaning,
+        key, glyph: drawn ? (code ? String.fromCodePoint(code) : undefined) : kid.c, strokes: own, drawn,
+        meaning: meaning ? firstSenses(meaning) : undefined, reading: !drawn ? info?.py : undefined, role, bound: !drawn && !!info && !info.standalone, noMeaning,
         link: !drawn && !noMeaning && info?.standalone && hasEntry(kid.c) ? kid.c : undefined,
         form: variant ? { of: parent!, place: slot } : undefined,
-        children: kid.k?.length && !drawn ? build(kid, kid.s, kid.e?.t, `${key}.`) : [],
+        children: kid.k?.length ? build(kid, own, kid.e?.t, `${key}.`) : [],
         index,
       }
     })
@@ -117,7 +129,7 @@ export function strokeParts(data: ComponentData, character: string, strokeCount:
   const result: (number | undefined)[] = Array.from({ length: strokeCount }, () => undefined)
   if (!entry?.k) return result
   entry.k.forEach((kid, index) => {
-    const strokes = kid.u ? (entry.k!.filter(other => other.u).length === 1 ? leftoverStrokes(entry, Array.from({ length: entry.n }, (_, i) => i)) : []) : kid.s
+    const strokes = unmapped(kid) ? (entry.k!.filter(unmapped).length === 1 ? leftoverStrokes(entry, Array.from({ length: entry.n }, (_, i) => i)) : []) : kid.s
     for (const stroke of strokes) if (stroke < strokeCount) result[stroke] = index
   })
   return result
@@ -132,7 +144,7 @@ export function formsOf(data: ComponentData, parent: string): { form: string; pl
   if (!formIndex) {
     formIndex = new Map()
     for (const [char, entry] of Object.entries(data.characters)) for (const kid of entry.k ?? []) {
-      if (kid.u) continue
+      if (kid.u || !kid.c) continue
       const list = formIndex.get(kid.c) ?? []
       if (list.length < 3 && !list.includes(char)) list.push(char)
       formIndex.set(kid.c, list)

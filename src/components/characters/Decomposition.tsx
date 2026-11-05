@@ -42,7 +42,7 @@ function Box({ part, colourIndex, colour, nested, data, glyphsOpen, onForms, sou
         <span className="cmp-mean">{part.noMeaning ? 'no meaning' : part.meaning ?? ''}</span>
         <span className="cmp-chips">
           {part.role && !part.noMeaning && <span className={`cmp-chip ${part.role}`}>{roleLabel[part.role]}</span>}
-          {(part.role === 'sound' || part.role === 'both') && part.glyph && sounds[part.glyph] && <span className="cmp-chip plain"><Pinyin text={sounds[part.glyph]} /></span>}
+          {(part.role === 'sound' || part.role === 'both' || part.bound) && part.glyph && (sounds[part.glyph] ?? part.reading) && <span className="cmp-chip plain"><Pinyin text={(sounds[part.glyph] ?? part.reading)!} /></span>}
           {part.bound && <span className="cmp-chip bound">bound form</span>}
           {part.drawn && <span className="cmp-chip bound">drawn from strokes</span>}
           {part.form && <button type="button" className="cmp-chip form" aria-expanded={glyphsOpen} onClick={onForms}>{formLabel(part)}</button>}

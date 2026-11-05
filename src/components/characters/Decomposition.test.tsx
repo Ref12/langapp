@@ -43,6 +43,22 @@ describe('Decomposition when the parts file cannot be fetched', () => {
   })
 })
 
+describe('Decomposition of 得 (right part 㝵)', () => {
+  it('shows 㝵 as a character with its meaning and reading, never an empty box', async () => {
+    render(<Decomposition character="得" defaultOpen />)
+    await waitFor(() => expect(document.querySelectorAll('[data-part-box]').length).toBe(2))
+    const boxes = [...document.querySelectorAll('[data-part-box]')] as HTMLElement[]
+    expect(document.querySelector('.cmp-missing')).toBeNull()
+    expect(boxes[1].querySelector('.cmp-glyph')).toHaveTextContent('㝵')
+    expect(boxes[1]).toHaveTextContent('ancient form of 得')
+    expect(boxes[1]).toHaveTextContent('meaning part')
+    await waitFor(() => expect(boxes[1]).toHaveTextContent('dé'))
+    expect(boxes[1]).toHaveTextContent('2 parts: 旦 寸')
+    expect(document.querySelector('.cmp-line')).toHaveTextContent('得 = 彳')
+    expect(document.querySelector('.cmp-line')).toHaveTextContent('㝵')
+  })
+})
+
 describe('Decomposition', () => {
   it('starts as a text line: 河 = 氵 water + 可 kě', async () => {
     render(<Decomposition character="河" />)
