@@ -12,6 +12,7 @@ import { curriculumLevels } from './data/curriculum'
 import { EmptyState, type PageProps } from './components/shared'
 import { PageSettingsButton, PageSettingsProvider } from './components/PageSettings'
 import { PageActionsMenu, PageActionsProvider } from './components/PageActionsMenu'
+import { PageDockContext } from './components/PageDock'
 import { MobileNavigation } from './components/MobileNavigation'
 import { Overview } from './pages/Overview'
 import { Library, Reader } from './pages/Reading'
@@ -126,6 +127,7 @@ function WorkspaceApp() {
   const [error, setError] = useState('')
   const [now, setNow] = useState(Date.now)
   const [assistantHeader, setAssistantHeader] = useState<HTMLDivElement | null>(null)
+  const [dock, setDock] = useState<HTMLDivElement | null>(null)
   const main = useRef<HTMLElement>(null)
   const returnRoute = useRef('overview')
   const run = useCallback(async (operation: () => Promise<void>) => {
@@ -196,7 +198,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><BackupNow />
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>
         </>
-  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><PageSettingsProvider><PageActionsProvider>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -223,6 +225,7 @@ function WorkspaceApp() {
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {currentPage}
         </main>
+        <div className="page-dock" ref={setDock} />
       </div>
       <WritingSheetHost workspace={workspace} busy={busy} now={now} run={run} />
       <UpdateBar />
@@ -230,7 +233,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </PageActionsProvider></PageSettingsProvider></PinyinFormatContext.Provider>
+  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

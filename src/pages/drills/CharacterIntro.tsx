@@ -5,6 +5,7 @@ import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '..
 import { describeParts, loadComponentData, loadPartGlyphs } from '../../core/characters/components'
 import { Decomposition } from '../../components/characters/Decomposition'
 import { Pinyin } from '../../components/Pinyin'
+import { PageDock } from '../../components/PageDock'
 
 /** The first step for a new character: the big glyph, its reading and meaning, stroke and part counts, the decomposition, and the two ways on. */
 export function CharacterIntro({ character, position, onStart, onKnown, wordMeaning, pinned = false }: { character: string; position?: { number: number; total: number }; onStart: () => void; onKnown: () => void; wordMeaning?: string; /** The caller shows Start writing and I can already write this in a pinned bar (see CharacterIntroBar). */ pinned?: boolean }) {
@@ -37,15 +38,15 @@ export function CharacterIntro({ character, position, onStart, onKnown, wordMean
   </section>
 }
 
-/** The character intro's two ways on, in the pinned bottom bar the lesson introduction uses (.start-panel): Start writing, and I can already write this as the secondary button. */
+/** The character intro's two ways on, in the bottom bar the lesson introduction uses (.start-panel), docked at the bottom of the screen outside the practice card: Start writing, and I can already write this as the secondary button. */
 export function CharacterIntroBar({ character, status, onStart, onKnown }: { character: string; status: string; onStart: () => void; onKnown: () => void }) {
-  return <div className="start-panel" role="region" aria-label="Start writing">
+  return <PageDock><div className="start-panel" role="region" aria-label="Start writing">
     <p className="small muted">{status}</p>
     <div className="button-row">
       <button type="button" className="button secondary" aria-label={`I can already write ${character}`} onClick={onKnown}><Check size={16} /> I can already write this</button>
       <button type="button" className="button primary" onClick={onStart}><PenLine size={16} /> Start writing</button>
     </div>
-  </div>
+  </div></PageDock>
 }
 
 /** Under the word's intro card: one line per character, each opening into its parts. */

@@ -495,3 +495,9 @@ select { padding: 10px; }
 .page-actions-item:has(.page-actions-description) .page-actions-check { margin-top: 3px; }
 .start-panel > .button-row { flex: 0 0 auto; }
 @media (max-width: 760px) { .start-panel > .button-row { justify-content: center; flex-wrap: wrap; } .start-panel > .button-row .button { flex: 1 1 auto; justify-content: center; } }
+/* The page's bottom dock (PageDock): a page's main action bar, pinned to the bottom of the screen outside the page's cards. While it holds something the column fills the screen, so a short page still puts the bar at the bottom. */
+.page-dock { position: sticky; bottom: 0; z-index: 7; }
+.workspace:has(> .page-dock:not(:empty)) { display: flex; flex-direction: column; min-height: 100dvh; }
+.workspace:has(> .page-dock:not(:empty)) > main { flex: 1 0 auto; width: 100%; }
+.page-dock > .start-panel { position: static; margin: 0; border-radius: 0; border-inline: 0; border-bottom: 0; }
+@media (min-width: 761px) { .page-dock > .start-panel { padding-inline: 38px; } }
