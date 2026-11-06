@@ -14,19 +14,28 @@ const shippedLoaders: Record<string, () => Promise<{ default: unknown }>> = {
 }
 const shippedCache = new Map<string, Promise<Record<string, BankPhrase[]>>>()
 
-/** The shipped phrases of a band by the word's vocabulary ref, loaded on first use (a band file is only fetched when one of its words is practised). */
+const bandNumber = (band: string | undefined) => (band ? Number.parseInt(band, 10) || 0 : 0)
+/** The shipped band files that can hold a phrase for a word of `from`: that band and the later ones up to the highest band the learner has words in. */
+const shippedBands = (from: string, top: number) => Object.keys(shippedLoaders).filter(band => Number(band) >= bandNumber(from) && Number(band) <= Math.max(top, bandNumber(from)))
+
+/** The shipped phrases of a band file by vocabulary ref (a phrase is listed under every word it uses), loaded on first use (a band file is only fetched when needed). */
 export function shippedPhrases(band: string): Promise<Record<string, BankPhrase[]>> {
   let pending = shippedCache.get(band)
   if (!pending) {
     const load = shippedLoaders[band]
-    pending = (load ? load() : Promise.resolve({ default: { schemaVersion: 1, band, phrases: {} } })).then(module => {
+    pending = (load ? load() : Promise.resolve({ default: { schemaVersion: 2, band, phrases: [] } })).then(module => {
       const parsed = shippedBandSchema.safeParse(module.default)
       if (!parsed.success) return {}
-      return Object.fromEntries(Object.entries(parsed.data.phrases).map(([lb, list]) => [`vocabulary:${lb}`, list.map((phrase): BankPhrase => ({
-        zh: phrase.zh, py: phrase.py, en: phrase.en, words: phrase.words.map(word => `vocabulary:${word}`),
-        ...(phrase.grammar?.length ? { grammar: phrase.grammar.map(label => `grammar:${label}`) } : {}), source: phrase.source, checked: phrase.checked,
+      const byWord: Record<string, BankPhrase[]> = {}
+      for (const phrase of parsed.data.phrases) {
+        const entry: BankPhrase = {
+          id: phrase.id, zh: phrase.zh, py: phrase.py, en: phrase.en, words: phrase.words.map(word => `vocabulary:${word}`),
+          ...(phrase.grammar?.length ? { grammar: phrase.grammar.map(label => `grammar:${label}`) } : {}), source: phrase.source, ...(phrase.ref ? { ref: phrase.ref } : {}), checked: phrase.checked,
           ...(phrase.lookahead !== undefined ? { lookahead: phrase.lookahead } : {}), ...(phrase.readyAt !== undefined ? { readyAt: phrase.readyAt } : {}),
-      }))]))
+        }
+        for (const word of entry.words) (byWord[word] ??= []).push(entry)
+      }
+      return byWord
     }).catch(() => ({}))
     shippedCache.set(band, pending)
   }
@@ -60,17 +69,23 @@ export function drillBankPhrases(sets: readonly Pick<DrillSet, 'content'>[], ref
   return out
 }
 
-/** A phrase is usable for a learner only when every word it uses is in the set or in the knowledge set (`allowed`). */
-export const usableFor = (phrase: Pick<BankPhrase, 'words'>, allowed: ReadonlySet<string>) => phrase.words.length > 0 && phrase.words.every(word => allowed.has(word))
+/**
+ * A phrase is usable for a learner only when every word it uses is in the set or in the knowledge set (`allowed`), and, for a phrase that is not a catalog example,
+ * every grammar pattern it is tagged with too. (A catalog example's tags are the lesson's authored ones and are not required to be known.)
+ */
+export const usableFor = (phrase: Pick<BankPhrase, 'words'> & Partial<Pick<BankPhrase, 'grammar' | 'source'>>, allowed: ReadonlySet<string>) =>
+  phrase.words.length > 0 && phrase.words.every(word => allowed.has(word)) && (phrase.source === 'catalog' || (phrase.grammar ?? []).every(ref => allowed.has(ref)))
 
 /** Usable phrases per vocabulary word, from the catalog's examples, the shipped bank and the drill sentences, without duplicates (the first source wins). */
 export async function loadBank(catalog: Catalog, refs: readonly string[], allowed: ReadonlySet<string>, sets: readonly Pick<DrillSet, 'content'>[]): Promise<Map<string, BankPhrase[]>> {
   const forms = allowedForms(catalog, allowed)
+  const topBand = Math.max(0, ...[...allowed].map(ref => bandNumber(catalog.units.get(ref)?.band)))
   const bank = new Map<string, BankPhrase[]>()
   for (const ref of refs) {
     const unit = catalog.units.get(ref)
     if (unit?.kind !== 'vocabulary') continue
-    const shipped = (await shippedPhrases(unit.band))[ref] ?? []
+    // a phrase sits in the band of the word it uses that is introduced last, so a word's phrases can be in its own band's file or in a later one the learner has reached
+    const shipped = (await Promise.all(shippedBands(unit.band, topBand).map(shippedPhrases))).flatMap(index => index[ref] ?? [])
     const seen = new Set<string>()
     const list: BankPhrase[] = []
     for (const phrase of [...catalogBankPhrases(catalog, ref), ...shipped, ...drillBankPhrases(sets, ref, forms)]) {

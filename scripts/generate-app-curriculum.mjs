@@ -5,6 +5,7 @@ import { isDeepStrictEqual } from 'node:util'
 import { parse } from 'yaml'
 import { z } from 'zod'
 import { generateLearningContent } from './generate-learning-content.mjs'
+import { phraseBankOutputs } from './phrase-bank-files.mjs'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const sourceRoot = resolve(root, 'curriculum', 'chinese')
@@ -611,6 +612,8 @@ export async function generateCurriculum({ check = false } = {}) {
   await generateLearningContent(curriculum, { check })
   const outputs = [
     [projectionPath, Buffer.from(`${JSON.stringify(curriculum, null, 2)}\n`)],
+    // src/data/phrases/hsk-N.json, from curriculum/chinese/authoring/phrases/hsk-N.yaml
+    ...phraseBankOutputs(),
     ...await Promise.all(noticeFiles.map(async name => [
       resolve(publicRoot, ...name.split('/')),
       await readFile(resolve(sourceRoot, ...name.split('/'))),

@@ -1,0 +1,8 @@
+# Phrase bank, HSK 5: one phrase per block, each listing every word (and grammar pattern) it uses. Written by scripts/build-phrase-bank.mjs; edit freely.
+# id only counts the phrases (1, 2, 3 ...); lastId is the highest id ever given, so an id is never reused. Book or media phrases use source: book (or media) and ref: { title, chapter | page | timestamp }.
+# src/data/phrases/hsk-5.json is generated from this file: npm run curriculum:generate.
+
+schemaVersion: 2
+band: "5"
+lastId: 0
+phrases: []

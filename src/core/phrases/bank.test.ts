@@ -4,19 +4,22 @@ import { loadCatalog } from '../study/catalog'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
 import { allowedForms, catalogBankPhrases, drillBankPhrases, heardLog, leastHeard, loadBank, recordHeard, shippedPhrases, usableFor } from './bank'
 
-// A shipped band file as the offline pipeline writes it: by the word's catalog label.
-vi.mock('../../data/phrases/hsk-1.json', () => ({ default: { schemaVersion: 1, band: '1', phrases: {
-  'xue2-sheng5--student': [
-    { zh: '我是学生。', py: 'wǒ shì xué sheng', en: 'I am a student.', words: ['wo3--me', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true },
-    { zh: '你是学生吗？', py: 'nǐ shì xué sheng ma', en: 'Are you a student?', words: ['ni3--you', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: false },
-    { zh: '我喝茶，我是学生。', py: 'wǒ hē chá, wǒ shì xué sheng', en: 'I drink tea; I am a student.', words: ['wo3--me', 'he1--drink', 'cha2--tea', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true, lookahead: 4, readyAt: 10 },
-  ],
-} } }))
+// Shipped band files as the generator writes them: one flat list of phrases per band, each listing every word (and grammar pattern) it uses.
+vi.mock('../../data/phrases/hsk-1.json', () => ({ default: { schemaVersion: 2, band: '1', phrases: [
+  { id: 1, zh: '我是学生。', py: 'wǒ shì xué sheng', en: 'I am a student.', words: ['wo3--me', 'shi4--identity', 'xue2-sheng5--student'], grammar: ['s-shi4-n--identity'], source: 'ai', checked: true },
+  { id: 2, zh: '你是学生吗？', py: 'nǐ shì xué sheng ma', en: 'Are you a student?', words: ['ni3--you', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: false },
+  { id: 3, zh: '我喝茶，我是学生。', py: 'wǒ hē chá, wǒ shì xué sheng', en: 'I drink tea; I am a student.', words: ['wo3--me', 'he1--drink', 'cha2--tea', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true, lookahead: 4, readyAt: 10 },
+  { id: 5, zh: '学生，你好。', py: 'xué sheng, nǐ hǎo', en: 'Hello, student.', words: ['xue2-sheng5--student', 'ni3--you'], grammar: ['stmt-ma5--yes-no'], source: 'book', ref: { title: 'Reader', chapter: 2 }, checked: false },
+] } }))
+vi.mock('../../data/phrases/hsk-2.json', () => ({ default: { schemaVersion: 2, band: '2', phrases: [
+  { id: 1, zh: '啊，我是学生。', py: 'a, wǒ shì xué sheng', en: 'Ah, I am a student.', words: ['a5--particle', 'wo3--me', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true },
+] } }))
 
 const student = 'vocabulary:xue2-sheng5--student'
 const me = 'vocabulary:wo3--me'
 const be = 'vocabulary:shi4--identity'
 const you = 'vocabulary:ni3--you'
+const particle = 'vocabulary:a5--particle'
 
 beforeEach(async () => { await db.delete(); await db.open(); await initializeWorkspace() })
 
@@ -29,10 +32,12 @@ describe('phrase bank', () => {
     expect(new Set(phrases.map(phrase => phrase.zh)).size).toBe(phrases.length)
   })
 
-  it('reads the shipped band lazily and turns its labels into refs', async () => {
+  it('reads the shipped band lazily as a flat list and turns its labels into refs; a phrase is listed under each word it uses', async () => {
     const shipped = await shippedPhrases('1')
-    expect(shipped[student].map(phrase => phrase.zh)).toEqual(['我是学生。', '你是学生吗？', '我喝茶，我是学生。'])
-    expect(shipped[student][0].words).toEqual([me, be, student])
+    expect(shipped[student].map(phrase => phrase.zh)).toEqual(['我是学生。', '你是学生吗？', '我喝茶，我是学生。', '学生，你好。'])
+    expect(shipped[student][0]).toMatchObject({ id: 1, words: [me, be, student], grammar: ['grammar:s-shi4-n--identity'] })
+    expect(shipped[me][0]).toBe(shipped[student][0]) // the same phrase, once
+    expect(shipped[student][3]).toMatchObject({ source: 'book', ref: { title: 'Reader', chapter: 2 } })
     expect(await shippedPhrases('6')).toEqual({})
   })
 
@@ -55,9 +60,34 @@ describe('phrase bank', () => {
     expect(usableFor({ words: [] }, new Set([me]))).toBe(false)
   })
 
+  it('requires the known grammar too for a phrase that is not a catalog example, and leaves catalog examples gated on words', () => {
+    const grammar = 'grammar:s-shi4-n--identity'
+    const phrase = { words: [me, be, student], grammar: [grammar], source: 'ai' as const }
+    expect(usableFor(phrase, new Set([me, be, student]))).toBe(false)
+    expect(usableFor(phrase, new Set([me, be, student, grammar]))).toBe(true)
+    expect(usableFor({ ...phrase, source: 'book' }, new Set([me, be, student]))).toBe(false)
+    expect(usableFor({ ...phrase, source: 'catalog' }, new Set([me, be, student]))).toBe(true)
+    expect(usableFor({ words: [me], source: 'ai' }, new Set([me]))).toBe(true) // no grammar tags, nothing more to know
+  })
+
+  it('finds a word\'s phrases in later band files too, once the learner has words from that band', async () => {
+    const catalog = await loadCatalog()
+    const known = new Set([student, me, be, 'grammar:s-shi4-n--identity'])
+    expect((await loadBank(catalog, [student], known, [])).get(student)!.map(phrase => phrase.zh)).not.toContain('啊，我是学生。')
+    expect((await loadBank(catalog, [student], new Set([...known, particle]), [])).get(student)!.map(phrase => phrase.zh)).toContain('啊，我是学生。')
+  })
+
+  it('uses a book phrase once its words and grammar are known', async () => {
+    const catalog = await loadCatalog()
+    const base = new Set([student, you])
+    const zh = '学生，你好。'
+    expect((await loadBank(catalog, [student], base, [])).get(student)!.map(phrase => phrase.zh)).not.toContain(zh)
+    expect((await loadBank(catalog, [student], new Set([...base, 'grammar:stmt-ma5--yes-no']), [])).get(student)!.map(phrase => phrase.zh)).toContain(zh)
+  })
+
   it('builds the bank from catalog, shipped and drill sentences, drops the unusable and the duplicates', async () => {
     const catalog = await loadCatalog()
-    const allowed = new Set([student, me, be])
+    const allowed = new Set([student, me, be, 'grammar:s-shi4-n--identity'])
     const sets = [
       { content: { state: 'ready', sentences: { [student]: { zh: '我是学生。', py: 'x', en: 'dup of shipped', source: 'ai' } }, conversations: [] } },
       { content: { state: 'ready', sentences: { [student]: { zh: '我的学生。', py: 'wǒ de xué sheng', en: 'My student.', source: 'ai', checked: true } }, conversations: [] } },
