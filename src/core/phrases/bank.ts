@@ -25,6 +25,7 @@ export function shippedPhrases(band: string): Promise<Record<string, BankPhrase[
       return Object.fromEntries(Object.entries(parsed.data.phrases).map(([lb, list]) => [`vocabulary:${lb}`, list.map((phrase): BankPhrase => ({
         zh: phrase.zh, py: phrase.py, en: phrase.en, words: phrase.words.map(word => `vocabulary:${word}`),
         ...(phrase.grammar?.length ? { grammar: phrase.grammar.map(label => `grammar:${label}`) } : {}), source: phrase.source, checked: phrase.checked,
+          ...(phrase.lookahead !== undefined ? { lookahead: phrase.lookahead } : {}), ...(phrase.readyAt !== undefined ? { readyAt: phrase.readyAt } : {}),
       }))]))
     }).catch(() => ({}))
     shippedCache.set(band, pending)

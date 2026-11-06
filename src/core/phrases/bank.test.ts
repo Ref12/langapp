@@ -9,6 +9,7 @@ vi.mock('../../data/phrases/hsk-1.json', () => ({ default: { schemaVersion: 1, b
   'xue2-sheng5--student': [
     { zh: '我是学生。', py: 'wǒ shì xué sheng', en: 'I am a student.', words: ['wo3--me', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true },
     { zh: '你是学生吗？', py: 'nǐ shì xué sheng ma', en: 'Are you a student?', words: ['ni3--you', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: false },
+    { zh: '我喝茶，我是学生。', py: 'wǒ hē chá, wǒ shì xué sheng', en: 'I drink tea; I am a student.', words: ['wo3--me', 'he1--drink', 'cha2--tea', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true, lookahead: 4, readyAt: 10 },
   ],
 } } }))
 
@@ -30,9 +31,21 @@ describe('phrase bank', () => {
 
   it('reads the shipped band lazily and turns its labels into refs', async () => {
     const shipped = await shippedPhrases('1')
-    expect(shipped[student].map(phrase => phrase.zh)).toEqual(['我是学生。', '你是学生吗？'])
+    expect(shipped[student].map(phrase => phrase.zh)).toEqual(['我是学生。', '你是学生吗？', '我喝茶，我是学生。'])
     expect(shipped[student][0].words).toEqual([me, be, student])
     expect(await shippedPhrases('6')).toEqual({})
+  })
+
+  it('uses a look-ahead phrase only once its last word is known', async () => {
+    const catalog = await loadCatalog()
+    const tea = 'vocabulary:cha2--tea', drink = 'vocabulary:he1--drink'
+    const known = new Set([student, me, be])
+    const zh = '我喝茶，我是学生。'
+    const shipped = (await shippedPhrases('1'))[student].find(phrase => phrase.zh === zh)!
+    expect(shipped).toMatchObject({ lookahead: 4, readyAt: 10 })
+    expect((await loadBank(catalog, [student], known, [])).get(student)!.map(phrase => phrase.zh)).not.toContain(zh)
+    expect((await loadBank(catalog, [student], new Set([...known, drink]), [])).get(student)!.map(phrase => phrase.zh)).not.toContain(zh)
+    expect((await loadBank(catalog, [student], new Set([...known, drink, tea]), [])).get(student)!.map(phrase => phrase.zh)).toContain(zh)
   })
 
   it('is usable for a learner only when every word it uses is in the set or the knowledge set', () => {

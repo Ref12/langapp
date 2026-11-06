@@ -17,6 +17,9 @@ export interface BankPhrase {
   grammar?: string[]
   /** A catalog example, a drill sentence, or written by the offline AI pipeline. */
   source: PhraseSource
+  /** The look-ahead pass that wrote it (0 = strict) and the lesson by which all its words are introduced. Informational: the app gates on words. */
+  lookahead?: number
+  readyAt?: number
   /** Passed a model check (authored catalog examples count as checked). */
   checked: boolean
 }
@@ -27,7 +30,7 @@ export const shippedBandSchema = z.object({
   band: z.string(),
   phrases: z.record(z.string(), z.array(z.object({
     zh: z.string().min(1), py: z.string().min(1), en: z.string().min(1), words: z.array(z.string().min(1)).min(1),
-    grammar: z.array(z.string()).optional(), source: z.enum(PHRASE_SOURCES), checked: z.boolean(),
+    grammar: z.array(z.string()).optional(), lookahead: z.number().int().nonnegative().optional(), readyAt: z.number().int().nonnegative().optional(), source: z.enum(PHRASE_SOURCES), checked: z.boolean(),
   }).strict())),
 }).passthrough()
 
