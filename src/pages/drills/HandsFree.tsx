@@ -113,11 +113,12 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   // The script follows the run's own seed and settings, so leaving and coming back plays the same run. Changing the pause length keeps its shape.
   useEffect(() => {
     let live = true
-    const before = scriptRef.current
-    const at = playerRef.current?.state().prompt ?? 0
-    const key = promptKeyAt(before, at)
     void buildRunScript(run, run.kind, startKnown.current).then(({ script: built }) => {
       if (!live) return
+      // The building is async, so the place to keep is read now, against the script still in use: a skip or an advance made while it was building must not be undone.
+      const before = scriptRef.current
+      const at = playerRef.current?.state().prompt ?? 0
+      const key = promptKeyAt(before, at)
       scriptRef.current = built
       setScript(built)
       // A changed setting rebuilds the script; this prompt keeps its place in it (phase, item, direction), and the next one comes from the new script.
