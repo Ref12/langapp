@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { makeMatcher, ownCharacterData, FALLBACK } from './dictionary-search'
+import { makeMatcher, ownCharacterData, FALLBACK, MID_SYLLABLE } from './dictionary-search'
 
 const words = [
   { ch: '生', pr: 'shēng', ds: 'to be born; to give birth; raw' },
@@ -17,6 +17,24 @@ const rankAll = (query: string) => {
   return chars.flatMap(c => { const own = ownCharacterData(c, words); const r = m.rank({ character: c, readings: own.readings, ds: own.ds }); return r === undefined ? [] : [{ c, r }] })
     .sort((a, b) => a.r - b.r).map(x => x.c + x.r)
 }
+
+describe('pinyin search from any syllable', () => {
+  const entries = [{ ch: '一点儿', pr: 'yī diǎn r' }, { ch: '点', pr: 'diǎn' }, { ch: '点心', pr: 'diǎn xīn' }, { ch: '学生', pr: 'xué sheng' }, { ch: '电话', pr: 'diàn huà' }]
+  const search = (query: string) => { const m = makeMatcher(query); return entries.flatMap(entry => { const rank = m.rank({ text: [entry.ch], pr: entry.pr }); return rank === undefined ? [] : [{ ch: entry.ch, rank }] }).sort((a, b) => a.rank - b.rank) }
+  it('finds 一点儿 for "dian", below the words that start with it', () => {
+    const found = search('dian')
+    expect(found.map(entry => entry.ch).sort()).toEqual(['一点儿', '点', '点心', '电话'].sort())
+    expect(found.find(entry => entry.ch === '一点儿')?.rank).toBe(MID_SYLLABLE)
+    expect(found.filter(entry => entry.ch !== '一点儿').every(entry => entry.rank < MID_SYLLABLE)).toBe(true)
+    expect(found.at(-1)?.ch).toBe('一点儿')
+  })
+  it('matches a later syllable with a tone, a prefix of it and across syllables, but not the middle of a syllable', () => {
+    expect(search('dian3').map(entry => entry.ch)).toContain('一点儿')
+    expect(search('diǎnr').map(entry => entry.ch)).toContain('一点儿')
+    expect(search('sheng').map(entry => entry.ch)).toEqual(['学生'])
+    expect(search('ian').map(entry => entry.ch)).toEqual([])
+  })
+})
 
 describe('dictionary search', () => {
   it('toneless sheng matches every tone and ranks exact readings first', () => {

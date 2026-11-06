@@ -2,6 +2,7 @@ import { z } from 'zod'
 import exercisePrompt from '../../../settings/system-prompts/exercises.md?raw'
 import { omit } from '../omit'
 import { requestStructuredJSON } from '../ai/structured'
+import { judgeWith, reviewMaterial, type JudgeItem } from '../ai/check'
 import { AITransportError } from '../ai/provider'
 import type { AIConnectionInput } from '../assistant/contracts'
 import { renderExample, type Catalog, type Unit } from './catalog'
@@ -297,11 +298,31 @@ export async function generateExercises(connection: AIConnectionInput, input: Ge
   const value = await requestStructuredJSON(connection, {
     name: 'study_exercises', schema: exerciseJSONSchema, system: prompt.system, user: prompt.user, signal,
   })
-  const result = validateProposal(value, input)
+  const validated = validateProposal(value, input)
+  const result = await checkExercises(connection, validated, signal)
   if (result.exercises.length < MIN_USABLE_EXERCISES) {
     throw new AITransportError(`The AI produced only ${result.exercises.length} usable exercises (${result.rejected.length} rejected). Try again or choose a stronger model.`)
   }
   return result
+}
+
+/**
+ * The check pass over a lesson's new AI exercises (choices and built sentences; matches are made in code): is the Chinese natural, does it match the English, and for choices is
+ * exactly one option right with every wrong option clearly wrong (the near-duplicate correct option, 我觉得有一点儿冷 against 有一点儿冷). Exercises that fail are dropped, not rewritten:
+ * a lesson simply has fewer of them. If the check call fails the exercises are used unchecked.
+ */
+export async function checkExercises(connection: AIConnectionInput, result: ValidationResult, signal?: AbortSignal): Promise<ValidationResult> {
+  const judged = result.exercises.filter(exercise => exercise.type !== 'match')
+  if (!judged.length) return result
+  const describe = (exercise: Exercise): JudgeItem => exercise.type === 'choice'
+    ? { id: exercise.id, kind: 'choice', direction: exercise.direction, prompt: exercise.question, options: exercise.options, answerIndex: exercise.answer }
+    : exercise.type === 'tiles' ? { id: exercise.id, kind: 'tiles', zh: exercise.tiles.join(''), en: exercise.translation } : { id: exercise.id, kind: 'sentence', zh: '', en: '' }
+  const review = await reviewMaterial(judged, { describe, check: judgeWith(connection, signal) })
+  const dropped = new Set(review.dropped.map(entry => entry.item.id))
+  return {
+    exercises: result.exercises.filter(exercise => !dropped.has(exercise.id)),
+    rejected: [...result.rejected, ...review.dropped.map(entry => `${entry.item.id}: failed the check (${entry.reason})`)],
+  }
 }
 
 /** Splits a lesson's exercise count into request sizes of at most MAX_EXERCISES_PER_REQUEST, as even as possible (40 gives 20 + 20). */

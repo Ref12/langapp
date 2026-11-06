@@ -36,6 +36,8 @@ export const sentenceSchema = z.object({
   py: z.string().trim().min(1).max(400),
   en: z.string().trim().min(1).max(300),
   source: z.enum(['catalog', 'ai']),
+  /** An AI sentence that passed the in-app check (absent: not checked, e.g. written before the check existed or the check call failed). */
+  checked: z.boolean().optional(),
 }).strict()
 
 export const conversationSchema = z.object({

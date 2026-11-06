@@ -476,3 +476,6 @@ it('offers Save it first in the replace flow and saves before generating', async
   await waitFor(async () => expect(await db.table('sudokuGames').where('id').startsWith('saved-').count()).toBe(1))
   await waitFor(async () => expect((await db.sudokuGames.get('current'))?.gameId).not.toBe(game.gameId))
 })
+
+// The in-app check pass is covered in ai/check.test.ts; here every item passes it so the call sequences under test stay as they were.
+vi.mock('../core/ai/check', async importOriginal => ({ ...await importOriginal<typeof import('../core/ai/check')>(), judgeWith: () => async (items: readonly { id: string }[]) => new Map(items.map(item => [item.id, { ok: true, reason: '' }])) }))

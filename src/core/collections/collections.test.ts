@@ -186,3 +186,6 @@ describe('collections', () => {
     expect(before.knowledge).toBe(0)
   })
 })
+
+// The in-app check pass is covered in ai/check.test.ts; here every item passes it so the call sequences under test stay as they were.
+vi.mock('../ai/check', async importOriginal => ({ ...await importOriginal<typeof import('../ai/check')>(), judgeWith: () => async (items: readonly { id: string }[]) => new Map(items.map(item => [item.id, { ok: true, reason: '' }])) }))

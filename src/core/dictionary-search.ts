@@ -2,7 +2,9 @@ import { parseReadings, type Syllable } from './pinyin'
 
 // Dictionary search looks only at an entry's own characters, pronunciations and meanings.
 // Ranks (lower is better): 0 exact character or exact pronunciation, 1 pronunciation prefix or word containing the query,
-// 2 exact meaning, 3 meaning contains the query. Callers use FALLBACK for a weaker last-resort match.
+// 1.5 a pinyin query that starts at a later syllable of the reading ("dian" in yī diǎn r), 2 exact meaning, 3 meaning contains the query.
+// Callers use FALLBACK for a weaker last-resort match.
+export const MID_SYLLABLE = 1.5
 export const FALLBACK = 4
 
 export interface SearchTarget {
@@ -71,7 +73,15 @@ export function makeMatcher(raw: string): Matcher {
         if (target.character !== undefined && queryChars.has(target.character)) take(0)
         for (const text of target.text ?? []) { if (text === lower) take(0); else if (text.includes(lower)) take(1) }
       }
-      if (pinyin) for (const syllables of readingsOf(target)) { const match = matchReading(pinyin, syllables); if (match === 2) take(0); else if (match === 1) take(1) }
+      if (pinyin) {
+        for (const syllables of readingsOf(target)) {
+          const match = matchReading(pinyin, syllables)
+          if (match === 2) take(0)
+          else if (match === 1) take(1)
+          // From any later syllable boundary, ranked below matches at the start of the reading.
+          else for (let from = 1; from < syllables.length && (best === undefined || best > MID_SYLLABLE); from++) if (matchReading(pinyin, syllables.slice(from)) > 0) { take(MID_SYLLABLE); break }
+        }
+      }
       if (!hanQuery && target.ds) {
         const meaning = target.ds.toLowerCase()
         const parts = meaning.split(/[;,/]/).map(part => part.trim())

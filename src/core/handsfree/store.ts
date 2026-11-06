@@ -1,7 +1,11 @@
 import { loadCatalog, type Catalog } from '../study/catalog'
-import { catalogSentence, lessonPhrase, loadItems } from '../drills/items'
+import { db } from '../database'
+import { catalogSentence, loadItems } from '../drills/items'
+import { heardLog, leastHeard, loadBank } from '../phrases/bank'
+import { pickReviews } from '../study/daily'
+import { DOMAIN } from '../study/knowledge'
 import { DEFAULT_HANDSFREE_SETTINGS, handsfreeSettingsSchema, type HandsfreeRun, type HandsfreeSettings } from './contracts'
-import { generateScript, type Script, type ScriptItem, type ScriptMode, type ScriptSentence } from './script'
+import { generateScript, REVIEW_EXTRAS, type Script, type ScriptItem, type ScriptMode, type ScriptSentence } from './script'
 
 const SETTINGS_KEY = 'handsfree.settings'
 
@@ -36,7 +40,14 @@ export function exampleFor(catalog: Catalog, ref: string): { example?: string } 
   return example ? { example } : {}
 }
 
-/** The run's script: its items from the catalog, grammar sentences and each word's lesson phrase from the catalog examples. `known` is the knowledge set, whose words a lesson phrase may also use. */
+/** The Chinese of every bank phrase a script plays, for the heard log (once each). */
+export const phrasesIn = (script: Script): string[] => [...new Set(script.segments.flatMap(segment => segment.kind === 'marker' && segment.phrase ? [segment.phrase] : []))]
+
+/**
+ * The run's script: its items from the catalog, grammar sentences from the catalog examples, and each word's phrases from the phrase bank (catalog examples, the shipped
+ * bank and the drill sentences; usable when every word they use is in the set or the knowledge set), least-heard first. `known` is the knowledge set. The Introduction's
+ * mixed review also takes a few knowledge-set items that are due or coming up next.
+ */
 export async function buildRunScript(run: Pick<HandsfreeRun, 'refs' | 'settings' | 'seed'>, mode: ScriptMode = 'introduction', known: ReadonlySet<string> = new Set()): Promise<{ script: Script; items: ScriptItem[] }> {
   const catalog = await loadCatalog()
   const found = await loadItems(run.refs, catalog)
@@ -46,9 +57,22 @@ export async function buildRunScript(run: Pick<HandsfreeRun, 'refs' | 'settings'
     const sentence = item.kind === 'grammar' ? catalogSentence(catalog, item) : undefined
     if (sentence) sentences[item.ref] = { zh: sentence.zh, en: sentence.en }
   }
+  const bank = await loadBank(catalog, found.filter(item => item.kind === 'vocabulary').map(item => item.ref), allowed, await db.drillSets.toArray())
+  const heard = await heardLog()
   const items: ScriptItem[] = found.map(item => {
-    const phrase = item.kind === 'vocabulary' ? lessonPhrase(catalog, item.ref, allowed) : undefined
-    return { ref: item.ref, kind: item.kind, zh: item.zh, en: item.en, ...(item.kind === 'vocabulary' ? exampleFor(catalog, item.ref) : {}), ...(phrase ? { phrase } : {}) }
+    const phrases = leastHeard(bank.get(item.ref) ?? [], heard).map(phrase => ({ zh: phrase.zh, en: phrase.en }))
+    return { ref: item.ref, kind: item.kind, zh: item.zh, en: item.en, ...(item.kind === 'vocabulary' ? exampleFor(catalog, item.ref) : {}), ...(phrases.length ? { phrases } : {}) }
   })
-  return { script: generateScript(items, sentences, run.settings, run.seed, mode), items }
+  let review: ScriptItem[] | undefined
+  if (mode === 'introduction' && known.size) {
+    const own = new Set(run.refs)
+    const cards = (await db.studyCards.toArray()).filter(card => card.domain === DOMAIN && known.has(card.ref) && !own.has(card.ref) && catalog.units.has(card.ref))
+    const extra = await loadItems(pickReviews(cards, Date.now(), REVIEW_EXTRAS).refs, catalog)
+    for (const item of extra) {
+      const sentence = item.kind === 'grammar' ? catalogSentence(catalog, item) : undefined
+      if (sentence) sentences[item.ref] = { zh: sentence.zh, en: sentence.en }
+    }
+    review = extra.map(item => ({ ref: item.ref, kind: item.kind, zh: item.zh, en: item.en }))
+  }
+  return { script: generateScript(items, sentences, run.settings, run.seed, mode, review), items }
 }

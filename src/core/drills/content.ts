@@ -1,5 +1,6 @@
 import { db } from '../database'
 import { requestStructuredJSON } from '../ai/structured'
+import { judgeWith, reviewMaterial } from '../ai/check'
 import { loadCatalog, type Catalog } from '../study/catalog'
 import { createSegmenter, type Segmenter } from '../study/exercises'
 import { catalogSentence, loadItems, type ItemInfo } from './items'
@@ -104,6 +105,37 @@ export function validConversations(value: unknown, allowed?: Segmenter): Convers
   })
 }
 
+/**
+ * The check pass over sentences the AI wrote (one batched call per request, on this connection): natural Chinese, English that matches. A sentence that fails is rewritten once in one
+ * batch and checked again, then dropped. Passed ones are marked checked; ones the check could not judge stay, unmarked as checked.
+ */
+export async function checkSentences(connection: Parameters<typeof requestStructuredJSON>[0], found: Record<string, Sentence>, asked: readonly ItemInfo[], allowed: Allowed, signal?: AbortSignal): Promise<Record<string, Sentence>> {
+  const entries = Object.entries(found).map(([ref, sentence]) => ({ ref, sentence }))
+  const review = await reviewMaterial(entries, {
+    describe: entry => ({ id: entry.ref, kind: 'sentence', zh: entry.sentence.zh, en: entry.sentence.en }),
+    check: judgeWith(connection, signal),
+    rewrite: async failed => {
+      const items = failed.map(entry => asked.find(item => item.ref === entry.item.ref)).filter((item): item is ItemInfo => !!item)
+      const value = await requestStructuredJSON(connection, { name: 'drill_sentences', schema: sentenceSchemaJSON, system: SYSTEM, signal, maxOutputTokens: 3000,
+        user: `Rewrite one short sentence (at most 14 characters) for each item below; the previous one failed review for the reason given. The Chinese sentence must contain the item's form. ${RULE} Return {"sentences":[{"ref","zh","py","en"}]} with the ref copied from the item.\n${JSON.stringify({ items: failed.map(entry => ({ ref: entry.item.ref, form: asked.find(item => item.ref === entry.item.ref)?.zh, previous: entry.item.sentence.zh, problem: entry.reason })), otherKnownVocabulary: allowed.prompt })}` })
+      return Object.entries(validSentences(value, items, allowed.segmenter)).map(([ref, sentence]) => ({ ref, sentence }))
+    },
+  })
+  return Object.fromEntries([
+    ...review.accepted.map(entry => [entry.ref, { ...entry.sentence, checked: true }] as const),
+    ...review.unchecked.map(entry => [entry.ref, { ...entry.sentence, checked: false }] as const),
+  ])
+}
+
+/** The check pass over conversations (natural, English matches, each question has exactly one right option); those that fail are dropped. */
+export async function checkConversations(connection: Parameters<typeof requestStructuredJSON>[0], conversations: Conversation[], signal?: AbortSignal): Promise<Conversation[]> {
+  const review = await reviewMaterial(conversations.map((conversation, at) => ({ conversation, id: String(at) })), {
+    describe: entry => ({ id: entry.id, kind: 'conversation', lines: entry.conversation.lines.map(line => ({ who: line.who, zh: line.zh, en: line.en })), questions: entry.conversation.questions.map(question => ({ question: question.question, options: question.options, answerIndex: question.answer })) }),
+    check: judgeWith(connection, signal),
+  })
+  return [...review.accepted, ...review.unchecked].map(entry => entry.conversation)
+}
+
 /** Fills the set's sentences from the catalog at once and the rest, plus the conversations, from the AI in the background. */
 export function startContent(setId: string): Promise<void> {
   const existing = inflight.get(setId)
@@ -145,7 +177,7 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
       try {
         const value = await requestStructuredJSON(connection, { name: 'drill_sentences', schema: sentenceSchemaJSON, system: SYSTEM, signal, maxOutputTokens: 3000,
           user: `Write exactly one short sentence (at most 14 characters) for each item below. The Chinese sentence must contain the item's form. ${RULE} Return {"sentences":[{"ref","zh","py","en"}]} with the ref copied from the item.\n${JSON.stringify({ items: chunk.map(item => ({ ref: item.ref, form: item.zh, pinyin: item.py, meaning: item.en })), otherKnownVocabulary: allowed.prompt })}` })
-        const found = validSentences(value, chunk, allowed.segmenter)
+        const found = await checkSentences(connection, validSentences(value, chunk, allowed.segmenter), chunk, allowed, signal)
         await patch(setId, content => ({ ...content, sentences: { ...content.sentences, ...found } }))
       } catch (reason) { note(reason) }
       await finished()
@@ -155,7 +187,7 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
         const subject = items.slice(0, MAX_CONVERSATION_ITEMS)
         const value = await requestStructuredJSON(connection, { name: 'drill_conversations', schema: conversationJSON, system: SYSTEM, signal, maxOutputTokens: 4000,
           user: `Write 2 short conversations (4 to 6 lines each, speakers A and B) that use these study items between them. After some lines add a comprehension question in English with 2 to 4 options; "after" is the 0-based index of the line it follows and "answer" the 0-based index of the right option. Each conversation has 2 questions. ${RULE} The English questions and options may use any English.\n${JSON.stringify({ items: subject.map(item => ({ form: item.zh, pinyin: item.py, meaning: item.en })), otherKnownVocabulary: allowed.prompt })}` })
-        const found = validConversations(value, allowed.segmenter)
+        const found = await checkConversations(connection, validConversations(value, allowed.segmenter), signal)
         if (!found.length) throw new Error('The AI produced no usable conversation.')
         await patch(setId, content => ({ ...content, conversations: found }))
       } catch (reason) { note(reason) }

@@ -49,13 +49,13 @@ describe('Hands-free player', () => {
     render(<App />)
     const play = await screen.findByRole('button', { name: 'Play' })
     await waitFor(() => expect(play).toBeEnabled())
-    expect(phase()).toBe('1 of 15')
+    expect(phase()).toBe('1 of 55')
     fireEvent.click(play)
     await waitFor(() => expect(said[0]).toMatch(/^This is how you say, /))
     expect(await screen.findByRole('button', { name: 'Pause' })).toBeInTheDocument()
     await waitFor(() => expect(document.querySelector('.hf-prompt')).toHaveTextContent('我'), { timeout: 4000 })
     await advance(3500)
-    await waitFor(() => expect(phase()).toMatch(/^([2-9]|1\d) of 15/))
+    await waitFor(() => expect(phase()).toMatch(/^([2-9]|\d\d) of 55/))
     expect(await hf()).toMatchObject({ started: true, done: false })
     expect(await setOf()).toMatchObject({ status: 'active' })
     fireEvent.click(screen.getByRole('button', { name: 'Pause' }))
@@ -74,7 +74,7 @@ describe('Hands-free player', () => {
     await waitFor(() => expect(play).toBeEnabled())
     fireEvent.click(play)
     await advance(60000)
-    await waitFor(() => expect(phase()).toMatch(/of 15|Finished/), { timeout: 3000 })
+    await waitFor(() => expect(phase()).toMatch(/of 55|Finished/), { timeout: 3000 })
     for (let step = 0; step < 40 && phase() !== 'Finished'; step++) await advance(60000)
     expect(phase()).toBe('Finished')
     expect(await setOf()).toMatchObject({ status: 'completed', handsfree: { done: true } })
@@ -93,7 +93,7 @@ describe('Hands-free player', () => {
     const overlay = await screen.findByRole('dialog', { name: /Pocket mode/ })
     await waitFor(() => expect(request).toHaveBeenCalledWith('screen'))
     // the same display: phase line, prompt and progress, inside the overlay
-    expect(within(overlay).getByRole('status')).toHaveTextContent('1 of 15')
+    expect(within(overlay).getByRole('status')).toHaveTextContent('1 of 55')
     expect(overlay.querySelector('.hf-prompt')).toHaveTextContent('me')
     expect(within(overlay).getByLabelText('Run progress')).toBeInTheDocument()
     expect(within(overlay).getByText('Hold anywhere to exit')).toBeInTheDocument()
@@ -143,15 +143,16 @@ describe('Hands-free player', () => {
     // leaving mid-run keeps the set unfinished, at its saved prompt
     expect(await setOf()).toMatchObject({ status: 'active', handsfree: { started: true, position: 2 } })
     render(<App />)
-    expect(await screen.findByRole('button', { name: /^(Resume|Play)$/ })).toBeEnabled()
-    await waitFor(() => expect(phase()).toMatch(/^\d+ of 15$/))
+    { const resume = await screen.findByRole('button', { name: /^(Resume|Play)$/ }); await waitFor(() => expect(resume).toBeEnabled()) }
+    await waitFor(() => expect(phase()).toMatch(/^\d+ of 55$/))
     fireEvent.click(screen.getByRole('button', { name: /^(Resume|Play)$/ }))
     await waitFor(() => expect(said.length).toBeGreaterThan(0))
     const again = await openSettings()
     expect(within(again).getByLabelText('Pause length')).toHaveValue('long')
     expect(within(again).getByLabelText('Repeats')).toBeEnabled()
     expect((await setOf()).status).toBe('active')
-  })
+  // Renders the App twice, and each player builds its script from the catalog, the phrase bank and the heard log: well under 1 s alone, but over the 5 s default when the whole suite loads the machine.
+  }, 20000)
 
   it('starts from Practice home with Learning from, and creates a Hands-free-only set that opens on its Hands-free activity and is not yet listed', async () => {
     await db.knowledge.add({ ref: refs[0], addedAt: 1, source: 'new' } as never).catch(() => undefined)
@@ -267,8 +268,8 @@ describe('Hands-free player', () => {
     expect(within(section).queryByRole('button', { name: 'Discard Hands-free · 1 Nov' })).toBeNull()
     expect(resume).toHaveAttribute('href', '#practice/set/run1/handsfree')
     fireEvent.click(resume)
-    expect(await screen.findByRole('button', { name: /^(Resume|Play)$/ })).toBeEnabled()
-    await waitFor(() => expect(phase()).toMatch(/^\d+ of 15$/))
+    { const resume = await screen.findByRole('button', { name: /^(Resume|Play)$/ }); await waitFor(() => expect(resume).toBeEnabled()) }
+    await waitFor(() => expect(phase()).toMatch(/^\d+ of 55$/))
     window.location.hash = '#practice'
     const again = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
     fireEvent.click(await within(again).findByRole('button', { name: 'More for Hands-free · 1 Nov' }))
@@ -293,7 +294,7 @@ describe('Hands-free player', () => {
     await openRun({ pause: 'short', repeats: 1, sectionIntros: 'off' }, { started: true, position: 1 })
     window.location.hash = '#practice/handsfree/run1'
     render(<App />)
-    expect(await screen.findByRole('button', { name: /^(Resume|Play)$/ })).toBeEnabled()
+    { const resume = await screen.findByRole('button', { name: /^(Resume|Play)$/ }); await waitFor(() => expect(resume).toBeEnabled()) }
     expect(window.location.hash).toBe('#practice/set/run1/handsfree')
   })
 
@@ -320,7 +321,7 @@ describe('Hands-free player', () => {
     const play = await screen.findByRole('button', { name: 'Play' })
     await waitFor(() => expect(play).toBeEnabled())
     fireEvent.click(play)
-    await waitFor(() => expect(said[0]).toMatch(/^Hands-free lesson\./))
+    await waitFor(() => expect(said[0]).toMatch(/^Learn the words\./))
     await waitFor(() => expect(said.some(text => text.startsWith('This is how you say, '))).toBe(true), { timeout: 4000 })
     expect(document.querySelector('.hf-prompt')).not.toHaveClass('hf-section')
   })
@@ -388,7 +389,7 @@ describe('Hands-free player', () => {
     const before = (await buildRunScript(await scriptInput())).script
     render(<App />)
     await screen.findByRole('button', { name: /^(Resume|Play)$/ })
-    await waitFor(() => expect(phase()).toMatch(/^\d+ of 15$/))
+    await waitFor(() => expect(phase()).toMatch(/^\d+ of 55$/))
     const dialog = await openSettings()
     fireEvent.change(within(dialog).getByLabelText('Repeats'), { target: { value: '3' } })
     await waitFor(async () => expect((await hf()).settings).toMatchObject({ repeats: 3 }))
@@ -396,7 +397,7 @@ describe('Hands-free player', () => {
     const after = (await buildRunScript(await scriptInput())).script
     expect(after.segments.length).toBeGreaterThan(before.segments.length)
     expect(findPrompt(after, promptKeyAt(before, 1), 1)).toBeGreaterThanOrEqual(1)
-    await waitFor(() => expect(phase()).toMatch(/^\d+ of 15$/))
+    await waitFor(() => expect(phase()).toMatch(/^\d+ of 55$/))
     // playing on uses the new script, and a later resume lands on the same prompt
     fireEvent.click(within(dialog).getByRole('button', { name: 'Close settings' }))
     fireEvent.click(screen.getByRole('button', { name: /^(Resume|Play)$/ }))

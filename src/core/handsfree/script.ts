@@ -2,22 +2,22 @@ import { DEFAULT_EMPHASIS_RATE, DEFAULT_ZH_RATE, FRAME_VOLUME, normalizeHandsfre
 
 /** One item of the run as the script needs it: Chinese form, English gloss and what kind of item it is. */
 /** `example` is the English of a short sentence that uses a vocabulary word ("Let's rest."), spoken as "as in ..." in the full item wording. */
-export interface ScriptItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; en: string; example?: string; /** The word's lesson phrase (a catalog example made of known words, short enough), taught right after the word. */ phrase?: ScriptSentence }
+export interface ScriptItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; en: string; example?: string; /** The word's usable phrases from the phrase bank, least-heard first; the first PHRASES_PER_WORD are taught and rotated through. */ phrases?: ScriptSentence[] }
 /** A grammar pattern's example sentence from the catalog, by the pattern's ref. */
 export interface ScriptSentence { zh: string; en: string }
 
 export type PromptAct = 'intro' | 'toEnglish' | 'toChinese'
 /** The whole run is one phase: a Hands-free lesson (Introduction) or a Hands-free recall. */
 export type Phase = 'lesson' | 'recall'
-/** Introduction: every item introduced in set order, then each recalled twice, scrambled. Recall: one scrambled pool where each card comes round 1, 3 and 6 prompts later. */
+/** Introduction: the words, a test on them, their phrases, a test on the phrases, then a mixed review. Recall: one scrambled pool where each card comes round 1, 3 and 6 prompts later. */
 export type ScriptMode = 'introduction' | 'recall'
-/** What an item prompt is about: a word, the lesson phrase of a word (its ref is the word's), or a grammar sentence. */
+/** What an item prompt is about: a word, a phrase of a word (its ref is the word's), or a grammar sentence. */
 export type PromptItem = 'word' | 'phrase' | 'grammar'
 export type Segment =
   | { kind: 'say'; locale: 'en-US' | 'zh-Hans'; text: string; rate: number; /** 0 to 1; unset is full volume. The English frame is quieter than its key word only when the key word is its own utterance (emphasis Slower and louder). */ volume?: number; /** Part of a section introduction: shown on screen as the section header (`header`, with `detail` under it) until the first prompt is spoken. */ section?: boolean; header?: string; detail?: string; /** Which voice speaks it: the one English voice, or Chinese. */ voice: 'frame' | 'zh'; /** The English answer to a Chinese prompt: the display shows it when this starts, not before. */ answer?: boolean }
   /** `ms` is the estimate. With `measure`, the player also times the model text it has just spoken and waits whichever is longer: that time x `factor` + `gap`, or `ms`. */
   | { kind: 'pause'; ms: number; measure?: { factor: number; gap: number } }
-  | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string; item?: PromptItem; /** True the first time a card comes up in the run. */ first?: boolean; /** The item this prompt practises and how, for practice counts (see ACTIVITY in skill-map). */ ref?: string; act?: PromptAct }
+  | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string; item?: PromptItem; /** True the first time a card comes up in the run. */ first?: boolean; /** The Chinese of the bank phrase this prompt is about, for the heard log. */ phrase?: string; /** The item this prompt practises and how, for practice counts (see ACTIVITY in skill-map). */ ref?: string; act?: PromptAct }
 
 export interface Script {
   segments: Segment[]
@@ -25,16 +25,26 @@ export interface Script {
   promptStarts: number[]
 }
 
+/** The sections of a run, in order: the Introduction has the first five, Recall the last. */
+export type Section = 'words' | 'testWords' | 'phrases' | 'testPhrases' | 'review' | 'recall'
 /** The short spoken and on-screen header of each section: 2 to 4 words. */
-export const SECTION_HEADER: Record<Phase, string> = { lesson: 'Hands-free lesson', recall: 'Hands-free recall' }
+export const SECTION_HEADER: Record<Section, string> = { words: 'Learn the words', testWords: 'Test the words', phrases: 'Learn the phrases', testPhrases: 'Test the phrases', review: 'Mixed review', recall: 'Hands-free recall' }
+/** How many bank phrases of a word are taught, and rotated through when the word's phrase comes back. */
+export const PHRASES_PER_WORD = 2
+/** How many items from the knowledge set join the mixed review. */
+export const REVIEW_EXTRAS = 4
 /** The Chinese speed the estimate of a syllable's time (500 ms) is calibrated to; slower speech is estimated longer. */
 export const ZH_REFERENCE_RATE = 0.85
 /** The gap between the frame and the key word, in ms. */
 export const FRAME_GAP_MS = 300
 export const SECTION_GAP_MS = 600
 /** What each section contains and what you do in it: spoken after the header in the Full section introductions, and shown under it. */
-export const SECTION_INTRO: Record<Phase, string> = {
-  lesson: "Each word and its phrase are introduced in turn: repeat after me. Then you'll recall them in mixed order, in both directions.",
+export const SECTION_INTRO: Record<Section, string> = {
+  words: "In five parts: the words, a test on them, then their phrases, a test on the phrases, and a mixed review. First the words: repeat after me.",
+  testWords: "The words again, in both directions, in mixed order. Answer before you hear it.",
+  phrases: "Now each word in a phrase or two: repeat after me.",
+  testPhrases: "The words come back in phrases, and the phrase can change. Answer before you hear it.",
+  review: "Everything in this set, in mixed order, with a few words you learned before.",
   recall: "In random order, in both directions. Answer before you hear it. The first time a word comes up you'll hear it in a phrase.",
 }
 /** A usage example longer than this many words is not spoken: it would bury the word it is for. */
@@ -103,7 +113,7 @@ function shuffle<T>(list: readonly T[], random: () => number): T[] {
 }
 
 /** `description` is set for descriptive items (particles, measure words): `en` is then the whole gloss. */
-interface Word { zh: string; en: string; description?: string; ref: string; item: PromptItem; /** A short English sentence using the word; spoken as "as in" in the full wording. */ example?: string }
+interface Word { zh: string; en: string; description?: string; ref: string; item: PromptItem; /** For a bank phrase: its Chinese, which identifies it in the heard log. */ phrase?: string; /** A short English sentence using the word; spoken as "as in" in the full wording. */ example?: string }
 type Card = { text: Word; dir: 'e2z' | 'z2e' }
 const entityKey = (word: Word) => `${word.item}:${word.ref}`
 
@@ -122,26 +132,39 @@ export function keepApart<T extends { text: { ref: string; item: PromptItem } }>
   return out
 }
 
-export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonly<Record<string, ScriptSentence | undefined>>, settings: HandsfreeSettings, seed: number, mode: ScriptMode = 'introduction'): Script {
+/** `review`: items from the knowledge set (due or coming up next) that join the Introduction's mixed review. */
+export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonly<Record<string, ScriptSentence | undefined>>, settings: HandsfreeSettings, seed: number, mode: ScriptMode = 'introduction', review?: readonly ScriptItem[]): Script {
   const random = rng(seed)
   const zhRate = settings.zhRate ?? DEFAULT_ZH_RATE
   const emphasisRate = settings.emphasisRate ?? DEFAULT_EMPHASIS_RATE
   const { itemWording: wording, sectionIntros, emphasis } = normalizeHandsfreeSettings(settings)
   const loud = emphasis === 'loud'
   const phase: Phase = mode === 'recall' ? 'recall' : 'lesson'
-  // Everything the run is about, in set order: a word, then its lesson phrase right after it; a grammar pattern's sentence where the pattern stands.
-  // Characters-only items (no Chinese or no English to say) are left out.
-  const entities: Word[] = items.flatMap((item): Word[] => {
+  // A word (or a grammar pattern's example sentence) as the run speaks it. Characters-only items (no Chinese or no English to say) are left out.
+  const wordOf = (item: ScriptItem): Word | undefined => {
     if (item.kind === 'grammar') {
       const found = sentenceOf[item.ref]
-      return found && syllables(found.zh).length && found.en.trim() ? [{ zh: found.zh, en: found.en.trim(), ref: item.ref, item: 'grammar' }] : []
+      return found && syllables(found.zh).length && found.en.trim() ? { zh: found.zh, en: found.en.trim(), ref: item.ref, item: 'grammar' } : undefined
     }
-    if (!syllables(item.zh).length || !(introExplanation(item) ? item.en.trim() : shortGloss(item.en))) return []
+    if (!syllables(item.zh).length || !(introExplanation(item) ? item.en.trim() : shortGloss(item.en))) return undefined
     const description = introExplanation(item)
-    const word: Word = description ? { zh: item.zh, en: asDescription(item.en), description, ref: item.ref, item: 'word' } : { zh: item.zh, en: shortGloss(item.en), ref: item.ref, item: 'word', ...(usable(item.example) ? { example: item.example!.trim() } : {}) }
-    const phrase = item.phrase && syllables(item.phrase.zh).length && item.phrase.en.trim() ? [{ zh: item.phrase.zh, en: item.phrase.en.trim(), ref: item.ref, item: 'phrase' as const }] : []
-    return [word, ...phrase]
-  })
+    return description ? { zh: item.zh, en: asDescription(item.en), description, ref: item.ref, item: 'word' } : { zh: item.zh, en: shortGloss(item.en), ref: item.ref, item: 'word', ...(usable(item.example) ? { example: item.example!.trim() } : {}) }
+  }
+  /** A word's bank phrases that can be spoken, in the order given (least heard first), at most PHRASES_PER_WORD. */
+  const phrasesOf = (item: ScriptItem, ref = item.ref): Word[] => item.kind === 'grammar' ? [] : (item.phrases ?? []).filter(phrase => syllables(phrase.zh).length && phrase.en.trim()).slice(0, PHRASES_PER_WORD)
+    .map(phrase => ({ zh: phrase.zh, en: phrase.en.trim(), ref, item: 'phrase' as const, phrase: phrase.zh }))
+  const entries = items.flatMap(item => { const word = wordOf(item); return word ? [{ word, phrases: phrasesOf(item) }] : [] })
+  const extras = (review ?? []).flatMap(item => { const word = wordOf(item); return word && !entries.some(entry => entry.word.ref === word.ref) ? [word] : [] }).slice(0, REVIEW_EXTRAS)
+  /** The phrases a word's phrase cards go through, one per time the card comes round. */
+  const variants = new Map(entries.filter(entry => entry.phrases.length).map(entry => [entry.word.ref, entry.phrases]))
+  const turn = new Map<string, number>()
+  const nextVariant = (phrase: Word): Word => {
+    const list = variants.get(phrase.ref)
+    if (!list || list.length < 2) return phrase
+    const at = turn.get(phrase.ref) ?? 0
+    turn.set(phrase.ref, at + 1)
+    return list[at % list.length]
+  }
 
   const segments: Segment[] = []
   const promptStarts: number[] = []
@@ -168,20 +191,22 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     if (!loud) { sayEn(`${lead}, ${key}${mark}${tail ? ` ${tail}` : ''}`); return }
     sayEn(lead, { volume: FRAME_VOLUME }); gap(); sayKey(key); if (tail) { gap(); sayEn(tail, { volume: FRAME_VOLUME }) }
   }
-  let introduced = false
-  const mark = (index: number, total: number, prompt: string, item: Word, act: PromptAct, first = false) => {
+  let currentSection: Section | undefined
+  const mark = (section: Section, index: number, total: number, prompt: string, item: Word, act: PromptAct, first = false) => {
     // A section's introduction is its own step (index 0, no item) before its first prompt, so Next from it lands on item 1. In Full it says the header and what the section contains; Header says the header; Off has no step.
-    if (sectionIntros !== 'off' && !introduced && index === 1) {
-      introduced = true
-      const header = SECTION_HEADER[phase]
-      const detail = SECTION_INTRO[phase]
+    if (currentSection !== section) {
+      currentSection = section
+      if (sectionIntros === 'off') { /* no introduction step */ } else {
+      const header = SECTION_HEADER[section]
+      const detail = SECTION_INTRO[section]
       promptStarts.push(segments.length)
       segments.push({ kind: 'marker', phase, index: 0, total, prompt: header })
       say({ kind: 'say', locale: 'en-US', text: sectionIntros === 'full' ? `${header}. ${detail}` : `${header}.`, rate: 1, voice: 'frame', section: true, header, ...(sectionIntros === 'full' ? { detail } : {}) })
       segments.push({ kind: 'pause', ms: SECTION_GAP_MS })
+      }
     }
     promptStarts.push(segments.length)
-    segments.push({ kind: 'marker', phase, index, total, prompt, item: item.item, ref: item.ref, act, ...(first ? { first: true } : {}) })
+    segments.push({ kind: 'marker', phase, index, total, prompt, item: item.item, ref: item.ref, act, ...(item.phrase ? { phrase: item.phrase } : {}), ...(first ? { first: true } : {}) })
   }
   /** Says a Chinese text and leaves a pause to repeat it, sized to the text and to how long the model text actually took. */
   const repeatAfter = (zh: string, rate = zhRate) => { sayZh(zh, rate); pause(zh, 'zh-Hans', rate, true) }
@@ -243,9 +268,11 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     else frame('This is how you say', en, '.', `${example ? `As in, ${inline(example.replace(/[.!?。\s]+$/, ''))}. ` : ''}In Mandarin.`)
   }
   const answer = (word: Word) => repeatAfter(word.zh)
-  const playCard = (card: Card, index: number, total: number, first: boolean) => {
-    if (card.dir === 'e2z') { mark(index, total, card.text.en, card.text, 'toChinese', first); ask(card.text, first && mode === 'recall'); answer(card.text) }
-    else { mark(index, total, card.text.zh, card.text, 'toEnglish', first); askBack(card.text) }
+  /** One prompt of a card: a phrase card says whichever of its word's phrases is next. */
+  const playCard = (section: Section, card: Card, index: number, total: number, first: boolean) => {
+    const text = card.text.item === 'phrase' ? nextVariant(card.text) : card.text
+    if (card.dir === 'e2z') { mark(section, index, total, text.en, text, 'toChinese', first); ask(text, first && mode === 'recall'); answer(text) }
+    else { mark(section, index, total, text.zh, text, 'toEnglish', first); askBack(text) }
   }
   /** The full introduction of one item: what it is, then the Chinese built up and repeated. */
   const introduce = (word: Word) => {
@@ -270,19 +297,29 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     }
   }
 
-  const cards: Card[] = entities.flatMap(text => [{ text, dir: 'e2z' as const }, { text, dir: 'z2e' as const }])
+  const cardsOf = (list: readonly Word[]): Card[] => list.flatMap(text => [{ text, dir: 'e2z' as const }, { text, dir: 'z2e' as const }])
+  const wordsOnly = entries.map(entry => entry.word)
+  const phraseCards = entries.flatMap(entry => entry.phrases.length ? cardsOf([entry.phrases[0]]) : [])
   if (mode === 'recall') {
-    // One scrambled pool, both directions; each card returns after 1, then 3, then 6 other prompts. A card's first appearance carries its context.
-    const order = scrambleWithSpacing(shuffle(cards, random))
+    // One scrambled pool, both directions, words and their phrases; each card returns after 1, then 3, then 6 other prompts. A card's first appearance carries its context.
+    // A phrase card says the word's next phrase each time it comes round.
+    const order = scrambleWithSpacing(shuffle([...cardsOf(wordsOnly), ...phraseCards], random))
     const seen = new Set<Card>()
-    order.forEach((card, at) => { const first = !seen.has(card); seen.add(card); playCard(card, at + 1, order.length, first) })
+    order.forEach((card, at) => { const first = !seen.has(card); seen.add(card); playCard('recall', card, at + 1, order.length, first) })
     return { segments, promptStarts }
   }
-  // Introduction: every item in set order (a word, then its phrase), then each item recalled twice more, scrambled with no item twice in a row. One run, one progress count.
-  const recalls = keepApart(shuffle(cards, random), entities.length ? entityKey(entities[entities.length - 1]) : undefined)
-  const total = entities.length + recalls.length
-  entities.forEach((word, at) => { mark(at + 1, total, word.en, word, 'intro', true); introduce(word) })
-  recalls.forEach((card, at) => playCard(card, entities.length + at + 1, total, false))
+  // Introduction, in five sections: the words, a test on them, the phrases, a test on the phrases, and a mixed review. One run, one progress count.
+  const taught = entries.flatMap(entry => entry.phrases)
+  const wordTest = scrambleWithSpacing(shuffle(cardsOf(wordsOnly), random))
+  const phraseTest = scrambleWithSpacing(shuffle(phraseCards, random))
+  const reviewCards = keepApart(shuffle([...cardsOf(wordsOnly), ...phraseCards, ...cardsOf(extras)], random), phraseTest.length ? entityKey(phraseTest[phraseTest.length - 1].text) : wordTest.length ? entityKey(wordTest[wordTest.length - 1].text) : undefined)
+  const total = wordsOnly.length + wordTest.length + taught.length + phraseTest.length + reviewCards.length
+  let index = 0
+  for (const word of wordsOnly) { mark('words', ++index, total, word.en, word, 'intro', true); introduce(word) }
+  for (const card of wordTest) playCard('testWords', card, ++index, total, false)
+  for (const word of taught) { mark('phrases', ++index, total, word.en, word, 'intro', true); introduce(word) }
+  for (const card of phraseTest) playCard('testPhrases', card, ++index, total, false)
+  for (const card of reviewCards) playCard('review', card, ++index, total, false)
   return { segments, promptStarts }
 }
 

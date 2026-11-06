@@ -1,3 +1,4 @@
+import { judgeWith, reviewMaterial } from '../ai/check'
 import { z } from 'zod'
 import type { Workspace } from '../model'
 import { db } from '../database'
@@ -72,5 +73,8 @@ export async function generateSudokuPhrase(catalog: Catalog, workspace: Workspac
     || !segmenter.covers(parsed.data.text) || wordCharacters(parsed.data.text).length < size) {
     throw new Error('The AI phrase used unknown vocabulary or too few distinct characters. Try again or choose a lesson example.')
   }
+  // The phrase is checked before it is offered; a failed check call does not block it.
+  const review = await reviewMaterial([parsed.data], { describe: phrase => ({ id: 'phrase', kind: 'sentence', zh: phrase.text, en: phrase.translation }), check: judgeWith(connection, signal) })
+  if (review.dropped.length) throw new Error(`The AI phrase did not pass the check (${review.dropped[0].reason}). Try again or choose a lesson example.`)
   return { source: 'ai', text: parsed.data.text, translation: parsed.data.translation, pinyin: '' }
 }

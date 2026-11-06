@@ -4,7 +4,8 @@ import { PageHeading, type PageProps } from '../../components/shared'
 import { useCatalog } from '../../components/study/useCatalog'
 import { HandsfreeSettingsForm } from '../../components/handsfree/HandsfreeSettingsForm'
 import { normalizeHandsfreeSettings, type HandsfreeSettings } from '../../core/handsfree/contracts'
-import { buildRunScript, loadHandsfreeSettings, saveHandsfreeSettings } from '../../core/handsfree/store'
+import { buildRunScript, loadHandsfreeSettings, phrasesIn, saveHandsfreeSettings } from '../../core/handsfree/store'
+import { recordHeard } from '../../core/phrases/bank'
 import { activityOf, handsfreeRoute, ensureHandsfree, finishHandsfree, updateHandsfree, type HandsfreeKind } from '../../core/drills/store'
 import type { DrillSet } from '../../core/drills/contracts'
 import { addedLine } from '../../core/handsfree/summary'
@@ -103,6 +104,9 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [heard, setHeard] = useState<Heard>({})
   const scriptRef = useRef<Script>({ segments: [], promptStarts: [] })
+  const heardFor = useRef<number | undefined>()
+  const seedNow = useRef(run.seed)
+  seedNow.current = run.seed
   const runId = run.id
   const structure = settingsKey(run.settings)
   const pauseLength = run.settings.pause
@@ -132,6 +136,8 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
       if (next.status === 'error') setError(next.error ?? 'Audio could not be played.')
       if (next.status === 'playing') setError('')
       const total = scriptRef.current.promptStarts.length
+      // The phrases a finished run played are logged once, so the next run prefers others.
+      if (next.status === 'completed' && heardFor.current !== seedNow.current) { heardFor.current = seedNow.current; void recordHeard(phrasesIn(scriptRef.current)).catch(() => undefined) }
       if (next.status === 'completed') void finishHandsfree(runId, total, Date.now(), run.kind).catch(cause => setError(cause instanceof Error ? cause.message : 'The new items could not be added to your knowledge set.'))
       else if (next.status === 'playing' || next.status === 'paused') {
         lastSaved.current = next.prompt
