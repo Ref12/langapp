@@ -294,3 +294,15 @@
 }
 .practice-card .engine-answer { margin-bottom: 10px; }
 .practice-card > .practice-prompt { margin-bottom: 12px; }
+
+/* Dataset forms (exchange, which-correct, conversation): breathing room above the Check button and a real speaker column. */
+.practice-card .answer-options + .answer-feedback, .practice-card .engine-convo-lines + fieldset { margin-top: 12px; }
+.practice-card fieldset.answer-options { margin-bottom: 12px; }
+.practice-card .answer-actions { margin-top: 12px; }
+.practice-card .button-row + .engine-convo-lines { margin-top: 12px; }
+.engine-convo-lines { margin-bottom: 12px; }
+.engine-convo-lines li, .engine-convo-lines li:has(.dr-line-play) { grid-template-columns: minmax(0, 1fr) auto; row-gap: 2px; }
+.engine-convo-lines li .engine-speaker { grid-column: 1; grid-row: 1; }
+.engine-convo-lines li .dr-line-play { grid-column: 2; grid-row: 1; }
+.engine-convo-lines li > span { grid-column: 1 / -1 !important; }
+.engine-convo-lines li[data-speaker='female'] .engine-speaker { color: var(--accent, #7cc0ff); }

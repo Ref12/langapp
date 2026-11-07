@@ -19,6 +19,10 @@ export interface FormContext {
   seed: number
   /** Pre-generated accepted wordings for a phrase (the dataset, later): joined to the ones found in the bank. */
   extraAccepted?: (phrase: Pick<BankPhrase, 'zh'>) => readonly string[]
+  /** Pre-generated other English translations (the dataset's enAlt) for a Chinese to English translate. */
+  /** Pre-generated optional words (the dataset's optional) for a phrase. */
+  extraOptional?: (phrase: Pick<BankPhrase, 'zh'>) => readonly string[]
+  extraAcceptedEnglish?: (phrase: Pick<BankPhrase, 'zh'>) => readonly string[]
 }
 
 export interface Slot { id: string; stage: Stage; refs: string[]; round: number }
@@ -45,8 +49,9 @@ export function buildTranslate(slot: Slot, form: 'translate-zh-en' | 'translate-
   return {
     ...slot, form, prompt: zhToEn ? phrase.zh : phrase.en, promptLang: zhToEn ? 'zh' : 'en', answerLang: zhToEn ? 'en' : 'zh',
     ...(zhToEn ? { hearText: phrase.zh } : {}),
-    accepted: zhToEn ? acceptedEnglish(phrase, context.bank) : acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)),
-    model: zhToEn ? phrase.en : phrase.zh, modelPinyin: phrase.py, explanation: zhToEn ? phrase.zh : phrase.en,
+    accepted: zhToEn ? acceptedEnglish(phrase, context.bank, context.extraAcceptedEnglish?.(phrase)) : acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)),
+    ...(!zhToEn && context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}),
+      model: zhToEn ? phrase.en : phrase.zh, modelPinyin: phrase.py, explanation: zhToEn ? phrase.zh : phrase.en,
     phrase: { zh: phrase.zh, py: phrase.py, en: phrase.en }, ...(unknown ? { unknown } : {}),
   }
 }
@@ -54,7 +59,7 @@ export function buildTranslate(slot: Slot, form: 'translate-zh-en' | 'translate-
 /** Dictation: hear the phrase, type the characters. */
 export function buildDictation(slot: Slot, phrase: BankPhrase, context: FormContext): TextItem {
   return {
-    ...slot, form: 'dictation', prompt: '', promptLang: 'zh', hearText: phrase.zh, answerLang: 'zh', accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), model: phrase.zh, modelPinyin: phrase.py,
+    ...slot, form: 'dictation', prompt: '', promptLang: 'zh', hearText: phrase.zh, answerLang: 'zh', accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py,
     explanation: phrase.en, phrase: { zh: phrase.zh, py: phrase.py, en: phrase.en },
   }
 }
@@ -69,7 +74,7 @@ export function buildTiles(slot: Slot, phrase: BankPhrase, context: FormContext)
   const count = tiles.length + distractors.length
   let shuffled = shuffle(Array.from({ length: count }, (_, index) => index), rng)
   if (shuffled.slice(0, tiles.length).every((value, index) => value === index)) shuffled = [...shuffled.slice(1), shuffled[0]]
-  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), model: phrase.zh, explanation: `${phrase.zh} (${phrase.py})` }
+  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, explanation: `${phrase.zh} (${phrase.py})` }
 }
 
 /** Fill the gap: the target word blanked out, three known words that do not occur in the phrase as the wrong options. */

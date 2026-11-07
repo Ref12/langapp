@@ -6,7 +6,7 @@ import { FUNCTION_CHARACTERS_LIST } from './function-characters'
 import { LENGTH_FACTOR, estimateMinutes } from './presets'
 import { SentencePool } from './sentences'
 import type { DatasetSource } from './sources'
-import { STAGES, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan } from './types'
+import { DATASET_FORMS, STAGES, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan } from './types'
 
 export interface PlanItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; py: string; en: string }
 
@@ -25,6 +25,8 @@ export interface PlanInput {
   allBank: readonly BankPhrase[]
   dataset?: DatasetSource
   extraAccepted?: FormContext['extraAccepted']
+  extraAcceptedEnglish?: FormContext['extraAcceptedEnglish']
+  extraOptional?: FormContext['extraOptional']
 }
 
 /** The stages that get filled first when Short has to leave stages out. */
@@ -68,7 +70,7 @@ export function planSession(input: PlanInput): SessionPlan {
   const knownUnits = vocabulary.filter(unit => allowed.has(unit.ref))
   const formOf = (ref: string) => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : undefined }
   const context: FormContext = {
-    catalog, knownUnits, bank: input.allBank, seed: input.seed, extraAccepted: input.extraAccepted,
+    catalog, knownUnits, bank: input.allBank, seed: input.seed, extraAccepted: input.extraAccepted, extraAcceptedEnglish: input.extraAcceptedEnglish, extraOptional: input.extraOptional,
     forms: new Set([...knownUnits.map(unit => unit.record.ch), ...FUNCTION_CHARACTERS_LIST]),
   }
   const pool = new SentencePool(input.bank, allowed, formOf)
@@ -88,7 +90,7 @@ export function planSession(input: PlanInput): SessionPlan {
       case 'choice': return vocab ? buildChoiceItem(base, vocab, stage === 'recognise' ? 'zh-to-en' : 'en-to-zh', vocabulary, allowed as Set<string>, input.seed + counter * 31) : undefined
       case 'recall': return vocab ? buildRecall(base, vocab) : undefined
       case 'pinyin': return vocab ? buildPinyinItem(base, vocab) : undefined
-      case 'match': case 'intro': return undefined
+      case 'match': case 'intro': case 'exchange-pick': case 'exchange-reply': case 'which-correct': case 'conversation': return undefined
       default: {
         const own = ownPhrase(item)
         const picked = own ? (pool.reserve(own.zh) ? { phrase: own } : undefined) : pool.take(item.ref, needsKnownSentence(form, stage))
@@ -116,8 +118,10 @@ export function planSession(input: PlanInput): SessionPlan {
       continue
     }
     const forms = (preset.forms[stage] ?? []).filter(form => form !== 'intro')
-    const itemForms = forms.filter(form => form !== 'match')
+    const itemForms = forms.filter(form => form !== 'match' && !DATASET_FORMS.includes(form))
     const rng = createRng(input.seed + stageIndex * 7919)
+    // The dataset goes first so its sentences are reserved before the phrase exercises pick theirs (no sentence twice).
+    const fromDataset = input.dataset?.exercises({ stage, forms: preset.forms[stage] ?? [], items, allowed, taken: zh => pool.has(zh), take: zh => pool.reserve(zh) }) ?? []
     for (let round = 1; round <= count; round++) {
       const order = shuffle(items, rng)
       const planned: SessionExercise[] = []
@@ -141,7 +145,7 @@ export function planSession(input: PlanInput): SessionPlan {
       })
       exercises.push(...planned)
     }
-    exercises.unshift(...(input.dataset?.exercises({ stage, items, allowed, taken: zh => pool.has(zh), take: zh => pool.reserve(zh) }) ?? []))
+    exercises.unshift(...fromDataset)
     stages.push({ stage, rounds: count, exercises })
   }
   const total = stages.filter(entry => entry.stage !== 'introduce').reduce((sum, entry) => sum + entry.exercises.length, 0)

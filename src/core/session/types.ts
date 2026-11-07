@@ -19,21 +19,25 @@ export const LENGTH_LABEL: Record<Length, string> = { short: 'Short', standard: 
  * The exercise forms. The first three are built from vocabulary records (src/core/study/local-exercises.ts); the next five from bank phrases;
  * 'intro' and 'repeat' do not grade. Pre-generated dataset exercises plug in through DatasetSource (sources.ts) and use these same forms.
  */
-export const FORMS = ['intro', 'choice', 'match', 'pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat'] as const
+export const FORMS = ['intro', 'choice', 'match', 'pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat', 'exchange-pick', 'exchange-reply', 'which-correct', 'conversation'] as const
 export type Form = typeof FORMS[number]
 export const FORM_LABEL: Record<Form, string> = {
   intro: 'Intro cards', choice: 'Choose the meaning', match: 'Match pairs', pinyin: 'Type the pinyin', recall: 'Type the meaning', 'translate-zh-en': 'Translate to English',
   'translate-en-zh': 'Translate to Chinese', tiles: 'Word order', gap: 'Fill the gap', 'listen-pick': 'Listen and pick', dictation: 'Dictation', repeat: 'Repeat after me',
+  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Reply to the question', 'which-correct': 'Which is correct?', conversation: 'Listen and answer',
 }
 /** The skills an exercise form practises, for the skill counts. */
 export const FORM_SKILLS: Record<Form, readonly Skill[]> = {
   intro: [], choice: ['reading'], match: ['reading'], pinyin: ['reading'], recall: ['reading'], 'translate-zh-en': ['reading'], 'translate-en-zh': ['writing'], tiles: ['writing'],
   gap: ['reading'], 'listen-pick': ['listening'], dictation: ['listening', 'writing'], repeat: ['speaking'],
+  'exchange-pick': ['reading'], 'exchange-reply': ['writing'], 'which-correct': ['reading'], conversation: ['listening'],
 }
 /** Forms that need a phrase from the bank. */
 export const PHRASE_FORMS: readonly Form[] = ['translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat']
 /** Forms that the learner answers by typing, speaking or handwriting. */
-export const TYPED_FORMS: readonly Form[] = ['pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'dictation']
+export const TYPED_FORMS: readonly Form[] = ['pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'dictation', 'exchange-reply']
+/** Forms that only the pre-generated dataset supplies (DatasetSource); the planner never builds them from phrases. */
+export const DATASET_FORMS: readonly Form[] = ['exchange-pick', 'exchange-reply', 'which-correct', 'conversation']
 
 export type AnswerMode = 'type' | 'speak' | 'write'
 
@@ -59,12 +63,23 @@ export interface IntroExercise extends BaseExercise { form: 'intro' }
 export interface ChoiceItem extends BaseExercise { form: 'choice'; direction: 'zh-to-en' | 'en-to-zh'; question: string; options: string[]; answer: number; explanation: string; unknown?: Flagged }
 export interface MatchItem extends BaseExercise { form: 'match'; mode: 'zh-en' | 'zh-py' | 'py-en'; pairs: { ref: string; left: string; right: string }[]; order: number[]; explanation: string }
 /** A typed/spoken/handwritten answer. 'accepted' are the Chinese (or English, or pinyin) answers that count as right, the model answer first. */
-export interface TextItem extends BaseExercise { form: 'pinyin' | 'recall' | 'translate-zh-en' | 'translate-en-zh' | 'dictation'; prompt: string; promptLang: 'zh' | 'en'; hearText?: string; answerLang: 'zh' | 'en' | 'py'; accepted: string[]; model: string; modelPinyin?: string; explanation: string; unknown?: Flagged; /** Only wordings from the same phrase set were listed; everything else is self-marked. */ phrase?: { zh: string; py: string; en: string } }
-export interface TilesItem extends BaseExercise { form: 'tiles'; translation: string; tiles: string[]; distractors: string[]; shuffled: number[]; accepted: string[]; model: string; explanation: string }
+export interface TextItem extends BaseExercise { form: 'pinyin' | 'recall' | 'translate-zh-en' | 'translate-en-zh' | 'dictation' | 'exchange-reply'; prompt: string; promptLang: 'zh' | 'en'; hearText?: string; answerLang: 'zh' | 'en' | 'py'; accepted: string[]; /** Words the dataset says may be left out or added without changing the meaning. */ optional?: string[]; model: string; modelPinyin?: string; explanation: string; unknown?: Flagged; /** Only wordings from the same phrase set were listed; everything else is self-marked. */ phrase?: { zh: string; py: string; en: string } }
+export interface TilesItem extends BaseExercise { form: 'tiles'; translation: string; tiles: string[]; distractors: string[]; shuffled: number[]; accepted: string[]; optional?: string[]; model: string; explanation: string }
 export interface GapItem extends BaseExercise { form: 'gap'; sentence: string; gapped: string; options: string[]; answer: number; translation: string; explanation: string }
 export interface ListenItem extends BaseExercise { form: 'listen-pick'; hearText: string; options: string[]; answer: number; model: string; unknown?: Flagged; explanation: string }
 export interface RepeatItem extends BaseExercise { form: 'repeat'; zh: string; py: string; en: string }
-export type SessionExercise = IntroExercise | ChoiceItem | MatchItem | TextItem | TilesItem | GapItem | ListenItem | RepeatItem
+/** A line of a dataset exchange or conversation. */
+export interface DialogueLine { zh: string; py: string; en: string; speaker?: 'female' | 'male'; name?: string }
+/** Hear or read the question, pick the fitting reply (the reply and its wrong replies, shuffled). */
+export interface ExchangePickItem extends BaseExercise { form: 'exchange-pick'; question: DialogueLine; options: DialogueLine[]; answer: number; explanation: string }
+/** The correct phrase against one or two near-miss versions; 'whys' gives each wrong option's reason and 'note' the pattern's explanation, both shown after Check. */
+export interface WhichCorrectItem extends BaseExercise { form: 'which-correct'; en: string; options: { zh: string; py?: string }[]; answer: number; whys: (string | undefined)[]; note?: string; explanation: string }
+/** A pre-generated conversation with named speakers and exactly two questions (Listen and answer). */
+export interface ConversationItem extends BaseExercise {
+  form: 'conversation'; title: string; speakers: { name: string; speaker: 'female' | 'male' }[]; lines: (DialogueLine & { name: string; speaker: 'female' | 'male' })[]
+  questions: { q: string; options: string[]; answer: number }[]; explanation: string
+}
+export type SessionExercise = IntroExercise | ChoiceItem | MatchItem | TextItem | TilesItem | GapItem | ListenItem | RepeatItem | ExchangePickItem | WhichCorrectItem | ConversationItem
 
 export interface StagePlan { stage: Stage; rounds: number; exercises: SessionExercise[] }
 export interface SessionPlan {

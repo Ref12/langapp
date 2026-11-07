@@ -6,10 +6,10 @@ export const DEFAULT_PRESET: Preset = {
   id: 'default', name: 'Default', blurb: 'A balanced mix of every stage.',
   forms: {
     introduce: ['intro'],
-    recognise: ['choice', 'match', 'listen-pick'],
+    recognise: ['choice', 'match', 'listen-pick', 'exchange-pick', 'which-correct'],
     recall: ['recall', 'pinyin', 'choice'],
     produce: ['tiles', 'translate-en-zh', 'gap'],
-    use: ['translate-zh-en', 'listen-pick', 'gap'],
+    use: ['translate-zh-en', 'listen-pick', 'gap', 'exchange-reply', 'conversation'],
   },
   rounds: { introduce: 1, recognise: 1, recall: 1, produce: 1, use: 1 },
 }
@@ -17,13 +17,13 @@ export const DEFAULT_PRESET: Preset = {
 /** The four skill presets change which forms the stages use and how much of the session each stage gets (design section 2). */
 export const SKILL_PRESETS: Preset[] = [
   { id: 'reading', name: 'Reading', blurb: 'Read and pick: choice, fill the gap, translate to English.',
-    forms: { introduce: ['intro'], recognise: ['choice', 'match', 'gap'], recall: ['recall', 'choice'], produce: ['gap', 'tiles'], use: ['translate-zh-en', 'gap'] },
+    forms: { introduce: ['intro'], recognise: ['choice', 'match', 'gap', 'exchange-pick', 'which-correct'], recall: ['recall', 'choice'], produce: ['gap', 'tiles'], use: ['translate-zh-en', 'gap'] },
     rounds: { introduce: 1, recognise: 2, recall: 1, produce: 0, use: 1 } },
   { id: 'writing', name: 'Writing', blurb: 'Produce Chinese: translate, dictation, word order, pinyin.',
     forms: { introduce: ['intro'], recognise: ['choice'], recall: ['pinyin'], produce: ['translate-en-zh', 'tiles', 'dictation'], use: ['dictation', 'translate-en-zh'] },
     rounds: { introduce: 1, recognise: 1, recall: 1, produce: 2, use: 0 } },
   { id: 'listening', name: 'Listening', blurb: 'Hear it: listen and pick, dictation.',
-    forms: { introduce: ['intro'], recognise: ['listen-pick'], recall: ['listen-pick', 'dictation'], produce: ['dictation'], use: ['listen-pick', 'dictation'] },
+    forms: { introduce: ['intro'], recognise: ['listen-pick'], recall: ['listen-pick', 'dictation'], produce: ['dictation'], use: ['listen-pick', 'dictation', 'conversation'] },
     rounds: { introduce: 1, recognise: 2, recall: 0, produce: 1, use: 1 } },
   { id: 'speaking', name: 'Speaking', blurb: 'Say it: repeat after me and spoken translation.',
     forms: { introduce: ['intro'], recognise: ['repeat'], recall: ['recall'], produce: ['translate-en-zh'], use: ['repeat', 'translate-en-zh'] },
@@ -62,10 +62,10 @@ export function presetFromCustom(custom: CustomPreset): Preset {
 /** Every form a stage can use, for the builder's checkboxes. */
 export const FORMS_BY_STAGE: Record<Stage, readonly Form[]> = {
   introduce: ['intro'],
-  recognise: ['choice', 'match', 'listen-pick', 'repeat'],
+  recognise: ['choice', 'match', 'listen-pick', 'repeat', 'exchange-pick', 'which-correct'],
   recall: ['recall', 'pinyin', 'choice', 'listen-pick', 'dictation'],
   produce: ['tiles', 'translate-en-zh', 'gap', 'dictation'],
-  use: ['translate-zh-en', 'listen-pick', 'gap', 'dictation', 'translate-en-zh', 'repeat'],
+  use: ['translate-zh-en', 'listen-pick', 'gap', 'dictation', 'translate-en-zh', 'repeat', 'exchange-reply', 'conversation'],
 }
 
 /** Exercises per item per length at Standard is the sum of the rounds (4 for the default); Short halves the stages (whole ones only), Long doubles every round. */

@@ -11,6 +11,7 @@ import { tidyPinyin } from '../../core/drills/items'
 import { gradeChinese, gradeMeaning, gradeSimple, type ChineseGrade, type MeaningGrade } from '../../core/session/grade'
 import type { AnswerMode, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
 import { ChoiceQuestion, MatchQuestion, TilesQuestion } from '../Study'
+import { ConversationQuestion, ExchangePick, WhichCorrect } from './DatasetQuestions'
 
 export interface QuestionContext {
   readings: Map<string, Set<string>>
@@ -58,7 +59,7 @@ function Tiles({ exercise, ctx, onDone }: { exercise: TilesItem; ctx: QuestionCo
   const correct = attempt ? attempt.grade.verdict === 'correct' || counted : undefined
   return <>
     <TilesQuestionBridge exercise={shape} attempt={attempt && attemptOf(exercise, JSON.stringify(attempt.answer), correct === true)} ctx={ctx}
-      submit={answer => setAttempt({ answer, grade: gradeChinese(answer.join(''), exercise.accepted, ctx.forms) })} next={() => onDone({ correct: correct === true })} />
+      submit={answer => setAttempt({ answer, grade: gradeChinese(answer.join(''), exercise.accepted, ctx.forms, exercise.optional) })} next={() => onDone({ correct: correct === true })} />
     {attempt && <div className="notice answer-feedback engine-diff" role="status">
       {attempt.grade.verdict === 'correct' ? <p>{attempt.grade.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang="zh-Hans">{exercise.model}</span></p>
         : <><p>Not the model answer. {attempt.grade.messages.length ? attempt.grade.messages.join('; ') + '.' : ''}</p><p>Closest: <span lang="zh-Hans">{attempt.grade.closest}</span></p>
@@ -91,7 +92,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   useEffect(() => () => capture.current?.cancel(), [])
   const modes = (['type', 'speak', 'write'] as const).filter(value => value !== mode && (value !== 'write' || (ctx.writing && chinese)) && (value !== 'speak' || chinese || exercise.answerLang === 'en'))
   const check = () => {
-    if (chinese) { const grade = gradeChinese(text, exercise.accepted, ctx.forms); setChecked({ correct: grade.verdict === 'correct', grade }) }
+    if (chinese) { const grade = gradeChinese(text, exercise.accepted, ctx.forms, exercise.optional); setChecked({ correct: grade.verdict === 'correct', grade }) }
     else if (exercise.answerLang === 'en') { const meaning = gradeMeaning(text, exercise.accepted); setChecked({ correct: meaning.verdict === 'correct' || meaning.verdict === 'near', meaning, self: meaning.verdict === 'self' }) }
       else setChecked({ correct: gradeSimple(text, exercise.accepted, 'py') === 'correct', self: true })
   }
@@ -139,6 +140,9 @@ export function ExerciseQuestion({ exercise, ctx, onDone }: { exercise: Exclude<
     const header = exercise.form === 'gap' ? <p className="practice-prompt native" lang="zh-Hans">{exercise.gapped}</p> : exercise.form === 'listen-pick' ? <p><HearButton text={exercise.hearText} locale="zh-Hans" label="Hear it" /></p> : undefined
     return <PickQuestion exercise={exercise} shape={choiceShape} header={header} ctx={ctx} onDone={onDone} />
   }
+  if (exercise.form === 'exchange-pick') return <ExchangePick exercise={exercise} ctx={ctx} onDone={onDone} />
+  if (exercise.form === 'which-correct') return <WhichCorrect exercise={exercise} ctx={ctx} onDone={onDone} />
+  if (exercise.form === 'conversation') return <ConversationQuestion exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'tiles') return <Tiles exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'match') return <Match exercise={exercise} ctx={ctx} onDone={onDone} />
   return <Text exercise={exercise as TextItem} ctx={ctx} onDone={onDone} />

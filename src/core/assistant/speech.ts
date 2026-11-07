@@ -31,6 +31,8 @@ export interface SpeechOptions {
   anyRate?: boolean
   /** 0 to 1; unset is full volume. */
   volume?: number
+  /** 0 to 2 for a browser voice (1 is normal): a second speaker without a second voice. Edge voices ignore it. */
+  pitch?: number
 }
 export type PlaybackOutcome = { status: 'completed' | 'cancelled' } | { status: 'error'; error: string }
 
@@ -72,6 +74,9 @@ export function clearVoiceCache() {
   voiceCache = new WeakMap()
   speechWarmth = new WeakMap()
 }
+
+/** The voice the learner chose for a language in Settings, if any. */
+export const selectedSpeechVoice = (locale: SpeechLocale): SpeechVoicePreference | undefined => voicePreferences[locale]
 
 export function setSpeechVoicePreferences(preferences: SpeechVoicePreferences = {}) {
   const next = speechVoicePreferencesSchema.parse(preferences)
@@ -272,6 +277,7 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
     if (voice) utterance.voice = voice
     utterance.lang = voice ? voiceLocale(voice.lang)!.tag.toString() : locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
     utterance.rate = (locale === 'en-US' && !request.options?.anyRate) || !Number.isFinite(rate) ? 1 : Math.max(0.1, Math.min(10, rate))
+    if (Number.isFinite(request.options?.pitch)) utterance.pitch = Math.max(0, Math.min(2, request.options!.pitch!))
     utterance.volume = Number.isFinite(request.options?.volume) ? Math.max(0, Math.min(1, request.options!.volume!)) : 1
     if (warmth?.key !== warmKey || idleMs < 0 || idleMs >= speechWarmIdleMs) {
       warmup = new SpeechSynthesisUtterance(locale === 'zh-Hans' ? '准备好了。' : 'Ready to begin.')

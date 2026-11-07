@@ -13,6 +13,8 @@ import { finishDrillSet, recordEngineResult, setEngineChoice } from '../../core/
 import { itemCount } from '../../core/collections/terms'
 import { planSession, estimateMinutes } from '../../core/session/plan'
 import { loadSessionBank } from '../../core/session/sources'
+import { loadPracticeData } from '../../core/practice-data'
+import { createDatasetSource, datasetAcceptance } from '../../core/session/dataset-source'
 import { BUILTIN_PRESETS, FORMS_BY_STAGE, SPOKEN_PRESETS } from '../../core/session/presets'
 import { loadCustomPresets, resolvePreset, saveCustomPreset } from '../../core/session/custom-preset'
 import { answerCurrent, currentExercise, currentStage, skillsOf, startRunner, summarise, type RunnerState } from '../../core/session/runner'
@@ -37,7 +39,9 @@ function usePlan(set: DrillSet, items: ItemInfo[], catalog: Catalog, workspace: 
       const allowed = new Set([...known, ...set.refs])
       const bank = await loadSessionBank(catalog, items, allowed)
       const preset = resolvePreset(engine.preset)
-      const built = planSession({ intent: 'practice-set', items, length: engine.length, preset, seed: engine.seed, catalog, known, bank: bank.byItem, allBank: bank.all })
+      // The shipped dataset (empty until the full generation lands): an invalid band file is skipped, never fatal.
+      const { data } = await loadPracticeData()
+      const built = planSession({ intent: 'practice-set', items, length: engine.length, preset, seed: engine.seed, catalog, known, bank: bank.byItem, allBank: bank.all, ...datasetAcceptance(data), dataset: createDatasetSource({ data, catalog, seed: engine.seed, bank: bank.all }) })
       if (live) setPlan(built)
     })().catch(reason => { if (live) setError(reason instanceof Error ? reason.message : 'The session could not be planned.') })
     return () => { live = false }

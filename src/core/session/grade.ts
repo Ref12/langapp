@@ -28,9 +28,10 @@ export function acceptedAnswers(model: Pick<BankPhrase, 'zh' | 'en' | 'words'>, 
 }
 
 /** The accepted English wordings of a phrase: its own, and the English of other bank phrases with the same Chinese words and Han text. */
-export function acceptedEnglish(model: Pick<BankPhrase, 'zh' | 'en'>, bank: readonly Pick<BankPhrase, 'zh' | 'en'>[]): string[] {
+export function acceptedEnglish(model: Pick<BankPhrase, 'zh' | 'en'>, bank: readonly Pick<BankPhrase, 'zh' | 'en'>[], extra: readonly string[] = []): string[] {
   const seen = new Set([englishKey(model.en)])
   const out = [model.en]
+  for (const wording of extra) { const key = englishKey(wording); if (key && !seen.has(key)) { seen.add(key); out.push(wording) } }
   for (const phrase of bank) {
     if (phraseKey(phrase.zh) !== phraseKey(model.zh)) continue
     const key = englishKey(phrase.en)
@@ -120,7 +121,7 @@ export interface ChineseGrade {
 }
 
 /** Grades a Chinese answer against the accepted answers. `forms` are the words the segmenter knows (the learner's vocabulary and the phrases' own words). */
-export function gradeChinese(answer: string, accepted: readonly string[], forms: ReadonlySet<string>): ChineseGrade {
+export function gradeChinese(answer: string, accepted: readonly string[], forms: ReadonlySet<string>, optional: readonly string[] = []): ChineseGrade {
   const key = phraseKey(answer)
   const exact = accepted.findIndex(candidate => phraseKey(candidate) === key)
   if (key && exact >= 0) return { verdict: 'correct', closest: accepted[exact], alternative: exact > 0, differences: [], ignored: [], messages: [] }
@@ -136,7 +137,10 @@ export function gradeChinese(answer: string, accepted: readonly string[], forms:
   const ignored: string[] = []
   const differences = all.filter(difference => {
     const word = difference.kind === 'missing' || difference.kind === 'extra' ? difference.word : undefined
-    if (!word || !OPTIONAL_WORDS.includes(word)) return true
+    if (!word) return true
+    // a word the dataset marks optional for this phrase may always be left out or added
+    if (optional.includes(word)) { ignored.push(word); return false }
+    if (!OPTIONAL_WORDS.includes(word)) return true
     // optional only when an accepted answer shows it can be left out (or, for an extra one, when the accepted answers lack it)
     const fewest = Math.min(...options.map(option => count(option.words, word)))
     if (fewest < Math.max(count(given, word), count(best.words, word))) { ignored.push(word); return false }

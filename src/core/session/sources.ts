@@ -5,15 +5,15 @@ import { phraseKey } from '../phrases/key'
 import { pickSentences } from '../phrases/sentences'
 import type { ItemInfo } from '../drills/items'
 import type { PlanItem } from './plan'
-import type { SessionExercise, Stage } from './types'
+import type { Form, SessionExercise, Stage } from './types'
 
 /**
- * The plug-in point for the pre-generated dataset (design section 6): conversations, two-line exchanges, grammar near-misses, accepted answers. Nothing implements it yet. A source
+ * The plug-in point for the pre-generated dataset (design section 6): conversations, two-line exchanges, grammar near-misses, accepted answers. createDatasetSource (dataset-source.ts) implements it. A source
  * hands the planner finished exercises in the engine's existing forms (a choice with the dataset's wrong answers, tiles with its accepted answers...), so the dataset arrives
  * without engine changes. `taken` and `take` let it respect the session's "no sentence twice" rule.
  */
 export interface DatasetSource {
-  exercises(request: { stage: Stage; items: readonly PlanItem[]; allowed: ReadonlySet<string>; taken: (zh: string) => boolean; take: (zh: string) => boolean }): SessionExercise[]
+  exercises(request: { stage: Stage; /** The forms the preset lists for this stage: the source offers only these. */ forms: readonly Form[]; items: readonly PlanItem[]; allowed: ReadonlySet<string>; taken: (zh: string) => boolean; take: (zh: string) => boolean }): SessionExercise[]
 }
 
 /** Where the engine's material comes from, in order: vocabulary records (code), the exercise bank (code, from phrases), the dataset (this hook), then AI. */
