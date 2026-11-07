@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 import {
   allowedAt, buildOutputs, createSaver, emptyState, hydrate, KIND_SPECS, loadState, main, parseArgs, planReport, pool, runKind, spread,
-  validateAccepted, validateConversation, speakerNameOk, blindReplies, validateExchange, validateGrammarPoint, readBank,
+  validateAccepted, validateConversation, speakerNameOk, blindReplies, NAME_POOL, namesFor, validateExchange, validateGrammarPoint, readBank,
 } from './build-practice-dataset.mjs'
 import { buildCurriculum } from './build-phrase-bank.mjs'
 import { acceptedFileSchema, conversationsFileSchema, createPracticeData, exchangesFileSchema, grammarFileSchema, practiceIndexSchema } from '../src/core/practice-data'
@@ -143,6 +143,27 @@ describe('validators', () => {
     await runKind({ kind: 'exchanges', ctx, io: fakeIO({ write: user => { prompt = user; return { items: [] } }, check: () => ({ items: [] }) }) })
     expect(prompt).toContain('你叫什么名字？')
     expect(prompt).toMatch(/introduced in lesson 2 are: .*吗/)
+  })
+
+  it('offers each conversation 2-3 names from the pool, deterministic by unit, and the prompt names them with genders', async () => {
+    expect(NAME_POOL.length).toBeGreaterThanOrEqual(20)
+    expect(NAME_POOL.every(([name]) => speakerNameOk(name))).toBe(true)
+    expect(new Set(NAME_POOL.map(([name]) => name)).size).toBe(NAME_POOL.length)
+    expect(NAME_POOL.some(([name]) => name.endsWith('老师'))).toBe(true); expect(NAME_POOL.some(([name]) => name.endsWith('医生'))).toBe(true)
+    expect(new Set(NAME_POOL.map(item => item[3]))).toEqual(new Set(['female', 'male']))
+    const used = new Set<string>()
+    for (let lesson = 1; lesson <= 40; lesson++) for (const slot of [0, 1]) {
+      const names = namesFor('conversations:' + lesson, slot)
+      expect(names.length).toBeGreaterThanOrEqual(2); expect(names.length).toBeLessThanOrEqual(3)
+      expect(new Set(names.map(item => item.name)).size).toBe(names.length)
+      expect(namesFor('conversations:' + lesson, slot)).toEqual(names)
+      names.forEach(item => used.add(item.name))
+    }
+    expect(used.size).toBeGreaterThan(12)   // not always 小明 and 小红
+    const ctx = ctxOf({ lessons: { from: 5, to: 5 } })
+    let prompt = ''
+    await runKind({ kind: 'conversations', ctx, io: fakeIO({ write: user => { prompt = user; return { conversations: [] } }, check: () => ({ items: [] }) }) })
+    for (const item of [...namesFor('conversations:5', 0), ...namesFor('conversations:5', 1)]) expect(prompt).toContain(item.name + ' (' + item.en + ', ' + item.speaker + ')')
   })
 
   it('validates near misses: only the given phrases, never a bank phrase, within the phrase\'s words', () => {

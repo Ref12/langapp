@@ -397,10 +397,25 @@ const grammarCheck = points => ({
     points.map(point => JSON.stringify({ ref: point.ref, note: point.note, items: point.items.map(item => ({ id: item.id, right: item.zh, wrong: item.wrong, why: item.why })) })).join('\n') + '\n\nReply {"points":[{"ref":"...","noteOk":true,"items":[{"id":"...","wrongOk":true,"whyOk":true}]}]}.',
 })
 
-const conversationPrompt = (curriculum, lesson, count) => ({
+/** Common names for the speakers: [name, pinyin, English, voice]. Each conversation gets 2 or 3 of them, chosen from the unit's hash so a rerun picks the same. */
+export const NAME_POOL = [
+  ['小明', 'xiǎo míng', 'Xiao Ming', 'male'], ['小红', 'xiǎo hóng', 'Xiao Hong', 'female'], ['小华', 'xiǎo huá', 'Xiao Hua', 'male'], ['小丽', 'xiǎo lì', 'Xiao Li', 'female'],
+  ['小刚', 'xiǎo gāng', 'Xiao Gang', 'male'], ['小美', 'xiǎo měi', 'Xiao Mei', 'female'], ['大卫', 'dà wèi', 'David', 'male'], ['玛丽', 'mǎ lì', 'Mary', 'female'],
+  ['李华', 'lǐ huá', 'Li Hua', 'male'], ['王芳', 'wáng fāng', 'Wang Fang', 'female'], ['张伟', 'zhāng wěi', 'Zhang Wei', 'male'], ['刘燕', 'liú yàn', 'Liu Yan', 'female'],
+  ['陈静', 'chén jìng', 'Chen Jing', 'female'], ['杨军', 'yáng jūn', 'Yang Jun', 'male'], ['林娜', 'lín nà', 'Lin Na', 'female'], ['赵强', 'zhào qiáng', 'Zhao Qiang', 'male'],
+  ['王老师', 'wáng lǎo shī', 'Teacher Wang', 'female'], ['李老师', 'lǐ lǎo shī', 'Teacher Li', 'male'], ['张医生', 'zhāng yī shēng', 'Doctor Zhang', 'female'], ['刘医生', 'liú yī shēng', 'Doctor Liu', 'male'],
+]
+/** The speakers offered to conversation number slot of a unit: 2 or 3 distinct names from the pool, rotated by the unit's hash (deterministic). */
+export function namesFor(unitId, slot) {
+  const start = parseInt(hash(unitId + '|' + slot), 16), count = 2 + start % 2, step = 1 + (start >> 1) % (NAME_POOL.length - 1)
+  const picked = []
+  for (let at = 0; picked.length < count; at++) { const name = NAME_POOL[(start + at * step) % NAME_POOL.length]; if (!picked.includes(name)) picked.push(name) }
+  return picked.map(([name, py, en, speaker]) => ({ name, py, en, speaker }))
+}
+const conversationPrompt = (curriculum, lesson, count, unitId = '') => ({
   system: SYSTEM,
   user: 'Decide whether the vocabulary up to lesson ' + lessonNumber(lesson) + ' supports a short conversation worth listening to (something to actually talk about: not just greetings repeated or a list of nouns). If it does not, reply {"conversations":[]}: that is a good answer, never pad. Otherwise write up to ' + count + ' conversations that use the newest words of lesson ' + lessonNumber(lesson) + '.\n' +
-    'Each conversation: 4 to 8 lines, 2 or 3 speakers. Name every speaker with a Chinese person name in characters: 小明, 小红, 小华, 小丽, 王老师, 李老师, 张老师, 刘老师 and the like; never pinyin (not Xiaoming) and never a bare role (not 同学, 老师, 学生). Each speaker is "female" or "male" (a speaker keeps one voice; 小明 and 小华 are male, 小红 and 小丽 female, a teacher either). List the speakers once in "speakers" as {"name":"小明","py":"xiǎo míng","en":"Xiao Ming"} (en is how the name is written in English, e.g. "Teacher Wang" for 王老师); a line may use a name from that list in Chinese (小明，你好) and the English questions may use the en form. No other names. ' + FUNCTION_NOTE + ' Lines are short and natural. ' +
+    'Each conversation: 4 to 8 lines, 2 or 3 speakers. Use ONLY the speakers given for each conversation below, with the gender given (a speaker keeps one voice): ' + Array.from({ length: count }, (_, slot) => 'conversation ' + (slot + 1) + ': ' + namesFor(unitId, slot).map(item => item.name + ' (' + item.en + ', ' + item.speaker + ')').join(', ')).join('; ') + '. Never pinyin names and never a bare role. List the speakers once in "speakers" as {"name":"小明","py":"xiǎo míng","en":"Xiao Ming"} (en is how the name is written in English, e.g. "Teacher Wang" for 王老师); a line may use a name from that list in Chinese (小明，你好) and the English questions may use the en form. No other names. ' + FUNCTION_NOTE + ' Lines are short and natural. ' +
     'Then write 3 comprehension questions IN ENGLISH about the conversation, each with 3 or 4 English options of which exactly ONE is consistent with the conversation (answer = its 0-based index). Ask about one fact the conversation states once. Every wrong option must be contradicted by the conversation or not mentioned in it. Do NOT ask about something with two true answers (if the children are in the room and also outside, "Where are the children?" is a bad question), and no option may be a partial or alternative true answer. List "grammar" refs the lines really use.\n\n' +
     'Vocabulary by lesson (newest first):\n' + vocabularyText(curriculum, lesson) + '\n\nGrammar points by lesson (newest first):\n' + grammarText(curriculum, lesson) +
     '\n\nReply {"conversations":[{"speakers":[{"name":"小明","py":"xiǎo míng","en":"Xiao Ming"}],"lines":[{"name":"小明","speaker":"male","zh":"","en":""}],"questions":[{"q":"","options":["","",""],"answer":0}],"grammar":[]}]}.',
@@ -568,7 +583,7 @@ export const KIND_SPECS = {
       return out
     },
     async run({ curriculum, options }, unit, io) {
-      const reply = await askJSON(io.write, conversationPrompt(curriculum, unit.lesson, options.convPerLesson))
+      const reply = await askJSON(io.write, conversationPrompt(curriculum, unit.lesson, options.convPerLesson, unit.id))
       const allowed = allowedAt(curriculum, unit.lesson)
       const drafts = [], seen = new Set()
       let invalid = 0
