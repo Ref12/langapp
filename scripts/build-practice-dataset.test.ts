@@ -37,6 +37,7 @@ const blindVerdict = (user: string, valid: string[], extra: Record<string, unkno
 const exchange = (extra = {}) => ({ q: { zh: '你是学生吗？', en: 'Are you a student?', speaker: 'female' }, a: { zh: '我是学生。', en: 'I am a student.', speaker: 'male' }, wrong: [{ zh: '我是老师。', en: 'I am a teacher.' }, { zh: '你好。', en: 'Hello.' }], grammar: ['g-shi', 'not-a-ref'], ...extra })
 const line = (name: string, speaker: string, zh: string, en: string) => ({ name, speaker, zh, en })
 const conversation = (extra = {}) => ({
+  speakers: [{ name: '王老师', py: 'wáng lǎo shī', en: 'Teacher Wang' }, { name: '小明', py: 'xiǎo míng', en: 'Xiao Ming' }],
   lines: [line('王老师', 'female', '你是学生吗？', 'Are you a student?'), line('小明', 'male', '我是学生。', 'I am a student.'), line('王老师', 'female', '你叫什么名字？', 'What is your name?'), line('小明', 'male', '我叫小明。', 'I am called Xiao Ming.')],
   questions: [{ q: 'What is Xiao Ming?', options: ['A student', 'A teacher', 'A doctor'], answer: 0 }, { q: 'What does the teacher ask?', options: ['His name', 'His age', 'His school'], answer: 0 }], grammar: [], ...extra,
 })
@@ -110,6 +111,38 @@ describe('validators', () => {
     expect(reason({ questions: [{ ...conversation().questions[0], options: ['学生', 'B', 'C'] }, conversation().questions[1]] })).toMatch(/English/)
     expect(reason({ questions: [conversation().questions[0], conversation().questions[0]] })).toMatch(/same/)
     expect(validateConversation(c, allowedAt(c, 1), conversation(), 1).reason).toMatch(/not yet learned/)
+  })
+
+  it('speaker names are known for their own conversation: in lines (addressing 小明) and, as the English form, in questions and options', () => {
+    const c = curriculum(), allowed = allowedAt(c, 5)
+    const lines = [...conversation().lines.slice(0, 3), line('小明', 'male', '王老师，我叫小明。', 'Teacher Wang, I am Xiao Ming.')]
+    const found = validateConversation(c, allowed, conversation({ lines, questions: [{ q: 'What does 小明 say?', options: ['He is called 小明', 'He is a doctor', 'He is 王老师'], answer: 0 }, conversation().questions[1]] }), 5)
+    expect(found.reason).toBeUndefined()
+    expect(found.item.questions[0]).toEqual({ q: 'What does Xiao Ming say?', options: ['He is called Xiao Ming', 'He is a doctor', 'He is Teacher Wang'], answer: 0 })
+    expect(found.item.lines[3]).toMatchObject({ zh: '王老师，我叫小明。', py: 'wáng lǎo shī wǒ jiào xiǎo míng' })
+    // a name that is not listed, or listed without pinyin of the right length, is refused; other unknown words still are
+    expect(validateConversation(c, allowed, conversation({ lines: [...lines.slice(0, 3), line('小明', 'male', '小红，你好。', 'x')] }), 5).reason).toMatch(/not yet learned/)
+    expect(validateConversation(c, allowed, conversation({ speakers: [{ name: '王老师', py: 'wang', en: 'Teacher Wang' }, { name: '小明', py: 'xiǎo míng', en: 'Xiao Ming' }] }), 5).reason).toMatch(/one syllable per character/)
+    expect(validateConversation(c, allowed, conversation({ speakers: undefined }), 5).reason).toMatch(/not listed/)
+  })
+
+  it('counts the reasons of invalid items and checker rejections per kind and logs them', async () => {
+    const ctx = ctxOf({ lessons: { from: 3, to: 3 } })
+    const logs: string[] = []
+    const io = fakeIO({ write: () => ({ items: [exchange({ wrong: [{ zh: '我是老师。', en: 'x' }] }), exchange({ a: { zh: '我学习汉语。', en: 'A', speaker: 'male' } })] }), check: () => ({ items: [] }) })
+    const stats = await runKind({ kind: 'exchanges', ctx, io, log: message => logs.push(message) })
+    expect(stats.reasons).toMatchObject({ 'fewer than 2 usable wrong replies': 1 })
+    expect(Object.values(stats.reasons).reduce((sum: number, n) => sum + (n as number), 0)).toBe(stats.invalid + stats.rejected)
+    expect(logs.join('\n')).toContain('fewer than 2 usable wrong replies')
+  })
+
+  it('exchanges: the writer is shown the earlier questions and the lesson\'s new words', async () => {
+    const ctx = ctxOf({ lessons: { from: 2, to: 2 } })
+    ctx.state.exchanges.old = { band: '1', id: 'old', lesson: 1, q: { zh: '你叫什么名字？' }, a: { zh: '我叫小明。' }, wrong: [] }
+    let prompt = ''
+    await runKind({ kind: 'exchanges', ctx, io: fakeIO({ write: user => { prompt = user; return { items: [] } }, check: () => ({ items: [] }) }) })
+    expect(prompt).toContain('你叫什么名字？')
+    expect(prompt).toMatch(/introduced in lesson 2 are: .*吗/)
   })
 
   it('validates near misses: only the given phrases, never a bank phrase, within the phrase\'s words', () => {

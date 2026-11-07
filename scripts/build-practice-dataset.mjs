@@ -111,6 +111,9 @@ export function validateLine(curriculum, allowed, raw, { speaker = false } = {})
   return { line: { zh, py, en, ...(speaker ? { speaker: raw.speaker } : {}) }, words: found.words }
 }
 
+/** Counts per reason: the detail after the first colon or in brackets is dropped so equal causes add up. */
+export const reasonOf = value => String(value).replace(/^[^:]*: (?=[a-z])/, '').replace(/ \(.*\)$/, '').replace(/ [^\x00-\x7f]+$/u, '').replace(/^(line|question|reply): /, '$1: ')
+export const tally = (counts, reason, n = 1) => { const key = reasonOf(reason); counts[key] = (counts[key] ?? 0) + n; return counts }
 const sameSet = (a, b) => a.length === b.length && a.every(value => b.includes(value))
 
 /**
@@ -178,19 +181,42 @@ export function validateExchange(curriculum, allowed, raw, lesson) {
 export const ROLE_NAMES = new Set(['同学', '学生', '老师', '朋友', '大学生', '医生', '先生', '女士', '小姐', '妈妈', '爸爸', '孩子', '老板', '服务员', '客人', '男孩', '女孩', '男生', '女生', '同事', '邻居', '经理', '老人', '爷爷', '奶奶'])
 export const speakerNameOk = name => /^\p{Script=Han}{2,4}$/u.test(name) && !ROLE_NAMES.has(name)
 
+/** The speakers' own names as the writer lists them ({name, py, en}): known for this conversation only, in its lines (as Chinese) and its questions (as the English form). */
+function speakerNames(raw) {
+  const names = new Map()
+  for (const value of list(raw?.speakers)) {
+    const name = text(value?.name), py = text(value?.py), en = text(value?.en)
+    if (!speakerNameOk(name)) return { reason: 'speaker name must be a Chinese person name such as 小明 or 王老师, not pinyin or a bare role' }
+    if (py.split(/\s+/).length !== [...name].length || HAN.test(py)) return { reason: 'speaker py needs one syllable per character' }
+    if (!en || HAN.test(en)) return { reason: 'speaker en must be an English form of the name' }
+    names.set(name, { py: py.toLowerCase(), en })
+  }
+  return { names }
+}
+const nameSplitter = names => names.size ? new RegExp('(' + [...names.keys()].sort((x, y) => y.length - x.length).join('|') + ')') : undefined
+const englishNames = (value, names) => { let out = value; for (const [name, { en }] of names) out = out.split(name).join(en); return out }
+
 /** A conversation from the writer, or the reason: 4-8 lines, 2-3 named speakers each female or male, exactly 2 questions each with one right option. */
 export function validateConversation(curriculum, allowed, raw, lesson) {
   const rawLines = list(raw?.lines)
   if (rawLines.length < 4 || rawLines.length > 8) return { reason: 'needs 4 to 8 lines, has ' + rawLines.length }
+  const known = speakerNames(raw)
+  if (known.reason) return known
+  const { names } = known, splitter = nameSplitter(names)
   const voices = new Map(), lines = [], words = []
   for (const value of rawLines) {
     const name = text(value?.name)
-    if (!speakerNameOk(name)) return { reason: 'speaker name must be a Chinese person name such as 小明 or 王老师, not pinyin or a bare role: ' + name }
-    const line = validateLine(curriculum, allowed, value, { speaker: true })
+    if (!speakerNameOk(name)) return { reason: 'speaker name must be a Chinese person name such as 小明 or 王老师, not pinyin or a bare role' }
+    if (!names.has(name)) return { reason: 'speaker is not listed with py and en' }
+    // the names are known words of this conversation: checked and read out apart from the learned words (a line may address 小明)
+    const zh = text(value?.zh), pieces = splitter ? zh.split(splitter) : [zh]
+    const line = validateLine(curriculum, allowed, { ...value, zh: pieces.filter((_, at) => at % 2 === 0).join('，'), en: englishNames(text(value?.en), names) }, { speaker: true })
     if (line.reason) return { reason: 'line: ' + line.reason }
-    if (voices.has(name) && voices.get(name) !== line.line.speaker) return { reason: name + ' is both female and male' }
+    let py
+    try { py = pieces.map((piece, at) => at % 2 ? names.get(piece).py : HAN.test(piece) ? phrasePinyin(piece, curriculum) : '').filter(Boolean).join(' ') } catch (reason) { return { reason: 'line: ' + reason.message } }
+    if (voices.has(name) && voices.get(name) !== line.line.speaker) return { reason: 'a speaker is both female and male' }
     voices.set(name, line.line.speaker)
-    lines.push({ name, ...line.line }); for (const lb of line.words) if (!words.includes(lb)) words.push(lb)
+    lines.push({ name, ...line.line, zh, py }); for (const lb of line.words) if (!words.includes(lb)) words.push(lb)
   }
   if (voices.size < 2 || voices.size > 3) return { reason: 'needs 2 or 3 speakers' }
   if (lines.some((line, at) => at && lines[at - 1].name === line.name && lines[at - 1].zh === line.zh)) return { reason: 'a line repeats' }
@@ -198,7 +224,7 @@ export function validateConversation(curriculum, allowed, raw, lesson) {
   if (questions.length < 2 || questions.length > 3) return { reason: 'needs 2 or 3 questions (the checker keeps the 2 that have exactly one consistent option)' }
   const checked = []
   for (const value of questions) {
-    const q = text(value?.q), options = list(value?.options).map(text), answer = value?.answer
+    const q = englishNames(text(value?.q), names), options = list(value?.options).map(option => englishNames(text(option), names)), answer = value?.answer
     if (!q || HAN.test(q) || options.some(option => !option || HAN.test(option))) return { reason: 'question or option missing or not English' }
     if (options.length < 3 || options.length > 4 || new Set(options.map(normalEnglish)).size !== options.length) return { reason: 'needs 3 or 4 different options' }
     if (!Number.isInteger(answer) || answer < 0 || answer >= options.length) return { reason: 'answer is not exactly one option' }
@@ -341,10 +367,11 @@ const acceptedCheck = items => ({
     items.map(item => JSON.stringify({ id: item.pid, zh: item.zh, en: item.en, zhAlt: item.zhAlt.map((zh, at) => ({ zh, swaps: item.zhSwaps[at] })), enAlt: item.enAlt, optional: item.optional })).join('\n') + '\n\nReply {"items":[{"id":"...","badZh":[],"badEn":[],"badOptional":[]}]}.',
 })
 
-const exchangePrompt = (curriculum, lesson, count) => ({
+const exchangePrompt = (curriculum, lesson, count, earlier = [], fresh = []) => ({
   system: SYSTEM,
   user: 'Write ' + count + ' two-line exchanges for lesson ' + lessonNumber(lesson) + ': a question (q) and a fitting reply (a), like A: 你叫什么名字？ B: 我叫小明。 For each also give 2 or 3 WRONG replies for a pick-a-reply exercise.\n' +
     'A wrong reply must NOT be a possible answer to the question at all. Never give a different value for the same question (to 你八点半起床吗？ the reply 我九点半起床 is a perfectly good answer) and never the opposite polarity of a yes/no question (to 她们都是同学吗？ the reply 她们都不是同学 is a perfectly good answer). Wrong replies must answer a DIFFERENT question: a wrong topic (a reply about food to a question about the time) or a wrong question word (a place for a "who" question, a number for a "what" question). Test each one: would a native speaker accept it as an answer to this question? If yes, do not use it.\n' +
+    (fresh.length ? 'The words introduced in lesson ' + lessonNumber(lesson) + ' are: ' + fresh.join(', ') + '. Build every exchange around at least one of them (in the question or the reply), so lessons do not repeat each other. ' : '') + (earlier.length ? 'These questions already exist: do not write them again or rephrase them: ' + earlier.join(' / ') + '.\n' : '') +
     'Questions must be ones a native speaker would really ask (not 你家在那个房间吗？); if a question sounds odd, write another. Favour the newest words and grammar of lesson ' + lessonNumber(lesson) + ' but anything up to it is allowed. ' + FUNCTION_NOTE + ' Each line is short (at most ' + MAX_PHRASE_SYLLABLES + ' syllables). Vary the question types (who, what, where, how many, yes/no...). q and a each have a "speaker" voice, "female" or "male". List in "grammar" the grammar refs the exchange really uses (empty when none).\n\n' +
     'Vocabulary by lesson (newest first):\n' + vocabularyText(curriculum, lesson) + '\n\nGrammar points by lesson (newest first):\n' + grammarText(curriculum, lesson) +
     '\n\nReply {"items":[{"q":{"zh":"","en":"","speaker":"female"},"a":{"zh":"","en":"","speaker":"male"},"wrong":[{"zh":"","en":""}],"grammar":[]}]}.',
@@ -373,10 +400,10 @@ const grammarCheck = points => ({
 const conversationPrompt = (curriculum, lesson, count) => ({
   system: SYSTEM,
   user: 'Decide whether the vocabulary up to lesson ' + lessonNumber(lesson) + ' supports a short conversation worth listening to (something to actually talk about: not just greetings repeated or a list of nouns). If it does not, reply {"conversations":[]}: that is a good answer, never pad. Otherwise write up to ' + count + ' conversations that use the newest words of lesson ' + lessonNumber(lesson) + '.\n' +
-    'Each conversation: 4 to 8 lines, 2 or 3 speakers. Name every speaker with a Chinese person name in characters: 小明, 小红, 小华, 小丽, 王老师, 李老师, 张老师, 刘老师 and the like; never pinyin (not Xiaoming) and never a bare role (not 同学, 老师, 学生). Each speaker is "female" or "male" (a speaker keeps one voice; 小明 and 小华 are male, 小红 and 小丽 female, a teacher either). Only use a Chinese name inside a line if it is listed vocabulary. ' + FUNCTION_NOTE + ' Lines are short and natural. ' +
+    'Each conversation: 4 to 8 lines, 2 or 3 speakers. Name every speaker with a Chinese person name in characters: 小明, 小红, 小华, 小丽, 王老师, 李老师, 张老师, 刘老师 and the like; never pinyin (not Xiaoming) and never a bare role (not 同学, 老师, 学生). Each speaker is "female" or "male" (a speaker keeps one voice; 小明 and 小华 are male, 小红 and 小丽 female, a teacher either). List the speakers once in "speakers" as {"name":"小明","py":"xiǎo míng","en":"Xiao Ming"} (en is how the name is written in English, e.g. "Teacher Wang" for 王老师); a line may use a name from that list in Chinese (小明，你好) and the English questions may use the en form. No other names. ' + FUNCTION_NOTE + ' Lines are short and natural. ' +
     'Then write 3 comprehension questions IN ENGLISH about the conversation, each with 3 or 4 English options of which exactly ONE is consistent with the conversation (answer = its 0-based index). Ask about one fact the conversation states once. Every wrong option must be contradicted by the conversation or not mentioned in it. Do NOT ask about something with two true answers (if the children are in the room and also outside, "Where are the children?" is a bad question), and no option may be a partial or alternative true answer. List "grammar" refs the lines really use.\n\n' +
     'Vocabulary by lesson (newest first):\n' + vocabularyText(curriculum, lesson) + '\n\nGrammar points by lesson (newest first):\n' + grammarText(curriculum, lesson) +
-    '\n\nReply {"conversations":[{"lines":[{"name":"小明","speaker":"male","zh":"","en":""}],"questions":[{"q":"","options":["","",""],"answer":0}],"grammar":[]}]}.',
+    '\n\nReply {"conversations":[{"speakers":[{"name":"小明","py":"xiǎo míng","en":"Xiao Ming"}],"lines":[{"name":"小明","speaker":"male","zh":"","en":""}],"questions":[{"q":"","options":["","",""],"answer":0}],"grammar":[]}]}.',
 })
 const conversationCheck = items => ({
   system: SYSTEM,
@@ -416,7 +443,8 @@ export const KIND_SPECS = {
       const reply = await askJSON(io.write, acceptedPrompt(curriculum, unit))
       const written = rows(reply)
       let invalid = 0
-      const drafts = unit.items.map(phrase => { const { item, zhSwaps, dropped } = validateAccepted(curriculum, phrase, written.get(phrase.pid)); invalid += dropped.length; return { ...item, pid: phrase.pid, zhSwaps } })
+      const reasons = {}
+      const drafts = unit.items.map(phrase => { const { item, zhSwaps, dropped } = validateAccepted(curriculum, phrase, written.get(phrase.pid)); invalid += dropped.length; for (const why of dropped) tally(reasons, why); return { ...item, pid: phrase.pid, zhSwaps } })
       const withAlts = drafts.filter(item => item.zhAlt.length || item.enAlt.length || item.optional.length)
       let rejected = 0
       if (withAlts.length) {
@@ -425,14 +453,14 @@ export const KIND_SPECS = {
           const verdict = verdicts.get(item.pid)
           if (!verdict) { item.zhAlt = []; item.zhSwaps = []; item.enAlt = []; item.optional = []; rejected++; continue }
           const badZh = indexes(verdict.badZh), badEn = indexes(verdict.badEn), badOptional = new Set(list(verdict.badOptional))
-          rejected += badZh.size + badEn.size + badOptional.size
+          rejected += badZh.size + badEn.size + badOptional.size; if (badZh.size) tally(reasons, 'check: bad Chinese alternative', badZh.size); if (badEn.size) tally(reasons, 'check: bad English alternative', badEn.size); if (badOptional.size) tally(reasons, 'check: bad optional word', badOptional.size)
           item.zhSwaps = item.zhSwaps.filter((_, at) => !badZh.has(at))
           item.zhAlt = item.zhAlt.filter((_, at) => !badZh.has(at)); item.enAlt = item.enAlt.filter((_, at) => !badEn.has(at)); item.optional = item.optional.filter(word => !badOptional.has(word))
         }
       }
       // the synonym swaps the kept alternatives rely on are listed in the dataset (section 5a: synonym swaps listed in the dataset are accepted)
       const items = drafts.map(({ pid: _pid, zhSwaps, ...item }) => { const synonyms = [], seen = new Set(); for (const [from, to] of zhSwaps.flat(0).flatMap(pairs => pairs)) if (!seen.has(from + '|' + to)) { seen.add(from + '|' + to); synonyms.push({ from, to }) } return { ...item, ...(synonyms.length ? { synonyms } : {}) } })
-      return { items, written: withAlts.reduce((sum, item) => sum + item.zhAlt.length + item.enAlt.length, 0), invalid, rejected }
+      return { items, written: withAlts.reduce((sum, item) => sum + item.zhAlt.length + item.enAlt.length, 0), invalid, rejected, reasons }
     },
     merge({ state, stats }, unit, result) {
       for (const item of result.items) { state.accepted[item.key] = { band: unit.band, ...item }; state.done['accepted:' + item.key] = { status: 'done' } }
@@ -447,30 +475,31 @@ export const KIND_SPECS = {
       for (let lesson = 0; lesson < curriculum.groupCount; lesson++) if (wantBand(options, bands[lesson]) && inRange(lessonNumber(lesson), options) && !isDone(state, options, 'exchanges:' + lessonNumber(lesson))) out.push({ id: 'exchanges:' + lessonNumber(lesson), lesson, band: bands[lesson] })
       return out
     },
-    async run({ curriculum, options }, unit, io) {
-      const reply = await askJSON(io.write, exchangePrompt(curriculum, unit.lesson, options.perLesson))
+    async run({ curriculum, options, state }, unit, io) {
+      const reply = await askJSON(io.write, exchangePrompt(curriculum, unit.lesson, options.perLesson, Object.values(state.exchanges).filter(item => item.lesson <= lessonNumber(unit.lesson)).map(item => item.q.zh).slice(-60), curriculum.ordered.filter(word => word.index === unit.lesson && HAN.test(word.ch)).map(word => word.ch)))
       const allowed = allowedAt(curriculum, unit.lesson)
       const drafts = [], seen = new Set()
       let invalid = 0
-      for (const raw of list(reply?.items)) { const found = validateExchange(curriculum, allowed, raw, unit.lesson); if (found.reason || seen.has(found.item.id)) invalid++; else { seen.add(found.item.id); drafts.push(found.item) } }
+      const reasons = {}
+      for (const raw of list(reply?.items)) { const found = validateExchange(curriculum, allowed, raw, unit.lesson); if (found.reason || seen.has(found.item.id)) { invalid++; tally(reasons, found.reason ?? 'duplicate in the reply') } else { seen.add(found.item.id); drafts.push(found.item) } }
       let rejected = 0, kept = drafts
       if (drafts.length) {
         const verdicts = rows(await askJSON(io.check, exchangeCheck(drafts)))
         kept = []
         for (const item of drafts) {
           const verdict = verdicts.get(item.id)
-          if (!verdict || verdict.questionNatural !== true || verdict.natural !== true) { rejected++; continue }
+          if (!verdict || verdict.questionNatural !== true || verdict.natural !== true) { rejected++; tally(reasons, 'check: ' + (!verdict ? 'no verdict' : verdict.questionNatural !== true ? 'question not natural' : 'reply not natural')); continue }
           const valid = indexes(verdict.validReplies), order = blindReplies(item)
           // the right reply must be a possible answer, and no wrong reply may be one
-          if (!order.some((reply, at) => reply.right && valid.has(at))) { rejected++; continue }
+          if (!order.some((reply, at) => reply.right && valid.has(at))) { rejected++; tally(reasons, 'check: the right reply is not a possible answer'); continue }
           const bad = new Set(order.flatMap((reply, at) => !reply.right && valid.has(at) ? [reply.at] : []))
-          rejected += bad.size
+          rejected += bad.size; if (bad.size) tally(reasons, 'check: a wrong reply is a possible answer', bad.size)
           const wrong = item.wrong.filter((_, at) => !bad.has(at))
-          if (wrong.length < 2) { rejected++; continue }
+          if (wrong.length < 2) { rejected++; tally(reasons, 'check: fewer than 2 wrong replies left'); continue }
           kept.push({ ...item, wrong })
         }
       }
-      return { items: kept, written: drafts.length + invalid, invalid, rejected }
+      return { items: kept, written: drafts.length + invalid, invalid, rejected, reasons }
     },
     merge({ state, stats }, unit, result) {
       const pairs = new Set(Object.values(state.exchanges).map(item => phraseKey(item.q.zh) + '|' + phraseKey(item.a.zh)))
@@ -498,7 +527,8 @@ export const KIND_SPECS = {
       const reply = await askJSON(io.write, grammarPrompt(curriculum, unit.entries))
       const written = rows(reply, 'points')
       let invalid = 0, total = 0
-      const drafts = unit.entries.map(entry => { const { point, dropped } = validateGrammarPoint(curriculum, entry, written.get(entry.point.lb), { bankKeys, perPoint: options.perPoint }); invalid += dropped.length; total += point.items.length; return { ...point, band: entry.point.band } })
+      const reasons = {}
+      const drafts = unit.entries.map(entry => { const { point, dropped } = validateGrammarPoint(curriculum, entry, written.get(entry.point.lb), { bankKeys, perPoint: options.perPoint }); invalid += dropped.length; for (const why of dropped) tally(reasons, why); total += point.items.length; return { ...point, band: entry.point.band } })
       const withContent = drafts.filter(point => point.note || point.items.length)
       let rejected = 0
       if (withContent.length) {
@@ -512,7 +542,7 @@ export const KIND_SPECS = {
           if (verdict?.noteOk !== true && point.note) { delete point.note; rejected++ }
         }
       }
-      return { items: drafts, written: total, invalid, rejected }
+      return { items: drafts, written: total, invalid, rejected, reasons }
     },
     merge({ state, stats }, unit, result) {
       for (const point of result.items) {
@@ -542,21 +572,22 @@ export const KIND_SPECS = {
       const allowed = allowedAt(curriculum, unit.lesson)
       const drafts = [], seen = new Set()
       let invalid = 0
-      for (const raw of list(reply?.conversations)) { const found = validateConversation(curriculum, allowed, raw, unit.lesson); if (found.reason || seen.has(found.item.id)) invalid++; else { seen.add(found.item.id); drafts.push(found.item) } }
+      const reasons = {}
+      for (const raw of list(reply?.conversations)) { const found = validateConversation(curriculum, allowed, raw, unit.lesson); if (found.reason || seen.has(found.item.id)) { invalid++; tally(reasons, found.reason ?? 'duplicate in the reply') } else { seen.add(found.item.id); drafts.push(found.item) } }
       let rejected = 0, kept = []
       if (drafts.length) {
         const verdicts = rows(await askJSON(io.check, conversationCheck(drafts)))
         for (const item of drafts) {
           const verdict = verdicts.get(item.id)
           const consistent = list(verdict?.consistent)
-          if (verdict?.natural !== true) { rejected++; continue }
+          if (verdict?.natural !== true) { rejected++; tally(reasons, 'check: conversation not natural'); continue }
           // a question stays only when the blind checker finds exactly the one option the writer named; the first 2 such questions are kept
           const questions = item.questions.filter((question, at) => { const found = list(consistent[at]); return found.length === 1 && found[0] === question.answer })
-          rejected += item.questions.length - questions.length
-          if (questions.length >= 2) kept.push({ ...item, questions: questions.slice(0, 2) }); else rejected++
+          rejected += item.questions.length - questions.length; if (questions.length < item.questions.length) tally(reasons, 'check: question without exactly one consistent option', item.questions.length - questions.length)
+          if (questions.length >= 2) kept.push({ ...item, questions: questions.slice(0, 2) }); else { rejected++; tally(reasons, 'check: fewer than 2 good questions left') }
         }
       }
-      return { items: kept, written: drafts.length + invalid, invalid, rejected }
+      return { items: kept, written: drafts.length + invalid, invalid, rejected, reasons }
     },
     merge({ state, stats }, unit, result) {
       const keys = new Set(Object.values(state.conversations).map(item => item.lines.map(line => phraseKey(line.zh)).join('|')))
@@ -585,7 +616,7 @@ export async function pool(items, concurrency, fn) {
   await Promise.all(Array.from({ length: Math.min(Math.max(1, concurrency), items.length) }, async () => { while (next < items.length) { const item = items[next++]; await fn(item) } }))
 }
 
-export const newStats = () => ({ units: 0, failed: 0, written: 0, invalid: 0, rejected: 0, duplicates: 0, kept: 0, calls: 0 })
+export const newStats = () => ({ units: 0, failed: 0, written: 0, invalid: 0, rejected: 0, duplicates: 0, kept: 0, calls: 0, reasons: {} })
 
 /** Plans and runs one kind. A failed unit (model call or unreadable reply) is logged and left for the next run. */
 export async function runKind({ kind, ctx, io, log = () => {}, save = () => {} }) {
@@ -600,7 +631,8 @@ export async function runKind({ kind, ctx, io, log = () => {}, save = () => {} }
       const result = await spec.run(ctx, unit, counting)
       spec.merge(ctx, unit, result)
       ctx.stats.units++; ctx.stats.written += result.written; ctx.stats.invalid += result.invalid; ctx.stats.rejected += result.rejected
-      log(kind + ' ' + unit.id + ': ' + result.written + ' written, ' + result.invalid + ' invalid, ' + result.rejected + ' rejected by the check, ' + ctx.stats.kept + ' kept so far')
+      for (const [why, n] of Object.entries(result.reasons ?? {})) ctx.stats.reasons[why] = (ctx.stats.reasons[why] ?? 0) + n
+      log(kind + ' ' + unit.id + ': ' + result.written + ' written, ' + result.invalid + ' invalid, ' + result.rejected + ' rejected by the check, ' + ctx.stats.kept + ' kept so far' + (Object.keys(result.reasons ?? {}).length ? ' [' + Object.entries(result.reasons).map(([why, n]) => n + ' ' + why).join('; ') + ']' : ''))
       save()
     } catch (reason) { ctx.stats.failed++; log(kind + ' ' + unit.id + ' failed (run again to retry it): ' + (reason instanceof Error ? reason.message : String(reason))) }
   })
