@@ -4,6 +4,7 @@ import type { DrillSet } from '../drills/contracts'
 import { FUNCTION_CHARACTERS } from '../drills/content'
 import { catalogExamples, MAX_PHRASE_SYLLABLES } from '../drills/items'
 import { createSegmenter } from '../study/exercises'
+import { phraseKey } from './key'
 import { shippedBandSchema, type BankPhrase, type PhraseHeard, type UserPhrase } from './contracts'
 
 const HAN = /\p{Script=Han}/u
@@ -96,8 +97,8 @@ export async function loadBank(catalog: Catalog, refs: readonly string[], allowe
     const seen = new Set<string>()
     const list: BankPhrase[] = []
     for (const phrase of [...catalogBankPhrases(catalog, ref), ...own.filter(phrase => phrase.words.includes(ref)), ...shipped, ...drillBankPhrases(sets, ref, forms)]) {
-      if (seen.has(phrase.zh) || !usableFor(phrase, allowed)) continue
-      seen.add(phrase.zh)
+      if (seen.has(phraseKey(phrase.zh)) || !usableFor(phrase, allowed)) continue
+      seen.add(phraseKey(phrase.zh))
       list.push(phrase)
     }
     bank.set(ref, list)

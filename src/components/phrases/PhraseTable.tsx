@@ -1,3 +1,4 @@
+import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Trash2, Volume2 } from 'lucide-react'
 import { Pinyin } from '../Pinyin'
 import type { PhraseLink, PhraseRow } from '../../core/phrases/dictionary'
@@ -12,7 +13,7 @@ function Links({ items, section }: { items: PhraseLink[]; section: 'vocabulary' 
 }
 
 /** The phrase list as a dense table; at phone width every row becomes a labelled block, so nothing scrolls sideways. */
-export function PhraseTable({ rows, pinyin, onPlay, onRemove, busy }: { rows: PhraseRow[]; pinyin: boolean; onPlay: (zh: string) => void; onRemove: (zh: string) => void; busy: boolean }) {
+export function PhraseTable({ rows, pinyin, route, onPlay, onRemove, busy }: { rows: PhraseRow[]; pinyin: boolean; route: string; onPlay: (zh: string) => void; onRemove: (zh: string) => void; busy: boolean }) {
   return <table className="phrase-table">
     <thead><tr><th scope="col">Chinese</th><th scope="col">Pinyin</th><th scope="col">English</th><th scope="col">Words</th><th scope="col">Grammar</th><th scope="col">Source</th><th scope="col">State</th><th scope="col">Heard</th><th scope="col"><span className="phrase-hidden">Actions</span></th></tr></thead>
     <tbody>{rows.map(row => <tr key={row.phrase.zh} className={row.ready ? 'ready' : 'pending'} data-phrase={row.phrase.zh}>
@@ -26,6 +27,7 @@ export function PhraseTable({ rows, pinyin, onPlay, onRemove, busy }: { rows: Ph
       <td data-label="Heard" className="small">{row.heard ? `${row.heard.heard}\u00d7, ${dayOf(row.heard.lastHeardAt)}` : ''}</td>
       <td className="phrase-actions">
         <button type="button" className="icon-button" aria-label={`Play ${row.phrase.zh}`} onClick={() => onPlay(row.phrase.zh)}><Volume2 size={16} /></button>
+        <PracticeSnippet source={{ text: row.phrase.zh, meaning: row.phrase.en, title: `Phrase: ${row.phrase.en}`, route }} knowledge={false} />
         {row.phrase.source === 'user' && <button type="button" className="icon-button" aria-label={`Remove ${row.phrase.zh}`} disabled={busy} onClick={() => onRemove(row.phrase.zh)}><Trash2 size={16} /></button>}
       </td>
     </tr>)}</tbody>

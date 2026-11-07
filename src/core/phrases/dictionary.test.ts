@@ -1,6 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { loadCatalog } from '../study/catalog'
 import type { UserPhrase } from './contracts'
+import { catalogEntries } from './dictionary'
+import { phraseKey } from './key'
 import { readyLesson, buildPhraseRows, filterPhraseRows, inPhraseScope, loadPhraseSources, mergePhrases, peekPhraseSources, phraseCountFor, phrasesRouteFor, phraseScopeCounts, sourceLabel, userPhraseBand } from './dictionary'
 
 vi.mock('../../data/phrases/hsk-1.json', () => ({ default: { schemaVersion: 2, band: '1', phrases: [
@@ -64,7 +66,7 @@ describe('phrase dictionary list', () => {
   })
 
   it('removes duplicates by Chinese text, the first source winning (catalog, then the learner, then the shipped bank)', async () => {
-    const { rows: list } = await rows([], [own('我是好学生。', [me], { en: 'mine' }), own('你好', [you])])
+    const { rows: list } = await rows([], [own('我是好学生。', [me], { en: 'mine' }), own('你你', [you])])
     expect(list.filter(row => row.phrase.zh === '我是好学生。')).toHaveLength(1)
     expect(byZh(list, '我是好学生。').phrase).toMatchObject({ source: 'user', en: 'mine' })
     expect(list.filter(row => row.phrase.zh === '我爱爸爸，也爱妈妈。')).toHaveLength(1)
@@ -92,7 +94,7 @@ describe('phrase dictionary list', () => {
     expect(zhs('wo shi hao xue')).toContain('我是好学生。')
     expect(zhs('woshihaoxuesheng')).toContain('我是好学生。')
     expect(zhs('wǒ shì hǎo')).toContain('我是好学生。')
-    expect(zhs('shi xue')).not.toContain('你好')
+    expect(zhs('shi xue')).not.toContain('你你')
     expect(zhs('are you a good student')).toContain('你是好学生吗？')
     expect(zhs('student')).toContain('学生，你好。')
     expect(zhs('zzzzqq')).toEqual([])
@@ -102,42 +104,57 @@ describe('phrase dictionary list', () => {
     expect(phraseCountFor(list.map(row => ({ phrase: row.phrase, band: row.band })), student)).toBeGreaterThan(2)
   })
 
+  it('lists a sentence once when only its punctuation differs, the lesson example winning', async () => {
+    const catalog = await loadCatalog()
+    const sources = await loadPhraseSources(catalog)
+    const lesson = catalogEntries(catalog)[0].phrase
+    const variant = lesson.zh.replace(/[\u3002\uff1f\uff01]+$/u, '') + ' \uff01'
+    expect(variant).not.toBe(lesson.zh)
+    const generated = { phrase: { ...sources.shipped[0].phrase, zh: variant, words: lesson.words }, band: sources.shipped[0].band }
+    const entries = mergePhrases(catalog, { catalog: sources.catalog, shipped: [generated, ...sources.shipped] }, [own(variant, lesson.words)])
+    const same = entries.filter(entry => phraseKey(entry.phrase.zh) === phraseKey(lesson.zh))
+    expect(same).toHaveLength(1)
+    expect(same[0].phrase.zh).toBe(lesson.zh)
+    expect(same[0].phrase.source).toBe('catalog')
+    expect(phraseKey('\u73b0\u5728\u592a\u665a\u4e86\uff01')).toBe(phraseKey('\u73b0\u5728 \u592a\u665a\u4e86\u3002'))
+  })
+
   it('counts and scopes: ready, pending and added by me, with the heard log and the sources', async () => {
     const catalog = await loadCatalog()
     const sources = await loadPhraseSources(catalog)
-    const entries = mergePhrases(catalog, sources, [own('你好', [you])])
+    const entries = mergePhrases(catalog, sources, [own('你你', [you])])
     const list = buildPhraseRows(catalog, entries, new Set([me, be, student, you, identity]), new Map([['我是好学生。', { heard: 3, lastHeardAt: 5 }]]))
     const counts = phraseScopeCounts(list)
     expect(counts.all).toBe(list.length)
     expect(counts.ready + counts.pending).toBe(counts.all)
     expect(counts.mine).toBe(1)
     expect(list.filter(row => inPhraseScope(row, 'ready'))).toHaveLength(counts.ready)
-    expect(list.filter(row => inPhraseScope(row, 'mine')).map(row => row.phrase.zh)).toEqual(['你好'])
+    expect(list.filter(row => inPhraseScope(row, 'mine')).map(row => row.phrase.zh)).toEqual(['你你'])
     expect(byZh(list, '我是好学生。').heard).toEqual({ heard: 3, lastHeardAt: 5 })
     expect(byZh(list, '你是好学生吗？').heard).toBeUndefined()
     expect(sourceLabel({ source: 'catalog' })).toBe('Lesson example')
     expect(sourceLabel({ source: 'ai' })).toBe('Generated')
     expect(sourceLabel({ source: 'user' })).toBe('Added by me')
     expect(byZh(list, '学生，你好。').sourceLabel).toBe('Reader, ch. 2')
-    expect(byZh(list, '你好').pinyin).toMatch(/^nǐ/) // no stored pinyin: the catalog reading
+    expect(byZh(list, '你你').pinyin).toMatch(/^nǐ/) // no stored pinyin: the catalog reading
     expect(entries.map(entry => entry.phrase.zh)).not.toContain('我在练习。')
     expect(phrasesRouteFor(student)).toBe('dictionary/phrases/all?word=' + encodeURIComponent(student))
   })
 
   it('orders every scope by the lesson where a phrase becomes ready, then lesson examples, generated, then the learner own', async () => {
     const catalog = await loadCatalog()
-    const { rows: list } = await rows([], [own('我是学生', [me, be, student]), own('你好', [you]), own('茶', [v('cha2--tea')])])
+    const { rows: list } = await rows([], [own('我是学生们', [me, be, student]), own('你你', [you]), own('茶', [v('cha2--tea')])])
     const lessons = list.map(row => row.lesson)
     expect(lessons).toEqual([...lessons].sort((a, b) => a - b))
     const rank = (source: string) => source === 'catalog' ? 0 : source === 'user' ? 2 : 1
     for (let at = 1; at < list.length; at++) if (list[at].lesson === list[at - 1].lesson) expect(rank(list[at].phrase.source)).toBeGreaterThanOrEqual(rank(list[at - 1].phrase.source))
     // the lesson is the highest group position among words and grammar tags (a shipped phrase keeps its readyAt)
     const groupOf = (ref: string) => catalog.orderedGroups.findIndex(({ group }) => group.units.some(unit => `${unit.kind}:${unit.ref}` === ref))
-    expect(byZh(list, '我是学生').lesson).toBe(Math.max(groupOf(me), groupOf(be), groupOf(student)))
+    expect(byZh(list, '我是学生们').lesson).toBe(Math.max(groupOf(me), groupOf(be), groupOf(student)))
     expect(readyLesson(catalog, { words: [me], readyAt: 99 })).toBe(99)
     expect(readyLesson(catalog, { words: [me, student], grammar: [identity] })).toBe(Math.max(groupOf(student), groupOf(identity), groupOf(me)))
     // a tie: same words, three sources
-    const tie = list.filter(row => row.lesson === byZh(list, '你好').lesson)
+    const tie = list.filter(row => row.lesson === byZh(list, '你你').lesson)
     expect(tie.map(row => rank(row.phrase.source))).toEqual([...tie.map(row => rank(row.phrase.source))].sort((a, b) => a - b))
     // a word-filtered view keeps the order, and the earliest phrase leads the unfiltered list
     const filtered = filterPhraseRows(list, { word: student })

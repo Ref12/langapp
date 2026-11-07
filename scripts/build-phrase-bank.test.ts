@@ -8,8 +8,9 @@ import { FUNCTION_CHARACTERS as APP_FUNCTION_CHARACTERS } from '../src/core/dril
 import {
   BANDS, FUNCTION_CHARACTERS, allowedFor, batchByLesson, buildCurriculum, buildOutputs, catalogPhrases, coverageReport, createIO, emptyState, loadState, main, parseArgs, parseJSONReply,
   parseLessons, passReport, replyText, runPipeline, saveState, selectWords, validatePhrase, verdictOf, vocabularyFor, wordsInScope, writeOutputs,
-  phrasePinyin, repinyinFiles, addPhrase, applyGrammar, attachPhrases, grammarCounts, grammarFor, grammarInScope, grammarWord, phrasesForWord, wordCounts,
+  phrasePinyin, repinyinFiles, addPhrase, lessonKeys, phraseKey, applyGrammar, attachPhrases, grammarCounts, grammarFor, grammarInScope, grammarWord, phrasesForWord, wordCounts,
 } from './build-phrase-bank.mjs'
+import { phraseKey as appPhraseKey } from '../src/core/phrases/key'
 import { phraseIndex, phraseIndexText } from './phrase-bank-files.mjs'
 import { isOldState, parsePhraseYaml, phraseBankOutputs, phraseJsonText, readOldBank, readOldState, readPhraseBand, readPhraseBands, stringifyPhraseYaml, writePhraseBands } from './phrase-bank-files.mjs'
 
@@ -411,10 +412,10 @@ describe('phrase bank pipeline: crediting a phrase to other words', () => {
     const c = curriculum2()
     const state = emptyState()
     addPhrase(c, state, { zh: '我喝茶吗。', py: 'wǒ hē chá ma', en: 'Do I drink tea?', words: ['wo', 'he', 'cha'], source: 'ai', checked: true })
-    addPhrase(c, state, { zh: '我是学生。', py: 'wǒ shì xué sheng', en: 'I am a student.', words: ['wo', 'shi', 'xs'], source: 'ai', checked: true })
+    addPhrase(c, state, { zh: '我是学生吗。', py: 'wǒ shì xué sheng ma', en: 'Am I a student?', words: ['wo', 'shi', 'xs'], source: 'ai', checked: true })
     expect(state.phrases).toHaveLength(2)
     expect(Object.fromEntries(wordCounts(state))).toEqual({ wo: 2, he: 1, cha: 1, shi: 1, xs: 1 })
-    expect(addPhrase(c, state, { zh: '我是学生。', py: 'x', en: 'x', words: ['wo'], source: 'ai', checked: true })).toBeUndefined() // each phrase appears once
+    expect(addPhrase(c, state, { zh: '我是学生吗。', py: 'x', en: 'x', words: ['wo'], source: 'ai', checked: true })).toBeUndefined() // each phrase appears once
   })
 
   it('does not write again what is already in hand for another word, and tells the writer what the batch has', async () => {
@@ -662,15 +663,15 @@ describe('phrase bank pipeline: ids and the YAML files', () => {
 })
 
 describe('phrase bank pipeline: the old format', () => {
-  const OLD_BANK = { schemaVersion: 1, band: '1', phrases: { cha: [{ zh: '我是茶。', py: 'wǒ shì chá', en: 'I am tea.', words: ['wo', 'shi', 'cha'], source: 'ai', checked: true, lookahead: 0, readyAt: 1 }], he: [{ zh: '我是茶。', py: 'wǒ shì chá', en: 'I am tea.', words: ['wo', 'shi', 'cha'], source: 'ai', checked: true }, { zh: '我喝茶。', py: 'wǒ hē chá', en: 'I drink tea.', words: ['wo', 'he', 'cha'], source: 'ai', checked: false }] } }
+  const OLD_BANK = { schemaVersion: 1, band: '1', phrases: { cha: [{ zh: '我是茶。', py: 'wǒ shì chá', en: 'I am tea.', words: ['wo', 'shi', 'cha'], source: 'ai', checked: true, lookahead: 0, readyAt: 1 }], he: [{ zh: '我是茶。', py: 'wǒ shì chá', en: 'I am tea.', words: ['wo', 'shi', 'cha'], source: 'ai', checked: true }, { zh: '我喝茶吗。', py: 'wǒ hē chá', en: 'I drink tea.', words: ['wo', 'he', 'cha'], source: 'ai', checked: false }] } }
   const OLD_STATE = { version: 1, target: 3, words: { cha: { status: 'done', attempts: 1, lookahead: 0, phrases: OLD_BANK.phrases.cha }, he: { status: 'partial', attempts: 2, phrases: OLD_BANK.phrases.he } } }
 
   it('reads an old band file or state file, keyed by word, as one flat list in which each phrase comes once', () => {
-    expect(readOldBank(OLD_BANK).map(p => p.zh)).toEqual(['我是茶。', '我喝茶。'])
+    expect(readOldBank(OLD_BANK).map(p => p.zh)).toEqual(['我是茶。', '我喝茶吗。'])
     expect(isOldState(OLD_STATE)).toBe(true)
     expect(isOldState({ version: 2, words: {} })).toBe(false)
     const old = readOldState(OLD_STATE)
-    expect(old.phrases.map(p => p.zh)).toEqual(['我是茶。', '我喝茶。'])
+    expect(old.phrases.map(p => p.zh)).toEqual(['我是茶。', '我喝茶吗。'])
     expect(old.words).toEqual({ cha: { status: 'done', attempts: 1, lookahead: 0 }, he: { status: 'partial', attempts: 2 } })
   })
 
@@ -678,7 +679,7 @@ describe('phrase bank pipeline: the old format', () => {
     const dir = temp()
     saveStateRaw(join(dir, 'old-state.json'), OLD_STATE)
     const loaded = loadState(join(dir, 'old-state.json'))
-    expect(loaded.phrases.map((p: { zh: string }) => p.zh)).toEqual(['我是茶。', '我喝茶。'])
+    expect(loaded.phrases.map((p: { zh: string }) => p.zh)).toEqual(['我是茶。', '我喝茶吗。'])
     expect(loaded.words.he).toEqual({ status: 'partial', attempts: 2 })
     mkdirSync(join(dir, 'data'))
     FIXTURE2.forEach(data => writeFileSync(join(dir, 'data', 'hsk-' + data.band + '.generated.json'), JSON.stringify(data)))
@@ -687,7 +688,7 @@ describe('phrase bank pipeline: the old format', () => {
     await main(['--import-old', join(dir, 'old-bank.json'), '--data-dir', join(dir, 'data'), '--out', join(dir, 'yaml'), '--json-out', join(dir, 'json'), '--state', join(dir, 'state.json')], { log: line => log.push(line) })
     expect(log[0]).toContain('imported 2 phrases')
     expect(readPhraseBand(join(dir, 'yaml'), '1').phrases).toEqual([
-      expect.objectContaining({ id: 1, zh: '我是茶。', readyAt: 1 }), expect.objectContaining({ id: 2, zh: '我喝茶。', readyAt: 1 }),
+      expect.objectContaining({ id: 1, zh: '我是茶。', readyAt: 1 }), expect.objectContaining({ id: 2, zh: '我喝茶吗。', readyAt: 1 }),
     ])
     expect(JSON.parse(readFileSync(join(dir, 'json', 'hsk-1.json'), 'utf8')).phrases).toHaveLength(2)
   })
@@ -778,5 +779,21 @@ describe('phrase index', () => {
     }
     expect(phraseIndexText(bands)).toBe(readFileSync(join(__dirname, '..', 'src', 'data', 'phrases', 'index.json'), 'utf8'))
     expect(phraseIndex([{ band: '1', phrases: [{ words: ['a', 'a', 'b'] }, { words: ['a'] }] }]).bands['1']).toEqual({ count: 2, words: { a: 2, b: 1 } })
+  })
+})
+
+describe('phrase bank pipeline: one sentence once', () => {
+  it('refuses a phrase that repeats another or a lesson example apart from punctuation and spaces', () => {
+    const c = curriculum()
+    const state = emptyState()
+    const base = { py: 'x', en: 'x', words: ['wo', 'shi', 'xs'], source: 'ai', checked: true }
+    expect(addPhrase(c, state, { ...base, zh: '\u6211\u662f\u8336\u3002' })).toBeTruthy()
+    expect(addPhrase(c, state, { ...base, zh: '\u6211\u662f \u8336\uff01' })).toBeUndefined()
+    const lesson = [...lessonKeys(c)][0]
+    expect(addPhrase(c, state, { ...base, zh: lesson + '\uff01' })).toBeUndefined()
+    expect(state.phrases).toHaveLength(1)
+  })
+  it('compares the same key as the app', () => {
+    for (const zh of ['\u73b0\u5728\u592a\u665a\u4e86\uff01', 'a \u4f60\u597d, \u4e16\u754c.', '']) expect(phraseKey(zh)).toBe(appPhraseKey(zh))
   })
 })

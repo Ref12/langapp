@@ -107,6 +107,16 @@ describe('phrase bank', () => {
     expect(wider.get(student)!.map(phrase => phrase.zh)).toContain('你是学生吗？')
   })
 
+  it('drops a bank phrase that differs from a lesson example only by punctuation, in step with the list', async () => {
+    const catalog = await loadCatalog()
+    const lesson = catalogBankPhrases(catalog, student)[0]
+    const variant = lesson.zh.replace(/[\u3002\uff1f\uff01]+$/u, '') + '\uff01'
+    const allowed = new Set(lesson.words)
+    const sets = [{ content: { state: 'ready', sentences: { [student]: { zh: variant, py: 'x', en: 'same sentence', source: 'ai', checked: true } }, conversations: [] } }] as never
+    const bank = (await loadBank(catalog, [student], allowed, sets)).get(student)!
+    expect(bank.filter(phrase => phrase.zh === lesson.zh || phrase.zh === variant).map(phrase => phrase.zh)).toEqual([lesson.zh])
+  })
+
   it('validates drill sentences against the learner\'s words the way drill content is', async () => {
     const catalog = await loadCatalog()
     const forms = allowedForms(catalog, new Set([student, me]))

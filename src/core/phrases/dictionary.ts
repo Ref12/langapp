@@ -5,6 +5,7 @@ import { phraseReadingsOf } from '../pinyin/phrase-readings'
 import { tidyPinyin } from '../drills/items'
 import { catalogBankPhrases, shippedPhrases, userBankPhrase, usableFor } from './bank'
 import type { BankPhrase, PhraseHeard, UserPhrase } from './contracts'
+import { phraseKey } from './key'
 
 // The Dictionary's Phrases section: every phrase of the bank (the catalog's examples, the shipped files, the learner's own) as one list with its state for the learner.
 // Drill-set sentences belong to a practice set and are left out. The page only renders what this builds.
@@ -91,8 +92,8 @@ export function catalogEntries(catalog: Catalog): PhraseEntry[] {
   for (const unit of catalog.units.values()) {
     if (unit.kind !== 'vocabulary') continue
     for (const phrase of catalogBankPhrases(catalog, unit.ref)) {
-      if (seen.has(phrase.zh)) continue
-      seen.add(phrase.zh)
+      if (seen.has(phraseKey(phrase.zh))) continue
+      seen.add(phraseKey(phrase.zh))
       out.push({ phrase, band: bands.get(phrase.zh) ?? userPhraseBand(catalog, phrase.words) })
     }
   }
@@ -125,14 +126,14 @@ export function loadPhraseSources(catalog: Catalog): Promise<PhraseSources> {
 /** The sources when they have been loaded already, else undefined. Never starts a load. */
 export const peekPhraseSources = (catalog: Catalog | undefined) => catalog ? ready.get(catalog) : undefined
 
-/** One list without duplicates by Chinese text, the first source winning as in loadBank: catalog examples, then the learner's own, then the shipped bank. */
+/** One list without duplicates by Han characters (see phraseKey), the first source winning as in loadBank: catalog examples, then the learner's own, then the shipped bank. */
 export function mergePhrases(catalog: Catalog, sources: PhraseSources, own: readonly UserPhrase[]): PhraseEntry[] {
   const seen = new Set<string>()
   const out: PhraseEntry[] = []
   const user = own.map(row => ({ phrase: userBankPhrase(row), band: userPhraseBand(catalog, row.words) }))
   for (const entry of [...sources.catalog, ...user, ...sources.shipped]) {
-    if (seen.has(entry.phrase.zh)) continue
-    seen.add(entry.phrase.zh)
+    if (seen.has(phraseKey(entry.phrase.zh))) continue
+    seen.add(phraseKey(entry.phrase.zh))
     out.push(entry)
   }
   return out

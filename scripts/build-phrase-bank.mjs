@@ -45,6 +45,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import { defaultPhraseAuthoringDir, defaultPhraseJsonDir, isOldState, readOldBank, readOldState, readPhraseBands, writeAtomic, writePhraseBands } from './phrase-bank-files.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+/** What makes two phrases the same sentence: its Han characters only. Kept in step with phraseKey in src/core/phrases/key.ts (a test compares them). */
+export const phraseKey = zh => zh.replace(/[^\p{Script=Han}]/gu, '')
 export const BANDS = ['1', '2', '3', '4', '5', '6']
 /** Kept in step with FUNCTION_CHARACTERS in src/core/drills/content.ts (a test compares them). */
 export const FUNCTION_CHARACTERS = '的了吗呢吧是不很也都和在有这那我你他她们个'
@@ -514,7 +516,7 @@ export async function processBatch({ curriculum, entries, io, options, lookahead
   const avoid = [...new Set(entries.flatMap(entry => entry.existingZh))].slice(0, 80)
   const result = new Map(entries.map(entry => [entry.word.lb, { phrases: [], note: '' }]))
   // a phrase is stored once: not one already in hand (taken), nor one this batch has written for another word
-  const seen = new Set(entries.flatMap(entry => entry.existingZh))
+  const seen = new Set(entries.flatMap(entry => entry.existingZh).map(phraseKey))
   // plan (opt-in: a failed or skipped plan leaves the writer with its fixed prompt)
   if (io.plan && options.plan) {
     try {
@@ -529,8 +531,8 @@ export async function processBatch({ curriculum, entries, io, options, lookahead
       if (!entry) continue
       const checked = validatePhrase(curriculum, entry.word, row, entry.allowed)
       if (!checked.phrase) { log(formOf(entry.word) + ': ' + checked.reason + ' (' + String(row?.zh).slice(0, 20) + ')'); continue }
-      if (seen.has(checked.phrase.zh) || taken.has(checked.phrase.zh)) continue
-      seen.add(checked.phrase.zh)
+      if (seen.has(phraseKey(checked.phrase.zh)) || taken.has(phraseKey(checked.phrase.zh))) continue
+      seen.add(phraseKey(checked.phrase.zh))
       out.push({ entry, phrase: checked.phrase })
     }
     return out
@@ -632,9 +634,18 @@ export async function recheck({ curriculum, state, io, options, log = () => {}, 
  */
 export const emptyState = () => ({ version: 2, words: {}, phrases: [], lastId: {} })
 
+/** The keys of every authored example, rendered: a generated phrase never repeats one (the lesson example wins). */
+const lessonKeyCache = new WeakMap()
+export function lessonKeys(curriculum) {
+  let keys = lessonKeyCache.get(curriculum)
+  if (!keys) { keys = new Set(); for (const example of curriculum.examples) { const rendered = renderExample(curriculum, example); if (rendered) keys.add(phraseKey(rendered.zh)) } lessonKeyCache.set(curriculum, keys) }
+  return keys
+}
+
 /** Adds a phrase to the list with the next id of its band (the band of the word it uses that is introduced last); nothing happens when the phrase is already there. */
 export function addPhrase(curriculum, state, phrase) {
-  if (state.phrases.some(other => other.zh === phrase.zh)) return undefined
+  const key = phraseKey(phrase.zh)
+  if (state.phrases.some(other => phraseKey(other.zh) === key) || lessonKeys(curriculum).has(key)) return undefined
   const band = phrase.band ?? bandOfWords(curriculum, phrase.words)
   const high = state.lastId[band] ?? Math.max(0, ...state.phrases.filter(other => other.band === band).map(other => other.id))
   state.lastId[band] = high + 1
@@ -744,7 +755,7 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
     log('pass look-ahead ' + lookahead + ': ' + entries.length + ' words under target, ' + entries.length + ' to write in ' + batches.length + ' batches')
     let merged = 0
     // every phrase in hand, shared by all dispatches and updated at merge time (not rebuilt per batch)
-    const taken = new Set(state.phrases.map(phrase => phrase.zh))
+    const taken = new Set([...state.phrases.map(phrase => phraseKey(phrase.zh)), ...lessonKeys(curriculum)])
     await runBatches({
       batches, concurrency: options.concurrency ?? 1, span: options.lessonSpan ?? 1,
       dispatch: batch => {
@@ -762,7 +773,7 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
         const result = value?.result ?? new Map(live.map(entry => [entry.word.lb, { phrases: [], note: 'batch failed: ' + (error?.message ?? error) }]))
         for (const entry of live) {
           const outcome = result.get(entry.word.lb)
-          for (const phrase of outcome.phrases) if (addPhrase(curriculum, state, { ...phrase, lookahead })) taken.add(phrase.zh); else log(formOf(entry.word) + ': skipped duplicate "' + phrase.zh + '"')
+          for (const phrase of outcome.phrases) if (addPhrase(curriculum, state, { ...phrase, lookahead })) taken.add(phraseKey(phrase.zh)); else log(formOf(entry.word) + ': skipped duplicate "' + phrase.zh + '"')
           const record = state.words[entry.word.lb] ?? { status: 'failed', attempts: 0 }
           record.attempts += 1
           record.lookahead = Math.max(record.lookahead ?? 0, lookahead)

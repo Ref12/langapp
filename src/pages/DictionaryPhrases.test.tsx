@@ -125,6 +125,18 @@ describe('dictionary phrases', () => {
     expect(rowOf('\u6211\u559d\u6c34\u3002')).not.toBeNull()
   })
 
+  it('gives each row the Ask, Practice and Write menu next to Play', async () => {
+    window.location.hash = 'dictionary/phrases/all'
+    const user = userEvent.setup()
+    render(<Harness />)
+    expect(await screen.findByText('\u6211\u8981\u6c34')).toBeInTheDocument()
+    const row = rowOf('\u6211\u8981\u6c34')
+    expect(within(row).getByRole('button', { name: 'Play \u6211\u8981\u6c34' })).toBeInTheDocument()
+    await user.click(within(row).getByRole('button', { name: 'Phrase actions' }))
+    for (const name of ['Ask', 'Practice', 'Write']) expect(await screen.findByRole('button', { name })).toBeInTheDocument()
+    expect(within(row).getByRole('button', { name: 'Remove \u6211\u8981\u6c34' })).toBeInTheDocument()
+  })
+
   it('searches and pages', async () => {
     window.location.hash = 'dictionary/phrases/all'
     const user = userEvent.setup()

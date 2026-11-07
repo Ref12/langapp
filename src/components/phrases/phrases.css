@@ -10,6 +10,7 @@
 .phrase-link-item:hover { text-decoration: underline; }
 .phrase-link-item.unknown { color: var(--muted, #8b95a5); opacity: 0.7; }
 .phrase-actions { white-space: nowrap; }
+.phrase-actions { display: flex; align-items: center; gap: 4px; }
 .phrase-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .phrase-word-link { font-size: 0.8rem; }
 .phrase-filter { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
