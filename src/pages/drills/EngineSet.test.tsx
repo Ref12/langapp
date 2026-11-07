@@ -5,7 +5,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../../App'
 import { db } from '../../core/database'
 import { whenContent } from '../../core/drills/content'
-import { createDrillSet, getDrillSet, recordDrillResult, recordEngineResult } from '../../core/drills/store'
+import { createDrillSet, finishEngineRun, getDrillSet, recordDrillResult, recordEngineResult, saveEngineAnswer } from '../../core/drills/store'
+import { replayRunner, progressOf } from '../../core/session/runner'
+import { engineStanding } from './Drills'
 import * as speech from '../../core/assistant/speech'
 
 vi.mock('../../core/ai/structured', () => ({ requestStructuredJSON: vi.fn() }))
@@ -80,5 +82,63 @@ describe('recording', () => {
     await db.drillSets.put(classic)
     expect((await recordEngineResult(id, classic.refs[0], ['reading'], 'choice', true)).graded).toBe(false)
     void recordDrillResult
+  })
+})
+
+describe('after a run', () => {
+  it('a finished engine set reopens on its Start screen with the last run, never the old drill-type view', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await finishEngineRun(id, { correct: 6, total: 20 }, new Date(2026, 10, 7).getTime())
+    expect((await getDrillSet(id))!).toMatchObject({ status: 'completed', engine: { lastRun: { correct: 6, total: 20 }, answers: [] } })
+    window.location.hash = `#practice/set/${id}`
+    render(<App />)
+    expect(await screen.findByRole('heading', { name: 'Ready when you are' })).toBeInTheDocument()
+    expect(screen.getByText('Last run: 6 of 20 right, 7 Nov')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Default' })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Pick a practice type' })).toBeNull()
+  }, 40000)
+
+  it('names where a set stands and offers Resume only for a run in progress', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    expect(engineStanding((await getDrillSet(id))!)).toBe('Practice session · not started')
+    await saveEngineAnswer(id, true, 1, 26)
+    await saveEngineAnswer(id, false, 14, 26)
+    expect(engineStanding((await getDrillSet(id))!)).toBe('Practice session · in progress, 14 of 26')
+    await finishEngineRun(id, { correct: 6, total: 20 })
+    expect(engineStanding((await getDrillSet(id))!)).toBe('Practice session · finished, 6/20')
+    expect(engineStanding(omit((await getDrillSet(id))!, 'engine'))).toBeUndefined()
+  })
+
+  it('a started set opens with Resume and the saved progress; Start over clears it', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await saveEngineAnswer(id, true, 3, 26)
+    window.location.hash = `#practice/set/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    expect(await screen.findByText(/In progress: 3 of 26/)).toBeInTheDocument()
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Resume session' })).toBeEnabled(), { timeout: 20000 })
+    await user.click(screen.getByRole('button', { name: 'Start over' }))
+    await waitFor(async () => expect((await getDrillSet(id))!.engine).toMatchObject({ answers: [], done: 0 }))
+  }, 40000)
+
+  it('the Recent sessions row says what the set is and Resume leads', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await saveEngineAnswer(id, true, 14, 26)
+    render(<App />)
+    expect(await screen.findByText(/Practice session · in progress, 14 of 26/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^Resume / })).toBeInTheDocument()
+  })
+})
+
+describe('replay', () => {
+  it('replays saved answers over the same plan', () => {
+    const exercise = (id: string, round = 0) => ({ id, stage: 'recognise', form: 'choice', refs: ['r'], round }) as never
+    const plan = { stages: [{ stage: 'recognise', exercises: [exercise('a'), exercise('b'), exercise('c')] }], uncovered: [] } as never
+    const state = replayRunner(plan, [true, false])
+    expect(progressOf(state)).toEqual({ done: 2, total: 3 })
+    expect(state.missed.map(entry => entry.id)).toEqual(['b'])
+    expect(replayRunner(plan, [true, true, true, true, true]).done).toBe(true)
   })
 })

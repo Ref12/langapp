@@ -52,6 +52,16 @@ export function answerCurrent(state: RunnerState, correct: boolean): { state: Ru
   return { state: settle({ ...state, cursor: state.cursor + 1, missed, log: [...state.log, attempt] }), graded }
 }
 
+/** Resumes a run: the saved answers (in order, retries included) played over the same plan. Anything that no longer fits the plan ends the replay where it stands. */
+export function replayRunner(plan: SessionPlan, answers: readonly boolean[]): RunnerState {
+  let state = startRunner(plan)
+  for (const correct of answers) { if (state.done) break; state = answerCurrent(state, correct).state }
+  return state
+}
+
+/** Exercises answered for the first time, and how many the plan holds: the progress line's numbers. */
+export const progressOf = (state: RunnerState) => ({ done: state.log.filter(attempt => attempt.round === 0).length, total: state.plan.stages.reduce((sum, entry) => sum + entry.exercises.length, 0) })
+
 /** Exercises still to come in the stage being played (this queue only), for the progress line. */
 export const remainingInQueue = (state: RunnerState) => Math.max(0, state.queue.length - state.cursor)
 

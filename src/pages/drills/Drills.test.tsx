@@ -207,7 +207,7 @@ describe('What you will practise', () => {
     const shown = [...dialog.querySelectorAll('[data-unit]')].map(card => card.getAttribute('data-unit'))
     await user.click(within(dialog).getByRole('button', { name: 'Close items' }))
     expect(screen.queryByRole('dialog')).toBeNull()
-    await user.click(await screen.findByRole('button', { name: 'Start practice set' }))
+    await user.click(await screen.findByRole('button', { name: 'Start practice session' }))
     await screen.findByRole('heading', { name: /^New items · / }, { timeout: 20000 })
     const set = (await db.drillSets.toArray())[0]
     expect(set.refs).toHaveLength(count)
@@ -252,7 +252,7 @@ describe('Practice home', () => {
     expect(nav.getByRole('link', { name: /Practice/ })).toHaveAttribute('aria-current', 'page')
     expect(screen.getByRole('link', { name: /Classic practice/ })).toHaveAttribute('href', '#review')
     expect(screen.getByRole('link', { name: 'Mahjong' })).toHaveAttribute('href', '#practice/mahjong')
-    const start = await screen.findByRole('button', { name: 'Start practice set' })
+    const start = await screen.findByRole('button', { name: 'Start practice session' })
     await waitFor(() => expect(start).toBeEnabled())
     await user.click(start)
     expect(await screen.findByRole('heading', { name: /^New items · \d+ \w{3}$/ }, { timeout: 20000 })).toBeInTheDocument()
@@ -272,7 +272,7 @@ describe('Practice home', () => {
     // title and meta on the left; Resume, Save and the ⋯ menu are same-size controls on the right
     expect([...line.children].map(child => child.className.split(' ')[0])).toEqual(['resume-text', 'resume-actions'])
     expect(line.querySelector('.resume-text')).toHaveTextContent('In progress')
-    expect(line.querySelector('.resume-text')).toHaveTextContent(/0 of 11 types done/)
+    expect(line.querySelector('.resume-text')).toHaveTextContent(/Practice session · not started/)
     // nothing started yet: no Continue, but Open session is always there
     expect(within(recent).queryByRole('link', { name: /^Continue/ })).toBeNull()
     expect(within(recent).getByRole('link', { name: /^Open session New items/ })).toBeInTheDocument()
@@ -609,7 +609,7 @@ describe('Learning from', () => {
     await waitFor(() => expect(screen.getByTestId('selection-summary')).toHaveTextContent(/^1 item · 1 word, 0 grammar/))
     await user.click(within(panel).getByRole('button', { name: 'Reviews' }))
     await waitFor(() => expect(screen.getByTestId('selection-summary')).toHaveTextContent('2 of 2 due'))
-    await user.click(screen.getByRole('button', { name: 'Start practice set' }))
+    await user.click(screen.getByRole('button', { name: 'Start practice session' }))
     await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\//))
     const sets = await db.drillSets.toArray()
     expect(sets).toHaveLength(1)

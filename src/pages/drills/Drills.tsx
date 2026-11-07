@@ -81,7 +81,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
     return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} now={props.now} run={props.run} busy={props.busy} only={only} backHref={`#${setRoute(set.id)}`} />
   }
   // A set made for the engine opens on its Start screen. A set from before has no engine state (or has old-style progress) and keeps the classic view until it is finished.
-  const engineSet = set.engine && set.status === 'active'
+  const engineSet = !!set.engine && set.status !== 'abandoned'
   if (page === 'engine' && set.engine) return <EngineRun {...props} set={set} items={items} catalog={catalog} />
   if (engineSet && !page) return <EngineStart {...props} set={set} items={items} catalog={catalog} />
   if (page === 'handsfree') return <HandsFree {...props} set={set} kind="introduction" />
@@ -270,16 +270,26 @@ export function continueOf(set: DrillSet): { route: string; label: string; type:
   return type ? { route: setRoute(set.id, `run/${type.id}`), label: `Continue ${type.name}`, type: type.name } : undefined
 }
 
+/** Where an engine set stands, in words: "Practice session · finished, 6/20" or "Practice session · in progress, 14 of 26". */
+export function engineStanding(set: DrillSet): string | undefined {
+  const engine = set.engine
+  if (!engine) return undefined
+  if (engine.answers?.length && engine.planned && (engine.done ?? 0) < engine.planned) return `Practice session · in progress, ${engine.done ?? 0} of ${engine.planned}`
+  if (engine.lastRun) return `Practice session · finished, ${engine.lastRun.correct}/${engine.lastRun.total}`
+  return set.status === 'completed' ? 'Practice session · finished' : 'Practice session · not started'
+}
+
 /** One session (a drill set), unfinished, finished or set aside, in the Recent sessions list: title (In progress when unfinished) and the meta line on top (with "left off in <type>" when a type is part-way); below it a right-aligned row of icon-only buttons, like History's (history-actions, icon-button), each with a full aria-label and tooltip: Continue <type> (only when something is part-way; primary, arrow), Open session (the set page with its practice types; primary when there is no Continue), View items (the items page), Save to, and the ⋯ menu, which every row has: Discard (unfinished), Remove from knowledge set (when the session added items) and Remove from Recent sessions (a soft remove with Undo, like History's). */
 function SetRow({ set, characterStates, onAsk, onRemove }: { set: DrillSet; characterStates: PageProps['workspace']['characterStates']; onAsk: () => void; onRemove: () => void }) {
   const unfinished = set.status === 'active'
   const removable = useLiveQuery(() => runAddedRefs('drill', set.id), [set.id, set.addedRefs])
   const typesDone = typesDoneOf(set)
-  const next = continueOf(set)
+  const resumeEngine = !!set.engine && !!set.engine.answers?.length && !!set.engine.planned && (set.engine.done ?? 0) < set.engine.planned
+  const next = set.engine ? (resumeEngine ? { route: setRoute(set.id), label: `Resume ${set.title}`, type: 'Practice session' } : undefined) : continueOf(set)
   const openLabel = `Open session ${set.title}`
   return <div className="resume-row">
     <div className="resume-text"><strong>{set.title}{unfinished && <span className="tag in-progress">In progress</span>}</strong>
-      <SetMeta set={set} typesDone={typesDone} characterStates={characterStates} /></div>
+      {set.engine ? <span className="small muted dr-wrap">{engineStanding(set)} · {shortDate(set.completedAt ?? set.updatedAt)}</span> : <SetMeta set={set} typesDone={typesDone} characterStates={characterStates} />}</div>
   <div className="resume-actions history-actions">
     {next && <a className="icon-button primary-icon" href={`#${next.route}`} aria-label={next.label} title={next.label}><ArrowRight size={18} /></a>}
     <a className={`icon-button${next ? '' : ' primary-icon'}`} href={`#${setRoute(set.id)}`} aria-label={openLabel} title={openLabel}><ListChecks size={18} /></a>
@@ -307,7 +317,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     const at = originParam.indexOf(':'); const kind = originParam.slice(0, at), id = originParam.slice(at + 1)
     if (at < 0 || !id) return null
     if (kind === 'lesson') { const item = await db.exerciseSessions.get(id); return item ? { label: `Lesson · ${shortDate(item.completedAt ?? item.createdAt)}`, refs: [...new Set([...item.targetRefs, ...item.reviewRefs])] } : null }
-    if (kind === 'drill' || kind === 'handsfree') { const item = await db.drillSets.get(id); return item ? { label: `Practice set · ${shortDate(item.createdAt)}`, refs: [...new Set(item.refs)] } : null }
+    if (kind === 'drill' || kind === 'handsfree') { const item = await db.drillSets.get(id); return item ? { label: `Practice session · ${shortDate(item.createdAt)}`, refs: [...new Set(item.refs)] } : null }
     return null
   }, [originParam]) ?? null
   const [all, setAll] = useState(true)
@@ -399,8 +409,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     <div className="dr-columns">
       <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
         <ul className="dr-rows">
-          <li><div><strong>Practice set</strong><span className="small muted">{summary}</span></div>
-            <button type="button" className="button primary" aria-label="Start practice set" disabled={busy || nothing} onClick={() => start(selectionSource())}>Start <ArrowRight size={16} /></button></li>
+          <li><div><strong>Practice session</strong><span className="small muted">{summary}</span></div>
+            <button type="button" className="button primary" aria-label="Start practice session" disabled={busy || nothing} onClick={() => start(selectionSource())}>Start <ArrowRight size={16} /></button></li>
           <li className="dr-skill dr-skill-block"><div><strong>Practice by skill</strong><span className="small muted dr-skill-note">Picks its own items by skill, not from the selection above. </span><span className="small muted">{known.size ? `${Math.min(size, known.size)} of your ${known.size} items, ${strategy === 'least' ? 'least practised first' : 'added in the last 3 days'}` : 'Add items to your knowledge set first'}</span>
             <span className="dr-skill-pickers"><select aria-label="Skill" value={skill} onChange={event => setSkill(event.target.value as Skill)}>{SKILLS.map(entry => <option key={entry} value={entry}>{SKILL_LABEL[entry]}</option>)}</select>
               <select aria-label="Set size" value={size} onChange={event => setSize(Number(event.target.value))}>{SKILL_SIZES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select>
