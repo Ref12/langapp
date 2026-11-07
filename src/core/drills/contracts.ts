@@ -38,6 +38,8 @@ export const sentenceSchema = z.object({
   source: z.enum(['catalog', 'ai']),
   /** An AI sentence that passed the in-app check (absent: not checked, e.g. written before the check existed or the check call failed). */
   checked: z.boolean().optional(),
+  /** A catalog sentence that uses words the learner hasn't learned (the forms): chosen only when nothing fully known was available. */
+  unknown: z.array(z.string()).optional(),
 }).strict()
 
 export const conversationSchema = z.object({

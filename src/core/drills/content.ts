@@ -3,7 +3,8 @@ import { requestStructuredJSON } from '../ai/structured'
 import { judgeWith, reviewMaterial } from '../ai/check'
 import { loadCatalog, type Catalog } from '../study/catalog'
 import { createSegmenter, type Segmenter } from '../study/exercises'
-import { catalogSentence, loadItems, type ItemInfo } from './items'
+import { loadItems, FUNCTION_CHARACTERS, type ItemInfo } from './items'
+import { pickSentences } from '../phrases/sentences'
 import { conversationSchema, type Conversation, type DrillContent, type DrillSet, type Sentence } from './contracts'
 
 // Sentences and conversations for the sentence drill types. The catalog's own examples come first; the AI writes only what the catalog lacks,
@@ -12,10 +13,9 @@ import { conversationSchema, type Conversation, type DrillContent, type DrillSet
 export const SENTENCES_PER_REQUEST = 15
 const MAX_CONVERSATION_ITEMS = 12
 const han = /\p{Script=Han}/u
+export { FUNCTION_CHARACTERS }
 /** Words in the prompt are capped, most relevant first: the set's own band, then the most recently added. Validation always uses the whole knowledge set. */
 export const MAX_KNOWN_IN_PROMPT = 300
-/** Function characters allowed in AI practice material beside the known words (lessons allow only known words; these are the particles and pronouns every sentence needs). */
-export const FUNCTION_CHARACTERS = '的了吗呢吧是不很也都和在有这那我你他她们个'
 const inflight = new Map<string, Promise<void>>()
 const controllers = new Map<string, AbortController>()
 
@@ -155,8 +155,11 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
   const catalog = await loadCatalog()
   const items = await loadItems(set.refs, catalog)
   const sentences: Record<string, Sentence> = { ...set.content.sentences }
-  for (const item of items) if (!sentences[item.ref]) { const found = catalogSentence(catalog, item); if (found) sentences[item.ref] = found }
-  const allowed = allowedVocabulary(catalog, items, await db.knowledge.toArray())
+  const knowledge = await db.knowledge.toArray()
+  // The catalog's examples, chosen from the learner's words: the knowledge set plus the set's own refs (see pickSentences).
+  const chosen = await pickSentences(catalog, items.filter(item => !sentences[item.ref]), new Set([...knowledge.map(entry => entry.ref), ...set.refs]))
+  Object.assign(sentences, chosen)
+  const allowed = allowedVocabulary(catalog, items, knowledge)
   const gaps = items.filter(item => !sentences[item.ref] && item.kind !== 'phrase')
   const wantConversations = set.content.conversations.length === 0
   const connection = await db.aiConnections.get('assistant')

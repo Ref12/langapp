@@ -1,8 +1,7 @@
 import { db } from '../database'
 import type { Catalog } from '../study/catalog'
 import type { DrillSet } from '../drills/contracts'
-import { FUNCTION_CHARACTERS } from '../drills/content'
-import { catalogExamples, MAX_PHRASE_SYLLABLES } from '../drills/items'
+import { catalogExamples, FUNCTION_CHARACTERS, MAX_PHRASE_SYLLABLES } from '../drills/items'
 import { createSegmenter } from '../study/exercises'
 import { phraseKey } from './key'
 import { shippedBandSchema, type BankPhrase, type PhraseHeard, type UserPhrase } from './contracts'
@@ -124,4 +123,18 @@ export async function recordHeard(phrases: readonly string[], now = Date.now()):
     const current = await db.phraseHeard.bulkGet(unique)
     await db.phraseHeard.bulkPut(unique.map((zh, at) => ({ zh, heard: (current[at]?.heard ?? 0) + 1, lastHeardAt: now })))
   })
+}
+
+/** Usable bank phrases (shipped and the learner's own) tagged with each of the grammar points, for choosing a grammar item's sentence. Shipped bands up to the learner's highest are read, and only when asked. */
+export async function grammarPhrases(catalog: Catalog, refs: readonly string[], allowed: ReadonlySet<string>): Promise<Map<string, BankPhrase[]>> {
+  const out = new Map<string, BankPhrase[]>(refs.map(ref => [ref, []]))
+  if (!refs.length) return out
+  const topBand = Math.max(1, ...[...allowed].map(ref => bandNumber(catalog.units.get(ref)?.band)))
+  const all = new Set<BankPhrase>((await db.userPhrases.toArray()).map(userBankPhrase))
+  for (const band of Object.keys(shippedLoaders).filter(band => Number(band) <= topBand)) for (const list of Object.values(await shippedPhrases(band))) for (const phrase of list) all.add(phrase)
+  for (const phrase of all) {
+    if (!usableFor(phrase, allowed)) continue
+    for (const ref of phrase.grammar ?? []) out.get(ref)?.push(phrase)
+  }
+  return out
 }

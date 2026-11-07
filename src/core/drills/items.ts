@@ -71,12 +71,44 @@ function exampleIndex(catalog: Catalog) {
 /** Pinyin sentences join punctuation to the syllable before it: "wǒ shì xué sheng 。" reads "wǒ shì xué sheng。". */
 export const tidyPinyin = (text: string) => text.replace(/\s+([。，、！？；：．,.!?;:)）」』”’])/gu, '$1').replace(/([(（「『“‘])\s+/gu, '$1')
 
-/** The catalog's own example sentence for an item: the shortest that uses it. Free phrases are their own sentence when they have a translation. */
-export function catalogSentence(catalog: Catalog, item: ItemInfo): Sentence | undefined {
+/** Function characters any sentence may use beside the learner's words (particles and pronouns every sentence needs), also what AI practice material may add. */
+export const FUNCTION_CHARACTERS = '的了吗呢吧是不很也都和在有这那我你他她们个'
+const isFunctionForm = (form: string) => form.length > 0 && Array.from(form).every(char => FUNCTION_CHARACTERS.includes(char))
+
+/** The forms of the vocabulary refs that are not in `allowed` (the learner's words and the run's own); function characters count as allowed, a ref the catalog does not know as unknown. */
+export function unknownForms(catalog: Catalog, words: readonly string[], allowed: ReadonlySet<string>): string[] {
+  const out: string[] = []
+  for (const ref of new Set(words)) {
+    if (allowed.has(ref)) continue
+    const unit = catalog.units.get(ref)
+    const form = unit?.kind === 'vocabulary' ? unit.record.ch : ref.replace(/^vocabulary:/, '')
+    if (!isFunctionForm(form)) out.push(form)
+  }
+  return out
+}
+
+/**
+ * The catalog's own example sentence for an item. Without `allowed`: the shortest that uses it. With the learner's `allowed` set (knowledge set plus the run's own refs), in this order:
+ * 1. the shortest authored example whose words are all allowed;
+ * 2. for a grammar item, the shortest of `fallback` (usable bank phrases tagged with that grammar point, chosen by the caller);
+ * 3. the authored example with the fewest unknown words, then the shortest, marked with the forms the learner doesn't know (`unknown`).
+ * Free phrases are their own sentence when they have a translation.
+ */
+export function catalogSentence(catalog: Catalog, item: ItemInfo, allowed?: ReadonlySet<string>, fallback: readonly { zh: string; py: string; en: string; checked?: boolean }[] = []): Sentence | undefined {
   if (item.kind === 'phrase') return item.en ? { zh: item.zh, py: item.py, en: item.en, source: 'catalog' } : undefined
   if (item.kind === 'source') return undefined
-  const best = [...(exampleIndex(catalog).get(item.ref) ?? [])].sort((a, b) => a.text.length - b.text.length)[0]
-  return best ? { zh: best.text, py: best.pinyin, en: best.translation, source: 'catalog' } : undefined
+  const examples = [...(exampleIndex(catalog).get(item.ref) ?? [])].sort((a, b) => a.text.length - b.text.length)
+  const sentence = (best: (typeof examples)[number], unknown: string[]): Sentence => ({ zh: best.text, py: best.pinyin, en: best.translation, source: 'catalog', ...(unknown.length ? { unknown } : {}) })
+  if (!allowed) return examples[0] ? sentence(examples[0], []) : undefined
+  const scored = examples.map(example => ({ example, unknown: unknownForms(catalog, example.words, allowed) }))
+  const known = scored.find(entry => !entry.unknown.length)
+  if (known) return sentence(known.example, [])
+  if (item.kind === 'grammar') {
+    const phrase = [...fallback].sort((a, b) => a.zh.length - b.zh.length).find(candidate => candidate.en.trim())
+    if (phrase) return { zh: phrase.zh, py: phrase.py, en: phrase.en, source: 'ai', ...(phrase.checked ? { checked: true } : {}) }
+  }
+  const fewest = scored.reduce<(typeof scored)[number] | undefined>((found, entry) => !found || entry.unknown.length < found.unknown.length ? entry : found, undefined)
+  return fewest ? sentence(fewest.example, fewest.unknown) : undefined
 }
 
 /** A phrase longer than this many syllables is not offered in Hands-free. */

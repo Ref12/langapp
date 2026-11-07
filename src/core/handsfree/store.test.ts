@@ -2,10 +2,10 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { db, initializeWorkspace } from '../database'
 import { resetProfileStorage } from '../../test/profile-storage'
 import { addedLine } from './summary'
-import { exampleFor, loadHandsfreeSettings } from './store'
+import { buildRunScript, exampleFor, loadHandsfreeSettings } from './store'
 import { createDrillSet, discardDrillSet, ensureHandsfree, finishHandsfree, handsfreeStopped, newHandsfreeActivity, recordDrillResult, restartHandsfree, resumeRoute, unfinishedSets, updateHandsfree } from '../drills/store'
 import { introduceLessonItems, startNewSession } from '../study/knowledge'
-import { handsfreeSettingsSchema, normalizeHandsfreeSettings } from './contracts'
+import { DEFAULT_HANDSFREE_SETTINGS, handsfreeSettingsSchema, normalizeHandsfreeSettings } from './contracts'
 import { generateScript } from './script'
 import type { Catalog } from '../study/catalog'
 
@@ -149,5 +149,17 @@ describe('Hands-free usage example', () => {
     expect(exampleFor(catalog, 'vocabulary:nothing')).toEqual({})
     // a blank translation is no example
     expect(exampleFor({ orderedGroups: [{ band: '1', group: { id: 'g', units: [], examples: [example('e', 'a', '  ')] } }] } as unknown as Catalog, 'vocabulary:a')).toEqual({})
+  })
+})
+
+describe('Hands-free sentences come from the learner\'s own words', () => {
+  it('a grammar item gets a fully known example, not one with a word outside the knowledge set', async () => {
+    const run = { refs: ['grammar:zhe4-or-na4-shi4-np--identify'], settings: DEFAULT_HANDSFREE_SETTINGS, seed: 1 }
+    const known = new Set(['vocabulary:na4--that', 'vocabulary:shi4--identity', 'vocabulary:ma5--question', 'vocabulary:niu2-nai3--milk', 'vocabulary:shu1--book'])
+    const { script } = await buildRunScript(run, 'introduction', known)
+    const spoken = script.segments.flatMap(segment => segment.kind === 'say' && segment.locale === 'zh-Hans' ? [segment.text] : [])
+    expect(spoken.length).toBeGreaterThan(0)
+    expect(spoken.some(text => text.includes('牛'))).toBe(false)
+    expect(spoken[0]).toBe('这是书。')
   })
 })
