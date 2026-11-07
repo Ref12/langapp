@@ -594,3 +594,40 @@
   segments: [{word: wo3--me}, {word: hua1--spend}, {word: le5--completed}, {word: shi2--ten}, {word: yuan2--yuan}, {word: mai3--buy}, {word: zhe4--this}, {word: ge4--classifier}, {word: ben3-zi5--notebook}, {punctuation: 。}]
   translation: "I spent ten yuan on this notebook."
   grammar: [v-le5-obj--complete, amt-yuan2-or-kuai4-or-fen1--money, s-vp-vp--means, zhe4-or-na4-mw-n--this-that]
+
+# Examples for the app-authored weekday and month entries.
+- id: app-zhou-monday
+  segments: [{word: zhou1-yi1--monday}, {word: wo3--me}, {word: shang4-ke4--class}, {punctuation: 。}]
+  translation: On Mondays I have class.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-zhou-tuesday
+  segments: [{word: zhou1-er4--tuesday}, {word: wo3--me}, {word: xiu1-xi5--rest}, {punctuation: 。}]
+  translation: On Tuesdays I rest.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-zhou-wednesday
+  segments: [{word: zhou1-san1--wednesday}, {word: wo3--me}, {word: gong1-zuo4--work}, {punctuation: 。}]
+  translation: On Wednesdays I work.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-zhou-thursday
+  segments: [{word: zhou1-si4--thursday}, {word: wo3--me}, {word: xue2-xi2--study}, {punctuation: 。}]
+  translation: On Thursdays I study.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-zhou-friday
+  segments: [{word: zhou1-wu3--friday}, {word: wo3--me}, {word: shang4-ban1--work}, {punctuation: 。}]
+  translation: On Fridays I go to work.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-zhou-saturday
+  segments: [{word: zhou1-liu4--saturday}, {word: wo3--me}, {word: xiu1-xi5--rest}, {punctuation: 。}]
+  translation: On Saturdays I rest.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-zhou-sunday
+  segments: [{word: zhou1-ri4--sunday}, {word: wo3--me}, {word: xiu1-xi5--rest}, {punctuation: 。}]
+  translation: On Sundays I rest.
+  grammar: [time-s-vp-or-s-time-vp--time]
+

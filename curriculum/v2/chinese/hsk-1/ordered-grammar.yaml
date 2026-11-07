@@ -4,7 +4,7 @@
 # planner output (scripts\v2-generate-lessons.mjs), seeded by the hand-authored
 # curriculum\chinese\teaching sequence, exactly as in src\data\v2\hsk-1.generated.json.
 # Entries are copied unchanged from the canonical record; lessons use the app's group ids.
-# 97 grammar records, each exactly once, in 72 of 84 lessons (lessons that introduce no grammar are omitted;
+# 97 grammar records, each exactly once, in 71 of 87 lessons (lessons that introduce no grammar are omitted;
 # lesson numbers match the app group id and the other ordered file).
 # Source: ChineseTest / Chinese Testing International.
 
@@ -956,7 +956,7 @@
     translation: Which book do you want?
     grammar: [na3-mw-n--which, s-vp--verbal]
 
-# Lesson 0082: zh-hsk-1-lesson-0082
+# Lesson 0086: zh-hsk-1-lesson-0086
 - id: zh-hsk2026-g001
   pt: 小 + <surname>
   pr: xiǎo + <surname>
@@ -975,8 +975,6 @@
     segments: [{word: shou3-ji1--phone}, {word: yi1--one}, {word: qian1--thousand}, {word: ling2--zero}, {word: ba1--eight}, {word: yuan2--yuan}, {punctuation: 。}]
     translation: The mobile phone costs one thousand and eight yuan.
     grammar: [high-ling2-low--zero-gap, digit-qian1-rest--thousands, amt-yuan2-or-kuai4-or-fen1--money, s-np--nominal]
-
-# Lesson 0083: zh-hsk-1-lesson-0083
 - id: zh-hsk2026-g024
   pt: 半 + <measure word> + <noun>
   pr: bàn + <measure word> + <noun>
@@ -995,6 +993,8 @@
     segments: [{word: wo3--me}, {word: zai4--location}, {word: jia1--home}, {word: xue2-xi2--study}, {punctuation: 。}]
     translation: I study at home.
     grammar: [prep-obj--phrase, s-zai4-loc-vp--location]
+
+# Lesson 0087: zh-hsk-1-lesson-0087
 - id: zh-hsk2026-g050
   pt: <place> + 是 + <noun phrase>
   pr: <place> + shì + <noun phrase>
@@ -1004,8 +1004,6 @@
     segments: [{word: qian2--front}, {word: bian1--side}, {word: shi4--identity}, {word: xue2-xiao4--school}, {punctuation: 。}]
     translation: The school is up ahead.
     grammar: [loc-shi4-np--identify, dir-bian1--side]
-
-# Lesson 0084: zh-hsk-1-lesson-0084
 - id: zh-hsk2026-g051
   pt: <subject> + <first action> + <purpose action>
   pr: <subject> + <first action> + <purpose action>

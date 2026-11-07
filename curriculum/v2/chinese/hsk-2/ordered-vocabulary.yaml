@@ -4,7 +4,7 @@
 # planner output (scripts\v2-generate-lessons.mjs), seeded by the hand-authored
 # curriculum\chinese\teaching sequence, exactly as in src\data\v2\hsk-2.generated.json.
 # Entries are copied unchanged from the canonical record; lessons use the app's group ids.
-# 281 vocabulary records, each exactly once, in 70 of 70 lessons (lessons that introduce no vocabulary are omitted;
+# 288 vocabulary records, each exactly once, in 72 of 72 lessons (lessons that introduce no vocabulary are omitted;
 # lesson numbers match the app group id and the other ordered file).
 # Adapted dictionary data: CC-CEDICT contributors and Complete HSK Vocabulary
 # Adapted dictionary material: CC-BY-SA-4.0, https://creativecommons.org/licenses/by-sa/4.0/
@@ -412,21 +412,32 @@
 # Lesson 0065: zh-hsk-2-lesson-0065
 - {id: zh-hsk2-00696-s004, ch: 这么, pr: zhè me, ds: 'this way; like this', lb: zhe4-me5--this-way}
 - {id: zh-hsk1-00152-s006, ch: 花, pr: huā, ds: to spend money or time, lb: hua1--spend}
-- {id: zh-grammar-00234-s001, ch: 高高兴兴, pr: gāo gāo xìng xìng, ds: cheerful; happily (reduplicated adjective), lb: gao1-gao1-xing4-xing4--cheerful}
+- {id: zh-app-00019-s001, ch: 周一, pr: zhōu yī, ds: Monday, lb: zhou1-yi1--monday}
+- {id: zh-app-00020-s001, ch: 周二, pr: zhōu èr, ds: Tuesday, lb: zhou1-er4--tuesday}
+- {id: zh-app-00021-s001, ch: 周三, pr: zhōu sān, ds: Wednesday, lb: zhou1-san1--wednesday}
 
 # Lesson 0066: zh-hsk-2-lesson-0066
-- {id: zh-hsk1-00478-s010, ch: 正, pr: zhèng, ds: just at that moment (before an ongoing action), lb: zheng4--ongoing}
+- {id: zh-app-00022-s001, ch: 周四, pr: zhōu sì, ds: Thursday, lb: zhou1-si4--thursday}
+- {id: zh-app-00023-s001, ch: 周五, pr: zhōu wǔ, ds: Friday, lb: zhou1-wu3--friday}
+- {id: zh-app-00024-s001, ch: 周六, pr: zhōu liù, ds: Saturday, lb: zhou1-liu4--saturday}
+- {id: zh-app-00025-s001, ch: 周日, pr: zhōu rì, ds: Sunday, lb: zhou1-ri4--sunday}
 
 # Lesson 0067: zh-hsk-2-lesson-0067
-- {id: zh-hsk1-00091-s004, ch: 都, pr: dōu, ds: already; with emphasis, lb: dou1--already}
-- {id: zh-hsk2-00642-s002, ch: 因为, pr: yīn wèi, ds: because of, lb: yin1-wei4--reason}
+- {id: zh-grammar-00234-s001, ch: 高高兴兴, pr: gāo gāo xìng xìng, ds: cheerful; happily (reduplicated adjective), lb: gao1-gao1-xing4-xing4--cheerful}
 
 # Lesson 0068: zh-hsk-2-lesson-0068
-- {id: zh-grammar-00007-s001, ch: 呢, pr: ne, ds: adds a context-sensitive questioning tone, lb: ne5--question}
-- {id: zh-grammar-00003-s001, ch: 什么的, pr: shén me de, ds: and similar things; and so on, lb: shen2-me5-de5--and-so-on}
+- {id: zh-hsk1-00478-s010, ch: 正, pr: zhèng, ds: just at that moment (before an ongoing action), lb: zheng4--ongoing}
+- {id: zh-hsk1-00091-s004, ch: 都, pr: dōu, ds: already; with emphasis, lb: dou1--already}
 
 # Lesson 0069: zh-hsk-2-lesson-0069
-- {id: zh-hsk1-00049-s009, ch: 出, pr: chū, ds: complement indicating outward direction or an achieved result, lb: chu1--result}
+- {id: zh-hsk2-00642-s002, ch: 因为, pr: yīn wèi, ds: because of, lb: yin1-wei4--reason}
+- {id: zh-grammar-00007-s001, ch: 呢, pr: ne, ds: adds a context-sensitive questioning tone, lb: ne5--question}
 
 # Lesson 0070: zh-hsk-2-lesson-0070
+- {id: zh-grammar-00003-s001, ch: 什么的, pr: shén me de, ds: and similar things; and so on, lb: shen2-me5-de5--and-so-on}
+
+# Lesson 0071: zh-hsk-2-lesson-0071
+- {id: zh-hsk1-00049-s009, ch: 出, pr: chū, ds: complement indicating outward direction or an achieved result, lb: chu1--result}
+
+# Lesson 0072: zh-hsk-2-lesson-0072
 - {id: zh-hsk1-00176-s003, ch: 叫, pr: jiào, ds: to tell or order someone to act, lb: jiao4--instruct}

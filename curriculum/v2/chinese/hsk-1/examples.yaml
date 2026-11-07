@@ -703,3 +703,95 @@
   segments: [{word: ni3--you}, {word: you3--have}, {word: duo1-shao5--quantity}, {word: shu1--book}, {punctuation: ？}]
   translation: How many books do you have?
   grammar: [s-you3-np--have, ji3-mw-n-or-duo1-shao5-n--how-many]
+
+# Examples for the app-authored weekday and month entries.
+- id: app-weekday-monday
+  segments: [{word: wo3--me}, {word: xing1-qi1-yi1--monday}, {word: shang4-ke4--class}, {punctuation: 。}]
+  translation: I have class on Mondays.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-weekday-tuesday
+  segments: [{word: wo3--me}, {word: xing1-qi1-er4--tuesday}, {word: xiu1-xi5--rest}, {punctuation: 。}]
+  translation: I rest on Tuesdays.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-weekday-wednesday
+  segments: [{word: wo3--me}, {word: xing1-qi1-san1--wednesday}, {word: gong1-zuo4--work}, {punctuation: 。}]
+  translation: I work on Wednesdays.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-weekday-thursday
+  segments: [{word: wo3--me}, {word: xing1-qi1-si4--thursday}, {word: xue2-xi2--study}, {punctuation: 。}]
+  translation: I study on Thursdays.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-weekday-friday
+  segments: [{word: wo3--me}, {word: xing1-qi1-wu3--friday}, {word: shang4-ban1--work}, {punctuation: 。}]
+  translation: I go to work on Fridays.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-weekday-saturday
+  segments: [{word: wo3--me}, {word: xing1-qi1-liu4--saturday}, {word: xiu1-xi5--rest}, {punctuation: 。}]
+  translation: I rest on Saturdays.
+  grammar: [time-s-vp-or-s-time-vp--time]
+
+- id: app-month-january
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: yi1-yue4--january}, {punctuation: 。}]
+  translation: It is January now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-february
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: er4-yue4--february}, {punctuation: 。}]
+  translation: It is February now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-march
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: san1-yue4--march}, {punctuation: 。}]
+  translation: It is March now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-april
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: si4-yue4--april}, {punctuation: 。}]
+  translation: It is April now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-may
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: wu3-yue4--may}, {punctuation: 。}]
+  translation: It is May now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-june
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: liu4-yue4--june}, {punctuation: 。}]
+  translation: It is June now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-july
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: qi1-yue4--july}, {punctuation: 。}]
+  translation: It is July now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-august
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: ba1-yue4--august}, {punctuation: 。}]
+  translation: It is August now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-september
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: jiu3-yue4--september}, {punctuation: 。}]
+  translation: It is September now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-october
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: shi2-yue4--october}, {punctuation: 。}]
+  translation: It is October now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-november
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: shi2-yi1-yue4--november}, {punctuation: 。}]
+  translation: It is November now.
+  grammar: [s-shi4-n--identity]
+
+- id: app-month-december
+  segments: [{word: xian4-zai4--now}, {word: shi4--identity}, {word: shi2-er4-yue4--december}, {punctuation: 。}]
+  translation: It is December now.
+  grammar: [s-shi4-n--identity]
+

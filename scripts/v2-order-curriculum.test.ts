@@ -83,8 +83,8 @@ describe('v2 curriculum ordering', () => {
     const repositoryRoot = fileURLToPath(new URL('..', import.meta.url))
     const candidates = buildComponentCandidates(repositoryRoot)
     const words = new Map(Object.values(candidates).flat().map(word => [word.lb, word.ch]))
-    expect(words.size).toBe(176)
-    expect([...words.values()].reduce((total, word) => total + [...word].length, 0)).toBe(373)
+    expect(words.size).toBe(194)
+    expect([...words.values()].reduce((total, word) => total + [...word].length, 0)).toBe(417)
     expect(candidates['爸']).toEqual([{ ch: '爸爸', lb: 'ba4-ba5--dad' }])
     expect(candidates['读']).toEqual([
       { ch: '读书', lb: 'du2-shu1--read' },
@@ -106,8 +106,8 @@ describe('v2 curriculum ordering', () => {
     const result = validateComponentBindings()
     const candidates: ReturnType<typeof buildComponentCandidates> = readYaml(
       '../curriculum/v2/chinese/hsk-1/component-candidates.yaml')
-    expect(result.vocabularyCount).toBe(176)
-    expect(result.positionCount).toBe(373)
+    expect(result.vocabularyCount).toBe(194)
+    expect(result.positionCount).toBe(417)
     const words = new Map(Object.values(candidates).flat().map(word => [word.lb, word.ch]))
     expect(result.bindings.map(binding => binding.vocabulary)).toEqual([...words.keys()].sort())
     for (const [label, written] of words) {

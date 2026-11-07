@@ -1,0 +1,30 @@
+# App-authored vocabulary: entries that are not part of the official HSK lists. Each has a record in
+# hsk-N\vocabulary.yaml (id prefix zh-app-) so it works like any other word. The canonical v2 vocabulary
+# schema has only id, ch, pr, ds and lb, so the topic and provenance live here, keyed by lb and band.
+# Fields: band = HSK band that teaches it; lb = vocabulary label; topic = topic slug as in the legacy curriculum;
+# source = app-authored; level_basis = why it is in the band. scripts\app-authored-vocabulary.test.ts keeps this file and the inventories in step.
+- {band: 1, lb: xing1-qi1-yi1--monday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 星期 + a number (grammar zh-hsk2026-g062)'}
+- {band: 1, lb: xing1-qi1-er4--tuesday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 星期 + a number (grammar zh-hsk2026-g062)'}
+- {band: 1, lb: xing1-qi1-san1--wednesday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 星期 + a number (grammar zh-hsk2026-g062)'}
+- {band: 1, lb: xing1-qi1-si4--thursday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 星期 + a number (grammar zh-hsk2026-g062)'}
+- {band: 1, lb: xing1-qi1-wu3--friday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 星期 + a number (grammar zh-hsk2026-g062)'}
+- {band: 1, lb: xing1-qi1-liu4--saturday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 星期 + a number (grammar zh-hsk2026-g062)'}
+- {band: 1, lb: yi1-yue4--january, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: er4-yue4--february, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: san1-yue4--march, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: si4-yue4--april, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: wu3-yue4--may, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: liu4-yue4--june, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: qi1-yue4--july, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: ba1-yue4--august, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: jiu3-yue4--september, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: shi2-yue4--october, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: shi2-yi1-yue4--november, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 1, lb: shi2-er4-yue4--december, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from a number + 月 (grammar zh-hsk2026-g061)'}
+- {band: 2, lb: zhou1-yi1--monday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 周 + a number or 日'}
+- {band: 2, lb: zhou1-er4--tuesday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 周 + a number or 日'}
+- {band: 2, lb: zhou1-san1--wednesday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 周 + a number or 日'}
+- {band: 2, lb: zhou1-si4--thursday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 周 + a number or 日'}
+- {band: 2, lb: zhou1-wu3--friday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 周 + a number or 日'}
+- {band: 2, lb: zhou1-liu4--saturday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 周 + a number or 日'}
+- {band: 2, lb: zhou1-ri4--sunday, topic: time-and-calendar, source: app-authored, level_basis: 'app-authored, not in the official HSK list; derived from 周 + a number or 日'}

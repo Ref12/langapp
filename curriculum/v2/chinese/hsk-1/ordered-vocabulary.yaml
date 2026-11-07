@@ -4,7 +4,7 @@
 # planner output (scripts\v2-generate-lessons.mjs), seeded by the hand-authored
 # curriculum\chinese\teaching sequence, exactly as in src\data\v2\hsk-1.generated.json.
 # Entries are copied unchanged from the canonical record; lessons use the app's group ids.
-# 364 vocabulary records, each exactly once, in 84 of 84 lessons (lessons that introduce no vocabulary are omitted;
+# 382 vocabulary records, each exactly once, in 87 of 87 lessons (lessons that introduce no vocabulary are omitted;
 # lesson numbers match the app group id and the other ordered file).
 # Adapted dictionary data: CC-CEDICT contributors and Complete HSK Vocabulary
 # Adapted dictionary material: CC-BY-SA-4.0, https://creativecommons.org/licenses/by-sa/4.0/
@@ -533,11 +533,35 @@
 # Lesson 0082: zh-hsk-1-lesson-0082
 - {id: zh-hsk2-00308-s001, ch: 可以, pr: kě yǐ, ds: 'can; be possible', lb: ke3-yi3--possible}
 - {id: zh-hsk1-00096-s001, ch: 多, pr: duō, ds: 'many; much', lb: duo1--many}
-- {id: zh-grammar-00001-s001, ch: 小, pr: xiǎo, ds: familiar surname prefix often used for someone younger, lb: xiao3--familiar}
+- {id: zh-app-00001-s001, ch: 星期一, pr: xīng qī yī, ds: Monday, lb: xing1-qi1-yi1--monday}
+- {id: zh-app-00002-s001, ch: 星期二, pr: xīng qī èr, ds: Tuesday, lb: xing1-qi1-er4--tuesday}
+- {id: zh-app-00003-s001, ch: 星期三, pr: xīng qī sān, ds: Wednesday, lb: xing1-qi1-san1--wednesday}
 
 # Lesson 0083: zh-hsk-1-lesson-0083
-- {id: zh-hsk1-00295-s001, ch: 前, pr: qián, ds: 'front; in front', lb: qian2--front}
+- {id: zh-app-00004-s001, ch: 星期四, pr: xīng qī sì, ds: Thursday, lb: xing1-qi1-si4--thursday}
+- {id: zh-app-00005-s001, ch: 星期五, pr: xīng qī wǔ, ds: Friday, lb: xing1-qi1-wu3--friday}
+- {id: zh-app-00006-s001, ch: 星期六, pr: xīng qī liù, ds: Saturday, lb: xing1-qi1-liu4--saturday}
+- {id: zh-app-00007-s001, ch: 一月, pr: yī yuè, ds: January, lb: yi1-yue4--january}
+- {id: zh-app-00008-s001, ch: 二月, pr: èr yuè, ds: February, lb: er4-yue4--february}
 
 # Lesson 0084: zh-hsk-1-lesson-0084
+- {id: zh-app-00009-s001, ch: 三月, pr: sān yuè, ds: March, lb: san1-yue4--march}
+- {id: zh-app-00010-s001, ch: 四月, pr: sì yuè, ds: April, lb: si4-yue4--april}
+- {id: zh-app-00011-s001, ch: 五月, pr: wǔ yuè, ds: May, lb: wu3-yue4--may}
+- {id: zh-app-00012-s001, ch: 六月, pr: liù yuè, ds: June, lb: liu4-yue4--june}
+- {id: zh-app-00013-s001, ch: 七月, pr: qī yuè, ds: July, lb: qi1-yue4--july}
+
+# Lesson 0085: zh-hsk-1-lesson-0085
+- {id: zh-app-00014-s001, ch: 八月, pr: bā yuè, ds: August, lb: ba1-yue4--august}
+- {id: zh-app-00015-s001, ch: 九月, pr: jiǔ yuè, ds: September, lb: jiu3-yue4--september}
+- {id: zh-app-00016-s001, ch: 十月, pr: shí yuè, ds: October, lb: shi2-yue4--october}
+- {id: zh-app-00017-s001, ch: 十一月, pr: shí yī yuè, ds: November, lb: shi2-yi1-yue4--november}
+- {id: zh-app-00018-s001, ch: 十二月, pr: shí èr yuè, ds: December, lb: shi2-er4-yue4--december}
+
+# Lesson 0086: zh-hsk-1-lesson-0086
+- {id: zh-grammar-00001-s001, ch: 小, pr: xiǎo, ds: familiar surname prefix often used for someone younger, lb: xiao3--familiar}
+
+# Lesson 0087: zh-hsk-1-lesson-0087
+- {id: zh-hsk1-00295-s001, ch: 前, pr: qián, ds: 'front; in front', lb: qian2--front}
 - {id: zh-hsk1-00174-s002, ch: 见, pr: jiàn, ds: to meet, lb: jian4--meet}
 - {id: zh-hsk1-00363-s001, ch: 天, pr: tiān, ds: day, lb: tian1--day}

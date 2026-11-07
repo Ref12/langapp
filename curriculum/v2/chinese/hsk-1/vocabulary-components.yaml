@@ -4,6 +4,11 @@
 # Components remain in written order; surface_pr records contextual pronunciation.
 # Opaque positions preserve spelling and reading without assigning a separate sense.
 
+- vocabulary: ba1-yue4--august
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ba1--eight}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: ba4-ba5--dad
   formation: transparent
   components:
@@ -154,6 +159,11 @@
   components:
     - {kind: morpheme, ref: er2--child-component}
     - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: er4-yue4--february
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: er4--two}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: fan4-dian4--restaurant
   formation: transparent
   components:
@@ -285,6 +295,11 @@
   components:
     - {kind: morpheme, ref: jin1--current-component}
     - {kind: vocabulary, ref: tian1--day}
+- vocabulary: jiu3-yue4--september
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: jiu3--nine}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: jue2-de5--feel
   formation: opaque
   note: '觉 supplies a feeling cue; 得 is retained as part of the whole verb without assigning it the ordinary complement-linking function.'
@@ -336,6 +351,11 @@
   components:
     - {kind: vocabulary, ref: lao3--venerable}
     - {kind: morpheme, ref: shi1--teacher-component}
+- vocabulary: liu4-yue4--june
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: liu4--six}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: ma1-ma5--mom
   formation: transparent
   components:
@@ -519,6 +539,11 @@
   components:
     - {kind: opaque, ch: 苹, pr: píng}
     - {kind: morpheme, ref: guo3--fruit-component}
+- vocabulary: qi1-yue4--july
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: qi1--seven}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: qi3-chuang2--get-up
   formation: transparent
   components:
@@ -546,6 +571,11 @@
   components:
     - {kind: vocabulary, ref: ren4--recognize}
     - {kind: vocabulary, ref: shi2--recognize, surface_pr: shi}
+- vocabulary: san1-yue4--march
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: san1--three}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: shang1-dian4--shop
   formation: transparent
   components:
@@ -586,6 +616,12 @@
   components:
     - {kind: vocabulary, ref: sheng1--grow}
     - {kind: vocabulary, ref: bing4--illness}
+- vocabulary: shi2-er4-yue4--december
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shi2--ten}
+    - {kind: vocabulary, ref: er4--two}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: shi2-hou5--time
   formation: transparent
   components:
@@ -596,6 +632,17 @@
   components:
     - {kind: vocabulary, ref: shi2--time}
     - {kind: morpheme, ref: jian1--time-span-component}
+- vocabulary: shi2-yi1-yue4--november
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shi2--ten}
+    - {kind: vocabulary, ref: yi1--one}
+    - {kind: vocabulary, ref: yue4--month}
+- vocabulary: shi2-yue4--october
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shi2--ten}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: shou3-ji1--phone
   formation: lexicalized
   note: 'Hand device conventionally identifies a mobile phone, not every handheld machine.'
@@ -623,6 +670,11 @@
   components:
     - {kind: vocabulary, ref: shuo1--speak}
     - {kind: vocabulary, ref: hua4--spoken-words}
+- vocabulary: si4-yue4--april
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: si4--four}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: ta1-men5--they
   formation: transparent
   components:
@@ -691,6 +743,11 @@
   components:
     - {kind: morpheme, ref: wu3--noon-component}
     - {kind: vocabulary, ref: fan4--meal}
+- vocabulary: wu3-yue4--may
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: wu3--five}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: xi3-huan5--like
   formation: lexicalized
   note: 'Liking and delight form the conventional verb to like, without requiring an intense feeling of joy.'
@@ -773,6 +830,18 @@
   components:
     - {kind: morpheme, ref: xing1--star-component}
     - {kind: vocabulary, ref: qi1--period}
+- vocabulary: xing1-qi1-er4--tuesday
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: er4--two}
+- vocabulary: xing1-qi1-liu4--saturday
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: liu4--six}
 - vocabulary: xing1-qi1-ri4--sunday
   formation: lexicalized
   note: '星期 is the conventional week term; 日 designates Sunday rather than an arbitrary day of that week.'
@@ -780,6 +849,18 @@
     - {kind: morpheme, ref: xing1--star-component}
     - {kind: vocabulary, ref: qi1--period}
     - {kind: vocabulary, ref: ri4--day}
+- vocabulary: xing1-qi1-san1--wednesday
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: san1--three}
+- vocabulary: xing1-qi1-si4--thursday
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: si4--four}
 - vocabulary: xing1-qi1-tian1--sunday
   formation: lexicalized
   note: '星期 is the conventional week term; 天 designates Sunday rather than an arbitrary day of that week.'
@@ -787,6 +868,18 @@
     - {kind: morpheme, ref: xing1--star-component}
     - {kind: vocabulary, ref: qi1--period}
     - {kind: vocabulary, ref: tian1--day}
+- vocabulary: xing1-qi1-wu3--friday
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: wu3--five}
+- vocabulary: xing1-qi1-yi1--monday
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: yi1--one}
 - vocabulary: xiu1-xi5--rest
   formation: transparent
   components:
@@ -845,6 +938,11 @@
   components:
     - {kind: morpheme, ref: yi1--medicine-component}
     - {kind: vocabulary, ref: yuan4--institution}
+- vocabulary: yi1-yue4--january
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: yi1--one}
+    - {kind: vocabulary, ref: yue4--month}
 - vocabulary: yi3-zi5--chair
   formation: transparent
   components:
