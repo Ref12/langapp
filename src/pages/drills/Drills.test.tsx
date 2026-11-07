@@ -1,3 +1,4 @@
+import { omit } from '../../core/omit'
 import { cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -33,7 +34,7 @@ async function newSet() {
   await whenContent(id)
   // These tests cover the classic view that sets from before the engine keep: drop the engine state a new set carries.
   const created = (await getDrillSet(id))!
-  const { engine: _engine, ...classic } = created
+  const classic = omit(created, 'engine')
   await db.drillSets.put(classic)
   return classic
 }

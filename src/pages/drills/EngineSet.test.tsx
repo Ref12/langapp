@@ -1,3 +1,4 @@
+import { omit } from '../../core/omit'
 import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -37,7 +38,7 @@ describe('practice-set entry', () => {
   it('a set without engine state keeps the classic view', async () => {
     const id = await createDrillSet({ kind: 'new' })
     await whenContent(id)
-    const { engine: _engine, ...classic } = (await getDrillSet(id))!
+    const classic = omit((await getDrillSet(id))!, 'engine')
     await db.drillSets.put(classic)
     window.location.hash = `#practice/set/${id}`
     render(<App />)
@@ -75,7 +76,7 @@ describe('recording', () => {
 
   it('does not record into a set that has no engine state', async () => {
     const id = await createDrillSet({ kind: 'new' })
-    const { engine: _engine, ...classic } = (await getDrillSet(id))!
+    const classic = omit((await getDrillSet(id))!, 'engine')
     await db.drillSets.put(classic)
     expect((await recordEngineResult(id, classic.refs[0], ['reading'], 'choice', true)).graded).toBe(false)
     void recordDrillResult
