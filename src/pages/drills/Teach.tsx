@@ -6,12 +6,13 @@ import { usePageActions } from '../../components/page-actions-context'
 import { WritingPlayer } from '../Writing'
 import { reportLoadFailure } from '../../core/appUpdate'
 import { CharacterIntro, CharacterIntroBar } from './CharacterIntro'
+import type { HeadingWord } from '../../core/writing-heading'
 
 /**
  * Teaches a character with the writing practice's own player: the full loop, every phase (full guide, next-stroke guide, from memory) three
  * times. < and > step through the nine parts; the character buttons (or, with `menu`, the page's ⋮ menu) skip to the neighbouring character. The player is the one the Writing page uses (teach mode).
  */
-export function TeachCharacter({ character, workspace, onTaught, onNextCharacter, onPrevious, onPreviousCharacter, inWord = false, menu = false }: { character: string; workspace: Workspace; onTaught: (recorded: boolean) => void; onNextCharacter: () => void; onPrevious?: () => void; onPreviousCharacter?: () => void; inWord?: boolean; /** The character-level actions live in the page's ⋮ menu: the player shows no character buttons. */ menu?: boolean }) {
+export function TeachCharacter({ character, workspace, onTaught, onNextCharacter, onPrevious, onPreviousCharacter, inWord = false, menu = false, practised }: { character: string; practised?: HeadingWord; workspace: Workspace; onTaught: (recorded: boolean) => void; onNextCharacter: () => void; onPrevious?: () => void; onPreviousCharacter?: () => void; inWord?: boolean; /** The character-level actions live in the page's ⋮ menu: the player shows no character buttons. */ menu?: boolean }) {
   const [asset, setAsset] = useState<CharacterAsset>()
   const [error, setError] = useState('')
   useEffect(() => {
@@ -27,12 +28,12 @@ export function TeachCharacter({ character, workspace, onTaught, onNextCharacter
   if (!asset) return <p className="small muted" role="status">Loading the stroke guide…</p>
   return <div className="dr-teach">
     <p className="small dr-center">Watch the stroke order, then practise it three times each with the full guide, the next-stroke guide and from memory. {menu ? '< and > move through the nine parts. The ⋮ menu at the top lets you mark a character you can already write, skip it, or go back to the previous one.' : '< and > move through the nine parts; the skip buttons jump to the previous or next character.'}</p>
-    <div ref={player} className="dr-teach-player"><WritingPlayer key={character} asset={asset} teach inWord={inWord} hasPrevious={!!onPrevious} onPrevious={onPrevious} onPreviousCharacter={menu ? undefined : onPreviousCharacter} onNextCharacter={menu ? undefined : onNextCharacter} workspace={workspace} busy={false} now={Date.now()} run={operation => operation()} onNext={onTaught} /></div>
+    <div ref={player} className="dr-teach-player"><WritingPlayer key={character} asset={asset} teach inWord={inWord} practised={practised} hasPrevious={!!onPrevious} onPrevious={onPrevious} onPreviousCharacter={menu ? undefined : onPreviousCharacter} onNextCharacter={menu ? undefined : onNextCharacter} workspace={workspace} busy={false} now={Date.now()} run={operation => operation()} onNext={onTaught} /></div>
   </div>
 }
 
 /** The writing loop for each of some characters in order, `Character 2 of 3` above it. `onTaught` is called per character that was practised. */
-export function CharacterLoop({ characters, workspace, onTaught, onDone, onPreviousWord, startAtEnd = false, menu = false }: { characters: readonly string[]; workspace: Workspace; onTaught: (character: string) => void; onDone: () => void; onPreviousWord?: () => void; startAtEnd?: boolean; /** Learn to write: the character actions are items of the page's ⋮ menu, not buttons in the player. */ menu?: boolean }) {
+export function CharacterLoop({ characters, workspace, onTaught, onDone, onPreviousWord, startAtEnd = false, menu = false, practised }: { characters: readonly string[]; practised?: HeadingWord; workspace: Workspace; onTaught: (character: string) => void; onDone: () => void; onPreviousWord?: () => void; startAtEnd?: boolean; /** Learn to write: the character actions are items of the page's ⋮ menu, not buttons in the player. */ menu?: boolean }) {
   const [index, setIndex] = useState(() => startAtEnd ? Math.max(0, characters.length - 1) : 0)
   // The intro step comes first for each character; arriving from the next word's Previous goes straight to the loop.
   const [introduced, setIntroduced] = useState<ReadonlySet<string>>(() => new Set(startAtEnd ? characters.slice(0, characters.length) : []))
@@ -58,6 +59,6 @@ export function CharacterLoop({ characters, workspace, onTaught, onDone, onPrevi
   </>
   return <>
     {characters.length > 1 && <p className="small muted dr-center" role="status">Character {index + 1} of {characters.length}</p>}
-    <TeachCharacter key={character} menu={menu} inWord={characters.length > 1} onPrevious={previous} character={character} workspace={workspace} onPreviousCharacter={previous} onNextCharacter={advance} onTaught={recorded => { if (recorded) onTaught(character); advance() }} />
+    <TeachCharacter key={character} menu={menu} practised={practised} inWord={characters.length > 1} onPrevious={previous} character={character} workspace={workspace} onPreviousCharacter={previous} onNextCharacter={advance} onTaught={recorded => { if (recorded) onTaught(character); advance() }} />
   </>
 }

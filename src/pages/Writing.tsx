@@ -20,6 +20,7 @@ import { partColour, strokeParts } from '../core/characters/components'
 import { usePageSettings } from '../components/page-settings-context'
 import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
 import './writing.css'
+import { headingWord, type HeadingWord } from '../core/writing-heading'
 
 function routeCharacter(codepoint?: string): string | undefined {
   if (!codepoint || !/^[\da-f]{4,6}$/i.test(codepoint)) return undefined
@@ -123,9 +124,11 @@ export interface WritingPlayerProps {
   teach?: boolean
   /** The word being written has more than one character: show this character's own pinyin and meaning. (`place` implies it.) */
   inWord?: boolean
+  /** The word this character is being practised for (Learn to write): the heading shows it, whatever else contains the character. */
+  practised?: HeadingWord
 }
 
-export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onPreviousCharacter, onNextCharacter, onNext, teach = false, inWord = false, workspace, run, busy }: PageProps & WritingPlayerProps) {
+export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onPreviousCharacter, onNextCharacter, onNext, teach = false, inWord = false, practised, workspace, run, busy }: PageProps & WritingPlayerProps) {
   const guides = useMemo(() => asset.paths.map(makeStrokeGuide), [asset.paths])
   const [arrived] = useState(() => takeArrival(asset.character))
   const [round, setRound] = useState<WritingRound>(() => arrived ? { ...newWritingRound(), phase: arrived.phase, repetition: arrived.repetition } : newWritingRound())
@@ -152,7 +155,7 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
     if (!autoSpeak && getPlaybackState().activeId === speechId) stopBrowserSpeech()
   }, [autoSpeak, speechId])
   const { catalog } = useCatalog()
-  const word = useMemo(() => catalog ? [...catalog.units.values()].find(unit => unit.kind === 'vocabulary' && unit.record.ch.includes(asset.character)) : undefined, [catalog, asset.character])
+  const word = useMemo(() => headingWord(catalog, asset.character, practised), [catalog, asset.character, practised])
   const [meaning, setMeaning] = useState<CharacterMeaning>()
   useEffect(() => {
     let live = true
@@ -298,13 +301,13 @@ export function WritingPlayer({ asset, backHref, onBack, onClose, place, skipped
         : backHref ? <a className="text-link writing-back" href={backHref} aria-label="Back" title="Back"><ArrowLeft size={16} />Back</a> : null}
       <p className="writing-title">
         <span className={hidden ? 'writing-title-hidden' : 'writing-title-character'} lang={hidden ? undefined : 'zh-Hans'} aria-label={hidden ? 'From memory' : undefined}>{hidden ? '\u25a1' : asset.character}</span>
-        {word?.kind === 'vocabulary' && <span className="writing-title-word">
-          <span lang="zh-Hans">{hidden ? Array.from(word.record.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : word.record.ch}</span>
-          {workspace.preferences.pinyin && <> <Pinyin text={word.record.pr} /></>} <span className="muted">{word.record.ds}</span></span>}
+        {word && <span className="writing-title-word">
+          <span lang="zh-Hans">{hidden ? Array.from(word.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : word.ch}</span>
+          {workspace.preferences.pinyin && <> <Pinyin text={word.pr} /></>} <span className="muted">{word.ds}</span></span>}
       </p>
       {onClose && <button className="icon-button" type="button" aria-label="Close writing" title="Close writing" onClick={onClose}><X size={20} /></button>}
     </header>
-    {(inWord || !!place) && ownMeaning && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}
+    {(inWord || !!place) && ownMeaning && !(word && word.ch === asset.character) && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}
     <div className="writing-parts"><Decomposition character={asset.character} colour={colour} label="Parts" hideLabel="Parts" maskHead={hidden} extra={<button className={`icon-button cmp-colour${colour ? ' is-on' : ''}`} title="Colour parts" aria-label="Colour parts" aria-pressed={colour} disabled={busy} onClick={() => { void run(() => savePreferences({ writingColourParts: !colour })) }}><Palette size={18} /></button>} /></div>
     <section className="writing-workbench" aria-label="Writing exercise">
       <div className="writing-statusline">

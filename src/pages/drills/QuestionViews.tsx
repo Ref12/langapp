@@ -127,6 +127,9 @@ function PinyinSentence({ py: raw, target, syllable }: { py: string; target: str
 }
 
 /** Learn to write: the word's intro card, then the full writing loop for each of its characters in order. Next and "I already know how to write this" skip ahead. */
+/** The word a writing loop is for, as the heading shows it: only a vocabulary word (a phrase or sentence is not a word to name beside one character). */
+const practisedWord = (item: { kind: string; zh: string; py: string; en: string }) => item.kind === 'vocabulary' ? { ch: item.zh, pr: item.py, ds: item.en } : undefined
+
 function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps & { data: Extract<QData, { t: 'learn' }> }) {
   const [started, setStarted] = useState(arrive === 'last')
   const characters = useMemo(() => data.chars ?? guidedChars(data.item.zh), [data.chars, data.item.zh])
@@ -140,7 +143,7 @@ function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps
       {characters.length ? <><p className="small muted">{characters.length === 1 ? '1 character to learn.' : `${characters.length} characters to learn.`} Watch, trace, then write from memory.</p>
         <div className="button-row"><button type="button" className="button primary" onClick={() => setStarted(true)}><PenLine size={16} /> Learn to write it</button></div></>
         : <><p className="small muted">{data.chars ? 'You have already written these characters.' : 'There is no stroke guide for these characters.'}</p><div className="button-row"><button type="button" className="button primary" onClick={finish}>Continue</button></div></>}</div></PageDock>}
-    {started && <CharacterLoop characters={characters} workspace={ctx.workspace} startAtEnd={arrive === 'last'} menu onPreviousWord={onPrevious} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
+    {started && <CharacterLoop characters={characters} practised={practisedWord(data.item)} workspace={ctx.workspace} startAtEnd={arrive === 'last'} menu onPreviousWord={onPrevious} onTaught={character => { void markCharactersWritten([character]) }} onDone={finish} />}
     <Result state={state} />
   </>
 }
@@ -163,7 +166,7 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
   const characters = useMemo(() => guidedChars(target), [target])
   if (practising && !locked) return <>
     <p className="small dr-center muted">Practising {target}. This counts as Needed a hint.</p>
-    <CharacterLoop characters={characters} workspace={ctx.workspace} onTaught={character => { void markCharactersWritten([character]) }} onDone={() => setPractising(false)} />
+    <CharacterLoop characters={characters} practised={practisedWord(data.item)} workspace={ctx.workspace} onTaught={character => { void markCharactersWritten([character]) }} onDone={() => setPractising(false)} />
     <div className="button-row dr-center"><button type="button" className="button secondary" onClick={() => setPractising(false)}>Back to the question</button></div>
   </>
   return <>
