@@ -1,3 +1,4 @@
+import { loadPracticeChain } from '../assistant/practice-chain-load'
 import { db } from '../database'
 import type { Catalog } from '../study/catalog'
 import { tagGrammar } from './grammar-match'
@@ -18,7 +19,7 @@ export function vocabularyByForm(catalog: Catalog): Map<string, string> {
 /** Builds the stored phrase: py is the given romanization or generated pinyin, words are the catalog words of the code split (characters it cannot map are left out). */
 export async function buildUserPhrase(catalog: Catalog, input: { text: string; romanization?: string; meaning?: string }, addedAt = Date.now()): Promise<UserPhrase> {
   const zh = input.text.trim()
-  const engine = await import('../assistant/practice-chain')
+  const engine = await loadPracticeChain()
   const plan = engine.createPracticePlan(zh, input.romanization, true)
   const pieces: string[] = []
   for (const chunk of engine.getPracticeChunks(plan)) {

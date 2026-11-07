@@ -1,3 +1,4 @@
+import { loadPracticeChain } from '../assistant/practice-chain-load'
 import { judgeWith, reviewMaterial } from '../ai/check'
 import { z } from 'zod'
 import type { Workspace } from '../model'
@@ -32,7 +33,7 @@ export async function prepareSudokuPhrase(input: SudokuPhrase, available: Sudoku
   const known = new Set(available.map(symbol => symbol.character))
   const unknown = characters.slice(0, size).filter(character => !known.has(character))
   if (unknown.length) throw new Error(`Add these phrase characters to your learning set first: ${unknown.join(' ')}`)
-  const { createPracticePlan } = await import('../assistant/practice-chain')
+  const { createPracticePlan } = await loadPracticeChain()
   const plan = createPracticePlan(phrase.text, phrase.pinyin || undefined)
   const pinyin = phrase.pinyin || plan.units.map(unit => unit.pinyin || '\u25a1').join(' ')
   const symbols = characters.slice(0, size).map(character => {

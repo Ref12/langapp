@@ -1,3 +1,4 @@
+import { loadPracticeChain } from '../../core/assistant/practice-chain-load'
 import { useEffect, useState } from 'react'
 import { isHan } from '../../core/characters/writing-route'
 
@@ -10,7 +11,7 @@ export function useWriteWords(text: string, romanization?: string): { words?: Wr
     let disposed = false
     setState({})
     if (!Array.from(text).some(isHan)) { setState({ words: [] }); return }
-    void import('../../core/assistant/practice-chain').then(engine => {
+    void loadPracticeChain().then(engine => {
       const plan = engine.createPracticePlan(text, romanization, true)
       const words: WriteWord[] = []
       for (const chunk of engine.getPracticeChunks(plan)) {

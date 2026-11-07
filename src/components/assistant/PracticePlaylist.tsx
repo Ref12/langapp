@@ -1,3 +1,4 @@
+import { loadPracticeChain } from '../../core/assistant/practice-chain-load'
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp, ListMusic, Mic, Minus, Pause, Play, Plus, Quote, Repeat2, SkipBack, SkipForward, SlidersHorizontal, TrendingUp, WholeWord, X } from 'lucide-react'
@@ -144,7 +145,7 @@ export function PracticePlaylist({ phrase, rate, savedEnds, savedItems, busy, re
     let active = true
     setLoadError('')
     setLoaded(undefined)
-    void import('../../core/assistant/practice-chain').then(engine => {
+    void loadPracticeChain().then(engine => {
       if (!active) return
       let plan = engine.createPracticePlan(phrase.text, phrase.romanization, !saved.current.ends)
       if (saved.current.ends) plan = engine.applyPracticeEnds(plan, saved.current.ends)

@@ -1,4 +1,6 @@
 import { pinyin, segment } from 'pinyin-pro'
+import { phraseCharReadings } from '../pinyin/phrase'
+import { loadedPhraseReadings } from '../pinyin/phrase-readings'
 import {
   hasPracticeSpeech,
   isPracticeBoundary,
@@ -189,11 +191,15 @@ export function createPracticePlan(text: string, romanization?: string, wordByWo
   if (!provided && characters.some(character => han.test(character))) {
     warnings.push('Pinyin was derived locally using the full phrase. Polyphones, names and tone changes may need review.')
   }
+  // Catalog readings keep neutral tones and apply 一/不 and 儿; they are used when the catalog index is loaded (loadPracticeChain waits for it) and no romanization came with the text.
+  const catalogReadings = !provided && loadedPhraseReadings() ? phraseCharReadings(text, loadedPhraseReadings()!) : undefined
+  let hanIndex = 0
   const missing = new Set<string>()
   const units = characters.map((character, index): PracticeUnit => {
     if (!han.test(character)) return { text: character, pinyin: character }
     const reading = readings[index]
-    const value = provided?.[index] ?? (reading?.isZh && readingBase(reading.pinyin) ? reading.pinyin : '')
+    const local = catalogReadings?.[hanIndex++]?.syllable
+    const value = provided?.[index] ?? (local || undefined) ?? (reading?.isZh && readingBase(reading.pinyin) ? reading.pinyin : '')
     if (!value) missing.add(character)
     return { text: character, pinyin: value }
   })

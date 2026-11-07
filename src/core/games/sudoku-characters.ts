@@ -1,3 +1,4 @@
+import { loadPracticeChain } from '../assistant/practice-chain-load'
 import type { Workspace } from '../model'
 import type { Catalog } from '../study/catalog'
 import { characterKnowledge, wordCharacters } from '../characters/dictionary'
@@ -39,7 +40,7 @@ export function sudokuCharacters(catalog: Catalog, workspace: Workspace): Sudoku
 /** Use the actual containing words first, not just standalone curriculum entries. */
 export async function resolveSudokuReadings(symbol: SudokuSymbol, standalone: Iterable<string> = []): Promise<string[]> {
   if (symbol.readings?.length) return [...new Set(symbol.readings.map(value => value.normalize('NFC')))]
-  const { createPracticePlan } = await import('../assistant/practice-chain')
+  const { createPracticePlan } = await loadPracticeChain()
   const contextual = new Set<string>()
   for (const context of symbol.contexts) {
     const plan = createPracticePlan(context.text, context.pinyin || undefined)

@@ -1,4 +1,5 @@
-import { pinyin as toPinyin } from 'pinyin-pro'
+import { phrasePinyin } from '../pinyin/phrase'
+import { phraseReadingsOf } from '../pinyin/phrase-readings'
 import { db } from '../database'
 import { loadCatalog, renderExample, type Catalog } from '../study/catalog'
 import { isPhraseRef, isSourceRef } from '../study/contracts'
@@ -28,7 +29,7 @@ export async function loadItems(refs: readonly string[], catalog?: Catalog): Pro
       items.push({ ref, kind: 'grammar', zh: unit.record.pt, py: unit.record.pr, en: unit.record.ds })
     } else if (isPhraseRef(ref)) {
       const row = phraseRows.find(item => item.ref === ref)
-      if (row?.text) items.push({ ref, kind: 'phrase', zh: row.text, py: toPinyin(row.text, { toneType: 'symbol' }), en: row.translation ?? '' })
+      if (row?.text) items.push({ ref, kind: 'phrase', zh: row.text, py: phrasePinyin(row.text, phraseReadingsOf(cat)), en: row.translation ?? '' })
     } else if (isSourceRef(ref)) {
       const row = sourceRows.find(entry => entry?.id === ref.slice('source:'.length))
       if (row) items.push({ ref, kind: 'source', zh: row.word, py: row.pinyin, en: row.meanings.join('; ') })

@@ -188,6 +188,8 @@ function Picked({ text, pinyin, meaning, note, context }: { text: string; pinyin
 function WordLine({ text, pinyin, lookup, className = 'media-now' }: { className?: string; text: string; pinyin: boolean; lookup: { readings: Map<string, Set<string>>; meanings: Map<string, string> } }) {
   const [selected, setSelected] = useState<{ text: string; pinyin?: string; meaning?: string }>()
   const units = useMemo(() => lineUnits(text, lookup.readings), [text, lookup.readings])
+  // Until the catalog has loaded there are no readings to show: plain text, not pinyin-pro's reading that would change on load.
+  if (lookup.readings.size === 0) return <p className={className} lang="zh-Hans">{text}</p>
   return <>
     <p className={className} lang="zh-Hans">{units.map((unit, index) => {
       if (!unit.pinyin) return <span key={index} className="media-plain">{unit.text}</span>

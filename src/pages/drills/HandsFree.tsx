@@ -10,7 +10,8 @@ import { activityOf, handsfreeRoute, ensureHandsfree, finishHandsfree, updateHan
 import type { DrillSet } from '../../core/drills/contracts'
 import { addedLine } from '../../core/handsfree/summary'
 import { resolveVoices } from '../../core/handsfree/voices'
-import { pinyin as toPinyin } from 'pinyin-pro'
+import { phrasePinyin } from '../../core/pinyin/phrase'
+import { phraseReadingsOf } from '../../core/pinyin/phrase-readings'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
@@ -39,7 +40,7 @@ export function instructionOf(marker: { index: number; act?: string; item?: stri
 const hasHan = (text: string) => HAN_TEXT.test(text)
 
 /** The player's display, also the pocket-mode screen: the phase, the prompt, then the answer once it is being spoken. */
-function Display({ phase, instruction = '', fresh, prompt, heard, done, total, position, added, className = '' }: { phase: string; instruction?: string; /** True for a new item, false for a review one, undefined for no tag. */ fresh?: boolean; prompt: string; heard: Heard; done: boolean; total: number; position: number; added: string; className?: string }) {
+function Display({ phase, instruction = '', fresh, prompt, heard, done, total, position, added, readings, className = '' }: { readings?: ReadonlyMap<string, string>; phase: string; instruction?: string; /** True for a new item, false for a review one, undefined for no tag. */ fresh?: boolean; prompt: string; heard: Heard; done: boolean; total: number; position: number; added: string; className?: string }) {
   const zh = heard.zh
   const main = done ? 'Well done.' : heard.section ?? zh ?? prompt
   return <div className={'hf-display ' + className}>
@@ -48,7 +49,7 @@ function Display({ phase, instruction = '', fresh, prompt, heard, done, total, p
     {!done && zh && !hasHan(prompt) && prompt && <p className="hf-cue">{prompt}</p>}
     <p className={'hf-prompt' + (heard.section && !done ? ' hf-section' : '')} lang={!done && hasHan(main) ? 'zh-Hans' : undefined}>{main}</p>
     {!done && heard.section && heard.detail && <p className="hf-cue" data-testid="hf-section-detail">{heard.detail}</p>}
-    {!done && zh && <p className="hf-pinyin" data-testid="hf-pinyin">{toPinyin(zh, { toneType: 'symbol' })}</p>}
+    {!done && zh && readings && <p className="hf-pinyin" data-testid="hf-pinyin">{phrasePinyin(zh, readings)}</p>}
     {!done && heard.en && <p className="hf-answer" data-testid="hf-answer">{heard.en}</p>}
     {done && added && <p className="hf-added" role="status">{added}</p>}
     <progress aria-label="Run progress" value={done ? total : Math.min(position, total)} max={Math.max(1, total)} />
@@ -83,6 +84,7 @@ const settingsKey = (settings: HandsfreeSettings) => (() => { const s = normaliz
 
 function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { hf: Run }) {
   const { catalog } = useCatalog()
+  const readings = useMemo(() => catalog ? phraseReadingsOf(catalog) : undefined, [catalog])
   // New or Review is judged against the knowledge set as it was when the run opened.
   const startKnown = useRef<ReadonlySet<string>>(new Set(workspace.knowledge.map(entry => entry.ref)))
   const [items, setItems] = useState<ItemInfo[]>()
@@ -209,7 +211,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
     <PageHeading eyebrow={eyebrow} title={run.title} action={<button type="button" className="button secondary" onClick={() => { playerRef.current?.pause(); setView('intro') }}><Eye size={16} /> View items</button>}>Listen, answer aloud, hear the answer, repeat it. Nothing is graded.</PageHeading>
     {error && <p className="notice error" role="alert">{error}</p>}
     <section className="panel hf-stage" aria-label="Now playing" aria-live="polite">
-      <Display phase={phaseLine} instruction={instruction} fresh={fresh} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} />
+      <Display phase={phaseLine} instruction={instruction} fresh={fresh} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} readings={readings} />
       <div className="hf-controls">
         <button type="button" className="button secondary icon-only" aria-label="Back" disabled={!script || state.prompt <= 0 && !done} onClick={() => playerRef.current?.back()}><SkipBack size={22} /></button>
         <button type="button" className="button primary hf-play" aria-label={playing ? 'Pause' : done ? 'Play again' : state.prompt > 0 ? 'Resume' : 'Play'} disabled={!script || !total} onClick={() => playing ? playerRef.current?.pause() : playerRef.current?.play()}>{playing ? <Pause size={26} /> : <Play size={26} />}</button>
@@ -221,7 +223,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
     </section>
     {eyeItem && catalog && <Sheet title="This item" label="Current item" onClose={() => setEyeItem(undefined)}><IntroCards items={[eyeItem]} catalog={catalog} workspace={workspace} now={now} run={perform} busy={busy} route={`practice/set/${run.id}/${handsfreeRoute(run.kind)}`} /></Sheet>}
     {settingsOpen && <Sheet title="Settings" label="Hands-free settings" onClose={() => setSettingsOpen(false)} footer={<p className="small muted">Changes apply from the next prompt.</p>}><HandsfreeSettingsForm settings={run.settings} onChange={change} /></Sheet>}
-    {pocket && <PocketOverlay onExit={() => setPocket(false)}><Display phase={phaseLine} instruction={instruction} fresh={fresh} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} className="hf-pocket-display" /></PocketOverlay>}
+    {pocket && <PocketOverlay onExit={() => setPocket(false)}><Display phase={phaseLine} instruction={instruction} fresh={fresh} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} readings={readings} className="hf-pocket-display" /></PocketOverlay>}
   </div>
 }
 
