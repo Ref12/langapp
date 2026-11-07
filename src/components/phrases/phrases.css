@@ -13,7 +13,6 @@
 .phrase-actions { display: flex; align-items: center; gap: 4px; }
 .phrase-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .phrase-word-link { font-size: 0.8rem; }
-.phrase-filter { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 @media (max-width: 760px) {
   .phrase-table, .phrase-table tbody, .phrase-table tr, .phrase-table td { display: block; width: 100%; box-sizing: border-box; }
   .phrase-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }

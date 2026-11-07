@@ -171,16 +171,20 @@ export function buildPhraseRows(catalog: Catalog, entries: readonly PhraseEntry[
   return built.map((row, at) => ({ row, at })).sort((a, b) => a.row.lesson - b.row.lesson || sourceOrder(a.row.phrase) - sourceOrder(b.row.phrase) || a.at - b.at).map(item => item.row)
 }
 
-export interface PhraseFilter { scope?: PhraseScope; band?: string; query?: string; word?: string }
+export interface PhraseFilter { scope?: PhraseScope; band?: string; query?: string; formOf?: (ref: string) => string | undefined }
 
-/** Rows matching band, word and search, not yet by scope; search ranks like the vocabulary search (Chinese, toneless pinyin, English), best first. */
-export function filterPhraseRows(rows: readonly PhraseRow[], { band = 'all', query = '', word }: Omit<PhraseFilter, 'scope'>): PhraseRow[] {
+/** Rows matching band and search (formOf maps a vocabulary ref to its Chinese, to rank phrases that use the searched word as a word first), not yet by scope; search ranks like the vocabulary search (Chinese, toneless pinyin, English), best first. */
+export function filterPhraseRows(rows: readonly PhraseRow[], { band = 'all', query = '', formOf }: Omit<PhraseFilter, 'scope'>): PhraseRow[] {
   const matcher = makeMatcher(query)
+  const wanted = query.trim()
   const found: { row: PhraseRow; rank: number; at: number }[] = []
   rows.forEach((row, at) => {
-    if ((band !== 'all' && row.band !== band) || (word && !row.phrase.words.includes(word))) return
+    if (band !== 'all' && row.band !== band) return
     const rank = matcher.empty ? 0 : matcher.rank({ text: [row.phrase.zh], pr: row.pinyin, ds: row.phrase.en })
-    if (rank !== undefined) found.push({ row, rank, at })
+    if (rank === undefined) return
+    // A phrase that uses the searched word as a word (its segmented refs) comes before one that only contains the characters inside other words.
+    const asWord = !matcher.empty && !!formOf && row.phrase.words.some(ref => formOf(ref) === wanted)
+    found.push({ row, rank: asWord ? -1 : rank, at })
   })
   return found.sort((a, b) => a.rank - b.rank || a.at - b.at).map(item => item.row)
 }
@@ -194,5 +198,5 @@ export function phraseScopeCounts(rows: readonly PhraseRow[]): Record<PhraseScop
 /** How many phrases use a word (by its vocabulary ref). */
 export const phraseCountFor = (entries: readonly PhraseEntry[], ref: string) => entries.filter(entry => entry.phrase.words.includes(ref)).length
 
-/** The Phrases route filtered to a word; a query parameter, so the link can be shared and the back button returns to where it was clicked. */
-export const phrasesRouteFor = (ref: string) => `dictionary/phrases/all?word=${encodeURIComponent(ref)}`
+/** The Phrases route with the word's Chinese in the search box; a query parameter, so the link can be shared and the back button returns to where it was clicked. */
+export const phrasesRouteFor = (ch: string) => `dictionary/phrases/all?q=${encodeURIComponent(ch)}`

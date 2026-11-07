@@ -89,7 +89,7 @@ describe('phrase dictionary list', () => {
 
   it('searches Chinese, toneless pinyin and English, and by word', async () => {
     const { rows: list } = await rows([])
-    const zhs = (query: string, word?: string) => filterPhraseRows(list, { query, word }).map(row => row.phrase.zh)
+    const zhs = (query: string, formOf?: (ref: string) => string | undefined) => filterPhraseRows(list, { query, formOf }).map(row => row.phrase.zh)
     expect(zhs('学生')).toContain('我是好学生。')
     expect(zhs('wo shi hao xue')).toContain('我是好学生。')
     expect(zhs('woshihaoxuesheng')).toContain('我是好学生。')
@@ -98,9 +98,10 @@ describe('phrase dictionary list', () => {
     expect(zhs('are you a good student')).toContain('你是好学生吗？')
     expect(zhs('student')).toContain('学生，你好。')
     expect(zhs('zzzzqq')).toEqual([])
-    const withWord = zhs('', student)
+    // a word searched by its Chinese finds the phrases that contain it
+    const withWord = zhs('学生')
     expect(withWord).toContain('我是好学生。')
-    expect(withWord.every(zh => list.find(row => row.phrase.zh === zh)!.phrase.words.includes(student))).toBe(true)
+    expect(withWord.every(zh => zh.includes('学生'))).toBe(true)
     expect(phraseCountFor(list.map(row => ({ phrase: row.phrase, band: row.band })), student)).toBeGreaterThan(2)
   })
 
@@ -117,6 +118,21 @@ describe('phrase dictionary list', () => {
     expect(same[0].phrase.zh).toBe(lesson.zh)
     expect(same[0].phrase.source).toBe('catalog')
     expect(phraseKey('\u73b0\u5728\u592a\u665a\u4e86\uff01')).toBe(phraseKey('\u73b0\u5728 \u592a\u665a\u4e86\u3002'))
+  })
+
+  it('ranks a phrase that uses the searched character as a word before one that holds it only inside another word', async () => {
+    const ai = v('ai4--love')
+    // 爱 is a word of its own in the first phrase and only a part of 爱好 in the second
+    const { rows: list } = await rows([], [own('我爱你。', [me, ai]), own('我的爱好。', [me, v('ai4-hao4--hobby')])])
+    const formOf = (ref: string) => ref === ai ? '爱' : undefined
+    expect(filterPhraseRows(list, { query: '爱', formOf }).map(row => row.phrase.zh).slice(0, 2)).toContain('我爱你。')
+    const ranked = filterPhraseRows(list, { query: '爱', formOf }).map(row => row.phrase.zh)
+    const asWords = ranked.filter(zh => list.find(row => row.phrase.zh === zh)!.phrase.words.includes(ai))
+    expect(ranked.slice(0, asWords.length).sort()).toEqual([...asWords].sort()) // the word matches come first
+    expect(ranked).toContain('我的爱好。') // a substring match still lists, after them
+    expect(ranked.indexOf('我的爱好。')).toBeGreaterThanOrEqual(asWords.length)
+    // without the form lookup it is the plain search
+    expect(filterPhraseRows(list, { query: '爱' })).toHaveLength(ranked.length)
   })
 
   it('counts and scopes: ready, pending and added by me, with the heard log and the sources', async () => {
@@ -138,7 +154,7 @@ describe('phrase dictionary list', () => {
     expect(byZh(list, '学生，你好。').sourceLabel).toBe('Reader, ch. 2')
     expect(byZh(list, '你你').pinyin).toMatch(/^nǐ/) // no stored pinyin: the catalog reading
     expect(entries.map(entry => entry.phrase.zh)).not.toContain('我在练习。')
-    expect(phrasesRouteFor(student)).toBe('dictionary/phrases/all?word=' + encodeURIComponent(student))
+    expect(phrasesRouteFor('学生')).toBe('dictionary/phrases/all?q=' + encodeURIComponent('学生'))
   })
 
   it('orders every scope by the lesson where a phrase becomes ready, then lesson examples, generated, then the learner own', async () => {
@@ -157,7 +173,7 @@ describe('phrase dictionary list', () => {
     const tie = list.filter(row => row.lesson === byZh(list, '你你').lesson)
     expect(tie.map(row => rank(row.phrase.source))).toEqual([...tie.map(row => rank(row.phrase.source))].sort((a, b) => a - b))
     // a word-filtered view keeps the order, and the earliest phrase leads the unfiltered list
-    const filtered = filterPhraseRows(list, { word: student })
+    const filtered = filterPhraseRows(list, { query: '学生' })
     expect(filtered.map(row => row.lesson)).toEqual([...filtered.map(row => row.lesson)].sort((a, b) => a - b))
     expect(list[0].lesson).toBeLessThanOrEqual(Math.min(...list.map(row => row.lesson)))
     expect(filterPhraseRows(list, {}).map(row => row.phrase.zh)).toEqual(list.map(row => row.phrase.zh))

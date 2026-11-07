@@ -652,7 +652,7 @@ describe('phrase bank pipeline: ids and the YAML files', () => {
     expect(outputs[0][1].toString()).toBe(phraseJsonText({ band: '1', phrases }))
     // the repository's own files
     for (const [path, expected] of phraseBankOutputs()) expect(readFileSync(path, 'utf8')).toBe(expected.toString())
-  })
+  }, 30_000) // it reads and rewrites every shipped band, so it needs more than the default 5 s once they are full
 
   it('refuses a phrase listed in two bands', () => {
     const dir = temp()

@@ -11,6 +11,11 @@ vi.mock('../../data/phrases/hsk-1.json', () => ({ default: { schemaVersion: 2, b
   { id: 3, zh: '我喝茶，我是学生。', py: 'wǒ hē chá, wǒ shì xué sheng', en: 'I drink tea; I am a student.', words: ['wo3--me', 'he1--drink', 'cha2--tea', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true, lookahead: 4, readyAt: 10 },
   { id: 5, zh: '学生，你好。', py: 'xué sheng, nǐ hǎo', en: 'Hello, student.', words: ['xue2-sheng5--student', 'ni3--you'], grammar: ['stmt-ma5--yes-no'], source: 'book', ref: { title: 'Reader', chapter: 2 }, checked: false },
 ] } }))
+// Bands without a fixture are empty, so the test never depends on the shipped data.
+vi.mock('../../data/phrases/hsk-3.json', () => ({ default: { schemaVersion: 2, band: '3', phrases: [] } }))
+vi.mock('../../data/phrases/hsk-4.json', () => ({ default: { schemaVersion: 2, band: '4', phrases: [] } }))
+vi.mock('../../data/phrases/hsk-5.json', () => ({ default: { schemaVersion: 2, band: '5', phrases: [] } }))
+vi.mock('../../data/phrases/hsk-6.json', () => ({ default: { schemaVersion: 2, band: '6', phrases: [] } }))
 vi.mock('../../data/phrases/hsk-2.json', () => ({ default: { schemaVersion: 2, band: '2', phrases: [
   { id: 1, zh: '啊，我是学生。', py: 'a, wǒ shì xué sheng', en: 'Ah, I am a student.', words: ['a5--particle', 'wo3--me', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true },
 ] } }))

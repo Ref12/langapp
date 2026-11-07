@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
 import { savePreferences } from '../core/learning'
@@ -30,7 +30,7 @@ import './writing.css'
 
 const PAGE = 48
 
-export function Dictionary({ workspace, now, run, busy, section, initialScope, initialQuery, initialWrite, initialWord }: PageProps & { section?: string; initialScope?: string; initialQuery?: string; initialWrite?: string; initialWord?: string }) {
+export function Dictionary({ workspace, now, run, busy, section, initialScope, initialQuery, initialWrite }: PageProps & { section?: string; initialScope?: string; initialQuery?: string; initialWrite?: string }) {
   const { catalog, error } = useCatalog()
   const kind: UnitKind | 'characters' = section === 'characters' ? 'characters' : section === 'grammar' ? 'grammar' : 'vocabulary'
   const explicit = initialScope === 'knowledge' || initialScope === 'all' || initialScope === 'collections' || initialScope === 'media' ? initialScope : undefined
@@ -48,8 +48,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   useEffect(() => {
     if (explicitWrite && explicitWrite !== workspace.preferences.characterWriteFilter) void savePreferences({ characterWriteFilter: explicitWrite }).catch(() => undefined)
   }, [explicitWrite, workspace.preferences.characterWriteFilter])
-  const goPhrases = (next: PhraseScope) => { setLimit(PAGE); window.location.hash = `dictionary/phrases/${next}${initialWord ? `?word=${encodeURIComponent(initialWord)}` : ''}` }
-  const go = (section: string, next: 'all' | 'knowledge' | 'collections' | 'media', write: 'all' | 'can' | 'not' = writeFilter) => { window.location.hash = `dictionary/${section}/${next}${section === 'characters' && next === 'knowledge' && write !== 'all' ? `?write=${write}` : ''}` }
+  // The search text survives a change of scope (and band): it travels in the route as ?q=. A change of section clears it.
+  const withQuery = (parts: string[]) => { const all = [...(query.trim() ? [`q=${encodeURIComponent(query)}`] : []), ...parts]; return all.length ? `?${all.join('&')}` : '' }
+  const goPhrases = (next: PhraseScope) => { setLimit(PAGE); window.location.hash = `dictionary/phrases/${next}${withQuery([])}` }
+  const go = (section: string, next: 'all' | 'knowledge' | 'collections' | 'media', write: 'all' | 'can' | 'not' = writeFilter) => { window.location.hash = `dictionary/${section}/${next}${withQuery(section === 'characters' && next === 'knowledge' && write !== 'all' ? [`write=${write}`] : [])}` }
+  const goSection = (section: string) => { setQuery(''); setLimit(PAGE); window.location.hash = section === 'phrases' ? 'dictionary/phrases/all' : `dictionary/${section}/${scope}` }
   const [band, setBand] = useState('all')
   const [query, setQuery] = useState(initialQuery ?? '')
   const [limit, setLimit] = useState(PAGE)
@@ -146,10 +149,10 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     const ranks = new Map(eligible.map(item => [item.entry, item.rank]))
     return byRank(eligible.map(item => item.entry), entry => ranks.get(entry)!, entry => known.has(`source:${entry.id}`), () => 0)
   })()
-  const filteredPhrases = useMemo(() => filterPhraseRows(phraseRows ?? [], { band, query, word: initialWord }), [phraseRows, band, query, initialWord])
+  const formOf = useCallback((ref: string) => { const unit = catalog?.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : undefined }, [catalog])
+  const filteredPhrases = useMemo(() => filterPhraseRows(phraseRows ?? [], { band, query, formOf }), [phraseRows, band, query, formOf])
   const phraseCounts = phraseScopeCounts(filteredPhrases)
   const phraseMatches = filteredPhrases.filter(row => inPhraseScope(row, phraseScope))
-  const phraseWord = initialWord ? (catalog?.units.get(initialWord)?.kind === 'vocabulary' ? (catalog.units.get(initialWord) as { record: { ch: string } }).record.ch : initialWord) : undefined
   const count = phrasesView ? phraseMatches.length : scope === 'media' ? sourceMatches.length : (kind === 'characters' ? characterMatches.length : matches.length)
   const selectable = !phrasesView && scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
   const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })
@@ -181,10 +184,10 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     <div className="library-toolbar">
       <div className="segmented" role="group" aria-label="Dictionary section">
-        <button aria-pressed={!phrasesView && kind === 'vocabulary'} onClick={() => { go('vocabulary', scope) }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
-        <button aria-pressed={!phrasesView && kind === 'grammar'} onClick={() => { go('grammar', scope) }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
-        <button aria-pressed={!phrasesView && kind === 'characters'} onClick={() => { go('characters', scope) }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>
-        <button aria-pressed={phrasesView} onClick={() => { setLimit(PAGE); window.location.hash = 'dictionary/phrases/all' }}>Phrases{phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : indexedTotal !== undefined ? ` (${indexedTotal.toLocaleString('en-US')})` : ''}</button>
+        <button aria-pressed={!phrasesView && kind === 'vocabulary'} onClick={() => { goSection('vocabulary') }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
+        <button aria-pressed={!phrasesView && kind === 'grammar'} onClick={() => { goSection('grammar') }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
+        <button aria-pressed={!phrasesView && kind === 'characters'} onClick={() => { goSection('characters') }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>
+        <button aria-pressed={phrasesView} onClick={() => { goSection('phrases') }}>Phrases{phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : indexedTotal !== undefined ? ` (${indexedTotal.toLocaleString('en-US')})` : ''}</button>
       </div>
       {phrasesView ? <div className="segmented" role="group" aria-label="Phrase scope">
         {PHRASE_SCOPES.map(value => <button key={value} aria-pressed={phraseScope === value} onClick={() => goPhrases(value)}>{{ all: 'All', ready: 'Ready', pending: 'Pending', mine: 'Added by me' }[value]}{phraseRows ? ` (${phraseCounts[value].toLocaleString('en-US')})` : ''}</button>)}
@@ -215,12 +218,12 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     {drawing && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => select(setQuery)(query + character)} />}
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? phrasesView && !phraseRows ? 'Loading phrases...' : phrasesView ? `${count} ${count === 1 ? 'phrase' : 'phrases'}` : `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
-    {phrasesView && <>{phraseWord && <p className="small phrase-filter" role="status">Phrases with <strong lang="zh-Hans">{phraseWord}</strong> <a href={`#dictionary/phrases/${phraseScope}`}>Show all phrases</a></p>}
+    {phrasesView && <>
       {phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, 'zh-Hans')} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}</>}
     {!phrasesView && scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
     {catalog && !phrasesView && kind !== 'characters' && scope !== 'media' && <div className="word-grid">{matches.slice(0, limit).map(unit => <div key={unit.ref} className={`select-item${picked.has(unit.ref) ? ' picked' : ''}`}>{unit.kind === 'vocabulary' && <div className="select-row">{pickRow(unit.ref, unit.record.ch, unit.record.ch)}{writeTag(unit.record.ch)}</div>}<UnitCard catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
-      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact phrases={unit.kind === 'vocabulary' ? { href: `#${phrasesRouteFor(unit.ref)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : indexedUse(unit.ref) } : undefined} /></div>)}</div>}
+      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact phrases={unit.kind === 'vocabulary' ? { href: `#${phrasesRouteFor(unit.record.ch)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : indexedUse(unit.ref) } : undefined} /></div>)}</div>}
     {!phrasesView && scope !== 'media' && sourceMatches.length > 0 && <><h2 className="small muted">From your media</h2><div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/${scope}`} />)}</div></>}
     {catalog && !phrasesView && kind === 'characters' && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <div key={entry.character} className={`select-item${picked.has(entry.character) ? ' picked' : ''}`}>{selecting && <div className="select-row">{pickRow(entry.character, entry.character, entry.character)}</div>}<CharacterCard entry={entry}

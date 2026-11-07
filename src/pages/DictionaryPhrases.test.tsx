@@ -19,6 +19,12 @@ vi.mock('../data/phrases/hsk-1.json', () => { source.bandLoads.push('1'); return
 ] } } })
 
 // The count index: only this small file may load while Vocabulary is open.
+// Bands without a fixture are empty, so the test never depends on the shipped data.
+vi.mock('../data/phrases/hsk-2.json', () => ({ default: { schemaVersion: 2, band: '2', phrases: [] } }))
+vi.mock('../data/phrases/hsk-3.json', () => ({ default: { schemaVersion: 2, band: '3', phrases: [] } }))
+vi.mock('../data/phrases/hsk-4.json', () => ({ default: { schemaVersion: 2, band: '4', phrases: [] } }))
+vi.mock('../data/phrases/hsk-5.json', () => ({ default: { schemaVersion: 2, band: '5', phrases: [] } }))
+vi.mock('../data/phrases/hsk-6.json', () => ({ default: { schemaVersion: 2, band: '6', phrases: [] } }))
 vi.mock('../data/phrases/index.json', () => ({ default: { schemaVersion: 1, bands: { '1': { count: 2, words: { me: 2, drink: 2, tea: 1, water: 1 } } } } }))
 
 function Harness() {
@@ -29,7 +35,7 @@ function Harness() {
   const [, section, scope] = path.split('/')
   const params = new URLSearchParams(query)
   const props = { workspace, now: 1, busy: false, run: async (operation: () => Promise<void>) => { await operation() } }
-  return <PageActionsProvider><Dictionary {...props} section={section} initialScope={scope} initialQuery={params.get('q') ?? undefined} initialWord={params.get('word') ?? undefined} /></PageActionsProvider>
+  return <PageActionsProvider><Dictionary {...props} section={section} initialScope={scope} initialQuery={params.get('q') ?? undefined} /></PageActionsProvider>
 }
 
 beforeEach(async () => {
@@ -64,7 +70,7 @@ describe('dictionary phrases', () => {
     const links = await screen.findAllByRole('link', { name: /^\d+ phrases$/ })
     expect(links.map(link => link.textContent).sort()).toEqual(['2 phrases', '2 phrases', '3 phrases', '3 phrases'])
     expect(source.bandLoads).toEqual([])
-    expect(links[0]).toHaveAttribute('href', expect.stringMatching(/^#dictionary\/phrases\/all\?word=vocabulary%3A/))
+    expect(links[0]).toHaveAttribute('href', expect.stringMatching(/^#dictionary\/phrases\/all\?q=%/))
   })
 
   it('opens the section with scope counts, states and what is missing', async () => {
@@ -93,20 +99,41 @@ describe('dictionary phrases', () => {
     expect(rowOf('\u6211\u8981\u6c34')).toHaveTextContent('Added by me')
   })
 
-  it('filters to the phrases of a word from its link, keeps the filter in the route and goes back', async () => {
+  it('fills the search box from a word link, keeps it in the route and goes back', async () => {
     window.location.hash = 'dictionary/vocabulary/all'
     const user = userEvent.setup()
     render(<Harness />)
     const card = (await screen.findByText('tea')).closest('article') as HTMLElement
     await user.click(within(card).getByRole('link', { name: 'Phrases' }))
-    await waitFor(() => expect(window.location.hash).toBe('#dictionary/phrases/all?word=vocabulary%3Atea'))
+    await waitFor(() => expect(window.location.hash).toBe('#dictionary/phrases/all?q=%E8%8C%B6'))
+    expect(screen.getByRole('searchbox', { name: 'Search dictionary' })).toHaveValue('\u8336')
     await waitFor(() => expect(rowOf('\u559d\u8336\u3002')).not.toBeNull())
     expect(document.querySelectorAll('tbody tr')).toHaveLength(2) // the example and the generated 我喝茶
     expect(rowOf('\u6211\u559d\u6c34\u3002')).toBeNull()
-    expect(screen.getByText(/Phrases with/)).toHaveTextContent('Phrases with \u8336')
+    expect(screen.queryByText(/Phrases with/)).toBeNull()
     expect(within(rowOf('\u559d\u8336\u3002')).getByRole('link', { name: '\u8336' })).toHaveAttribute('href', '#dictionary/vocabulary/all?q=%E8%8C%B6')
     act(() => { window.history.back() })
     await waitFor(() => expect(window.location.hash).toBe('#dictionary/vocabulary/all'))
+  })
+
+  it('keeps the search across scope and band switches and clears it when the section changes', async () => {
+    window.location.hash = 'dictionary/phrases/all?q=%E8%8C%B6'
+    const user = userEvent.setup()
+    render(<Harness />)
+    const box = await screen.findByRole('searchbox', { name: 'Search dictionary' })
+    await waitFor(() => expect(rowOf('\u559d\u8336\u3002')).not.toBeNull())
+    const scopes = within(screen.getByRole('group', { name: 'Phrase scope' }))
+    await user.click(scopes.getByRole('button', { name: /^Pending/ }))
+    await waitFor(() => expect(window.location.hash).toBe('#dictionary/phrases/pending?q=%E8%8C%B6'))
+    expect(screen.getByRole('searchbox', { name: 'Search dictionary' })).toHaveValue('\u8336')
+    await user.selectOptions(screen.getByLabelText('Band'), '1')
+    expect(screen.getByRole('searchbox', { name: 'Search dictionary' })).toHaveValue('\u8336')
+    await user.click(within(screen.getByRole('group', { name: 'Phrase scope' })).getByRole('button', { name: /^All/ }))
+    await waitFor(() => expect(window.location.hash).toBe('#dictionary/phrases/all?q=%E8%8C%B6'))
+    expect(box).toBeDefined()
+    await user.click(within(screen.getByRole('group', { name: 'Dictionary section' })).getByRole('button', { name: /^Vocabulary/ }))
+    await waitFor(() => expect(window.location.hash).toBe('#dictionary/vocabulary/all'))
+    expect(screen.getByRole('searchbox', { name: 'Search dictionary' })).toHaveValue('')
   })
 
   it('marks unknown words, plays a phrase and removes only a phrase the learner added', async () => {
