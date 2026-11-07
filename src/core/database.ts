@@ -17,7 +17,7 @@ import type { MediaItem, SourceEntry } from './media/contracts'
 import type { Collection, CollectionItem } from './collections/contracts'
 import type { DrillSet } from './drills/contracts'
 import type { Skill, SkillPractice } from './study/skill-map'
-import type { PhraseHeard } from './phrases/contracts'
+import type { PhraseHeard, UserPhrase } from './phrases/contracts'
 import { handsfreeRunToSet } from './handsfree/migrate'
 import { sourceTitle } from './drills/title'
 
@@ -70,6 +70,7 @@ export class LearningDatabase extends Dexie {
   drillSets!: EntityTable<DrillSet, 'id'>
   skillPractice!: Table<SkillPractice, [string, Skill]>
   phraseHeard!: EntityTable<PhraseHeard, 'zh'>
+  userPhrases!: EntityTable<UserPhrase, 'zh'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -135,6 +136,8 @@ export class LearningDatabase extends Dexie {
     })
     // Which phrases Hands-free played (the phrase bank's only per-device state), so later runs prefer others.
     this.version(25).stores({ phraseHeard: '&zh' })
+    // Phrases the learner added to the bank from an Assistant phrase block, keyed by their text.
+    this.version(26).stores({ userPhrases: '&zh' })
   }
 }
 

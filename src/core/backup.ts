@@ -13,7 +13,7 @@ export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from
 function exportableTables() {
   return [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
     db.assistantThreads, db.assistantMessages, db.assistantRuns,
-    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks, db.practiceHistory, db.sudokuGames, db.collections, db.collectionItems, db.drillSets, db.skillPractice, db.phraseHeard]
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts, db.characterStates, db.libraryBooks, db.practiceHistory, db.sudokuGames, db.collections, db.collectionItems, db.drillSets, db.skillPractice, db.phraseHeard, db.userPhrases]
 }
 
 export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<string> {
@@ -32,9 +32,10 @@ export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<str
     const drillSets = await db.drillSets.toArray()
     const skillPractice = await db.skillPractice.toArray()
     const phraseHeard = await db.phraseHeard.toArray()
+    const userPhrases = await db.userPhrases.toArray()
     const collections = await readCollectionsState(db)
     const known = new Set(workspace.knowledge.map(entry => entry.ref))
-    return exportBackup({ ...workspace, studyCards: knowledgeCards(workspace.studyCards, known), library: await db.libraryBooks.toArray(), ...(collections.collections.length ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(phraseHeard.length ? { phraseHeard } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, assistant)
+    return exportBackup({ ...workspace, studyCards: knowledgeCards(workspace.studyCards, known), library: await db.libraryBooks.toArray(), ...(collections.collections.length ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(phraseHeard.length ? { phraseHeard } : {}), ...(userPhrases.length ? { userPhrases } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, assistant)
   })
 }
 
@@ -82,6 +83,7 @@ export async function restoreBackup(text: string, signal?: AbortSignal): Promise
       await db.drillSets.bulkAdd([...(workspace.drillSets ?? []), ...legacy].map(sourceTitle))
       await db.skillPractice.bulkAdd(workspace.skillPractice ?? [])
       await db.phraseHeard.bulkAdd(workspace.phraseHeard ?? [])
+      await db.userPhrases.bulkAdd(workspace.userPhrases ?? [])
       await db.exerciseSessions.bulkAdd(study.sessions)
       await db.exerciseAttempts.bulkAdd(study.attempts)
       if (workspace.sudokuBoards?.length) await db.table('sudokuGames').bulkAdd(workspace.sudokuBoards)

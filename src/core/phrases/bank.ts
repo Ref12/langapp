@@ -4,7 +4,7 @@ import type { DrillSet } from '../drills/contracts'
 import { FUNCTION_CHARACTERS } from '../drills/content'
 import { catalogExamples, MAX_PHRASE_SYLLABLES } from '../drills/items'
 import { createSegmenter } from '../study/exercises'
-import { shippedBandSchema, type BankPhrase, type PhraseHeard } from './contracts'
+import { shippedBandSchema, type BankPhrase, type PhraseHeard, type UserPhrase } from './contracts'
 
 const HAN = /\p{Script=Han}/u
 const syllableCount = (zh: string) => Array.from(zh).filter(char => HAN.test(char)).length
@@ -76,11 +76,18 @@ export function drillBankPhrases(sets: readonly Pick<DrillSet, 'content'>[], ref
 export const usableFor = (phrase: Pick<BankPhrase, 'words'> & Partial<Pick<BankPhrase, 'grammar' | 'source'>>, allowed: ReadonlySet<string>) =>
   phrase.words.length > 0 && phrase.words.every(word => allowed.has(word)) && (phrase.source === 'catalog' || (phrase.grammar ?? []).every(ref => allowed.has(ref)))
 
-/** Usable phrases per vocabulary word, from the catalog's examples, the shipped bank and the drill sentences, without duplicates (the first source wins). */
+/** A phrase the learner added, as a bank phrase. Its words are the catalog words the code split found; characters it could not map are not listed, so they do not gate it. */
+export const userBankPhrase = (row: UserPhrase): BankPhrase => ({ zh: row.zh, py: row.py, en: row.en, words: row.words, ...(row.grammar.length ? { grammar: row.grammar } : {}), source: 'user', checked: true })
+
+/**
+ * Usable phrases per vocabulary word, from the catalog's examples, the learner's own phrases, the shipped bank and the drill sentences, without duplicates (the first source wins,
+ * so a user phrase beats an ai phrase with the same text). A user phrase is usable once all its catalog words are known and its grammar tags too, like an ai phrase.
+ */
 export async function loadBank(catalog: Catalog, refs: readonly string[], allowed: ReadonlySet<string>, sets: readonly Pick<DrillSet, 'content'>[]): Promise<Map<string, BankPhrase[]>> {
   const forms = allowedForms(catalog, allowed)
   const topBand = Math.max(0, ...[...allowed].map(ref => bandNumber(catalog.units.get(ref)?.band)))
   const bank = new Map<string, BankPhrase[]>()
+  const own = (await db.userPhrases.toArray()).map(userBankPhrase)
   for (const ref of refs) {
     const unit = catalog.units.get(ref)
     if (unit?.kind !== 'vocabulary') continue
@@ -88,7 +95,7 @@ export async function loadBank(catalog: Catalog, refs: readonly string[], allowe
     const shipped = (await Promise.all(shippedBands(unit.band, topBand).map(shippedPhrases))).flatMap(index => index[ref] ?? [])
     const seen = new Set<string>()
     const list: BankPhrase[] = []
-    for (const phrase of [...catalogBankPhrases(catalog, ref), ...shipped, ...drillBankPhrases(sets, ref, forms)]) {
+    for (const phrase of [...catalogBankPhrases(catalog, ref), ...own.filter(phrase => phrase.words.includes(ref)), ...shipped, ...drillBankPhrases(sets, ref, forms)]) {
       if (seen.has(phrase.zh) || !usableFor(phrase, allowed)) continue
       seen.add(phrase.zh)
       list.push(phrase)

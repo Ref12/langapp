@@ -90,7 +90,7 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
     <SnippetActions source={{
       text: phrase.text, meaning: phrase.meaning, locale: phrase.locale,
       title: 'Assistant phrase', route: `conversation/${thread.id}`,
-    }} rate={thread.speechRate} onPractice={activate} onWrite={() => { setError(''); setWriting(true) }} practiceDisabled={busy}
+    }} phraseBank={{ romanization: phrase.romanization, meaning: phrase.meaning }} rate={thread.speechRate} onPractice={activate} onWrite={() => { setError(''); setWriting(true) }} practiceDisabled={busy}
       practiceTitle="Open the phrase practice playlist" />
     {error && <p role="alert" className="small connection-error">{error}</p>}
     {writing && <WritePracticeSheet route={`conversation/${thread.id}`} phrase={phrase} rate={thread.speechRate} onClose={() => setWriting(false)} />}

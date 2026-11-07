@@ -5,8 +5,8 @@ import { z } from 'zod'
 // authored examples and the sentences the drills already generated make up the bank; nothing in the app writes phrases. The only per-device state is the log of
 // which phrases were heard, so later runs prefer others (phraseHeard, carried in backups).
 
-/** book and media are reserved for phrases imported later from books and media (no importer yet); they may carry a ref to where the phrase came from. */
-export const PHRASE_SOURCES = ['catalog', 'drill', 'ai', 'book', 'media'] as const
+/** user: a phrase the learner added from an Assistant phrase block (userPhrases, carried in backups). book and media are reserved for phrases imported later from books and media (no importer yet); they may carry a ref to where the phrase came from. */
+export const PHRASE_SOURCES = ['catalog', 'drill', 'ai', 'book', 'media', 'user'] as const
 export type PhraseSource = typeof PHRASE_SOURCES[number]
 
 /** Where an imported phrase came from: the title, and a chapter, page or timestamp. */
@@ -54,3 +54,16 @@ export const phraseHeardSchema = z.object({
 }).strict()
 export type PhraseHeard = z.infer<typeof phraseHeardSchema>
 export const phraseHeardBackupSchema = z.array(phraseHeardSchema).max(20000)
+
+/** A phrase the learner added to their bank themselves (the Assistant's phrase blocks): no AI is involved in making it. words are vocabulary refs; characters the split could not map to a catalog word are not listed. */
+export const userPhraseSchema = z.object({
+  zh: z.string().min(1).max(300),
+  py: z.string().max(1000),
+  en: z.string().max(1000),
+  words: z.array(z.string().min(1)).max(100),
+  grammar: z.array(z.string().min(1)).max(20),
+  source: z.literal('user'),
+  addedAt: z.number().int().nonnegative(),
+}).strict()
+export type UserPhrase = z.infer<typeof userPhraseSchema>
+export const userPhrasesBackupSchema = z.array(userPhraseSchema).max(20000)

@@ -14,6 +14,7 @@ import { practiceChainSchema, type PracticePlaylistItem } from '../../core/assis
 import { PracticePlaylist } from './PracticePlaylist'
 import { ActionMenu } from './ActionMenu'
 import { PhraseKnowledge } from './PhraseKnowledge'
+import { AddToPhraseBank } from './AddToPhraseBank'
 import { WritePractice } from './WritePractice'
 import { savePreferences } from '../../core/learning'
 
@@ -31,11 +32,13 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
 }
 
 /** The phrase's actions, always beside the phrase: an icon Hear button and a "…" menu (Ask, Practice, Write, Learn). */
-export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true, learn }: {
+export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true, learn, phraseBank }: {
   source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; onWrite?: () => void; practiceDisabled?: boolean; practiceTitle?: string
   knowledge?: boolean
   /** Replaces the Learn item (null hides it), e.g. a character is added to the character set. */
   learn?: ReactNode
+  /** Offers "Add to phrase bank" (Assistant phrase blocks): the block's romanization and meaning. */
+  phraseBank?: { romanization?: string; meaning?: string }
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
@@ -64,6 +67,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, 
           <PenLine size={15} />Write
         </button>}
         {learn !== undefined ? learn : knowledge && source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
+        {phraseBank && source.locale === 'zh-Hans' && <AddToPhraseBank text={source.text} romanization={phraseBank.romanization} meaning={phraseBank.meaning} />}
         {error && <p className="small" role="alert">{error}</p>}
         {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
       </div>}</ActionMenu>
