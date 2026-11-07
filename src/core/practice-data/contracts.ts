@@ -26,7 +26,9 @@ export const acceptedItemSchema = z.object({
   /** Other natural Chinese wordings and word orders for the same English. */
   zhAlt: z.array(chinese), enAlt: z.array(english),
   /** Words (1-2 characters) of the phrase that may be left out or added without changing the meaning. */
-  optional: z.array(z.string().min(1).max(2)), readyAt,
+  optional: z.array(z.string().min(1).max(2)),
+  /** Synonym swaps the Chinese alternatives rely on: a word of the phrase and the word that may replace it. */
+  synonyms: z.array(z.object({ from: chinese, to: chinese })).optional(), readyAt,
 })
 export type AcceptedItem = z.infer<typeof acceptedItemSchema>
 

@@ -113,16 +113,38 @@ export function validateLine(curriculum, allowed, raw, { speaker = false } = {})
 
 const sameSet = (a, b) => a.length === b.length && a.every(value => b.includes(value))
 
-/** Accepted answers of one bank phrase from the writer's {zhAlt, enAlt, optional}, cleaned: only what the phrase's own readyAt allows. */
+/**
+ * Particles and wording words that carry meaning: a Chinese alternative may reorder them but never add or drop one (都 'all', 也 'also', 很 versus 非常, 不, 了 as aspect,
+ * numbers, measure words ...). Only the item's listed optional words may be added or dropped, and only listed synonym swaps may replace a word.
+ */
+const meaningForms = (allowed, zh, optional) => allowed.segmenter.segment(zh).filter(form => !optional.has(form)).sort()
+const swapPairs = value => list(value?.swaps).map(pair => Array.isArray(pair) ? [text(pair[0]), text(pair[1])] : [text(pair?.from), text(pair?.to)]).filter(([from, to]) => from && to && from !== to)
+
+/** Accepted answers of one bank phrase from the writer's {zhAlt, enAlt, optional}, cleaned: only what the phrase's own readyAt allows, and only wordings with the same meaning words. */
 export function validateAccepted(curriculum, phrase, raw) {
   const allowed = allowedAt(curriculum, phrase.readyAt)
   const own = phraseKey(phrase.zh), seen = new Set([own])
   const dropped = []
-  const zhAlt = []
+  // optional words: short, inside the phrase; the checker confirms they are ignorable without changing the meaning
+  const optional = []
+  for (const value of list(raw?.optional)) { const word = text(value); if (word && word.length <= 2 && HAN.test(word) && phrase.zh.includes(word) && !optional.includes(word) && optional.length < 3) optional.push(word) }
+  const optionalSet = new Set(optional)
+  const ownForms = meaningForms(allowed, phrase.zh, optionalSet)
+  const zhAlt = [], zhSwaps = []
   for (const value of list(raw?.zhAlt)) {
-    const zh = text(value), key = phraseKey(zh)
+    const zh = text(typeof value === 'string' ? value : value?.zh), key = phraseKey(zh)
     const found = zh ? analyzeChinese(curriculum, allowed, zh) : { reason: 'empty' }
-    if (found.reason) dropped.push(zh + ': ' + found.reason); else if (seen.has(key)) dropped.push(zh + ': duplicate'); else if (zhAlt.length < MAX_ALTERNATIVES) { seen.add(key); zhAlt.push(zh) }
+    if (found.reason) { dropped.push(zh + ': ' + found.reason); continue }
+    if (seen.has(key)) { dropped.push(zh + ': duplicate'); continue }
+    // the alternative's meaning words must equal the phrase's, after the listed synonym swaps (each from a word of the phrase to a word of the alternative)
+    const altForms = meaningForms(allowed, zh, optionalSet)
+    const swaps = typeof value === 'string' ? [] : swapPairs(value)
+    const expected = [...ownForms]
+    let bad
+    for (const [from, to] of swaps) { const at = expected.indexOf(from); if (at < 0 || !altForms.includes(to)) { bad = 'swap ' + from + '→' + to + ' does not match'; break } expected[at] = to }
+    if (!bad) { const want = expected.sort().join('|'), got = altForms.join('|'); if (want !== got) bad = 'changes the meaning words (' + [...expected].filter(form => !altForms.includes(form)).map(form => 'drops ' + form).concat(altForms.filter(form => !expected.includes(form)).map(form => 'adds ' + form)).join(', ') + ')' }
+    if (bad) { dropped.push(zh + ': ' + bad); continue }
+    if (zhAlt.length < MAX_ALTERNATIVES) { seen.add(key); zhAlt.push(zh); zhSwaps.push(swaps) }
   }
   const seenEn = new Set([normalEnglish(phrase.en)])
   const enAlt = []
@@ -130,10 +152,7 @@ export function validateAccepted(curriculum, phrase, raw) {
     const en = text(value), key = normalEnglish(en)
     if (!en || HAN.test(en) || en.length > 160 || !key) dropped.push(en + ': not English'); else if (seenEn.has(key)) dropped.push(en + ': duplicate'); else if (enAlt.length < MAX_ALTERNATIVES) { seenEn.add(key); enAlt.push(en) }
   }
-  // optional words: short, inside the phrase, and ignorable without changing its meaning (the checker confirms)
-  const optional = []
-  for (const value of list(raw?.optional)) { const word = text(value); if (word && word.length <= 2 && HAN.test(word) && phrase.zh.includes(word) && !optional.includes(word) && optional.length < 3) optional.push(word) }
-  return { item: { key: own, zh: phrase.zh, en: phrase.en, zhAlt, enAlt, optional, readyAt: phrase.readyAt }, dropped }
+  return { item: { key: own, zh: phrase.zh, en: phrase.en, zhAlt, enAlt, optional, readyAt: phrase.readyAt }, zhSwaps, dropped }
 }
 
 /** An exchange from the writer, or the reason. wrong replies that fail validation are dropped; fewer than 2 left refuses the exchange. */
@@ -155,6 +174,10 @@ export function validateExchange(curriculum, allowed, raw, lesson) {
   return { item: { id: 'x' + hash(phraseKey(q.line.zh) + '|' + phraseKey(a.line.zh)), lesson: lessonNumber(lesson), q: q.line, a: a.line, wrong, words, grammar, readyAt } }
 }
 
+/** Names of roles, not people: a speaker is 小明 or 王老师, never just 同学 or 老师. */
+export const ROLE_NAMES = new Set(['同学', '学生', '老师', '朋友', '大学生', '医生', '先生', '女士', '小姐', '妈妈', '爸爸', '孩子', '老板', '服务员', '客人', '男孩', '女孩', '男生', '女生', '同事', '邻居', '经理', '老人', '爷爷', '奶奶'])
+export const speakerNameOk = name => /^\p{Script=Han}{2,4}$/u.test(name) && !ROLE_NAMES.has(name)
+
 /** A conversation from the writer, or the reason: 4-8 lines, 2-3 named speakers each female or male, exactly 2 questions each with one right option. */
 export function validateConversation(curriculum, allowed, raw, lesson) {
   const rawLines = list(raw?.lines)
@@ -162,7 +185,7 @@ export function validateConversation(curriculum, allowed, raw, lesson) {
   const voices = new Map(), lines = [], words = []
   for (const value of rawLines) {
     const name = text(value?.name)
-    if (!name || HAN.test(name) === false && !/^[\p{L}][\p{L} .'-]*$/u.test(name) || name.length > 20) return { reason: 'a line has no usable speaker name' }
+    if (!speakerNameOk(name)) return { reason: 'speaker name must be a Chinese person name such as 小明 or 王老师, not pinyin or a bare role: ' + name }
     const line = validateLine(curriculum, allowed, value, { speaker: true })
     if (line.reason) return { reason: 'line: ' + line.reason }
     if (voices.has(name) && voices.get(name) !== line.line.speaker) return { reason: name + ' is both female and male' }
@@ -172,7 +195,7 @@ export function validateConversation(curriculum, allowed, raw, lesson) {
   if (voices.size < 2 || voices.size > 3) return { reason: 'needs 2 or 3 speakers' }
   if (lines.some((line, at) => at && lines[at - 1].name === line.name && lines[at - 1].zh === line.zh)) return { reason: 'a line repeats' }
   const questions = list(raw?.questions)
-  if (questions.length !== 2) return { reason: 'needs exactly 2 questions' }
+  if (questions.length < 2 || questions.length > 3) return { reason: 'needs 2 or 3 questions (the checker keeps the 2 that have exactly one consistent option)' }
   const checked = []
   for (const value of questions) {
     const q = text(value?.q), options = list(value?.options).map(text), answer = value?.answer
@@ -181,7 +204,7 @@ export function validateConversation(curriculum, allowed, raw, lesson) {
     if (!Number.isInteger(answer) || answer < 0 || answer >= options.length) return { reason: 'answer is not exactly one option' }
     checked.push({ q, options, answer })
   }
-  if (new Set(checked.map(item => normalEnglish(item.q))).size !== 2) return { reason: 'the two questions are the same' }
+  if (new Set(checked.map(item => normalEnglish(item.q))).size !== checked.length) return { reason: 'two questions are the same' }
   const { grammar, readyAt } = applyGrammar(curriculum, { words }, raw?.grammar, allowed)
   const key = lines.map(line => phraseKey(line.zh)).join('|')
   return { item: { id: 'c' + hash(key), lesson: lessonNumber(lesson), speakers: [...voices].map(([name, speaker]) => ({ name, speaker })), lines, questions: checked, words, grammar, readyAt } }
@@ -305,30 +328,33 @@ const FUNCTION_NOTE = 'The particles 的了吗呢吧是不很也都和在有这�
 const acceptedPrompt = (curriculum, batch) => ({
   system: SYSTEM,
   user: 'For each phrase below give the OTHER natural ways a learner could answer when asked to translate it.\n' +
-    '- zhAlt: other natural Chinese wordings and word orders for the SAME English meaning (not the given Chinese; no meaning change; only natural sentences; up to ' + MAX_ALTERNATIVES + '). Each phrase has a lesson number: use only words from vocabulary up to that lesson. ' + FUNCTION_NOTE + '\n' +
+    '- zhAlt: other natural Chinese wordings of the SAME meaning (up to ' + MAX_ALTERNATIVES + '). An alternative may ONLY (a) change the word order, (b) add or drop a word you list in "optional", or (c) swap a word for a true synonym that you list in its "swaps". It must NEVER add or drop a word that carries meaning: 都 (all), 也 (also), 很 or 非常 (degree: 很 versus 非常 is NOT a synonym swap), 不/没 (negation), 了 as aspect, numbers, measure words, question particles. Example: for 那些孩子很高兴 the alternative 那些孩子都很高兴 is WRONG (adds 都 = all), and for 这个字很好 the alternative 这个字非常好 is WRONG. Each phrase has a lesson number: use only words from vocabulary up to that lesson. ' + FUNCTION_NOTE + ' Give each as {"zh":"...","swaps":[["old word","new word"]]} (swaps usually empty).\n' +
     '- enAlt: other acceptable English translations of the Chinese (up to ' + MAX_ALTERNATIVES + ', natural, same meaning, e.g. contractions, synonyms, "a" vs "the" only when both are right).\n' +
-    '- optional: Chinese words of the given phrase (1-2 characters) that can be left out or added without changing the meaning, such as a trailing 了 or 的; usually empty.\n' +
+    '- optional: Chinese words of the given phrase (1-2 characters) that can be left out or added without changing the meaning, such as 的 in a possessive; usually empty. Never list 都, 也, 不, 没, 很, a number or a measure word, and not 了 when it marks a completed action.\n' +
     'Empty lists are the right answer when there are none. Never pad.\n\nVocabulary by lesson (newest first):\n' + vocabularyText(curriculum, batch.maxReady) +
     '\n\nPhrases:\n' + batch.items.map(phrase => JSON.stringify({ id: phrase.pid, zh: phrase.zh, en: phrase.en, lesson: lessonNumber(phrase.readyAt) })).join('\n') +
-    '\n\nReply {"items":[{"id":"...","zhAlt":[],"enAlt":[],"optional":[]}]} with one entry per phrase.',
+    '\n\nReply {"items":[{"id":"...","zhAlt":[{"zh":"","swaps":[]}],"enAlt":[],"optional":[]}]} with one entry per phrase.',
 })
 const acceptedCheck = items => ({
   system: SYSTEM,
-  user: 'You check alternative answers for Chinese-English translation exercises. For each entry, the original is correct. List the 0-based index of every alternative that is unnatural or ungrammatical Chinese (badZh), whose meaning differs from the original (badZh, badEn), or that is not natural English (badEn). List in badOptional every optional word that is NOT really ignorable without changing the meaning. Be strict: only flawless alternatives pass.\n\n' +
-    items.map(item => JSON.stringify({ id: item.pid, zh: item.zh, en: item.en, zhAlt: item.zhAlt, enAlt: item.enAlt, optional: item.optional })).join('\n') + '\n\nReply {"items":[{"id":"...","badZh":[],"badEn":[],"badOptional":[]}]}.',
+  user: 'You check alternative answers for Chinese-English translation exercises. The original is correct. For each alternative, compare its MEANING with the original word by word. List the 0-based index of every Chinese alternative (badZh) that: adds or drops ANY word that carries meaning (都, 也, 很, 不, 没, 了 as aspect, a number, a measure word, a question particle), or swaps a word for one that is not a true synonym (很 versus 非常, 都 versus 也, 看 versus 听 are not), or is unnatural or ungrammatical, or whose listed swaps are not true synonyms. Only a change of word order, an optional particle listed in "optional", or a true synonym swap may differ. List in badEn every English alternative whose meaning differs from the original (for example "all" or "also" added or dropped) or that is not natural English. List in badOptional every optional word that is NOT really ignorable without changing the meaning. Be strict: only flawless alternatives pass.\n\n' +
+    items.map(item => JSON.stringify({ id: item.pid, zh: item.zh, en: item.en, zhAlt: item.zhAlt.map((zh, at) => ({ zh, swaps: item.zhSwaps[at] })), enAlt: item.enAlt, optional: item.optional })).join('\n') + '\n\nReply {"items":[{"id":"...","badZh":[],"badEn":[],"badOptional":[]}]}.',
 })
 
 const exchangePrompt = (curriculum, lesson, count) => ({
   system: SYSTEM,
-  user: 'Write ' + count + ' two-line exchanges for lesson ' + lessonNumber(lesson) + ': a question (q) and a fitting reply (a), like A: 你叫什么名字？ B: 我叫小明。 For each also give 2 or 3 WRONG replies that are plausible (the right kind of sentence, same topic) but do not fit this question, so a learner who understood the question would not pick them.\n' +
-    'Rules: favour the newest words and grammar of lesson ' + lessonNumber(lesson) + ' but anything up to it is allowed. ' + FUNCTION_NOTE + ' Each line is short (at most ' + MAX_PHRASE_SYLLABLES + ' syllables). Vary the question types (who, what, where, how many, yes/no...). Every wrong reply must be unmistakably wrong for the question: do not give an alternative that could also be a good answer. q and a each have a "speaker" voice, "female" or "male". List in "grammar" the grammar refs the exchange really uses (empty when none).\n\n' +
+  user: 'Write ' + count + ' two-line exchanges for lesson ' + lessonNumber(lesson) + ': a question (q) and a fitting reply (a), like A: 你叫什么名字？ B: 我叫小明。 For each also give 2 or 3 WRONG replies for a pick-a-reply exercise.\n' +
+    'A wrong reply must NOT be a possible answer to the question at all. Never give a different value for the same question (to 你八点半起床吗？ the reply 我九点半起床 is a perfectly good answer) and never the opposite polarity of a yes/no question (to 她们都是同学吗？ the reply 她们都不是同学 is a perfectly good answer). Wrong replies must answer a DIFFERENT question: a wrong topic (a reply about food to a question about the time) or a wrong question word (a place for a "who" question, a number for a "what" question). Test each one: would a native speaker accept it as an answer to this question? If yes, do not use it.\n' +
+    'Questions must be ones a native speaker would really ask (not 你家在那个房间吗？); if a question sounds odd, write another. Favour the newest words and grammar of lesson ' + lessonNumber(lesson) + ' but anything up to it is allowed. ' + FUNCTION_NOTE + ' Each line is short (at most ' + MAX_PHRASE_SYLLABLES + ' syllables). Vary the question types (who, what, where, how many, yes/no...). q and a each have a "speaker" voice, "female" or "male". List in "grammar" the grammar refs the exchange really uses (empty when none).\n\n' +
     'Vocabulary by lesson (newest first):\n' + vocabularyText(curriculum, lesson) + '\n\nGrammar points by lesson (newest first):\n' + grammarText(curriculum, lesson) +
     '\n\nReply {"items":[{"q":{"zh":"","en":"","speaker":"female"},"a":{"zh":"","en":"","speaker":"male"},"wrong":[{"zh":"","en":""}],"grammar":[]}]}.',
 })
+/** The replies of an exchange in a fixed order that does not show which is the right one: the checker judges each against the question alone. */
+export const blindReplies = item => [{ right: true, line: item.a }, ...item.wrong.map((line, at) => ({ right: false, at, line }))].sort((x, y) => hash(item.id + x.line.zh).localeCompare(hash(item.id + y.line.zh)))
 const exchangeCheck = items => ({
   system: SYSTEM,
-  user: 'Check two-line exchanges for a Chinese course. For each: "fits" is true when the reply is a natural, correct answer to the question and the English translations match the Chinese. "wrongFit" lists the 0-based index of every wrong reply that actually COULD be a good answer to the question (those are bad wrong replies). "natural" is false when any Chinese or English is unnatural.\n\n' +
-    items.map(item => JSON.stringify({ id: item.id, q: item.q, a: item.a, wrong: item.wrong })).join('\n') + '\n\nReply {"items":[{"id":"...","fits":true,"natural":true,"wrongFit":[]}]}.',
+  user: 'Check two-line exchanges for a Chinese course. Judge each reply against the QUESTION ALONE; you are not told which reply is meant to be right. For each exchange give: "questionNatural": false when a native speaker would not ask this question (odd, nonsensical, wrong collocation, like 你家在那个房间吗？) or its English does not match; "natural": false when any Chinese or English of the replies is unnatural or mistranslated; "validReplies": the 0-based index of EVERY reply that a native speaker could give as an answer to the question (including opposite polarity of a yes/no question, a different value such as another time or place, or a refusal). Be strict about what counts as a possible answer.\n\n' +
+    items.map(item => JSON.stringify({ id: item.id, q: { zh: item.q.zh, en: item.q.en }, replies: blindReplies(item).map(reply => ({ zh: reply.line.zh, en: reply.line.en })) })).join('\n') + '\n\nReply {"items":[{"id":"...","questionNatural":true,"natural":true,"validReplies":[]}]}.',
 })
 
 const grammarPrompt = (curriculum, entries) => ({
@@ -347,14 +373,15 @@ const grammarCheck = points => ({
 const conversationPrompt = (curriculum, lesson, count) => ({
   system: SYSTEM,
   user: 'Decide whether the vocabulary up to lesson ' + lessonNumber(lesson) + ' supports a short conversation worth listening to (something to actually talk about: not just greetings repeated or a list of nouns). If it does not, reply {"conversations":[]}: that is a good answer, never pad. Otherwise write up to ' + count + ' conversations that use the newest words of lesson ' + lessonNumber(lesson) + '.\n' +
-    'Each conversation: 4 to 8 lines, 2 or 3 named speakers (a "name" in Chinese or pinyin, e.g. 小明 or Xiaoming, only use a Chinese name inside a line if it is listed vocabulary) and each speaker is "female" or "male" (a speaker keeps one voice). ' + FUNCTION_NOTE + ' Lines are short and natural. Then exactly 2 comprehension questions IN ENGLISH about the conversation, each with 3 or 4 English options of which exactly ONE is right (answer = its 0-based index); the wrong options must be clearly wrong from the text, and the question must be answerable from it. List "grammar" refs the lines really use.\n\n' +
+    'Each conversation: 4 to 8 lines, 2 or 3 speakers. Name every speaker with a Chinese person name in characters: 小明, 小红, 小华, 小丽, 王老师, 李老师, 张老师, 刘老师 and the like; never pinyin (not Xiaoming) and never a bare role (not 同学, 老师, 学生). Each speaker is "female" or "male" (a speaker keeps one voice; 小明 and 小华 are male, 小红 and 小丽 female, a teacher either). Only use a Chinese name inside a line if it is listed vocabulary. ' + FUNCTION_NOTE + ' Lines are short and natural. ' +
+    'Then write 3 comprehension questions IN ENGLISH about the conversation, each with 3 or 4 English options of which exactly ONE is consistent with the conversation (answer = its 0-based index). Ask about one fact the conversation states once. Every wrong option must be contradicted by the conversation or not mentioned in it. Do NOT ask about something with two true answers (if the children are in the room and also outside, "Where are the children?" is a bad question), and no option may be a partial or alternative true answer. List "grammar" refs the lines really use.\n\n' +
     'Vocabulary by lesson (newest first):\n' + vocabularyText(curriculum, lesson) + '\n\nGrammar points by lesson (newest first):\n' + grammarText(curriculum, lesson) +
-    '\n\nReply {"conversations":[{"lines":[{"name":"","speaker":"female","zh":"","en":""}],"questions":[{"q":"","options":["","",""],"answer":0}],"grammar":[]}]}.',
+    '\n\nReply {"conversations":[{"lines":[{"name":"小明","speaker":"male","zh":"","en":""}],"questions":[{"q":"","options":["","",""],"answer":0}],"grammar":[]}]}.',
 })
 const conversationCheck = items => ({
   system: SYSTEM,
-  user: 'For each conversation: answer its two questions yourself from the conversation only, ignoring any hint of the intended answer, and give for each the 0-based index of the ONE option that is right ("answers": [first, second]; use -1 when none or more than one option is right). "natural" is false if any Chinese is unnatural or any English does not match its Chinese.\n\n' +
-    items.map(item => JSON.stringify({ id: item.id, lines: item.lines.map(line => line.name + ': ' + line.zh + ' (' + line.en + ')'), questions: item.questions.map(question => ({ q: question.q, options: question.options })) })).join('\n') + '\n\nReply {"items":[{"id":"...","natural":true,"answers":[0,0]}]}.',
+  user: 'For each conversation, read it and then, for EACH question, list every option that is consistent with what the conversation says ("consistent": one list of 0-based option indexes per question, in order; ignore any hint of an intended answer). An option is consistent when the conversation supports it or does not contradict it as a possible true answer to the question; if two options could both be true answers, list both. Use an empty list when none is right. "natural" is false if any Chinese is unnatural, a line does not fit what comes before, or any English does not match its Chinese.\n\n' +
+    items.map(item => JSON.stringify({ id: item.id, lines: item.lines.map(line => line.name + ': ' + line.zh + ' (' + line.en + ')'), questions: item.questions.map(question => ({ q: question.q, options: question.options })) })).join('\n') + '\n\nReply {"items":[{"id":"...","natural":true,"consistent":[[0],[1]]}]}.',
 })
 
 // ---------------------------------------------------------------- the kinds: plan units, write, validate, check, merge
@@ -389,20 +416,23 @@ export const KIND_SPECS = {
       const reply = await askJSON(io.write, acceptedPrompt(curriculum, unit))
       const written = rows(reply)
       let invalid = 0
-      const drafts = unit.items.map(phrase => { const { item, dropped } = validateAccepted(curriculum, phrase, written.get(phrase.pid)); invalid += dropped.length; return { ...item, pid: phrase.pid } })
+      const drafts = unit.items.map(phrase => { const { item, zhSwaps, dropped } = validateAccepted(curriculum, phrase, written.get(phrase.pid)); invalid += dropped.length; return { ...item, pid: phrase.pid, zhSwaps } })
       const withAlts = drafts.filter(item => item.zhAlt.length || item.enAlt.length || item.optional.length)
       let rejected = 0
       if (withAlts.length) {
         const verdicts = rows(await askJSON(io.check, acceptedCheck(withAlts)))
         for (const item of withAlts) {
           const verdict = verdicts.get(item.pid)
-          if (!verdict) { item.zhAlt = []; item.enAlt = []; item.optional = []; rejected++; continue }
+          if (!verdict) { item.zhAlt = []; item.zhSwaps = []; item.enAlt = []; item.optional = []; rejected++; continue }
           const badZh = indexes(verdict.badZh), badEn = indexes(verdict.badEn), badOptional = new Set(list(verdict.badOptional))
           rejected += badZh.size + badEn.size + badOptional.size
+          item.zhSwaps = item.zhSwaps.filter((_, at) => !badZh.has(at))
           item.zhAlt = item.zhAlt.filter((_, at) => !badZh.has(at)); item.enAlt = item.enAlt.filter((_, at) => !badEn.has(at)); item.optional = item.optional.filter(word => !badOptional.has(word))
         }
       }
-      return { items: drafts.map(({ pid: _pid, ...item }) => item), written: withAlts.reduce((sum, item) => sum + item.zhAlt.length + item.enAlt.length, 0), invalid, rejected }
+      // the synonym swaps the kept alternatives rely on are listed in the dataset (section 5a: synonym swaps listed in the dataset are accepted)
+      const items = drafts.map(({ pid: _pid, zhSwaps, ...item }) => { const synonyms = [], seen = new Set(); for (const [from, to] of zhSwaps.flat(0).flatMap(pairs => pairs)) if (!seen.has(from + '|' + to)) { seen.add(from + '|' + to); synonyms.push({ from, to }) } return { ...item, ...(synonyms.length ? { synonyms } : {}) } })
+      return { items, written: withAlts.reduce((sum, item) => sum + item.zhAlt.length + item.enAlt.length, 0), invalid, rejected }
     },
     merge({ state, stats }, unit, result) {
       for (const item of result.items) { state.accepted[item.key] = { band: unit.band, ...item }; state.done['accepted:' + item.key] = { status: 'done' } }
@@ -429,8 +459,12 @@ export const KIND_SPECS = {
         kept = []
         for (const item of drafts) {
           const verdict = verdicts.get(item.id)
-          if (!verdict || verdict.fits !== true || verdict.natural !== true) { rejected++; continue }
-          const bad = indexes(verdict.wrongFit)
+          if (!verdict || verdict.questionNatural !== true || verdict.natural !== true) { rejected++; continue }
+          const valid = indexes(verdict.validReplies), order = blindReplies(item)
+          // the right reply must be a possible answer, and no wrong reply may be one
+          if (!order.some((reply, at) => reply.right && valid.has(at))) { rejected++; continue }
+          const bad = new Set(order.flatMap((reply, at) => !reply.right && valid.has(at) ? [reply.at] : []))
+          rejected += bad.size
           const wrong = item.wrong.filter((_, at) => !bad.has(at))
           if (wrong.length < 2) { rejected++; continue }
           kept.push({ ...item, wrong })
@@ -514,9 +548,12 @@ export const KIND_SPECS = {
         const verdicts = rows(await askJSON(io.check, conversationCheck(drafts)))
         for (const item of drafts) {
           const verdict = verdicts.get(item.id)
-          const answers = list(verdict?.answers)
-          // the checker answered blind: it must find exactly the one right option the writer named, for both questions
-          if (verdict?.natural === true && answers.length === 2 && answers.every((answer, at) => answer === item.questions[at].answer)) kept.push(item); else rejected++
+          const consistent = list(verdict?.consistent)
+          if (verdict?.natural !== true) { rejected++; continue }
+          // a question stays only when the blind checker finds exactly the one option the writer named; the first 2 such questions are kept
+          const questions = item.questions.filter((question, at) => { const found = list(consistent[at]); return found.length === 1 && found[0] === question.answer })
+          rejected += item.questions.length - questions.length
+          if (questions.length >= 2) kept.push({ ...item, questions: questions.slice(0, 2) }); else rejected++
         }
       }
       return { items: kept, written: drafts.length + invalid, invalid, rejected }

@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 import {
   allowedAt, buildOutputs, createSaver, emptyState, hydrate, KIND_SPECS, loadState, main, parseArgs, planReport, pool, runKind, spread,
-  validateAccepted, validateConversation, validateExchange, validateGrammarPoint, readBank,
+  validateAccepted, validateConversation, speakerNameOk, blindReplies, validateExchange, validateGrammarPoint, readBank,
 } from './build-practice-dataset.mjs'
 import { buildCurriculum } from './build-phrase-bank.mjs'
 import { acceptedFileSchema, conversationsFileSchema, createPracticeData, exchangesFileSchema, grammarFileSchema, practiceIndexSchema } from '../src/core/practice-data'
@@ -13,11 +13,11 @@ const word = (lb: string, ch: string, pr: string) => ({ id: lb, ch, pr, ds: 'mea
 const unit = (ref: string) => ({ kind: 'vocabulary', ref })
 const g = (id: string, ...refs: string[]) => ({ id, units: refs.map(unit), examples: [] })
 const WORDS = [word('wo', '我', 'wǒ'), word('ni', '你', 'nǐ'), word('shi', '是', 'shì'), word('ma', '吗', 'ma'), word('xs', '学生', 'xué sheng'), word('ls', '老师', 'lǎo shī'),
-  word('hao', '好', 'hǎo'), word('xx', '学习', 'xué xí'), word('hy', '汉语', 'hàn yǔ'), word('jiao', '叫', 'jiào'), word('mz', '名字', 'míng zi'), word('sm', '什么', 'shén me'), word('xm', '小明', 'xiǎo míng')]
+  word('hao', '好', 'hǎo'), word('xx', '学习', 'xué xí'), word('hy', '汉语', 'hàn yǔ'), word('jiao', '叫', 'jiào'), word('mz', '名字', 'míng zi'), word('sm', '什么', 'shén me'), word('xm', '小明', 'xiǎo míng'), word('dou', '都', 'dōu'), word('hen', '很', 'hěn'), word('fc', '非常', 'fēi cháng')]
 const point = { id: 'g-shi', lb: 'g-shi', pt: '是', pr: '是', ds: 'identity with shi', ex: { segments: [{ word: 'wo' }], translation: '', grammar: ['g-shi'] } }
 const FIXTURE = [
   { schemaVersion: 1, band: '1', alignment: 'hsk-1', vocabulary: WORDS, grammar: [point],
-    groups: [{ id: 'g1', units: [unit('wo'), unit('ni'), unit('shi'), { kind: 'grammar', ref: 'g-shi' }], examples: [] }, g('g2', 'ma', 'xs'), g('g3', 'ls', 'hao'), g('g4', 'xx', 'hy'), g('g5', 'jiao', 'mz', 'sm', 'xm')] },
+    groups: [{ id: 'g1', units: [unit('wo'), unit('ni'), unit('shi'), { kind: 'grammar', ref: 'g-shi' }], examples: [] }, g('g2', 'ma', 'xs'), g('g3', 'ls', 'hao'), g('g4', 'xx', 'hy', 'dou', 'hen', 'fc'), g('g5', 'jiao', 'mz', 'sm', 'xm')] },
   ...['2', '3', '4', '5', '6'].map(band => ({ schemaVersion: 1, band, alignment: 'hsk-' + band, vocabulary: [], grammar: [], groups: [] })),
 ]
 const curriculum = () => buildCurriculum(FIXTURE)
@@ -32,6 +32,8 @@ const bankDir = () => { const dir = tmp(); writeFileSync(join(dir, 'hsk-1.json')
 const options = (extra = {}) => ({ ...parseArgs([], {}), concurrency: 4, perLesson: 6, convPerLesson: 2, perPoint: 6, minVocab: 3, batchSize: { accepted: 2, grammar: 2 }, saveInterval: 0, ...extra })
 const idsIn = (user: string) => [...user.matchAll(/"id":"([^"]+)"/g)].map(match => match[1])
 
+/** A blind checker for exchanges: it sees each question with its replies in the order given and says which replies a native speaker could give (the zh texts in 'valid'). */
+const blindVerdict = (user: string, valid: string[], extra: Record<string, unknown> = {}) => ({ items: user.split('\n').filter(entry => entry.startsWith('{"id"')).map(entry => { const row = JSON.parse(entry); return { id: row.id, questionNatural: true, natural: true, validReplies: row.replies.flatMap((reply: { zh: string }, at: number) => valid.includes(reply.zh) ? [at] : []), ...extra } }) })
 const exchange = (extra = {}) => ({ q: { zh: '你是学生吗？', en: 'Are you a student?', speaker: 'female' }, a: { zh: '我是学生。', en: 'I am a student.', speaker: 'male' }, wrong: [{ zh: '我是老师。', en: 'I am a teacher.' }, { zh: '你好。', en: 'Hello.' }], grammar: ['g-shi', 'not-a-ref'], ...extra })
 const line = (name: string, speaker: string, zh: string, en: string) => ({ name, speaker, zh, en })
 const conversation = (extra = {}) => ({
@@ -50,6 +52,24 @@ describe('validators', () => {
     expect(item.key).toBe('我是学生')
     expect(dropped.join('|')).toContain('uses a word not yet learned')
     expect(dropped.join('|')).toContain('duplicate')
+  })
+
+  it('refuses an alternative whose meaning words differ: no added or dropped 都, 很 versus 非常, 吗; only listed optional words and synonym swaps', () => {
+    const c = curriculum()
+    const ok = (zh: string, raw: object) => validateAccepted(c, { key: '', id: 1, zh, py: '', en: 'x', words: [], grammar: [], readyAt: 3 }, raw)
+    const adds = ok('汉语很好。', { zhAlt: ['汉语都很好。', '汉语非常好。', '好很汉语。', '汉语很好', '很好，汉语。'] })
+    expect(adds.item.zhAlt).toEqual(['好很汉语。', '很好，汉语。'])   // only reorderings stay
+    expect(adds.dropped.join('|')).toContain('adds 都')
+    expect(adds.dropped.join('|')).toMatch(/汉语非常好。: changes the meaning words \(drops 很, adds 非常\)/)
+    expect(ok('你是学生吗？', { zhAlt: ['你是学生。', '你是学生吗？', '你学生是吗？'] }).item.zhAlt).toEqual(['你学生是吗？'])   // dropping 吗 changes the meaning
+    expect(ok('汉语不好。', { zhAlt: ['汉语好。'] }).item.zhAlt).toEqual([])
+    // a listed synonym swap is accepted (the checker confirms it is a true synonym); a swap that does not match the texts is not
+    const swapped = ok('汉语很好。', { zhAlt: [{ zh: '汉语非常好。', swaps: [['很', '非常']] }, { zh: '汉语非常好吧。', swaps: [['很', '非常']] }, { zh: '汉语非常好。', swaps: [['好', '非常']] }] })
+    expect(swapped.item.zhAlt).toEqual(['汉语非常好。'])
+    expect(swapped.zhSwaps).toEqual([[['很', '非常']]])
+    // a listed optional word may be added or dropped
+    expect(ok('我是学生。', { zhAlt: ['我学生。'], optional: ['是'] }).item.zhAlt).toEqual(['我学生。'])
+    expect(ok('我是学生。', { zhAlt: ['我学生。'] }).item.zhAlt).toEqual([])
   })
 
   it('validates an exchange: words, voices, 2-3 distinct wrong replies, grammar tags', () => {
@@ -78,7 +98,12 @@ describe('validators', () => {
     expect(reason({ lines: [...conversation().lines, ...conversation().lines, line('a', 'male', '好。', 'ok')] })).toMatch(/4 to 8/)
     expect(reason({ lines: conversation().lines.map(entry => ({ ...entry, name: '王老师', speaker: 'female' })) })).toMatch(/2 or 3 speakers/)
     expect(reason({ lines: conversation().lines.map((entry, at) => at === 3 ? { ...entry, speaker: 'female' } : entry) })).toMatch(/both female and male/)
-    expect(reason({ questions: [conversation().questions[0]] })).toMatch(/exactly 2/)
+    expect(reason({ questions: [conversation().questions[0]] })).toMatch(/2 or 3/)
+    expect(reason({ questions: [...conversation().questions, ...conversation().questions] })).toMatch(/2 or 3/)
+    expect(validateConversation(c, allowed, conversation({ questions: [...conversation().questions, { q: "What is the student's name?", options: ['Xiao Ming', 'Xiao Hong', 'Xiao Hua'], answer: 0 }] }), 4).item.questions).toHaveLength(3)
+    for (const name of ['Xiaoming', '同学', '老师', 'Ming', '小', '小明小明小', '王 老师']) expect(reason({ lines: conversation().lines.map((entry, at) => at % 2 ? entry : { ...entry, name }) })).toMatch(/Chinese person name|both female/)
+    expect(speakerNameOk('小红')).toBe(true); expect(speakerNameOk('李老师')).toBe(true); expect(speakerNameOk('同学')).toBe(false)
+
     expect(reason({ questions: [{ ...conversation().questions[0], answer: 3 }, conversation().questions[1]] })).toMatch(/exactly one option/)
     expect(reason({ questions: [{ ...conversation().questions[0], answer: [0, 1] }, conversation().questions[1]] })).toMatch(/exactly one option/)
     expect(reason({ questions: [{ ...conversation().questions[0], options: ['A student', 'a  student!', 'A doctor'] }, conversation().questions[1]] })).toMatch(/different options/)
@@ -126,7 +151,7 @@ describe('kinds', () => {
       check: user => ({ items: idsIn(user).map(id => ({ id, badZh: [1], badEn: [], badOptional: [] })) }),
     })
     const stats = await runKind({ kind: 'accepted', ctx, io })
-    expect(stats).toMatchObject({ units: 2, failed: 0, kept: 4 })
+    expect(stats).toMatchObject({ units: 2, failed: 0, kept: 3 })   // phrase 3's alternatives with 学生 change its meaning words: refused by code
     expect(io.calls).toEqual({ write: 2, check: 2 })
     expect(ctx.state.accepted['我是学生']).toMatchObject({ band: '1', zhAlt: ['学生是我。'], enAlt: ["I'm a student."] })
     expect(Object.keys(ctx.state.accepted)).toHaveLength(3)
@@ -142,8 +167,8 @@ describe('kinds', () => {
 
   it('exchanges: the checker drops misfits and wrong replies that could be right; duplicates across lessons are removed', async () => {
     const ctx = ctxOf({ lessons: { from: 4, to: 5 } })
-    const second = { q: { zh: '你叫什么名字？', en: 'What is your name?', speaker: 'male' }, a: { zh: '我叫小明。', en: 'I am Xiao Ming.', speaker: 'female' }, wrong: [{ zh: '我是学生。', en: 'I am a student.' }, { zh: '你好。', en: 'Hello.' }, { zh: '我学习汉语。', en: 'I study Chinese.' }] }
-    const io = fakeIO({ write: user => ({ items: user.includes('lesson 5') ? [exchange(), second] : [exchange()] }), check: user => ({ items: idsIn(user).map(id => ({ id, fits: true, natural: true, wrongFit: id === idsIn(user)[1] ? [2] : [] })) }) })
+    const second = { q: { zh: '你叫什么名字？', en: 'What is your name?', speaker: 'male' }, a: { zh: '我叫小明。', en: 'I am Xiao Ming.', speaker: 'female' }, wrong: [{ zh: '我是老师。', en: 'I am a teacher.' }, { zh: '你好。', en: 'Hello.' }, { zh: '我学习汉语。', en: 'I study Chinese.' }] }
+    const io = fakeIO({ write: user => ({ items: user.includes('lesson 5') ? [exchange(), second] : [exchange()] }), check: user => blindVerdict(user, ['我是学生。', '我叫小明。', '我学习汉语。']) })
     const stats = await runKind({ kind: 'exchanges', ctx, io })
     expect(stats).toMatchObject({ units: 2, failed: 0 })
     expect(Object.keys(ctx.state.exchanges)).toHaveLength(2)
@@ -152,10 +177,39 @@ describe('kinds', () => {
     expect(kept.find(item => item.q.zh === '你叫什么名字？')?.wrong).toHaveLength(2)
     // misfit: the checker says the reply does not fit
     const bad = ctxOf({ lessons: { from: 3, to: 3 } })
-    await runKind({ kind: 'exchanges', ctx: bad, io: fakeIO({ write: () => ({ items: [exchange()] }), check: user => ({ items: idsIn(user).map(id => ({ id, fits: false, natural: true, wrongFit: [] })) }) }) })
+    await runKind({ kind: 'exchanges', ctx: bad, io: fakeIO({ write: () => ({ items: [exchange()] }), check: user => blindVerdict(user, ['我是学生。'], { questionNatural: false }) }) })
     expect(Object.keys(bad.state.exchanges)).toHaveLength(0)
     expect(bad.state.done['exchanges:3'].status).toBe('done')
     for (const item of Object.values(ctx.state.exchanges)) expect(exchangesFileSchema.parse({ schemaVersion: 1, kind: 'exchanges', band: '1', items: [Object.fromEntries(Object.entries(item as object).filter(([key]) => key !== 'band'))] }).items).toHaveLength(1)
+  })
+
+  it('exchanges: the checker judges each reply blind; a wrong reply that is a possible answer is dropped, an unnatural question or an invalid right reply drops the exchange', async () => {
+    const seen: string[] = []
+    const run = async (valid: string[], extra: Record<string, unknown> = {}) => {
+      const ctx = ctxOf({ lessons: { from: 3, to: 3 } })
+      const stats = await runKind({ kind: 'exchanges', ctx, io: fakeIO({ write: () => ({ items: [exchange()] }), check: user => { seen.push(user); return blindVerdict(user, valid, extra) } }) })
+      return { ctx, stats }
+    }
+    // 我是老师。 is also a possible answer to a yes/no question about being a student: dropped, and with only one wrong reply left the exchange goes
+    const same = await run(['我是学生。', '我是老师。'])
+    expect(Object.keys(same.ctx.state.exchanges)).toHaveLength(0)
+    expect(same.stats.rejected).toBeGreaterThan(0)
+    // with three wrong replies one valid answer among them is removed and two are left
+    const three = ctxOf({ lessons: { from: 4, to: 4 } })
+    await runKind({ kind: 'exchanges', ctx: three, io: fakeIO({ write: () => ({ items: [exchange({ wrong: [{ zh: '我是老师。', en: 'x' }, { zh: '你好。', en: 'Hello.' }, { zh: '我学习汉语。', en: 'y' }] })] }), check: user => blindVerdict(user, ['我是学生。', '我是老师。']) }) })
+    const kept = Object.values(three.state.exchanges) as { wrong: { zh: string }[] }[]
+    expect(kept[0].wrong.map(item => item.zh).sort()).toEqual(['你好。', '我学习汉语。'].sort())
+    // the right reply is not a possible answer / the question is not natural / the text is unnatural
+    expect(Object.keys((await run([])).ctx.state.exchanges)).toHaveLength(0)
+    expect(Object.keys((await run(['我是学生。'], { questionNatural: false })).ctx.state.exchanges)).toHaveLength(0)
+    expect(Object.keys((await run(['我是学生。'], { natural: false })).ctx.state.exchanges)).toHaveLength(0)
+    expect(Object.keys((await run(['我是学生。'])).ctx.state.exchanges)).toHaveLength(1)
+    // blind: the prompt shows the question and every reply in one list and never which is right; the order does not depend on the writer's order
+    expect(seen[0]).not.toMatch(/"right"|"wrong"|"a":|"answer"/)
+    const item = { id: 'x1', a: { zh: 'A' }, wrong: [{ zh: 'B' }, { zh: 'C' }, { zh: 'D' }] }
+    expect(blindReplies(item).map((reply: { line: { zh: string } }) => reply.line.zh).sort()).toEqual(['A', 'B', 'C', 'D'])
+    const zhOf = (value: typeof item) => blindReplies(value).map((reply: { line: { zh: string } }) => reply.line.zh)
+    expect(zhOf(item)).toEqual(zhOf({ ...item, wrong: [...item.wrong].reverse() }))
   })
 
   it('grammar: note and near misses per point, the checker keeps only the really wrong ones', async () => {
@@ -183,19 +237,32 @@ describe('kinds', () => {
     expect(KIND_SPECS.conversations.plan({ ...few, options: options({ minVocab: 3 }) }).length).toBe(5)
 
     const ctx = ctxOf({ lessons: { from: 5, to: 5 } })
-    const answers = [[0, 0]]
-    const io = fakeIO({ write: () => ({ conversations: [conversation()] }), check: user => ({ items: idsIn(user).map(id => ({ id, natural: true, answers: answers[0] })) }) })
+    const io = fakeIO({ write: () => ({ conversations: [conversation()] }), check: user => ({ items: idsIn(user).map(id => ({ id, natural: true, consistent: [[0], [0]] })) }) })
     expect(await runKind({ kind: 'conversations', ctx, io })).toMatchObject({ units: 1, kept: 1 })
     expect(Object.keys(ctx.state.conversations)).toHaveLength(1)
     expect(conversationsFileSchema.parse(JSON.parse(buildOutputs(ctx.state, 'out').get(join('out', 'conversations-hsk-1.json')) as string)).items[0].speakers).toHaveLength(2)
 
     // the checker picks another option (or finds none right): the conversation is dropped
-    for (const picked of [[1, 0], [0, -1]]) {
+    for (const picked of [[[1], [0]], [[0], []], [[0, 1], [0]], [[0], [0, 2]]]) {
       const c2 = ctxOf({ lessons: { from: 5, to: 5 } })
-      const stats = await runKind({ kind: 'conversations', ctx: c2, io: fakeIO({ write: () => ({ conversations: [conversation()] }), check: user => ({ items: idsIn(user).map(id => ({ id, natural: true, answers: picked })) }) }) })
-      expect(stats.rejected).toBe(1)
+      const stats = await runKind({ kind: 'conversations', ctx: c2, io: fakeIO({ write: () => ({ conversations: [conversation()] }), check: user => ({ items: idsIn(user).map(id => ({ id, natural: true, consistent: picked })) }) }) })
+      expect(stats.rejected).toBeGreaterThan(0)
       expect(Object.keys(c2.state.conversations)).toHaveLength(0)
     }
+    // three questions written: the one with two consistent options is dropped, the other two stay
+    const three = ctxOf({ lessons: { from: 5, to: 5 } })
+    const extra = { q: 'Where are they?', options: ['In the room', 'Outside', 'At school'], answer: 0 }
+    await runKind({ kind: 'conversations', ctx: three, io: fakeIO({ write: () => ({ conversations: [conversation({ questions: [...conversation().questions, extra] })] }), check: user => ({ items: idsIn(user).map(id => ({ id, natural: true, consistent: [[0], [0, 1], [0]] })) }) }) })
+    const stored = Object.values(three.state.conversations) as { questions: { q: string }[] }[]
+    expect(stored[0].questions.map(question => question.q)).toEqual(['What is Xiao Ming?', 'Where are they?'])
+    // an unnatural conversation is dropped; a pinyin speaker name never reaches the checker
+    const odd = ctxOf({ lessons: { from: 5, to: 5 } })
+    await runKind({ kind: 'conversations', ctx: odd, io: fakeIO({ write: () => ({ conversations: [conversation()] }), check: user => ({ items: idsIn(user).map(id => ({ id, natural: false, consistent: [[0], [0]] })) }) }) })
+    expect(Object.keys(odd.state.conversations)).toHaveLength(0)
+    const pinyin = ctxOf({ lessons: { from: 5, to: 5 } })
+    const stats2 = await runKind({ kind: 'conversations', ctx: pinyin, io: fakeIO({ write: () => ({ conversations: [conversation({ lines: conversation().lines.map(entry => ({ ...entry, name: entry.name === '小明' ? 'Xiaoming' : entry.name })) })] }), check: () => ({ items: [] }) }) })
+    expect(stats2.invalid).toBe(1)
+
     // "none" is a good answer: nothing kept, unit done
     const none = ctxOf({ lessons: { from: 5, to: 5 } })
     const quiet = fakeIO({ write: () => ({ conversations: [] }), check: () => { throw new Error('no check expected') } })
@@ -206,7 +273,7 @@ describe('kinds', () => {
   it('a failed model call leaves the unit for the next run; a bad reply is retried once', async () => {
     const ctx = ctxOf({ lessons: { from: 3, to: 3 } })
     let writes = 0
-    const io = { write: async () => { writes++; if (writes === 1) return 'not json at all'; return JSON.stringify({ items: [exchange()] }) }, check: async (_s: string, user: string) => JSON.stringify({ items: idsIn(user).map(id => ({ id, fits: true, natural: true, wrongFit: [] })) }) }
+    const io = { write: async () => { writes++; if (writes === 1) return 'not json at all'; return JSON.stringify({ items: [exchange()] }) }, check: async (_s: string, user: string) => JSON.stringify(blindVerdict(user, ['我是学生。'])) }
     expect(await runKind({ kind: 'exchanges', ctx, io })).toMatchObject({ units: 1, failed: 0, kept: 1 })
     expect(writes).toBe(2)
     const down = ctxOf({ lessons: { from: 3, to: 3 } })
@@ -228,7 +295,7 @@ describe('the command', () => {
   const run = (dir: string, extra: string[], io: ReturnType<typeof fakeIO>) => main(['--out', join(dir, 'out'), '--state', join(dir, 'state.json'), '--phrases-dir', bankDirOf(dir), '--data-dir', dataDirOf(dir), '--save-interval', '0', '--concurrency', '3', '--min-vocab', '3', ...extra], { io: io as never, log: () => {} })
   const bankDirOf = (dir: string) => { mkdirSync(join(dir, 'bank'), { recursive: true }); writeFileSync(join(dir, 'bank', 'hsk-1.json'), JSON.stringify({ phrases: BANK })); return join(dir, 'bank') }
   const dataDirOf = (dir: string) => { mkdirSync(join(dir, 'data'), { recursive: true }); FIXTURE.forEach(band => writeFileSync(join(dir, 'data', 'hsk-' + band.band + '.generated.json'), JSON.stringify(band))); return join(dir, 'data') }
-  const exchangeIO = () => fakeIO({ write: () => ({ items: [exchange()] }), check: user => ({ items: idsIn(user).map(id => ({ id, fits: true, natural: true, wrongFit: [] })) }) })
+  const exchangeIO = () => fakeIO({ write: () => ({ items: [exchange()] }), check: user => blindVerdict(user, ['我是学生。']) })
 
   it('resumes mid-pass: only the units not done are called, from the state file or from the band files alone', async () => {
     const dir = tmp()
