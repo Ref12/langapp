@@ -31,10 +31,12 @@ function usePlan(set: DrillSet, items: ItemInfo[], catalog: Catalog, workspace: 
   const engine = set.engine!
   const [plan, setPlan] = useState<SessionPlan>()
   const [error, setError] = useState<string>()
-  const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
+  const knownKey = workspace.knowledge.map(entry => entry.ref).sort().join('|')
+  // Keyed by content: a refreshed list with the same refs must not re-plan (that blanked the card between exercises).
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [knownKey])
   useEffect(() => {
     let live = true
-    setPlan(undefined)
     void (async () => {
       const allowed = new Set([...known, ...set.refs])
       const bank = await loadSessionBank(catalog, items, allowed)
@@ -146,7 +148,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
     <div className="engine-progress"><span className="eyebrow">{stage ? STAGE_LABEL[stage] : ''}{exercise && exercise.round > 0 ? ' · another try' : ''}</span>
       <progress aria-label="Session progress" value={Math.min(doneCount, total)} max={Math.max(1, total)} /><span className="small muted">{Math.min(doneCount, total)} of {total}</span>
       <button type="button" className="button secondary small engine-pinyin" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button></div>
-    <section className="panel practice-card" aria-live="polite" key={exercise?.id} data-form={exercise?.form} data-answer-lang={exercise && 'answerLang' in exercise ? exercise.answerLang : undefined}>
+    <section className="panel practice-card" aria-live="polite" data-form={exercise?.form} data-answer-lang={exercise && 'answerLang' in exercise ? exercise.answerLang : undefined}>
       {exercise?.form === 'intro' && (() => { const item = items.find(entry => entry.ref === exercise.refs[0]); return <>
         <p className="small muted">New word {intro + 1}</p>
         {item && <IntroCard item={item} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route={setRoute(set.id, 'engine')} />}

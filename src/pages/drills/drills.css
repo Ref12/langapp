@@ -290,6 +290,7 @@
   .answer-actions:has(.engine-another) { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .answer-actions:has(.engine-another) > .check-answer-button { order: 1; grid-column: 1; }
   .answer-actions:has(.engine-another) > .engine-another { order: 2; grid-column: 1; justify-content: flex-start; }
+  .answer-actions:has(.engine-another) > .engine-another[aria-hidden="true"] { display: none; }
   .engine-another .button { min-height: 32px; padding: 4px 10px; font-size: 12px; }
 }
 .practice-card .engine-answer { margin-bottom: 10px; }
@@ -306,3 +307,6 @@
 .engine-convo-lines li .dr-line-play { grid-column: 2; grid-row: 1; }
 .engine-convo-lines li > span { grid-column: 1 / -1 !important; }
 .engine-convo-lines li[data-speaker='female'] .engine-speaker { color: var(--accent, #7cc0ff); }
+.link-button { background: none; border: 0; padding: 0; margin: 0; font: inherit; font-size: 0.85em; color: var(--accent, #2563eb); text-decoration: underline; cursor: pointer; justify-self: start; min-height: 0; }
+.practice-card { min-height: 420px; }
+.practice-card .engine-glosses { margin: 0 0 8px; padding-left: 18px; }

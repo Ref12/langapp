@@ -225,6 +225,8 @@ summary { cursor: pointer; min-height: 28px; }
 .answer-option > span:not(.answer-option-mark) { flex: 1 1 0; min-width: 0; overflow-wrap: break-word; }
 .answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 0.4em; }
 .answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] > .mandarin-word + .mandarin-word { margin-inline-start: 0; }
+/* punctuation is a flex item in the row above: cancel the word gap on both sides so no space shows around it */
+.answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] > .zh-punct { margin-inline: -0.4em; }
 @media (max-width: 480px) { .answer-options { grid-template-columns: minmax(0, 1fr); } }
 .answer-option > .snippet-button { flex: 0 0 auto; }
 .answer-option input { flex: 0 0 auto; }

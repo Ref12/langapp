@@ -21,17 +21,16 @@ export function ExchangePick({ exercise, ctx, onDone }: { exercise: ExchangePick
   return <>
     <p className="small muted">{exercise.question.speaker === 'male' ? 'He asks' : 'She asks'}:</p>
     <p className="practice-prompt native" lang="zh-Hans"><AnnotatedChinese text={exercise.question.zh} readings={ctx.readings} pinyin={ctx.pinyin} /> <HearButton text={exercise.question.zh} locale="zh-Hans" label="Hear the question" iconOnly /></p>
-    {checked && <p className="small muted" lang="en">{exercise.question.en}</p>}
     <fieldset className="answer-options" disabled={ctx.busy || checked}><legend className="visually-hidden">Pick the reply</legend>
       {exercise.options.map((option, index) => <label key={index} className={optionClass(selected === index, checked, index === exercise.answer)}>
         <input type="radio" name={exercise.id} checked={selected === index} onChange={() => setSelected(index)} />
-        <span><AnnotatedChinese text={option.zh} readings={ctx.readings} pinyin={ctx.pinyin} />{checked && <small className="muted" lang="en"> {option.en}</small>}</span>
+        <span><AnnotatedChinese text={option.zh} readings={ctx.readings} pinyin={ctx.pinyin} /></span>
         <HearButton text={option.zh} locale="zh-Hans" label={`Hear reply ${index + 1}`} iconOnly />
         <span className="answer-option-mark">{checked && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
       </label>)}
     </fieldset>
-    {checked && <div className="notice answer-feedback" role="status"><p>{exercise.explanation}</p></div>}
     <AnswerButton result={result} busy={ctx.busy} ready={selected >= 0} onCheck={() => setResult(selected === exercise.answer)} onNext={() => onDone({ correct: result === true })} />
+    {checked && <div className="notice answer-feedback" role="status"><p lang="en">“{exercise.question.en}”</p><ul className="engine-glosses">{exercise.options.map((option, index) => <li key={index}><span lang="zh-Hans">{option.zh}</span> <span className="muted" lang="en">{option.en}</span></li>)}</ul><p>{exercise.explanation}</p></div>}
   </>
 }
 
@@ -49,10 +48,10 @@ export function WhichCorrect({ exercise, ctx, onDone }: { exercise: WhichCorrect
         <span className="answer-option-mark">{checked && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
       </label>)}
     </fieldset>
+    <AnswerButton result={result} busy={ctx.busy} ready={selected >= 0} onCheck={() => setResult(selected === exercise.answer)} onNext={() => onDone({ correct: result === true })} />
     {checked && <div className="notice answer-feedback engine-why" role="status">
       {exercise.options.map((option, index) => exercise.whys[index] ? <p key={index}><strong lang="zh-Hans">{option.zh}</strong>: {exercise.whys[index]}</p> : null)}
       {exercise.note && <p className="small"><strong>Pattern:</strong> {exercise.note}</p>}</div>}
-    <AnswerButton result={result} busy={ctx.busy} ready={selected >= 0} onCheck={() => setResult(selected === exercise.answer)} onNext={() => onDone({ correct: result === true })} />
   </>
 }
 
@@ -77,13 +76,13 @@ export function ConversationQuestion({ exercise, ctx, onDone }: { exercise: Conv
   }
   const playLine = async (index: number) => { const mine = ++token.current; setPlaying(index); await say(index); if (mine === token.current) setPlaying(-1) }
   const complete = exercise.questions.every((_item, index) => picked[index] !== undefined)
-  const transcript = shown || checked
+  const transcript = shown
   return <>
     <p className="small muted">{exercise.title}</p>
     <div className="button-row">
       <button type="button" className="button primary" onClick={() => void play()}><Volume2 size={16} /> {playing >= 0 ? 'Playing…' : 'Play the conversation'}</button>
       {playing >= 0 && <button type="button" className="button secondary" onClick={() => { token.current++; stopBrowserSpeech(); setPlaying(-1) }}><Square size={16} /> Stop</button>}
-      {!checked && <button type="button" className="button secondary" aria-pressed={shown} onClick={() => setShown(!shown)}>{shown ? 'Hide transcript' : 'Show transcript (hint)'}</button>}</div>
+      {<button type="button" className="button secondary" style={checked ? { visibility: 'hidden' } : undefined} tabIndex={checked ? -1 : undefined} aria-hidden={checked} aria-pressed={shown} onClick={() => setShown(!shown)}>{shown ? 'Hide transcript' : 'Show transcript (hint)'}</button>}</div>
     <ul className="dr-lines engine-convo-lines">{exercise.lines.map((line, index) => <li key={index} data-speaker={line.speaker}>
       <strong className="engine-speaker">{line.name}<span className="small muted"> ({line.speaker})</span></strong>
       <button type="button" className="button secondary icon-button dr-line-play" aria-label={`Play line ${index + 1}, ${line.name}`} onClick={() => void playLine(index)}><Volume2 size={14} /></button>
@@ -92,5 +91,6 @@ export function ConversationQuestion({ exercise, ctx, onDone }: { exercise: Conv
       {item.options.map((option, optionIndex) => <label key={optionIndex} className={optionClass(picked[index] === optionIndex, checked, optionIndex === item.answer)}>
         <input type="radio" name={`${exercise.id}-q${index}`} checked={picked[index] === optionIndex} onChange={() => { const next = [...picked]; next[index] = optionIndex; setPicked(next) }} /><span lang="en">{option}</span></label>)}</fieldset>)}
     <AnswerButton result={result} busy={ctx.busy} ready={complete} onCheck={() => setResult(exercise.questions.every((item, index) => picked[index] === item.answer))} onNext={() => onDone({ correct: result === true })} />
+    {checked && <div className="notice answer-feedback" role="status"><ul className="dr-lines engine-convo-lines">{exercise.lines.map((line, index) => <li key={index}><strong>{line.name}</strong> <span lang="zh-Hans">{line.zh}</span> <span className="small muted"><Pinyin text={tidyPinyin(line.py)} /> {line.en}</span></li>)}</ul></div>}
   </>
 }

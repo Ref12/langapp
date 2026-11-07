@@ -55,6 +55,36 @@ export function segmentWords(text: string, forms: ReadonlySet<string>): string[]
   return out
 }
 
+/** Chinese wordings the English cannot tell apart: a swap of these is as right as the model answer. Add rows to extend. */
+export interface Equivalence { words: readonly string[]; /** True when the English leaves the choice open. */ when: (english: string) => boolean; note: (given: string, expected: string) => string }
+const HE_SHE = /\b(he|she|him|her|his|hers|himself|herself)\b/i
+export const EQUIVALENT_WORDS: readonly Equivalence[] = [
+  { words: ['你', '您'], when: () => true, note: () => '您 is the polite form; 你 is fine here.' },
+  { words: ['他', '她', '它'], when: english => !HE_SHE.test(english) && /\b(it|its)\b/i.test(english), note: () => '他, 她 and 它 are all "it" in English; any is fine here.' },
+  { words: ['他们', '她们', '它们'], when: english => !HE_SHE.test(english) && /\b(they|them|their)\b/i.test(english), note: () => '他们, 她们 and 它们 are all "they" in English; any is fine here.' },
+]
+const WH = /\b(who|whom|whose|what|which|when|where|why|how)\b/i
+/** A plain yes/no question in English: ends in ? and has no question word. */
+export const isYesNoQuestion = (english: string) => /\?\s*$/.test(english) && !WH.test(english)
+/** 好不好 becomes 好吗, so the two question forms compare equal. */
+const asMa = (text: string) => text.replace(/(.)不\1/g, '$1吗')
+
+/** All differences are one allowed swap (or one question form for the other): the answer is right, with a note. */
+function equivalentChoice(answer: string, accepted: readonly string[], differences: readonly Difference[], english: string): { closest: string; note: string } | undefined {
+  if (!english) return undefined
+  if (isYesNoQuestion(english)) {
+    const mine = phraseKey(asMa(answer))
+    const hit = accepted.find(candidate => /不/.test(candidate + answer) && phraseKey(asMa(candidate)) === mine)
+    if (hit) return { closest: hit, note: 'Both 吗 and A-not-A make a yes/no question; either is fine here.' }
+  }
+  if (!differences.length || !differences.every(difference => difference.kind === 'instead')) return undefined
+  const swaps = differences as { kind: 'instead'; word: string; expected: string }[]
+  const rule = EQUIVALENT_WORDS.find(entry => entry.when(english) && swaps.every(swap => entry.words.includes(swap.word) && entry.words.includes(swap.expected)))
+  if (!rule) return undefined
+  const first = swaps[0]
+  return { closest: accepted[0], note: rule.note(first.word, first.expected) }
+}
+
 export type Difference =
   | { kind: 'missing'; word: string }
   | { kind: 'extra'; word: string }
@@ -66,7 +96,7 @@ export function describeDifference(difference: Difference): string {
   switch (difference.kind) {
     case 'missing': return `missing ${difference.word}`
     case 'extra': return `extra ${difference.word}`
-    case 'swapped': return `${difference.a} and ${difference.b} swapped`
+    case 'swapped': return `word order: ${difference.a} comes before ${difference.b}`
     case 'instead': return `${difference.word} instead of ${difference.expected}`
     case 'order': return 'the word order differs'
   }
@@ -118,10 +148,12 @@ export interface ChineseGrade {
   /** Optional words (了, 的) the learner added or left out that were set aside. */
   ignored: string[]
   messages: string[]
+  /** A one-line reason the answer is as right as the model one (an equivalent wording). */
+  note?: string
 }
 
 /** Grades a Chinese answer against the accepted answers. `forms` are the words the segmenter knows (the learner's vocabulary and the phrases' own words). */
-export function gradeChinese(answer: string, accepted: readonly string[], forms: ReadonlySet<string>, optional: readonly string[] = []): ChineseGrade {
+export function gradeChinese(answer: string, accepted: readonly string[], forms: ReadonlySet<string>, optional: readonly string[] = [], english = ''): ChineseGrade {
   const key = phraseKey(answer)
   const exact = accepted.findIndex(candidate => phraseKey(candidate) === key)
   if (key && exact >= 0) return { verdict: 'correct', closest: accepted[exact], alternative: exact > 0, differences: [], ignored: [], messages: [] }
@@ -134,6 +166,8 @@ export function gradeChinese(answer: string, accepted: readonly string[], forms:
     if (distance < cost) { cost = distance; best = option }
   }
   const all = diffWords(best.words, given)
+  const equal = equivalentChoice(answer, accepted, all, english)
+  if (equal) return { verdict: 'correct', closest: equal.closest, alternative: true, differences: [], ignored: [], messages: [], note: equal.note }
   const ignored: string[] = []
   const differences = all.filter(difference => {
     const word = difference.kind === 'missing' || difference.kind === 'extra' ? difference.word : undefined

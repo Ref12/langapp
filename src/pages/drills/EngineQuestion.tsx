@@ -47,8 +47,8 @@ function PickQuestion({ exercise, shape, header, ctx, onDone }: { exercise: Choi
     <Flag exercise={exercise} />
     {header}
     <ChoiceQuestion exercise={shape} attempt={attempt} submit={() => undefined} next={() => undefined} busy={ctx.busy} readings={ctx.readings} pinyin={ctx.pinyin} speak={ctx.speak} bare onSelect={setSelected} name={exercise.id} />
-    {result !== undefined && <div className="notice answer-feedback" role="status"><p>{exercise.explanation}</p></div>}
     <AnswerButton result={result} busy={ctx.busy} ready={selected >= 0} onCheck={() => setResult(selected === shape.answer)} onNext={() => onDone({ correct: result === true })} />
+    {result !== undefined && <div className="notice answer-feedback" role="status"><p>{exercise.explanation}</p></div>}
   </>
 }
 
@@ -59,11 +59,11 @@ function Tiles({ exercise, ctx, onDone }: { exercise: TilesItem; ctx: QuestionCo
   const correct = attempt ? attempt.grade.verdict === 'correct' || counted : undefined
   return <>
     <TilesQuestionBridge exercise={shape} attempt={attempt && attemptOf(exercise, JSON.stringify(attempt.answer), correct === true)} ctx={ctx}
-      submit={answer => setAttempt({ answer, grade: gradeChinese(answer.join(''), exercise.accepted, ctx.forms, exercise.optional) })} next={() => onDone({ correct: correct === true })} />
+      submit={answer => setAttempt({ answer, grade: gradeChinese(answer.join(''), exercise.accepted, ctx.forms, exercise.optional, exercise.translation) })} next={() => onDone({ correct: correct === true })} />
     {attempt && <div className="notice answer-feedback engine-diff" role="status">
       {attempt.grade.verdict === 'correct' ? <p>{attempt.grade.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang="zh-Hans">{exercise.model}</span></p>
-        : <><p>Not the model answer. {attempt.grade.messages.length ? attempt.grade.messages.join('; ') + '.' : ''}</p><p>Closest: <span lang="zh-Hans">{attempt.grade.closest}</span></p>
-          <button type="button" className="button secondary small" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'Count it as correct'}</button></>}
+        : <><p>{attempt.grade.differences.length === 1 && attempt.grade.differences[0].kind === 'swapped' ? `Word order: ${(attempt.grade.differences[0] as { a: string; b: string }).a} comes before ${(attempt.grade.differences[0] as { a: string; b: string }).b}.` : `Not the model answer.${attempt.grade.messages.length ? ' ' + attempt.grade.messages.join('; ') + '.' : ''}`}</p><p>Closest: <span lang="zh-Hans">{attempt.grade.closest}</span></p>
+          <button type="button" className="link-button" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'I was right: count it'}</button></>}
       <p className="small muted">{exercise.explanation}</p></div>}
   </>
 }
@@ -76,8 +76,11 @@ function TilesQuestionBridge({ exercise, attempt, ctx, submit, next }: { exercis
 function Match({ exercise, ctx, onDone }: { exercise: MatchItem; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
   const [misses, setMisses] = useState<string[]>()
   const shape = exercise as unknown as MatchExercise
-  return <MatchQuestion exercise={shape} attempt={misses && attemptOf(exercise, JSON.stringify(misses), misses.length === 0)} submit={response => setMisses(response as string[])} next={() => onDone({ correct: !misses?.length, missed: misses ?? [] })}
-    busy={ctx.busy} readings={ctx.readings} pinyin={ctx.pinyin} speak={ctx.speak} chinese={ctx.chinese} />
+  return <>
+    <MatchQuestion exercise={shape} attempt={misses && attemptOf(exercise, JSON.stringify(misses), misses.length === 0)} submit={response => setMisses(response as string[])} next={() => onDone({ correct: !misses?.length, missed: misses ?? [] })}
+    busy={ctx.busy} readings={ctx.readings} pinyin={ctx.pinyin} speak={ctx.speak} chinese={ctx.chinese} bare />
+    <AnswerButton result={misses ? misses.length === 0 : undefined} busy={ctx.busy} ready={false} onCheck={() => undefined} onNext={() => onDone({ correct: !misses?.length, missed: misses ?? [] })} />
+  </>
 }
 
 /** A typed, spoken or handwritten answer: graded locally, a difference is shown and the learner marks it themselves. */
@@ -92,7 +95,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   useEffect(() => () => capture.current?.cancel(), [])
   const modes = (['type', 'speak', 'write'] as const).filter(value => value !== mode && (value !== 'write' || (ctx.writing && chinese)) && (value !== 'speak' || chinese || exercise.answerLang === 'en'))
   const check = () => {
-    if (chinese) { const grade = gradeChinese(text, exercise.accepted, ctx.forms, exercise.optional); setChecked({ correct: grade.verdict === 'correct', grade }) }
+    if (chinese) { const grade = gradeChinese(text, exercise.accepted, ctx.forms, exercise.optional, exercise.promptLang === 'en' ? exercise.prompt : ''); setChecked({ correct: grade.verdict === 'correct', grade }) }
     else if (exercise.answerLang === 'en') { const meaning = gradeMeaning(text, exercise.accepted); setChecked({ correct: meaning.verdict === 'correct' || meaning.verdict === 'near', meaning, self: meaning.verdict === 'self' }) }
       else setChecked({ correct: gradeSimple(text, exercise.accepted, 'py') === 'correct', self: true })
   }
@@ -113,19 +116,19 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
       <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? 'zh-Hans' : exercise.answerLang === 'py' ? undefined : 'en'} autoComplete="off" autoCapitalize="off" spellCheck={false}
         placeholder={chinese ? 'Type the Chinese' : exercise.answerLang === 'py' ? 'Type the pinyin' : 'Type the meaning'} onChange={event => setText(event.target.value)}
         onKeyDown={event => { if (event.key === 'Enter' && text.trim() && !locked) check() }} /></label>
-    {!locked && mode === 'speak' && <div className="button-row">{speechCaptureSupported() ? <button type="button" className="button secondary" onClick={listen}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser. Type instead.</p>}</div>}
-    {!locked && mode === 'write' && <HandwritingPad allowed={ctx.characters} onPick={character => setText(text + character)} onClose={() => setMode('type')} />}
+    {mode === 'speak' && <div className="button-row" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{speechCaptureSupported() ? <button type="button" className="button secondary" onClick={listen}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser. Type instead.</p>}</div>}
+    {mode === 'write' && <div style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}><HandwritingPad allowed={ctx.characters} onPick={character => setText(text + character)} onClose={() => setMode('type')} /></div>}
+    <AnswerButton result={result} busy={ctx.busy} ready={text.trim().length > 0} onCheck={check} onNext={() => onDone({ correct: result === true })}
+      secondary={modes.length ? <span className="engine-another" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked} role="group" aria-label="Answer another way"><span className="small muted">Answer another way:</span>
+        {modes.map(value => <button key={value} type="button" className="button secondary small" onClick={() => setMode(value)}>{value === 'type' ? <Type size={14} /> : value === 'speak' ? <Mic size={14} /> : <PenLine size={14} />} {MODE_LABEL[value]}</button>)}</span> : undefined} />
     {checked && <div className={`notice answer-feedback engine-diff${checked.correct ? ' success' : ''}`} role="status">
-      {checked.correct ? <p>{checked.meaning?.verdict === 'near' ? checked.meaning.note : <>{checked.grade?.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang={chinese ? 'zh-Hans' : undefined}>{exercise.model}</span></>}</p>
-        : <><p>{checked.grade ? (checked.grade.messages.length ? `Differences: ${checked.grade.messages.join('; ')}.` : 'Not the model answer.') : checked.meaning?.verdict === 'wrong' ? (checked.meaning.note ?? 'Not a meaning of this word.') : checked.meaning?.verdict === 'self' ? 'Partly right. Compare with the answer and mark it yourself.' : 'Compare with the answer and mark it yourself.'}</p>
+      {checked.correct ? <p>{checked.meaning?.verdict === 'near' ? checked.meaning.note : checked.grade?.note ? checked.grade.note : <>{checked.grade?.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang={chinese ? 'zh-Hans' : undefined}>{exercise.model}</span></>}</p>
+        : <><p>{checked.grade ? (checked.grade.messages.length ? (checked.grade.differences.length === 1 && checked.grade.differences[0].kind === 'swapped' ? `Word order: ${(checked.grade.differences[0] as { a: string; b: string }).a} comes before ${(checked.grade.differences[0] as { a: string; b: string }).b}.` : `Differences: ${checked.grade.messages.join('; ')}.`) : 'Not the model answer.') : checked.meaning?.verdict === 'wrong' ? (checked.meaning.note ?? 'Not a meaning of this word.') : checked.meaning?.verdict === 'self' ? 'Partly right. Compare with the answer and mark it yourself.' : 'Compare with the answer and mark it yourself.'}</p>
           <p>{chinese ? 'Closest answer: ' : 'Answer: '}<span lang={chinese ? 'zh-Hans' : undefined}>{checked.grade?.closest ?? exercise.model}</span></p></>}
       {checked.grade?.ignored.length ? <p className="small muted">{checked.grade.ignored.join(', ')} left out or added: optional here.</p> : null}
       {exercise.modelPinyin && chinese && <p className="small"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></p>}
-      {!checked.correct && <button type="button" className="button secondary small" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'I was right: count it'}</button>}
-      <p className="small muted">{exercise.explanation}</p></div>}
-    <AnswerButton result={result} busy={ctx.busy} ready={text.trim().length > 0} onCheck={check} onNext={() => onDone({ correct: result === true })}
-      secondary={!locked && modes.length ? <span className="engine-another" role="group" aria-label="Answer another way"><span className="small muted">Answer another way:</span>
-        {modes.map(value => <button key={value} type="button" className="button secondary small" onClick={() => setMode(value)}>{value === 'type' ? <Type size={14} /> : value === 'speak' ? <Mic size={14} /> : <PenLine size={14} />} {MODE_LABEL[value]}</button>)}</span> : undefined} />
+      {!checked.correct && <button type="button" className="link-button" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'I was right: count it'}</button>}
+      {exercise.explanation && exercise.explanation.trim() !== exercise.prompt?.trim() && <p className="small muted">{exercise.explanation}</p>}</div>}
   </>
 }
 
