@@ -1,9 +1,9 @@
-import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { parse } from 'yaml'
 import { afterEach, describe, expect, it } from 'vitest'
-import { createIO, addPhrase, buildCurriculum, createCaller, createThrottleLog, retryAfterMs, buildOutputs, emptyState, parseArgs, recheck, runBatches, runPipeline, saveState, writeOutputs } from './build-phrase-bank.mjs'
+import { createSaver, selectWords, createIO, addPhrase, buildCurriculum, createCaller, createThrottleLog, retryAfterMs, buildOutputs, emptyState, parseArgs, recheck, runBatches, runPipeline, saveState, writeOutputs } from './build-phrase-bank.mjs'
 
 const CHARS = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '百', '千']
 const word = (lb: string, ch: string, pr: string) => ({ id: lb, ch, pr, ds: 'meaning of ' + lb, lb })
@@ -299,5 +299,72 @@ describe('model call backoff', () => {
     expect(lines).toEqual(['endpoint throttling: 41 retries after 429, 10 after 5xx, 51 s of backoff in total'])
     log.flush()
     expect(lines).toHaveLength(1)
+  })
+})
+
+describe('debounced save and resume', () => {
+  it('writes at most once per interval, only changed bands, and flush leaves complete files that parse', () => {
+    const c = curriculum()
+    const state = emptyState()
+    const dir = temp()
+    const opts = { ...options(), state: join(dir, 'state.json'), out: join(dir, 'yaml'), jsonOut: join(dir, 'json') }
+    let now = 0
+    const timers: (() => void)[] = []
+    const written: string[] = []
+    const save = createSaver({ curriculum: c, state, options: opts, interval: 5000, clock: () => now, schedule: run => { timers.push(run); return timers.length }, cancel: () => {}, files: { writeAtomic: (file: string, text: string) => { written.push(file); writeFileSync(file, text) } } } as never)
+    mkdirSync(join(dir, 'yaml'), { recursive: true }); mkdirSync(join(dir, 'json'), { recursive: true })
+    const add = (zh: string) => addPhrase(c, state, { zh, py: 'x', en: 'e', words: ['wo', 'shi'], source: 'ai', checked: true } as never)
+    now = 10000
+    add('我是我。'); save()                       // first save writes everything
+    const first = written.length
+    expect(first).toBeGreaterThanOrEqual(6)
+    written.length = 0
+    now = 11000
+    add('是我。'); save(); add('我是。'); save()   // inside the interval: nothing is written, one timer is armed
+    expect(written).toEqual([])
+    expect(timers).toHaveLength(1)
+    save.flush()                                 // flush writes now: only band 1 changed (plus the index)
+    expect(written.filter(file => file.endsWith('.yaml')).map(file => file.split(/[\\/]/).pop())).toEqual(['hsk-1.yaml'])
+    const text = readFileSync(join(dir, 'yaml', 'hsk-1.yaml'), 'utf8')
+    expect(parse(text).phrases.map((item: { zh: string }) => item.zh)).toEqual(['我是我。', '是我。', '我是。'])
+    expect(JSON.parse(readFileSync(join(dir, 'json', 'index.json'), 'utf8')).bands['1'].count).toBe(3)
+    written.length = 0
+    timers[0]()                                  // the timer firing later finds nothing pending
+    expect(written).toEqual([])
+  })
+
+  it('a pipeline run with a long interval still ends with complete, parsing files', async () => {
+    const c = curriculum()
+    const state = emptyState()
+    const dir = temp()
+    const opts = { ...options(), concurrency: 6, state: join(dir, 'state.json'), out: join(dir, 'yaml'), jsonOut: join(dir, 'json') }
+    const save = createSaver({ curriculum: c, state, options: opts, interval: 3600000 })
+    await runPipeline({ curriculum: c, state, io: fakes({ delay: 10, seed: 8 }).io as never, options: opts, save })
+    // the end of the pass flushed (the run's own end would too)
+    const text = parse(readFileSync(join(dir, 'yaml', 'hsk-1.yaml'), 'utf8'))
+    expect(text.phrases.map((item: { zh: string }) => item.zh).sort()).toEqual(state.phrases.map(item => item.zh).sort())
+    expect(JSON.parse(readFileSync(join(dir, 'state.json'), 'utf8')).words.w12.status).toBe('done')
+    expect(JSON.parse(readFileSync(join(dir, 'json', 'index.json'), 'utf8')).bands['1'].count).toBe(state.phrases.length)
+  })
+
+  it('a run stopped in the middle of a pass processes the rest of that pass when restarted', async () => {
+    const c = curriculum()
+    const state = emptyState()
+    const opts = { ...options({ words: WORDS }), lookahead: [0, 2], concurrency: 1 }
+    // stop after three merged batches: the save callback throws on the third merge
+    let merges = 0
+    const stop = new Error('stopped')
+    await expect(runPipeline({ curriculum: c, state, io: fakes().io as never, options: opts, save: () => { if (++merges === 3) throw stop } })).rejects.toBe(stop)
+    const done = WORDS.filter(lb => state.words[lb])
+    expect(done.length).toBeLessThan(WORDS.length)
+    // the targets that were selected but not processed carry no look-ahead record, so the same pass picks them up again
+    const again = selectWords({ curriculum: c, state, options: opts, lookahead: 0 }).map(entry => entry.word.lb)
+    expect(again.length).toBeGreaterThan(0)
+    for (const lb of WORDS.filter(item => !state.words[item])) expect(again).toContain(lb)
+    await runPipeline({ curriculum: c, state, io: fakes().io as never, options: opts })
+    // every target of the interrupted pass was processed on the restart (none fell through unprocessed to a later look-ahead)
+    for (const lb of WORDS) expect(state.words[lb]?.attempts).toBeGreaterThan(0)
+    for (const lb of WORDS.filter(item => !done.includes(item))) expect(state.words[lb].attempts).toBeGreaterThanOrEqual(1)
+    expect(state.passes?.[0]).toBeDefined()
   })
 })

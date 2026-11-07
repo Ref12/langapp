@@ -31,7 +31,7 @@
 //   node scripts/build-phrase-bank.mjs --base-url http://localhost:5210/v1 \
 //     --writer-model luna --writer-api responses --checker-model sonnet --checker-api chat --lessons 1-10
 //   Options: --api-key-env NAME (default PHRASE_API_KEY), --target 3, --batch-size 20, --lookahead 0,2,4,8,16, --lessons 1-10 (lessons counted from 1),
-//            --lesson-span 1 (a batch spans at most this many lessons), --session-id ID (env PHRASE_SESSION_ID; sent as x-session-id on every model call so the gateway files the whole run as one session; default phrase-bank-<start time>), --concurrency 32 (env PHRASE_CONCURRENCY: batches of a pass in flight at once; batches in flight are kept more than --lesson-span lessons apart where possible), --band 1,2, --words lb1,lb2 (words only), --grammar ref1,ref2 (grammar only),
+//            --lesson-span 1 (a batch spans at most this many lessons), --save-interval 5 (env PHRASE_SAVE_INTERVAL: seconds between writes of the state and band files; always written at the end of a pass and run and on Ctrl-C), --session-id ID (env PHRASE_SESSION_ID; sent as x-session-id on every model call so the gateway files the whole run as one session; default phrase-bank-<start time>), --concurrency 32 (env PHRASE_CONCURRENCY: batches of a pass in flight at once; batches in flight are kept more than --lesson-span lessons apart where possible), --band 1,2, --words lb1,lb2 (words only), --grammar ref1,ref2 (grammar only),
 //            --limit N, --plan (+ --planner-model/--planner-api), --retry (targets that ended partial or failed), --recheck (phrases kept unchecked), --repinyin (only reset every phrase's pinyin from its Chinese in the band files and the JSON, then stop),
 //            --report (per pass: words and grammar points at target, and those still without phrases), --out DIR (YAML, default curriculum/chinese/authoring/phrases),
 //            --json-out DIR (default src/data/phrases), --state FILE (default build/phrase-bank/state-v2.json), --data-dir DIR, --dry-run,
@@ -42,7 +42,7 @@ import { pinyin as toPinyin } from 'pinyin-pro'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { defaultPhraseAuthoringDir, defaultPhraseJsonDir, isOldState, readOldBank, readOldState, readPhraseBands, writeAtomic, writePhraseBands } from './phrase-bank-files.mjs'
+import { defaultPhraseAuthoringDir, defaultPhraseJsonDir, isOldState, readOldBank, readOldState, phraseFile, phraseIndexFile, phraseIndexText, phraseJsonText, readPhraseBands, stringifyPhraseYaml, writeAtomic, writePhraseBands } from './phrase-bank-files.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 /** What makes two phrases the same sentence: its Han characters only. Kept in step with phraseKey in src/core/phrases/key.ts (a test compares them). */
@@ -158,17 +158,15 @@ export function coverageReport(curriculum) {
 
 // ---------------------------------------------------------------- validation
 
-/** Segments text into allowed forms (longest first); covers is true when every Han character is part of one. */
-export function createSegmenter(forms) {
-  const set = new Set([...forms].filter(form => HAN.test(form)))
-  const longest = Math.max(1, ...[...set].map(form => form.length))
+/** A segmenter over a membership test: segments text into allowed forms (longest first); covers is true when every Han character is part of one. */
+function makeSegmenter(has, longest) {
   const runs = text => text.match(/\p{Script=Han}+/gu) ?? []
   const covers = text => runs(text).every(run => {
     const reachable = new Array(run.length + 1).fill(false)
     reachable[0] = true
     for (let start = 0; start < run.length; start++) {
       if (!reachable[start]) continue
-      for (let length = 1; length <= longest && start + length <= run.length; length++) if (set.has(run.slice(start, start + length))) reachable[start + length] = true
+      for (let length = 1; length <= longest && start + length <= run.length; length++) if (has(run.slice(start, start + length))) reachable[start + length] = true
     }
     return reachable[run.length]
   })
@@ -177,13 +175,19 @@ export function createSegmenter(forms) {
     for (const run of runs(text)) {
       for (let at = 0; at < run.length;) {
         let taken = 0
-        for (let length = Math.min(longest, run.length - at); length >= 1; length--) if (set.has(run.slice(at, at + length))) { taken = length; break }
+        for (let length = Math.min(longest, run.length - at); length >= 1; length--) if (has(run.slice(at, at + length))) { taken = length; break }
         if (taken) { out.push(run.slice(at, at + taken)); at += taken } else at++
       }
     }
     return out
   }
   return { covers, segment }
+}
+
+/** Segments text into allowed forms (longest first); covers is true when every Han character is part of one. */
+export function createSegmenter(forms) {
+  const set = new Set([...forms].filter(form => HAN.test(form)))
+  return makeSegmenter(form => set.has(form), Math.max(1, ...[...set].map(form => form.length)))
 }
 
 const labelCache = new WeakMap()
@@ -194,18 +198,36 @@ function labelsOf(curriculum) {
   return labels
 }
 
-/** The forms a phrase for this word may use in a pass: every word introduced by lesson index word.index + lookahead, the word's own characters and the function characters. */
-export function allowedFor(curriculum, word, lookahead = 0) {
-  const forms = new Map()
-  for (const other of curriculum.ordered) {
-    if (other.index > word.index + lookahead) break
-    if (!forms.has(other.ch)) forms.set(other.ch, other.lb)
+const lessonIndexCache = new WeakMap()
+const FUNCTION_SET = new Set(Array.from(FUNCTION_CHARACTERS))
+/** Once per curriculum: the lesson index at which each form and each grammar point is first introduced, so a pass's window is a comparison, not a copy. */
+function lessonIndexOf(curriculum) {
+  let found = lessonIndexCache.get(curriculum)
+  if (!found) {
+    const forms = new Map(), grammar = new Map()
+    let longest = 1
+    for (const other of curriculum.ordered) if (!forms.has(other.ch)) { forms.set(other.ch, { lb: other.lb, index: other.index }); if (HAN.test(other.ch)) longest = Math.max(longest, other.ch.length) }
+    for (const point of curriculum.grammarOrdered ?? []) if (!grammar.has(point.lb)) grammar.set(point.lb, point.index)
+    found = { forms, grammar, longest }
+    lessonIndexCache.set(curriculum, found)
   }
-  const extra = new Set(Array.from(FUNCTION_CHARACTERS))
-  for (const char of word.ch) extra.add(char)
-  const grammar = new Set()
-  for (const point of curriculum.grammarOrdered ?? []) { if (point.index > word.index + lookahead) break; grammar.add(point.lb) }
-  return { forms, grammar, lookahead, segmenter: createSegmenter([...forms.keys(), ...extra]) }
+  return found
+}
+
+/**
+ * The forms a phrase for this word may use in a pass: every word introduced by lesson index word.index + lookahead, the word's own characters and the function characters.
+ * Cheap to make for each entry: the lesson index is shared, only the word's own characters are per entry.
+ */
+export function allowedFor(curriculum, word, lookahead = 0) {
+  const { forms: first, grammar: firstGrammar, longest } = lessonIndexOf(curriculum)
+  const limit = word.index + lookahead
+  const extra = new Set(Array.from(word.ch))
+  const has = form => { const entry = first.get(form); return (entry !== undefined && entry.index <= limit) || extra.has(form) || FUNCTION_SET.has(form) }
+  return {
+    forms: { get: form => { const entry = first.get(form); return entry !== undefined && entry.index <= limit ? entry.lb : undefined }, keys: () => [...first].filter(([, entry]) => entry.index <= limit).map(([form]) => form)[Symbol.iterator]() },
+    grammar: { has: ref => { const index = firstGrammar.get(ref); return index !== undefined && index <= limit } },
+    lookahead, segmenter: makeSegmenter(has, longest),
+  }
 }
 
 /** The lesson index by which every word and grammar point of a phrase is introduced. */
@@ -589,21 +611,29 @@ export async function processBatch({ curriculum, entries, io, options, lookahead
  * in flight, the next batch dispatched is the first pending one whose lessons lie more than `span` lessons from every batch in flight (the first pending one when none does).
  */
 export async function runBatches({ batches, concurrency = 1, span = 1, dispatch, merge }) {
-  const range = batch => { const at = batch.map(item => item.word.index); return [Math.min(...at), Math.max(...at)] }
+  const rangeOf = batch => { let low = Infinity, high = -Infinity; for (const item of batch) { const at = item.word.index; if (at < low) low = at; if (at > high) high = at } return [low, high] }
+  const ranges = new Map(batches.map(batch => [batch, rangeOf(batch)]))
   const pending = [...batches]
-  const flying = new Map()
-  const far = (batch, others) => { const [low, high] = range(batch); return others.every(other => { const [from, to] = range(other); return low - to > span || from - high > span }) }
+  const flying = new Map(), finished = []
+  let waiting
+  const finish = done => { finished.push(done); const wake = waiting; waiting = undefined; wake?.() }
+  // looking for a batch far from those in flight stops after a few candidates: with many in flight there may be none, and a scan of every pending batch per dispatch is the pipeline's own cost
+  const SCAN = 40
+  const far = batch => { const [low, high] = ranges.get(batch); for (const other of flying.keys()) { const [from, to] = ranges.get(other); if (!(low - to > span || from - high > span)) return false } return true }
   while (pending.length || flying.size) {
     while (pending.length && flying.size < Math.max(1, concurrency)) {
-      const at = Math.max(0, pending.findIndex(batch => far(batch, [...flying.values()])))
+      let at = 0
+      for (let scan = 0; scan < Math.min(SCAN, pending.length); scan++) if (far(pending[scan])) { at = scan; break }
       const [batch] = pending.splice(at, 1)
       let started
       try { started = Promise.resolve(dispatch(batch)) } catch (reason) { started = Promise.reject(reason) }
-      const tracked = started.then(value => ({ tracked, batch, value }), error => ({ tracked, batch, error }))
-      flying.set(tracked, batch)
+      flying.set(batch, true)
+      started.then(value => finish({ batch, value }), error => finish({ batch, error }))
     }
-    const done = await Promise.race(flying.keys())
-    flying.delete(done.tracked)
+    // completions queue up here and are merged one at a time, in the order they arrived
+    if (!finished.length) await new Promise(wake => { waiting = wake })
+    const done = finished.shift()
+    flying.delete(done.batch)
     merge(done.batch, done.value, done.error)
   }
 }
@@ -642,21 +672,46 @@ export function lessonKeys(curriculum) {
   return keys
 }
 
+/**
+ * Lookups over state.phrases kept as maps (the keys in hand, the phrases per word and per grammar point), updated by addPhrase instead of scanning the list. It is
+ * rebuilt when the list was replaced or changed by something else (its array or length is not what the index last saw).
+ */
+const indexes = new WeakMap()
+function indexOfState(state) {
+  let index = indexes.get(state)
+  if (!index || index.list !== state.phrases || index.length !== state.phrases.length) {
+    index = { list: state.phrases, length: state.phrases.length, keys: new Set(), byWord: new Map(), byGrammar: new Map() }
+    for (const phrase of state.phrases) indexPhrase(index, phrase)
+    indexes.set(state, index)
+  }
+  return index
+}
+function indexPhrase(index, phrase) {
+  index.keys.add(phraseKey(phrase.zh))
+  for (const lb of new Set(phrase.words)) { const list = index.byWord.get(lb); if (list) list.push(phrase); else index.byWord.set(lb, [phrase]) }
+  for (const ref of new Set(phrase.grammar ?? [])) { const list = index.byGrammar.get(ref); if (list) list.push(phrase); else index.byGrammar.set(ref, [phrase]) }
+}
+
 /** Adds a phrase to the list with the next id of its band (the band of the word it uses that is introduced last); nothing happens when the phrase is already there. */
 export function addPhrase(curriculum, state, phrase) {
   const key = phraseKey(phrase.zh)
-  if (state.phrases.some(other => phraseKey(other.zh) === key) || lessonKeys(curriculum).has(key)) return undefined
+  const index = indexOfState(state)
+  if (index.keys.has(key) || lessonKeys(curriculum).has(key)) return undefined
   const band = phrase.band ?? bandOfWords(curriculum, phrase.words)
   const high = state.lastId[band] ?? Math.max(0, ...state.phrases.filter(other => other.band === band).map(other => other.id))
   state.lastId[band] = high + 1
   const added = { ...phrase, band, id: high + 1, readyAt: phrase.readyAt ?? readyAtOf(curriculum, phrase.words, phrase.grammar) }
   state.phrases.push(added)
+  indexPhrase(index, added)
+  index.length = state.phrases.length
   return added
 }
 
 /** The phrases in hand that use the word (or are tagged with the grammar point, for a target made by grammarWord) and are ready by its lesson plus the look-ahead: what counts towards the word's total. */
 export function phrasesForWord(curriculum, state, word, lookahead = 0) {
-  return state.phrases.filter(phrase => (word.grammar ? (phrase.grammar ?? []).includes(word.grammar.lb) : phrase.words.includes(word.lb)) && (phrase.readyAt ?? readyAtOf(curriculum, phrase.words, phrase.grammar)) <= word.index + lookahead)
+  const index = indexOfState(state)
+  const list = (word.grammar ? index.byGrammar.get(word.grammar.lb) : index.byWord.get(word.lb)) ?? []
+  return list.filter(phrase => (phrase.readyAt ?? readyAtOf(curriculum, phrase.words, phrase.grammar)) <= word.index + lookahead)
 }
 
 /** Per grammar point, how many phrases in the flat list are tagged with it; points with none are absent. */
@@ -750,12 +805,12 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
   state.passes = state.passes ?? {}
   for (const lookahead of passes) {
     const entries = selectWords({ curriculum, state, options, lookahead })
-    for (const entry of entries) { const record = state.words[entry.word.lb]; if (record) record.lookahead = Math.max(record.lookahead ?? 0, lookahead) }
+    // a target's look-ahead is recorded when it is processed (merged), not when it is selected: a run stopped mid-pass must find the rest of the pass undone
     const batches = batchByLesson(entries, options.batchSize, options.lessonSpan ?? 1)
     log('pass look-ahead ' + lookahead + ': ' + entries.length + ' words under target, ' + entries.length + ' to write in ' + batches.length + ' batches')
     let merged = 0
     // every phrase in hand, shared by all dispatches and updated at merge time (not rebuilt per batch)
-    const taken = new Set([...state.phrases.map(phrase => phraseKey(phrase.zh)), ...lessonKeys(curriculum)])
+    const taken = new Set([...indexOfState(state).keys, ...lessonKeys(curriculum)])
     await runBatches({
       batches, concurrency: options.concurrency ?? 1, span: options.lessonSpan ?? 1,
       dispatch: batch => {
@@ -788,6 +843,7 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
       },
     })
     state.passes[lookahead] = { at: new Date().toISOString() }
+    save.flush?.()
   }
   return state
 }
@@ -821,8 +877,8 @@ export function passReport(curriculum, state, options) {
 // ---------------------------------------------------------------- output
 
 /** The band files: one per band, a flat list in id order (the band of a phrase is the band of the word it uses that is introduced last). */
-export function buildOutputs(curriculum, state) {
-  return BANDS.map(band => ({
+export function buildOutputs(curriculum, state, only = BANDS) {
+  return only.map(band => ({
     band, lastId: state.lastId[band] ?? 0,
     phrases: state.phrases.filter(phrase => phrase.band === band).sort((a, b) => a.id - b.id).map(({ band: _band, ...phrase }) => phrase),
   }))
@@ -839,6 +895,47 @@ export function loadState(file) {
   const old = readOldState(raw)
   return { ...emptyState(), words: old.words, phrases: old.phrases, ...(old.target !== undefined ? { target: old.target } : {}), ...(old.passes ? { passes: old.passes } : {}) }
 }
+/**
+ * The run's save: state file and band files, written at most every `interval` ms however often it is called (a merged batch calls it), and only the band files that
+ * changed (the band's highest id or phrase count moved, or all of them after save.all()). save.flush() writes what is pending now: at the end of a pass, of the
+ * run and on SIGINT, so a stopped run loses at most the last interval of merged batches. One call writes at most once at a time: everything here is synchronous.
+ */
+export function createSaver({ curriculum, state, options, interval = 5000, clock = Date.now, schedule = (run, ms) => { const timer = setTimeout(run, ms); timer.unref?.(); return timer }, cancel = clearTimeout, files = {} }) {
+  const { writeAtomic: write = writeAtomic, phraseJsonText: jsonText = phraseJsonText, phraseIndexText: indexText = phraseIndexText, phraseIndexFile: indexFile = phraseIndexFile, stringify = stringifyPhraseYaml } = files
+  const written = new Map()   // band -> signature of the file last written
+  const outputs = new Map()   // band -> the band's output as last built
+  let dirty = false, everything = true, last = -Infinity, timer
+  const write_ = () => {
+    if (timer !== undefined) { cancel(timer); timer = undefined }
+    saveState(options.state, state)
+    const sigs = new Map()
+    const counts = new Map()
+    for (const phrase of state.phrases) counts.set(phrase.band, (counts.get(phrase.band) ?? 0) + 1)
+    for (const band of BANDS) sigs.set(band, (state.lastId[band] ?? 0) + ':' + (counts.get(band) ?? 0))
+    let changed = false
+    for (const band of BANDS) {
+      if (!everything && outputs.has(band) && written.get(band) === sigs.get(band)) continue
+      const [output] = buildOutputs(curriculum, state, [band])
+      outputs.set(band, output)
+      write(phraseFile(options.out, band), stringify(output))
+      if (options.jsonOut) write(phraseFile(options.jsonOut, band, 'json'), jsonText(output))
+      written.set(band, sigs.get(band))
+      changed = true
+    }
+    // the index covers every band: built from the outputs in memory, not by reading the YAML back
+    if (options.jsonOut && changed) write(indexFile(options.jsonOut), indexText(BANDS.map(band => outputs.get(band))))
+    dirty = false; everything = false; last = clock()
+  }
+  const save = () => {
+    dirty = true
+    const wait = interval - (clock() - last)
+    if (wait <= 0) write_(); else if (timer === undefined) timer = schedule(() => { timer = undefined; if (dirty) write_() }, wait)
+  }
+  save.all = () => { everything = true; save() }
+  save.flush = () => { if (dirty || everything) write_() }
+  return save
+}
+
 export function saveState(file, state) { const { phrases: _phrases, lastId: _lastId, ...progress } = state; writeAtomic(file, JSON.stringify(progress, null, 1) + '\n') }
 
 /**
@@ -872,7 +969,7 @@ export function parseArgs(argv, env = process.env) {
   const list = value => value ? String(value).split(',').map(item => item.trim()).filter(Boolean) : undefined
   const model = role => get(role + '-model', 'PHRASE_' + role.toUpperCase() + '_MODEL')
   return {
-    report: flags.has('report'), help: flags.has('help'), dryRun: flags.has('dry-run'), retry: flags.has('retry'), recheck: flags.has('recheck'), repinyin: flags.has('repinyin'), plan: flags.has('plan'), lookahead: parseLookahead(get('lookahead', 'PHRASE_LOOKAHEAD', DEFAULT_LOOKAHEAD.join(','))), lessons: flags.has('lessons') ? parseLessons(flags.get('lessons')) : undefined, lessonSpan: Number(get('lesson-span', 'PHRASE_LESSON_SPAN', 1)), sessionId: get('session-id', 'PHRASE_SESSION_ID', 'phrase-bank-' + new Date().toISOString().slice(0, 19)), concurrency: Math.max(1, Math.floor(Number(get('concurrency', 'PHRASE_CONCURRENCY', 32))) || 1),
+    report: flags.has('report'), help: flags.has('help'), dryRun: flags.has('dry-run'), retry: flags.has('retry'), recheck: flags.has('recheck'), repinyin: flags.has('repinyin'), plan: flags.has('plan'), lookahead: parseLookahead(get('lookahead', 'PHRASE_LOOKAHEAD', DEFAULT_LOOKAHEAD.join(','))), lessons: flags.has('lessons') ? parseLessons(flags.get('lessons')) : undefined, lessonSpan: Number(get('lesson-span', 'PHRASE_LESSON_SPAN', 1)), sessionId: get('session-id', 'PHRASE_SESSION_ID', 'phrase-bank-' + new Date().toISOString().slice(0, 19)), saveInterval: Math.max(0, Number(get('save-interval', 'PHRASE_SAVE_INTERVAL', 5))) * 1000, concurrency: Math.max(1, Math.floor(Number(get('concurrency', 'PHRASE_CONCURRENCY', 32))) || 1),
     baseUrl: get('base-url', 'PHRASE_BASE_URL'), apiKey: env[get('api-key-env', 'PHRASE_API_KEY_ENV', 'PHRASE_API_KEY')],
     roles: {
       planner: { model: model('planner'), api: get('planner-api', 'PHRASE_PLANNER_API', 'chat') },
@@ -910,8 +1007,8 @@ export async function main(argv = process.argv.slice(2), { fetchImpl, log = cons
     if (isOldState(raw)) { const old = readOldState(raw); carried.push(...old.phrases); for (const [lb, record] of Object.entries(old.words)) state.words[lb] ??= record } else carried.push(...readOldBank(raw))
   }
   const added = attachPhrases(curriculum, state, options.out, carried)
-  const save = () => { saveState(options.state, state); writeOutputs(options.out, buildOutputs(curriculum, state), options.jsonOut) }
-  if (options.importOld?.length) { save(); log('imported ' + added + ' phrases from the old format into ' + options.out); return }
+  const save = createSaver({ curriculum, state, options, interval: options.saveInterval })
+  if (options.importOld?.length) { save.all(); save.flush(); log('imported ' + added + ' phrases from the old format into ' + options.out); return }
   if (options.report) { log(JSON.stringify({ ...coverageReport(curriculum), lookahead: passReport(curriculum, state, options) }, null, 1)); return }
   if (options.dryRun) {
     const chosen = selectWords({ curriculum, state, options, lookahead: options.lookahead[0] })
@@ -921,10 +1018,14 @@ export async function main(argv = process.argv.slice(2), { fetchImpl, log = cons
   if (!options.baseUrl || !options.roles.writer.model || !options.roles.checker.model) throw new Error('Give --base-url, --writer-model and --checker-model (or --planner-model); see the header of this script.')
   log('session id: ' + options.sessionId)
   const io = createIO(options, fetchImpl, log)
-  if (options.recheck) await recheck({ curriculum, state, io, options, log, save })
-  await runPipeline({ curriculum, state, io, options, log, save })
+  const stop = () => { try { save.flush() } finally { process.exit(130) } }
+  process.once('SIGINT', stop); process.once('SIGTERM', stop)
+  try {
+    if (options.recheck) { const every = Object.assign(() => save.all(), { flush: save.flush }); await recheck({ curriculum, state, io, options, log, save: every }) }
+    await runPipeline({ curriculum, state, io, options, log, save })
+  } finally { process.off('SIGINT', stop); process.off('SIGTERM', stop) }
   io.flushThrottle()
-  save()
+  save.all(); save.flush()
   const counts = { done: 0, partial: 0, failed: 0 }
   for (const record of Object.values(state.words)) counts[record.status]++
   for (const row of passReport(curriculum, state, options).passes) log('look-ahead ' + row.lookahead + ': ' + row.reached + '/' + row.of + ' words and ' + row.grammar.reached + '/' + row.grammar.of + ' grammar points at target')
