@@ -60,7 +60,10 @@ export function replayRunner(plan: SessionPlan, answers: readonly boolean[]): Ru
 }
 
 /** Exercises answered for the first time, and how many the plan holds: the progress line's numbers. */
-export const progressOf = (state: RunnerState) => ({ done: state.log.filter(attempt => attempt.round === 0).length, total: state.plan.stages.reduce((sum, entry) => sum + entry.exercises.length, 0) })
+export const progressOf = (state: RunnerState) => {
+  const graded = (form: string) => form !== 'intro' && form !== 'repeat'
+  return { done: state.log.filter(attempt => attempt.round === 0 && graded(attempt.form)).length, total: state.plan.stages.reduce((sum, entry) => sum + entry.exercises.filter(exercise => graded(exercise.form)).length, 0) }
+}
 
 /** Exercises still to come in the stage being played (this queue only), for the progress line. */
 export const remainingInQueue = (state: RunnerState) => Math.max(0, state.queue.length - state.cursor)
