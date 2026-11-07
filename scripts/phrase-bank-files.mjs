@@ -110,9 +110,23 @@ export function phraseJson({ band, phrases }) {
 }
 export const phraseJsonText = file => JSON.stringify(phraseJson(file)) + '\n'
 
-/** [path, Buffer] for every generated band file, for the curriculum generator to write or to check against. */
+/** The small index the app reads for counts without loading the band files: per band the shipped phrase count, and the count per vocabulary word that has any. */
+export function phraseIndex(files) {
+  const bands = {}
+  for (const file of [...files].sort((a, b) => Number(a.band) - Number(b.band))) {
+    const counts = {}
+    for (const phrase of file.phrases) for (const word of new Set(phrase.words)) counts[word] = (counts[word] ?? 0) + 1
+    bands[file.band] = { count: file.phrases.length, words: Object.fromEntries(Object.entries(counts).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) }
+  }
+  return { schemaVersion: 1, bands }
+}
+export const phraseIndexText = files => JSON.stringify(phraseIndex(files)) + '\n'
+export const phraseIndexFile = dir => join(dir, 'index.json')
+
+/** [path, Buffer] for every generated band file and the index, for the curriculum generator to write or to check against. */
 export function phraseBankOutputs(authoringDir = defaultPhraseAuthoringDir, jsonDir = defaultPhraseJsonDir) {
-  return readPhraseBands(authoringDir).map(file => [phraseFile(jsonDir, file.band, 'json'), Buffer.from(phraseJsonText(file))])
+  const files = readPhraseBands(authoringDir)
+  return [...files.map(file => [phraseFile(jsonDir, file.band, 'json'), Buffer.from(phraseJsonText(file))]), [phraseIndexFile(jsonDir), Buffer.from(phraseIndexText(files))]]
 }
 
 export function writeAtomic(file, text) { mkdirSync(dirname(file), { recursive: true }); const temp = file + '.tmp'; writeFileSync(temp, text); renameSync(temp, file) }
@@ -122,6 +136,8 @@ export function writePhraseBands(files, { authoringDir = defaultPhraseAuthoringD
     writeAtomic(phraseFile(authoringDir, file.band), stringifyPhraseYaml(file))
     if (jsonDir) writeAtomic(phraseFile(jsonDir, file.band, 'json'), phraseJsonText(file))
   }
+  // The index covers every band, so it is rebuilt from the authored files (this call may have written only some of them).
+  if (jsonDir) writeAtomic(phraseIndexFile(jsonDir), phraseIndexText(readPhraseBands(authoringDir)))
 }
 
 // ---------------------------------------------------------------- the old format (keyed by word)

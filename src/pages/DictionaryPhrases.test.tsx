@@ -18,6 +18,9 @@ vi.mock('../data/phrases/hsk-1.json', () => { source.bandLoads.push('1'); return
   { id: 2, zh: '我喝茶。', py: 'wǒ hē chá', en: 'I drink tea (generated).', words: ['me', 'drink', 'tea'], grammar: ['plain'], source: 'ai', checked: true },
 ] } } })
 
+// The count index: only this small file may load while Vocabulary is open.
+vi.mock('../data/phrases/index.json', () => ({ default: { schemaVersion: 1, bands: { '1': { count: 2, words: { me: 2, drink: 2, tea: 1, water: 1 } } } } }))
+
 function Harness() {
   const workspace = useLiveQuery(loadWorkspace, [])
   const route = useRoute()
@@ -56,10 +59,12 @@ describe('dictionary phrases', () => {
   it('does not load phrase data for the other sections, and offers a link per word', async () => {
     window.location.hash = 'dictionary/vocabulary/all'
     render(<Harness />)
-    expect(await screen.findAllByRole('link', { name: 'Phrases' })).toHaveLength(4)
-    expect(screen.getByRole('button', { name: 'Phrases' })).toBeInTheDocument()
+    // from the index: 2 shipped + 1 lesson example + 1 of the learner's own; per word the same way (me: 2 + 0 + 1)
+    expect(await screen.findByRole('button', { name: 'Phrases (4)' })).toBeInTheDocument()
+    const links = await screen.findAllByRole('link', { name: /^\d+ phrases$/ })
+    expect(links.map(link => link.textContent).sort()).toEqual(['2 phrases', '2 phrases', '3 phrases', '3 phrases'])
     expect(source.bandLoads).toEqual([])
-    expect(screen.getAllByRole('link', { name: 'Phrases' })[0]).toHaveAttribute('href', expect.stringMatching(/^#dictionary\/phrases\/all\?word=vocabulary%3A/))
+    expect(links[0]).toHaveAttribute('href', expect.stringMatching(/^#dictionary\/phrases\/all\?word=vocabulary%3A/))
   })
 
   it('opens the section with scope counts, states and what is missing', async () => {
@@ -72,7 +77,7 @@ describe('dictionary phrases', () => {
     expect(source.bandLoads).toEqual(['1'])
     const scopes = within(screen.getByRole('group', { name: 'Phrase scope' }))
     // lesson example, 我喝水 (needs water), 我喝茶 (needs the grammar tag), the learner's 我要水 (needs water)
-    expect(scopes.getByRole('button', { name: 'All (4)' })).toBeInTheDocument()
+    expect(await scopes.findByRole('button', { name: 'All (4)' })).toBeInTheDocument()
     expect(scopes.getByRole('button', { name: 'Ready (1)' })).toBeInTheDocument()
     expect(scopes.getByRole('button', { name: 'Pending (3)' })).toBeInTheDocument()
     expect(scopes.getByRole('button', { name: 'Added by me (1)' })).toBeInTheDocument()

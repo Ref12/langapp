@@ -5,7 +5,8 @@ import { savePreferences } from '../core/learning'
 import { PenLine, Search } from 'lucide-react'
 import { playBrowserSpeech } from '../core/assistant/speech'
 import { removeUserPhrase } from '../core/phrases/user'
-import { buildPhraseRows, filterPhraseRows, inPhraseScope, isPhraseScope, loadPhraseSources, mergePhrases, peekPhraseSources, phrasesRouteFor, phraseScopeCounts, PHRASE_SCOPES, type PhraseScope, type PhraseSources } from '../core/phrases/dictionary'
+import { catalogEntries, buildPhraseRows, filterPhraseRows, inPhraseScope, isPhraseScope, loadPhraseSources, mergePhrases, peekPhraseSources, phrasesRouteFor, phraseScopeCounts, PHRASE_SCOPES, type PhraseScope, type PhraseSources } from '../core/phrases/dictionary'
+import { loadPhraseIndex, type PhraseIndex } from '../core/phrases/index'
 import { PhraseTable } from '../components/phrases/PhraseTable'
 import { usePageActions } from '../components/page-actions-context'
 import { makeMatcher, ownCharacterData, FALLBACK, type SearchTarget } from '../core/dictionary-search'
@@ -70,6 +71,12 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const phraseRows = useMemo(() => catalog && phraseSources && userPhraseRows
     ? buildPhraseRows(catalog, mergePhrases(catalog, phraseSources, userPhraseRows), new Set(workspace.knowledge.map(entry => entry.ref)), new Map((heardRows ?? []).map(row => [row.zh, row])))
     : undefined, [catalog, phraseSources, userPhraseRows, heardRows, workspace.knowledge])
+  // Counts without the band files: the shipped counts from the small index, plus the catalog's examples and the learner's own phrases.
+  const [phraseIndex, setPhraseIndex] = useState<PhraseIndex | undefined>()
+  useEffect(() => { let alive = true; void loadPhraseIndex().then(value => { if (alive) setPhraseIndex(value) }); return () => { alive = false } }, [])
+  const examples = useMemo(() => catalog && phraseIndex ? catalogEntries(catalog) : [], [catalog, phraseIndex])
+  const indexedTotal = catalog && phraseIndex && userPhraseRows ? phraseIndex.total + examples.length + userPhraseRows.length : undefined
+  const indexedUse = (ref: string) => catalog && phraseIndex && userPhraseRows ? (phraseIndex.byWord.get(ref) ?? 0) + examples.filter(entry => entry.phrase.words.includes(ref)).length + userPhraseRows.filter(row => row.words.includes(ref)).length : undefined
   const phraseUse = useMemo(() => { const counts = new Map<string, number>(); for (const row of phraseRows ?? []) for (const ref of new Set(row.phrase.words)) counts.set(ref, (counts.get(ref) ?? 0) + 1); return counts }, [phraseRows])
   const [drawing, setDrawing] = useState(false)
   // Select mode (like History's): picked maps an item's key to its text (the character, or the word) so a bulk action knows what to mark.
@@ -177,7 +184,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button aria-pressed={!phrasesView && kind === 'vocabulary'} onClick={() => { go('vocabulary', scope) }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
         <button aria-pressed={!phrasesView && kind === 'grammar'} onClick={() => { go('grammar', scope) }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
         <button aria-pressed={!phrasesView && kind === 'characters'} onClick={() => { go('characters', scope) }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>
-        <button aria-pressed={phrasesView} onClick={() => { setLimit(PAGE); window.location.hash = 'dictionary/phrases/all' }}>Phrases{phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : ''}</button>
+        <button aria-pressed={phrasesView} onClick={() => { setLimit(PAGE); window.location.hash = 'dictionary/phrases/all' }}>Phrases{phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : indexedTotal !== undefined ? ` (${indexedTotal.toLocaleString('en-US')})` : ''}</button>
       </div>
       {phrasesView ? <div className="segmented" role="group" aria-label="Phrase scope">
         {PHRASE_SCOPES.map(value => <button key={value} aria-pressed={phraseScope === value} onClick={() => goPhrases(value)}>{{ all: 'All', ready: 'Ready', pending: 'Pending', mine: 'Added by me' }[value]}{phraseRows ? ` (${phraseCounts[value].toLocaleString('en-US')})` : ''}</button>)}
@@ -213,7 +220,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     {!phrasesView && scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
     {catalog && !phrasesView && kind !== 'characters' && scope !== 'media' && <div className="word-grid">{matches.slice(0, limit).map(unit => <div key={unit.ref} className={`select-item${picked.has(unit.ref) ? ' picked' : ''}`}>{unit.kind === 'vocabulary' && <div className="select-row">{pickRow(unit.ref, unit.record.ch, unit.record.ch)}{writeTag(unit.record.ch)}</div>}<UnitCard catalog={catalog} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
-      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact phrases={unit.kind === 'vocabulary' ? { href: `#${phrasesRouteFor(unit.ref)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : undefined } : undefined} /></div>)}</div>}
+      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact phrases={unit.kind === 'vocabulary' ? { href: `#${phrasesRouteFor(unit.ref)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : indexedUse(unit.ref) } : undefined} /></div>)}</div>}
     {!phrasesView && scope !== 'media' && sourceMatches.length > 0 && <><h2 className="small muted">From your media</h2><div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/${scope}`} />)}</div></>}
     {catalog && !phrasesView && kind === 'characters' && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <div key={entry.character} className={`select-item${picked.has(entry.character) ? ' picked' : ''}`}>{selecting && <div className="select-row">{pickRow(entry.character, entry.character, entry.character)}</div>}<CharacterCard entry={entry}

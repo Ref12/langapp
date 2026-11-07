@@ -10,6 +10,7 @@ import {
   parseLessons, passReport, replyText, runPipeline, saveState, selectWords, validatePhrase, verdictOf, vocabularyFor, wordsInScope, writeOutputs,
   phrasePinyin, repinyinFiles, addPhrase, applyGrammar, attachPhrases, grammarCounts, grammarFor, grammarInScope, grammarWord, phrasesForWord, wordCounts,
 } from './build-phrase-bank.mjs'
+import { phraseIndex, phraseIndexText } from './phrase-bank-files.mjs'
 import { isOldState, parsePhraseYaml, phraseBankOutputs, phraseJsonText, readOldBank, readOldState, readPhraseBand, readPhraseBands, stringifyPhraseYaml, writePhraseBands } from './phrase-bank-files.mjs'
 
 const word = (lb: string, ch: string, pr: string, ds: string) => ({ id: lb, ch, pr, ds, lb })
@@ -643,7 +644,7 @@ describe('phrase bank pipeline: ids and the YAML files', () => {
     const phrases = [{ id: 2, zh: '我是茶。', py: 'wǒ shì chá', en: 'I am tea.', words: ['wo', 'shi', 'cha'], grammar: ['g-shi'], source: 'ai', checked: true, readyAt: 1 }, { id: 1, zh: '我是我。', py: 'wǒ shì wǒ', en: 'I am me.', words: ['wo', 'shi'], source: 'ai', checked: false }]
     writePhraseBands([{ band: '1', lastId: 2, phrases }], { authoringDir: join(dir, 'yaml') })
     const outputs = phraseBankOutputs(join(dir, 'yaml'), join(dir, 'json'))
-    expect(outputs.map(([path]) => path.split(/[\\/]/).pop())).toEqual(['hsk-1.json', 'hsk-2.json', 'hsk-3.json', 'hsk-4.json', 'hsk-5.json', 'hsk-6.json'])
+    expect(outputs.map(([path]) => path.split(/[\\/]/).pop())).toEqual(['hsk-1.json', 'hsk-2.json', 'hsk-3.json', 'hsk-4.json', 'hsk-5.json', 'hsk-6.json', 'index.json'])
     const one = JSON.parse(outputs[0][1].toString())
     expect(one).toEqual({ schemaVersion: 2, band: '1', phrases: [phrases[1], phrases[0]] })
     expect(outputs[1][1].toString()).toBe(JSON.stringify({ schemaVersion: 2, band: '2', phrases: [] }) + '\n')
@@ -761,5 +762,21 @@ describe('pinyin set by code', () => {
     writePhraseBands([{ band: '1', lastId: 5, phrases: [good, bad] }], { authoringDir: yaml })
     await expect(main(['--repinyin', '--out', yaml, '--json-out', join(dir, 'json'), '--data-dir', join(dir, 'data'), '--state', join(dir, 'state.json')], { log: () => {} })).rejects.toThrow(/hsk-1 phrase 2 谢谢汉语。: not covered by catalog words: 汉 语/)
     expect(readPhraseBand(yaml, '1').phrases[0].py).toBe('old')
+  })
+})
+
+describe('phrase index', () => {
+  it('matches the shipped band files', () => {
+    const bands = ['1', '2', '3', '4', '5', '6'].map(name => JSON.parse(readFileSync(join(__dirname, '..', 'src', 'data', 'phrases', 'hsk-' + name + '.json'), 'utf8')))
+    const index = JSON.parse(readFileSync(join(__dirname, '..', 'src', 'data', 'phrases', 'index.json'), 'utf8'))
+    expect(Object.keys(index.bands)).toEqual(bands.map(file => file.band))
+    for (const file of bands) {
+      const words: Record<string, number> = {}
+      for (const phrase of file.phrases) for (const word of new Set<string>(phrase.words)) words[word] = (words[word] ?? 0) + 1
+      expect(index.bands[file.band].count).toBe(file.phrases.length)
+      expect(index.bands[file.band].words).toEqual(words)
+    }
+    expect(phraseIndexText(bands)).toBe(readFileSync(join(__dirname, '..', 'src', 'data', 'phrases', 'index.json'), 'utf8'))
+    expect(phraseIndex([{ band: '1', phrases: [{ words: ['a', 'a', 'b'] }, { words: ['a'] }] }]).bands['1']).toEqual({ count: 2, words: { a: 2, b: 1 } })
   })
 })
