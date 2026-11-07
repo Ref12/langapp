@@ -129,7 +129,7 @@ phrases:
 
   - id: 12
     zh: 我不学习汉语。
-    py: wǒ bù xué xí Hàn yǔ.
+    py: wǒ bù xué xí hàn yǔ
     en: I don't study Chinese.
     words: [wo3--me, bu4--not, xue2-xi2--study, han4-yu3--chinese]
     grammar: [s-bu4-pred--not]
@@ -140,7 +140,7 @@ phrases:
 
   - id: 14
     zh: 学生学习汉语。
-    py: xué sheng xué xí Hàn yǔ.
+    py: xué sheng xué xí hàn yǔ
     en: The student studies Chinese.
     words: [xue2-sheng5--student, xue2-xi2--study, han4-yu3--chinese]
     grammar: [s-pred--statement]
@@ -151,7 +151,7 @@ phrases:
 
   - id: 15
     zh: 汉语老师学习汉语。
-    py: Hàn yǔ lǎo shī xué xí Hàn yǔ.
+    py: hàn yǔ lǎo shī xué xí hàn yǔ
     en: The Chinese teacher studies Chinese.
     words: [han4-yu3--chinese, lao3-shi1--teacher, xue2-xi2--study]
     grammar: [n-n--modifier, s-pred--statement]
@@ -162,7 +162,7 @@ phrases:
 
   - id: 16
     zh: 学生不学习汉语。
-    py: xué sheng bù xué xí Hàn yǔ.
+    py: xué sheng bù xué xí hàn yǔ
     en: The student doesn't study Chinese.
     words: [xue2-sheng5--student, bu4--not, xue2-xi2--study, han4-yu3--chinese]
     grammar: [s-bu4-pred--not]
@@ -171,19 +171,9 @@ phrases:
     lookahead: 0
     readyAt: 2
 
-  - id: 17
-    zh: 对不起，没关系。
-    py: duì bu qǐ, méi guān xi.
-    en: I'm sorry. It doesn't matter.
-    words: [dui4-bu5-qi3--sorry, mei2-guan1-xi5--reassurance]
-    source: ai
-    checked: true
-    lookahead: 0
-    readyAt: 3
-
   - id: 18
     zh: 老师呢？
-    py: lǎo shī ne?
+    py: lǎo shī ne
     en: What about the teacher?
     words: [lao3-shi1--teacher, ne5--reciprocal]
     grammar: [np-ne5--followup]
@@ -194,7 +184,7 @@ phrases:
 
   - id: 19
     zh: 谢谢，老师。
-    py: xiè xie, lǎo shī.
+    py: xiè xie lǎo shī
     en: Thank you, teacher.
     words: [xie4-xie5--thanks, lao3-shi1--teacher]
     source: ai
@@ -204,7 +194,7 @@ phrases:
 
   - id: 20
     zh: 老师，再见。
-    py: lǎo shī, zài jiàn.
+    py: lǎo shī zài jiàn
     en: Goodbye, teacher.
     words: [lao3-shi1--teacher, zai4-jian4--goodbye]
     source: ai
@@ -214,7 +204,7 @@ phrases:
 
   - id: 21
     zh: 您呢？
-    py: nín ne?
+    py: nín ne
     en: What about you?
     words: [nin2--you, ne5--reciprocal]
     grammar: [np-ne5--followup]
@@ -247,7 +237,7 @@ phrases:
 
   - id: 24
     zh: 我们学习汉语。
-    py: wǒ men xué xí Hàn yǔ
+    py: wǒ men xué xí hàn yǔ
     en: We study Chinese.
     words: [wo3-men5--we, xue2-xi2--study, han4-yu3--chinese]
     grammar: [s-vp--verbal]
@@ -269,7 +259,7 @@ phrases:
 
   - id: 26
     zh: 老师学习汉语。
-    py: lǎo shī xué xí Hàn yǔ
+    py: lǎo shī xué xí hàn yǔ
     en: The teacher studies Chinese.
     words: [lao3-shi1--teacher, xue2-xi2--study, han4-yu3--chinese]
     grammar: [s-vp--verbal]
@@ -324,7 +314,7 @@ phrases:
 
   - id: 31
     zh: 她们都学习汉语。
-    py: tā men dōu xué xí Hàn yǔ
+    py: tā men dōu xué xí hàn yǔ
     en: They all study Chinese.
     words: [ta1-men5--women, dou1--all, xue2-xi2--study, han4-yu3--chinese]
     grammar: [group-dou1-pred--all, s-vp--verbal]
@@ -357,7 +347,7 @@ phrases:
 
   - id: 34
     zh: 不客气！
-    py: bù kè qi
+    py: bú kè qi
     en: You're welcome!
     words: [bu4-ke4-qi5--welcome]
     grammar: [expr--fragment]
@@ -401,7 +391,7 @@ phrases:
 
   - id: 38
     zh: 汉语非常好。
-    py: Hàn yǔ fēi cháng hǎo
+    py: hàn yǔ fēi cháng hǎo
     en: Chinese is very good.
     words: [han4-yu3--chinese, fei1-chang2--very, hao3--good]
     grammar: [fei1-chang2-adj--very, s-pred--statement]
@@ -423,7 +413,7 @@ phrases:
 
   - id: 40
     zh: 她们觉得有一点儿冷。
-    py: tā men jué de yǒu yī diǎn r lěng
+    py: tā men jué de yǒu yì diǎnr lěng
     en: They feel a little cold.
     words: [ta1-men5--women, jue2-de5--feel, you3-yi1-dian3-r5--somewhat, leng3--cold]
     grammar: [you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat, s-vp--verbal]
@@ -434,7 +424,7 @@ phrases:
 
   - id: 41
     zh: 她有点儿冷。
-    py: tā yǒu diǎn r lěng
+    py: tā yǒu diǎnr lěng
     en: She is a little cold.
     words: [ta1--she, you3-dian3-r5--somewhat, leng3--cold]
     grammar: [you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat, s-pred--statement]
@@ -443,20 +433,9 @@ phrases:
     lookahead: 0
     readyAt: 41
 
-  - id: 42
-    zh: 你有一点儿冷。
-    py: nǐ yǒu yī diǎn r lěng
-    en: You are a little cold.
-    words: [ni3--you, you3-yi1-dian3-r5--somewhat, leng3--cold]
-    grammar: [you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat, s-pred--statement]
-    source: ai
-    checked: true
-    lookahead: 0
-    readyAt: 7
-
   - id: 43
     zh: 他有点儿冷。
-    py: tā yǒu diǎn r lěng
+    py: tā yǒu diǎnr lěng
     en: He is a little cold.
     words: [ta1--he, you3-dian3-r5--somewhat, leng3--cold]
     grammar: [you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat, s-pred--statement]
@@ -577,7 +556,7 @@ phrases:
 
   - id: 54
     zh: 汉语老师呢？
-    py: Hàn yǔ lǎo shī ne
+    py: hàn yǔ lǎo shī ne
     en: What about the Chinese teacher?
     words: [han4-yu3--chinese, lao3-shi1--teacher, ne5--reciprocal]
     grammar: [n-n--modifier, np-ne5--followup]
@@ -588,7 +567,7 @@ phrases:
 
   - id: 55
     zh: 没关系，你们休息吧。
-    py: méi guān xi, nǐ men xiū xi ba
+    py: méi guān xi nǐ men xiū xi ba
     en: It’s okay; you all go rest.
     words: [mei2-guan1-xi5--reassurance, ni3-men5--you, xiu1-xi5--rest, ba5--suggestion]
     grammar: [stmt-ba5--suggest, s-vp--verbal]
@@ -610,7 +589,7 @@ phrases:
 
   - id: 57
     zh: 同学们，再见。
-    py: tóng xué men, zài jiàn
+    py: tóng xué men zài jiàn
     en: Goodbye, classmates.
     words: [tong2-xue2--classmate, men5--plural, zai4-jian4--goodbye]
     source: ai
@@ -620,7 +599,7 @@ phrases:
 
   - id: 58
     zh: 你们都工作。
-    py: nǐ men dōu gōng zuò.
+    py: nǐ men dōu gōng zuò
     en: You all work.
     words: [ni3-men5--you, dou1--all, gong1-zuo4--work]
     grammar: [group-dou1-pred--all, s-vp--verbal]
@@ -631,7 +610,7 @@ phrases:
 
   - id: 59
     zh: 大学生觉得有点儿冷。
-    py: dà xué shēng jué de yǒu diǎn r lěng.
+    py: dà xué shēng jué de yǒu diǎnr lěng
     en: The university student feels a little cold.
     words: [da4-xue2-sheng1--university-student, jue2-de5--feel, you3-dian3-r5--somewhat, leng3--cold]
     grammar: [you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat, s-vp--verbal]
@@ -642,7 +621,7 @@ phrases:
 
   - id: 60
     zh: 不客气，你们都休息吧。
-    py: bù kè qi, nǐ men dōu xiū xi ba.
+    py: bú kè qi nǐ men dōu xiū xi ba
     en: You're welcome. You all get some rest.
     words: [bu4-ke4-qi5--welcome, ni3-men5--you, dou1--all, xiu1-xi5--rest, ba5--suggestion]
     grammar: [expr--fragment, group-dou1-pred--all, stmt-ba5--suggest, s-vp--verbal]
@@ -675,7 +654,7 @@ phrases:
 
   - id: 63
     zh: 你喜欢哪个？
-    py: nǐ xǐ huan nǎ ge?
+    py: nǐ xǐ huan nǎ ge
     en: Which one do you like?
     words: [ni3--you, xi3-huan5--like, na3-ge5--which]
     grammar: [v-obj--object, s-vp--verbal, s-pred--statement]
@@ -686,7 +665,7 @@ phrases:
 
   - id: 64
     zh: 那个有点儿冷。
-    py: nà ge yǒu diǎnr lěng.
+    py: nà ge yǒu diǎnr lěng
     en: That one is a little cold.
     words: [na4-ge5--that, you3-dian3-r5--somewhat, leng3--cold]
     grammar: [you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat, s-pred--statement]
@@ -697,7 +676,7 @@ phrases:
 
   - id: 65
     zh: 好，再见！
-    py: hǎo, zài jiàn!
+    py: hǎo zài jiàn
     en: Okay, goodbye!
     words: [hao3--good, zai4-jian4--goodbye]
     grammar: [expr--fragment]
@@ -719,7 +698,7 @@ phrases:
 
   - id: 67
     zh: 对不起，我们休息吧。
-    py: duì bu qǐ, wǒ men xiū xi ba.
+    py: duì bu qǐ wǒ men xiū xi ba
     en: Sorry, let's take a break.
     words: [dui4-bu5-qi3--sorry, wo3-men5--we, xiu1-xi5--rest, ba5--suggestion]
     grammar: [stmt-ba5--suggest, s-vp--verbal]

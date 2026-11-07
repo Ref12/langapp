@@ -8,7 +8,7 @@ import { FUNCTION_CHARACTERS as APP_FUNCTION_CHARACTERS } from '../src/core/dril
 import {
   BANDS, FUNCTION_CHARACTERS, allowedFor, batchByLesson, buildCurriculum, buildOutputs, catalogPhrases, coverageReport, createIO, emptyState, loadState, main, parseArgs, parseJSONReply,
   parseLessons, passReport, replyText, runPipeline, saveState, selectWords, validatePhrase, verdictOf, vocabularyFor, wordsInScope, writeOutputs,
-  addPhrase, applyGrammar, attachPhrases, grammarCounts, grammarFor, grammarInScope, grammarWord, phrasesForWord, wordCounts,
+  phrasePinyin, repinyinFiles, addPhrase, applyGrammar, attachPhrases, grammarCounts, grammarFor, grammarInScope, grammarWord, phrasesForWord, wordCounts,
 } from './build-phrase-bank.mjs'
 import { isOldState, parsePhraseYaml, phraseBankOutputs, phraseJsonText, readOldBank, readOldState, readPhraseBand, readPhraseBands, stringifyPhraseYaml, writePhraseBands } from './phrase-bank-files.mjs'
 
@@ -23,6 +23,18 @@ const FIXTURE = [
   ]),
   ...['2', '3', '4', '5', '6'].map(name => band(name, [], [])),
 ]
+// the function characters are catalog words too: taught in lesson 1 with three one-word examples each, so no pipeline test has to write phrases for them
+const FUNCTION_PINYIN: Record<string, string> = {"的":"de","了":"le","吗":"ma","呢":"ne","吧":"ba","是":"shì","不":"bù","很":"hěn","也":"yě","都":"dōu","和":"hé","在":"zài","有":"yǒu","这":"zhè","那":"nà","我":"wǒ","你":"nǐ","他":"tā","她":"tā","们":"men","个":"gè"}
+function withFunctionWords(bands: ReturnType<typeof band>[], lesson = 0, only?: string[]) {
+  const first = bands[0], have = new Set(first.vocabulary.map(record => record.ch))
+  const extra = Object.entries(FUNCTION_PINYIN).filter(([ch]) => !have.has(ch) && (!only || only.includes(ch))).map(([ch, pr]) => word('f-' + ch, ch, pr, 'function'))
+  first.vocabulary.push(...extra)
+  const g1 = (lesson < first.groups.length ? first.groups[lesson] : (first.groups.push({ id: 'g-function', units: [], examples: [] }), first.groups[first.groups.length - 1])) as { units: unknown[]; examples: unknown[] }
+  g1.units.push(...extra.map(record => unit(record.lb)))
+  for (const record of extra) for (const n of [1, 2, 3]) g1.examples.push({ id: 'f-' + record.ch + n, segments: Array.from({ length: n }, () => ({ word: record.lb })), translation: 'function ' + n, grammar: [] })
+  return bands
+}
+withFunctionWords(FIXTURE)
 const curriculum = () => buildCurriculum(FIXTURE)
 
 type Call = { url: string; model: string; body: Record<string, unknown>; text: string }
@@ -62,7 +74,7 @@ describe('phrase bank pipeline: catalog and validation', () => {
     // 我 is learned in lesson 1, so the lesson-2 example (喝茶) does not count for it
     expect(found.get('wo')?.map(item => item.zh)).toEqual(['我是学生。'])
     expect(found.get('cha')?.map(item => item.zh)).toEqual(['我喝茶。'])
-    expect(coverageReport(c).fitByLesson).toEqual({ zero: 1, oneOrTwo: 5, threePlus: 0 })
+    expect(coverageReport(c).fitByLesson).toEqual({ zero: 1, oneOrTwo: 5, threePlus: 19 })
   })
   it('validates in code: the word, only words learned by then, short, plain English', () => {
     const c = curriculum()
@@ -217,6 +229,8 @@ const FIXTURE2 = [
   ]),
   ...['2', '3', '4', '5', '6'].map(name => band(name, [], [])),
 ]
+// the few function characters these fixtures use, taught in lesson 1 like the real catalog does
+withFunctionWords(FIXTURE2, 0, ['吗', '你', '的', '不'])
 const curriculum2 = () => buildCurriculum(FIXTURE2)
 const forms = (c: ReturnType<typeof curriculum2>, lb: string, lookahead: number) => [...allowedFor(c, c.words.get(lb), lookahead).forms.keys()]
 const runOptions = (extra: object = {}) => ({ ...parseArgs(['--base-url', 'http://gateway/v1', '--writer-model', 'cheap', '--checker-model', 'strong', '--lookahead', '0,1,2'], {}), batchSize: 20, ...extra })
@@ -226,9 +240,9 @@ const approve = (call: Call) => ({ results: [...call.text.matchAll(/"id":"([^"]+
 describe('phrase bank pipeline: look-ahead passes', () => {
   it('widens the window by lesson per pass: pass 0 is the strict rule, pass k reaches k lessons later', () => {
     const c = curriculum2()
-    expect(forms(c, 'wo', 0)).toEqual(['我', '是', '学生'])
-    expect(forms(c, 'wo', 1)).toEqual(['我', '是', '学生', '茶', '喝'])
-    expect(forms(c, 'wo', 2)).toEqual(['我', '是', '学生', '茶', '喝', '坏'])
+    expect(forms(c, 'wo', 0)).toEqual(['我', '是', '学生', '的', '吗', '不', '你']) // the function characters are lesson 1 words
+    expect(forms(c, 'wo', 1)).toEqual(['我', '是', '学生', '的', '吗', '不', '你', '茶', '喝'])
+    expect(forms(c, 'wo', 2)).toEqual(['我', '是', '学生', '的', '吗', '不', '你', '茶', '喝', '坏'])
     // code validates each pass's window
     const wo = c.words.get('wo')
     const phrase = { ref: 'wo', zh: '我喝茶。', py: 'wǒ hē chá', en: 'I drink tea.' }
@@ -292,7 +306,7 @@ describe('phrase bank pipeline: look-ahead passes', () => {
   it('reports per pass how many words reached the target and the words left without phrases', () => {
     const c = curriculum2()
     const report = passReport(c, emptyState(), { ...runOptions(), lookahead: [0, 1], target: 1 })
-    expect(report.passes.map(row => [row.lookahead, row.reached])).toEqual([[0, 5], [1, 5]])
+    expect(report.passes.map(row => [row.lookahead, row.reached])).toEqual([[0, 9], [1, 9]])
     expect(report.zeroPhrase).toBe(2) // 坏 and 爱 have no authored example
   })
 })
@@ -373,7 +387,7 @@ describe('phrase bank pipeline: lessons and batches', () => {
   it('batches words from the same or adjacent lessons only', () => {
     const c = curriculum2()
     const entries = c.ordered.map(w => ({ word: w }))
-    expect(batchByLesson(entries as never, 20, 1).map(batch => batch.map(entry => entry.word.lb))).toEqual([['wo', 'shi', 'xs', 'cha', 'he'], ['huai', 'ai']])
+    expect(batchByLesson(entries as never, 20, 1).map(batch => batch.map(entry => entry.word.lb))).toEqual([['wo', 'shi', 'xs', 'f-的', 'f-吗', 'f-不', 'f-你', 'cha', 'he'], ['huai', 'ai']])
     expect(batchByLesson(entries as never, 2, 1).every(batch => batch.length <= 2)).toBe(true)
   })
 })
@@ -679,3 +693,73 @@ describe('phrase bank pipeline: the old format', () => {
 })
 
 const saveStateRaw = (file: string, state: unknown) => writeFileSync(file, JSON.stringify(state))
+
+const PY_WORDS = [word('xx', '谢谢', 'xiè xie', 'thanks'), word('xs', '学生', 'xué sheng', 'student'), word('gx', '没关系', 'méi guān xi', 'never mind'), word('bu', '不', 'bù', 'not'),
+  word('kq', '客气', 'kè qi', 'polite'), word('yi', '一', 'yī', 'one'), word('dr', '点儿', 'diǎn r', 'a bit'), word('you', '有', 'yǒu', 'to have'), word('leng', '冷', 'lěng', 'cold'),
+  word('ni', '你', 'nǐ', 'you'), word('nm', '你们', 'nǐ men', 'you all'), word('ge', '个', 'gè', 'measure'), word('ren', '人', 'rén', 'person')]
+const PY_BANDS = [band('1', PY_WORDS, [{ id: 'g1', units: PY_WORDS.map(w => unit(w.lb)), examples: [] }]), ...['2', '3', '4', '5', '6'].map(name => band(name, [], []))]
+const pyCurriculum = () => buildCurriculum(PY_BANDS)
+
+describe('pinyin set by code', () => {
+  it('keeps the neutral tones of catalog words', () => {
+    const c = pyCurriculum()
+    expect(phrasePinyin('谢谢你们。', c)).toBe('xiè xie nǐ men')
+    expect(phrasePinyin('学生', c)).toBe('xué sheng')
+    expect(phrasePinyin('没关系，', c)).toBe('méi guān xi')
+  })
+
+  it('applies 一 and 不 tone changes across word boundaries, joins 儿, drops punctuation', () => {
+    const c = pyCurriculum()
+    expect(phrasePinyin('不客气！', c)).toBe('bú kè qi')
+    expect(phrasePinyin('你有一点儿冷。', c)).toBe('nǐ yǒu yì diǎnr lěng')
+    expect(phrasePinyin('一个人', c)).toBe('yí gè rén')
+    expect(phrasePinyin('不冷', c)).toBe('bù lěng')
+    expect(phrasePinyin('一', c)).toBe('yī')
+    expect(phrasePinyin('学生，没关系。有？', c)).not.toMatch(/[，。,.?!？！]/)
+    expect(phrasePinyin('有点儿', c)).toBe('yǒu diǎnr')
+    expect(phrasePinyin('女儿', buildCurriculum([band('1', [word('nv', '女儿', 'nǚ ér', 'daughter'), ...PY_WORDS], []), ...['2', '3', '4', '5', '6'].map(name => band(name, [], []))]))).toBe('nǚ ér')
+  })
+
+  it('refuses a phrase the catalog words do not cover, and every syllable is from the catalog', () => {
+    const c = pyCurriculum()
+    expect(() => phrasePinyin('谢谢汉语', c)).toThrow('not covered by catalog words: 汉 语')
+    expect(phrasePinyin('不好'.replace('好', '有'), c)).toBe('bù yǒu')
+    expect(phrasePinyin('不冷', c)).toBe('bù lěng')
+    expect(validatePhrase(curriculum(), curriculum().words.get('wo'), { ref: 'wo', zh: '我喝酒。', en: 'I drink.' }, allowedFor(curriculum(), curriculum().words.get('wo'), 0)).reason).toBeTruthy()
+  })
+
+  it('validates a writer phrase without pinyin, and ignores pinyin it gives', () => {
+    const c = curriculum(), wo = c.words.get('wo')
+    const ok = validatePhrase(c, wo, { ref: 'wo', zh: '我是学生。', en: 'I am a student.' }, allowedFor(c, wo, 0)).phrase
+    expect(ok).toMatchObject({ zh: '我是学生。', py: 'wǒ shì xué sheng' })
+    expect(validatePhrase(c, wo, { ref: 'wo', zh: '我是学生。', py: 'bad, 。', en: 'I am a student.' }, allowedFor(c, wo, 0)).phrase?.py).toBe(ok?.py)
+  })
+
+  it('--repinyin resets every phrase of a fixture and stops', async () => {
+    const dir = temp(), yaml = join(dir, 'yaml'), json = join(dir, 'json')
+    mkdirSync(join(dir, 'data'))
+    PY_BANDS.forEach(data => writeFileSync(join(dir, 'data', 'hsk-' + data.band + '.generated.json'), JSON.stringify(data)))
+    const phrase = { id: 1, zh: '不客气！', py: 'bù kè qi!', en: 'x', words: ['bu'], source: 'ai' as const, checked: true }
+    const other = { id: 2, zh: '你有一点儿冷。', py: 'nǐ yǒu yī diǎn r lěng.', en: 'y', words: ['you'], source: 'ai' as const, checked: true }
+    writePhraseBands([{ band: '1', lastId: 5, phrases: [phrase, other] }], { authoringDir: yaml })
+    const log: string[] = []
+    await main(['--repinyin', '--out', yaml, '--json-out', json, '--data-dir', join(dir, 'data'), '--state', join(dir, 'state.json')], { log: line => log.push(line) })
+    expect(log).toEqual(['pinyin reset in 2 phrases of 1 band files'])
+    const result = readPhraseBand(yaml, '1')
+    expect(result.lastId).toBe(5)
+    expect(result.phrases.map((p: { py: string }) => p.py)).toEqual(['bú kè qi', 'nǐ yǒu yì diǎnr lěng'])
+    expect(JSON.parse(readFileSync(join(json, 'hsk-1.json'), 'utf8')).phrases[1].py).toBe('nǐ yǒu yì diǎnr lěng')
+    expect(repinyinFiles([result], pyCurriculum())).toEqual([])
+  })
+
+  it('--repinyin reports an uncovered phrase and fails without writing', async () => {
+    const dir = temp(), yaml = join(dir, 'yaml')
+    mkdirSync(join(dir, 'data'))
+    PY_BANDS.forEach(data => writeFileSync(join(dir, 'data', 'hsk-' + data.band + '.generated.json'), JSON.stringify(data)))
+    const good = { id: 1, zh: '不客气！', py: 'old', en: 'x', words: ['bu'], source: 'ai' as const, checked: true }
+    const bad = { id: 2, zh: '谢谢汉语。', py: 'old', en: 'y', words: ['xx'], source: 'ai' as const, checked: true }
+    writePhraseBands([{ band: '1', lastId: 5, phrases: [good, bad] }], { authoringDir: yaml })
+    await expect(main(['--repinyin', '--out', yaml, '--json-out', join(dir, 'json'), '--data-dir', join(dir, 'data'), '--state', join(dir, 'state.json')], { log: () => {} })).rejects.toThrow(/hsk-1 phrase 2 谢谢汉语。: not covered by catalog words: 汉 语/)
+    expect(readPhraseBand(yaml, '1').phrases[0].py).toBe('old')
+  })
+})

@@ -19,7 +19,7 @@
 //   5. WRITE - a cheap model writes the phrases. A batch mixes words and grammar points of the same or adjacent lessons. The vocabulary and the grammar
 //      points of the window are listed by lesson, newest first. For a word it writes phrases containing the word; for a grammar point it writes phrases that
 //      use that construct naturally. It tags each phrase with the grammar refs it really uses.
-//   6. CODE VALIDATES each phrase: has pinyin and English, is short, uses only words in the window plus the function characters the app allows
+//   6. CODE VALIDATES each phrase: has English (the pinyin is set by code, from the Chinese), is short, uses only words in the window plus the function characters the app allows
 //      everywhere (FUNCTION_CHARACTERS in src/core/drills/content.ts); every grammar tag must be a real grammar ref in the window (others are dropped).
 //   7. CHECK - the strong model judges natural Chinese and an English that matches, and confirms the grammar tags (it may add or drop some; code checks
 //      them against the window again). A phrase is dropped only when the checker says it failed AND gives a reason (logged). Failures are rewritten once
@@ -32,12 +32,13 @@
 //     --writer-model luna --writer-api responses --checker-model sonnet --checker-api chat --lessons 1-10
 //   Options: --api-key-env NAME (default PHRASE_API_KEY), --target 3, --batch-size 20, --lookahead 0,2,4,8,16, --lessons 1-10 (lessons counted from 1),
 //            --lesson-span 1 (a batch spans at most this many lessons), --band 1,2, --words lb1,lb2 (words only), --grammar ref1,ref2 (grammar only),
-//            --limit N, --plan (+ --planner-model/--planner-api), --retry (targets that ended partial or failed), --recheck (phrases kept unchecked),
+//            --limit N, --plan (+ --planner-model/--planner-api), --retry (targets that ended partial or failed), --recheck (phrases kept unchecked), --repinyin (only reset every phrase's pinyin from its Chinese in the band files and the JSON, then stop),
 //            --report (per pass: words and grammar points at target, and those still without phrases), --out DIR (YAML, default curriculum/chinese/authoring/phrases),
 //            --json-out DIR (default src/data/phrases), --state FILE (default build/phrase-bank/state-v2.json), --data-dir DIR, --dry-run,
 //            --import-old FILE[,FILE] (convert an old-format band file or state file, keyed by word, into the YAML, then stop)
 //   Environment alternatives: PHRASE_BASE_URL, PHRASE_PLANNER_MODEL, PHRASE_WRITER_MODEL, PHRASE_CHECKER_MODEL, PHRASE_*_API.
 //   Re-running skips targets already done, so the command can be repeated until nothing is left.
+import { pinyin as toPinyin } from 'pinyin-pro'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
@@ -232,20 +233,94 @@ export function anchorWord(curriculum, phrase) {
 }
 
 /** A phrase from the writer as a bank entry, or the reason it was refused. Code, not the model, decides what counts as allowed vocabulary. */
+const TONE_MARKS = { 1: 'āēīōūǖ', 2: 'áéíóúǘ', 3: 'ǎěǐǒǔǚ', 4: 'àèìòùǜǹ' }
+/** 1 to 4 by the tone mark, 0 for a neutral syllable. */
+export const toneOf = syllable => { for (const [tone, marks] of Object.entries(TONE_MARKS)) if ([...syllable].some(char => marks.includes(char))) return Number(tone); return 0 }
+
+const catalogCache = new WeakMap()
+/** Every catalog form with its authored pinyin (the first word in teaching order wins for a form with several readings), and a segmenter over the forms. */
+function pinyinCatalog(curriculum) {
+  let entry = catalogCache.get(curriculum)
+  if (!entry) {
+    const pr = new Map()
+    for (const word of curriculum.ordered) if (HAN.test(word.ch) && !pr.has(word.ch)) pr.set(word.ch, word.pr)
+    entry = { pr, segmenter: createSegmenter(pr.keys()) }
+    catalogCache.set(curriculum, entry)
+  }
+  return entry
+}
+
+/** [char, syllable] pairs of the Han characters of a text, every one from the authored pinyin of a catalog word (neutral tones, 一 and 不 in citation tone, 儿 apart); a character no catalog word covers is an error. */
+function pinyinPairs(zh, curriculum) {
+  const pairs = [], uncovered = []
+  const catalog = pinyinCatalog(curriculum)
+  for (const run of String(zh).match(/\p{Script=Han}+/gu) ?? []) {
+    let cursor = 0
+    for (const form of catalog.segmenter.segment(run)) {
+      const at = run.indexOf(form, cursor)
+      uncovered.push(...run.slice(cursor, at))
+      const syllables = catalog.pr.get(form).trim().toLowerCase().split(/\s+/)
+      if (syllables.length !== [...form].length) throw new Error('the catalog pinyin of ' + form + ' (' + catalog.pr.get(form) + ') does not have one syllable per character')
+      ;[...form].forEach((char, i) => pairs.push([char, syllables[i]]))
+      cursor = at + form.length
+    }
+    uncovered.push(...run.slice(cursor))
+  }
+  if (uncovered.length) throw new Error('not covered by catalog words: ' + [...new Set(uncovered)].join(' '))
+  return pairs
+}
+
+/**
+ * A phrase's pinyin, set by code from the Chinese (the writer's pinyin is ignored). Every syllable is the authored pinyin of a catalog word (so neutral tones stay:
+ * xiè xie); a phrase the catalog words do not cover throws. Then over the whole phrase: 一 and 不 change tone by the next syllable (also across
+ * words: bú kè qi, yì diǎnr), 儿 is joined to the syllable before it, no punctuation, lower case, syllables separated by spaces.
+ */
+export function phrasePinyin(zh, curriculum) {
+  const pairs = pinyinPairs(zh, curriculum).map(([char, syllable]) => [char, syllable.toLowerCase()])
+  const erhua = at => pairs[at][0] === '儿' && at > 0 && !'女男'.includes(pairs[at - 1][0]) && !(at + 1 < pairs.length && '子女童'.includes(pairs[at + 1][0]))
+  const out = []
+  pairs.forEach(([char, syllable], at) => {
+    const next = at + 1 < pairs.length ? toneOf(pairs[at + 1][1]) : 0
+    if (erhua(at)) { out[out.length - 1] += 'r'; return }
+    if (char === '不' && syllable === 'bù' && next === 4) syllable = 'bú'
+    if (char === '一' && syllable === 'yī' && next && !'第十二三四五六七八九零百千万'.includes(pairs[at - 1]?.[0] ?? ' ')) syllable = next === 4 ? 'yí' : 'yì'
+    out.push(syllable)
+  })
+  return out.join(' ')
+}
+
+/** Sets py on every phrase of band files; returns the files whose phrases changed. */
+export function repinyinFiles(files, curriculum) {
+  const changed = [], errors = []
+  for (const file of files) {
+    let touched = false
+    for (const phrase of file.phrases) {
+      let py
+      try { py = phrasePinyin(phrase.zh, curriculum) } catch (reason) { errors.push('hsk-' + file.band + ' phrase ' + phrase.id + ' ' + phrase.zh + ': ' + reason.message); continue }
+      if (py !== phrase.py) { phrase.py = py; touched = true }
+    }
+    if (touched) changed.push(file)
+  }
+  if (errors.length) throw new Error(errors.length + ' phrases cannot get pinyin from the catalog; nothing was written:\n' + errors.join('\n'))
+  return changed
+}
+
 export function validatePhrase(curriculum, word, raw, allowed = allowedFor(curriculum, word)) {
   if (!raw || typeof raw !== 'object') return { reason: 'not an object' }
-  const { zh, py, en } = raw
-  if (typeof zh !== 'string' || typeof py !== 'string' || typeof en !== 'string') return { reason: 'missing zh, py or en' }
-  const text = zh.trim(), pinyin = py.trim(), english = en.trim()
-  if (!HAN.test(text) || !pinyin || !english) return { reason: 'empty text' }
-  if (HAN.test(english) || HAN.test(pinyin)) return { reason: 'Chinese in pinyin or English' }
+  const { zh, en } = raw
+  if (typeof zh !== 'string' || typeof en !== 'string') return { reason: 'missing zh or en' }
+  const text = zh.trim(), english = en.trim()
+  if (!HAN.test(text) || !english) return { reason: 'empty text' }
+  if (HAN.test(english)) return { reason: 'Chinese in pinyin or English' }
   if (!word.grammar && !text.includes(word.ch)) return { reason: 'does not contain the word' }
   if (hanCount(text) > MAX_PHRASE_SYLLABLES) return { reason: 'too long' }
   if (!allowed.segmenter.covers(text)) return { reason: 'uses a word not yet learned' }
   const labels = labelsOf(curriculum)
+  let pinyin
+  try { pinyin = phrasePinyin(text, curriculum) } catch (reason) { return { reason: reason.message } }
   const words = []
   // every catalog word the phrase uses: those in the window, then function characters from any lesson (the app gates on this list)
-  for (const form of allowed.segmenter.segment(text)) { const lb = allowed.forms.get(form) ?? labels.get(form); if (lb && !words.includes(lb)) words.push(lb) }
+  for (const form of allowed.segmenter.segment(text)) { const lb = allowed.forms.get(form) ?? labels.get(form); if (!lb) return { reason: 'uses a form that is no catalog word' }; if (!words.includes(lb)) words.push(lb) }
   if (!word.grammar && !words.includes(word.lb)) words.unshift(word.lb)
   const phrase = applyGrammar(curriculum, { zh: text, py: pinyin, en: english, words, source: 'ai', checked: false, lookahead: allowed.lookahead ?? 0 }, raw.grammar, allowed)
   if (word.grammar && !phrase.grammar.includes(word.grammar.lb)) return { reason: 'does not use the grammar point' }
@@ -300,7 +375,7 @@ export function parseJSONReply(text) {
   throw new Error('The reply is not JSON.')
 }
 
-const SYSTEM = 'You help build practice material for an English-speaking learner of Mandarin. Use simple, natural, everyday Chinese. Pinyin has tone marks and spaces between syllables. English has no Chinese characters. Reply with JSON only.'
+const SYSTEM = 'You help build practice material for an English-speaking learner of Mandarin. Use simple, natural, everyday Chinese. English has no Chinese characters. Reply with JSON only.'
 const gloss = word => word.ds.split(/[;；]/)[0].trim()
 const wordLine = word => word.ch + ' (' + word.pr + '): ' + gloss(word)
 /** What a word or grammar point is called in prompts and logs: the word's form, or the pattern. */
@@ -364,7 +439,7 @@ const writePrompt = (curriculum, entries, lookahead, avoid, extra = '') => 'Writ
   'Vocabulary is listed by lesson, newest first. Lean on the word\'s own lesson and the lessons near it (including the newer look-ahead lessons, when listed above the word\'s own) rather than the oldest basics such as 我/你/是/学生: the phrase should reinforce what is new. Do not repeat a phrase from "avoid" or write the same phrase for two words; a phrase that uses another word of the batch is fine, it is credited to both. ' + extra +
   'Grammar: each group also lists the grammar points of its window under "grammar", newest first, each with a ref. Prefer the newer ones, so the phrase practises what the learner has just met. Tag every phrase with "grammar": the refs, copied exactly from that list, of the grammar patterns the phrase really uses (an empty list when it uses none). Do not tag a pattern that is not in the list. ' +
   'An entry with "construct" is a grammar point (its ref is the "construct" value): write phrases that use that construct naturally, with no particular word required, and list its ref under "grammar". Do not force constructs into the phrases written for words: tag only what a phrase really uses. ' +
-  'Return {"phrases":[{"ref","zh","py","en","grammar":["..."]}]} with the ref copied from the word or grammar entry.\n' + JSON.stringify({ avoid, groups: groupByLesson(entries, () => lookahead).map(group => ({ lesson: lessonNumber(group.word.index), lookahead: group.lookahead, vocabulary: vocabularyFor(curriculum, group.word, group.lookahead), grammar: grammarFor(curriculum, group.word, group.lookahead), words: group.items.map(entry => ({ ref: entry.word.lb, form: formOf(entry.word), ...(entry.word.grammar ? { construct: entry.word.grammar.lb } : {}), pinyin: entry.word.pr, meaning: gloss(entry.word), specs: entry.specs, existing: entry.existing, ...(entry.fix ? { rewrite: entry.fix } : {}) })) })) })
+  'Return {"phrases":[{"ref","zh","en","grammar":["..."]}]} with the ref copied from the word or grammar entry.\n' + JSON.stringify({ avoid, groups: groupByLesson(entries, () => lookahead).map(group => ({ lesson: lessonNumber(group.word.index), lookahead: group.lookahead, vocabulary: vocabularyFor(curriculum, group.word, group.lookahead), grammar: grammarFor(curriculum, group.word, group.lookahead), words: group.items.map(entry => ({ ref: entry.word.lb, form: formOf(entry.word), ...(entry.word.grammar ? { construct: entry.word.grammar.lb } : {}), pinyin: entry.word.pr, meaning: gloss(entry.word), specs: entry.specs, existing: entry.existing, ...(entry.fix ? { rewrite: entry.fix } : {}) })) })) })
 const checkPrompt = (curriculum, items) => 'Review each practice phrase. For each, answer natural (the Chinese is natural, correct and something a native speaker would say) and matches (the English is a faithful translation of the Chinese). Vocabulary level is checked by code, not by you: do not judge it. ' +
   'Also confirm the grammar tags: each phrase lists the grammar refs the writer tagged under "grammar", and each group lists the grammar points of its window. Return in "grammar" the refs of the patterns the phrase really uses: drop a wrong tag, add a pattern from the group\'s list that the phrase uses and the writer missed. Only refs from the group\'s list count. ' +
   'When natural or matches is false give the concrete reason in "reason"; a phrase is only rejected for a reason you state. Return {"results":[{"id","natural","matches","grammar","reason"}]}.\n' +
@@ -706,7 +781,7 @@ export function attachPhrases(curriculum, state, dir, carried = []) {
   state.phrases = []; state.lastId = {}
   for (const file of readPhraseBands(dir)) {
     state.lastId[file.band] = file.lastId
-    for (const phrase of file.phrases) state.phrases.push({ ...phrase, band: file.band, readyAt: phrase.readyAt ?? readyAtOf(curriculum, phrase.words, phrase.grammar) })
+    for (const phrase of file.phrases) state.phrases.push({ ...phrase, py: phrasePinyin(phrase.zh, curriculum), band: file.band, readyAt: phrase.readyAt ?? readyAtOf(curriculum, phrase.words, phrase.grammar) })
   }
   let added = 0
   for (const phrase of carry) if (addPhrase(curriculum, state, { ...phrase, band: undefined, id: undefined, readyAt: phrase.readyAt ?? readyAtOf(curriculum, phrase.words, phrase.grammar) })) added++
@@ -721,14 +796,14 @@ export function parseArgs(argv, env = process.env) {
     const arg = argv[at]
     if (!arg.startsWith('--')) throw new Error('Unexpected argument: ' + arg)
     const [name, inline] = arg.slice(2).split(/=(.*)/s)
-    const boolean = ['report', 'retry', 'recheck', 'plan', 'dry-run', 'help'].includes(name)
+    const boolean = ['report', 'retry', 'recheck', 'repinyin', 'plan', 'dry-run', 'help'].includes(name)
     flags.set(name, boolean ? true : inline ?? argv[++at])
   }
   const get = (name, envName, fallback) => flags.get(name) ?? env[envName] ?? fallback
   const list = value => value ? String(value).split(',').map(item => item.trim()).filter(Boolean) : undefined
   const model = role => get(role + '-model', 'PHRASE_' + role.toUpperCase() + '_MODEL')
   return {
-    report: flags.has('report'), help: flags.has('help'), dryRun: flags.has('dry-run'), retry: flags.has('retry'), recheck: flags.has('recheck'), plan: flags.has('plan'), lookahead: parseLookahead(get('lookahead', 'PHRASE_LOOKAHEAD', DEFAULT_LOOKAHEAD.join(','))), lessons: flags.has('lessons') ? parseLessons(flags.get('lessons')) : undefined, lessonSpan: Number(get('lesson-span', 'PHRASE_LESSON_SPAN', 1)),
+    report: flags.has('report'), help: flags.has('help'), dryRun: flags.has('dry-run'), retry: flags.has('retry'), recheck: flags.has('recheck'), repinyin: flags.has('repinyin'), plan: flags.has('plan'), lookahead: parseLookahead(get('lookahead', 'PHRASE_LOOKAHEAD', DEFAULT_LOOKAHEAD.join(','))), lessons: flags.has('lessons') ? parseLessons(flags.get('lessons')) : undefined, lessonSpan: Number(get('lesson-span', 'PHRASE_LESSON_SPAN', 1)),
     baseUrl: get('base-url', 'PHRASE_BASE_URL'), apiKey: env[get('api-key-env', 'PHRASE_API_KEY_ENV', 'PHRASE_API_KEY')],
     roles: {
       planner: { model: model('planner'), api: get('planner-api', 'PHRASE_PLANNER_API', 'chat') },
@@ -751,6 +826,12 @@ export async function main(argv = process.argv.slice(2), { fetchImpl, log = cons
   const options = parseArgs(argv)
   if (options.help) { log(readFileSync(fileURLToPath(import.meta.url), 'utf8').split('\n').filter(line => line.startsWith('//')).map(line => line.slice(3)).join('\n')); return }
   const curriculum = buildCurriculum(readCatalog(options.dataDir))
+  if (options.repinyin) {
+    const changed = repinyinFiles(readPhraseBands(options.out), curriculum)
+    writePhraseBands(changed, { authoringDir: options.out, jsonDir: options.jsonOut })
+    log('pinyin reset in ' + changed.reduce((sum, file) => sum + file.phrases.length, 0) + ' phrases of ' + changed.length + ' band files')
+    return
+  }
   const state = loadState(options.state)
   // the band YAML files are the phrases; phrases of an old-format state (no ids) are carried into them
   const carried = []
