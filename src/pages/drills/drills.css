@@ -275,3 +275,12 @@
 .hf-pl-row.is-played { opacity: 0.45; }
 .hf-pl-row.is-current { background: color-mix(in srgb, var(--accent, #0b6b5d) 18%, transparent); box-shadow: inset 3px 0 0 var(--accent, #0b6b5d); }
 .hf-pl-row.is-current .hf-pl-dir { background: var(--accent, #0b6b5d); color: #fff; border-color: transparent; }
+
+/* Engine run: progress row (stage label, bar, counter, pinyin toggle) and the typed answer at full width. */
+.engine-progress { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 4px 12px; }
+.engine-progress > progress { width: 100%; }
+.engine-progress .engine-pinyin { font-size: 11px; padding: 6px 10px; min-height: 0; }
+@media (max-width: 640px) { .engine-progress { grid-template-columns: minmax(0, 1fr) auto; } .engine-progress > progress { grid-column: 1 / -1; grid-row: 2; } .engine-progress > .small { grid-row: 3; } .engine-progress .engine-pinyin { grid-row: 3; justify-self: end; } }
+.engine-answer { display: grid; width: 100%; }
+.engine-answer input { width: 100%; box-sizing: border-box; min-height: 44px; padding: 8px 12px; font-size: 16px; }
+.engine-another { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }

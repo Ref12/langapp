@@ -75,6 +75,10 @@ export interface Preferences {
   tileAutoSpeak?: boolean
 /** Play the Chinese prompt on entering an exercise that has a Hear button for it. Default off. */
 promptAutoPlay?: boolean
+  /** How the practice engine's typed-answer exercises are answered: typing (default), speaking or handwriting. */
+  answerMode?: 'type' | 'speak' | 'write'
+  /** Practice engine: include exercises that ask for characters to be written. Default yes. */
+  practiseWriting?: boolean
   practiceMode?: 'speak' | 'write'
   historyFilter?: 'all' | 'speak' | 'write' | 'lessons' | 'drills'
   dictionaryScope?: 'all' | 'knowledge'

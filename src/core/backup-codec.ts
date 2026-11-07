@@ -35,6 +35,8 @@ export const workspaceSchema = z.object({
     sudokuShowPinyin: z.boolean().optional(),
     tileAutoSpeak: z.boolean().optional(),
   promptAutoPlay: z.boolean().optional(),
+    answerMode: z.enum(['type', 'speak', 'write']).optional(),
+    practiseWriting: z.boolean().optional(),
     practiceMode: z.enum(['speak', 'write']).optional(),
     historyFilter: z.enum(['all', 'speak', 'write', 'lessons', 'drills']).optional(),
     dictionaryScope: z.enum(['all', 'knowledge']).optional(),

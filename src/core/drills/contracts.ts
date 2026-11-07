@@ -81,6 +81,21 @@ export const handsfreeActivitySchema = z.object({
 }).strict()
 export type HandsfreeActivity = z.infer<typeof handsfreeActivitySchema>
 
+/** The practice engine's state on a set (src/core/session). Only sets created from now on carry it; a set without it, or with old-style progress, keeps the old view. */
+export const engineStateSchema = z.object({
+  preset: z.string().min(1).max(60),
+  length: z.enum(['short', 'standard', 'long']),
+  seed: z.number().int().min(0).max(2 ** 31),
+  /** "ref|skill" pairs whose first graded attempt is recorded, so a replay or a resume never records twice. */
+  recorded: z.array(z.string().max(220)).max(2000),
+  /** Per item: whether every graded first attempt of it was right (for the summary). */
+  correct: z.number().int().nonnegative(),
+  total: z.number().int().nonnegative(),
+  startedAt: timestamp.optional(),
+  finishedAt: timestamp.optional(),
+}).strict()
+export type EngineState = z.infer<typeof engineStateSchema>
+
 export const drillSetSchema = z.object({
   id,
   source: z.enum(['new', 'review', 'study-set', 'lesson', 'drill']),
@@ -97,6 +112,8 @@ export const drillSetSchema = z.object({
   createdAt: timestamp,
   updatedAt: timestamp,
   completedAt: timestamp.optional(),
+  /** Set on a set created for the practice engine: its Start screen replaces the drill-type list. */
+  engine: engineStateSchema.optional(),
   /** The Hands-free activity: its settings and where it stopped. */
   handsfree: handsfreeActivitySchema.optional(),
   /** The Hands-free recall activity (the Hands-free activity above is the Introduction). */

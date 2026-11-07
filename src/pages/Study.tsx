@@ -95,7 +95,7 @@ export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings
   </>
 }
 
-function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak }: Annotation & { speak: boolean; exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
+export function TilesQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak }: Annotation & { speak: boolean; exercise: TilesExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const all = [...exercise.tiles, ...exercise.distractors]
   const [placed, setPlaced] = useState<number[]>(() => {
     if (!attempt) return []

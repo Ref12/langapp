@@ -21,6 +21,7 @@ import { UNWRITTEN_CHOICES, countUnwritten, loadBacklogWords, loadUnwrittenSize,
 import { startContent } from '../../core/drills/content'
 import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, ensureHandsfree, restartHandsfree, activityOf, handsfreeRoute, type HandsfreeKind, restartDrillType, handsfreeStopped, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
+import { EngineRun, EngineStart } from './EngineSet'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
 import { removeHistoryItems, restoreHistoryItems } from '../../core/history-removal'
@@ -79,6 +80,10 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
     const only = new URLSearchParams(query).get('missed') ? Object.entries(set.progress[type]?.results ?? {}).filter(([, mark]) => mark === 'missed').map(([ref]) => ref) : undefined
     return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} now={props.now} run={props.run} busy={props.busy} only={only} backHref={`#${setRoute(set.id)}`} />
   }
+  // A set made for the engine opens on its Start screen. A set from before has no engine state (or has old-style progress) and keeps the classic view until it is finished.
+  const engineSet = set.engine && set.status === 'active'
+  if (page === 'engine' && set.engine) return <EngineRun {...props} set={set} items={items} catalog={catalog} />
+  if (engineSet && !page) return <EngineStart {...props} set={set} items={items} catalog={catalog} />
   if (page === 'handsfree') return <HandsFree {...props} set={set} kind="introduction" />
   if (page === 'recall') return <HandsFree {...props} set={set} kind="recall" />
   if (page === 'summary' || set.status === 'abandoned') return <Summary {...props} set={set} items={items} />

@@ -31,7 +31,11 @@ afterEach(() => { cleanup(); vi.restoreAllMocks() })
 async function newSet() {
   const id = await createDrillSet({ kind: 'new' })
   await whenContent(id)
-  return (await getDrillSet(id))!
+  // These tests cover the classic view that sets from before the engine keep: drop the engine state a new set carries.
+  const created = (await getDrillSet(id))!
+  const { engine: _engine, ...classic } = created
+  await db.drillSets.put(classic)
+  return classic
 }
 
 async function pageMenu(user: ReturnType<typeof userEvent.setup>, item: string) {
@@ -255,7 +259,8 @@ describe('Practice home', () => {
     expect(screen.queryByLabelText('All items')).toBeNull()
     expect(document.querySelectorAll('.study-unit-card').length).toBeGreaterThan(0)
     await user.click(screen.getAllByRole('link', { name: /Start practicing/ })[0])
-    expect(await screen.findByRole('heading', { name: 'Pick a practice type' })).toBeInTheDocument()
+    // A set started from here is a new one, so it opens on the engine's Start screen.
+    expect(await screen.findByRole('heading', { name: 'Ready when you are' })).toBeInTheDocument()
     // There is no "Learning from" selector on the set screen.
     expect(screen.queryByLabelText('Learning from')).toBeNull()
     await user.click(within(screen.getByRole('navigation', { name: 'Main navigation' })).getByRole('link', { name: /Practice/ }))

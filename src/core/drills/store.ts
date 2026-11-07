@@ -16,7 +16,7 @@ import { drillSkills, recordSkillPractice, SKILL_LABEL, STRATEGY_LABEL, type Ski
 import { pickItems } from '../study/skill-pick'
 import { loadBacklogWords, pickUnwritten } from './unwritten'
 import { DEFAULT_HANDSFREE_SETTINGS } from '../handsfree/contracts'
-import { MARK_RATING, drillSetSchema, type HandsfreeActivity, type DrillFormat, type DrillSet, type DrillTypeId, type Mark } from './contracts'
+import { MARK_RATING, drillSetSchema, type HandsfreeActivity, type DrillFormat, type DrillSet, type DrillTypeId, type EngineState, type Mark } from './contracts'
 
 export const REVIEW_SET_SIZE = 12
 export const STUDY_SET_LIMIT = 40
@@ -106,10 +106,11 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
 
 /** Creates a drill set from a source and starts writing its sentences in the background. New items join the knowledge set only when the set is finished (finishDrillSet). `handsfree` makes a set of the Hands-free shortcut: it opens on that activity and is finished when it reaches its end. */
 export async function createDrillSet(source: DrillSource, now = Date.now(), options: { handsfree?: HandsfreeActivity; handsfreeRecall?: HandsfreeActivity } = {}): Promise<string> {
+  const withEngine = !options.handsfree && !options.handsfreeRecall && source.kind !== 'unwritten'
   const chosen = await chooseRefs(source, now)
   const id = crypto.randomUUID()
   const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' || source.kind === 'unwritten' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}), ...(chosen.unwritten ? { unwritten: true as const } : {}),
-    ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}), ...(options.handsfree ? { handsfree: options.handsfree, shortcut: 'handsfree' as const } : {}), ...(options.handsfreeRecall ? { handsfreeRecall: options.handsfreeRecall, shortcut: 'handsfree' as const } : {}) }
+    ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}), ...(withEngine ? { engine: { preset: 'default', length: 'standard' as const, seed: Math.floor(Math.random() * 2 ** 31), recorded: [], correct: 0, total: 0 } } : {}), ...(options.handsfree ? { handsfree: options.handsfree, shortcut: 'handsfree' as const } : {}), ...(options.handsfreeRecall ? { handsfreeRecall: options.handsfreeRecall, shortcut: 'handsfree' as const } : {}) }
   await db.transaction('rw', [db.drillSets], async () => {
     await db.drillSets.add(drillSetSchema.parse(set))
     const unfinished = (await db.drillSets.where('status').equals('active').sortBy('createdAt')).filter(item => item.id !== id)
@@ -138,7 +139,7 @@ function schedulingState(card: StudyCard): SchedulingState {
 }
 
 /** Schedules one item's first-pass result like a lesson answer. Runs inside the callers' transaction. */
-async function reviewItem(setId: string, type: DrillTypeId, ref: string, mark: Mark, now: number): Promise<void> {
+async function reviewItem(setId: string, type: string, ref: string, mark: Mark, now: number): Promise<void> {
   const rating = MARK_RATING[mark]
   const card = await db.studyCards.get(cardId(ref, DOMAIN))
   if (card) {
@@ -146,6 +147,26 @@ async function reviewItem(setId: string, type: DrillTypeId, ref: string, mark: M
     if (await db.knowledge.get(ref)) await recordJournal(reviewEvent(ref, rating, now, `drill:${setId}:${type}`))
   }
 }
+
+/**
+ * The engine's recording: the first graded attempt of an item in a skill is scheduled like a lesson answer and counted once in the skill counts.
+ * Retries are never passed here. A pair already recorded (a resumed or replayed session) changes nothing.
+ */
+export async function recordEngineResult(setId: string, ref: string, skills: readonly Skill[], form: string, correct: boolean, now = Date.now()): Promise<{ graded: boolean }> {
+  return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
+    const set = await db.drillSets.get(setId)
+    if (!set?.engine || set.status === 'abandoned') return { graded: false }
+    const fresh = skills.filter(skill => !set.engine!.recorded.includes(ref + '|' + skill))
+    if (!fresh.length) return { graded: false }
+    await db.drillSets.put({ ...set, updatedAt: now, engine: { ...set.engine, startedAt: set.engine.startedAt ?? now, recorded: [...set.engine.recorded, ...fresh.map(skill => ref + '|' + skill)], total: set.engine.total + 1, correct: set.engine.correct + (correct ? 1 : 0) } })
+    await reviewItem(setId, 'engine:' + form, ref, correct ? 'got' : 'missed', now)
+    await recordSkillPractice([ref], fresh, now)
+    return { graded: true }
+  })
+}
+
+/** Sets the engine's preset and length for the next Start (nothing has been answered yet). */
+export const setEngineChoice = (id: string, change: Partial<Pick<EngineState, 'preset' | 'length'>>) => mutate(id, set => set.engine ? { ...set, engine: { ...set.engine, ...change, recorded: [], total: 0, correct: 0, seed: Math.floor(Math.random() * 2 ** 31) } } : undefined)
 
 /**
  * Records one item's result in a drill type. Only the first pass of a type is graded: it is stored in the set and scheduled like a lesson answer
