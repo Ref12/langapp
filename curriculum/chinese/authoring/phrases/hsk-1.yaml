@@ -4,7 +4,7 @@
 
 schemaVersion: 2
 band: "1"
-lastId: 616
+lastId: 628
 phrases:
   - id: 1
     zh: 这是我。
@@ -5342,17 +5342,6 @@ phrases:
     lookahead: 2
     readyAt: 40
 
-  - id: 497
-    zh: 现在太晚了！
-    py: xiàn zài tài wǎn le
-    en: It’s so late now!
-    words: [tai4--very, xian4-zai4--now, tai4--too, wan3--late, le5--intensify]
-    grammar: [tai4-adj-le5--so-too]
-    source: ai
-    checked: true
-    lookahead: 2
-    readyAt: 39
-
   - id: 498
     zh: 妹妹对爸爸很好。
     py: mèi mei duì bà ba hěn hǎo
@@ -6633,3 +6622,124 @@ phrases:
     checked: true
     lookahead: 0
     readyAt: 74
+
+  - id: 617
+    zh: 一个多小时
+    py: yí gè duō xiǎo shí
+    en: A little over an hour
+    words: [yi1--one, ge4--classifier, duo1--how, xiao3-shi2--hour]
+    grammar: [num-mw-duo1-n--fraction-over]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 618
+    zh: 看一看这个。
+    py: kàn yí kàn zhè ge
+    en: Take a look at this.
+    words: [kan4--watch, yi1--one, zhe4-ge5--this]
+    grammar: [v-yi1-v--brief, v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 85
+
+  - id: 619
+    zh: 下课，再回家。
+    py: xià kè zài huí jiā
+    en: Class ends, then go home.
+    words: [xia4-ke4--finish, zai4--again, hui2--return, jia1--home]
+    grammar: [vp-zai4-vp--next]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 620
+    zh: 好热！
+    py: hǎo rè
+    en: It’s so hot!
+    words: [hao3--good, re4--hot]
+    grammar: [hao3-adj--so]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 113
+
+  - id: 621
+    zh: 工作了几小时。
+    py: gōng zuò le jǐ xiǎo shí
+    en: Worked for a few hours.
+    words: [gong1-zuo4--work, le5--intensify, ji3--quantity, xiao3-shi2--hour]
+    grammar: [v-le5-duration-obj--duration]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 138
+
+  - id: 622
+    zh: 你问问他吧。
+    py: nǐ wèn wèn tā ba
+    en: Ask him, maybe.
+    words: [ni3--you, wen4--ask, ta1--he, ba5--suggestion]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 143
+
+  - id: 623
+    zh: 他知道的。
+    py: tā zhī dào de
+    en: He knows, I’m sure.
+    words: [ta1--he, zhi1-dao4--know, de5--description]
+    grammar: [stmt-de5--assure]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 625
+    zh: 真有你的！
+    py: zhēn yǒu nǐ de
+    en: Nice one!
+    words: [zhen1--really, you3--have, ni3--you, de5--description]
+    grammar: [zhen1-you3-ni3-or-ta1-or-ta1-de5--impressed]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 1033
+
+  - id: 626
+    zh: 他们一前一后。
+    py: tā men yì qián yí hòu
+    en: They are one in front and one behind.
+    words: [ta1-men5--they, yi1--one, qian2--before, hou4--behind]
+    grammar: [yi1-a-yi1-b--paired]
+    source: ai
+    checked: true
+    lookahead: 2
+    readyAt: 574
+
+  - id: 627
+    zh: 真有她的！
+    py: zhēn yǒu tā de
+    en: She’s really something!
+    words: [zhen1--really, you3--have, ta1--she, de5--description]
+    grammar: [zhen1-you3-ni3-or-ta1-or-ta1-de5--impressed]
+    source: ai
+    checked: true
+    lookahead: 4
+    readyAt: 1033
+
+  - id: 628
+    zh: 真有他的！
+    py: zhēn yǒu tā de
+    en: He's really something!
+    words: [zhen1--really, you3--have, ta1--he, de5--description]
+    grammar: [zhen1-you3-ni3-or-ta1-or-ta1-de5--impressed]
+    source: ai
+    checked: true
+    lookahead: 8
+    readyAt: 1033
