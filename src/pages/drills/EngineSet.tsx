@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
 import { HearButton } from '../../components/assistant/SnippetActions'
@@ -9,7 +9,7 @@ import { DRILLS_LABEL, DRILL_TYPES, type DrillSet } from '../../core/drills/cont
 import { effectiveContent } from '../../core/drills/content'
 import { availability } from './tasks'
 import type { ItemInfo } from '../../core/drills/items'
-import { finishDrillSet, recordEngineResult, setEngineChoice } from '../../core/drills/store'
+import { createDrillSet, finishEngineRun, recordEngineResult, saveEngineAnswer, setEngineChoice, shortDate } from '../../core/drills/store'
 import { itemCount } from '../../core/collections/terms'
 import { planSession, estimateMinutes } from '../../core/session/plan'
 import { loadSessionBank } from '../../core/session/sources'
@@ -17,7 +17,7 @@ import { loadPracticeData } from '../../core/practice-data'
 import { createDatasetSource, datasetAcceptance } from '../../core/session/dataset-source'
 import { BUILTIN_PRESETS, FORMS_BY_STAGE, SPOKEN_PRESETS } from '../../core/session/presets'
 import { loadCustomPresets, resolvePreset, saveCustomPreset } from '../../core/session/custom-preset'
-import { answerCurrent, currentExercise, currentStage, skillsOf, startRunner, summarise, type RunnerState } from '../../core/session/runner'
+import { answerCurrent, currentExercise, currentStage, progressOf, replayRunner, skillsOf, summarise, type RunnerState } from '../../core/session/runner'
 import { FORM_LABEL, LENGTHS, LENGTH_LABEL, STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
 import { FUNCTION_CHARACTERS_LIST } from '../../core/session/function-characters'
 import { ExerciseQuestion, type Outcome } from './EngineQuestion'
@@ -59,12 +59,15 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
   const content = effectiveContent(set)
   const presets = [...BUILTIN_PRESETS.map(entry => ({ id: entry.id, name: entry.name, blurb: entry.blurb })), ...custom.map(entry => ({ id: entry.id, name: entry.name, blurb: 'Your own preset.' }))]
   const active = presets.find(entry => entry.id === engine.preset) ?? presets[0]
+  const resumable = !!engine.answers?.length && !!engine.planned && engine.done! < engine.planned
   const counts = plan ? plan.stages.filter(entry => entry.stage !== 'introduce').map(entry => ({ stage: entry.stage, count: entry.exercises.length })) : []
   return <div className="dr engine">
     <a className="back-link" href="#practice"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
-    <PageHeading eyebrow="Practice set" title={set.title}>{itemCount(set.refs.length)}</PageHeading>
+    <PageHeading eyebrow="Practice session" title={set.title}>{itemCount(set.refs.length)}</PageHeading>
     <section className="panel dr-panel engine-start" aria-labelledby="engine-start">
       <h2 id="engine-start">Ready when you are</h2>
+      {engine.lastRun && <p className="engine-last-run" role="status">Last run: {engine.lastRun.correct} of {engine.lastRun.total} right, {shortDate(engine.lastRun.at)}</p>}
+      {resumable && <p className="engine-resume" role="status"><strong>In progress: {engine.done} of {engine.planned}.</strong> Resume where you left off, or change the preset or length to start a fresh run.</p>}
       <p className="small muted">The app picks the exercises and their order: recognise, recall, produce, then use the words in sentences. Nothing to choose; press Start.</p>
       <div className="engine-options">
         <div><span className="eyebrow">Preset</span>
@@ -79,7 +82,8 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
       {plan && <p className="engine-estimate" role="status"><strong>{plan.total} exercises</strong> · about {estimateMinutes(plan.total)} min · {counts.map(entry => `${STAGE_LABEL[entry.stage]} ${entry.count}`).join(' · ')}</p>}
       {plan && plan.uncovered.length > 0 && <p className="small muted">{plan.uncovered.length} {plan.uncovered.length === 1 ? 'item has' : 'items have'} no exercise in the bank yet{content.state === 'running' ? ' (sentences are still being written)' : ''}. Practise one skill below covers {plan.uncovered.length === 1 ? 'it' : 'them'}.</p>}
       <div className="button-row">
-        <button type="button" className="button primary" aria-label="Start session" disabled={busy || !plan || plan.total === 0} onClick={() => navigate(setRoute(set.id, 'engine'))}><Play size={16} /> Start</button>
+        <button type="button" className="button primary" aria-label={resumable ? 'Resume session' : 'Start session'} disabled={busy || !plan || plan.total === 0} onClick={() => navigate(setRoute(set.id, 'engine'))}><Play size={16} /> {resumable ? 'Resume' : set.status === 'completed' ? 'Practise again' : 'Start'}</button>
+        {resumable && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { await setEngineChoice(set.id, {}) })}>Start over</button>}
         <button type="button" className="button secondary" onClick={() => setBuilding(!building)} aria-expanded={building}>Build your own preset</button>
         <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}>{set.source === 'new' || set.source === 'lesson' ? 'Intro cards' : 'Items'}</a></div>
       {building && <PresetBuilder onSave={preset => { setCustom(saveCustomPreset(preset)); setBuilding(false); void run(async () => { await setEngineChoice(set.id, { preset: preset.id }) }) }} />}
@@ -118,12 +122,14 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const { plan, error, known } = usePlan(set, items, catalog, workspace)
   const [state, setState] = useState<RunnerState>()
   const [intro, setIntro] = useState(0)
-  useEffect(() => { if (plan && !state) setState(startRunner(plan)) }, [plan, state])
+  useEffect(() => { if (plan && !state) setState(replayRunner(plan, engine.answers ?? [])) }, [plan, state, engine.answers])
   const readings = useMemo(() => readingIndex([...new Set([...known, ...set.refs])].flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit] : [] })), [known, set.refs, catalog])
   const [pinyin, setPinyin] = useState(workspace.preferences.pinyin)
   const forms = useMemo(() => new Set([...[...catalog.units.values()].flatMap(unit => unit.kind === 'vocabulary' && (known.has(unit.ref) || set.refs.includes(unit.ref)) ? [unit.record.ch] : []), ...FUNCTION_CHARACTERS_LIST]), [catalog, known, set.refs])
   const characters = useMemo(() => new Set([...forms].flatMap(form => Array.from(form))), [forms])
-  useEffect(() => { if (state?.done && set.status !== 'completed') void run(async () => { await finishDrillSet(set.id) }) }, [state?.done, set.status, set.id, run])
+  const finished = useRef(false)
+  const score = state ? summarise(state.log) : undefined
+  useEffect(() => { if (state?.done && state.log.length && score && !finished.current) { finished.current = true; void run(async () => { await finishEngineRun(set.id, score) }) } }, [state, score, set.id, run])
   if (error) return <div className="notice error" role="alert">{error}</div>
   if (!plan || !state) return <div className="opening-workspace" role="status">Planning the session…</div>
   const spoken = SPOKEN_PRESETS.includes(engine.preset)
@@ -134,13 +140,15 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const advance = (correct: boolean, refsOverride?: string[]) => {
     const step = answerCurrent(state, correct)
     setState(step.state)
+    const progress = progressOf(step.state)
+    if (!step.state.done) void saveEngineAnswer(set.id, correct, progress.done, progress.total).catch(reason => console.error('Saving the run failed.', reason))
     if (step.graded && exercise) {
       // A first attempt records each item it covers once per skill; a match records every pair (right unless that item was missed).
       const missed = new Set(refsOverride ?? [])
       void (async () => { for (const ref of exercise.refs) await recordEngineResult(set.id, ref, skillsOf(exercise.form), exercise.form, exercise.form === 'match' ? !missed.has(ref) : correct) })().catch(reason => console.error('Recording the result failed.', reason))
     }
   }
-  if (state.done) return <EngineSummary set={set} state={state} items={items} onRedo={() => void run(async () => { await setEngineChoice(set.id, {}); navigate(setRoute(set.id)) })} />
+  if (state.done) return <EngineSummary set={set} state={state} items={items} busy={busy} run={run} />
   const total = plan.stages.reduce((sum, entry) => sum + entry.exercises.length, 0)
   const doneCount = state.log.filter(attempt => attempt.round === 0).length
   return <div className="dr engine engine-run">
@@ -163,9 +171,10 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   </div>
 }
 
-function EngineSummary({ set, state, items, onRedo }: { set: DrillSet; state: RunnerState; items: ItemInfo[]; onRedo: () => void }) {
+function EngineSummary({ set, state, items, busy, run }: { set: DrillSet; state: RunnerState; items: ItemInfo[]; busy: boolean; run: PageProps['run'] }) {
   const summary = summarise(state.log)
   const name = (ref: string) => items.find(item => item.ref === ref)
+  const missed = summary.missedRefs.length
   return <div className="dr engine engine-summary">
     <a className="back-link" href="#practice"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
     <PageHeading eyebrow="Session complete" title={set.title}>{summary.correct} of {summary.total} right the first time</PageHeading>
@@ -173,8 +182,14 @@ function EngineSummary({ set, state, items, onRedo }: { set: DrillSet; state: Ru
       <ul className="dr-rows">{summary.stages.map(entry => <li key={entry.stage}><div><strong>{STAGE_LABEL[entry.stage]}</strong><span className="small muted">{entry.correct} of {entry.total} right</span></div>
         <progress aria-label={`${STAGE_LABEL[entry.stage]} score`} value={entry.correct} max={Math.max(1, entry.total)} /></li>)}</ul>
       {summary.retried > 0 && <p className="small muted">{summary.retried} {summary.retried === 1 ? 'exercise was' : 'exercises were'} tried again. Second tries are not scored.</p>}</section>
-    <section className="panel dr-panel" aria-labelledby="engine-missed"><h2 id="engine-missed">{summary.missedRefs.length ? 'To look at again' : 'No misses'}</h2>
-      {summary.missedRefs.length > 0 ? <ul className="dr-rows">{summary.missedRefs.map(ref => { const item = name(ref); return <li key={ref}><div><strong lang="zh-Hans">{item?.zh ?? ref}</strong><span className="small muted">{[item?.py, item?.en].filter(Boolean).join(' · ')}</span></div></li> })}</ul> : <p className="small muted">Every item was right on its first try.</p>}</section>
-    <div className="button-row"><a className="button primary" href="#practice">Done</a><button type="button" className="button secondary" onClick={onRedo}>Back to Start</button></div>
+    <section className="panel dr-panel" aria-labelledby="engine-missed"><h2 id="engine-missed">{missed ? 'To look at again' : 'No misses'}</h2>
+      {missed > 0 ? <ul className="dr-rows">{summary.missedRefs.map(ref => { const item = name(ref); return <li key={ref}><div><strong lang="zh-Hans">{item?.zh ?? ref}</strong><span className="small muted">{[item?.py, item?.en].filter(Boolean).join(' · ')}</span></div></li> })}</ul> : <p className="small muted">Every item was right on its first try.</p>}</section>
+    <section className="panel dr-panel engine-next" aria-labelledby="engine-next"><h2 id="engine-next">What next?</h2>
+      <div className="button-row engine-next-actions">
+        <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await setEngineChoice(set.id, {}); navigate(setRoute(set.id)) })}>Practise again</button>
+        {missed > 0 && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { navigate(setRoute(await createDrillSet({ kind: 'refs', refs: summary.missedRefs, origin: { kind: 'drill', id: set.id } }), '')) })}>Practise the missed items ({missed})</button>}
+        <a className="button secondary" href="#practice">New practice set</a>
+        <a className="button secondary" href="#practice">Back to Practice</a></div>
+      <p className="small muted">Practise again opens the Start screen, where you can change the preset and length.</p></section>
   </div>
 }

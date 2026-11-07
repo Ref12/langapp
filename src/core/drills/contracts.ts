@@ -93,6 +93,13 @@ export const engineStateSchema = z.object({
   total: z.number().int().nonnegative(),
   startedAt: timestamp.optional(),
   finishedAt: timestamp.optional(),
+  /** The current run's answers in order (right or not, intros and retries included): a resumed run replays them over the same plan. Empty before Start and after a run ends. */
+  answers: z.array(z.boolean()).max(800).optional(),
+  /** Exercises answered for the first time in the current run, and how many the plan holds: the "14 of 26" of a run in progress. */
+  done: z.number().int().nonnegative().optional(),
+  planned: z.number().int().nonnegative().optional(),
+  /** The last finished run: first-try score and when it ended. */
+  lastRun: z.object({ correct: z.number().int().nonnegative(), total: z.number().int().nonnegative(), at: timestamp }).strict().optional(),
 }).strict()
 export type EngineState = z.infer<typeof engineStateSchema>
 

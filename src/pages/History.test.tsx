@@ -179,7 +179,7 @@ it('Practice on a lesson row opens Practice home filled from that lesson: Review
   cleanup()
   render(<App />)
   await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Lesson · 30 Oct/))
-  fireEvent.click(await screen.findByRole('button', { name: 'Start practice set' }))
+  fireEvent.click(await screen.findByRole('button', { name: 'Start practice session' }))
   await waitFor(() => expect(window.location.hash).toMatch(/^#practice\/set\//))
   expect((await db.drillSets.toArray())[0].refs).toEqual(wordRefs)
 })
@@ -211,7 +211,7 @@ it('lists drill sets with their items and score line, filters to Practice, and o
   expect(within(row).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/set/ds')
   fireEvent.click(within(row).getByRole('link', { name: /^Practice New items/ }))
   await waitFor(() => expect(window.location.hash).toBe('#practice?from=drill:ds'))
-  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Practice set · 1 Jan/))
+  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Practice session · 1 Jan/))
   expect(await screen.findByTestId('selection-summary')).toHaveTextContent('2 of 2 items')
 })
 
@@ -227,7 +227,7 @@ it('lists Hands-free sets (a shortcut activity) with their items, resumes a stop
   expect(within(screen.getByText('Hands-free · 2 Nov').closest('li')!).getByRole('link', { name: /Resume/ })).toHaveAttribute('href', '#practice/set/stopped/handsfree')
   fireEvent.click(within(row).getByRole('link', { name: /^Practice Hands-free/ }))
   await waitFor(() => expect(window.location.hash).toBe('#practice?from=drill:hf'))
-  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Practice set · 1 Jan/))
+  await waitFor(async () => expect(await screen.findByRole('combobox', { name: 'Learning from' })).toHaveDisplayValue(/Practice session · 1 Jan/))
 })
 
 

@@ -165,8 +165,17 @@ export async function recordEngineResult(setId: string, ref: string, skills: rea
   })
 }
 
+/** Keeps the run's answers so it can be resumed: one more answer, with how many exercises are answered and planned. */
+export const saveEngineAnswer = (id: string, correct: boolean, done: number, planned: number, now = Date.now()) => mutate(id, set => set.engine ? { ...set, updatedAt: now, engine: { ...set.engine, startedAt: set.engine.startedAt ?? now, answers: [...(set.engine.answers ?? []), correct].slice(0, 800), done, planned } } : undefined)
+
+/** A run ended: its first-try score becomes the set's "Last run", the saved answers are cleared, and the set is finished (its items introduced) when it was not yet. */
+export async function finishEngineRun(id: string, score: { correct: number; total: number }, now = Date.now()): Promise<void> {
+  await mutate(id, set => set.engine ? { ...set, updatedAt: now, engine: { ...set.engine, answers: [], done: 0, planned: 0, finishedAt: now, lastRun: { correct: score.correct, total: score.total, at: now } } } : undefined)
+  await finishDrillSet(id, now)
+}
+
 /** Sets the engine's preset and length for the next Start (nothing has been answered yet). */
-export const setEngineChoice = (id: string, change: Partial<Pick<EngineState, 'preset' | 'length'>>) => mutate(id, set => set.engine ? { ...set, engine: { ...set.engine, ...change, recorded: [], total: 0, correct: 0, seed: Math.floor(Math.random() * 2 ** 31) } } : undefined)
+export const setEngineChoice = (id: string, change: Partial<Pick<EngineState, 'preset' | 'length'>>) => mutate(id, set => set.engine ? { ...set, engine: { ...set.engine, ...change, answers: [], done: 0, planned: 0, recorded: [], total: 0, correct: 0, seed: Math.floor(Math.random() * 2 ** 31) } } : undefined)
 
 /**
  * Records one item's result in a drill type. Only the first pass of a type is graded: it is stored in the set and scheduled like a lesson answer

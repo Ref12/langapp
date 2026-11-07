@@ -19,6 +19,7 @@ import { DRILL_TYPES, countMarks, scoreOf, type DrillSet } from '../core/drills/
 import { SaveToMenu } from '../components/collections/SaveToMenu'
 import { RemoveFromKnowledge } from '../components/study/RemoveFromKnowledge'
 import { practiceFrom, resumeRoute } from '../core/drills/store'
+import { engineStanding } from './drills/Drills'
 import { newCharacters, type WriteState } from '../core/drills/write-queue'
 
 type Filter = 'all' | 'speak' | 'write' | 'lessons' | 'drills'
@@ -64,6 +65,7 @@ function toWrite(catalog: Catalog | undefined, refs: readonly string[], states: 
 }
 /** One short line: each drill type done with its score. */
 function scoreLine(set: DrillSet): string {
+  if (set.engine) return engineStanding(set) ?? ''
   return DRILL_TYPES.flatMap(type => { const progress = set.progress[type.id]; if (!progress) return []
     const score = scoreOf(countMarks(set, [type.id])); return score.total ? [`${type.name} ${score.correct}/${score.total}`] : [] }).join(' · ')
 }
@@ -159,7 +161,7 @@ export function History() {
               {wordList(catalog, row.set.refs)}{toWrite(catalog, row.set.refs, characterStates)}
               {scoreLine(row.set) && <span className="small muted history-score">{scoreLine(row.set)}</span>}</span>
             <span className="history-actions">
-              {row.set.status === 'active' && <a className="icon-button" href={`#${resumeRoute(row.set)}`} aria-label={`Resume ${row.set.title}`} title="Resume"><ArrowRight size={18} /></a>}
+              {(row.set.status === 'active' || (!!row.set.engine?.answers?.length && !!row.set.engine.planned)) && <a className="icon-button" href={`#${resumeRoute(row.set)}`} aria-label={`Resume ${row.set.title}`} title="Resume"><ArrowRight size={18} /></a>}
               <a className="icon-button" href={`#${practiceFrom('drill', row.set.id)}`} aria-label={`Practice ${row.set.title}`} title="Practice"><Dumbbell size={18} /></a>
               <SaveToMenu refs={[...new Set(row.set.refs)]} name={row.set.title} />
               {tools(row, row.set.title, <RemoveFromKnowledge kind="drill" id={row.set.id} name={row.set.title} menuItem />)}</span>
