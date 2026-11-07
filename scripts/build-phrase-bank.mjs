@@ -31,7 +31,7 @@
 //   node scripts/build-phrase-bank.mjs --base-url http://localhost:5210/v1 \
 //     --writer-model luna --writer-api responses --checker-model sonnet --checker-api chat --lessons 1-10
 //   Options: --api-key-env NAME (default PHRASE_API_KEY), --target 3, --batch-size 20, --lookahead 0,2,4,8,16, --lessons 1-10 (lessons counted from 1),
-//            --lesson-span 1 (a batch spans at most this many lessons), --band 1,2, --words lb1,lb2 (words only), --grammar ref1,ref2 (grammar only),
+//            --lesson-span 1 (a batch spans at most this many lessons), --session-id ID (env PHRASE_SESSION_ID; sent as x-session-id on every model call so the gateway files the whole run as one session; default phrase-bank-<start time>), --concurrency 32 (env PHRASE_CONCURRENCY: batches of a pass in flight at once; batches in flight are kept more than --lesson-span lessons apart where possible), --band 1,2, --words lb1,lb2 (words only), --grammar ref1,ref2 (grammar only),
 //            --limit N, --plan (+ --planner-model/--planner-api), --retry (targets that ended partial or failed), --recheck (phrases kept unchecked), --repinyin (only reset every phrase's pinyin from its Chinese in the band files and the JSON, then stop),
 //            --report (per pass: words and grammar points at target, and those still without phrases), --out DIR (YAML, default curriculum/chinese/authoring/phrases),
 //            --json-out DIR (default src/data/phrases), --state FILE (default build/phrase-bank/state-v2.json), --data-dir DIR, --dry-run,
@@ -329,8 +329,24 @@ export function validatePhrase(curriculum, word, raw, allowed = allowedFor(curri
 
 // ---------------------------------------------------------------- model calls
 
+/** A Retry-After header (seconds or a date) as milliseconds, or undefined. */
+export function retryAfterMs(value, now = Date.now()) {
+  if (value === undefined || value === null || String(value).trim() === '') return undefined
+  const seconds = Number(value)
+  if (Number.isFinite(seconds)) return Math.max(0, seconds * 1000)
+  const at = Date.parse(String(value))
+  return Number.isFinite(at) ? Math.max(0, at - now) : undefined
+}
+
+/** Counts retries after 429 and 5xx answers and logs one summary line at most every `every` ms (flush() writes what is left). */
+export function createThrottleLog(log, every = 10000, clock = Date.now) {
+  let throttled = 0, errors = 0, waited = 0, last = clock()
+  const flush = () => { if (!throttled && !errors) return; log('endpoint throttling: ' + throttled + ' retries after 429, ' + errors + ' after 5xx, ' + Math.round(waited / 1000) + ' s of backoff in total'); throttled = errors = waited = 0; last = clock() }
+  return { note: ({ status, wait }) => { if (status === 429) throttled++; else errors++; waited += wait ?? 0; if (clock() - last >= every) flush() }, flush }
+}
+
 /** A model call: (system, user) => text, over an OpenAI-compatible endpoint, as chat completions or as the responses API. */
-export function createCaller({ baseUrl, apiKey, model, api = 'chat', fetchImpl = globalThis.fetch, sleep = ms => new Promise(done => setTimeout(done, ms)), retries = 3 }) {
+export function createCaller({ baseUrl, apiKey, model, api = 'chat', fetchImpl = globalThis.fetch, sleep = ms => new Promise(done => setTimeout(done, ms)), retries = 5, onRetry = () => {}, random = Math.random, headers = {} }) {
   if (!baseUrl || !model) throw new Error('A base URL and a model name are needed for each role.')
   if (api !== 'chat' && api !== 'responses') throw new Error('The API shape is chat or responses: ' + api)
   const url = baseUrl.replace(/\/+$/, '') + (api === 'chat' ? '/chat/completions' : '/responses')
@@ -341,14 +357,17 @@ export function createCaller({ baseUrl, apiKey, model, api = 'chat', fetchImpl =
     let last
     for (let attempt = 0; attempt <= retries; attempt++) {
       try {
-        const response = await fetchImpl(url, { method: 'POST', headers: { 'content-type': 'application/json', ...(apiKey ? { authorization: 'Bearer ' + apiKey } : {}) }, body: JSON.stringify(body(system, user)) })
-        if (response.status === 429 || response.status >= 500) throw new Error('HTTP ' + response.status)
+        const response = await fetchImpl(url, { method: 'POST', headers: { 'content-type': 'application/json', ...headers, ...(apiKey ? { authorization: 'Bearer ' + apiKey } : {}) }, body: JSON.stringify(body(system, user)) })
+        if (response.status === 429 || response.status >= 500) throw Object.assign(new Error('HTTP ' + response.status), { status: response.status, retryAfter: retryAfterMs(response.headers?.get?.('retry-after')) })
         if (!response.ok) throw Object.assign(new Error('HTTP ' + response.status + ' ' + (await response.text()).slice(0, 300)), { fatal: true })
         return replyText(await response.json())
       } catch (reason) {
         last = reason
         if (reason?.fatal || attempt === retries) break
-        await sleep(1000 * 2 ** attempt)
+        // exponential backoff with jitter (half to the full step, so many callers do not retry in step); a Retry-After from the endpoint is honoured, capped at a minute
+        const wait = reason?.retryAfter !== undefined ? Math.min(reason.retryAfter, 60000) : Math.round((0.5 + random() / 2) * Math.min(1000 * 2 ** attempt, 30000))
+        onRetry({ status: reason?.status, wait })
+        await sleep(wait)
       }
     }
     throw new Error('Model call failed (' + api + ' ' + model + '): ' + (last instanceof Error ? last.message : String(last)))
@@ -495,7 +514,7 @@ export async function processBatch({ curriculum, entries, io, options, lookahead
   const avoid = [...new Set(entries.flatMap(entry => entry.existingZh))].slice(0, 80)
   const result = new Map(entries.map(entry => [entry.word.lb, { phrases: [], note: '' }]))
   // a phrase is stored once: not one already in hand (taken), nor one this batch has written for another word
-  const seen = new Set([...taken, ...entries.flatMap(entry => entry.existingZh)])
+  const seen = new Set(entries.flatMap(entry => entry.existingZh))
   // plan (opt-in: a failed or skipped plan leaves the writer with its fixed prompt)
   if (io.plan && options.plan) {
     try {
@@ -510,7 +529,7 @@ export async function processBatch({ curriculum, entries, io, options, lookahead
       if (!entry) continue
       const checked = validatePhrase(curriculum, entry.word, row, entry.allowed)
       if (!checked.phrase) { log(formOf(entry.word) + ': ' + checked.reason + ' (' + String(row?.zh).slice(0, 20) + ')'); continue }
-      if (seen.has(checked.phrase.zh)) continue
+      if (seen.has(checked.phrase.zh) || taken.has(checked.phrase.zh)) continue
       seen.add(checked.phrase.zh)
       out.push({ entry, phrase: checked.phrase })
     }
@@ -562,13 +581,40 @@ export async function processBatch({ curriculum, entries, io, options, lookahead
   return result
 }
 
+/**
+ * Runs batches with up to `concurrency` in flight. dispatch(batch) is called synchronously when a batch starts (so it sees the state at that moment) and returns a promise
+ * (or a value); merge(batch, value, error) is called one at a time, in completion order, and is synchronous, so merges never interleave. To keep the credit from batches
+ * in flight, the next batch dispatched is the first pending one whose lessons lie more than `span` lessons from every batch in flight (the first pending one when none does).
+ */
+export async function runBatches({ batches, concurrency = 1, span = 1, dispatch, merge }) {
+  const range = batch => { const at = batch.map(item => item.word.index); return [Math.min(...at), Math.max(...at)] }
+  const pending = [...batches]
+  const flying = new Map()
+  const far = (batch, others) => { const [low, high] = range(batch); return others.every(other => { const [from, to] = range(other); return low - to > span || from - high > span }) }
+  while (pending.length || flying.size) {
+    while (pending.length && flying.size < Math.max(1, concurrency)) {
+      const at = Math.max(0, pending.findIndex(batch => far(batch, [...flying.values()])))
+      const [batch] = pending.splice(at, 1)
+      let started
+      try { started = Promise.resolve(dispatch(batch)) } catch (reason) { started = Promise.reject(reason) }
+      const tracked = started.then(value => ({ tracked, batch, value }), error => ({ tracked, batch, error }))
+      flying.set(tracked, batch)
+    }
+    const done = await Promise.race(flying.keys())
+    flying.delete(done.tracked)
+    merge(done.batch, done.value, done.error)
+  }
+}
+
 /** Phrases kept unchecked, judged again in one batch per --batch-size, each against the lesson of the word it uses that the curriculum introduces last. */
 export async function recheck({ curriculum, state, io, options, log = () => {}, save = () => {} }) {
   const pending = []
   for (const phrase of state.phrases) { const word = anchorWord(curriculum, phrase); if (word && !phrase.checked) pending.push({ word, phrase, id: idOf(word.lb, phrase.zh) }) }
-  for (const batch of batchByLesson(pending, options.batchSize, options.lessonSpan ?? 1)) {
-    try {
-      const verdicts = await checkBatch(io, curriculum, batch)
+  await runBatches({
+    batches: batchByLesson(pending, options.batchSize, options.lessonSpan ?? 1), concurrency: options.concurrency ?? 1, span: options.lessonSpan ?? 1,
+    dispatch: batch => checkBatch(io, curriculum, batch),
+    merge: (batch, verdicts, error) => {
+      if (error) { log('recheck failed: ' + error.message); return }
       for (const item of batch) {
         const verdict = verdicts.get(item.id)
         if (!verdict) continue
@@ -576,8 +622,8 @@ export async function recheck({ curriculum, state, io, options, log = () => {}, 
         else { logVerdict(log, item, verdict); state.phrases = state.phrases.filter(phrase => phrase !== item.phrase) }
       }
       save()
-    } catch (reason) { log('recheck failed: ' + reason.message) }
-  }
+    },
+  })
 }
 
 /**
@@ -696,16 +742,27 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
     for (const entry of entries) { const record = state.words[entry.word.lb]; if (record) record.lookahead = Math.max(record.lookahead ?? 0, lookahead) }
     const batches = batchByLesson(entries, options.batchSize, options.lessonSpan ?? 1)
     log('pass look-ahead ' + lookahead + ': ' + entries.length + ' words under target, ' + entries.length + ' to write in ' + batches.length + ' batches')
-    for (const [at, batch] of batches.entries()) {
-      // what was written for earlier words may already serve these: a phrase counts for every word it uses
-      for (const entry of batch) refreshEntry(curriculum, state, entry, lookahead, options.target)
-      const live = batch.filter(entry => entry.need > 0)
-      for (const entry of batch) if (entry.need <= 0) state.words[entry.word.lb] = { ...state.words[entry.word.lb], status: 'done', attempts: state.words[entry.word.lb]?.attempts ?? 0, lookahead: Math.max(state.words[entry.word.lb]?.lookahead ?? 0, lookahead) }
-      if (live.length) {
-        const result = await processBatch({ curriculum, entries: live, io, options, lookahead, log, taken: new Set(state.phrases.map(phrase => phrase.zh)) })
+    let merged = 0
+    // every phrase in hand, shared by all dispatches and updated at merge time (not rebuilt per batch)
+    const taken = new Set(state.phrases.map(phrase => phrase.zh))
+    await runBatches({
+      batches, concurrency: options.concurrency ?? 1, span: options.lessonSpan ?? 1,
+      dispatch: batch => {
+        // what was written for earlier words may already serve these: a phrase counts for every word it uses (batches still in flight are not counted)
+        for (const entry of batch) refreshEntry(curriculum, state, entry, lookahead, options.target)
+        const live = batch.filter(entry => entry.need > 0)
+        for (const entry of batch) if (entry.need <= 0) state.words[entry.word.lb] = { ...state.words[entry.word.lb], status: 'done', attempts: state.words[entry.word.lb]?.attempts ?? 0, lookahead: Math.max(state.words[entry.word.lb]?.lookahead ?? 0, lookahead) }
+        if (!live.length) return { live, result: new Map() }
+        return processBatch({ curriculum, entries: live, io, options, lookahead, log, taken })
+          .catch(reason => new Map(live.map(entry => [entry.word.lb, { phrases: [], note: 'batch failed: ' + (reason?.message ?? reason) }])))
+          .then(result => ({ live, result }))
+      },
+      merge: (batch, value, error) => {
+        const live = value?.live ?? batch.filter(entry => entry.need > 0)
+        const result = value?.result ?? new Map(live.map(entry => [entry.word.lb, { phrases: [], note: 'batch failed: ' + (error?.message ?? error) }]))
         for (const entry of live) {
           const outcome = result.get(entry.word.lb)
-          for (const phrase of outcome.phrases) addPhrase(curriculum, state, { ...phrase, lookahead })
+          for (const phrase of outcome.phrases) if (addPhrase(curriculum, state, { ...phrase, lookahead })) taken.add(phrase.zh); else log(formOf(entry.word) + ': skipped duplicate "' + phrase.zh + '"')
           const record = state.words[entry.word.lb] ?? { status: 'failed', attempts: 0 }
           record.attempts += 1
           record.lookahead = Math.max(record.lookahead ?? 0, lookahead)
@@ -714,10 +771,11 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
           if (outcome.note) record.note = outcome.note; else delete record.note
           state.words[entry.word.lb] = record
         }
-      }
-      save()
-      log('batch ' + (at + 1) + '/' + batches.length + ' saved')
-    }
+        save()
+        merged++
+        log('batch ' + merged + '/' + batches.length + ' saved')
+      },
+    })
     state.passes[lookahead] = { at: new Date().toISOString() }
   }
   return state
@@ -803,7 +861,7 @@ export function parseArgs(argv, env = process.env) {
   const list = value => value ? String(value).split(',').map(item => item.trim()).filter(Boolean) : undefined
   const model = role => get(role + '-model', 'PHRASE_' + role.toUpperCase() + '_MODEL')
   return {
-    report: flags.has('report'), help: flags.has('help'), dryRun: flags.has('dry-run'), retry: flags.has('retry'), recheck: flags.has('recheck'), repinyin: flags.has('repinyin'), plan: flags.has('plan'), lookahead: parseLookahead(get('lookahead', 'PHRASE_LOOKAHEAD', DEFAULT_LOOKAHEAD.join(','))), lessons: flags.has('lessons') ? parseLessons(flags.get('lessons')) : undefined, lessonSpan: Number(get('lesson-span', 'PHRASE_LESSON_SPAN', 1)),
+    report: flags.has('report'), help: flags.has('help'), dryRun: flags.has('dry-run'), retry: flags.has('retry'), recheck: flags.has('recheck'), repinyin: flags.has('repinyin'), plan: flags.has('plan'), lookahead: parseLookahead(get('lookahead', 'PHRASE_LOOKAHEAD', DEFAULT_LOOKAHEAD.join(','))), lessons: flags.has('lessons') ? parseLessons(flags.get('lessons')) : undefined, lessonSpan: Number(get('lesson-span', 'PHRASE_LESSON_SPAN', 1)), sessionId: get('session-id', 'PHRASE_SESSION_ID', 'phrase-bank-' + new Date().toISOString().slice(0, 19)), concurrency: Math.max(1, Math.floor(Number(get('concurrency', 'PHRASE_CONCURRENCY', 32))) || 1),
     baseUrl: get('base-url', 'PHRASE_BASE_URL'), apiKey: env[get('api-key-env', 'PHRASE_API_KEY_ENV', 'PHRASE_API_KEY')],
     roles: {
       planner: { model: model('planner'), api: get('planner-api', 'PHRASE_PLANNER_API', 'chat') },
@@ -817,9 +875,10 @@ export function parseArgs(argv, env = process.env) {
   }
 }
 
-export function createIO(options, fetchImpl) {
-  const make = role => createCaller({ baseUrl: options.baseUrl, apiKey: options.apiKey, model: options.roles[role].model, api: options.roles[role].api, ...(fetchImpl ? { fetchImpl, sleep: async () => {} } : {}) })
-  return { plan: !options.plan || !options.roles.planner.model ? undefined : make('planner'), write: make('writer'), check: make('checker') }
+export function createIO(options, fetchImpl, log = () => {}) {
+  const throttle = createThrottleLog(log)
+  const make = role => createCaller({ onRetry: throttle.note, headers: { ...(options.sessionId ? { 'x-session-id': options.sessionId } : {}), 'x-hexad-client': 'phrase-bank' }, baseUrl: options.baseUrl, apiKey: options.apiKey, model: options.roles[role].model, api: options.roles[role].api, ...(fetchImpl ? { fetchImpl, sleep: async () => {} } : {}) })
+  return { plan: !options.plan || !options.roles.planner.model ? undefined : make('planner'), write: make('writer'), check: make('checker'), flushThrottle: throttle.flush }
 }
 
 export async function main(argv = process.argv.slice(2), { fetchImpl, log = console.log } = {}) {
@@ -849,9 +908,11 @@ export async function main(argv = process.argv.slice(2), { fetchImpl, log = cons
     return
   }
   if (!options.baseUrl || !options.roles.writer.model || !options.roles.checker.model) throw new Error('Give --base-url, --writer-model and --checker-model (or --planner-model); see the header of this script.')
-  const io = createIO(options, fetchImpl)
+  log('session id: ' + options.sessionId)
+  const io = createIO(options, fetchImpl, log)
   if (options.recheck) await recheck({ curriculum, state, io, options, log, save })
   await runPipeline({ curriculum, state, io, options, log, save })
+  io.flushThrottle()
   save()
   const counts = { done: 0, partial: 0, failed: 0 }
   for (const record of Object.values(state.words)) counts[record.status]++
