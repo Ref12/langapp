@@ -23,7 +23,7 @@ export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Ca
   return <div className="study-example">{actions ? <div className="phrase-row"><div className="phrase-row-text">{text}</div>{actions}</div> : text}</div>
 }
 
-export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false, entry, addedIndex }: {
+export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false, entry, addedIndex, phrases }: {
   catalog: Catalog; unit: Unit; card?: StudyCard; pinyin: boolean; now?: number; examples?: Omit<AuthoredExample, 'id'>[]
   run: (operation: () => Promise<void>) => Promise<void>; busy: boolean; route: string; compact?: boolean
   /** Hide the knowledge-set state (badge and button) where it is the same for every card, e.g. a lesson's introduction. */
@@ -31,6 +31,8 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   /** The knowledge entry, when known: shows when and by what it was added. */
   entry?: KnowledgeEntry
   addedIndex?: AddedByIndex
+  /** A link to the phrases that use this word (the Dictionary passes it): the count once it is known. */
+  phrases?: { href: string; count?: number }
 }) {
   const known = Boolean(card)
   const press = useWriteLongPress()
@@ -46,6 +48,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
         <h3 {...(vocabulary ? press : {})} lang={vocabulary ? 'zh-Hans' : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{title}</h3>
         {pinyin && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /></p>}
         <p className="word-meaning">{unit.record.ds}</p>
+        {phrases && vocabulary && <a className="small phrase-word-link" href={phrases.href}>{phrases.count === undefined ? 'Phrases' : `${phrases.count} ${phrases.count === 1 ? 'phrase' : 'phrases'}`}</a>}
       </div>
       {vocabulary && snippet}
     </div>
