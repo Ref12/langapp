@@ -5,6 +5,7 @@ import { loadCatalog, type Catalog } from '../study/catalog'
 import { createSegmenter, type Segmenter } from '../study/exercises'
 import { loadItems, FUNCTION_CHARACTERS, type ItemInfo } from './items'
 import { pickSentences } from '../phrases/sentences'
+import { phraseKey } from '../phrases/key'
 import { conversationSchema, type Conversation, type DrillContent, type DrillSet, type Sentence } from './contracts'
 
 // Sentences and conversations for the sentence drill types. The catalog's own examples come first; the AI writes only what the catalog lacks,
@@ -136,6 +137,14 @@ export async function checkConversations(connection: Parameters<typeof requestSt
   return [...review.accepted, ...review.unchecked].map(entry => entry.conversation)
 }
 
+/** The AI's sentences added to the set's: a sentence another item already has (by Han text) is dropped, so two items never share one. */
+export function withoutRepeats(have: Record<string, Sentence>, found: Record<string, Sentence>): Record<string, Sentence> {
+  const out = { ...have }
+  const taken = new Set(Object.entries(out).filter(([ref, sentence]) => !found[ref] || !sentence.unknown?.length).map(([, sentence]) => phraseKey(sentence.zh)))
+  for (const [ref, sentence] of Object.entries(found)) { if (taken.has(phraseKey(sentence.zh))) continue; out[ref] = sentence; taken.add(phraseKey(sentence.zh)) }
+  return out
+}
+
 /** Fills the set's sentences from the catalog at once and the rest, plus the conversations, from the AI in the background. */
 export function startContent(setId: string): Promise<void> {
   const existing = inflight.get(setId)
@@ -157,10 +166,16 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
   const sentences: Record<string, Sentence> = { ...set.content.sentences }
   const knowledge = await db.knowledge.toArray()
   // The catalog's examples, chosen from the learner's words: the knowledge set plus the set's own refs (see pickSentences).
-  const chosen = await pickSentences(catalog, items.filter(item => !sentences[item.ref]), new Set([...knowledge.map(entry => entry.ref), ...set.refs]))
+  // A fallback (a sentence with unknown words) is only a placeholder: it never stops the AI from writing a known-words one, and no sentence is used for two items.
+  // Only a set still being generated may swap its fallbacks; a finished set keeps the sentences it was given.
+  const open = set.content.state !== 'ready'
+  const isGap = (ref: string) => !sentences[ref] || (open && !!sentences[ref].unknown?.length)
+  const pending = items.filter(item => isGap(item.ref))
+  const taken = Object.entries(sentences).filter(([ref, sentence]) => (!open || !sentence.unknown?.length) && !pending.some(item => item.ref === ref)).map(([, sentence]) => sentence.zh)
+  const chosen = await pickSentences(catalog, pending, new Set([...knowledge.map(entry => entry.ref), ...set.refs]), taken)
   Object.assign(sentences, chosen)
   const allowed = allowedVocabulary(catalog, items, knowledge)
-  const gaps = items.filter(item => !sentences[item.ref] && item.kind !== 'phrase')
+  const gaps = items.filter(item => isGap(item.ref) && item.kind !== 'phrase')
   const wantConversations = set.content.conversations.length === 0
   const connection = await db.aiConnections.get('assistant')
   if (!connection) {
@@ -181,7 +196,7 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
         const value = await requestStructuredJSON(connection, { name: 'drill_sentences', schema: sentenceSchemaJSON, system: SYSTEM, signal, maxOutputTokens: 3000,
           user: `Write exactly one short sentence (at most 14 characters) for each item below. The Chinese sentence must contain the item's form. ${RULE} Return {"sentences":[{"ref","zh","py","en"}]} with the ref copied from the item.\n${JSON.stringify({ items: chunk.map(item => ({ ref: item.ref, form: item.zh, pinyin: item.py, meaning: item.en })), otherKnownVocabulary: allowed.prompt })}` })
         const found = await checkSentences(connection, validSentences(value, chunk, allowed.segmenter), chunk, allowed, signal)
-        await patch(setId, content => ({ ...content, sentences: { ...content.sentences, ...found } }))
+        await patch(setId, content => ({ ...content, sentences: withoutRepeats(content.sentences, found) }))
       } catch (reason) { note(reason) }
       await finished()
     }),

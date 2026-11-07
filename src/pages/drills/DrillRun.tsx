@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import type { Workspace } from '../../core/model'
 import type { PageProps } from '../../components/shared'
 import { readingIndex } from '../../core/study/annotate'
@@ -10,6 +10,7 @@ import { writtenCharacters } from '../../core/drills/write-queue'
 import { recordDrillResult, recordRedo } from '../../core/drills/store'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { QuestionView, type QState, type ViewContext } from './QuestionViews'
+import { AnswerButton } from '../../components/AnswerButton'
 import { DEFAULT_OPTIONS, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
 
 interface RunProps extends Pick<PageProps, 'now' | 'run' | 'busy'> {
@@ -141,9 +142,16 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     <h2 className="small dr-qtitle">{TITLES[q.data.t]}</h2>
     <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} arrive={arrived === q.key ? 'last' : undefined} onPrevious={type === 'learn' && index > 0 ? () => { setArrived(queue[index - 1].key); setIndex(index - 1) } : undefined} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
     </div>
-    <div className="dr-actions">
-      {state.status === 'marking' && needsConfirm(q) ? <button type="button" className="button primary" disabled={!state.chosen} onClick={() => { confirm(q); setIndex(index + 1) }}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>
-      : state.status === 'done' ? <button type="button" className="button primary" onClick={() => setIndex(index + 1)}>{index + 1 >= queue.length ? 'Finish' : 'Next'} <ArrowRight size={16} /></button>
-        : !isAuto(q) ? <button type="button" className="button primary" disabled={!canCheck} onClick={() => check(q, state.answer)}>Check answer</button> : null}
-    </div></section></div>
+    <DrillAnswer q={q} state={state} last={index + 1 >= queue.length} busy={busy} canCheck={canCheck} onCheck={() => check(q, state.answer)} onNext={() => { if (state.status === 'marking') confirm(q); setIndex(index + 1) }} />
+  </section></div>
+}
+
+/** The run's one answer button, the lesson's: Check answer turns into Next (Finish on the last question) in place. Types that check themselves show it once answered; a typed answer waits for its mark. */
+function DrillAnswer({ q, state, last, busy, canCheck, onCheck, onNext }: { q: Q; state: QState; last: boolean; busy: boolean; canCheck: boolean; onCheck: () => void; onNext: () => void }) {
+  const confirming = state.status === 'marking' && needsConfirm(q)
+  if (isAuto(q) && state.status !== 'done') return null
+  const checked = state.status === 'done' || confirming
+  const mark = state.status === 'done' ? undefined : state.chosen ?? state.suggested
+  const correct = state.status === 'done' ? Object.values(state.outcome?.marks ?? {}).every(value => value === 'got') : mark === 'got'
+  return <AnswerButton result={checked ? correct : undefined} busy={busy} ready={checked ? !confirming || !!state.chosen : canCheck} onCheck={onCheck} onNext={onNext} nextLabel={last ? 'Finish' : 'Next'} />
 }

@@ -27,7 +27,7 @@ describe.skipIf(!chrome)('writing screens fit the viewport', () => {
       const fits = () => page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, inner: innerWidth }))
       await page.goto(`${base}#practice`)
       // 吧: a long meaning ("sentence ending for a suggestion, tentative judgement or seeking confirmation") and the full toolbar.
-      await page.evaluate("import('/src/core/study/knowledge.ts').then(knowledge => knowledge.addToKnowledge(['vocabulary:ba5--suggestion']))")
+      await page.evaluate("import('/src/core/study/knowledge.ts').then(knowledge => knowledge.addToKnowledge(['vocabulary:ba5--suggestion', 'vocabulary:wo3-men5--we', 'vocabulary:xiu1-xi5--rest', 'vocabulary:wu3--five', 'vocabulary:fen1-zhong1--minute']))")
       await page.reload()
       await page.getByRole('button', { name: 'Start unwritten characters' }).click()
       await page.getByText('Start practicing').first().click()

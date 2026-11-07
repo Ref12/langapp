@@ -269,7 +269,7 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
   const locked = state.status !== 'open'
   useEffect(() => () => { token.current++; stopBrowserSpeech() }, [])
   const upTo = quiz || locked ? talk.lines.length : (talk.questions[Math.min(step, talk.questions.length - 1)].after + 1)
-  const from = quiz || step === 0 ? 0 : talk.questions[step - 1].after + 1
+  const from = quiz || locked || step === 0 ? 0 : talk.questions[step - 1].after + 1
   const play = async () => {
     const mine = ++token.current
     for (let index = from; index < upTo; index++) {
@@ -278,6 +278,12 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
       const result = await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, 'zh-Hans', 0.85)
       if (result.status !== 'completed') break
     }
+    if (mine === token.current) setPlaying(-1)
+  }
+  const playLine = async (index: number) => {
+    const mine = ++token.current
+    setPlaying(index)
+    await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, 'zh-Hans', 0.85)
     if (mine === token.current) setPlaying(-1)
   }
   const choose = (question: number, option: number) => {
@@ -291,11 +297,11 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
   const questionsShown = quiz ? talk.questions.map((_item, index) => index) : talk.questions.map((_item, index) => index).filter(index => index <= step)
   return <>
     <p className="small muted">{talk.title}</p>
-    {listen && <div className="button-row"><button type="button" className="button primary" onClick={() => void play()} disabled={locked}><Volume2 size={16} /> {playing >= 0 ? 'Playing…' : quiz ? 'Play the conversation' : step === 0 ? 'Play' : 'Play the next part'}</button>
+    {listen && <div className="button-row"><button type="button" className="button primary" onClick={() => void play()}><Volume2 size={16} /> {playing >= 0 ? 'Playing…' : quiz ? 'Play the conversation' : step === 0 ? 'Play' : 'Play the next part'}</button>
       {playing >= 0 && <button type="button" className="button secondary" onClick={() => { token.current++; stopBrowserSpeech(); setPlaying(-1) }}><Square size={16} /> Stop</button>}
       {!locked && <button type="button" className="button secondary" aria-pressed={shown} onClick={() => { setShown(!shown); setHinted(true) }}>{shown ? 'Hide transcript' : 'Show transcript (hint)'}</button>}</div>}
     {(!listen || shown || locked) && <ul className="dr-lines">{talk.lines.map((line, index) => visible(index) || (!listen) && index < upTo ? <li key={index}>
-      <strong>{line.who}</strong><span lang="zh-Hans">{line.zh}</span><span className="small muted">{ctx.pinyinOn || listen ? <Pinyin text={tidyPinyin(line.py)} /> : null}{' '}{(locked || listen) && line.en}</span></li> : null)}</ul>}
+      <strong>{line.who}</strong>{listen && <button type="button" className="button secondary icon-button dr-line-play" aria-label={`Play line ${index + 1}`} onClick={() => void playLine(index)}><Volume2 size={14} /></button>}<span lang="zh-Hans">{line.zh}</span><span className="small muted">{ctx.pinyinOn || listen ? <Pinyin text={tidyPinyin(line.py)} /> : null}{' '}{(locked || listen) && line.en}</span></li> : null)}</ul>}
     {questionsShown.map(index => { const item = talk.questions[index]; return <fieldset key={index} className="answer-options dr-inline" disabled={locked}><legend className="small">{item.question}</legend>
       {item.options.map((option, optionIndex) => <label key={optionIndex} className={`answer-option ${picked[index] === optionIndex ? 'selected' : ''} ${locked && optionIndex === item.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={`q${index}`} checked={picked[index] === optionIndex} onChange={() => choose(index, optionIndex)} /><span lang="en">{option}</span></label>)}</fieldset> })}

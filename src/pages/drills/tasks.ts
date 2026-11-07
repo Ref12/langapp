@@ -63,6 +63,9 @@ export function sentenceMatches(typed: string, sentence: Pick<Sentence, 'zh' | '
   return han.test(text) ? hanKey(text) === hanKey(sentence.zh) : pinyinKey(text) === pinyinKey(sentence.py)
 }
 
+/** A sentence the learner can be asked to produce: not a fallback (one with unknown words). Repeat after me only listens, so it keeps fallbacks. */
+export const produced = (sentence: Sentence | undefined): sentence is Sentence => !!sentence && !sentence.unknown?.length
+
 export const appearsIn = (item: ItemInfo, text: string) => item.kind !== 'grammar' && text.includes(item.zh)
 
 /** The items a type covers, given what the set has: vocabulary for built-in types, items with a sentence for the sentence types, items met in the conversations. */
@@ -71,8 +74,9 @@ export function applicable(type: DrillTypeId, items: readonly ItemInfo[], conten
     case 'meanings': case 'match': return items.filter(item => item.kind === 'vocabulary')
     case 'pinyin': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && item.py)
     case 'learn': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && han.test(item.zh))
-    case 'write': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && content.sentences[item.ref] && han.test(item.zh))
-    case 'translate': case 'repeat': return items.filter(item => content.sentences[item.ref])
+    case 'write': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && produced(content.sentences[item.ref]) && han.test(item.zh))
+    case 'translate': return items.filter(item => produced(content.sentences[item.ref]))
+    case 'repeat': return items.filter(item => content.sentences[item.ref])
     default: return items.filter(item => content.conversations.some(conversation => conversation.lines.some(line => appearsIn(item, line.zh))))
   }
 }

@@ -113,7 +113,8 @@ describe('creating drill sets', () => {
     expect(set.content.conversations).toHaveLength(1)
     expect(set.content.state).toBe('ready')
     // One request per batch of sentences plus one for the conversations, never one per item.
-    expect(structured.requestStructuredJSON.mock.calls.length).toBeLessThanOrEqual(2)
+    // (A fallback sentence counts as a gap, so every item may need writing: still one request per 15 items.)
+    expect(structured.requestStructuredJSON.mock.calls.length).toBeLessThanOrEqual(Math.ceil(set.refs.length / 15) + 2)
   })
 })
 

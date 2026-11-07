@@ -1,13 +1,15 @@
 import type { ReactNode } from 'react'
 import { CheckCircle2, XCircle } from 'lucide-react'
 
-export function AnswerButton({ result, busy, ready, onCheck, onNext, secondary }: {
+export function AnswerButton({ result, busy, ready, onCheck, onNext, secondary, nextLabel = 'Next' }: {
   result?: boolean
   busy: boolean
   ready: boolean
   onCheck: () => void
   onNext: () => void
   secondary?: ReactNode
+  /** What the button says once checked (Finish on the last question of a run). */
+  nextLabel?: string
 }) {
   const checked = result !== undefined
   return <div className="answer-actions">
@@ -17,7 +19,7 @@ export function AnswerButton({ result, busy, ready, onCheck, onNext, secondary }
       aria-description={checked ? result ? 'Correct answer. Continue to the next exercise.' : 'Incorrect answer. Review the explanation, then continue.' : undefined}
       disabled={busy || (!checked && !ready)} onClick={checked ? onNext : onCheck}>
       {result === false ? <XCircle size={16} /> : <CheckCircle2 size={16} />}
-      {checked ? 'Next' : 'Check answer'}
+      {checked ? nextLabel : 'Check answer'}
     </button>
   </div>
 }
