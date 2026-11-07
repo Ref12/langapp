@@ -370,26 +370,38 @@ export function createThrottleLog(log, every = 10000, clock = Date.now) {
 }
 
 /** A model call: (system, user) => text, over an OpenAI-compatible endpoint, as chat completions or as the responses API. */
-export function createCaller({ baseUrl, apiKey, model, api = 'chat', fetchImpl = globalThis.fetch, sleep = ms => new Promise(done => setTimeout(done, ms)), retries = 5, onRetry = () => {}, random = Math.random, headers = {} }) {
+export function createCaller({ baseUrl, apiKey, model, api = 'chat', fetchImpl = globalThis.fetch, sleep = ms => new Promise(done => setTimeout(done, ms)), retries = 5, onRetry = () => {}, random = Math.random, headers = {}, timeoutMs = 120000, timeoutRetries = 2 }) {
   if (!baseUrl || !model) throw new Error('A base URL and a model name are needed for each role.')
   if (api !== 'chat' && api !== 'responses') throw new Error('The API shape is chat or responses: ' + api)
   const url = baseUrl.replace(/\/+$/, '') + (api === 'chat' ? '/chat/completions' : '/responses')
   const body = (system, user) => api === 'chat'
     ? { model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }
     : { model, instructions: system, input: user }
+  /** One attempt, at most timeoutMs from sending to the last byte of the body: the request is aborted, and a fetch that ignores the abort is given up on all the same. */
+  const attemptOnce = async (system, user) => {
+    const signal = AbortSignal.timeout(timeoutMs)
+    const stalled = new Promise((_, reject) => signal.addEventListener('abort', () => reject(Object.assign(new Error('timed out after ' + Math.round(timeoutMs / 1000) + ' s'), { timedOut: true })), { once: true }))
+    const work = (async () => {
+      const response = await fetchImpl(url, { method: 'POST', signal, headers: { 'content-type': 'application/json', ...headers, ...(apiKey ? { authorization: 'Bearer ' + apiKey } : {}) }, body: JSON.stringify(body(system, user)) })
+      if (response.status === 429 || response.status >= 500) throw Object.assign(new Error('HTTP ' + response.status), { status: response.status, retryAfter: retryAfterMs(response.headers?.get?.('retry-after')) })
+      if (!response.ok) throw Object.assign(new Error('HTTP ' + response.status + ' ' + (await response.text()).slice(0, 300)), { fatal: true })
+      return replyText(await response.json())
+    })()
+    work.catch(() => {})
+    try { return await Promise.race([work, stalled]) } catch (reason) { throw signal.aborted && !reason?.timedOut && !reason?.status && !reason?.fatal ? Object.assign(new Error('timed out after ' + Math.round(timeoutMs / 1000) + ' s'), { timedOut: true }) : reason }
+  }
   return async (system, user) => {
-    let last
+    let last, timeouts = 0
     for (let attempt = 0; attempt <= retries; attempt++) {
       try {
-        const response = await fetchImpl(url, { method: 'POST', headers: { 'content-type': 'application/json', ...headers, ...(apiKey ? { authorization: 'Bearer ' + apiKey } : {}) }, body: JSON.stringify(body(system, user)) })
-        if (response.status === 429 || response.status >= 500) throw Object.assign(new Error('HTTP ' + response.status), { status: response.status, retryAfter: retryAfterMs(response.headers?.get?.('retry-after')) })
-        if (!response.ok) throw Object.assign(new Error('HTTP ' + response.status + ' ' + (await response.text()).slice(0, 300)), { fatal: true })
-        return replyText(await response.json())
+        return await attemptOnce(system, user)
       } catch (reason) {
         last = reason
+        // a stalled call is tried again at most timeoutRetries times, whatever the other retries allow
+        if (reason?.timedOut && timeouts++ >= timeoutRetries) break
         if (reason?.fatal || attempt === retries) break
         // exponential backoff with jitter (half to the full step, so many callers do not retry in step); a Retry-After from the endpoint is honoured, capped at a minute
-        const wait = reason?.retryAfter !== undefined ? Math.min(reason.retryAfter, 60000) : Math.round((0.5 + random() / 2) * Math.min(1000 * 2 ** attempt, 30000))
+        const wait = reason?.retryAfter !== undefined ? Math.min(reason.retryAfter, 60000) : reason?.timedOut ? Math.round((0.5 + random() / 2) * 2000 * 2 ** (timeouts - 1)) : Math.round((0.5 + random() / 2) * Math.min(1000 * 2 ** attempt, 30000))
         onRetry({ status: reason?.status, wait })
         await sleep(wait)
       }

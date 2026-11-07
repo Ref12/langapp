@@ -406,8 +406,11 @@ export const NAME_POOL = [
   ['王老师', 'wáng lǎo shī', 'Teacher Wang', 'female'], ['李老师', 'lǐ lǎo shī', 'Teacher Li', 'male'], ['张医生', 'zhāng yī shēng', 'Doctor Zhang', 'female'], ['刘医生', 'liú yī shēng', 'Doctor Liu', 'male'],
 ]
 /** The speakers offered to conversation number slot of a unit: 2 or 3 distinct names from the pool, rotated by the unit's hash (deterministic). */
+const gcd = (a, b) => b ? gcd(b, a % b) : a
+/** Steps coprime with the pool size, so the walk visits every name; any other step can cycle through too few names and never reach the count. */
+const NAME_STEPS = Array.from({ length: NAME_POOL.length - 1 }, (_, at) => at + 1).filter(value => gcd(value, NAME_POOL.length) === 1)
 export function namesFor(unitId, slot) {
-  const start = parseInt(hash(unitId + '|' + slot), 16), count = 2 + start % 2, step = 1 + (start >> 1) % (NAME_POOL.length - 1)
+  const start = parseInt(hash(unitId + '|' + slot), 16), count = 2 + start % 2, step = NAME_STEPS[Math.floor(start / 2) % NAME_STEPS.length]
   const picked = []
   for (let at = 0; picked.length < count; at++) { const name = NAME_POOL[(start + at * step) % NAME_POOL.length]; if (!picked.includes(name)) picked.push(name) }
   return picked.map(([name, py, en, speaker]) => ({ name, py, en, speaker }))

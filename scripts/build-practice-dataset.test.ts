@@ -160,6 +160,8 @@ describe('validators', () => {
       names.forEach(item => used.add(item.name))
     }
     expect(used.size).toBeGreaterThan(12)   // not always 小明 and 小红
+    // Every unit id finishes (a step sharing a factor with the pool size once cycled through 2 names forever when 3 were wanted).
+    for (let lesson = 1; lesson <= 3000; lesson++) for (const slot of [0, 1, 2]) expect(new Set(namesFor('conversations:' + lesson, slot).map(item => item.name)).size).toBeGreaterThanOrEqual(2)
     const ctx = ctxOf({ lessons: { from: 5, to: 5 } })
     let prompt = ''
     await runKind({ kind: 'conversations', ctx, io: fakeIO({ write: user => { prompt = user; return { conversations: [] } }, check: () => ({ items: [] }) }) })
