@@ -37,7 +37,8 @@ function expectPracticeResult(button: HTMLElement, result: 'correct' | 'incorrec
   expect(showAnswer.closest('.answer-actions')).toBe(actions)
 }
 
-describe('Mandarin learning loop', () => {
+// Whole-app integration tests: about 3.5 s each locally, but CI runners under load pushed two past the default 5 s (runs 42335118949, 42340394613).
+describe('Mandarin learning loop', { timeout: 15_000 }, () => {
   it('opens existing browser preferences as default without replacing them', async () => {
     await initializeWorkspace()
     await db.preferences.update('workspace', { name: 'Existing workspace', theme: 'light', defaultSpeechRate: 0.75 })
@@ -93,8 +94,7 @@ describe('Mandarin learning loop', () => {
     expect(screen.queryByText('These are reading-recognition activities, not speaking, listening, handwriting, or HSK assessments. Those skills remain separate.')).not.toBeInTheDocument()
   })
 
-  // Skipped 2026-11-06: flaky timeout on CI (5.1 s against the 5 s limit in deploy run 42335118949; passes in 3.4 s locally).
-  it.skip('starts with real zero progress, persists a word from reading, and resumes its bookmark', async () => {
+  it('starts with real zero progress, persists a word from reading, and resumes its bookmark', async () => {
     const user = userEvent.setup()
     const view = render(<App />)
     await screen.findByRole('heading', { name: 'Make the language yours.' })
