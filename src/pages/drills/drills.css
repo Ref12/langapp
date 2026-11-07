@@ -284,3 +284,13 @@
 .engine-answer { display: grid; width: 100%; }
 .engine-answer input { width: 100%; box-sizing: border-box; min-height: 44px; padding: 8px 12px; font-size: 16px; }
 .engine-another { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+
+/* Phone: the typed answer stacks (input, then the check button at full width where Next appears, then the small "Answer another way" line). */
+@media (max-width: 640px) {
+  .answer-actions:has(.engine-another) { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .answer-actions:has(.engine-another) > .check-answer-button { order: 1; grid-column: 1; }
+  .answer-actions:has(.engine-another) > .engine-another { order: 2; grid-column: 1; justify-content: flex-start; }
+  .engine-another .button { min-height: 32px; padding: 4px 10px; font-size: 12px; }
+}
+.practice-card .engine-answer { margin-bottom: 10px; }
+.practice-card > .practice-prompt { margin-bottom: 12px; }
