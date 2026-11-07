@@ -4,7 +4,7 @@ import { DEFAULT_EMPHASIS_RATE, DEFAULT_ZH_RATE, FRAME_VOLUME, normalizeHandsfre
 /** `example` is the English of a short sentence that uses a vocabulary word ("Let's rest."), spoken as "as in ..." in the full item wording. */
 export interface ScriptItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; en: string; example?: string; /** The word's usable phrases from the phrase bank, least-heard first; the first PHRASES_PER_WORD are taught and rotated through. */ phrases?: ScriptSentence[] }
 /** A grammar pattern's example sentence from the catalog, by the pattern's ref. */
-export interface ScriptSentence { zh: string; en: string }
+export interface ScriptSentence { zh: string; en: string; /** A lesson's own example (not a user, shipped or drill phrase). A word's taught phrases are one of each kind when both exist. */ example?: boolean }
 
 export type PromptAct = 'intro' | 'toEnglish' | 'toChinese'
 /** The whole run is one phase: a Hands-free lesson (Introduction) or a Hands-free recall. */
@@ -17,7 +17,7 @@ export type Segment =
   | { kind: 'say'; locale: 'en-US' | 'zh-Hans'; text: string; rate: number; /** 0 to 1; unset is full volume. The English frame is quieter than its key word only when the key word is its own utterance (emphasis Slower and louder). */ volume?: number; /** Part of a section introduction: shown on screen as the section header (`header`, with `detail` under it) until the first prompt is spoken. */ section?: boolean; header?: string; detail?: string; /** Which voice speaks it: the one English voice, or Chinese. */ voice: 'frame' | 'zh'; /** The English answer to a Chinese prompt: the display shows it when this starts, not before. */ answer?: boolean }
   /** `ms` is the estimate. With `measure`, the player also times the model text it has just spoken and waits whichever is longer: that time x `factor` + `gap`, or `ms`. */
   | { kind: 'pause'; ms: number; measure?: { factor: number; gap: number } }
-  | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string; item?: PromptItem; /** True the first time a card comes up in the run. */ first?: boolean; /** The Chinese of the bank phrase this prompt is about, for the heard log. */ phrase?: string; /** The item this prompt practises and how, for practice counts (see ACTIVITY in skill-map). */ ref?: string; act?: PromptAct }
+  | { kind: 'marker'; phase: Phase; index: number; total: number; prompt: string; item?: PromptItem; /** True the first time a card comes up in the run. */ first?: boolean; /** The Chinese of the bank phrase this prompt is about, for the heard log. */ phrase?: string; /** The item this prompt practises and how, for practice counts (see ACTIVITY in skill-map). */ ref?: string; act?: PromptAct; /** For the playlist: the section this prompt is in, and the Chinese and English of what it is about (the phrase, for a phrase card). */ section?: Section; zh?: string; en?: string }
 
 export interface Script {
   segments: Segment[]
@@ -40,10 +40,10 @@ export const FRAME_GAP_MS = 300
 export const SECTION_GAP_MS = 600
 /** What each section contains and what you do in it: spoken after the header in the Full section introductions, and shown under it. */
 export const SECTION_INTRO: Record<Section, string> = {
-  words: "In five parts: the words, a test on them, then their phrases, a test on the phrases, and a mixed review. First the words: repeat after me.",
-  testWords: "The words again, in both directions, in mixed order. Answer before you hear it.",
+  words: "In five parts: the words, one test on all of them, then their phrases, one test on all the phrases, and a mixed review. First the words: repeat after me.",
+  testWords: "Every word once in each direction, in mixed order. Answer before you hear it.",
   phrases: "Now each word in a phrase or two: repeat after me.",
-  testPhrases: "The words come back in phrases, and the phrase can change. Answer before you hear it.",
+  testPhrases: "Every phrase once in each direction, in mixed order. Answer before you hear it.",
   review: "Everything in this set, in mixed order, with a few words you learned before.",
   recall: "In random order, in both directions. Answer before you hear it. The first time a word comes up you'll hear it in a phrase.",
 }
@@ -56,6 +56,16 @@ export const SCALE = { short: 0.7, normal: 1, long: 1.4 }
 const ZH_SYLLABLE_MS = 500
 const EN_WORD_MS = 420
 export const SPACING = [1, 3, 6] as const
+
+/** The phrases a word teaches: lesson examples and other phrases alternately (examples first) when both exist, else the first PHRASES_PER_WORD of what there is. */
+export function takePhrases<T extends { zh: string; example?: boolean }>(usable: readonly T[]): T[] {
+  const examples = usable.filter(phrase => phrase.example)
+  const others = usable.filter(phrase => !phrase.example)
+  if (!examples.length || !others.length) return usable.slice(0, PHRASES_PER_WORD)
+  const out: T[] = []
+  for (let at = 0; out.length < PHRASES_PER_WORD && (at < examples.length || at < others.length); at++) { if (examples[at]) out.push(examples[at]); if (others[at] && out.length < PHRASES_PER_WORD) out.push(others[at]) }
+  return out
+}
 
 /** A usable usage example: present and short enough not to bury its word. */
 const usable = (example: string | undefined) => !!example && example.trim().split(/\s+/).length <= MAX_EXAMPLE_WORDS
@@ -117,17 +127,30 @@ interface Word { zh: string; en: string; description?: string; ref: string; item
 type Card = { text: Word; dir: 'e2z' | 'z2e' }
 const entityKey = (word: Word) => `${word.item}:${word.ref}`
 
-/** Puts cards in an order where the same item never comes twice in a row (when the pool has another item to put there), `previous` being the entity just before the first. */
+/** Puts cards in an order where the same item never comes twice in a row (when the pool allows it), `previous` being the entity just before the first. The order stays as shuffled as the rule permits: each place takes the first card that keeps the rest arrangeable. */
 export function keepApart<T extends { text: { ref: string; item: PromptItem } }>(cards: readonly T[], previous?: string): T[] {
-  const out = [...cards]
   const key = (card: T) => `${card.text.item}:${card.text.ref}`
+  const rest = [...cards]
+  const counts = new Map<string, number>()
+  for (const card of rest) counts.set(key(card), (counts.get(key(card)) ?? 0) + 1)
+  const out: T[] = []
   let last = previous
-  for (let at = 0; at < out.length; at++) {
-    if (key(out[at]) === last) {
-      const other = out.findIndex((card, from) => from > at && key(card) !== last)
-      if (other > at) [out[at], out[other]] = [out[other], out[at]]
+  while (rest.length) {
+    const left = rest.length - 1
+    const fits = (at: number) => {
+      const chosen = key(rest[at])
+      if (chosen === last) return false
+      // after this card, no entity may have more cards than the places that can hold it without touching
+      for (const [other, count] of counts) { const n = count - (other === chosen ? 1 : 0); if (n > (other === chosen ? Math.floor(left / 2) : Math.ceil(left / 2))) return false }
+      return true
     }
-    last = key(out[at])
+    let at = rest.findIndex((_, from) => fits(from))
+    if (at < 0) at = rest.findIndex(card => key(card) !== last)
+    if (at < 0) at = 0
+    const [card] = rest.splice(at, 1)
+    counts.set(key(card), counts.get(key(card))! - 1)
+    out.push(card)
+    last = key(card)
   }
   return out
 }
@@ -150,9 +173,11 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     const description = introExplanation(item)
     return description ? { zh: item.zh, en: asDescription(item.en), description, ref: item.ref, item: 'word' } : { zh: item.zh, en: shortGloss(item.en), ref: item.ref, item: 'word', ...(usable(item.example) ? { example: item.example!.trim() } : {}) }
   }
-  /** A word's bank phrases that can be spoken, in the order given (least heard first), at most PHRASES_PER_WORD. */
-  const phrasesOf = (item: ScriptItem, ref = item.ref): Word[] => item.kind === 'grammar' ? [] : (item.phrases ?? []).filter(phrase => syllables(phrase.zh).length && phrase.en.trim()).slice(0, PHRASES_PER_WORD)
-    .map(phrase => ({ zh: phrase.zh, en: phrase.en.trim(), ref, item: 'phrase' as const, phrase: phrase.zh }))
+  /** A word's bank phrases that can be spoken, at most PHRASES_PER_WORD, each kind in the order given (least heard first). When the word has both lesson examples and other phrases, they alternate: example, other, example... So generated and user phrases are heard too. */
+  /** Phrases already taught to an earlier word of this run (by their Chinese characters): a phrase is taught at most once per run, so a later word takes its next candidate of the same kind, then of the other. */
+  const taken = new Set<string>()
+  const phrasesOf = (item: ScriptItem, ref = item.ref): Word[] => item.kind === 'grammar' ? [] : takePhrases((item.phrases ?? []).filter(phrase => syllables(phrase.zh).length && phrase.en.trim() && !taken.has(syllables(phrase.zh).join(''))))
+    .map(phrase => { taken.add(syllables(phrase.zh).join('')); return { zh: phrase.zh, en: phrase.en.trim(), ref, item: 'phrase' as const, phrase: phrase.zh } })
   const entries = items.flatMap(item => { const word = wordOf(item); return word ? [{ word, phrases: phrasesOf(item) }] : [] })
   const extras = (review ?? []).flatMap(item => { const word = wordOf(item); return word && !entries.some(entry => entry.word.ref === word.ref) ? [word] : [] }).slice(0, REVIEW_EXTRAS)
   /** The phrases a word's phrase cards go through, one per time the card comes round. */
@@ -206,7 +231,7 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
       }
     }
     promptStarts.push(segments.length)
-    segments.push({ kind: 'marker', phase, index, total, prompt, item: item.item, ref: item.ref, act, ...(item.phrase ? { phrase: item.phrase } : {}), ...(first ? { first: true } : {}) })
+    segments.push({ kind: 'marker', phase, index, total, prompt, item: item.item, ref: item.ref, act, section, zh: item.zh, en: item.en, ...(item.phrase ? { phrase: item.phrase } : {}), ...(first ? { first: true } : {}) })
   }
   /** Says a Chinese text and leaves a pause to repeat it, sized to the text and to how long the model text actually took. */
   const repeatAfter = (zh: string, rate = zhRate) => { sayZh(zh, rate); pause(zh, 'zh-Hans', rate, true) }
@@ -229,12 +254,17 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
     for (const piece of pieces) repeatAfter(piece, zhRate)
     return pieces.length > 0
   }
+  /** The end of an introduction: always at least two whole turns back to back (say, pause, say, pause), so one slip can be put right at once; `repeats` adds more. After a build-up the first whole text was only heard, so repeats counts it. `turnedFirst`: the whole text was already said as a turn before. */
+  const closeWith = (zh: string, built: boolean, turnedFirst: boolean) => {
+    const turns = built ? Math.max(2, settings.repeats - 1) : Math.max(2, settings.repeats) - (turnedFirst ? 1 : 0)
+    for (let again = 0; again < turns; again++) repeatAfter(zh)
+  }
   /** The repeat-after structure of a phrase: the whole phrase slowly, the build-up from the end, then the whole phrase again at normal speed until `repeats` whole repeats are done. With a build-up the first whole phrase is only heard (a short gap, no pause to repeat it), and the build-up always ends on the whole phrase, even with one repeat. */
   const teach = (zh: string, steps: number, firstAlready = false) => {
     const built = buildUpPieces(zh, steps).length > 0
     if (!firstAlready) { if (built) { sayZh(zh, zhRate); gap() } else repeatAfter(zh, zhRate) }
     buildUp(zh, steps)
-    for (let again = 1; again < Math.max(built ? 2 : 1, settings.repeats); again++) repeatAfter(zh)
+    closeWith(zh, built, !firstAlready || built)
   }
   /** The question for a word: how to say it, or for a descriptive item which word has that description. Abridged is "English, rest."; Off is the bare gloss. */
   const ask = (word: Word, context = false) => {
@@ -290,7 +320,8 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
       if (wording !== 'off') sayEn("Here's")
       repeatAfter(word.zh, zhRate); sayKey(wording === 'abridged' ? firstClause(word.description) : word.description)
       buildUp(word.zh, syllables(word.zh).length)
-      for (let again = 1; again < Math.max(2, settings.repeats); again++) repeatAfter(word.zh)
+      const wasBuilt = buildUpPieces(word.zh, syllables(word.zh).length).length > 0
+      closeWith(word.zh, wasBuilt, true)
     } else {
       introLine(word.en, word.example)
       teach(word.zh, syllables(word.zh).length)
@@ -310,8 +341,9 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   }
   // Introduction, in five sections: the words, a test on them, the phrases, a test on the phrases, and a mixed review. One run, one progress count.
   const taught = entries.flatMap(entry => entry.phrases)
-  const wordTest = scrambleWithSpacing(shuffle(cardsOf(wordsOnly), random))
-  const phraseTest = scrambleWithSpacing(shuffle(phraseCards, random))
+  // The tests are one shuffled pass over every card (each word both ways; each phrase card both ways), none repeated; the first is never the item just introduced.
+  const wordTest = keepApart(shuffle(cardsOf(wordsOnly), random), wordsOnly.length ? entityKey(wordsOnly[wordsOnly.length - 1]) : undefined)
+  const phraseTest = keepApart(shuffle(phraseCards, random), taught.length ? entityKey(taught[taught.length - 1]) : undefined)
   const reviewCards = keepApart(shuffle([...cardsOf(wordsOnly), ...phraseCards, ...cardsOf(extras)], random), phraseTest.length ? entityKey(phraseTest[phraseTest.length - 1].text) : wordTest.length ? entityKey(wordTest[wordTest.length - 1].text) : undefined)
   const total = wordsOnly.length + wordTest.length + taught.length + phraseTest.length + reviewCards.length
   let index = 0
@@ -323,7 +355,7 @@ export function generateScript(items: readonly ScriptItem[], sentenceOf: Readonl
   return { segments, promptStarts }
 }
 
-/** A prompt's identity across scripts built with different settings: its phase, item and direction, and which time that card has come round in the phase. */
+/** A prompt's identity across scripts built with different settings: its phase, item and direction, and which time that card has come round in the phase (a card of a test comes once now; an older run's keys for later times find the same card's first prompt). */
 const keyRef = (marker: { ref?: string; prompt: string; item?: PromptItem }) => `${marker.ref ?? marker.prompt}${marker.item === 'phrase' ? '#phrase' : ''}`
 export function promptKeyAt(script: Script, prompt: number): string | undefined {
   const marker = script.segments[script.promptStarts[prompt]]

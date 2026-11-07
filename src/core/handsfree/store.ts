@@ -60,7 +60,7 @@ export async function buildRunScript(run: Pick<HandsfreeRun, 'refs' | 'settings'
   const bank = await loadBank(catalog, found.filter(item => item.kind === 'vocabulary').map(item => item.ref), allowed, await db.drillSets.toArray())
   const heard = await heardLog()
   const items: ScriptItem[] = found.map(item => {
-    const phrases = leastHeard(bank.get(item.ref) ?? [], heard).map(phrase => ({ zh: phrase.zh, en: phrase.en }))
+    const phrases = leastHeard(bank.get(item.ref) ?? [], heard).map(phrase => ({ zh: phrase.zh, en: phrase.en, ...(phrase.source === 'catalog' ? { example: true } : {}) }))
     return { ref: item.ref, kind: item.kind, zh: item.zh, en: item.en, ...(item.kind === 'vocabulary' ? exampleFor(catalog, item.ref) : {}), ...(phrases.length ? { phrases } : {}) }
   })
   let review: ScriptItem[] | undefined

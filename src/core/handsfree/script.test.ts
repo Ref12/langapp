@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { DEFAULT_HANDSFREE_SETTINGS, type HandsfreeSettings } from './contracts'
-import { FRAME_GAP_MS, SECTION_HEADER, SECTION_INTRO, SPACING, findPrompt, generateScript, introExplanation, keepApart, pauseFor, promptKeyAt, scrambleWithSpacing, shortGloss, type ScriptItem, type ScriptMode, type Segment } from './script'
+import { FRAME_GAP_MS, SECTION_HEADER, SECTION_INTRO, SPACING, findPrompt, generateScript, introExplanation, keepApart, pauseFor, promptKeyAt, scrambleWithSpacing, shortGloss, takePhrases, type ScriptItem, type ScriptMode, type Segment } from './script'
 
 const word = (n: number, zh: string, en: string, extra: Partial<ScriptItem> = {}): ScriptItem => ({ ref: `vocabulary:w${n}`, kind: 'vocabulary', zh, en, ...extra })
 const REST = word(1, '休息', 'rest; break', { example: "Let's rest.", phrases: [{ zh: '我们休息吧。', en: "Let's rest." }, { zh: '休息一下吧。', en: 'Take a short rest.' }, { zh: '你累了，休息吧。', en: "You're tired, rest." }] })
@@ -27,28 +27,28 @@ describe('Hands-free introduction script', () => {
     const kinds = (from: number, to?: number) => markers.slice(from, to)
     const words = kinds(0, 4)
     expect(words.map(marker => [marker.act, marker.item, marker.ref])).toEqual([['intro', 'word', REST.ref], ['intro', 'word', WORK.ref], ['intro', 'word', STUDENT.ref], ['intro', 'grammar', GRAMMAR.ref]])
-    const wordTest = kinds(4, 36) // 8 cards, each back after 1, 3 and 6 prompts: 4 times
+    const wordTest = kinds(4, 12) // 8 cards: each word both ways, once
     expect(wordTest.every(marker => marker.act !== 'intro' && marker.item !== 'phrase')).toBe(true)
-    expect(wordTest.filter(marker => marker.act === 'toChinese')).toHaveLength(16)
-    expect(wordTest.filter(marker => marker.act === 'toEnglish')).toHaveLength(16)
-    expect(kinds(36, 39).map(marker => [marker.act, marker.item, marker.ref])).toEqual([['intro', 'phrase', REST.ref], ['intro', 'phrase', REST.ref], ['intro', 'phrase', STUDENT.ref]])
-    expect(new Set(kinds(36, 39).map(marker => marker.phrase)).size).toBe(3)
-    const phraseTest = kinds(39, 55)
+    expect(wordTest.filter(marker => marker.act === 'toChinese')).toHaveLength(4)
+    expect(wordTest.filter(marker => marker.act === 'toEnglish')).toHaveLength(4)
+    expect(kinds(12, 15).map(marker => [marker.act, marker.item, marker.ref])).toEqual([['intro', 'phrase', REST.ref], ['intro', 'phrase', REST.ref], ['intro', 'phrase', STUDENT.ref]])
+    expect(new Set(kinds(12, 15).map(marker => marker.phrase)).size).toBe(3)
+    const phraseTest = kinds(15, 19)
     expect(phraseTest.every(marker => marker.item === 'phrase' && marker.act !== 'intro')).toBe(true)
-    const mixed = kinds(55)
+    const mixed = kinds(19)
     expect(mixed).toHaveLength(12) // every word card both ways (8) and every phrase card (4)
     expect(mixed.filter(marker => marker.item === 'phrase')).toHaveLength(4)
     expect(new Set(markers.map(marker => marker.phase))).toEqual(new Set(['lesson']))
-    expect(markers.map(marker => marker.index)).toEqual(Array.from({ length: 67 }, (_, at) => at + 1))
-    expect(new Set(markers.map(marker => marker.total))).toEqual(new Set([67]))
+    expect(markers.map(marker => marker.index)).toEqual(Array.from({ length: 31 }, (_, at) => at + 1))
+    expect(new Set(markers.map(marker => marker.total))).toEqual(new Set([31]))
   })
 
   it('introduces no phrase before every word has been introduced and tested', () => {
     const { markers } = build(SET, 'introduction')
     const firstPhrase = markers.findIndex(marker => marker.item === 'phrase')
     const lastWordPrompt = markers.map((marker, at) => marker.item !== 'phrase' ? at : -1).filter(at => at >= 0)
-    expect(firstPhrase).toBe(36)
-    expect(lastWordPrompt.filter(at => at < firstPhrase)).toHaveLength(36)
+    expect(firstPhrase).toBe(12)
+    expect(lastWordPrompt.filter(at => at < firstPhrase)).toHaveLength(12)
     expect(markers.slice(0, firstPhrase).every(marker => marker.item !== 'phrase')).toBe(true)
   })
 
@@ -67,7 +67,7 @@ describe('Hands-free introduction script', () => {
     const taught = markers.filter(marker => marker.item === 'phrase' && marker.act === 'intro' && marker.ref === REST.ref).map(marker => marker.phrase)
     expect(taught).toEqual(['我们休息吧。', '休息一下吧。']) // two of the three, in the bank's order
     const played = markers.filter(marker => marker.item === 'phrase' && marker.act !== 'intro' && marker.ref === REST.ref).map(marker => marker.phrase)
-    expect(played).toHaveLength(10) // 8 in the phrase test (2 cards, 4 times each), 2 in the mixed review
+    expect(played).toHaveLength(4) // 2 in the phrase test (one card, both ways), 2 in the mixed review
     for (let at = 1; at < played.length; at++) expect(played[at]).not.toBe(played[at - 1])
     expect(new Set(played)).toEqual(new Set(taught))
     // a word with a single phrase keeps it
@@ -78,9 +78,9 @@ describe('Hands-free introduction script', () => {
     const extra = word(20, '朋友', 'friend')
     const script = generateScript(SET, SENTENCES, PLAIN, 7, 'introduction', [extra])
     const markers = script.promptStarts.map(at => script.segments[at] as Extract<Segment, { kind: 'marker' }>)
-    expect(markers).toHaveLength(69)
-    expect(markers.slice(55).filter(marker => marker.ref === extra.ref).map(marker => marker.act).sort()).toEqual(['toChinese', 'toEnglish'])
-    expect(markers.slice(0, 55).some(marker => marker.ref === extra.ref)).toBe(false)
+    expect(markers).toHaveLength(33)
+    expect(markers.slice(19).filter(marker => marker.ref === extra.ref).map(marker => marker.act).sort()).toEqual(['toChinese', 'toEnglish'])
+    expect(markers.slice(0, 19).some(marker => marker.ref === extra.ref)).toBe(false)
   })
 
   it('says the word introduction and then "Here\'s a phrase: ..." with the build-up and repeats', () => {
@@ -216,5 +216,120 @@ describe('Hands-free script helpers', () => {
     expect(key).toContain('#phrase')
     expect(findPrompt(script, key, 0)).toBe(phrase)
     expect(findPrompt(script, 'recall|vocabulary:gone|intro|1', 5)).toBe(5)
+  })
+})
+
+const key = (marker: { item?: string; ref?: string; act?: string; phrase?: string }) => `${marker.item}|${marker.ref}|${marker.act}`
+describe('Introduction tests: introduce everything, then test everything once', () => {
+  const four = [word(1, '休息', 'rest', { phrases: [{ zh: '我们休息吧。', en: 'Rest.' }] }), word(2, '工作', 'work', { phrases: [{ zh: '我工作。', en: 'I work.' }] }), word(3, '学生', 'student', { phrases: [{ zh: '他是学生。', en: 'He is a student.' }] }), word(4, '朋友', 'friend', { phrases: [{ zh: '他是朋友。', en: 'He is a friend.' }] })]
+  for (const seed of [1, 2, 3, 7, 11]) it(`seed ${seed}: the word test has exactly 2N prompts, no card twice, no item back to back; so does the phrase test`, () => {
+    const { markers } = build(four, 'introduction', PLAIN, seed)
+    const words = markers.slice(4, 12)
+    const phrases = markers.slice(16, 24)
+    expect(markers.slice(0, 4).every(marker => marker.act === 'intro')).toBe(true)
+    expect(words).toHaveLength(8)
+    expect(new Set(words.map(key)).size).toBe(8)
+    expect(words.every(marker => marker.item === 'word')).toBe(true)
+    expect(markers[12].act).toBe('intro') // the phrases are introduced after the word test
+    expect(phrases).toHaveLength(8)
+    expect(phrases.every(marker => marker.item === 'phrase' && marker.act !== 'intro')).toBe(true)
+    expect(new Set(phrases.map(key)).size).toBe(8)
+    for (const list of [words, phrases]) for (let at = 1; at < list.length; at++) expect(list[at].ref).not.toBe(list[at - 1].ref)
+    expect(words[0].ref).not.toBe(markers[3].ref) // not the item just introduced
+    expect(phrases[0].ref).not.toBe(markers[15].ref)
+  })
+  it('shows the prompt order for a four-word set', () => {
+    const { markers } = build(four, 'introduction', PLAIN, 7)
+    const show = (list: typeof markers) => list.map(marker => `${marker.ref!.replace('vocabulary:w', '')}${marker.act === 'toChinese' ? 'z' : 'e'}`).join(' ')
+    console.log('WORD TEST', show(markers.slice(4, 12)), '| PHRASE TEST', show(markers.slice(16, 24)))
+  })
+  it('the mixed review stays one shuffled pass', () => {
+    const { markers } = build(four, 'introduction', PLAIN, 7)
+    const review = markers.slice(24)
+    expect(review).toHaveLength(16)
+    expect(new Set(review.map(marker => `${key(marker)}`)).size).toBe(16)
+  })
+  it('recall keeps its spaced pool: every card four times', () => {
+    const { markers } = build(four, 'recall', PLAIN, 7)
+    expect(markers.filter(marker => marker.ref === four[0].ref && marker.item === 'word')).toHaveLength(8)
+  })
+  it('resumes a stopped run at the same test card in the new script, and an old key falls back sensibly', () => {
+    const { script } = build(four, 'introduction', PLAIN, 7)
+    const at = 8
+    const wanted = promptKeyAt(script, at)
+    expect(findPrompt(script, wanted, 0)).toBe(at)
+    // a later time round of a test card (the old ladder) has no prompt now: the same card's prompt, never a crash
+    const old = wanted!.replace(/\|1$/, '|3')
+    expect(findPrompt(script, old, 0)).toBe(at)
+    expect(findPrompt(script, 'testWords|vocabulary:gone|toChinese|2', 5)).toBeGreaterThanOrEqual(0)
+    expect(findPrompt(script, 'lesson|vocabulary:gone|toChinese|2', 99)).toBe(0) // a card that is gone: the start of its phase
+    expect(findPrompt(script, undefined, 99)).toBe(script.promptStarts.length - 1)
+  })
+})
+
+describe('Which bank phrases a word teaches', () => {
+  const ex = (zh: string) => ({ zh, en: zh, example: true })
+  const gen = (zh: string) => ({ zh, en: zh })
+  it('teaches one lesson example and one other phrase when both kinds exist, least heard first within each kind', () => {
+    expect(takePhrases([ex('e1'), ex('e2'), gen('g1'), gen('g2')]).map(p => p.zh)).toEqual(['e1', 'g1'])
+    expect(takePhrases([ex('e1'), ex('e2'), ex('e3'), gen('g1')]).map(p => p.zh)).toEqual(['e1', 'g1'])
+    expect(takePhrases([gen('g1'), ex('e1'), gen('g2')]).map(p => p.zh)).toEqual(['e1', 'g1'])
+  })
+  it('takes two of the one kind there is', () => {
+    expect(takePhrases([ex('e1'), ex('e2'), ex('e3')]).map(p => p.zh)).toEqual(['e1', 'e2'])
+    expect(takePhrases([gen('g1'), gen('g2'), gen('g3')]).map(p => p.zh)).toEqual(['g1', 'g2'])
+    expect(takePhrases([gen('g1')]).map(p => p.zh)).toEqual(['g1'])
+  })
+  it('the script teaches those two and rotates through them in recall', () => {
+    const rest = word(1, '休息', 'rest', { phrases: [ex('我们休息吧。'), ex('休息一下吧。'), gen('你累了，休息吧。')] })
+    const { markers } = build([rest], 'introduction')
+    expect(markers.filter(marker => marker.act === 'intro' && marker.item === 'phrase').map(marker => marker.phrase)).toEqual(['我们休息吧。', '你累了，休息吧。'])
+    const played = build([rest], 'recall').markers.filter(marker => marker.item === 'phrase').map(marker => marker.phrase)
+    expect(new Set(played)).toEqual(new Set(['我们休息吧。', '你累了，休息吧。']))
+  })
+})
+
+describe('Introductions end with two whole turns in a row', () => {
+  /** What follows an introduction's marker, as a string: EN, ZH:text, PAUSE (a gap and a pause alike). */
+  const seqOf = (zh: string, kind: 'word' | 'phrase', repeats: number) => {
+    const item: ScriptItem = { ref: 'vocabulary:x', kind: 'vocabulary', zh: kind === 'word' ? zh : '工作', en: 'rest', ...(kind === 'phrase' ? { phrases: [{ zh, en: 'Let us rest.' }] } : {}) }
+    const script = generateScript([item], {}, { ...DEFAULT_HANDSFREE_SETTINGS, sectionIntros: 'off', repeats }, 1, 'introduction')
+    const at = script.segments.findIndex(seg => seg.kind === 'marker' && seg.act === 'intro' && seg.item === kind)
+    const end = script.segments.findIndex((seg, from) => from > at && seg.kind === 'marker')
+    return script.segments.slice(at + 1, end).map(seg => seg.kind === 'say' ? (seg.locale === 'zh-Hans' ? `ZH:${seg.text}` : 'EN') : 'PAUSE').join(' ')
+  }
+  // Before: 2-syllable word r1 "EN ZH:休息 PAUSE" (one turn), r3 three turns; 5-syllable phrase r1 ended with one whole turn, r3 with two.
+  it('a 2-syllable word: two turns at repeats 1, and repeats still adds more', () => {
+    expect(seqOf('休息', 'word', 1)).toBe('EN ZH:休息 PAUSE ZH:休息 PAUSE')
+    expect(seqOf('休息', 'word', 3)).toBe('EN ZH:休息 PAUSE ZH:休息 PAUSE ZH:休息 PAUSE')
+  })
+  it('a 5-syllable phrase: heard once, built up, then two whole turns, at repeats 1 and 3', () => {
+    const ending = 'ZH:我们休息吧 PAUSE ZH:我们休息吧 PAUSE'
+    expect(seqOf('我们休息吧', 'phrase', 1)).toBe(`EN ZH:我们休息吧 PAUSE ZH:息吧 PAUSE ZH:休息吧 PAUSE ${ending}`)
+    expect(seqOf('我们休息吧', 'phrase', 3)).toBe(`EN ZH:我们休息吧 PAUSE ZH:息吧 PAUSE ZH:休息吧 PAUSE ${ending}`)
+    expect(seqOf('我们休息吧', 'phrase', 5)).toMatch(/ZH:休息吧 PAUSE( ZH:我们休息吧 PAUSE){4}$/)
+  })
+  it('a grammar sentence ends the same way', () => {
+    const script = generateScript([GRAMMAR], SENTENCES, { ...PLAIN, repeats: 1 }, 1, 'introduction')
+    const end = script.segments.findIndex((seg, from) => from > 0 && seg.kind === 'marker')
+    const tail = script.segments.slice(0, end).map(seg => seg.kind === 'say' ? seg.text : 'PAUSE').join(' ')
+    expect(tail).toMatch(/我是学生。 PAUSE 我是学生。 PAUSE$/)
+  })
+})
+
+describe('A phrase is taught at most once per run', () => {
+  it('a 3-word run where two words share their only phrase teaches it once, and the test and recall use the same choices', () => {
+    const shared = { zh: '我学习。', en: 'I study.' }
+    const wo = word(1, '我', 'I', { phrases: [shared] })
+    const xue = word(2, '学习', 'study', { phrases: [shared, { zh: '我们学习吧。', en: "Let's study." }] })
+    const student = word(3, '学生', 'student', { phrases: [shared] })
+    const { markers } = build([wo, xue, student], 'introduction')
+    const taught = markers.filter(marker => marker.act === 'intro' && marker.item === 'phrase')
+    expect(taught.map(marker => [marker.ref, marker.phrase])).toEqual([[wo.ref, '我学习。'], [xue.ref, '我们学习吧。']])
+    // the third word has no unused phrase: no phrase prompts for it anywhere
+    expect(markers.some(marker => marker.item === 'phrase' && marker.ref === student.ref)).toBe(false)
+    const played = markers.filter(marker => marker.item === 'phrase' && marker.act !== 'intro').map(marker => marker.phrase)
+    expect(new Set(played)).toEqual(new Set(['我学习。', '我们学习吧。']))
+    expect(new Set(build([wo, xue, student], 'recall').markers.filter(marker => marker.item === 'phrase').map(marker => marker.phrase))).toEqual(new Set(['我学习。', '我们学习吧。']))
   })
 })

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { ArrowLeft, Eye, Headphones, Moon, Pause, Play, Settings as SettingsIcon, SkipBack, SkipForward } from 'lucide-react'
+import { ArrowLeft, Eye, Headphones, Moon, Pause, Play, ListMusic, Settings as SettingsIcon, SkipBack, SkipForward } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
 import { useCatalog } from '../../components/study/useCatalog'
 import { HandsfreeSettingsForm } from '../../components/handsfree/HandsfreeSettingsForm'
@@ -15,6 +15,7 @@ import { phraseReadingsOf } from '../../core/pinyin/phrase-readings'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { IntroCards } from './IntroCards'
 import { Sheet } from './Sheet'
+import { Playlist } from './Playlist'
 import { ACTIVITY_SKILLS, PROMPT_SKILLS } from '../../core/study/skill-map'
 import { recordRunPractice } from '../../core/study/skills'
 import { createHandsfreePlayer, type HandsfreeState } from '../../core/handsfree/player'
@@ -104,6 +105,7 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
   const [state, setState] = useState<HandsfreeState>({ status: 'idle', prompt: run.position })
   const [pocket, setPocket] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [playlistOpen, setPlaylistOpen] = useState(false)
   const [heard, setHeard] = useState<Heard>({})
   const scriptRef = useRef<Script>({ segments: [], promptStarts: [] })
   const heardFor = useRef<number | undefined>()
@@ -218,10 +220,12 @@ function Player({ hf: run, workspace, now, run: perform, busy }: PageProps & { h
         <button type="button" className="button secondary icon-only" aria-label="Skip" disabled={!script || done} onClick={() => playerRef.current?.skip()}><SkipForward size={22} /></button>
       </div>
       <div className="hf-tools"><button type="button" className="button secondary" aria-label="View this item" title="View this item" disabled={!marker?.ref || !items} onClick={viewCurrent}><Eye size={16} /> This item</button>
+        <button type="button" className="button secondary" aria-haspopup="dialog" disabled={!script} onClick={() => setPlaylistOpen(true)}><ListMusic size={16} /> Playlist</button>
         <button type="button" className="button secondary" aria-haspopup="dialog" onClick={() => setSettingsOpen(true)}><SettingsIcon size={16} /> Settings</button>
         <button type="button" className="button secondary" onClick={() => setPocket(true)}><Moon size={16} /> Pocket mode</button></div>
     </section>
     {eyeItem && catalog && <Sheet title="This item" label="Current item" onClose={() => setEyeItem(undefined)}><IntroCards items={[eyeItem]} catalog={catalog} workspace={workspace} now={now} run={perform} busy={busy} route={`practice/set/${run.id}/${handsfreeRoute(run.kind)}`} /></Sheet>}
+    {playlistOpen && <Sheet title="Playlist" label="Playlist" wide onClose={() => setPlaylistOpen(false)} footer={<p className="small muted">Tap an entry to play from it.</p>}><Playlist script={script} current={state.prompt} readings={readings} onSeek={prompt => playerRef.current?.seek(prompt)} /></Sheet>}
     {settingsOpen && <Sheet title="Settings" label="Hands-free settings" onClose={() => setSettingsOpen(false)} footer={<p className="small muted">Changes apply from the next prompt.</p>}><HandsfreeSettingsForm settings={run.settings} onChange={change} /></Sheet>}
     {pocket && <PocketOverlay onExit={() => setPocket(false)}><Display phase={phaseLine} instruction={instruction} fresh={fresh} prompt={marker?.prompt ?? ''} heard={heard} done={done} total={total} position={state.prompt} added={addedLine(run.addedRefs)} readings={readings} className="hf-pocket-display" /></PocketOverlay>}
   </div>

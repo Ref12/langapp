@@ -257,3 +257,19 @@
 .word-part-glyph { font-family: "Kaiti SC", KaiTi, STKaiti, "LW Parts", serif; font-size: 26px; }
 @media (min-width: 900px) { .char-intro { max-width: 640px; margin-inline: auto; } .char-intro-top { grid-template-columns: 160px minmax(0, 1fr); } .char-intro-glyph { font-size: 112px; } }
 .dr-retry { display: inline-flex; align-items: center; gap: 4px; min-height: 32px; padding: 2px 10px; white-space: nowrap; }
+
+/* Hands-free playlist: dense rows grouped by section */
+.hf-playlist { display: grid; gap: 10px; text-align: left; }
+.hf-pl-head { margin: 8px 0 2px; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; position: sticky; top: 0; background: var(--surface, #fff); padding: 4px 0; z-index: 1; }
+.hf-pl-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.hf-pl-row { border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
+.hf-pl-button { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'line dir' 'en en'; column-gap: 8px; padding: 4px 8px; cursor: pointer; line-height: 1.25; }
+.hf-pl-button:focus-visible { outline: 2px solid var(--accent, #0b6b5d); outline-offset: -2px; }
+.hf-pl-line { grid-area: line; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; min-width: 0; }
+.hf-pl-zh { font-weight: 600; font-size: 1.05rem; overflow-wrap: anywhere; }
+.hf-pl-py { font-size: 0.8rem; opacity: 0.75; }
+.hf-pl-en { grid-area: en; font-size: 0.85rem; opacity: 0.85; }
+.hf-pl-dir { grid-area: dir; align-self: start; font-size: 0.72rem; font-weight: 700; white-space: nowrap; padding: 1px 6px; border-radius: 999px; border: 1px solid color-mix(in srgb, currentColor 35%, transparent); }
+.hf-pl-row.is-played { opacity: 0.45; }
+.hf-pl-row.is-current { background: color-mix(in srgb, var(--accent, #0b6b5d) 18%, transparent); box-shadow: inset 3px 0 0 var(--accent, #0b6b5d); }
+.hf-pl-row.is-current .hf-pl-dir { background: var(--accent, #0b6b5d); color: #fff; border-color: transparent; }

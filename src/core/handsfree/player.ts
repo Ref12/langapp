@@ -121,6 +121,8 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
     /** One prompt back (or forward): the prompt starts over from its beginning. */
     back: () => go(state.prompt - 1),
     skip: () => go(state.prompt + 1),
+    /** Jumps to any prompt (a playlist entry): it starts from its beginning, playing if it was playing. */
+    seek: (prompt: number) => go(prompt),
     /** The script was rebuilt: this prompt is now number `prompt`. What is being said finishes as it is; the next prompt comes from the new script. */
     rebase: (prompt: number) => {
       if (disposed || state.status === 'completed' || state.status === 'idle' || prompt === state.prompt) return
