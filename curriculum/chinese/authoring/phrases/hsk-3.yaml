@@ -3102,10 +3102,11 @@ phrases:
     py: tā kū le bàn tiān
     en: She cried for a long time.
     words: [ta1--she, ku1--cry, le5--intensify, ban4-tian1--half-day]
+    grammar: [num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 181
+    readyAt: 186
 
   - id: 319
     zh: 他还要哭下去。
@@ -4087,11 +4088,10 @@ phrases:
     py: zhè ge gù shi jiǎng le hǎo jiǔ
     en: This story went on for a long time.
     words: [zhe4-ge5--this, gu4-shi5--story, jiang3--speak, le5--intensify, hao3-jiu3--long]
-    grammar: [v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 210
+    readyAt: 215
 
   - id: 419
     zh: 前年咱们在西南过年。
@@ -4161,11 +4161,10 @@ phrases:
     py: huì yì kāi le hěn jiǔ
     en: The meeting went on for a long time.
     words: [hui4-yi4--meeting, kai1--operate, le5--intensify, hen3--very, jiu3--long]
-    grammar: [v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 211
+    readyAt: 216
 
   - id: 426
     zh: 她收到信，很难过。
@@ -6863,11 +6862,11 @@ phrases:
     py: bān jiā bàn tiān le
     en: I've been moving house for ages.
     words: [ban1-jia1--relocate, ban4-tian1--half-day, le5--intensify]
-    grammar: [event-duration-le5--since-event]
+    grammar: [event-duration-le5--since-event, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: false
     lookahead: 0
-    readyAt: 299
+    readyAt: 304
 
   - id: 704
     zh: 我把照片选出来。
@@ -8810,11 +8809,11 @@ phrases:
     py: dǎ sǎo le bàn tiān fáng zi gān jìng le
     en: After cleaning for half a day, the house is clean.
     words: [da3-sao3--clean, le5--intensify, ban4-tian1--half-day, fang2-zi5--house, gan1-jing4--clean]
-    grammar: [v-le5-duration-obj--duration]
+    grammar: [num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 159
+    readyAt: 164
 
   - id: 904
     zh: 运动员有矿泉水吗？
@@ -9378,11 +9377,11 @@ phrases:
     py: shū shu bǐ ā yí duō liàn xí yí huìr
     en: Uncle practices a little longer than Aunt.
     words: [shu1-shu5--address, bi3--compare, a1-yi2--auntie, duo1--how, lian4-xi2--practice, yi1-hui4-r5--while]
-    grammar: [a-bi3-b-duo1-or-shao3-v-qty--amount-diff]
+    grammar: [a-bi3-b-duo1-or-shao3-v-qty--amount-diff, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 300
+    readyAt: 305
 
   - id: 962
     zh: 这个季节跟那个季节一样长。
@@ -10040,10 +10039,11 @@ phrases:
     py: jīng guò bàn tiān kè rén tóng yì le
     en: After half a day, the customer agreed.
     words: [jing1-guo4--events, jing1-guo4--pass, ban4-tian1--half-day, ke4-ren2--guest, tong2-yi4--agree, le5--intensify]
+    grammar: [num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 275
+    readyAt: 280
 
   - id: 1030
     zh: 我在开会。
@@ -10831,11 +10831,11 @@ phrases:
     py: bān jiā yì tiān le
     en: It’s been a day since the move.
     words: [ban1-jia1--relocate, yi1--one, tian1--sky, le5--intensify]
-    grammar: [event-duration-le5--since-event]
+    grammar: [event-duration-le5--since-event, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 299
+    readyAt: 304
 
   - id: 1110
     zh: 我把旧照片收起来。

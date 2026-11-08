@@ -723,11 +723,11 @@ phrases:
     py: tā men xiū xi wǔ fēn zhōng ba
     en: They should rest for five minutes.
     words: [ta1-men5--women, xiu1-xi5--rest, wu3--five, fen1-zhong1--minute, ba5--suggestion]
-    grammar: [stmt-ba5--suggest]
+    grammar: [stmt-ba5--suggest, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 10
+    readyAt: 9
 
   - id: 70
     zh: 我喜欢水和茶。
@@ -3425,11 +3425,11 @@ phrases:
     py: tā men zhù yí gè xīng qī
     en: They are staying for a week.
     words: [ta1-men5--they, zhu4--live, yi1--one, ge4--classifier, xing1-qi1--week]
-    grammar: [pron-or-person-men5--plural, num-mw-n--count]
+    grammar: [pron-or-person-men5--plural, num-mw-n--count, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 56
+    readyAt: 57
 
   - id: 319
     zh: 星期三我们上课。
@@ -4786,11 +4786,11 @@ phrases:
     py: xià bān xiū xi wǔ fēn zhōng ba
     en: Let’s take a five-minute break after work.
     words: [xia4-ban1--finish, xiu1-xi5--rest, wu3--five, fen1-zhong1--minute, ba5--suggestion]
-    grammar: [stmt-ba5--suggest]
+    grammar: [stmt-ba5--suggest, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 12
+    readyAt: 13
 
   - id: 446
     zh: 白天和晚上都上班。
@@ -4808,11 +4808,11 @@ phrases:
     py: bái tiān xiū xi wǔ fēn zhōng wǎn shang shàng bān
     en: I take a five-minute break during the day and work in the evening.
     words: [bai2-tian1--daytime, xiu1-xi5--rest, wu3--five, fen1-zhong1--minute, wan3-shang5--evening, shang4-ban1--work]
-    grammar: [clause-clause--linked]
+    grammar: [clause-clause--linked, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 12
+    readyAt: 13
 
   - id: 448
     zh: 米饭和牛奶
@@ -4962,11 +4962,11 @@ phrases:
     py: hái zi wán le liǎng gè xiǎo shí
     en: The child played for two hours.
     words: [hai2-zi5--child, wan2--play, le5--intensify, liang3--two, ge4--classifier, xiao3-shi2--hour]
-    grammar: [num-mw-n--count, liang3-mw-n--two]
+    grammar: [num-mw-n--count, liang3-mw-n--two, num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 39
+    readyAt: 141
 
   - id: 463
     zh: 孩子在桌子后边玩。
@@ -5644,11 +5644,11 @@ phrases:
     py: tā men xiǎng zài zhèr zhù yí gè xīng qī
     en: They want to stay here for a week.
     words: [zhu4--stay, ta1-men5--they, xiang3--miss, zai4--location, zhe4-r5--here, zhu4--live, yi1--one, ge4--classifier, xing1-qi1--week]
-    grammar: [s-xiang3-vp--want, num-mw-n--count]
+    grammar: [s-xiang3-vp--want, num-mw-n--count, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 56
+    readyAt: 57
 
   - id: 526
     zh: 上午我正在读书呢。
@@ -6335,11 +6335,10 @@ phrases:
     py: sān tiān hòu xià xuě
     en: It will snow in three days.
     words: [tian1--day, san1--three, tian1--sky, hou4--behind, xia4--descend, xue3--snow]
-    grammar: [num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 83
+    readyAt: 73
 
   - id: 591
     zh: 我去饭店吃饭。
@@ -6368,11 +6367,11 @@ phrases:
     py: nǐ yào jǐ gè xiǎo shí
     en: How many hours do you need?
     words: [ni3--you, yao4--want, ji3--quantity, ge4--classifier, xiao3-shi2--hour]
-    grammar: [ji3-mw-n-or-duo1-shao5-n--how-many]
+    grammar: [ji3-mw-n-or-duo1-shao5-n--how-many, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 4
-    readyAt: 21
+    readyAt: 22
 
   - id: 594
     zh: 你想什么时候去那儿？
@@ -6522,7 +6521,7 @@ phrases:
     py: nǐ gōng zuò jǐ tiān
     en: How many days do you work?
     words: [ji3--several, ni3--you, gong1-zuo4--work, ji3--quantity, tian1--sky]
-    grammar: [ji3-mw-n-or-duo1-shao5-n--how-many]
+    grammar: [ji3-mw-n-or-duo1-shao5-n--how-many, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 4
@@ -6672,11 +6671,11 @@ phrases:
     py: gōng zuò le jǐ xiǎo shí
     en: Worked for a few hours.
     words: [gong1-zuo4--work, le5--intensify, ji3--quantity, xiao3-shi2--hour]
-    grammar: [v-le5-duration-obj--duration]
+    grammar: [num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 138
+    readyAt: 141
 
   - id: 622
     zh: 你问问他吧。

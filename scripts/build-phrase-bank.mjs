@@ -8,7 +8,8 @@
 //
 // Pipeline (all batched, no agent loop):
 //   1. Code reads the catalog (src/data/v2) and decides which TARGETS need more phrases: every word, and every grammar point, with fewer than --target
-//      (default 3) authored examples that fit plus phrases in hand (a phrase counts for each word it uses and each grammar point it is tagged with).
+//      (default 3) STRICT phrases: authored examples plus phrases in hand whose every word and grammar point is introduced by the target's own lesson (readyAt <= its
+//      lesson). Look-ahead phrases never count towards --target; the later passes only top up to --fallback-target (default 1; 0 writes none). A phrase counts for each word it uses and each grammar point it is tagged with.
 //   2. LOOK-AHEAD PASSES. A "lesson" is one curriculum group (--lessons counts from 1). A word or grammar point introduced in lesson L may use words and
 //      grammar from lessons up to L + look-ahead. Pass 0 is the strict rule; later passes (default 0,2,4,8,16) only work on targets still under --target.
 //      A phrase records lookahead (the pass that produced it) and readyAt: the highest lesson index among its words AND grammar points. The app uses a
@@ -41,6 +42,7 @@
 import { pinyin as toPinyin } from 'pinyin-pro'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
+import { withDurationGrammar } from './duration-grammar.mjs'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { defaultPhraseAuthoringDir, defaultPhraseJsonDir, isOldState, readOldBank, readOldState, phraseFile, phraseIndexFile, phraseIndexText, phraseJsonText, readPhraseBands, stringifyPhraseYaml, writeAtomic, writePhraseBands } from './phrase-bank-files.mjs'
 
@@ -52,6 +54,8 @@ export const BANDS = ['1', '2', '3', '4', '5', '6']
 export const FUNCTION_CHARACTERS = '的了吗呢吧是不很也都和在有这那我你他她们个'
 export const MAX_PHRASE_SYLLABLES = 12
 export const DEFAULT_TARGET = 3
+/** Phrases a look-ahead pass still guarantees per word (they need later words, so they never count towards --target). */
+export const DEFAULT_FALLBACK_TARGET = 1
 export const DEFAULT_LOOKAHEAD = [0, 2, 4, 8, 16]
 /** At most this many words are listed to the models per call, newest lessons first. */
 export const VOCAB_CAP = 300
@@ -230,6 +234,9 @@ export function allowedFor(curriculum, word, lookahead = 0) {
   }
 }
 
+/** What a pass must reach. --target counts STRICT phrases only (readyAt at most the word's own lesson), so pass 0 fills it. A look-ahead pass only tops up to --fallback-target (default 1; 0 = write none) phrases ready within its window. */
+export const targetOf = (options, lookahead) => lookahead > 0 ? options.fallbackTarget ?? DEFAULT_FALLBACK_TARGET : options.target
+
 /** The lesson index by which every word and grammar point of a phrase is introduced. */
 export function readyAtOf(curriculum, words, grammar = []) {
   return Math.max(0, ...words.map(lb => curriculum.words.get(lb)?.index ?? 0), ...grammar.map(lb => curriculum.grammar?.get(lb)?.index ?? 0))
@@ -239,7 +246,9 @@ export function readyAtOf(curriculum, words, grammar = []) {
 export function applyGrammar(curriculum, phrase, tags, allowed) {
   const grammar = []
   for (const tag of Array.isArray(tags) ? tags : []) { const ref = typeof tag === 'string' ? tag.trim() : ''; if (ref && allowed.grammar?.has(ref) && !grammar.includes(ref)) grammar.push(ref) }
-  return { ...phrase, grammar, readyAt: readyAtOf(curriculum, phrase.words, grammar) }
+  // a length of time after a verb is tagged by code (scripts/duration-grammar.mjs), whatever the model said; it gates the phrase on that grammar point
+  const tagged = typeof phrase.zh === 'string' ? withDurationGrammar(curriculum, phrase.zh, grammar) : grammar
+  return { ...phrase, grammar: tagged, readyAt: readyAtOf(curriculum, phrase.words, tagged) }
 }
 
 /** The band of a phrase: the band of the word it uses that the curriculum introduces last. */
@@ -492,7 +501,7 @@ const planPrompt = (entries, lookahead, curriculum) => 'For each word write ' + 
   'Return {"plans":[{"ref","specs":["..."]}]} with the ref copied from the word, and exactly "need" specs each.\n' + JSON.stringify({ words: entries.map(entry => ({ ref: entry.word.lb, form: formOf(entry.word), ...(entry.word.grammar ? { construct: entry.word.grammar.lb } : {}), pinyin: entry.word.pr, meaning: gloss(entry.word), lesson: lessonNumber(entry.word.index), need: entry.need, existing: entry.existing })) })
 const writePrompt = (curriculum, entries, lookahead, avoid, extra = '') => 'Write phrases for each word, one per spec (or ' + 'one per needed slot when there is no spec). Each Chinese phrase is a short sentence or clause of at most ' + MAX_PHRASE_SYLLABLES + ' syllables that contains the word\'s form. Every Chinese word must come from the "vocabulary" of its lesson group, the word itself or the basic function characters ' + FUNCTION_CHARACTERS + '. No other words. ' +
   'Vocabulary is listed by lesson, newest first. Lean on the word\'s own lesson and the lessons near it (including the newer look-ahead lessons, when listed above the word\'s own) rather than the oldest basics such as 我/你/是/学生: the phrase should reinforce what is new. Do not repeat a phrase from "avoid" or write the same phrase for two words; a phrase that uses another word of the batch is fine, it is credited to both. ' + extra +
-  'Grammar: each group also lists the grammar points of its window under "grammar", newest first, each with a ref. Prefer the newer ones, so the phrase practises what the learner has just met. Tag every phrase with "grammar": the refs, copied exactly from that list, of the grammar patterns the phrase really uses (an empty list when it uses none). Do not tag a pattern that is not in the list. ' +
+  'Grammar: each group also lists the grammar points of its window under "grammar", newest first, each with a ref. Use ONLY the sentence patterns in that list: do not use a construction, word order or pattern that is not listed for the group, even if it is correct Chinese. In particular a length of time after a verb (休息五分钟, 住三天) is a listed pattern only when a duration pattern (a ref that contains "duration") is in the grammar list of the group; otherwise put no length of time after a verb, and put a point in time (五点, 今天) before the verb. Prefer the newer patterns, so the phrase practises what the learner has just met. Tag every phrase with "grammar": the refs, copied exactly from that list, of the grammar patterns the phrase really uses (an empty list when it uses none). Do not tag a pattern that is not in the list. ' +
   'An entry with "construct" is a grammar point (its ref is the "construct" value): write phrases that use that construct naturally, with no particular word required, and list its ref under "grammar". Do not force constructs into the phrases written for words: tag only what a phrase really uses. ' +
   'Return {"phrases":[{"ref","zh","en","grammar":["..."]}]} with the ref copied from the word or grammar entry.\n' + JSON.stringify({ avoid, groups: groupByLesson(entries, () => lookahead).map(group => ({ lesson: lessonNumber(group.word.index), lookahead: group.lookahead, vocabulary: vocabularyFor(curriculum, group.word, group.lookahead), grammar: grammarFor(curriculum, group.word, group.lookahead), words: group.items.map(entry => ({ ref: entry.word.lb, form: formOf(entry.word), ...(entry.word.grammar ? { construct: entry.word.grammar.lb } : {}), pinyin: entry.word.pr, meaning: gloss(entry.word), specs: entry.specs, existing: entry.existing, ...(entry.fix ? { rewrite: entry.fix } : {}) })) })) })
 const checkPrompt = (curriculum, items) => 'Review each practice phrase. For each, answer natural (the Chinese is natural, correct and something a native speaker would say) and matches (the English is a faithful translation of the Chinese). Vocabulary level is checked by code, not by you: do not judge it. ' +
@@ -781,22 +790,22 @@ export function selectWords({ curriculum, state, options, lookahead = 0 }) {
   const entries = []
   for (const word of wordsInScope(curriculum, options)) {
     const record = state.words[word.lb]
-    if (record?.status === 'done') continue
-    if (record && !options.retry && !only && (record.lookahead ?? 0) >= lookahead) continue
+    if (record?.status === 'done' && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
+    if (record && !options.retry && !only && (record.lookahead ?? 0) >= lookahead && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
     const existing = fitted.get(word.lb) ?? []
     const mine = phrasesForWord(curriculum, state, word, lookahead)
-    const need = options.target - existing.length - mine.length
+    const need = targetOf(options, lookahead) - existing.length - mine.length
     if (need <= 0) continue
     entries.push({ word, need, existing: [...existing, ...mine].slice(0, 3).map(item => item.zh), existingZh: [...existing.map(item => item.zh), ...mine.map(item => item.zh)], specs: [], allowed: allowedFor(curriculum, word, lookahead), catalogCount: existing.length })
   }
   // grammar points are targets too: same target, same windows; batches mix them with the words of the same lessons
   for (const word of grammarInScope(curriculum, options)) {
     const record = state.words[word.lb]
-    if (record?.status === 'done') continue
-    if (record && !options.retry && !(options.grammar?.length) && (record.lookahead ?? 0) >= lookahead) continue
+    if (record?.status === 'done' && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
+    if (record && !options.retry && !(options.grammar?.length) && (record.lookahead ?? 0) >= lookahead && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
     const existing = fitted.get(word.lb) ?? []
     const mine = phrasesForWord(curriculum, state, word, lookahead)
-    const need = options.target - existing.length - mine.length
+    const need = targetOf(options, lookahead) - existing.length - mine.length
     if (need <= 0) continue
     entries.push({ word, need, existing: [...existing, ...mine].slice(0, 3).map(item => item.zh), existingZh: [...existing.map(item => item.zh), ...mine.map(item => item.zh)], specs: [], allowed: allowedFor(curriculum, word, lookahead), catalogCount: existing.length })
   }
@@ -827,9 +836,9 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
       batches, concurrency: options.concurrency ?? 1, span: options.lessonSpan ?? 1,
       dispatch: batch => {
         // what was written for earlier words may already serve these: a phrase counts for every word it uses (batches still in flight are not counted)
-        for (const entry of batch) refreshEntry(curriculum, state, entry, lookahead, options.target)
+        for (const entry of batch) refreshEntry(curriculum, state, entry, lookahead, targetOf(options, lookahead))
         const live = batch.filter(entry => entry.need > 0)
-        for (const entry of batch) if (entry.need <= 0) state.words[entry.word.lb] = { ...state.words[entry.word.lb], status: 'done', attempts: state.words[entry.word.lb]?.attempts ?? 0, lookahead: Math.max(state.words[entry.word.lb]?.lookahead ?? 0, lookahead) }
+        for (const entry of batch) if (entry.need <= 0) state.words[entry.word.lb] = { ...state.words[entry.word.lb], status: 'done', attempts: state.words[entry.word.lb]?.attempts ?? 0, lookahead: Math.max(state.words[entry.word.lb]?.lookahead ?? 0, lookahead), ...(lookahead === 0 ? { target: options.target } : {}) }
         if (!live.length) return { live, result: new Map() }
         return processBatch({ curriculum, entries: live, io, options, lookahead, log, taken })
           .catch(reason => new Map(live.map(entry => [entry.word.lb, { phrases: [], note: 'batch failed: ' + (reason?.message ?? reason) }])))
@@ -845,7 +854,8 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
           record.attempts += 1
           record.lookahead = Math.max(record.lookahead ?? 0, lookahead)
           const mine = phrasesForWord(curriculum, state, entry.word, lookahead)
-          record.status = entry.catalogCount + mine.length >= options.target ? 'done' : mine.length ? 'partial' : 'failed'
+          record.status = entry.catalogCount + mine.length >= targetOf(options, lookahead) ? 'done' : mine.length ? 'partial' : 'failed'
+          if (record.status === 'done' && lookahead === 0) record.target = options.target
           if (outcome.note) record.note = outcome.note; else delete record.note
           state.words[entry.word.lb] = record
         }
@@ -860,6 +870,25 @@ export async function runPipeline({ curriculum, state, io, options, log = () => 
   return state
 }
 
+/** The buckets of the strict-readability histogram: phrases a learner can read in full at the item's own lesson (0 to 5, then 6 or more). */
+export const STRICT_BUCKETS = ['0', '1', '2', '3', '4', '5', '6+']
+const bucketOf = count => STRICT_BUCKETS[Math.min(count, STRICT_BUCKETS.length - 1)]
+
+/** Per band, how many words (and grammar points) have 0, 1, 2 ... strict phrases: authored examples and phrases in hand with every word and grammar point introduced by the item's own lesson. */
+export function strictHistogram(curriculum, state, words, points) {
+  const fitted = catalogPhrases(curriculum, 0)
+  const out = {}
+  const tally = (kind, targets) => {
+    for (const target of targets) {
+      const count = (fitted.get(target.lb)?.length ?? 0) + phrasesForWord(curriculum, state, target, 0).length
+      const row = (out[target.band] ??= { words: Object.fromEntries(STRICT_BUCKETS.map(key => [key, 0])), grammar: Object.fromEntries(STRICT_BUCKETS.map(key => [key, 0])) })
+      row[kind][bucketOf(count)]++
+    }
+  }
+  tally('words', words); tally('grammar', points)
+  return Object.fromEntries(Object.entries(out).sort(([a], [b]) => Number(a) - Number(b)))
+}
+
 /** Per pass how many words in scope have reached the target, and the words that still have no phrase after the last pass (from the state). */
 export function passReport(curriculum, state, options) {
   const passes = options.lookahead?.length ? options.lookahead : DEFAULT_LOOKAHEAD
@@ -871,8 +900,9 @@ export function passReport(curriculum, state, options) {
   }
   let previous = 0, previousGrammar = 0
   const perPass = passes.map(lookahead => {
-    const reached = [...countsOf(words, lookahead).values()].filter(count => count >= options.target).length
-    const reachedGrammar = [...countsOf(points, lookahead).values()].filter(count => count >= options.target).length
+    const goal = targetOf(options, lookahead)
+    const reached = [...countsOf(words, lookahead).values()].filter(count => count >= goal).length
+    const reachedGrammar = [...countsOf(points, lookahead).values()].filter(count => count >= goal).length
     const row = { lookahead, reached, newlyReached: reached - previous, of: words.length, grammar: { reached: reachedGrammar, newlyReached: reachedGrammar - previousGrammar, of: points.length } }
     previous = reached; previousGrammar = reachedGrammar
     return row
@@ -880,7 +910,7 @@ export function passReport(curriculum, state, options) {
   const final = countsOf(words, passes.at(-1)), finalGrammar = countsOf(points, passes.at(-1))
   const noWords = words.filter(word => final.get(word.lb) === 0), noPoints = points.filter(point => finalGrammar.get(point.lb) === 0)
   return {
-    target: options.target, words: words.length, grammarPoints: points.length, passes: perPass,
+    target: options.target, fallbackTarget: options.fallbackTarget ?? DEFAULT_FALLBACK_TARGET, words: words.length, grammarPoints: points.length, strictReadable: strictHistogram(curriculum, state, words, points), passes: perPass,
     zeroPhrase: noWords.length, zeroPhraseWords: noWords.slice(0, 100).map(word => word.ch + ' (' + word.lb + ', lesson ' + lessonNumber(word.index) + ')'),
     zeroGrammar: noPoints.length, zeroGrammarPoints: noPoints.slice(0, 100).map(point => point.grammar.pt + ' (' + point.grammar.lb + ', lesson ' + lessonNumber(point.index) + ')'),
   }
@@ -988,7 +1018,7 @@ export function parseArgs(argv, env = process.env) {
       writer: { model: model('writer'), api: get('writer-api', 'PHRASE_WRITER_API', 'chat') },
       checker: { model: model('checker') ?? model('planner'), api: get('checker-api', 'PHRASE_CHECKER_API', get('planner-api', 'PHRASE_PLANNER_API', 'chat')) },
     },
-    target: Number(get('target', 'PHRASE_TARGET', DEFAULT_TARGET)), batchSize: Number(get('batch-size', 'PHRASE_BATCH_SIZE', 20)),
+    target: Number(get('target', 'PHRASE_TARGET', DEFAULT_TARGET)), fallbackTarget: Number(get('fallback-target', 'PHRASE_FALLBACK_TARGET', DEFAULT_FALLBACK_TARGET)), batchSize: Number(get('batch-size', 'PHRASE_BATCH_SIZE', 20)),
     bands: list(flags.get('band')), words: list(flags.get('words')), grammar: list(flags.get('grammar')), importOld: list(flags.get('import-old')), limit: flags.has('limit') ? Number(flags.get('limit')) : undefined,
     out: resolve(get('out', 'PHRASE_OUT', defaultPhraseAuthoringDir)), jsonOut: resolve(get('json-out', 'PHRASE_JSON_OUT', defaultPhraseJsonDir)), state: resolve(get('state', 'PHRASE_STATE', join(root, 'build', 'phrase-bank', 'state-v2.json'))),
     dataDir: resolve(get('data-dir', 'PHRASE_DATA_DIR', join(root, 'src', 'data', 'v2'))),

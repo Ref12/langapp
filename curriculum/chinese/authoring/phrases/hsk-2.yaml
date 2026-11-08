@@ -22,10 +22,11 @@ phrases:
     py: tā huā yí gè xiǎo shí yùn dòng
     en: She spends an hour exercising.
     words: [hua1--spend, ta1--she, hua1--flower, yi1--one, ge4--classifier, xiao3-shi2--hour, yun4-dong4--sports]
+    grammar: [num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 148
+    readyAt: 151
 
   - id: 3
     zh: 你这么踢足球。
@@ -619,10 +620,11 @@ phrases:
     py: wǒ děng yí huìr
     en: I’ll wait a little while.
     words: [wo3--me, deng3--wait, yi1-hui4-r5--while]
+    grammar: [num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 125
+    readyAt: 128
 
   - id: 60
     zh: 鸟在动
@@ -4098,11 +4100,11 @@ phrases:
     py: guò le jǐ zhōu
     en: A few weeks passed.
     words: [guo4--celebrate, le5--intensify, ji3--quantity, zhou1--week]
-    grammar: [v-le5-duration-obj--duration]
+    grammar: [num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 2
-    readyAt: 138
+    readyAt: 141
 
   - id: 386
     zh: 考过三次。

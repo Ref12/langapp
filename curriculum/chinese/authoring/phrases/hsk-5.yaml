@@ -11721,11 +11721,11 @@ phrases:
     py: tā zài sù shè jū zhù le sān zhōu
     en: He lived in the dorm for three weeks.
     words: [ta1--he, zai4--location, su4-she4--dormitory, ju1-zhu4--reside, le5--intensify, san1--three, zhou1--week]
-    grammar: [num-zhou1--weeks]
+    grammar: [num-zhou1--weeks, num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 801
+    readyAt: 806
 
   - id: 1201
     zh: 这个库有记录。
@@ -36026,10 +36026,11 @@ phrases:
     py: jiù rén xíng dòng chí xù le sān tiān
     en: The rescue operation continued for three days.
     words: [jiu4--rescue, ren2--person, xing2-dong4--action, chi2-xu4--continue, le5--intensify, san1--three, tian1--sky]
+    grammar: [num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
     source: ai
     checked: true
     lookahead: 4
-    readyAt: 592
+    readyAt: 597
 
   - id: 3802
     zh: 我替他贴了。

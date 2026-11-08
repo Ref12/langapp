@@ -30,7 +30,8 @@ import { createHash } from 'node:crypto'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { BANDS, MAX_PHRASE_SYLLABLES, allowedFor, applyGrammar, buildCurriculum, createCaller, createThrottleLog, grammarFor, parseJSONReply, parseLessons, phraseKey, phrasePinyin, readCatalog, vocabularyFor } from './build-phrase-bank.mjs'
+import { DURATION_REFS, withDurationGrammar } from './duration-grammar.mjs'
+import { BANDS, MAX_PHRASE_SYLLABLES, allowedFor, applyGrammar, readyAtOf, buildCurriculum, createCaller, createThrottleLog, grammarFor, parseJSONReply, parseLessons, phraseKey, phrasePinyin, readCatalog, vocabularyFor } from './build-phrase-bank.mjs'
 import { writeAtomic } from './phrase-bank-files.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -155,7 +156,9 @@ export function validateAccepted(curriculum, phrase, raw) {
     const en = text(value), key = normalEnglish(en)
     if (!en || HAN.test(en) || en.length > 160 || !key) dropped.push(en + ': not English'); else if (seenEn.has(key)) dropped.push(en + ': duplicate'); else if (enAlt.length < MAX_ALTERNATIVES) { seenEn.add(key); enAlt.push(en) }
   }
-  return { item: { key: own, zh: phrase.zh, en: phrase.en, zhAlt, enAlt, optional, readyAt: phrase.readyAt }, zhSwaps, dropped }
+  // an alternative wording with a length of time after a verb is gated on the duration points like a phrase
+  const readyAt = Math.max(phrase.readyAt, ...zhAlt.map(zh => readyAtOf(curriculum, [], withDurationGrammar(curriculum, zh).filter(ref => DURATION_REFS.includes(ref)))))
+  return { item: { key: own, zh: phrase.zh, en: phrase.en, zhAlt, enAlt, optional, readyAt }, zhSwaps, dropped }
 }
 
 /** An exchange from the writer, or the reason. wrong replies that fail validation are dropped; fewer than 2 left refuses the exchange. */
@@ -173,7 +176,8 @@ export function validateExchange(curriculum, allowed, raw, lesson) {
     keys.add(key); wrong.push(line.line); for (const lb of line.words) if (!words.includes(lb)) words.push(lb)
   }
   if (wrong.length < 2) return { reason: 'fewer than 2 usable wrong replies' }
-  const { grammar, readyAt } = applyGrammar(curriculum, { words }, raw?.grammar, allowed)
+  // the Chinese of the question and the right reply is tagged by code for a length of time after a verb (scripts/duration-grammar.mjs)
+  const { grammar, readyAt } = applyGrammar(curriculum, { words, zh: q.line.zh + a.line.zh }, raw?.grammar, allowed)
   return { item: { id: 'x' + hash(phraseKey(q.line.zh) + '|' + phraseKey(a.line.zh)), lesson: lessonNumber(lesson), q: q.line, a: a.line, wrong, words, grammar, readyAt } }
 }
 
@@ -231,7 +235,7 @@ export function validateConversation(curriculum, allowed, raw, lesson) {
     checked.push({ q, options, answer })
   }
   if (new Set(checked.map(item => normalEnglish(item.q))).size !== checked.length) return { reason: 'two questions are the same' }
-  const { grammar, readyAt } = applyGrammar(curriculum, { words }, raw?.grammar, allowed)
+  const { grammar, readyAt } = applyGrammar(curriculum, { words, zh: lines.map(line => line.zh).join('，') }, raw?.grammar, allowed)
   const key = lines.map(line => phraseKey(line.zh)).join('|')
   return { item: { id: 'c' + hash(key), lesson: lessonNumber(lesson), speakers: [...voices].map(([name, speaker]) => ({ name, speaker })), lines, questions: checked, words, grammar, readyAt } }
 }
@@ -349,7 +353,7 @@ export function readBank(dir) {
 const SYSTEM = 'You write Mandarin practice material for English-speaking learners, and check it. Reply with one JSON object only, no prose and no code fences.'
 const vocabularyText = (curriculum, index) => vocabularyFor(curriculum, { index, ch: '' }, 0).map(group => 'Lesson ' + group.lesson + ': ' + group.words.join('; ')).join('\n')
 const grammarText = (curriculum, index) => grammarFor(curriculum, { index, ch: '' }, 0).map(group => 'Lesson ' + group.lesson + ': ' + group.points.map(point => point.ref + ' = ' + point.pattern + ' (' + point.meaning + ')').join(' | ')).join('\n')
-const FUNCTION_NOTE = 'The particles 的了吗呢吧是不很也都和在有这那我你他她们个 may always be used. Use no other Chinese word than the ones listed. Use no Latin letters or digits in Chinese. Names of people only if listed as vocabulary.'
+const FUNCTION_NOTE = 'The particles 的了吗呢吧是不很也都和在有这那我你他她们个 may always be used. Use no other Chinese word than the ones listed. Use no Latin letters or digits in Chinese. Names of people only if listed as vocabulary. Use ONLY the sentence patterns listed under Grammar points; no pattern or word order that is not listed (a length of time after a verb, such as 休息五分钟, only when a duration pattern is listed; a point in time goes before the verb).'
 
 const acceptedPrompt = (curriculum, batch) => ({
   system: SYSTEM,
