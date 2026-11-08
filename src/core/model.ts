@@ -54,6 +54,8 @@ export interface Preferences {
   theme: 'dark' | 'light'
   pinyin: boolean
   pinyinFormat?: PinyinFormat
+  /** Language the learner is working in (a track's language code). Absent means 'zh'; only written once a second track exists. */
+  currentLanguage?: string
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences

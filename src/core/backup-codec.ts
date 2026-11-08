@@ -42,6 +42,7 @@ export const workspaceSchema = z.object({
     dictionaryScope: z.enum(['all', 'knowledge']).optional(),
     characterWriteFilter: z.enum(['all', 'can', 'not']).optional(),
     pinyinFormat: pinyinFormatSchema.optional(),
+    currentLanguage: z.string().regex(/^[a-z]{2,3}$/).optional(),
   }).strict(),
   words: z.array(z.object({
     wordId: z.string(), language: z.literal('zh-Hans'), introducedAt: time, introducedFrom: z.string().max(200),

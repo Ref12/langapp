@@ -52,6 +52,8 @@ import { SetupLinkStatus } from './components/SetupQr'
 import './App.css'
 import './components/assistant/assistant.css'
 import { UpdateBar } from './components/UpdateBar'
+import { LanguageSwitch } from './components/LanguageSwitch'
+import { currentLanguageOf, tracks } from './data/tracks'
 
 const navigation = [
   { id: 'overview', label: 'Overview', icon: Home },
@@ -215,7 +217,7 @@ function WorkspaceApp() {
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
-        <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
+        <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><LanguageSwitch tracks={tracks} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <PageActionsMenu />

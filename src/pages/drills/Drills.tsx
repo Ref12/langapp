@@ -37,6 +37,7 @@ import { availability } from './tasks'
 import { SKILLS, SKILL_LABEL, SKILL_SIZES, STRATEGY_LABEL, PICK_STRATEGIES, drillSkills, type Skill } from '../../core/study/skill-map'
 import { ACTIVITY_SKILLS } from '../../core/study/skill-map'
 import { recordSetIntro } from '../../core/study/skills'
+import { currentLanguageOf, trackFor } from '../../data/tracks'
 import './drills.css'
 
 const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, GraduationCap, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
@@ -389,7 +390,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     {connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
     <section className="panel dr-panel dr-select" aria-labelledby="dr-select"><h2 id="dr-select">What you'll practise</h2>
       <label className="dr-source"><span className="eyebrow accent">Learning from</span>
-        <select value={origin ? ORIGIN : from} aria-label="Learning from" onChange={event => { setFrom(event.target.value === ORIGIN ? from : event.target.value); if (origin && event.target.value !== ORIGIN) navigate('practice') }}>{origin && <option value={ORIGIN}>{origin.label}</option>}<option value={CURRICULUM}>Curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
+        <select value={origin ? ORIGIN : from} aria-label="Learning from" onChange={event => { setFrom(event.target.value === ORIGIN ? from : event.target.value); if (origin && event.target.value !== ORIGIN) navigate('practice') }}>{origin && <option value={ORIGIN}>{origin.label}</option>}<option value={CURRICULUM}>{trackFor(currentLanguageOf(workspace.preferences)).name} curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
       <div className="segmented" role="group" aria-label="What to practise"><button type="button" aria-pressed={mode === 'new'} disabled={!!origin} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button></div>
       <div role="group" aria-label={mode === 'new' ? 'New items per set' : 'Reviews per set'} className="dr-count-picker">
         <span className="dr-count-label"><span className="small">{mode === 'new' ? 'New items per set' : 'Reviews per set'}</span><span className="small muted">{origin ? 'all of them, or the first few' : mode === 'new' ? 'at least — whole lessons are kept together' : 'the due ones first, then the ones coming up next'}</span></span>
