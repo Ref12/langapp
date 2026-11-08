@@ -1734,10 +1734,10 @@ characters:
     - character: ᇂ
       role: final
       paths:
-      - M50 68.86 L50 75.68
-      - M28.3 75.68 L71.7 75.68
-      - M50 81.88 C38.22 81.88 28.92 84.98 28.92 88.7 C28.92 92.42 38.22 95.52 50 95.52 C61.78 95.52 71.08
-        92.42 71.08 88.7 C71.08 84.98 61.78 81.88 50 81.88
+      - M50 68.86 L50 74.44
+      - M28.3 74.44 L71.7 74.44
+      - M50 83.74 C38.22 83.74 28.92 86.22 28.92 89.94 C28.92 93.66 38.22 96.14 50 96.14 C61.78 96.14
+        71.08 93.66 71.08 89.94 C71.08 86.22 61.78 83.74 50 83.74
     flags: []
     reviewed: false
     stroke_count: 6
@@ -1840,8 +1840,8 @@ characters:
     - character: ᅩ
       role: medial
       paths:
-      - M50 41.6 L50 58.4
-      - M27.6 58.4 L72.4 58.4
+      - M50 38.6 L50 55.4
+      - M27.6 55.4 L72.4 55.4
     - character: ᆱ
       role: final
       paths:
@@ -1934,8 +1934,8 @@ characters:
     - character: ᅮ
       role: medial
       paths:
-      - M27.6 41.6 L72.4 41.6
-      - M50 41.6 L50 64
+      - M27.6 38.6 L72.4 38.6
+      - M50 38.6 L50 61
     - character: ᆰ
       role: final
       paths:
@@ -2125,13 +2125,19 @@ characters:
     - character: ᅩ
       role: medial
       paths:
-      - M50 41.6 L50 58.4
-      - M27.6 58.4 L72.4 58.4
+      - M50 38.6 L50 55.4
+      - M27.6 55.4 L72.4 55.4
     - character: ᆨ
       role: final
       paths:
       - M25.2 70.1 L74.8 70.1 L74.8 94.9
-    flags: []
+    flags:
+    - kind: component-proximity
+      parts:
+      - 0
+      - 1
+      sampled_centerline_distance: 5.937
+      note: Conservative sampled hint; inspect exact paths and intended contacts.
     reviewed: false
     stroke_count: 5
   뚫:
@@ -2146,8 +2152,8 @@ characters:
     - character: ᅮ
       role: medial
       paths:
-      - M27.6 41.6 L72.4 41.6
-      - M50 41.6 L50 64
+      - M27.6 38.6 L72.4 38.6
+      - M50 38.6 L50 61
     - character: ᆶ
       role: final
       paths:
@@ -2195,15 +2201,21 @@ characters:
     - character: ᅭ
       role: medial
       paths:
-      - M41.6 41.6 L41.6 58.4
-      - M58.4 41.6 L58.4 58.4
-      - M27.6 58.4 L72.4 58.4
+      - M41.6 38.6 L41.6 55.4
+      - M58.4 38.6 L58.4 55.4
+      - M27.6 55.4 L72.4 55.4
     - character: ᆼ
       role: final
       paths:
       - M50 70.1 C36.36 70.1 25.2 75.68 25.2 82.5 C25.2 89.32 36.36 94.9 50 94.9 C63.64 94.9 74.8 89.32
         74.8 82.5 C74.8 75.68 63.64 70.1 50 70.1
-    flags: []
+    flags:
+    - kind: component-proximity
+      parts:
+      - 0
+      - 1
+      sampled_centerline_distance: 5.9
+      note: Conservative sampled hint; inspect exact paths and intended contacts.
     reviewed: false
     stroke_count: 7
   멩:
@@ -2239,14 +2251,20 @@ characters:
     - character: ᅮ
       role: medial
       paths:
-      - M27.6 41.6 L72.4 41.6
-      - M50 41.6 L50 64
+      - M27.6 38.6 L72.4 38.6
+      - M50 38.6 L50 61
     - character: ᆩ
       role: final
       paths:
       - M13.3 69.3 L39.7 69.3 L39.7 95.7
       - M59.3 69.3 L85.7 69.3 L85.7 95.7
-    flags: []
+    flags:
+    - kind: component-proximity
+      parts:
+      - 0
+      - 1
+      sampled_centerline_distance: 5.9
+      note: Conservative sampled hint; inspect exact paths and intended contacts.
     reviewed: false
     stroke_count: 7
   뭐:
@@ -2474,16 +2492,22 @@ characters:
     - character: ᅲ
       role: medial
       paths:
-      - M27.6 41.6 L72.4 41.6
-      - M41.6 41.6 L41.6 64
-      - M58.4 41.6 L58.4 64
+      - M27.6 38.6 L72.4 38.6
+      - M41.6 38.6 L41.6 61
+      - M58.4 38.6 L58.4 61
     - character: ᆾ
       role: final
       paths:
       - M50 68.86 L50 76.3
       - M25.2 76.3 L74.8 76.3 Q65.5 83.12 51.24 86.84 Q36.36 93.04 25.2 95.52
       - M51.24 86.84 Q63.64 92.42 74.8 95.52
-    flags: []
+    flags:
+    - kind: component-proximity
+      parts:
+      - 0
+      - 1
+      sampled_centerline_distance: 5.98
+      note: Conservative sampled hint; inspect exact paths and intended contacts.
     reviewed: false
     stroke_count: 7
   읊:
@@ -2496,7 +2520,7 @@ characters:
     - character: ᅳ
       role: medial
       paths:
-      - M27.6 50 L72.4 50
+      - M27.6 47 L72.4 47
     - character: ᆵ
       role: final
       paths:
@@ -2520,7 +2544,7 @@ characters:
     - character: ᅳ
       role: medial
       paths:
-      - M27.6 50 L72.4 50
+      - M27.6 47 L72.4 47
     - character: ᆸ
       role: final
       paths:
@@ -2665,10 +2689,10 @@ characters:
     - character: ᄒ
       role: initial
       paths:
-      - M31 3.44 L31 10.64
-      - M23.8 10.64 L38.2 10.64
-      - M31 16.88 C26.92 16.88 23.8 19.52 23.8 22.88 C23.8 26.24 26.92 28.88 31 28.88 C35.08 28.88 38.2
-        26.24 38.2 22.88 C38.2 19.52 35.08 16.88 31 16.88
+      - M31 3.44 L31 9.68
+      - M23.8 9.68 L38.2 9.68
+      - M31 15.44 C26.92 15.44 23.8 17.84 23.8 20.72 C23.8 23.6 26.92 26 31 26 C35.08 26 38.2 23.6 38.2
+        20.72 C38.2 17.84 35.08 15.44 31 15.44
     - character: ᅯ
       role: medial
       paths:
@@ -2680,7 +2704,11 @@ characters:
       role: final
       paths:
       - M25.2 70.1 L25.2 94.9 L74.8 94.9
-    flags: []
+    flags:
+    - kind: small-loop-interior
+      part: 0
+      stroke: 2
+      clearance: 5.06
     reviewed: false
     stroke_count: 8
   흰:
@@ -2688,10 +2716,10 @@ characters:
     - character: ᄒ
       role: initial
       paths:
-      - M31 3.44 L31 10.64
-      - M23.8 10.64 L38.2 10.64
-      - M31 16.88 C26.92 16.88 23.8 19.52 23.8 22.88 C23.8 26.24 26.92 28.88 31 28.88 C35.08 28.88 38.2
-        26.24 38.2 22.88 C38.2 19.52 35.08 16.88 31 16.88
+      - M31 3.44 L31 9.68
+      - M23.8 9.68 L38.2 9.68
+      - M31 15.44 C26.92 15.44 23.8 17.84 23.8 20.72 C23.8 23.6 26.92 26 31 26 C35.08 26 38.2 23.6 38.2
+        20.72 C38.2 17.84 35.08 15.44 31 15.44
     - character: ᅴ
       role: medial
       paths:
@@ -2701,11 +2729,66 @@ characters:
       role: final
       paths:
       - M25.2 70.1 L25.2 94.9 L74.8 94.9
-    flags: []
+    flags:
+    - kind: small-loop-interior
+      part: 0
+      stroke: 2
+      clearance: 5.06
     reviewed: false
     stroke_count: 6
-manifest_sha256: f7487349d52fec85667d948a40251730241d6437cd134cc7a0ba55f7b019ca7b
+ai_review:
+  version: '1'
+  status: ai-reviewed-human-gate-open
+  human_reviewed: false
+  statement: 'An AI reviewer checked the letter, composite-letter and block-layout sheets and a contact
+    sheet of the TOPIK 1 syllables against standard Korean stroke order and direction. This is not a human
+    review and does not lift the pilot''s gate: the learner still looks over the sheets (scripts/korean-review-sheets.mjs,
+    and the preview next to this file) and decides. Syllables made from these recipes are marked ai-reviewed,
+    never reviewed.'
+  reviewer:
+    kind: vision-capable AI model, single reviewer, no helper sessions
+    model: claude-opus-5.5
+    date: '2026-11-08'
+  sheets:
+    letter_masters: every consonant master with its contextual forms (isolated, side, wide, paired-*,
+      hieuh-*), numbered strokes and direction arrows
+    vowel_masters: every vowel master with joined, lower-arm and before-* forms
+    composites: 5 doubled consonants, 11 compound vowels, 11 final clusters
+    layouts: one sample per block layout (가 간 고 곤 과 괜) plus 값 깎 읊 횡
+    syllables: contact sheets of all 514 TOPIK 1 syllables (10 images)
+  checked: stroke order, stroke direction (top to bottom, left to right, ㅇ from the top counter-clockwise),
+    stroke counts, part order (initial, vowel, final), legibility
+  order_and_direction_findings: none. No letter, composite or layout was reported with a wrong stroke
+    order or direction after the sheet numbering was made legible.
+  first_pass_findings_fixed:
+  - cell: ㅎ hieuh-mixed (block 횡)
+    issue: initial too crowded; its circle touched the vowel's first stroke
+    fix: bar and circle raised, circle bottom moved from y112 to y100 in original-jamo.yaml
+  - cell: ㅎ wide and paired-wide
+    issue: flat circle almost touched the bar
+    fix: circle lowered (gap 10 to 15 before the stroke width) in original-jamo.yaml
+  - cell: 곤 (horizontal-final)
+    issue: final ㄴ crowded the vowel ㅗ
+    fix: horizontal-final medial moved up from y22 to y19 in original-layouts.yaml
+  - cell: every sheet
+    issue: start numbers hidden where strokes start at the same point; ㅇ direction unreadable
+    fix: review-sheet renderer now offsets each number on a leader line and marks loop direction (not
+      a data change)
+  reviewer_misreads:
+  - Block-sample captions 값, 깎 and 읊 were read as other syllables; the drawings (ㅄ, ㄲ with ㅏ, ㄿ) are right.
+  - Two syllable-sheet findings named 됩 and 쭉, which are not in the set; ignored.
+  - Single-cell findings on 참 (ㅁ read as ㅇ) and 냉 were checked by eye and are not errors.
+  open_for_human_review:
+  - Dense forms stay legible but tight: wide and paired-wide forms of ㅎ ㅍ ㅊ ㅂ, final clusters ㄼ ㄾ ㄿ ㄳ
+      ㄵ ㄶ ㅀ ㅄ, doubled ㅃ ㅉ.
+  - ㅅ and ㅈ paired-side forms are very narrow, nearly parallel strokes.
+  - 횡 and other mixed-vowel blocks with ㅎ: the small initial sits close to the vowel.
+  - 꽃, 닭, 짧 are crowded in the final area.
+  - ㅈ is two strokes and ㄹ is three, both accepted by the reviewer as common handwriting; ㅓ writes its
+    bar first.
+  excluded_syllables: []
+manifest_sha256: 45cef7179a5236cc4e5206dad17fa00eb9f11228d5419dc85b709ab75c52716c
 adapter_inputs:
-  import_korean_characters.py: 70a28a7e7268a720efe93c09cfcbb96401244401cb5287e14596d1a1bcc943e0
+  import_korean_characters.py: 706137d6796fc5fd40459c75d48b773c68ee6b79e885906a5d17788a5feedcee
   korean_character_composition.py: 4ad814d41d014ffd943d5814816e0f298e9ea169c6cf2153489a1fb573fd3024
   korean_character_preview.py: f91ecb1a395e36fae423ed9cb0677fd879090bafb12a1895aef7425161ff53f7

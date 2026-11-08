@@ -3,13 +3,13 @@ language: korean
 inventory:
   schema_version: 1
   language: korean
-  policy_version: curriculum-writing-inventory-v1
-  unicode_version: 15.0.0
+  policy_version: curriculum-writing-inventory-v2
+  unicode_version: 16.0.0
   inputs:
   - path: catalog.yaml
-    sha256: ad5644e0d9523ff62d11a1d80c5ae20da5bb640acc16597244c57cf9c22c9aad
+    sha256: efd51ecf1f5ebb2625e46664b33c6e24a4655120f0e6b9e1d311e5a891943e03
   - path: korean/README.md
-    sha256: d2fcc5f9339423c41c7c640c97f973bac8c05f64bf8c7f3ee568d2f3b4936a0e
+    sha256: fecd8113b9d318023cbfec28724f295c0d388c2680f668d4edbe0d5fa1251769
   - path: korean/topik-1/grammar.yaml
     sha256: a3e4034a23a8a73b8dfee0bbf8ee493400c22e18857cf4b906b16d53b39031d7
   - path: korean/topik-1/vocabulary.yaml
@@ -34,6 +34,19 @@ inventory:
     sha256: 09bbbce35ff9930a6fc57d1b0180dfc271c6f521062edd46fdc6cedad1f47ddb
   - path: korean/topik-6/vocabulary.yaml
     sha256: 729c0dedaa4d1d59ccd04d236e54c3a01de5f6f0e913724026327ec8eb6c7b8b
+  tool_inputs:
+  - file: curriculum_yaml.py
+    sha256: 98a374aae719d8226b5f03c705563c13a55dea0f3806048e9eddd13c3a39ea59
+  - file: generate_curriculum_tokens.py
+    sha256: dc1e100c3b72d6f19cf02392942791dc37236ae846f4c2dcf25e88e4556b2a2e
+  - file: generate_practical_program.py
+    sha256: 2c73d03627756a3e09dcde312792ec2c20ea21d3f1dfa9a0c13f6111324abaf2
+  - file: generate_teaching_track.py
+    sha256: 322ea73de9928dd7aea2c84776a05180c7459f9ac9d1903c67acb978eb84b10c
+  - file: practical_program_registry.py
+    sha256: 6bc04fe1557f94cb1a520391bd6d6c91f82ff4384231c44b9ab4907e7c4f61f6
+  - file: practical_program_types.py
+    sha256: 32475500224b970a419637cdcf3206062342a47816ba3a7fdc0cc0225de6b3c9
   required: &id001
   - ㄱ
   - ㄲ
@@ -1857,7 +1870,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄁ:
@@ -1870,7 +1883,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄂ:
@@ -1883,7 +1896,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄃ:
@@ -1896,7 +1909,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄄ:
@@ -1909,7 +1922,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄅ:
@@ -1922,7 +1935,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄆ:
@@ -1935,7 +1948,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄇ:
@@ -1948,7 +1961,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄈ:
@@ -1961,7 +1974,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄉ:
@@ -1974,7 +1987,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄊ:
@@ -1987,7 +2000,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄋ:
@@ -2000,7 +2013,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄌ:
@@ -2013,7 +2026,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄍ:
@@ -2026,7 +2039,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄎ:
@@ -2039,7 +2052,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄏ:
@@ -2052,7 +2065,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄐ:
@@ -2065,7 +2078,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄑ:
@@ -2078,7 +2091,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᄒ:
@@ -2091,7 +2104,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅡ:
@@ -2104,7 +2117,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅢ:
@@ -2117,7 +2130,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅣ:
@@ -2130,7 +2143,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅤ:
@@ -2143,7 +2156,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅥ:
@@ -2156,7 +2169,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅦ:
@@ -2169,7 +2182,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅧ:
@@ -2182,7 +2195,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅨ:
@@ -2195,7 +2208,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅩ:
@@ -2208,7 +2221,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅪ:
@@ -2221,7 +2234,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅫ:
@@ -2234,7 +2247,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅬ:
@@ -2247,7 +2260,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅭ:
@@ -2260,7 +2273,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅮ:
@@ -2273,7 +2286,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅯ:
@@ -2286,7 +2299,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅰ:
@@ -2299,7 +2312,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅱ:
@@ -2312,7 +2325,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅲ:
@@ -2325,7 +2338,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅳ:
@@ -2338,7 +2351,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅴ:
@@ -2351,7 +2364,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᅵ:
@@ -2364,7 +2377,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆨ:
@@ -2377,7 +2390,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆩ:
@@ -2390,7 +2403,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆪ:
@@ -2403,7 +2416,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆫ:
@@ -2416,7 +2429,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆬ:
@@ -2429,7 +2442,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆭ:
@@ -2442,7 +2455,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆮ:
@@ -2455,7 +2468,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆯ:
@@ -2468,7 +2481,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆰ:
@@ -2481,7 +2494,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆱ:
@@ -2494,7 +2507,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆲ:
@@ -2507,7 +2520,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆳ:
@@ -2520,7 +2533,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆴ:
@@ -2533,7 +2546,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆵ:
@@ -2546,7 +2559,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆶ:
@@ -2559,7 +2572,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆷ:
@@ -2572,7 +2585,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆸ:
@@ -2585,7 +2598,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆹ:
@@ -2598,7 +2611,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆺ:
@@ -2611,7 +2624,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆻ:
@@ -2624,7 +2637,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆼ:
@@ -2637,7 +2650,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆽ:
@@ -2650,7 +2663,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆾ:
@@ -2663,7 +2676,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᆿ:
@@ -2676,7 +2689,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᇀ:
@@ -2689,7 +2702,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᇁ:
@@ -2702,7 +2715,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ᇂ:
@@ -2715,7 +2728,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: component
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄱ:
@@ -2728,7 +2741,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄲ:
@@ -2741,7 +2754,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄳ:
@@ -2754,7 +2767,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄴ:
@@ -2767,7 +2780,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
       - scope: reference:topik-1
@@ -2816,7 +2829,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄶ:
@@ -2829,7 +2842,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄷ:
@@ -2842,7 +2855,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄸ:
@@ -2855,7 +2868,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄹ:
@@ -2868,7 +2881,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
       - scope: reference:topik-1
@@ -2917,7 +2930,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄻ:
@@ -2930,7 +2943,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄼ:
@@ -2943,7 +2956,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄽ:
@@ -2956,7 +2969,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄾ:
@@ -2969,7 +2982,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㄿ:
@@ -2982,7 +2995,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅀ:
@@ -2995,7 +3008,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅁ:
@@ -3008,7 +3021,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
       - scope: reference:topik-4
@@ -3033,7 +3046,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
       - scope: reference:topik-1
@@ -3052,7 +3065,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅄ:
@@ -3065,7 +3078,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅅ:
@@ -3078,7 +3091,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅆ:
@@ -3091,7 +3104,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅇ:
@@ -3104,7 +3117,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅈ:
@@ -3117,7 +3130,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅉ:
@@ -3130,7 +3143,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅊ:
@@ -3143,7 +3156,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅋ:
@@ -3156,7 +3169,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅌ:
@@ -3169,7 +3182,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅍ:
@@ -3182,7 +3195,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅎ:
@@ -3195,7 +3208,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅏ:
@@ -3208,7 +3221,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅐ:
@@ -3221,7 +3234,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅑ:
@@ -3234,7 +3247,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅒ:
@@ -3247,7 +3260,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅓ:
@@ -3260,7 +3273,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅔ:
@@ -3273,7 +3286,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅕ:
@@ -3286,7 +3299,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅖ:
@@ -3299,7 +3312,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅗ:
@@ -3312,7 +3325,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅘ:
@@ -3325,7 +3338,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅙ:
@@ -3338,7 +3351,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅚ:
@@ -3351,7 +3364,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅛ:
@@ -3364,7 +3377,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅜ:
@@ -3377,7 +3390,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅝ:
@@ -3390,7 +3403,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅞ:
@@ -3403,7 +3416,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅟ:
@@ -3416,7 +3429,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅠ:
@@ -3429,7 +3442,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅡ:
@@ -3442,7 +3455,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅢ:
@@ -3455,7 +3468,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     ㅣ:
@@ -3468,7 +3481,7 @@ inventory:
         file: shared-policy
         field: foundation
         classification: required
-        first_entry: curriculum-writing-inventory-v1
+        first_entry: curriculum-writing-inventory-v2
         occurrences: 1
         reason: Approved modern script prerequisite; not a reference-level assignment
     가:

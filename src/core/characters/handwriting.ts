@@ -1,4 +1,5 @@
 import type { Point } from './geometry'
+import { defaultWritingLanguage, languageAssetUrl, type WritingLanguage } from './language'
 import { loadRecognitionIndex, recognize, type RecognitionIndex, type RecognitionMatch } from './recognize'
 
 export interface RecognizeRequest { id: number; url: string; drawing: Point[][]; allowed: string }
@@ -6,13 +7,13 @@ export type RecognizeReply = { id: number; matches: RecognitionMatch[] } | { id:
 
 export interface HandwritingRecognizer {
   /** Top candidates for strokes drawn in any order, limited to the characters in `allowed`. */
-  recognize(drawing: Point[][], allowed: string): Promise<RecognitionMatch[]>
+  recognize(drawing: Point[][], allowed: string, language?: WritingLanguage): Promise<RecognitionMatch[]>
   dispose(): void
 }
 
 // Read lazily: this module is reachable from the Vite config bundle (Node), where import.meta.env is undefined.
-const indexUrl = () => {
-  const relative = `${import.meta.env?.BASE_URL ?? '/'}characters/chinese/recognition.generated.json`
+const indexUrl = (language: WritingLanguage) => {
+  const relative = languageAssetUrl(language, 'recognition.generated.json')
   // The app is built with a relative base ('./'); resolve against the page here, because the worker would otherwise
   // resolve it against its own script under assets/ and get a 404.
   return typeof document === 'undefined' ? relative : new URL(relative, document.baseURI).href
@@ -24,12 +25,14 @@ const indexUrl = () => {
  */
 export function createHandwritingRecognizer(): HandwritingRecognizer {
   let worker: Worker | undefined
-  let fallback: Promise<RecognitionIndex> | undefined
+  const fallback = new Map<string, Promise<RecognitionIndex>>()
   let next = 0
   const pending = new Map<number, { resolve: (matches: RecognitionMatch[]) => void; reject: (error: Error) => void }>()
-  const inPage = async (drawing: Point[][], allowed: string) => {
-    fallback ??= loadRecognitionIndex(indexUrl())
-    const index = await fallback.catch(error => { fallback = undefined; throw error })
+  const inPage = async (drawing: Point[][], allowed: string, language: WritingLanguage) => {
+    const url = indexUrl(language)
+    let loading = fallback.get(url)
+    if (!loading) { loading = loadRecognitionIndex(url); fallback.set(url, loading) }
+    const index = await loading.catch(error => { if (fallback.get(url) === loading) fallback.delete(url); throw error })
     return recognize(index, drawing, { limit: 8, allowed: new Set(Array.from(allowed)) })
   }
   const start = () => {
@@ -56,13 +59,13 @@ export function createHandwritingRecognizer(): HandwritingRecognizer {
   }
   let unsupported = false
   return {
-    recognize(drawing, allowed) {
+    recognize(drawing, allowed, language = defaultWritingLanguage) {
       const active = unsupported ? undefined : start()
-      if (!active) return inPage(drawing, allowed)
+      if (!active) return inPage(drawing, allowed, language)
       return new Promise((resolve, reject) => {
         const id = ++next
         pending.set(id, { resolve, reject })
-        active.postMessage({ id, url: indexUrl(), drawing, allowed } satisfies RecognizeRequest)
+        active.postMessage({ id, url: indexUrl(language), drawing, allowed } satisfies RecognizeRequest)
       })
     },
     dispose() {

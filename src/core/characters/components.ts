@@ -3,6 +3,7 @@
  * Data: public/characters/chinese/components.generated.json (1.4 MB, about 183 kB gzipped). It is fetched once, on the first screen that
  * shows a decomposition or colours strokes, and cached for the session; it is never part of the main bundle.
  */
+import { defaultWritingLanguage, languageAssetUrl, type WritingLanguage } from './language'
 import { loadCharacterMeaning } from './meanings'
 
 export interface ComponentNode { c: string; s: number[]; d?: string; k?: ComponentNode[]; r?: 'semantic' | 'phonetic' | 'other'; e?: { t?: string; h?: string }; u?: 1 }
@@ -22,20 +23,25 @@ export interface ComponentData { characters: Record<string, CharacterComponents>
 /** glyphs: drawn shapes (Private Use Area code points in the parts font) keyed "character:strokes". missing: parts whose own character neither the parts font nor ordinary phone fonts can be trusted to show; they are drawn too. */
 export interface PartGlyphs { glyphs: Record<string, number>; missing?: string[] }
 
-let table: Promise<ComponentData> | undefined
+const tables = new Map<WritingLanguage, Promise<ComponentData>>()
 let glyphTable: Promise<PartGlyphs> | undefined
-const url = () => `${import.meta.env?.BASE_URL ?? '/'}characters/chinese/components.generated.json`
+const url = (language: WritingLanguage) => languageAssetUrl(language, 'components.generated.json')
 
 /** For tests: forget the loaded tables. */
-export const resetComponentData = () => { table = undefined; glyphTable = undefined; formIndex = undefined }
+export const resetComponentData = () => { tables.clear(); glyphTable = undefined; formIndex = undefined }
 
 /** The parts file, retried once: a flaky or briefly offline network is the usual failure ("Failed to fetch"). */
-const fetchOnce = () => fetch(url()).catch(() => fetch(url()))
+const fetchOnce = (language: WritingLanguage) => fetch(url(language)).catch(() => fetch(url(language)))
 
-export function loadComponentData(): Promise<ComponentData> {
-  table ??= fetchOnce().then(response => response.ok ? response.json() as Promise<ComponentData> : Promise.reject(new Error(`The character parts could not be loaded (${response.status}).`)))
-    .then(data => data?.characters && data.components ? data : Promise.reject(new Error('The character parts file is not in the expected format.')))
-    .catch(reason => { table = undefined; throw reason })
+/** Only Chinese has a parts table so far; for another language the fetch fails and the caller shows no decomposition. It never answers with Chinese parts. */
+export function loadComponentData(language: WritingLanguage = defaultWritingLanguage): Promise<ComponentData> {
+  let table = tables.get(language)
+  if (!table) {
+    table = fetchOnce(language).then(response => response.ok ? response.json() as Promise<ComponentData> : Promise.reject(new Error(`The character parts could not be loaded (${response.status}).`)))
+      .then(data => data?.characters && data.components ? data : Promise.reject(new Error('The character parts file is not in the expected format.')))
+      .catch(reason => { tables.delete(language); throw reason })
+    tables.set(language, table)
+  }
   return table
 }
 

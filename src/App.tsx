@@ -28,6 +28,7 @@ import { Defender } from './pages/Defender'
 import { Potions } from './pages/Potions'
 import { Dictionary } from './pages/Dictionary'
 import { Writing } from './pages/Writing'
+import { WritingPreview } from './pages/WritingPreview'
 import { WritingSheetHost } from './components/WritingSheet'
 import { Settings } from './pages/Settings'
 import { LevelDetail } from './pages/Curriculum'
@@ -113,6 +114,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   }
   if (page === 'review') return <Practice {...props} />
   if (page === 'dictionary') return <Dictionary {...props} section={id} initialScope={lessonPage} initialQuery={new URLSearchParams(queryParts.join('?')).get('q') ?? undefined} initialWrite={new URLSearchParams(queryParts.join('?')).get('write') ?? undefined} />
+  if (import.meta.env.DEV && page === 'devwriting') return <WritingPreview query={queryParts.join('?')} />
   if (page === 'writing') return <Writing {...props} codepoint={id} scope={lessonPage} query={queryParts.join('?')} />
   if (page === 'settings') return <Settings {...props} />
   if (page === 'media') return <Media {...props} route={routePath} />

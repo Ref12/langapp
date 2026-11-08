@@ -24,11 +24,11 @@ sampling:
 identity: exact-unicode-scalar-no-normalization
 inputs:
 - path: characters/recipes/original-jamo.yaml
-  sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+  sha256: fc77d2659943ec74be6c94bc097f84f87cb7c8df970ced30655f08ecfe0a6990
   source_id: korean-writing-original-pilot
   source_version: '2'
 - path: characters/recipes/original-layouts.yaml
-  sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+  sha256: 3afc8f02c27096ef3153077474ac0dbdae60e3c6e6a500b22b2528a19ce4a186
   source_id: korean-writing-original-pilot
   source_version: '2'
 - path: licenses/ORIGINAL-WRITING-PILOT.md
@@ -55,106 +55,116 @@ inputs:
   sha256: c8db959e4194af85f1355b907193909e6f98516a31f39e04eb4dbabaf1c273dd
   source_id: korean-writing-source-audit
   source_version: 2026-09-15.2
-sources_sha256: 3cb6d56b4468bd10f2a6c99964fce710dea58862f6fa3b804e72f8de006b317a
-inventory_sha256: 42179f9258907b5a70af85d1f29a5c993ec6347fb19bbd10f134be0c425ec186
+sources_sha256: 70c19493d17edbb6fb680f39219b6d86f79356e682574d6ef58bea81122f39c3
+inventory_sha256: 59bf8d31d03b9fc54d02186d89778e2d25ab7335435932c7f66cc81bb9f9eb95
 chunks:
 - file: u0000.yaml
-  sha256: fdfb8ad0c381ec3ef5d44ae1605519ece7d676f1ed4db09b74e3a6cd29bf21b8
+  sha256: 65552ae9410a03fdf7bd0e44f4ab7cc279104557d65687cb023eab1c73eba862
   characters: 2
 - file: u0011.yaml
-  sha256: 03975db7f299896d9ac8cf8078e454e1e1dc5a43122a9511a85b33c8f45475a6
+  sha256: 0541e0dff551cc48ba85b6330197399fcb112a5eae37b9bc3f9e5bc2bd564ca5
   characters: 67
 - file: u0031.yaml
-  sha256: 63c337a56554a3ccb7aebcabd049b4d6bc10ba15cac89f3aab7dfe96e439b8b1
+  sha256: ff0f4433b5ce2a5c8ab6467071bca840643de08466b5ad61d6735a1ce93e9f92
   characters: 51
 - file: u00ac.yaml
-  sha256: fed365eb495f9796a51996a688815beb2932b2293ebf066aa3709b88bf54b276
+  sha256: ad8cda2e85df161a1917e224a7bcb610ff09e3afc14f734b6d996273b7d37c80
   characters: 13
 - file: u00ad.yaml
-  sha256: 2bc09bf317986dd9cdbbfece09a9789308db03f47f6602a47a06dff78cbc13e8
+  sha256: cdcba82cf0ea8629d8e944ee32ce182bdde2a73cd74a69ecd5347f5c99368c32
   characters: 8
 - file: u00ae.yaml
-  sha256: 944ebb7874de36e48e1cce5f0c972ca80a74b53190560048774d6bee25bed8c1
+  sha256: eeecaf3e413f6506cd9259e8385b73c775668982a02d441f52ba86128b2172f6
   characters: 2
 - file: u00b0.yaml
-  sha256: 973e7cf182d8ada56fba85517e00d27e0f09fe9b48555a049da8ce39f17a880b
+  sha256: 948a63fdbc3eacbe1dc1cd083b347afae2b789ab960b2fe62fe062f78d897421
   characters: 2
 - file: u00b1.yaml
-  sha256: f4ae59fdd14a2bf361e21144bc2ef8a9703c03a0f51d5e69e91e04e7d43bf0d4
+  sha256: bf70f230cb66d080ff4e0feba0228b816afebd5d56eed0fff3537a91f330b5d8
   characters: 1
 - file: u00b2.yaml
-  sha256: 5e32dfd61a824991672ef6bb18cc6bbcfc96e5d6bd22a4b4aa7388384e9e5ad6
+  sha256: e741b04f2520687d6487e2eb6a8f23e2cc3d320c1c30ecc002bcd848657a4f89
   characters: 1
 - file: u00b3.yaml
-  sha256: 5f4917347a4b8e55c68f16f84632c2ca1da8a2ddceb3ceb12d21e14f85150f71
+  sha256: a2bd8e969a2736b5742af4dca2409d631a0b79e75df83ce499da614ecf18a97b
   characters: 1
 - file: u00b6.yaml
-  sha256: 9570336bab4deac927464d11d4267942fe6ec773730f16b21bd2a29fb2eb69ba
+  sha256: a7b378a1686f469670db102ce9cddc9bf720a7b3a6092275ba76679ba23f296b
   characters: 1
 - file: u00b8.yaml
-  sha256: fec47b4be9d620ca247fc6653b1aae42551452940b56481e57e3d9bbb6179c8e
+  sha256: f77c94b1297f1beabb6f79cddc5c63359d06d5af957766cf6f29ff149eaa1f9b
   characters: 2
 - file: u00ba.yaml
-  sha256: d81408351ec1337b3752b6bde49de2313ae9b155473f1cd30446c0c7b4c48675
+  sha256: 12f9ce3d80c2f0ccdb332858913cffea8e88780a5344074e6e29add41bd051c8
   characters: 1
 - file: u00bb.yaml
-  sha256: c4742a5787616a8418878d2f04a77e010e85fcb2c744f4e1212e81a8577ae96e
+  sha256: 66e9caff7b9a7cf1f1043011cce9e800222cc8b8874e376a8a1bd66e4b673ff3
   characters: 2
 - file: u00bd.yaml
-  sha256: 5204af9b04c4d7b44747c89db4f853f0c959722d8ae62af5eff41c4e720cc87d
+  sha256: 77663a96ffc5fd8bd2743e2a24d437cd29e167d8157cf097250de7cffc9c1a16
   characters: 1
 - file: u00bf.yaml
-  sha256: bb8f8e2e438ce4298dd89ce10d43e6337387cd0d483e7b267ccb7205daba5630
+  sha256: 942cd0ea71a3a55871261b5eb2e36ffb811f0bb02cec379d7dbf31ad0a2a955e
   characters: 1
 - file: u00c2.yaml
-  sha256: de33ad821cf2d4c6713422c55ec975e9b147aed67e6c029ebd49a63b4bd32282
+  sha256: 2253d17e1c93fd726544bb2c08c5ab4bc4cab11ddad70aa3e746dd909e948dc9
   characters: 1
 - file: u00c4.yaml
-  sha256: 409cbe1da70be1894d88cc706f18ada15d340296779572ae48111e7dd837cc03
+  sha256: 5d57fe7ea7c70f1f0b6063c9425b6ca78a220de270bf3e9aaacf55456d16e816
   characters: 1
 - file: u00c5.yaml
-  sha256: ccf62ccf1681eb91860993699ed27507b361fcfcf52a6a50fde418d07bd3472a
+  sha256: 8152bef077b3dffd37ec7612ffc82ab71720e648eaca4cee238aeba9b9bde67d
   characters: 3
 - file: u00c6.yaml
-  sha256: 7a1bb7aa00eb597f71ed67a3b03c613d2619576140e3c6356ebc56456f244a0f
+  sha256: 2cb4b1f5bc88a54d14fa75d06eb1372ec8f521762d10495337b143f235726c22
   characters: 2
 - file: u00c7.yaml
-  sha256: 9950c76c92df45f8341461c1855a1c24057bc7cbfd9566ccb53f4ed37a975933
+  sha256: b75fcfe88e4dfe142e8e0db3310608395819e3c09497f4d978aa77dec9f3d23d
   characters: 2
 - file: u00c9.yaml
-  sha256: 835743c6326abae1875ebd1b3e3ac884f14f329ecfb9a70fd7267f62fd8dd223
+  sha256: 28d188c0e62b94c1a7ff5b09ad851c2c5474ad99cfb41160b2002252e1c67c02
   characters: 1
 - file: u00cc.yaml
-  sha256: 82e2db2f48b017def99921733b336a992379150c59553a98427d8ba85d6e699a
+  sha256: 75bef2dfd45ab77690970507dd0c5c80369613489a95c40d9475e3ce7c7b47f1
   characters: 2
 - file: u00cf.yaml
-  sha256: 6bda5b9435578bb7e73215920a10cb53d3b90c9d6e07c156718aafc9c34b30aa
+  sha256: c68f8da4659d002613537b78b12df88697587aff229d850be4a0cd0cee7020ea
   characters: 1
 - file: u00d0.yaml
-  sha256: 4a55fc71990c11952c09ae8a9990dd9ad66ca3fdf3e11274f4f5247a0e1fe8aa
+  sha256: 6b1b01084453c38b58ca59f267e4b1507679efdc10a1ba9fe8e7bf1d09ca22d7
   characters: 1
 - file: u00d3.yaml
-  sha256: 325e9ade7992e390690f1c811eee33cbcc37b0e54e92a0e411fcfdca485d883d
+  sha256: 5ad41094bc6ca4cded0b00e5586f492410f26711d79e61fdde70d453ab9cde77
   characters: 1
 - file: u00d5.yaml
-  sha256: 14863885fdb5808fa2d96c045df0a44676bb79342b7fb5fd29b1ced8007b034f
+  sha256: 3800bd5a7285e40aaccee5feabb2719c19f5d439c50424ac9ad2074ca909b7ac
   characters: 1
 - file: u00d6.yaml
-  sha256: 670c06f1707b54fd24d9af6ab545e6db87254a956804395388403c12b2e49a84
+  sha256: e4e075c5d0029e3804be1e7dc1e335db3929f06b28355f147b55d9e79df188be
   characters: 1
 - file: u00d7.yaml
-  sha256: 27ecb735f4dc9cc9c6b51be93910cd6154b50e50a629cd0ed9507e062b295e50
+  sha256: 6adc2a29adc910199300e963838677e703e32583c37ecec62dc772f834037e52
   characters: 1
-coverage_sha256: 50f423d0b5788e511b03df0d574982260ad6de4d5b7c1b145f1fe0bb2a275bc5
+coverage_sha256: 439980c63b88666a4c6168f96a5c4a2355f0217ad8e719e4598469282f3cb49a
 shared_tools:
 - file: character_assets.py
-  sha256: b4fe490b8d0adb384b88b7cb7758b649b7c1d05d54ff0e8e7ac76b2e3e86b781
+  sha256: 7259c1cca69173b300d32c34a9451ac50faa440fdca42a7659cd197e65167c31
 - file: character_geometry.py
   sha256: 6d1a2ebedce419454b69acac1f0dbf6fef4ad6ef0faae6a5683914f0d4e50669
 - file: character_inventory.py
-  sha256: 245b86aee9efab9c91356abefcb7164d968104da935d37092c1e065124b396fe
+  sha256: d88e31f706d25d4e6499d9fafafcbae2a3d1c70f4edef8f123fa98e4086e4e38
 - file: curriculum_yaml.py
-  sha256: 000ad9af5564135da9ad5bb21908065d59aee9cb402b2c30711aa87fcad9bd73
+  sha256: 98a374aae719d8226b5f03c705563c13a55dea0f3806048e9eddd13c3a39ea59
+- file: generate_curriculum_tokens.py
+  sha256: dc1e100c3b72d6f19cf02392942791dc37236ae846f4c2dcf25e88e4556b2a2e
+- file: generate_practical_program.py
+  sha256: 2c73d03627756a3e09dcde312792ec2c20ea21d3f1dfa9a0c13f6111324abaf2
+- file: generate_teaching_track.py
+  sha256: 322ea73de9928dd7aea2c84776a05180c7459f9ac9d1903c67acb978eb84b10c
+- file: practical_program_registry.py
+  sha256: 6bc04fe1557f94cb1a520391bd6d6c91f82ff4384231c44b9ab4907e7c4f61f6
+- file: practical_program_types.py
+  sha256: 32475500224b970a419637cdcf3206062342a47816ba3a7fdc0cc0225de6b3c9
 release_ready: false
 notice: 'Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.
 

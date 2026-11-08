@@ -1,5 +1,6 @@
 import index from '../../data/characters/index.generated.json'
 import { makeStrokeGuide } from './geometry'
+import { defaultWritingLanguage, languageAssetUrl, languageName, type WritingLanguage } from './language'
 
 export interface CharacterAssetSummary {
   character: string
@@ -17,6 +18,8 @@ interface CharacterRecipe {
 
 export interface CharacterAsset extends CharacterAssetSummary {
   paths: string[]
+  /** Korean syllables composed from the original pilot letters: checked by an AI reviewer only. reviewed stays false until a person has looked. */
+  review?: 'ai-reviewed'
   provenance?: {
     sourceId: string
     sourceEntry: string
@@ -40,8 +43,10 @@ export const characterAssetIndex: CharacterAssetSummary[] = index.characters
 const summaries = new Map(characterAssetIndex.map(summary => [summary.character, { ...summary }]))
 const pageFor = (character: string) => `u${(character.codePointAt(0)! >>> 8).toString(16).padStart(4, '0')}`
 // Read lazily and defensively: this module is reachable from the Vite config bundle (Node), where import.meta.env is undefined.
-const assetUrl = (file: string) => `${import.meta.env?.BASE_URL ?? '/'}characters/chinese/${file}`
+const assetUrl = (file: string) => languageAssetUrl('zh', file)
 export const characterAttributionUrl = assetUrl('ATTRIBUTION.html')
+/** The attribution page shipped next to a language's writing data. */
+export const characterAttributionUrlFor = (language: WritingLanguage = defaultWritingLanguage) => languageAssetUrl(language, 'ATTRIBUTION.html')
 const chunks = new Map<string, Promise<Map<string, CharacterAsset>>>()
 const object = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value)
 const stringArray = (value: unknown): value is string[] => Array.isArray(value) && value.every(item => typeof item === 'string')
@@ -108,8 +113,10 @@ function parseChunk(input: unknown, page: string): Map<string, CharacterAsset> {
 }
 
 /** Fetches only the requested Unicode page; failed requests can be retried. */
-export async function loadCharacterAsset(character: string): Promise<CharacterAsset> {
-  if (!summaries.has(character)) throw new Error(`No Chinese writing guide is available for ${JSON.stringify(character)}.`)
+export async function loadCharacterAsset(character: string, language: WritingLanguage = defaultWritingLanguage): Promise<CharacterAsset> {
+  // Japanese and Korean have their own data, indexes and pages. A miss there is a miss: never answer with Chinese strokes.
+  if (language !== 'zh') return (await import('./otherLanguages')).loadOtherCharacterAsset(character, language)
+  if (!summaries.has(character)) throw new Error(`No ${languageName.zh} writing guide is available for ${JSON.stringify(character)}.`)
   const page = pageFor(character)
   let request = chunks.get(page)
   if (!request) {

@@ -74,6 +74,9 @@ def generate(curriculum_root: Path = ROOT, *, check: bool = False) -> list[str]:
         blocked={character: GAP_REASON for character in sorted(expected - records.keys())},
         notice=GENERATED_NOTICE,
     )
+    review_record = language_root / "characters" / "recipes" / "ai-review.yaml"
+    if review_record.is_file():
+        report["ai_review"] = load_yaml(review_record)
     report["manifest_sha256"] = sha256(outputs["manifest.yaml"].encode("utf-8"))
     report["adapter_inputs"] = {
         name: sha256((Path(__file__).parent / name).read_bytes().replace(b"\r\n", b"\n"))
