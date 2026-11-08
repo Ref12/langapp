@@ -56,7 +56,7 @@ function endpoint(replies: Record<string, (call: Call) => unknown>) {
   }
   return { calls, fetchImpl }
 }
-const OPTIONS = (extra: object = {}) => parseArgs(['--base-url', 'http://gateway/v1', '--planner-model', 'strong', '--writer-model', 'cheap', '--checker-model', 'strong', '--planner-api', 'chat', '--writer-api', 'responses', '--checker-api', 'chat', '--target', '3', '--plan', '--lookahead', '0', ...Object.entries(extra).flatMap(([key, value]) => [key, String(value)])], {})
+const OPTIONS = (extra: object = {}) => parseArgs(['--base-url', 'http://gateway/v1', '--planner-model', 'strong', '--writer-model', 'cheap', '--checker-model', 'strong', '--planner-api', 'chat', '--writer-api', 'responses', '--checker-api', 'chat', '--target', '3', '--fallback-target', '3', '--plan', '--lookahead', '0', ...Object.entries(extra).flatMap(([key, value]) => [key, String(value)])], {})
 const sentence = (ref: string, zh: string, py: string, en: string) => ({ ref, zh, py, en })
 const ALL_GOOD = (call: Call) => call.model === 'strong' && call.text.includes('"phrases"') && call.text.includes('natural')
   ? { results: [...call.text.matchAll(/"id":"([^"]+)"/g)].map(match => ({ id: match[1], natural: true, matches: true, allowed: true, reason: '' })) } : undefined
@@ -156,8 +156,8 @@ describe('phrase bank pipeline: batched model calls', () => {
     const c = curriculum()
     const options = { ...OPTIONS(), words: undefined, bands: ['1'], batchSize: 20, retry: false }
     const state = emptyState()
-    state.words.cha = { status: 'done', attempts: 1 }
-    state.words.he = { status: 'failed', attempts: 1, note: 'write failed' }
+    state.words.cha = { status: 'done', attempts: 1, target: 3, fallbackTarget: 3 }
+    state.words.he = { status: 'failed', attempts: 1, note: 'write failed', lookahead: 0 }
     expect(selectWords({ curriculum: c, state, options }).map(entry => entry.word.lb)).not.toContain('cha')
     expect(selectWords({ curriculum: c, state, options }).map(entry => entry.word.lb)).not.toContain('he')
     expect(selectWords({ curriculum: c, state, options: { ...options, retry: true } }).map(entry => entry.word.lb)).toContain('he')
@@ -235,7 +235,7 @@ const FIXTURE2 = [
 withFunctionWords(FIXTURE2, 0, ['吗', '你', '的', '不'])
 const curriculum2 = () => buildCurriculum(FIXTURE2)
 const forms = (c: ReturnType<typeof curriculum2>, lb: string, lookahead: number) => [...allowedFor(c, c.words.get(lb), lookahead).forms.keys()]
-const runOptions = (extra: object = {}) => ({ ...parseArgs(['--base-url', 'http://gateway/v1', '--writer-model', 'cheap', '--checker-model', 'strong', '--lookahead', '0,1,2'], {}), batchSize: 20, ...extra })
+const runOptions = (extra: object = {}) => ({ ...parseArgs(['--base-url', 'http://gateway/v1', '--writer-model', 'cheap', '--checker-model', 'strong', '--lookahead', '0,1,2', '--fallback-target', '3'], {}), batchSize: 20, ...extra })
 const checkBody = (text: string) => JSON.parse(text.slice(text.lastIndexOf('{"groups"')))
 const approve = (call: Call) => ({ results: [...call.text.matchAll(/"id":"([^"]+)"/g)].map(match => ({ id: match[1], natural: true, matches: true, reason: '' })) })
 
@@ -278,7 +278,7 @@ describe('phrase bank pipeline: look-ahead passes', () => {
 
   it('runs the passes in order and only puts words still under target into a later pass', async () => {
     const c = curriculum2()
-    const wo = { ...runOptions(), words: ['wo'], target: 4 }
+    const wo = { ...runOptions(), words: ['wo'], target: 4, fallbackTarget: 4 }
     const state = emptyState()
     const log: string[] = []
     const { calls, fetchImpl } = endpoint({
@@ -307,7 +307,7 @@ describe('phrase bank pipeline: look-ahead passes', () => {
 
   it('reports per pass how many words reached the target and the words left without phrases', () => {
     const c = curriculum2()
-    const report = passReport(c, emptyState(), { ...runOptions(), lookahead: [0, 1], target: 1 })
+    const report = passReport(c, emptyState(), { ...runOptions(), lookahead: [0, 1], target: 1, fallbackTarget: 1 })
     expect(report.passes.map(row => [row.lookahead, row.reached])).toEqual([[0, 9], [1, 9]])
     expect(report.zeroPhrase).toBe(2) // 坏 and 爱 have no authored example
   })
@@ -328,7 +328,7 @@ describe('phrase bank pipeline: per-word vocabulary', () => {
       strong: approve,
       cheap: () => ({ phrases: [sentence('wo', '我是学生吗。', 'wǒ shì xué sheng ma', 'Am I a student?'), sentence('cha', '我喝茶吗。', 'wǒ hē chá ma', 'Do I drink tea?')] }),
     })
-    const options = { ...runOptions({ lookahead: [0], target: 3 }), words: ['wo', 'cha'], lessonSpan: 1 }
+    const options = { ...runOptions({ lookahead: [0], target: 3, fallbackTarget: 3 }), words: ['wo', 'cha'], lessonSpan: 1 }
     await runPipeline({ curriculum: c, state: emptyState(), io: createIO(options, fetchImpl as never), options })
     const check = calls.find(call => call.model === 'strong')!
     const groups = checkBody(check.text).groups as { vocabulary: { lesson: number; words: string[] }[]; phrases: { word: string }[] }[]
@@ -359,7 +359,7 @@ describe('phrase bank pipeline: the checker verdict', () => {
         : match[2].includes('爱') ? { id: match[1], natural: false, matches: true } : { id: match[1], natural: 'true', matches: true }) }),
       cheap: () => ({ phrases: [sentence('wo', '我是学生吗。', 'wǒ shì xué sheng ma', 'Am I a student?'), sentence('wo', '我是坏学生。', 'wǒ shì huài xué sheng', 'I am a bad student.'), sentence('wo', '我爱学生。', 'wǒ ài xué sheng', 'I love students.')] }),
     })
-    const options = { ...runOptions({ lookahead: [3], target: 5 }), words: ['wo'] }
+    const options = { ...runOptions({ lookahead: [3], target: 5, fallbackTarget: 5 }), words: ['wo'] }
     const state = emptyState(), log: string[] = []
     await runPipeline({ curriculum: c, state, io: createIO(options, fetchImpl as never), options, log: line => log.push(line) })
     const kept = zhOf(state, 'wo')
@@ -380,7 +380,7 @@ describe('phrase bank pipeline: lessons and batches', () => {
     const options = parseArgs(['--lessons', '2-3'], {})
     expect(options.lessons).toEqual({ from: 2, to: 3 })
     expect(wordsInScope(c, options).map(w => w.lb)).toEqual(['cha', 'he', 'huai'])
-    const picked = selectWords({ curriculum: c, state: emptyState(), options: { ...options, target: 3 } })
+    const picked = selectWords({ curriculum: c, state: emptyState(), options: { ...options, target: 3, fallbackTarget: 3 } })
     expect(picked.map(entry => entry.word.lb)).toEqual(['cha', 'he', 'huai'])
     expect(wordsInScope(c, parseArgs(['--lessons', '1-4', '--words', 'wo,ai'], {})).map(w => w.lb)).toEqual(['wo', 'ai'])
     expect(wordsInScope(c, parseArgs(['--lessons', '1-4', '--band', '2'], {}))).toEqual([])
@@ -400,7 +400,7 @@ describe('phrase bank pipeline: crediting a phrase to other words', () => {
     const state = emptyState()
     const phrase = addPhrase(c, state, { zh: '我喝茶吗。', py: 'wǒ hē chá ma', en: 'Do I drink tea?', words: ['wo', 'he', 'cha'], source: 'ai', checked: true, lookahead: 0 })!
     expect(phrase).toMatchObject({ id: 1, band: '1', readyAt: 1 })
-    const entries = (words: string[], lookahead: number) => selectWords({ curriculum: c, state, options: { ...runOptions(), words, target: 5 }, lookahead })
+    const entries = (words: string[], lookahead: number) => selectWords({ curriculum: c, state, options: { ...runOptions(), words, target: 5, fallbackTarget: 5 }, lookahead })
     expect(entries(['he'], 0)[0]).toMatchObject({ need: 3, existingZh: expect.arrayContaining(['我喝茶吗。']) }) // 1 catalog + the phrase in hand
     expect(entries(['wo'], 0)[0].existingZh).not.toContain('我喝茶吗。') // 我 (lesson 1) cannot use it at pass 0
     expect(entries(['wo'], 1)[0].existingZh).toContain('我喝茶吗。') // at look-ahead 1 it counts for 我 too
@@ -424,7 +424,7 @@ describe('phrase bank pipeline: crediting a phrase to other words', () => {
       strong: approve,
       cheap: () => ({ phrases: [sentence('cha', '我喝茶吗。', 'wǒ hē chá ma', 'Do I drink tea?'), sentence('cha', '你喝茶。', 'nǐ hē chá', 'You drink tea.')] }),
     })
-    const options = { ...runOptions({ lookahead: [0], target: 3 }), words: ['cha', 'he'] }
+    const options = { ...runOptions({ lookahead: [0], target: 3, fallbackTarget: 3 }), words: ['cha', 'he'] }
     const state = emptyState()
     await runPipeline({ curriculum: c, state, io: createIO(options, fetchImpl as never), options })
     expect(calls.filter(call => call.model === 'cheap')).toHaveLength(1) // one write for both words
@@ -487,7 +487,7 @@ describe('phrase bank pipeline: grammar tags', () => {
       strong: call => ({ results: [...call.text.matchAll(/"id":"([^"]+)"/g)].map(match => ({ id: match[1], natural: true, matches: true, reason: '', grammar: match[1].includes('是') ? [] : ['g-ma', 'not-real', 'g-late'] })) }),
       cheap: () => ({ phrases: [{ ...sentence('cha', '我喝茶。', 'wǒ hē chá', 'I drink tea.'), grammar: ['g-shi'] }, { ...sentence('cha', '我是茶。', 'wǒ shì chá', 'I am tea.'), grammar: ['g-shi'] }] }),
     })
-    const options = { ...runOptions({ lookahead: [0], target: 2 }), words: ['cha'] }
+    const options = { ...runOptions({ lookahead: [0], target: 2, fallbackTarget: 2 }), words: ['cha'] }
     const state = emptyState()
     await runPipeline({ curriculum: c, state, io: createIO(options, fetchImpl as never), options })
     const writer = calls.find(call => call.model === 'cheap')!
@@ -501,7 +501,7 @@ describe('phrase bank pipeline: grammar tags', () => {
 describe('phrase bank pipeline: grammar points are targets', () => {
   it('selects grammar points under the target like words, by the lesson that introduces them, mixed into the words\' order', () => {
     const c = curriculum3()
-    const entries = selectWords({ curriculum: c, state: emptyState(), options: { ...runOptions(), target: 3 }, lookahead: 0 })
+    const entries = selectWords({ curriculum: c, state: emptyState(), options: { ...runOptions(), target: 3, fallbackTarget: 3 }, lookahead: 0 })
     expect(entries.map(entry => entry.word.lb)).toEqual(['wo', 'shi', 'xs', 'grammar:g-shi', 'cha', 'he', 'grammar:g-ma', 'grammar:g-late'])
     expect(entries.find(entry => entry.word.lb === 'grammar:g-ma')).toMatchObject({ need: 3, word: { index: 1 } })
     expect(grammarInScope(c, { lessons: { from: 2, to: 2 } }).map((word: { lb: string }) => word.lb)).toEqual(['grammar:g-ma'])
@@ -518,7 +518,7 @@ describe('phrase bank pipeline: grammar points are targets', () => {
     addPhrase(c, state, mine('我是我。', ['wo', 'shi'], ['g-shi']))
     addPhrase(c, state, mine('学生是我。', ['xs', 'shi', 'wo'], ['g-shi']))
     expect(Object.fromEntries(grammarCounts(state))).toEqual({ 'g-shi': 3 })
-    const options = { ...runOptions(), target: 3 }
+    const options = { ...runOptions(), target: 3, fallbackTarget: 3 }
     const entries = selectWords({ curriculum: c, state, options, lookahead: 0 })
     expect(entries.map(entry => entry.word.lb)).not.toContain('grammar:g-shi') // reached its target from phrases in hand
     expect(phrasesForWord(c, state, grammarWord(c.grammar.get('g-shi')), 0)).toHaveLength(3)
@@ -539,7 +539,7 @@ describe('phrase bank pipeline: grammar points are targets', () => {
         { ...sentence('grammar:g-shi', '我是我。', 'wǒ shì wǒ', 'I am me.'), grammar: ['g-shi'] },
       ] }),
     })
-    const options = { ...runOptions({ lookahead: [0], target: 2 }), grammar: ['g-shi'] }
+    const options = { ...runOptions({ lookahead: [0], target: 2, fallbackTarget: 2 }), grammar: ['g-shi'] }
     const state = emptyState()
     const log: string[] = []
     await runPipeline({ curriculum: c, state, io: createIO(options, fetchImpl as never), options, log: line => log.push(line) })
@@ -558,7 +558,7 @@ describe('phrase bank pipeline: grammar points are targets', () => {
     const c = curriculum3()
     const state = emptyState()
     addPhrase(c, state, mine('我是学生。', ['wo', 'shi', 'xs'], ['g-shi'], { lookahead: 0 }))
-    const report = passReport(c, state, { ...runOptions(), lookahead: [0, 2], target: 1 })
+    const report = passReport(c, state, { ...runOptions(), lookahead: [0, 2], target: 1, fallbackTarget: 1 })
     expect(report).toMatchObject({ words: 5, grammarPoints: 3 })
     expect(report.passes).toEqual([
       { lookahead: 0, reached: 3, newlyReached: 3, of: 5, grammar: { reached: 1, newlyReached: 1, of: 3 } },
@@ -664,7 +664,7 @@ describe('phrase bank pipeline: ids and the YAML files', () => {
 
 describe('phrase bank pipeline: the old format', () => {
   const OLD_BANK = { schemaVersion: 1, band: '1', phrases: { cha: [{ zh: '我是茶。', py: 'wǒ shì chá', en: 'I am tea.', words: ['wo', 'shi', 'cha'], source: 'ai', checked: true, lookahead: 0, readyAt: 1 }], he: [{ zh: '我是茶。', py: 'wǒ shì chá', en: 'I am tea.', words: ['wo', 'shi', 'cha'], source: 'ai', checked: true }, { zh: '我喝茶吗。', py: 'wǒ hē chá', en: 'I drink tea.', words: ['wo', 'he', 'cha'], source: 'ai', checked: false }] } }
-  const OLD_STATE = { version: 1, target: 3, words: { cha: { status: 'done', attempts: 1, lookahead: 0, phrases: OLD_BANK.phrases.cha }, he: { status: 'partial', attempts: 2, phrases: OLD_BANK.phrases.he } } }
+  const OLD_STATE = { version: 1, target: 3, fallbackTarget: 3, words: { cha: { status: 'done', attempts: 1, lookahead: 0, phrases: OLD_BANK.phrases.cha }, he: { status: 'partial', attempts: 2, phrases: OLD_BANK.phrases.he } } }
 
   it('reads an old band file or state file, keyed by word, as one flat list in which each phrase comes once', () => {
     expect(readOldBank(OLD_BANK).map(p => p.zh)).toEqual(['我是茶。', '我喝茶吗。'])

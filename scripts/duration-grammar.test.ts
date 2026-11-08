@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest'
 import {
-  DEFAULT_FALLBACK_TARGET, addPhrase, applyGrammar, buildCurriculum, emptyState, passReport, phrasesForWord, selectWords, strictHistogram, targetOf, wordsInScope, parseArgs, runPipeline, readyAtOf,
+  DEFAULT_FALLBACK_TARGET, addPhrase, applyGrammar, buildCurriculum, createIO, emptyState, passReport, phrasesForWord, selectWords, strictHistogram, targetOf, wordsInScope, parseArgs, runPipeline, readyAtOf,
 } from './build-phrase-bank.mjs'
 import { DURATION_LE_REF, DURATION_REF, durationRefs, withDurationGrammar } from './duration-grammar.mjs'
 import { retagPhrases, retagPractice } from './retag-durations.mjs'
@@ -19,7 +19,7 @@ const grammarRecord = (lb: string) => ({ id: lb, pt: lb, pr: lb, ds: lb, lb, ex:
 const FIXTURE = [{
   schemaVersion: 1, band: '1', alignment: 'hsk-1', vocabulary: VOCAB, grammar: [grammarRecord(DURATION_REF), grammarRecord('s-vp')],
   groups: [
-    { id: 'g1', units: [unit('wo'), unit('xx'), unit('wu'), unit('fz')], examples: [example('e1', ['wo', 'xx'], 'I rest.')] },
+    { id: 'g1', units: [unit('wo'), unit('xx'), unit('wu'), unit('fz'), gunit('s-vp')], examples: [example('e1', ['wo', 'xx'], 'I rest.')] },
     { id: 'g2', units: [gunit(DURATION_REF), unit('zhu'), unit('san'), unit('tian')], examples: [example('e2', ['wo', 'zhu', 'san', 'tian'], 'I stay three days.', [DURATION_REF])] },
     { id: 'g3', units: [unit('wan'), unit('you'), unit('nian'), unit('le'), unit('hou'), unit('di')], examples: [example('e3', ['wo', 'wan', 'le'], 'I played.')] },
   ],
@@ -76,8 +76,9 @@ describe('strict target', () => {
     addPhrase(cur, state, { zh: '五我休息', py: 'wǔ wǒ', en: 'y', words: ['wo', 'wu', 'zhu', 'san'], grammar: [], source: 'ai', checked: true, lookahead: 2 })
     expect(phrasesForWord(cur, state, wuWord, 0).map(phrase => phrase.zh)).toEqual(['我五'])
     expect(phrasesForWord(cur, state, wuWord, 2).length).toBe(2)
-    const strict = selectWords({ curriculum: cur, state, options: options(), lookahead: 0 }).find(entry => entry.word.lb === 'wu')
-    expect(strict?.need).toBe(1 - (strict?.catalogCount ?? 0) + (strict?.catalogCount ?? 0) - 0 || strict?.need)
+    // pass 0 counts only the strict phrase: the later-lesson phrase does not reduce the need
+    const pass0 = selectWords({ curriculum: cur, state, options: options({ target: 3 }), lookahead: 0 }).find(entry => entry.word.lb === 'wu')
+    expect(pass0?.need).toBe(3 - (pass0?.catalogCount ?? 0) - 1)
     // at look-ahead 2 the target is the fallback (1): both phrases are ready, so the word is done and not selected again
     expect(selectWords({ curriculum: cur, state, options: options(), lookahead: 2 }).some(entry => entry.word.lb === 'wu')).toBe(false)
   })
@@ -105,17 +106,25 @@ describe('strict readability report', () => {
 })
 
 describe('writer prompt', () => {
-  it('tells the writer to use only the listed sentence patterns and keeps a length of time after the verb to the duration window', async () => {
+  it('tells the writer to use only the listed sentence patterns, and a length of time after a verb only with a duration pattern in the list', async () => {
     const cur = c(), state = emptyState()
     const prompts: string[] = []
-    const io = { write: async (_system: string, user: string) => { prompts.push(user); return JSON.stringify({ phrases: [] }) }, check: async () => JSON.stringify({ results: [] }) }
-    await runPipeline({ curriculum: cur, state, io: { write: async (arg: { user: string }) => { prompts.push(arg.user ?? String(arg)); return { phrases: [] } }, check: async () => ({ results: [] }) } as never, options: { ...parseArgs(['--target', '1'], {}), lookahead: [0], batchSize: 20, words: ['xx'] } as never }).catch(() => undefined)
-    void io
-    const text = prompts.join('\n')
-    if (text) {
-      expect(text).toContain('Use ONLY the sentence patterns in that list')
-      expect(text).toContain('length of time after a verb')
+    const fetchImpl = async (_url: string, init: { body: string }) => {
+      const body = JSON.parse(init.body)
+      const text = body.messages.map((m: { content: string }) => m.content).join('\n')
+      prompts.push(text)
+      const content = JSON.stringify(text.includes('"phrases"') && !text.includes('natural') ? { phrases: [] } : { results: [] })
+      return { ok: true, status: 200, text: async () => content, json: async () => ({ choices: [{ message: { content } }] }) }
     }
+    const options = { ...parseArgs(['--base-url', 'http://gateway/v1', '--writer-model', 'w', '--checker-model', 'k', '--writer-api', 'chat', '--checker-api', 'chat', '--target', '5', '--lookahead', '0', '--words', 'xx'], {}), batchSize: 20 }
+    await runPipeline({ curriculum: cur, state, io: createIO(options, fetchImpl as never), options })
+    // the word has no phrase yet, so the writer is asked for one
+    const written = prompts.find(text => text.includes('Use ONLY the sentence patterns'))
+    expect(prompts.length).toBeGreaterThan(0)
+    expect(written, prompts.map(text => text.slice(0, 80)).join(' | ')).toBeDefined()
+    expect(written).toContain('Use ONLY the sentence patterns in that list')
+    expect(written).toContain('length of time after a verb')
+    expect(written).toContain('a point in time')
   })
 })
 

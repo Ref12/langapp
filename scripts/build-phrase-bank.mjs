@@ -791,7 +791,7 @@ export function selectWords({ curriculum, state, options, lookahead = 0 }) {
   for (const word of wordsInScope(curriculum, options)) {
     const record = state.words[word.lb]
     if (record?.status === 'done' && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
-    if (record && !options.retry && !only && (record.lookahead ?? 0) >= lookahead && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
+    if (record && !options.retry && !only && (record.lookahead ?? 0) >= lookahead && (lookahead > 0 || record.status !== 'done' || (record.target ?? 0) >= options.target)) continue
     const existing = fitted.get(word.lb) ?? []
     const mine = phrasesForWord(curriculum, state, word, lookahead)
     const need = targetOf(options, lookahead) - existing.length - mine.length
@@ -802,7 +802,7 @@ export function selectWords({ curriculum, state, options, lookahead = 0 }) {
   for (const word of grammarInScope(curriculum, options)) {
     const record = state.words[word.lb]
     if (record?.status === 'done' && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
-    if (record && !options.retry && !(options.grammar?.length) && (record.lookahead ?? 0) >= lookahead && (lookahead > 0 || (record.target ?? 0) >= options.target)) continue
+    if (record && !options.retry && !(options.grammar?.length) && (record.lookahead ?? 0) >= lookahead && (lookahead > 0 || record.status !== 'done' || (record.target ?? 0) >= options.target)) continue
     const existing = fitted.get(word.lb) ?? []
     const mine = phrasesForWord(curriculum, state, word, lookahead)
     const need = targetOf(options, lookahead) - existing.length - mine.length
