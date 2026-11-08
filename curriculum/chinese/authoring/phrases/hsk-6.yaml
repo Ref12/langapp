@@ -30311,11 +30311,11 @@ phrases:
     py: xià lìng yíng wéi qī liǎng zhōu
     en: The summer camp lasts two weeks.
     words: [xia4-ling4-ying2--summer-camp, wei2-qi1--last, liang3--two, zhou1--week]
-    grammar: [num-zhou1--weeks]
+    grammar: [num-zhou1--weeks, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 4
-    readyAt: 1169
+    readyAt: 1174
 
   - id: 3149
     zh: 收购？算了。
@@ -44391,11 +44391,11 @@ phrases:
     py: zhǔ bō yì zhōu zhǔ guǎn yì zhōu
     en: One week for the host, one week for the manager.
     words: [zhu3-bo1--anchor, yi1--one, zhou1--week, zhu3-guan3--manager]
-    grammar: [p-yi1-mw-p-yi1-mw--turns]
+    grammar: [p-yi1-mw-p-yi1-mw--turns, num-nian2-or-tian1-or-fen1--duration]
     source: ai
     checked: true
     lookahead: 8
-    readyAt: 1483
+    readyAt: 1488
 
   - id: 4623
     zh: 我一时中招了。

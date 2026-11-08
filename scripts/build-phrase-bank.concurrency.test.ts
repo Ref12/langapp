@@ -18,7 +18,7 @@ const FIXTURE = [
 ]
 const WORDS = CHARS.map((_, at) => 'w' + (at + 1))
 const curriculum = () => buildCurriculum(FIXTURE)
-const options = (extra: object = {}) => ({ ...parseArgs(['--target', '3', '--lookahead', '2', '--batch-size', '1', '--lesson-span', '1'], {}), bands: ['1'], words: WORDS, ...extra })
+const options = (extra: object = {}) => ({ ...parseArgs(['--target', '3', '--fallback-target', '3', '--lookahead', '2', '--batch-size', '1', '--lesson-span', '1'], {}), bands: ['1'], words: WORDS, ...extra })
 
 /** A small seeded random generator, so delays differ between batches but a run is reproducible. */
 const random = (seed: number) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296 }

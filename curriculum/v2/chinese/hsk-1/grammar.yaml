@@ -325,14 +325,14 @@
     grammar: [num-mw-n--count, s-you3-np--have]
 
 - id: zh-hsk2026-g066
-  pt: <number> + (年 / 天 / 分)
-  pr: <number> + (nián / tiān / fēn)
-  ds: Count years/days/minutes directly; other time units may differ.
+  pt: <verb> + <length of time>
+  pr: <verb> + <length of time>
+  ds: 'Length of time: <verb> + <length of time>, as in 休息五分钟, 住三天. A length of time goes after the verb; a point in time goes before it (五点休息).'
   lb: num-nian2-or-tian1-or-fen1--duration
   ex:
-    segments: [{word: wo3--me}, {word: zai4--location}, {word: zhe4-li3--here}, {word: zhu4--stay}, {word: san1--three}, {word: tian1--day}, {punctuation: 。}]
-    translation: I am staying here for three days.
-    grammar: [num-nian2-or-tian1-or-fen1--duration, s-zai4-loc-vp--location]
+    segments: [{word: wo3--me}, {word: xiu1-xi5--rest}, {word: wu3--five}, {word: fen1-zhong1--minute}, {punctuation: 。}]
+    translation: I rest for five minutes.
+    grammar: [num-nian2-or-tian1-or-fen1--duration, s-vp--verbal]
 
 - id: zh-hsk1-g009
   pt: <possessor> + 的 + <noun>
@@ -814,7 +814,7 @@
 - id: zh-hsk1-g014
   pt: <time> + <subject> + <verb phrase> / <subject> + <time> + <verb phrase>
   pr: <time> + <subject> + <verb phrase> / <subject> + <time> + <verb phrase>
-  ds: Time before the action, before or after the subject.
+  ds: A point in time (today, at five) goes before the action, before or after the subject.
   lb: time-s-vp-or-s-time-vp--time
   ex:
     segments: [{word: wo3--me}, {word: jin1-tian1--today}, {word: gong1-zuo4--work}, {punctuation: 。}]
