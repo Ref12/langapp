@@ -4,7 +4,7 @@
 
 schemaVersion: 2
 band: "2"
-lastId: 528
+lastId: 1071
 phrases:
   - id: 1
     zh: 她高高兴兴地踢足球。
@@ -5621,3 +5621,5661 @@ phrases:
     checked: true
     lookahead: 8
     readyAt: 576
+
+  - id: 529
+    zh: 别进门。
+    py: bié jìn mén
+    en: Don't go in.
+    words: [bie2--dont, jin4--enter, men2--door]
+    grammar: [bie2-vp--dont]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 102
+
+  - id: 530
+    zh: 小孩儿跑进来。
+    py: xiǎo háir pǎo jìn lái
+    en: The child runs in.
+    words: [xiao3-hai2-r5--child, pao3--run, jin4-lai2--enter]
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 102
+
+  - id: 531
+    zh: 男孩儿爱自己。
+    py: nán háir ài zì jǐ
+    en: The boy loves himself.
+    words: [zi4-ji3--self, nan2-hai2-r5--boy, ai4--love, zi4-ji3--own]
+    grammar: [s-v-zi4-ji3--self]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 97
+
+  - id: 532
+    zh: 女孩儿看见自己。
+    py: nǚ háir kàn jiàn zì jǐ
+    en: The girl sees herself.
+    words: [nv3-hai2-r5--girl, kan4-jian4--see, zi4-ji3--own]
+    grammar: [s-v-zi4-ji3--self]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 97
+
+  - id: 533
+    zh: 奶奶跟爷爷在外面。
+    py: nǎi nai gēn yé ye zài wài miàn
+    en: Grandma and Grandpa are outside.
+    words: [nai3-nai5--grandmother, gen1--and, ye2-ye5--grandfather, zai4--location, wai4-mian4--outside]
+    grammar: [np-gen1-np--and, s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 98
+
+  - id: 534
+    zh: 奶奶跟丈夫在外面。
+    py: nǎi nai gēn zhàng fu zài wài miàn
+    en: Grandma and her husband are outside.
+    words: [nai3-nai5--grandmother, gen1--and, zhang4-fu5--husband, zai4--location, wai4-mian4--outside]
+    grammar: [np-gen1-np--and, s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 98
+
+  - id: 535
+    zh: 是坐地铁，还是坐火车？
+    py: shì zuò dì tiě hái shi zuò huǒ chē
+    en: Should we take the subway or the train?
+    words: [shi4--emphasis, shi4--identity, zuo4--sit, di4-tie3--subway, hai2-shi5--better, huo3-che1--train]
+    grammar: [shi4-clause-hai2-shi5-clause--choice]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 113
+
+  - id: 536
+    zh: 是地铁快，还是火车快？
+    py: shì dì tiě kuài hái shi huǒ chē kuài
+    en: Is the subway faster, or the train?
+    words: [shi4--identity, di4-tie3--subway, kuai4--fast, hai2-shi5--better, huo3-che1--train]
+    grammar: [shi4-clause-hai2-shi5-clause--choice]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 113
+
+  - id: 537
+    zh: 红茶还是绿茶？
+    py: hóng chá hái shi lǜ chá
+    en: Black tea or green tea?
+    words: [hong2-cha2--tea, hai2-shi5--better, lv4-cha2--tea]
+    grammar: [option-hai2-shi5-option--choice]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 114
+
+  - id: 538
+    zh: 我往右边走。
+    py: wǒ wǎng yòu bian zǒu
+    en: I go to the right.
+    words: [wang3--toward, wo3--me, wang3--go, you4-bian5--right, zou3--leave]
+    grammar: [wang3-loc-vp--toward]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 92
+
+  - id: 539
+    zh: 右边的路很长。
+    py: yòu bian de lù hěn cháng
+    en: The road on the right is long.
+    words: [you4-bian5--right, de5--description, lu4--road, hen3--very, chang2--long]
+    grammar: [adjp-de5-n--describe, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 92
+
+  - id: 540
+    zh: 他帮忙。
+    py: tā bāng máng
+    en: He helps.
+    words: [ta1--he, bang1-mang2--help]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 541
+    zh: 车站在那边。
+    py: chē zhàn zài nà bian
+    en: The train station is over there.
+    words: [che1-zhan4--station, zai4--location, na4-bian5--there]
+    grammar: [s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 542
+    zh: 她打车去车站。
+    py: tā dǎ chē qù chē zhàn
+    en: She takes a taxi to the train station.
+    words: [ta1--she, da3-che1--taxi, qu4--go, che1-zhan4--station]
+    grammar: [s-vp-vp--means]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 543
+    zh: 她在车站等我。
+    py: tā zài chē zhàn děng wǒ
+    en: She waits for me at the train station.
+    words: [ta1--she, zai4--location, che1-zhan4--station, deng3--wait, wo3--me]
+    grammar: [s-zai4-loc-vp--location, v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 544
+    zh: 那边是机场。
+    py: nà bian shì jī chǎng
+    en: The airport is over there.
+    words: [na4-bian5--there, shi4--identity, ji1-chang3--airport]
+    grammar: [loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 545
+    zh: 她有时候跳舞。
+    py: tā yǒu shí hou tiào wǔ
+    en: She sometimes dances.
+    words: [ta1--she, you3-shi2-hou5--sometimes, tiao4-wu3--dance]
+    grammar: [s-you3-shi2-or-you3-shi2-hou5-vp--sometimes]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 105
+
+  - id: 546
+    zh: 我想走路。
+    py: wǒ xiǎng zǒu lù
+    en: I want to walk.
+    words: [wo3--me, xiang3--miss, zou3-lu4--walk]
+    grammar: [s-xiang3-vp--want]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 105
+
+  - id: 547
+    zh: 跳舞真好啊！
+    py: tiào wǔ zhēn hǎo a
+    en: Dancing is really nice!
+    words: [tiao4-wu3--dance, zhen1--really, hao3--good, a5--particle]
+    grammar: [stmt-a5--tone, zhen1-adj--really]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 105
+
+  - id: 548
+    zh: 我从小爱好跳舞。
+    py: wǒ cóng xiǎo ài hào tiào wǔ
+    en: I have enjoyed dancing since childhood.
+    words: [wo3--me, cong2-xiao3--childhood, ai4-hao4--hobby, tiao4-wu3--dance]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 106
+
+  - id: 549
+    zh: 我开始运动。
+    py: wǒ kāi shǐ yùn dòng
+    en: I start exercising.
+    words: [kai1-shi3--begin, wo3--me, kai1-shi3--beginning, yun4-dong4--sports]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 106
+
+  - id: 550
+    zh: 她快出门了。
+    py: tā kuài chū mén le
+    en: She is about to go out.
+    words: [kuai4--soon, ta1--she, kuai4--fast, chu1-men2--go-out, le5--intensify]
+    grammar: [kuai4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 106
+
+  - id: 551
+    zh: 天气那么热！
+    py: tiān qì nà me rè
+    en: The weather is so hot!
+    words: [na4-me5--degree, tian1-qi4--weather, na4-me5--then, re4--hot]
+    grammar: [zhe4-me5-or-na4-me5-adj--degree]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 121
+
+  - id: 553
+    zh: 商场里坐着一位女士。
+    py: shāng chǎng lǐ zuò zhe yí wèi nǚ shì
+    en: A lady is sitting in the mall.
+    words: [shang1-chang3--mall, li3--inside, zuo4--sit, zhe5--ongoing, yi1--one, wei4--people, nv3-shi4--lady]
+    grammar: [loc-v-zhe5-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 554
+    zh: 他在门口踢足球。
+    py: tā zài mén kǒu tī zú qiú
+    en: He plays soccer at the entrance.
+    words: [ta1--he, zai4--location, men2-kou3--entrance, ti1--kick, zu2-qiu2--ball]
+    grammar: [s-zai4-loc-vp--location]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 555
+    zh: 教室里坐着一个小孩儿。
+    py: jiào shì lǐ zuò zhe yí gè xiǎo háir
+    en: A child is sitting in the classroom.
+    words: [jiao4-shi4--classroom, li3--inside, zuo4--sit, zhe5--ongoing, yi1--one, ge4--classifier, xiao3-hai2-r5--child]
+    grammar: [loc-v-zhe5-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 556
+    zh: 她唱得很好。
+    py: tā chàng de hěn hǎo
+    en: She sings very well.
+    words: [ta1--she, chang4--sing, de5--manner, hen3--very, hao3--good]
+    grammar: [v-de5-adjp--performance]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 557
+    zh: 他和她比颜色。
+    py: tā hé tā bǐ yán sè
+    en: He and she compare colors.
+    words: [ta1--he, he2--and, ta1--she, bi3--compare, yan2-se4--color]
+    grammar: [s-he2-p-vp--with]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 88
+
+  - id: 558
+    zh: 小王拿包。
+    py: xiǎo wáng ná bāo
+    en: Xiao Wang takes the bag.
+    words: [xiao3--small, wang2--surname, na2--take, bao1--bag]
+    grammar: [xiao3-surname--address, v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 88
+
+  - id: 559
+    zh: 这些颜色很漂亮。
+    py: zhè xiē yán sè hěn piào liang
+    en: These colors are pretty.
+    words: [zhe4-xie1--these, yan2-se4--color, hen3--very, piao4-liang5--pretty]
+    grammar: [zhe4-xie1-or-na4-xie1-n--these-those, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 88
+
+  - id: 560
+    zh: 你拿一拿包吧。
+    py: nǐ ná yì ná bāo ba
+    en: Take the bag for a moment.
+    words: [ni3--you, na2--take, yi1--one, bao1--bag, ba5--suggestion]
+    grammar: [n-n--modifier, v-yi1-v--brief, v-obj--object, stmt-ba5--suggest]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 88
+
+  - id: 561
+    zh: 他们中午点肉。
+    py: tā men zhōng wǔ diǎn ròu
+    en: They order meat at noon.
+    words: [dian3--order, ta1-men5--they, zhong1-wu3--noon, dian3--oclock, rou4--meat]
+    grammar: [pron-or-person-men5--plural, time-s-vp-or-s-time-vp--time, v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 89
+
+  - id: 562
+    zh: 饭店里有肉。
+    py: fàn diàn lǐ yǒu ròu
+    en: There is meat in the restaurant.
+    words: [fan4-dian4--restaurant, li3--inside, you3--have, rou4--meat]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 89
+
+  - id: 563
+    zh: 我跟奶奶坐地铁。
+    py: wǒ gēn nǎi nai zuò dì tiě
+    en: I take the subway with Grandma.
+    words: [gen1--with, wo3--me, gen1--and, nai3-nai5--grandmother, zuo4--sit, di4-tie3--subway]
+    grammar: [s-gen1-p-vp--with]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 117
+
+  - id: 564
+    zh: 酒店左边是药店。
+    py: jiǔ diàn zuǒ bian shì yào diàn
+    en: The pharmacy is to the left of the hotel.
+    words: [jiu3-dian4--hotel, zuo3-bian5--left, shi4--identity, yao4-dian4--pharmacy]
+    grammar: [n-zuo3-or-you4--side, loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 117
+
+  - id: 565
+    zh: 她跟我喝红茶。
+    py: tā gēn wǒ hē hóng chá
+    en: She drinks black tea with me.
+    words: [ta1--she, gen1--and, wo3--me, he1--drink, hong2-cha2--tea]
+    grammar: [s-gen1-p-vp--with]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 117
+
+  - id: 566
+    zh: 他已经打电话了。
+    py: tā yǐ jīng dǎ diàn huà le
+    en: He has already called.
+    words: [da3--hit, ta1--he, yi3-jing1--already, da3-dian4-hua4--phone, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 118
+
+  - id: 567
+    zh: 他已经告诉我姓名了。
+    py: tā yǐ jīng gào su wǒ xìng míng le
+    en: He has already told me his full name.
+    words: [ta1--he, yi3-jing1--already, gao4-su5--tell, wo3--me, xing4-ming2--name, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already, s-v-p-obj--double-obj]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 118
+
+  - id: 569
+    zh: 高中有二十多个班。
+    py: gāo zhōng yǒu èr shí duō gè bān
+    en: There are more than twenty classes at the senior high school.
+    words: [ban1--class, gao1-zhong1--school, you3--have, er4--two, shi2--ten, duo1--how, ge4--classifier, ban1--shift]
+    grammar: [num-duo1-mw-n--over, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 570
+    zh: 我有三十多个本子。
+    py: wǒ yǒu sān shí duō gè běn zi
+    en: I have more than thirty notebooks.
+    words: [duo1--over, wo3--me, you3--have, san1--three, shi2--ten, duo1--how, ge4--classifier, ben3-zi5--notebook]
+    grammar: [num-duo1-mw-n--over]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 571
+    zh: 我送给她一个本子。
+    py: wǒ sòng gěi tā yí gè běn zi
+    en: I gave her a notebook as a present.
+    words: [wo3--me, song4--gift, gei3--give, ta1--she, yi1--one, ge4--classifier, ben3-zi5--notebook]
+    grammar: [s-v-gei3-p-obj--transfer]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 572
+    zh: 网上有很多本子。
+    py: wǎng shàng yǒu hěn duō běn zi
+    en: There are lots of notebooks online.
+    words: [wang3-shang4--online, you3--have, hen3--very, duo1--how, ben3-zi5--notebook]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 573
+    zh: 我有四十多个本子。
+    py: wǒ yǒu sì shí duō gè běn zi
+    en: I have more than forty notebooks.
+    words: [wo3--me, you3--have, si4--four, shi2--ten, duo1--how, ge4--classifier, ben3-zi5--notebook]
+    grammar: [num-duo1-mw-n--over]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 574
+    zh: 她送给我一个球。
+    py: tā sòng gěi wǒ yí gè qiú
+    en: She gave me a ball as a present.
+    words: [ta1--she, song4--gift, gei3--give, wo3--me, yi1--one, ge4--classifier, qiu2--ball]
+    grammar: [s-v-gei3-p-obj--transfer]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 575
+    zh: 我常跑步。
+    py: wǒ cháng pǎo bù
+    en: I often run.
+    words: [wo3--me, chang2--often, pao3-bu4--run]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 138
+
+  - id: 576
+    zh: 他从高中出来。
+    py: tā cóng gāo zhōng chū lái
+    en: He comes out of the senior high school.
+    words: [ta1--he, cong2--via, gao1-zhong1--school, chu1-lai2--come-out]
+    grammar: [cong2-loc-vp--from, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 138
+
+  - id: 577
+    zh: 她经常画花。
+    py: tā jīng cháng huà huā
+    en: She often draws flowers.
+    words: [ta1--she, jing1-chang2--often, hua4--picture, hua1--flower]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 138
+
+  - id: 578
+    zh: 书包开着。
+    py: shū bāo kāi zhe
+    en: The schoolbag is open.
+    words: [shu1-bao1--schoolbag, kai1--operate, zhe5--ongoing]
+    grammar: [v-zhe5--state]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 109
+
+  - id: 579
+    zh: 饭馆小，但菜好吃。
+    py: fàn guǎn xiǎo dàn cài hǎo chī
+    en: The restaurant is small, but the food is tasty.
+    words: [fan4-guan3--restaurant, xiao3--small, dan4--but, cai4--vegetables, hao3-chi1--tasty]
+    grammar: [clause-dan4-or-dan4-shi4-clause--but]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 109
+
+  - id: 580
+    zh: 饭馆开着。
+    py: fàn guǎn kāi zhe
+    en: The restaurant is open.
+    words: [fan4-guan3--restaurant, kai1--operate, zhe5--ongoing]
+    grammar: [v-zhe5--state]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 109
+
+  - id: 581
+    zh: 往左走。
+    py: wǎng zuǒ zǒu
+    en: Go left.
+    words: [wang3--go, zuo3--left, zou3--leave]
+    grammar: [wang3-loc-vp--toward]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 110
+
+  - id: 582
+    zh: 教室右边有洗手间。
+    py: jiào shì yòu bian yǒu xǐ shǒu jiān
+    en: There is a restroom to the right of the classroom.
+    words: [jiao4-shi4--classroom, you4-bian5--right, you3--have, xi3-shou3-jian1--restroom]
+    grammar: [n-zuo3-or-you4--side, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 110
+
+  - id: 583
+    zh: 机票已经有了。
+    py: jī piào yǐ jīng yǒu le
+    en: We already have the plane tickets.
+    words: [ji1-piao4--ticket, yi3-jing1--already, you3--have, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 584
+    zh: 机场很近。
+    py: jī chǎng hěn jìn
+    en: The airport is very near.
+    words: [ji1-chang3--airport, hen3--very, jin4--near]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 585
+    zh: 门票不错。
+    py: mén piào bú cuò
+    en: The admission ticket is not bad.
+    words: [men2-piao4--ticket, bu4-cuo4--good]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 586
+    zh: 他们有票。
+    py: tā men yǒu piào
+    en: They have tickets.
+    words: [ta1-men5--they, you3--have, piao4--ticket]
+    grammar: [s-you3-np--have]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 587
+    zh: 外国很远。
+    py: wài guó hěn yuǎn
+    en: A foreign country is very far away.
+    words: [wai4-guo2--foreign-country, hen3--very, yuan3--far]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 589
+    zh: 楼很高。
+    py: lóu hěn gāo
+    en: The building is tall.
+    words: [lou2--floor, lou2--building, hen3--very, gao1--tall]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 590
+    zh: 路很远。
+    py: lù hěn yuǎn
+    en: The route is far.
+    words: [lu4--route, lu4--road, hen3--very, yuan3--far]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 591
+    zh: 这儿是公交车站。
+    py: zhèr shì gōng jiāo chē zhàn
+    en: This is the bus station.
+    words: [zhe4-r5--here, shi4--identity, gong1-jiao1-che1--bus, zhan4--station]
+    grammar: [loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 592
+    zh: 二楼是酒店。
+    py: èr lóu shì jiǔ diàn
+    en: The second floor is the hotel.
+    words: [er4--two, lou2--building, shi4--identity, jiu3-dian4--hotel]
+    grammar: [num-unit--ordinal, loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 593
+    zh: 我还没打球呢。
+    py: wǒ hái méi dǎ qiú ne
+    en: I haven't played ball yet.
+    words: [da3--play, wo3--me, hai2--also, mei2--negation, da3--hit, qiu2--ball, ne5--reciprocal]
+    grammar: [s-hai2-mei2-vp-ne5--not-yet]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 594
+    zh: 他让你打球。
+    py: tā ràng nǐ dǎ qiú
+    en: He asks you to play ball.
+    words: [rang4--ask, ta1--he, rang4--allow, ni3--you, da3--hit, qiu2--ball]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 595
+    zh: 球在下面。
+    py: qiú zài xià miàn
+    en: The ball is below.
+    words: [qiu2--ball, zai4--location, xia4-mian4--below]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 596
+    zh: 我还没出去呢。
+    py: wǒ hái méi chū qù ne
+    en: I haven't gone out yet.
+    words: [wo3--me, hai2--also, mei2--negation, chu1-qu4--go-out, ne5--reciprocal]
+    grammar: [s-hai2-mei2-vp-ne5--not-yet]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 597
+    zh: 他还没画花呢。
+    py: tā hái méi huà huā ne
+    en: He hasn't drawn the flower yet.
+    words: [hua4--draw, ta1--he, hai2--also, mei2--negation, hua4--picture, hua1--flower, ne5--reciprocal]
+    grammar: [s-hai2-mei2-vp-ne5--not-yet]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 134
+
+  - id: 598
+    zh: 他还没跑步呢。
+    py: tā hái méi pǎo bù ne
+    en: He hasn't run yet.
+    words: [ta1--he, hai2--also, mei2--negation, pao3-bu4--run, ne5--reciprocal]
+    grammar: [s-hai2-mei2-vp-ne5--not-yet]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 134
+
+  - id: 599
+    zh: 几本本子都很好。
+    py: jǐ běn běn zi dōu hěn hǎo
+    en: Several notebooks are all very good.
+    words: [ji3--quantity, ben3--books, ben3-zi5--notebook, dou1--all, hen3--very, hao3--good]
+    grammar: [ji3-mw-n--several]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 134
+
+  - id: 600
+    zh: 周六我高高兴兴地游泳。
+    py: zhōu liù wǒ gāo gāo xìng xìng de yóu yǒng
+    en: I happily swim on Saturday.
+    words: [zhou1-liu4--saturday, wo3--me, gao1-gao1-xing4-xing4--cheerful, de5--adverbial, you2-yong3--swim]
+    grammar: [a-a-b-b--vivid, adjp-de5-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 153
+
+  - id: 601
+    zh: 周日运动多舒服啊！
+    py: zhōu rì yùn dòng duō shū fu a
+    en: How good exercise feels on Sunday!
+    words: [zhou1-ri4--sunday, yun4-dong4--sports, duo1--how, shu1-fu5--comfortable, a5--particle]
+    grammar: [duo1-adj-a5--how]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 153
+
+  - id: 602
+    zh: 我自己打篮球。
+    py: wǒ zì jǐ dǎ lán qiú
+    en: I play basketball by myself.
+    words: [wo3--me, zi4-ji3--own, da3--hit, lan2-qiu2--basketball]
+    grammar: [s-zi4-ji3-vp--personally]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 153
+
+  - id: 603
+    zh: 都周六了！
+    py: dōu zhōu liù le
+    en: It’s Saturday already!
+    words: [dou1--already, dou1--all, zhou1-liu4--saturday, le5--intensify]
+    grammar: [dou1-state-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 154
+
+  - id: 604
+    zh: 都要过年了！
+    py: dōu yào guò nián le
+    en: It’s almost New Year already!
+    words: [dou1--all, yao4--want, guo4-nian2--new-year, le5--intensify]
+    grammar: [dou1-state-le5--already, yao4-or-kuai4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 154
+
+  - id: 605
+    zh: 他还打篮球。
+    py: tā hái dǎ lán qiú
+    en: He still plays basketball.
+    words: [ta1--he, hai2--also, da3--hit, lan2-qiu2--basketball]
+    grammar: [s-hai2-pred--still]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 154
+
+  - id: 606
+    zh: 我们常打球。
+    py: wǒ men cháng dǎ qiú
+    en: We often play ball games.
+    words: [qiu2--game, wo3-men5--we, chang2--often, da3--hit, qiu2--ball]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 607
+    zh: 身体可能很累。
+    py: shēn tǐ kě néng hěn lèi
+    en: The body may be very tired.
+    words: [shen1-ti3--body, shen1-ti3--health, ke3-neng2--might, hen3--very, lei4--tired]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 608
+    zh: 他在考试时可能很累。
+    py: tā zài kǎo shì shí kě néng hěn lèi
+    en: He may be tired during the exam.
+    words: [shi2--time, ta1--he, zai4--location, kao3-shi4--take-exam, shi2--when, ke3-neng2--might, hen3--very, lei4--tired]
+    grammar: [s-zai4-time-vp--time, s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 609
+    zh: 他可能很舒服。
+    py: tā kě néng hěn shū fu
+    en: He may feel quite well.
+    words: [shu1-fu5--well, ta1--he, ke3-neng2--might, hen3--very, shu1-fu5--comfortable]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 610
+    zh: 我常送他。
+    py: wǒ cháng sòng tā
+    en: I often see him off.
+    words: [song4--farewell, wo3--me, chang2--often, song4--gift, ta1--he]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 611
+    zh: 他常踢足球。
+    py: tā cháng tī zú qiú
+    en: He often plays soccer.
+    words: [ti1--play, ta1--he, chang2--often, ti1--kick, zu2-qiu2--ball]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 612
+    zh: 他可能姓高。
+    py: tā kě néng xìng gāo
+    en: His surname may be Gao.
+    words: [xing4--named, ta1--he, ke3-neng2--might, xing4--surname, gao1--tall]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 613
+    zh: 我们常游泳。
+    py: wǒ men cháng yóu yǒng
+    en: We often swim.
+    words: [you2--swim, wo3-men5--we, chang2--often, you2-yong3--swim]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 614
+    zh: 他们常运动。
+    py: tā men cháng yùn dòng
+    en: They often exercise.
+    words: [yun4-dong4--exercise, ta1-men5--they, chang2--often, yun4-dong4--sports]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 615
+    zh: 他可能踢足球。
+    py: tā kě néng tī zú qiú
+    en: He may play soccer.
+    words: [zu2-qiu2--soccer, ta1--he, ke3-neng2--might, ti1--kick, zu2-qiu2--ball]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 616
+    zh: 高中有两万个本子。
+    py: gāo zhōng yǒu liǎng wàn gè běn zi
+    en: The high school has twenty thousand notebooks.
+    words: [gao1-zhong1--school, you3--have, liang3--two, wan4--ten-thousand, ge4--classifier, ben3-zi5--notebook]
+    grammar: [num-wan4-rest--ten-thousands]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 141
+
+  - id: 617
+    zh: 网上有三万个本子。
+    py: wǎng shàng yǒu sān wàn gè běn zi
+    en: There are thirty thousand notebooks online.
+    words: [wang3-shang4--online, you3--have, san1--three, wan4--ten-thousand, ge4--classifier, ben3-zi5--notebook]
+    grammar: [num-wan4-rest--ten-thousands, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 141
+
+  - id: 618
+    zh: 她考过两次。
+    py: tā kǎo guò liǎng cì
+    en: She has taken the exam twice.
+    words: [ta1--she, kao3--exam, guo4--celebrate, liang3--two, ci4--times]
+    grammar: [v-le5-or-guo5-obj-num-ci4--event-count, v-guo5--experience, v-num-ci4--times]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 141
+
+  - id: 619
+    zh: 里面有一包红茶。
+    py: lǐ miàn yǒu yì bāo hóng chá
+    en: There is a packet of black tea inside.
+    words: [bao1--packet, li3-mian4--inside, you3--have, yi1--one, bao1--bag, hong2-cha2--tea]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 142
+
+  - id: 620
+    zh: 我跟她过了一天。
+    py: wǒ gēn tā guò le yì tiān
+    en: I spent a day with her.
+    words: [guo4--time, wo3--me, gen1--and, ta1--she, guo4--celebrate, le5--intensify, yi1--one, tian1--day]
+    grammar: [s-gen1-p-vp--with, num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 142
+
+  - id: 621
+    zh: 他送给我一包咖啡。
+    py: tā sòng gěi wǒ yì bāo kā fēi
+    en: He gave me a packet of coffee.
+    words: [song4--deliver, ta1--he, song4--gift, gei3--give, wo3--me, yi1--one, bao1--bag, ka1-fei1--coffee]
+    grammar: [s-v-gei3-p-obj--transfer]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 142
+
+  - id: 622
+    zh: 一上网，就看网上的画。
+    py: yí shàng wǎng jiù kàn wǎng shàng de huà
+    en: As soon as I go online, I look at pictures online.
+    words: [yi1--as-soon-as, yi1--one, shang4-wang3--online, jiu4--immediately-after, kan4--watch, wang3-shang4--online, de5--description, hua4--picture]
+    grammar: [yi1-vp-jiu4-clause--as-soon, clause-jiu4-clause--then, vp-de5-n--relative]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 142
+
+  - id: 625
+    zh: 你为什么要出去？
+    py: nǐ wèi shén me yào chū qù
+    en: Why are you going out?
+    words: [ni3--you, wei4-shen2-me5--why, yao4--want, chu1-qu4--go-out]
+    grammar: [s-wei4-shen2-me5-pred--why]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 129
+
+  - id: 626
+    zh: 从上周开始运动。
+    py: cóng shàng zhōu kāi shǐ yùn dòng
+    en: I started exercising last week.
+    words: [cong2--from, cong2--via, shang4--attend, zhou1--week, kai1-shi3--beginning, yun4-dong4--sports]
+    grammar: [cong2-time-vp--since]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 130
+
+  - id: 627
+    zh: 黑色的在这边。
+    py: hēi sè de zài zhè biān
+    en: The black one is over here.
+    words: [de5--nominalizer, hei1-se4--black, de5--description, zai4--location, zhe4-bian1--this-side]
+    grammar: [mod-de5--nominal]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 130
+
+  - id: 628
+    zh: 红色很不错。
+    py: hóng sè hěn bú cuò
+    en: Red is quite nice.
+    words: [hong2-se4--red, hen3--very, bu4-cuo4--good]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 130
+
+  - id: 629
+    zh: 从小时候开始运动。
+    py: cóng xiǎo shí hou kāi shǐ yùn dòng
+    en: I have exercised since childhood.
+    words: [cong2-xiao3--childhood, shi2-hou5--time, kai1-shi3--beginning, yun4-dong4--sports]
+    grammar: [cong2-time-vp--since]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 130
+
+  - id: 630
+    zh: 绿色的在那边。
+    py: lǜ sè de zài nà bian
+    en: The green one is over there.
+    words: [lv4-se4--green, de5--description, zai4--location, na4-bian5--there]
+    grammar: [mod-de5--nominal]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 130
+
+  - id: 631
+    zh: 我给小孩儿准备药。
+    py: wǒ gěi xiǎo háir zhǔn bèi yào
+    en: I prepare medicine for the child.
+    words: [gei3--for, wo3--me, gei3--give, xiao3-hai2-r5--child, zhun3-bei4--prepare, yao4--medicine]
+    grammar: [gei3-p-vp--for-to]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 99
+
+  - id: 632
+    zh: 我给爷爷介绍女孩儿。
+    py: wǒ gěi yé ye jiè shào nǚ háir
+    en: I introduce a girl to Grandpa.
+    words: [gei3--to, wo3--me, gei3--give, ye2-ye5--grandfather, jie4-shao4--introduce, nv3-hai2-r5--girl]
+    grammar: [gei3-p-vp--for-to]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 99
+
+  - id: 633
+    zh: 妻子介绍丈夫。
+    py: qī zi jiè shào zhàng fu
+    en: The wife introduces her husband.
+    words: [qi1-zi5--wife, jie4-shao4--introduce, zhang4-fu5--husband]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 99
+
+  - id: 634
+    zh: 妻子跟丈夫一起游泳。
+    py: qī zi gēn zhàng fu yì qǐ yóu yǒng
+    en: The wife and her husband swim together.
+    words: [qi1-zi5--wife, gen1--and, zhang4-fu5--husband, yi1-qi3--together, you2-yong3--swim]
+    grammar: [np-gen1-np--and, group-yi1-qi3-vp--together]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 99
+
+  - id: 635
+    zh: 妻子准备药。
+    py: qī zi zhǔn bèi yào
+    en: The wife prepares medicine.
+    words: [qi1-zi5--wife, zhun3-bei4--prepare, yao4--medicine]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 99
+
+  - id: 636
+    zh: 爷爷在楼后面。
+    py: yé ye zài lóu hòu mian
+    en: Grandpa is behind the building.
+    words: [hou4-mian5--behind, ye2-ye5--grandfather, zai4--location, lou2--building, hou4-mian5--later]
+    grammar: [s-zai4-loc--at, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 637
+    zh: 他的名和姓在这里。
+    py: tā de míng hé xìng zài zhè lǐ
+    en: His given name and surname are here.
+    words: [ta1--he, de5--description, ming2--name, he2--and, xing4--surname, zai4--location, zhe4-li3--here]
+    grammar: [owner-de5-n--possess, np-he2-np--and, s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 638
+    zh: 请洗手吧。
+    py: qǐng xǐ shǒu ba
+    en: Please wash your hands.
+    words: [qing3--invite, xi3--wash, shou3--hand, ba5--suggestion]
+    grammar: [qing3-vp--request, stmt-ba5--suggest, v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 639
+    zh: 小孩儿姓王。
+    py: xiǎo háir xìng wáng
+    en: The child’s surname is Wang.
+    words: [xiao3-hai2-r5--child, xing4--surname, wang2--surname]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 640
+    zh: 我已经记得姓名了。
+    py: wǒ yǐ jīng jì de xìng míng le
+    en: I already remember the full name.
+    words: [wo3--me, yi3-jing1--already, ji4-de5--remember, xing4-ming2--name, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 641
+    zh: 还是上去吧。
+    py: hái shi shàng qù ba
+    en: We’d better go up.
+    words: [hai2-shi5--better, shang4-qu4--ascend, ba5--suggestion]
+    grammar: [hai2-shi5-vp-ba5--better]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 642
+    zh: 我看完了。
+    py: wǒ kàn wán le
+    en: I finished watching.
+    words: [wo3--me, kan4--watch, wan2--finish, le5--intensify]
+    grammar: [v-wan2--finish]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 643
+    zh: 这画没意思。
+    py: zhè huà méi yì si
+    en: This picture is boring.
+    words: [zhe4--this, hua4--picture, mei2-yi4-si5--boring]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 120
+
+  - id: 644
+    zh: 这画最漂亮。
+    py: zhè huà zuì piào liang
+    en: This picture is the prettiest.
+    words: [zhe4--this, hua4--picture, zui4--most, piao4-liang5--pretty]
+    grammar: [zui4-adj--most]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 120
+
+  - id: 645
+    zh: 别打车。
+    py: bié dǎ chē
+    en: Don’t take a taxi.
+    words: [bie2--dont, da3-che1--taxi]
+    grammar: [bie2-vp--dont]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 94
+
+  - id: 646
+    zh: 别踢椅子。
+    py: bié tī yǐ zi
+    en: Don’t kick the chair.
+    words: [bie2--dont, ti1--kick, yi3-zi5--chair]
+    grammar: [bie2-vp--dont]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 94
+
+  - id: 647
+    zh: 你慢一点儿吧。
+    py: nǐ màn yì diǎnr ba
+    en: Take it a little slower.
+    words: [ni3--you, man4--slow, yi1-dian3-r5--little, ba5--suggestion]
+    grammar: [adj-yi1-dian3-r5--a-bit-more, stmt-ba5--suggest, pron-pred--pronoun, s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 95
+
+  - id: 648
+    zh: 他们一起游泳。
+    py: tā men yì qǐ yóu yǒng
+    en: They swim together.
+    words: [ta1-men5--they, yi1-qi3--together, you2-yong3--swim]
+    grammar: [group-yi1-qi3-vp--together, pron-or-person-men5--plural, s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 95
+
+  - id: 649
+    zh: 他打开门。
+    py: tā dǎ kāi mén
+    en: He opens the door.
+    words: [ta1--he, da3-kai1--open, men2--door]
+    grammar: [v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 650
+    zh: 你过来吧。
+    py: nǐ guò lái ba
+    en: Come over.
+    words: [ni3--you, guo4-lai2--come-over, ba5--suggestion]
+    grammar: [stmt-ba5--suggest, s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 651
+    zh: 他忘了书包。
+    py: tā wàng le shū bāo
+    en: He forgot the schoolbag.
+    words: [ta1--he, wang4--forget, le5--intensify, shu1-bao1--schoolbag]
+    grammar: [v-le5-obj--complete]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 652
+    zh: 打开书包，再拿笔。
+    py: dǎ kāi shū bāo zài ná bǐ
+    en: Open the schoolbag, then take a pen.
+    words: [zai4--then, da3-kai1--open, shu1-bao1--schoolbag, zai4--again, na2--take, bi3--pen]
+    grammar: [vp-zai4-vp--next, v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 653
+    zh: 手表坏了。
+    py: shǒu biǎo huài le
+    en: The watch is broken.
+    words: [shou3-biao3--watch, huai4--broken, le5--intensify]
+    grammar: [state-le5--change]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 108
+
+  - id: 654
+    zh: 手表在书包上面。
+    py: shǒu biǎo zài shū bāo shàng miàn
+    en: The watch is on top of the schoolbag.
+    words: [shou3-biao3--watch, zai4--location, shu1-bao1--schoolbag, shang4-mian4--above]
+    grammar: [s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 108
+
+  - id: 655
+    zh: 虽然天气阴，但是他走路。
+    py: suī rán tiān qì yīn dàn shì tā zǒu lù
+    en: Although it is cloudy, he walks.
+    words: [sui1-ran2--although, tian1-qi4--weather, yin1--cloudy, dan4-shi4--but, ta1--he, zou3-lu4--walk]
+    grammar: [sui1-ran2-clause-dan4-shi4-clause--although]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 108
+
+  - id: 656
+    zh: 从那边跑回来。
+    py: cóng nà bian pǎo huí lai
+    en: Run back from over there.
+    words: [cong2--via, na4-bian5--there, pao3--run, hui2-lai5--return]
+    grammar: [cong2-route-vp--via, v-hui2-lai5-or-hui2-qu5--return]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 90
+
+  - id: 657
+    zh: 路很长。
+    py: lù hěn cháng
+    en: The road is long.
+    words: [lu4--road, hen3--very, chang2--long]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 91
+
+  - id: 658
+    zh: 那条路没有这条路长。
+    py: nà tiáo lù méi yǒu zhè tiáo lù cháng
+    en: That road is not as long as this road.
+    words: [mei2-you3--less-than, na4--that, tiao2--classifier, lu4--road, mei2-you3--possession, zhe4--this, chang2--long]
+    grammar: [a-mei2-you3-b-adj--not-as]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 91
+
+  - id: 659
+    zh: 哪条路？
+    py: nǎ tiáo lù
+    en: Which road?
+    words: [na3--which, tiao2--classifier, lu4--road]
+    grammar: [na3-mw-n--which]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 91
+
+  - id: 660
+    zh: 包没有床大。
+    py: bāo méi yǒu chuáng dà
+    en: The bag is not as big as the bed.
+    words: [bao1--bag, mei2-you3--possession, chuang2--bed, da4--big]
+    grammar: [a-mei2-you3-b-adj--not-as]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 91
+
+  - id: 661
+    zh: 这是白色的笔。
+    py: zhè shì bái sè de bǐ
+    en: This is a white pen.
+    words: [zhe4--this, shi4--identity, bai2-se4--white, de5--description, bi3--pen]
+    grammar: [zhe4-or-na4-shi4-np--identify, adjp-de5-n--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 662
+    zh: 他有好多笔。
+    py: tā yǒu hǎo duō bǐ
+    en: He has lots of pens.
+    words: [ta1--he, you3--have, hao3-duo1--many, bi3--pen]
+    grammar: [hao3-duo1-n--many, s-you3-np--have]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 663
+    zh: 笔在这里。
+    py: bǐ zài zhè lǐ
+    en: The pen is here.
+    words: [bi3--pen, zai4--location, zhe4-li3--here]
+    grammar: [s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 664
+    zh: 裤子是黑色的。
+    py: kù zi shì hēi sè de
+    en: The trousers are black.
+    words: [ku4-zi5--trousers, shi4--identity, hei1-se4--black, de5--description]
+    grammar: [s-shi4-np--characterize]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 665
+    zh: 好多裤子在门口。
+    py: hǎo duō kù zi zài mén kǒu
+    en: Lots of trousers are at the entrance.
+    words: [hao3-duo1--many, ku4-zi5--trousers, zai4--location, men2-kou3--entrance]
+    grammar: [hao3-duo1-n--many, s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 666
+    zh: 他穿绿色的裤子。
+    py: tā chuān lǜ sè de kù zi
+    en: He wears green trousers.
+    words: [ta1--he, chuan1--wear, lv4-se4--green, de5--description, ku4-zi5--trousers]
+    grammar: [s-vp--verbal, adjp-de5-n--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 667
+    zh: 绿色的笔在门口。
+    py: lǜ sè de bǐ zài mén kǒu
+    en: The green pen is at the entrance.
+    words: [lv4-se4--green, de5--description, bi3--pen, zai4--location, men2-kou3--entrance]
+    grammar: [adjp-de5-n--describe, s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 668
+    zh: 绿色的手表很漂亮。
+    py: lǜ sè de shǒu biǎo hěn piào liang
+    en: The green watch is very pretty.
+    words: [lv4-se4--green, de5--description, shou3-biao3--watch, hen3--very, piao4-liang5--pretty]
+    grammar: [adjp-de5-n--describe, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 669
+    zh: 手表是绿色的。
+    py: shǒu biǎo shì lǜ sè de
+    en: The watch is green.
+    words: [shou3-biao3--watch, shi4--identity, lv4-se4--green, de5--description]
+    grammar: [s-shi4-np--characterize]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 670
+    zh: 这条路比那条路长。
+    py: zhè tiáo lù bǐ nà tiáo lù cháng
+    en: This road is longer than that road.
+    words: [bi3--than, zhe4--this, tiao2--classifier, lu4--road, bi3--compare, na4--that, chang2--long]
+    grammar: [zhe4-or-na4-mw-n--this-that, a-bi3-b-adj--more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 671
+    zh: 楼比门高。
+    py: lóu bǐ mén gāo
+    en: The building is taller than the door.
+    words: [bi3--than, lou2--building, bi3--compare, men2--door, gao1--tall]
+    grammar: [a-bi3-b-adj--more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 672
+    zh: 奶茶比绿茶热。
+    py: nǎi chá bǐ lǜ chá rè
+    en: Milk tea is hotter than green tea.
+    words: [nai3-cha2--tea, bi3--compare, lv4-cha2--tea, re4--hot]
+    grammar: [a-bi3-b-adj--more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 673
+    zh: 我想要奶茶。
+    py: wǒ xiǎng yào nǎi chá
+    en: I want milk tea.
+    words: [wo3--me, xiang3--miss, yao4--want, nai3-cha2--tea]
+    grammar: [s-xiang3-vp--want]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 674
+    zh: 这边比那边好。
+    py: zhè biān bǐ nà bian hǎo
+    en: This side is better than that side.
+    words: [zhe4-bian1--this-side, bi3--compare, na4-bian5--there, hao3--good]
+    grammar: [a-bi3-b-adj--more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 675
+    zh: 教画画的班来了。
+    py: jiāo huà huà de bān lái le
+    en: The drawing class has arrived.
+    words: [jiao1--teach, hua4--picture, de5--description, ban1--shift, lai2--come, le5--intensify]
+    grammar: [vp-de5-n--relative]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 135
+
+  - id: 676
+    zh: 考中文的班来了。
+    py: kǎo zhōng wén de bān lái le
+    en: The class taking the Chinese exam has arrived.
+    words: [kao3--exam, zhong1-wen2--chinese, de5--description, ban1--shift, lai2--come, le5--intensify]
+    grammar: [vp-de5-n--relative]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 135
+
+  - id: 677
+    zh: 高中教篮球的班来了。
+    py: gāo zhōng jiāo lán qiú de bān lái le
+    en: The basketball-teaching class from senior high has arrived.
+    words: [gao1-zhong1--school, jiao1--teach, lan2-qiu2--basketball, de5--description, ban1--shift, lai2--come, le5--intensify]
+    grammar: [vp-de5-n--relative]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 135
+
+  - id: 678
+    zh: 帮她画花。
+    py: bāng tā huà huā
+    en: Help her draw flowers.
+    words: [bang1--help, ta1--she, hua4--picture, hua1--flower]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 679
+    zh: 他包花。
+    py: tā bāo huā
+    en: He wraps flowers.
+    words: [bao1--wrap, ta1--he, bao1--bag, hua1--flower]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 680
+    zh: 星期天就上网。
+    py: xīng qī tiān jiù shàng wǎng
+    en: They go online as early as Sunday.
+    words: [jiu4--earlier-than-expected, xing1-qi1-tian1--sunday, jiu4--immediately-after, shang4-wang3--online]
+    grammar: [time-jiu4-vp--early]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 681
+    zh: 就要开学了。
+    py: jiù yào kāi xué le
+    en: The new school term is about to start.
+    words: [jiu4--immediately-after, yao4--want, kai1-xue2--term, le5--intensify]
+    grammar: [jiu4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 682
+    zh: 就要上网了。
+    py: jiù yào shàng wǎng le
+    en: They are about to go online.
+    words: [jiu4--immediately-after, yao4--want, shang4-wang3--online, le5--intensify]
+    grammar: [jiu4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 683
+    zh: 星期一就跑步。
+    py: xīng qī yí jiù pǎo bù
+    en: They go running as early as Monday.
+    words: [xing1-qi1-yi1--monday, jiu4--immediately-after, pao3-bu4--run]
+    grammar: [time-jiu4-vp--early]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 684
+    zh: 后面我再说。
+    py: hòu mian wǒ zài shuō
+    en: I’ll talk about it later.
+    words: [hou4-mian5--later, wo3--me, zai4--again, shuo1--speak]
+    grammar: [time-s-vp-or-s-time-vp--time, s-zai4-vp--again]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 87
+
+  - id: 685
+    zh: 我现在开始工作。
+    py: wǒ xiàn zài kāi shǐ gōng zuò
+    en: I’m starting work now.
+    words: [wo3--me, xian4-zai4--now, kai1-shi3--beginning, gong1-zuo4--work]
+    grammar: [time-s-vp-or-s-time-vp--time]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 87
+
+  - id: 686
+    zh: 这本书很有意思。
+    py: zhè běn shū hěn yǒu yì si
+    en: This book is very interesting.
+    words: [zhe4--this, ben3--books, shu1--book, hen3--very, you3-yi4-si5--interesting]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 87
+
+  - id: 688
+    zh: 我们在车站等车。
+    py: wǒ men zài chē zhàn děng chē
+    en: We wait for a bus at the bus stop.
+    words: [che1-zhan4--stop, wo3-men5--we, zai4--location, che1-zhan4--station, deng3--wait, che1--vehicle]
+    grammar: [s-zai4-loc-vp--location]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 689
+    zh: 他过来。
+    py: tā guò lái
+    en: He comes over.
+    words: [guo4--cross, ta1--he, guo4-lai2--come-over]
+    grammar: [v-lai2-or-qu4--direction]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 690
+    zh: 商场里面有好多药店。
+    py: shāng chǎng lǐ miàn yǒu hǎo duō yào diàn
+    en: There are lots of pharmacies inside the mall.
+    words: [shang1-chang3--mall, li3--inside, mian4--side, you3--have, hao3-duo1--many, yao4-dian4--pharmacy]
+    grammar: [dir-mian4--side, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 691
+    zh: 他从门口进去。
+    py: tā cóng mén kǒu jìn qù
+    en: He goes in through the doorway.
+    words: [ta1--he, cong2--via, men2-kou3--entrance, jin4-qu4--enter]
+    grammar: [cong2-route-vp--via, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 124
+
+  - id: 692
+    zh: 我们准备旅游。
+    py: wǒ men zhǔn bèi lǚ yóu
+    en: We plan to travel.
+    words: [zhun3-bei4--intend, wo3-men5--we, zhun3-bei4--prepare, lv3-you2--travel]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 124
+
+  - id: 693
+    zh: 虽然我很累，但是我还运动。
+    py: suī rán wǒ hěn lèi dàn shì wǒ hái yùn dòng
+    en: Although I’m tired, I still exercise.
+    words: [sui1-ran2--although, wo3--me, hen3--very, lei4--tired, dan4-shi4--but, hai2--also, yun4-dong4--sports]
+    grammar: [sui1-ran2-clause-dan4-shi4-clause--although]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 694
+    zh: 每个教室都很大。
+    py: měi gè jiào shì dōu hěn dà
+    en: Every classroom is big.
+    words: [mei3--every, ge4--classifier, jiao4-shi4--classroom, dou1--all, hen3--very, da4--big]
+    grammar: [mei3-mw-n-dou1-pred--every]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 695
+    zh: 因为我运动，所以我很累。
+    py: yīn wèi wǒ yùn dòng suǒ yǐ wǒ hěn lèi
+    en: Because I exercise, I’m tired.
+    words: [yin1-wei4--because, wo3--me, yun4-dong4--sports, suo3-yi3--therefore, hen3--very, lei4--tired]
+    grammar: [yin1-wei4-clause-suo3-yi3-clause--because]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 696
+    zh: 每间教室都很大。
+    py: měi jiān jiào shì dōu hěn dà
+    en: Every classroom is big.
+    words: [mei3--every, jian1--rooms, jiao4-shi4--classroom, dou1--all, hen3--very, da4--big]
+    grammar: [mei3-mw-n-dou1-pred--every]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 112
+
+  - id: 697
+    zh: 那么，运动吧。
+    py: nà me yùn dòng ba
+    en: Then, let’s exercise.
+    words: [na4-me5--then, yun4-dong4--sports, ba5--suggestion]
+    grammar: [stmt-ba5--suggest]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 112
+
+  - id: 698
+    zh: 鸟飞来了。
+    py: niǎo fēi lái le
+    en: A bird flew over.
+    words: [niao3--bird, fei1--fly, lai2--come, le5--intensify]
+    grammar: [v-lai2-or-qu4--direction]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 112
+
+  - id: 699
+    zh: 我花时间踢足球。
+    py: wǒ huā shí jiān tī zú qiú
+    en: I spend time playing soccer.
+    words: [hua1--spend, wo3--me, hua1--flower, shi2-jian1--time, ti1--kick, zu2-qiu2--ball]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 700
+    zh: 我这么踢足球。
+    py: wǒ zhè me tī zú qiú
+    en: I play soccer this way.
+    words: [zhe4-me5--this-way, wo3--me, zhe4-me5--degree, ti1--kick, zu2-qiu2--ball]
+    grammar: [zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 701
+    zh: 我在周二踢足球。
+    py: wǒ zài zhōu èr tī zú qiú
+    en: I play soccer on Tuesday.
+    words: [wo3--me, zai4--location, zhou1-er4--tuesday, ti1--kick, zu2-qiu2--ball]
+    grammar: [s-zai4-time-vp--time]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 702
+    zh: 我在周三运动。
+    py: wǒ zài zhōu sān yùn dòng
+    en: I exercise on Wednesday.
+    words: [wo3--me, zai4--location, zhou1-san1--wednesday, yun4-dong4--sports]
+    grammar: [s-zai4-time-vp--time]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 703
+    zh: 我在周一踢球。
+    py: wǒ zài zhōu yì tī qiú
+    en: I play ball on Monday.
+    words: [wo3--me, zai4--location, zhou1-yi1--monday, ti1--kick, qiu2--ball]
+    grammar: [s-zai4-time-vp--time]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 704
+    zh: 我们周六踢踢足球吧。
+    py: wǒ men zhōu liù tī tī zú qiú ba
+    en: Let’s play some soccer on Saturday.
+    words: [wo3-men5--we, zhou1-liu4--saturday, ti1--kick, zu2-qiu2--ball, ba5--suggestion]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 705
+    zh: 我们周日运动运动吧。
+    py: wǒ men zhōu rì yùn dòng yùn dòng ba
+    en: Let’s exercise a little on Sunday.
+    words: [wo3-men5--we, zhou1-ri4--sunday, yun4-dong4--sports, ba5--suggestion]
+    grammar: [v-v--try-abab]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 706
+    zh: 我们周四准备准备考试吧。
+    py: wǒ men zhōu sì zhǔn bèi zhǔn bèi kǎo shì ba
+    en: Let’s get ready for the exam on Thursday.
+    words: [wo3-men5--we, zhou1-si4--thursday, zhun3-bei4--prepare, kao3-shi4--take-exam, ba5--suggestion]
+    grammar: [v-v--try-abab]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 707
+    zh: 周五我们踢足球。
+    py: zhōu wǔ wǒ men tī zú qiú
+    en: We play soccer on Friday.
+    words: [zhou1-wu3--friday, wo3-men5--we, ti1--kick, zu2-qiu2--ball]
+    grammar: [time-hour-dian3-min-fen1--clock]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 708
+    zh: 你们介绍介绍吧。
+    py: nǐ men jiè shào jiè shào ba
+    en: You all can give a brief introduction.
+    words: [ni3-men5--you, jie4-shao4--introduce, ba5--suggestion]
+    grammar: [v-v--try-abab]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 710
+    zh: 手很疼。
+    py: shǒu hěn téng
+    en: My hand hurts a lot.
+    words: [shou3--hand, hen3--very, teng2--sore]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 115
+
+  - id: 711
+    zh: 头很大。
+    py: tóu hěn dà
+    en: The head is big.
+    words: [tou2--head, hen3--very, da4--big]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 115
+
+  - id: 712
+    zh: 小小的眼睛很漂亮。
+    py: xiǎo xiǎo de yǎn jing hěn piào liang
+    en: The tiny eyes are beautiful.
+    words: [xiao3--small, de5--description, yan3-jing5--eye, hen3--very, piao4-liang5--pretty]
+    grammar: [adj-adj-de5--vivid, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 115
+
+  - id: 713
+    zh: 小小的鸟在飞。
+    py: xiǎo xiǎo de niǎo zài fēi
+    en: A tiny bird is flying.
+    words: [xiao3--small, de5--description, niao3--bird, zai4--location, fei1--fly]
+    grammar: [adj-adj-de5--vivid, s-zai4-or-zheng4-zai4-vp--ongoing]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 115
+
+  - id: 714
+    zh: 好漂亮！
+    py: hǎo piào liang
+    en: So beautiful!
+    words: [hao3--very, hao3--good, piao4-liang5--pretty]
+    grammar: [hao3-adj--so]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 116
+
+  - id: 715
+    zh: 酒店很舒服。
+    py: jiǔ diàn hěn shū fu
+    en: The hotel is comfortable.
+    words: [jiu3-dian4--hotel, hen3--very, shu1-fu5--comfortable]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 116
+
+  - id: 716
+    zh: 这边，酒店很舒服。
+    py: zhè biān jiǔ diàn hěn shū fu
+    en: Around here, the hotel is comfortable.
+    words: [zhe4-bian1--this-side, jiu3-dian4--hotel, hen3--very, shu1-fu5--comfortable]
+    grammar: [topic-s-pred--topic-comment, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 116
+
+  - id: 717
+    zh: 考试完了，就准备旅游。
+    py: kǎo shì wán le jiù zhǔn bèi lǚ yóu
+    en: After the exam is over, then get ready to travel.
+    words: [jiu4--then, kao3-shi4--take-exam, wan2--finish, le5--intensify, jiu4--immediately-after, zhun3-bei4--prepare, lv3-you2--travel]
+    grammar: [clause-jiu4-clause--then, v-wan2--finish]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 131
+
+  - id: 718
+    zh: 那就准备出国。
+    py: nà jiù zhǔn bèi chū guó
+    en: In that case, get ready to go abroad.
+    words: [na4--then, na4--that, jiu4--immediately-after, zhun3-bei4--prepare, chu1-guo2--abroad]
+    grammar: [na4-stmt--then]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 131
+
+  - id: 719
+    zh: 那就准备旅游。
+    py: nà jiù zhǔn bèi lǚ yóu
+    en: In that case, get ready to travel.
+    words: [na4--that, jiu4--immediately-after, zhun3-bei4--prepare, lv3-you2--travel]
+    grammar: [na4-stmt--then]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 131
+
+  - id: 720
+    zh: 他快要上网了。
+    py: tā kuài yào shàng wǎng le
+    en: He is about to go online.
+    words: [ta1--he, kuai4-yao4--soon, shang4-wang3--online, le5--intensify]
+    grammar: [yao4-or-kuai4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 132
+
+  - id: 721
+    zh: 他好好地准备。
+    py: tā hǎo hǎo de zhǔn bèi
+    en: He prepares carefully.
+    words: [ta1--he, hao3--good, de5--adverbial, zhun3-bei4--prepare]
+    grammar: [adjp-de5-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 132
+
+  - id: 722
+    zh: 她让他上网。
+    py: tā ràng tā shàng wǎng
+    en: She lets him go online.
+    words: [ta1--she, rang4--allow, ta1--he, shang4-wang3--online]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 132
+
+  - id: 723
+    zh: 里面有一个本子。
+    py: lǐ miàn yǒu yí gè běn zi
+    en: There is a notebook inside.
+    words: [li3-mian4--inside, you3--have, yi1--one, ge4--classifier, ben3-zi5--notebook]
+    grammar: [loc-you3-qty-n--exist, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 139
+
+  - id: 724
+    zh: 他从楼下跑上来。
+    py: tā cóng lóu xià pǎo shàng lái
+    en: He runs up from downstairs.
+    words: [ta1--he, cong2--via, lou2--building, xia4--descend, pao3--run, shang4-lai2--ascend]
+    grammar: [cong2-loc-vp--from, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 139
+
+  - id: 725
+    zh: 他跑下去。
+    py: tā pǎo xià qù
+    en: He runs down.
+    words: [ta1--he, pao3--run, xia4-qu4--descend]
+    grammar: [v-xia4-lai5-or-xia4-qu4--descend]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 139
+
+  - id: 726
+    zh: 事情不多。
+    py: shì qing bù duō
+    en: There aren’t many things to deal with.
+    words: [shi4-qing5--matter, bu4--not, duo1--how]
+    grammar: [s-duo1-adj--degree, a-mei2-you3-b-adj--not-as]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 140
+
+  - id: 727
+    zh: 我希望开学。
+    py: wǒ xī wàng kāi xué
+    en: I hope school starts.
+    words: [wo3--me, xi1-wang4--hope, kai1-xue2--term]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 140
+
+  - id: 728
+    zh: 他可能出来。
+    py: tā kě néng chū lái
+    en: He might come out.
+    words: [ta1--he, ke3-neng2--might, chu1-lai2--come-out]
+    grammar: [s-ke3-neng2-pred--may, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 140
+
+  - id: 729
+    zh: 球飞起来了。
+    py: qiú fēi qǐ lai le
+    en: The ball flew up.
+    words: [qiu2--ball, fei1--fly, qi3-lai5--rise, le5--intensify]
+    grammar: [v-qi3-lai5--rise, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 140
+
+  - id: 730
+    zh: 我做错了，很不好意思。
+    py: wǒ zuò cuò le hěn bù hǎo yì si
+    en: I did it wrong, and I feel embarrassed.
+    words: [bu4-hao3-yi4-si5--embarrassed, wo3--me, zuo4--make, cuo4--wrong, le5--intensify, hen3--very, bu4-hao3-yi4-si5--sorry]
+    grammar: [v-cuo4--wrong]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 731
+    zh: 我做错题了，很不好意思。
+    py: wǒ zuò cuò tí le hěn bù hǎo yì si
+    en: I got the question wrong, and I feel embarrassed.
+    words: [bu4-hao3-yi4-si5--embarrassed, wo3--me, zuo4--make, cuo4--wrong, ti2--question, le5--intensify, hen3--very, bu4-hao3-yi4-si5--sorry]
+    grammar: [v-cuo4--wrong]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 732
+    zh: 我拿错了包，很不好意思。
+    py: wǒ ná cuò le bāo hěn bù hǎo yì si
+    en: I took the wrong bag; I'm so sorry.
+    words: [bu4-hao3-yi4-si5--embarrassed, wo3--me, na2--take, cuo4--wrong, le5--intensify, bao1--bag, hen3--very, bu4-hao3-yi4-si5--sorry]
+    grammar: [v-cuo4--wrong]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 733
+    zh: 我打开门。
+    py: wǒ dǎ kāi mén
+    en: I open the door.
+    words: [da3-kai1--activate, wo3--me, da3-kai1--open, men2--door]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 734
+    zh: 他打开书包。
+    py: tā dǎ kāi shū bāo
+    en: He opens the schoolbag.
+    words: [da3-kai1--activate, ta1--he, da3-kai1--open, shu1-bao1--schoolbag]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 735
+    zh: 她打开包。
+    py: tā dǎ kāi bāo
+    en: She opens the bag.
+    words: [da3-kai1--activate, ta1--she, da3-kai1--open, bao1--bag]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 736
+    zh: 你多上网。
+    py: nǐ duō shàng wǎng
+    en: Spend more time online.
+    words: [duo1--more, ni3--you, duo1--how, shang4-wang3--online]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 737
+    zh: 多打篮球吧。
+    py: duō dǎ lán qiú ba
+    en: Play more basketball.
+    words: [duo1--more, duo1--how, da3--hit, lan2-qiu2--basketball, ba5--suggestion]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 738
+    zh: 多跑步吧。
+    py: duō pǎo bù ba
+    en: Run more.
+    words: [duo1--more, duo1--how, pao3-bu4--run, ba5--suggestion]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 739
+    zh: 这楼比那楼高。
+    py: zhè lóu bǐ nà lóu gāo
+    en: This building is taller than that one.
+    words: [gao1--height, zhe4--this, lou2--building, bi3--compare, na4--that, gao1--tall]
+    grammar: [a-bi3-b-adj--more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 740
+    zh: 那个先生很高。
+    py: nà ge xiān sheng hěn gāo
+    en: That man is very tall.
+    words: [gao1--height, na4-ge5--that, xian1-sheng5--mister, hen3--very, gao1--tall]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 741
+    zh: 这楼有十米高。
+    py: zhè lóu yǒu shí mǐ gāo
+    en: This building is ten meters tall.
+    words: [zhe4--this, lou2--building, you3--have, shi2--ten, mi3--meter, gao1--tall]
+    grammar: [s-you3-qty--measure]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 742
+    zh: 这条路有一百米。
+    py: zhè tiáo lù yǒu yì bǎi mǐ
+    en: This road is one hundred meters long.
+    words: [zhe4--this, tiao2--classifier, lu4--road, you3--have, yi1--one, bai3--hundred, mi3--meter]
+    grammar: [s-you3-qty--measure]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 743
+    zh: 路有三米长。
+    py: lù yǒu sān mǐ cháng
+    en: The road is three meters long.
+    words: [lu4--road, you3--have, san1--three, mi3--meter, chang2--long]
+    grammar: [s-you3-qty--measure]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 744
+    zh: 你过去吧。
+    py: nǐ guò qù ba
+    en: Go over there.
+    words: [ni3--you, guo4-qu4--go-over, ba5--suggestion]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 745
+    zh: 你从门口过去。
+    py: nǐ cóng mén kǒu guò qù
+    en: Go past the doorway.
+    words: [ni3--you, cong2--via, men2-kou3--entrance, guo4-qu4--go-over]
+    grammar: [cong2-loc-vp--from]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 746
+    zh: 他往那边过去。
+    py: tā wǎng nà bian guò qù
+    en: He goes over that way.
+    words: [ta1--he, wang3--go, na4-bian5--there, guo4-qu4--go-over]
+    grammar: [wang3-loc-vp--toward]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 747
+    zh: 那个先生很坏。
+    py: nà ge xiān sheng hěn huài
+    en: That man is very mean.
+    words: [huai4--bad, na4-ge5--that, xian1-sheng5--mister, hen3--very, huai4--broken]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 748
+    zh: 他很坏。
+    py: tā hěn huài
+    en: He is mean.
+    words: [huai4--bad, ta1--he, hen3--very, huai4--broken]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 749
+    zh: 她也很坏。
+    py: tā yě hěn huài
+    en: She is mean too.
+    words: [huai4--bad, ta1--she, ye3--also, hen3--very, huai4--broken]
+    grammar: [s-ye3-pred--also]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 750
+    zh: 这条鱼坏了。
+    py: zhè tiáo yú huài le
+    en: This fish has gone bad.
+    words: [huai4--spoiled, zhe4--this, tiao2--classifier, yu2--fish, huai4--broken, le5--intensify]
+    grammar: [patient-pred--affected]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 751
+    zh: 那包鱼坏了。
+    py: nà bāo yú huài le
+    en: That package of fish has gone bad.
+    words: [huai4--spoiled, na4--that, bao1--bag, yu2--fish, huai4--broken, le5--intensify]
+    grammar: [patient-pred--affected]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 752
+    zh: 鱼已经坏了。
+    py: yú yǐ jīng huài le
+    en: The fish has already gone bad.
+    words: [huai4--spoiled, yu2--fish, yi3-jing1--already, huai4--broken, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already, patient-pred--affected]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 753
+    zh: 她给你介绍一位先生。
+    py: tā gěi nǐ jiè shào yí wèi xiān sheng
+    en: She introduces a gentleman to you.
+    words: [jie4-shao4--describe, ta1--she, gei3--give, ni3--you, jie4-shao4--introduce, yi1--one, wei4--people, xian1-sheng5--mister]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 754
+    zh: 他给我介绍他的妻子。
+    py: tā gěi wǒ jiè shào tā de qī zi
+    en: He introduces his wife to me.
+    words: [jie4-shao4--describe, ta1--he, gei3--give, wo3--me, jie4-shao4--introduce, de5--description, qi1-zi5--wife]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 755
+    zh: 她考考我。
+    py: tā kǎo kǎo wǒ
+    en: She gives me a little test.
+    words: [kao3--test, ta1--she, kao3--exam, wo3--me]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 756
+    zh: 我考考你。
+    py: wǒ kǎo kǎo nǐ
+    en: I’ll give you a little test.
+    words: [kao3--test, wo3--me, kao3--exam, ni3--you]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 757
+    zh: 他考考她。
+    py: tā kǎo kǎo tā
+    en: He gives her a little test.
+    words: [kao3--test, ta1--he, kao3--exam, ta1--she]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 758
+    zh: 我已经懂这个词了。
+    py: wǒ yǐ jīng dǒng zhè ge cí le
+    en: I already understand this word.
+    words: [wo3--me, yi3-jing1--already, dong3--understand, zhe4-ge5--this, ci2--word, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 759
+    zh: 我快要做完题了。
+    py: wǒ kuài yào zuò wán tí le
+    en: I’m about to finish the exam question.
+    words: [wo3--me, kuai4-yao4--soon, zuo4--make, wan2--finish, ti2--question, le5--intensify]
+    grammar: [yao4-or-kuai4-yao4-vp-le5--soon, v-wan2--finish]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 760
+    zh: 我们要出国了。
+    py: wǒ men yào chū guó le
+    en: We’re about to go abroad.
+    words: [yao4--about-to, wo3-men5--we, yao4--want, chu1-guo2--abroad, le5--intensify]
+    grammar: [yao4-or-kuai4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 761
+    zh: 我不懂这个词的意思。
+    py: wǒ bù dǒng zhè ge cí de yì si
+    en: I don't understand the meaning of this word.
+    words: [wo3--me, bu4--not, dong3--understand, zhe4-ge5--this, ci2--word, de5--description, yi4-si5--meaning]
+    grammar: [v-dong3--understand]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 762
+    zh: 不好意思，我不懂这个词。
+    py: bù hǎo yì si wǒ bù dǒng zhè ge cí
+    en: Sorry, I don’t understand this word.
+    words: [bu4-hao3-yi4-si5--sorry, wo3--me, bu4--not, dong3--understand, zhe4-ge5--this, ci2--word]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 763
+    zh: 我看了两次电影。
+    py: wǒ kàn le liǎng cì diàn yǐng
+    en: I watched a movie twice.
+    words: [wo3--me, kan4--watch, le5--intensify, liang3--two, ci4--times, dian4-ying3--movie]
+    grammar: [v-num-ci4--times]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 764
+    zh: 她坐过公交车。
+    py: tā zuò guò gōng jiāo chē
+    en: She has ridden the city bus before.
+    words: [guo5--experience, ta1--she, zuo4--sit, guo4--celebrate, gong1-jiao1-che1--bus]
+    grammar: [v-guo5--experience]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 765
+    zh: 请等一会儿。
+    py: qǐng děng yí huìr
+    en: Please wait a little while.
+    words: [qing3--invite, deng3--wait, yi1-hui4-r5--while]
+    grammar: [qing3-vp--request, num-nian2-or-tian1-or-fen1--duration]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 766
+    zh: 我给她打过电话。
+    py: wǒ gěi tā dǎ guò diàn huà
+    en: I have called her before.
+    words: [wo3--me, gei3--give, ta1--she, da3--hit, guo4--celebrate, dian4-hua4--call]
+    grammar: [v-guo5--experience]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 767
+    zh: 她给我打过两次电话。
+    py: tā gěi wǒ dǎ guò liǎng cì diàn huà
+    en: She has called me twice.
+    words: [ta1--she, gei3--give, wo3--me, da3--hit, guo4--celebrate, liang3--two, ci4--times, dian4-hua4--call]
+    grammar: [v-num-ci4--times, v-guo5--experience]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 768
+    zh: 他比我晚回家一会儿。
+    py: tā bǐ wǒ wǎn huí jiā yí huìr
+    en: He gets home a little later than I do.
+    words: [ta1--he, bi3--compare, wo3--me, wan3--late, hui2--return, jia1--home, yi1-hui4-r5--while]
+    grammar: [a-bi3-b-zao3-or-wan3-v-duration--time-diff]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 305
+
+  - id: 769
+    zh: 周六你呢？
+    py: zhōu liù nǐ ne
+    en: What about you on Saturday?
+    words: [ne5--question, zhou1-liu4--saturday, ni3--you, ne5--reciprocal]
+    grammar: [clause-ne5--question-tone]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 770
+    zh: 你正打篮球呢？
+    py: nǐ zhèng dǎ lán qiú ne
+    en: Are you playing basketball right now?
+    words: [ne5--question, ni3--you, zheng4--ongoing, da3--hit, lan2-qiu2--basketball, ne5--reciprocal]
+    grammar: [s-zheng4-vp-ne5--right-now]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 771
+    zh: 因为足球，他很高兴。
+    py: yīn wèi zú qiú tā hěn gāo xìng
+    en: Because of soccer, he is very happy.
+    words: [yin1-wei4--reason, yin1-wei4--because, zu2-qiu2--ball, ta1--he, hen3--very, gao1-xing4--happy]
+    grammar: [yin1-wei4-np-clause--because-of]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 772
+    zh: 因为运动，他高高兴兴的。
+    py: yīn wèi yùn dòng tā gāo gāo xìng xìng de
+    en: Because of exercise, he is cheerful.
+    words: [yin1-wei4--reason, yin1-wei4--because, yun4-dong4--sports, ta1--he, gao1-gao1-xing4-xing4--cheerful, de5--description]
+    grammar: [yin1-wei4-np-clause--because-of, a-a-b-b--vivid]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 773
+    zh: 因为周五的运动，他很舒服。
+    py: yīn wèi zhōu wǔ de yùn dòng tā hěn shū fu
+    en: Because of Friday's exercise, he feels comfortable.
+    words: [yin1-wei4--reason, yin1-wei4--because, zhou1-wu3--friday, de5--description, yun4-dong4--sports, ta1--he, hen3--very, shu1-fu5--comfortable]
+    grammar: [yin1-wei4-np-clause--because-of]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 774
+    zh: 周六呢？
+    py: zhōu liù ne
+    en: What about Saturday?
+    words: [zhou1-liu4--saturday, ne5--reciprocal]
+    grammar: [clause-ne5--question-tone]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 775
+    zh: 他为什么很累呢？
+    py: tā wèi shén me hěn lèi ne
+    en: Why is he so tired?
+    words: [ta1--he, wei4-shen2-me5--why, hen3--very, lei4--tired, ne5--reciprocal]
+    grammar: [clause-ne5--question-tone]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 777
+    zh: 她笑着。
+    py: tā xiào zhe
+    en: She is smiling.
+    words: [ta1--she, xiao4--smile, zhe5--ongoing]
+    grammar: [v-zhe5--continuing]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 778
+    zh: 因为考试，他可能很累。
+    py: yīn wèi kǎo shì tā kě néng hěn lèi
+    en: Because of the exam, he may be very tired.
+    words: [yin1-wei4--because, kao3-shi4--take-exam, ta1--he, ke3-neng2--might, hen3--very, lei4--tired]
+    grammar: [yin1-wei4-np-clause--because-of, s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 779
+    zh: 因为足球，他高高兴兴的。
+    py: yīn wèi zú qiú tā gāo gāo xìng xìng de
+    en: Because of soccer, he is cheerful.
+    words: [yin1-wei4--because, zu2-qiu2--ball, ta1--he, gao1-gao1-xing4-xing4--cheerful, de5--description]
+    grammar: [yin1-wei4-np-clause--because-of, a-a-b-b--vivid]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 780
+    zh: 足球、篮球什么的都好。
+    py: zú qiú lán qiú shén me de dōu hǎo
+    en: Soccer, basketball, and similar things are all good.
+    words: [zu2-qiu2--ball, lan2-qiu2--basketball, shen2-me5-de5--and-so-on, dou1--all, hao3--good]
+    grammar: [np-shen2-me5-de5--and-such]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 781
+    zh: 足球、篮球什么的都可以。
+    py: zú qiú lán qiú shén me de dōu kě yǐ
+    en: Soccer, basketball, and similar things are all fine.
+    words: [zu2-qiu2--ball, lan2-qiu2--basketball, shen2-me5-de5--and-so-on, dou1--all, ke3-yi3--acceptable]
+    grammar: [np-shen2-me5-de5--and-such]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 782
+    zh: 红茶、奶茶什么的都好。
+    py: hóng chá nǎi chá shén me de dōu hǎo
+    en: Black tea, milk tea, and similar things are all good.
+    words: [hong2-cha2--tea, nai3-cha2--tea, shen2-me5-de5--and-so-on, dou1--all, hao3--good]
+    grammar: [np-shen2-me5-de5--and-such]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 783
+    zh: 周六、周日什么的都可以。
+    py: zhōu liù zhōu rì shén me de dōu kě yǐ
+    en: Saturday, Sunday, and days like that are all fine.
+    words: [zhou1-liu4--saturday, zhou1-ri4--sunday, shen2-me5-de5--and-so-on, dou1--all, ke3-yi3--acceptable]
+    grammar: [np-shen2-me5-de5--and-such]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 784
+    zh: 周六他踢足球吧。
+    py: zhōu liù tā tī zú qiú ba
+    en: He probably plays soccer on Saturday.
+    words: [zhou1-liu4--saturday, ta1--he, ti1--kick, zu2-qiu2--ball, ba5--suggestion]
+    grammar: [stmt-ba5--suppose]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 785
+    zh: 周日她打篮球吧。
+    py: zhōu rì tā dǎ lán qiú ba
+    en: She probably plays basketball on Sunday.
+    words: [zhou1-ri4--sunday, ta1--she, da3--hit, lan2-qiu2--basketball, ba5--suggestion]
+    grammar: [stmt-ba5--suppose]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 786
+    zh: 周日他很累吧。
+    py: zhōu rì tā hěn lèi ba
+    en: He must be tired on Sunday.
+    words: [zhou1-ri4--sunday, ta1--he, hen3--very, lei4--tired, ba5--suggestion]
+    grammar: [stmt-ba5--suppose]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 787
+    zh: 周六他会踢足球的。
+    py: zhōu liù tā huì tī zú qiú de
+    en: He will definitely play soccer on Saturday.
+    words: [zhou1-liu4--saturday, ta1--he, hui4--ability, ti1--kick, zu2-qiu2--ball, de5--description]
+    grammar: [stmt-de5--assure, v-hui4--master]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 788
+    zh: 她会游泳的。
+    py: tā huì yóu yǒng de
+    en: She can swim, for sure.
+    words: [ta1--she, hui4--ability, you2-yong3--swim, de5--description]
+    grammar: [stmt-de5--assure, v-hui4--master]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 789
+    zh: 他会打篮球的。
+    py: tā huì dǎ lán qiú de
+    en: He can play basketball, for sure.
+    words: [ta1--he, hui4--ability, da3--hit, lan2-qiu2--basketball, de5--description]
+    grammar: [stmt-de5--assure, v-hui4--master]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 790
+    zh: 他教会她打篮球了。
+    py: tā jiāo huì tā dǎ lán qiú le
+    en: He taught her to play basketball.
+    words: [ta1--he, jiao1--teach, hui4--ability, ta1--she, da3--hit, lan2-qiu2--basketball, le5--intensify]
+    grammar: [v-hui4--master]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 791
+    zh: 她教会我游泳了。
+    py: tā jiāo huì wǒ yóu yǒng le
+    en: She taught me to swim.
+    words: [ta1--she, jiao1--teach, hui4--ability, wo3--me, you2-yong3--swim, le5--intensify]
+    grammar: [v-hui4--master]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 792
+    zh: 周六他教会她打篮球了。
+    py: zhōu liù tā jiāo huì tā dǎ lán qiú le
+    en: He taught her to play basketball on Saturday.
+    words: [zhou1-liu4--saturday, ta1--he, jiao1--teach, hui4--ability, ta1--she, da3--hit, lan2-qiu2--basketball, le5--intensify]
+    grammar: [v-hui4--master]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 793
+    zh: 我走出饭馆。
+    py: wǒ zǒu chū fàn guǎn
+    en: I walk out of the restaurant.
+    words: [chu1--result, wo3--me, zou3--leave, chu1--exit, fan4-guan3--restaurant]
+    grammar: [v-shang4-or-xia4-or-jin4-or-chu1-or-guo4-or-hui2--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 157
+
+  - id: 795
+    zh: 你有他这么高吗？
+    py: nǐ yǒu tā zhè me gāo ma
+    en: Are you as tall as him?
+    words: [ni3--you, you3--have, ta1--he, zhe4-me5--degree, gao1--tall, ma5--question]
+    grammar: [a-you3-b-zhe4-me5-or-na4-me5-adj--as]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 157
+
+  - id: 796
+    zh: 这条路长一米。
+    py: zhè tiáo lù cháng yì mǐ
+    en: This road is one meter longer.
+    words: [zhe4--this, tiao2--classifier, lu4--road, chang2--long, yi1--one, mi3--meter]
+    grammar: [adj-qty--difference]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 157
+
+  - id: 797
+    zh: 他走进饭馆。
+    py: tā zǒu jìn fàn guǎn
+    en: He walks into the restaurant.
+    words: [ta1--he, zou3--leave, jin4--enter, fan4-guan3--restaurant]
+    grammar: [v-shang4-or-xia4-or-jin4-or-chu1-or-guo4-or-hui2--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 157
+
+  - id: 798
+    zh: 他叫我踢足球。
+    py: tā jiào wǒ tī zú qiú
+    en: He tells me to play soccer.
+    words: [jiao4--instruct, ta1--he, jiao4--called, wo3--me, ti1--kick, zu2-qiu2--ball]
+    grammar: [s-jiao4-p-vp--tell]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 158
+
+  - id: 799
+    zh: 我比他踢足球踢得好。
+    py: wǒ bǐ tā tī zú qiú tī de hǎo
+    en: I play soccer better than he does.
+    words: [wo3--me, bi3--compare, ta1--he, ti1--kick, zu2-qiu2--ball, de5--manner, hao3--good]
+    grammar: [a-bi3-b-v-de5-adj--performance]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 158
+
+  - id: 800
+    zh: 她游得比他快。
+    py: tā yóu de bǐ tā kuài
+    en: She swims faster than he does.
+    words: [ta1--she, you2--swim, de5--manner, bi3--compare, ta1--he, kuai4--fast]
+    grammar: [a-v-de5-bi3-b-adj--performance]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 158
+
+  - id: 801
+    zh: 我请她游泳。
+    py: wǒ qǐng tā yóu yǒng
+    en: I invite her to swim.
+    words: [wo3--me, qing3--invite, ta1--she, you2-yong3--swim]
+    grammar: [s-qing3-p-vp--invite]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 158
+
+  - id: 803
+    zh: 机票准备好了。
+    py: jī piào zhǔn bèi hǎo le
+    en: The tickets are ready.
+    words: [hao3--completed, ji1-piao4--ticket, zhun3-bei4--prepare, hao3--good, le5--intensify]
+    grammar: [v-hao3--ready, patient-pred--affected]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 143
+
+  - id: 804
+    zh: 我就花十万。
+    py: wǒ jiù huā shí wàn
+    en: I’ll spend just one hundred thousand.
+    words: [jiu4--only, wo3--me, jiu4--immediately-after, hua1--flower, shi2--ten, wan4--ten-thousand]
+    grammar: [num-wan4-rest--ten-thousands]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 143
+
+  - id: 805
+    zh: 本子是开学时送来的。
+    py: běn zi shì kāi xué shí sòng lái de
+    en: The notebook was sent at the start of the school year.
+    words: [ben3-zi5--notebook, shi4--identity, kai1-xue2--term, shi2--when, song4--gift, lai2--come, de5--description]
+    grammar: [s-shi4-focus-vp-de5--event-focus, v-lai2-or-qu4--direction]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 143
+
+  - id: 806
+    zh: 包可能在里面。
+    py: bāo kě néng zài lǐ miàn
+    en: The bag may be inside.
+    words: [bao1--package, bao1--bag, ke3-neng2--might, zai4--location, li3-mian4--inside]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 144
+
+  - id: 807
+    zh: 包还是红色的。
+    py: bāo hái shi hóng sè de
+    en: The package is still red.
+    words: [hai2-shi5--still, bao1--bag, hai2-shi5--better, hong2-se4--red, de5--description]
+    grammar: [mod-de5--nominal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 144
+
+  - id: 808
+    zh: 考试要开始了。
+    py: kǎo shì yào kāi shǐ le
+    en: The exam is about to start.
+    words: [kao3-shi4--exam, kao3-shi4--take-exam, yao4--want, kai1-shi3--beginning, le5--intensify]
+    grammar: [yao4-or-kuai4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 809
+    zh: 他已经考试了。
+    py: tā yǐ jīng kǎo shì le
+    en: He has already taken the exam.
+    words: [kao3-shi4--exam, ta1--he, yi3-jing1--already, kao3-shi4--take-exam, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 812
+    zh: 这件事有可能。
+    py: zhè jiàn shì yǒu kě néng
+    en: This is possible.
+    words: [ke3-neng2--possibility, zhe4--this, jian4--classifier, shi4--matter, you3--have, ke3-neng2--might]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 814
+    zh: 这件事可能不好。
+    py: zhè jiàn shì kě néng bù hǎo
+    en: This matter may not be good.
+    words: [ke3-neng2--possible, zhe4--this, jian4--classifier, shi4--matter, ke3-neng2--might, bu4--not, hao3--good]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 815
+    zh: 他可能在教室。
+    py: tā kě néng zài jiào shì
+    en: He may be in the classroom.
+    words: [ke3-neng2--possible, ta1--he, ke3-neng2--might, zai4--location, jiao4-shi4--classroom]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 816
+    zh: 工作让她很累。
+    py: gōng zuò ràng tā hěn lèi
+    en: Work tires her out.
+    words: [lei4--tire, gong1-zuo4--work, rang4--allow, ta1--she, hen3--very, lei4--tired]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 817
+    zh: 运动让他很累。
+    py: yùn dòng ràng tā hěn lèi
+    en: Exercise tires him out.
+    words: [lei4--tire, yun4-dong4--sports, rang4--allow, ta1--he, hen3--very, lei4--tired]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 818
+    zh: 考试让我们很累。
+    py: kǎo shì ràng wǒ men hěn lèi
+    en: The exam tires us out.
+    words: [lei4--tire, kao3-shi4--take-exam, rang4--allow, wo3-men5--we, hen3--very, lei4--tired]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 819
+    zh: 他不想离开。
+    py: tā bù xiǎng lí kāi
+    en: He doesn't want to leave.
+    words: [li2--leave, ta1--he, bu4--not, xiang3--miss, li2--distance, kai1--operate]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 820
+    zh: 他可能离开。
+    py: tā kě néng lí kāi
+    en: He may leave.
+    words: [li2--leave, ta1--he, ke3-neng2--might, li2--distance, kai1--operate]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 821
+    zh: 他已经离开了。
+    py: tā yǐ jīng lí kāi le
+    en: He has already left.
+    words: [li2--leave, ta1--he, yi3-jing1--already, li2--distance, kai1--operate, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 822
+    zh: 班里有三名小孩儿。
+    py: bān lǐ yǒu sān míng xiǎo háir
+    en: There are three children in the class.
+    words: [ming2--people, ban1--shift, li3--inside, you3--have, san1--three, ming2--name, xiao3-hai2-r5--child]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 823
+    zh: 他认识两名女孩儿。
+    py: tā rèn shi liǎng míng nǚ háir
+    en: He knows two girls.
+    words: [ming2--people, ta1--he, ren4-shi5--recognize, liang3--two, ming2--name, nv3-hai2-r5--girl]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 825
+    zh: 她拿着本子。
+    py: tā ná zhe běn zi
+    en: She is holding a notebook.
+    words: [na2--hold, ta1--she, na2--take, zhe5--ongoing, ben3-zi5--notebook]
+    grammar: [v-zhe5--state]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 826
+    zh: 他拿好包。
+    py: tā ná hǎo bāo
+    en: He takes a firm hold of the bag.
+    words: [na2--hold, ta1--he, na2--take, hao3--good, bao1--bag]
+    grammar: [v-hao3--ready]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 827
+    zh: 拿好包！
+    py: ná hǎo bāo
+    en: Hold on to your bag!
+    words: [na2--hold, na2--take, hao3--good, bao1--bag]
+    grammar: [v-hao3--ready]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 828
+    zh: 你别那么拿包。
+    py: nǐ bié nà me ná bāo
+    en: Don't hold the bag like that.
+    words: [na4-me5--that-way, ni3--you, bie2--dont, na4-me5--then, na2--take, bao1--bag]
+    grammar: [bie2-vp--dont, zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 829
+    zh: 他那么高。
+    py: tā nà me gāo
+    en: He is that tall.
+    words: [na4-me5--that-way, ta1--he, na4-me5--then, gao1--tall]
+    grammar: [zhe4-me5-or-na4-me5-adj--degree]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 830
+    zh: 事情那么多。
+    py: shì qing nà me duō
+    en: There are so many things.
+    words: [na4-me5--that-way, shi4-qing5--matter, na4-me5--then, duo1--how]
+    grammar: [zhe4-me5-or-na4-me5-adj--degree]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 832
+    zh: 前面是饭馆。
+    py: qián miàn shì fàn guǎn
+    en: The restaurant is up ahead.
+    words: [qian2-mian4--front, shi4--identity, fan4-guan3--restaurant]
+    grammar: [dir-mian4--side, loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 833
+    zh: 请帮忙
+    py: qǐng bāng máng
+    en: Please help.
+    words: [qing3--invite, bang1-mang2--help]
+    grammar: [qing3-vp--request]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 834
+    zh: 他想打车
+    py: tā xiǎng dǎ chē
+    en: He wants to take a taxi.
+    words: [ta1--he, xiang3--miss, da3-che1--taxi]
+    grammar: [s-xiang3-vp--want]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 835
+    zh: 他在机场等她
+    py: tā zài jī chǎng děng tā
+    en: He is waiting for her at the airport.
+    words: [ta1--he, zai4--location, ji1-chang3--airport, deng3--wait, ta1--she]
+    grammar: [s-zai4-loc-vp--location]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 93
+
+  - id: 836
+    zh: 别出门
+    py: bié chū mén
+    en: Don’t go out.
+    words: [bie2--dont, chu1-men2--go-out]
+    grammar: [bie2-vp--dont]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 94
+
+  - id: 837
+    zh: 门后是床
+    py: mén hòu shì chuáng
+    en: There’s a bed behind the door.
+    words: [men2--door, hou4--behind, shi4--identity, chuang2--bed]
+    grammar: [loc-shi4-np--identify, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 94
+
+  - id: 838
+    zh: 别踢桌子
+    py: bié tī zhuō zi
+    en: Don’t kick the table.
+    words: [bie2--dont, ti1--kick, zhuo1-zi5--table]
+    grammar: [bie2-vp--dont]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 94
+
+  - id: 839
+    zh: 她跟我走路。
+    py: tā gēn wǒ zǒu lù
+    en: She walks with me.
+    words: [gen1--with, ta1--she, gen1--and, wo3--me, zou3-lu4--walk]
+    grammar: [s-gen1-p-vp--with]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 117
+
+  - id: 840
+    zh: 酒店在商场左边。
+    py: jiǔ diàn zài shāng chǎng zuǒ bian
+    en: The hotel is to the left of the shopping mall.
+    words: [jiu3-dian4--hotel, zai4--location, shang1-chang3--mall, zuo3-bian5--left]
+    grammar: [n-zuo3-or-you4--side, s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 117
+
+  - id: 842
+    zh: 我已经告诉她了。
+    py: wǒ yǐ jīng gào su tā le
+    en: I have already told her.
+    words: [wo3--me, yi3-jing1--already, gao4-su5--tell, ta1--she, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 118
+
+  - id: 845
+    zh: 咖啡很好。
+    py: kā fēi hěn hǎo
+    en: The coffee is very good.
+    words: [ka1-fei1--coffee, hen3--very, hao3--good]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 114
+
+  - id: 846
+    zh: 鱼很好吃。
+    py: yú hěn hǎo chī
+    en: The fish is very tasty.
+    words: [yu2--fish, hen3--very, hao3-chi1--tasty]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 114
+
+  - id: 847
+    zh: 红茶还是鱼？
+    py: hóng chá hái shi yú
+    en: Black tea or fish?
+    words: [hong2-cha2--tea, hai2-shi5--better, yu2--fish]
+    grammar: [option-hai2-shi5-option--choice]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 114
+
+  - id: 848
+    zh: 他开的饭馆很好。
+    py: tā kāi de fàn guǎn hěn hǎo
+    en: The restaurant he runs is very good.
+    words: [ta1--he, kai1--operate, de5--description, fan4-guan3--restaurant, hen3--very, hao3--good]
+    grammar: [s-pred-de5-n--relative-clause, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 114
+
+  - id: 849
+    zh: 酒店这么近。
+    py: jiǔ diàn zhè me jìn
+    en: The hotel is this close.
+    words: [jiu3-dian4--hotel, zhe4-me5--degree, jin4--near]
+    grammar: [zhe4-me5-or-na4-me5-adj--degree]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 850
+    zh: 我有机票。
+    py: wǒ yǒu jī piào
+    en: I have a plane ticket.
+    words: [piao4--ticket, wo3--me, you3--have, ji1-piao4--ticket]
+    grammar: [s-you3-np--have]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 851
+    zh: 机场比商场远多了。
+    py: jī chǎng bǐ shāng chǎng yuǎn duō le
+    en: The airport is much farther than the mall.
+    words: [ji1-chang3--airport, bi3--compare, shang1-chang3--mall, yuan3--far, duo1--how, le5--intensify]
+    grammar: [a-bi3-b-adj-duo1-le5--much-more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 852
+    zh: 商场比酒店远多了。
+    py: shāng chǎng bǐ jiǔ diàn yuǎn duō le
+    en: The mall is much farther than the hotel.
+    words: [shang1-chang3--mall, bi3--compare, jiu3-dian4--hotel, yuan3--far, duo1--how, le5--intensify]
+    grammar: [a-bi3-b-adj-duo1-le5--much-more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 125
+
+  - id: 853
+    zh: 我在公交车站等车。
+    py: wǒ zài gōng jiāo chē zhàn děng chē
+    en: I’m waiting for a bus at the bus stop.
+    words: [wo3--me, zai4--location, gong1-jiao1-che1--bus, zhan4--station, deng3--wait, che1--vehicle]
+    grammar: [s-zai4-loc-vp--location]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 854
+    zh: 他住在三楼。
+    py: tā zhù zài sān lóu
+    en: He lives on the third floor.
+    words: [lou2--floor, ta1--he, zhu4--live, zai4--location, san1--three, lou2--building]
+    grammar: [s-zai4-loc-vp--location]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 855
+    zh: 我坐五路公交车去机场。
+    py: wǒ zuò wǔ lù gōng jiāo chē qù jī chǎng
+    en: I take the number 5 bus to the airport.
+    words: [lu4--route, wo3--me, zuo4--sit, wu3--five, lu4--road, gong1-jiao1-che1--bus, qu4--go, ji1-chang3--airport]
+    grammar: [s-vp-vp--means]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 856
+    zh: 这边有一个公交车站。
+    py: zhè biān yǒu yí gè gōng jiāo chē zhàn
+    en: There is a bus stop over here.
+    words: [zhe4-bian1--this-side, you3--have, yi1--one, ge4--classifier, gong1-jiao1-che1--bus, zhan4--station]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 857
+    zh: 五路公交车去机场。
+    py: wǔ lù gōng jiāo chē qù jī chǎng
+    en: The number 5 bus goes to the airport.
+    words: [wu3--five, lu4--road, gong1-jiao1-che1--bus, qu4--go, ji1-chang3--airport]
+    grammar: [num-unit--ordinal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 126
+
+  - id: 858
+    zh: 你的画那么好看！
+    py: nǐ de huà nà me hǎo kàn
+    en: Your picture is so beautiful!
+    words: [na4-me5--degree, ni3--you, de5--description, hua4--picture, na4-me5--then, hao3-kan4--attractive]
+    grammar: [zhe4-me5-or-na4-me5-adj--degree]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 121
+
+  - id: 859
+    zh: 他那样走路。
+    py: tā nà yàng zǒu lù
+    en: He walks like that.
+    words: [ta1--he, na4-yang4--that-way, zou3-lu4--walk]
+    grammar: [zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 121
+
+  - id: 860
+    zh: 今天这么热！
+    py: jīn tiān zhè me rè
+    en: It’s so hot today!
+    words: [jin1-tian1--today, zhe4-me5--degree, re4--hot]
+    grammar: [zhe4-me5-or-na4-me5-adj--degree]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 121
+
+  - id: 861
+    zh: 小朋友很快乐。
+    py: xiǎo péng yǒu hěn kuài lè
+    en: The child is very happy.
+    words: [xiao3-peng2-you3--child, hen3--very, kuai4-le4--happy]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 862
+    zh: 商场里有好多位女士。
+    py: shāng chǎng lǐ yǒu hǎo duō wèi nǚ shì
+    en: There are lots of women at the shopping mall.
+    words: [shang1-chang3--mall, li3--inside, you3--have, hao3-duo1--many, wei4--people, nv3-shi4--lady]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 863
+    zh: 他们在外面踢足球。
+    py: tā men zài wài miàn tī zú qiú
+    en: They’re playing soccer outside.
+    words: [ta1-men5--they, zai4--location, wai4-mian4--outside, ti1--kick, zu2-qiu2--ball]
+    grammar: [s-zai4-loc-vp--location]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 864
+    zh: 门口坐着好多小朋友。
+    py: mén kǒu zuò zhe hǎo duō xiǎo péng yǒu
+    en: Lots of children are sitting by the entrance.
+    words: [men2-kou3--entrance, zuo4--sit, zhe5--ongoing, hao3-duo1--many, xiao3-peng2-you3--child]
+    grammar: [loc-v-zhe5-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 865
+    zh: 他踢得很好。
+    py: tā tī de hěn hǎo
+    en: He plays very well.
+    words: [ta1--he, ti1--kick, de5--manner, hen3--very, hao3--good]
+    grammar: [v-de5-adjp--performance]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 122
+
+  - id: 866
+    zh: 天气很阴，但饭馆开着。
+    py: tiān qì hěn yīn dàn fàn guǎn kāi zhe
+    en: The weather is very cloudy, but the restaurant is open.
+    words: [tian1-qi4--weather, hen3--very, yin1--cloudy, dan4--but, fan4-guan3--restaurant, kai1--operate, zhe5--ongoing]
+    grammar: [s-hen3-adj--describe, clause-dan4-or-dan4-shi4-clause--but, v-zhe5--state]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 109
+
+  - id: 867
+    zh: 虽然天气很阴，但是饭馆开着。
+    py: suī rán tiān qì hěn yīn dàn shì fàn guǎn kāi zhe
+    en: Although the weather is very cloudy, the restaurant is open.
+    words: [sui1-ran2--although, tian1-qi4--weather, hen3--very, yin1--cloudy, dan4-shi4--but, fan4-guan3--restaurant, kai1--operate, zhe5--ongoing]
+    grammar: [s-hen3-adj--describe, sui1-ran2-clause-dan4-shi4-clause--although, v-zhe5--state]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 109
+
+  - id: 868
+    zh: 他坐着。
+    py: tā zuò zhe
+    en: He is sitting.
+    words: [ta1--he, zuo4--sit, zhe5--ongoing]
+    grammar: [v-zhe5--state]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 109
+
+  - id: 869
+    zh: 教室右边是洗手间。
+    py: jiào shì yòu bian shì xǐ shǒu jiān
+    en: The restroom is to the right of the classroom.
+    words: [you4--right, jiao4-shi4--classroom, you4-bian5--right, shi4--identity, xi3-shou3-jian1--restroom]
+    grammar: [n-zuo3-or-you4--side, dir-bian1--side, loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 110
+
+  - id: 870
+    zh: 饭馆左边是教室。
+    py: fàn guǎn zuǒ bian shì jiào shì
+    en: The classroom is to the left of the restaurant.
+    words: [fan4-guan3--restaurant, zuo3--left, bian1--side, shi4--identity, jiao4-shi4--classroom]
+    grammar: [n-zuo3-or-you4--side, dir-bian1--side, loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 110
+
+  - id: 871
+    zh: 饭馆右边是教室。
+    py: fàn guǎn yòu bian shì jiào shì
+    en: The classroom is to the right of the restaurant.
+    words: [fan4-guan3--restaurant, you4-bian5--right, shi4--identity, jiao4-shi4--classroom]
+    grammar: [n-zuo3-or-you4--side, dir-bian1--side, loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 110
+
+  - id: 872
+    zh: 我点肉。
+    py: wǒ diǎn ròu
+    en: I order meat.
+    words: [dian3--order, wo3--me, dian3--oclock, rou4--meat]
+    grammar: [v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 89
+
+  - id: 873
+    zh: 我跑回来。
+    py: wǒ pǎo huí lai
+    en: I run back.
+    words: [wo3--me, pao3--run, hui2-lai5--return]
+    grammar: [v-hui2-lai5-or-hui2-qu5--return]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 89
+
+  - id: 874
+    zh: 他跑回去。
+    py: tā pǎo huí qu
+    en: He runs back.
+    words: [ta1--he, pao3--run, hui2-qu5--return]
+    grammar: [v-hui2-lai5-or-hui2-qu5--return]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 89
+
+  - id: 875
+    zh: 他们也跑。
+    py: tā men yě pǎo
+    en: They run too.
+    words: [ta1-men5--they, ye3--also, pao3--run]
+    grammar: [pron-or-person-men5--plural, s-ye3-pred--also]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 89
+
+  - id: 876
+    zh: 床在那边。
+    py: chuáng zài nà bian
+    en: The bed is over there.
+    words: [chuang2--bed, zai4--location, na4-bian5--there]
+    grammar: [s-zai4-loc--at]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 90
+
+  - id: 877
+    zh: 从床旁边走。
+    py: cóng chuáng páng biān zǒu
+    en: Walk from beside the bed.
+    words: [cong2--via, chuang2--bed, pang2-bian1--beside, zou3--leave]
+    grammar: [cong2-route-vp--via]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 90
+
+  - id: 878
+    zh: 床旁边有一个包。
+    py: chuáng páng biān yǒu yí gè bāo
+    en: There is a bag beside the bed.
+    words: [chuang2--bed, pang2-bian1--beside, you3--have, yi1--one, ge4--classifier, bao1--bag]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 90
+
+  - id: 879
+    zh: 他走一走。
+    py: tā zǒu yì zǒu
+    en: He takes a short walk.
+    words: [zou3--walk, ta1--he, zou3--leave, yi1--one]
+    grammar: [v-yi1-v--brief]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 90
+
+  - id: 880
+    zh: 他从店跑回来。
+    py: tā cóng diàn pǎo huí lai
+    en: He runs back from the shop.
+    words: [ta1--he, cong2--via, dian4--shop, pao3--run, hui2-lai5--return]
+    grammar: [cong2-route-vp--via, v-hui2-lai5-or-hui2-qu5--return]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 90
+
+  - id: 881
+    zh: 我们班有几个本子。
+    py: wǒ men bān yǒu jǐ gè běn zi
+    en: Our class has a few notebooks.
+    words: [ban1--class, wo3-men5--we, ban1--shift, you3--have, ji3--quantity, ge4--classifier, ben3-zi5--notebook]
+    grammar: [ji3-mw-n--several]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 882
+    zh: 网上有四十多个班。
+    py: wǎng shàng yǒu sì shí duō gè bān
+    en: There are more than forty classes online.
+    words: [duo1--over, wang3-shang4--online, you3--have, si4--four, shi2--ten, duo1--how, ge4--classifier, ban1--shift]
+    grammar: [loc-you3-qty-n--exist, num-duo1-mw-n--over]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 883
+    zh: 网上有二十多个本子。
+    py: wǎng shàng yǒu èr shí duō gè běn zi
+    en: There are more than twenty notebooks online.
+    words: [wang3-shang4--online, you3--have, er4--two, shi2--ten, duo1--how, ge4--classifier, ben3-zi5--notebook]
+    grammar: [loc-you3-qty-n--exist, num-duo1-mw-n--over]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 137
+
+  - id: 884
+    zh: 我常画花。
+    py: wǒ cháng huà huā
+    en: I often draw flowers.
+    words: [wo3--me, chang2--often, hua4--picture, hua1--flower]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 138
+
+  - id: 885
+    zh: 她从饭馆出来。
+    py: tā cóng fàn guǎn chū lái
+    en: She comes out of the restaurant.
+    words: [ta1--she, cong2--via, fan4-guan3--restaurant, chu1-lai2--come-out]
+    grammar: [cong2-loc-vp--from]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 138
+
+  - id: 886
+    zh: 他经常教中文。
+    py: tā jīng cháng jiāo zhōng wén
+    en: He often teaches Chinese.
+    words: [ta1--he, jing1-chang2--often, jiao1--teach, zhong1-wen2--chinese]
+    grammar: [s-chang2-or-jing1-chang2-vp--often]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 138
+
+  - id: 887
+    zh: 这条路有五里长。
+    py: zhè tiáo lù yǒu wǔ lǐ cháng
+    en: This road is five li long.
+    words: [you3--reach-degree, zhe4--this, tiao2--classifier, lu4--road, you3--have, wu3--five, li3--inside, chang2--long]
+    grammar: [s-you3-qty--measure]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 97
+
+  - id: 888
+    zh: 女孩儿也爱自己。
+    py: nǚ háir yě ài zì jǐ
+    en: The girl loves herself too.
+    words: [zi4-ji3--self, nv3-hai2-r5--girl, ye3--also, ai4--love, zi4-ji3--own]
+    grammar: [s-v-zi4-ji3--self]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 97
+
+  - id: 889
+    zh: 爷爷看自己。
+    py: yé ye kàn zì jǐ
+    en: Grandpa looks at himself.
+    words: [ye2-ye5--grandfather, kan4--watch, zi4-ji3--own]
+    grammar: [s-v-zi4-ji3--self]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 97
+
+  - id: 890
+    zh: 那条路有三十里长。
+    py: nà tiáo lù yǒu sān shí lǐ cháng
+    en: That road is thirty li long.
+    words: [na4--that, tiao2--classifier, lu4--road, you3--have, san1--three, shi2--ten, li3--inside, chang2--long]
+    grammar: [s-you3-qty--measure]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 97
+
+  - id: 891
+    zh: 小孩儿跟奶奶一起游泳。
+    py: xiǎo háir gēn nǎi nai yì qǐ yóu yǒng
+    en: The child and Grandma swim together.
+    words: [xiao3-hai2-r5--child, gen1--and, nai3-nai5--grandmother, yi1-qi3--together, you2-yong3--swim]
+    grammar: [np-gen1-np--and, group-yi1-qi3-vp--together]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 98
+
+  - id: 892
+    zh: 这个楼多高？
+    py: zhè ge lóu duō gāo
+    en: How tall is this building?
+    words: [gao1--height, zhe4-ge5--this, lou2--building, duo1--how, gao1--tall]
+    grammar: [s-duo1-adj--degree]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 145
+
+  - id: 893
+    zh: 我给你介绍这个班。
+    py: wǒ gěi nǐ jiè shào zhè ge bān
+    en: I’ll introduce this class to you.
+    words: [jie4-shao4--describe, wo3--me, gei3--give, ni3--you, jie4-shao4--introduce, zhe4-ge5--this, ban1--shift]
+    grammar: [gei3-p-vp--for-to]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 146
+
+  - id: 894
+    zh: 她们打球。
+    py: tā men dǎ qiú
+    en: They play ball.
+    words: [da3--play, ta1-men5--women, da3--hit, qiu2--ball]
+    grammar: [pron-or-person-men5--plural]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 895
+    zh: 她让他笑。
+    py: tā ràng tā xiào
+    en: She makes him smile.
+    words: [rang4--ask, ta1--she, rang4--allow, ta1--he, xiao4--smile]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 896
+    zh: 下面有几个球。
+    py: xià miàn yǒu jǐ gè qiú
+    en: There are several balls below.
+    words: [xia4-mian4--below, you3--have, ji3--quantity, ge4--classifier, qiu2--ball]
+    grammar: [dir-mian4--side, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 897
+    zh: 她还没笑呢。
+    py: tā hái méi xiào ne
+    en: She hasn’t smiled yet.
+    words: [ta1--she, hai2--also, mei2--negation, xiao4--smile, ne5--reciprocal]
+    grammar: [s-hai2-mei2-vp-ne5--not-yet]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 133
+
+  - id: 898
+    zh: 她还没画红色的花呢。
+    py: tā hái méi huà hóng sè de huā ne
+    en: She hasn’t drawn the red flowers yet.
+    words: [hua4--draw, ta1--she, hai2--also, mei2--negation, hua4--picture, hong2-se4--red, de5--description, hua1--flower, ne5--reciprocal]
+    grammar: [s-hai2-mei2-vp-ne5--not-yet, adjp-de5-n--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 134
+
+  - id: 899
+    zh: 他有时候跑步。
+    py: tā yǒu shí hou pǎo bù
+    en: He sometimes runs.
+    words: [ta1--he, you3-shi2-hou5--sometimes, pao3-bu4--run]
+    grammar: [s-you3-shi2-or-you3-shi2-hou5-vp--sometimes]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 134
+
+  - id: 900
+    zh: 周六高高兴兴地踢足球。
+    py: zhōu liù gāo gāo xìng xìng de tī zú qiú
+    en: On Saturday, we happily play soccer.
+    words: [zhou1-liu4--saturday, gao1-gao1-xing4-xing4--cheerful, de5--adverbial, ti1--kick, zu2-qiu2--ball]
+    grammar: [a-a-b-b--vivid, adjp-de5-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 153
+
+  - id: 901
+    zh: 周日高高兴兴地游泳。
+    py: zhōu rì gāo gāo xìng xìng de yóu yǒng
+    en: On Sunday, we happily swim.
+    words: [zhou1-ri4--sunday, gao1-gao1-xing4-xing4--cheerful, de5--adverbial, you2-yong3--swim]
+    grammar: [a-a-b-b--vivid, adjp-de5-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 153
+
+  - id: 902
+    zh: 运动多舒服啊！
+    py: yùn dòng duō shū fu a
+    en: Exercise feels so good!
+    words: [yun4-dong4--sports, duo1--how, shu1-fu5--comfortable, a5--particle]
+    grammar: [duo1-adj-a5--how]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 153
+
+  - id: 903
+    zh: 周五她自己游泳。
+    py: zhōu wǔ tā zì jǐ yóu yǒng
+    en: On Friday, she swims by herself.
+    words: [zhou1-wu3--friday, ta1--she, zi4-ji3--own, you2-yong3--swim]
+    grammar: [s-zi4-ji3-vp--personally]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 153
+
+  - id: 904
+    zh: 都快要考试了。
+    py: dōu kuài yào kǎo shì le
+    en: It’s almost time for the exam already.
+    words: [dou1--already, dou1--all, kuai4-yao4--soon, kao3-shi4--take-exam, le5--intensify]
+    grammar: [dou1-state-le5--already, yao4-or-kuai4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 154
+
+  - id: 905
+    zh: 他还很累。
+    py: tā hái hěn lèi
+    en: He is still very tired.
+    words: [ta1--he, hai2--also, hen3--very, lei4--tired]
+    grammar: [s-hai2-pred--still]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 154
+
+  - id: 906
+    zh: 过年可能有很多事情。
+    py: guò nián kě néng yǒu hěn duō shì qing
+    en: There may be a lot going on during Chinese New Year.
+    words: [guo4-nian2--new-year, ke3-neng2--might, you3--have, hen3--very, duo1--how, shi4-qing5--matter]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 141
+
+  - id: 907
+    zh: 我出去过一次。
+    py: wǒ chū qù guò yí cì
+    en: I have gone out once.
+    words: [wo3--me, chu1-qu4--go-out, guo4--celebrate, yi1--one, ci4--times]
+    grammar: [v-le5-or-guo5-obj-num-ci4--event-count, v-num-ci4--times]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 141
+
+  - id: 908
+    zh: 我有一包咖啡。
+    py: wǒ yǒu yì bāo kā fēi
+    en: I have a pack of coffee.
+    words: [bao1--packet, wo3--me, you3--have, yi1--one, bao1--bag, ka1-fei1--coffee]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 142
+
+  - id: 909
+    zh: 我跟他过了一天。
+    py: wǒ gēn tā guò le yì tiān
+    en: I spent a day with him.
+    words: [guo4--time, wo3--me, gen1--and, ta1--he, guo4--celebrate, le5--intensify, yi1--one, tian1--day]
+    grammar: [s-gen1-p-vp--with, num-nian2-or-tian1-or-fen1--duration, v-le5-duration-obj--duration]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 142
+
+  - id: 910
+    zh: 一开学，就考试。
+    py: yì kāi xué jiù kǎo shì
+    en: As soon as the term starts, there are exams.
+    words: [yi1--as-soon-as, yi1--one, kai1-xue2--term, jiu4--immediately-after, kao3-shi4--take-exam]
+    grammar: [yi1-vp-jiu4-clause--as-soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 142
+
+  - id: 911
+    zh: 这条路没有那条路新。
+    py: zhè tiáo lù méi yǒu nà tiáo lù xīn
+    en: This road isn’t as new as that road.
+    words: [mei2-you3--less-than, zhe4--this, tiao2--classifier, lu4--road, mei2-you3--possession, na4--that, xin1--new]
+    grammar: [a-mei2-you3-b-adj--not-as]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 91
+
+  - id: 912
+    zh: 路上有很多车。
+    py: lù shang yǒu hěn duō chē
+    en: There are lots of cars on the road.
+    words: [lu4-shang5--way, you3--have, hen3--very, duo1--how, che1--vehicle]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 92
+
+  - id: 913
+    zh: 走路很好啊！
+    py: zǒu lù hěn hǎo a
+    en: Walking is nice!
+    words: [zou3-lu4--walk, hen3--very, hao3--good, a5--particle]
+    grammar: [stmt-a5--tone, s-pred--statement]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 105
+
+  - id: 914
+    zh: 她有时走路。
+    py: tā yǒu shí zǒu lù
+    en: She sometimes walks.
+    words: [ta1--she, you3-shi2--sometimes, zou3-lu4--walk]
+    grammar: [s-you3-shi2-or-you3-shi2-hou5-vp--sometimes]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 105
+
+  - id: 915
+    zh: 他有时候跳舞。
+    py: tā yǒu shí hou tiào wǔ
+    en: He sometimes dances.
+    words: [ta1--he, you3-shi2-hou5--sometimes, tiao4-wu3--dance]
+    grammar: [s-you3-shi2-or-you3-shi2-hou5-vp--sometimes]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 105
+
+  - id: 916
+    zh: 他爱好跳舞。
+    py: tā ài hào tiào wǔ
+    en: He enjoys dancing.
+    words: [ai4-hao4--enjoy, ta1--he, ai4-hao4--hobby, tiao4-wu3--dance]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 106
+
+  - id: 917
+    zh: 他从小开始跳舞。
+    py: tā cóng xiǎo kāi shǐ tiào wǔ
+    en: He started dancing as a child.
+    words: [ta1--he, cong2-xiao3--childhood, kai1-shi3--beginning, tiao4-wu3--dance]
+    grammar: [s-vp-vp--purpose]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 106
+
+  - id: 918
+    zh: 她开始运动。
+    py: tā kāi shǐ yùn dòng
+    en: She starts exercising.
+    words: [kai1-shi3--begin, ta1--she, kai1-shi3--beginning, yun4-dong4--sports]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 106
+
+  - id: 919
+    zh: 她快开始运动了。
+    py: tā kuài kāi shǐ yùn dòng le
+    en: She will start exercising soon.
+    words: [kuai4--soon, ta1--she, kuai4--fast, kai1-shi3--beginning, yun4-dong4--sports, le5--intensify]
+    grammar: [kuai4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 106
+
+  - id: 920
+    zh: 他可能踢球。
+    py: tā kě néng tī qiú
+    en: He might play ball.
+    words: [qiu2--game, ta1--he, ke3-neng2--might, ti1--kick, qiu2--ball]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 921
+    zh: 运动让身体舒服。
+    py: yùn dòng ràng shēn tǐ shū fu
+    en: Exercise makes the body feel good.
+    words: [shen1-ti3--body, yun4-dong4--sports, rang4--allow, shen1-ti3--health, shu1-fu5--comfortable]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 922
+    zh: 身体好，运动也舒服。
+    py: shēn tǐ hǎo yùn dòng yě shū fu
+    en: My body feels good, and exercise feels good too.
+    words: [shu1-fu5--well, shen1-ti3--health, hao3--good, yun4-dong4--sports, ye3--also, shu1-fu5--comfortable]
+    grammar: [s-ye3-pred--also]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 923
+    zh: 他送给你一个球。
+    py: tā sòng gěi nǐ yí gè qiú
+    en: He gives you a ball.
+    words: [song4--farewell, ta1--he, song4--gift, gei3--give, ni3--you, yi1--one, ge4--classifier, qiu2--ball]
+    grammar: [s-v-gei3-p-obj--transfer]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 149
+
+  - id: 924
+    zh: 他还没踢球呢。
+    py: tā hái méi tī qiú ne
+    en: He hasn’t played ball yet.
+    words: [ti1--play, ta1--he, hai2--also, mei2--negation, ti1--kick, qiu2--ball, ne5--reciprocal]
+    grammar: [s-hai2-mei2-vp-ne5--not-yet]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 925
+    zh: 小高姓高。
+    py: xiǎo gāo xìng gāo
+    en: Xiao Gao’s surname is Gao.
+    words: [xing4--named, xiao3--small, gao1--tall, xing4--surname]
+    grammar: [xiao3-surname--address]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 926
+    zh: 他可能游泳。
+    py: tā kě néng yóu yǒng
+    en: He might swim.
+    words: [you2--swim, ta1--he, ke3-neng2--might, you2-yong3--swim]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 927
+    zh: 他正在运动。
+    py: tā zhèng zài yùn dòng
+    en: He is exercising.
+    words: [yun4-dong4--exercise, ta1--he, zheng4-zai4--ongoing, yun4-dong4--sports]
+    grammar: [s-zai4-or-zheng4-zai4-vp--ongoing]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 928
+    zh: 足球可能很有意思。
+    py: zú qiú kě néng hěn yǒu yì si
+    en: Soccer might be fun.
+    words: [zu2-qiu2--soccer, zu2-qiu2--ball, ke3-neng2--might, hen3--very, you3-yi4-si5--interesting]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 150
+
+  - id: 929
+    zh: 身体动了
+    py: shēn tǐ dòng le
+    en: The body moved.
+    words: [shen1-ti3--health, dong4--move, le5--intensify]
+    grammar: [state-le5--change]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 930
+    zh: 他已经记得我的姓名了
+    py: tā yǐ jīng jì de wǒ de xìng míng le
+    en: He already remembers my full name.
+    words: [ta1--he, yi3-jing1--already, ji4-de5--remember, wo3--me, de5--description, xing4-ming2--name, le5--intensify]
+    grammar: [s-yi3-jing1-pred-le5--already]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 931
+    zh: 他跟我上去
+    py: tā gēn wǒ shàng qù
+    en: He goes up with me.
+    words: [ta1--he, gen1--and, wo3--me, shang4-qu4--ascend]
+    grammar: [s-gen1-p-vp--with, v-lai2-or-qu4--direction]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 932
+    zh: 他读完书
+    py: tā dú wán shū
+    en: He finishes reading the book.
+    words: [ta1--he, du2--read-aloud, wan2--finish, shu1--book]
+    grammar: [v-wan2--finish, v-le5-obj--complete]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 933
+    zh: 他看完电影
+    py: tā kàn wán diàn yǐng
+    en: He finishes watching the movie.
+    words: [ta1--he, kan4--watch, wan2--finish, dian4-ying3--movie]
+    grammar: [v-wan2--finish]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 119
+
+  - id: 934
+    zh: 这画真不错
+    py: zhè huà zhēn bú cuò
+    en: This picture is really not bad.
+    words: [zhe4--this, hua4--picture, zhen1--really, bu4-cuo4--good]
+    grammar: [zhen1-adj--really]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 120
+
+  - id: 935
+    zh: 那画没意思
+    py: nà huà méi yì si
+    en: That picture is boring.
+    words: [na4--that, hua4--picture, mei2-yi4-si5--boring]
+    grammar: [s-mei2-you3-np--absence]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 120
+
+  - id: 936
+    zh: 那画最漂亮
+    py: nà huà zuì piào liang
+    en: That picture is the prettiest.
+    words: [na4--that, hua4--picture, zui4--most, piao4-liang5--pretty]
+    grammar: [zui4-adj--most]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 120
+
+  - id: 937
+    zh: 那电影最好看
+    py: nà diàn yǐng zuì hǎo kàn
+    en: That movie is the best.
+    words: [na4--that, dian4-ying3--movie, zui4--most, hao3-kan4--attractive]
+    grammar: [zui4-adj--most]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 120
+
+  - id: 938
+    zh: 你为什么准备出国？
+    py: nǐ wèi shén me zhǔn bèi chū guó
+    en: Why are you planning to go abroad?
+    words: [ni3--you, wei4-shen2-me5--why, zhun3-bei4--prepare, chu1-guo2--abroad]
+    grammar: [s-wei4-shen2-me5-pred--why]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 129
+
+  - id: 939
+    zh: 小时候我踢过足球。
+    py: xiǎo shí hou wǒ tī guò zú qiú
+    en: I played soccer when I was a child.
+    words: [xiao3-shi2-hou5--childhood, wo3--me, ti1--kick, guo4--celebrate, zu2-qiu2--ball]
+    grammar: [v-guo5--experience]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 129
+
+  - id: 940
+    zh: 我这周要考试。
+    py: wǒ zhè zhōu yào kǎo shì
+    en: I have an exam this week.
+    words: [wo3--me, zhe4--this, zhou1--week, yao4--want, kao3-shi4--take-exam]
+    grammar: [s-yao4-vp--intend]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 129
+
+  - id: 941
+    zh: 他为什么出去？
+    py: tā wèi shén me chū qù
+    en: Why is he going out?
+    words: [ta1--he, wei4-shen2-me5--why, chu1-qu4--go-out]
+    grammar: [s-wei4-shen2-me5-pred--why]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 129
+
+  - id: 942
+    zh: 从下周开始运动。
+    py: cóng xià zhōu kāi shǐ yùn dòng
+    en: Start exercising next week.
+    words: [cong2--from, cong2--via, xia4--descend, zhou1--week, kai1-shi3--beginning, yun4-dong4--sports]
+    grammar: [cong2-time-vp--since]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 130
+
+  - id: 943
+    zh: 白色的不错。
+    py: bái sè de bú cuò
+    en: The white one is pretty good.
+    words: [de5--nominalizer, bai2-se4--white, de5--description, bu4-cuo4--good]
+    grammar: [mod-de5--nominal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 130
+
+  - id: 944
+    zh: 黑色的不错。
+    py: hēi sè de bú cuò
+    en: The black one is pretty good.
+    words: [hei1-se4--black, de5--description, bu4-cuo4--good]
+    grammar: [mod-de5--nominal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 130
+
+  - id: 945
+    zh: 他游泳很慢。
+    py: tā yóu yǒng hěn màn
+    en: He swims very slowly.
+    words: [ta1--he, you2-yong3--swim, hen3--very, man4--slow]
+    grammar: [s-pred--statement, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 95
+
+  - id: 946
+    zh: 男孩儿过生日。
+    py: nán háir guò shēng rì
+    en: The boy celebrates his birthday.
+    words: [nan2-hai2-r5--boy, guo4--celebrate, sheng1-ri4--birthday]
+    grammar: [s-vp--verbal, s-pred--statement]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 96
+
+  - id: 947
+    zh: 女孩儿准备过生日。
+    py: nǚ háir zhǔn bèi guò shēng rì
+    en: The girl is getting ready to celebrate her birthday.
+    words: [nv3-hai2-r5--girl, zhun3-bei4--prepare, guo4--celebrate, sheng1-ri4--birthday]
+    grammar: [s-vp--verbal, s-pred--statement]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 96
+
+  - id: 948
+    zh: 小王听懂了。
+    py: xiǎo wáng tīng dǒng le
+    en: Xiao Wang understood.
+    words: [xiao3--small, wang2--surname, ting1--listen, dong3--understand, le5--intensify]
+    grammar: [v-dong3--understand]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 87
+
+  - id: 949
+    zh: 后面我再见小王。
+    py: hòu mian wǒ zài jiàn xiǎo wáng
+    en: I’ll see Xiao Wang again later.
+    words: [hou4-mian5--later, wo3--me, zai4-jian4--goodbye, xiao3--small, wang2--surname]
+    grammar: [s-zai4-vp--again]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 87
+
+  - id: 950
+    zh: 我星期一开始上课。
+    py: wǒ xīng qī yì kāi shǐ shàng kè
+    en: I start class on Monday.
+    words: [wo3--me, xing1-qi1-yi1--monday, kai1-shi3--beginning, shang4-ke4--class]
+    grammar: [time-s-vp-or-s-time-vp--time, s-vp-vp--purpose]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 87
+
+  - id: 951
+    zh: 电影很有意思。
+    py: diàn yǐng hěn yǒu yì si
+    en: The movie is interesting.
+    words: [dian4-ying3--movie, hen3--very, you3-yi4-si5--interesting]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 87
+
+  - id: 953
+    zh: 他们比颜色。
+    py: tā men bǐ yán sè
+    en: They compare colors.
+    words: [ta1-men5--they, bi3--compare, yan2-se4--color]
+    grammar: [v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 88
+
+  - id: 954
+    zh: 小王拿走包。
+    py: xiǎo wáng ná zǒu bāo
+    en: Xiao Wang takes the bag away.
+    words: [xiao3--small, wang2--surname, na2--take, zou3--leave, bao1--bag]
+    grammar: [v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 88
+
+  - id: 955
+    zh: 拿一拿这个包吧。
+    py: ná yì ná zhè ge bāo ba
+    en: Take this bag for a moment.
+    words: [na2--take, yi1--one, zhe4-ge5--this, bao1--bag, ba5--suggestion]
+    grammar: [v-yi1-v--brief, stmt-ba5--suggest]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 88
+
+  - id: 957
+    zh: 眼睛疼啊。
+    py: yǎn jing téng a
+    en: My eyes hurt.
+    words: [yan3-jing5--eye, teng2--sore, a5--particle]
+    grammar: [stmt-a5--tone]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 115
+
+  - id: 958
+    zh: 鸟的眼睛很大。
+    py: niǎo de yǎn jing hěn dà
+    en: The bird’s eyes are big.
+    words: [niao3--bird, de5--description, yan3-jing5--eye, hen3--very, da4--big]
+    grammar: [owner-de5-n--possess, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 115
+
+  - id: 959
+    zh: 好吃！
+    py: hǎo chī
+    en: So tasty!
+    words: [hao3--very, hao3-chi1--tasty]
+    grammar: [hao3-adj--so]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 116
+
+  - id: 960
+    zh: 酒店的床很舒服。
+    py: jiǔ diàn de chuáng hěn shū fu
+    en: The hotel bed is comfortable.
+    words: [jiu3-dian4--hotel, de5--description, chuang2--bed, hen3--very, shu1-fu5--comfortable]
+    grammar: [owner-de5-n--possess, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 116
+
+  - id: 962
+    zh: 他从饭馆走出来了。
+    py: tā cóng fàn guǎn zǒu chū lái le
+    en: He came out of the restaurant.
+    words: [chu1--result, ta1--he, cong2--via, fan4-guan3--restaurant, zou3--leave, chu1-lai2--come-out, le5--intensify]
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path, cong2-loc-vp--from]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 157
+
+  - id: 963
+    zh: 他比她高一米。
+    py: tā bǐ tā gāo yì mǐ
+    en: He is one meter taller than her.
+    words: [ta1--he, bi3--compare, ta1--she, gao1--tall, yi1--one, mi3--meter]
+    grammar: [a-bi3-b-adj-qty--difference]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 157
+
+  - id: 964
+    zh: 他有她这么高吗？
+    py: tā yǒu tā zhè me gāo ma
+    en: Is he as tall as she is?
+    words: [ta1--he, you3--have, ta1--she, zhe4-me5--degree, gao1--tall, ma5--question]
+    grammar: [a-you3-b-zhe4-me5-or-na4-me5-adj--as]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 157
+
+  - id: 966
+    zh: 她叫他拿球。
+    py: tā jiào tā ná qiú
+    en: She told him to get the ball.
+    words: [jiao4--instruct, ta1--she, jiao4--called, ta1--he, na2--take, qiu2--ball]
+    grammar: [s-jiao4-p-vp--tell]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 158
+
+  - id: 967
+    zh: 他比她游得快。
+    py: tā bǐ tā yóu de kuài
+    en: He swims faster than she does.
+    words: [ta1--he, bi3--compare, ta1--she, you2--swim, de5--manner, kuai4--fast]
+    grammar: [a-bi3-b-v-de5-adj--performance]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 158
+
+  - id: 968
+    zh: 他游得比她快。
+    py: tā yóu de bǐ tā kuài
+    en: He swims faster than she does.
+    words: [ta1--he, you2--swim, de5--manner, bi3--compare, ta1--she, kuai4--fast]
+    grammar: [a-v-de5-bi3-b-adj--performance]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 158
+
+  - id: 969
+    zh: 他请她游泳。
+    py: tā qǐng tā yóu yǒng
+    en: He invited her to swim.
+    words: [ta1--he, qing3--invite, ta1--she, you2-yong3--swim]
+    grammar: [s-qing3-p-vp--invite]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 158
+
+  - id: 970
+    zh: 这楼不高。
+    py: zhè lóu bù gāo
+    en: This building isn’t tall.
+    words: [zhe4--this, lou2--building, bu4--not, gao1--tall]
+    grammar: [s-bu4-pred--not]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 971
+    zh: 门很高。
+    py: mén hěn gāo
+    en: The door is tall.
+    words: [men2--door, hen3--very, gao1--tall]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 972
+    zh: 小孩儿个子很高。
+    py: xiǎo háir gè zi hěn gāo
+    en: The child is tall.
+    words: [xiao3-hai2-r5--child, ge4-zi5--height, hen3--very, gao1--tall]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 973
+    zh: 奶奶个子不高。
+    py: nǎi nai gè zi bù gāo
+    en: Grandma isn’t tall.
+    words: [nai3-nai5--grandmother, ge4-zi5--height, bu4--not, gao1--tall]
+    grammar: [s-bu4-pred--not]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 974
+    zh: 丈夫个子很高。
+    py: zhàng fu gè zi hěn gāo
+    en: The husband is tall.
+    words: [zhang4-fu5--husband, ge4-zi5--height, hen3--very, gao1--tall]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 975
+    zh: 好多药在这儿。
+    py: hǎo duō yào zài zhèr
+    en: There is lots of medicine here.
+    words: [hao3-duo1--many, yao4--medicine, zai4--location, zhe4-r5--here]
+    grammar: [hao3-duo1-n--many, s-zai4-loc--at]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 976
+    zh: 爷爷在门口。
+    py: yé ye zài mén kǒu
+    en: Grandpa is at the entrance.
+    words: [ye2-ye5--grandfather, zai4--location, men2-kou3--entrance]
+    grammar: [s-zai4-loc--at]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 977
+    zh: 奶奶在门口洗手。
+    py: nǎi nai zài mén kǒu xǐ shǒu
+    en: Grandma is washing her hands at the entrance.
+    words: [nai3-nai5--grandmother, zai4--location, men2-kou3--entrance, xi3--wash, shou3--hand]
+    grammar: [s-zai4-loc-vp--location]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 978
+    zh: 好多楼在后面。
+    py: hǎo duō lóu zài hòu mian
+    en: Lots of buildings are behind.
+    words: [hao3-duo1--many, lou2--building, zai4--location, hou4-mian5--later]
+    grammar: [hao3-duo1-n--many, s-zai4-loc--at]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 979
+    zh: 丈夫是高个子。
+    py: zhàng fu shì gāo gè zi
+    en: The husband is a tall person.
+    words: [zhang4-fu5--husband, shi4--identity, gao1--tall, ge4-zi5--height]
+    grammar: [s-shi4-np--characterize]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 980
+    zh: 这楼是高楼。
+    py: zhè lóu shì gāo lóu
+    en: This is a tall building.
+    words: [zhe4--this, lou2--building, shi4--identity, gao1--tall]
+    grammar: [s-shi4-np--characterize]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 101
+
+  - id: 981
+    zh: 他从楼里走出去。
+    py: tā cóng lóu lǐ zǒu chū qù
+    en: He walks out of the building.
+    words: [ta1--he, cong2--via, lou2--building, li3--inside, zou3--leave, chu1--exit, qu4--go]
+    grammar: [cong2-route-vp--via, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 982
+    zh: 小孩儿跑出来了。
+    py: xiǎo háir pǎo chū lái le
+    en: The child ran out.
+    words: [xiao3-hai2-r5--child, pao3--run, chu1--exit, lai2--come, le5--intensify]
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 983
+    zh: 奶奶走出门去了。
+    py: nǎi nai zǒu chū mén qù le
+    en: Grandma walked out the door.
+    words: [chu1--exit, nai3-nai5--grandmother, zou3--leave, chu1-men2--go-out, qu4--go, le5--intensify]
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 984
+    zh: 爷爷走进去了。
+    py: yé ye zǒu jìn qù le
+    en: Grandpa went in.
+    words: [ye2-ye5--grandfather, zou3--leave, jin4--enter, qu4--go, le5--intensify]
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 985
+    zh: 小孩儿跑进楼里去。
+    py: xiǎo háir pǎo jìn lóu lǐ qù
+    en: The child ran into the building.
+    words: [xiao3-hai2-r5--child, pao3--run, jin4--enter, lou2--building, li3--inside, qu4--go]
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 986
+    zh: 奶奶从外面走进来。
+    py: nǎi nai cóng wài miàn zǒu jìn lái
+    en: Grandma came in from outside.
+    words: [nai3-nai5--grandmother, cong2--via, wai4-mian4--outside, zou3--leave, jin4-lai2--enter]
+    grammar: [cong2-route-vp--via, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 987
+    zh: 爷爷跑进来了。
+    py: yé ye pǎo jìn lái le
+    en: Grandpa ran in.
+    words: [ye2-ye5--grandfather, pao3--run, jin4-lai2--enter, le5--intensify]
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 988
+    zh: 手表在门口。
+    py: shǒu biǎo zài mén kǒu
+    en: The watch is at the entrance.
+    words: [shou3-biao3--watch, zai4--location, men2-kou3--entrance]
+    grammar: [s-zai4-loc--at]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 989
+    zh: 爷爷有好多手表。
+    py: yé ye yǒu hǎo duō shǒu biǎo
+    en: Grandpa has lots of watches.
+    words: [ye2-ye5--grandfather, you3--have, hao3-duo1--many, shou3-biao3--watch]
+    grammar: [s-you3-np--have, hao3-duo1-n--many]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 990
+    zh: 奶奶在看手表。
+    py: nǎi nai zài kàn shǒu biǎo
+    en: Grandma is looking at the watch.
+    words: [nai3-nai5--grandmother, zai4--location, kan4--watch, shou3-biao3--watch]
+    grammar: [s-zai4-or-zheng4-zai4-vp--ongoing]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 991
+    zh: 他看了看门口。
+    py: tā kàn le kàn mén kǒu
+    en: He took a quick look at the entrance.
+    words: [ta1--he, kan4--watch, le5--intensify, men2-kou3--entrance]
+    grammar: [v-le5-v--brief-done]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 992
+    zh: 小孩儿洗了洗手。
+    py: xiǎo háir xǐ le xǐ shǒu
+    en: The child washed their hands briefly.
+    words: [xiao3-hai2-r5--child, xi3--wash, le5--intensify, shou3--hand]
+    grammar: [v-le5-v--brief-done]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 993
+    zh: 爷爷问了问问题。
+    py: yé ye wèn le wèn wèn tí
+    en: Grandpa asked a quick question.
+    words: [ye2-ye5--grandfather, wen4--ask, le5--intensify, wen4-ti2--problem]
+    grammar: [v-le5-v--brief-done]
+    source: ai
+    checked: false
+    lookahead: 0
+    readyAt: 102
+
+  - id: 994
+    zh: 考试可能很累。
+    py: kǎo shì kě néng hěn lèi
+    en: Exams may be tiring.
+    words: [ke3-neng2--possible, kao3-shi4--take-exam, ke3-neng2--might, hen3--very, lei4--tired]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 995
+    zh: 酒店离车站很远。
+    py: jiǔ diàn lí chē zhàn hěn yuǎn
+    en: The hotel is far from the station.
+    words: [jiu3-dian4--hotel, li2--distance, che1-zhan4--station, hen3--very, yuan3--far]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 147
+
+  - id: 996
+    zh: 前面有一名男孩儿。
+    py: qián miàn yǒu yì míng nán háir
+    en: There is a boy up front.
+    words: [ming2--people, qian2-mian4--front, you3--have, yi1--one, ming2--name, nan2-hai2-r5--boy]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 148
+
+  - id: 997
+    zh: 奶奶很累。
+    py: nǎi nai hěn lèi
+    en: Grandma is very tired.
+    words: [nai3-nai5--grandmother, hen3--very, lei4--tired]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 998
+    zh: 每个小孩儿都爱跳舞。
+    py: měi gè xiǎo háir dōu ài tiào wǔ
+    en: Every child loves dancing.
+    words: [mei3--every, ge4--classifier, xiao3-hai2-r5--child, dou1--all, ai4--love, tiao4-wu3--dance]
+    grammar: [mei3-mw-n-dou1-pred--every]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 999
+    zh: 因为我累，所以我不运动。
+    py: yīn wèi wǒ lèi suǒ yǐ wǒ bú yùn dòng
+    en: Because I’m tired, I’m not exercising.
+    words: [yin1-wei4--because, wo3--me, lei4--tired, suo3-yi3--therefore, bu4--not, yun4-dong4--sports]
+    grammar: [yin1-wei4-clause-suo3-yi3-clause--because]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 1000
+    zh: 每个饭馆都在那边。
+    py: měi gè fàn guǎn dōu zài nà bian
+    en: Every restaurant is over there.
+    words: [mei3--every, ge4--classifier, fan4-guan3--restaurant, dou1--all, zai4--location, na4-bian5--there]
+    grammar: [mei3-mw-n-dou1-pred--every]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 1001
+    zh: 因为饭馆开门，所以我去饭馆。
+    py: yīn wèi fàn guǎn kāi mén suǒ yǐ wǒ qù fàn guǎn
+    en: Because the restaurant is open, I’m going there.
+    words: [yin1-wei4--because, fan4-guan3--restaurant, kai1--operate, men2--door, suo3-yi3--therefore, wo3--me, qu4--go]
+    grammar: [yin1-wei4-clause-suo3-yi3-clause--because]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 111
+
+  - id: 1002
+    zh: 鸟飞来这边。
+    py: niǎo fēi lái zhè biān
+    en: The bird flies over this way.
+    words: [niao3--bird, fei1--fly, lai2--come, zhe4-bian1--this-side]
+    grammar: [v-lai2-or-qu4--direction]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 112
+
+  - id: 1003
+    zh: 那间酒店有饭馆。
+    py: nà jiān jiǔ diàn yǒu fàn guǎn
+    en: That hotel has a restaurant.
+    words: [na4--that, jian1--rooms, jiu3-dian4--hotel, you3--have, fan4-guan3--restaurant]
+    grammar: [zhe4-or-na4-mw-n--this-that, s-you3-np--have]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 112
+
+  - id: 1004
+    zh: 那么，酒店呢？
+    py: nà me jiǔ diàn ne
+    en: Then, what about the hotel?
+    words: [na4-me5--then, jiu3-dian4--hotel, ne5--reciprocal]
+    grammar: [np-ne5--followup]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 112
+
+  - id: 1005
+    zh: 他快过来了。
+    py: tā kuài guò lái le
+    en: He’ll be here soon.
+    words: [ta1--he, kuai4--fast, guo4-lai2--come-over, le5--intensify]
+    grammar: [kuai4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 1006
+    zh: 她忘了笔。
+    py: tā wàng le bǐ
+    en: She forgot the pen.
+    words: [ta1--she, wang4--forget, le5--intensify, bi3--pen]
+    grammar: [v-le5-obj--complete]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 1007
+    zh: 他跳舞，再走路。
+    py: tā tiào wǔ zài zǒu lù
+    en: He dances, then walks.
+    words: [zai4--then, ta1--he, tiao4-wu3--dance, zai4--again, zou3-lu4--walk]
+    grammar: [vp-zai4-vp--next]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 1008
+    zh: 打开书包，再写汉字。
+    py: dǎ kāi shū bāo zài xiě hàn zì
+    en: Open the schoolbag, then write Chinese characters.
+    words: [da3-kai1--open, shu1-bao1--schoolbag, zai4--again, xie3--write, han4-zi4--character]
+    grammar: [vp-zai4-vp--next]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 107
+
+  - id: 1009
+    zh: 虽然天气阴，但是大家跳舞。
+    py: suī rán tiān qì yīn dàn shì dà jiā tiào wǔ
+    en: Although it’s cloudy, everyone dances.
+    words: [sui1-ran2--although, tian1-qi4--weather, yin1--cloudy, dan4-shi4--but, da4-jia1--everyone, tiao4-wu3--dance]
+    grammar: [sui1-ran2-clause-dan4-shi4-clause--although]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 108
+
+  - id: 1010
+    zh: 我的书包坏了。
+    py: wǒ de shū bāo huài le
+    en: My schoolbag is broken.
+    words: [wo3--me, de5--description, shu1-bao1--schoolbag, huai4--broken, le5--intensify]
+    grammar: [owner-de5-n--possess, state-le5--change]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 108
+
+  - id: 1011
+    zh: 笔在书包上面。
+    py: bǐ zài shū bāo shàng miàn
+    en: The pen is on the schoolbag.
+    words: [bi3--pen, zai4--location, shu1-bao1--schoolbag, shang4-mian4--above]
+    grammar: [s-zai4-loc--at, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 108
+
+  - id: 1013
+    zh: 虽然天阴，但是我走路。
+    py: suī rán tiān yīn dàn shì wǒ zǒu lù
+    en: Although it’s cloudy, I walk.
+    words: [sui1-ran2--although, tian1--day, yin1--cloudy, dan4-shi4--but, wo3--me, zou3-lu4--walk]
+    grammar: [sui1-ran2-clause-dan4-shi4-clause--although]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 108
+
+  - id: 1014
+    zh: 考试完了，他就出去。
+    py: kǎo shì wán le tā jiù chū qù
+    en: After the exam is over, he goes out.
+    words: [jiu4--then, kao3-shi4--take-exam, wan2--finish, le5--intensify, ta1--he, jiu4--immediately-after, chu1-qu4--go-out]
+    grammar: [clause-jiu4-clause--then, v-wan2--finish]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 131
+
+  - id: 1015
+    zh: 他让她上网。
+    py: tā ràng tā shàng wǎng
+    en: He lets her go online.
+    words: [ta1--he, rang4--allow, ta1--she, shang4-wang3--online]
+    grammar: [s-rang4-p-vp--cause]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 132
+
+  - id: 1016
+    zh: 车站有车。
+    py: chē zhàn yǒu chē
+    en: There is a vehicle at the bus stop.
+    words: [che1-zhan4--stop, che1-zhan4--station, you3--have, che1--vehicle]
+    grammar: [loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 1017
+    zh: 我过了这条路。
+    py: wǒ guò le zhè tiáo lù
+    en: I crossed this road.
+    words: [guo4--cross, wo3--me, guo4--celebrate, le5--intensify, zhe4--this, tiao2--classifier, lu4--road]
+    grammar: [v-le5-obj--complete]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 1018
+    zh: 酒店后面有商场。
+    py: jiǔ diàn hòu mian yǒu shāng chǎng
+    en: There is a shopping mall behind the hotel.
+    words: [mian4--side, jiu3-dian4--hotel, hou4-mian5--later, you3--have, shang1-chang3--mall]
+    grammar: [dir-mian4--side, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 1019
+    zh: 下课时，我很累。
+    py: xià kè shí wǒ hěn lèi
+    en: I am tired when class is over.
+    words: [xia4-ke4--finish, shi2--when, wo3--me, hen3--very, lei4--tired]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 1020
+    zh: 车站前面有酒店。
+    py: chē zhàn qián miàn yǒu jiǔ diàn
+    en: There is a hotel in front of the bus stop.
+    words: [che1-zhan4--station, qian2--before, mian4--side, you3--have, jiu3-dian4--hotel]
+    grammar: [dir-mian4--side, loc-you3-qty-n--exist]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 123
+
+  - id: 1021
+    zh: 请进去吧。
+    py: qǐng jìn qù ba
+    en: Please go in.
+    words: [qing3--invite, jin4-qu4--enter, ba5--suggestion]
+    grammar: [qing3-vp--request, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 124
+
+  - id: 1022
+    zh: 我想出国旅游。
+    py: wǒ xiǎng chū guó lǚ yóu
+    en: I want to travel abroad.
+    words: [wo3--me, xiang3--miss, chu1-guo2--abroad, lv3-you2--travel]
+    grammar: [s-xiang3-vp--want, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 124
+
+  - id: 1023
+    zh: 他准备出国了。
+    py: tā zhǔn bèi chū guó le
+    en: He is getting ready to go abroad.
+    words: [zhun3-bei4--intend, ta1--he, zhun3-bei4--prepare, chu1-guo2--abroad, le5--intensify]
+    grammar: [state-le5--change, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 124
+
+  - id: 1024
+    zh: 本子在书包里面。
+    py: běn zi zài shū bāo lǐ miàn
+    en: The notebook is inside the schoolbag.
+    words: [ben3-zi5--notebook, zai4--location, shu1-bao1--schoolbag, li3-mian4--inside]
+    grammar: [n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 139
+
+  - id: 1025
+    zh: 她从地铁站走上来。
+    py: tā cóng dì tiě zhàn zǒu shàng lái
+    en: She walks up from the subway station.
+    words: [ta1--she, cong2--via, di4-tie3--subway, zhan4--station, zou3--leave, shang4-lai2--ascend]
+    grammar: [cong2-loc-vp--from, v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 139
+
+  - id: 1026
+    zh: 她跑下来。
+    py: tā pǎo xià lai
+    en: She runs down.
+    words: [ta1--she, pao3--run, xia4-lai5--descend]
+    grammar: [v-xia4-lai5-or-xia4-qu4--descend]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 139
+
+  - id: 1027
+    zh: 我走下去。
+    py: wǒ zǒu xià qù
+    en: I walk down.
+    words: [wo3--me, zou3--leave, xia4-qu4--descend]
+    grammar: [v-xia4-lai5-or-xia4-qu4--descend]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 139
+
+  - id: 1028
+    zh: 鸟飞起来了。
+    py: niǎo fēi qǐ lai le
+    en: The bird flew up.
+    words: [niao3--bird, fei1--fly, qi3-lai5--rise, le5--intensify]
+    grammar: [v-qi3-lai5--rise, state-le5--change]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 140
+
+  - id: 1029
+    zh: 事情可能很多。
+    py: shì qing kě néng hěn duō
+    en: There may be a lot of things to do.
+    words: [shi4-qing5--matter, ke3-neng2--might, hen3--very, duo1--how]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 140
+
+  - id: 1030
+    zh: 我希望他也来。
+    py: wǒ xī wàng tā yě lái
+    en: I hope he comes too.
+    words: [wo3--me, xi1-wang4--hope, ta1--he, ye3--also, lai2--come]
+    grammar: [s-vp-vp--purpose, clause-s-ye3-pred--also]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 140
+
+  - id: 1031
+    zh: 这条裤子是白色的。
+    py: zhè tiáo kù zi shì bái sè de
+    en: These trousers are white.
+    words: [zhe4--this, tiao2--classifier, ku4-zi5--trousers, shi4--identity, bai2-se4--white, de5--description]
+    grammar: [zhe4-or-na4-mw-n--this-that, s-shi4-np--characterize]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 1032
+    zh: 他的手表是黑色的。
+    py: tā de shǒu biǎo shì hēi sè de
+    en: His watch is black.
+    words: [ta1--he, de5--description, shou3-biao3--watch, shi4--identity, hei1-se4--black]
+    grammar: [owner-de5-n--possess, s-shi4-np--characterize]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 103
+
+  - id: 1033
+    zh: 她的爱好比我的爱好多。
+    py: tā de ài hào bǐ wǒ de ài hào duō
+    en: She has more hobbies than I do.
+    words: [ta1--she, de5--description, ai4-hao4--hobby, bi3--compare, wo3--me, duo1--how]
+    grammar: [owner-de5-n--possess, a-bi3-b-adj--more]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 1034
+    zh: 绿茶没有奶茶热。
+    py: lǜ chá méi yǒu nǎi chá rè
+    en: Green tea isn't as hot as milk tea.
+    words: [lv4-cha2--tea, mei2-you3--possession, nai3-cha2--tea, re4--hot]
+    grammar: [a-mei2-you3-b-adj--not-as]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 104
+
+  - id: 1035
+    zh: 他要考了。
+    py: tā yào kǎo le
+    en: He is about to take an exam.
+    words: [ta1--he, yao4--want, kao3--exam, le5--intensify]
+    grammar: [yao4-or-kuai4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 135
+
+  - id: 1036
+    zh: 我帮你画花。
+    py: wǒ bāng nǐ huà huā
+    en: I’ll help you draw flowers.
+    words: [wo3--me, bang1--help, ni3--you, hua4--picture, hua1--flower]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 1037
+    zh: 她在包本子呢。
+    py: tā zài bāo běn zi ne
+    en: She’s wrapping a notebook.
+    words: [bao1--wrap, ta1--she, zai4--location, bao1--bag, ben3-zi5--notebook, ne5--reciprocal]
+    grammar: [s-zai4-or-zheng4-zai4-vp-ne5--ongoing]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 1038
+    zh: 小时候就画花。
+    py: xiǎo shí hou jiù huà huā
+    en: I drew flowers even as a child.
+    words: [jiu4--earlier-than-expected, xiao3-shi2-hou5--childhood, jiu4--immediately-after, hua4--picture, hua1--flower]
+    grammar: [time-jiu4-vp--early]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 1039
+    zh: 高中开学了。
+    py: gāo zhōng kāi xué le
+    en: The high school term has started.
+    words: [gao1-zhong1--school, kai1-xue2--term, le5--intensify]
+    grammar: [state-le5--change]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 1040
+    zh: 我们就要开学了。
+    py: wǒ men jiù yào kāi xué le
+    en: We’re about to start school.
+    words: [wo3-men5--we, jiu4--immediately-after, yao4--want, kai1-xue2--term, le5--intensify]
+    grammar: [jiu4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 136
+
+  - id: 1041
+    zh: 他花得很多。
+    py: tā huā de hěn duō
+    en: He spends a lot.
+    words: [hua1--spend, ta1--he, hua1--flower, de5--manner, hen3--very, duo1--how]
+    grammar: [v-de5-adjp--performance]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 1042
+    zh: 她这么踢足球很累。
+    py: tā zhè me tī zú qiú hěn lèi
+    en: She gets tired playing soccer this way.
+    words: [zhe4-me5--this-way, ta1--she, zhe4-me5--degree, ti1--kick, zu2-qiu2--ball, hen3--very, lei4--tired]
+    grammar: [zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 1043
+    zh: 周二可能有考试。
+    py: zhōu èr kě néng yǒu kǎo shì
+    en: There may be an exam on Tuesday.
+    words: [zhou1-er4--tuesday, ke3-neng2--might, you3--have, kao3-shi4--take-exam]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 1044
+    zh: 周三可能运动。
+    py: zhōu sān kě néng yùn dòng
+    en: I might exercise on Wednesday.
+    words: [zhou1-san1--wednesday, ke3-neng2--might, yun4-dong4--sports]
+    grammar: [s-ke3-neng2-pred--may]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 1045
+    zh: 周一我们踢踢球。
+    py: zhōu yì wǒ men tī tī qiú
+    en: We’ll play ball for a bit on Monday.
+    words: [zhou1-yi1--monday, wo3-men5--we, ti1--kick, qiu2--ball]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 151
+
+  - id: 1046
+    zh: 周六我们运动运动。
+    py: zhōu liù wǒ men yùn dòng yùn dòng
+    en: We’ll exercise a little on Saturday.
+    words: [zhou1-liu4--saturday, wo3-men5--we, yun4-dong4--sports]
+    grammar: [v-v--try-abab]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 1047
+    zh: 周日我们打打篮球。
+    py: zhōu rì wǒ men dǎ dǎ lán qiú
+    en: We’ll play basketball for a bit on Sunday.
+    words: [zhou1-ri4--sunday, wo3-men5--we, da3--hit, lan2-qiu2--basketball]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 1048
+    zh: 周四我们准备准备考试。
+    py: zhōu sì wǒ men zhǔn bèi zhǔn bèi kǎo shì
+    en: We’ll do a little exam preparation on Thursday.
+    words: [zhou1-si4--thursday, wo3-men5--we, zhun3-bei4--prepare, kao3-shi4--take-exam]
+    grammar: [v-v--try-abab]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 1049
+    zh: 周五我们踢踢足球。
+    py: zhōu wǔ wǒ men tī tī zú qiú
+    en: We’ll play a little soccer on Friday.
+    words: [zhou1-wu3--friday, wo3-men5--we, ti1--kick, zu2-qiu2--ball]
+    grammar: [v-v--try]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 152
+
+  - id: 1050
+    zh: 他为什么累呢？
+    py: tā wèi shén me lèi ne
+    en: Why is he tired?
+    words: [ne5--question, ta1--he, wei4-shen2-me5--why, lei4--tired, ne5--reciprocal]
+    grammar: [s-wei4-shen2-me5-pred--why, clause-ne5--question-tone]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 155
+
+  - id: 1051
+    zh: 他很累的。
+    py: tā hěn lèi de
+    en: He really is tired.
+    words: [ta1--he, hen3--very, lei4--tired, de5--description]
+    grammar: [stmt-de5--assure]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 156
+
+  - id: 1052
+    zh: 我给妻子准备药。
+    py: wǒ gěi qī zi zhǔn bèi yào
+    en: I prepare medicine for my wife.
+    words: [gei3--for, wo3--me, gei3--give, qi1-zi5--wife, zhun3-bei4--prepare, yao4--medicine]
+    grammar: [gei3-p-vp--for-to]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 99
+
+  - id: 1054
+    zh: 楼后面是车站。
+    py: lóu hòu mian shì chē zhàn
+    en: Behind the building is the station.
+    words: [hou4-mian5--behind, lou2--building, hou4-mian5--later, shi4--identity, che1-zhan4--station]
+    grammar: [n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc, loc-shi4-np--identify]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 1055
+    zh: 奶奶很有名。
+    py: nǎi nai hěn yǒu míng
+    en: Grandma is famous.
+    words: [nai3-nai5--grandmother, hen3--very, you3--have, ming2--name]
+    grammar: [s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 1056
+    zh: 小孩儿的手很小。
+    py: xiǎo háir de shǒu hěn xiǎo
+    en: The child's hands are very small.
+    words: [xiao3-hai2-r5--child, de5--description, shou3--hand, hen3--very, xiao3--small]
+    grammar: [owner-de5-n--possess, s-hen3-adj--describe]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 1057
+    zh: 我在外面洗手。
+    py: wǒ zài wài miàn xǐ shǒu
+    en: I wash my hands outside.
+    words: [wo3--me, zai4--location, wai4-mian4--outside, xi3--wash, shou3--hand]
+    grammar: [s-zai4-loc-vp--location, v-obj--object]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 1058
+    zh: 妻子姓王。
+    py: qī zi xìng wáng
+    en: My wife’s surname is Wang.
+    words: [qi1-zi5--wife, xing4--surname, wang2--surname]
+    grammar: [s-vp--verbal]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 100
+
+  - id: 1059
+    zh: 包是我送的。
+    py: bāo shì wǒ sòng de
+    en: The bag was a gift from me.
+    words: [de5--assurance, bao1--bag, shi4--identity, wo3--me, song4--gift, de5--description]
+    grammar: [s-shi4-focus-vp-de5--event-focus]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 143
+
+  - id: 1061
+    zh: 我就花一万。
+    py: wǒ jiù huā yí wàn
+    en: I’ll spend only ten thousand.
+    words: [jiu4--only, wo3--me, jiu4--immediately-after, hua1--flower, yi1--one, wan4--ten-thousand]
+    grammar: [num-wan4-rest--ten-thousands]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 143
+
+  - id: 1063
+    zh: 我就送给你一个包。
+    py: wǒ jiù sòng gěi nǐ yí gè bāo
+    en: I'll just give you a bag.
+    words: [jiu4--exactly, wo3--me, jiu4--immediately-after, song4--gift, gei3--give, ni3--you, yi1--one, ge4--classifier, bao1--bag]
+    grammar: [s-v-gei3-p-obj--transfer]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 144
+
+  - id: 1064
+    zh: 我想问这个词。
+    py: wǒ xiǎng wèn zhè ge cí
+    en: I want to ask about this word.
+    words: [wo3--me, xiang3--miss, wen4--ask, zhe4-ge5--this, ci2--word]
+    grammar: [s-xiang3-vp--want]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 1065
+    zh: 我在做这题。
+    py: wǒ zài zuò zhè tí
+    en: I'm working on this question.
+    words: [wo3--me, zai4--location, zuo4--make, zhe4--this, ti2--question]
+    grammar: [s-zai4-or-zheng4-zai4-vp--ongoing]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 1066
+    zh: 我快要出国了。
+    py: wǒ kuài yào chū guó le
+    en: I'm about to go abroad.
+    words: [yao4--about-to, wo3--me, kuai4-yao4--soon, chu1-guo2--abroad, le5--intensify]
+    grammar: [yao4-or-kuai4-yao4-vp-le5--soon]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 1067
+    zh: 我懂这个词的意思。
+    py: wǒ dǒng zhè ge cí de yì si
+    en: I understand the meaning of this word.
+    words: [wo3--me, dong3--understand, zhe4-ge5--this, ci2--word, de5--description, yi4-si5--meaning]
+    grammar: [v-dong3--understand]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 127
+
+  - id: 1068
+    zh: 不好意思，我要问路。
+    py: bù hǎo yì si wǒ yào wèn lù
+    en: Excuse me, I need to ask for directions.
+    words: [bu4-hao3-yi4-si5--sorry, wo3--me, yao4--want, wen4--ask, lu4--road]
+    grammar: [s-yao4-vp--intend]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 1069
+    zh: 我踢过足球。
+    py: wǒ tī guò zú qiú
+    en: I've played soccer before.
+    words: [guo5--experience, wo3--me, ti1--kick, guo4--celebrate, zu2-qiu2--ball]
+    grammar: [v-guo5--experience]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 1070
+    zh: 我一会儿再进去。
+    py: wǒ yí huìr zài jìn qù
+    en: I’ll go in in a little while.
+    words: [wo3--me, yi1-hui4-r5--while, zai4--again, jin4-qu4--enter]
+    grammar: [s-zai4-vp--again]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
+
+  - id: 1071
+    zh: 我给他打了三次电话。
+    py: wǒ gěi tā dǎ le sān cì diàn huà
+    en: I called him three times.
+    words: [wo3--me, gei3--give, ta1--he, da3--hit, le5--intensify, san1--three, ci4--times, dian4-hua4--call]
+    grammar: [v-num-ci4--times, v-insert-obj--separable, gei3-p-vp--for-to]
+    source: ai
+    checked: true
+    lookahead: 0
+    readyAt: 128
