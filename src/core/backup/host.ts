@@ -6,18 +6,20 @@ import type { RunRecord } from './state'
 // What a worker (dedicated or service) does to back a profile up: open the profile's database itself, read the saved
 // connection from it, and run the backup there. The page is never involved, so its main thread stays free.
 
-export interface BackupRequest { profile: { id: string; name: string } }
+export interface BackupRequest { profile: { id: string; name: string }; trigger?: 'manual' | 'auto' }
+/** Sent to a running worker when an exercise opens: it stops at its next safe point. */
+export interface PauseMessage { pause: true }
 export type BackupReply = { ok: true; record: RunRecord } | { ok: false; error: string }
 
 export const CHANNEL = 'linguaweave-backup'
 
-export async function runInWorker(request: BackupRequest): Promise<BackupReply> {
+export async function runInWorker(request: BackupRequest, shouldPause?: () => boolean): Promise<BackupReply> {
   const database = new LearningDatabase(profileDatabaseName(request.profile.id))
   try {
     const saved = await database.backupConfig.get('github')
     if (!saved) throw new Error('Set up the GitHub backup first.')
     const record = await runBackupJob({
-      database, profile: request.profile, trigger: 'manual',
+      database, profile: request.profile, trigger: request.trigger ?? 'manual', shouldPause,
       config: { owner: saved.owner, repo: saved.repo, branch: saved.branch, token: saved.token },
       backend: new GitHubBackend({ owner: saved.owner, repo: saved.repo, branch: saved.branch, token: saved.token }),
     })

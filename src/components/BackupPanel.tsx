@@ -8,6 +8,7 @@ import {
   runBackup, saveBackupConfig, snapshotCurrentYaml, type BackupConfig, type PersistenceState,
 } from '../core/backup/service'
 import { useBackupStatus } from './useBackupStatus'
+import { AutoBackupSwitch } from './AutoBackupSwitch'
 import { ScanSetupQr, ShowSetupQr } from './SetupQr'
 import type { LoadedBackup } from '../core/backup/files'
 
@@ -126,7 +127,7 @@ export function BackupPanel({ busy }: { busy: boolean }) {
   const disabled = busy || working
   return <section className="panel settings-form" aria-label="Cloud backup">
     <h2>Cloud backup</h2>
-    <p>Backs up profile <strong>{getActiveProfile().name}</strong> to a private GitHub repository you own, one commit per backup. A backup is made only when you press Back up now; nothing is backed up automatically, so check Last backed up below. You can keep studying while it runs.</p>
+    <p>Backs up profile <strong>{getActiveProfile().name}</strong> to a private GitHub repository you own, one commit per backup. Back up now makes one immediately; with Automatic backup on, one also runs at a natural break (after a lesson or practice session, or when you leave a page with new progress), at most every 15 minutes, and never while an exercise is open. Check Last backed up below. You can keep studying while it runs.</p>
     <p className="small muted" role="status">Browser storage protection: {persistence === 'granted' ? 'persistent (the browser will not clear it automatically)' : persistence === 'denied' ? 'not granted; the browser may clear this data under storage pressure, so keep the backup current' : 'not supported by this browser'}.</p>
     <ScanSetupQr onStatus={(_text, error) => { if (!error) void loadBackupConfig().then(value => { if (value) { setConfig(value); setSaved(true) } }) }} />
     {saved && <ShowSetupQr config={config} />}
@@ -145,6 +146,7 @@ export function BackupPanel({ busy }: { busy: boolean }) {
       </div>
     </form>
     <p className="small" role="status">{status.running ? 'Backing up… ' : ''}Last backed up: {when(status.lastBackupAt)}{status.lastCommit ? ` (commit ${status.lastCommit.slice(0, 7)})` : ''}</p>
+    <AutoBackupSwitch />
     {status.lastError && <p className="notice error" role="alert">Last backup error: {status.lastError}</p>}
     {error && <p className="notice error" role="alert">{error}</p>}
     {notice && <p className="notice success" role="status">{notice}</p>}

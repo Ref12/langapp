@@ -3,7 +3,7 @@ import { journalCursor, readJournaledState, readJournalRange, readSettings, read
 import { StaleBackupError, type BackupBackend } from './backend'
 import { replay, replayFrom } from './journal'
 import { buildFilesV2, SEGMENT_EVENTS, SNAPSHOT_EVERY_EVENTS, SNAPSHOT_EVERY_SEGMENTS, type LogState, type SequencedEvent } from './layout'
-import { addRun, clearCache, loadCache, loadStatus, saveCache, saveStatus, type BackupCache, type BackupTrigger, type RunRecord } from './state'
+import { addRun, clearCache, loadCache, loadStatus, saveCache, saveSentSeq, saveStatus, type BackupCache, type BackupTrigger, type RunRecord } from './state'
 
 // One backup run, free of window, localStorage and React so a worker or the service worker can host it.
 // It never holds a transaction across the run: a cursor read, then short chunked reads, then building and uploading with no transaction open.
@@ -14,7 +14,11 @@ export interface BackupJob {
   config: { owner: string; repo: string; branch: string; token: string }
   backend: BackupBackend
   trigger: BackupTrigger
+  /** Asked at safe points (before building, before uploading); true stops the run cleanly so a later boundary resumes it. */
+  shouldPause?: () => boolean
 }
+
+export class BackupPausedError extends Error { constructor() { super('Paused for an exercise.') } }
 
 const LOCK = 'linguaweave-backup'
 const inProcess = new Map<string, Promise<RunRecord>>()
@@ -62,6 +66,10 @@ async function execute(job: BackupJob): Promise<RunRecord> {
       }
     }
   } catch (error) {
+    if (error instanceof BackupPausedError) {
+      await saveStatus(profile.id, { ...await loadStatus(profile.id), running: undefined })
+      return finish(job, { ...record, outcome: 'skipped', note: 'paused for an exercise', endedAt: Date.now(), totalMs: Math.round(now() - t0) })
+    }
     const message = error instanceof Error ? error.message : 'The backup failed.'
     await saveStatus(profile.id, { ...await loadStatus(profile.id), running: undefined, lastError: message })
     await finish(job, { ...record, outcome: 'error', note: message, endedAt: Date.now(), totalMs: Math.round(now() - t0) })
@@ -103,6 +111,7 @@ async function once(job: BackupJob, cache: BackupCache | undefined, target: stri
   const unjournaled = await readUnjournaledState(database)
   const readMs = Math.round(now() - r0)
 
+  if (job.shouldPause?.()) throw new BackupPausedError()
   // ---- build (no transaction open) ----
   const b0 = now()
   const segmentCount = (cache?.segments.length ?? 0) + Math.ceil(fresh.length / SEGMENT_EVENTS)
@@ -115,6 +124,7 @@ async function once(job: BackupJob, cache: BackupCache | undefined, target: stri
   })
   const buildMs = Math.round(now() - b0)
 
+  if (job.shouldPause?.()) throw new BackupPausedError()
   // ---- publish: only files whose Git blob id differs are sent ----
   const p0 = now()
   const message = `Backup ${profile.name} (${fresh.length} new journal events)`
@@ -126,6 +136,7 @@ async function once(job: BackupJob, cache: BackupCache | undefined, target: stri
     target, remote: result.remote, lastSeq: cursor, segments: built.manifest.segments, snapshotCursor: built.manifest.snapshot.cursor,
     eventsSinceSnapshot: snapshotDue ? 0 : eventsSince, state,
   })
+  await saveSentSeq(profile.id, cursor)
   const prior = await loadStatus(profile.id)
   await saveStatus(profile.id, { lastBackupAt: Date.now(), lastCommit: result.version ?? prior.lastCommit })
   const bytes = [...built.files.values()].reduce((sum, text) => sum + text.length, 0)

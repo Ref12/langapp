@@ -5,8 +5,8 @@ import type { RemoteState, CallTrace } from './backend'
 // Backup bookkeeping in its own small database so a service worker or worker can read and write it
 // (they have no localStorage) and so it never contends with the learning database.
 
-/** Backups start only from the Back up now buttons. */
-export type BackupTrigger = 'manual'
+/** A backup starts from Back up now ('manual') or at a natural boundary ('auto'; see auto.ts). */
+export type BackupTrigger = 'manual' | 'auto'
 export interface BackupStatus { lastBackupAt?: number; lastError?: string; lastCommit?: string; running?: { since: number; trigger: BackupTrigger } }
 
 export interface RunRecord {
@@ -67,6 +67,14 @@ export const saveStatus = (profileId: string, status: BackupStatus) => put('stat
 export const loadCache = (profileId: string) => get<BackupCache>('cache:' + profileId)
 export const saveCache = (profileId: string, cache: BackupCache) => put('cache:' + profileId, cache)
 export const clearCache = async (profileId: string) => { await database.kv.delete('cache:' + profileId) }
+
+/** Automatic backup switch (default on), the time of the last backup start (the 15-minute window) and the journal cursor last sent. */
+export const loadAutoSetting = async (profileId: string): Promise<boolean> => (await get<boolean>('auto:' + profileId)) !== false
+export const saveAutoSetting = (profileId: string, on: boolean) => put('auto:' + profileId, on)
+export const loadWindowStart = async (profileId: string): Promise<number> => (await get<number>('window:' + profileId)) ?? 0
+export const saveWindowStart = (profileId: string, at: number) => put('window:' + profileId, at)
+export const loadSentSeq = (profileId: string) => get<number>('sent:' + profileId)
+export const saveSentSeq = (profileId: string, seq: number) => put('sent:' + profileId, seq)
 
 export const RUN_HISTORY = 20
 export async function addRun(run: RunRecord): Promise<void> {

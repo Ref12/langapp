@@ -5,7 +5,7 @@ import { loadBackup, type LoadedBackup } from './files'
 import { GitHubBackend } from './github'
 import { announce, type BackupReply, type BackupRequest } from './host'
 import { runBackupJob } from './run'
-import { clearCache, loadStatus, type BackupStatus } from './state'
+import { clearCache, loadStatus, saveWindowStart, type BackupStatus } from './state'
 import { serializeProfileYaml } from '../profiles/codec'
 
 const CONFIG_KEY = 'linguaweave-backup-config:'
@@ -55,41 +55,60 @@ export function setBackendFactoryForTests(factory: typeof backendOverride): void
 const makeBackend = (config: BackupConfig) => backendOverride ? backendOverride(config) : backendFor(config)
 
 let running: Promise<BackupStatus> | undefined
+let activeWorker: Worker | undefined
+let pauseRequested = false
+
+/** An exercise opened: the run in flight (if any) stops at its next safe point; the next boundary resumes it. */
+export function pauseBackup(): void {
+  if (!running) return
+  pauseRequested = true
+  activeWorker?.postMessage({ pause: true })
+}
 
 function viaWorker(request: BackupRequest): Promise<BackupReply> {
   return new Promise(resolve => {
     const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' })
-    worker.onmessage = (event: MessageEvent<BackupReply>) => { worker.terminate(); resolve(event.data) }
-    worker.onerror = event => { worker.terminate(); resolve({ ok: false, error: event.message || 'The backup worker failed.' }) }
+    activeWorker = worker
+    if (pauseRequested) worker.postMessage({ pause: true })
+    worker.onmessage = (event: MessageEvent<BackupReply>) => { worker.terminate(); activeWorker = undefined; resolve(event.data) }
+    worker.onerror = event => { worker.terminate(); activeWorker = undefined; resolve({ ok: false, error: event.message || 'The backup worker failed.' }) }
     worker.postMessage(request)
   })
 }
 
-async function backupOnce(): Promise<BackupStatus> {
+async function backupOnce(trigger: 'manual' | 'auto'): Promise<BackupStatus> {
   const profile = getActiveProfile()
   const config = await loadBackupConfig()
   if (!config) throw new Error('Set up the GitHub backup first.')
   if (typeof Worker !== 'undefined' && !backendOverride) {
-    const reply = await viaWorker({ profile })
+    const reply = await viaWorker({ profile, trigger })
     if (!reply.ok) throw new Error(reply.error)
   } else {
-    await runBackupJob({ database: db, profile, config, backend: makeBackend(config), trigger: 'manual' })
+    await runBackupJob({ database: db, profile, config, backend: makeBackend(config), trigger, shouldPause: () => pauseRequested })
     announce()
   }
   const status = await loadStatus(profile.id)
+  if (trigger === 'auto' && pauseRequested) return status
   await db.backupConfig.update('github', { lastBackupAt: status.lastBackupAt, lastError: '', ...(status.lastCommit ? { lastCommit: status.lastCommit } : {}) })
   return status
 }
 
 /**
- * Back up now: the run (reads, building, upload) happens in a worker, never on the page's main thread, and reads the
- * journal up to a cursor in short transactions. Concurrent calls share the run in flight. Nothing
- * else starts a backup: there are no automatic or background runs.
+ * Back up now (or an automatic run from auto.ts): the run (reads, building, upload) happens in a worker, never on the
+ * page's main thread, and reads the journal up to a cursor in short transactions. Concurrent calls share the run in
+ * flight. A manual run ignores the 15-minute limit and restarts that window.
  */
-export function runBackup(): Promise<BackupStatus> {
-  running ??= backupOnce().finally(() => { running = undefined })
+export function runBackup(trigger: 'manual' | 'auto' = 'manual'): Promise<BackupStatus> {
+  if (!running) {
+    pauseRequested = false
+    running = (async () => {
+      if (trigger === 'manual') await saveWindowStart(getActiveProfile().id, Date.now())
+      return backupOnce(trigger)
+    })().finally(() => { running = undefined; pauseRequested = false })
+  }
   return running
 }
+export const backupRunning = (): boolean => running !== undefined
 
 // ---- Durable storage ----
 

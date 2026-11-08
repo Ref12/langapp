@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { Download, Upload } from 'lucide-react'
 import type { PageProps } from './shared'
 import { restoreBackup } from '../core/backup'
+import { AutoBackupSwitch } from './AutoBackupSwitch'
 import { MAX_PROFILE_BYTES, type ProfileSnapshot } from '../core/profiles/contracts'
 import { fromLegacyBackup, parseProfileYamlReport, serializeProfileYaml } from '../core/profiles/codec'
 import type { ProfileMetadata } from '../core/profiles/identity'
@@ -111,6 +112,7 @@ export function ProfileSettings({ busy, reload = () => window.location.reload(),
 
   return <section className="panel settings-form" aria-label="Profiles and backups">
     <h2>Profiles and backups</h2>
+    <AutoBackupSwitch />
     <p>Current profile: <strong>{active.name}</strong>. Each profile has separate settings, knowledge, learning progress, conversations, and imported books.</p>
     <p className="small muted">Browser storage is the live copy. YAML files are manual snapshots, not automatic synchronization. Save unfinished settings edits before switching or exporting. Unsaved conversation drafts must be saved first.</p>
     {bootstrapping && <p role="status">Finishing the initial local settings import before profile operations...</p>}

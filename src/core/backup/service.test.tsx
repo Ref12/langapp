@@ -256,8 +256,8 @@ describe('restore', () => {
   })
 })
 
-describe('no automatic backups', () => {
-  it('never backs up by itself: not on changes, hiding, page hide, time passing or startup', async () => {
+describe('no background backups', () => {
+  it('never backs up on its own: not on changes, hiding, page hide, time passing or startup', async () => {
     vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] })
     const memory = memoryBackend()
     const publishDelta = vi.spyOn(memory.backend, 'publishDelta')
@@ -291,6 +291,39 @@ describe('no automatic backups', () => {
     await removeBackgroundBackupRegistrations()
     expect(unregister).toHaveBeenCalledWith('backup')
     Reflect.deleteProperty(navigator, 'serviceWorker')
+  })
+})
+
+describe('automatic backup at boundaries (real gate and run)', () => {
+  it('runs at a boundary with new data, then waits out the window; Back up now ignores the window and restarts it', async () => {
+    const { atBoundary, setExerciseOpen } = await import('./auto')
+    const { saveAutoSetting } = await import('./state')
+    const memory = memoryBackend()
+    const publishDelta = vi.spyOn(memory.backend, 'publishDelta')
+    setBackendFactoryForTests(() => memory.backend)
+    await saveBackupConfig(config)
+    expect(await atBoundary()).toBe('clean') // opening / nothing new: no run
+    await addToKnowledge(['vocabulary:cha2--tea'])
+    setExerciseOpen(true)
+    expect(await atBoundary()).toBe('exercise')
+    setExerciseOpen(false)
+    expect(publishDelta).not.toHaveBeenCalled()
+    expect(await atBoundary()).toBe('ran')
+    expect(publishDelta).toHaveBeenCalledTimes(1)
+    expect((await loadRuns())[0]).toMatchObject({ trigger: 'auto', outcome: 'ok' })
+    await addToKnowledge(['vocabulary:wo3--me'])
+    expect(await atBoundary()).toBe('window')
+    await runBackup() // manual: ignores the window
+    expect(publishDelta).toHaveBeenCalledTimes(2)
+    await addToKnowledge(['vocabulary:ni3--you'])
+    vi.useFakeTimers({ toFake: ['Date'], now: Date.now() + 14 * 60_000 })
+    expect(await atBoundary()).toBe('window') // the manual run restarted the window
+    vi.setSystemTime(Date.now() + 2 * 60_000)
+    await saveAutoSetting(getActiveProfile().id, false)
+    expect(await atBoundary()).toBe('off')
+    await saveAutoSetting(getActiveProfile().id, true)
+    expect(await atBoundary()).toBe('ran')
+    expect(publishDelta).toHaveBeenCalledTimes(3)
   })
 })
 

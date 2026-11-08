@@ -48,6 +48,7 @@ import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
 import { PinyinFormatContext } from './components/pinyin-context'
 import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
 import { BackupNow } from './components/BackupNow'
+import { useBackupBoundaries } from './components/useBackupBoundaries'
 import { SetupLinkStatus } from './components/SetupQr'
 import './App.css'
 import './components/assistant/assistant.css'
@@ -184,6 +185,9 @@ function WorkspaceApp() {
     const timer = window.setInterval(() => setNow(Date.now()), 60_000)
     return () => window.clearInterval(timer)
   }, [])
+  const practicingNow = workspace !== undefined && ((page === 'practice' && workspace.sessions.some(session => session.id === route.split('/')[1] && session.status === 'active'))
+    || (page === 'lessons' && workspace.exerciseSessions.some(session => session.id === route.split('/')[2] && session.status === 'active')))
+  useBackupBoundaries(route, practicingNow)
   if (!workspace) return <div className="opening-workspace" role="status">Opening your saved workspace...</div>
   const { preferences } = workspace
   const collapsed = preferences.sidebarCollapsed
