@@ -129,7 +129,6 @@ units:
   - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
   - {id: zh-hsk2-00024-s001, ch: 边, pr: biān, ds: side}
   - {id: zh-hsk1-00076-s001, ch: 第, pr: dì, ds: imperial examination grades (literary)}
-  - {id: zh-hsk2-00158-s001, ch: 分钟, pr: fēn zhōng, ds: minute}
   - {id: zh-hsk2-00250-s003, ch: 件, pr: jiàn, ds: 'classifier for events, things, clothes etc'}
   - {id: zh-hsk2-00355-s001, ch: 卖, pr: mài, ds: to sell}
   - {id: zh-hsk1-00265-s001, ch: 男, pr: nán, ds: male}
@@ -140,9 +139,11 @@ units:
   - {id: zh-hsk1-00446-s001, ch: 有的, pr: yǒu de, ds: some (of a group)}
   - {id: zh-hsk1-00472-s001, ch: 这儿, pr: zhè r, ds: here}
   - {id: zh-hsk3-00287-s003, ch: 后面, pr: hòu mian, ds: later; afterwards}
+  - {id: zh-hsk2-00158-s001, ch: 分钟, pr: fēn zhōng, ds: minute}
   grammar:
   - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
   - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
+  - {id: zh-hsk2026-g066, ch: V+Num+Duration, ds: length of time after the verb}
   review_vocabulary:
   - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
   - {id: zh-hsk1-00349-s002, ch: 水, pr: shuǐ, ds: water}

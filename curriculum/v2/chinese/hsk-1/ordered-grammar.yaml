@@ -136,7 +136,7 @@
 - id: zh-hsk1-g014
   pt: <time> + <subject> + <verb phrase> / <subject> + <time> + <verb phrase>
   pr: <time> + <subject> + <verb phrase> / <subject> + <time> + <verb phrase>
-  ds: Time before the action, before or after the subject.
+  ds: A point in time (today, at five) goes before the action, before or after the subject.
   lb: time-s-vp-or-s-time-vp--time
   ex:
     segments: [{word: wo3--me}, {word: jin1-tian1--today}, {word: gong1-zuo4--work}, {punctuation: 。}]
@@ -241,15 +241,15 @@
     grammar: [hour-dian3-ban4--half-past, time-s-vp-or-s-time-vp--time]
 
 # Lesson 0019: zh-hsk-1-lesson-0019
-- id: zh-hsk1-g015
-  pt: <subject> + 在 + <place> + <verb phrase>
-  pr: <subject> + zài + <place> + <verb phrase>
-  ds: Action location before the verb; not progressive 在.
-  lb: s-zai4-loc-vp--location
+- id: zh-hsk2026-g066
+  pt: <verb> + <length of time>
+  pr: <verb> + <length of time>
+  ds: 'Length of time: <verb> + <length of time>, as in 休息五分钟, 住三天. A length of time goes after the verb; a point in time goes before it (五点休息).'
+  lb: num-nian2-or-tian1-or-fen1--duration
   ex:
-    segments: [{word: wo3--me}, {word: zai4--location}, {word: xue2-xiao4--school}, {word: xue2-xi2--study}, {punctuation: 。}]
-    translation: I study at school.
-    grammar: [s-zai4-loc-vp--location]
+    segments: [{word: wo3--me}, {word: xiu1-xi5--rest}, {word: wu3--five}, {word: fen1-zhong1--minute}, {punctuation: 。}]
+    translation: I rest for five minutes.
+    grammar: [num-nian2-or-tian1-or-fen1--duration, s-vp--verbal]
 - id: zh-hsk2026-g065
   pt: <person> + <age> + 岁
   pr: <person> + <age> + suì
@@ -331,40 +331,7 @@
     translation: The cat is behind the table.
     grammar: [dir-bian1--side, s-zai4-loc--at]
 
-# Lesson 0025: zh-hsk-1-lesson-0025
-- id: zh-hsk1-g007
-  pt: <before answer> + (谁 / 什么 / 哪儿 / 哪里) + <after answer>？
-  pr: <before answer> + (shéi / shén me / nǎ r / nǎ lǐ) + <after answer>?
-  ds: Who/what/where in the answer slot; no extra 吗.
-  lb: pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
-  ex:
-    segments: [{word: ni3--you}, {word: shi4--identity}, {word: shei2--who}, {punctuation: ？}]
-    translation: Who are you?
-    grammar: [pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh, s-shi4-n--identity]
-
-# Lesson 0026: zh-hsk-1-lesson-0026
-- id: zh-hsk2026-g017
-  pt: (有的 / 有些) + <noun> + <predicate>
-  pr: (yǒu de / yǒu xiē) + <noun> + <predicate>
-  ds: Some members; 有的 permits an understood noun to be omitted.
-  lb: you3-de5-or-you3-xie1-n-pred--some
-  ex:
-    segments: [{word: you3-de5--some}, {word: xue2-sheng5--student}, {word: xi3-huan5--like}, {word: cha2--tea}, {punctuation: 。}]
-    translation: Some students like tea.
-    grammar: [you3-de5-or-you3-xie1-n-pred--some, s-vp--verbal]
-
-# Lesson 0027: zh-hsk-1-lesson-0027
-- id: zh-hsk1-g024
-  pt: (去 / 来) + <place> + <verb phrase>
-  pr: (qù / lái) + <place> + <verb phrase>
-  ds: Go/come somewhere to act; shared subject.
-  lb: qu4-or-lai2-loc-vp--purpose
-  ex:
-    segments: [{word: wo3--me}, {word: qu4--go}, {word: shu1-dian4--bookstore}, {word: mai3--buy}, {word: shu1--book}, {punctuation: 。}]
-    translation: I am going to the bookstore to buy books.
-    grammar: [qu4-or-lai2-loc-vp--purpose, v-obj--object]
-
-# Lesson 0028: zh-hsk-1-lesson-0028
+# Lesson 0024: zh-hsk-1-lesson-0024
 - id: zh-hsk1-g002
   pt: <subject> + 很 + <adjective>
   pr: <subject> + hěn + <adjective>
@@ -375,7 +342,7 @@
     translation: I am happy.
     grammar: [s-hen3-adj--describe]
 
-# Lesson 0029: zh-hsk-1-lesson-0029
+# Lesson 0025: zh-hsk-1-lesson-0025
 - id: zh-hsk2026-g015
   pt: (这些 / 那些) + <noun>
   pr: (zhè xiē / nà xiē) + <noun>
@@ -386,7 +353,7 @@
     translation: These books are new.
     grammar: [zhe4-xie1-or-na4-xie1-n--these-those, s-hen3-adj--describe]
 
-# Lesson 0030: zh-hsk-1-lesson-0030
+# Lesson 0026: zh-hsk-1-lesson-0026
 - id: zh-hsk1-g009
   pt: <possessor> + 的 + <noun>
   pr: <possessor> + de + <noun>
@@ -406,7 +373,40 @@
     translation: I like new clothes.
     grammar: [adjp-de5-n--describe, s-vp--verbal]
 
-# Lesson 0031: zh-hsk-1-lesson-0031
+# Lesson 0027: zh-hsk-1-lesson-0027
+- id: zh-hsk1-g007
+  pt: <before answer> + (谁 / 什么 / 哪儿 / 哪里) + <after answer>？
+  pr: <before answer> + (shéi / shén me / nǎ r / nǎ lǐ) + <after answer>?
+  ds: Who/what/where in the answer slot; no extra 吗.
+  lb: pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+  ex:
+    segments: [{word: ni3--you}, {word: shi4--identity}, {word: shei2--who}, {punctuation: ？}]
+    translation: Who are you?
+    grammar: [pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh, s-shi4-n--identity]
+
+# Lesson 0028: zh-hsk-1-lesson-0028
+- id: zh-hsk1-g015
+  pt: <subject> + 在 + <place> + <verb phrase>
+  pr: <subject> + zài + <place> + <verb phrase>
+  ds: Action location before the verb; not progressive 在.
+  lb: s-zai4-loc-vp--location
+  ex:
+    segments: [{word: wo3--me}, {word: zai4--location}, {word: xue2-xiao4--school}, {word: xue2-xi2--study}, {punctuation: 。}]
+    translation: I study at school.
+    grammar: [s-zai4-loc-vp--location]
+
+# Lesson 0029: zh-hsk-1-lesson-0029
+- id: zh-hsk1-g024
+  pt: (去 / 来) + <place> + <verb phrase>
+  pr: (qù / lái) + <place> + <verb phrase>
+  ds: Go/come somewhere to act; shared subject.
+  lb: qu4-or-lai2-loc-vp--purpose
+  ex:
+    segments: [{word: wo3--me}, {word: qu4--go}, {word: shu1-dian4--bookstore}, {word: mai3--buy}, {word: shu1--book}, {punctuation: 。}]
+    translation: I am going to the bookstore to buy books.
+    grammar: [qu4-or-lai2-loc-vp--purpose, v-obj--object]
+
+# Lesson 0030: zh-hsk-1-lesson-0030
 - id: zh-hsk1-g019
   pt: <subject> + 想 + <verb phrase>
   pr: <subject> + xiǎng + <verb phrase>
@@ -416,6 +416,17 @@
     segments: [{word: wo3--me}, {word: xiang3--want}, {word: xiu1-xi5--rest}, {punctuation: 。}]
     translation: I would like to rest.
     grammar: [s-xiang3-vp--want]
+
+# Lesson 0032: zh-hsk-1-lesson-0032
+- id: zh-hsk2026-g017
+  pt: (有的 / 有些) + <noun> + <predicate>
+  pr: (yǒu de / yǒu xiē) + <noun> + <predicate>
+  ds: Some members; 有的 permits an understood noun to be omitted.
+  lb: you3-de5-or-you3-xie1-n-pred--some
+  ex:
+    segments: [{word: you3-de5--some}, {word: xue2-sheng5--student}, {word: xi3-huan5--like}, {word: cha2--tea}, {punctuation: 。}]
+    translation: Some students like tea.
+    grammar: [you3-de5-or-you3-xie1-n-pred--some, s-vp--verbal]
 
 # Lesson 0034: zh-hsk-1-lesson-0034
 - id: zh-hsk1-g011
@@ -524,15 +535,6 @@
     grammar: [s-vp-ne5--ongoing]
 
 # Lesson 0045: zh-hsk-1-lesson-0045
-- id: zh-hsk2026-g030
-  pt: <subject> + 还 + <predicate>
-  pr: <subject> + hái + <predicate>
-  ds: Also/in addition, not still.
-  lb: s-hai2-pred--add
-  ex:
-    segments: [{word: wo3--me}, {word: you3--have}, {word: shu1--book}, {punctuation: 。}, {word: wo3--me}, {word: hai2--also}, {word: you3--have}, {word: dian4-nao3--computer}, {punctuation: 。}]
-    translation: I have books. I also have a computer.
-    grammar: [s-hai2-pred--add, s-you3-np--have]
 - id: zh-hsk2026-g047
   pt: <person or thing> + 呢？
   pr: <person or thing> + ne?
@@ -564,6 +566,15 @@
     segments: [{word: xia4-yu3--rain}, {word: le5--change}, {punctuation: 。}]
     translation: It has started raining.
     grammar: [state-le5--change]
+- id: zh-hsk2026-g030
+  pt: <subject> + 还 + <predicate>
+  pr: <subject> + hái + <predicate>
+  ds: Also/in addition, not still.
+  lb: s-hai2-pred--add
+  ex:
+    segments: [{word: wo3--me}, {word: you3--have}, {word: shu1--book}, {punctuation: 。}, {word: wo3--me}, {word: hai2--also}, {word: you3--have}, {word: dian4-nao3--computer}, {punctuation: 。}]
+    translation: I have books. I also have a computer.
+    grammar: [s-hai2-pred--add, s-you3-np--have]
 
 # Lesson 0048: zh-hsk-1-lesson-0048
 - id: zh-hsk2-g001
@@ -619,15 +630,6 @@
     segments: [{word: lao3-shi1--teacher}, {word: men5--plural}, {word: hao3--good}, {punctuation: ！}]
     translation: Hello, teachers!
     grammar: [pron-or-person-men5--plural, expr--fragment]
-- id: zh-hsk2026-g049
-  pt: 喂？
-  pr: wéi?
-  ds: Telephone greeting.
-  lb: wei2--phone
-  ex:
-    segments: [{word: wei2--hello}, {punctuation: ？}]
-    translation: Hello?
-    grammar: [wei2--phone]
 
 # Lesson 0054: zh-hsk-1-lesson-0054
 - id: zh-hsk2-g004
@@ -639,15 +641,15 @@
     segments: [{word: ta1--he}, {word: zheng4-zai4--ongoing}, {word: chi1--eat}, {word: wu3-fan4--lunch}, {word: ne5--ongoing}, {punctuation: 。}]
     translation: He is eating lunch right now.
     grammar: [s-zai4-or-zheng4-zai4-vp-ne5--ongoing, v-obj--object]
-- id: zh-hsk2026-g031
-  pt: <subject> + 再 + <verb phrase>
-  pr: <subject> + zài + <verb phrase>
-  ds: Again for a future or intended repetition.
-  lb: s-zai4-vp--again
+- id: zh-hsk2026-g049
+  pt: 喂？
+  pr: wéi?
+  ds: Telephone greeting.
+  lb: wei2--phone
   ex:
-    segments: [{word: wo3--me}, {word: ming2-tian1--tomorrow}, {word: zai4--again}, {word: lai2--come}, {punctuation: 。}]
-    translation: I will come again tomorrow.
-    grammar: [s-zai4-vp--again, time-s-vp-or-s-time-vp--time]
+    segments: [{word: wei2--hello}, {punctuation: ？}]
+    translation: Hello?
+    grammar: [wei2--phone]
 
 # Lesson 0055: zh-hsk-1-lesson-0055
 - id: zh-hsk2026-g057
@@ -661,6 +663,17 @@
     grammar: [s-zai4-or-zheng4-zai4-vp--ongoing]
 
 # Lesson 0056: zh-hsk-1-lesson-0056
+- id: zh-hsk2026-g031
+  pt: <subject> + 再 + <verb phrase>
+  pr: <subject> + zài + <verb phrase>
+  ds: Again for a future or intended repetition.
+  lb: s-zai4-vp--again
+  ex:
+    segments: [{word: wo3--me}, {word: ming2-tian1--tomorrow}, {word: zai4--again}, {word: lai2--come}, {punctuation: 。}]
+    translation: I will come again tomorrow.
+    grammar: [s-zai4-vp--again, time-s-vp-or-s-time-vp--time]
+
+# Lesson 0057: zh-hsk-1-lesson-0057
 - id: zh-hsk2-g003
   pt: <subject> + (没 / 没有) + <verb phrase>
   pr: <subject> + (méi / méi yǒu) + <verb phrase>
@@ -671,7 +684,7 @@
     translation: I haven't eaten breakfast.
     grammar: [s-mei2-or-mei2-you3-vp--no-event, v-obj--object]
 
-# Lesson 0057: zh-hsk-1-lesson-0057
+# Lesson 0058: zh-hsk-1-lesson-0058
 - id: zh-hsk2026-g062
   pt: 星期 + <weekday>
   pr: xīng qī + <weekday>
@@ -682,7 +695,16 @@
     translation: I rest on Saturdays.
     grammar: [xing1-qi1-day--weekday, time-s-vp-or-s-time-vp--time]
 
-# Lesson 0058: zh-hsk-1-lesson-0058
+# Lesson 0059: zh-hsk-1-lesson-0059
+- id: zh-hsk2026-g059
+  pt: <amount> + (元 / 块 / 分)
+  pr: <amount> + (yuán / kuài / fēn)
+  ds: Yuan (元/块) or hundredths of a yuan (分).
+  lb: amt-yuan2-or-kuai4-or-fen1--money
+  ex:
+    segments: [{word: zhe4--this}, {word: ben3--books}, {word: shu1--book}, {word: wu3--five}, {word: yuan2--yuan}, {punctuation: 。}]
+    translation: This book costs five yuan.
+    grammar: [amt-yuan2-or-kuai4-or-fen1--money, zhe4-or-na4-mw-n--this-that, s-np--nominal]
 - id: zh-hsk2026-g042
   pt: <subject> + <nominal predicate>
   pr: <subject> + <nominal predicate>
@@ -702,16 +724,16 @@
     translation: This steamed bun costs three yuan fifty.
     grammar: [yuan-kuai4-tenths--price, zhe4-or-na4-mw-n--this-that, s-np--nominal]
 
-# Lesson 0059: zh-hsk-1-lesson-0059
-- id: zh-hsk2026-g059
-  pt: <amount> + (元 / 块 / 分)
-  pr: <amount> + (yuán / kuài / fēn)
-  ds: Yuan (元/块) or hundredths of a yuan (分).
-  lb: amt-yuan2-or-kuai4-or-fen1--money
+# Lesson 0060: zh-hsk-1-lesson-0060
+- id: zh-hsk2026-g020
+  pt: <hundreds digit> + 百 + <optional remainder>
+  pr: <hundreds digit> + bǎi + <optional remainder>
+  ds: Hundreds before the remainder; keep initial 一, omit trailing zeros.
+  lb: digit-bai3-rest--hundreds
   ex:
-    segments: [{word: zhe4--this}, {word: ben3--books}, {word: shu1--book}, {word: wu3--five}, {word: yuan2--yuan}, {punctuation: 。}]
-    translation: This book costs five yuan.
-    grammar: [amt-yuan2-or-kuai4-or-fen1--money, zhe4-or-na4-mw-n--this-that, s-np--nominal]
+    segments: [{word: zhe4--this}, {word: jian4--classifier}, {word: yi1-fu5--clothes}, {word: yi1--one}, {word: bai3--hundred}, {word: yuan2--yuan}, {punctuation: 。}]
+    translation: This item of clothing costs one hundred yuan.
+    grammar: [digit-bai3-rest--hundreds, amt-yuan2-or-kuai4-or-fen1--money, zhe4-or-na4-mw-n--this-that, s-np--nominal]
 - id: zh-hsk2026-g021
   pt: <thousands digit> + 千 + <optional remainder>
   pr: <thousands digit> + qiān + <optional remainder>
@@ -722,7 +744,7 @@
     translation: The computer costs one thousand yuan.
     grammar: [digit-qian1-rest--thousands, amt-yuan2-or-kuai4-or-fen1--money, s-np--nominal]
 
-# Lesson 0060: zh-hsk-1-lesson-0060
+# Lesson 0061: zh-hsk-1-lesson-0061
 - id: zh-hsk2026-g063
   pt: <time of day> + <hour> + 点 + <minutes> + 分
   pr: <time of day> + <hour> + diǎn + <minutes> + fēn
@@ -733,16 +755,7 @@
     translation: I go to school at seven forty in the morning.
     grammar: [time-hour-dian3-min-fen1--clock, tens-shi2-ones--tens, time-s-vp-or-s-time-vp--time]
 
-# Lesson 0061: zh-hsk-1-lesson-0061
-- id: zh-hsk2026-g020
-  pt: <hundreds digit> + 百 + <optional remainder>
-  pr: <hundreds digit> + bǎi + <optional remainder>
-  ds: Hundreds before the remainder; keep initial 一, omit trailing zeros.
-  lb: digit-bai3-rest--hundreds
-  ex:
-    segments: [{word: zhe4--this}, {word: jian4--classifier}, {word: yi1-fu5--clothes}, {word: yi1--one}, {word: bai3--hundred}, {word: yuan2--yuan}, {punctuation: 。}]
-    translation: This item of clothing costs one hundred yuan.
-    grammar: [digit-bai3-rest--hundreds, amt-yuan2-or-kuai4-or-fen1--money, zhe4-or-na4-mw-n--this-that, s-np--nominal]
+# Lesson 0062: zh-hsk-1-lesson-0062
 - id: zh-hsk2026-g034
   pt: <subject> + 和 + <person> + <verb phrase>
   pr: <subject> + hé + <person> + <verb phrase>
@@ -764,7 +777,7 @@
     translation: You are a student. I am a student too.
     grammar: [s-ye3-pred--also, s-shi4-n--identity]
 
-# Lesson 0064: zh-hsk-1-lesson-0064
+# Lesson 0065: zh-hsk-1-lesson-0065
 - id: zh-hsk2026-g052
   pt: <subject> + <means action> + <main action>
   pr: <subject> + <means action> + <main action>
@@ -774,8 +787,6 @@
     segments: [{word: wo3--me}, {word: zuo4--ride}, {word: chu1-zu1-che1--taxi}, {word: qu4--go}, {word: yi1-yuan4--hospital}, {punctuation: 。}]
     translation: I am taking a taxi to the hospital.
     grammar: [s-vp-vp--means, v-obj--object]
-
-# Lesson 0065: zh-hsk-1-lesson-0065
 - id: zh-hsk2026-g012
   pt: <subject> + 多 + <gradable adjective>？
   pr: <subject> + duō + <gradable adjective>?
@@ -796,6 +807,8 @@
     segments: [{word: wo3--me}, {word: shang4--attend}, {word: le5--completed}, {word: ke4--lesson}, {punctuation: 。}]
     translation: I attended class.
     grammar: [v-insert-obj--separable, v-le5-obj--complete]
+
+# Lesson 0067: zh-hsk-1-lesson-0067
 - id: zh-hsk2026-g009
   pt: 哪些 + <noun>？
   pr: nǎ xiē + <noun>?
@@ -805,8 +818,6 @@
     segments: [{word: ni3--you}, {word: xi3-huan5--like}, {word: na3-xie1--which}, {word: dian4-ying3--movie}, {punctuation: ？}]
     translation: Which movies do you like?
     grammar: [na3-xie1-n--which, s-vp--verbal]
-
-# Lesson 0067: zh-hsk-1-lesson-0067
 - id: zh-hsk2026-g044
   pt: <subject> + <manner adjective> + <verb phrase>
   pr: <subject> + <manner adjective> + <verb phrase>
@@ -816,17 +827,6 @@
     segments: [{word: ni3--you}, {word: kuai4--fast}, {word: chi1--eat}, {punctuation: 。}]
     translation: Eat quickly.
     grammar: [s-adj-vp--manner]
-
-# Lesson 0069: zh-hsk-1-lesson-0069
-- id: zh-hsk2026-g010
-  pt: <subject> + 怎么 + <verb phrase>？
-  pr: <subject> + zěn me + <verb phrase>?
-  ds: How an action is performed.
-  lb: s-zen3-me5-vp--how
-  ex:
-    segments: [{word: ni3--you}, {word: zen3-me5--how}, {word: qu4--go}, {word: xue2-xiao4--school}, {punctuation: ？}]
-    translation: How do you get to school?
-    grammar: [s-zen3-me5-vp--how, v-obj--object]
 
 # Lesson 0070: zh-hsk-1-lesson-0070
 - id: zh-hsk2026-g033
@@ -882,6 +882,15 @@
     grammar: [zhe4-li3-or-zhe4-r5-or-na4-li5-or-na4-r5-pred--place, loc-you3-qty-n--exist]
 
 # Lesson 0075: zh-hsk-1-lesson-0075
+- id: zh-hsk2026-g010
+  pt: <subject> + 怎么 + <verb phrase>？
+  pr: <subject> + zěn me + <verb phrase>?
+  ds: How an action is performed.
+  lb: s-zen3-me5-vp--how
+  ex:
+    segments: [{word: ni3--you}, {word: zen3-me5--how}, {word: qu4--go}, {word: xue2-xiao4--school}, {punctuation: ？}]
+    translation: How do you get to school?
+    grammar: [s-zen3-me5-vp--how, v-obj--object]
 - id: zh-hsk2026-g013
   pt: <personal pronoun> + <predicate>
   pr: <personal pronoun> + <predicate>
@@ -1013,12 +1022,3 @@
     segments: [{word: wo3--me}, {word: lai2--come}, {word: jian4--meet}, {word: ni3--you}, {punctuation: 。}]
     translation: I have come to meet you.
     grammar: [s-vp-vp--purpose, v-obj--object]
-- id: zh-hsk2026-g066
-  pt: <number> + (年 / 天 / 分)
-  pr: <number> + (nián / tiān / fēn)
-  ds: Count years/days/minutes directly; other time units may differ.
-  lb: num-nian2-or-tian1-or-fen1--duration
-  ex:
-    segments: [{word: wo3--me}, {word: zai4--location}, {word: zhe4-li3--here}, {word: zhu4--stay}, {word: san1--three}, {word: tian1--day}, {punctuation: 。}]
-    translation: I am staying here for three days.
-    grammar: [num-nian2-or-tian1-or-fen1--duration, s-zai4-loc-vp--location]
