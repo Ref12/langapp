@@ -93,7 +93,7 @@ export function createDatasetSource(options: DatasetSourceOptions): DatasetSourc
           const alt = data.accepted(entry.a.zh)?.zhAlt ?? []
           out.push({
             id: `use-ds-${entry.id}`, stage, form: 'exchange-reply', refs: refsOf(entry), round: 0, prompt: entry.q.zh, promptLang: 'zh', hearText: entry.q.zh, answerLang: 'zh',
-            accepted: [entry.a.zh, ...alt], model: entry.a.zh, modelPinyin: entry.a.py, explanation: `${entry.q.en} \u2192 ${entry.a.en}`,
+            accepted: [entry.a.zh, ...alt], questionEn: entry.q.en, replyEn: entry.a.en, model: entry.a.zh, modelPinyin: entry.a.py, explanation: `${entry.q.en} \u2192 ${entry.a.en}`,
             phrase: { zh: entry.a.zh, py: entry.a.py, en: entry.a.en },
           } satisfies TextItem)
         }

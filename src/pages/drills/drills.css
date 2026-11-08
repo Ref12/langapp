@@ -319,3 +319,8 @@
 .dr-run > .dr-question { display: contents; }
 .dr-run .dr-question > .dr-result, .dr-run .dr-question > .dr-confirm, .dr-run .dr-question > .dr-selfmark, .dr-run .dr-question > .dr-model-box { order: 3; }
 .dr-run > .answer-actions { order: 2; }
+
+/* One instruction line above every exercise: it never wraps on a phone and never moves Next. */
+.engine-instruction { margin: 0 0 6px; font-weight: 600; color: var(--muted, #9fb0c0); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.engine-cue { margin: 4px 0 0; font-size: 1.05rem; }
+.engine-meaning { margin: 2px 0 8px; }

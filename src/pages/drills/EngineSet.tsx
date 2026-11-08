@@ -158,11 +158,11 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
       <button type="button" className="button secondary small engine-pinyin" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button></div>
     <section className="panel practice-card" aria-live="polite" data-form={exercise?.form} data-answer-lang={exercise && 'answerLang' in exercise ? exercise.answerLang : undefined}>
       {exercise?.form === 'intro' && (() => { const item = items.find(entry => entry.ref === exercise.refs[0]); return <>
-        <p className="small muted">New word {intro + 1}</p>
+        <p className="engine-instruction small" data-instruction="intro">Learn the new word <span className="muted">· {intro + 1}</span></p>
         {item && <IntroCard item={item} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route={setRoute(set.id, 'engine')} />}
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => { setIntro(intro + 1); advance(true) }}>Got it <ArrowRight size={16} /></button></div></> })()}
       {exercise?.form === 'repeat' && <>
-        <p className="small muted">Say it after the audio. Nothing is graded.</p>
+        <p className="engine-instruction small" data-instruction="repeat">Say it after the audio</p><p className="small muted">Nothing is graded.</p>
         <p className="practice-prompt native" lang="zh-Hans">{exercise.zh}</p><p className="small">{exercise.py}</p><p lang="en">{exercise.en}</p>
         <p><HearButton text={exercise.zh} locale="zh-Hans" label="Hear it" /></p>
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => advance(true)}>Next <ArrowRight size={16} /></button></div></>}

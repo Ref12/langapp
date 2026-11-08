@@ -9,7 +9,7 @@ import { speechCaptureSupported, startSpeechCapture, type SpeechCaptureSession }
 import type { ChoiceExercise, ExerciseAttempt, MatchExercise, TilesExercise } from '../../core/study/contracts'
 import { tidyPinyin } from '../../core/drills/items'
 import { gradeChinese, gradeMeaning, gradePinyin, previewPinyin, type ChineseGrade, type MeaningGrade, type PinyinGrade } from '../../core/session/grade'
-import type { AnswerMode, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
+import type { AnswerMode, Form, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
 import { ChoiceQuestion, MatchQuestion, TilesQuestion } from '../Study'
 import { ConversationQuestion, ExchangePick, WhichCorrect } from './DatasetQuestions'
 
@@ -29,6 +29,14 @@ export interface QuestionContext {
 
 /** What a finished question reports: right or wrong, and for a match the items missed. */
 export interface Outcome { correct: boolean; missed?: string[]; /** Right with help: the tones were off. Counts as Needed a hint: it is not a first-try right, but never a miss to self-mark. */ hint?: boolean }
+
+/** What to do, in action words: one line between the stage header and the prompt, for every form. */
+export const INSTRUCTION: Record<Form, string> = {
+  intro: 'Learn the new word', choice: 'Choose the meaning', match: 'Match the pairs', pinyin: 'Type the pinyin', recall: 'Type the meaning', 'translate-zh-en': 'Translate into English',
+  'translate-en-zh': 'Translate into Chinese', tiles: 'Build the sentence', gap: 'Fill the gap', 'listen-pick': 'Listen and pick the meaning', dictation: 'Type what you hear', repeat: 'Say it after the audio',
+  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Answer the question in Chinese, as the cue says', 'which-correct': 'Which sentence is correct?', conversation: 'Listen, then answer the questions',
+}
+export function Instruction({ form }: { form: Form }) { return <p className="engine-instruction small" data-instruction={form}>{INSTRUCTION[form]}</p> }
 
 const attemptOf = (exercise: SessionExercise, response: string, correct: boolean): ExerciseAttempt => ({ id: exercise.id, sessionId: 'engine', index: 0, refs: exercise.refs.slice(0, 6), response, correct, createdAt: 0 })
 const MODE_LABEL: Record<AnswerMode, string> = { type: 'Type', speak: 'Speak', write: 'Handwrite' }
@@ -91,11 +99,12 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   const [listening, setListening] = useState('')
   const [checked, setChecked] = useState<{ correct: boolean; grade?: ChineseGrade; meaning?: MeaningGrade; self?: boolean; pinyin?: PinyinGrade }>()
   const [counted, setCounted] = useState(false)
+  const [meaning, setMeaning] = useState(false)
   const capture = useRef<SpeechCaptureSession>()
   useEffect(() => () => capture.current?.cancel(), [])
   const modes = (['type', 'speak', 'write'] as const).filter(value => value !== mode && (value !== 'write' || (ctx.writing && chinese)) && (value !== 'speak' || chinese || exercise.answerLang === 'en'))
   const check = () => {
-    if (chinese) { const grade = gradeChinese(text, exercise.accepted, ctx.forms, exercise.optional, exercise.promptLang === 'en' ? exercise.prompt : ''); setChecked({ correct: grade.verdict === 'correct', grade }) }
+    if (chinese) { const grade = gradeChinese(text, exercise.accepted, ctx.forms, exercise.optional, exercise.replyEn ?? (exercise.promptLang === 'en' ? exercise.prompt : '')); setChecked({ correct: grade.verdict === 'correct', grade }) }
     else if (exercise.answerLang === 'en') { const meaning = gradeMeaning(text, exercise.accepted); setChecked({ correct: meaning.verdict === 'correct' || meaning.verdict === 'near', meaning, self: meaning.verdict === 'self' }) }
       else { const pinyin = gradePinyin(text, exercise.accepted); setChecked({ correct: pinyin.verdict !== 'self', self: pinyin.verdict === 'self', pinyin }) }
   }
@@ -112,10 +121,12 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   return <>
     <Flag exercise={exercise} />
     {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin && (exercise.answerLang !== 'py' || locked)} /></p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
+    {exercise.form === 'exchange-reply' && exercise.replyEn && <p className="engine-cue" lang="en">Reply: “{exercise.replyEn}”</p>}
+    {exercise.form === 'exchange-reply' && exercise.questionEn && <p className="small engine-meaning"><button type="button" className="link-button" aria-expanded={meaning} onClick={() => setMeaning(!meaning)}>{meaning ? 'Hide meaning' : 'Show meaning'}</button>{meaning && <span lang="en"> “{exercise.questionEn}”</span>}</p>}
     {exercise.hearText && <p><HearButton text={exercise.hearText} locale="zh-Hans" label="Hear it" /></p>}
     <label className="engine-answer dr-free"><span className="visually-hidden">Your answer</span>
       <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? 'zh-Hans' : exercise.answerLang === 'py' ? undefined : 'en'} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="text" aria-describedby={pinyinMode ? 'pinyin-hint' : undefined}
-        placeholder={chinese ? 'Type the Chinese' : exercise.answerLang === 'py' ? 'Type the pinyin' : 'Type the meaning'} onChange={event => setText(event.target.value)}
+        placeholder={chinese ? exercise.form === 'exchange-reply' ? 'Your reply in Chinese' : 'Type the Chinese' : exercise.answerLang === 'py' ? 'Type the pinyin' : 'Type the meaning'} onChange={event => setText(event.target.value)}
         onKeyDown={event => { if (event.key === 'Enter' && text.trim() && !locked) check() }} /></label>
     {pinyinMode && <p id="pinyin-hint" className="small muted engine-pinyin-hint">Pinyin with tones: type numbers (xue2 xi2) or marks (xué xí). Use v for ü (lv4).</p>}
     {pinyinMode && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{previewPinyin(text, exercise.accepted) || '\u00a0'}</p>}
@@ -136,7 +147,11 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   </>
 }
 
-export function ExerciseQuestion({ exercise, ctx, onDone }: { exercise: Exclude<SessionExercise, { form: 'intro' | 'repeat' }>; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
+export function ExerciseQuestion(props: { exercise: Exclude<SessionExercise, { form: 'intro' | 'repeat' }>; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
+  return <><Instruction form={props.exercise.form} /><ExerciseBody {...props} /></>
+}
+
+function ExerciseBody({ exercise, ctx, onDone }: { exercise: Exclude<SessionExercise, { form: 'intro' | 'repeat' }>; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
   const choiceShape = useMemo((): ChoiceExercise | undefined => {
     if (exercise.form === 'choice') return { id: exercise.id, type: 'choice', targets: exercise.refs, direction: exercise.direction, question: exercise.question, options: exercise.options, answer: exercise.answer, explanation: exercise.explanation }
     if (exercise.form === 'gap') return { id: exercise.id, type: 'choice', targets: exercise.refs, direction: 'en-to-zh', question: exercise.translation, options: exercise.options, answer: exercise.answer, explanation: exercise.explanation }
