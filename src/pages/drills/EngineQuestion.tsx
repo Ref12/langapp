@@ -54,17 +54,17 @@ function PickQuestion({ exercise, shape, header, ctx, onDone }: { exercise: Choi
 
 function Tiles({ exercise, ctx, onDone }: { exercise: TilesItem; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
   const [attempt, setAttempt] = useState<{ grade: ChineseGrade; answer: string[] }>()
-  const [counted, setCounted] = useState(false)
   const shape = exercise as unknown as TilesExercise
-  const correct = attempt ? attempt.grade.verdict === 'correct' || counted : undefined
+  // The tiles are a fixed set and the grade is exact: there is no "I was right" override here.
+  const correct = attempt ? attempt.grade.verdict === 'correct' : undefined
+  const grade = attempt?.grade
+  const swapped = grade?.differences.length === 1 && grade.differences[0].kind === 'swapped' ? grade.differences[0] as { a: string; b: string } : undefined
   return <>
     <TilesQuestionBridge exercise={shape} attempt={attempt && attemptOf(exercise, JSON.stringify(attempt.answer), correct === true)} ctx={ctx}
       submit={answer => setAttempt({ answer, grade: gradeChinese(answer.join(''), exercise.accepted, ctx.forms, exercise.optional, exercise.translation) })} next={() => onDone({ correct: correct === true })} />
-    {attempt && <div className="notice answer-feedback engine-diff" role="status">
-      {attempt.grade.verdict === 'correct' ? <p>{attempt.grade.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang="zh-Hans">{exercise.model}</span></p>
-        : <><p>{attempt.grade.differences.length === 1 && attempt.grade.differences[0].kind === 'swapped' ? `Word order: ${(attempt.grade.differences[0] as { a: string; b: string }).a} comes before ${(attempt.grade.differences[0] as { a: string; b: string }).b}.` : `Not the model answer.${attempt.grade.messages.length ? ' ' + attempt.grade.messages.join('; ') + '.' : ''}`}</p><p>Closest: <span lang="zh-Hans">{attempt.grade.closest}</span></p>
-          <button type="button" className="link-button" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'I was right: count it'}</button></>}
-      <p className="small muted">{exercise.explanation}</p></div>}
+    {grade && <div className={`notice answer-feedback engine-diff${correct ? ' success' : ''}`} role="status">
+      {correct ? (grade.alternative ? <p>Also correct. The model answer:</p> : null) : <p>{swapped ? `Word order: ${swapped.a} comes before ${swapped.b}.` : `Not the model answer.${grade.messages.length ? ' ' + grade.messages.join('; ') + '.' : ''}`}</p>}
+      <p className="engine-answer-line"><span lang="zh-Hans">{exercise.model}</span>{ctx.pinyin && exercise.modelPinyin ? <> <span className="small muted"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></span></> : null}</p></div>}
   </>
 }
 

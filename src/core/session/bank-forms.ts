@@ -74,7 +74,7 @@ export function buildTiles(slot: Slot, phrase: BankPhrase, context: FormContext)
   const count = tiles.length + distractors.length
   let shuffled = shuffle(Array.from({ length: count }, (_, index) => index), rng)
   if (shuffled.slice(0, tiles.length).every((value, index) => value === index)) shuffled = [...shuffled.slice(1), shuffled[0]]
-  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, explanation: `${phrase.zh} (${phrase.py})` }
+  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py, explanation: `${phrase.zh} (${phrase.py})` }
 }
 
 /** Fill the gap: the target word blanked out, three known words that do not occur in the phrase as the wrong options. */
