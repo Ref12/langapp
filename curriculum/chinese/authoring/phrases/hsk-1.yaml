@@ -6813,12 +6813,12 @@ phrases:
     zh: 星期四我们在家。
     py: xīng qī sì wǒ men zài jiā
     en: We're at home on Thursday.
-    words: [xing1-qi1--weekday, xing1-qi1--week, si4--four, wo3-men5--we, zai4--location, jia1--home]
+    words: [xing1-qi1-si4--thursday, wo3-men5--we, zai4--location, jia1--home]
     grammar: [xing1-qi1-day--weekday, s-zai4-loc--at, time-s-vp-or-s-time-vp--time]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 57
+    readyAt: 82
 
   - id: 636
     zh: 明年他们在大学住。
@@ -6835,12 +6835,12 @@ phrases:
     zh: 星期二他们在大学。
     py: xīng qī èr tā men zài dà xué
     en: They're at the university on Tuesday.
-    words: [xing1-qi1--week, er4--two, ta1-men5--they, zai4--location, da4-xue2--university]
+    words: [xing1-qi1-er4--tuesday, ta1-men5--they, zai4--location, da4-xue2--university]
     grammar: [xing1-qi1-day--weekday, s-zai4-loc--at, time-s-vp-or-s-time-vp--time]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 57
+    readyAt: 82
 
   - id: 638
     zh: 请问，谁有苹果？
@@ -10768,12 +10768,12 @@ phrases:
     zh: 星期三我在大学读书。
     py: xīng qī sān wǒ zài dà xué dú shū
     en: I read books at the university on Wednesday.
-    words: [xing1-qi1--weekday, xing1-qi1--week, san1--three, wo3--me, zai4--location, da4-xue2--university, du2-shu1--study]
+    words: [xing1-qi1-san1--wednesday, wo3--me, zai4--location, da4-xue2--university, du2-shu1--study]
     grammar: [xing1-qi1-day--weekday, time-s-vp-or-s-time-vp--time, s-zai4-loc-vp--location]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 57
+    readyAt: 82
 
   - id: 1006
     zh: 星期日他们在大学。
@@ -10801,12 +10801,12 @@ phrases:
     zh: 星期一，他们在大学。
     py: xīng qī yì tā men zài dà xué
     en: They are at the university on Monday.
-    words: [xing1-qi1--week, yi1--one, ta1-men5--they, zai4--location, da4-xue2--university]
+    words: [xing1-qi1-yi1--monday, ta1-men5--they, zai4--location, da4-xue2--university]
     grammar: [xing1-qi1-day--weekday, time-s-vp-or-s-time-vp--time, s-zai4-loc--at]
     source: ai
     checked: true
     lookahead: 0
-    readyAt: 57
+    readyAt: 81
 
   - id: 1009
     zh: 这本书三元五分。
