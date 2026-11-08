@@ -26,6 +26,8 @@ beforeAll(async () => {
 
 const plan = (length: Length, preset = DEFAULT_PRESET) => planSession({ ...base, length, preset })
 const all = (length: Length, preset = DEFAULT_PRESET) => plan(length, preset).stages.flatMap(stage => stage.exercises)
+/** The same items once they are already known: reviews and older items keep the typed forms. */
+const allKnown = (length: Length, preset = DEFAULT_PRESET) => planSession({ ...base, known: allowed, length, preset }).stages.flatMap(stage => stage.exercises)
 const graded = (list: SessionExercise[]) => list.filter(exercise => exercise.form !== 'intro')
 
 describe('the planner', () => {
@@ -76,7 +78,7 @@ describe('the exercise bank forms, built from real phrases', () => {
   const forms = (list: SessionExercise[]) => new Set(list.map(exercise => exercise.form))
   it('builds every bank form from a real phrase across the presets', () => {
     const seen = new Set<Form>()
-    for (const preset of BUILTIN_PRESETS) for (const length of ['standard', 'long'] as const) for (const form of forms(all(length, preset))) seen.add(form)
+    for (const preset of BUILTIN_PRESETS) for (const length of ['standard', 'long'] as const) for (const form of [...forms(all(length, preset)), ...forms(allKnown(length, preset))]) seen.add(form)
     for (const form of ['translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat'] as const) expect(seen, form).toContain(form)
   })
   it('gives each bank exercise a model answer and a phrase that is in the shipped bank', () => {
@@ -127,7 +129,7 @@ describe('sentence rules', () => {
 
 describe('presets', () => {
   it('change which forms the stages use', () => {
-    const used = (id: string) => new Set(graded(all('standard', BUILTIN_PRESETS.find(preset => preset.id === id)!)).map(exercise => exercise.form))
+    const used = (id: string) => new Set(graded(allKnown('standard', BUILTIN_PRESETS.find(preset => preset.id === id)!)).map(exercise => exercise.form))
     expect(used('listening').has('listen-pick') || used('listening').has('dictation')).toBe(true)
     expect(used('listening').has('tiles')).toBe(false)
     expect(used('writing').has('choice') || used('writing').has('pinyin')).toBe(true)

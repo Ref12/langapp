@@ -6,7 +6,7 @@ import { FUNCTION_CHARACTERS_LIST } from './function-characters'
 import { LENGTH_FACTOR, estimateMinutes } from './presets'
 import { SentencePool } from './sentences'
 import type { DatasetSource } from './sources'
-import { DATASET_FORMS, STAGES, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan } from './types'
+import { DATASET_FORMS, STAGES, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan, type TextItem } from './types'
 
 export interface PlanItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; py: string; en: string }
 
@@ -138,14 +138,26 @@ export function planSession(input: PlanInput): SessionPlan {
       order.forEach((item, at) => {
         const rotation: Form[] = itemForms.length ? [...itemForms.slice((at + round - 1 + stageIndex) % itemForms.length), ...itemForms.slice(0, (at + round - 1 + stageIndex) % itemForms.length)] : []
         const fallback = FALLBACK_FORMS[item.kind === 'vocabulary' ? 'vocabulary' : 'other'].filter(form => !rotation.includes(form))
-        for (const form of [...rotation, ...fallback]) {
+        // A new item never types Chinese: every Chinese-writing form becomes the sentence builder, and a failed build never falls back to typing.
+        const fresh = !input.known.has(item.ref)
+        const tried = new Set<Form>()
+        for (const wanted of [...rotation, ...fallback]) {
+          const form = fresh && producesChinese(wanted) ? 'tiles' : wanted
+          if (tried.has(form)) continue
+          tried.add(form)
           const built = buildOne(form, item, stage, round)
           if (built) { planned.push(built); covered.add(item.ref); break }
         }
       })
       exercises.push(...planned)
     }
-    exercises.unshift(...fromDataset)
+    // A typed Chinese reply from the dataset is the sentence builder when it practises a new item.
+    exercises.unshift(...fromDataset.flatMap((entry): SessionExercise[] => {
+      if (entry.form !== 'exchange-reply' || entry.refs.every(ref => input.known.has(ref))) return [entry]
+      const reply = entry as TextItem
+      const built = reply.phrase ? buildTiles({ id: reply.id, stage: reply.stage, refs: reply.refs, round: 0 }, { zh: reply.phrase.zh, py: reply.phrase.py, en: reply.phrase.en, words: [], source: 'catalog', checked: true }, context) : undefined
+      return built ? [built] : []
+    }))
     stages.push({ stage, rounds: count, exercises })
   }
   const total = stages.filter(entry => entry.stage !== 'introduce').reduce((sum, entry) => sum + entry.exercises.length, 0)
