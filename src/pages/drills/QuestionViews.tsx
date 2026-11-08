@@ -21,6 +21,7 @@ import type { PageProps } from '../../components/shared'
 import { markCharactersWritten } from '../../core/drills/store'
 import { StrokeOrder } from './StrokeOrder'
 import { StrokePad } from './StrokePad'
+import { gradePinyin, previewPinyin } from '../../core/session/grade'
 import { type ConvoAnswer, type Outcome, type Q, type QData, type TextAnswer, type WriteAnswer } from './tasks'
 
 /** `suggested`: what the automatic check made of a typed answer; `chosen`: the mark selected to confirm (starts as the suggestion). */
@@ -76,8 +77,8 @@ function MatchView({ q, data, state, ctx, onAnswer }: ViewProps & { data: Extrac
   </>
 }
 
-function TextInput({ label, value, disabled, onChange, placeholder, lang }: { label: string; value: string; disabled: boolean; onChange: (value: string) => void; placeholder?: string; lang?: string }) {
-  return <label className="dr-free"><span className="small muted">{label}</span>
+function TextInput({ label, value, disabled, onChange, placeholder, lang, hideLabel }: { label: string; hideLabel?: boolean; value: string; disabled: boolean; onChange: (value: string) => void; placeholder?: string; lang?: string }) {
+  return <label className="dr-free"><span className={hideLabel ? 'visually-hidden' : 'small muted'}>{label}</span>
     <input type="text" value={value} disabled={disabled} lang={lang} placeholder={placeholder} autoCapitalize="none" autoCorrect="off" spellCheck={false} onChange={event => onChange(event.target.value)} /></label>
 }
 
@@ -102,14 +103,18 @@ function PinyinView({ data, state, onAnswer, onMark }: ViewProps & { data: Extra
   const [hinted, setHinted] = useState(false)
   const locked = state.status !== 'open'
   const toneless = data.item.py.normalize('NFD').replace(/\p{M}/gu, '')
+  const read = locked && text ? gradePinyin(text, [data.item.py]) : undefined
+  const toneNote = read?.verdict === 'tones' ? read.syllables : undefined
   return <>
     <p className="practice-prompt native dr-center" lang="zh-Hans">{data.item.zh}</p>
     <p className="small muted dr-center" lang="en">{data.item.en}</p>
-    <TextInput label="Type the pinyin with tone marks or numbers (ni3 hao3)" value={text} disabled={locked} placeholder="nǐ hǎo" onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
+    <TextInput label="Type the pinyin" hideLabel value={text} disabled={locked} placeholder="nǐ hǎo" onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
+    <p className="small muted engine-pinyin-hint">Pinyin with tones: type numbers (xue2 xi2) or marks (xué xí). Use v for ü (lv4).</p>
+    {!locked && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview">{previewPinyin(text, [data.item.py]) || '\u00a0'}</p>}
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
       {hinted && <span className="small">Letters only: <strong>{toneless}</strong></span>}</div>}
     <Confirm state={state} onMark={onMark}><p>The pinyin is <strong><Pinyin text={data.item.py} /></strong>.</p></Confirm>
-    <Result state={state}><p>The pinyin is <strong><Pinyin text={data.item.py} /></strong>.</p></Result>
+    <Result state={state}>{toneNote ? <p>Right syllables, tones: {toneNote.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>)}</p> : <p>The pinyin is <strong><Pinyin text={data.item.py} /></strong>.</p>}</Result>
   </>
 }
 

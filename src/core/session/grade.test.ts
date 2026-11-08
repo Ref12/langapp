@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { gradeChinese, gradeMeaning, sensesOf } from './grade'
+import { gradeChinese, gradeMeaning, gradePinyin, gradeSimple, previewPinyin, sensesOf } from './grade'
 
 const forms = new Set(['我', '你', '都', '不', '了', '是', '学生', '喜欢', '吃', '饭'])
 describe('gradeChinese', () => {
@@ -76,4 +76,45 @@ describe('English meaning grading', () => {
     expect(gradeMeaning('I am a teacher', ['I am a teacher.', 'I am the teacher']).verdict).toBe('correct')
   })
   it('splits senses on commas too', () => { expect(sensesOf('am, is; are')).toEqual(['am', 'is', 'are']) })
+})
+
+describe('typed pinyin', () => {
+  const accepted = ['xué xí']
+  it('accepts numbers with or without spaces, marks, any case, and 5, 0 or nothing for the neutral tone', () => {
+    for (const typed of ['xue2 xi2', 'xue2xi2', 'xué xí', 'XUE2 XI2', 'Xué Xí', 'xué xi2', 'xue2  xi2']) expect(gradePinyin(typed, accepted).verdict, typed).toBe('correct')
+    for (const typed of ['ma5', 'ma0', 'ma']) expect(gradePinyin(typed, ['ma']).verdict, typed).toBe('correct')
+    expect(gradePinyin('ba4 ba5', ['bà ba']).verdict).toBe('correct')
+    expect(gradePinyin('ba4ba0', ['bà ba']).verdict).toBe('correct')
+    expect(gradePinyin('ba4 ba', ['bà ba']).verdict).toBe('correct')
+  })
+  it('takes v or u: for ü', () => {
+    for (const typed of ['lv4', 'lu:4', 'lü4', 'lǜ', 'LV4']) expect(gradePinyin(typed, ['lǜ']).verdict, typed).toBe('correct')
+    expect(gradePinyin('nv3 er2', ['nǚ ér']).verdict).toBe('correct')
+  })
+  it('names right letters with missing or wrong tones, pointing at the syllable that is off, and never self-marks them', () => {
+    const none = gradePinyin('xue xi', accepted)
+    expect(none.verdict).toBe('tones')
+    expect(none.syllables).toEqual([{ marked: 'xué', off: true }, { marked: 'xí', off: true }])
+    const one = gradePinyin('xue2 xi4', accepted)
+    expect(one.verdict).toBe('tones')
+    expect(one.syllables).toEqual([{ marked: 'xué', off: false }, { marked: 'xí', off: true }])
+    expect(gradePinyin('xué xi', accepted).syllables?.map(entry => entry.off)).toEqual([false, true])
+  })
+  it('sends different letters to self-marking, and a mark that disagrees with its number too', () => {
+    expect(gradePinyin('xie2 xi2', accepted).verdict).toBe('self')
+    expect(gradePinyin('xue2', accepted).verdict).toBe('self')
+    expect(gradePinyin('', accepted).verdict).toBe('self')
+    expect(gradePinyin('xué3 xí', accepted).verdict).toBe('tones')
+  })
+  it('keeps gradeSimple for callers: only an exact reading is correct', () => {
+    expect(gradeSimple('xue2 xi2', accepted, 'py')).toBe('correct')
+    expect(gradeSimple('xue xi', accepted, 'py')).toBe('self')
+  })
+  it('previews the tone-marked form while typing', () => {
+    expect(previewPinyin('xue2 xi2', accepted)).toBe('xué xí')
+    expect(previewPinyin('xue2xi2', accepted)).toBe('xué xí')
+    expect(previewPinyin('lv4', ['lǜ'])).toBe('lǜ')
+    expect(previewPinyin('', accepted)).toBe('')
+    expect(previewPinyin('hao3', accepted)).toBe('hǎo')
+  })
 })

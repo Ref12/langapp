@@ -152,14 +152,14 @@ async function reviewItem(setId: string, type: string, ref: string, mark: Mark, 
  * The engine's recording: the first graded attempt of an item in a skill is scheduled like a lesson answer and counted once in the skill counts.
  * Retries are never passed here. A pair already recorded (a resumed or replayed session) changes nothing.
  */
-export async function recordEngineResult(setId: string, ref: string, skills: readonly Skill[], form: string, correct: boolean, now = Date.now()): Promise<{ graded: boolean }> {
+export async function recordEngineResult(setId: string, ref: string, skills: readonly Skill[], form: string, correct: boolean, hint = false, now = Date.now()): Promise<{ graded: boolean }> {
   return db.transaction('rw', [db.drillSets, db.studyCards, db.knowledge, db.journal, db.skillPractice], async () => {
     const set = await db.drillSets.get(setId)
     if (!set?.engine || set.status === 'abandoned') return { graded: false }
     const fresh = skills.filter(skill => !set.engine!.recorded.includes(ref + '|' + skill))
     if (!fresh.length) return { graded: false }
     await db.drillSets.put({ ...set, updatedAt: now, engine: { ...set.engine, startedAt: set.engine.startedAt ?? now, recorded: [...set.engine.recorded, ...fresh.map(skill => ref + '|' + skill)], total: set.engine.total + 1, correct: set.engine.correct + (correct ? 1 : 0) } })
-    await reviewItem(setId, 'engine:' + form, ref, correct ? 'got' : 'missed', now)
+    await reviewItem(setId, 'engine:' + form, ref, correct ? (hint ? 'hint' : 'got') : 'missed', now)
     await recordSkillPractice([ref], fresh, now)
     return { graded: true }
   })

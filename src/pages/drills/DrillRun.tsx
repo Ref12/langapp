@@ -11,7 +11,7 @@ import { recordDrillResult, recordRedo } from '../../core/drills/store'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { QuestionView, type QState, type ViewContext } from './QuestionViews'
 import { AnswerButton } from '../../components/AnswerButton'
-import { DEFAULT_OPTIONS, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
+import { DEFAULT_OPTIONS, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, toneOnly, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
 
 interface RunProps extends Pick<PageProps, 'now' | 'run' | 'busy'> {
   set: DrillSet
@@ -68,7 +68,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   const patch = (key: string, state: Partial<QState>) => setStates(current => ({ ...current, [key]: { ...(current[key] ?? { status: 'open' as const }), ...state } }))
   const check = (q: Q, answer: unknown) => {
     const result = grade(q, answer)
-    if (needsConfirm(q)) { const suggested = suggestedMark(result); patch(q.key, { answer, status: 'marking', suggested, chosen: suggested }); return }
+    if (needsConfirm(q) && !toneOnly(q, answer)) { const suggested = suggestedMark(result); patch(q.key, { answer, status: 'marking', suggested, chosen: suggested }); return }
     if (result === 'self') { patch(q.key, { answer, status: 'marking' }); return }
     patch(q.key, { answer, status: 'done', outcome: result })
     record(result)
@@ -152,6 +152,8 @@ function DrillAnswer({ q, state, last, busy, canCheck, onCheck, onNext }: { q: Q
   if (isAuto(q) && state.status !== 'done') return null
   const checked = state.status === 'done' || confirming
   const mark = state.status === 'done' ? undefined : state.chosen ?? state.suggested
-  const correct = state.status === 'done' ? Object.values(state.outcome?.marks ?? {}).every(value => value === 'got') : mark === 'got'
-  return <AnswerButton result={checked ? correct : undefined} busy={busy} ready={checked ? !confirming || !!state.chosen : canCheck} onCheck={onCheck} onNext={onNext} nextLabel={last ? 'Finish' : 'Next'} />
+  const marks = state.status === 'done' ? Object.values(state.outcome?.marks ?? {}) : mark ? [mark] : []
+  const hint = marks.includes('hint') && !marks.includes('missed')
+  const correct = marks.length > 0 && marks.every(value => value === 'got') || hint
+  return <AnswerButton result={checked ? correct : undefined} hint={checked && hint} busy={busy} ready={checked ? !confirming || !!state.chosen : canCheck} onCheck={onCheck} onNext={onNext} nextLabel={last ? 'Finish' : 'Next'} />
 }

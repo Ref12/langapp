@@ -137,7 +137,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const ctx = { readings, pinyin, speak: workspace.preferences.tileAutoSpeak !== false, busy, forms, characters, mode, writing: workspace.preferences.practiseWriting !== false, chinese: (ref: string) => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : ref } }
   const exercise = currentExercise(state)
   const stage = currentStage(state)
-  const advance = (correct: boolean, refsOverride?: string[]) => {
+  const advance = (correct: boolean, refsOverride?: string[], hint?: boolean) => {
     const step = answerCurrent(state, correct)
     setState(step.state)
     const progress = progressOf(step.state)
@@ -145,7 +145,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
     if (step.graded && exercise) {
       // A first attempt records each item it covers once per skill; a match records every pair (right unless that item was missed).
       const missed = new Set(refsOverride ?? [])
-      void (async () => { for (const ref of exercise.refs) await recordEngineResult(set.id, ref, skillsOf(exercise.form), exercise.form, exercise.form === 'match' ? !missed.has(ref) : correct) })().catch(reason => console.error('Recording the result failed.', reason))
+      void (async () => { for (const ref of exercise.refs) await recordEngineResult(set.id, ref, skillsOf(exercise.form), exercise.form, exercise.form === 'match' ? !missed.has(ref) : correct, hint) })().catch(reason => console.error('Recording the result failed.', reason))
     }
   }
   if (state.done) return <EngineSummary set={set} state={state} items={items} busy={busy} run={run} />
@@ -166,7 +166,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
         <p className="practice-prompt native" lang="zh-Hans">{exercise.zh}</p><p className="small">{exercise.py}</p><p lang="en">{exercise.en}</p>
         <p><HearButton text={exercise.zh} locale="zh-Hans" label="Hear it" /></p>
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => advance(true)}>Next <ArrowRight size={16} /></button></div></>}
-      {exercise && exercise.form !== 'intro' && exercise.form !== 'repeat' && <ExerciseQuestion key={exercise.id} exercise={exercise} ctx={ctx} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed)} />}
+      {exercise && exercise.form !== 'intro' && exercise.form !== 'repeat' && <ExerciseQuestion key={exercise.id} exercise={exercise} ctx={ctx} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed, outcome.hint)} />}
     </section>
   </div>
 }

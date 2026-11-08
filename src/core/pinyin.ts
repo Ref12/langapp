@@ -32,6 +32,9 @@ za zai zan zang zao ze zei zen zeng zha zhai zhan zhang zhao zhe zhei zhen zheng
 
 export interface Syllable { marked: string; base: string; tone: string }
 
+/** A base syllable with a tone: marked for 1 to 4, plain for the neutral tone 5. */
+export const withTone = (base: string, tone: string): string => tone === '5' ? base : markSyllable(base, tone) ?? base
+
 function markSyllable(base: string, tone: string): string | undefined {
   // a/e take priority, then the o in ou, otherwise the final vowel.
   const index = base.search(/[aeê]|ou/i)

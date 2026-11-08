@@ -1,6 +1,6 @@
 import type { BankPhrase } from '../phrases/contracts'
 import { phraseKey } from '../phrases/key'
-import { formatPinyin } from '../pinyin'
+import { formatPinyin, parseReadings, withTone, type Syllable } from '../pinyin'
 
 // Local grading for typed or spoken Chinese (design section 5a): no AI, no embeddings (tested and dropped). An answer is compared on its Han text with the
 // accepted answers (the model answer plus other bank phrases with the same words and the same English), then, when it differs, word by word with the closest one.
@@ -187,8 +187,65 @@ export function gradeChinese(answer: string, accepted: readonly string[], forms:
 /** Grades pinyin: right on a normalised match with an accepted wording, otherwise the learner marks it. */
 export function gradeSimple(answer: string, accepted: readonly string[], language: 'en' | 'py'): 'correct' | 'self' {
   if (language === 'en') return gradeMeaning(answer, accepted).verdict === 'correct' || gradeMeaning(answer, accepted).verdict === 'near' ? 'correct' : 'self'
-  const given = pinyinKey(answer)
-  return given && accepted.some(candidate => pinyinKey(candidate) === given) ? 'correct' : 'self'
+  return gradePinyin(answer, accepted).verdict === 'correct' ? 'correct' : 'self'
+}
+
+const TONE_MARK = /[\u0304\u0301\u030c\u0300]/
+const MARK_TONE: Record<string, string> = { '\u0304': '1', '\u0301': '2', '\u030c': '3', '\u0300': '4' }
+
+/**
+ * Reads typed pinyin against the syllables expected, so neither spaces nor a missing tone get in the way: numbers (xue2xi2, xue2 xi2) or marks (xué xí), 5, 0 or nothing for the neutral tone,
+ * v or u: for ü, any case, apostrophes and hyphens ignored. Returns the tone typed for each syllable, or undefined when the letters are not these syllables.
+ */
+export function typedTones(typed: string, expected: readonly Syllable[]): string[] | undefined {
+  const text = typed.toLowerCase().replace(/u:|v/g, 'ü').normalize('NFD').replace(/[\s'’\-·]/g, '')
+  if (!text) return undefined
+  let at = 0
+  const tones: string[] = []
+  for (const syllable of expected) {
+    let mark: string | undefined
+    for (const letter of syllable.base.toLowerCase().normalize('NFD')) {
+      if (text[at] !== letter) return undefined
+      at++
+      while (TONE_MARK.test(text[at] ?? '')) { const found = MARK_TONE[text[at]]; if (mark && mark !== found) return undefined; mark = found; at++ }
+    }
+    const digit = /[0-5]/.test(text[at] ?? '') ? text[at++] : undefined
+    const number = digit === '0' ? '5' : digit
+    if (mark && number && mark !== number) tones.push('x')
+    else tones.push(mark ?? number ?? '5')
+  }
+  return at === text.length ? tones : undefined
+}
+
+export interface PinyinGrade {
+  /** correct: right syllables and tones. tones: right syllables, a tone missing or wrong (counted as Needed a hint). self: the letters differ; the learner marks it. */
+  verdict: 'correct' | 'tones' | 'self'
+  /** The expected reading, syllable by syllable, with the ones whose tone was off. */
+  syllables?: { marked: string; off: boolean }[]
+}
+
+/** Grades typed pinyin with tones (see typedTones). Right syllables with a missing or wrong tone are never self-marked. */
+export function gradePinyin(answer: string, accepted: readonly string[]): PinyinGrade {
+  let nearest: PinyinGrade | undefined
+  for (const candidate of accepted) for (const reading of parseReadings(candidate)) {
+    const tones = typedTones(answer, reading)
+    if (!tones) continue
+    const syllables = reading.map((syllable, index) => ({ marked: syllable.marked, off: tones[index] !== syllable.tone }))
+    if (!syllables.some(entry => entry.off)) return { verdict: 'correct', syllables }
+    nearest ??= { verdict: 'tones', syllables }
+  }
+  return nearest ?? { verdict: 'self' }
+}
+
+/** The tone-marked form of what is typed, for a live preview: as typed when it fits an accepted reading, else the general conversion; empty when there is nothing to show. */
+export function previewPinyin(answer: string, accepted: readonly string[]): string {
+  if (!answer.trim()) return ''
+  for (const candidate of accepted) for (const reading of parseReadings(candidate)) {
+    const tones = typedTones(answer, reading)
+    if (tones && !tones.includes('x')) return reading.map((syllable, index) => withTone(syllable.base, tones[index])).join(' ')
+  }
+  const general = formatPinyin(answer.trim().replace(/\s+/g, ' '), 'marks')
+  return general
 }
 
 const STOP = new Set(['a', 'an', 'the', 'to', 'of', 'is', 'are', 'am', 'be'])

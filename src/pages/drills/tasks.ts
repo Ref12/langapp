@@ -1,5 +1,6 @@
 import { characterAssetIndex } from '../../core/characters/assets'
 import { formatPinyin } from '../../core/pinyin'
+import { gradePinyin } from '../../core/session/grade'
 import type { Catalog } from '../../core/study/catalog'
 import type { ChoiceExercise, MatchExercise } from '../../core/study/contracts'
 import { isChoiceCorrect, missedRefs } from '../../core/study/exercises'
@@ -161,7 +162,8 @@ export function grade(question: Q, answer: unknown): Outcome | 'self' {
     }
     case 'pinyin': {
       const { text, hinted } = answer as TextAnswer
-      return all(pinyinKey(text) === pinyinKey(data.item.py) ? hinted ? 'hint' : 'got' : 'missed')
+      const read = gradePinyin(text, [data.item.py])
+      return all(read.verdict === 'correct' ? hinted ? 'hint' : 'got' : read.verdict === 'tones' ? 'hint' : 'missed')
     }
     case 'write': {
       const result = answer as WriteAnswer
@@ -194,6 +196,8 @@ export const isAuto = (q: Q) => q.data.t === 'match' || q.data.t === 'repeat' ||
 
 /** Typed answers that are checked automatically, then confirmed or overridden by the learner's own mark. */
 export const needsConfirm = (q: Q) => q.data.t === 'free' || q.data.t === 'pinyin' || q.data.t === 'translate'
+/** A typed pinyin answer with the right syllables and missing or wrong tones: Needed a hint at once, never left for the learner to mark. */
+export const toneOnly = (q: Q, answer: unknown) => q.data.t === 'pinyin' && gradePinyin((answer as TextAnswer).text, [q.data.item.py]).verdict === 'tones'
 /** The mark the automatic check suggests, or undefined when it cannot tell. */
 export const suggestedMark = (result: Outcome | 'self'): Mark | undefined => {
   if (result === 'self') return undefined

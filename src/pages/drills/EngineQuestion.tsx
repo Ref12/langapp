@@ -8,7 +8,7 @@ import { Pinyin } from '../../components/Pinyin'
 import { speechCaptureSupported, startSpeechCapture, type SpeechCaptureSession } from '../../core/assistant/speech-capture'
 import type { ChoiceExercise, ExerciseAttempt, MatchExercise, TilesExercise } from '../../core/study/contracts'
 import { tidyPinyin } from '../../core/drills/items'
-import { gradeChinese, gradeMeaning, gradeSimple, type ChineseGrade, type MeaningGrade } from '../../core/session/grade'
+import { gradeChinese, gradeMeaning, gradePinyin, previewPinyin, type ChineseGrade, type MeaningGrade, type PinyinGrade } from '../../core/session/grade'
 import type { AnswerMode, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
 import { ChoiceQuestion, MatchQuestion, TilesQuestion } from '../Study'
 import { ConversationQuestion, ExchangePick, WhichCorrect } from './DatasetQuestions'
@@ -28,7 +28,7 @@ export interface QuestionContext {
 }
 
 /** What a finished question reports: right or wrong, and for a match the items missed. */
-export interface Outcome { correct: boolean; missed?: string[] }
+export interface Outcome { correct: boolean; missed?: string[]; /** Right with help: the tones were off. Counts as Needed a hint: it is not a first-try right, but never a miss to self-mark. */ hint?: boolean }
 
 const attemptOf = (exercise: SessionExercise, response: string, correct: boolean): ExerciseAttempt => ({ id: exercise.id, sessionId: 'engine', index: 0, refs: exercise.refs.slice(0, 6), response, correct, createdAt: 0 })
 const MODE_LABEL: Record<AnswerMode, string> = { type: 'Type', speak: 'Speak', write: 'Handwrite' }
@@ -89,7 +89,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   const [mode, setMode] = useState<AnswerMode>(chinese || ctx.mode === 'type' ? ctx.mode : 'type')
   const [text, setText] = useState('')
   const [listening, setListening] = useState('')
-  const [checked, setChecked] = useState<{ correct: boolean; grade?: ChineseGrade; meaning?: MeaningGrade; self?: boolean }>()
+  const [checked, setChecked] = useState<{ correct: boolean; grade?: ChineseGrade; meaning?: MeaningGrade; self?: boolean; pinyin?: PinyinGrade }>()
   const [counted, setCounted] = useState(false)
   const capture = useRef<SpeechCaptureSession>()
   useEffect(() => () => capture.current?.cancel(), [])
@@ -97,7 +97,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   const check = () => {
     if (chinese) { const grade = gradeChinese(text, exercise.accepted, ctx.forms, exercise.optional, exercise.promptLang === 'en' ? exercise.prompt : ''); setChecked({ correct: grade.verdict === 'correct', grade }) }
     else if (exercise.answerLang === 'en') { const meaning = gradeMeaning(text, exercise.accepted); setChecked({ correct: meaning.verdict === 'correct' || meaning.verdict === 'near', meaning, self: meaning.verdict === 'self' }) }
-      else setChecked({ correct: gradeSimple(text, exercise.accepted, 'py') === 'correct', self: true })
+      else { const pinyin = gradePinyin(text, exercise.accepted); setChecked({ correct: pinyin.verdict !== 'self', self: pinyin.verdict === 'self', pinyin }) }
   }
   const listen = () => {
     capture.current?.cancel(); setListening('Listening…')
@@ -108,21 +108,25 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   }
   const result = checked ? checked.correct || counted : undefined
   const locked = checked !== undefined
+  const pinyinMode = exercise.answerLang === 'py'
   return <>
     <Flag exercise={exercise} />
-    {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin} /></p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
+    {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin && (exercise.answerLang !== 'py' || locked)} /></p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
     {exercise.hearText && <p><HearButton text={exercise.hearText} locale="zh-Hans" label="Hear it" /></p>}
     <label className="engine-answer dr-free"><span className="visually-hidden">Your answer</span>
-      <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? 'zh-Hans' : exercise.answerLang === 'py' ? undefined : 'en'} autoComplete="off" autoCapitalize="off" spellCheck={false}
+      <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? 'zh-Hans' : exercise.answerLang === 'py' ? undefined : 'en'} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="text" aria-describedby={pinyinMode ? 'pinyin-hint' : undefined}
         placeholder={chinese ? 'Type the Chinese' : exercise.answerLang === 'py' ? 'Type the pinyin' : 'Type the meaning'} onChange={event => setText(event.target.value)}
         onKeyDown={event => { if (event.key === 'Enter' && text.trim() && !locked) check() }} /></label>
+    {pinyinMode && <p id="pinyin-hint" className="small muted engine-pinyin-hint">Pinyin with tones: type numbers (xue2 xi2) or marks (xué xí). Use v for ü (lv4).</p>}
+    {pinyinMode && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{previewPinyin(text, exercise.accepted) || '\u00a0'}</p>}
     {mode === 'speak' && <div className="button-row" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{speechCaptureSupported() ? <button type="button" className="button secondary" onClick={listen}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser. Type instead.</p>}</div>}
     {mode === 'write' && <div style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}><HandwritingPad allowed={ctx.characters} onPick={character => setText(text + character)} onClose={() => setMode('type')} /></div>}
-    <AnswerButton result={result} busy={ctx.busy} ready={text.trim().length > 0} onCheck={check} onNext={() => onDone({ correct: result === true })}
+    <AnswerButton result={result} hint={checked?.pinyin?.verdict === 'tones'} busy={ctx.busy} ready={text.trim().length > 0} onCheck={check} onNext={() => onDone({ correct: result === true, ...(checked?.pinyin?.verdict === 'tones' ? { hint: true } : {}) })}
       secondary={modes.length ? <span className="engine-another" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked} role="group" aria-label="Answer another way"><span className="small muted">Answer another way:</span>
         {modes.map(value => <button key={value} type="button" className="button secondary small" onClick={() => setMode(value)}>{value === 'type' ? <Type size={14} /> : value === 'speak' ? <Mic size={14} /> : <PenLine size={14} />} {MODE_LABEL[value]}</button>)}</span> : undefined} />
     {checked && <div className={`notice answer-feedback engine-diff${checked.correct ? ' success' : ''}`} role="status">
-      {checked.correct ? <p>{checked.meaning?.verdict === 'near' ? checked.meaning.note : checked.grade?.note ? checked.grade.note : <>{checked.grade?.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang={chinese ? 'zh-Hans' : undefined}>{exercise.model}</span></>}</p>
+      {checked.pinyin?.verdict === 'tones' ? <p>Right syllables, tones: {checked.pinyin.syllables!.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>)} <span className="small muted">Counted as Needed a hint.</span></p>
+      : checked.correct ? <p>{checked.meaning?.verdict === 'near' ? checked.meaning.note : checked.grade?.note ? checked.grade.note : <>{checked.grade?.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang={chinese ? 'zh-Hans' : undefined}>{exercise.model}</span></>}</p>
         : <><p>{checked.grade ? (checked.grade.messages.length ? (checked.grade.differences.length === 1 && checked.grade.differences[0].kind === 'swapped' ? `Word order: ${(checked.grade.differences[0] as { a: string; b: string }).a} comes before ${(checked.grade.differences[0] as { a: string; b: string }).b}.` : `Differences: ${checked.grade.messages.join('; ')}.`) : 'Not the model answer.') : checked.meaning?.verdict === 'wrong' ? (checked.meaning.note ?? 'Not a meaning of this word.') : checked.meaning?.verdict === 'self' ? 'Partly right. Compare with the answer and mark it yourself.' : 'Compare with the answer and mark it yourself.'}</p>
           <p>{chinese ? 'Closest answer: ' : 'Answer: '}<span lang={chinese ? 'zh-Hans' : undefined}>{checked.grade?.closest ?? exercise.model}</span></p></>}
       {checked.grade?.ignored.length ? <p className="small muted">{checked.grade.ignored.join(', ')} left out or added: optional here.</p> : null}

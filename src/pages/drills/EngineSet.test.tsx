@@ -76,6 +76,14 @@ describe('recording', () => {
     expect(rows.every(row => row.count === 1)).toBe(true)
   })
 
+  it('a hinted result is recorded as right, scheduled as Needed a hint', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    const ref = (await getDrillSet(id))!.refs[0]
+    expect((await recordEngineResult(id, ref, ['reading'], 'pinyin', true, true)).graded).toBe(true)
+    expect((await getDrillSet(id))!.engine).toMatchObject({ total: 1, correct: 1 })
+  })
+
   it('does not record into a set that has no engine state', async () => {
     const id = await createDrillSet({ kind: 'new' })
     const classic = omit((await getDrillSet(id))!, 'engine')
