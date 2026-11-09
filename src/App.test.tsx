@@ -15,7 +15,7 @@ beforeEach(async () => {
   document.documentElement.dataset.theme = 'dark'
   await resetProfileStorage()
 })
-afterEach(() => { cleanup(); vi.restoreAllMocks() })
+afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals() })
 
 async function go(route: string) {
   await act(async () => { window.location.hash = route; window.dispatchEvent(new HashChangeEvent('hashchange')) })
@@ -53,6 +53,7 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
   })
 
   it('shows the Stable / Lab menu on the profile item with a gear to Settings', async () => {
+    vi.stubGlobal('__BUILD_CHANNEL__', 'stable')
     await initializeWorkspace()
     resetProfilesForTests()
     render(<App />)
@@ -61,7 +62,7 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     const sidebar = document.querySelector('.sidebar') as HTMLElement
     await user.click(sidebar.querySelector('button.profile') as HTMLElement)
     const menu = await screen.findByRole('menu')
-    expect(within(menu).getAllByRole(/^menuitem/)).toHaveLength(2)
+    expect(within(menu).getAllByRole('menuitemradio')).toHaveLength(2)
     expect(within(menu).getByRole('menuitemradio', { name: /Stable/ })).toHaveAttribute('aria-checked', 'true')
     expect(within(menu).getByRole('menuitemradio', { name: /Lab/ })).toHaveAttribute('href', './lab/')
     expect(sidebar.querySelector('a.build-switch-gear')).toHaveAttribute('href', '#settings')
