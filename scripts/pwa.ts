@@ -43,8 +43,9 @@ export function pwa(): Plugin {
 function serviceWorker(precache: string[]): string {
   const version = Date.now().toString(36)
   return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB.
-const CACHE = 'linguaweave-shell-${version}'
-const RUNTIME = 'linguaweave-runtime'
+// Stable's own cache names. Main (and Lab) use 'linguaweave-shell-*' and 'linguaweave-runtime'; Stable never reads, writes or deletes those.
+const CACHE = 'linguaweave-stable-shell-${version}'
+const RUNTIME = 'linguaweave-stable-runtime'
 const PRECACHE = ${JSON.stringify(precache)}
 const scope = self.registration.scope
 
@@ -55,7 +56,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     for (const key of await caches.keys()) {
-      if (key.startsWith('linguaweave-shell-') && key !== CACHE) await caches.delete(key)
+      if (key.startsWith('linguaweave-stable-shell-') && key !== CACHE) await caches.delete(key)
     }
     await self.clients.claim()
   })())
@@ -68,12 +69,16 @@ self.addEventListener('fetch', event => {
   // Only this scope: AI gateway calls and other origins pass through untouched.
   if (url.origin !== location.origin || !url.href.startsWith(scope)) return
   if (url.pathname.endsWith('/sw.js')) return
+  // The Lab build is published under lab/ with its own worker: Stable never handles, serves or caches anything there.
+  if (/^lab(\/|$|[?#])/.test(url.href.slice(scope.length))) return
   if (request.mode === 'navigate') {
-    event.respondWith(fetch(request).catch(() => caches.match(scope, { ignoreSearch: true }).then(hit => hit || caches.match(scope + 'index.html'))))
+    event.respondWith(fetch(request).catch(() => caches.open(CACHE).then(shell => shell.match(scope, { ignoreSearch: true }).then(hit => hit || shell.match(scope + 'index.html')))))
     return
   }
   event.respondWith(caches.open(RUNTIME).then(async runtime => {
-    const hit = (await caches.match(request)) || (await runtime.match(request))
+    const shell = await caches.open(CACHE)
+    // Only Stable's own caches are read: a cache left by another build at this scope is never consulted.
+    const hit = (await shell.match(request)) || (await runtime.match(request))
     const network = fetch(request).then(response => {
       if (response.ok) runtime.put(request, response.clone())
       return response
