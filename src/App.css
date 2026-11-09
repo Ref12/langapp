@@ -548,6 +548,9 @@ select { padding: 10px; }
 .parallel-lesson .study-unit-card { margin-bottom: 10px; }
 .parallel-lesson .button-row { margin-top: 20px; }
 
+ruby[lang="ja"] { ruby-align: center; }
+ruby[lang="ja"] > rt { letter-spacing: 0; }
+
 /* Dictionary: Japanese and Korean results */
 .other-word-card, .dict-result { position: relative; }
 .lang-tag { position: absolute; top: -9px; left: 12px; background: var(--surface, #fff); }

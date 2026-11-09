@@ -55,6 +55,7 @@ import './App.css'
 import './components/assistant/assistant.css'
 import { UpdateBar } from './components/UpdateBar'
 import { GroupDetail } from './pages/GroupDetail'
+import { ParallelPractice } from './pages/ParallelPractice'
 import { ParallelLessonView } from './pages/ParallelLessonView'
 import { OtherLanguageSetting } from './components/study/other-language-setting'
 import { LanguageSwitch } from './components/LanguageSwitch'
@@ -79,7 +80,7 @@ function NotFound() {
 
 function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProps & { route: string; returnRoute: string; assistantHeader: HTMLElement | null }) {
   const [routePath, ...queryParts] = route.split('?')
-  const [page, id, lessonPage] = routePath.split('/')
+  const [page, id, lessonPage, lessonAction] = routePath.split('/')
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
   if (page === 'book' && id) return <ImportedReader {...props} id={id} />
@@ -91,6 +92,8 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
     const session = props.workspace.exerciseSessions.find(item => item.id === lessonPage)
     return session ? <StudySessionPage {...props} session={session} /> : <NotFound />
   }
+  if (page === 'lessons' && (id === 'ja' || id === 'ko') && lessonPage === 'review') return <ParallelPractice key={id} {...props} language={id} />
+  if (page === 'lessons' && (id === 'ja' || id === 'ko') && /^[1-9]\d*$/.test(lessonPage ?? '') && lessonAction === 'practise') return <ParallelPractice key={id + lessonPage} {...props} language={id} lesson={Number(lessonPage)} />
   if (page === 'lessons' && (id === 'ja' || id === 'ko') && lessonPage) return /^[1-9]\d*$/.test(lessonPage) ? <ParallelLessonView {...props} language={id} number={Number(lessonPage)} /> : <NotFound />
   if (page === 'lessons' && id === 'group' && lessonPage) return <GroupDetail {...props} id={lessonPage} />
   if (page === 'lessons') return <Study {...props} />

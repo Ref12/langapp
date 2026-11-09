@@ -1,3 +1,4 @@
+import { parseParallelRef } from '../parallel/refs'
 import { parse, stringify } from 'yaml'
 import { emptySchedulingState, schedule, type Rating } from '../study/fsrs'
 import { cardId, type ExerciseAttempt, type KnowledgeEntry, type StudyCard } from '../study/contracts'
@@ -119,7 +120,8 @@ export function replay(events: JournalEvent[], state: ReplayState = emptyReplayS
       case 'add': {
         const ref = String(event.ref)
         if (state.knowledge.has(ref)) break
-        const [kind, lb] = ref.split(':') as ['vocabulary' | 'grammar' | 'source', string]
+        const parallel = parseParallelRef(ref)
+        const [kind, lb] = (parallel ? [parallel.kind === 'g' ? 'grammar' : 'vocabulary', parallel.id] : ref.split(':')) as ['vocabulary' | 'grammar' | 'source', string]
         state.knowledge.set(ref, { ref, kind, lb, band: String(kind === 'source' ? 6 : event.band) as KnowledgeEntry['band'], addedAt: at, source: event.source === 'dictionary' ? 'dictionary' : 'new' })
         const id = cardId(ref, 'reading')
         if (!state.cards.has(id)) state.cards.set(id, { id, ref, domain: 'reading', ...emptySchedulingState(at), updatedAt: at })

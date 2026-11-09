@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, Play } from 'lucide-react'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { ParallelHear } from '../components/ParallelHear'
 import { ParallelStrokes } from '../components/ParallelStrokes'
@@ -65,7 +65,8 @@ export function ParallelLessonView({ workspace, run, busy, language, number }: P
       {grammar.map(item => <article key={item.id} className="word-card study-unit-card lesson-word-card"><h3 className="study-pattern" lang={language}>{item.pattern}</h3><p className="word-meaning">{item.english}</p></article>)}</section>}
     <section aria-label="Phrases"><h2>Phrases</h2><ol className="plain-list">{lesson.phrases.map(phrase => <Phrase key={phrase.id} data={data} phrase={phrase} language={language} />)}</ol></section>
     <div className="button-row">
-      <button type="button" className="button primary" disabled={busy || studiedAt !== undefined} onClick={() => void run(() => markParallelStudied(language, number))}>
+      <a className="button primary" href={`#lessons/${language}/${number}/practise`}><Play size={16} /> Practise</a>
+      <button type="button" className="button secondary" disabled={busy || studiedAt !== undefined} onClick={() => void run(() => markParallelStudied(language, number))}>
         <Check size={16} /> {studiedAt !== undefined ? 'Studied' : 'Mark as studied'}</button>
       {number < LESSON_COUNT && <a className="button secondary" href={`#lessons/${language}/${number + 1}`}>Next lesson <ArrowRight size={16} /></a>}
     </div>

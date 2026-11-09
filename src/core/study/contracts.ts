@@ -10,7 +10,8 @@ export const unitLabelSchema = z.string().min(1).max(200).regex(/^[a-z][a-z0-9]*
 export const unitKindSchema = z.enum(['vocabulary', 'grammar'])
 // `phrase:` refs name a collection's free phrase (see core/collections); they have no curriculum record.
 // `source:` refs name an entry drawn from a media source (see core/media/entries); it has no curriculum record either.
-export const unitRefSchema = z.string().regex(/^(?:vocabulary|grammar|phrase|source):[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
+// `ja:w:`/`ja:g:` and `ko:w:`/`ko:g:` refs belong to the Japanese and Korean tracks (core/parallel/refs.ts); Chinese code never sees them.
+export const unitRefSchema = z.string().regex(/^(?:(?:vocabulary|grammar|phrase|source):|(?:ja|ko):[wg]:)[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
 export const bandSchema = z.enum(['1', '2', '3', '4', '5', '6'])
 const timestamp = z.number().int().nonnegative()
 const id = z.string().min(1).max(200)

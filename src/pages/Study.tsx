@@ -24,6 +24,7 @@ import { PHASE_LABEL, phaseAt } from '../core/collections/phases'
 import { useStudyActions } from './useStudyActions'
 import { LessonList } from '../components/LessonList'
 import { TrackHeader } from '../components/TrackHeader'
+import { ParallelReviews } from '../components/ParallelReviews'
 import { ParallelLessonList } from '../components/ParallelLessonList'
 import { startTrack } from '../core/parallel/progress'
 import { currentLanguageOf, startedTracks, tracks, trackFor } from '../data/tracks'
@@ -54,7 +55,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
         </li>)}</ul>}
         {progress && <p className="small muted">HSK {next?.band ?? '6'} / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
       </section>
-      <section className="experience-card" aria-label="Review">
+      {track.parallel ? <ParallelReviews language={track.language as 'ja' | 'ko'} now={now} /> : <section className="experience-card" aria-label="Review">
         <div className="card-header-row">
           <div><p className="eyebrow accent">REVIEW</p>
             <h2>{due} {due === 1 ? 'item' : 'items'} due</h2></div>
@@ -65,7 +66,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
         <div className="button-row">
           {!due && workspace.knowledge.length > 0 && <button className="button secondary" disabled={busy || !connection} onClick={() => start('review', true)}>Review anyway <RotateCcw size={16} /></button>}
         </div>
-      </section>
+      </section>}
     </div>
     <TrackHeader tracks={tracks} current={track} all={moreTracks} started={item => startedTracks(workspace.preferences).some(other => other.id === item.id)}
       onMore={() => setMoreTracks(true)} onSelect={item => void run(() => startTrack(item.language))} />

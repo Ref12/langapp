@@ -60,6 +60,8 @@ export interface Preferences {
   startedTracks?: ('ja' | 'ko')[]
   /** Show a muted Japanese and/or Korean line on Chinese vocabulary cards. Absent means off. */
   otherLanguageCards?: 'off' | 'ja' | 'ko' | 'both'
+  /** Reading aids per language on Japanese and Korean practice: furigana (ja, on unless false) and romanization (ko, off unless true). */
+  readingAids?: { ja?: boolean; ko?: boolean }
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences

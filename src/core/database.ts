@@ -4,6 +4,7 @@ import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type
 import type { AIConnection, AIEndpoint, AssistantImage, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
+import { isLanguageRef } from './parallel/refs'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
 import type { MahjongGame } from './games/mahjong'
 import type { CharacterState } from './characters/contracts'
@@ -198,9 +199,10 @@ export async function loadWorkspace(): Promise<Workspace> {
       lessons: await db.lessons.toArray(),
       sessions: await db.sessions.toArray(),
       attempts: await db.attempts.toArray(),
-      knowledge: await db.knowledge.toArray(),
+      // Japanese and Korean records (ja:/ko: refs) live in the same tables but belong to their own tracks: Chinese code never sees them.
+      knowledge: (await db.knowledge.toArray()).filter(entry => !isLanguageRef(entry.ref)),
       // Cards of collection-only items stay out of the workspace view: only the knowledge set is studied daily.
-      studyCards: await knowledgeCardsOf(),
+      studyCards: (await knowledgeCardsOf()).filter(card => !isLanguageRef(card.ref)),
       exerciseSessions: await db.exerciseSessions.toArray(),
       exerciseAttempts: await db.exerciseAttempts.toArray(),
       characterStates: await db.characterStates.toArray(),
