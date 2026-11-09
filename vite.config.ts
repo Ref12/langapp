@@ -6,6 +6,12 @@ import { localSettings } from './scripts/local-settings'
 import { localProfiles } from './scripts/local-profiles'
 import { localTts } from './scripts/local-tts'
 import { pwa } from './scripts/pwa'
+import { execFileSync } from 'node:child_process'
+
+// Build-time identity, read by the app through src/core/build-info.ts. 'stable' on this branch; the Stable/Lab switch reads the same name.
+const shortCommit = (() => {
+  try { return execFileSync('git', ['rev-parse', '--short=8', 'HEAD'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim() || 'unknown' } catch { return 'unknown' }
+})()
 
 function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
   const base = server.config.base.startsWith('/') ? server.config.base : '/'
@@ -67,5 +73,6 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   base: './',
   appType: 'mpa',
   plugins: [react(), localSettings(), localProfiles(), localTts(), versionedSite(new Set(await mockupFiles())), pwa()],
+  define: { __BUILD_CHANNEL__: JSON.stringify('stable'), __BUILD_COMMIT__: JSON.stringify(shortCommit) },
   build: { outDir: 'dist' },
 }))
