@@ -22,7 +22,7 @@ import { guidedChars, writtenCharacters } from '../core/drills/write-queue'
 import { setCharactersWriteState, undoWriteChanges, type WriteChange } from '../core/characters/store'
 import { hasGuide } from '../core/characters/writing-route'
 import { characterKnowledge, dictionaryCharacters } from '../core/characters/dictionary'
-import { characterAttributionUrl } from '../core/characters/assets'
+import { characterAttributionUrl, characterAttributionUrlFor } from '../core/characters/assets'
 import { CharacterCard } from '../components/characters/CharacterCard'
 import { HandwritingPad } from '../components/characters/HandwritingPad'
 import { TERM } from '../core/collections/terms'
@@ -32,6 +32,9 @@ import { loadParallel, type ParallelData, type ParallelPhrase } from '../core/pa
 import { LanguageTag, OtherGrammarCard, OtherWordCard, DictPhrase } from '../components/dictionary/OtherEntries'
 import { currentLanguageOf } from '../data/tracks'
 import { isParallelRef } from '../core/parallel/refs'
+import { loadLanguageIndex } from '../core/characters/otherLanguages'
+import { OtherCharacterCard } from '../components/characters/OtherCharacterCard'
+import { characterScript, isListed, matchesCharacter, scriptLabel, scriptsOf, type CharacterScript } from '../core/characters/other-list'
 
 const PAGE = 48
 
@@ -52,8 +55,19 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     return () => { alive = false }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [othersKey])
-  const [lessonData, setLessonData] = useState<Partial<Record<DictLanguage, ParallelData>>>({})
   const kind: UnitKind | 'characters' = section === 'characters' ? 'characters' : section === 'grammar' ? 'grammar' : 'vocabulary'
+  // Japanese and Korean characters (kana, kanji, Hangul): the language's own stroke index, never the Chinese one.
+  const [otherChars, setOtherChars] = useState<Partial<Record<DictLanguage, [string, number][]>>>({})
+  const [script, setScript] = useState<CharacterScript | 'all'>('all')
+  useEffect(() => { setScript('all') }, [lang])
+  useEffect(() => {
+    if (kind !== 'characters') return
+    let alive = true
+    for (const language of others) loadLanguageIndex(language).then(index => { if (alive) setOtherChars(previous => ({ ...previous, [language]: [...index].filter(([character]) => isListed(character)) })) }, reason => { if (alive) setDictError(reason instanceof Error ? reason.message : String(reason)) })
+    return () => { alive = false }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [othersKey, kind === 'characters'])
+  const [lessonData, setLessonData] = useState<Partial<Record<DictLanguage, ParallelData>>>({})
   const explicit = initialScope === 'knowledge' || initialScope === 'all' || initialScope === 'collections' || initialScope === 'media' ? initialScope : undefined
   const scope: 'all' | 'knowledge' | 'collections' | 'media' = explicit ?? workspace.preferences.dictionaryScope ?? 'all'
   // Words drawn from the learner's media sources (pass 2 of the annotated source).
@@ -131,7 +145,8 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     const prefix = `${language}:${letter}:`
     return total + (scope === 'media' ? 0 : scope === 'all' ? (dict ? (value === 'vocabulary' ? dict.words.length : dict.grammar.length) : 0) : scope === 'knowledge' ? [...otherKnown].filter(ref => ref.startsWith(prefix)).length : [...collected].filter(ref => ref.startsWith(prefix)).length)
   }, 0)
-  const tabCount = (value: UnitKind | 'characters') => multi ? (showZh ? zhTab(value) : 0) + (value === 'characters' ? 0 : otherTotal(value)) : zhTab(value)
+  const otherCharCount = others.reduce((total, language) => total + (scope === 'all' ? otherChars[language]?.length ?? 0 : 0), 0)
+  const tabCount = (value: UnitKind | 'characters') => multi ? (showZh ? zhTab(value) : 0) + (value === 'characters' ? otherCharCount : otherTotal(value)) : zhTab(value)
   const bandCounts = new Map<string, number>()
   if (catalog && !phrasesView) {
     const bump = (value: string) => bandCounts.set(value, (bandCounts.get(value) ?? 0) + 1)
@@ -236,7 +251,9 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const filteredPhrases = useMemo(() => filterPhraseRows(phraseRows ?? [], { band, query, formOf }), [phraseRows, band, query, formOf])
   const phraseCounts = phraseScopeCounts(filteredPhrases)
   const phraseMatches = filteredPhrases.filter(row => inPhraseScope(row, phraseScope))
-  const count = phrasesView ? (showZh ? phraseMatches.length : 0) + otherPhrases.length : scope === 'media' ? sourceMatches.length : (kind === 'characters' ? (showZh ? characterMatches.length : 0) : multi ? rows.length : matches.length)
+  const shownOther = (language: DictLanguage) => (otherChars[language] ?? []).filter(([character]) => (lang === 'all' || script === 'all' || characterScript(character) === script) && matchesCharacter(character, language, query))
+  const otherCharacterMatches = kind === 'characters' && scope === 'all' ? others.flatMap(shownOther) : []
+  const count = phrasesView ? (showZh ? phraseMatches.length : 0) + otherPhrases.length : scope === 'media' ? sourceMatches.length : (kind === 'characters' ? (showZh ? characterMatches.length : 0) + otherCharacterMatches.length : multi ? rows.length : matches.length)
   const selectable = !phrasesView && scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
   const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })
   const pickRow = (key: string, text: string, label: string) => selecting
@@ -305,7 +322,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       <button aria-pressed={writeFilter === 'not'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'not') }}>Not yet {setCharacters.length - canWriteCount}</button>
     </div>}
     {drawing && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => select(setQuery)(query + character)} />}
-    {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
+    {kind === 'characters' && showZh && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{others.some(language => !dicts[language]) && !dictError ? `Loading ${others.filter(language => !dicts[language]).map(language => languageLabel[language]).join(' and ')}...` : (catalog || !showZh) ? phrasesView && showZh && !phraseRows ? 'Loading phrases...' : phrasesView ? `${count} ${count === 1 ? 'phrase' : 'phrases'}` : `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {phrasesView && <>
       {showZh && phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, 'zh-Hans')} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}
@@ -318,7 +335,14 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       : row.grammar ? <OtherGrammarCard key={row.grammar.ref} item={row.grammar} language={row.language} known={known.has(row.grammar.ref)} tag /> : null)}</div>}
     {!phrasesView && scope !== 'media' && sourceMatches.length > 0 && <><h2 className="small muted">From your media</h2><div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/${scope}`} />)}</div></>}
-    {!phrasesView && kind === 'characters' && !showZh && <p className="notice" role="note" data-testid="characters-note">The Characters list covers Chinese only. For {languageLabel[lang]}, open a word and choose Show details, then Show writing, to see its stroke order.</p>}
+    {!phrasesView && kind === 'characters' && others.length > 0 && scope !== 'media' && <>
+      {scope !== 'all' && <p className="notice" role="note" data-testid="characters-note">Your {others.map(language => languageLabel[language]).join(' and ')} characters are listed in the Full list: writing practice there is not tied to a knowledge set yet.</p>}
+      {scope === 'all' && others.map(language => <section key={language} aria-label={`${languageLabel[language]} characters`} data-testid={`other-characters-${language}`}>
+        {lang !== 'all' && <div className="segmented" role="group" aria-label="Script"><button type="button" aria-pressed={script === 'all'} onClick={() => select(setScript)('all')}>All scripts</button>{scriptsOf[language].map(value => <button key={value} type="button" aria-pressed={script === value} onClick={() => select(setScript)(value)}>{scriptLabel[value]}</button>)}</div>}
+        {lang === 'all' && <h2 className="small muted">{languageLabel[language]}</h2>}
+        {!otherChars[language] ? <p className="small muted" role="status">Loading the {languageLabel[language]} writing guides...</p> : <div className="word-grid character-grid">{shownOther(language).slice(0, limit).map(([character, strokes]) => <OtherCharacterCard key={character} character={character} strokes={strokes} language={language} dictionary={dicts[language]} />)}</div>}
+      </section>)}
+    </>}
     {catalog && !phrasesView && kind === 'characters' && showZh && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <div key={entry.character} className={`select-item${picked.has(entry.character) ? ' picked' : ''}`}>{selecting && <div className="select-row">{pickRow(entry.character, entry.character, entry.character)}</div>}<CharacterCard entry={entry}
       automatic={characterSet?.automatic.has(entry.character) ?? false} manual={characterSet?.manual.has(entry.character) ?? false}
       state={workspace.characterStates.find(state => state.character === entry.character)} known={known} scope={scope === 'collections' || scope === 'media' ? 'all' : scope} pinyin={workspace.preferences.pinyin} run={run} busy={busy} /></div>)}</div>}
@@ -327,6 +351,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     {(catalog || !showZh) && !count && !(phrasesView && showZh && !phraseRows) && !(kind === 'characters' && !phrasesView && !showZh) && !others.some(language => !dicts[language]) && <EmptyState title={phrasesView ? 'No matching phrases' : scope === 'collections' && !collected.size ? `No ${TERM.plural} items yet` : scope === 'knowledge' && !(multi ? tabCount(kind) : knownCounts[kind]) ? 'Your knowledge set is empty' : 'No matching items'}><p>{phrasesView ? 'Try another search, band, or scope.' : scope === 'knowledge' && !(multi ? tabCount(kind) : knownCounts[kind]) ? kind === 'characters' ? 'Add a character from the full list, or add a word to your knowledge set.' : 'Add items here, or start with New in Lessons.' : 'Try another search, band, or section.'}</p><a href="#lessons" className="button secondary">Go to Lessons</a></EmptyState>}
     <p className="page-footnote">{phrasesView ? 'Practice-set sentences are not listed here. Heard counts come from Hands-free.' : kind === 'characters' ? <>Guided writing records completed practice, not mastery or an FSRS writing schedule. Most guides are source-derived and unreviewed. <a href={characterAttributionUrl} target="_blank" rel="noreferrer">Artwork sources and licenses</a>.</>
       : 'Review timing for each item in your knowledge set follows FSRS spaced repetition for reading. Writing practice is available in Characters and is tracked separately. The inventory follows the November 2025 HSK examination syllabus; it is an AI-assisted editorial draft, not an official sense list.'}</p>
+    {kind === 'characters' && !phrasesView && others.length > 0 && <p className="page-footnote" data-testid="other-writing-attribution">{others.map(language => <span key={language}>{languageLabel[language]} stroke data: <a href={characterAttributionUrlFor(language)} target="_blank" rel="noreferrer">Artwork sources and licenses</a>. </span>)}</p>}
     {others.length > 0 && <p className="page-footnote" data-testid="other-attribution">{others.map(language => <span key={language}>{language === 'ja' ? 'Japanese words: JMdict/EDICT (EDRDG), levels from Waller\u2019s JLPT Resources.' : 'Korean words: National Institute of Korean Language, Korean-English Learners\u2019 Dictionary (CC BY-SA 2.0 KR).'} <a href={`${import.meta.env.BASE_URL}dictionary/${language === 'ja' ? 'japanese' : 'korean'}/ATTRIBUTION.txt`} target="_blank" rel="noreferrer">Sources and licenses</a>. </span>)}Levels are estimates, not an official list.</p>}
   </>
 }

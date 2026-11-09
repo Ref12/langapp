@@ -46,23 +46,39 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   const shown = [...own, ...examples.filter(example => !own.some(item => item.translation === example.translation))]
   const vocabulary = unit.kind === 'vocabulary'
   const snippet = <PracticeSnippet source={{ text: vocabulary ? unit.record.ch : renderExample(catalog, unit.record.ex).text, meaning: unit.record.ds, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />
-  return <article className={`word-card study-unit-card${compact ? ' lesson-word-card' : ''}`} data-unit={unit.ref}>
-    <div className="card-topline"><span className="eyebrow">{unitKindLabel(unit)} / HSK {unit.band}</span>{!hideStatus && <span className="tag">{cardStatus(card, now)}</span>}</div>
+  return <UnitCardShell unitRef={unit.ref} compact={compact}
+    eyebrow={<><span className="eyebrow">{unitKindLabel(unit)} / HSK {unit.band}</span>{!hideStatus && <span className="tag">{cardStatus(card, now)}</span>}</>}
+    title={<h3 {...(vocabulary ? press : {})} lang={vocabulary ? 'zh-Hans' : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{title}</h3>}
+    reading={pinyin && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /></p>}
+    meaning={unit.record.ds}
+    extra={<>
+      {otherLines && vocabulary && other.length > 0 && <OtherLanguageLines senseId={unit.record.id} />}
+      {phrases && vocabulary && <a className="small phrase-word-link" href={phrases.href}>{phrases.count === undefined ? 'Phrases' : `${phrases.count} ${phrases.count === 1 ? 'phrase' : 'phrases'}`}</a>}</>}
+    actions={vocabulary && snippet}
+    below={<>
+      {entry && <AddedByLine entry={entry} index={addedIndex} />}
+      {known && !hideStatus && <SkillCounts itemRef={unit.ref} />}
+      {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} actions={<PracticeSnippet source={{ text: renderExample(catalog, example).text, meaning: example.translation, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />} />)}
+      {!hideStatus && <SaveActions refs={[unit.ref]} name={title} title={unit.record.ds} primary={<button className="button secondary full-width" disabled={busy || known} onClick={() => void run(() => addToKnowledge([unit.ref]))}>
+          {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}
+        </button>} />}</>} />
+}
+
+/** The layout every unit card shares, whatever the language: topline, form, reading line, meaning, the ⋯ menu beside them. */
+export function UnitCardShell({ unitRef, compact = false, eyebrow, title, reading, meaning, extra, actions, below }: {
+  unitRef: string; compact?: boolean; eyebrow: ReactNode; title: ReactNode; reading?: ReactNode; meaning: ReactNode; extra?: ReactNode; actions?: ReactNode; below?: ReactNode
+}) {
+  return <article className={`word-card study-unit-card${compact ? ' lesson-word-card' : ''}`} data-unit={unitRef}>
+    <div className="card-topline">{eyebrow}</div>
     <div className="phrase-row">
       <div className="phrase-row-text">
-        <h3 {...(vocabulary ? press : {})} lang={vocabulary ? 'zh-Hans' : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{title}</h3>
-        {pinyin && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /></p>}
-        <p className="word-meaning">{unit.record.ds}</p>
-        {otherLines && vocabulary && other.length > 0 && <OtherLanguageLines senseId={unit.record.id} />}
-        {phrases && vocabulary && <a className="small phrase-word-link" href={phrases.href}>{phrases.count === undefined ? 'Phrases' : `${phrases.count} ${phrases.count === 1 ? 'phrase' : 'phrases'}`}</a>}
+        {title}
+        {reading}
+        <p className="word-meaning">{meaning}</p>
+        {extra}
       </div>
-      {vocabulary && snippet}
+      {actions}
     </div>
-    {entry && <AddedByLine entry={entry} index={addedIndex} />}
-    {known && !hideStatus && <SkillCounts itemRef={unit.ref} />}
-    {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} actions={<PracticeSnippet source={{ text: renderExample(catalog, example).text, meaning: example.translation, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />} />)}
-    {!hideStatus && <SaveActions refs={[unit.ref]} name={title} title={unit.record.ds} primary={<button className="button secondary full-width" disabled={busy || known} onClick={() => void run(() => addToKnowledge([unit.ref]))}>
-        {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}
-      </button>} />}
+    {below}
   </article>
 }

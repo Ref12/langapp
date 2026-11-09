@@ -3,26 +3,19 @@ import { ArrowLeft, ArrowRight, Check, Play } from 'lucide-react'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { ParallelHear } from '../components/ParallelHear'
 import { ParallelStrokes } from '../components/ParallelStrokes'
-import { LESSON_COUNT, lessonWords, loadParallel, parallelLessonId, shortGloss, type ParallelData, type ParallelLanguage, type ParallelPhrase } from '../core/parallel/data'
+import { LESSON_COUNT, lessonWords, loadParallel, parallelLessonId, glossOf, type ParallelData, type ParallelLanguage, type ParallelPhrase } from '../core/parallel/data'
 import { markParallelStudied, startTrack } from '../core/parallel/progress'
+import { tokenReading } from '../core/parallel/romanize'
+import { Form } from '../components/ParallelForm'
 import { languageName } from '../core/characters/language'
 
-const HAS_KANJI = /\p{Script=Han}/u
-
-/** Furigana above the kanji of a Japanese form; other forms are plain. */
-export function Form({ text, reading, language }: { text: string; reading?: string; language: ParallelLanguage }) {
-  if (language === 'ja' && reading && reading !== text && HAS_KANJI.test(text)) return <ruby lang="ja">{text}<rt>{reading}</rt></ruby>
-  return <span lang={language}>{text}</span>
-}
-
-function Phrase({ data, phrase, language }: { data: ParallelData; phrase: ParallelPhrase; language: ParallelLanguage }) {
+function Phrase({ data, phrase, language, number }: { data: ParallelData; phrase: ParallelPhrase; language: ParallelLanguage; number: number }) {
   return <li className="study-example parallel-phrase">
     <div className="phrase-row"><div className="phrase-row-text">
-      <p className="example" lang={language}>{language === 'ko' ? phrase.text : phrase.tokens.map((token, index) => <Form key={index} text={token.t} reading={token.w ? data.entries[token.w]?.reading : undefined} language={language} />)}</p>
-      {phrase.reading && <p className="small muted" lang={language}>{phrase.reading}</p>}
+      <p className="example" lang={language}>{language === 'ko' ? phrase.text.split(' ').map((part, index) => <span key={index}>{index > 0 && ' '}<Form text={part} language="ko" /></span>) : phrase.tokens.map((token, index) => <Form key={index} text={token.t} reading={token.w && data.entries[token.w] ? tokenReading(data.entries[token.w].target, data.entries[token.w].reading, token.t) : undefined} language={language} />)}</p>
       <p className="small">{phrase.en}</p>
       <p className="zh-original"><span lang="zh-Hans">{'\u4E2D'}</span> <span lang="zh-Hans">{phrase.zh}</span></p>
-    </div><ParallelHear text={phrase.text} language={language} label={`Hear phrase ${phrase.id}`} /></div>
+    </div><ParallelHear text={phrase.text} language={language} label={`Hear phrase ${phrase.id}`} actions={{ meaning: phrase.en, title: `${languageName[language]} phrase`, route: `lessons/${language}/${number}`, practise: `#lessons/${language}/${number}/practise` }} /></div>
   </li>
 }
 
@@ -56,14 +49,13 @@ export function ParallelLessonView({ workspace, run, busy, language, number }: P
       {shown.map(word => <article key={word.id} className="word-card study-unit-card lesson-word-card parallel-word" data-entry={word.id}>
         <div className="phrase-row"><div className="phrase-row-text">
           <h3 className="parallel-form"><Form text={word.target} reading={word.reading} language={language} /></h3>
-          {word.reading && language === 'ja' && word.reading !== word.target && !HAS_KANJI.test(word.target) && <p className="small muted" lang={language}>{word.reading}</p>}
-          <p className="word-meaning">{shortGloss(word.english)}</p>
-        </div><ParallelHear text={word.target} language={language} label={`Hear ${word.target}`} /></div>
+          <p className="word-meaning">{glossOf(word)}</p>
+        </div><ParallelHear text={word.target} language={language} label={`Hear ${word.target}`} actions={{ meaning: glossOf(word), title: `${languageName[language]} word`, route: `lessons/${language}/${number}`, practise: `#lessons/${language}/${number}/practise` }} /></div>
         <ParallelStrokes text={word.target} language={language} />
       </article>)}</section>
     {grammar.length > 0 && <section aria-label="Grammar"><h2>Grammar</h2>
       {grammar.map(item => <article key={item.id} className="word-card study-unit-card lesson-word-card"><h3 className="study-pattern" lang={language}>{item.pattern}</h3><p className="word-meaning">{item.english}</p></article>)}</section>}
-    <section aria-label="Phrases"><h2>Phrases</h2><ol className="plain-list">{lesson.phrases.map(phrase => <Phrase key={phrase.id} data={data} phrase={phrase} language={language} />)}</ol></section>
+    <section aria-label="Phrases"><h2>Phrases</h2><ol className="plain-list">{lesson.phrases.map(phrase => <Phrase key={phrase.id} data={data} phrase={phrase} language={language} number={number} />)}</ol></section>
     <div className="button-row">
       <a className="button primary" href={`#lessons/${language}/${number}/practise`}><Play size={16} /> Practise</a>
       <button type="button" className="button secondary" disabled={busy || studiedAt !== undefined} onClick={() => void run(() => markParallelStudied(language, number))}>

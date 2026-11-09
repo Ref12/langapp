@@ -19,7 +19,7 @@ export function hasUnsavedDrafts() { return drafts.size > 0 }
 export function getUnsavedDraft(threadId: string) { return drafts.get(threadId)?.text }
 
 export function appendContextText(draft: string, source: AssistantSource): string {
-  const explanation = `Please explain this passage:\n\n${source.text}${source.meaning ? `\n\nMeaning: ${source.meaning}` : ''}`
+  const explanation = `Please explain this ${source.language === 'ja' ? 'Japanese ' : source.language === 'ko' ? 'Korean ' : ''}passage:\n\n${source.text}${source.meaning ? `\n\nMeaning: ${source.meaning}` : ''}`
   const addition = !draft && explanation.length > MAX_DRAFT_LENGTH ? source.text : explanation
   const next = draft ? `${draft}\n\n${addition}` : addition
   if (next.length > MAX_DRAFT_LENGTH) throw new Error('There is not enough room in this draft. Shorten the draft or select a smaller excerpt before using Ask.')

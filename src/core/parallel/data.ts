@@ -3,7 +3,7 @@ export type ParallelLanguage = 'ja' | 'ko'
 export const parallelLanguages: readonly ParallelLanguage[] = ['ja', 'ko']
 export const isParallelLanguage = (value: unknown): value is ParallelLanguage => value === 'ja' || value === 'ko'
 
-export interface ParallelEntry { target: string; reading?: string; english: string; pos?: string; new?: boolean }
+export interface ParallelEntry { target: string; reading?: string; english: string; /** The short lesson gloss shown on cards; `english` stays the full dictionary definition. */ gloss?: string; pos?: string; new?: boolean }
 export interface ParallelGrammar { pattern: string; english: string; new?: boolean }
 export interface ParallelSense { zh: string; status: 'word' | 'covered-by' | 'grammar' | 'no-equivalent'; entry: string | null; grammar?: string; note?: string }
 export interface ParallelToken { t: string; w?: string; g?: string }
@@ -26,7 +26,12 @@ const cache = new Map<ParallelLanguage, Promise<ParallelData>>()
 export function loadParallel(language: ParallelLanguage): Promise<ParallelData> {
   let pending = cache.get(language)
   if (!pending) {
-    pending = loaders[language]().then(module => module.default as ParallelData)
+    pending = Promise.all([loaders[language](), import('../../data/parallel/glosses.json')]).then(([module, glosses]) => {
+      const data = module.default as ParallelData
+      const short = (glosses.default as Record<ParallelLanguage, Record<string, string>>)[language] ?? {}
+      for (const [id, entry] of Object.entries(data.entries)) if (short[id] && !entry.gloss) entry.gloss = short[id]
+      return data
+    })
     cache.set(language, pending)
     pending.catch(() => { if (cache.get(language) === pending) cache.delete(language) })
   }
@@ -62,6 +67,8 @@ export const lessonTitle = (data: ParallelData, lesson: ParallelLesson): string 
 
 /** A short gloss: the first sense of a dictionary definition. */
 export const shortGloss = (english: string): string => english.split(' | ')[0].replace(/^1\.\s*/, '')
+/** What a card shows for a word: its short lesson gloss, else the first sense of its definition. */
+export const glossOf = (entry: { english: string; gloss?: string }): string => entry.gloss ?? shortGloss(entry.english)
 
 export interface CardLine { language: ParallelLanguage; target: string; reading?: string; lesson: number }
 const senseMaps = new WeakMap<ParallelData, Map<string, CardLine>>()

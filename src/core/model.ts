@@ -61,7 +61,8 @@ export interface Preferences {
   /** Show a muted Japanese and/or Korean line on Chinese vocabulary cards. Absent means off. */
   otherLanguageCards?: 'off' | 'ja' | 'ko' | 'both'
   /** Reading aids per language on Japanese and Korean practice: furigana (ja, on unless false) and romanization (ko, off unless true). */
-  readingAids?: { ja?: boolean; ko?: boolean }
+  /** How Japanese readings show in the pinyin slot: romaji (default) or kana. */
+  japaneseReading?: 'romaji' | 'kana'
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences

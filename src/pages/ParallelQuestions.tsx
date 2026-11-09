@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { Check } from 'lucide-react'
 import { AnswerButton } from '../components/AnswerButton'
 import { ParallelHear } from '../components/ParallelHear'
-import { Form } from './ParallelLessonView'
-import { romanizeKorean } from '../core/parallel/romanize'
+import { Form } from '../components/ParallelForm'
 import { gradeTiles, type TilesGrade } from '../core/parallel/session'
 import type { ParallelLanguage } from '../core/parallel/data'
 import type { ChoiceItem, ListenItem, MatchItem, TilesItem } from '../core/session/types'
@@ -19,26 +18,24 @@ export const PARALLEL_INSTRUCTION = (language: ParallelLanguage): Record<'intro'
   tiles: `Build the sentence in ${NAME[language]}`,
 })
 
-export interface ParallelContext { language: ParallelLanguage; /** Furigana (ja) or romanization (ko) shown. */ aids: boolean; readings: ReadonlyMap<string, string>; busy: boolean }
+export interface ParallelContext { language: ParallelLanguage; readings: ReadonlyMap<string, string>; busy: boolean }
 export interface Done { correct: boolean; missed?: string[] }
 
-/** A Japanese or Korean form: furigana over kanji when readings are on, romanization under Korean when on. */
+/** A Japanese or Korean form, its reading in the pinyin slot. */
 export function Written({ text, ctx }: { text: string; ctx: ParallelContext }) {
-  const reading = ctx.readings.get(text)
-  return <>{ctx.language === 'ja' ? <Form text={text} reading={ctx.aids ? reading : undefined} language="ja" /> : <span lang="ko">{text}</span>}
-    {ctx.language === 'ko' && ctx.aids && <span className="small muted parallel-roman"> {romanizeKorean(text)}</span>}</>
+  return <Form text={text} reading={ctx.readings.get(text)} language={ctx.language} />
 }
 
-/** A whole phrase from its own text (Korean keeps its word spaces): Japanese words carry their reading over the word, other characters stay as written. */
+/** A whole phrase from its own text (Korean keeps its word spaces): each word carries its reading in the pinyin slot, other characters stay as written. */
 export function PhraseText({ text, tiles, ctx }: { text: string; tiles: { text: string; reading?: string }[]; ctx: ParallelContext }) {
-  if (ctx.language === 'ko') return <span lang="ko">{text}</span>
+  if (ctx.language === 'ko') return <span lang="ko">{text.split(' ').map((part, index) => <span key={index}>{index > 0 && ' '}<Form text={part} language="ko" /></span>)}</span>
   const out: React.ReactNode[] = []
   let at = 0
   for (const tile of tiles) {
     const found = text.indexOf(tile.text, at)
     if (found < 0) continue
     if (found > at) out.push(text.slice(at, found))
-    out.push(<Form key={out.length} text={tile.text} reading={ctx.aids ? tile.reading : undefined} language="ja" />)
+    out.push(<Form key={out.length} text={tile.text} reading={tile.reading} language="ja" />)
     at = found + tile.text.length
   }
   if (at < text.length) out.push(text.slice(at))
@@ -119,8 +116,6 @@ export function TilesQuestion({ exercise, ctx, onDone }: { exercise: TilesItem; 
     {grade && <div className={`notice answer-feedback engine-diff${grade.correct ? ' success' : ''}`} role="status">
       <p>{grade.correct ? 'Correct.' : 'Not the model answer.'}{grade.messages.length > 0 && <> {grade.messages.join(' ')}</>}</p>
       <p className="engine-answer-line parallel-answer"><PhraseText text={extra.text} tiles={extra.tiles} ctx={ctx} /> <ParallelHear text={extra.text} language={ctx.language} label="Hear the answer" /></p>
-      {extra.reading && ctx.aids && ctx.language === 'ja' && <p className="small muted" lang="ja">{extra.reading}</p>}
-      {ctx.aids && ctx.language === 'ko' && <p className="small muted">{romanizeKorean(extra.text)}</p>}
       <p className="small">{exercise.translation}</p>
       {extra.zh && <p className="zh-original"><span lang="zh-Hans">{'\u4E2D'}</span> <span lang="zh-Hans">{extra.zh}</span></p>}
       {extra.tiles.filter(item => item.particle).length > 0 && !grade.correct && <ul className="small muted">{extra.tiles.filter(item => item.particle).map(item => <li key={item.text}><span lang={ctx.language}>{item.text}</span> {item.particle}</li>)}</ul>}</div>}

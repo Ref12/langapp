@@ -1,7 +1,8 @@
-import { hasGuide, isHan, type WritingScope } from './writing-route'
+import type { WritingLanguage } from './language'
+import { hasGuide, isWritable, type WritingScope } from './writing-route'
 
 /** What the writing overlay sheet is showing. `fromList`: opened from a word list that stays open underneath, so Back reveals it. */
-export interface WritingSheetRequest { word: string[]; index: number; scope: WritingScope; remember: boolean; fromList: boolean }
+export interface WritingSheetRequest { word: string[]; index: number; scope: WritingScope; remember: boolean; fromList: boolean; language: WritingLanguage }
 
 let current: WritingSheetRequest | undefined
 const listeners = new Set<() => void>()
@@ -19,11 +20,12 @@ export function closeWritingSheet(): void {
 }
 
 /** Opens the sheet on the first practicable character of `text` without touching the hash. False when nothing in it can be written. */
-export function openWritingSheet(text: string, options: { scope?: WritingScope; fromList?: boolean; remember?: boolean } = {}): boolean {
+export function openWritingSheet(text: string, options: { scope?: WritingScope; fromList?: boolean; remember?: boolean; language?: WritingLanguage } = {}): boolean {
   const word = Array.from(text)
-  const index = word.findIndex(character => isHan(character) && hasGuide(character))
+  const language = options.language ?? 'zh'
+  const index = word.findIndex(character => isWritable(character, language) && (language !== 'zh' || hasGuide(character)))
   if (index < 0) return false
-  current = { word, index, scope: options.scope ?? 'all', remember: options.remember ?? true, fromList: options.fromList ?? false }
+  current = { word, index, scope: options.scope ?? 'all', remember: options.remember ?? true, fromList: options.fromList ?? false, language }
   emit()
   return true
 }

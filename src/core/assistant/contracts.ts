@@ -45,6 +45,8 @@ export const assistantSourceSchema = z.object({
   route: z.string().min(1).max(300).regex(/^[\w:/.-]+$/),
   meaning: z.string().max(3000).optional(),
   locale: speechLocaleSchema.optional(),
+  /** Japanese or Korean material (Chinese is the default and is not marked): the Ask prompt names the language. */
+  language: z.enum(['ja', 'ko']).optional(),
 }).strict()
 
 export const textBlockSchema = z.object({

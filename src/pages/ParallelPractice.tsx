@@ -2,18 +2,15 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { PageHeading, type PageProps } from '../components/shared'
 import { ParallelHear } from '../components/ParallelHear'
-import { loadParallel, parallelLessonId, shortGloss, type ParallelData, type ParallelLanguage } from '../core/parallel/data'
+import { loadParallel, parallelLessonId, glossOf, type ParallelData, type ParallelLanguage } from '../core/parallel/data'
 import { addParallelKnowledge, parallelDue, parallelKnown, recordParallelResult } from '../core/parallel/practice'
 import { itemsUpTo, lessonItems, planParallel, type ParallelItem } from '../core/parallel/session'
-import { savePreferences } from '../core/learning'
 import { languageName } from '../core/characters/language'
 import { answerCurrent, currentExercise, currentStage, progressOf, startRunner, summarise, type RunnerState } from '../core/session/runner'
 import { STAGE_LABEL, type SessionPlan } from '../core/session/types'
 import { ChoiceQuestion, ListenQuestion, MatchQuestion, PARALLEL_INSTRUCTION, TilesQuestion, Written, type ParallelContext } from './ParallelQuestions'
 
 const EARLIER = 4
-/** Reading aids per language: furigana on for Japanese, romanization off for Korean, unless the learner chose otherwise. */
-export const aidsOn = (preferences: PageProps['workspace']['preferences'], language: ParallelLanguage): boolean => preferences.readingAids?.[language] ?? language === 'ja'
 
 /** The items of a Japanese or Korean session: a lesson's own items then earlier ones to review, or the language's due items. */
 async function sessionRefs(data: ParallelData, language: ParallelLanguage, lesson: number | undefined, now: number): Promise<{ refs: string[]; lessonNumber: number }> {
@@ -30,7 +27,7 @@ async function sessionRefs(data: ParallelData, language: ParallelLanguage, lesso
 }
 
 /** Practise a Japanese or Korean lesson (or the language's reviews): the same staged session as Chinese, meet, recognise, use. */
-export function ParallelPractice({ workspace, run, busy, now, language, lesson }: PageProps & { language: ParallelLanguage; lesson?: number }) {
+export function ParallelPractice({ busy, now, language, lesson }: PageProps & { language: ParallelLanguage; lesson?: number }) {
   const [data, setData] = useState<ParallelData>()
   const [plan, setPlan] = useState<SessionPlan>()
   const [state, setState] = useState<RunnerState>()
@@ -49,13 +46,12 @@ export function ParallelPractice({ workspace, run, busy, now, language, lesson }
     return () => { live = false }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language, lesson])
-  const aids = aidsOn(workspace.preferences, language)
   const readings = useMemo(() => new Map(Object.values(data?.entries ?? {}).flatMap(entry => entry.reading ? [[entry.target, entry.reading] as const] : [])), [data])
   const name = languageName[language]
   const back = lesson === undefined ? '#lessons' : `#lessons/${language}/${lesson}`
   if (error) return <div className="notice error" role="alert"><p>The {name} practice could not start. {error}</p></div>
   if (!data || !plan || !state) return <div className="opening-workspace" role="status">Planning the session…</div>
-  const ctx: ParallelContext = { language, aids, readings, busy }
+  const ctx: ParallelContext = { language, readings, busy }
   const exercise = currentExercise(state)
   const stage = currentStage(state)
   const title = lesson === undefined ? `${name} review` : `${name}, lesson ${lesson}`
@@ -85,20 +81,17 @@ export function ParallelPractice({ workspace, run, busy, now, language, lesson }
   const progress = progressOf(state)
   const items = itemsUpTo(data, language, 87)
   const item = exercise?.form === 'intro' ? items.get(exercise.refs[0]) as ParallelItem | undefined : undefined
-  const aidLabel = language === 'ja' ? 'furigana' : 'romanization'
   return <div className="dr engine engine-run parallel-practice">
     <a className="back-link" href={back}><ArrowLeft size={16} /> {title}</a>
     <div className="engine-progress"><span className="eyebrow">{stage ? STAGE_LABEL[stage] : ''}{exercise && exercise.round > 0 ? ' · another try' : ''}</span>
-      <progress aria-label="Session progress" value={Math.min(progress.done, progress.total)} max={Math.max(1, progress.total)} /><span className="small muted">{Math.min(progress.done, progress.total)} of {progress.total}</span>
-      <button type="button" className="button secondary small engine-pinyin" aria-pressed={aids} disabled={busy} onClick={() => void run(() => savePreferences({ readingAids: { ...workspace.preferences.readingAids, [language]: !aids } }))}>{aids ? 'Hide' : 'Show'} {aidLabel}</button></div>
+      <progress aria-label="Session progress" value={Math.min(progress.done, progress.total)} max={Math.max(1, progress.total)} /><span className="small muted">{Math.min(progress.done, progress.total)} of {progress.total}</span></div>
     <section className="panel practice-card" aria-live="polite" data-form={exercise?.form}>
       {exercise && <p className="engine-instruction small" data-instruction={exercise.form}>{instruction[exercise.form as keyof typeof instruction]}{exercise.form === 'intro' && <span className="muted"> · {intro + 1}</span>}</p>}
       {exercise?.form === 'intro' && item && <>
         <article className="word-card study-unit-card parallel-word"><div className="phrase-row"><div className="phrase-row-text">
           <h3 className="parallel-form" lang={language}>{item.kind === 'word' ? <Written text={item.target} ctx={ctx} /> : item.target}</h3>
-          {item.kind === 'word' && language === 'ja' && item.reading && item.reading !== item.target && <p className="small muted" lang="ja">{item.reading}</p>}
-          <p className="word-meaning">{item.kind === 'word' ? shortGloss(item.english) : item.english}</p></div>
-          {item.kind === 'word' && <ParallelHear text={item.target} language={language} label={`Hear ${item.target}`} />}</div></article>
+          <p className="word-meaning">{item.kind === 'word' ? glossOf(item) : item.english}</p></div>
+          {item.kind === 'word' && <ParallelHear text={item.target} language={language} label={`Hear ${item.target}`} actions={{ meaning: glossOf(item), title: `${name} word`, route: lesson === undefined ? `lessons/${language}/review` : `lessons/${language}/${lesson}` }} />}</div></article>
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => { setIntro(intro + 1); void addParallelKnowledge(exercise.refs); advance(true) }}>Got it <ArrowRight size={16} /></button></div></>}
       {exercise?.form === 'choice' && <ChoiceQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct)} />}
       {exercise?.form === 'match' && <MatchQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct, done.missed)} />}

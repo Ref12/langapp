@@ -31,7 +31,7 @@ function exactSource(source: AssistantSource): AssistantSource {
 export async function createConversation(source?: AssistantSource, returnRoute?: string): Promise<string> {
   assistantThreadSchema.shape.returnRoute.optional().parse(returnRoute)
   const context = source === undefined ? undefined : exactSource(source)
-  const prompt = 'Please explain this passage:\n\n'
+  const prompt = `Please explain this ${context?.language === 'ja' ? 'Japanese ' : context?.language === 'ko' ? 'Korean ' : ''}passage:\n\n`
   const preferences = await db.preferences.get('workspace')
   const now = Date.now()
   const thread: AssistantThread = {

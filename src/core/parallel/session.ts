@@ -1,12 +1,13 @@
 import { createRng } from '../study/local-exercises'
 import { lessonWords, shortGloss, type ParallelData, type ParallelLanguage, type ParallelLesson, type ParallelPhrase } from './data'
 import { parallelRef } from './refs'
+import { tokenReading } from './romanize'
 import type { ChoiceItem, Intent, IntroExercise, Length, ListenItem, MatchItem, ParallelTilesExtra, SessionExercise, SessionPlan, Stage, StagePlan, TilesItem } from '../session/types'
 
 // Japanese and Korean sessions: the same staged plan (meet, recognise, use) built from the parallel lesson data instead of the Chinese catalog.
 // A phrase is usable at lesson N when every word and grammar point in it is introduced by lesson N (the data marks each one strict, with its readyAt).
 
-export interface ParallelItem { ref: string; id: string; kind: 'word' | 'grammar'; target: string; reading?: string; english: string; lesson: number }
+export interface ParallelItem { ref: string; id: string; kind: 'word' | 'grammar'; target: string; reading?: string; english: string; /** Short lesson gloss (words). */ gloss?: string; lesson: number }
 
 /** The lesson that introduces each entry and grammar id (the first lesson listing it). */
 export function introductions(data: ParallelData): { words: Map<string, number>; grammar: Map<string, number> } {
@@ -43,7 +44,7 @@ export function usablePhrases(data: ParallelData, lessonNumber: number): (Parall
 
 export function wordItem(data: ParallelData, language: ParallelLanguage, id: string, lesson: number): ParallelItem | undefined {
   const entry = data.entries[id]
-  return entry ? { ref: parallelRef(language, 'w', id), id, kind: 'word', target: entry.target, reading: entry.reading, english: entry.english, lesson } : undefined
+  return entry ? { ref: parallelRef(language, 'w', id), id, kind: 'word', target: entry.target, reading: entry.reading, english: entry.english, gloss: entry.gloss, lesson } : undefined
 }
 export function grammarItem(data: ParallelData, language: ParallelLanguage, id: string, lesson: number): ParallelItem | undefined {
   const grammar = data.grammar[id]
@@ -108,8 +109,8 @@ export function gradeTiles(language: ParallelLanguage, answer: readonly string[]
   return { correct: false, wrong, messages }
 }
 
-const gloss = (english: string): string => {
-  const first = shortGloss(english).replace(/\s*\([^)]*\)\s*$/, '').trim()
+const gloss = (english: string, short?: string): string => {
+    const first = (short ?? shortGloss(english)).replace(/\s*\([^)]*\)\s*$/, '').trim()
   return first.length > 60 ? first.slice(0, 57).replace(/\s+\S*$/, '') + '\u2026' : first
 }
 export { gloss as shortMeaning }
@@ -163,15 +164,15 @@ export function planParallel(input: ParallelPlanInput): SessionPlan {
 
   const recognise: SessionExercise[] = []
   items.slice(0, cap * 2).forEach((item, index) => {
-    const { options, answer } = optionsFor(item, other => gloss(other.english))
-    recognise.push({ ...make('recognise', 'choice', index), form: 'choice', refs: [item.ref], direction: 'zh-to-en', question: item.target, options, answer, explanation: `${item.target}${item.reading && item.reading !== item.target ? ` (${item.reading})` : ''} means "${gloss(item.english)}".` } as ChoiceItem)
+    const { options, answer } = optionsFor(item, other => gloss(other.english, other.gloss))
+    recognise.push({ ...make('recognise', 'choice', index), form: 'choice', refs: [item.ref], direction: 'zh-to-en', question: item.target, options, answer, explanation: `${item.target}${item.reading && item.reading !== item.target ? ` (${item.reading})` : ''} means "${gloss(item.english, item.gloss)}".` } as ChoiceItem)
   })
   const words = items.filter(item => item.kind === 'word')
   for (let start = 0, index = 0; start + 3 <= words.length && index < Math.ceil(cap / 4); start += 4, index++) {
     const group = words.slice(start, start + 4)
     if (group.length < 3) break
     const order = shuffled(group.map((_, position) => position), rng)
-    recognise.push({ ...make('recognise', 'match', index), form: 'match', refs: group.map(item => item.ref), mode: 'zh-en', pairs: group.map(item => ({ ref: item.ref, left: item.target, right: gloss(item.english) })), order, explanation: 'Match each word with its meaning.' } as MatchItem)
+    recognise.push({ ...make('recognise', 'match', index), form: 'match', refs: group.map(item => item.ref), mode: 'zh-en', pairs: group.map(item => ({ ref: item.ref, left: item.target, right: gloss(item.english, item.gloss) })), order, explanation: 'Match each word with its meaning.' } as MatchItem)
   }
   const use: SessionExercise[] = []
   const uncovered: string[] = []
@@ -212,6 +213,6 @@ export function tilesFor(language: ParallelLanguage, data: ParallelData, phrase:
   const shuffle = shuffled([...tiles, ...distractors].map((_, index) => index), rng)
   // never open on the answer's own order
   const ordered = shuffle.length > 2 && shuffle.every((value, index) => value === index) ? [...shuffle.slice(1), shuffle[0]] : shuffle
-  const extra: ParallelTilesExtra = { text: phrase.text, reading: phrase.reading, zh: phrase.zh, tiles: tokens.map(token => ({ text: token.t, reading: token.w && data.entries[token.w]?.target === token.t ? data.entries[token.w]?.reading : undefined, particle: isParticle(language, token.t) ? PARTICLES[language][token.t] : undefined })) }
+  const extra: ParallelTilesExtra = { text: phrase.text, reading: phrase.reading, zh: phrase.zh, tiles: tokens.map(token => ({ text: token.t, reading: token.w && data.entries[token.w] ? tokenReading(data.entries[token.w].target, data.entries[token.w].reading, token.t) : undefined, particle: isParticle(language, token.t) ? PARTICLES[language][token.t] : undefined })) }
   return { translation: phrase.en, tiles, distractors, shuffled: ordered, accepted: [tiles.join('')], model: phrase.text, explanation: `${phrase.text} means "${phrase.en}".`, parallel: extra }
 }

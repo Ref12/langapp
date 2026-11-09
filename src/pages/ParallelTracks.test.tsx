@@ -39,6 +39,7 @@ describe('parallel tracks', () => {
 
   it('selecting Japanese in the picker starts it, shows the switch and 87 rows with item titles', async () => {
     const user = userEvent.setup()
+    window.location.hash = '#lessons/list'
     render(<App />)
     const select = await screen.findByRole('combobox', { name: 'Course track' })
     expect(screen.queryByRole('group', { name: 'Current language' })).toBeNull()
@@ -63,7 +64,10 @@ describe('parallel tracks', () => {
     expect(screen.getByRole('region', { name: 'Words' }).querySelector('rt')).not.toBeNull()
     const phrases = screen.getByRole('region', { name: 'Phrases' })
     expect(phrases.querySelector('rt')).not.toBeNull()
-    expect(phrases).toHaveTextContent('わたしはがくせいです。')
+    // readings sit in the pinyin slot (romaji by default), not as a separate kana line
+    expect(phrases.querySelector('.example')).toHaveTextContent('watashi')
+    expect(phrases.textContent).toContain('benkyoushi')
+    expect(phrases.textContent).not.toContain('わたしはがくせいです。')
     expect(phrases).toHaveTextContent('I am a student.')
     expect(phrases).toHaveTextContent('中 我是学生。')
     expect(screen.getByRole('region', { name: 'Grammar' })).toHaveTextContent('Nはtopic; as for a noun')
@@ -73,7 +77,7 @@ describe('parallel tracks', () => {
     const studied = studiedLessons((await loadWorkspace()).lessons, 'ja')
     expect(nextParallelLesson(studied, 87)).toBe(2)
     expect(await db.lessons.get('ko:lesson:1')).toBeUndefined()
-    window.location.hash = '#lessons'
+    window.location.hash = '#lessons/list'
     const list = await screen.findByRole('region', { name: 'Japanese lessons' }, { timeout: 5000 })
     expect(within(list).getAllByRole('listitem')[0]).toHaveTextContent('Done')
     expect(within(list).getAllByRole('listitem')[1]).toHaveAttribute('aria-current', 'step')
@@ -82,7 +86,7 @@ describe('parallel tracks', () => {
   it('a Korean lesson view renders and studies under its own prefix', async () => {
     window.location.hash = '#lessons/ko/1'
     render(<App />)
-    expect(await screen.findByRole('region', { name: 'Phrases' }, { timeout: 5000 })).toHaveTextContent('저는 학생이에요.')
+    expect(await screen.findByRole('region', { name: 'Phrases' }, { timeout: 5000 })).toHaveTextContent('haksaengieyo')
     await markParallelStudied('ko', 1)
     expect(await db.lessons.get('ko:lesson:1')).toBeDefined()
     expect(await db.lessons.get('ja:lesson:1')).toBeUndefined()
@@ -145,11 +149,49 @@ describe('revert safety', () => {
   })
 
   it('Chinese screens are unchanged with the setting Off: no extra line, no parallel data loaded', async () => {
-    window.location.hash = '#lessons'
+    window.location.hash = '#lessons/list'
     render(<App />)
     await screen.findByRole('region', { name: 'Chinese lessons' }, { timeout: 5000 })
     expect(screen.queryByTestId('other-languages')).toBeNull()
     expect(screen.queryByRole('group', { name: 'Current language' })).toBeNull()
     expect(loadedParallel('ja')).toBe(false)
+  })
+
+  it('the Japanese New panel previews the next lesson with readings in the pinyin slot and Start opens it', async () => {
+    const { savePreferences } = await import('../core/learning')
+    await savePreferences({ currentLanguage: 'ja', startedTracks: ['ja'] })
+    window.location.hash = '#lessons'
+    render(<App />)
+    const panel = await screen.findByRole('region', { name: 'New items' }, { timeout: 5000 })
+    await waitFor(() => expect(panel.querySelector('.study-preview li')).not.toBeNull())
+    expect(panel.querySelector('ruby.mandarin-word rt')).not.toBeNull()
+    expect(within(panel).getByRole('link', { name: 'Start new Japanese items' })).toHaveAttribute('href', '#lessons/ja/1')
+  })
+
+  it('Practice offers the Japanese curriculum with New items, Reviews, View items and Start', async () => {
+    const { savePreferences } = await import('../core/learning')
+    await savePreferences({ currentLanguage: 'ja', startedTracks: ['ja'] })
+    window.location.hash = '#practice'
+    const user = userEvent.setup()
+    render(<App />)
+    const panel = await screen.findByRole('region', { name: /Practise/ }, { timeout: 5000 })
+    expect(within(panel).getByRole('link', { name: 'Start Japanese practice' })).toHaveAttribute('href', '#lessons/ja/1/practise')
+    await user.click(within(panel).getByRole('button', { name: 'View items' }))
+    expect(await screen.findByLabelText('Items you will practise')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Close items' }))
+    await user.click(within(panel).getByRole('button', { name: 'Reviews' }))
+    expect(within(panel).getByRole('status')).toHaveTextContent('Nothing is due')
+  })
+
+  it('a lesson word has the Chinese menu: Practise, Ask, Hear and Write, naming the language', async () => {
+    window.location.hash = '#lessons/ko/1'
+    const user = userEvent.setup()
+    render(<App />)
+    const words = await screen.findByRole('region', { name: 'Words' }, { timeout: 5000 })
+    await user.click(within(words).getAllByRole('button', { name: 'Phrase actions' })[0])
+    expect(await screen.findByRole('button', { name: 'Practise' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Write' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Ask' }))
+    await waitFor(async () => expect((await db.assistantThreads.toArray())[0]?.draft).toContain('Please explain this Korean passage'))
   })
 })

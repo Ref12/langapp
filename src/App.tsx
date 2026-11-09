@@ -27,6 +27,7 @@ import { Memory } from './pages/Memory'
 import { Defender } from './pages/Defender'
 import { Potions } from './pages/Potions'
 import { Dictionary } from './pages/Dictionary'
+import { LessonsList } from './pages/LessonsList'
 import { Writing } from './pages/Writing'
 import { WritingPreview } from './pages/WritingPreview'
 import { WritingSheetHost } from './components/WritingSheet'
@@ -46,7 +47,7 @@ import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } fr
 import { interruptAudio } from './core/assistant/audio-owner'
 import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsLocalSettingsImport, resetSelectedProfile } from './core/profiles/store'
 import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
-import { PinyinFormatContext } from './components/pinyin-context'
+import { PinyinFormatContext, ReadingSettingsContext } from './components/pinyin-context'
 import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
 import { BackupNow } from './components/BackupNow'
 import { useBackupBoundaries } from './components/useBackupBoundaries'
@@ -96,6 +97,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
   if (page === 'lessons' && (id === 'ja' || id === 'ko') && /^[1-9]\d*$/.test(lessonPage ?? '') && lessonAction === 'practise') return <ParallelPractice key={id + lessonPage} {...props} language={id} lesson={Number(lessonPage)} />
   if (page === 'lessons' && (id === 'ja' || id === 'ko') && lessonPage) return /^[1-9]\d*$/.test(lessonPage) ? <ParallelLessonView {...props} language={id} number={Number(lessonPage)} /> : <NotFound />
   if (page === 'lessons' && id === 'group' && lessonPage) return <GroupDetail {...props} id={lessonPage} />
+  if (page === 'lessons' && id === 'list') return <LessonsList {...props} />
   if (page === 'lessons') return <Study {...props} />
   if (page === 'curriculum') return <Lessons {...props} />
   if (page === 'level') {
@@ -214,7 +216,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><BackupNow />
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>
         </>
-  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -249,7 +251,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></OtherLanguageSetting.Provider></PinyinFormatContext.Provider>
+  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></OtherLanguageSetting.Provider></ReadingSettingsContext.Provider></PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

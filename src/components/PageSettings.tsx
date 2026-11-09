@@ -47,6 +47,10 @@ export function PageSettingsButton({ route, label, page, workspace, busy, run }:
             <select value={preferences.defaultSpeechRate ?? 1} disabled={busy}
               onChange={event => void run(() => savePreferences({ defaultSpeechRate: Number(event.target.value) as SpeechRate }))}>
               {RATES.map(rate => <option key={rate} value={rate}>{rate}x</option>)}</select></label>
+          <label className="page-settings-field">Japanese reading format
+            <select value={preferences.japaneseReading ?? 'romaji'} disabled={busy}
+              onChange={event => void run(() => savePreferences({ japaneseReading: event.target.value === 'kana' ? 'kana' : 'romaji' }))}>
+              <option value="romaji">Romaji</option><option value="kana">Kana</option></select></label>
           <label className="page-settings-field">Show other languages on cards
             <select value={preferences.otherLanguageCards ?? 'off'} disabled={busy}
               onChange={event => void run(() => savePreferences({ otherLanguageCards: event.target.value as 'off' | 'ja' | 'ko' | 'both' }))}>

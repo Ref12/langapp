@@ -101,7 +101,8 @@ describe('dictionary languages', () => {
     await start('学生', 'ja')
     render(<Harness />)
     const card = await screen.findByRole('article', { name: 'Word 学生' })
-    expect(card).toHaveTextContent('がくせい')
+    // the reading sits in the pinyin slot (romaji by default), not as a separate kana line
+    expect(card.querySelector('ruby.mandarin-word rt')).toHaveTextContent('gakusei')
     expect(card).toHaveTextContent('N5')
     expect(card.querySelector('ruby')).not.toBeNull()
     expect(within(card).getByRole('button', { name: 'Hear 学生' })).toBeInTheDocument()
@@ -159,7 +160,7 @@ describe('dictionary languages', () => {
     expect(screen.getByRole('article', { name: 'Word 学生' })).toBeInTheDocument()
   })
 
-  it('shows Japanese and Korean lesson phrases with the Chinese original, and a note on Characters', async () => {
+  it('shows Japanese and Korean lesson phrases with the Chinese original, and a Korean Characters list', async () => {
     await start('', 'ja')
     window.location.hash = 'dictionary/phrases/all?lang=ja&q=' + encodeURIComponent('学生')
     render(<Harness />)
@@ -168,7 +169,8 @@ describe('dictionary languages', () => {
     cleanup()
     window.location.hash = 'dictionary/characters/all?lang=ko'
     render(<Harness />)
-    expect(await screen.findByTestId('characters-note')).toHaveTextContent('Chinese only')
+    expect(await screen.findByTestId('other-characters-ko')).toBeInTheDocument()
+    expect(screen.queryByTestId('characters-note')).toBeNull()
   })
 
   it('indexes a language quickly and ranks form, reading and meaning', async () => {

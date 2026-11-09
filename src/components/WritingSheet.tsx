@@ -29,7 +29,7 @@ function WritingSheet({ request, ...props }: PageProps & { request: NonNullable<
       </div>
     </header>
     <div className="practice-playlist-content writing-overlay-content">
-      <WritingStage {...props} character={request.word[index]} word={request.word} index={index} remember={request.remember}
+      <WritingStage {...props} language={request.language} character={request.word[index]} word={request.word} index={index} remember={request.remember}
         onBack={request.fromList ? closeWritingSheet : undefined} onGo={setIndex} onFinish={closeWritingSheet} />
     </div>
   </dialog>, document.body)

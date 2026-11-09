@@ -54,9 +54,9 @@ describe('tracks', () => {
     expect(rows[2].completedAt).toBe(Date.UTC(2026, 0, 3))
   })
 
-  it('renders on #lessons with titles from the items, Done/Next statuses and the Next row', async () => {
+  it('renders on #lessons/list with titles from the items, Done/Next statuses and the Next row', async () => {
     await introduce(2)
-    window.location.hash = '#lessons'
+    window.location.hash = '#lessons/list'
     render(<App />)
     expect(await screen.findByTestId('track-header')).toHaveTextContent('Chinese')
     const list = await screen.findByRole('region', { name: 'Chinese lessons' })
@@ -72,7 +72,7 @@ describe('tracks', () => {
   it('renders rows only for the band holding Next; other bands are one collapsed header until expanded', async () => {
     const user = userEvent.setup()
     await introduce(2)
-    window.location.hash = '#lessons'
+    window.location.hash = '#lessons/list'
     render(<App />)
     const list = await screen.findByRole('region', { name: 'Chinese lessons' })
     const bands = within(list).getAllByRole('button')

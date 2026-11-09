@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
-import { loadParallel, resetParallel, type ParallelLanguage } from '../core/parallel/data'
+import { loadParallel, resetParallel, type ParallelLanguage, glossOf } from '../core/parallel/data'
 import { parallelKnown } from '../core/parallel/practice'
 
 beforeEach(async () => { localStorage.clear(); resetParallel(); await db.delete(); await db.open(); await initializeWorkspace() })
@@ -28,7 +28,7 @@ async function play(user: User, language: ParallelLanguage) {
       const text = document.querySelector('.practice-prompt.native')?.textContent ?? ''
       const entry = Object.values(data.entries).find(item => text.includes(item.target) && lesson.words.some(word => data.entries[word.entry] === item))
       let right = -1
-      if (entry) right = [...options].findIndex(option => (option.closest('label')?.textContent ?? '').trim() !== '' && entry.english.toLowerCase().includes((option.closest('label')?.textContent ?? '').replace(/\u2026$/, '').trim().toLowerCase().slice(0, 12)))
+      if (entry) right = [...options].findIndex(option => (option.closest('label')?.textContent ?? '').trim() !== '' && glossOf(entry).toLowerCase().includes((option.closest('label')?.textContent ?? '').replace(/\u2026$/, '').trim().toLowerCase().slice(0, 12)))
       await user.click(options[right >= 0 ? right : 0])
       await user.click(screen.getByRole('button', { name: 'Check answer' }))
       await user.click(screen.getByRole('button', { name: 'Next' }))
@@ -40,7 +40,7 @@ async function play(user: User, language: ParallelLanguage) {
       for (const cell of left) {
         const word = Object.values(data.entries).find(item => (cell.textContent ?? '').startsWith(item.target))
         await user.click(cell)
-        const target = rightCol().find(button => !button.hasAttribute('disabled') && word && word.english.toLowerCase().includes((button.textContent ?? '').toLowerCase().slice(0, 10)))
+        const target = rightCol().find(button => !button.hasAttribute('disabled') && word && glossOf(word).toLowerCase().includes((button.textContent ?? '').toLowerCase().slice(0, 10)))
         await user.click(target ?? rightCol().find(button => !button.hasAttribute('disabled'))!)
       }
       await user.click(screen.getByRole('button', { name: 'Next' }))

@@ -69,7 +69,7 @@ export function sameWordIn(language: ParallelLanguage, word: DictWord, data: Par
     seen.add(sense.entry)
     const entry = otherData.entries[sense.entry]
     const full = lookup(other, sense.entry)
-    if (entry) found.push({ language: other, form: entry.target, reading: entry.reading, gloss: shortGloss(full?.meaning ?? entry.english), href: searchHref(entry.target, other), basis: 'lesson' })
+    if (entry) found.push({ language: other, form: entry.target, reading: entry.reading, gloss: entry.gloss ?? shortGloss(full?.meaning ?? entry.english), href: searchHref(entry.target, other), basis: 'lesson' })
   }
   return found
 }

@@ -57,6 +57,14 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
         <option value="marks-and-numbers">Tone marks and numbers — wǒ3</option>
         <option value="numbers">Tone numbers — wo3</option>
       </select></label>
+      <label>Japanese reading format<select disabled={busy} value={workspace.preferences.japaneseReading ?? 'romaji'} onChange={event => {
+        const japaneseReading = event.target.value === 'kana' ? 'kana' : 'romaji'
+        void run(() => savePreferences({ japaneseReading }))
+      }}>
+        <option value="romaji">Romaji — gakusei</option>
+        <option value="kana">Kana — がくせい</option>
+      </select></label>
+      <p className="small muted">Japanese readings sit where pinyin does, and Korean shows Revised Romanization there (haksaeng). Both follow the pinyin switch above.</p>
       <p className="small muted">Applies immediately to displayed pinyin throughout this profile, including saved Assistant replies and practice. Numbered formats use 5 for the neutral tone. This does not change saved pronunciation, speech, or when pinyin is hidden.</p>
       {pinyinSetup === 'error' && <p className="connection-error" role="alert">Local pinyin settings could not be loaded. Check default.yaml and browser storage, or choose a format here.</p>}
       <p className="small muted">Vocabulary in lessons, meaning practice, reading, and the dictionary shows pinyin until it reaches Learned: unaided correct answers on three separate days across both recognition activities. Character-selection questions hide pinyin until the answer is revealed or checked. A miss or revealed answer brings pronunciation support back. Revealing an answer is still recorded as assistance.</p>

@@ -5,8 +5,9 @@ import { lessonsTeaching, phrasesUsing, sameWordIn, type SameWord } from '../../
 import type { Catalog } from '../../core/study/catalog'
 import { ParallelHear } from '../ParallelHear'
 import { ParallelStrokes } from '../ParallelStrokes'
-import { Form } from '../../pages/ParallelLessonView'
+import { Form } from '../ParallelForm'
 import { loadDictionary } from '../../core/dictionary/other'
+import { languageName } from '../../core/characters/language'
 
 /** The small 中 / 日 / 한 tag on a result. */
 export const LanguageTag = ({ language }: { language: 'zh' | ParallelLanguage }) =>
@@ -64,11 +65,10 @@ export function OtherWordCard({ word, language, known, catalog, tag, open: initi
     <div className="card-topline"><span className="eyebrow">Vocabulary / {word.level ?? 'Lesson word'}</span>{known && <span className="tag">In your knowledge set</span>}</div>
     <div className="phrase-row"><div className="phrase-row-text">
       <h3 className="word-native"><Form text={word.form} reading={word.reading} language={language} /></h3>
-      {word.reading && word.reading !== word.form && !(language === 'ja' && /\p{Script=Han}/u.test(word.form)) && <p className="small muted" lang={language}>{word.reading}</p>}
       {word.hanja && <p className="small muted" lang="ko">{word.hanja}</p>}
       <p className="word-meaning">{meanings.slice(0, open ? meanings.length : 2).join('; ')}{!open && meanings.length > 2 ? ' ...' : ''}</p>
       {word.pos && <p className="small muted" data-testid="word-pos">{word.pos}</p>}
-    </div><ParallelHear text={word.form} language={language} label={'Hear ' + word.form} /></div>
+    </div><ParallelHear text={word.form} language={language} label={'Hear ' + word.form} actions={{ meaning: word.meaning, title: languageName[language] + ' word', route: 'dictionary' }} /></div>
     <button type="button" className="text-link small" aria-expanded={open} onClick={() => setOpen(value => !value)}>{open ? 'Hide details' : 'Show details'}</button>
     {open && <WordDetails word={word} language={language} catalog={catalog} />}
   </article>
