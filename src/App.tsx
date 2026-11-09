@@ -55,8 +55,10 @@ import './App.css'
 import './components/assistant/assistant.css'
 import { UpdateBar } from './components/UpdateBar'
 import { GroupDetail } from './pages/GroupDetail'
+import { ParallelLessonView } from './pages/ParallelLessonView'
+import { OtherLanguageSetting } from './components/study/other-language-setting'
 import { LanguageSwitch } from './components/LanguageSwitch'
-import { currentLanguageOf, tracks } from './data/tracks'
+import { currentLanguageOf, startedTracks } from './data/tracks'
 
 const navigation = [
   { id: 'overview', label: 'Overview', icon: Home },
@@ -89,6 +91,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
     const session = props.workspace.exerciseSessions.find(item => item.id === lessonPage)
     return session ? <StudySessionPage {...props} session={session} /> : <NotFound />
   }
+  if (page === 'lessons' && (id === 'ja' || id === 'ko') && lessonPage) return /^[1-9]\d*$/.test(lessonPage) ? <ParallelLessonView {...props} language={id} number={Number(lessonPage)} /> : <NotFound />
   if (page === 'lessons' && id === 'group' && lessonPage) return <GroupDetail {...props} id={lessonPage} />
   if (page === 'lessons') return <Study {...props} />
   if (page === 'curriculum') return <Lessons {...props} />
@@ -208,7 +211,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><BackupNow />
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>
         </>
-  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -225,7 +228,7 @@ function WorkspaceApp() {
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
-        <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><LanguageSwitch tracks={tracks} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
+        <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><LanguageSwitch tracks={startedTracks(preferences)} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <PageActionsMenu />
@@ -243,7 +246,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></PinyinFormatContext.Provider>
+  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></OtherLanguageSetting.Provider></PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

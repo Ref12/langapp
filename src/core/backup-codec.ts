@@ -12,6 +12,7 @@ import { phraseHeardBackupSchema, userPhrasesBackupSchema, type PhraseHeard, typ
 import { collectionsBackupSchema, type CollectionsBackup } from './collections/contracts'
 import { librarySchema, type LibraryBook } from './library/contracts'
 import { pinyinFormatSchema } from './pinyin'
+import { isParallelLessonId } from './parallel/data'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()
@@ -43,6 +44,8 @@ export const workspaceSchema = z.object({
     characterWriteFilter: z.enum(['all', 'can', 'not']).optional(),
     pinyinFormat: pinyinFormatSchema.optional(),
     currentLanguage: z.string().regex(/^[a-z]{2,3}$/).optional(),
+    startedTracks: z.array(z.enum(['ja', 'ko'])).max(2).optional(),
+    otherLanguageCards: z.enum(['off', 'ja', 'ko', 'both']).optional(),
   }).strict(),
   words: z.array(z.object({
     wordId: z.string(), language: z.literal('zh-Hans'), introducedAt: time, introducedFrom: z.string().max(200),
@@ -138,7 +141,7 @@ function unique(values: unknown[], label: string) {
 }
 
 function validateLessonReference(id: string) {
-  if (!retiredLessonIds.includes(id)) getLesson(id)
+  if (!retiredLessonIds.includes(id) && !isParallelLessonId(id)) getLesson(id)
 }
 
 export function validateAssistant(assistant: AssistantBackup) {

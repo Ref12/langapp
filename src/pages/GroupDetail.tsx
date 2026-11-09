@@ -18,7 +18,7 @@ export function GroupDetail({ workspace, now, run, busy, id }: PageProps & { id:
     <PageHeading eyebrow={`HSK ${band} / LESSON ${number}`} title={`HSK ${band}, lesson ${number}`}>{group.units.length} items{group.examples.length ? ` and ${group.examples.length} examples` : ''}.</PageHeading>
     <section aria-label="Items">{group.units.map(unit => {
       const resolved = catalog.units.get(unit.kind === 'vocabulary' ? `vocabulary:${unit.ref}` : `grammar:${unit.ref}`)
-      return resolved ? <UnitCard key={resolved.ref} catalog={catalog} unit={resolved} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={route} hideStatus compact /> : null
+      return resolved ? <UnitCard key={resolved.ref} catalog={catalog} unit={resolved} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={route} hideStatus compact otherLines /> : null
     })}</section>
     {group.examples.length > 0 && <section aria-label="Examples"><h2>Examples</h2>
       {group.examples.map(example => <ExampleLine key={example.id} catalog={catalog} example={example} pinyin={workspace.preferences.pinyin} />)}</section>}

@@ -24,7 +24,9 @@ import { PHASE_LABEL, phaseAt } from '../core/collections/phases'
 import { useStudyActions } from './useStudyActions'
 import { LessonList } from '../components/LessonList'
 import { TrackHeader } from '../components/TrackHeader'
-import { currentLanguageOf, tracks, trackFor } from '../data/tracks'
+import { ParallelLessonList } from '../components/ParallelLessonList'
+import { startTrack } from '../core/parallel/progress'
+import { currentLanguageOf, startedTracks, tracks, trackFor } from '../data/tracks'
 import { isGenerating } from '../core/study/generation'
 import { retryGeneration } from '../core/study/retry'
 
@@ -32,6 +34,7 @@ import { retryGeneration } from '../core/study/retry'
 export function Study({ workspace, now, run, busy }: PageProps) {
   const { catalog, error, connection, known, due, rows, curriculumOpen, next, progress, start } = useStudyActions({ workspace, now, run })
   const track = trackFor(currentLanguageOf(workspace.preferences))
+  const [moreTracks, setMoreTracks] = useState(false)
   return <>
     <PageHeading eyebrow="NEW OR REVIEW" title="Learn something new, or keep what you know.">Pick up the next items in the curriculum, or review what is due. The exercises for each session are written by your connected AI model and checked against your knowledge set.</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
@@ -64,9 +67,10 @@ export function Study({ workspace, now, run, busy }: PageProps) {
         </div>
       </section>
     </div>
-    <TrackHeader tracks={tracks} current={track} started={item => item.id === track.id}
-      onSelect={item => void run(() => savePreferences({ currentLanguage: item.language }))} />
-    <LessonList track={track} catalog={catalog} knowledge={workspace.knowledge} nextId={next?.group.id} nextBand={next?.band} />
+    <TrackHeader tracks={tracks} current={track} all={moreTracks} started={item => startedTracks(workspace.preferences).some(other => other.id === item.id)}
+      onMore={() => setMoreTracks(true)} onSelect={item => void run(() => startTrack(item.language))} />
+    {track.parallel ? <ParallelLessonList track={track} catalog={catalog} workspace={workspace} />
+      : <LessonList track={track} catalog={catalog} knowledge={workspace.knowledge} nextId={next?.group.id} nextBand={next?.band} />}
     {!workspace.knowledge.length && <EmptyState title="Your knowledge set is empty"><p>Start with New to add the first curriculum group, or add items yourself from the Dictionary.</p><a href="#dictionary" className="button secondary">Open Dictionary</a></EmptyState>}
     <p className="page-footnote">Adding an item to your knowledge set only makes it eligible for review. Session results record practice, not proficiency or examination readiness.</p>
   </>
@@ -195,7 +199,7 @@ function CollectionIntroduction({ catalog, session, workspace, run, busy, now, b
   const newWords = words.filter(unit => !wellKnown(unit.ref)), knownWords = words.filter(unit => wellKnown(unit.ref))
   const lines = session.targetRefs.filter(isPhraseRef)
   const card = (unit: Unit, compact = false) => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={cardOf(unit.ref)} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy}
-    route={`lessons/session/${session.id}`} hideStatus compact={compact} />
+    route={`lessons/session/${session.id}`} hideStatus compact={compact} otherLines />
   return <>
     <a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
     <PageHeading eyebrow="COLLECTION LESSON" title="Learn the line.">Words first, then grammar, then the line itself.</PageHeading>
@@ -239,7 +243,7 @@ function SessionIntroduction({ catalog, session, workspace, run, busy, now, begi
       {session.mode === 'new' ? 'Read each item and its examples, then try the exercises. Items you saw in recent sessions are mixed in.' : 'These items are due according to your review schedule.'}
     </PageHeading>
     <div className="word-grid">{units.map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))}
-      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus />)}</div>
+      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus otherLines />)}</div>
     <StartFooter session={session} run={run} busy={busy} begin={begin} />
   </>
 }
@@ -390,7 +394,7 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
       </section>
       <h2>Items in this session</h2>
       <div className="word-grid">{units.map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))}
-        pinyin={workspace.preferences.pinyin} now={props.now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus />)}</div>
+        pinyin={workspace.preferences.pinyin} now={props.now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus otherLines />)}</div>
       <RedoPanel sessionId={session.id} run={run} busy={busy} />
     </>
   }

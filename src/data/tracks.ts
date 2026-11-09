@@ -12,6 +12,8 @@ export interface Track {
   glyph: string
   /** The v2 bands (HSK 1, 2, ...) this track's study groups come from, in order. */
   bands: Band[]
+  /** A track that follows the Chinese lessons (Japanese, Korean): its lessons come from the parallel data, not the v2 groups. */
+  parallel?: boolean
 }
 
 export const DEFAULT_LANGUAGE = 'zh'
@@ -19,8 +21,16 @@ export const DEFAULT_LANGUAGE = 'zh'
 /** The Chinese course: the v2 study groups New items works through. */
 export const zhTrack: Track = { id: 'zh', language: 'zh', name: 'Chinese', glyph: '\u4E2D', bands: ['1', '2', '3', '4', '5', '6'] }
 
-/** Every track the app ships. Chinese is the only one for now. */
-export const tracks: Track[] = [zhTrack]
+/** Japanese and Korean run alongside the Chinese v2 HSK 1 lessons: 87 lessons each, their data loaded lazily (core/parallel). */
+export const jaTrack: Track = { id: 'ja', language: 'ja', name: 'Japanese', glyph: '\u65E5', bands: ['1'], parallel: true }
+export const koTrack: Track = { id: 'ko', language: 'ko', name: 'Korean', glyph: '\uD55C', bands: ['1'], parallel: true }
+
+/** Every track the app ships. */
+export const tracks: Track[] = [zhTrack, jaTrack, koTrack]
+
+/** The tracks the learner has started: Chinese always, then each parallel track opened so far. */
+export const startedTracks = (preferences: Pick<Preferences, 'startedTracks'>): Track[] =>
+  tracks.filter(track => !track.parallel || (preferences.startedTracks ?? []).some(language => language === track.language))
 
 export function currentLanguageOf(preferences: Pick<Preferences, 'currentLanguage'>): string {
   return preferences.currentLanguage ?? DEFAULT_LANGUAGE

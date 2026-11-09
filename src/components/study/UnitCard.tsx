@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useContext, type ReactNode } from 'react'
 import { Check, Plus } from 'lucide-react'
 import { addToKnowledge } from '../../core/study/knowledge'
 import { renderExample, type AuthoredExample, type Catalog, type Unit } from '../../core/study/catalog'
@@ -11,6 +11,8 @@ import type { AddedByIndex } from '../../core/study/addedby'
 import { AddedByLine } from './AddedByLine'
 import { SkillCounts } from './SkillCounts'
 import { useWriteLongPress } from './useWriteLongPress'
+import { OtherLanguageLines } from './OtherLanguageLines'
+import { OtherLanguageSetting, languagesFor } from './other-language-setting'
 
 export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Catalog; example: Omit<AuthoredExample, 'id'>; pinyin: boolean; route?: string; actions?: ReactNode }) {
   const rendered = renderExample(catalog, example)
@@ -23,7 +25,7 @@ export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Ca
   return <div className="study-example">{actions ? <div className="phrase-row"><div className="phrase-row-text">{text}</div>{actions}</div> : text}</div>
 }
 
-export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false, entry, addedIndex, phrases }: {
+export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false, entry, addedIndex, phrases, otherLines = false }: {
   catalog: Catalog; unit: Unit; card?: StudyCard; pinyin: boolean; now?: number; examples?: Omit<AuthoredExample, 'id'>[]
   run: (operation: () => Promise<void>) => Promise<void>; busy: boolean; route: string; compact?: boolean
   /** Hide the knowledge-set state (badge and button) where it is the same for every card, e.g. a lesson's introduction. */
@@ -33,8 +35,11 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   addedIndex?: AddedByIndex
   /** A link to the phrases that use this word (the Dictionary passes it): the count once it is known. */
   phrases?: { href: string; count?: number }
+  /** Show the "Show other languages on cards" line (vocabulary only). Pass it on word and detail views, never while a practice question is open. */
+  otherLines?: boolean
 }) {
   const known = Boolean(card)
+  const other = languagesFor(useContext(OtherLanguageSetting))
   const press = useWriteLongPress()
   const title = unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt
   const own = unit.kind === 'grammar' ? [unit.record.ex] : []
@@ -48,6 +53,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
         <h3 {...(vocabulary ? press : {})} lang={vocabulary ? 'zh-Hans' : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{title}</h3>
         {pinyin && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /></p>}
         <p className="word-meaning">{unit.record.ds}</p>
+        {otherLines && vocabulary && other.length > 0 && <OtherLanguageLines senseId={unit.record.id} />}
         {phrases && vocabulary && <a className="small phrase-word-link" href={phrases.href}>{phrases.count === undefined ? 'Phrases' : `${phrases.count} ${phrases.count === 1 ? 'phrase' : 'phrases'}`}</a>}
       </div>
       {vocabulary && snippet}

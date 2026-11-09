@@ -103,7 +103,7 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
   const card = (item: ItemInfo) => {
     const unit = catalog.units.get(item.ref)
     return unit ? <UnitCard key={item.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(entry => entry.id === cardId(item.ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={now}
-      examples={examplesFor(item.ref)} run={run} busy={busy} route={setRoute(set.id, 'intro')} hideStatus />
+      examples={examplesFor(item.ref)} run={run} busy={busy} route={setRoute(set.id, 'intro')} hideStatus otherLines />
       : <article key={item.ref} className="word-card"><div className="card-topline"><span className="eyebrow">{item.kind}</span></div><h3 lang="zh-Hans" className="word-native">{item.zh}</h3>
         {item.py && <p className="study-pinyin small muted">{item.py}</p>}<p className="word-meaning">{item.en}</p></article>
   }

@@ -47,6 +47,10 @@ export function PageSettingsButton({ route, label, page, workspace, busy, run }:
             <select value={preferences.defaultSpeechRate ?? 1} disabled={busy}
               onChange={event => void run(() => savePreferences({ defaultSpeechRate: Number(event.target.value) as SpeechRate }))}>
               {RATES.map(rate => <option key={rate} value={rate}>{rate}x</option>)}</select></label>
+          <label className="page-settings-field">Show other languages on cards
+            <select value={preferences.otherLanguageCards ?? 'off'} disabled={busy}
+              onChange={event => void run(() => savePreferences({ otherLanguageCards: event.target.value as 'off' | 'ja' | 'ko' | 'both' }))}>
+              <option value="off">Off</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="both">Both</option></select></label>
           {vibration
             ? <label className="toggle"><input type="checkbox" checked={preferences.haptics !== false} disabled={busy}
               onChange={event => void run(() => savePreferences({ haptics: event.target.checked }))} /> Vibration feedback</label>

@@ -56,6 +56,10 @@ export interface Preferences {
   pinyinFormat?: PinyinFormat
   /** Language the learner is working in (a track's language code). Absent means 'zh'; only written once a second track exists. */
   currentLanguage?: string
+  /** Parallel tracks the learner has opened ('ja', 'ko'). Absent means none. */
+  startedTracks?: ('ja' | 'ko')[]
+  /** Show a muted Japanese and/or Korean line on Chinese vocabulary cards. Absent means off. */
+  otherLanguageCards?: 'off' | 'ja' | 'ko' | 'both'
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences
