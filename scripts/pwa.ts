@@ -9,7 +9,8 @@ import type { Plugin } from 'vite'
  */
 export function pwa(): Plugin {
   // One id per build: baked into the bundle (`__APP_BUILD__`) and published as version.json, so a running tab can tell whether a newer deploy exists.
-  const build = Date.now().toString(36)
+  // LANGAPP_BUILD_ID (the workflow sets it to the checkout's commit sha) makes a rebuild of the same commit identical; local builds stay unique.
+  const build = process.env.LANGAPP_BUILD_ID?.trim() || Date.now().toString(36)
   return {
     name: 'langapp-pwa',
     apply: 'build',
@@ -35,13 +36,13 @@ export function pwa(): Plugin {
           icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
         }, null, 2),
       })
-      this.emitFile({ type: 'asset', fileName: 'sw.js', source: serviceWorker(Array.from(new Set(precache))) })
+      this.emitFile({ type: 'asset', fileName: 'version.json', source: JSON.stringify({ build }) })
+      this.emitFile({ type: 'asset', fileName: 'sw.js', source: serviceWorker(Array.from(new Set(precache)), build) })
     },
   }
 }
 
-function serviceWorker(precache: string[]): string {
-  const version = Date.now().toString(36)
+function serviceWorker(precache: string[], version: string): string {
   return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB.
 // Stable's own cache names. Today's main used 'linguaweave-shell-*' and 'linguaweave-runtime': Stable never reads or writes those, and deletes them once it activates (see LEFTOVER). Lab's caches all start with 'lab.' and are never touched.
 const CACHE = 'linguaweave-stable-shell-${version}'
@@ -74,6 +75,8 @@ self.addEventListener('fetch', event => {
   if (url.pathname.endsWith('/sw.js')) return
   // The Lab build is published under lab/ with its own worker: Stable never handles, serves or caches anything there.
   if (['lab', 'lab/'].some(p => url.pathname === new URL(p, scope).pathname || url.href.startsWith(new URL('lab/', scope).href))) return
+  // version.json is how a stale tab learns about a newer deploy: always from the network, never stored.
+  if (url.pathname.endsWith('/version.json')) return
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).catch(() => caches.open(CACHE).then(shell => shell.match(scope, { ignoreSearch: true }).then(hit => hit || shell.match(scope + 'index.html')))))
     return
