@@ -168,6 +168,14 @@ describe.each([['ja', jaParallel], ['ko', koParallel]] as const)('retagged %s pa
     expect(tagged.length).toBeGreaterThan(600)
     for (const token of tagged) if (token.w) expect(data.entries[token.w]?.class).toBeTruthy()
   })
+  it('keeps one item per irregular form however the lemma is spelled (する / 為る, くる / 来る)', () => {
+    const ids = Object.keys(data.formItems)
+    if (language === 'ja') {
+      expect(ids.filter(id => /為る|来る/.test(id))).toEqual([])
+      expect(ids).toContain('ja:f:する:masu')
+      expect(ids.filter(id => id.startsWith('ja:f:する:masu'))).toHaveLength(1)
+    }
+  })
   it('lists each irregular form item in the lesson where it first appears', () => {
     const firsts = new Map<string, number>()
     for (const lesson of data.lessons) for (const id of lesson.forms ?? []) firsts.set(id, lesson.number)

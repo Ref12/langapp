@@ -95,7 +95,8 @@ export function analysePhrases(engine, lessons, vocabulary, classes) {
         if (best.forms.length > 1) { ambiguous.push({ lesson: lesson.number, phrase: phrase.id, token: index, lemma: entry.target, surface: best.surface, forms: best.forms }); return }
         const form = best.forms[0]
         const item = engine.irregular(candidate.lemma, candidate.cls, form, opts)
-        tagged.push({ lesson: lesson.number, phrase: phrase.id, token: index, id: token.w, lemma: entry.target, formLemma: candidate.lemma, formClass: candidate.cls, formReading: candidate.reading ?? '', class: info.class, form, span: best.k, surface: best.surface, grammar: engine.grammarOf(form, candidate.cls), item: item ? formItemId(language, candidate.lemma, form) : null })
+        const canonical = engine.rules.canonical?.[candidate.lemma] ?? candidate.lemma
+        tagged.push({ lesson: lesson.number, phrase: phrase.id, token: index, id: token.w, lemma: entry.target, formLemma: candidate.lemma, formClass: candidate.cls, formReading: candidate.reading ?? '', class: info.class, form, span: best.k, surface: best.surface, grammar: engine.grammarOf(form, candidate.cls), item: item ? formItemId(language, canonical, form) : null, ...(item && canonical !== candidate.lemma ? { itemLemma: canonical } : {}) })
         return
       }
       const written = token.t

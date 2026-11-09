@@ -133,6 +133,9 @@ lemmas:
   i-adj-ii-suffix: [かっこいい, 格好いい, 恰好いい]
   kuru-suffix: [来る, くる, 來る]
 
+# One lemma per word for the irregular form items: a spelling (為る, 来る) is an item of its kana lemma (する, くる), so ja:f:する:masu is one item however the lesson spells it.
+canonical: { 為る: する, 来る: くる, 來る: くる }
+
 # Dictionary part-of-speech (JMdict wording) to class. Ordered; the first that matches wins. For godan the class comes from the last kana.
 pos:
   - { match: "Iku/Yuku", class: godan-iku }

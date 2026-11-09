@@ -265,9 +265,13 @@ export function analyseForms(code, lessons, taught, data, references, base = roo
     if (!phraseItems.has(key)) phraseItems.set(key, new Set())
     phraseItems.get(key).add(tag.item)
     if (!items[tag.item] || items[tag.item].lesson > tag.lesson) {
-      const made = engine.forms(tag.formLemma, tag.formClass, tag.form, code === 'ja' && tag.formReading ? { reading: tag.formReading } : {})
-      items[tag.item] = { lemma: tag.formLemma, form: tag.form, class: tag.formClass, entry: tag.id, surface: made.surface, ...(made.reading ? { reading: made.reading } : {}), lesson: tag.lesson }
+      const spellings = items[tag.item]?.spellings ?? []
+      const lemma = tag.itemLemma ?? tag.formLemma
+      const reading = lemma === tag.formLemma ? tag.formReading : lemma
+      const made = engine.forms(lemma, tag.formClass, tag.form, code === 'ja' && reading ? { reading } : {})
+      items[tag.item] = { lemma, form: tag.form, class: tag.formClass, entry: tag.id, surface: made.surface, ...(made.reading ? { reading: made.reading } : {}), lesson: tag.lesson, spellings }
     }
+    if (tag.item && !items[tag.item].spellings.includes(tag.formLemma) && tag.formLemma !== items[tag.item].lemma) items[tag.item].spellings.push(tag.formLemma)
   }
   const lostStrict = []
   for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) {
