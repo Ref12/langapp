@@ -59,6 +59,13 @@ describe('assembleSite', () => {
     await fails(await build('s', { ...stableFiles, 'lab/index.html': 'x' }), lab, /already contains a 'lab' entry/)
     await fails(await build('s3', { ...stableFiles, 'v1/index.html': 'x' }), lab, /v1\//)
   })
+  it('refuses an output folder inside either input', async () => {
+    const stable = await build('s', stableFiles)
+    const lab = await build('l', labFiles)
+    await expect(assembleSite(stable, lab, join(stable, 'site'))).rejects.toThrow(/outside both inputs/)
+    await expect(assembleSite(stable, lab, join(lab, 'a', 'site'))).rejects.toThrow(/outside both inputs/)
+    expect(await readdir(stable)).not.toContain('site')
+  })
   it('refuses a non-empty output folder', async () => {
     await build('site', { 'keep.txt': 'x' })
     await expect(assembleSite(await build('s', stableFiles), await build('l', labFiles), out())).rejects.toThrow(/not empty/)

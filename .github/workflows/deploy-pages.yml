@@ -32,6 +32,8 @@ jobs:
       - name: Test published app and supported curricula
         run: npm run test:pages
       - name: Build the app (with PWA manifest and service worker)
+        env:
+          LANGAPP_BUILD_ID: ${{ github.sha }}
         run: npm run build
 
       # Checked out after Lab's lint and tests so they never see Stable's files.
@@ -51,6 +53,9 @@ jobs:
         working-directory: stable-src
         run: |
           npm ci
+          # The same Stable commit gives the same files, so a push to main does not make an open Stable tab show "App updated".
+          LANGAPP_BUILD_ID=$(git rev-parse HEAD)
+          export LANGAPP_BUILD_ID
           npm run build
       - name: Assemble the site (Stable at the root, Lab under lab/)
         run: node scripts/assemble-site.mjs stable-src/dist dist site

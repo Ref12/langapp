@@ -56,3 +56,37 @@ describe('PWA plugin, lab channel', () => {
     expect(JSON.parse(out['manifest.webmanifest']).scope).toBe('./')
   })
 })
+
+describe('PWA plugin, build id and version.json', () => {
+  const emit = async (id: string | undefined) => {
+    const saved = process.env.LANGAPP_BUILD_ID
+    if (id === undefined) delete process.env.LANGAPP_BUILD_ID; else process.env.LANGAPP_BUILD_ID = id
+    try { return await build({ 'index.html': {}, 'assets/index-a.js': {} }) } finally { if (saved === undefined) delete process.env.LANGAPP_BUILD_ID; else process.env.LANGAPP_BUILD_ID = saved }
+  }
+  const workerFile = (out: Record<string, string>) => Object.keys(out).find(name => /^sw(-lab)?\.js$/.test(name)) as string
+
+  it('takes the id from LANGAPP_BUILD_ID, so the same commit builds the same files, and publishes it as version.json', async () => {
+    const [a, b, other] = [await emit('abc123'), await emit('abc123'), await emit('def456')]
+    expect(JSON.parse(a['version.json'])).toEqual({ build: 'abc123' })
+    expect(a).toEqual(b)
+    expect(a[workerFile(a)]).not.toEqual(other[workerFile(other)])
+  })
+
+  it('keeps unique ids for local builds without the variable', async () => {
+    const id = JSON.parse((await emit(undefined))['version.json']).build
+    expect(id).toMatch(/^[a-z0-9]+$/)
+  })
+
+  it('passes version.json straight to the network and never stores it', async () => {
+    const out = await emit('abc123')
+    const handlers = new Map<string, (event: unknown) => void>()
+    runInNewContext(out[workerFile(out)], { self: { addEventListener: (n: string, h: (event: unknown) => void) => handlers.set(n, h), registration: { scope: 'https://x.test/apps/lang/' } }, URL, fetch: async () => ({ ok: false }), caches: { open: async () => ({ match: async () => undefined, put: () => undefined }), match: async () => undefined }, location: { origin: 'https://x.test' } })
+    const answered: string[] = []
+    const ask = (path: string) => handlers.get('fetch')!({ request: { method: 'GET', url: 'https://x.test/apps/lang/' + path, mode: 'cors' }, respondWith: () => answered.push(path) })
+    ask('version.json?1731192000000')
+    ask('version.json')
+    expect(answered).toEqual([])
+    ask('assets/index-a.js')
+    expect(answered).toEqual(['assets/index-a.js'])
+  })
+})

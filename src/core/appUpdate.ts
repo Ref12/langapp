@@ -40,5 +40,9 @@ export async function reportLoadFailure(reason: unknown): Promise<boolean> {
 export function installUpdateGuard() {
   window.addEventListener('vite:preloadError', event => { event.preventDefault(); void reportLoadFailure((event as Event & { payload?: unknown }).payload ?? new Error('Failed to fetch dynamically imported module')) })
   window.addEventListener('unhandledrejection', event => { if (isChunkLoadError(event.reason)) void reportLoadFailure(event.reason) })
-  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) navigator.serviceWorker.addEventListener('controllerchange', raise)
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    // An update is the same worker file taking over. A different file taking over (the first Lab visit: the root worker controlled the page, then sw-lab.js claims it) is not.
+    const started = navigator.serviceWorker.controller.scriptURL
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (navigator.serviceWorker.controller?.scriptURL === started) raise() })
+  }
 }

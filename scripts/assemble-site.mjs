@@ -3,7 +3,7 @@
 // Each build is recognised by the service worker file it emits (src/core/storage-names.ts): Stable writes sw.js,
 // Lab writes sw-lab.js. If the root ever served the Lab build the learner's data would seem to vanish, so a mix-up fails here.
 import { cp, mkdir, readdir, rename, rm, stat } from 'node:fs/promises'
-import { dirname, join, resolve } from 'node:path'
+import { dirname, join, relative, resolve, isAbsolute } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const exists = async path => stat(path).then(() => true, () => false)
@@ -30,7 +30,8 @@ export async function checkInputs(stableDir, labDir) {
 export async function assembleSite(stableDir, labDir, outDir) {
   const [stable, lab, out] = [resolve(stableDir), resolve(labDir), resolve(outDir)]
   const problems = await checkInputs(stable, lab)
-  if (out === stable || out === lab || out.startsWith(stable + '/') || out.startsWith(lab + '/')) problems.push('The output folder must be outside both inputs')
+  const inside = (parent, child) => { const path = relative(parent, child); return path === '' || (!path.startsWith('..') && !isAbsolute(path)) }
+  if (inside(stable, out) || inside(lab, out)) problems.push('The output folder must be outside both inputs')
   if (await exists(out) && (await readdir(out).catch(() => ['?'])).length) problems.push('The output folder exists and is not empty: ' + out)
   if (problems.length) throw new Error('Cannot assemble the site:\n- ' + problems.join('\n- '))
   const staging = out + '.assembling'

@@ -11,7 +11,8 @@ import { storageNames, type BuildChannel } from '../src/core/storage-names'
 export function pwa(channel: BuildChannel = 'lab'): Plugin {
   const names = storageNames(channel)
   // One id per build: baked into the bundle (`__APP_BUILD__`) and published as version.json, so a running tab can tell whether a newer deploy exists.
-  const build = Date.now().toString(36)
+  // LANGAPP_BUILD_ID (the workflow sets it to the checkout's commit sha) makes a rebuild of the same commit identical; local builds stay unique.
+  const build = process.env.LANGAPP_BUILD_ID?.trim() || Date.now().toString(36)
   return {
     name: 'langapp-pwa',
     apply: 'build',
@@ -37,13 +38,13 @@ export function pwa(channel: BuildChannel = 'lab'): Plugin {
           icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
         }, null, 2),
       })
-      this.emitFile({ type: 'asset', fileName: names.serviceWorkerFile, source: serviceWorker(Array.from(new Set(precache)), names) })
+      this.emitFile({ type: 'asset', fileName: 'version.json', source: JSON.stringify({ build }) })
+      this.emitFile({ type: 'asset', fileName: names.serviceWorkerFile, source: serviceWorker(Array.from(new Set(precache)), names, build) })
     },
   }
 }
 
-function serviceWorker(precache: string[], names: ReturnType<typeof storageNames>): string {
-  const version = Date.now().toString(36)
+function serviceWorker(precache: string[], names: ReturnType<typeof storageNames>, version: string): string {
   return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB.
 const CACHE = ${JSON.stringify(names.cache.shell(version))}
 const CACHE_PREFIX = ${JSON.stringify(names.cache.shellPrefix)}
@@ -71,6 +72,8 @@ self.addEventListener('fetch', event => {
   // Only this scope: AI gateway calls and other origins pass through untouched.
   if (url.origin !== location.origin || !url.href.startsWith(scope)) return
   if (url.pathname.endsWith('/' + ${JSON.stringify(names.serviceWorkerFile)})) return
+  // version.json is how a stale tab learns about a newer deploy: always from the network, never stored.
+  if (url.pathname.endsWith('/version.json')) return
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).catch(() => caches.match(scope, { ignoreSearch: true }).then(hit => hit || caches.match(scope + 'index.html'))))
     return

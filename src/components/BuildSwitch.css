@@ -5,7 +5,7 @@
 .build-switch-nav .build-switch-button { flex: 1; min-width: 0; }
 .build-switch-button { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .build-switch-button:focus-visible, .build-switch-gear:focus-visible, .build-switch-menu [role^="menuitem"]:focus-visible { outline: 2px solid var(--accent, #d9a441); outline-offset: 2px; }
-.build-switch-pill .build-switch-button { gap: 6px; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.build-switch-pill .build-switch-button { display: flex; gap: 6px; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .build-switch-chevron { flex-shrink: 0; color: var(--muted, #8b949e); }
 .build-switch-gear { flex-shrink: 0; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px; color: var(--muted, #8b949e); }
 .build-switch-gear:hover { color: var(--text, inherit); background: var(--surface-raised, rgba(128,128,128,.15)); }
