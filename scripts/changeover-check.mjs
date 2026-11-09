@@ -3,7 +3,7 @@
 // Needs Playwright and Chromium: PW_DIR=<folder with node_modules/playwright> (or playwright resolvable from here).
 import { createServer } from 'node:http'
 import { createRequire } from 'node:module'
-import { readFile, stat, mkdir, rm, mkdtemp } from 'node:fs/promises'
+import { readFile, writeFile, cp, stat, mkdir, rm, mkdtemp } from 'node:fs/promises'
 import { join, extname, resolve } from 'node:path'
 import { assembleSite } from './assemble-site.mjs'
 import { tmpdir } from 'node:os'
@@ -218,6 +218,28 @@ async function suite(browser, server, dirs, base, tag, shots) {
   const finalDiff = unchanged(beforeDump, await dump(B.context, origin, base, true))
   console.log('  after Stable ran again, differences from before step 3:', finalDiff.length ? finalDiff.join('; ') : 'none')
 
+  // 4c. publish again: Stable rebuilt from the same commit, Lab changed. The open Stable tab must not notice; the open Lab tab must.
+  const stableWorker = p => p.evaluate(async path => { const body = await (await fetch(path, { cache: 'no-store' })).arrayBuffer(); return [...new Uint8Array(await crypto.subtle.digest('SHA-256', body))].map(b => b.toString(16).padStart(2, '0')).join('') }, base + 'sw.js')
+  const swBefore = await stableWorker(page)
+  await hash(page, 'overview')
+  const labTab = await B.context.newPage(); await route(labTab, origin, base + 'lab/', 'overview')
+  const marker = tab => tab.evaluate(() => document.querySelector('meta[name=changeover]')?.content ?? 'none')
+  const titleBefore = await marker(labTab)
+  server.state.dir = dirs.site2
+  for (const tab of [page, labTab]) { await tab.evaluate(() => navigator.serviceWorker.getRegistration().then(r => r?.update())).catch(() => {}) }
+  await sleep(3000)
+  L('6a open Stable tab: no update bar after Stable is rebuilt from the same commit', (await page.locator('.update-bar').count()) === 0, 'bars: ' + await page.locator('.update-bar').count())
+  L('6b Stable sw.js byte-identical to before', (await stableWorker(page)) === swBefore, swBefore.slice(0, 12))
+  L('6c open Lab tab gets the update bar', (await labTab.locator('.update-bar').count()) > 0)
+  await labTab.getByRole('button', { name: 'Reload' }).click(); await sleep(2500)
+  const titleAfter = await marker(labTab)
+  L('6d Reload brings the new Lab build (index marker ' + JSON.stringify(titleBefore) + ' -> ' + JSON.stringify(titleAfter) + ')', titleBefore === 'none' && titleAfter === 'v2')
+  L('6e ...still Lab with the same state', (await view(labTab)).build === 'Lab' && same(await view(labTab), b.seen))
+  const stillStable = await view(page)
+  L('6f Stable tab still works after the second publish', stillStable.build === 'Stable' && same(stillStable, b.seen))
+  await labTab.close()
+  server.state.dir = dirs.site
+
   // 5. offline
   await B.context.setOffline(true)
   const off = {}
@@ -253,6 +275,13 @@ if (process.argv[1] && resolve(process.argv[1]) === new URL(import.meta.url).pat
   const work = await mkdtemp(join(tmpdir(), 'changeover-'))
   dirs.site = join(work, 'site')
   await assembleSite(dirs.stable, dirs.lab, dirs.site)
+  // A throwaway second publish: Stable rebuilt from the same commit (--stable2, or the same folder), Lab with a visible change and a new build id.
+  const lab2 = join(work, 'lab2'); await cp(dirs.lab, lab2, { recursive: true })
+  await writeFile(join(lab2, 'version.json'), JSON.stringify({ build: 'lab-v2' }))
+  await writeFile(join(lab2, 'sw-lab.js'), (await readFile(join(lab2, 'sw-lab.js'), 'utf8')) + '\n// second publish\n')
+  await writeFile(join(lab2, 'index.html'), (await readFile(join(lab2, 'index.html'), 'utf8')).replace('</head>', '<meta name="changeover" content="v2"></head>'))
+  dirs.site2 = join(work, 'site2')
+  await assembleSite(resolve(arg('stable2') ?? dirs.stable), lab2, dirs.site2)
   const browser = await chromium.launch()
   try {
     for (const base of (arg('bases') ?? '/langapp/,/apps/lang/').split(',')) {
