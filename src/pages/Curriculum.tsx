@@ -3,36 +3,10 @@ import { curriculum, curriculumLevels, curriculumProgress, nextCurriculumLesson,
 import { getLesson } from '../data/mandarin'
 import { PageHeading, type PageProps } from '../components/shared'
 import { lessonDefinitions } from '../data/learning-content'
-import { savePreferences } from '../core/learning'
-import { TrackHeader } from '../components/TrackHeader'
-import { currentLanguageOf, lessonRows, tracks, trackFor, type LessonRow, type Track } from '../data/tracks'
 
-const STATUS_LABEL = { done: 'Done', current: 'Next', upcoming: 'Upcoming' } as const
-const dateOf = (time: number) => new Date(time).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: '2-digit' })
-
-/** One dense line per lesson, grouped by level. */
-export function LessonList({ track, rows }: { track: Track; rows: LessonRow[] }) {
-  const groups = track.levels.map(level => ({ level, rows: rows.filter(row => row.lesson.curriculum.levelId === level.id) })).filter(group => group.rows.length)
-  return <section className="lesson-index" aria-label={`${track.name} lessons`}>
-    {groups.map(({ level, rows }) => <div key={level.id} className="lesson-index-group">
-      <h3>Level {level.number}: {level.title}</h3>
-      <ol>{rows.map(row => <li key={row.lesson.id} className={`lesson-index-row ${row.status}`} aria-current={row.status === 'current' ? 'step' : undefined} id={row.status === 'current' ? 'current-lesson' : undefined}>
-        <a href={`#lesson/${row.lesson.id}`}>
-          <span className="num">{row.number}</span><span className="title">{row.lesson.title}</span>
-          <span className="status">{STATUS_LABEL[row.status]}</span>
-          <span className="date">{row.completedAt !== undefined ? dateOf(row.completedAt) : ''}</span>
-        </a></li>)}</ol>
-    </div>)}
-  </section>
-}
-
-export function CurriculumMap({ workspace, run }: PageProps) {
+export function CurriculumMap({ workspace }: PageProps) {
   const next = nextCurriculumLesson(workspace)
-  const track = trackFor(currentLanguageOf(workspace.preferences))
-  const rows = lessonRows(track, workspace.lessons, next?.id)
   return <>
-    <TrackHeader tracks={tracks} current={track} started={item => item.lessons.some(lesson => workspace.lessons.some(state => state.lessonId === lesson.id))}
-      onSelect={item => void run(() => savePreferences({ currentLanguage: item.language }))} />
     <PageHeading eyebrow="HSK READINESS. YOUR OWN PACE." title="Your Mandarin path.">
       A cumulative HSK 1-6 preparation route mapped onto thirty communicative course levels, with explicit evidence gaps and mock-test checkpoints.
     </PageHeading>
@@ -42,8 +16,6 @@ export function CurriculumMap({ workspace, run }: PageProps) {
       <p>{next ? 'About 5-8 new senses at a time, with a short review of earlier words already in your learning set.' : 'Later retrieval still matters. Recognition practice does not demonstrate the course goals on its own.'}</p>
       <a className="button primary" href={next ? `#lesson/${next.id}` : '#review'}>{next ? 'Continue your path' : 'Review your learning set'} <ArrowRight size={16} /></a>
     </section>
-    <div className="section-heading"><div><p className="eyebrow accent">LESSONS</p><h2>All {rows.length} lessons</h2></div><span className="tag">{rows.filter(row => row.status === 'done').length} done</span></div>
-    <LessonList track={track} rows={rows} />
     <section className="curriculum-phase" aria-labelledby="hsk-readiness">
       <div className="section-heading"><div><p className="eyebrow accent">EXAM PREPARATION</p><h2 id="hsk-readiness">{curriculum.hskReadiness.title}</h2></div>
         <span className="tag">HSK 1-6</span></div>
@@ -79,7 +51,6 @@ export function CurriculumMap({ workspace, run }: PageProps) {
       <div className="button-row">{curriculum.hskReadiness.resources.map(resource =>
         <a className="text-link" href={resource.url} target="_blank" rel="noreferrer" key={resource.id}>{resource.title} <ExternalLink size={14} /></a>)}</div>
     </section>
-    <details className="lesson-overview phase-overview"><summary>Phases and levels</summary>
     <div className="section-heading"><div><p className="eyebrow accent">COURSE SEQUENCE</p><h2>Thirty communicative levels</h2></div><span className="tag">Levels 1-30</span></div>
     <p className="page-footnote">Levels 5-30 are mapped curriculum previews, not playable lessons yet. The readiness lesson outlines identify work to complete with a tutor and current external test materials; they do not award progress in this app.</p>
     {curriculum.phases.map((phase, index) => <section key={phase.id} className="curriculum-phase" aria-labelledby={`phase-${phase.id}`}>
@@ -97,7 +68,6 @@ export function CurriculumMap({ workspace, run }: PageProps) {
         </a>
       })}</div>
     </section>)}
-    </details>
     <p className="page-footnote">{curriculum.levelBasis} Course position, recognition practice, and demonstrated communication skills are separate.</p>
   </>
 }

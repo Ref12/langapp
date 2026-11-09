@@ -521,3 +521,11 @@ select { padding: 10px; }
 .lesson-index-row.current .status { color: var(--accent); }
 .lesson-index-row.upcoming a { opacity: .6; }
 .phase-overview { margin-top: 24px; }
+.lesson-index-row .title { display: flex; min-width: 0; white-space: nowrap; }
+.lesson-index-row .title-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.lesson-index-row .part { flex: none; white-space: pre; }
+.lesson-index-row a { grid-template-columns: 2.2em minmax(0, 1fr) 4.8em 5.2em; }
+.lesson-index-row .status { text-align: left; font-variant-numeric: tabular-nums; }
+.lesson-index-row .date { text-align: right; white-space: nowrap; }
+.lesson-index-row.partial .status { color: var(--text, inherit); }
+.lesson-index-row.none a { opacity: .6; }

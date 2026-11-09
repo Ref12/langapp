@@ -10,8 +10,6 @@ import { SnippetActions } from '../components/assistant/SnippetActions'
 import { lessonDefinitions } from '../data/learning-content'
 import { LessonStudy } from '../components/learning/LessonStudy'
 import { LessonPagination } from '../components/learning/LessonPagination'
-import { LOCK_UPCOMING_LESSONS, lessonRows, trackFor, currentLanguageOf } from '../data/tracks'
-import { nextCurriculumLesson } from '../data/curriculum'
 import { MandarinWord } from '../components/MandarinWord'
 
 export function Lessons(props: PageProps) {
@@ -27,22 +25,19 @@ export function LessonDetail({ lesson, workspace, busy, run, page }: PageProps &
   const reviewIds = active
     ? [...new Set(active.questions.map(question => question.wordId))].filter(id => !lesson.wordIds.includes(id))
     : lessonReviewWords(lesson, workspace.words)
-  const row = lessonRows(trackFor(currentLanguageOf(workspace.preferences)), workspace.lessons, nextCurriculumLesson(workspace)?.id, LOCK_UPCOMING_LESSONS).find(item => item.lesson.id === lesson.id)
-  const locked = !active && row?.locked === true
-  const practiceLabel = locked ? 'Practice unlocks when you reach this lesson' : active ? 'Resume lesson practice' : completed !== undefined ? 'Practice this lesson again' : 'Start lesson practice'
-  const beginPractice = () => { if (!locked) void run(async () => navigate(`practice/${await startPractice('lesson', lesson.id)}`)) }
+  const practiceLabel = active ? 'Resume lesson practice' : completed !== undefined ? 'Practice this lesson again' : 'Start lesson practice'
+  const beginPractice = () => void run(async () => navigate(`practice/${await startPractice('lesson', lesson.id)}`))
   if (definition) return <div className="lesson-player">
     <header className="lesson-heading">
       <a className="back-link" href={`#level/${plan.levelId}`}><ArrowLeft size={16} /> Level {level?.number}</a>
       <h1>{lesson.title}</h1>
-      {locked && <p className="notice small" role="note">Upcoming lesson: read it to see what it teaches. Practice unlocks when you reach it.</p>}
     </header>
     <LessonStudy key={`${definition.label}:${page ?? '1'}`} definition={definition} lessonId={lesson.id} page={page}
       workspace={workspace} busy={busy} run={run} practice={<section className="panel lesson-practice-overview">
         <h2>{completed !== undefined ? 'Revisit this part.' : 'Try the reading practice.'}</h2>
         <p>{lesson.wordIds.length} new vocabulary senses{reviewIds.length ? ` and ${reviewIds.length} earlier senses to revisit` : ''}.</p>
         <p>Starting adds only this part's new senses. Grammar references, sibling meanings, and level goals are not marked mastered.</p>
-        <button className="button primary full-width" disabled={busy || locked} onClick={beginPractice}>{practiceLabel} <ArrowRight size={16} /></button>
+        <button className="button primary full-width" disabled={busy} onClick={beginPractice}>{practiceLabel} <ArrowRight size={16} /></button>
       </section>} />
   </div>
   const grammarPages = plan.grammarIds.flatMap(id => {
@@ -63,13 +58,12 @@ export function LessonDetail({ lesson, workspace, busy, run, page }: PageProps &
   const grammarLabel = grammarPage?.page === 'rule' ? 'GRAMMAR RULE'
     : grammarPage ? `EXAMPLE ${grammarPage.page + 1} OF ${grammarPage.grammar.examples.length}` : 'READY TO PRACTICE'
   const route = `lesson/${lesson.id}/${current}`
-  const practiceButton = <button className={`button ${current === total ? 'primary' : 'secondary'} full-width`} disabled={busy || locked} onClick={beginPractice}>
+  const practiceButton = <button className={`button ${current === total ? 'primary' : 'secondary'} full-width`} disabled={busy} onClick={beginPractice}>
     {practiceLabel} <ArrowRight size={16} /></button>
   return <div className="lesson-player">
     <header className="lesson-heading">
       <a className="back-link" href={`#level/${plan.levelId}`}><ArrowLeft size={16} /> Level {level?.number}</a>
       <h1>{lesson.title}</h1>
-      {locked && <p className="notice small" role="note">Upcoming lesson: read it to see what it teaches. Practice unlocks when you reach it.</p>}
       <div className="card-topline"><span className="eyebrow">PART {plan.number} / {wordId ? `WORD ${current} OF ${lesson.wordIds.length}` : grammarLabel}</span>
         <span className="small muted">Page {current} of {total}</span></div>
       <progress aria-label="Lesson pages" value={current} max={total} />

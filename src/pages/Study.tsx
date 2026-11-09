@@ -22,12 +22,19 @@ import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/
 import { savePreferences } from '../core/learning'
 import { PHASE_LABEL, phaseAt } from '../core/collections/phases'
 import { useStudyActions } from './useStudyActions'
+import { LessonList } from '../components/LessonList'
+import { useLessonRows } from '../components/useLessonRows'
+import { TrackHeader } from '../components/TrackHeader'
+import { currentLanguageOf, tracks, trackFor } from '../data/tracks'
 import { isGenerating } from '../core/study/generation'
 import { retryGeneration } from '../core/study/retry'
 
 
 export function Study({ workspace, now, run, busy }: PageProps) {
   const { catalog, error, connection, known, due, rows, curriculumOpen, next, progress, start } = useStudyActions({ workspace, now, run })
+  const track = trackFor(currentLanguageOf(workspace.preferences))
+  const nextRefs = next?.newUnits.map(unit => unit.ref)
+  const lessonList = useLessonRows(track, workspace, nextRefs)
   return <>
     <PageHeading eyebrow="NEW OR REVIEW" title="Learn something new, or keep what you know.">Pick up the next items in the curriculum, or review what is due. The exercises for each session are written by your connected AI model and checked against your knowledge set.</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
@@ -60,6 +67,9 @@ export function Study({ workspace, now, run, busy }: PageProps) {
         </div>
       </section>
     </div>
+    <TrackHeader tracks={tracks} current={track} started={item => item.id === track.id}
+      onSelect={item => void run(() => savePreferences({ currentLanguage: item.language }))} />
+    <LessonList track={track} rows={lessonList} />
     {!workspace.knowledge.length && <EmptyState title="Your knowledge set is empty"><p>Start with New to add the first curriculum group, or add items yourself from the Dictionary.</p><a href="#dictionary" className="button secondary">Open Dictionary</a></EmptyState>}
     <p className="page-footnote">Adding an item to your knowledge set only makes it eligible for review. Session results record practice, not proficiency or examination readiness.</p>
   </>
