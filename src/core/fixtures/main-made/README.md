@@ -29,3 +29,5 @@ Main cannot export a profile whose knowledge set holds `ja:`/`ko:` entries as pr
 `profiles/vocabulary.ts` rebuilds a ref from kind and label and `ja:w:x` does not round-trip (`Invalid profile YAML`, `The knowledge entry has inconsistent labels`; see `export-failures.json`).
 So `backup.json` and `idb-rows.json` are taken with the Japanese knowledge entries and cards present, while `profile.yaml` and `cloud/` were exported after those entries and cards were deleted
 from the database. They still carry the Japanese lesson, the Japanese settings and (in the journal segment) the Japanese `add`/`review` events.
+
+Made by main `73a48152`. Files made by the later export fix (`ad5a8b32`), which can export ja/ko rows, are in `../main-made-fixed/`.

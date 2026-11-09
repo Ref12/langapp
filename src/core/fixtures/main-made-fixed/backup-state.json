@@ -1,0 +1,599 @@
+{
+  "kv": [
+    {
+      "key": "auto:default",
+      "value": true
+    },
+    {
+      "key": "cache:default",
+      "value": {
+        "target": "me/backups#main",
+        "remote": {
+          "head": "v1",
+          "tree": "t",
+          "files": {
+            "profile.yaml": "26",
+            "settings.yaml": "767",
+            "state/state.yaml": "263",
+            "state/exercise-sessions/52ee656e-dc97-4dfd-bbcd-79da350081a1.yaml": "1743",
+            "state/exercise-sessions/bd46403c-1729-4088-8ab3-478cc6d92a33.yaml": "1940",
+            "journal/000000001-000000033.yaml": "4590",
+            "state/snapshot.yaml": "10108",
+            "knowledge.yaml": "2126",
+            "manifest.yaml": "191"
+          }
+        },
+        "lastSeq": 33,
+        "segments": [
+          {
+            "path": "journal/000000001-000000033.yaml",
+            "from": 1,
+            "to": 33,
+            "events": 33
+          }
+        ],
+        "snapshotCursor": 33,
+        "eventsSinceSnapshot": 0,
+        "state": {
+          "knowledge": [
+            {
+              "ref": "grammar:s-pred--statement",
+              "kind": "grammar",
+              "lb": "s-pred--statement",
+              "band": "1",
+              "addedAt": 1794261041146,
+              "source": "new"
+            },
+            {
+              "ref": "grammar:s-shi4-n--identity",
+              "kind": "grammar",
+              "lb": "s-shi4-n--identity",
+              "band": "1",
+              "addedAt": 1794261041146,
+              "source": "new"
+            },
+            {
+              "ref": "ja:f:くる:mashita",
+              "kind": "vocabulary",
+              "lb": "くる:mashita",
+              "band": "1",
+              "addedAt": 1794261041224,
+              "source": "new"
+            },
+            {
+              "ref": "ja:g:ja-n5-g001",
+              "kind": "grammar",
+              "lb": "ja-n5-g001",
+              "band": "1",
+              "addedAt": 1794261041215,
+              "source": "new"
+            },
+            {
+              "ref": "ja:g:ja-n5-g004",
+              "kind": "grammar",
+              "lb": "ja-n5-g004",
+              "band": "1",
+              "addedAt": 1794261041215,
+              "source": "new"
+            },
+            {
+              "ref": "ja:g:ja-n5-g005",
+              "kind": "grammar",
+              "lb": "ja-n5-g005",
+              "band": "1",
+              "addedAt": 1794261041215,
+              "source": "new"
+            },
+            {
+              "ref": "ja:g:ja-n5-g023",
+              "kind": "grammar",
+              "lb": "ja-n5-g023",
+              "band": "1",
+              "addedAt": 1794261041215,
+              "source": "new"
+            },
+            {
+              "ref": "ja:w:ja-n5-00149",
+              "kind": "vocabulary",
+              "lb": "ja-n5-00149",
+              "band": "1",
+              "addedAt": 1794261041215,
+              "source": "new"
+            },
+            {
+              "ref": "ja:w:ja-n5-00679",
+              "kind": "vocabulary",
+              "lb": "ja-n5-00679",
+              "band": "1",
+              "addedAt": 1794261041215,
+              "source": "new"
+            },
+            {
+              "ref": "ja:w:ja-par-00001",
+              "kind": "vocabulary",
+              "lb": "ja-par-00001",
+              "band": "1",
+              "addedAt": 1794261041215,
+              "source": "new"
+            },
+            {
+              "ref": "ko:g:ko-topik1-g001",
+              "kind": "grammar",
+              "lb": "ko-topik1-g001",
+              "band": "1",
+              "addedAt": 1794261041269,
+              "source": "new"
+            },
+            {
+              "ref": "ko:g:ko-topik1-g003",
+              "kind": "grammar",
+              "lb": "ko-topik1-g003",
+              "band": "1",
+              "addedAt": 1794261041269,
+              "source": "new"
+            },
+            {
+              "ref": "ko:g:ko-topik1-g016",
+              "kind": "grammar",
+              "lb": "ko-topik1-g016",
+              "band": "1",
+              "addedAt": 1794261041269,
+              "source": "new"
+            },
+            {
+              "ref": "ko:w:ko-nikl-13297",
+              "kind": "vocabulary",
+              "lb": "ko-nikl-13297",
+              "band": "1",
+              "addedAt": 1794261041269,
+              "source": "new"
+            },
+            {
+              "ref": "ko:w:ko-nikl-24021",
+              "kind": "vocabulary",
+              "lb": "ko-nikl-24021",
+              "band": "1",
+              "addedAt": 1794261041269,
+              "source": "new"
+            },
+            {
+              "ref": "ko:w:ko-par-00001",
+              "kind": "vocabulary",
+              "lb": "ko-par-00001",
+              "band": "1",
+              "addedAt": 1794261041269,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:cha2--tea",
+              "kind": "vocabulary",
+              "lb": "cha2--tea",
+              "band": "1",
+              "addedAt": 1794261041159,
+              "source": "dictionary"
+            },
+            {
+              "ref": "vocabulary:shi4--identity",
+              "kind": "vocabulary",
+              "lb": "shi4--identity",
+              "band": "1",
+              "addedAt": 1794261041146,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:wo3--me",
+              "kind": "vocabulary",
+              "lb": "wo3--me",
+              "band": "1",
+              "addedAt": 1794261041146,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:xue2-sheng5--student",
+              "kind": "vocabulary",
+              "lb": "xue2-sheng5--student",
+              "band": "1",
+              "addedAt": 1794261041146,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:xue2-xi2--study",
+              "kind": "vocabulary",
+              "lb": "xue2-xi2--study",
+              "band": "1",
+              "addedAt": 1794261041146,
+              "source": "new"
+            }
+          ],
+          "cards": [
+            {
+              "id": "grammar:s-pred--statement:reading",
+              "ref": "grammar:s-pred--statement",
+              "domain": "reading",
+              "due": 1794520241143,
+              "stability": 3.1730003234090587,
+              "difficulty": 5.272967931287446,
+              "reps": 2,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041143,
+              "lastReview": 1794261041143
+            },
+            {
+              "id": "grammar:s-shi4-n--identity:reading",
+              "ref": "grammar:s-shi4-n--identity",
+              "domain": "reading",
+              "due": 1794520241133,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041133,
+              "lastReview": 1794261041133
+            },
+            {
+              "id": "ja:f:くる:mashita:reading",
+              "ref": "ja:f:くる:mashita",
+              "domain": "reading",
+              "due": 1794520241224,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041224,
+              "lastReview": 1794261041224
+            },
+            {
+              "id": "ja:g:ja-n5-g001:reading",
+              "ref": "ja:g:ja-n5-g001",
+              "domain": "reading",
+              "due": 1794261041215,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041215
+            },
+            {
+              "id": "ja:g:ja-n5-g004:reading",
+              "ref": "ja:g:ja-n5-g004",
+              "domain": "reading",
+              "due": 1794261041215,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041215
+            },
+            {
+              "id": "ja:g:ja-n5-g005:reading",
+              "ref": "ja:g:ja-n5-g005",
+              "domain": "reading",
+              "due": 1794261041215,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041215
+            },
+            {
+              "id": "ja:g:ja-n5-g023:reading",
+              "ref": "ja:g:ja-n5-g023",
+              "domain": "reading",
+              "due": 1794261041215,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041215
+            },
+            {
+              "id": "ja:w:ja-n5-00149:reading",
+              "ref": "ja:w:ja-n5-00149",
+              "domain": "reading",
+              "due": 1794261641275,
+              "stability": 0.40255,
+              "difficulty": 7.1949,
+              "reps": 1,
+              "lapses": 0,
+              "state": "learning",
+              "updatedAt": 1794261041275,
+              "lastReview": 1794261041275
+            },
+            {
+              "id": "ja:w:ja-n5-00679:reading",
+              "ref": "ja:w:ja-n5-00679",
+              "domain": "reading",
+              "due": 1794520241224,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041224,
+              "lastReview": 1794261041224
+            },
+            {
+              "id": "ja:w:ja-par-00001:reading",
+              "ref": "ja:w:ja-par-00001",
+              "domain": "reading",
+              "due": 1794520241223,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041223,
+              "lastReview": 1794261041223
+            },
+            {
+              "id": "ko:g:ko-topik1-g001:reading",
+              "ref": "ko:g:ko-topik1-g001",
+              "domain": "reading",
+              "due": 1794261041269,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041269
+            },
+            {
+              "id": "ko:g:ko-topik1-g003:reading",
+              "ref": "ko:g:ko-topik1-g003",
+              "domain": "reading",
+              "due": 1794261041269,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041269
+            },
+            {
+              "id": "ko:g:ko-topik1-g016:reading",
+              "ref": "ko:g:ko-topik1-g016",
+              "domain": "reading",
+              "due": 1794261041269,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041269
+            },
+            {
+              "id": "ko:w:ko-nikl-13297:reading",
+              "ref": "ko:w:ko-nikl-13297",
+              "domain": "reading",
+              "due": 1794520241271,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041271,
+              "lastReview": 1794261041271
+            },
+            {
+              "id": "ko:w:ko-nikl-24021:reading",
+              "ref": "ko:w:ko-nikl-24021",
+              "domain": "reading",
+              "due": 1794261641272,
+              "stability": 0.40255,
+              "difficulty": 7.1949,
+              "reps": 1,
+              "lapses": 0,
+              "state": "learning",
+              "updatedAt": 1794261041272,
+              "lastReview": 1794261041272
+            },
+            {
+              "id": "ko:w:ko-par-00001:reading",
+              "ref": "ko:w:ko-par-00001",
+              "domain": "reading",
+              "due": 1794261041269,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041269
+            },
+            {
+              "id": "vocabulary:cha2--tea:reading",
+              "ref": "vocabulary:cha2--tea",
+              "domain": "reading",
+              "due": 1794261041159,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794261041159
+            },
+            {
+              "id": "vocabulary:shi4--identity:reading",
+              "ref": "vocabulary:shi4--identity",
+              "domain": "reading",
+              "due": 1794520241133,
+              "stability": 3.17300016170453,
+              "difficulty": 5.272967931287446,
+              "reps": 2,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041133,
+              "lastReview": 1794261041133
+            },
+            {
+              "id": "vocabulary:wo3--me:reading",
+              "ref": "vocabulary:wo3--me",
+              "domain": "reading",
+              "due": 1794174641278,
+              "stability": 3.1730007764494674,
+              "difficulty": 5.263544986114632,
+              "reps": 3,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041133,
+              "lastReview": 1794261041133
+            },
+            {
+              "id": "vocabulary:xue2-sheng5--student:reading",
+              "ref": "vocabulary:xue2-sheng5--student",
+              "domain": "reading",
+              "due": 1794520241133,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041133,
+              "lastReview": 1794261041133
+            },
+            {
+              "id": "vocabulary:xue2-xi2--study:reading",
+              "ref": "vocabulary:xue2-xi2--study",
+              "domain": "reading",
+              "due": 1794520241133,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794261041133,
+              "lastReview": 1794261041133
+            }
+          ],
+          "attempts": [
+            {
+              "id": "52ee656e-dc97-4dfd-bbcd-79da350081a1:0",
+              "sessionId": "52ee656e-dc97-4dfd-bbcd-79da350081a1",
+              "index": 0,
+              "refs": [
+                "vocabulary:ni3--you"
+              ],
+              "response": "0",
+              "correct": true,
+              "createdAt": 1794261041166
+            },
+            {
+              "id": "52ee656e-dc97-4dfd-bbcd-79da350081a1:1",
+              "sessionId": "52ee656e-dc97-4dfd-bbcd-79da350081a1",
+              "index": 1,
+              "refs": [
+                "vocabulary:ni3--you",
+                "vocabulary:nin2--you"
+              ],
+              "response": "0",
+              "correct": false,
+              "createdAt": 1794261041276
+            },
+            {
+              "id": "bd46403c-1729-4088-8ab3-478cc6d92a33:0",
+              "sessionId": "bd46403c-1729-4088-8ab3-478cc6d92a33",
+              "index": 0,
+              "refs": [
+                "vocabulary:wo3--me"
+              ],
+              "response": "1",
+              "correct": true,
+              "createdAt": 1794261041109
+            },
+            {
+              "id": "bd46403c-1729-4088-8ab3-478cc6d92a33:1",
+              "sessionId": "bd46403c-1729-4088-8ab3-478cc6d92a33",
+              "index": 1,
+              "refs": [
+                "vocabulary:wo3--me",
+                "vocabulary:shi4--identity"
+              ],
+              "response": "0",
+              "correct": true,
+              "createdAt": 1794261041128
+            },
+            {
+              "id": "bd46403c-1729-4088-8ab3-478cc6d92a33:2",
+              "sessionId": "bd46403c-1729-4088-8ab3-478cc6d92a33",
+              "index": 2,
+              "refs": [
+                "vocabulary:wo3--me",
+                "vocabulary:shi4--identity",
+                "vocabulary:xue2-sheng5--student",
+                "vocabulary:xue2-xi2--study",
+                "grammar:s-shi4-n--identity",
+                "grammar:s-pred--statement"
+              ],
+              "response": "[\"我\",\"是\",\"学生\"]",
+              "correct": true,
+              "createdAt": 1794261041133
+            },
+            {
+              "id": "bd46403c-1729-4088-8ab3-478cc6d92a33:3",
+              "sessionId": "bd46403c-1729-4088-8ab3-478cc6d92a33",
+              "index": 3,
+              "refs": [
+                "grammar:s-pred--statement"
+              ],
+              "response": "[\"我\",\"学习\"]",
+              "correct": true,
+              "createdAt": 1794261041143
+            }
+          ],
+          "characters": []
+        }
+      }
+    },
+    {
+      "key": "sent:default",
+      "value": 33
+    },
+    {
+      "key": "status:default",
+      "value": {
+        "lastBackupAt": 1794261041337,
+        "lastCommit": "v1"
+      }
+    },
+    {
+      "key": "window:default",
+      "value": 1794261041311
+    }
+  ],
+  "runs": [
+    {
+      "profileId": "default",
+      "trigger": "manual",
+      "startedAt": 1794261041312,
+      "endedAt": 1794261041337,
+      "totalMs": 26,
+      "readMs": 4,
+      "buildMs": 19,
+      "publishMs": 0,
+      "calls": [],
+      "journalEvents": 33,
+      "filesChanged": 9,
+      "bytes": 21754,
+      "snapshot": "live",
+      "full": true,
+      "outcome": "ok",
+      "id": 1
+    }
+  ],
+  "config": {
+    "id": "github",
+    "owner": "me",
+    "repo": "backups",
+    "token": "tok",
+    "branch": "main",
+    "lastBackupAt": 1794261041337,
+    "lastError": "",
+    "lastCommit": "v1"
+  }
+}

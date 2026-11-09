@@ -1,0 +1,37 @@
+format: linguaweave-settings
+version: 1
+settings:
+  preferences:
+    id: workspace
+    language: zh-Hans
+    name: Your workspace
+    theme: dark
+    pinyin: true
+    readingMode: weave
+    sidebarCollapsed: false
+    pinyinFormat: numbers
+    exercisesPerLesson: 12
+    currentLanguage: ja
+    startedTracks:
+      - ja
+      - ko
+    japaneseReading: kana
+    otherLanguageCards: ja
+  aiEndpoints:
+    version: 1
+    active: default
+    endpoints:
+      - apiType: chat-completions
+        baseUrl: https://example.test/v1
+        apiKey: k
+        model: test-model
+        nativeTools: false
+        structuredOutput: true
+        storageAcknowledged: true
+        id: default
+        name: Default
+backup:
+  owner: me
+  repo: backups
+  branch: main
+  token: tok

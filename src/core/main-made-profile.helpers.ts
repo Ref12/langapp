@@ -5,16 +5,18 @@ import { dueCards } from './study/knowledge'
 
 // Fixtures written by main (see fixtures/main-made/README.md). Paths are built with node:path and file URLs, so they read the same on Windows.
 export const fixtureDir = join(process.cwd(), 'src', 'core', 'fixtures', 'main-made')
-export const fixtureText = (name: string): string => readFileSync(join(fixtureDir, name), 'utf8')
-export const fixtureJson = <T = any>(name: string): T => JSON.parse(fixtureText(name)) as T // eslint-disable-line @typescript-eslint/no-explicit-any
+/** The second set, made by main with the export fix (ad5a8b32): the ja/ko rows are present in every exported file. */
+export const fixedDir = join(process.cwd(), 'src', 'core', 'fixtures', 'main-made-fixed')
+export const fixtureText = (name: string, dir = fixtureDir): string => readFileSync(join(dir, name), 'utf8')
+export const fixtureJson = <T = any>(name: string, dir = fixtureDir): T => JSON.parse(fixtureText(name, dir)) as T // eslint-disable-line @typescript-eslint/no-explicit-any
 
 /** The cloud backup layout main wrote: every file under cloud/, keyed by its slash-separated path inside the profile folder. */
-export function cloudFiles(): Map<string, string> {
+export function cloudFiles(dir = fixtureDir): Map<string, string> {
   const files = new Map<string, string>()
   const walk = (relative: string[]) => {
-    for (const entry of readdirSync(join(fixtureDir, 'cloud', ...relative), { withFileTypes: true })) {
+    for (const entry of readdirSync(join(dir, 'cloud', ...relative), { withFileTypes: true })) {
       if (entry.isDirectory()) walk([...relative, entry.name])
-      else files.set([...relative, entry.name].join('/'), readFileSync(join(fixtureDir, 'cloud', ...relative, entry.name), 'utf8'))
+      else files.set([...relative, entry.name].join('/'), readFileSync(join(dir, 'cloud', ...relative, entry.name), 'utf8'))
     }
   }
   walk([])
@@ -40,8 +42,8 @@ const byKey = (key: string) => (a: Record<string, unknown>, b: Record<string, un
 const sorted = <T extends object>(rows: T[], key: string): T[] => [...rows].sort(byKey(key) as never)
 
 /** What main showed for the Chinese part of the profile, from the fixture it made. */
-export function expectedChinese() {
-  const main = fixtureJson<MainView>('main-view.json')
+export function expectedChinese(dir = fixtureDir, file = 'main-view.json') {
+  const main = fixtureJson<MainView>(file, dir)
   const preferences = Object.fromEntries(Object.entries(main.preferences).filter(([key]) => !(MAIN_ONLY_PREFERENCES as readonly string[]).includes(key)))
   return {
     preferences,

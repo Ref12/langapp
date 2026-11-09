@@ -1,0 +1,400 @@
+format: linguaweave-profile
+version: 5
+contentVersion: 2
+exportedAt: 1794261041347
+profile:
+  id: default
+  name: default
+settings:
+  preferences:
+    id: workspace
+    language: zh-Hans
+    name: Your workspace
+    theme: dark
+    pinyin: true
+    readingMode: weave
+    sidebarCollapsed: false
+    exercisesPerLesson: 12
+    pinyinFormat: numbers
+  aiEndpoints:
+    version: 1
+    active: default
+    endpoints:
+      - apiType: chat-completions
+        baseUrl: https://example.test/v1
+        apiKey: k
+        model: test-model
+        nativeTools: false
+        structuredOutput: true
+        storageAcknowledged: true
+        name: Default
+        id: default
+knowledge:
+  words: []
+  readings: []
+  lessons: []
+  sessions: []
+  attempts: []
+  characterStates: []
+  study:
+    knowledge:
+      - kind: grammar
+        lb: s-pred--statement
+        band: "1"
+        addedAt: 1794261041146
+        source: new
+      - kind: grammar
+        lb: s-shi4-n--identity
+        band: "1"
+        addedAt: 1794261041146
+        source: new
+      - kind: vocabulary
+        lb: cha2--tea
+        band: "1"
+        addedAt: 1794261041159
+        source: dictionary
+      - kind: vocabulary
+        lb: shi4--identity
+        band: "1"
+        addedAt: 1794261041146
+        source: new
+      - kind: vocabulary
+        lb: wo3--me
+        band: "1"
+        addedAt: 1794261041146
+        source: new
+      - kind: vocabulary
+        lb: xue2-sheng5--student
+        band: "1"
+        addedAt: 1794261041146
+        source: new
+      - kind: vocabulary
+        lb: xue2-xi2--study
+        band: "1"
+        addedAt: 1794261041146
+        source: new
+    cards:
+      - domain: reading
+        due: 1794520241143
+        stability: 3.1730003234090587
+        difficulty: 5.272967931287446
+        reps: 2
+        lapses: 0
+        state: review
+        lastReview: 1794261041143
+        updatedAt: 1794261041143
+        kind: grammar
+        lb: s-pred--statement
+      - domain: reading
+        due: 1794520241133
+        stability: 3.173
+        difficulty: 5.282434422319005
+        reps: 1
+        lapses: 0
+        state: review
+        lastReview: 1794261041133
+        updatedAt: 1794261041133
+        kind: grammar
+        lb: s-shi4-n--identity
+      - domain: reading
+        due: 1794261041159
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1794261041159
+        kind: vocabulary
+        lb: cha2--tea
+      - domain: reading
+        due: 1794520241133
+        stability: 3.17300016170453
+        difficulty: 5.272967931287446
+        reps: 2
+        lapses: 0
+        state: review
+        lastReview: 1794261041133
+        updatedAt: 1794261041133
+        kind: vocabulary
+        lb: shi4--identity
+      - domain: reading
+        due: 1794174641278
+        stability: 3.1730007764494674
+        difficulty: 5.263544986114632
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1794261041133
+        updatedAt: 1794261041133
+        kind: vocabulary
+        lb: wo3--me
+      - domain: reading
+        due: 1794520241133
+        stability: 3.173
+        difficulty: 5.282434422319005
+        reps: 1
+        lapses: 0
+        state: review
+        lastReview: 1794261041133
+        updatedAt: 1794261041133
+        kind: vocabulary
+        lb: xue2-sheng5--student
+      - domain: reading
+        due: 1794520241133
+        stability: 3.173
+        difficulty: 5.282434422319005
+        reps: 1
+        lapses: 0
+        state: review
+        lastReview: 1794261041133
+        updatedAt: 1794261041133
+        kind: vocabulary
+        lb: xue2-xi2--study
+    sessions:
+      - id: 52ee656e-dc97-4dfd-bbcd-79da350081a1
+        mode: new
+        domain: reading
+        groupId: zh-hsk-1-lesson-0002
+        targetRefs:
+          - vocabulary:ni3--you
+          - vocabulary:nin2--you
+          - vocabulary:ma5--question
+          - vocabulary:lao3-shi1--teacher
+          - grammar:stmt-ma5--yes-no
+        reviewRefs:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+          - vocabulary:xue2-sheng5--student
+          - vocabulary:xue2-xi2--study
+        exercises:
+          - id: c1
+            type: choice
+            targets:
+              - vocabulary:ni3--you
+            direction: zh-to-en
+            question: 我是学生。
+            options:
+              - I am a student.
+              - I study.
+            answer: 0
+            explanation: Identity with 是.
+          - id: c2
+            type: choice
+            targets:
+              - vocabulary:ni3--you
+              - vocabulary:nin2--you
+            direction: en-to-zh
+            question: I study.
+            options:
+              - 我是学生。
+              - 我学习。
+            answer: 1
+            explanation: 学习 means study.
+          - id: t1
+            type: tiles
+            targets:
+              - vocabulary:ni3--you
+              - vocabulary:nin2--you
+              - vocabulary:ma5--question
+              - vocabulary:lao3-shi1--teacher
+              - grammar:stmt-ma5--yes-no
+            translation: I am a student.
+            tiles:
+              - 我
+              - 是
+              - 学生
+            distractors:
+              - 学习
+            shuffled:
+              - 1
+              - 0
+              - 2
+              - 3
+            explanation: Subject, 是, noun.
+          - id: t2
+            type: tiles
+            targets:
+              - grammar:stmt-ma5--yes-no
+            translation: I study.
+            tiles:
+              - 我
+              - 学习
+            distractors: []
+            shuffled:
+              - 1
+              - 0
+            explanation: Subject then verb.
+        cursor: 1
+        redos:
+          - exercise: 1
+            round: 1
+        status: active
+        model: test-model
+        rejected: []
+        createdAt: 1794261041161
+        exerciseCount: 20
+        addOnFinish:
+          - vocabulary:ni3--you
+          - vocabulary:nin2--you
+          - vocabulary:ma5--question
+          - vocabulary:lao3-shi1--teacher
+          - grammar:stmt-ma5--yes-no
+      - id: bd46403c-1729-4088-8ab3-478cc6d92a33
+        mode: new
+        domain: reading
+        groupId: zh-hsk-1-lesson-0001
+        targetRefs:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+          - vocabulary:xue2-sheng5--student
+          - vocabulary:xue2-xi2--study
+          - grammar:s-shi4-n--identity
+          - grammar:s-pred--statement
+        reviewRefs: []
+        exercises:
+          - id: c1
+            type: choice
+            targets:
+              - vocabulary:wo3--me
+            direction: zh-to-en
+            question: 我是学生。
+            options:
+              - I study.
+              - I am a student.
+            answer: 1
+            explanation: Identity with 是.
+          - id: c2
+            type: choice
+            targets:
+              - vocabulary:wo3--me
+              - vocabulary:shi4--identity
+            direction: en-to-zh
+            question: I study.
+            options:
+              - 我学习。
+              - 我是学生。
+            answer: 0
+            explanation: 学习 means study.
+          - id: t1
+            type: tiles
+            targets:
+              - vocabulary:wo3--me
+              - vocabulary:shi4--identity
+              - vocabulary:xue2-sheng5--student
+              - vocabulary:xue2-xi2--study
+              - grammar:s-shi4-n--identity
+              - grammar:s-pred--statement
+            translation: I am a student.
+            tiles:
+              - 我
+              - 是
+              - 学生
+            distractors:
+              - 学习
+            shuffled:
+              - 0
+              - 3
+              - 2
+              - 1
+            explanation: Subject, 是, noun.
+          - id: t2
+            type: tiles
+            targets:
+              - grammar:s-pred--statement
+            translation: I study.
+            tiles:
+              - 我
+              - 学习
+            distractors: []
+            shuffled:
+              - 1
+              - 0
+            explanation: Subject then verb.
+        cursor: 3
+        status: completed
+        model: test-model
+        rejected: []
+        createdAt: 1794261041098
+        completedAt: 1794261041146
+        exerciseCount: 20
+        addedRefs:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+          - vocabulary:xue2-sheng5--student
+          - vocabulary:xue2-xi2--study
+          - grammar:s-shi4-n--identity
+          - grammar:s-pred--statement
+        addOnFinish:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+          - vocabulary:xue2-sheng5--student
+          - vocabulary:xue2-xi2--study
+          - grammar:s-shi4-n--identity
+          - grammar:s-pred--statement
+    attempts:
+      - id: 52ee656e-dc97-4dfd-bbcd-79da350081a1:0
+        sessionId: 52ee656e-dc97-4dfd-bbcd-79da350081a1
+        index: 0
+        refs:
+          - vocabulary:ni3--you
+        response: "0"
+        correct: true
+        createdAt: 1794261041166
+      - id: 52ee656e-dc97-4dfd-bbcd-79da350081a1:1
+        sessionId: 52ee656e-dc97-4dfd-bbcd-79da350081a1
+        index: 1
+        refs:
+          - vocabulary:ni3--you
+          - vocabulary:nin2--you
+        response: "0"
+        correct: false
+        createdAt: 1794261041276
+      - id: bd46403c-1729-4088-8ab3-478cc6d92a33:0
+        sessionId: bd46403c-1729-4088-8ab3-478cc6d92a33
+        index: 0
+        refs:
+          - vocabulary:wo3--me
+        response: "1"
+        correct: true
+        createdAt: 1794261041109
+      - id: bd46403c-1729-4088-8ab3-478cc6d92a33:1
+        sessionId: bd46403c-1729-4088-8ab3-478cc6d92a33
+        index: 1
+        refs:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+        response: "0"
+        correct: true
+        createdAt: 1794261041128
+      - id: bd46403c-1729-4088-8ab3-478cc6d92a33:2
+        sessionId: bd46403c-1729-4088-8ab3-478cc6d92a33
+        index: 2
+        refs:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+          - vocabulary:xue2-sheng5--student
+          - vocabulary:xue2-xi2--study
+          - grammar:s-shi4-n--identity
+          - grammar:s-pred--statement
+        response: '["我","是","学生"]'
+        correct: true
+        createdAt: 1794261041133
+      - id: bd46403c-1729-4088-8ab3-478cc6d92a33:3
+        sessionId: bd46403c-1729-4088-8ab3-478cc6d92a33
+        index: 3
+        refs:
+          - grammar:s-pred--statement
+        response: '["我","学习"]'
+        correct: true
+        createdAt: 1794261041143
+conversations:
+  threads: []
+  messages: []
+  runs: []
+library: []
+media: []
+sourceEntries: []
+collections:
+  collections: []
+  items: []
+  cards: []
