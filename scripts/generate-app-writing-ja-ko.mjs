@@ -15,7 +15,7 @@ const scalar = value => typeof value === 'string' && [...value].length === 1
 const readYaml = path => parse(readFileSync(path, 'utf8'))
 
 const jaNotice = 'MODIFIED 2026-09-15: ordered centerlines projected from the Japanese KanjiVG stroke data (CC BY-SA 3.0, Ulrich Apel and contributors) and the AnimCJK set (Arphic Public License / LGPL-3.0, FM-SH) into lazy Unicode-page JSON; paths are scaled into a 100-unit y-down frame and otherwise unchanged. Unreviewed. See ATTRIBUTION.html and the license files in this folder. ARPHIC PUBLIC LICENSE.'
-const koNotice = 'Original AI-assisted Korean monoline strokes, CC0-1.0 to the extent rights apply. Syllables are composed from the letter recipes and marked ai-reviewed: a vision model checked them, no person has. No source-derived paths. See ATTRIBUTION.html.'
+const koNotice = 'Original AI-assisted Korean monoline strokes, CC0-1.0 to the extent rights apply. Syllables are composed from the letter recipes and marked ai-reviewed: a vision model checked them, no person has (human_reviewed stays false). The learner decided on 2026-11-08 that AI review is enough, so the handwriting gate is lifted. No source-derived paths. See ATTRIBUTION.html.'
 
 const kanaOrMark = code => (code >= 0x3041 && code <= 0x3096) || (code >= 0x3099 && code <= 0x309f) || (code >= 0x30a1 && code <= 0x30fc) || code === 0x30ff
 
@@ -46,14 +46,14 @@ function selectJapanese() {
   const prepared = loadPrepared('japanese')
   const failures = []
   const kana = [...prepared.keys()].filter(character => kanaOrMark(character.codePointAt(0)))
-  const n5 = [...selection.kanji.n5], n4 = [...selection.kanji.n4]
-  assert(new Set([...n5, ...n4]).size === n5.length + n4.length, 'Japanese selection lists a kanji twice')
-  const wanted = [...new Set([...kana, ...n5, ...n4])].sort((a, b) => a.codePointAt(0) - b.codePointAt(0))
+  const n5 = [...selection.kanji.n5], n4 = [...selection.kanji.n4], parallel = [...(selection.kanji.parallel ?? '')]
+  assert(new Set([...n5, ...n4, ...parallel]).size === n5.length + n4.length + parallel.length, 'Japanese selection lists a kanji twice')
+  const wanted = [...new Set([...kana, ...n5, ...n4, ...parallel])].sort((a, b) => a.codePointAt(0) - b.codePointAt(0))
   const entries = new Map()
   for (const character of wanted) {
     try { entries.set(character, { paths: defaultStrokes(character, prepared.get(character)) }) } catch (error) { failures.push(error.message) }
   }
-  return { entries, failures, counts: { kana: kana.length, n5: n5.length, n4: n4.length } }
+  return { entries, failures, counts: { kana: kana.length, n5: n5.length, n4: n4.length, parallel: parallel.length } }
 }
 
 function selectKorean() {
@@ -62,15 +62,21 @@ function selectKorean() {
   for (const [character, record] of prepared) {
     try { entries.set(character, { paths: defaultStrokes(character, record) }) } catch (error) { failures.push(error.message) }
   }
-  const file = readYaml(join(root, 'curriculum', 'korean', 'characters', 'topik1-syllables.yaml'))
-  assert(file.review === 'ai-reviewed' && file.human_reviewed === false && file.syllables, 'Korean syllables must be AI-reviewed and not human-reviewed')
   let syllables = 0
-  for (const [character, paths] of Object.entries(file.syllables)) {
-    try {
-      assert(scalar(character) && character >= '가' && character <= '힣', `${character}: not a Hangul syllable`)
-      paths.forEach((path, index) => validateCharacterPath(path, `${character} stroke ${index + 1}`))
-      entries.set(character, { paths, review: 'ai-reviewed' }); syllables++
-    } catch (error) { failures.push(error.message) }
+  // TOPIK 1 syllables, and the syllables the parallel Korean lessons use (scripts/korean_parallel_syllables.py)
+  for (const name of ['topik1-syllables.yaml', 'parallel-syllables.yaml']) {
+    const path = join(root, 'curriculum', 'korean', 'characters', name)
+    if (name !== 'topik1-syllables.yaml' && !existsSync(path)) continue
+    const file = readYaml(path)
+    assert(file.review === 'ai-reviewed' && file.human_reviewed === false && file.syllables, 'Korean syllables must be AI-reviewed and not human-reviewed')
+    for (const [character, paths] of Object.entries(file.syllables)) {
+      try {
+        assert(scalar(character) && character >= '가' && character <= '힣', `${character}: not a Hangul syllable`)
+        paths.forEach((path, index) => validateCharacterPath(path, `${character} stroke ${index + 1}`))
+        if (!entries.has(character)) syllables++
+        entries.set(character, { paths, review: 'ai-reviewed' })
+      } catch (error) { failures.push(error.message) }
+    }
   }
   return { entries, failures, counts: { letters: entries.size - syllables, syllables } }
 }
@@ -84,7 +90,7 @@ ${body}
 `
 
 const jaAttribution = attribution('Japanese writing artwork: attribution', '<p>Stroke data derived from <a href="https://kanjivg.tagaini.net/">KanjiVG</a> (Copyright Ulrich Apel and contributors, <a href="writing-kanjivg-COPYING.txt">CC BY-SA 3.0</a>) and AnimCJK (FM-SH; <a href="writing-animcjk-COPYING.txt">COPYING</a>, <a href="writing-ARPHICPL.txt">Arphic Public License</a>, <a href="writing-LGPL-3.0.txt">LGPL-3.0</a>, <a href="writing-GPL-3.0.txt">GPL-3.0</a>). Centerlines were selected and scaled into a 100-unit frame; share-alike terms apply to these files. Unreviewed; no accuracy claim is made.</p>')
-const koAttribution = attribution('Korean writing artwork: attribution', '<p>Original AI-assisted strokes, CC0-1.0 to the extent rights apply (<a href="ORIGINAL-WRITING-PILOT.md">notice</a>). Syllables are AI-reviewed only (a vision model checked stroke order and direction); no person has reviewed them and the human review gate is still open.</p>')
+const koAttribution = attribution('Korean writing artwork: attribution', '<p>Original AI-assisted strokes, CC0-1.0 to the extent rights apply (<a href="ORIGINAL-WRITING-PILOT.md">notice</a>). Syllables are AI-reviewed only (a vision model checked stroke order and direction); no person has reviewed them. The learner decided on 2026-11-08 that AI review is enough, so the handwriting gate is lifted.</p>')
 
 function projection(language, selected, notice, attributionHtml, licenses) {
   const outputs = new Map()

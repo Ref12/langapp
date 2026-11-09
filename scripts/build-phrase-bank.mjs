@@ -379,13 +379,13 @@ export function createThrottleLog(log, every = 10000, clock = Date.now) {
 }
 
 /** A model call: (system, user) => text, over an OpenAI-compatible endpoint, as chat completions or as the responses API. */
-export function createCaller({ baseUrl, apiKey, model, api = 'chat', fetchImpl = globalThis.fetch, sleep = ms => new Promise(done => setTimeout(done, ms)), retries = 5, onRetry = () => {}, random = Math.random, headers = {}, timeoutMs = 120000, timeoutRetries = 2 }) {
+export function createCaller({ baseUrl, apiKey, model, api = 'chat', fetchImpl = globalThis.fetch, sleep = ms => new Promise(done => setTimeout(done, ms)), retries = 5, onRetry = () => {}, random = Math.random, headers = {}, timeoutMs = 120000, timeoutRetries = 2, maxTokens }) {
   if (!baseUrl || !model) throw new Error('A base URL and a model name are needed for each role.')
   if (api !== 'chat' && api !== 'responses') throw new Error('The API shape is chat or responses: ' + api)
   const url = baseUrl.replace(/\/+$/, '') + (api === 'chat' ? '/chat/completions' : '/responses')
   const body = (system, user) => api === 'chat'
-    ? { model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }
-    : { model, instructions: system, input: user }
+    ? { model, messages: [{ role: 'system', content: system }, { role: 'user', content: user }], ...(maxTokens ? { max_tokens: maxTokens } : {}) }
+    : { model, instructions: system, input: user, ...(maxTokens ? { max_output_tokens: maxTokens } : {}) }
   /** One attempt, at most timeoutMs from sending to the last byte of the body: the request is aborted, and a fetch that ignores the abort is given up on all the same. */
   const attemptOnce = async (system, user) => {
     const signal = AbortSignal.timeout(timeoutMs)

@@ -33,8 +33,9 @@ GAP_REASON = (
 )
 GENERATED_NOTICE = (
     "Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.\n"
-    "Unreviewed: no qualified Korean handwriting approval. No font/diagram tracing or source-derived paths.\n"
-    "See licenses/ORIGINAL-WRITING-PILOT.md. No warranty; bulk scaling remains gated on review."
+    "AI-reviewed, not human-reviewed (human_reviewed: false): no qualified Korean handwriting approval. The learner decided on 2026-11-08 that AI review\n"
+    "is enough for Korean writing, so the handwriting gate is lifted. No font/diagram tracing or source-derived paths.\n"
+    "See licenses/ORIGINAL-WRITING-PILOT.md. No warranty."
 )
 
 

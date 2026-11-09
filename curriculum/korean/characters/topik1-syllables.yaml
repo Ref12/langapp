@@ -2,14 +2,15 @@ version: '2'
 source_id: korean-writing-original-pilot
 notice: 'Original AI-assisted Korean monoline syllables composed from the pilot recipes, CC0-1.0 to the
   extent rights apply. AI-reviewed only: a vision model checked the letter, composite and layout sheets
-  and a contact sheet of these syllables for stroke order and direction. No person has reviewed them;
-  the pilot''s human review gate is still open.'
+  and a contact sheet of these syllables for stroke order and direction. No person has reviewed them (human_reviewed
+  stays false); the learner decided on 2026-11-08 that AI review is enough, so the handwriting gate is
+  lifted.'
 review: ai-reviewed
 human_reviewed: false
 inputs:
   characters/recipes/original-jamo.yaml: fc77d2659943ec74be6c94bc097f84f87cb7c8df970ced30655f08ecfe0a6990
   characters/recipes/original-layouts.yaml: 3afc8f02c27096ef3153077474ac0dbdae60e3c6e6a500b22b2528a19ce4a186
-  characters/recipes/ai-review.yaml: ec4fa700fdc9566d8eec34b58c623ea585bb386cd974ee77e0d90d0c178c4df5
+  characters/recipes/ai-review.yaml: be08212064f97979afd5fce4b701a561d957a9751acd2b2c1a817081d1cd711b
   topik-1/vocabulary.yaml: 3f1acf8d0fd5627ca381ff566bbe6934f922e3312abc32cf18f1a3d2bbd8a187
 syllables:
   가:

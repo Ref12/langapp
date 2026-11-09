@@ -71,7 +71,7 @@ describe('shipped Japanese and Korean data', () => {
     expect(kana).toEqual(expect.arrayContaining(['あ', 'ぁ', 'ア', 'ッ', 'ー', '゛', '゜']))
     expect(data.japanese.counts).toMatchObject({ n5: 79, n4: 166 })
     for (const kanji of ['右', '図', '書', '日']) expect(data.japanese.entries.has(kanji)).toBe(true)
-    expect(data.korean.counts.syllables).toBe(514)
+    expect(data.korean.counts.syllables).toBeGreaterThanOrEqual(514) // TOPIK 1 syllables plus those the parallel lessons use
     expect(['한', '국', '어'].every(character => data.korean.entries.get(character)?.review === 'ai-reviewed')).toBe(true)
     expect(data.korean.entries.get('ㄱ')?.review).toBeUndefined()
   })

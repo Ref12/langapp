@@ -342,6 +342,13 @@ Changing paths or recipes requires a new reviewed version, not inherited
 approval. A source refresh is an explicit revision/license/checksum operation.
 Do not edit generated shards or extend the 54-syllable list to bypass review.
 
+### Learner decision, 2026-11-08: the handwriting gate is lifted
+
+The learner decided on 2026-11-08 that **AI review is enough for Korean writing**, so the handwriting gate is lifted: composed syllables
+(TOPIK 1 and those the parallel lessons use, `characters/parallel-syllables.yaml`) ship marked `ai-reviewed`. This is a fact about the
+review, not a claim of human approval: `human_reviewed` stays `false` everywhere, and the review record is
+[`characters/recipes/ai-review.yaml`](characters/recipes/ai-review.yaml). Statements below that the gates "remain in force" predate it.
+
 ### Handwriting correction, recipe revision 2
 
 The first pilot's mechanical checks missed handwriting defects: disconnected

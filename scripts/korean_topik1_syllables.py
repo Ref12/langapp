@@ -2,8 +2,8 @@
 
 Writes curriculum/korean/characters/topik1-syllables.yaml: ordered stroke paths per syllable, composed by the same
 composer as the 54-syllable pilot (korean_character_composition.compose), pinned to the exact recipe bytes.
-The pilot's gate is not lifted by this file: the syllables are marked "ai-reviewed" (a vision model checked the
-review sheets and a contact sheet of these syllables), never human-reviewed. See characters/recipes/ai-review.yaml.
+The syllables are marked "ai-reviewed" (a vision model checked the review sheets and a contact sheet of these syllables), never
+human-reviewed (human_reviewed: false). The learner decided on 2026-11-08 that AI review is enough, so the handwriting gate is lifted. See characters/recipes/ai-review.yaml.
 
   python scripts/korean_topik1_syllables.py [--check]
 """
@@ -45,7 +45,7 @@ def build(root: Path = ROOT) -> str:
         "source_id": SOURCE_ID,
         "notice": ("Original AI-assisted Korean monoline syllables composed from the pilot recipes, CC0-1.0 to the extent rights apply. "
                    "AI-reviewed only: a vision model checked the letter, composite and layout sheets and a contact sheet of these syllables "
-                   "for stroke order and direction. No person has reviewed them; the pilot's human review gate is still open."),
+                   "for stroke order and direction. No person has reviewed them (human_reviewed stays false); the learner decided on 2026-11-08 that AI review is enough, so the handwriting gate is lifted."),
         "review": "ai-reviewed",
         "human_reviewed": False,
         "inputs": {name: sha256((root / name).read_bytes()) for name in (JAMO_RECIPE, LAYOUT_RECIPE, REVIEW_RECORD, VOCABULARY)},

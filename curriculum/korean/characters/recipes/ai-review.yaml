@@ -1,11 +1,16 @@
 version: '1'
-status: ai-reviewed-human-gate-open
+status: ai-reviewed-gate-lifted
 human_reviewed: false
 statement: >-
   An AI reviewer checked the letter, composite-letter and block-layout sheets and a contact sheet of the TOPIK 1
-  syllables against standard Korean stroke order and direction. This is not a human review and does not lift the
-  pilot's gate: the learner still looks over the sheets (scripts/korean-review-sheets.mjs, and the preview next to
-  this file) and decides. Syllables made from these recipes are marked ai-reviewed, never reviewed.
+  syllables against standard Korean stroke order and direction. This is not a human review: human_reviewed stays
+  false as a fact. The learner decided on 2026-11-08 that AI review is enough for Korean writing, so the
+  handwriting gate is lifted. Syllables made from these recipes (TOPIK 1 and the parallel lessons') are marked
+  ai-reviewed, never reviewed.
+decision:
+  date: '2026-11-08'
+  by: the learner
+  text: AI review is enough for Korean writing; the handwriting gate is lifted.
 reviewer:
   kind: vision-capable AI model, single reviewer, no helper sessions
   model: claude-opus-5.5
