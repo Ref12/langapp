@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor } from '@testing-library/react'
+import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -46,10 +46,26 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     const saved = await db.words.toArray()
     resetProfilesForTests()
     render(<App />)
-    expect(await screen.findByRole('link', { name: 'Active profile: default' })).toBeInTheDocument()
+    expect(await screen.findByLabelText('Active profile: default')).toBeInTheDocument()
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     expect(await db.preferences.get('workspace')).toMatchObject({ name: 'Existing workspace', theme: 'light', defaultSpeechRate: 0.75 })
     expect(await db.words.toArray()).toEqual(saved)
+  })
+
+  it('shows the Stable / Lab menu on the profile item with a gear to Settings', async () => {
+    await initializeWorkspace()
+    resetProfilesForTests()
+    render(<App />)
+    const user = userEvent.setup()
+    await screen.findByLabelText('Active profile: default')
+    const sidebar = document.querySelector('.sidebar') as HTMLElement
+    await user.click(sidebar.querySelector('button.profile') as HTMLElement)
+    const menu = await screen.findByRole('menu')
+    expect(within(menu).getAllByRole(/^menuitem/)).toHaveLength(2)
+    expect(within(menu).getByRole('menuitemradio', { name: /Stable/ })).toHaveAttribute('aria-checked', 'true')
+    expect(within(menu).getByRole('menuitemradio', { name: /Lab/ })).toHaveAttribute('href', './lab/')
+    expect(sidebar.querySelector('a.build-switch-gear')).toHaveAttribute('href', '#settings')
+    expect(screen.queryByText(/Copy profile/)).toBeNull()
   })
 
   it('offers non-destructive default-profile recovery for an unavailable selection', async () => {
