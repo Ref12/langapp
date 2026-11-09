@@ -1,15 +1,15 @@
 # LinguaWeave
 
 A local-first Mandarin learning workspace built around stories, useful lessons,
-and shared vocabulary progress. The original multilingual PWA remains available
-as v1.
+and shared vocabulary progress. The original multilingual PWA (v1) is retired;
+its source is at the git tag `v1-final`.
 
 ## Application versions
 
-The original deployed application is preserved in [`versions/v1`](versions/v1).
-Its source, public assets, TypeScript projects, and Vite/PWA configuration live
-there. The repository root owns the shared dependency lockfile, quality gates,
-and deployment assembly; run npm commands from the repository root.
+The v1 app's source is at the git tag `v1-final`.
+
+The repository root owns the dependency lockfile, quality gates, and deployment
+assembly; run npm commands from the repository root.
 
 The site root serves the new React/TypeScript application in [`src`](src), using
 the mockups' blue/slate design and shared theme tokens. It has a real, isolated
@@ -18,7 +18,6 @@ own AI connection after configuration. On a fresh localhost workspace,
 `data\default.yaml` is imported automatically; credentials are never deployed
 with the public site.
 
-The original app remains at `/v1/` (or `/langapp/v1/` on repository Pages).
 Use `/dev/` for the real app with **Desktop / Mobile** preview controls.
 The controls resize the same app without resetting drafts or saved progress;
 the preview follows its route and theme. `/dev` redirects to `/dev/`.
@@ -1006,12 +1005,9 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/` for the Mandarin workspace or
-`http://localhost:5173/v1/` for the archived application. One server hosts both,
-with the original v1 Vite server mounted under `/v1/`. Each app has its own
-dependency-optimization cache. Design previews are served directly from
-`docs/mockups`, not from copies connected to production storage.
-For standalone v1 development with hot module replacement, use `npm run dev:v1`.
+Open `http://localhost:5173/` for the Mandarin workspace. Design previews are
+served directly from `docs/mockups`, not from copies connected to production
+storage.
 Open `http://localhost:5173/dev/#lessons` to review the real curriculum in desktop
 and phone-sized layouts. The same `/dev/` route is included in the built site
 and works beneath a Pages prefix such as `/langapp/dev/`.
@@ -1256,8 +1252,7 @@ projection, including its authored examples and lesson prerequisites.
 ## Deployment
 
 The current app is published at **https://ref12.github.io/langapp/**. The
-archived v1 app is kept in [`versions/v1`](versions/v1) as source only; it is no
-longer built or published. The same Pages build can also be proxied under another
+v1 app's source is at the git tag `v1-final`; it is no longer built or published. The same Pages build can also be proxied under another
 path (a reverse proxy mounting it under a subpath) without changes.
 
 Repository **Settings -> Pages -> Build and deployment -> Source** must be

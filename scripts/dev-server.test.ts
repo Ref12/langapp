@@ -10,7 +10,7 @@ import { localProfiles } from './local-profiles'
 import { initializeProfileDirectory, listProfileFiles, readProfileFile, saveProfileFile } from './profile-files'
 import { LOCAL_PROFILES_PATH } from '../src/core/profiles/local-contracts'
 
-it('serves the production app, separate mockups, and transformed v1 dependencies from one origin', async () => {
+it('serves the production app and separate mockups from one origin', async () => {
   const profileRoot = resolve(`.dev-server-profile-test-${randomUUID()}`)
   await mkdir(profileRoot)
   const config = await rootConfig({ command: 'serve', mode: 'development', isPreview: false })
@@ -71,20 +71,6 @@ it('serves the production app, separate mockups, and transformed v1 dependencies
       const response = await fetch(`${base}/curriculum/chinese/${path}`)
       expect(response.status).toBe(200)
       expect(await response.text()).toBe(await readFile(resolve('curriculum', 'chinese', path), 'utf8'))
-    }
-
-    const legacy = await fetch(base + '/v1/').then(response => response.text())
-    expect(legacy).toContain('id="root"')
-    expect(legacy).toContain('src="/v1/src/main.tsx"')
-    const main = await fetch(base + '/v1/src/main.tsx').then(response => response.text())
-    const dependencies = [...main.matchAll(/from "(\/v1\/[^"]+\/deps\/[^"]+)"/g)].map(match => match[1])
-    expect(dependencies.length).toBeGreaterThan(0)
-    for (const path of dependencies) {
-      expect(path).toContain('/node_modules/.vite/v1/deps/')
-      const response = await fetch(base + path)
-      expect(response.status).toBe(200)
-      expect(response.headers.get('content-type')).toContain('javascript')
-      expect(await response.text()).toContain('export')
     }
   } finally {
     await server.close()

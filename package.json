@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:v1": "vite --config versions/v1/vite.config.ts",
     "build": "npm run build:next && node scripts/build-site.mjs",
     "build:next": "npm run curriculum:check && npm run curriculum:v2:app:check && npm run characters:check && tsc -b && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build",
     "characters:generate": "node scripts/generate-app-characters.mjs && node scripts/generate-app-writing-ja-ko.mjs",
@@ -34,7 +33,6 @@
   "dependencies": {
     "dexie": "^4.4.5",
     "dexie-react-hooks": "^1.1.7",
-    "jsonrepair": "^3.13.1",
     "jsqr": "^1.4.0",
     "jszip": "^3.10.1",
     "lucide-react": "^0.468.0",

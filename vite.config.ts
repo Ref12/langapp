@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'node:url'
-import { createServer, defineConfig, type Plugin, type UserConfig, type ViteDevServer } from 'vite'
+import { defineConfig, type Plugin, type UserConfig, type ViteDevServer } from 'vite'
 import react from '@vitejs/plugin-react'
 import { mockupFiles } from './scripts/mockup-files.mjs'
 import { localSettings } from './scripts/local-settings'
@@ -23,25 +23,14 @@ function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'
   })
 }
 
-function versionedSite(mockups: Set<string>): Plugin {
-  let v1: ViteDevServer | undefined
-
+function devSite(mockups: Set<string>): Plugin {
   return {
-    name: 'versioned-site',
-    async configureServer(server) {
+    name: 'dev-site',
+    configureServer(server) {
       mountDevicePreview(server)
-      v1 = await createServer({
-        configFile: fileURLToPath(new URL('./versions/v1/vite.config.ts', import.meta.url)),
-        server: { middlewareMode: true, hmr: false, watch: null },
-      })
-      const legacy = v1
-      server.middlewares.use((request, response, next) => {
+      server.middlewares.use((request, _response, next) => {
         const url = new URL(request.url ?? '/', 'http://localhost')
         const pathname = url.pathname
-        if (pathname === '/v1' || pathname.startsWith('/v1/')) {
-          legacy.middlewares(request, response, next)
-          return
-        }
 
         // The design previews retain their original relative URLs, on a separate page.
         const filename = pathname === '/preview.html' ? 'index.html' : pathname.slice(1)
@@ -54,9 +43,6 @@ function versionedSite(mockups: Set<string>): Plugin {
     configurePreviewServer(server) {
       mountDevicePreview(server)
     },
-    async closeBundle() {
-      await v1?.close()
-    },
   }
 }
 
@@ -66,6 +52,6 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
   base: './',
   appType: 'mpa',
-  plugins: [react(), localSettings(), localProfiles(), localTts(), versionedSite(new Set(await mockupFiles())), pwa()],
+  plugins: [react(), localSettings(), localProfiles(), localTts(), devSite(new Set(await mockupFiles())), pwa()],
   build: { outDir: 'dist' },
 }))
