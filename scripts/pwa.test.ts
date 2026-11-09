@@ -7,7 +7,7 @@ type Emitted = { fileName: string; source: string }
 
 async function build(bundle: Record<string, unknown>) {
   const files: Emitted[] = []
-  const plugin = pwa() as unknown as { generateBundle: (this: { emitFile: (f: Emitted) => void }, o: unknown, b: unknown) => Promise<void> }
+  const plugin = pwa('stable') as unknown as { generateBundle: (this: { emitFile: (f: Emitted) => void }, o: unknown, b: unknown) => Promise<void> }
   await plugin.generateBundle.call({ emitFile: f => files.push(f) }, {}, bundle)
   return Object.fromEntries(files.map(f => [f.fileName, f.source]))
 }
@@ -22,7 +22,7 @@ describe('PWA plugin', async () => {
   })
 
   it('injects the manifest link with credentials so it loads behind Cloudflare Access', () => {
-    const plugin = pwa() as unknown as { transformIndexHtml: () => { tag: string; attrs: Record<string, string> }[] }
+    const plugin = pwa('stable') as unknown as { transformIndexHtml: () => { tag: string; attrs: Record<string, string> }[] }
     const link = plugin.transformIndexHtml().find(t => t.tag === 'link' && t.attrs.rel === 'manifest')
     expect(link?.attrs).toEqual({ rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' })
   })
@@ -37,5 +37,22 @@ describe('PWA plugin', async () => {
     const handlers = new Map<string, unknown>()
     runInNewContext(sw, { self: { addEventListener: (n: string, h: unknown) => handlers.set(n, h), registration: { scope: 'https://x.test/apps/lang/' } }, caches: {}, location: { origin: 'https://x.test' } })
     expect([...handlers.keys()].sort()).toEqual(['activate', 'fetch', 'install'])
+  })
+})
+
+describe('PWA plugin, lab channel', () => {
+  it('has its own worker file, caches and manifest name, and cleans up only its own caches', async () => {
+    const files: Emitted[] = []
+    const plugin = pwa('lab') as unknown as { generateBundle: (this: { emitFile: (f: Emitted) => void }, o: unknown, b: unknown) => Promise<void> }
+    await plugin.generateBundle.call({ emitFile: f => files.push(f) }, {}, { 'index.html': {} })
+    const out = Object.fromEntries(files.map(f => [f.fileName, f.source]))
+    expect(out['sw.js']).toBeUndefined()
+    const sw = out['sw-lab.js']
+    expect(sw).toContain('"lab.linguaweave-runtime"')
+    expect(sw).toMatch(/"lab\.linguaweave-shell-[a-z0-9]+"/)
+    expect(sw).toContain('"lab.linguaweave-shell-"')
+    expect(sw).not.toMatch(/['"]linguaweave-(shell|runtime)/)
+    expect(JSON.parse(out['manifest.webmanifest']).name).toBe('LinguaWeave Lab')
+    expect(JSON.parse(out['manifest.webmanifest']).scope).toBe('./')
   })
 })

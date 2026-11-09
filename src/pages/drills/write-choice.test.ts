@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { buildQuestions, grade, DEFAULT_OPTIONS, type Q } from './tasks'
+import { storageNames } from '../../core/storage-names'
 
 beforeEach(() => localStorage.clear())
 
@@ -11,10 +12,10 @@ describe('Write it options', () => {
     expect(loadWriteChoice('review')).toEqual({ writeMode: 'paper' })
   })
   it('remember the last writing mode and drop the old unit and learn/test choices', () => {
-    localStorage.setItem('drills.write', JSON.stringify({ unit: 'words', style: 'learn', reviewMode: 'pad' }))
+    localStorage.setItem(storageNames().local.writeDrill, JSON.stringify({ unit: 'words', style: 'learn', reviewMode: 'pad' }))
     expect(loadWriteChoice('review')).toEqual({ writeMode: 'pad' })
     saveWriteChoice({ writeMode: 'paper' })
-    expect(JSON.parse(localStorage.getItem('drills.write')!)).toEqual({ mode: 'paper' })
+    expect(JSON.parse(localStorage.getItem(storageNames().local.writeDrill)!)).toEqual({ mode: 'paper' })
     expect(loadWriteChoice('new')).toEqual({ writeMode: 'paper' })
   })
 })

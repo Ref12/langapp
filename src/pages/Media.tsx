@@ -18,6 +18,7 @@ import { removeMedia, saveMedia, saveSync } from '../core/media/store'
 import { PhraseKnowledge } from '../components/assistant/PhraseKnowledge'
 import { LearnFromSpan } from '../components/media/LearnFromSpan'
 import { CollectLine } from '../components/collections/CollectLine'
+import { storageNames } from '../core/storage-names'
 import './media.css'
 
 type Phase = { kind: 'idle' } | { kind: 'working'; message: string; progress?: number } | { kind: 'unreachable'; id: string } | { kind: 'failed'; message: string }
@@ -55,16 +56,16 @@ function ImportFile({ onError }: { onError: (message: string) => void }) {
   return <label className="button secondary">Import transcript file<input type="file" accept=".json,.media.json,.medusa.json,application/json" hidden onChange={choose} /></label>
 }
 
-const JOB_URL_KEY = 'linguaweave-media-job-url:'
+const JOB_URL_KEY = () => storageNames().session.mediaJobUrlPrefix
 
 /** Follows one helper job until its transcript is saved; reports an unreachable helper so the page can offer the file fallback. */
 function useJobFollower(setPhase: (phase: Phase) => void) {
   const abort = useRef<AbortController>()
   useEffect(() => () => abort.current?.abort(), [])
   return useCallback(async (id: string, url?: string) => {
-    if (url) { try { sessionStorage.setItem(JOB_URL_KEY + id, url) } catch { /* private mode */ } }
+    if (url) { try { sessionStorage.setItem(JOB_URL_KEY() + id, url) } catch { /* private mode */ } }
     let resubmitUrl = url
-    if (!resubmitUrl) { try { resubmitUrl = sessionStorage.getItem(JOB_URL_KEY + id) ?? undefined } catch { /* private mode */ } }
+    if (!resubmitUrl) { try { resubmitUrl = sessionStorage.getItem(JOB_URL_KEY() + id) ?? undefined } catch { /* private mode */ } }
     abort.current?.abort()
     const controller = new AbortController()
     abort.current = controller
@@ -175,7 +176,7 @@ function MediaJob({ id }: { id: string }) {
   </>
 }
 
-const PAUSE_KEY = 'linguaweave-media-pause-after-line'
+const PAUSE_KEY = () => storageNames().local.mediaPause
 
 /** Where a tapped word can be looked up in the Dictionary (characters, when it is one). */
 const dictionaryLink = (text: string) => `#dictionary/${Array.from(text).length === 1 ? 'characters' : 'vocabulary'}/all?q=${encodeURIComponent(text)}`
@@ -241,7 +242,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const [time, setTime] = useState(0)
   const [videoFailed, setVideoFailed] = useState(false)
   const [current, setCurrent] = useState(-1)
-  const [pauseAfter, setPauseAfter] = useState(() => localStorage.getItem(PAUSE_KEY) === 'true')
+  const [pauseAfter, setPauseAfter] = useState(() => localStorage.getItem(PAUSE_KEY()) === 'true')
   const pauseRef = useRef(pauseAfter)
   const pausedAt = useRef(-2)
   const currentRow = useRef<HTMLLIElement>(null)
@@ -251,7 +252,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
   const container = useRef<HTMLDivElement>(null)
   const [annotated, setAnnotated] = useState(false)
   const [overlayTranslation, setOverlayTranslation] = useState(false)
-  const [glosses, setGlosses] = useState(() => localStorage.getItem('linguaweave-media-glosses') === 'true')
+  const [glosses, setGlosses] = useState(() => localStorage.getItem(storageNames().local.mediaGlosses) === 'true')
   const [translating, setTranslating] = useState<{ done: number; total: number; model?: string; active?: { from: number; to: number; startedAt: number }[] } | undefined>()
   const [concurrency, setConcurrencyState] = useState(getConcurrency)
   const [chunkSize, setChunkSizeState] = useState(getChunkSize)
@@ -320,7 +321,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
       window.setTimeout(() => URL.revokeObjectURL(link.href), 1000)
     }
   }
-  const toggleGlosses = (value: boolean) => { setGlosses(value); localStorage.setItem('linguaweave-media-glosses', String(value)) }
+  const toggleGlosses = (value: boolean) => { setGlosses(value); localStorage.setItem(storageNames().local.mediaGlosses, String(value)) }
   const [picker, setPicker] = useState(false)
   const [picked, setPicked] = useState<Set<number>>(new Set())
   const [count, setCount] = useState(5)
@@ -424,7 +425,7 @@ function Watch({ item, workspace, route }: { item: MediaItem; workspace: PagePro
     if (video.current) { video.current.currentTime = Math.max(0, shifted(line)); void video.current.play?.() }
     setCurrent(index)
   }
-  const toggle = (value: boolean) => { setPauseAfter(value); pauseRef.current = value; localStorage.setItem(PAUSE_KEY, String(value)) }
+  const toggle = (value: boolean) => { setPauseAfter(value); pauseRef.current = value; localStorage.setItem(PAUSE_KEY(), String(value)) }
   const line = current >= 0 ? item.lines[current] : undefined
   const now = () => video.current?.currentTime ?? time
   const shift = (delta: number) => apply(nudge(sync, now(), (line ?? item.lines[0]).start, delta))

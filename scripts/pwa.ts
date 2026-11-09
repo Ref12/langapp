@@ -1,4 +1,5 @@
 import type { Plugin } from 'vite'
+import { storageNames, type BuildChannel } from '../src/core/storage-names'
 
 /**
  * PWA for every production build: emits a web manifest and a service worker. All URLs
@@ -7,7 +8,8 @@ import type { Plugin } from 'vite'
  * The service worker replaces the retired root worker at the same URL. It only touches same-origin GET requests inside its own scope and never
  * touches IndexedDB, so learning data is never cleared.
  */
-export function pwa(): Plugin {
+export function pwa(channel: BuildChannel = 'lab'): Plugin {
+  const names = storageNames(channel)
   // One id per build: baked into the bundle (`__APP_BUILD__`) and published as version.json, so a running tab can tell whether a newer deploy exists.
   const build = Date.now().toString(36)
   return {
@@ -24,8 +26,8 @@ export function pwa(): Plugin {
         fileName: 'manifest.webmanifest',
         source: JSON.stringify({
           id: './',
-          name: 'LinguaWeave',
-          short_name: 'LinguaWeave',
+          name: channel === 'lab' ? 'LinguaWeave Lab' : 'LinguaWeave',
+          short_name: channel === 'lab' ? 'LW Lab' : 'LinguaWeave',
           description: 'Learn languages through reading and conversation.',
           start_url: './',
           scope: './',
@@ -35,16 +37,17 @@ export function pwa(): Plugin {
           icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
         }, null, 2),
       })
-      this.emitFile({ type: 'asset', fileName: 'sw.js', source: serviceWorker(Array.from(new Set(precache))) })
+      this.emitFile({ type: 'asset', fileName: names.serviceWorkerFile, source: serviceWorker(Array.from(new Set(precache)), names) })
     },
   }
 }
 
-function serviceWorker(precache: string[]): string {
+function serviceWorker(precache: string[], names: ReturnType<typeof storageNames>): string {
   const version = Date.now().toString(36)
   return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB.
-const CACHE = 'linguaweave-shell-${version}'
-const RUNTIME = 'linguaweave-runtime'
+const CACHE = ${JSON.stringify(names.cache.shell(version))}
+const CACHE_PREFIX = ${JSON.stringify(names.cache.shellPrefix)}
+const RUNTIME = ${JSON.stringify(names.cache.runtime)}
 const PRECACHE = ${JSON.stringify(precache)}
 const scope = self.registration.scope
 
@@ -55,7 +58,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     for (const key of await caches.keys()) {
-      if (key.startsWith('linguaweave-shell-') && key !== CACHE) await caches.delete(key)
+      if (key.startsWith(CACHE_PREFIX) && key !== CACHE) await caches.delete(key)
     }
     await self.clients.claim()
   })())
@@ -67,7 +70,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url)
   // Only this scope: AI gateway calls and other origins pass through untouched.
   if (url.origin !== location.origin || !url.href.startsWith(scope)) return
-  if (url.pathname.endsWith('/sw.js')) return
+  if (url.pathname.endsWith('/' + ${JSON.stringify(names.serviceWorkerFile)})) return
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).catch(() => caches.match(scope, { ignoreSearch: true }).then(hit => hit || caches.match(scope + 'index.html'))))
     return

@@ -2,21 +2,22 @@ import type { KnowledgeEntry } from './contracts'
 import { requireUnit, type Catalog } from './catalog'
 import { unitRef } from './contracts'
 import { retrievability, type SchedulingState } from './fsrs'
+import { storageNames } from '../storage-names'
 
 export const NEW_COUNT_DEFAULT = 5
 export const NEW_COUNT_MAX = 20
 export const NEW_COUNT_CHOICES = [5, 10, 15, 20] as const
-const STORAGE_KEY = 'practice.newItems'
+const STORAGE_KEY = () => storageNames().local.newItems
 /** The earlier key, from when the count was words only; read once and carried over. */
-const LEGACY_KEY = 'practice.newWords'
+const LEGACY_KEY = () => storageNames().local.legacyNewItems
 
-const REVIEW_KEY = 'practice.reviewCount'
+const REVIEW_KEY = () => storageNames().local.reviewCount
 export const REVIEW_COUNT_DEFAULT = 10
 /** How many due items a review takes at most, remembered separately from the new-items count. */
 export function loadReviewCount(): number {
-  try { const raw = localStorage.getItem(REVIEW_KEY); return raw === null ? REVIEW_COUNT_DEFAULT : clampCount(raw) } catch { return REVIEW_COUNT_DEFAULT }
+  try { const raw = localStorage.getItem(REVIEW_KEY()); return raw === null ? REVIEW_COUNT_DEFAULT : clampCount(raw) } catch { return REVIEW_COUNT_DEFAULT }
 }
-export function saveReviewCount(count: number) { try { localStorage.setItem(REVIEW_KEY, String(clampCount(count))) } catch { /* storage may be unavailable */ } }
+export function saveReviewCount(count: number) { try { localStorage.setItem(REVIEW_KEY(), String(clampCount(count))) } catch { /* storage may be unavailable */ } }
 
 export interface ItemCounts { words: number; grammar: number }
 
@@ -27,9 +28,9 @@ export function clampCount(value: unknown): number {
 }
 /** The last choice of how many new items per set (at least), remembered on this device. */
 export function loadNewCount(): number {
-  try { const raw = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_KEY); return raw === null ? NEW_COUNT_DEFAULT : clampCount(raw) } catch { return NEW_COUNT_DEFAULT }
+  try { const raw = localStorage.getItem(STORAGE_KEY()) ?? localStorage.getItem(LEGACY_KEY()); return raw === null ? NEW_COUNT_DEFAULT : clampCount(raw) } catch { return NEW_COUNT_DEFAULT }
 }
-export function saveNewCount(count: number) { try { localStorage.setItem(STORAGE_KEY, String(clampCount(count))) } catch { /* storage may be unavailable */ } }
+export function saveNewCount(count: number) { try { localStorage.setItem(STORAGE_KEY(), String(clampCount(count))) } catch { /* storage may be unavailable */ } }
 
 /** Words (curriculum vocabulary and words saved from media) and grammar patterns; characters are not items. */
 export function countItems(entries: readonly Pick<KnowledgeEntry, 'kind'>[]): ItemCounts {

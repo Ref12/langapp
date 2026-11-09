@@ -3,6 +3,7 @@ import { journalCursor, readJournaledState, readJournalRange, readSettings, read
 import { StaleBackupError, type BackupBackend } from './backend'
 import { replay, replayFrom } from './journal'
 import { buildFilesV2, SEGMENT_EVENTS, SNAPSHOT_EVERY_EVENTS, SNAPSHOT_EVERY_SEGMENTS, type LogState, type SequencedEvent } from './layout'
+import { storageNames } from '../storage-names'
 import { addRun, clearCache, loadCache, loadStatus, saveCache, saveSentSeq, saveStatus, type BackupCache, type BackupTrigger, type RunRecord } from './state'
 
 // One backup run, free of window, localStorage and React so a worker or the service worker can host it.
@@ -20,7 +21,7 @@ export interface BackupJob {
 
 export class BackupPausedError extends Error { constructor() { super('Paused for an exercise.') } }
 
-const LOCK = 'linguaweave-backup'
+const LOCK = () => storageNames().lock
 const inProcess = new Map<string, Promise<RunRecord>>()
 const now = () => (typeof performance === 'undefined' ? Date.now() : performance.now())
 
@@ -32,7 +33,7 @@ export async function runBackupJob(job: BackupJob): Promise<RunRecord> {
   const locks = typeof navigator === 'undefined' ? undefined : navigator.locks
   const task = (async () => {
     if (!locks) return execute(job)
-    const result = await locks.request(LOCK + ':' + key, { ifAvailable: true }, lock => lock ? execute(job) : Promise.resolve(undefined))
+    const result = await locks.request(LOCK() + ':' + key, { ifAvailable: true }, lock => lock ? execute(job) : Promise.resolve(undefined))
     return result ?? skipped(job, 'another backup is already running')
   })().finally(() => inProcess.delete(key))
   inProcess.set(key, task)

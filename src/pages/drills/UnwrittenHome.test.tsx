@@ -7,6 +7,7 @@ import { addToKnowledge } from '../../core/study/knowledge'
 import { DEFAULT_OPTIONS, buildQuestions } from './tasks'
 import { guidedChars } from '../../core/drills/write-queue'
 import * as speech from '../../core/assistant/speech'
+import { storageNames } from '../../core/storage-names'
 
 vi.mock('../../core/ai/structured', () => ({ requestStructuredJSON: vi.fn() }))
 
@@ -55,7 +56,7 @@ describe('Characters to write row on Practice home', () => {
     render(<App />)
     expect(await screen.findByText(/Characters to write: \d+/)).toBeInTheDocument()
     await user.selectOptions(screen.getByRole('combobox', { name: 'Characters per set' }), '12')
-    expect(localStorage.getItem('practice.unwrittenSize')).toBe('12')
+    expect(localStorage.getItem(storageNames().local.unwrittenSize)).toBe('12')
     await user.click(screen.getByRole('button', { name: 'Start unwritten characters' }))
     await waitFor(async () => expect(await db.drillSets.count()).toBe(1))
     const set = (await db.drillSets.toArray())[0]

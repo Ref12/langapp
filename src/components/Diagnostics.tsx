@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { collectDiagnostics } from '../core/backup/diagnostics'
 import { getActiveProfile } from '../core/profiles/store'
+import { buildChannel, buildCommit } from '../core/storage-names'
 
 /** Settings → Diagnostics: copies recent timings (startup, saves, backup runs) so real numbers can be pasted from a phone. */
 export function Diagnostics() {
@@ -13,6 +14,7 @@ export function Diagnostics() {
   }
   return <section className="panel settings-form" aria-label="Diagnostics">
     <h2>Diagnostics</h2>
+    <p className="small" data-testid="build-info">Build: <strong>{buildChannel() === 'lab' ? 'Lab' : 'Stable'}</strong> · commit <code>{buildCommit()}</code></p>
     <p className="small muted">Timings of the last startups, Check answer and Next saves and cloud backups on this device. They contain no credentials, backup token or learning content.</p>
     <div className="button-row"><button type="button" className="button secondary" onClick={() => void copy()}>Copy diagnostics</button></div>
     {notice && <p className="notice success" role="status">{notice}</p>}

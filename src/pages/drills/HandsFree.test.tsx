@@ -5,6 +5,7 @@ import { db, initializeWorkspace } from '../../core/database'
 import { resetProfileStorage } from '../../test/profile-storage'
 import * as speech from '../../core/assistant/speech'
 import { createDrillSet, newHandsfreeActivity } from '../../core/drills/store'
+import { storageNames } from '../../core/storage-names'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../../core/ai/structured', () => structured)
@@ -131,7 +132,7 @@ describe('Hands-free player', () => {
     await waitFor(() => expect(play).toBeEnabled())
     const dialog = await openSettings()
     fireEvent.change(within(dialog).getByLabelText('Pause length'), { target: { value: 'long' } })
-    await waitFor(() => expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ pause: 'long' }))
+    await waitFor(() => expect(JSON.parse(localStorage.getItem(storageNames().local.handsfree)!)).toMatchObject({ pause: 'long' }))
     fireEvent.click(within(dialog).getByRole('button', { name: 'Close settings' }))
     fireEvent.click(play)
     await waitFor(() => expect(said.length).toBeGreaterThan(0))
@@ -234,7 +235,7 @@ describe('Hands-free player', () => {
     expect(within(dialog).getByLabelText('Repeats')).toHaveValue('1')
     fireEvent.change(within(dialog).getByLabelText('Emphasis speed'), { target: { value: '0.7' } })
     await waitFor(async () => expect((await hf()).settings).toMatchObject({ emphasisRate: 0.7 }))
-    expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ emphasisRate: 0.7 })
+    expect(JSON.parse(localStorage.getItem(storageNames().local.handsfree)!)).toMatchObject({ emphasisRate: 0.7 })
   })
 
   it('has Hands-free defaults with the same pickers in Settings', async () => {
@@ -247,7 +248,7 @@ describe('Hands-free player', () => {
     for (const name of ['English voice', 'Chinese voice', 'Chinese speed', 'Emphasise the English word']) expect(within(panel).getByLabelText(name)).toBeInTheDocument()
     expect(within(panel).queryByLabelText('Emphasis voice')).toBeNull()
     fireEvent.change(within(panel).getByLabelText('Repeats'), { target: { value: '5' } })
-    expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ repeats: 5 })
+    expect(JSON.parse(localStorage.getItem(storageNames().local.handsfree)!)).toMatchObject({ repeats: 5 })
   })
 
   it('lists an unfinished Hands-free set in Recent sessions with In progress, resumes it at the saved prompt, and discards it from the ⋯ menu', async () => {
@@ -358,10 +359,10 @@ describe('Hands-free player', () => {
     fireEvent.change(within(dialog).getByLabelText('Wording around each item'), { target: { value: 'abridged' } })
     await waitFor(() => expect(within(dialog).getByLabelText('Wording around each item')).toHaveValue('abridged'))
     fireEvent.change(within(dialog).getByLabelText('Section introductions'), { target: { value: 'header' } })
-    await waitFor(() => expect(JSON.parse(localStorage.getItem('handsfree.settings')!)).toMatchObject({ itemWording: 'abridged', sectionIntros: 'header' }))
+    await waitFor(() => expect(JSON.parse(localStorage.getItem(storageNames().local.handsfree)!)).toMatchObject({ itemWording: 'abridged', sectionIntros: 'header' }))
     await waitFor(async () => expect((await hf()).settings).toMatchObject({ itemWording: 'abridged', sectionIntros: 'header' }))
     cleanup()
-    localStorage.removeItem('handsfree.settings')
+    localStorage.removeItem(storageNames().local.handsfree)
     window.location.hash = '#settings'
     render(<App />)
     const panel = await screen.findByRole('region', { name: 'Hands-free settings' })

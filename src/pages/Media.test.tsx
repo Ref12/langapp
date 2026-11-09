@@ -13,6 +13,7 @@ const translating = vi.hoisted(() => vi.fn())
 vi.mock('../core/media/translation', async importOriginal => ({ ...(await importOriginal<typeof import('../core/media/translation')>()), translateMedia: translating }))
 import { nextInterval, nextLines } from '../core/media/study'
 import { currentLine, nudge } from '../core/media/contracts'
+import { storageNames } from '../core/storage-names'
 
 const player = vi.hoisted(() => ({ time: 0, play: vi.fn(), pause: vi.fn() }))
 
@@ -165,7 +166,7 @@ describe('Media page', () => {
     expect(player.time).toBe(8)
     expect(await db.knowledge.count()).toBe(0)
     await user.click(screen.getByRole('checkbox', { name: 'Pause after each line' }))
-    expect(localStorage.getItem('linguaweave-media-pause-after-line')).toBe('true')
+    expect(localStorage.getItem(storageNames().local.mediaPause)).toBe('true')
     player.time = 10
     await waitFor(() => expect(player.pause).toHaveBeenCalled())
     expect(document.querySelector('video')).toHaveAttribute('src', 'http://127.0.0.1:38917/v1/media/m1/video')

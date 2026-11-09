@@ -1,6 +1,7 @@
 import Dexie, { type EntityTable } from 'dexie'
 import type { LogState, SegmentRef } from './layout'
 import type { RemoteState, CallTrace } from './backend'
+import { storageNames } from '../storage-names'
 
 // Backup bookkeeping in its own small database so a service worker or worker can read and write it
 // (they have no localStorage) and so it never contends with the learning database.
@@ -49,7 +50,7 @@ class BackupStateDatabase extends Dexie {
   runs!: EntityTable<RunRecord, 'id'>
   marks!: EntityTable<TimingMark, 'id'>
   constructor() {
-    super('linguaweave-backup-state')
+    super(storageNames().db.backupState)
     this.version(1).stores({ kv: '&key', runs: '++id, startedAt', marks: '++id, kind' })
   }
 }
@@ -75,6 +76,11 @@ export const loadWindowStart = async (profileId: string): Promise<number> => (aw
 export const saveWindowStart = (profileId: string, at: number) => put('window:' + profileId, at)
 export const loadSentSeq = (profileId: string) => get<number>('sent:' + profileId)
 export const saveSentSeq = (profileId: string, seq: number) => put('sent:' + profileId, seq)
+
+/** Forgets what was sent for a profile (its cache, journal cursor, status and window), so the next backup starts from the data as it is now. */
+export async function clearProfileBackupState(profileId: string): Promise<void> {
+  await database.kv.bulkDelete(['cache:' + profileId, 'sent:' + profileId, 'status:' + profileId, 'window:' + profileId])
+}
 
 export const RUN_HISTORY = 20
 export async function addRun(run: RunRecord): Promise<void> {

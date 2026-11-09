@@ -1,6 +1,7 @@
 import { redactImageData } from '../assistant/images'
 import { handwritingReport } from '../characters/handwritingEngine'
 import { addMark, loadMarks, loadRuns, loadStatus, type BackupStatus, type RunRecord, type TimingMark } from './state'
+import { buildChannel, buildCommit } from '../storage-names'
 
 // Small rolling record of how long things take on this device, for Settings → Diagnostics. Startup phases and
 // answer/Next saves are kept in memory and in the backup state database (about 20 of each); backup runs are
@@ -45,7 +46,7 @@ export function describeRun(run: RunRecord) {
 
 export interface DiagnosticsReport {
   generatedAt: string
-  app: { userAgent: string; online: boolean }
+  app: { build: 'Lab' | 'Stable'; commit: string; userAgent: string; online: boolean }
   backup: { lastBackupAt?: string; lastError?: string; running: boolean }
   startup: unknown[]
   saves: { check: unknown[]; next: unknown[] }
@@ -58,7 +59,7 @@ export async function collectDiagnostics(profileId?: string): Promise<Diagnostic
   const of = (kind: TimingMark['kind']) => marks.filter(mark => mark.kind === kind).slice(0, 20)
   const report: DiagnosticsReport = {
     generatedAt: new Date().toISOString(),
-    app: { userAgent: navigator.userAgent, online: navigator.onLine },
+    app: { build: buildChannel() === 'lab' ? 'Lab' : 'Stable', commit: buildCommit(), userAgent: navigator.userAgent, online: navigator.onLine },
     backup: {
       ...(status.lastBackupAt ? { lastBackupAt: stamp(status.lastBackupAt) } : {}), ...(status.lastError ? { lastError: redact(status.lastError) } : {}),
       running: Boolean(status.running),

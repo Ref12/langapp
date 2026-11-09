@@ -14,6 +14,7 @@ import {
   setBackendFactoryForTests, snapshotCurrentYaml, type BackupConfig,
 } from './service'
 import { parseJournal } from './journal'
+import { storageNames } from '../storage-names'
 
 const config: BackupConfig = { owner: 'me', repo: 'backups', token: 'tok', branch: 'main' }
 
@@ -72,13 +73,13 @@ describe('backup connection storage', () => {
   it('keeps the connection in IndexedDB and localStorage and heals whichever is missing', async () => {
     await saveBackupConfig({ ...config, owner: ' me ' })
     expect((await db.backupConfig.get('github'))?.owner).toBe('me')
-    expect(JSON.parse(localStorage.getItem('linguaweave-backup-config:default')!).token).toBe('tok')
+    expect(JSON.parse(localStorage.getItem((storageNames().local.backupConfigPrefix + 'default'))!).token).toBe('tok')
     await db.backupConfig.clear()
     expect(await loadBackupConfig()).toEqual(config) // partly cleared store: localStorage still reaches the backup
     expect(await db.backupConfig.get('github')).toBeDefined()
     localStorage.clear()
     expect(await loadBackupConfig()).toEqual(config)
-    expect(localStorage.getItem('linguaweave-backup-config:default')).not.toBeNull()
+    expect(localStorage.getItem((storageNames().local.backupConfigPrefix + 'default'))).not.toBeNull()
   })
 
   it('validates the connection', async () => {
@@ -279,7 +280,7 @@ describe('no background backups', () => {
     const emitted: { fileName: string; source: string }[] = []
     const plugin = pwa() as unknown as { generateBundle: (this: { emitFile: (f: { fileName: string; source: string }) => void }, o: unknown, b: unknown) => Promise<void> | void }
     await plugin.generateBundle.call({ emitFile: file => emitted.push(file) }, {}, { 'index.html': {}, 'assets/index-a.js': {} })
-    const sw = emitted.find(file => file.fileName === 'sw.js')!.source.replace(/^\s*\/\/.*$/gm, '')
+    const sw = emitted.find(file => /^sw(-lab)?\.js$/.test(file.fileName))!.source.replace(/^\s*\/\/.*$/gm, '')
     expect(emitted.some(file => /backup/i.test(file.fileName))).toBe(false)
     expect(sw).not.toMatch(/importScripts|\bsync\b|periodicsync|backup|indexedDB/i)
   })

@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { loadCatalog } from './catalog'
 import { clampCount, describeCounts, fillByItems, lessonCount, loadNewCount, pickReviews, saveNewCount } from './daily'
+import { storageNames } from '../storage-names'
 
 beforeEach(() => localStorage.clear())
 
@@ -43,10 +44,10 @@ describe('new words per set', () => {
   })
 
   it('carries the stored words-per-set count over to the new items key', () => {
-    localStorage.setItem('practice.newWords', '10')
+    localStorage.setItem(storageNames().local.legacyNewItems, '10')
     expect(loadNewCount()).toBe(10)
     saveNewCount(15)
-    expect(localStorage.getItem('practice.newItems')).toBe('15')
+    expect(localStorage.getItem(storageNames().local.newItems)).toBe('15')
     expect(loadNewCount()).toBe(15)
   })
 

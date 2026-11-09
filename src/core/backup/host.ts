@@ -1,4 +1,5 @@
 import { LearningDatabase, profileDatabaseName } from '../database'
+import { storageNames } from '../storage-names'
 import { GitHubBackend } from './github'
 import { runBackupJob } from './run'
 import type { RunRecord } from './state'
@@ -11,7 +12,7 @@ export interface BackupRequest { profile: { id: string; name: string }; trigger?
 export interface PauseMessage { pause: true }
 export type BackupReply = { ok: true; record: RunRecord } | { ok: false; error: string }
 
-export const CHANNEL = 'linguaweave-backup'
+export const CHANNEL = () => storageNames().broadcast
 
 export async function runInWorker(request: BackupRequest, shouldPause?: () => boolean): Promise<BackupReply> {
   const database = new LearningDatabase(profileDatabaseName(request.profile.id))
@@ -34,6 +35,6 @@ export async function runInWorker(request: BackupRequest, shouldPause?: () => bo
 }
 
 export function announce(): void {
-  try { const channel = new BroadcastChannel(CHANNEL); channel.postMessage('changed'); channel.close() } catch { /* no BroadcastChannel */ }
+  try { const channel = new BroadcastChannel(CHANNEL()); channel.postMessage('changed'); channel.close() } catch { /* no BroadcastChannel */ }
 }
 

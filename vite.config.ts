@@ -6,6 +6,10 @@ import { localSettings } from './scripts/local-settings'
 import { localProfiles } from './scripts/local-profiles'
 import { localTts } from './scripts/local-tts'
 import { pwa } from './scripts/pwa'
+import { buildDefines } from './scripts/build-channel'
+
+/** Which build this is: main is Lab; the Stable branch says 'stable' here. */
+const BUILD_CHANNEL = 'lab' as const
 
 function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
   const base = server.config.base.startsWith('/') ? server.config.base : '/'
@@ -51,7 +55,8 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   cacheDir: fileURLToPath(new URL('./node_modules/.vite/next/', import.meta.url)),
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
   base: './',
+  define: buildDefines(BUILD_CHANNEL),
   appType: 'mpa',
-  plugins: [react(), localSettings(), localProfiles(), localTts(), devSite(new Set(await mockupFiles())), pwa()],
+  plugins: [react(), localSettings(), localProfiles(), localTts(), devSite(new Set(await mockupFiles())), pwa(BUILD_CHANNEL)],
   build: { outDir: 'dist' },
 }))

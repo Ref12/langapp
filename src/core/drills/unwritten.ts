@@ -3,14 +3,15 @@ import { loadCatalog, type Catalog } from '../study/catalog'
 import { isSourceRef } from '../study/contracts'
 import { loadItems } from './items'
 import { newCharacters, type WriteState } from './write-queue'
+import { storageNames } from '../storage-names'
 
 /** The unwritten-characters backlog: characters in words the learner knows that they have not written yet. Items stay words; characters only decide which words and how many. */
 export const UNWRITTEN_DEFAULT = 8
 export const UNWRITTEN_CHOICES = [5, 8, 12] as const
-const KEY = 'practice.unwrittenSize'
+const KEY = () => storageNames().local.unwrittenSize
 export const clampUnwritten = (value: unknown): number => { const n = Math.round(Number(value)); return Number.isFinite(n) && n >= 1 ? Math.min(40, n) : UNWRITTEN_DEFAULT }
-export function loadUnwrittenSize(): number { try { const raw = localStorage.getItem(KEY); return raw === null ? UNWRITTEN_DEFAULT : clampUnwritten(raw) } catch { return UNWRITTEN_DEFAULT } }
-export function saveUnwrittenSize(size: number) { try { localStorage.setItem(KEY, String(clampUnwritten(size))) } catch { /* storage may be unavailable */ } }
+export function loadUnwrittenSize(): number { try { const raw = localStorage.getItem(KEY()); return raw === null ? UNWRITTEN_DEFAULT : clampUnwritten(raw) } catch { return UNWRITTEN_DEFAULT } }
+export function saveUnwrittenSize(size: number) { try { localStorage.setItem(KEY(), String(clampUnwritten(size))) } catch { /* storage may be unavailable */ } }
 
 /** A known word: when it joined the knowledge set, and its place in the catalog (lesson order) for ties. */
 export interface BacklogWord { ref: string; zh: string; addedAt: number; order: number }

@@ -1,5 +1,6 @@
 import type { Point } from './geometry'
 import type { HandwritingRecognizer } from './handwriting'
+import { storageNames } from '../storage-names'
 
 /** Which recognizer produced a candidate. */
 export type EngineName = 'chrome' | 'google' | 'builtin'
@@ -23,7 +24,7 @@ interface ChromeNavigator {
 }
 
 export const LANGUAGE_TAGS = ['zh-Hans', 'zh-CN', 'zh'] as const
-const STORAGE_KEY = 'handwriting-engine'
+const STORAGE_KEY = () => storageNames().local.handwritingEngine
 const ALTERNATIVES = 10
 const KEEP_LOOKUPS = 20
 /** Unofficial, undocumented endpoint behind Google Translate's draw input; opt-in only, since it sends the strokes to Google. */
@@ -73,10 +74,10 @@ export function probeChromeHandwriting(): Promise<void> {
 export const chromeAvailable = () => state.apiPresent && state.tag !== undefined && !state.broken
 
 export function readMode(): EngineMode {
-  try { const value = localStorage.getItem(STORAGE_KEY); return value === 'chrome' || value === 'google' || value === 'builtin' ? value : 'auto' } catch { return 'auto' }
+  try { const value = localStorage.getItem(STORAGE_KEY()); return value === 'chrome' || value === 'google' || value === 'builtin' ? value : 'auto' } catch { return 'auto' }
 }
 export function saveMode(mode: EngineMode): void {
-  try { if (mode === 'auto') localStorage.removeItem(STORAGE_KEY); else localStorage.setItem(STORAGE_KEY, mode) } catch { /* private mode */ }
+  try { if (mode === 'auto') localStorage.removeItem(STORAGE_KEY()); else localStorage.setItem(STORAGE_KEY(), mode) } catch { /* private mode */ }
 }
 
 /** Indicator text for the current state, before any lookup too. */

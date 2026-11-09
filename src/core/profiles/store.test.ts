@@ -4,6 +4,7 @@ import { stringify } from 'yaml'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createEmptyProfile, parseProfileYaml, serializeProfileYaml } from './codec'
 import { populatedProfile } from './test-fixtures'
+import { storageNames } from '../storage-names'
 
 let database: typeof import('../database')
 let store: typeof import('./store')
@@ -58,7 +59,7 @@ describe('isolated named browser profiles', () => {
     const legacyFactory = new IDBFactory()
     vi.stubGlobal('indexedDB', legacyFactory)
     Dexie.dependencies.indexedDB = legacyFactory
-    const legacy = new Dexie('linguaweave-next')
+    const legacy = new Dexie(storageNames().db.learning('default'))
     const newTables = version === 4 ? ['aiEndpoints', 'profileState', 'mahjongGames', 'characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress', 'practiceHistory'] : ['aiEndpoints', 'characterStates', 'libraryBooks', 'sudokuGames', 'memoryGames', 'defenderGames', 'potionGames', 'potionProgress', 'practiceHistory']
     legacy.version(version).stores(Object.fromEntries(database.db.tables.filter(table => !newTables.includes(table.name)).map(table =>
       [table.name, [table.schema.primKey.src, ...table.schema.indexes.map(index => index.src)].join(', ')])))
@@ -79,7 +80,7 @@ describe('isolated named browser profiles', () => {
     })
     legacy.close()
     await reopenPage()
-    expect(database.db.name).toBe('linguaweave-next')
+    expect(database.db.name).toBe(storageNames().db.learning('default'))
     expect(database.db.verno).toBe(26)
     expect(await database.db.practiceHistory.count()).toBe(0)
     expect(await database.db.sudokuGames.count()).toBe(0)
@@ -106,7 +107,7 @@ describe('isolated named browser profiles', () => {
     const before = await allRows()
     const original = database.db
     await reopenPage()
-    expect(database.db.name).toBe('linguaweave-next')
+    expect(database.db.name).toBe(storageNames().db.learning('default'))
     expect(store.getActiveProfile()).toEqual({ id: 'default', name: 'default' })
     expect(await store.listProfiles()).toEqual([{ id: 'default', name: 'default' }])
     expect(await allRows()).toEqual(before)
@@ -350,7 +351,7 @@ describe('isolated named browser profiles', () => {
     expect(failure.reason.message).toContain('already exists')
     expect(await store.listProfiles()).toHaveLength(2)
     await expect(store.createProfile('DEFAULT', false)).rejects.toThrow('already exists')
-    expect((await Dexie.getDatabaseNames()).filter(name => name.startsWith('linguaweave-next-profile-'))).toHaveLength(1)
+    expect((await Dexie.getDatabaseNames()).filter(name => name.startsWith(storageNames().db.learning('')))).toHaveLength(1)
   })
 
   it('cleans only its own newly created database and reservation after a creation failure', async () => {
@@ -358,7 +359,7 @@ describe('isolated named browser profiles', () => {
     const before = await allRows()
     const original = database.LearningDatabase.prototype.transaction
     const failure = vi.spyOn(database.LearningDatabase.prototype, 'transaction').mockImplementation(function (this: import('../database').LearningDatabase, ...args: unknown[]) {
-      if (this.name.startsWith('linguaweave-next-profile-')) return Promise.reject(new Error('Synthetic storage failure'))
+      if (this.name.startsWith(storageNames().db.learning(''))) return Promise.reject(new Error('Synthetic storage failure'))
       return original.apply(this, args as Parameters<typeof original>)
     } as typeof original)
     await expect(store.createProfile('Retry', false)).rejects.toThrow('Synthetic storage failure')
@@ -366,7 +367,7 @@ describe('isolated named browser profiles', () => {
     expect(await store.listProfiles()).toHaveLength(2)
     expect(await Dexie.exists(database.profileDatabaseName(retained.id))).toBe(true)
     expect(await allRows()).toEqual(before)
-    expect((await Dexie.getDatabaseNames()).filter(name => name.startsWith('linguaweave-next-profile-'))).toHaveLength(1)
+    expect((await Dexie.getDatabaseNames()).filter(name => name.startsWith(storageNames().db.learning('')))).toHaveLength(1)
     await expect(store.createProfile('Retry', false)).resolves.toMatchObject({ name: 'Retry' })
   })
 

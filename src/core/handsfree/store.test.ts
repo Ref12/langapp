@@ -8,6 +8,7 @@ import { introduceLessonItems, startNewSession } from '../study/knowledge'
 import { DEFAULT_HANDSFREE_SETTINGS, handsfreeSettingsSchema, normalizeHandsfreeSettings } from './contracts'
 import { generateScript } from './script'
 import type { Catalog } from '../study/catalog'
+import { storageNames } from '../storage-names'
 
 beforeEach(async () => {
   localStorage.clear()
@@ -114,7 +115,7 @@ describe('Hands-free settings migration', () => {
   })
 
   it('reads stored old settings from the device, and a saved run with old booleans plays like the new Full or Off wording', async () => {
-    localStorage.setItem('handsfree.settings', JSON.stringify({ pause: 'long', repeats: 4, grammar: false, introductions: false, explain: true, emphasisRate: 0.7 }))
+    localStorage.setItem(storageNames().local.handsfree, JSON.stringify({ pause: 'long', repeats: 4, grammar: false, introductions: false, explain: true, emphasisRate: 0.7 }))
     expect(loadHandsfreeSettings()).toMatchObject({ pause: 'long', repeats: 4, itemWording: 'full', sectionIntros: 'off', emphasisRate: 0.7 })
     const id = await shortcut()
     const set = (await db.drillSets.get(id))!

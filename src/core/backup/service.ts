@@ -7,8 +7,9 @@ import { announce, type BackupReply, type BackupRequest } from './host'
 import { runBackupJob } from './run'
 import { clearCache, loadStatus, saveWindowStart, type BackupStatus } from './state'
 import { serializeProfileYaml } from '../profiles/codec'
+import { storageNames } from '../storage-names'
 
-const CONFIG_KEY = 'linguaweave-backup-config:'
+const CONFIG_KEY = () => storageNames().local.backupConfigPrefix
 
 export type BackupConfig = Omit<BackupConfigRecord, 'id'>
 export type { BackupStatus }
@@ -23,12 +24,12 @@ export async function loadBackupConfig(): Promise<BackupConfig | undefined> {
   try { fromDb = await db.backupConfig.get('github') } catch { fromDb = undefined }
   let fromLocal: BackupConfig | undefined
   if (hasStorage()) {
-    try { fromLocal = JSON.parse(localStorage.getItem(CONFIG_KEY + profileId) ?? 'null') ?? undefined } catch { fromLocal = undefined }
+    try { fromLocal = JSON.parse(localStorage.getItem(CONFIG_KEY() + profileId) ?? 'null') ?? undefined } catch { fromLocal = undefined }
   }
   const config = fromDb ?? (fromLocal && { id: 'github' as const, ...fromLocal })
   if (!config) return undefined
   if (!fromDb) { try { await db.backupConfig.put(config) } catch { /* store unavailable */ } }
-  if (!fromLocal && hasStorage()) { const { id: _id, ...plain } = config; void _id; localStorage.setItem(CONFIG_KEY + profileId, JSON.stringify(plain)) }
+  if (!fromLocal && hasStorage()) { const { id: _id, ...plain } = config; void _id; localStorage.setItem(CONFIG_KEY() + profileId, JSON.stringify(plain)) }
   const { id: _id, ...plain } = config
   void _id
   return plain
@@ -40,7 +41,7 @@ export async function saveBackupConfig(config: BackupConfig): Promise<void> {
   if (!/^[A-Za-z0-9-_.]+$/.test(clean.owner) || !/^[A-Za-z0-9-_.]+$/.test(clean.repo)) throw new Error('Enter the GitHub owner and repository name.')
   if (!clean.token) throw new Error('Paste a fine-grained token with Contents read and write access to this repository.')
   await db.backupConfig.put({ id: 'github', ...clean })
-  if (hasStorage()) localStorage.setItem(CONFIG_KEY + getActiveProfile().id, JSON.stringify(clean))
+  if (hasStorage()) localStorage.setItem(CONFIG_KEY() + getActiveProfile().id, JSON.stringify(clean))
 }
 
 export const readBackupStatus = async (): Promise<BackupStatus> => { await initializeProfiles(); return loadStatus(getActiveProfile().id) }

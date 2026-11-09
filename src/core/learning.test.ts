@@ -5,6 +5,7 @@ import { applyAnswer, DAY, readingStage } from './progress'
 import { exportBackup, readBackup, restoreBackup } from './backup'
 import type { PracticeSession } from './model'
 import { curriculumLessons } from '../data/curriculum'
+import { storageNames } from './storage-names'
 
 const firstLesson = curriculumLessons[0]
 
@@ -24,7 +25,7 @@ async function session(id: string): Promise<PracticeSession> {
 describe('isolated local workspace', () => {
   it('initializes only once and starts with no invented progress', async () => {
     await Promise.all([initializeWorkspace(), initializeWorkspace()])
-    expect(db.name).toBe('linguaweave-next')
+    expect(db.name).toBe(storageNames().db.learning('default'))
     const workspace = await loadWorkspace()
     expect(workspace.preferences.language).toBe('zh-Hans')
     expect(workspace.words).toEqual([])

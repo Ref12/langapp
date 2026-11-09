@@ -2,8 +2,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { createAutoListenLoop, pauseCue, type AutoListenPhase, type PauseReason } from '../../core/pocket/auto-listen'
 import { playBrowserSpeechToEnd } from '../../core/assistant/speech'
 import type { SpeechLocale, SpeechRate } from '../../core/assistant/contracts'
+import { storageNames } from '../../core/storage-names'
 
-const STORAGE_KEY = 'linguaweave.autoListen'
+const storageKey = () => storageNames().local.autoListen
 
 interface VoiceLike {
   listenOnce(): Promise<{ kind: 'finished'; text: string } | { kind: 'cancelled' } | { kind: 'error'; error: string; silence?: boolean }>
@@ -11,7 +12,7 @@ interface VoiceLike {
 }
 
 function readOption() {
-  try { return localStorage.getItem(STORAGE_KEY) === '1' } catch { return false }
+  try { return localStorage.getItem(storageKey()) === '1' } catch { return false }
 }
 
 /**
@@ -61,7 +62,7 @@ export function useAutoListen({ voice, send, locale, rate }: {
 
   const setOption = useCallback((value: boolean) => {
     setOptionState(value)
-    try { localStorage.setItem(STORAGE_KEY, value ? '1' : '0') } catch { /* private mode */ }
+    try { localStorage.setItem(storageKey(), value ? '1' : '0') } catch { /* private mode */ }
     if (value) l.start(); else l.stop()
   }, [l])
 

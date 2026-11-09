@@ -7,6 +7,7 @@ import { isTranslated, lineView, type Aligned, type MediaLine } from './contract
 import { reconcileLine } from './reconcile'
 import { saveMedia } from './store'
 import { applySalvage, clearTranslation, buildChunk, getChunkSize, getConcurrency, mergeChunks, planChunk, planGap, RUN, setChunkSize, setConcurrency, translateMedia, troubleLines, bleeds, normalizePinyin, applyFragments } from './translation'
+import { storageNames } from '../storage-names'
 
 vi.mock('../ai/structured', () => ({ requestStructuredJSON: vi.fn() }))
 const completion = vi.mocked(requestStructuredJSON)
@@ -62,7 +63,7 @@ describe('chunk planning', () => {
 
 describe('chunk size and overlap', () => {
   it('defaults to 50 lines with 5 lines of context before and 5 of look-ahead, and keeps the setting between 20 and 80', () => {
-    localStorage.removeItem('media-translation-chunk-size')
+    localStorage.removeItem(storageNames().local.mediaChunk)
     expect(getChunkSize()).toBe(50)
     expect(planChunk(200, 50, getChunkSize())).toEqual({ from: 50, coreEnd: 100, beforeFrom: 45, windowEnd: 105 })
     expect(setChunkSize(5)).toBe(20)
@@ -391,7 +392,7 @@ describe('translateMedia', () => {
     expect(setConcurrency(99)).toBe(16)
     expect(getConcurrency()).toBe(16)
     expect(setConcurrency(0)).toBe(12)
-    localStorage.removeItem('media-translation-concurrency')
+    localStorage.removeItem(storageNames().local.mediaConcurrency)
     const big: MediaLine[] = Array.from({ length: 600 }, (_, i) => ({ start: i, end: i + 0.9, text: `第${i}句。` }))
     const id = await item(big)
     let active = 0, peak = 0

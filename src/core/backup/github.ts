@@ -6,6 +6,7 @@ export interface GitHubTarget {
   token: string
   branch?: string
 }
+import { storageNames, type StorageNames } from '../storage-names'
 
 type Fetch = typeof fetch
 const API = 'https://api.github.com'
@@ -30,8 +31,14 @@ interface TreeEntry { path: string; mode: string; type: 'blob' | 'tree' | 'commi
 
 export class GitHubBackend implements BackupBackend {
   private readonly branch: string
-  constructor(private readonly target: GitHubTarget, private readonly request: Fetch = (...args) => fetch(...args), private readonly retryDelayMs = 400) {
+  constructor(private readonly target: GitHubTarget, private readonly request: Fetch = (...args) => fetch(...args), private readonly retryDelayMs = 400, private readonly names: StorageNames = storageNames()) {
     this.branch = target.branch || 'main'
+  }
+
+  /** Where one profile's backup lives: Stable's `profiles/<id>/`, Lab's `lab/profiles/<id>/`. Nothing here can name a path outside it. */
+  private folder(profileId: string): string {
+    if (!/^[A-Za-z0-9-]+$/.test(profileId)) throw new BackupError('That profile has no valid backup folder.')
+    return this.names.backupFolder(profileId)
   }
 
   /** Round trips since the last publishDelta began. */
@@ -87,10 +94,10 @@ export class GitHubBackend implements BackupBackend {
     const head = await this.headCommit()
     if (!head) return []
     const { entries } = await this.treeOf(head)
-    const ids = [...new Set(entries.filter(entry => entry.type === 'blob' && /^profiles\/[^/]+\//.test(entry.path)).map(entry => entry.path.split('/')[1]))]
+    const ids = [...new Set(entries.filter(entry => entry.type === 'blob' && entry.path.startsWith(this.names.backupRoot + 'profiles/') && /^profiles\/[^/]+\//.test(entry.path.slice(this.names.backupRoot.length))).map(entry => entry.path.slice(this.names.backupRoot.length).split('/')[1]))]
     return Promise.all(ids.map(async id => {
       try {
-        const { data } = await this.call<string>('GET', `/contents/profiles/${id}/profile.yaml?ref=${encodeURIComponent(this.branch)}`, undefined, 'application/vnd.github.raw+json')
+        const { data } = await this.call<string>('GET', `/contents/${this.folder(id)}profile.yaml?ref=${encodeURIComponent(this.branch)}`, undefined, 'application/vnd.github.raw+json')
         const name = /^name:\s*(.+)$/m.exec(data)?.[1]?.trim().replace(/^["']|["']$/g, '')
         return { id, ...(name ? { name } : {}) }
       } catch { return { id } }
@@ -99,14 +106,14 @@ export class GitHubBackend implements BackupBackend {
 
   async listVersions(profileId: string, limit = 30): Promise<BackupVersion[]> {
     const { data } = await this.call<{ sha: string; commit: { message: string; committer: { date: string } } }[]>(
-      'GET', `/commits?sha=${encodeURIComponent(this.branch)}&path=profiles/${profileId}&per_page=${limit}`)
+      'GET', `/commits?sha=${encodeURIComponent(this.branch)}&path=${encodeURIComponent(this.folder(profileId).replace(/\/$/, ''))}&per_page=${limit}`)
     return data.map(item => ({ id: item.sha, date: item.commit.committer.date, message: item.commit.message.split('\n')[0] }))
   }
 
   async readFiles(profileId: string, version?: string): Promise<Map<string, string>> {
     const commit = version ?? await this.headCommit()
     if (!commit) throw new BackupError('The backup repository is empty.')
-    const prefix = `profiles/${profileId}/`
+    const prefix = this.folder(profileId)
     const { entries } = await this.treeOf(commit)
     const files = new Map<string, string>()
     const wanted = entries.filter(entry => entry.type === 'blob' && entry.path.startsWith(prefix))
@@ -122,7 +129,7 @@ export class GitHubBackend implements BackupBackend {
   }
 
   async publish(profileId: string, files: Map<string, string>, message: string): Promise<PublishResult> {
-    const prefix = `profiles/${profileId}/`
+    const prefix = this.folder(profileId)
     const blobs = new Map<string, string>() // content sha -> uploaded blob sha, kept across retries
     let lastConflict: unknown
     for (let attempt = 0; attempt < MAX_PUBLISH_ATTEMPTS; attempt++) {
@@ -165,7 +172,7 @@ export class GitHubBackend implements BackupBackend {
 
   async publishDelta(profileId: string, files: Map<string, string>, keep: Set<string>, message: string, known?: RemoteState): Promise<DeltaResult> {
     this.traces = []
-    const prefix = `profiles/${profileId}/`
+    const prefix = this.folder(profileId)
     const hashes = new Map<string, string>()
     await Promise.all([...files].map(async ([path, text]) => { hashes.set(path, await gitBlobSha(text)) }))
     let lastConflict: unknown

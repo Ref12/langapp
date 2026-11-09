@@ -6,6 +6,7 @@ import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 import { isLanguageRef } from './parallel/refs'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
+import { storageNames } from './storage-names'
 import type { MahjongGame } from './games/mahjong'
 import type { CharacterState } from './characters/contracts'
 import type { LibraryBook } from './library/contracts'
@@ -73,7 +74,7 @@ export class LearningDatabase extends Dexie {
   phraseHeard!: EntityTable<PhraseHeard, 'zh'>
   userPhrases!: EntityTable<UserPhrase, 'zh'>
 
-  constructor(name = 'linguaweave-next') {
+  constructor(name = storageNames().db.learning(DEFAULT_PROFILE_ID)) {
     super(name)
     this.version(1).stores({
       preferences: '&id',
@@ -147,7 +148,7 @@ let configuredProfileId: string | undefined
 
 export function profileDatabaseName(id: string): string {
   const safeId = profileIdSchema.parse(id)
-  return safeId === DEFAULT_PROFILE_ID ? 'linguaweave-next' : `linguaweave-next-profile-${safeId}`
+  return storageNames().db.learning(safeId)
 }
 
 export function configureDatabaseForProfile(id: string): void {

@@ -10,10 +10,12 @@ import { knowledgeCards, readCollectionsState, richerCard } from '../collections
 import { createEmptyProfile, endpointsFromSettings, parseProfileYaml, serializeProfileYaml } from './codec'
 import type { JournalEvent } from '../backup/journal'
 import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from './contracts'
+import { storageNames } from '../storage-names'
 import { DEFAULT_PROFILE_ID, profileIdSchema, profileMetadataSchema, type ProfileMetadata } from './identity'
 
-export const PROFILE_REGISTRY_DATABASE = 'linguaweave-profile-registry'
-export const SELECTED_PROFILE_KEY = 'linguaweave-selected-profile'
+/** This build's registry database and selected-profile key (see storage-names.ts). */
+export const PROFILE_REGISTRY_DATABASE = storageNames().db.registry
+export const SELECTED_PROFILE_KEY = storageNames().local.selectedProfile
 
 interface ProfileRecord extends ProfileMetadata {
   nameKey: string
@@ -25,7 +27,7 @@ class ProfileRegistry extends Dexie {
   profiles!: EntityTable<ProfileRecord, 'id'>
 
   constructor() {
-    super(PROFILE_REGISTRY_DATABASE)
+    super(storageNames().db.registry)
     this.version(1).stores({ profiles: '&id, &nameKey' })
   }
 }
@@ -46,7 +48,7 @@ function storage(): Storage {
 
 function readSelectedId(): string {
   let value: string | null
-  try { value = storage().getItem(SELECTED_PROFILE_KEY) } catch {
+  try { value = storage().getItem(storageNames().local.selectedProfile) } catch {
     throw new Error('Profile selection could not be read from browser storage. Enable it and reload.')
   }
   const result = profileIdSchema.safeParse(value ?? DEFAULT_PROFILE_ID)
@@ -117,13 +119,13 @@ export async function selectProfile(id: string, signal?: AbortSignal): Promise<v
   const profile = await registry.profiles.get(parsed.data)
   if (!profile || profile.state !== 'ready') throw new Error('The selected profile is unavailable.')
   signal?.throwIfAborted()
-  try { storage().setItem(SELECTED_PROFILE_KEY, profile.id) } catch {
+  try { storage().setItem(storageNames().local.selectedProfile, profile.id) } catch {
     throw new Error('The selected profile could not be saved. Enable browser local storage and try again.')
   }
 }
 
 export function resetSelectedProfile(): void {
-  try { storage().removeItem(SELECTED_PROFILE_KEY) } catch {
+  try { storage().removeItem(storageNames().local.selectedProfile) } catch {
     throw new Error('The profile selection could not be reset. Enable browser local storage and try again.')
   }
 }

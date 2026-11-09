@@ -7,21 +7,22 @@ import { isTranslated, type Aligned, type MediaLine, type WovenToken } from './c
 import { fallbackTokens, reconcileLine } from './reconcile'
 import { curriculumWords, mergeKnownWords, splitTranslation } from './compounds'
 import { loadCatalog } from '../study/catalog'
+import { storageNames } from '../storage-names'
 
 const TAG = '[media-translate]'
 
 /** Windows of ~22 lines: fast replies and small outputs, so one bad window costs little. */
 export const CHUNK = { size: 50, min: 20, max: 80, before: 5, after: 5, minSplit: 6 }
 
-const CHUNK_KEY = 'media-translation-chunk-size'
+const CHUNK_KEY = () => storageNames().local.mediaChunk
 /** Lines per request (20 to 80, default 50), kept on this device. */
 export function getChunkSize(): number {
-  try { const value = Number(localStorage.getItem(CHUNK_KEY)); if (Number.isInteger(value) && value >= CHUNK.min) return Math.min(value, CHUNK.max) } catch { /* no storage */ }
+  try { const value = Number(localStorage.getItem(CHUNK_KEY())); if (Number.isInteger(value) && value >= CHUNK.min) return Math.min(value, CHUNK.max) } catch { /* no storage */ }
   return CHUNK.size
 }
 export function setChunkSize(value: number): number {
   const next = Math.max(CHUNK.min, Math.min(CHUNK.max, Math.round(value) || CHUNK.size))
-  try { localStorage.setItem(CHUNK_KEY, String(next)) } catch { /* no storage */ }
+  try { localStorage.setItem(CHUNK_KEY(), String(next)) } catch { /* no storage */ }
   return next
 }
 
@@ -304,15 +305,15 @@ export const splittable = (message: string): boolean => /too large|cut off|outpu
 
 export const RUN = { concurrency: 12, maxConcurrency: 16, timeoutMs: 180_000, retries: 2, salvageBatch: 30, backoffMs: 1000, maxOutputTokens: 16000 }
 
-const CONCURRENCY_KEY = 'media-translation-concurrency'
+const CONCURRENCY_KEY = () => storageNames().local.mediaConcurrency
 /** The learner's choice of simultaneous requests for pass 1 (1 to 16), kept on this device. */
 export function getConcurrency(): number {
-  try { const value = Number(localStorage.getItem(CONCURRENCY_KEY)); if (Number.isInteger(value) && value >= 1) return Math.min(value, RUN.maxConcurrency) } catch { /* no storage */ }
+  try { const value = Number(localStorage.getItem(CONCURRENCY_KEY())); if (Number.isInteger(value) && value >= 1) return Math.min(value, RUN.maxConcurrency) } catch { /* no storage */ }
   return RUN.concurrency
 }
 export function setConcurrency(value: number): number {
   const next = Math.max(1, Math.min(RUN.maxConcurrency, Math.round(value) || RUN.concurrency))
-  try { localStorage.setItem(CONCURRENCY_KEY, String(next)) } catch { /* no storage */ }
+  try { localStorage.setItem(CONCURRENCY_KEY(), String(next)) } catch { /* no storage */ }
   return next
 }
 

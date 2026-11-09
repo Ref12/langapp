@@ -7,19 +7,20 @@ import { pickReviews } from '../study/daily'
 import { DOMAIN } from '../study/knowledge'
 import { DEFAULT_HANDSFREE_SETTINGS, handsfreeSettingsSchema, type HandsfreeRun, type HandsfreeSettings } from './contracts'
 import { generateScript, REVIEW_EXTRAS, type Script, type ScriptItem, type ScriptMode, type ScriptSentence } from './script'
+import { storageNames } from '../storage-names'
 
-const SETTINGS_KEY = 'handsfree.settings'
+const SETTINGS_KEY = () => storageNames().local.handsfree
 
 /** The settings last used, remembered on this device. */
 export function loadHandsfreeSettings(): HandsfreeSettings {
   try {
-    const parsed = handsfreeSettingsSchema.safeParse(JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? 'null'))
+    const parsed = handsfreeSettingsSchema.safeParse(JSON.parse(localStorage.getItem(SETTINGS_KEY()) ?? 'null'))
     if (parsed.success) return parsed.data
   } catch { /* unreadable settings fall back to the defaults */ }
   return DEFAULT_HANDSFREE_SETTINGS
 }
 export function saveHandsfreeSettings(settings: HandsfreeSettings) {
-  try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)) } catch { /* storage may be unavailable; the run keeps its own copy */ }
+  try { localStorage.setItem(SETTINGS_KEY(), JSON.stringify(settings)) } catch { /* storage may be unavailable; the run keeps its own copy */ }
 }
 
 /**

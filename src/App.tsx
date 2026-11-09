@@ -1,4 +1,4 @@
-import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { Component, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { BookOpen, BookText, Clapperboard, Dumbbell, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
@@ -47,6 +47,10 @@ import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } fr
 import { interruptAudio } from './core/assistant/audio-owner'
 import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsLocalSettingsImport, resetSelectedProfile } from './core/profiles/store'
 import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
+import { BuildSwitch, LabMark } from './components/BuildSwitch'
+import { StableCopyDialog } from './components/StableCopyDialog'
+import { labProfileIsEmpty } from './core/profiles/stable-import'
+import { buildChannel, storageNames } from './core/storage-names'
 import { PinyinFormatContext, ReadingSettingsContext } from './components/pinyin-context'
 import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
 import { BackupNow } from './components/BackupNow'
@@ -137,6 +141,16 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
 function WorkspaceApp() {
   const profile = getActiveProfile()
   const workspace = useLiveQuery(loadWorkspace, [])
+  // Copy profile from Stable: from the build switch's menu, or offered once up front on an empty Lab profile.
+  const [copyDialog, setCopyDialog] = useState<'menu' | 'offer' | undefined>()
+  const copyItems = useMemo(() => [{ label: 'Copy profile from Stable…', onSelect: () => setCopyDialog('menu') }], [])
+  useEffect(() => {
+    if (buildChannel() !== 'lab') return undefined
+    let live = true
+    try { if (localStorage.getItem(storageNames().labOnly.copyOfferDeclined)) return undefined } catch { /* no storage */ }
+    void labProfileIsEmpty().then(empty => { if (live && empty) setCopyDialog('offer') }, () => undefined)
+    return () => { live = false }
+  }, [])
   const route = useRoute()
   const [pending, setPending] = useState(0)
   const [error, setError] = useState('')
@@ -214,7 +228,7 @@ function WorkspaceApp() {
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
         <div className="sidebar-bottom"><BackupNow />
-          <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a></div>
+          <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></BuildSwitch></div>
         </>
   return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
@@ -223,7 +237,7 @@ function WorkspaceApp() {
         {assistant && <AssistantSidebar selectedId={route.split('/')[1]} collapsed={collapsed}
           toggle={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))} returnRoute={returnRoute.current} />}
         <div className="workspace-navigation">
-          <div className="sidebar-header"><a className="brand" href="#overview" aria-label="LinguaWeave home"><span className="brand-mark">lw.</span><span className="brand-name">linguaweave</span></a>
+          <div className="sidebar-header"><a className="brand" href="#overview" aria-label="LinguaWeave home"><span className="brand-mark">lw.</span><span className="brand-name">linguaweave</span></a><LabMark className="sidebar-mark" />
             <button className="icon-button sidebar-toggle" disabled={busy} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'} aria-expanded={!collapsed}
               onClick={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))}>{collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button></div>
           {workspaceNavigation}
@@ -233,7 +247,7 @@ function WorkspaceApp() {
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
-        <div className="topbar-actions"><a className="language-pill profile-pill" href="#settings" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</a><LanguageSwitch tracks={startedTracks(preferences)} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
+        <div className="topbar-actions"><LabMark /><BuildSwitch variant="pill" className="language-pill profile-pill" extraItems={copyItems}><span title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span></BuildSwitch><LanguageSwitch tracks={startedTracks(preferences)} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <PageActionsMenu />
@@ -247,6 +261,7 @@ function WorkspaceApp() {
       </div>
       <WritingSheetHost workspace={workspace} busy={busy} now={now} run={run} />
       <UpdateBar />
+      {copyDialog && <StableCopyDialog mode={copyDialog} onClose={() => setCopyDialog(undefined)} />}
         <PlaybackStatus debug={preferences.speechDebugMessages ?? false} />
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}

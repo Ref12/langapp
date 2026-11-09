@@ -10,6 +10,7 @@ import { whenContent } from '../../core/drills/content'
 import { createDrillSet, finishDrillSet, getDrillSet, newHandsfreeActivity } from '../../core/drills/store'
 import { DEFAULT_HANDSFREE_SETTINGS } from '../../core/handsfree/contracts'
 import * as speech from '../../core/assistant/speech'
+import { storageNames } from '../../core/storage-names'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../../core/ai/structured', () => structured)
@@ -151,7 +152,7 @@ describe('Recent sessions: a finished session with nothing to remove from the kn
 
 describe('What you will practise', () => {
   it('offers chips 5/10/15/20, defaults to 5, clamps a typed value, remembers it, and migrates the old stored key', async () => {
-    localStorage.setItem('practice.newWords', '10')
+    localStorage.setItem(storageNames().local.legacyNewItems, '10')
     const user = userEvent.setup()
     render(<App />)
     const group = await screen.findByRole('group', { name: 'New items per set' })
@@ -159,13 +160,13 @@ describe('What you will practise', () => {
     expect(within(group).getByRole('button', { name: '10' })).toHaveAttribute('aria-pressed', 'true')
     expect(screen.getByText('at least — whole lessons are kept together')).toBeInTheDocument()
     await user.click(within(group).getByRole('button', { name: '15' }))
-    expect(localStorage.getItem('practice.newItems')).toBe('15')
+    expect(localStorage.getItem(storageNames().local.newItems)).toBe('15')
     const field = screen.getByRole('spinbutton', { name: 'Number of new items' })
     await user.clear(field)
     await user.type(field, '99')
     await user.tab()
     expect(field).toHaveValue(20)
-    expect(localStorage.getItem('practice.newItems')).toBe('20')
+    expect(localStorage.getItem(storageNames().local.newItems)).toBe('20')
     cleanup()
     render(<App />)
     expect(await screen.findByRole('spinbutton', { name: 'Number of new items' })).toHaveValue(20)
@@ -184,8 +185,8 @@ describe('What you will practise', () => {
     const reviews = await screen.findByRole('group', { name: 'Reviews per set' })
     expect(within(reviews).getByRole('button', { name: '10' })).toHaveAttribute('aria-pressed', 'true')
     await user.click(within(reviews).getByRole('button', { name: '5' }))
-    expect(localStorage.getItem('practice.reviewCount')).toBe('5')
-    expect(localStorage.getItem('practice.newItems')).toBe('10')
+    expect(localStorage.getItem(storageNames().local.reviewCount)).toBe('5')
+    expect(localStorage.getItem(storageNames().local.newItems)).toBe('10')
     expect(screen.getByTestId('selection-summary')).toHaveTextContent('1 of 1 due')
     await user.click(screen.getByRole('button', { name: 'New items' }))
     expect(within(await screen.findByRole('group', { name: 'New items per set' })).getByRole('button', { name: '10' })).toHaveAttribute('aria-pressed', 'true')
