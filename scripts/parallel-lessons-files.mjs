@@ -8,6 +8,9 @@ import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from '
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Document, isPair, parse, visit } from 'yaml'
+import { createForms } from '../src/core/forms/engine.mjs'
+import { analysePhrases, classifyEntries, rawVocabulary } from '../src/core/forms/retag.mjs'
+import { loadClassOverrides, loadFormsRules } from './forms-data.mjs'
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 export const FILE_VERSION = 1
@@ -245,10 +248,50 @@ export function writingCoverage(code, lessons, index, strokes = readStrokeIndex(
 
 // ---------------------------------------------------------------- app JSON
 
+/**
+ * Word forms of the phrases (src/core/forms): every inflected token gets the form that builds its surface, irregular forms become lesson-scoped items,
+ * and a phrase is readable only once the grammar point of each of its forms is taught. Returns what the app JSON adds, and the phrases that stopped being strict.
+ */
+export function analyseForms(code, lessons, taught, data, references, base = root) {
+  const engine = createForms(loadFormsRules(code, base))
+  const vocabulary = rawVocabulary(references, data.entries)
+  const classes = classifyEntries(engine, vocabulary, loadClassOverrides(code, base))
+  const result = analysePhrases(engine, lessons, vocabulary, classes)
+  const items = {}, tags = new Map(), phraseItems = new Map()
+  for (const tag of result.tagged) {
+    tags.set(tag.lesson + ':' + tag.phrase + ':' + tag.token, tag)
+    if (!tag.item) continue
+    const key = tag.lesson + ':' + tag.phrase
+    if (!phraseItems.has(key)) phraseItems.set(key, new Set())
+    phraseItems.get(key).add(tag.item)
+    if (!items[tag.item] || items[tag.item].lesson > tag.lesson) {
+      const made = engine.forms(tag.formLemma, tag.formClass, tag.form, code === 'ja' && tag.formReading ? { reading: tag.formReading } : {})
+      items[tag.item] = { lemma: tag.formLemma, form: tag.form, class: tag.formClass, entry: tag.id, surface: made.surface, ...(made.reading ? { reading: made.reading } : {}), lesson: tag.lesson }
+    }
+  }
+  const lostStrict = []
+  for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) {
+    let ready = phrase.readyAt, reason = null
+    for (const [key, tag] of tags) {
+      if (!key.startsWith(lesson.number + ':' + phrase.id + ':')) continue
+      const need = tag.grammar ? taught.grammar.get(tag.grammar) ?? Infinity : 0
+      if (need > ready) { ready = need; reason = { grammar: tag.grammar, form: tag.form, lemma: tag.formLemma, taughtAt: need } }
+      if (tag.item) ready = Math.max(ready, items[tag.item].lesson)
+    }
+    if (ready !== phrase.readyAt) {
+      const was = phrase.strict
+      phrase.readyAt = ready; phrase.strict = ready <= lesson.number
+      if (was && !phrase.strict) lostStrict.push({ lesson: lesson.number, phrase: phrase.id, text: phrase.text, ...reason })
+    }
+  }
+  return { classes, items, tags, phraseItems, lostStrict, counts: { tagged: result.tagged.length, ambiguous: result.ambiguous.length, unmatched: result.unmatched.length, nominal: result.nominal, bare: result.bare, head: result.head, items: Object.keys(items).length, lostStrict: lostStrict.length }, result }
+}
+
 /** src/data/parallel/<language>.json: the lessons with the entries they use, ready for the app (no reference file is read at run time). */
-export function buildAppJson(code, data, references) {
+export function buildAppJson(code, data, references, base = root) {
   const lessons = [...data.lessons.lessons].sort((a, b) => a.number - b.number)
   const taught = refreshReadability(lessons)
+  const forms = analyseForms(code, lessons, taught, data, references, base)
   const index = entryIndex(references, data.entries)
   const usedWords = new Set(), usedGrammar = new Set()
   for (const lesson of lessons) {
@@ -259,23 +302,30 @@ export function buildAppJson(code, data, references) {
   for (const id of [...usedWords].sort()) {
     const entry = index.vocabulary.get(id)
     if (!entry) throw new Error('A lesson uses the word entry ' + id + ' that no file defines.')
-    entries[id] = { target: entry.target, ...(entry.reading ? { reading: entry.reading } : {}), english: entry.english, ...(entry.pos ? { pos: entry.pos } : {}), ...(entry.hanja ? { hanja: entry.hanja } : {}), ...(entry.isNew ? { new: true } : {}) }
+    const cls = forms.classes.get(id)?.class
+    entries[id] = { target: entry.target, ...(entry.reading ? { reading: entry.reading } : {}), english: entry.english, ...(entry.pos ? { pos: entry.pos } : {}), ...(entry.hanja ? { hanja: entry.hanja } : {}), ...(cls ? { class: cls } : {}), ...(entry.isNew ? { new: true } : {}) }
   }
   for (const id of [...usedGrammar].sort()) {
     const entry = index.grammar.get(id)
     if (!entry) throw new Error('A lesson uses the grammar entry ' + id + ' that no file defines.')
     grammar[id] = { pattern: entry.pattern, english: entry.english, ...(entry.isNew ? { new: true } : {}) }
   }
+  const tokensOf = (lesson, phrase) => phrase.tokens.map((token, at) => {
+    const tag = forms.tags.get(lesson.number + ':' + phrase.id + ':' + at)
+    return tag ? { ...token, form: tag.form, ...(tag.span ? { span: tag.span } : {}) } : token
+  })
   const out = lessons.map(lesson => ({
     lesson: lesson.id, number: lesson.number,
     words: (lesson.words ?? []).map(word => ({ entry: word.entry, status: word.status, zh: word.zh ?? [], ...(word.extra ? { extra: true } : {}), ...(word.new ? { new: true } : {}) })),
     senses: (lesson.senses ?? []).map(sense => ({ zh: sense.zh, status: sense.status, entry: sense.entry ?? null, ...(sense.grammar ? { grammar: sense.grammar } : {}), ...(sense.note ? { note: sense.note } : {}) })),
     grammar: lesson.grammar_taught ?? [],
-    phrases: (lesson.phrases ?? []).map(phrase => ({ id: phrase.id, text: phrase.text, ...(phrase.reading ? { reading: phrase.reading } : {}), en: phrase.en, ...(phrase.zh ? { zh: phrase.zh } : {}), tokens: phrase.tokens, words: phrase.words, grammar: phrase.grammar ?? [], strict: phrase.strict === true })),
+    ...(Object.entries(forms.items).some(([, item]) => item.lesson === lesson.number) ? { forms: Object.entries(forms.items).filter(([, item]) => item.lesson === lesson.number).map(([id]) => id).sort() } : {}),
+    phrases: (lesson.phrases ?? []).map(phrase => ({ id: phrase.id, text: phrase.text, ...(phrase.reading ? { reading: phrase.reading } : {}), en: phrase.en, ...(phrase.zh ? { zh: phrase.zh } : {}), tokens: tokensOf(lesson, phrase), words: phrase.words, grammar: phrase.grammar ?? [], ...(forms.phraseItems.has(lesson.number + ':' + phrase.id) ? { forms: [...forms.phraseItems.get(lesson.number + ':' + phrase.id)].sort() } : {}), strict: phrase.strict === true })),
   }))
   const phrases = out.reduce((sum, lesson) => sum + lesson.phrases.length, 0)
   const strict = out.reduce((sum, lesson) => sum + lesson.phrases.filter(phrase => phrase.strict).length, 0)
-  return { schemaVersion: 1, language: code, counts: { lessons: out.length, words: usedWords.size, grammar: usedGrammar.size, phrases, strict }, entries, grammar, lessons: out }
+  const formItems = Object.fromEntries(Object.entries(forms.items).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0))
+  return { schemaVersion: 1, language: code, counts: { lessons: out.length, words: usedWords.size, grammar: usedGrammar.size, phrases, strict, forms: forms.counts }, entries, grammar, formItems, lessons: out }
 }
 
-export const appJsonText = (code, data, references) => JSON.stringify(buildAppJson(code, data, references)) + '\n'
+export const appJsonText = (code, data, references, base = root) => JSON.stringify(buildAppJson(code, data, references, base)) + '\n'

@@ -420,7 +420,9 @@ describe('the app JSON generator', () => {
     generateMain(['--root', root])
     expect(() => generateMain(['--check', '--root', root])).not.toThrow()
     const json = JSON.parse(readFileSync(appJsonFile('ja', root), 'utf8'))
-    expect(json.counts).toMatchObject({ lessons: 2, phrases: 3, strict: 3 })
+    // 飲みます is the polite form (ja-n5-g023), which this tiny fixture never teaches: that phrase is no longer strict
+    expect(json.counts).toMatchObject({ lessons: 2, phrases: 3, strict: 2 })
+    expect(json.counts.forms).toMatchObject({ lostStrict: 1 })
     expect(json.entries['ja-par-00002']).toMatchObject({ target: 'お茶', new: true })
     expect(json.entries['ja-n5-00027']).toMatchObject({ target: 'あなた' })
     expect(json.lessons[0].senses[1]).toEqual({ zh: ids.hao, status: 'covered-by', entry: 'ja-n3-05724' })

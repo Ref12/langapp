@@ -9,7 +9,7 @@ import { LANGUAGES, appJsonFile, appJsonText, loadReferences, readParallel, root
 /** The files to write for a root: path -> text. */
 export function parallelOutputs(base = defaultRoot) {
   const outputs = new Map()
-  for (const code of Object.keys(LANGUAGES)) outputs.set(appJsonFile(code, base), appJsonText(code, readParallel(code, base), loadReferences(code, base)))
+  for (const code of Object.keys(LANGUAGES)) outputs.set(appJsonFile(code, base), appJsonText(code, readParallel(code, base), loadReferences(code, base), base))
   return outputs
 }
 

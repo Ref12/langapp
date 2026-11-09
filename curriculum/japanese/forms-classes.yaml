@@ -1,0 +1,6 @@
+# Verb classes the code cannot decide from the dictionary form and part of speech (a Japanese verb ending in る whose part of speech does not say ichidan or godan).
+# Filled by one batched model question (scripts/classify-ambiguous-verbs.mjs lists the candidates); read by the generators, which never call a model.
+version: 1
+language: ja
+overrides:
+  "電話をかける|でんわをかける": ichidan

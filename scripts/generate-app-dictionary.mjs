@@ -8,6 +8,8 @@ import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from 'yaml'
 import { writeAtomic } from './parallel-lessons-files.mjs'
+import { createForms } from '../src/core/forms/engine.mjs'
+import { loadClassOverrides, loadFormsRules } from './forms-data.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -60,13 +62,22 @@ export function buildDictionary(code, base = root) {
     const { entry, levelAt } = found
     return [[entry.id, entry.pattern, entry.english ?? '', entry.note ?? '', levelAt, (entry.examples ?? []).map(example => [example.target, example.english ?? ''])]]
   })
-  return { v: 1, lang: code, levels, pos, words, grammar }
+  // The word form class of every verb and adjective (src/core/forms): assigned by code from the dictionary form and part of speech.
+  const engine = createForms(loadFormsRules(code, base)), overrides = loadClassOverrides(code, base)
+  const classes = {}
+  for (const row of words) {
+    const key = row[1] + '|' + row[2]
+    const cls = overrides[key] ?? overrides[row[1]] ?? engine.classify(row[1], pos[row[4]], row[2])
+    if (cls) classes[row[0]] = cls
+  }
+  return { v: 1, lang: code, levels, pos, words, grammar, classes }
 }
 
 /** One entry per line keeps the file diffable and gzips well. */
 export function dictionaryText(data) {
   const head = { v: data.v, lang: data.lang, levels: data.levels, pos: data.pos }
-  const lines = JSON.stringify(head).slice(0, -1) + ',\n"words":[\n' + data.words.map(row => JSON.stringify(row)).join(',\n') + '\n],\n"grammar":[\n' + data.grammar.map(row => JSON.stringify(row)).join(',\n') + '\n]}\n'
+  const classLines = Object.entries(data.classes ?? {}).map(([id, cls]) => JSON.stringify(id) + ':' + JSON.stringify(cls))
+  const lines = JSON.stringify(head).slice(0, -1) + ',\n"words":[\n' + data.words.map(row => JSON.stringify(row)).join(',\n') + '\n],\n"grammar":[\n' + data.grammar.map(row => JSON.stringify(row)).join(',\n') + '\n],\n"classes":{\n' + classLines.join(',\n') + '\n}}\n'
   return lines
 }
 

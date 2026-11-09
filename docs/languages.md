@@ -417,3 +417,9 @@ Review scheduling stays per ref (§4.1): practising *hablé* touches lexeme and 
 - Paradigm tables are data and drive generation, checking and exercises; the AI never writes a conjugation.
 - Analysers are per language behind one interface; Chinese keeps its segmenter.
 - AI tagging is batched, validated against the catalog and cached; spaCy/Stanza only offline.
+
+## Word forms (option C, data and core layer)
+
+- Rules: `curriculum/japanese/forms.yaml`, `curriculum/korean/forms.yaml` (classes, lemma lists, forms with their grammar point). `npm run forms:generate` writes `src/data/forms/<ja|ko>.json`; `src/core/forms/` (`forms`, `analyse`, `classify`) reads it.
+- Classes are assigned by code from the dictionary form and part of speech (`classes` in `src/data/dictionary/<lang>.json`, `class` on parallel entries). The one Japanese る-verb the code cannot decide is answered once by a batched model call and kept in `curriculum/japanese/forms-classes.yaml`; generators never call a model.
+- Parallel data: word tokens carry `form` (and `span`, the following tokens that belong to the form); irregular forms are lesson items `ja:f:<lemma>:<form>` / `ko:f:<lemma>:<form>` (`formItems`, `lessons[].forms`). A phrase is strict only when the grammar point of each of its forms is taught by its lesson. `npm run forms:report` prints the counts.
