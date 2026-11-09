@@ -529,3 +529,10 @@ select { padding: 10px; }
 .lesson-index-row .date { text-align: right; white-space: nowrap; }
 .lesson-index-row.partial .status { color: var(--text, inherit); }
 .lesson-index-row.none a { opacity: .6; }
+.lesson-index-group > summary { display: flex; align-items: baseline; justify-content: space-between; cursor: pointer; list-style: none; }
+.lesson-index-group > summary h3 { display: inline; }
+.lesson-index-band { display: flex; align-items: center; gap: 8px; width: 100%; background: none; border: 0; border-top: 1px solid var(--line); color: inherit; padding: 10px 4px; font: inherit; text-align: left; cursor: pointer; }
+.lesson-index-band h3 { margin: 0; font-size: 13px; }
+.lesson-index-band .small { margin-left: auto; }
+.lesson-index-row .title { font-size: 13px; letter-spacing: -0.01em; }
+.lesson-index-row .title { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }

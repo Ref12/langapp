@@ -1,7 +1,7 @@
-import type { Lesson, Preferences } from '../core/model'
-import { curriculumLessons, curriculumLevels, type CurriculumLevel } from './curriculum'
+import type { Preferences } from '../core/model'
+import type { Band } from '../core/study/contracts'
 
-/** One ordered course: a language, a display name, its levels and its lessons. */
+/** One ordered course: a language, a display name and the v2 curriculum bands whose study groups make up its lessons list. */
 export interface Track {
   id: string
   /** Short language code, the value of the "current language" setting. */
@@ -10,14 +10,14 @@ export interface Track {
   name: string
   /** One-glyph label for the language switch. */
   glyph: string
-  levels: CurriculumLevel[]
-  lessons: Lesson[]
+  /** The v2 bands (HSK 1, 2, ...) this track's study groups come from, in order. */
+  bands: Band[]
 }
 
 export const DEFAULT_LANGUAGE = 'zh'
 
-/** The beginner Chinese course, built from the existing curriculum data (lesson ids unchanged). */
-export const zhTrack: Track = { id: 'zh', language: 'zh', name: 'Chinese', glyph: '\u4E2D', levels: curriculumLevels, lessons: curriculumLessons }
+/** The Chinese course: the v2 study groups New items works through. */
+export const zhTrack: Track = { id: 'zh', language: 'zh', name: 'Chinese', glyph: '\u4E2D', bands: ['1', '2', '3', '4', '5', '6'] }
 
 /** Every track the app ships. Chinese is the only one for now. */
 export const tracks: Track[] = [zhTrack]
@@ -30,68 +30,70 @@ export function trackFor(language: string, available: Track[] = tracks): Track {
   return available.find(track => track.language === language) ?? available.find(track => track.language === DEFAULT_LANGUAGE) ?? available[0]
 }
 
-export type LessonStatus = 'done' | 'partial' | 'current' | 'upcoming' | 'none'
+export type GroupStatus = 'done' | 'partial' | 'current' | 'upcoming'
 
-export interface LessonRow { lesson: Lesson; number: number; status: LessonStatus; completedAt?: number; label: string; part?: string; introduced: number; total: number }
-
-/** What decides a lesson's status: the same knowledge set the New items sets read and write. */
-export interface LessonProgress {
-  /** Refs (e.g. "vocabulary:wo3--me") the learner already knows. */
-  known: Map<string, number>
-  /** The refs the next New items set will introduce, if any. */
-  nextNew: Set<string>
-  /** Maps a curriculum word id to the ref the study catalog uses for it. */
-  refOf: (wordId: string) => string | undefined
-  /** Refs some New items set can introduce (every study-group unit). Items outside it are left out of n and m. */
-  reachable?: Set<string>
-  /** Older per-lesson records (opening a lesson page and practising it). */
-  records: { lessonId: string; completedAt?: number }[]
+export interface GroupRow {
+  id: string
+  band: Band
+  /** Position within its band, from 1. */
+  number: number
+  status: GroupStatus
+  introduced: number
+  total: number
+  /** When the group's last item was introduced (Done only). */
+  completedAt?: number
+  /** The group's first distinct items, e.g. "我 · 你 · 好 · 叫 · 名字". */
+  title: string
 }
 
-function baseTitle(lesson: Lesson): string { return lesson.title.replace(/\s*\/\s*Part \d+$/, '') }
+export interface BandSummary { band: Band; total: number; done: number }
 
-/** Distinguishes repeated titles: "Colors and describing objects · 2/5". */
-export function lessonLabel(track: Track, lesson: Lesson): { title: string; part?: string } {
-  const title = baseTitle(lesson)
-  const siblings = track.lessons.filter(other => other.curriculum.moduleId === lesson.curriculum.moduleId)
-  const repeated = track.lessons.filter(other => baseTitle(other) === title).length > 1
-  return repeated ? { title, part: `${siblings.indexOf(lesson) + 1}/${siblings.length}` } : { title }
+/** The minimal shape of a catalog needed to build rows (see core/study/catalog). */
+export interface GroupSource {
+  orderedGroups: { band: Band; group: { id: string; units: { kind: string; ref: string }[] } }[]
+  titleOf: (kind: string, ref: string) => string
 }
 
-/**
- * The track's lessons in order with their status. Done: every item the lesson teaches is known (or the lesson was
- * practised). Current: the lesson that holds the next New items set's first new item, else the first lesson not done.
- */
-export function lessonRows(track: Track, progress: LessonProgress): LessonRow[] {
-  const refsOf = (lesson: Lesson) => lesson.wordIds.map(progress.refOf).filter((ref): ref is string => ref !== undefined && (!progress.reachable || progress.reachable.has(ref)))
-  const learnedAt = (lesson: Lesson) => {
-    const times = refsOf(lesson).map(ref => progress.known.get(ref))
-    return times.length && times.every(time => time !== undefined) ? Math.max(...(times as number[])) : undefined
+const TITLE_ITEMS = 5
+
+/** A short label for a grammar pattern: its Chinese key word(s) plus "(gr.)", else the pattern's name from its label. */
+export function grammarLabel(pattern: string, label: string): string {
+  const keyWords = pattern.match(/[\u3400-\u9fff]+/g)
+  if (keyWords) return `${[...new Set(keyWords)].join('')} (gr.)`
+  const name = label.split('--')[1]?.replace(/-/g, ' ')
+  return `${name || label} (gr.)`
+}
+
+/** Per-band totals and finished counts: cheap, no titles. */
+export function bandSummaries(track: Track, orderedGroups: GroupSource['orderedGroups'], known: Map<string, number>, refOf: (kind: string, ref: string) => string): BandSummary[] {
+  const sums = new Map<Band, BandSummary>(track.bands.map(band => [band, { band, total: 0, done: 0 }]))
+  for (const { band, group } of orderedGroups) {
+    const sum = sums.get(band)
+    if (!sum) continue
+    sum.total++
+    if (group.units.every(unit => known.has(refOf(unit.kind, unit.ref)))) sum.done++
   }
-  const completed = (lesson: Lesson) => progress.records.find(item => item.lessonId === lesson.id)?.completedAt
-  const isDone = (lesson: Lesson) => {
-    return learnedAt(lesson) !== undefined || completed(lesson) !== undefined
-  }
-  const fromNext = track.lessons.find(lesson => !isDone(lesson) && refsOf(lesson).length > 0 && refsOf(lesson).some(ref => progress.nextNew.has(ref)))
-  const current = fromNext ?? track.lessons.find(lesson => !isDone(lesson) && refsOf(lesson).length > 0)
-  const introduced = (lesson: Lesson) => refsOf(lesson).filter(ref => progress.known.has(ref)).length
-  return track.lessons.map((lesson, index) => {
-    const count = introduced(lesson)
-    return {
-      lesson, number: index + 1, completedAt: isDone(lesson) ? completed(lesson) ?? learnedAt(lesson) : undefined,
-      label: lessonLabel(track, lesson).title, part: lessonLabel(track, lesson).part, introduced: count, total: refsOf(lesson).length,
-      status: lesson === current ? 'current' : isDone(lesson) ? 'done' : refsOf(lesson).length === 0 ? 'none' : count > 0 ? 'partial' : 'upcoming',
-    } satisfies LessonRow
-  })
+  return [...sums.values()].filter(sum => sum.total > 0)
 }
 
-/**
- * Lesson items no New items set can introduce (a sense missing from every study group), per lesson.
- * Pinned by a test so the study groups can be fixed later; `refOf` and `reachable` come from the study catalog.
- */
-export function unreachableItems(track: Track, refOf: (wordId: string) => string | undefined, reachable: Set<string>): { lessonId: string; number: number; wordIds: string[] }[] {
-  return track.lessons.flatMap((lesson, index) => {
-    const wordIds = lesson.wordIds.filter(id => { const ref = refOf(id); return ref === undefined || !reachable.has(ref) })
-    return wordIds.length ? [{ lessonId: lesson.id, number: index + 1, wordIds }] : []
-  })
+/** The study groups of the given bands in New items order. `known` maps a unit ref to when it was introduced; `nextId` is the group the next New items set starts from. */
+export function groupRows(track: Track, source: GroupSource, known: Map<string, number>, nextId: string | undefined, refOf: (kind: string, ref: string) => string, only?: Band): GroupRow[] {
+  const counters = new Map<Band, number>()
+  const rows: GroupRow[] = []
+  for (const { band, group } of source.orderedGroups) {
+    if (!track.bands.includes(band)) continue
+    const number = (counters.get(band) ?? 0) + 1
+    counters.set(band, number)
+    if (only && band !== only) continue
+    const times = group.units.map(unit => known.get(refOf(unit.kind, unit.ref)))
+    const introduced = times.filter(time => time !== undefined).length
+    const done = introduced === group.units.length
+    rows.push({
+      id: group.id, band, number, introduced, total: group.units.length,
+      status: group.id === nextId ? 'current' : done ? 'done' : introduced > 0 ? 'partial' : 'upcoming',
+      completedAt: done ? Math.max(...(times as number[])) : undefined,
+      title: [...new Set(group.units.map(unit => source.titleOf(unit.kind, unit.ref)))].slice(0, TITLE_ITEMS).join('\u2009\u00B7\u2009'),
+    })
+  }
+  return rows
 }

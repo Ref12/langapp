@@ -1,115 +1,118 @@
-import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
+import { cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import App from '../App'
-import { db, loadWorkspace } from '../core/database'
-import { curriculumLessons } from '../data/curriculum'
-import profileLabels from '../data/v2/profile-word-labels.generated.json'
+import { db, initializeWorkspace, loadWorkspace } from '../core/database'
 import { unitRef } from '../core/study/contracts'
 import { loadCatalog } from '../core/study/catalog'
-import { reachableRefs, refOf, unreachableLessonItems } from '../components/useLessonRows'
-import { zhTrack, lessonRows, type Track } from '../data/tracks'
+import { addUnits, nextGroup } from '../core/study/knowledge'
+import { bandSummaries, grammarLabel, groupRows, zhTrack, type Track } from '../data/tracks'
 import { TrackHeader } from '../components/TrackHeader'
 import { LanguageSwitch } from '../components/LanguageSwitch'
-import { initializeWorkspace } from '../core/database'
-import { lessonDefinitions } from '../data/learning-content'
-import { buildLessonPages } from '../core/learning-content'
 import { workspaceSchema } from '../core/backup-codec'
 
-const labelOf = new Map(profileLabels.map(entry => [entry.id, entry.lb]))
-const fake: Track = { id: 'xx', language: 'xx', name: 'Fakish', glyph: 'X', levels: [], lessons: [] }
+const fake: Track = { id: 'xx', language: 'xx', name: 'Fakish', glyph: 'X', bands: [] }
 
 beforeEach(async () => { window.location.hash = '#lessons'; await db.delete(); await db.open() })
 afterEach(cleanup)
 
-async function go(route: string) {
-  await act(async () => { window.location.hash = route; window.dispatchEvent(new HashChangeEvent('hashchange')) })
+/** Runs New items sets in order: introduces the first `sets` groups (everything in each), dated one day apart. */
+async function introduce(sets: number) {
+  const catalog = await loadCatalog()
+  await initializeWorkspace()
+  const known = new Set<string>()
+  for (let i = 0; i < sets; i++) {
+    const next = nextGroup(catalog, known)!
+    await addUnits(next.newUnits, 'new', Date.UTC(2026, 0, 1 + i))
+    next.units.forEach(unit => known.add(unit.ref))
+  }
+  return { catalog, known }
 }
 
 describe('tracks', () => {
-  it('renders the track header and lessons list on the Lessons page (#lessons)', async () => {
+  it('rows come from the v2 groups, grouped by band and numbered within the band', async () => {
+    const catalog = await loadCatalog()
+    const rows = groupRows(zhTrack, { orderedGroups: catalog.orderedGroups, titleOf: (_k, ref) => ref }, new Map(), undefined, (k, ref) => `${k}:${ref}`)
+    expect(rows).toHaveLength(catalog.orderedGroups.length)
+    expect(rows[0]).toMatchObject({ id: 'zh-hsk-1-lesson-0001', band: '1', number: 1 })
+    const firstOfSecond = rows.find(row => row.band === '2')!
+    expect(firstOfSecond.number).toBe(1)
+    expect(rows.filter(row => row.band === '1')).toHaveLength(catalog.bands.find(band => band.band === '1')!.groups.length)
+  })
+
+  it('after New items sets in order: all Done, then Next, nothing partial; date is the last introduction', async () => {
+    const { catalog, known } = await introduce(3)
+    const workspace = await loadWorkspace()
+    const next = nextGroup(catalog, known)!
+    const rows = groupRows(zhTrack, { orderedGroups: catalog.orderedGroups, titleOf: () => '', },
+      new Map(workspace.knowledge.map(entry => [entry.ref, entry.addedAt])), next.group.id, (k, ref) => unitRef(k as 'vocabulary', ref))
+    expect(rows.slice(0, 3).map(row => row.status)).toEqual(['done', 'done', 'done'])
+    expect(rows[3].status).toBe('current')
+    expect(rows[3].id).toBe(next.group.id)
+    expect(rows.filter(row => row.status === 'partial')).toEqual([])
+    expect(rows.slice(4).every(row => row.status === 'upcoming')).toBe(true)
+    expect(rows[2].completedAt).toBe(Date.UTC(2026, 0, 3))
+  })
+
+  it('renders on #lessons with titles from the items, Done/Next statuses and the Next row', async () => {
+    await introduce(2)
     window.location.hash = '#lessons'
     render(<App />)
     expect(await screen.findByTestId('track-header')).toHaveTextContent('Chinese')
     const list = await screen.findByRole('region', { name: 'Chinese lessons' })
-    expect(within(list).getAllByRole('listitem')[0]).toHaveClass('current')
-    window.location.hash = '#curriculum'
-    await go('curriculum')
-    expect(screen.queryByRole('region', { name: 'Chinese lessons' })).toBeNull()
-  })
-
-  it('takes status from the items New items sets introduced, not from lesson pages', async () => {
-    const first = curriculumLessons[0]
-    const refs = first.wordIds.map(id => labelOf.get(id)).map(lb => unitRef('vocabulary', lb!))
-    await initializeWorkspace()
-    await db.knowledge.bulkAdd(refs.map(ref => ({ ref, kind: 'vocabulary' as const, lb: ref.slice(11), band: '1' as const, addedAt: Date.UTC(2026, 0, 5), source: 'new' as const })))
-    expect(await db.lessons.count()).toBe(0)
-    window.location.hash = '#lessons'
-    render(<App />)
-    const list = await screen.findByRole('region', { name: 'Chinese lessons' })
-    await waitFor(() => expect(within(list).getAllByRole('listitem')[0]).toHaveClass('done'))
+    await waitFor(() => expect(within(list).getAllByRole('listitem')[2]).toHaveClass('current'))
     const rows = within(list).getAllByRole('listitem')
-    expect(rows.filter(row => row.classList.contains('current'))).toHaveLength(1)
-    // The next New items set is the first study group with unknown items; the lesson holding one of them is "Next".
-    const studyLesson = curriculumLessons.findIndex(lesson => lesson.wordIds.some(id => labelOf.get(id) === 'xue2-xi2--study'))
-    expect(rows[studyLesson]).toHaveClass('current')
-    expect(rows[0]).toHaveTextContent('26')
+    expect(rows[0]).toHaveClass('done')
+    expect(rows[0]).toHaveTextContent('我')
+    expect(rows[0]).toHaveTextContent('Done')
+    expect(rows[2]).toHaveTextContent('Next')
+    expect(rows[3]).toHaveTextContent('Upcoming')
   })
 
-  it('shows n/m for a partly introduced lesson, not muted, and keeps later lessons independent', async () => {
-    const lesson = curriculumLessons[1]
-    const refs = lesson.wordIds.slice(0, 2).map(id => unitRef('vocabulary', labelOf.get(id)!))
-    await initializeWorkspace()
-    await db.knowledge.bulkAdd(refs.map(ref => ({ ref, kind: 'vocabulary' as const, lb: ref.slice(11), band: '1' as const, addedAt: Date.UTC(2026, 0, 5), source: 'new' as const })))
+  it('renders rows only for the band holding Next; other bands are one collapsed header until expanded', async () => {
+    const user = userEvent.setup()
+    await introduce(2)
     window.location.hash = '#lessons'
     render(<App />)
     const list = await screen.findByRole('region', { name: 'Chinese lessons' })
-    const row = (await within(list).findAllByRole('listitem'))[1]
-    await waitFor(() => expect(row).toHaveClass('partial'))
-    expect(row).toHaveTextContent(`2/${lesson.wordIds.length}`)
-    expect(row).not.toHaveClass('upcoming')
+    const bands = within(list).getAllByRole('button')
+    expect(bands.map(button => button.textContent)).toEqual(expect.arrayContaining([expect.stringMatching(/HSK 1.*2 of 87 done/), expect.stringMatching(/HSK 2.*0 of 72 done/)]))
+    expect(bands[0]).toHaveAttribute('aria-expanded', 'true')
+    expect(bands[1]).toHaveAttribute('aria-expanded', 'false')
+    expect(within(list).getAllByRole('listitem')).toHaveLength(87)
+    await user.click(bands[1])
+    expect(within(list).getAllByRole('listitem')).toHaveLength(87 + 72)
   })
 
-  it('is Done once every reachable item is known; a lesson with none reachable shows a dash and is never Next', async () => {
-    const reachable = new Set(['a', 'b'])
-    const lessons = [
-      { ...curriculumLessons[0], id: 'l1', wordIds: ['w1', 'w2', 'wx'] },
-      { ...curriculumLessons[0], id: 'l2', wordIds: ['wx'] },
-      { ...curriculumLessons[0], id: 'l3', wordIds: ['w3'] },
-    ]
-    const track: Track = { ...fake, lessons }
-    const refs: Record<string, string> = { w1: 'a', w2: 'b', wx: 'zzz', w3: 'c' }
-    const run = (known: string[]) => lessonRows(track, { known: new Map(known.map(ref => [ref, 1])), nextNew: new Set(), refOf: id => refs[id], reachable: new Set([...reachable, 'c']), records: [] })
-    let rows = run(['a'])
-    expect(rows.map(row => row.status)).toEqual(['current', 'none', 'upcoming'])
-    expect([rows[0].introduced, rows[0].total]).toEqual([1, 2])
-    rows = run(['a', 'b'])
-    expect(rows.map(row => row.status)).toEqual(['done', 'none', 'current'])
+  it('counts Done per band without building rows', async () => {
+    const catalog = await loadCatalog()
+    const all = new Map(catalog.orderedGroups.flatMap(({ group }) => group.units.map(unit => [unitRef(unit.kind, unit.ref), 1] as [string, number])))
+    const sums = bandSummaries(zhTrack, catalog.orderedGroups, all, (k, ref) => unitRef(k as 'vocabulary', ref))
+    expect(sums.every(sum => sum.done === sum.total)).toBe(true)
+    expect(sums[0]).toMatchObject({ band: '1', total: 87 })
   })
 
-  it('pins the 26 lesson items in levels 1-4 that no New items set can introduce', async () => {
-    const found = unreachableLessonItems(zhTrack, await loadCatalog())
-    expect(found.reduce((total, lesson) => total + lesson.wordIds.length, 0)).toBe(26)
-    expect(found.map(lesson => lesson.number)).toEqual([1, 11, 12, 14, 15, 17, 18, 22, 26, 28, 29, 32, 34, 37, 38, 39, 40, 41, 47].sort((a, b) => a - b).concat([]).filter((n, i, all) => all.indexOf(n) === i))
-    expect(refOf(zhTrack.lessons[0].wordIds[0])).toBeDefined()
-    expect(reachableRefs(await loadCatalog()).size).toBeGreaterThan(1000)
+  it('titles use short grammar labels and show a repeated word once', async () => {
+    expect(grammarLabel('<subject> + 是 + <noun>', 's-shi4-n--identity')).toBe('是 (gr.)')
+    expect(grammarLabel('<verb phrase> + <adjective>', 'vp-adj--describe')).toBe('describe (gr.)')
+    expect(grammarLabel('<subject> + 想 + 去', 'x--y')).toBe('想去 (gr.)')
+    const catalog = await loadCatalog()
+    const source = { orderedGroups: [{ band: '1' as const, group: { id: 'g', units: [{ kind: 'vocabulary', ref: 'a' }, { kind: 'vocabulary', ref: 'b' }, { kind: 'vocabulary', ref: 'c' }] } }], titleOf: (_k: string, ref: string) => ({ a: '想', b: '住', c: '想' } as Record<string, string>)[ref] }
+    expect(groupRows(zhTrack, source, new Map(), undefined, (k, ref) => `${k}:${ref}`)[0].title).toBe('想\u2009·\u2009住')
+    const rows = groupRows(zhTrack, { orderedGroups: catalog.orderedGroups, titleOf: (k, ref) => { const u = catalog.units.get(unitRef(k as 'vocabulary', ref)); return !u ? ref : u.kind === 'vocabulary' ? u.record.ch : grammarLabel(u.record.pt, u.record.lb) } }, new Map(), undefined, (k, ref) => unitRef(k as 'vocabulary', ref), '1')
+    expect(rows.every(row => !/[<>]/.test(row.title))).toBe(true)
   })
 
-  it('has no lock: an upcoming lesson opens and starts practice like any other', async () => {
+  it('opens a read-only group view with items and examples, no start button', async () => {
+    await initializeWorkspace()
+    const catalog = await loadCatalog()
+    const group = catalog.orderedGroups[0].group
+    window.location.hash = `#lessons/group/${group.id}`
     render(<App />)
-    const id = curriculumLessons[3].id
-    const def = lessonDefinitions.get(id)
-    await go(def ? `lesson/${id}/${buildLessonPages(def).findIndex(page => page.kind === 'practice') + 1}` : `lesson/${id}`)
-    const button = await screen.findByRole('button', { name: /Start lesson practice/ })
-    expect(button).toBeEnabled()
-    expect(screen.queryByRole('note')).toBeNull()
-  })
-
-  it('tells repeated titles apart', () => {
-    const rows = lessonRows(zhTrack, { known: new Map(), nextNew: new Set(), refOf: () => undefined, records: [] })
-    const labels = rows.map(row => `${row.label}|${row.part ?? ''}`)
-    expect(new Set(labels).size).toBe(labels.length)
-    expect(rows.filter(row => row.label === 'Colors and describing objects').map(row => row.part)).toEqual(['1/5', '2/5', '3/5', '4/5', '5/5'])
+    expect(await screen.findByRole('region', { name: 'Items' })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Examples' })).toHaveTextContent('I am a student.')
+    expect(screen.getByRole('region', { name: 'Items' })).toHaveTextContent('学生')
+    expect(screen.queryByRole('button', { name: /start/i })).toBeNull()
   })
 
   it('becomes a picker with a second track, started tracks first', async () => {

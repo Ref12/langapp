@@ -54,6 +54,7 @@ import { SetupLinkStatus } from './components/SetupQr'
 import './App.css'
 import './components/assistant/assistant.css'
 import { UpdateBar } from './components/UpdateBar'
+import { GroupDetail } from './pages/GroupDetail'
 import { LanguageSwitch } from './components/LanguageSwitch'
 import { currentLanguageOf, tracks } from './data/tracks'
 
@@ -88,6 +89,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
     const session = props.workspace.exerciseSessions.find(item => item.id === lessonPage)
     return session ? <StudySessionPage {...props} session={session} /> : <NotFound />
   }
+  if (page === 'lessons' && id === 'group' && lessonPage) return <GroupDetail {...props} id={lessonPage} />
   if (page === 'lessons') return <Study {...props} />
   if (page === 'curriculum') return <Lessons {...props} />
   if (page === 'level') {
