@@ -1,4 +1,5 @@
 import { db } from '../database'
+import { chineseRows, isForeignSession } from '../chinese-only'
 import { loadCatalog, requireUnit } from '../study/catalog'
 import { cardId, isPhraseRef, isSourceRef, type Exercise, type ExerciseSession, type StudyCard } from '../study/contracts'
 import { emptySchedulingState } from '../study/fsrs'
@@ -104,7 +105,7 @@ export async function removeItems(ids: string[]): Promise<void> {
 
 /** Items whose shared card is due; a card never reviewed is due from the moment it was added. */
 export async function dueItems(collectionId: string, now: number): Promise<CollectionItem[]> {
-  const items = await db.collectionItems.where('collectionId').equals(collectionId).toArray()
+  const items = chineseRows(await db.collectionItems.where('collectionId').equals(collectionId).toArray())
   const cards = await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))
   return items.filter((_item, index) => !cards[index] || cards[index]!.due <= now)
 }
@@ -131,13 +132,13 @@ export async function promoteItems(itemIds: string[]): Promise<number> {
 export async function startCollectionSession(collectionId: string, options: { itemIds?: string[]; dueOnly?: boolean; now?: number; resume?: boolean } = {}, signal?: AbortSignal): Promise<string> {
   // One unfinished session per collection; starting again resumes it unless asked for a fresh one.
   if (options.resume !== false) {
-    const open = await db.exerciseSessions.where('status').equals('active').filter(item => item.collectionId === collectionId).sortBy('createdAt')
+    const open = await db.exerciseSessions.where('status').equals('active').filter(item => item.collectionId === collectionId && !isForeignSession(item)).sortBy('createdAt')
     if (open.length) return open[0].id
   }
   const connection = await db.aiConnections.get('assistant')
   if (!connection) throw new Error('Connect an AI model in Settings before generating exercises. The app does not include a built-in model.')
   const catalog = await loadCatalog()
-  let items = await db.collectionItems.where('collectionId').equals(collectionId).toArray()
+  let items = chineseRows(await db.collectionItems.where('collectionId').equals(collectionId).toArray())
   if (options.itemIds) { const wanted = new Set(options.itemIds); items = items.filter(item => wanted.has(item.id)) }
   if (options.dueOnly) { const due = new Set((await dueItems(collectionId, options.now ?? Date.now())).map(item => item.id)); items = items.filter(item => due.has(item.id)) }
   const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))

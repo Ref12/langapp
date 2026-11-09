@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
+import { chineseRows, chineseSessions } from '../core/chinese-only'
 import { ArrowRight, EyeOff, Dumbbell } from 'lucide-react'
 import { RowMenu } from '../components/RowMenu'
 import { usePageActions } from '../components/page-actions-context'
@@ -73,7 +74,8 @@ function scoreLine(set: DrillSet): string {
 export function History() {
   const entries = useLiveQuery(async () => (await db.practiceHistory.toArray()).filter(entry => !entry.removedAt).map(entry => practiceHistoryEntrySchema.parse(entry)), [])
   const lessons = useLiveQuery(async (): Promise<LessonRow[]> => {
-    const [sessions, attempts] = await Promise.all([db.exerciseSessions.toArray(), db.exerciseAttempts.toArray()])
+    const [rawSessions, rawAttempts] = await Promise.all([db.exerciseSessions.toArray(), db.exerciseAttempts.toArray()])
+    const sessions = chineseSessions(rawSessions), attempts = chineseRows(rawAttempts)
     return sessions.filter(session => !session.removedAt).map(session => {
       const mine = attempts.filter(attempt => attempt.sessionId === session.id && !attempt.redo)
       return { id: session.id, at: session.completedAt ?? session.createdAt, mode: session.mode, items: session.targetRefs.length + session.reviewRefs.length,

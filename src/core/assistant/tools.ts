@@ -5,6 +5,7 @@ import shadowPrompt from '../../../settings/system-prompts/shadow.md?raw'
 import explainPrompt from '../../../settings/system-prompts/explain.md?raw'
 import { AITransportError, REPLY_INSTRUCTIONS, serializeAssistantReply, type TutorMessage, type TutorPart } from '../ai/provider'
 import { db } from '../database'
+import { chineseRows, chineseSessions } from '../chinese-only'
 import { loadCatalog, type Catalog, type Unit } from '../study/catalog'
 import { normalizeSearch } from '../search'
 import {
@@ -175,10 +176,12 @@ const ago = (at: number | undefined) => at === undefined ? null : new Date(at).t
 /** The learner's saved study evidence from the v2 model: knowledge set, cards, exercises, practice and characters. */
 export async function getLearningContext(query: string): Promise<string> {
   const now = Date.now()
-  const [catalog, knowledge, cards, sessions, attempts, practice, characters, readings] = await Promise.all([
+  const [catalog, rawKnowledge, rawCards, rawSessions, rawAttempts, practice, characters, readings] = await Promise.all([
     loadCatalog(), db.knowledge.toArray(), db.studyCards.toArray(), db.exerciseSessions.toArray(), db.exerciseAttempts.toArray(),
     db.practiceHistory.toArray(), db.characterStates.toArray(), db.readings.orderBy('updatedAt').reverse().limit(3).toArray(),
   ])
+  // Stable is Chinese-only: another language's rows are never counted or described to the model.
+  const knowledge = chineseRows(rawKnowledge), cards = chineseRows(rawCards), sessions = chineseSessions(rawSessions), attempts = chineseRows(rawAttempts)
   const chinese = (ref: string) => {
     const unit = catalog.units.get(ref)
     return unit ? (unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt) : ref

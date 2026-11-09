@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { chineseRows } from '../../core/chinese-only'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, ListChecks, MessageSquareText, PenLine, Play, Repeat, RefreshCw, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
@@ -309,7 +310,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const connection = useAIConnection()
   const sets = useLiveQuery(() => db.drillSets.toArray(), []) ?? []
   const collections = useLiveQuery(() => db.collections.toArray(), []) ?? []
-  const collectionItems = useLiveQuery(() => db.collectionItems.toArray(), []) ?? []
+  const collectionItems = useLiveQuery(async () => chineseRows(await db.collectionItems.toArray()), []) ?? []
   const [from, setFrom] = useState(CURRICULUM)
   const originParam = new URLSearchParams(useRoute().split('?').slice(1).join('?')).get('from') ?? ''
   /** The items of a past lesson, practice set or Hands-free run named in the hash (undefined while loading, null when there is none). */

@@ -1,7 +1,7 @@
 import { TERM } from '../collections/terms'
 import { db } from '../database'
 import { omit } from '../omit'
-import { chineseRows } from '../chinese-only'
+import { isForeignSession, chineseRows } from '../chinese-only'
 import { addEvent, exerciseAttemptEvent, removeEvent, reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
 import type { AIConnection } from '../assistant/contracts'
@@ -121,7 +121,7 @@ async function requireConnection(): Promise<AIConnection> {
 
 async function activeSession(mode: ExerciseSession['mode']): Promise<ExerciseSession | undefined> {
   // A redo is a repeat, never the curriculum's current step, so it does not count as the unfinished session.
-  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode && !session.redoOf && !session.collectionId && !session.lines).sortBy('createdAt').then(rows => rows[0])
+  return db.exerciseSessions.where('status').equals('active').filter(session => session.mode === mode && !session.redoOf && !session.collectionId && !session.lines && !isForeignSession(session)).sortBy('createdAt').then(rows => rows[0])
 }
 
 function recentReviewRefs(sessions: ExerciseSession[], exclude: Set<string>): string[] {
@@ -167,7 +167,7 @@ export async function startNewSession(signal?: AbortSignal, options: { resume?: 
   const id = await db.transaction('rw', db.knowledge, db.studyCards, db.exerciseSessions, db.journal, async () => {
     // Guard only against the same group being started twice at once.
     const resumed = resume ? await activeSession('new') : await db.exerciseSessions.where('status').equals('active')
-      .filter(session => session.mode === 'new' && !session.redoOf && session.groupId === next.group.id).first()
+      .filter(session => session.mode === 'new' && !session.redoOf && session.groupId === next.group.id && !isForeignSession(session)).first()
     if (resumed) return resumed.id
     const addOnFinish = next.newUnits.map(unit => unit.ref)
     const sessionId = crypto.randomUUID()
@@ -289,7 +289,7 @@ export async function startRedoSession(sourceId: string, signal?: AbortSignal): 
   if (source.collectionId) throw new Error(`Practice a ${TERM.singular} from its own page.`)
   const connection = await requireConnection()
   // A redo is only a repeat: starting another replaces the unfinished one.
-  const previous = await db.exerciseSessions.where('status').equals('active').filter(item => !!item.redoOf).toArray()
+  const previous = await db.exerciseSessions.where('status').equals('active').filter(item => !!item.redoOf && !isForeignSession(item)).toArray()
   for (const item of previous) await discardSession(item.id)
   const catalog = await loadCatalog()
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))

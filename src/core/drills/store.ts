@@ -1,4 +1,5 @@
 import { db } from '../database'
+import { chineseRows } from '../chinese-only'
 import { loadCatalog } from '../study/catalog'
 import { cardId, isSourceRef, type StudyCard } from '../study/contracts'
 import { addUnits, dueCards, DOMAIN } from '../study/knowledge'
@@ -89,7 +90,7 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
   const collectionId = source.kind === 'new' ? source.from! : source.collectionId
   const collection = await db.collections.get(collectionId)
   if (!collection) throw new Error('That study set could not be found.')
-  const items = (await db.collectionItems.where('collectionId').equals(collectionId).toArray()).sort((a, b) => a.addedAt - b.addedAt)
+  const items = chineseRows(await db.collectionItems.where('collectionId').equals(collectionId).toArray()).sort((a, b) => a.addedAt - b.addedAt)
   if (source.kind === 'new') {
     const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))
     const fresh = items.filter(item => isPhraseRef(item.ref) ? !(cards.get(item.ref)?.reps) : !known.has(item.ref))

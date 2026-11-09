@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { chineseRows, isForeignSession } from '../core/chinese-only'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, MoreHorizontal, Plus } from 'lucide-react'
 import { db } from '../core/database'
@@ -55,7 +56,7 @@ function List({ busy, run, now }: Pick<PageProps, 'busy' | 'run' | 'now'>) {
   useEffect(() => { void renameMediaNamedSets().catch(() => undefined) }, [])
   const rows = useLiveQuery(async () => {
     const collections = await db.collections.orderBy('updatedAt').reverse().toArray()
-    return Promise.all(collections.map(async collection => ({ collection, count: await db.collectionItems.where('collectionId').equals(collection.id).count(), due: (await dueItems(collection.id, now)).length })))
+    return Promise.all(collections.map(async collection => ({ collection, count: chineseRows(await db.collectionItems.where('collectionId').equals(collection.id).toArray()).length, due: (await dueItems(collection.id, now)).length })))
   }, [now])
   return <>
     <PageHeading eyebrow={TERM.Plural.toUpperCase()} title={TERM.Plural}>Words and phrases you gather from shows and books. Practicing them does not add them to your knowledge set.</PageHeading>
@@ -97,9 +98,9 @@ function Item({ item, selected, toggle, now, catalog }: { item: CollectionItem; 
 
 function Detail({ id, busy, run, now }: PageProps & { id: string }) {
   const collection = useLiveQuery(async () => (await db.collections.get(id)) ?? null, [id])
-  const items = useLiveQuery(() => db.collectionItems.where('collectionId').equals(id).sortBy('addedAt'), [id])
+  const items = useLiveQuery(async () => chineseRows(await db.collectionItems.where('collectionId').equals(id).sortBy('addedAt')), [id])
   const due = useLiveQuery(() => dueItems(id, now), [id, now, items?.length])
-  const unfinished = useLiveQuery(() => db.exerciseSessions.where('status').equals('active').filter(session => session.collectionId === id).sortBy('createdAt'), [id]) ?? []
+  const unfinished = useLiveQuery(() => db.exerciseSessions.where('status').equals('active').filter(session => session.collectionId === id && !isForeignSession(session)).sortBy('createdAt'), [id]) ?? []
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [renaming, setRenaming] = useState(false)
   const [note, setNote] = useState('')

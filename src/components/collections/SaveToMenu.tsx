@@ -1,4 +1,5 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { chineseRows } from '../../core/chinese-only'
 import { createPortal } from 'react-dom'
 import { ListPlus, Plus } from 'lucide-react'
 import { useLiveQuery } from 'dexie-react-hooks'
@@ -80,7 +81,7 @@ export function SaveToMenu({ refs, name, title, knowledge, label, className = ''
     const sets = await db.collections.orderBy('updatedAt').reverse().toArray()
     return Promise.all(sets.map(async set => ({
       set,
-      count: await db.collectionItems.where('collectionId').equals(set.id).count(),
+      count: chineseRows(await db.collectionItems.where('collectionId').equals(set.id).toArray()).length,
       has: (await db.collectionItems.bulkGet(unique.map(ref => itemId(set.id, ref)))).filter(Boolean).length,
     })))
   }, [open, key])

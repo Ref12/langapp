@@ -25,6 +25,7 @@ export const chineseSessions = <T>(rows: T[]): T[] =>
 /** A conversation or message about Japanese or Korean text carries source.language: a field Stable does not know. */
 export const chineseSources = <T>(rows: T[]): T[] =>
   (rows as Obj[]).map(row => row.source && 'language' in row.source ? { ...row, source: strip(row.source, { text: 1, title: 1, route: 1, meaning: 1, locale: 1 }) } : row) as T[]
+export const isForeignSession = (row: object): boolean => [...((row as Obj).targetRefs ?? []), ...((row as Obj).reviewRefs ?? [])].some(isForeignRef)
 export const isForeignEvent = (event: object): boolean => foreignRow(event as Obj)
 
 /** Works on a snapshot or on the parsed YAML of one (labels instead of refs); anything that is not a profile is returned as it is. */
