@@ -31,6 +31,7 @@ import { fold, isFilterLanguage, languageLabel, loadDictionary, makeOtherMatcher
 import { loadParallel, type ParallelData, type ParallelPhrase } from '../core/parallel/data'
 import { LanguageTag, OtherGrammarCard, OtherWordCard, DictPhrase } from '../components/dictionary/OtherEntries'
 import { currentLanguageOf } from '../data/tracks'
+import { isParallelRef } from '../core/parallel/refs'
 
 const PAGE = 48
 
@@ -113,7 +114,9 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   // One lookup for every card on the page, rebuilt when the lessons, sets or knowledge set change.
   const addedIndex = useLiveQuery(buildAddedByIndex, [])
   const entries = new Map(workspace.knowledge.map(entry => [entry.ref, entry]))
-  const known = new Set(workspace.knowledge.map(entry => entry.ref))
+  // Japanese and Korean records live in the same table under ja:/ko: refs but are kept out of workspace.knowledge (the Chinese queues); read them here.
+  const otherKnown = useLiveQuery(async () => new Set((await db.knowledge.toArray()).map(entry => entry.ref).filter(isParallelRef)), []) ?? new Set<string>()
+  const known = new Set([...workspace.knowledge.map(entry => entry.ref), ...otherKnown])
   const inScope = (ref: string) => scope === 'all' || (scope === 'knowledge' ? known.has(ref) : collected.has(ref))
   const characters = useMemo(() => catalog ? dictionaryCharacters(catalog, undefined, workspace.characterStates) : [], [catalog, workspace.characterStates])
   const characterSet = useMemo(() => catalog ? characterKnowledge(catalog, workspace.knowledge, workspace.characterStates) : undefined,
@@ -126,7 +129,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     const dict = dicts[language]
     const letter = value === 'vocabulary' ? 'w' : 'g'
     const prefix = `${language}:${letter}:`
-    return total + (scope === 'media' ? 0 : scope === 'all' ? (dict ? (value === 'vocabulary' ? dict.words.length : dict.grammar.length) : 0) : scope === 'knowledge' ? workspace.knowledge.filter(entry => entry.ref.startsWith(prefix)).length : [...collected].filter(ref => ref.startsWith(prefix)).length)
+    return total + (scope === 'media' ? 0 : scope === 'all' ? (dict ? (value === 'vocabulary' ? dict.words.length : dict.grammar.length) : 0) : scope === 'knowledge' ? [...otherKnown].filter(ref => ref.startsWith(prefix)).length : [...collected].filter(ref => ref.startsWith(prefix)).length)
   }, 0)
   const tabCount = (value: UnitKind | 'characters') => multi ? (showZh ? zhTab(value) : 0) + (value === 'characters' ? 0 : otherTotal(value)) : zhTab(value)
   const bandCounts = new Map<string, number>()
@@ -191,7 +194,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     }
     return list
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phrasesView, kind, multi, query, band, scope, dicts, workspace.knowledge, collected, othersKey])
+  }, [phrasesView, kind, multi, query, band, scope, dicts, workspace.knowledge, otherKnown, collected, othersKey])
   // Across languages: best rank first; ties by the language the typed script points to, then the current language (中/日/한 switch), then Chinese, Japanese, Korean.
   const rows: Row[] = (() => {
     if (!multi || phrasesView || kind === 'characters') return []

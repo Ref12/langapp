@@ -1,9 +1,9 @@
 import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync, readFileSync } from 'node:fs'
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
 import { savePreferences } from '../core/learning'
@@ -185,20 +185,39 @@ describe('dictionary languages', () => {
 })
 
 describe('dictionary generator', () => {
-  it('--check passes for the committed files and fails when one is stale', () => {
-    expect(() => generate(['--check'])).not.toThrow()
+  /** A tiny curriculum: one word and one grammar point per language. The full JLPT/TOPIK data is checked by npm run curriculum:check. */
+  function fixture(dir: string) {
+    const put = (path: string, text: string) => { mkdirSync(dirname(join(dir, path)), { recursive: true }); writeFileSync(join(dir, path), text) }
+    const langs: Record<string, { levels: string[]; licenses: string[]; prefix: string }> = {
+      japanese: { levels: ['jlpt-n5', 'jlpt-n4', 'jlpt-n3', 'jlpt-n2', 'jlpt-n1'], licenses: ['CC-BY-SA-4.0.txt', 'EDRDG-license.html', 'Waller-sharing.html'], prefix: 'ja' },
+      korean: { levels: ['topik-1', 'topik-2', 'topik-3', 'topik-4', 'topik-5', 'topik-6'], licenses: ['NOTICE.md'], prefix: 'ko' },
+    }
+    for (const [name, { levels, licenses, prefix }] of Object.entries(langs)) {
+      levels.forEach((level, index) => {
+        put(`curriculum/${name}/${level}/vocabulary.yaml`, index === 0 ? `- id: ${prefix}-w1\n  target: 学生\n  reading: がくせい\n  english: 1. student\n  part_of_speech: noun\n` : '[]\n')
+        put(`curriculum/${name}/${level}/grammar.yaml`, index === 0 ? `- id: ${prefix}-g1\n  pattern: です\n  english: is\n  note: polite\n  examples:\n    - target: 私は学生です\n      english: I am a student\n` : '[]\n')
+      })
+      put(`curriculum/${name}/parallel/entries.yaml`, 'vocabulary: []\ngrammar: []\n')
+      put(`curriculum/${name}/parallel/zh-lessons.yaml`, `lessons:\n  - grammar_intro: [${prefix}-g1]\n    grammar_taught: []\n`)
+      for (const license of licenses) put(`curriculum/${name}/licenses/${license}`, 'licence text ' + license + '\n')
+    }
+  }
+
+  it('--check passes for fresh output and fails when one file is stale', () => {
     const dir = mkdtempSync(join(tmpdir(), 'dict-'))
+    const log = vi.spyOn(console, 'log').mockImplementation(() => undefined)
     try {
-      symlinkSync(join(process.cwd(), 'curriculum'), join(dir, 'curriculum'))
+      fixture(dir)
       mkdirSync(join(dir, 'src/data/dictionary'), { recursive: true })
       writeFileSync(join(dir, 'src/data/dictionary/ja.json'), '{}')
-      const log = vi.spyOn(console, 'log').mockImplementation(() => undefined)
       expect(() => generate(['--check', '--root', dir])).toThrow(/dictionary:generate/)
       generate(['--root', dir])
       expect(() => generate(['--check', '--root', dir])).not.toThrow()
+      expect(JSON.parse(readFileSync(join(dir, 'src/data/dictionary/ja.json'), 'utf8')).words).toEqual([['ja-w1', '学生', 'がくせい', 'student', 0, 0]])
       expect(readFileSync(join(dir, 'public/dictionary/korean/ATTRIBUTION.txt'), 'utf8')).toContain('Korean')
       expect(readFileSync(join(dir, 'public/dictionary/japanese/ATTRIBUTION.txt'), 'utf8')).toContain('JMdict')
-      log.mockRestore()
-    } finally { rmSync(dir, { recursive: true, force: true }) }
+      writeFileSync(join(dir, 'public/dictionary/korean/ATTRIBUTION.txt'), 'edited')
+      expect(() => generate(['--check', '--root', dir])).toThrow(/dictionary:generate/)
+    } finally { log.mockRestore(); rmSync(dir, { recursive: true, force: true }) }
   })
 })
