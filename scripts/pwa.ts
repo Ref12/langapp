@@ -70,7 +70,7 @@ self.addEventListener('fetch', event => {
   if (url.origin !== location.origin || !url.href.startsWith(scope)) return
   if (url.pathname.endsWith('/sw.js')) return
   // The Lab build is published under lab/ with its own worker: Stable never handles, serves or caches anything there.
-  if (/^lab(\/|$|[?#])/.test(url.href.slice(scope.length))) return
+  if (['lab', 'lab/'].some(p => url.pathname === new URL(p, scope).pathname || url.href.startsWith(new URL('lab/', scope).href))) return
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).catch(() => caches.open(CACHE).then(shell => shell.match(scope, { ignoreSearch: true }).then(hit => hit || shell.match(scope + 'index.html')))))
     return

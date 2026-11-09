@@ -106,7 +106,10 @@ describe('PWA plugin', async () => {
       it('removes only its own older shell caches on activate', async () => {
         const w = await worker(scope, { 'linguaweave-stable-shell-old': { x: '1' }, 'linguaweave-shell-main': { x: '1' } })
         await w.wait('install'); await w.wait('activate')
-        expect([...w.stores.keys()].sort()).toEqual(['linguaweave-shell-main', expect.stringMatching(/^linguaweave-stable-shell-/)].sort())
+        const names = [...w.stores.keys()]
+        expect(names).toHaveLength(2)
+        expect(names).toContain('linguaweave-shell-main')
+        expect(names.some(n => /^linguaweave-stable-shell-(?!old$)/.test(n))).toBe(true)
         expect(w.stores.has('linguaweave-stable-shell-old')).toBe(false)
       })
     })
