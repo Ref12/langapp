@@ -34,13 +34,34 @@ jobs:
       - name: Build the app (with PWA manifest and service worker)
         run: npm run build
 
+      # Checked out after Lab's lint and tests so they never see Stable's files.
+      # Stable is the same repository's `stable` branch, published at the site root.
+      - name: Check that branch stable exists
+        run: |
+          if ! git ls-remote --exit-code --heads "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" stable >/dev/null; then
+            echo "::error::Branch 'stable' does not exist in $GITHUB_REPOSITORY. Stable is published at the site root, so there is nothing to deploy."
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          ref: stable
+          path: stable-src
+
+      - name: Build Stable (its build runs its own data checks and tsc)
+        working-directory: stable-src
+        run: |
+          npm ci
+          npm run build
+      - name: Assemble the site (Stable at the root, Lab under lab/)
+        run: node scripts/assemble-site.mjs stable-src/dist dist site
+
       - name: Configure existing Pages site
         uses: actions/configure-pages@v5
 
       - name: Upload complete site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: site
 
   deploy:
     environment:
