@@ -43,7 +43,7 @@ export function pwa(): Plugin {
 function serviceWorker(precache: string[]): string {
   const version = Date.now().toString(36)
   return `// LinguaWeave service worker (relative scope). Caches only this scope; never touches IndexedDB.
-// Stable's own cache names. Main (and Lab) use 'linguaweave-shell-*' and 'linguaweave-runtime'; Stable never reads, writes or deletes those.
+// Stable's own cache names. Today's main used 'linguaweave-shell-*' and 'linguaweave-runtime': Stable never reads or writes those, and deletes them once it activates (see LEFTOVER). Lab's caches all start with 'lab.' and are never touched.
 const CACHE = 'linguaweave-stable-shell-${version}'
 const RUNTIME = 'linguaweave-stable-runtime'
 const PRECACHE = ${JSON.stringify(precache)}
@@ -56,7 +56,10 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     for (const key of await caches.keys()) {
-      if (key.startsWith('linguaweave-stable-shell-') && key !== CACHE) await caches.delete(key)
+      if (key.startsWith('lab.')) continue
+      // LEFTOVER: the dead copy of the app that main's old worker (this same sw.js URL) left in the learner's browser.
+      const leftover = key === 'linguaweave-runtime' || key.startsWith('linguaweave-shell-')
+      if (leftover || (key.startsWith('linguaweave-stable-shell-') && key !== CACHE)) await caches.delete(key)
     }
     await self.clients.claim()
   })())

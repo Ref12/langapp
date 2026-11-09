@@ -91,8 +91,8 @@ describe('PWA plugin', async () => {
         await w.wait('install'); await w.wait('activate')
         const names = [...w.stores.keys()]
         expect(names.filter(n => !['linguaweave-shell-mqx1', 'linguaweave-runtime'].includes(n)).every(n => /^linguaweave-stable-(shell-.+|runtime)$/.test(n))).toBe(true)
-        expect(names).toContain('linguaweave-shell-mqx1') // main's caches are left alone (Lab shares the origin and may own them)
-        expect(names).toContain('linguaweave-runtime')
+        expect(names).not.toContain('linguaweave-shell-mqx1') // main's leftovers are deleted once Stable activates, after it has ignored them
+        expect(names).not.toContain('linguaweave-runtime')
         // Assets come from Stable's own precache or the network, never from main's cache.
         const asset = await w.request(scope + 'assets/index-a.js')
         expect(asset.body).not.toMatch(/OLD/)
@@ -103,13 +103,15 @@ describe('PWA plugin', async () => {
         expect(fetchless).not.toBe('OLD INDEX')
       })
 
-      it('removes only its own older shell caches on activate', async () => {
-        const w = await worker(scope, { 'linguaweave-stable-shell-old': { x: '1' }, 'linguaweave-shell-main': { x: '1' } })
+      it('on activate removes its own older shell caches and the caches left by main, and never a lab. cache', async () => {
+        const w = await worker(scope, {
+          'linguaweave-stable-shell-old': { x: '1' }, 'linguaweave-stable-runtime': { x: '1' }, 'linguaweave-shell-main': { x: '1' }, 'linguaweave-runtime': { x: '1' },
+          'lab.linguaweave-shell-1': { x: '1' }, 'lab.linguaweave-runtime': { x: '1' }, 'unrelated': { x: '1' },
+        })
         await w.wait('install'); await w.wait('activate')
-        const names = [...w.stores.keys()]
-        expect(names).toHaveLength(2)
-        expect(names).toContain('linguaweave-shell-main')
-        expect(names.some(n => /^linguaweave-stable-shell-(?!old$)/.test(n))).toBe(true)
+        const names = [...w.stores.keys()].sort()
+        expect(names.filter(n => !n.startsWith('linguaweave-stable-shell-'))).toEqual(['lab.linguaweave-runtime', 'lab.linguaweave-shell-1', 'linguaweave-stable-runtime', 'unrelated'])
+        expect(names.filter(n => n.startsWith('linguaweave-stable-shell-'))).toHaveLength(1)
         expect(w.stores.has('linguaweave-stable-shell-old')).toBe(false)
       })
     })
