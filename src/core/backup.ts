@@ -6,6 +6,7 @@ import type { Workspace } from './model'
 import { clearUnsavedDrafts } from './assistant/drafts'
 import { listSavedSudokuBoards } from './games/sudoku-store'
 import { exportBackup, readBackup, splitStudy } from './backup-codec'
+import { isLanguageRef } from './parallel/refs'
 import { knowledgeCards, readCollectionsState, richerCard } from './collections/snapshot'
 
 export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from './backup-codec'
@@ -35,7 +36,11 @@ export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<str
     const userPhrases = await db.userPhrases.toArray()
     const collections = await readCollectionsState(db)
     const known = new Set(workspace.knowledge.map(entry => entry.ref))
-    return exportBackup({ ...workspace, studyCards: knowledgeCards(workspace.studyCards, known), library: await db.libraryBooks.toArray(), ...(collections.collections.length ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(phraseHeard.length ? { phraseHeard } : {}), ...(userPhrases.length ? { userPhrases } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, assistant)
+    // Japanese and Korean entries (language refs) are not part of the Chinese workspace view, but they belong to the backup: they follow the Chinese rows.
+    const languageKnowledge = (await db.knowledge.toArray()).filter(entry => isLanguageRef(entry.ref))
+    const languageKnown = new Set(languageKnowledge.map(entry => entry.ref))
+    const languageCards = knowledgeCards((await db.studyCards.toArray()).filter(card => isLanguageRef(card.ref)), languageKnown)
+    return exportBackup({ ...workspace, knowledge: [...workspace.knowledge, ...languageKnowledge], studyCards: [...knowledgeCards(workspace.studyCards, known), ...languageCards], library: await db.libraryBooks.toArray(), ...(collections.collections.length ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(phraseHeard.length ? { phraseHeard } : {}), ...(userPhrases.length ? { userPhrases } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, assistant)
   })
 }
 

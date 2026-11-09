@@ -3,7 +3,7 @@ import { CONTENT_VERSION } from '../../data/content-version'
 import { aiConnectionInputSchema, aiEndpointsExportSchema, assistantBackupSchema } from '../assistant/contracts'
 import { speechConnectionInputSchema } from '../assistant/speech-contracts'
 import { BackupValidationError, validateAssistant, validateCollections, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
-import { studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
+import { languageRefSchema, studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
 import { profileMetadataSchema } from './identity'
 import { librarySchema } from '../library/contracts'
 import { mediaItemSchema, sourceEntrySchema } from '../media/contracts'
@@ -55,9 +55,14 @@ const questionSchema = workspaceSchema.shape.sessions.element.shape.questions.el
 const sessionSchema = workspaceSchema.shape.sessions.element.extend({ questions: z.array(questionSchema) })
 const attemptSchema = workspaceSchema.shape.attempts.element.omit({ wordId: true, answerId: true })
   .extend({ lb: unitLabelSchema, answerLb: unitLabelSchema })
-const studyKnowledgeSchema = studyBackupSchema.shape.knowledge.element.omit({ ref: true })
+// A language row (ja:/ko:/...) carries its ref explicitly; a Chinese row has none and rebuilds it from kind and lb.
+const studyKnowledgeSchema = studyBackupSchema.shape.knowledge.element.omit({ ref: true }).extend({ ref: languageRefSchema.optional() })
 const studyCardSchema = studyBackupSchema.shape.cards.element.omit({ id: true, ref: true })
-  .extend({ kind: unitKindSchema.or(z.literal('source')), lb: unitLabelSchema })
+  .extend({ ref: languageRefSchema.optional(), kind: unitKindSchema.or(z.literal('source')).optional(), lb: unitLabelSchema.optional() })
+  .superRefine((card, context) => {
+    if (card.ref === undefined && (card.kind === undefined || card.lb === undefined)) context.addIssue({ code: 'custom', message: 'A study card needs a ref, or a kind and a label.' })
+    if (card.ref !== undefined && (card.kind !== undefined || card.lb !== undefined)) context.addIssue({ code: 'custom', message: 'A study card with a ref has no kind or label.' })
+  })
 
 // The wire format uses labels; normalized snapshots retain database keys in memory.
 export const profileYamlSchema = profileDataSchema.extend({

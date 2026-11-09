@@ -4,6 +4,7 @@ import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from 
 import type { Workspace } from './model'
 import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
 import { studyBackupSchema, type StudyBackup } from './study/contracts'
+import { isLanguageRef } from './parallel/refs'
 import { characterStateSchema } from './characters/contracts'
 import { drillSetsBackupSchema, type DrillSet } from './drills/contracts'
 import { handsfreeRunsBackupSchema, type HandsfreeRun } from './handsfree/contracts'
@@ -108,7 +109,7 @@ export function validateStudy(study: StudyBackup) {
   unique(study.sessions.map(session => session.id), 'exercise sessions')
   unique(study.attempts.map(attempt => attempt.id), 'exercise answers')
   for (const entry of study.knowledge) {
-    if (entry.ref !== `${entry.kind}:${entry.lb}`) throw new BackupValidationError('Backup knowledge entry has inconsistent labels.')
+    if (!isLanguageRef(entry.ref) && entry.ref !== `${entry.kind}:${entry.lb}`) throw new BackupValidationError('Backup knowledge entry has inconsistent labels.')
   }
   const known = new Set(study.knowledge.map(entry => entry.ref))
   for (const card of study.cards) {
