@@ -1,0 +1,332 @@
+{
+  "kv": [
+    {
+      "key": "auto:default",
+      "value": true
+    },
+    {
+      "key": "cache:default",
+      "value": {
+        "target": "me/backups#main",
+        "remote": {
+          "head": "v1",
+          "tree": "t",
+          "files": {
+            "profile.yaml": "26",
+            "settings.yaml": "756",
+            "state/state.yaml": "171",
+            "state/exercise-sessions/736e1d6c-143c-4cae-86d7-f7cbc44fc897.yaml": "1940",
+            "state/exercise-sessions/ba39ce37-e1f8-4b6f-922d-8c9aad7867e1.yaml": "1707",
+            "journal/000000001-000000025.yaml": "3702",
+            "state/snapshot.yaml": "4757",
+            "knowledge.yaml": "878",
+            "manifest.yaml": "191"
+          }
+        },
+        "lastSeq": 25,
+        "segments": [
+          {
+            "path": "journal/000000001-000000025.yaml",
+            "from": 1,
+            "to": 25,
+            "events": 25
+          }
+        ],
+        "snapshotCursor": 25,
+        "eventsSinceSnapshot": 0,
+        "state": {
+          "knowledge": [
+            {
+              "ref": "grammar:s-pred--statement",
+              "kind": "grammar",
+              "lb": "s-pred--statement",
+              "band": "1",
+              "addedAt": 1794258235960,
+              "source": "new"
+            },
+            {
+              "ref": "grammar:s-shi4-n--identity",
+              "kind": "grammar",
+              "lb": "s-shi4-n--identity",
+              "band": "1",
+              "addedAt": 1794258235960,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:cha2--tea",
+              "kind": "vocabulary",
+              "lb": "cha2--tea",
+              "band": "1",
+              "addedAt": 1794258235963,
+              "source": "dictionary"
+            },
+            {
+              "ref": "vocabulary:shi4--identity",
+              "kind": "vocabulary",
+              "lb": "shi4--identity",
+              "band": "1",
+              "addedAt": 1794258235960,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:wo3--me",
+              "kind": "vocabulary",
+              "lb": "wo3--me",
+              "band": "1",
+              "addedAt": 1794258235960,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:xue2-sheng5--student",
+              "kind": "vocabulary",
+              "lb": "xue2-sheng5--student",
+              "band": "1",
+              "addedAt": 1794258235960,
+              "source": "new"
+            },
+            {
+              "ref": "vocabulary:xue2-xi2--study",
+              "kind": "vocabulary",
+              "lb": "xue2-xi2--study",
+              "band": "1",
+              "addedAt": 1794258235960,
+              "source": "new"
+            }
+          ],
+          "cards": [
+            {
+              "id": "grammar:s-pred--statement:reading",
+              "ref": "grammar:s-pred--statement",
+              "domain": "reading",
+              "due": 1794517435958,
+              "stability": 3.173000194045435,
+              "difficulty": 5.272967931287446,
+              "reps": 2,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794258235958,
+              "lastReview": 1794258235958
+            },
+            {
+              "id": "grammar:s-shi4-n--identity:reading",
+              "ref": "grammar:s-shi4-n--identity",
+              "domain": "reading",
+              "due": 1794517435952,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794258235952,
+              "lastReview": 1794258235952
+            },
+            {
+              "id": "vocabulary:cha2--tea:reading",
+              "ref": "vocabulary:cha2--tea",
+              "domain": "reading",
+              "due": 1794258235963,
+              "stability": 0,
+              "difficulty": 0,
+              "reps": 0,
+              "lapses": 0,
+              "state": "new",
+              "updatedAt": 1794258235963
+            },
+            {
+              "id": "vocabulary:shi4--identity:reading",
+              "ref": "vocabulary:shi4--identity",
+              "domain": "reading",
+              "due": 1794517435952,
+              "stability": 3.1730004204317765,
+              "difficulty": 5.272967931287446,
+              "reps": 2,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794258235952,
+              "lastReview": 1794258235952
+            },
+            {
+              "id": "vocabulary:wo3--me:reading",
+              "ref": "vocabulary:wo3--me",
+              "domain": "reading",
+              "due": 1794171836040,
+              "stability": 3.17300061517332,
+              "difficulty": 5.263544986114632,
+              "reps": 3,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794258235952,
+              "lastReview": 1794258235952
+            },
+            {
+              "id": "vocabulary:xue2-sheng5--student:reading",
+              "ref": "vocabulary:xue2-sheng5--student",
+              "domain": "reading",
+              "due": 1794517435952,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794258235952,
+              "lastReview": 1794258235952
+            },
+            {
+              "id": "vocabulary:xue2-xi2--study:reading",
+              "ref": "vocabulary:xue2-xi2--study",
+              "domain": "reading",
+              "due": 1794517435952,
+              "stability": 3.173,
+              "difficulty": 5.282434422319005,
+              "reps": 1,
+              "lapses": 0,
+              "state": "review",
+              "updatedAt": 1794258235952,
+              "lastReview": 1794258235952
+            }
+          ],
+          "attempts": [
+            {
+              "id": "736e1d6c-143c-4cae-86d7-f7cbc44fc897:0",
+              "sessionId": "736e1d6c-143c-4cae-86d7-f7cbc44fc897",
+              "index": 0,
+              "refs": [
+                "vocabulary:wo3--me"
+              ],
+              "response": "1",
+              "correct": true,
+              "createdAt": 1794258235933
+            },
+            {
+              "id": "736e1d6c-143c-4cae-86d7-f7cbc44fc897:1",
+              "sessionId": "736e1d6c-143c-4cae-86d7-f7cbc44fc897",
+              "index": 1,
+              "refs": [
+                "vocabulary:wo3--me",
+                "vocabulary:shi4--identity"
+              ],
+              "response": "0",
+              "correct": true,
+              "createdAt": 1794258235939
+            },
+            {
+              "id": "736e1d6c-143c-4cae-86d7-f7cbc44fc897:2",
+              "sessionId": "736e1d6c-143c-4cae-86d7-f7cbc44fc897",
+              "index": 2,
+              "refs": [
+                "vocabulary:wo3--me",
+                "vocabulary:shi4--identity",
+                "vocabulary:xue2-sheng5--student",
+                "vocabulary:xue2-xi2--study",
+                "grammar:s-shi4-n--identity",
+                "grammar:s-pred--statement"
+              ],
+              "response": "[\"我\",\"是\",\"学生\"]",
+              "correct": true,
+              "createdAt": 1794258235952
+            },
+            {
+              "id": "736e1d6c-143c-4cae-86d7-f7cbc44fc897:3",
+              "sessionId": "736e1d6c-143c-4cae-86d7-f7cbc44fc897",
+              "index": 3,
+              "refs": [
+                "grammar:s-pred--statement"
+              ],
+              "response": "[\"我\",\"学习\"]",
+              "correct": true,
+              "createdAt": 1794258235958
+            },
+            {
+              "id": "ba39ce37-e1f8-4b6f-922d-8c9aad7867e1:0",
+              "sessionId": "ba39ce37-e1f8-4b6f-922d-8c9aad7867e1",
+              "index": 0,
+              "refs": [
+                "vocabulary:ni3--you"
+              ],
+              "response": "0",
+              "correct": true,
+              "createdAt": 1794258235968
+            },
+            {
+              "id": "ba39ce37-e1f8-4b6f-922d-8c9aad7867e1:1",
+              "sessionId": "ba39ce37-e1f8-4b6f-922d-8c9aad7867e1",
+              "index": 1,
+              "refs": [
+                "vocabulary:ni3--you",
+                "vocabulary:nin2--you"
+              ],
+              "response": "0",
+              "correct": true,
+              "createdAt": 1794258236039
+            }
+          ],
+          "characters": []
+        }
+      }
+    },
+    {
+      "key": "sent:default",
+      "value": 25
+    },
+    {
+      "key": "status:default",
+      "value": {
+        "lastBackupAt": 1794258236104,
+        "lastCommit": "v1"
+      }
+    },
+    {
+      "key": "window:default",
+      "value": 1794258236083
+    }
+  ],
+  "runs": [
+    {
+      "profileId": "default",
+      "trigger": "auto",
+      "startedAt": 1794258236076,
+      "endedAt": 1794258236082,
+      "totalMs": 6,
+      "readMs": 0,
+      "buildMs": 0,
+      "publishMs": 0,
+      "calls": [],
+      "journalEvents": 0,
+      "filesChanged": 0,
+      "bytes": 0,
+      "snapshot": "none",
+      "full": false,
+      "outcome": "error",
+      "note": "The knowledge entry has inconsistent labels.",
+      "id": 1
+    },
+    {
+      "profileId": "default",
+      "trigger": "manual",
+      "startedAt": 1794258236084,
+      "endedAt": 1794258236104,
+      "totalMs": 21,
+      "readMs": 2,
+      "buildMs": 17,
+      "publishMs": 0,
+      "calls": [],
+      "journalEvents": 25,
+      "filesChanged": 9,
+      "bytes": 14128,
+      "snapshot": "live",
+      "full": true,
+      "outcome": "ok",
+      "id": 2
+    }
+  ],
+  "config": {
+    "id": "github",
+    "owner": "me",
+    "repo": "backups",
+    "token": "tok",
+    "branch": "main",
+    "lastBackupAt": 1794258236104,
+    "lastError": "",
+    "lastCommit": "v1"
+  }
+}

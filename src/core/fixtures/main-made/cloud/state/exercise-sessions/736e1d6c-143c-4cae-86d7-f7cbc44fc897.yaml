@@ -1,0 +1,92 @@
+id: 736e1d6c-143c-4cae-86d7-f7cbc44fc897
+mode: new
+domain: reading
+groupId: zh-hsk-1-lesson-0001
+targetRefs:
+  - vocabulary:wo3--me
+  - vocabulary:shi4--identity
+  - vocabulary:xue2-sheng5--student
+  - vocabulary:xue2-xi2--study
+  - grammar:s-shi4-n--identity
+  - grammar:s-pred--statement
+reviewRefs: []
+exercises:
+  - id: c1
+    type: choice
+    targets:
+      - vocabulary:wo3--me
+    direction: zh-to-en
+    question: 我是学生。
+    options:
+      - I study.
+      - I am a student.
+    answer: 1
+    explanation: Identity with 是.
+  - id: c2
+    type: choice
+    targets:
+      - vocabulary:wo3--me
+      - vocabulary:shi4--identity
+    direction: en-to-zh
+    question: I study.
+    options:
+      - 我学习。
+      - 我是学生。
+    answer: 0
+    explanation: 学习 means study.
+  - id: t1
+    type: tiles
+    targets:
+      - vocabulary:wo3--me
+      - vocabulary:shi4--identity
+      - vocabulary:xue2-sheng5--student
+      - vocabulary:xue2-xi2--study
+      - grammar:s-shi4-n--identity
+      - grammar:s-pred--statement
+    translation: I am a student.
+    tiles:
+      - 我
+      - 是
+      - 学生
+    distractors:
+      - 学习
+    shuffled:
+      - 1
+      - 0
+      - 3
+      - 2
+    explanation: Subject, 是, noun.
+  - id: t2
+    type: tiles
+    targets:
+      - grammar:s-pred--statement
+    translation: I study.
+    tiles:
+      - 我
+      - 学习
+    distractors: []
+    shuffled:
+      - 1
+      - 0
+    explanation: Subject then verb.
+cursor: 3
+status: completed
+model: test-model
+rejected: []
+createdAt: 1794258235905
+exerciseCount: 20
+addOnFinish:
+  - vocabulary:wo3--me
+  - vocabulary:shi4--identity
+  - vocabulary:xue2-sheng5--student
+  - vocabulary:xue2-xi2--study
+  - grammar:s-shi4-n--identity
+  - grammar:s-pred--statement
+completedAt: 1794258235960
+addedRefs:
+  - vocabulary:wo3--me
+  - vocabulary:shi4--identity
+  - vocabulary:xue2-sheng5--student
+  - vocabulary:xue2-xi2--study
+  - grammar:s-shi4-n--identity
+  - grammar:s-pred--statement

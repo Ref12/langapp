@@ -1,0 +1,147 @@
+// Generator for the Stable fixtures: run inside a checkout of main (langapp/main-for-rebase) as
+//   FIXTURE_OUT=<dir> npx vitest run src/stable-fixtures.gen.test.ts
+// It drives main's own code (study/knowledge, parallel/*, backup/service, profiles) against fake-indexeddb and writes what main produced.
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { mkdirSync, writeFileSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { db, initializeWorkspace, loadWorkspace } from './core/database'
+import { initializeProfiles, getActiveProfile, readSnapshot } from './core/profiles/store'
+import { serializeProfileYaml } from './core/profiles/codec'
+import { exportWorkspaceBackup } from './core/backup'
+import { loadCatalog } from './core/study/catalog'
+import { addToKnowledge, advanceExercise, dueCards, nextGroup, startNewSession as startRaw, submitExerciseAnswer } from './core/study/knowledge'
+import { whenGenerated } from './core/study/generation'
+import { savePreferences } from './core/learning'
+import { loadParallel, resetParallel } from './core/parallel/data'
+import { markParallelStudied, startTrack } from './core/parallel/progress'
+import { addParallelKnowledge, recordParallelResult } from './core/parallel/practice'
+import { itemsUpTo, lessonItems, planParallel } from './core/parallel/session'
+import { applyBackup, runBackup, saveBackupConfig, setBackendFactoryForTests } from './core/backup/service'
+import { backupStateDb, resetBackupStateForTests, saveAutoSetting } from './core/backup/state'
+import type { BackupBackend, DeltaResult, PublishResult, RemoteState } from './core/backup/backend'
+
+vi.mock('./core/study/local-exercises', async importOriginal => ({ ...await importOriginal<typeof import('./core/study/local-exercises')>(), localVocabularyExercises: () => [], fillLocalExercises: () => [] }))
+const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
+vi.mock('./core/ai/structured', () => structured)
+
+const connection = { id: 'assistant' as const, revision: 'r1', updatedAt: 1, apiType: 'chat-completions' as const, baseUrl: 'https://example.test/v1', apiKey: 'k', model: 'test-model', nativeTools: false, structuredOutput: true, storageAcknowledged: true as const }
+const out = process.env.FIXTURE_OUT!
+const write = (name: string, text: string) => { const file = join(out, name); mkdirSync(dirname(file), { recursive: true }); writeFileSync(file, text) }
+const json = (value: unknown) => JSON.stringify(value, null, 2) + '\n'
+
+function proposal(targets: string[]) {
+  return { exercises: [
+    { id: 'c1', type: 'choice', targets: targets.slice(0, 1), direction: 'zh-to-en', question: '我是学生。', options: ['I am a student.', 'I study.'], answer: 0, explanation: 'Identity with 是.' },
+    { id: 'c2', type: 'choice', targets: targets.slice(0, 2), direction: 'en-to-zh', question: 'I study.', options: ['我学习。', '我是学生。'], answer: 0, explanation: '学习 means study.' },
+    { id: 't1', type: 'tiles', targets, translation: 'I am a student.', tiles: ['我', '是', '学生'], distractors: ['学习'], explanation: 'Subject, 是, noun.' },
+    { id: 't2', type: 'tiles', targets: targets.slice(-1), translation: 'I study.', tiles: ['我', '学习'], distractors: [], explanation: 'Subject then verb.' },
+  ] }
+}
+
+function memoryBackend() {
+  const versions: { id: string; files: Map<string, string> }[] = []
+  const backend: BackupBackend = {
+    listProfiles: async () => versions.length ? [{ id: getActiveProfile().id, name: 'default' }] : [],
+    listVersions: async () => [...versions].reverse().map(({ id }) => ({ id, date: '2026-11-09T00:00:00.000Z', message: id })),
+    readFiles: async (_profile, version) => new Map((version ? versions.find(item => item.id === version)! : versions.at(-1)!).files),
+    publish: async (): Promise<PublishResult> => { throw new Error('unused') },
+    publishDelta: async (_profile, files, keep, message): Promise<DeltaResult> => {
+      void message
+      const last = versions.at(-1)
+      const next = new Map(files)
+      for (const path of keep) { const text = last?.files.get(path); if (text === undefined) throw Object.assign(new Error('missing ' + path), { name: 'StaleBackupError' }); next.set(path, text) }
+      const id = 'v' + (versions.length + 1)
+      versions.push({ id, files: next })
+      const remote: RemoteState = { head: id, tree: 't', files: Object.fromEntries([...next].map(([path, text]) => [path, String(text.length)])) }
+      return { version: id, changed: next.size, removed: 0, remote, calls: [] }
+    },
+  }
+  return { backend, versions }
+}
+
+beforeEach(async () => { resetParallel(); await resetBackupStateForTests(); localStorage.clear(); await initializeProfiles(); await db.delete(); await db.open(); await initializeWorkspace(); structured.requestStructuredJSON.mockReset() })
+
+describe('make the Stable fixtures', () => {
+  it('writes a profile as main leaves it', async () => {
+    // --- Chinese: one finished New lesson, a second one started, dictionary items added (their cards are due now).
+    await db.aiConnections.add(connection)
+    const catalog = await loadCatalog()
+    const group = nextGroup(catalog, new Set())!
+    structured.requestStructuredJSON.mockImplementation(async () => proposal(group.units.map(unit => unit.ref)))
+    const lessonId = await startRaw(); await whenGenerated(lessonId)
+    const lesson = (await db.exerciseSessions.get(lessonId))!
+    for (let index = 0; index < lesson.exercises.length; index++) {
+      const exercise = lesson.exercises[index]
+      await submitExerciseAnswer(lessonId, index, exercise.type === 'choice' ? exercise.answer : exercise.type === 'tiles' ? exercise.tiles : [])
+      await advanceExercise(lessonId, index)
+    }
+    expect((await db.exerciseSessions.get(lessonId))?.status).toBe('completed')
+    await addToKnowledge(['vocabulary:cha2--tea', 'grammar:s-shi4-n--identity'])
+    const known2 = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
+    const group2 = nextGroup(catalog, known2)!
+    structured.requestStructuredJSON.mockImplementation(async () => proposal(group2.units.map(unit => unit.ref)))
+    const second = await startRaw(undefined, { resume: false }); await whenGenerated(second)
+    await submitExerciseAnswer(second, 0, 0)
+    await advanceExercise(second, 0)
+    await savePreferences({ pinyinFormat: 'numbers', exercisesPerLesson: 12 })
+    // --- Japanese: started track, lesson 1 studied, items known with results, and a Conjugate exercise answered (one right, one wrong).
+    const data = await loadParallel('ja')
+    await startTrack('ja')
+    await markParallelStudied('ja', 1)
+    await addParallelKnowledge(lessonItems(data, 'ja', data.lessons[0]).map(item => item.ref))
+    let conjugate: { ref: string }[] = []
+    let lessonNumber = 0
+    for (lessonNumber = 1; lessonNumber <= 87 && !conjugate.length; lessonNumber++) {
+      const refs = [...itemsUpTo(data, 'ja', lessonNumber).keys()]
+      const plan = planParallel({ language: 'ja', data, intent: 'lesson', lessonNumber, refs, known: new Set(refs), length: 'standard', seed: 7 })
+      conjugate = plan.stages.flatMap(stage => stage.exercises).filter(exercise => exercise.form === 'conjugate')
+    }
+    expect(conjugate.length).toBeGreaterThan(0)
+    for (const [index, exercise] of conjugate.slice(0, 2).entries()) for (const ref of exercise.refs) await recordParallelResult(ref, index === 0)
+    await recordParallelResult(lessonItems(data, 'ja', data.lessons[0])[0].ref, true)
+    // An irregular form item (ja:f:<lemma>:<form>): the knowledge entry a Conjugate exercise on an irregular verb leaves behind.
+    const irregular = Object.values(data.formItems ?? {})[0]
+    await recordParallelResult('ja:f:' + irregular.lemma + ':' + irregular.form, true)
+    await savePreferences({ japaneseReading: 'kana', currentLanguage: 'ja', otherLanguageCards: 'ja' })
+    // --- Automatic backup on. Main cannot export a profile that holds ja:/ko: knowledge entries as YAML or as the cloud layout ('The knowledge entry has inconsistent labels':
+    // profiles/vocabulary.ts rebuilds a ref from kind+lb and ja:w:x does not round-trip), so the JSON backup and idb-rows.json are taken with those rows present,
+    // and the YAML and cloud exports are taken with the ja knowledge entries and cards removed from the database (the ja lessons, the ja journal events and the settings stay).
+    const profile = getActiveProfile()
+    await saveAutoSetting(profile.id, true)
+    const memory = memoryBackend()
+    setBackendFactoryForTests(() => memory.backend)
+    await saveBackupConfig({ owner: 'me', repo: 'backups', token: 'tok', branch: 'main' })
+    const failures: Record<string, string> = {}
+    const attempt = async (name: string, action: () => Promise<unknown>) => { try { await action() } catch (error) { failures[name] = String(error instanceof Error ? error.message : error) } }
+    const stripLanguageRows = async () => {
+      await db.knowledge.filter(entry => /^[a-z]{2,3}:/.test(entry.ref)).delete()
+      await db.studyCards.filter(card => /^[a-z]{2,3}:/.test(card.ref)).delete()
+    }
+    await recordParallelResult(lessonItems(data, 'ja', data.lessons[0])[1].ref, false)
+    await submitExerciseAnswer(second, 1, 0)
+    // A review that is due: one item of the finished lesson was last seen a day before its next review, which main now shows as due.
+    await db.studyCards.update('vocabulary:wo3--me:reading', { due: Date.now() - 86_400_000 })
+    // --- Capture the database and what main shows, with the ja rows present.
+    const tables: Record<string, unknown[]> = {}
+    for (const table of db.tables) tables[table.name] = await table.toArray()
+    write('idb-rows.json', json(tables))
+    await attempt('JSON backup', async () => write('backup.json', await exportWorkspaceBackup()))
+    const workspace = await loadWorkspace()
+    write('main-view.json', json({
+      preferences: workspace.preferences,
+      lessons: workspace.lessons, knowledge: workspace.knowledge, studyCards: workspace.studyCards, exerciseSessions: workspace.exerciseSessions, exerciseAttempts: workspace.exerciseAttempts,
+      due: (await dueCards(Date.now() + 1000)).map(card => card.ref).sort(),
+      profile,
+    }))
+    await attempt('profile YAML with ja rows present', async () => serializeProfileYaml(await readSnapshot(db, profile)))
+    await stripLanguageRows()
+    write('profile.yaml', serializeProfileYaml(await readSnapshot(db, profile)))
+    await attempt('cloud backup with ja rows present', async () => { await db.knowledge.add({ ref: 'ja:w:x', kind: 'vocabulary', lb: 'x', band: '1', addedAt: 1, source: 'new' }); try { await runBackup('auto') } finally { await db.knowledge.delete('ja:w:x') } })
+    await runBackup('manual')
+    for (const [path, text] of memory.versions.at(-1)!.files) write('cloud/' + path, text)
+    write('export-failures.json', json(failures))
+    const state = backupStateDb()
+    write('backup-state.json', json({ kv: await state.kv.toArray(), runs: await state.runs.toArray(), config: await db.backupConfig.get('github') }))
+    expect(applyBackup).toBeDefined()
+  }, 60000)
+})

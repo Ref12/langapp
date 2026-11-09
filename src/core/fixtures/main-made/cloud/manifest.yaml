@@ -1,0 +1,11 @@
+format: linguaweave-backup
+version: 2
+cursor: 25
+snapshot:
+  file: state/snapshot.yaml
+  cursor: 25
+segments:
+  - path: journal/000000001-000000025.yaml
+    from: 1
+    to: 25
+    events: 25

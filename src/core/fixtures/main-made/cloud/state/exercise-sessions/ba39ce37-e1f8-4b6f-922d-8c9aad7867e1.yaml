@@ -1,0 +1,85 @@
+id: ba39ce37-e1f8-4b6f-922d-8c9aad7867e1
+mode: new
+domain: reading
+groupId: zh-hsk-1-lesson-0002
+targetRefs:
+  - vocabulary:ni3--you
+  - vocabulary:nin2--you
+  - vocabulary:ma5--question
+  - vocabulary:lao3-shi1--teacher
+  - grammar:stmt-ma5--yes-no
+reviewRefs:
+  - vocabulary:wo3--me
+  - vocabulary:shi4--identity
+  - vocabulary:xue2-sheng5--student
+  - vocabulary:xue2-xi2--study
+exercises:
+  - id: c1
+    type: choice
+    targets:
+      - vocabulary:ni3--you
+    direction: zh-to-en
+    question: 我是学生。
+    options:
+      - I am a student.
+      - I study.
+    answer: 0
+    explanation: Identity with 是.
+  - id: c2
+    type: choice
+    targets:
+      - vocabulary:ni3--you
+      - vocabulary:nin2--you
+    direction: en-to-zh
+    question: I study.
+    options:
+      - 我学习。
+      - 我是学生。
+    answer: 0
+    explanation: 学习 means study.
+  - id: t1
+    type: tiles
+    targets:
+      - vocabulary:ni3--you
+      - vocabulary:nin2--you
+      - vocabulary:ma5--question
+      - vocabulary:lao3-shi1--teacher
+      - grammar:stmt-ma5--yes-no
+    translation: I am a student.
+    tiles:
+      - 我
+      - 是
+      - 学生
+    distractors:
+      - 学习
+    shuffled:
+      - 3
+      - 1
+      - 0
+      - 2
+    explanation: Subject, 是, noun.
+  - id: t2
+    type: tiles
+    targets:
+      - grammar:stmt-ma5--yes-no
+    translation: I study.
+    tiles:
+      - 我
+      - 学习
+    distractors: []
+    shuffled:
+      - 1
+      - 0
+    explanation: Subject then verb.
+cursor: 1
+status: active
+model: test-model
+rejected: []
+createdAt: 1794258235965
+exerciseCount: 20
+addOnFinish:
+  - vocabulary:ni3--you
+  - vocabulary:nin2--you
+  - vocabulary:ma5--question
+  - vocabulary:lao3-shi1--teacher
+  - grammar:stmt-ma5--yes-no

@@ -1,0 +1,175 @@
+format: linguaweave-snapshot
+version: 1
+cursor: 25
+knowledge:
+  characterStates: []
+  study:
+    knowledge:
+      - kind: grammar
+        lb: s-pred--statement
+        band: "1"
+        addedAt: 1794258235960
+        source: new
+      - kind: grammar
+        lb: s-shi4-n--identity
+        band: "1"
+        addedAt: 1794258235960
+        source: new
+      - kind: vocabulary
+        lb: cha2--tea
+        band: "1"
+        addedAt: 1794258235963
+        source: dictionary
+      - kind: vocabulary
+        lb: shi4--identity
+        band: "1"
+        addedAt: 1794258235960
+        source: new
+      - kind: vocabulary
+        lb: wo3--me
+        band: "1"
+        addedAt: 1794258235960
+        source: new
+      - kind: vocabulary
+        lb: xue2-sheng5--student
+        band: "1"
+        addedAt: 1794258235960
+        source: new
+      - kind: vocabulary
+        lb: xue2-xi2--study
+        band: "1"
+        addedAt: 1794258235960
+        source: new
+    cards:
+      - domain: reading
+        due: 1794517435958
+        stability: 3.173000194045435
+        difficulty: 5.272967931287446
+        reps: 2
+        lapses: 0
+        state: review
+        updatedAt: 1794258235958
+        lastReview: 1794258235958
+        kind: grammar
+        lb: s-pred--statement
+      - domain: reading
+        due: 1794517435952
+        stability: 3.173
+        difficulty: 5.282434422319005
+        reps: 1
+        lapses: 0
+        state: review
+        updatedAt: 1794258235952
+        lastReview: 1794258235952
+        kind: grammar
+        lb: s-shi4-n--identity
+      - domain: reading
+        due: 1794258235963
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1794258235963
+        kind: vocabulary
+        lb: cha2--tea
+      - domain: reading
+        due: 1794517435952
+        stability: 3.1730004204317765
+        difficulty: 5.272967931287446
+        reps: 2
+        lapses: 0
+        state: review
+        updatedAt: 1794258235952
+        lastReview: 1794258235952
+        kind: vocabulary
+        lb: shi4--identity
+      - domain: reading
+        due: 1794171836040
+        stability: 3.17300061517332
+        difficulty: 5.263544986114632
+        reps: 3
+        lapses: 0
+        state: review
+        updatedAt: 1794258235952
+        lastReview: 1794258235952
+        kind: vocabulary
+        lb: wo3--me
+      - domain: reading
+        due: 1794517435952
+        stability: 3.173
+        difficulty: 5.282434422319005
+        reps: 1
+        lapses: 0
+        state: review
+        updatedAt: 1794258235952
+        lastReview: 1794258235952
+        kind: vocabulary
+        lb: xue2-sheng5--student
+      - domain: reading
+        due: 1794517435952
+        stability: 3.173
+        difficulty: 5.282434422319005
+        reps: 1
+        lapses: 0
+        state: review
+        updatedAt: 1794258235952
+        lastReview: 1794258235952
+        kind: vocabulary
+        lb: xue2-xi2--study
+    attempts:
+      - id: 736e1d6c-143c-4cae-86d7-f7cbc44fc897:0
+        sessionId: 736e1d6c-143c-4cae-86d7-f7cbc44fc897
+        index: 0
+        refs:
+          - vocabulary:wo3--me
+        response: "1"
+        correct: true
+        createdAt: 1794258235933
+      - id: 736e1d6c-143c-4cae-86d7-f7cbc44fc897:1
+        sessionId: 736e1d6c-143c-4cae-86d7-f7cbc44fc897
+        index: 1
+        refs:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+        response: "0"
+        correct: true
+        createdAt: 1794258235939
+      - id: 736e1d6c-143c-4cae-86d7-f7cbc44fc897:2
+        sessionId: 736e1d6c-143c-4cae-86d7-f7cbc44fc897
+        index: 2
+        refs:
+          - vocabulary:wo3--me
+          - vocabulary:shi4--identity
+          - vocabulary:xue2-sheng5--student
+          - vocabulary:xue2-xi2--study
+          - grammar:s-shi4-n--identity
+          - grammar:s-pred--statement
+        response: '["我","是","学生"]'
+        correct: true
+        createdAt: 1794258235952
+      - id: 736e1d6c-143c-4cae-86d7-f7cbc44fc897:3
+        sessionId: 736e1d6c-143c-4cae-86d7-f7cbc44fc897
+        index: 3
+        refs:
+          - grammar:s-pred--statement
+        response: '["我","学习"]'
+        correct: true
+        createdAt: 1794258235958
+      - id: ba39ce37-e1f8-4b6f-922d-8c9aad7867e1:0
+        sessionId: ba39ce37-e1f8-4b6f-922d-8c9aad7867e1
+        index: 0
+        refs:
+          - vocabulary:ni3--you
+        response: "0"
+        correct: true
+        createdAt: 1794258235968
+      - id: ba39ce37-e1f8-4b6f-922d-8c9aad7867e1:1
+        sessionId: ba39ce37-e1f8-4b6f-922d-8c9aad7867e1
+        index: 1
+        refs:
+          - vocabulary:ni3--you
+          - vocabulary:nin2--you
+        response: "0"
+        correct: true
+        createdAt: 1794258236039
