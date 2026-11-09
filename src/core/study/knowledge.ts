@@ -1,6 +1,7 @@
 import { TERM } from '../collections/terms'
 import { db } from '../database'
 import { omit } from '../omit'
+import { chineseRows } from '../chinese-only'
 import { addEvent, exerciseAttemptEvent, removeEvent, reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
 import type { AIConnection } from '../assistant/contracts'
@@ -246,7 +247,8 @@ export async function settleInterrupted(sessionId: string): Promise<void> {
 }
 
 export async function dueCards(now: number): Promise<StudyCard[]> {
-  return db.studyCards.where('[domain+due]').between([DOMAIN, 0], [DOMAIN, now], true, true).toArray()
+  // Cards of another language (ja:/ko: refs, left by a newer build) are never due here and never touched.
+  return chineseRows(await db.studyCards.where('[domain+due]').between([DOMAIN, 0], [DOMAIN, now], true, true).toArray())
 }
 
 /** Reviews due items chosen by FSRS; with `anyway`, reviews the soonest-due items even when nothing is due. */
