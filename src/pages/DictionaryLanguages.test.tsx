@@ -116,7 +116,7 @@ describe('dictionary languages', () => {
     await waitFor(() => expect(same).toHaveTextContent('学生'))
     expect(within(same).getByRole('link', { name: /学生/ })).toHaveAttribute('href', expect.stringContaining('lang=zh'))
     await waitFor(() => expect(within(same).getAllByRole('link').some(link => link.getAttribute('href')?.includes('lang=ko'))).toBe(true))
-    expect(within(card).getByTestId('conjugation-slot')).toHaveTextContent('reserved')
+    expect(within(card).getByTestId('conjugation-slot')).toHaveTextContent('no verb or adjective forms')
     expect(within(card).getByRole('button', { name: 'Show writing' })).toBeInTheDocument()
   })
 

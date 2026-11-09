@@ -57,6 +57,19 @@ async function play(user: User, language: ParallelLanguage) {
       await user.click(screen.getByRole('button', { name: 'Next' }))
       continue
     }
+    if (form === 'form-pick') {
+      await user.click(within(document.querySelector('.answer-options') as HTMLElement).getAllByRole('radio')[0])
+      await user.click(screen.getByRole('button', { name: 'Check answer' }))
+      await user.click(screen.getByRole('button', { name: 'Next' }))
+      continue
+    }
+    if (form === 'conjugate') {
+      await user.click(within(screen.getByRole('group', { name: 'Available tiles' })).getAllByRole('button')[0])
+      await user.click(screen.getByRole('button', { name: 'Check answer' }))
+      expect(screen.getByTestId('conjugate-rule')).toBeInTheDocument()
+      await user.click(screen.getByRole('button', { name: 'Next' }))
+      continue
+    }
     throw new Error('Unexpected form ' + form)
   }
   return seen

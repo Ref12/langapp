@@ -3,19 +3,24 @@ export type ParallelLanguage = 'ja' | 'ko'
 export const parallelLanguages: readonly ParallelLanguage[] = ['ja', 'ko']
 export const isParallelLanguage = (value: unknown): value is ParallelLanguage => value === 'ja' || value === 'ko'
 
-export interface ParallelEntry { target: string; reading?: string; english: string; /** The short lesson gloss shown on cards; `english` stays the full dictionary definition. */ gloss?: string; pos?: string; new?: boolean }
+export interface ParallelEntry { target: string; reading?: string; english: string; /** The short lesson gloss shown on cards; `english` stays the full dictionary definition. */ gloss?: string; pos?: string; new?: boolean; /** The word-forms class of a verb or adjective (src/core/forms). */ class?: string }
 export interface ParallelGrammar { pattern: string; english: string; new?: boolean }
 export interface ParallelSense { zh: string; status: 'word' | 'covered-by' | 'grammar' | 'no-equivalent'; entry: string | null; grammar?: string; note?: string }
-export interface ParallelToken { t: string; w?: string; g?: string }
-export interface ParallelPhrase { id: number; text: string; reading?: string; en: string; zh: string; tokens: ParallelToken[]; words: string[]; grammar: string[] }
+/** An inflected token carries its form id and span: the number of following tokens that belong to the same surface (勉強し + ます). */
+export interface ParallelToken { t: string; w?: string; g?: string; form?: string; span?: number }
+/** An irregular form of a word: a lesson item of its own (ja:f:<lemma>:<form>). */
+export interface ParallelFormItem { lemma: string; form: string; class: string; entry: string; surface: string; reading?: string; lesson: number; spellings: string[] }
+export interface ParallelPhrase { id: number; text: string; reading?: string; en: string; zh: string; tokens: ParallelToken[]; words: string[]; grammar: string[]; forms?: string[] }
 export interface ParallelLesson {
   number: number
   words: { entry: string; status: string; zh: string[]; new?: boolean }[]
   senses: ParallelSense[]
   grammar: string[]
+  /** Irregular form items the lesson teaches (refs into formItems). */
+  forms?: string[]
   phrases: ParallelPhrase[]
 }
-export interface ParallelData { schemaVersion: number; language: ParallelLanguage; entries: Record<string, ParallelEntry>; grammar: Record<string, ParallelGrammar>; lessons: ParallelLesson[] }
+export interface ParallelData { schemaVersion: number; language: ParallelLanguage; entries: Record<string, ParallelEntry>; grammar: Record<string, ParallelGrammar>; formItems?: Record<string, ParallelFormItem>; lessons: ParallelLesson[] }
 
 const loaders: Record<ParallelLanguage, () => Promise<{ default: unknown }>> = {
   ja: () => import('../../data/parallel/ja.json'),

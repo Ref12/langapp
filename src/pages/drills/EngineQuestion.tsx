@@ -34,7 +34,7 @@ export interface Outcome { correct: boolean; missed?: string[]; /** Right with h
 export const INSTRUCTION: Record<Form, string> = {
   intro: 'Learn the new word', choice: 'Choose the meaning', match: 'Match the pairs', pinyin: 'Type the pinyin', recall: 'Type the meaning', 'translate-zh-en': 'Translate into English',
   'translate-en-zh': 'Translate into Chinese', tiles: 'Build the sentence', gap: 'Fill the gap', 'listen-pick': 'Listen and pick the meaning', dictation: 'Type what you hear', repeat: 'Say it after the audio',
-  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Answer the question in Chinese, as the cue says', 'which-correct': 'Which sentence is correct?', conversation: 'Listen, then answer the questions',
+  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Answer the question in Chinese, as the cue says', 'which-correct': 'Which sentence is correct?', conversation: 'Listen, then answer the questions', conjugate: 'Conjugate', 'form-pick': 'Which form is this?',
 }
 export function Instruction({ form }: { form: Form }) { return <p className="engine-instruction small" data-instruction={form}>{INSTRUCTION[form]}</p> }
 

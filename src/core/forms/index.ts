@@ -10,7 +10,14 @@ export interface BuiltForm { surface: string; reading?: string }
 /** Options: reading of the Japanese lemma; for the Korean copula 이다 either the 'vowel' / 'consonant' the noun before it ends in, or that noun (prev). */
 export interface FormOptions { reading?: string; after?: 'vowel' | 'consonant'; prev?: string }
 
+/** One form of the rules: its label, the grammar point that teaches it, and how it is built (Japanese: stem name + ending; Korean: join + ending, optional prefix). */
+export interface FormSpec { label: string; grammar?: unknown; stem?: string; add?: string; join?: string; prefix?: string; multiword?: boolean }
+export interface ClassMeta { description?: string; group?: string; irregular?: boolean; baseline?: string; itemised?: boolean; tails?: Record<string, Record<string, string>>; potential?: string; volitional?: string }
+export interface FormsRules { forms: Record<string, FormSpec>; classes: Record<string, ClassMeta>; templates?: Record<string, Record<string, { stem?: string; add?: string | Record<string, string> }>> }
+
 export interface FormsEngine {
+  /** The rules file as data: form specs and class metadata. */
+  rules: FormsRules
   language: FormsLanguage
   /** The surface of a lemma of a class in a form, or null when the form does not apply to the class. */
   forms(lemma: string, cls: string, formId: string, opts?: FormOptions): BuiltForm | null

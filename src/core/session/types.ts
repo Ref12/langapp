@@ -19,18 +19,18 @@ export const LENGTH_LABEL: Record<Length, string> = { short: 'Short', standard: 
  * The exercise forms. The first three are built from vocabulary records (src/core/study/local-exercises.ts); the next five from bank phrases;
  * 'intro' and 'repeat' do not grade. Pre-generated dataset exercises plug in through DatasetSource (sources.ts) and use these same forms.
  */
-export const FORMS = ['intro', 'choice', 'match', 'pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat', 'exchange-pick', 'exchange-reply', 'which-correct', 'conversation'] as const
+export const FORMS = ['intro', 'choice', 'match', 'pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat', 'exchange-pick', 'exchange-reply', 'which-correct', 'conversation', 'conjugate', 'form-pick'] as const
 export type Form = typeof FORMS[number]
 export const FORM_LABEL: Record<Form, string> = {
   intro: 'Intro cards', choice: 'Choose the meaning', match: 'Match pairs', pinyin: 'Type the pinyin', recall: 'Type the meaning', 'translate-zh-en': 'Translate to English',
   'translate-en-zh': 'Translate to Chinese', tiles: 'Word order', gap: 'Fill the gap', 'listen-pick': 'Listen and pick', dictation: 'Dictation', repeat: 'Repeat after me',
-  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Reply to the question', 'which-correct': 'Which is correct?', conversation: 'Listen and answer',
+  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Reply to the question', 'which-correct': 'Which is correct?', conversation: 'Listen and answer', conjugate: 'Conjugate', 'form-pick': 'Which form is this?',
 }
 /** The skills an exercise form practises, for the skill counts. */
 export const FORM_SKILLS: Record<Form, readonly Skill[]> = {
   intro: [], choice: ['reading'], match: ['reading'], pinyin: ['reading'], recall: ['reading'], 'translate-zh-en': ['reading'], 'translate-en-zh': ['writing'], tiles: ['writing'],
   gap: ['reading'], 'listen-pick': ['listening'], dictation: ['listening', 'writing'], repeat: ['speaking'],
-  'exchange-pick': ['reading'], 'exchange-reply': ['writing'], 'which-correct': ['reading'], conversation: ['listening'],
+  'exchange-pick': ['reading'], 'exchange-reply': ['writing'], 'which-correct': ['reading'], conversation: ['listening'], conjugate: ['writing'], 'form-pick': ['reading'],
 }
 /** Forms that need a phrase from the bank. */
 export const PHRASE_FORMS: readonly Form[] = ['translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat']
@@ -84,7 +84,17 @@ export interface ConversationItem extends BaseExercise {
   form: 'conversation'; title: string; speakers: { name: string; speaker: 'female' | 'male' }[]; lines: (DialogueLine & { name: string; speaker: 'female' | 'male' })[]
   questions: { q: string; options: string[]; answer: number }[]; explanation: string
 }
-export type SessionExercise = IntroExercise | ChoiceItem | MatchItem | TextItem | TilesItem | GapItem | ListenItem | RepeatItem | ExchangePickItem | WhichCorrectItem | ConversationItem
+/** Japanese and Korean word forms (src/core/parallel/conjugate.ts). Conjugate: build the form of a known lemma from tiles, graded exactly against forms(). */
+export interface ConjugateItem extends BaseExercise {
+  form: 'conjugate'; lemma: string; lemmaReading?: string; cls: string; formId: string; label: string; gloss: string
+  tiles: string[]; tileReadings: (string | undefined)[]; distractors: string[]; shuffled: number[]
+  answer: string; answerReading?: string; rule: string; irregular: boolean; /** The irregular form item (ja:f:<lemma>:<form>) when the form is one. */ itemRef?: string; explanation: string
+}
+/** Form to meaning: pick the lemma and form of an inflected form from the lessons. */
+export interface FormPickItem extends BaseExercise {
+  form: 'form-pick'; surface: string; reading?: string; options: { lemma: string; reading?: string; gloss: string; label: string }[]; answer: number; rule: string; phrase?: { text: string; en: string }; explanation: string
+}
+export type SessionExercise = ConjugateItem | FormPickItem | IntroExercise | ChoiceItem | MatchItem | TextItem | TilesItem | GapItem | ListenItem | RepeatItem | ExchangePickItem | WhichCorrectItem | ConversationItem
 
 export interface StagePlan { stage: Stage; rounds: number; exercises: SessionExercise[] }
 export interface SessionPlan {

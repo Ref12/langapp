@@ -20,7 +20,7 @@ describe('parallel session planning', () => {
     expect(plan.language).toBe(language)
     expect(plan.stages.map(stage => stage.stage)).toEqual(['introduce', 'recognise', 'use'])
     const forms = new Set(plan.stages.flatMap(stage => stage.exercises.map(exercise => exercise.form)))
-    expect([...forms].sort()).toEqual(['choice', 'intro', 'listen-pick', 'match', 'tiles'])
+    expect([...forms].sort()).toEqual(['choice', 'conjugate', 'form-pick', 'intro', 'listen-pick', 'match', 'tiles'])
     for (const exercise of plan.stages.flatMap(stage => stage.exercises)) expect(exercise.refs.every(isParallelRef)).toBe(true)
   })
 

@@ -2,12 +2,16 @@ import { createRng } from '../study/local-exercises'
 import { lessonWords, shortGloss, type ParallelData, type ParallelLanguage, type ParallelLesson, type ParallelPhrase } from './data'
 import { parallelRef } from './refs'
 import { tokenReading } from './romanize'
-import type { ChoiceItem, Intent, IntroExercise, Length, ListenItem, MatchItem, ParallelTilesExtra, SessionExercise, SessionPlan, Stage, StagePlan, TilesItem } from '../session/types'
+import { buildConjugate, shortOf, buildFormPick, conjugable, formLabel, inflectedTokens, taughtFormIds, taughtGrammar } from './conjugate'
+import { formsEngine } from '../forms'
+import type { ChoiceItem, ConjugateItem, FormPickItem, Intent, IntroExercise, Length, ListenItem, MatchItem, ParallelTilesExtra, SessionExercise, SessionPlan, Stage, StagePlan, TilesItem } from '../session/types'
 
 // Japanese and Korean sessions: the same staged plan (meet, recognise, use) built from the parallel lesson data instead of the Chinese catalog.
 // A phrase is usable at lesson N when every word and grammar point in it is introduced by lesson N (the data marks each one strict, with its readyAt).
 
-export interface ParallelItem { ref: string; id: string; kind: 'word' | 'grammar'; target: string; reading?: string; english: string; /** Short lesson gloss (words). */ gloss?: string; lesson: number }
+/** An irregular form of a word, as a lesson item of its own (ja:f:<lemma>:<form>). */
+export interface FormItemInfo { lemma: string; formId: string; cls: string; entry: string; spellings: string[] }
+export interface ParallelItem { ref: string; id: string; kind: 'word' | 'grammar' | 'form'; /** Form items only. */ formItem?: FormItemInfo; target: string; reading?: string; english: string; /** Short lesson gloss (words). */ gloss?: string; lesson: number }
 
 /** The lesson that introduces each entry and grammar id (the first lesson listing it). */
 export function introductions(data: ParallelData): { words: Map<string, number>; grammar: Map<string, number> } {
@@ -51,6 +55,13 @@ export function grammarItem(data: ParallelData, language: ParallelLanguage, id: 
   return grammar ? { ref: parallelRef(language, 'g', id), id, kind: 'grammar', target: grammar.pattern, english: grammar.english, lesson } : undefined
 }
 
+export function formItem(data: ParallelData, language: ParallelLanguage, ref: string): ParallelItem | undefined {
+  const info = data.formItems?.[ref]
+  const entry = info ? data.entries[info.entry] : undefined
+  if (!info || !entry) return undefined
+  return { ref, id: info.lemma + ':' + info.form, kind: 'form', formItem: { lemma: info.lemma, formId: info.form, cls: info.class, entry: info.entry, spellings: info.spellings }, target: info.surface, reading: info.reading, english: `${shortOf(entry)} \u00B7 ${formLabel(language, info.form)}`, lesson: info.lesson }
+}
+
 /** Every item (word or grammar point) of the track up to a lesson, by ref. */
 export function itemsUpTo(data: ParallelData, language: ParallelLanguage, lessonNumber: number): Map<string, ParallelItem> {
   const out = new Map<string, ParallelItem>()
@@ -58,15 +69,17 @@ export function itemsUpTo(data: ParallelData, language: ParallelLanguage, lesson
     if (lesson.number > lessonNumber) break
     for (const word of lessonWords(data, lesson)) { const item = wordItem(data, language, word.id, lesson.number); if (item) out.set(item.ref, item) }
     for (const id of lesson.grammar) { const item = grammarItem(data, language, id, lesson.number); if (item) out.set(item.ref, item) }
+    for (const ref of lesson.forms ?? []) { const item = formItem(data, language, ref); if (item) out.set(item.ref, { ...item, lesson: lesson.number }) }
   }
   return out
 }
 
-/** The items a lesson introduces: its words, then its grammar. */
+/** The items a lesson introduces: its words, then its grammar, then its irregular forms. */
 export function lessonItems(data: ParallelData, language: ParallelLanguage, lesson: ParallelLesson): ParallelItem[] {
   return [
     ...lessonWords(data, lesson).flatMap(word => wordItem(data, language, word.id, lesson.number) ?? []),
     ...lesson.grammar.flatMap(id => grammarItem(data, language, id, lesson.number) ?? []),
+    ...(lesson.forms ?? []).flatMap(ref => formItem(data, language, ref) ?? []),
   ]
 }
 
@@ -155,15 +168,16 @@ export function planParallel(input: ParallelPlanInput): SessionPlan {
     const options = shuffled([right, ...distractors], rng)
     return { options, answer: options.indexOf(right) }
   }
+  const covers = (phrase: ParallelPhrase, item: ParallelItem): boolean => item.kind === 'form' ? !!phrase.forms?.includes(item.ref) : item.kind === 'word' ? phrase.words.includes(item.id) : phrase.grammar.includes(item.id)
   const phraseFor = (item: ParallelItem): (ParallelPhrase & { lesson: number }) | undefined =>
-    phrases.find(phrase => !taken.has(phrase.text) && (item.kind === 'word' ? phrase.words.includes(item.id) : phrase.grammar.includes(item.id)))
+    phrases.find(phrase => !taken.has(phrase.text) && covers(phrase, item))
 
   const stages: StagePlan[] = []
   const intro = items.filter(item => !input.known.has(item.ref))
   if (input.intent === 'lesson' && intro.length) stages.push({ stage: 'introduce', rounds: 1, exercises: intro.map((item, index): IntroExercise => ({ ...make('introduce', 'intro', index), form: 'intro', refs: [item.ref] })) })
 
   const recognise: SessionExercise[] = []
-  items.slice(0, cap * 2).forEach((item, index) => {
+  items.filter(item => item.kind !== 'form').slice(0, cap * 2).forEach((item, index) => {
     const { options, answer } = optionsFor(item, other => gloss(other.english, other.gloss))
     recognise.push({ ...make('recognise', 'choice', index), form: 'choice', refs: [item.ref], direction: 'zh-to-en', question: item.target, options, answer, explanation: `${item.target}${item.reading && item.reading !== item.target ? ` (${item.reading})` : ''} means "${gloss(item.english, item.gloss)}".` } as ChoiceItem)
   })
@@ -184,10 +198,38 @@ export function planParallel(input: ParallelPlanInput): SessionPlan {
     if (!built) { uncovered.push(item.ref); continue }
     use.push({ ...make('use', 'tiles', use.length), form: 'tiles', refs: [item.ref], ...built } as TilesItem)
   }
+  // Word forms (Japanese and Korean verbs and adjectives): Form to meaning in recognise, Conjugate in use. Only forms whose grammar point the lessons up to here have taught are ever asked.
+  const taught = taughtGrammar(data, lessonNumber)
+  const inflected = inflectedTokens(language, data, phrases)
+  const wordPool = [...everything.values()].filter(other => other.kind === 'word' && conjugable(data.entries[other.id]?.class)).map(other => other.id)
+  const formCap = Math.ceil(cap / 2)
+  const picked = new Set<string>()
+  for (const item of items) {
+    if (picked.size >= formCap) break
+    const entryId = item.kind === 'form' ? item.formItem!.entry : item.kind === 'word' ? item.id : undefined
+    if (!entryId || !conjugable(data.entries[entryId]?.class)) continue
+    const wanted = item.kind === 'form' ? item.formItem!.formId : undefined
+    const choices = inflected.filter(token => token.entryId === entryId && (!wanted || token.formId === wanted) && !picked.has(token.surface))
+    if (!choices.length) continue
+    const token = choices[Math.floor(rng() * choices.length)]
+    const built = buildFormPick(language, data, token, wordPool, rng)
+    if (!built) continue
+    picked.add(token.surface)
+    const right = built.options[built.answer]
+    recognise.push({ ...make('recognise', 'form-pick', picked.size), form: 'form-pick', refs: [item.ref], surface: built.surface, reading: built.reading, options: built.options.map(({ lemma, reading, gloss, label }) => ({ lemma, reading, gloss, label })), answer: built.answer, rule: built.rule, phrase: built.phrase, explanation: `${built.surface} is ${right.label} of ${right.lemma} ("${right.gloss}").` } as FormPickItem)
+  }
+  let conjugated = 0
+  for (const item of items) {
+    if (conjugated >= formCap) break
+    const made = conjugateFor(language, data, item, taught, rng)
+    if (!made) continue
+    conjugated++
+    use.push({ ...make('use', 'conjugate', conjugated), form: 'conjugate', refs: [item.ref], ...made } as ConjugateItem)
+  }
   const listened: string[] = []
   for (const item of items) {
     if (listened.length >= Math.ceil(cap / 2)) break
-    const phrase = phraseFor(item) ?? phrases.find(other => !listened.includes(other.text) && (item.kind === 'word' ? other.words.includes(item.id) : other.grammar.includes(item.id)))
+    const phrase = phraseFor(item) ?? phrases.find(other => !listened.includes(other.text) && covers(other, item))
     if (!phrase) continue
     taken.add(phrase.text); listened.push(phrase.text)
     const others = shuffled(phrases.filter(other => other.text !== phrase.text && other.en !== phrase.en), rng).slice(0, 3).map(other => other.en)
@@ -199,6 +241,28 @@ export function planParallel(input: ParallelPlanInput): SessionPlan {
   if (use.length) stages.push({ stage: 'use', rounds: 1, exercises: use })
   const total = stages.filter(entry => entry.stage !== 'introduce').reduce((sum, entry) => sum + entry.exercises.length, 0)
   return { language, intent: input.intent, preset: 'parallel', length, stages, uncovered, total }
+}
+
+/** The Conjugate exercise of a word (a taught form of it) or of an irregular form item. Undefined when the item has no verb or adjective class or the lessons have taught none of its forms. */
+export function conjugateFor(language: ParallelLanguage, data: ParallelData, item: ParallelItem, taught: ReadonlySet<string>, rng: () => number): Pick<ConjugateItem, 'lemma' | 'lemmaReading' | 'cls' | 'formId' | 'label' | 'gloss' | 'tiles' | 'tileReadings' | 'distractors' | 'shuffled' | 'answer' | 'answerReading' | 'rule' | 'irregular' | 'itemRef' | 'explanation'> | undefined {
+  const entry = data.entries[item.kind === 'form' ? item.formItem!.entry : item.id]
+  if (!entry || (item.kind !== 'word' && item.kind !== 'form')) return undefined
+  const cls = item.kind === 'form' ? item.formItem!.cls : entry.class
+  if (!conjugable(cls)) return undefined
+  const engine = formsEngine(language)
+  const options = item.kind === 'form' ? {} : { reading: entry.reading }
+  const lemma = item.kind === 'form' ? item.formItem!.lemma : entry.target
+  const forms = taughtFormIds(language, cls, taught).filter(id => engine.forms(lemma, cls, id, options) != null)
+  const formId = item.kind === 'form' ? item.formItem!.formId : forms.length ? forms[Math.floor(rng() * forms.length)] : undefined
+  if (!formId) return undefined
+  const built = buildConjugate(language, lemma, cls, formId, { reading: options.reading, taught: forms })
+  if (!built || built.pieces.length < 2) return undefined
+  const itemRef = item.kind === 'form' ? item.ref : Object.entries(data.formItems ?? {}).find(([, info]) => info.entry === item.id && info.form === formId)?.[0]
+  const all = [...built.pieces, ...built.distractors]
+  const order = shuffled(all.map((_, index) => index), rng)
+  const shuffle = order.length > 2 && order.every((value, index) => value === index) ? [...order.slice(1), order[0]] : order
+  const shown = item.kind === 'form' ? entry.target : lemma
+  return { lemma: shown, lemmaReading: entry.reading, cls, formId, label: built.label, gloss: shortOf(entry), tiles: built.pieces, tileReadings: [...built.pieceReadings, ...built.distractors.map(() => undefined)], distractors: built.distractors, shuffled: shuffle, answer: built.answer.surface, answerReading: built.answer.reading, rule: built.rule, irregular: built.irregular || item.kind === 'form', itemRef, explanation: `${shown} in the ${built.label} form is ${built.answer.surface}.` }
 }
 
 /** The tiles exercise of a phrase: its tokens (without punctuation) shuffled, plus a swapped particle as a distractor. */

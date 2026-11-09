@@ -7,7 +7,7 @@ export const isFilterLanguage = (value: unknown): value is FilterLanguage => fil
 export const languageGlyph: Record<'zh' | DictLanguage, string> = { zh: '\u4E2D', ja: '\u65E5', ko: '\uD55C' }
 export const languageLabel: Record<FilterLanguage, string> = { all: 'All', zh: 'Chinese', ja: 'Japanese', ko: 'Korean' }
 
-interface RawDictionary { v: number; lang: DictLanguage; levels: string[]; pos: string[]; words: (string | number)[][]; grammar: [string, string, string, string, number, [string, string][]][] }
+interface RawDictionary { v: number; lang: DictLanguage; levels: string[]; pos: string[]; classes?: Record<string, string>; words: (string | number)[][]; grammar: [string, string, string, string, number, [string, string][]][] }
 
 export interface DictWord {
   /** The entry id from the curriculum files: the knowledge record is "<language>:w:<id>". */
@@ -21,6 +21,8 @@ export interface DictWord {
   level?: string
   levelNo: number
   hanja?: string
+  /** The word-forms class of a verb or adjective (src/core/forms); absent for other words. */
+  class?: string
   /** Search keys, folded once when the dictionary loads. */
   key: { form: string; reading: string; meaning: string }
 }
@@ -42,7 +44,7 @@ export function buildDictionary(raw: RawDictionary): Dictionary {
     const levelNo = (row[5] as number) + 1
     const form = row[1] as string, reading = row[2] as string, meaning = row[3] as string
     return { id: row[0] as string, ref: language + ':w:' + row[0], form, reading, meaning, pos: raw.pos[row[4] as number] ?? '',
-      level: levelNo ? raw.levels[levelNo - 1] : undefined, levelNo, hanja: row[6] as string | undefined,
+      level: levelNo ? raw.levels[levelNo - 1] : undefined, levelNo, hanja: row[6] as string | undefined, class: raw.classes?.[row[0] as string],
       key: { form: fold(form), reading: fold(reading), meaning: meaning.toLowerCase() } }
   })
   const grammar = raw.grammar.map((row): DictGrammar => ({ id: row[0], ref: language + ':g:' + row[0], pattern: row[1], english: row[2], note: row[3], levelNo: row[4] + 1,

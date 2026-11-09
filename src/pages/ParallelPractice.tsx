@@ -8,7 +8,7 @@ import { itemsUpTo, lessonItems, planParallel, type ParallelItem } from '../core
 import { languageName } from '../core/characters/language'
 import { answerCurrent, currentExercise, currentStage, progressOf, startRunner, summarise, type RunnerState } from '../core/session/runner'
 import { STAGE_LABEL, type SessionPlan } from '../core/session/types'
-import { ChoiceQuestion, ListenQuestion, MatchQuestion, PARALLEL_INSTRUCTION, TilesQuestion, Written, type ParallelContext } from './ParallelQuestions'
+import { ChoiceQuestion, ConjugateQuestion, FormPickQuestion, ListenQuestion, MatchQuestion, PARALLEL_INSTRUCTION, TilesQuestion, Written, type ParallelContext } from './ParallelQuestions'
 
 const EARLIER = 4
 
@@ -46,7 +46,7 @@ export function ParallelPractice({ busy, now, language, lesson }: PageProps & { 
     return () => { live = false }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language, lesson])
-  const readings = useMemo(() => new Map(Object.values(data?.entries ?? {}).flatMap(entry => entry.reading ? [[entry.target, entry.reading] as const] : [])), [data])
+  const readings = useMemo(() => new Map([...Object.values(data?.entries ?? {}).flatMap(entry => entry.reading ? [[entry.target, entry.reading] as const] : []), ...Object.values(data?.formItems ?? {}).flatMap(item => item.reading ? [[item.surface, item.reading] as const] : [])]), [data])
   const name = languageName[language]
   const back = lesson === undefined ? '#lessons' : `#lessons/${language}/${lesson}`
   if (error) return <div className="notice error" role="alert"><p>The {name} practice could not start. {error}</p></div>
@@ -89,13 +89,15 @@ export function ParallelPractice({ busy, now, language, lesson }: PageProps & { 
       {exercise && <p className="engine-instruction small" data-instruction={exercise.form}>{instruction[exercise.form as keyof typeof instruction]}{exercise.form === 'intro' && <span className="muted"> · {intro + 1}</span>}</p>}
       {exercise?.form === 'intro' && item && <>
         <article className="word-card study-unit-card parallel-word"><div className="phrase-row"><div className="phrase-row-text">
-          <h3 className="parallel-form" lang={language}>{item.kind === 'word' ? <Written text={item.target} ctx={ctx} /> : item.target}</h3>
+          <h3 className="parallel-form" lang={language}>{item.kind !== 'grammar' ? <Written text={item.target} ctx={ctx} /> : item.target}</h3>
           <p className="word-meaning">{item.kind === 'word' ? glossOf(item) : item.english}</p></div>
-          {item.kind === 'word' && <ParallelHear text={item.target} language={language} label={`Hear ${item.target}`} actions={{ meaning: glossOf(item), title: `${name} word`, route: lesson === undefined ? `lessons/${language}/review` : `lessons/${language}/${lesson}` }} />}</div></article>
+          {item.kind !== 'grammar' && <ParallelHear text={item.target} language={language} label={`Hear ${item.target}`} actions={{ meaning: glossOf(item), title: `${name} word`, route: lesson === undefined ? `lessons/${language}/review` : `lessons/${language}/${lesson}` }} />}</div></article>
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => { setIntro(intro + 1); void addParallelKnowledge(exercise.refs); advance(true) }}>Got it <ArrowRight size={16} /></button></div></>}
       {exercise?.form === 'choice' && <ChoiceQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct)} />}
       {exercise?.form === 'match' && <MatchQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct, done.missed)} />}
       {exercise?.form === 'listen-pick' && <ListenQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct)} />}
+      {exercise?.form === 'conjugate' && <ConjugateQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct)} />}
+      {exercise?.form === 'form-pick' && <FormPickQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct)} />}
       {exercise?.form === 'tiles' && <TilesQuestion key={exercise.id + exercise.round} exercise={exercise} ctx={ctx} onDone={done => advance(done.correct)} />}
     </section>
   </div>

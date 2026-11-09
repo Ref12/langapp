@@ -1,4 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { db } from '../../core/database'
+import { studiedLessons } from '../../core/parallel/progress'
+import { wordFormsTable } from '../../core/parallel/conjugate'
 import { loadParallel, type ParallelData, type ParallelLanguage, type ParallelPhrase } from '../../core/parallel/data'
 import { languageGlyph, languageLabel, type DictGrammar, type DictWord } from '../../core/dictionary/other'
 import { lessonsTeaching, phrasesUsing, sameWordIn, type SameWord } from '../../core/dictionary/links'
@@ -42,8 +46,25 @@ function WordDetails({ word, language, catalog }: { word: DictWord; language: Pa
       {same.length ? <ul className="plain-list">{same.map(item => <li key={item.language + item.form} className="small"><a href={item.href}><LanguageTag language={item.language} /> <span lang={item.language === 'zh' ? 'zh-Hans' : item.language}>{item.form}</span>{item.reading && item.reading !== item.form ? <span lang={item.language === 'zh' ? 'zh-Hans' : item.language}> {item.reading}</span> : null}</a> <span className="muted">{item.gloss}</span></li>)}</ul>
         : <p className="small muted">{own ? 'No matching entry found in the other languages.' : 'Loading...'}</p>}
     </div>
-    <div className="word-forms-slot" data-testid="conjugation-slot" aria-label="Word forms"><h4 className="small muted">Word forms</h4>
-      <p className="small muted">Conjugation table: reserved. The word forms step will fill this in.</p></div>
+    <WordForms word={word} language={language} data={own} />
+  </div>
+}
+
+/** The Word forms table of a verb or adjective: every form of its class with the form, its reading in the pinyin slot and a short label; taught forms first, irregular ones marked. */
+export function WordForms({ word, language, data }: { word: DictWord; language: ParallelLanguage; data?: ParallelData }) {
+  const lessons = useLiveQuery(() => db.lessons.toArray(), [])
+  const taught = useMemo(() => {
+    const grammar = new Set<string>()
+    if (data && lessons) for (const number of studiedLessons(lessons, language).keys()) for (const id of data.lessons.find(item => item.number === number)?.grammar ?? []) grammar.add(id)
+    return grammar
+  }, [data, lessons, language])
+  const rows = useMemo(() => word.class ? wordFormsTable(language, word.form, word.class, word.reading || undefined, taught) : [], [word, language, taught])
+  return <div className="word-forms-slot" data-testid="conjugation-slot" aria-label="Word forms"><h4 className="small muted">Word forms</h4>
+    {!rows.length ? <p className="small muted">{word.class ? 'No forms for this word.' : 'This word has no verb or adjective forms.'}</p>
+      : <table className="word-forms-table small" data-testid="word-forms"><thead><tr><th scope="col">Form</th><th scope="col">Meaning</th></tr></thead><tbody>
+        {rows.map(row => <tr key={row.formId} data-form={row.formId} data-taught={row.taught} data-irregular={row.irregular}>
+          <td><Form text={row.surface} reading={row.reading} language={language} />{row.irregular && <> <span className="tag">irregular</span></>}</td>
+          <td lang="en">{row.label}{row.taught && <span className="muted"> {'\u00B7'} taught</span>}</td></tr>)}</tbody></table>}
   </div>
 }
 

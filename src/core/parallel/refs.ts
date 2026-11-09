@@ -1,11 +1,15 @@
 import type { ParallelLanguage } from './data'
 
 /** Knowledge ids of the parallel tracks: ja:w:<entry> (a word) and ja:g:<grammar> (a grammar point), likewise ko:. Chinese refs never look like this. */
-export type ParallelKind = 'w' | 'g'
+export type ParallelKind = 'w' | 'g' | 'f'
 export const parallelRef = (language: ParallelLanguage, kind: ParallelKind, id: string): string => `${language}:${kind}:${id}`
 const PATTERN = /^(ja|ko):([wg]):([a-z][a-z0-9]*(?:--?[a-z0-9]+)*)$/
-export const isParallelRef = (ref: string): boolean => PATTERN.test(ref)
+/** An irregular form item: ja:f:<lemma>:<form id>, e.g. ja:f:くる:masu or ko:f:듣다:haeyo. */
+const FORM_PATTERN = /^(ja|ko):f:([^:\s]+):([a-z][a-z0-9-]*)$/u
+export const isParallelRef = (ref: string): boolean => PATTERN.test(ref) || FORM_PATTERN.test(ref)
 export function parseParallelRef(ref: string): { language: ParallelLanguage; kind: ParallelKind; id: string } | undefined {
+  const form = FORM_PATTERN.exec(ref)
+  if (form) return { language: form[1] as ParallelLanguage, kind: 'f', id: form[2] + ':' + form[3] }
   const match = PATTERN.exec(ref)
   return match ? { language: match[1] as ParallelLanguage, kind: match[2] as ParallelKind, id: match[3] } : undefined
 }
