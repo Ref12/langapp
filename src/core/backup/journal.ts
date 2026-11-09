@@ -3,6 +3,7 @@ import { emptySchedulingState, schedule, type Rating } from '../study/fsrs'
 import { cardId, type ExerciseAttempt, type KnowledgeEntry, type StudyCard } from '../study/contracts'
 import { normalizeCharacterState, type CharacterState } from '../characters/contracts'
 import { omit } from '../omit'
+import { isForeignEvent } from '../chinese-only'
 
 // The journal is a top-level YAML sequence with one flow-style event per line,
 // so appending lines keeps a segment valid YAML. Segments are monthly files.
@@ -114,6 +115,7 @@ export function replayFrom(base: { knowledge: KnowledgeEntry[]; cards: StudyCard
 /** Applies events to state in order. Mutates and returns it. Word attempts and phrase history are records only. */
 export function replay(events: JournalEvent[], state: ReplayState = emptyReplayState()): ReplayState {
   for (const event of events) {
+    if (isForeignEvent(event)) continue // another language's event: carried in the log untouched, never replayed here
     const at = ms(event.t)
     switch (event.op) {
       case 'add': {

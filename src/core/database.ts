@@ -20,6 +20,7 @@ import type { Skill, SkillPractice } from './study/skill-map'
 import type { PhraseHeard, UserPhrase } from './phrases/contracts'
 import { handsfreeRunToSet } from './handsfree/migrate'
 import { sourceTitle } from './drills/title'
+import { chineseLessons, chinesePreferences, chineseRows, chineseSessions } from './chinese-only'
 
 /** Backup connection kept inside the profile database (a copy lives in localStorage too). */
 export interface BackupConfigRecord {
@@ -183,7 +184,7 @@ export async function initializeWorkspace(): Promise<void> {
 
 async function knowledgeCardsOf() {
   const known = new Set((await db.knowledge.toArray()).map(entry => entry.ref))
-  return (await db.studyCards.toArray()).filter(card => known.has(card.ref))
+  return chineseRows(await db.studyCards.toArray()).filter(card => known.has(card.ref))
 }
 
 export async function loadWorkspace(): Promise<Workspace> {
@@ -192,17 +193,17 @@ export async function loadWorkspace(): Promise<Workspace> {
     const preferences = await db.preferences.get('workspace')
     if (!preferences) throw new Error('Your workspace has not been initialized. Reload to try again.')
     return {
-      preferences,
+      preferences: chinesePreferences(preferences),
       words: await db.words.toArray(),
       readings: await db.readings.toArray(),
-      lessons: await db.lessons.toArray(),
+      lessons: chineseLessons(await db.lessons.toArray()),
       sessions: await db.sessions.toArray(),
       attempts: await db.attempts.toArray(),
-      knowledge: await db.knowledge.toArray(),
+      knowledge: chineseRows(await db.knowledge.toArray()),
       // Cards of collection-only items stay out of the workspace view: only the knowledge set is studied daily.
       studyCards: await knowledgeCardsOf(),
-      exerciseSessions: await db.exerciseSessions.toArray(),
-      exerciseAttempts: await db.exerciseAttempts.toArray(),
+      exerciseSessions: chineseSessions(await db.exerciseSessions.toArray()),
+      exerciseAttempts: chineseRows(await db.exerciseAttempts.toArray()),
       characterStates: await db.characterStates.toArray(),
     }
   })

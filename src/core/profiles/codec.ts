@@ -6,6 +6,7 @@ import { exercisePositionValid, interruptImportedRuns, readBackup, splitStudy } 
 import { exerciseSessionSchema } from '../study/contracts'
 import { localSettingsSchema } from '../local-settings-contracts'
 import { parsePlainYaml } from '../yaml'
+import { chineseSnapshot } from '../chinese-only'
 import { MAX_PROFILE_BYTES, PROFILE_FORMAT, PROFILE_VERSION, profileDataSchema, profileSnapshotSchema, profileYamlSchema, type ProfileSnapshot } from './contracts'
 import { AI_ENDPOINTS_VERSION, type AIEndpointsExport } from '../assistant/contracts'
 import { type ProfileMetadata } from './identity'
@@ -103,7 +104,7 @@ export function parseProfileYaml(text: string): ProfileSnapshot {
 export function parseProfileYamlReport(text: string): { snapshot: ProfileSnapshot; skippedSessions: number } {
   checkSize(text)
   try {
-    const value = parsePlainYaml(text)
+    const value = chineseSnapshot(parsePlainYaml(text))
     const skippedSessions = dropUnreadableSessions(value).length
     const version = typeof value === 'object' && value !== null && 'version' in value ? value.version : undefined
     const snapshot = normalizeEndpoints(profileSnapshotSchema.parse(version === 1

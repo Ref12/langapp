@@ -12,6 +12,7 @@ import { phraseHeardBackupSchema, userPhrasesBackupSchema, type PhraseHeard, typ
 import { collectionsBackupSchema, type CollectionsBackup } from './collections/contracts'
 import { librarySchema, type LibraryBook } from './library/contracts'
 import { pinyinFormatSchema } from './pinyin'
+import { chineseBackup } from './chinese-only'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()
@@ -250,7 +251,7 @@ function readSavedBoards(values: unknown[]): SavedSudokuBoard[] {
 
 export function readBackup(text: string): WorkspaceBackup {
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('The backup exceeds the 5 MiB limit.')
-  const backup = backupSchema.parse(JSON.parse(text))
+  const backup = backupSchema.parse(chineseBackup(JSON.parse(text)))
   const { workspace } = backup
   validateWorkspace(workspace)
   if (backup.version !== 1) validateAssistant(backup.assistant)

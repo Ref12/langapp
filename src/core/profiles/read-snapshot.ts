@@ -6,6 +6,7 @@ import type { JournalEvent } from '../backup/journal'
 import type { UnjournaledState } from '../backup/layout'
 import type { ProfileSnapshot } from './contracts'
 import { knowledgeCards, readCollectionsState } from '../collections/snapshot'
+import { chineseLessons, chinesePreferences, chineseRows, chineseSessions, chineseSources } from '../chinese-only'
 
 // Short, separate read transactions for the cloud backup. None of them spans the backup, and none
 // touches the journal except the tiny cursor read, so saving an answer never waits behind one.
@@ -44,7 +45,7 @@ export async function readSettingsRows(database: LearningDatabase): Promise<Sett
       if (!parsed.success) throw new Error('Saved speech connection settings are invalid. Review them before exporting.')
       speechConnection = speechConnectionInputSchema.strip().parse(parsed.data)
     }
-    return { preferences, ...(aiEndpoints ? { aiEndpoints } : {}), ...(speechConnection ? { speechConnection } : {}) }
+    return { preferences: chinesePreferences(preferences), ...(aiEndpoints ? { aiEndpoints } : {}), ...(speechConnection ? { speechConnection } : {}) }
   })()
 }
 
@@ -74,10 +75,10 @@ export async function readInBatches<T>(source: { toArray(): Promise<T[]> }, size
 export async function readUnjournaledState(database: LearningDatabase): Promise<UnjournaledState> {
   return {
     words: await readInBatches(database.words), readings: await readInBatches(database.readings),
-    lessons: await readInBatches(database.lessons), sessions: await readInBatches(database.sessions),
-    attempts: await readInBatches(database.attempts), exerciseSessions: await readInBatches(database.exerciseSessions, 100),
+    lessons: chineseLessons(await readInBatches(database.lessons)), sessions: await readInBatches(database.sessions),
+    attempts: await readInBatches(database.attempts), exerciseSessions: chineseSessions(await readInBatches(database.exerciseSessions, 100)),
     practiceHistory: await readInBatches(database.practiceHistory),
-    threads: await readInBatches(database.assistantThreads), messages: await readInBatches(database.assistantMessages),
+    threads: chineseSources(await readInBatches(database.assistantThreads)), messages: chineseSources(await readInBatches(database.assistantMessages)),
     runs: await readInBatches(database.assistantRuns), library: await readInBatches(database.libraryBooks, 20),
     media: await readInBatches(database.mediaItems, 20),
     sourceEntries: await readInBatches(database.sourceEntries, 500),
@@ -108,10 +109,10 @@ export async function readJournalRange(database: LearningDatabase, after: number
 /** The state the log replays (knowledge, cards, exercise answers, characters) together with the cursor: one short read. Used only for the first snapshot. */
 export async function readJournaledState(database: LearningDatabase) {
   return database.transaction('r', [database.knowledge, database.studyCards, database.exerciseAttempts, database.characterStates, database.journal], async () => {
-    const knowledge = await database.knowledge.toArray()
+    const knowledge = chineseRows(await database.knowledge.toArray())
     return {
-      knowledge, cards: knowledgeCards(await database.studyCards.toArray(), new Set(knowledge.map(entry => entry.ref))),
-      attempts: await database.exerciseAttempts.toArray(), characterStates: await database.characterStates.toArray(),
+      knowledge, cards: knowledgeCards(chineseRows(await database.studyCards.toArray()), new Set(knowledge.map(entry => entry.ref))),
+      attempts: chineseRows(await database.exerciseAttempts.toArray()), characterStates: await database.characterStates.toArray(),
       seq: (await database.journal.orderBy('seq').last())?.seq ?? 0,
     }
   })
