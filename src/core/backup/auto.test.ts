@@ -66,6 +66,22 @@ describe('automatic backup at boundaries', () => {
     expect(await atBoundary(t.value)).toBe('ran')
   })
 
+  it('never rejects: a throwing check resolves to failed and leaves the window alone', async () => {
+    for (const over of [{ dirty: async () => { throw new Error('DatabaseClosedError') } }, { windowStart: async () => { throw new Error('closed') } }, { enabled: async () => { throw new Error('closed') } }, { connected: async () => { throw new Error('closed') } }] as Partial<BoundaryDeps>[]) {
+      const t = deps(over)
+      await expect(atBoundary(t.value)).resolves.toBe('failed')
+      expect(t.run).not.toHaveBeenCalled()
+      expect(t.stamp()).toBe(0)
+    }
+  })
+
+  it('never rejects when the default checks cannot read a closed database', async () => {
+    const { db } = await import('../database')
+    await db.close()
+    await expect(atBoundary()).resolves.toMatch(/failed|not-connected|clean|window/)
+    await db.open()
+  })
+
   it('two boundaries at once start one run', async () => {
     const t = deps()
     const [a, b] = await Promise.all([atBoundary(t.value), atBoundary(t.value)])

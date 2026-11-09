@@ -37,9 +37,11 @@ export interface BoundaryDeps {
 let gate: Promise<BoundaryOutcome> | undefined
 
 /** One boundary. Cheap checks first; at most one run per window; failures and pauses give the window back so the next boundary retries. */
-export function atBoundary(deps: BoundaryDeps = realDeps()): Promise<BoundaryOutcome> {
+export function atBoundary(deps?: BoundaryDeps): Promise<BoundaryOutcome> {
   if (gate) return Promise.resolve('busy')
-  gate = decide(deps).finally(() => { gate = undefined })
+  // Never rejects: it is called as `void atBoundary()`, and an error before the run (a closed or unreadable database)
+  // must neither surface as an unhandled rejection nor use up the window (the window is only taken just before the run).
+  gate = (async () => decide(deps ?? realDeps()))().catch((): BoundaryOutcome => 'failed').finally(() => { gate = undefined })
   return gate
 }
 
@@ -70,7 +72,7 @@ function realDeps(): BoundaryDeps {
   return {
     profileId, now: Date.now, exerciseOpen: exerciseOnScreen,
     enabled: () => loadAutoSetting(profileId),
-    connected: async () => (await db.backupConfig.get('github')) !== undefined,
+    connected: async () => db.isOpen() && (await db.backupConfig.get('github')) !== undefined,
     dirty: async () => (await journalCursor(db)) !== ((await loadSentSeq(profileId)) ?? 0),
     windowStart: () => loadWindowStart(profileId),
     setWindowStart: at => saveWindowStart(profileId, at),
