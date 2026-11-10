@@ -25,14 +25,19 @@ export interface ReadingInput {
   takesLearningScript: boolean
   /** The pack marks a typed reading right or wrong, so the result shows the reading in the learner's Readings setting. */
   marks: boolean
+  /** The older drill's Hint: its label and the text for a reading; undefined: the pack has none and the button is not shown. */
+  hint?: { label: string; of(reading: string): string }
 }
 
+const letters = { label: 'Letters only:', of: (reading: string) => reading.normalize('NFD').replace(/\p{M}/gu, '') }
+const firstKana = { label: 'Starts with:', of: (reading: string) => { const first = Array.from(reading.trim())[0]; return first ? first + '…' : '' } }
+
 export const pinyinInput: ReadingInput = {
-  grade: (answer, accepted) => gradePinyin(answer, accepted), preview: previewPinyin, nearNote: 'Right syllables, tones:', audioIsAnswer: false, takesLearningScript: false, marks: false,
+  grade: (answer, accepted) => gradePinyin(answer, accepted), preview: previewPinyin, nearNote: 'Right syllables, tones:', audioIsAnswer: false, takesLearningScript: false, marks: false, hint: letters,
 }
 
 export const kanaInput: ReadingInput = {
-  grade: (answer, accepted, romaji) => gradeKanaReading(answer, accepted, romaji), nearNote: 'Right sounds, long vowels:', audioIsAnswer: true, takesLearningScript: true, marks: true,
+  grade: (answer, accepted, romaji) => gradeKanaReading(answer, accepted, romaji), nearNote: 'Right sounds, long vowels:', audioIsAnswer: true, takesLearningScript: true, marks: true, hint: firstKana,
 }
 
 /** Korean: a typed reading is not graded yet; every answer is compared with the model and marked by the learner. */

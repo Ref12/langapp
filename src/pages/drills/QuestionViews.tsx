@@ -103,7 +103,6 @@ function PinyinView({ data, state, onAnswer, onMark }: ViewProps & { data: Extra
   const [text, setText] = useState((state.answer as TextAnswer | undefined)?.text ?? '')
   const [hinted, setHinted] = useState(false)
   const locked = state.status !== 'open'
-  const toneless = data.item.py.normalize('NFD').replace(/\p{M}/gu, '')
   const pack = getPack(), reading = pack.readingInput
   const read = locked && text ? reading.grade(text, [data.item.py], pack.romaji) : undefined
   const toneNote = read?.verdict === 'tones' ? read : undefined
@@ -113,8 +112,8 @@ function PinyinView({ data, state, onAnswer, onMark }: ViewProps & { data: Extra
     <TextInput label={getPack().practiceWording.readingPlaceholder} hideLabel value={text} disabled={locked} lang={reading.takesLearningScript ? pack.learningTag : undefined} placeholder={getPack().practiceWording.readingExample} onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
     <p className="small muted engine-pinyin-hint">{getPack().practiceWording.readingHelp}</p>
     {!locked && reading.preview && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview">{reading.preview(text, [data.item.py]) || '\u00a0'}</p>}
-    {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
-      {hinted && <span className="small">Letters only: <strong>{toneless}</strong></span>}</div>}
+    {!locked && reading.hint && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
+      {hinted && <span className="small">{reading.hint.label} <strong>{reading.hint.of(data.item.py)}</strong></span>}</div>}
     <Confirm state={state} onMark={onMark}><p>{getPack().practiceWording.readingIs} <strong>{reading.marks ? <ReadingText kana={data.item.py} /> : <Pinyin text={data.item.py} />}</strong>.</p></Confirm>
     <Result state={state}>{toneNote ? <p>{reading.nearNote} {toneNote.syllables ? toneNote.syllables.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>) : <ReadingText kana={toneNote.kana ?? data.item.py} />}</p> : <p>{getPack().practiceWording.readingIs} <strong>{reading.marks ? <ReadingText kana={data.item.py} /> : <Pinyin text={data.item.py} />}</strong>.</p>}</Result>
   </>
