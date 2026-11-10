@@ -7,18 +7,18 @@ import { setBuildChannelForTests, setBuildLanguageForTests } from '../core/stora
 afterEach(() => { cleanup(); setBuildChannelForTests(undefined); setBuildLanguageForTests(undefined) })
 
 describe('the Lab app switch', () => {
-  it('lists the published apps from the pack registry: Chinese and Japanese, not Korean', () => {
-    expect(labApps().map(app => app.id)).toEqual(['zh', 'ja'])
-    expect(labApps().map(app => app.glyph)).toEqual(['\u4E2D', '\u65E5'])
+  it('lists the published apps from the pack registry: Chinese, Japanese and Korean', () => {
+    expect(labApps().map(app => app.id)).toEqual(['zh', 'ja', 'ko'])
+    expect(labApps().map(app => app.glyph)).toEqual(['\u4E2D', '\u65E5', '\uD55C'])
   })
-  it('in the Chinese Lab build marks Chinese and links Japanese at ./ja/', () => {
+  it('in the Chinese Lab build marks Chinese and links Japanese at ./ja/ and Korean at ./ko/', () => {
     setBuildChannelForTests('lab'); setBuildLanguageForTests('zh')
     render(<AppSwitch />)
     expect(screen.getByRole('navigation', { name: 'Language apps' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Chinese' })).toHaveAttribute('aria-current', 'page')
     expect(screen.getByRole('link', { name: 'Japanese' })).not.toHaveAttribute('aria-current')
     expect(screen.getByRole('link', { name: 'Japanese' })).toHaveAttribute('href', './ja/')
-    expect(screen.queryByRole('link', { name: 'Korean' })).toBeNull()
+    expect(screen.getByRole('link', { name: 'Korean' })).toHaveAttribute('href', './ko/')
   })
   it('in the Japanese Lab build marks Japanese and links Chinese at ../', () => {
     setBuildChannelForTests('lab'); setBuildLanguageForTests('ja')

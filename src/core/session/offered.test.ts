@@ -44,8 +44,8 @@ describe('which forms and drill types a build offers', () => {
     const offered = DRILL_TYPES.filter(entry => drillTypeOffered(entry, jaPack)).map(entry => entry.id)
     expect(offered).toEqual(['meanings', 'match', 'learn', 'write', 'pinyin', 'translate', 'repeat'])
   })
-  it('Korean keeps the writing area off: no Learn to write / Write it', () => {
+  it('Korean has the writing area on, so Learn to write / Write it are offered', () => {
     const offered = DRILL_TYPES.filter(entry => drillTypeOffered(entry, koPack)).map(entry => entry.id)
-    expect(offered).toEqual(['meanings', 'match', 'pinyin', 'translate', 'repeat'])
+    expect(offered).toEqual(['meanings', 'match', 'learn', 'write', 'pinyin', 'translate', 'repeat'])
   })
 })

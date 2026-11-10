@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it } from 'vitest'
 import { AREAS, areaOfRoute, getPack, isAreaOn, jaPack, koPack, packFor, zhPack, buildDisplayName } from './index'
+import { labApps } from './apps'
 import { setBuildLanguageForTests } from '../storage-names'
 
 afterEach(() => setBuildLanguageForTests(undefined))
@@ -22,12 +23,17 @@ describe('language packs', () => {
     expect(() => packFor('xx' as never)).toThrow(/Unknown language/)
   })
 
-  it('switches everything on for Chinese, the Dictionary and writing for Japanese and every area off for Korean', () => {
+  it('switches everything on for Chinese, the Dictionary and writing for Japanese and writing for Korean', () => {
     expect(AREAS.every(area => zhPack.features[area])).toBe(true)
-    expect(AREAS.some(area => koPack.features[area])).toBe(false)
+    expect(AREAS.filter(area => koPack.features[area])).toEqual(['writing'])
     // Japanese: the Dictionary (of the lessons) and the writing area (its own stroke data); everything else stays off.
     expect(AREAS.filter(area => jaPack.features[area])).toEqual(['dictionary', 'writing'])
     expect(jaPack.features.games).toBe(false)
+  })
+
+  it('lists Chinese, Japanese and Korean as the published Lab apps', () => {
+    expect(labApps().map(app => app.id)).toEqual(['zh', 'ja', 'ko'])
+    expect(koPack.published).toBe(true)
   })
 
   it('maps routes to areas, and leaves Lessons, Practice, Overview and Settings always on', () => {

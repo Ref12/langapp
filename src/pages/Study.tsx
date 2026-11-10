@@ -30,6 +30,8 @@ import { retryGeneration } from '../core/study/retry'
 
 export function Study({ workspace, now, run, busy }: PageProps) {
   const { catalog, error, connection, known, due, rows, curriculumOpen, next, progress, start } = useStudyActions({ workspace, now, run })
+  // A pack whose catalog has no groups yet: lessons are coming, not "nothing left to introduce".
+  const empty = Boolean(catalog) && catalog!.orderedGroups.length === 0
   return <>
     <PageHeading eyebrow="NEW OR REVIEW" title="Learn something new, or keep what you know.">Pick up the next items in the curriculum, or review what is due. The exercises for each session are written by your connected AI model and checked against your knowledge set.</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
@@ -39,7 +41,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
       <section className="experience-card" aria-label="New items">
         <div className="card-header-row">
           <div><p className="eyebrow accent">NEW</p>
-            <h2>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'}` : catalog ? 'Nothing left to introduce' : 'Loading the curriculum...'}</h2></div>
+            <h2>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'}` : empty ? `Lessons are on their way for ${getPack().wording.language}.` : catalog ? 'Nothing left to introduce' : 'Loading the curriculum...'}</h2></div>
           <button className="button primary" aria-label="Start new items" disabled={busy || !next || !connection} onClick={() => start('new')}>Start <ArrowRight size={16} /></button>
         </div>
         {curriculumOpen.new && <p className="small muted">Your unfinished lesson is in Pick up where you left off.</p>}
@@ -47,7 +49,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
           <span className="study-preview-form" lang={getPack().learningTag}>{unit.kind === 'vocabulary' ? <HeadwordText record={unit.record} /> : unit.record.pt}</span>
           <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><HeadwordReading record={unit.record} /> </span>}{unit.record.ds}</span>
         </li>)}</ul>}
-        {progress && <p className="small muted"><BandName n={next?.band ?? '6'} /> / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
+        {progress && !empty && <p className="small muted"><BandName n={next?.band ?? '6'} /> / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
       </section>
       <section className="experience-card" aria-label="Review">
         <div className="card-header-row">
