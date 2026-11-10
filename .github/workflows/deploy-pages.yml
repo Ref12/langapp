@@ -35,6 +35,12 @@ jobs:
         env:
           LANGAPP_BUILD_ID: ${{ github.sha }}
         run: npm run build
+      # The Japanese build of Lab: the same commit and build id, its own output folder, published at lab/ja/.
+      - name: Build the Japanese app (Lab, published at lab/ja/)
+        env:
+          LANGAPP_BUILD_ID: ${{ github.sha }}
+          LANGAPP_LANGUAGE: ja
+        run: npm run build:next -- --outDir dist-ja
 
       # Checked out after Lab's lint and tests so they never see Stable's files.
       # Stable is the same repository's `stable` branch, published at the site root.
@@ -57,8 +63,8 @@ jobs:
           LANGAPP_BUILD_ID=$(git rev-parse HEAD)
           export LANGAPP_BUILD_ID
           npm run build
-      - name: Assemble the site (Stable at the root, Lab under lab/)
-        run: node scripts/assemble-site.mjs stable-src/dist dist site
+      - name: Assemble the site (Stable at the root, Lab under lab/, Lab Japanese under lab/ja/)
+        run: node scripts/assemble-site.mjs stable-src/dist dist site ja=dist-ja
 
       - name: Configure existing Pages site
         uses: actions/configure-pages@v5
