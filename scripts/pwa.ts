@@ -1,7 +1,8 @@
 import type { Plugin } from 'vite'
 import { storageNames, type BuildChannel } from '../src/core/storage-names'
 import { LANGUAGE_IDS, type LanguageId } from '../src/core/language/ids'
-import { buildDisplayName, metaFor } from '../src/core/language/meta'
+import { metaFor } from '../src/core/language/meta'
+import { buildDisplayName } from '../src/core/language/packs'
 
 /**
  * PWA for every production build: emits a web manifest and a service worker. All URLs

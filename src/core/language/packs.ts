@@ -14,6 +14,12 @@ export * from './pack-data'
 
 export interface LanguagePack extends PackMeta, PackData {}
 
+/** The name of the build, for the manifest and the page title: "LinguaWeave", "LinguaWeave Lab", "LinguaWeave Lab Japanese". */
+export function buildDisplayName(channel: 'stable' | 'lab', pack: PackMeta): string {
+  if (channel === 'stable') return 'LinguaWeave'
+  return pack.id === 'zh' ? 'LinguaWeave Lab' : 'LinguaWeave Lab ' + pack.name
+}
+
 declare const __PACK_DATA__: string
 
 export const zhPack: LanguagePack = { ...zhMeta, ...(typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ === 'all' || __PACK_DATA__ === 'zh' ? zhData : emptyData) }

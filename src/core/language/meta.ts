@@ -31,9 +31,3 @@ export function metaFor(id: LanguageId): PackMeta {
 }
 
 export const isAreaOn = (pack: PackMeta, area: Area | undefined): boolean => area === undefined || pack.features[area]
-
-/** The name of the build, for the manifest and the page title: "LinguaWeave", "LinguaWeave Lab", "LinguaWeave Lab Japanese". */
-export function buildDisplayName(channel: 'stable' | 'lab', pack: PackMeta): string {
-  if (channel === 'stable') return 'LinguaWeave'
-  return pack.id === 'zh' ? 'LinguaWeave Lab' : 'LinguaWeave Lab ' + pack.name
-}
