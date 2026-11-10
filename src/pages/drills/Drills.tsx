@@ -38,6 +38,7 @@ import { SKILLS, SKILL_LABEL, SKILL_SIZES, STRATEGY_LABEL, PICK_STRATEGIES, dril
 import { ACTIVITY_SKILLS } from '../../core/study/skill-map'
 import { recordSetIntro } from '../../core/study/skills'
 import { currentLanguageOf, trackFor } from '../../data/tracks'
+import { setsOfCurrentLanguage } from '../../core/drills/set-language'
 import { ParallelPracticeSource } from '../../components/ParallelPracticeSource'
 import './drills.css'
 
@@ -328,12 +329,13 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const [undo, setUndo] = useState<{ id: string; title: string }>()
   useEffect(() => { if (!undo) return; const timer = setTimeout(() => setUndo(undefined), 10000); return () => clearTimeout(timer) }, [undo])
   const removeSession = async (set: DrillSet) => { await removeHistoryItems([`drill:${set.id}`]); setUndo({ id: set.id, title: set.title }) }
-  const unfinished = unfinishedSets(sets)
+  const ownSets = setsOfCurrentLanguage(sets, workspace.preferences)
+  const unfinished = unfinishedSets(ownSets)
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
   const wordsDue = workspace.words.filter(word => word.dueAt <= now).length
   // One list: every unfinished set, then the finished ones, by last activity; the last RECENT_SETS finished ones are kept.
   const touched = (set: DrillSet) => set.updatedAt
-  const finished = sets.filter(set => set.status === 'completed' && !set.removedAt).sort((a, b) => touched(b) - touched(a)).slice(0, RECENT_SETS)
+  const finished = ownSets.filter(set => set.status === 'completed' && !set.removedAt).sort((a, b) => touched(b) - touched(a)).slice(0, RECENT_SETS)
   const recent = [...unfinished, ...finished].sort((a, b) => touched(b) - touched(a))
   const fromSet = !origin && from !== CURRICULUM ? collections.find(entry => entry.id === from) : undefined
   const [chosenMode, setMode] = useState<'new' | 'review'>('new')
@@ -426,12 +428,12 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         </ul>
       </section>}
       <div className="dr-stack">
-      <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sessions</h2>
+      {(recent.length > 0 || !parallelTrack) && <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sessions</h2>
         {recent.length === 0 ? <p className="muted small">No sessions yet.</p> : <div className="resume-list">{recent.map(set =>
           <SetRow key={set.id} set={set} characterStates={workspace.characterStates} onAsk={() => setAsking({ id: set.id, title: set.title })} onRemove={() => void removeSession(set)} />)}</div>}
         {undo && <p className="history-toast" role="status">Removed {undo.title} from Recent sessions. <button type="button" className="button secondary" onClick={() => { void restoreHistoryItems([`drill:${undo.id}`]); setUndo(undefined) }}>Undo</button></p>}
         {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
-      </section>
+      </section>}
       </div>
     </div>
     {asking && <ConfirmDialog title="Discard this session?" confirmLabel="Discard" busy={busy} onCancel={() => setAsking(undefined)}

@@ -10,7 +10,7 @@ import { whenContent } from '../../core/drills/content'
 import { createDrillSet, finishDrillSet, getDrillSet, newHandsfreeActivity } from '../../core/drills/store'
 import { DEFAULT_HANDSFREE_SETTINGS } from '../../core/handsfree/contracts'
 import * as speech from '../../core/assistant/speech'
-import { storageNames } from '../../core/storage-names'
+import { setBuildLanguageForTests, storageNames } from '../../core/storage-names'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../../core/ai/structured', () => structured)
@@ -884,5 +884,36 @@ describe('A set whose AI content failed', () => {
     window.dispatchEvent(new Event('focus')); window.dispatchEvent(new Event('online'))
     await whenContent(set.id)
     expect(structured.requestStructuredJSON.mock.calls.length).toBe(calls)
+  })
+})
+
+describe('Recent sessions by language', () => {
+  const japanese = async () => { const zh = await newSet(); const set = { ...zh, id: 'ja-set-1', title: 'Japanese hand-made set', refs: ['ja:w:ja-n5-1'], progress: {} }; await db.drillSets.put(set as never); return { zh, set } }
+  it('Chinese mode lists only the Chinese set', async () => {
+    const { zh } = await japanese()
+    render(<App />)
+    const section = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
+    await within(section).findByText(zh.title)
+    expect(within(section).queryByText('Japanese hand-made set')).toBeNull()
+  })
+  it('Japanese mode does not list the Chinese set, and leaves the section out while no Japanese set shows', async () => {
+    const { zh } = await japanese()
+    await db.preferences.update('workspace', { currentLanguage: 'ja', startedTracks: ['ja'] })
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Practice' })
+    await waitFor(() => expect(screen.queryByText(zh.title)).toBeNull())
+    expect(screen.queryByRole('heading', { name: 'Recent sessions' })).toBeNull()
+    expect(screen.queryByText('No sessions yet.')).toBeNull()
+  })
+  it('a Japanese build lists its own set (curriculum refs, not ja: refs) and keeps the normal Practice page', async () => {
+    setBuildLanguageForTests('ja')
+    try {
+      const set = await newSet()
+      expect(set.refs.every(ref => /^(vocabulary|grammar):/.test(ref))).toBe(true)
+      render(<App />)
+      const section = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
+      await within(section).findByText(set.title)
+      expect(screen.getByText("What you'll practise")).toBeInTheDocument()
+    } finally { setBuildLanguageForTests(undefined) }
   })
 })
