@@ -1,3 +1,4 @@
+import type { SpeechLocale } from '../assistant/contracts'
 /**
  * Auto-listen loop for pocket mode: listen -> send -> wait for the spoken reply -> listen again.
  * Pure logic with injected side effects, so it can be tested with a fake recognizer and fake clock.
@@ -45,7 +46,7 @@ export function isStopCommand(text: string) {
   return COMMANDS.has(plain.replace(/^(please|ok|okay) /, '').replace(/ (please|now)$/, ''))
 }
 
-export function pauseCue(reason: PauseReason, locale: 'en-US' | 'zh-Hans') {
+export function pauseCue(reason: PauseReason, locale: SpeechLocale) {
   const zh = locale === 'zh-Hans'
   switch (reason) {
     case 'command': return zh ? '已暂停。' : 'Paused.'

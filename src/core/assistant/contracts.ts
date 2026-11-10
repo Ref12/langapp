@@ -11,7 +11,7 @@ const id = z.string().min(1).max(200)
 const timestamp = z.number().int().nonnegative()
 export const assistantModeSchema = z.enum(['conversation', 'shadow'])
 export const assistantIntentSchema = z.enum(['message', 'shadow', 'repeat', 'explain'])
-export const speechLocaleSchema = z.enum(['en-US', 'zh-Hans'])
+export const speechLocaleSchema = z.enum(['en-US', 'zh-Hans', 'ja-JP', 'ko-KR'])
 export const speechRateSchema = z.union([z.literal(0.25), z.literal(0.5), z.literal(0.75), z.literal(1), z.literal(1.25)])
 export type SpeechRate = z.infer<typeof speechRateSchema>
 
@@ -29,6 +29,8 @@ export const edgeVoicePreferenceSchema = z.object({
 export const speechVoicePreferencesSchema = z.object({
   'zh-Hans': z.union([browserVoicePreferenceSchema, edgeVoicePreferenceSchema.refine(value => value.voice.startsWith('zh-'))]).optional(),
   'en-US': z.union([browserVoicePreferenceSchema, edgeVoicePreferenceSchema.refine(value => value.voice.startsWith('en-'))]).optional(),
+  'ja-JP': z.union([browserVoicePreferenceSchema, edgeVoicePreferenceSchema.refine(value => value.voice.startsWith('ja-'))]).optional(),
+  'ko-KR': z.union([browserVoicePreferenceSchema, edgeVoicePreferenceSchema.refine(value => value.voice.startsWith('ko-'))]).optional(),
 }).strict()
 export type BrowserVoicePreference = z.infer<typeof browserVoicePreferenceSchema>
 export type EdgeVoicePreference = z.infer<typeof edgeVoicePreferenceSchema>

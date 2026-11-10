@@ -122,10 +122,21 @@ function voiceLocale(language: string) {
   }
 }
 
+/** The speech locales' language names (for messages) and the system language tag asked for when no voice is listed. */
+const SPEECH_LANGUAGES: Record<SpeechLocale, { name: string; tag: string; warmup: string }> = {
+  'en-US': { name: 'English', tag: 'en-US', warmup: 'Ready to begin.' },
+  'zh-Hans': { name: 'Mandarin', tag: 'zh-CN', warmup: '准备好了。' },
+  'ja-JP': { name: 'Japanese', tag: 'ja-JP', warmup: '準備ができました。' },
+  'ko-KR': { name: 'Korean', tag: 'ko-KR', warmup: '준비되었습니다.' },
+}
+export const speechLanguageName = (locale: SpeechLocale): string => SPEECH_LANGUAGES[locale].name
+
 export function languageMatches(language: string, locale: SpeechLocale) {
   const parsed = voiceLocale(language)
   if (!parsed) return false
   if (locale === 'en-US') return parsed.tag.language === 'en'
+  if (locale === 'ja-JP') return parsed.tag.language === 'ja'
+  if (locale === 'ko-KR') return parsed.tag.language === 'ko'
   if (locale !== 'zh-Hans' || !['zh', 'cmn'].includes(parsed.tag.language)) return false
   // Mandarin is not script-exclusive; unqualified HK/MO Chinese may be Cantonese.
   return parsed.explicitMandarin || !parsed.tag.region || ['CN', 'SG', 'TW'].includes(parsed.tag.region)
@@ -275,12 +286,12 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
   try {
     utterance = new SpeechSynthesisUtterance(text)
     if (voice) utterance.voice = voice
-    utterance.lang = voice ? voiceLocale(voice.lang)!.tag.toString() : locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
+    utterance.lang = voice ? voiceLocale(voice.lang)!.tag.toString() : SPEECH_LANGUAGES[locale].tag
     utterance.rate = (locale === 'en-US' && !request.options?.anyRate) || !Number.isFinite(rate) ? 1 : Math.max(0.1, Math.min(10, rate))
     if (Number.isFinite(request.options?.pitch)) utterance.pitch = Math.max(0, Math.min(2, request.options!.pitch!))
     utterance.volume = Number.isFinite(request.options?.volume) ? Math.max(0, Math.min(1, request.options!.volume!)) : 1
     if (warmth?.key !== warmKey || idleMs < 0 || idleMs >= speechWarmIdleMs) {
-      warmup = new SpeechSynthesisUtterance(locale === 'zh-Hans' ? '准备好了。' : 'Ready to begin.')
+      warmup = new SpeechSynthesisUtterance(SPEECH_LANGUAGES[locale].warmup)
       if (voice) warmup.voice = voice
       warmup.lang = utterance.lang
       warmup.rate = 1
@@ -323,7 +334,7 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
   utterance.onend = completePlayback
   utterance.onerror = event => {
     if (event?.error === 'language-unavailable' || event?.error === 'voice-unavailable') {
-      fail(request, `The browser could not provide the requested ${locale === 'zh-Hans' ? 'Mandarin' : 'English'} speech. Enable that language in your device's text-to-speech settings, then try Hear again.`)
+      fail(request, `The browser could not provide the requested ${SPEECH_LANGUAGES[locale].name} speech. Enable that language in your device's text-to-speech settings, then try Hear again.`)
       return
     }
     if (event?.error === 'not-allowed') {
@@ -485,7 +496,7 @@ function beginBrowserSpeech(
       // Voice enumeration can be empty/incomplete on Android. Keep speak in the tap's call stack.
       startSpeaking(request, undefined, text, locale, rate)
     } else if (finishedWaiting) {
-      fail(request, `The selected ${locale === 'zh-Hans' ? 'Mandarin' : 'English'} voice is not available. Choose another voice or Automatic in Settings.`)
+      fail(request, `The selected ${SPEECH_LANGUAGES[locale].name} voice is not available. Choose another voice or Automatic in Settings.`)
     }
   }
   publish({ activeId: id, phase: 'loading-voices' })
