@@ -14,8 +14,6 @@ import { forms as buildForm } from '../forms'
 import jaForms from '../../data/packs/ja/forms.generated.json'
 import type { PackForm } from './pack-data'
 import { grammarLabel } from '../../data/tracks'
-import { exampleReadingTokens } from '../study/catalog'
-import { tokensToRomaji } from '../reading/romaji'
 
 const root = fileURLToPath(new URL('../../../', import.meta.url))
 const onDisk = (path: string) => readFileSync(root + path, 'utf8').replace(/\r\n/g, '\n')
