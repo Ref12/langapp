@@ -47,6 +47,10 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     resetProfilesForTests()
     render(<App />)
     expect(await screen.findByLabelText('Active profile: default')).toBeInTheDocument()
+    const topbar = document.querySelector('.topbar-actions') as HTMLElement
+    expect(topbar.querySelector('[aria-haspopup="menu"]')).toBeNull()
+    expect(topbar.querySelector('.build-mark')).toBeNull()
+    expect(document.querySelector('.workspace-navigation .build-switch [aria-haspopup="menu"]')).not.toBeNull()
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     expect(await db.preferences.get('workspace')).toMatchObject({ name: 'Existing workspace', theme: 'light', defaultSpeechRate: 0.75 })
     expect(await db.words.toArray()).toEqual(saved)

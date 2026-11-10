@@ -5,14 +5,15 @@ import './BuildSwitch.css'
 // Self-contained on purpose: this file and BuildSwitch.css are copied unchanged onto the Stable branch, an older commit.
 // They depend on React, the icon library and the build constant only: import nothing else from the app.
 declare const __BUILD_CHANNEL__: 'stable' | 'lab'
+declare const __BUILD_LANGUAGE__: string
 
 const channel = (): 'stable' | 'lab' => (typeof __BUILD_CHANNEL__ === 'undefined' ? 'lab' : __BUILD_CHANNEL__)
 
 /** The two builds. The other one is a plain link to its start page (the route is not kept): ./lab/ from Stable, ../ from Lab. */
-export const builds = (current: 'stable' | 'lab' = channel()) => [
+export const builds = (current: 'stable' | 'lab' = channel(), language: string = typeof __BUILD_LANGUAGE__ === 'undefined' ? 'zh' : __BUILD_LANGUAGE__) => [
   { id: 'stable' as const, label: 'Stable', href: '../', current: current === 'stable' },
   { id: 'lab' as const, label: 'Lab', href: './lab/', current: current === 'lab' },
-].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? '../' : './lab/' }))
+].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? (language === 'zh' ? '../' : '../../') : './lab/' }))
 
 export interface BuildSwitchItem { label: string; onSelect: () => void }
 
@@ -26,10 +27,9 @@ export function LabMark({ className = '' }: { className?: string }) {
  * The profile item of the navigation as a menu button: it opens Stable / Lab (the current one ticked) and, in Lab, the extra items the app
  * passes in. With settingsHref it adds its own gear link to Settings beside it; leave it out where the page already shows a gear.
  */
-export function BuildSwitch({ children, className = '', variant = 'nav', settingsHref, settingsLabel = 'Settings', extraItems = [] }: {
+export function BuildSwitch({ children, className = '', settingsHref, settingsLabel = 'Settings', extraItems = [] }: {
   children: ReactNode
   className?: string
-  variant?: 'nav' | 'pill'
   settingsHref?: string
   settingsLabel?: string
   extraItems?: BuildSwitchItem[]
@@ -60,7 +60,7 @@ export function BuildSwitch({ children, className = '', variant = 'nav', setting
     else if (event.key === 'Tab') setOpen(false)
   }
 
-  return <span className={`build-switch build-switch-${variant}`} ref={root} onKeyDown={open ? move : undefined}>
+  return <span className={`build-switch build-switch-nav`} ref={root} onKeyDown={open ? move : undefined}>
     <button type="button" ref={button} className={`build-switch-button ${className}`.trim()} aria-haspopup="menu" aria-expanded={open} aria-controls={open ? menuId : undefined}
       onClick={() => setOpen(value => !value)}>
       {children}<ChevronDown size={14} aria-hidden="true" className="build-switch-chevron" />

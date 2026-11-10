@@ -66,10 +66,4 @@ describe('build switch', () => {
     expect(screen.queryByRole('menu')).toBeNull()
     expect(screen.getByRole('button', { name: /Reader workspace/ })).toHaveFocus()
   })
-
-  it('has no gear of its own unless asked (the top bar already shows one)', () => {
-    vi.stubGlobal('__BUILD_CHANNEL__', 'lab')
-    render(<BuildSwitch variant="pill">default</BuildSwitch>)
-    expect(screen.queryByRole('link', { name: 'Settings' })).toBeNull()
-  })
 })
