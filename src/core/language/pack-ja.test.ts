@@ -10,6 +10,9 @@ import { loadPhraseIndex } from '../phrases'
 import { shippedPhrases } from '../phrases/bank'
 import { loadPracticeData, loadPracticeIndex } from '../practice-data'
 import { getPack } from '.'
+import { forms as buildForm } from '../forms'
+import jaForms from '../../data/packs/ja/forms.generated.json'
+import type { PackForm } from './pack-data'
 
 const root = fileURLToPath(new URL('../../../', import.meta.url))
 const onDisk = (path: string) => readFileSync(root + path, 'utf8').replace(/\r\n/g, '\n')
@@ -127,3 +130,132 @@ describe('the Chinese build language', () => {
     expect((await loadPracticeIndex()).totals.exchanges).toBeGreaterThan(0)
   })
 })
+
+type Seg = { word?: string; grammar?: string; punctuation?: string; text?: string; reading?: string; form?: string; span?: number }
+const segmentsOf = () => pack.phrases.flatMap(phrase => (phrase.tokens as Seg[]).map(segment => ({ phrase: phrase.id as number, segment })))
+const record = new Map(band.vocabulary.map(item => [item.lb, item]))
+const table = new Map((jaForms.forms as PackForm[]).map(form => [form.id, form]))
+
+describe('a conjugated word is one word in a named form', () => {
+  it('has no span, and one segment per merged form with the whole surface and reading', () => {
+    const merged = segmentsOf().filter(({ segment }) => segment.form)
+    expect(segmentsOf().some(({ segment }) => 'span' in segment)).toBe(false)
+    expect(merged).toHaveLength(530)
+    for (const { phrase, segment } of merged) {
+      expect(segment.word, 'phrase ' + phrase).toBeDefined()
+      expect(segment.grammar).toBeUndefined()
+      expect(segment.text && segment.reading, 'phrase ' + phrase).toBeTruthy()
+      expect(table.get(segment.form!)?.joined.length, segment.form).toBeGreaterThan(0)
+    }
+    expect(merged.filter(({ segment }) => segment.text === '勉強します' && segment.reading === 'べんきょうします').length).toBeGreaterThan(0)
+  })
+
+  it('keeps a noun, a な-adjective and an い-adjective apart from です, and merges the other adjective forms', () => {
+    const phrase = pack.phrases.find(item => item.zh === '私は学生です。')!
+    expect((phrase.tokens as Seg[]).map(segment => segment.word ?? segment.grammar ?? segment.punctuation)).toEqual(['watashi--i', 'n-wa--topic', 'gakusei--student', 'n-desu--noun', '。'])
+    const forms = (id: string) => table.get(id)!
+    expect(forms('adj-polite').joined).toEqual([])
+    expect(forms('adj-plain').joined).toEqual([])
+    expect(forms('adj-neg-polite').joined).toEqual(['i-adj'])
+    expect(forms('masu').joined).toEqual(['verb'])
+    expect(forms('dict').joined).toEqual([])
+    const apart = segmentsOf().filter(({ segment }) => segment.word && record.get(segment.word)?.cl === 'i-adj' && !segment.form).length
+    expect(apart).toBeGreaterThan(0)
+  })
+
+  it('keeps the pattern a merged form realises in the phrase\'s grammar list, and the form table points at it', () => {
+    const labels = new Set(band.grammar.map(item => item.lb))
+    for (const phrase of pack.phrases) {
+      for (const segment of phrase.tokens as Seg[]) {
+        if (!segment.form) continue
+        const pattern = Object.values(table.get(segment.form)!.patterns)
+        for (const label of pattern) expect(labels.has(label), label).toBe(true)
+        const wanted = pattern.filter(label => (phrase.grammar ?? []).includes(label))
+        if (['masu', 'teimasu'].includes(segment.form)) expect(wanted.length, 'phrase ' + phrase.id).toBeGreaterThan(0)
+      }
+    }
+  })
+
+  it('names every form of the rules for a learner, with the ending shown separately', () => {
+    const rules = JSON.parse(onDisk('src/data/forms/ja.json')) as { forms: Record<string, unknown> }
+    expect([...table.keys()].sort()).toEqual(Object.keys(rules.forms).sort())
+    for (const form of table.values()) {
+      expect(form.name, form.id).toMatch(/^[a-zてA-Z '-]+$/)
+      expect(form.name, form.id).not.toMatch(/[〜～ます]/)
+      if (form.id !== 'dict') expect(form.ending, form.id).toMatch(/〜/)
+    }
+    expect(table.get('masu')).toMatchObject({ name: 'polite form', ending: '〜ます', kinds: ['verb'], patterns: { verb: 'v-masu--polite' } })
+    expect(table.get('te')!.name).toBe('て form')
+    expect(table.get('dict')).toMatchObject({ name: 'dictionary form', patterns: {} })
+  })
+
+  it('gives each word that inflects its conjugation class, and none to a word that does not', () => {
+    const classes = new Set(band.vocabulary.map(item => item.cl).filter(Boolean))
+    expect([...classes].sort()).toEqual(['godan-aru', 'godan-bu', 'godan-iku', 'godan-ku', 'godan-mu', 'godan-ru', 'godan-su', 'godan-tsu', 'godan-u', 'i-adj', 'i-adj-ii', 'ichidan', 'kuru', 'na-adj', 'suru', 'suru-compound'])
+    expect(record.get('gakusei--student')!.cl).toBeUndefined()
+    expect(record.get('taberu--eat')!.cl).toBe('ichidan')
+  })
+
+  it('can build every merged segment from the word\'s dictionary form and class (the written form of the sentence for the rest, see below)', () => {
+    const verbPart: string[] = []
+    const kanaOnly: string[] = []
+    for (const { phrase, segment } of segmentsOf()) {
+      if (!segment.form) continue
+      const item = record.get(segment.word!)!
+      const built = buildForm('ja', item.ch, item.cl!, segment.form, { reading: item.pr })
+      expect(built, 'phrase ' + phrase + ' ' + segment.form).not.toBeNull()
+      if (built!.surface === segment.text && built!.reading === segment.reading) continue
+      if (item.ch === item.pr && built!.reading === segment.reading) { kanaOnly.push(item.ch); continue } // shown in kana, written with kanji in the sentence (行きます for いく)
+      expect(built!.surface.endsWith(segment.text!) && built!.reading!.endsWith(segment.reading!), 'phrase ' + phrase + ': ' + segment.text + ' vs ' + built!.surface).toBe(true)
+      verbPart.push(item.ch) // the item is a phrase (雨が降る) or noun + する whose segment is only the verb part
+    }
+    expect([...new Set(verbPart)].sort()).toEqual(['運転する', '雨が降る'])
+    expect([...new Set(kanaOnly)].sort()).toEqual(['あう', 'いく', 'くる', 'みる'])
+  })
+
+  it('builds the polite form of every verb in the catalog, with its reading', () => {
+    const verbs = band.vocabulary.filter(item => item.cl && !['i-adj', 'i-adj-ii', 'na-adj'].includes(item.cl))
+    expect(verbs).toHaveLength(53)
+    for (const item of verbs) {
+      const built = buildForm('ja', item.ch, item.cl!, 'masu', { reading: item.pr })
+      expect(built?.surface, item.lb).toMatch(/ます$/)
+      expect(built?.reading, item.lb).toMatch(/ます$/)
+    }
+    // the irregular classes: ある has no irregular masu, くる/する are built by their own class rows, 雨が降る and 電話をかける are phrases that end in a verb
+    expect(buildForm('ja', 'くる', 'kuru', 'masu', { reading: 'くる' })?.reading).toBe('きます')
+    expect(buildForm('ja', 'する', 'suru', 'masu')?.surface).toBe('します')
+  })
+})
+
+describe('one item per meaning with a short gloss', () => {
+  it('has a gloss of at most 40 characters in one style', () => {
+    for (const item of band.vocabulary) {
+      expect(item.ds.length, item.lb).toBeLessThanOrEqual(40)
+      expect(item.ds, item.lb).not.toMatch(/[[\]]/)
+    }
+    const bracketed = band.vocabulary.filter(item => /\(/.test(item.ds)).map(item => item.lb).sort()
+    expect(bracketed).toEqual(['aru--exist', 'atsui--hot', 'atsui--hot-2', 'iru--exist'].sort())
+    for (const item of band.vocabulary.filter(item => item.cl && !['i-adj', 'i-adj-ii', 'na-adj'].includes(item.cl))) expect(item.ds, item.lb).toMatch(/^to /)
+    expect(band.vocabulary.find(item => item.ch === '先生')!.ds).toBe('teacher')
+    expect(band.vocabulary.find(item => item.ch === '水')!.ds).toBe('water')
+    expect(band.vocabulary.find(item => item.ch === '牛乳')!.ds).toBe('milk')
+    expect(band.vocabulary.find(item => item.ch === '働く')!.ds).toBe('to work')
+  })
+})
+
+describe('pattern names a beginner can read', () => {
+  it('follows the convention: English placeholders in angle brackets, Japanese as written, plus signs between the parts', () => {
+    const byId = new Map(band.grammar.map(item => [item.id, item]))
+    expect(byId.get('ja-n5-g023')!.pt).toBe('<verb> + ます')
+    expect(byId.get('ja-n5-g001')!.pt).toBe('<noun> + です')
+    expect(byId.get('ja-n5-g003')!.pt).toBe('<sentence> + か')
+    expect(byId.get('ja-n5-g020')!.pt).toBe('<い-adjective> + です')
+    for (const item of band.grammar) {
+      expect(item.pt, item.id).not.toMatch(/[Ｎ＋／（）]|^N|動詞|形容詞/)
+      expect(item.pt.length, item.id).toBeLessThanOrEqual(80)
+      expect(item.pr, item.id).not.toMatch(/\p{Script=Han}/u)
+      if (!/\p{Script=Han}/u.test(item.pt)) expect(item.pr, item.id).toBe(item.pt)
+    }
+  })
+})
+

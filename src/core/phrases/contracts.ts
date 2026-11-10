@@ -40,7 +40,7 @@ export interface BankPhrase {
 /** A segment of a phrase's tokens (the same shape as an authored example's). */
 export const exampleSegmentSchema = z.object({
   word: z.string().min(1).optional(), grammar: z.string().min(1).optional(), punctuation: z.string().min(1).optional(),
-  text: z.string().min(1).optional(), reading: z.string().min(1).optional(), form: z.string().min(1).optional(), span: z.number().int().positive().optional(),
+  text: z.string().min(1).optional(), reading: z.string().min(1).optional(), form: z.string().min(1).optional(),
 }).strict()
 
 /** A band file of the shipped bank (generated from the YAML by scripts/generate-app-curriculum.mjs): one flat list of phrases. */

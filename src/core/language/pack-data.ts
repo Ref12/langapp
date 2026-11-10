@@ -18,9 +18,25 @@ export interface PhraseBankSource { bands: Record<string, JsonLoader>; index: Js
 /** The practice dataset: four kinds of band files and the count index. */
 export interface PracticeSource { files: Record<PracticeFileKind, Record<string, JsonLoader>>; index: JsonLoader }
 
+/** One row of a pack's forms table (src/data/packs/<language>/forms.generated.json): a word form with a name a learner can read. */
+export interface PackForm {
+  id: string
+  name: string
+  /** The ending shown separately from the name, e.g. 〜ます. */
+  ending?: string
+  /** The kinds of word the form applies to (verb, i-adj, na-adj, noun). */
+  kinds: string[]
+  /** The kinds in which the word and the ending are one token; in the others the ending stays a separate word (学生 + です). */
+  joined: string[]
+  /** Kind -> label of the grammar unit that teaches the form (none for the dictionary form). */
+  patterns: Record<string, string>
+}
+
 export interface PackData {
   catalog: CatalogSource
   phrases: PhraseBankSource
   /** Absent when the language has no dataset: the dataset forms then get no material. */
   practice?: PracticeSource
+  /** The word forms of the language (a file of { schemaVersion, forms: PackForm[] }); absent when the language has none. */
+  forms?: JsonLoader
 }

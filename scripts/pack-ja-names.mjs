@@ -52,7 +52,7 @@ export function readingOfName(name, readings = {}) {
 }
 
 // ---- label slugs ----
-const ABBREVIATIONS = { noun: 'n', verb: 'v', sentence: 's', 'い-adjective': 'i-adj', 'な-adjective': 'na-adj', adjective: 'adj', 'time expression': 'time-expr', number: 'num', 'question word': 'wh', subject: 'subj', 'plain form': 'plain', counter: 'counter' }
+const WORDS = { noun: 'n', verb: 'v', sentence: 's', 'い-adjective': 'i-adj', 'な-adjective': 'na-adj', adjective: 'adj', 'ない-form': 'nai-form', expression: 'expr', number: 'num', question: 'wh', subject: 'subj', plain: 'plain', dictionary: 'dict' }
 const slugWords = text => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 /** The label slug of a pattern's reading line: placeholders abbreviated, kana whole words in Hepburn (particles は を へ as wa o e). No fallback: a character that cannot be written throws. */
@@ -64,9 +64,11 @@ export function patternSlug(reading, romaji) {
     if (text.startsWith('<')) {
       const inner = text.slice(1, -1), digits = inner.match(/^(.*?)\s*(\d+)$/)
       const base = digits ? digits[1] : inner
-      out.push((ABBREVIATIONS[base] ?? slugWords(base)) + (digits ? digits[2] : ''))
+      if (base === 'question word') { out.push('wh' + (digits ? digits[2] : '')); continue }
+      out.push(base.split(' ').map(word => WORDS[word] ?? slugWords(word)).filter(Boolean).join('-') + (digits ? digits[2] : ''))
       continue
     }
+    if (HAN.test(text)) throw new Error('Cannot write the kanji of "' + text + '" as a label: the reading line has to be in kana')
     for (const run of text.split(/[^\p{Script=Hiragana}\p{Script=Katakana}ー]+/u).filter(Boolean)) {
       const fixed = toHiragana(run).replace(/(で|に|と)は/g, '$1わ')
       const word = fixed === 'は' ? 'wa' : fixed === 'を' ? 'o' : fixed === 'へ' ? 'e' : romaji(fixed)

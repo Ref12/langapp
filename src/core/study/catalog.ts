@@ -4,12 +4,13 @@ import { type Band, type UnitKind, bandSchema, unitRef } from './contracts'
 // Lazy access to the generated curriculum data of the build's language pack (Chinese: src/data/v2; getPack().catalog). Each band is
 // imported on first use so the Dictionary and study flows do not load ~4 MB up front.
 
-export interface VocabularyRecord { id: string; ch: string; pr: string; ds: string; lb: string }
+/** `cl` (absent in Chinese): the conjugation class of a word that inflects (ichidan, godan-mu, suru-compound, i-adj, na-adj …), as decided by the forms rules of the language. */
+export interface VocabularyRecord { id: string; ch: string; pr: string; ds: string; lb: string; cl?: string }
 /**
  * One piece of an authored example: a vocabulary word (`word` = its label), a grammar unit (`grammar` = its label) or punctuation. A Chinese segment has only that; a segment of another language may
- * carry its own surface `text` and `reading` (inflected words, particles: 勉強し + ます), and the `form`/`span` tags of the word-forms analysis (a form id and the number of following segments that belong to the same surface).
+ * carry its own surface `text` and `reading`. A conjugated word is one segment: the word's label, the whole surface (勉強します) and `form`, the id of the form it is in (the pack's forms table names it and points at the pattern that teaches it).
  */
-export interface ExampleSegment { word?: string; grammar?: string; punctuation?: string; text?: string; reading?: string; form?: string; span?: number }
+export interface ExampleSegment { word?: string; grammar?: string; punctuation?: string; text?: string; reading?: string; form?: string }
 export interface AuthoredExample { id: string; segments: ExampleSegment[]; translation: string; grammar: string[] }
 export interface GrammarRecord { id: string; pt: string; pr: string; ds: string; lb: string; ex: AuthoredExample | Omit<AuthoredExample, 'id'> }
 export interface StudyGroup { id: string; units: { kind: UnitKind; ref: string }[]; examples: AuthoredExample[] }

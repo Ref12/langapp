@@ -253,6 +253,7 @@ export function buildJaPack(base = defaultRoot) {
       const token = tokens[at]
       if (!token.w && !token.g) {
         if (!PUNCTUATION.test(token.t)) throw new Error('Phrase ' + phrase.id + ': token "' + token.t + '" is neither a word, a grammar unit nor punctuation')
+        parts[at] = token.t
         segments.push({ punctuation: token.t })
         continue
       }
@@ -315,7 +316,7 @@ export function buildJaPack(base = defaultRoot) {
   })
 
   // ---- the forms table: the names of the forms and the pattern unit that teaches each ----
-  const formNames = readJson(join(base, FORMS_FILE), { forms: {} }).forms
+  const formNames = readJson(existsSync(join(base, FORMS_FILE)) ? join(base, FORMS_FILE) : join(defaultRoot, FORMS_FILE), { forms: {} }).forms // a test's temporary root uses the repository's names
   const REPRESENTATIVE = { verb: 'ichidan', 'i-adj': 'i-adj', 'na-adj': 'na-adj', noun: 'noun' }
   for (const id of Object.keys(formNames)) if (!rules.forms[id]) throw new Error(FORMS_FILE + ' names an unknown form ' + id)
   const formsTable = Object.entries(rules.forms).map(([id, spec]) => {
