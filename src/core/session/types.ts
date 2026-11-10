@@ -39,6 +39,8 @@ export const PHRASE_FORMS: readonly Form[] = ['translate-zh-en', 'translate-en-z
 export const TYPED_FORMS: readonly Form[] = ['pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'dictation', 'exchange-reply']
 /** Forms that only the pre-generated dataset supplies (DatasetSource); the planner never builds them from phrases. */
 export const DATASET_FORMS: readonly Form[] = ['exchange-pick', 'exchange-reply', 'which-correct', 'conversation']
+/** Forms the pack's word-form entry supplies (language/word-forms.ts); the planner never builds them from phrases or vocabulary records, and a pack without word forms never plans, lists or counts them. */
+export const WORD_FORMS: readonly Form[] = ['conjugate', 'form-pick']
 
 export type AnswerMode = 'type' | 'speak' | 'write'
 
@@ -50,6 +52,8 @@ export interface Preset {
   forms: Partial<Record<Stage, readonly Form[]>>
   /** Rounds of the whole item list per stage at Standard length. A stage with 0 rounds is left out. */
   rounds: Partial<Record<Stage, number>>
+  /** The stages in which the preset takes the pack's word-form questions (Which form is this? in Recognise, Conjugate in Produce) without listing them: the built-in sets that read and write the language. A custom preset lists the forms it ticks. */
+  wordForms?: readonly Stage[]
 }
 
 /** A word of a phrase the learner does not know yet (allowed in recognise, reading and listening only), shown flagged. */

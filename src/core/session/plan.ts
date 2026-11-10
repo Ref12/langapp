@@ -6,8 +6,9 @@ import { buildChoiceItem, buildDictation, buildGap, buildListenPick, buildPinyin
 import { getPack } from '../language'
 import { LENGTH_FACTOR, estimateMinutes } from './presets'
 import { SentencePool } from './sentences'
+import { formWords, inflectedWords, takesWordForms, taughtGrammarIds, wordFormCount } from './word-form-plan'
 import type { DatasetSource } from './sources'
-import { DATASET_FORMS, STAGES, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan, type TextItem } from './types'
+import { DATASET_FORMS, STAGES, WORD_FORMS, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan, type TextItem } from './types'
 
 export interface PlanItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; py: string; en: string }
 
@@ -118,6 +119,22 @@ export function planSession(input: PlanInput): SessionPlan {
     }
   }
 
+  // The pack's word forms (Conjugate, Which form is this?): a part of a stage, from the words of the set (else the words the learner knows), in the forms the lessons so far have taught.
+  const extraForms = (stage: Stage, stageIndex: number, planned: number): SessionExercise[] => {
+    if (!takesWordForms(preset, stage, getPack())) return []
+    const count = wordFormCount(planned)
+    if (!count) return []
+    const inSet = formWords(catalog, items.map(item => item.ref), input.shown)
+    // The words of the set, and the words the learner already knows (a set of new items that has no verb still practises the verbs they have).
+    const have = new Set(inSet.map(word => word.id))
+    const words = [...inSet, ...formWords(catalog, input.known, input.shown).filter(word => !have.has(word.id))]
+    if (!words.length) return []
+    const pool = formWords(catalog, allowed, input.shown)
+    const taught = taughtGrammarIds(catalog, allowed)
+    const made = getPack().wordForms.exercises({ stage, count, words, pool, taught, inflected: inflectedWords(input.allBank, allowed), rng: createRng(input.seed + stageIndex * 104729) })
+    return made.map((entry, index) => ({ ...entry, id: `${stage}-wf-${index}-${counter++}`, stage, round: 0 }) as SessionExercise)
+  }
+
   for (const [stageIndex, stage] of STAGES.entries()) {
     const count = stage === 'introduce' ? (rounds.introduce > 0 && input.intent !== 'review' ? 1 : 0) : rounds[stage]
     if (!count) continue
@@ -128,7 +145,7 @@ export function planSession(input: PlanInput): SessionPlan {
       continue
     }
     const forms = (preset.forms[stage] ?? []).filter(form => form !== 'intro')
-    const itemForms = forms.filter(form => form !== 'match' && !DATASET_FORMS.includes(form))
+    const itemForms = forms.filter(form => form !== 'match' && !DATASET_FORMS.includes(form) && !WORD_FORMS.includes(form))
     const rng = createRng(input.seed + stageIndex * 7919)
     // The dataset goes first so its sentences are reserved before the phrase exercises pick theirs (no sentence twice).
     const fromDataset = input.dataset?.exercises({ stage, forms: preset.forms[stage] ?? [], items, allowed, taken: zh => pool.has(zh), take: zh => pool.reserve(zh) }) ?? []
@@ -161,6 +178,8 @@ export function planSession(input: PlanInput): SessionPlan {
       })
       exercises.push(...planned)
     }
+    // The pack's word-form questions open the stage (as the dataset's do), so a learner meets the verb forms before the sentences.
+    exercises.unshift(...extraForms(stage, stageIndex, exercises.length))
     // A typed Chinese reply from the dataset is the sentence builder when it practises a new item.
     exercises.unshift(...fromDataset.flatMap((entry): SessionExercise[] => {
       if (entry.form !== 'exchange-reply' || entry.refs.every(ref => input.known.has(ref))) return [entry]

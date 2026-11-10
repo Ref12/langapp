@@ -12,16 +12,17 @@ export const DEFAULT_PRESET: Preset = {
     use: ['translate-zh-en', 'listen-pick', 'gap', 'exchange-reply', 'conversation'],
   },
   rounds: { introduce: 1, recognise: 1, recall: 1, produce: 1, use: 1 },
+  wordForms: ['recognise', 'produce'],
 }
 
 /** The four skill presets change which forms the stages use and how much of the session each stage gets (design section 2). */
 export const SKILL_PRESETS: Preset[] = [
   { id: 'reading', name: 'Reading', blurb: 'Read and pick: choice, fill the gap, translate to English.',
     forms: { introduce: ['intro'], recognise: ['choice', 'match', 'gap', 'exchange-pick', 'which-correct'], recall: ['recall', 'choice'], produce: ['gap', 'tiles'], use: ['translate-zh-en', 'gap'] },
-    rounds: { introduce: 1, recognise: 2, recall: 1, produce: 0, use: 1 } },
+    rounds: { introduce: 1, recognise: 2, recall: 1, produce: 0, use: 1 }, wordForms: ['recognise'] },
   { id: 'writing', name: 'Writing', blurb: 'Produce Chinese: translate, dictation, word order, pinyin.',
     forms: { introduce: ['intro'], recognise: ['choice'], recall: ['pinyin'], produce: ['translate-en-zh', 'tiles', 'dictation'], use: ['dictation', 'translate-en-zh'] },
-    rounds: { introduce: 1, recognise: 1, recall: 1, produce: 2, use: 0 } },
+    rounds: { introduce: 1, recognise: 1, recall: 1, produce: 2, use: 0 }, wordForms: ['produce'] },
   { id: 'listening', name: 'Listening', blurb: 'Hear it: listen and pick, dictation.',
     forms: { introduce: ['intro'], recognise: ['listen-pick'], recall: ['listen-pick', 'dictation'], produce: ['dictation'], use: ['listen-pick', 'dictation', 'conversation'] },
     rounds: { introduce: 1, recognise: 2, recall: 0, produce: 1, use: 1 } },
@@ -62,9 +63,9 @@ export function presetFromCustom(custom: CustomPreset): Preset {
 /** Every form a stage can use, for the builder's checkboxes. */
 export const FORMS_BY_STAGE: Record<Stage, readonly Form[]> = {
   introduce: ['intro'],
-  recognise: ['choice', 'match', 'listen-pick', 'repeat', 'exchange-pick', 'which-correct'],
+  recognise: ['choice', 'match', 'listen-pick', 'repeat', 'exchange-pick', 'which-correct', 'form-pick'],
   recall: ['recall', 'pinyin', 'choice', 'listen-pick', 'dictation'],
-  produce: ['tiles', 'translate-en-zh', 'gap', 'dictation'],
+  produce: ['tiles', 'translate-en-zh', 'gap', 'dictation', 'conjugate'],
   use: ['translate-zh-en', 'listen-pick', 'gap', 'dictation', 'translate-en-zh', 'repeat', 'exchange-reply', 'conversation'],
 }
 

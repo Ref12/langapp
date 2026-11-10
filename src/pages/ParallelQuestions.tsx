@@ -4,7 +4,8 @@ import { AnswerButton } from '../components/AnswerButton'
 import { ParallelHear } from '../components/ParallelHear'
 import { Form } from '../components/ParallelForm'
 import { gradeTiles, type TilesGrade } from '../core/parallel/session'
-import { gradeConjugate, type ConjugateResult } from '../core/parallel/conjugate'
+import { gradeConjugate } from '../core/parallel/conjugate'
+import { ConjugateQuestion as WordFormConjugate, FormPickQuestion as WordFormPick, type WordFormContext } from '../components/WordFormQuestions'
 import type { ParallelLanguage } from '../core/parallel/data'
 import type { ChoiceItem, ConjugateItem, FormPickItem, ListenItem, MatchItem, TilesItem } from '../core/session/types'
 
@@ -125,45 +126,16 @@ export function TilesQuestion({ exercise, ctx, onDone }: { exercise: TilesItem; 
   </>
 }
 
-/** Conjugate: build the form of a known word from tiles (its stem and ending pieces, plus distractor endings). Graded exactly against forms(); the answer shows the reading, the rule and, for an irregular form, the item. */
-export function ConjugateQuestion({ exercise, ctx, onDone }: { exercise: ConjugateItem; ctx: ParallelContext; onDone: (done: Done) => void }) {
-  const all = [...exercise.tiles, ...exercise.distractors]
-  const [placed, setPlaced] = useState<number[]>([])
-  const [result, setResult] = useState<ConjugateResult>()
-  const locked = ctx.busy || result !== undefined
-  const ok = result === 'right' || result === 'almost'
-  const tile = (index: number) => <Form text={all[index]} reading={exercise.tileReadings[index]} language={ctx.language} />
-  return <>
-    <p className="practice-prompt" data-testid="conjugate-prompt"><Form text={exercise.lemma} reading={exercise.lemmaReading} language={ctx.language} /> <span aria-hidden="true">{'\u2192'}</span> <span lang="en">{exercise.label}</span></p>
-    <p className="small muted" lang="en">{exercise.gloss}</p>
-    <div className="tile-answer" lang={ctx.language} role="group" aria-label="Your form">
-      {placed.length ? placed.map(index => <button key={index} type="button" className={`tile${result ? ok ? ' match-locked' : ' match-wrong' : ''}`} disabled={locked} onClick={() => setPlaced(placed.filter(item => item !== index))}>{tile(index)}</button>)
-        : <span className="small muted">Tap the tiles in order to build the form.</span>}</div>
-    <div className="tile-bank" lang={ctx.language} role="group" aria-label="Available tiles">
-      {exercise.shuffled.map(index => <button key={index} type="button" className={`tile ${placed.includes(index) ? 'tile-used' : ''}`} disabled={locked || placed.includes(index)} onClick={() => setPlaced([...placed, index])}>{tile(index)}</button>)}</div>
-    <AnswerButton result={result === undefined ? undefined : ok} busy={ctx.busy} ready={placed.length >= 1} onCheck={() => setResult(gradeConjugate(ctx.language, placed.map(index => all[index]).join(''), { surface: exercise.answer, reading: exercise.answerReading }))} onNext={() => onDone({ correct: ok })} />
-    {result && <div className={`notice answer-feedback engine-diff${ok ? ' success' : ''}`} role="status" data-testid="conjugate-result">
-      <p>{result === 'right' ? 'Correct.' : result === 'almost' ? 'Almost: the letters are right, mind the spacing.' : 'Not quite.'}</p>
-      <p className="engine-answer-line parallel-answer"><Form text={exercise.answer} reading={exercise.answerReading} language={ctx.language} /> <ParallelHear text={exercise.answer} language={ctx.language} label="Hear the answer" /></p>
-      <p className="small" data-testid="conjugate-rule">Rule: <span lang={ctx.language}>{exercise.rule}</span></p>
-      {exercise.irregular && <p className="small" data-testid="conjugate-irregular"><span className="tag">irregular</span>{exercise.itemRef ? <> item <span lang={ctx.language}>{exercise.itemRef}</span></> : null}</p>}</div>}
-  </>
-}
+/** The context the moved word-form questions (components/WordFormQuestions.tsx) take, from a parallel screen's. */
+const wordFormContext = (ctx: ParallelContext): WordFormContext => ({
+  lang: ctx.language, busy: ctx.busy, almost: 'Almost: the letters are right, mind the spacing.', written: (text, reading) => <Form text={text} reading={reading} language={ctx.language} />,
+  hear: (text, label) => <ParallelHear text={text} language={ctx.language} label={label} />, grade: (given, answer) => gradeConjugate(ctx.language, given, answer),
+})
 
-/** Form to meaning: an inflected form from the lessons; pick its word and form. */
+/** Conjugate and Which form is this? live in components/WordFormQuestions.tsx (the engine's question screen renders them too); the parallel screen renders the same components until step 4. */
+export function ConjugateQuestion({ exercise, ctx, onDone }: { exercise: ConjugateItem; ctx: ParallelContext; onDone: (done: Done) => void }) {
+  return <WordFormConjugate exercise={exercise} ctx={wordFormContext(ctx)} onDone={onDone} />
+}
 export function FormPickQuestion({ exercise, ctx, onDone }: { exercise: FormPickItem; ctx: ParallelContext; onDone: (done: Done) => void }) {
-  const [selected, setSelected] = useState(-1)
-  const [result, setResult] = useState<boolean>()
-  return <>
-    <p className="practice-prompt native" data-testid="form-pick-prompt"><Form text={exercise.surface} reading={exercise.reading} language={ctx.language} /> <ParallelHear text={exercise.surface} language={ctx.language} label="Hear the form" /></p>
-    <fieldset className="answer-options" disabled={ctx.busy || result !== undefined}><legend className="visually-hidden">Choose the word and form</legend>
-      {exercise.options.map((option, index) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${result !== undefined && index === exercise.answer ? 'correct-option' : ''}`}>
-        <input type="radio" name={exercise.id} checked={selected === index} onChange={() => setSelected(index)} />
-        <span><Form text={option.lemma} reading={option.reading} language={ctx.language} /> <span lang="en">{'\u00B7'} {option.label}</span><span className="small muted" lang="en"> {'\u2014'} {option.gloss}</span></span>
-        <span className="answer-option-mark">{result !== undefined && index === exercise.answer && <Check size={18} aria-label="Correct answer" />}</span></label>)}
-    </fieldset>
-    <AnswerButton result={result} busy={ctx.busy} ready={selected >= 0} onCheck={() => setResult(selected === exercise.answer)} onNext={() => onDone({ correct: result === true })} />
-    {result !== undefined && <div className="notice answer-feedback" role="status"><p lang="en">{exercise.explanation}</p><p className="small">Rule: <span lang={ctx.language}>{exercise.rule}</span></p>
-      {exercise.phrase && <p className="small"><span lang={ctx.language}>{exercise.phrase.text}</span> {'\u2014'} {exercise.phrase.en}</p>}</div>}
-  </>
+  return <WordFormPick exercise={exercise} ctx={wordFormContext(ctx)} onDone={onDone} />
 }

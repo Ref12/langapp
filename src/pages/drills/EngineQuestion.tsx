@@ -14,9 +14,11 @@ import { tidyPinyin } from '../../core/drills/items'
 import { gradeMeaning, type ChineseGrade, type MeaningGrade } from '../../core/session/grade'
 import type { ReadingGrade } from '../../core/language/reading-input'
 import { ReadingText } from '../../components/display-context'
-import type { AnswerMode, Form, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
+import type { AnswerMode, ConjugateItem, Form, FormPickItem, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
 import { ChoiceQuestion, MatchQuestion, TilesQuestion } from '../Study'
 import { ConversationQuestion, ExchangePick, WhichCorrect } from './DatasetQuestions'
+import { ConjugateQuestion, FormPickQuestion, type WordFormContext } from '../../components/WordFormQuestions'
+import { useShowsReading } from '../../components/display-settings'
 
 export interface QuestionContext {
   readings: Map<string, Set<string>>
@@ -153,6 +155,19 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   </>
 }
 
+/** The word-form questions (components/WordFormQuestions.tsx) in the engine: the pack's tag, voice and marking, and the reading line in the learner's Readings setting. */
+function WordForm({ exercise, ctx, onDone }: { exercise: ConjugateItem | FormPickItem; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
+  const shows = useShowsReading()
+  const pack = getPack()
+  const shared: WordFormContext = {
+    lang: pack.learningTag, busy: ctx.busy, almost: pack.wordForms.almost,
+    written: (text, reading) => ctx.pinyin && shows(reading, text) ? <ruby className="mandarin-word" lang={pack.learningTag}>{text}<rt aria-hidden="true" data-assistant-exclude><ReadingText kana={reading!} /></rt></ruby> : <span lang={pack.learningTag}>{text}</span>,
+    hear: (text, label) => <HearButton text={text} locale={pack.speechLocale} label={label} iconOnly />,
+    grade: (given, answer) => pack.wordForms.grade(given, answer, pack.romaji),
+  }
+  return exercise.form === 'conjugate' ? <ConjugateQuestion exercise={exercise} ctx={shared} onDone={onDone} /> : <FormPickQuestion exercise={exercise} ctx={shared} onDone={onDone} />
+}
+
 export function ExerciseQuestion(props: { exercise: Exclude<SessionExercise, { form: 'intro' | 'repeat' }>; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
   return <><Instruction form={props.exercise.form} /><ExerciseBody {...props} /></>
 }
@@ -168,6 +183,7 @@ function ExerciseBody({ exercise, ctx, onDone }: { exercise: Exclude<SessionExer
     const header = exercise.form === 'gap' ? <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.gapped}</p> : exercise.form === 'listen-pick' ? <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} label="Hear it" /></p> : undefined
     return <PickQuestion exercise={exercise} shape={choiceShape} header={header} ctx={ctx} onDone={onDone} />
   }
+  if (exercise.form === 'conjugate' || exercise.form === 'form-pick') return <WordForm exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'exchange-pick') return <ExchangePick exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'which-correct') return <WhichCorrect exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'conversation') return <ConversationQuestion exercise={exercise} ctx={ctx} onDone={onDone} />

@@ -20,6 +20,8 @@ const shapes: Record<string, object> = {
   'exchange-pick': { question: { zh: '你好吗', py: '', en: 'How are you?' }, options: [{ zh: '好', py: '', en: 'good' }], answer: 0, explanation: '' },
   'exchange-reply': { prompt: '你好吗', promptLang: 'zh', hearText: '你好吗', answerLang: 'zh', accepted: ['我很好'], model: '我很好', questionEn: 'How are you?', replyEn: "I'm fine.", explanation: '' },
   'which-correct': { en: 'study', options: [{ zh: '学习' }, { zh: '习学' }], answer: 0, whys: [], explanation: '' },
+  conjugate: { lemma: '学习', cls: 'x', formId: 'f', label: 'form', gloss: 'study', tiles: ['学', '习'], tileReadings: [], distractors: [], shuffled: [0, 1], answer: '学习', rule: 'rule', irregular: false, explanation: '' },
+  'form-pick': { surface: '学习', options: [{ lemma: '学', gloss: 'a', label: 'b' }, { lemma: '习', gloss: 'c', label: 'd' }], answer: 0, rule: 'rule', explanation: '' },
   conversation: { title: 't', lines: [{ who: 'A', zh: '你好', py: '', en: '' }], questions: [{ after: 0, question: 'q', options: opt, answer: 0 }], explanation: '' },
 }
 const exercise = (form: string, extra: object = {}) => ({ ...base, form, ...shapes[form], ...extra }) as unknown as Exclude<SessionExercise, { form: 'intro' | 'repeat' }>

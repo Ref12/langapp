@@ -129,6 +129,26 @@ describe('screen text for a small seeded Japanese learner', () => {
     expect(document.querySelectorAll('.tile-bank .tile').length).toBeGreaterThanOrEqual(3)
     vi.restoreAllMocks()
   }, 30000)
+  it('Practice: a Conjugate question', async () => {
+    saveCustomPreset({ id: 'custom-conjugate', name: 'Conjugate only', forms: ['conjugate'], stages: ['produce'] })
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'custom-conjugate' })
+    const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByTestId('conjugate-prompt')).toBeInTheDocument())
+    // The word, its form and the meaning are drawn at random from what the lessons so far teach, and the tiles are shuffled: the pin masks them. The word is shown as the learner reads verbs (polite).
+    await pin('practice-conjugate', question.replace(/(Conjugate\n)[\s\S]*?(Tap the tiles in order to build the form\.\n)[\s\S]*?(Check answer)/, '$1<word, form, meaning>\n$2<tiles>\n$3'))
+    expect(screen.getByTestId('conjugate-prompt')).toHaveTextContent(/ます/)
+  }, 30000)
+  it('Practice: a Which form is this? question', async () => {
+    saveCustomPreset({ id: 'custom-form-pick', name: 'Which form only', forms: ['form-pick'], stages: ['recognise'] })
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'custom-form-pick' })
+    const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByTestId('form-pick-prompt')).toBeInTheDocument())
+    // The sentence's word and the options are drawn at random: the pin masks them.
+    await pin('practice-form-pick', question.replace(/(Which form is this\?\n)[\s\S]*?(Check answer)/, '$1<inflected word, reading>\nChoose the word and form\n<options>\n$2'))
+    expect(screen.getAllByRole('radio').length).toBeGreaterThanOrEqual(3)
+  }, 30000)
   it('Practice: a typed-reading question', async () => {
     saveCustomPreset({ id: 'custom-reading', name: 'Reading only', forms: ['pinyin'], stages: ['recall'] })
     const id = await createDrillSet({ kind: 'new' })
