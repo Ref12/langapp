@@ -30,7 +30,7 @@ beforeEach(async () => {
   for (const info of await indexedDB.databases()) if (info.name) await Dexie.delete(info.name)
   localStorage.clear()
 })
-afterEach(() => { setBuildChannelForTests(undefined) })
+afterEach(() => { vi.restoreAllMocks(); setBuildChannelForTests(undefined) })
 
 async function openLab() {
   vi.resetModules()
@@ -64,21 +64,48 @@ describe('Copy profile from Stable', () => {
     expect(await snapshotStable(caches)).toEqual(before)
   })
 
-  // Skipped 2026-11-10: after a successful copy the dialog schedules window.location.reload() 900 ms later and never clears it;
-  // in the deploy's test shard the timer fired after the test environment was torn down ("window is not defined", Pages run 42911502174).
-  // Re-enable once StableCopyDialog clears that timer on unmount.
-  it.skip('replaces the Lab profile only after the learner confirms', async () => {
+  async function confirmCopy(unmountAfter: boolean) {
     await seedStable()
     await openLab()
     await addToKnowledge(['vocabulary:cha2--tea'])
     const reload = vi.fn()
-    Object.defineProperty(window, 'location', { configurable: true, value: { ...window.location, reload } })
+    const original = window.location
+    Object.defineProperty(window, 'location', { configurable: true, value: { ...original, reload } })
+    const realSet = window.setTimeout.bind(window)
+    const scheduled: { fn: () => void; ms?: number; id: number }[] = []
+    vi.spyOn(window, 'setTimeout').mockImplementation(((fn: () => void, ms?: number, ...rest: unknown[]) => {
+      if (ms !== 900) return realSet(fn, ms, ...rest)
+      scheduled.push({ fn, ms, id: 900_001 })
+      return 900_001
+    }) as unknown as typeof window.setTimeout)
+    const clear = vi.spyOn(window, 'clearTimeout')
     const user = userEvent.setup()
-    render(<StableCopyDialog mode="menu" onClose={() => undefined} />)
+    const view = render(<StableCopyDialog mode="menu" onClose={() => undefined} />)
     await user.click(await screen.findByRole('radio', { name: /default/ }))
     await user.click(screen.getByRole('button', { name: 'Replace Lab profile' }))
     await waitFor(async () => expect((await db.knowledge.toArray()).map(row => row.ref).sort()).toEqual(['grammar:s-shi4-n--identity', 'ja:w:ja-n5-00679', 'ko:w:ko-nikl-24021', 'vocabulary:cha2--tea']))
     expect(await screen.findByText(/Copied/)).toBeInTheDocument()
+    if (unmountAfter) view.unmount()
+    return { reload, scheduled, clear, restore: () => Object.defineProperty(window, 'location', { configurable: true, value: original }) }
+  }
+
+  it('replaces the Lab profile only after the learner confirms, then reloads 900 ms later', async () => {
+    const { reload, scheduled, restore } = await confirmCopy(false)
+    try {
+      expect(scheduled).toHaveLength(1)
+      expect(reload).not.toHaveBeenCalled()
+      scheduled[0].fn()
+      expect(reload).toHaveBeenCalledOnce()
+    } finally { restore() }
+  })
+
+  it('clears the pending reload when the dialog unmounts', async () => {
+    const { reload, scheduled, clear, restore } = await confirmCopy(true)
+    try {
+      expect(scheduled).toHaveLength(1)
+      expect(clear).toHaveBeenCalledWith(scheduled[0].id)
+      expect(reload).not.toHaveBeenCalled()
+    } finally { restore() }
   })
 
   it('offers the copy up front on an empty profile; declining leaves it empty and is remembered', async () => {

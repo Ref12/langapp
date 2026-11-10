@@ -22,6 +22,12 @@ export function StableCopyDialog({ mode, onClose }: { mode: 'offer' | 'menu'; on
   const first = useRef<HTMLButtonElement>(null)
   const close = useRef(onClose)
   close.current = onClose
+  const reloadTimer = useRef<number | undefined>(undefined)
+  const mounted = useRef(true)
+  useEffect(() => {
+    mounted.current = true
+    return () => { mounted.current = false; window.clearTimeout(reloadTimer.current) }
+  }, [])
 
   useEffect(() => {
     let live = true
@@ -45,8 +51,16 @@ export function StableCopyDialog({ mode, onClose }: { mode: 'offer' | 'menu'; on
   }
   const replace = async () => {
     setBusy(true); setError('')
-    try { await copyStableProfile(choice); setDone(true); window.setTimeout(() => window.location.reload(), 900) }
-    catch (reason) { setError(reason instanceof Error ? reason.message : 'The copy failed. Nothing in Stable was changed.'); setBusy(false) }
+    try {
+      await copyStableProfile(choice)
+      if (!mounted.current) return
+      setDone(true)
+      reloadTimer.current = window.setTimeout(() => window.location.reload(), 900)
+    }
+    catch (reason) {
+      if (!mounted.current) return
+      setError(reason instanceof Error ? reason.message : 'The copy failed. Nothing in Stable was changed.'); setBusy(false)
+    }
   }
   const picked = profiles?.find(profile => profile.id === choice)
 
