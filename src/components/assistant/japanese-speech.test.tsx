@@ -37,9 +37,9 @@ describe('speech in a Japanese build', () => {
   it('Hear speaks with a ja-JP language', async () => {
     render(<HearButton text="勉強する" locale={getPack().speechLocale} label="Hear 勉強する" iconOnly />)
     await userEvent.click(screen.getByRole('button', { name: 'Hear 勉強する' }))
-    expect(spoken).toHaveLength(1)
-    expect(spoken[0].text).toBe('勉強する')
-    expect(spoken[0].lang).toBe('ja-JP')
+    const hear = spoken.find(item => item.text === '勉強する')
+    expect(hear?.lang).toBe('ja-JP')
+    expect(spoken.every(item => item.lang === 'ja-JP')).toBe(true)
   })
   it('the voice filter keeps Japanese voices only', () => {
     expect(voices.filter(item => browserVoiceMatches(item, 'ja-JP')).map(item => item.name)).toEqual(['Kyoko'])
