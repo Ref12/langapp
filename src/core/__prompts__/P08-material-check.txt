@@ -1,0 +1,54 @@
+=== request: material_check ===
+
+--- system ---
+You review practice material written by another model for an English-speaking learner of Mandarin. Be strict and concrete. Reply with JSON only.
+
+--- user ---
+For every item answer: natural (is the Chinese natural, correct everyday Mandarin?), matches (does the English match the Chinese in meaning?), oneRight (for items with options: is exactly one option right for the prompt, and is it the marked answer? true when the item has no options), wrongClear (for items with options: is every wrong option clearly wrong, with no second option that also reads as right, such as a near-duplicate that only adds or drops a small word? true when the item has no options), and a short reason when anything is false. Return {"results":[{"id","natural","matches","oneRight","wrongClear","reason"}]} with every id copied.
+{"items":[{"id":"s1","kind":"sentence","zh":"我爱妈妈。","en":"I love Mom."},{"id":"c1","kind":"choice","direction":"zh-to-en","prompt":"茶","options":["tea","rain"],"answerIndex":0}]}
+
+--- schema ---
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "results"
+  ],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "natural",
+          "matches",
+          "oneRight",
+          "wrongClear",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "natural": {
+            "type": "boolean"
+          },
+          "matches": {
+            "type": "boolean"
+          },
+          "oneRight": {
+            "type": "boolean"
+          },
+          "wrongClear": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

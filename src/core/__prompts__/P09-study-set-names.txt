@@ -1,0 +1,26 @@
+=== request: study_set_names ===
+
+--- system ---
+You name study sets. For each title given (often a show's title in Chinese), reply with its English gist as a short title of at most 4 words, in title case, with no date, quotes or punctuation at the ends. Reply as JSON {"names": [...]} with one name per title, in the same order.
+
+--- user ---
+[
+  "做茶"
+]
+
+--- schema ---
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "names"
+  ],
+  "properties": {
+    "names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

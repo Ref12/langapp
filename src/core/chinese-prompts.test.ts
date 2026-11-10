@@ -22,6 +22,13 @@ import { judgeItems } from './ai/check'
 import { englishGists } from './collections/naming'
 import { checkSentences, startContent } from './drills/content'
 import { learnerFixture } from './profiles/fixtures/learner'
+import { loadCatalog } from './study/catalog'
+import { initializeWorkspace, loadWorkspace } from './database'
+import { generateSudokuPhrase } from './games/sudoku-phrases'
+import { translateBook } from './library/translation'
+import { linkEntries } from './media/entries'
+import { translateMedia } from './media/translation'
+import type { MediaItem } from './media/contracts'
 
 const recorder = vi.hoisted(() => ({
   calls: [] as { name: string; system: string; user: string; schema: unknown }[],
@@ -42,7 +49,6 @@ const render = (call: { name: string; system: string; user: string; schema: unkn
   '=== request: ' + call.name + ' ===\n\n--- system ---\n' + call.system + '\n\n--- user ---\n' + pretty(call.user) + '\n\n--- schema ---\n' + JSON.stringify(call.schema, null, 2) + '\n'
 const renderAll = (calls: typeof recorder.calls) => calls.map(render).join('\n')
 const connection = { id: 'assistant', revision: 'r1', updatedAt: 1, apiType: 'chat-completions', baseUrl: 'https://synthetic.invalid/v1', apiKey: 'synthetic-key', model: 'synthetic-model', nativeTools: false, structuredOutput: true, storageAcknowledged: true } as const
-const first = (name: string) => { const call = recorder.calls.find(entry => entry.name === name); if (!call) throw new Error('no request named ' + name + ' (saw ' + recorder.calls.map(entry => entry.name).join(', ') + ')'); return call }
 
 beforeEach(async () => {
   recorder.calls.length = 0
@@ -140,5 +146,52 @@ describe('prompts built inside a request (P8 to P14), recorded at the model call
     const asked = [{ ref: set.refs[0], kind: 'vocabulary', zh: '爱', py: 'ài', en: 'to love' }]
     await checkSentences(connection as never, { [set.refs[0]]: { zh: '我爱爱爱。', py: 'wǒ ài ài ài', en: 'I love love love.', source: 'ai' } }, asked as never, { segmenter: { covers: () => true } as never, prompt: ['爱 (ài): to love'] })
     await expect(renderAll([...calls, ...recorder.calls])).toMatchFileSnapshot(FILE('P10-drill-content'))
+  })
+
+  it('P11 Sudoku phrase', async () => {
+    await initializeWorkspace()
+    await db.knowledge.bulkAdd(learnerFixture().snapshot.knowledge.study.knowledge.filter(entry => entry.kind === 'vocabulary').slice(0, 40))
+    recorder.respond = () => ({ text: '', translation: '' })
+    await generateSudokuPhrase(await loadCatalog(), await loadWorkspace(), 4, new AbortController().signal).catch(() => undefined)
+    await expect(renderAll(recorder.calls)).toMatchFileSnapshot(FILE('P11-sudoku-phrase'))
+  })
+
+  it('P12 book translation', async () => {
+    const book = learnerFixture().snapshot.library[0]
+    await db.libraryBooks.add(book)
+    recorder.respond = () => ({})
+    await translateBook(book.id, [1], new AbortController().signal).catch(() => undefined)
+    await expect(renderAll(recorder.calls)).toMatchFileSnapshot(FILE('P12-book-translation'))
+  })
+
+  const lines = [['你好，欢迎回来。', 0], ['今天我们做茶。', 3.5], ['先烧水。', 7]] as const
+  const media = (translated: boolean): MediaItem => ({
+    id: '00000000-0000-4000-8000-000000000301', savedAt: 1, url: 'https://media.invalid/v', title: 'Making tea', extractor: 'synthetic', source: 'captions', language: 'zh-Hans',
+    lines: lines.map(([text, start], n) => ({ start, end: start + 3, text, ...(n < 0 ? {} : {}) })),
+    ...(translated ? { aligned: {
+      sentences: [{ lines: [0, 2] as [number, number], translation: 'Hello, welcome back. Today we make tea. First boil water.', fragments: [] }],
+      tokens: [
+        { line: 0, items: [{ text: '你好', pinyin: 'nǐ hǎo', meaning: 'hello', trailing: '，' }, { text: '欢迎', pinyin: 'huān yíng', meaning: 'welcome', trailing: '' }, { text: '回来', pinyin: 'huí lái', meaning: 'come back', trailing: '。' }] },
+        { line: 1, items: [{ text: '今天', pinyin: 'jīn tiān', meaning: 'today', trailing: '' }, { text: '我们', pinyin: 'wǒ men', meaning: 'we', trailing: '' }, { text: '做', pinyin: 'zuò', meaning: 'make', trailing: '' }, { text: '茶', pinyin: 'chá', meaning: 'tea', trailing: '。' }] },
+        { line: 2, items: [{ text: '先', pinyin: 'xiān', meaning: 'first', trailing: '' }, { text: '烧水', pinyin: 'shāo shuǐ', meaning: 'boil water', trailing: '。' }] },
+      ],
+      upTo: 3, updatedAt: 1,
+    } } : {}),
+  } as MediaItem)
+
+  it('P13 media dictionary entries', async () => {
+    await db.mediaItems.add(media(true))
+    recorder.respond = () => ({ results: [] })
+    await linkEntries(media(true).id, new AbortController().signal).catch(() => undefined)
+    // the entry request is retried with the same words: pin each kind of request once
+    await expect(renderAll([...new Map([...recorder.calls].reverse().map(call => [call.name, call])).values()].reverse())).toMatchFileSnapshot(FILE('P13-media-entries'))
+  })
+
+  it('P14 media subtitle translation, line follow-up and fragment follow-up', async () => {
+    await db.mediaItems.add(media(false))
+    recorder.respond = request => request.name === 'media_translation' ? { s: [{ l: [0, 1], t: 'Hello, welcome back. Today we make tea.', f: [] }], k: [] } : { r: [] }
+    await translateMedia(media(false).id, new AbortController().signal, undefined, { concurrency: 1, chunkSize: 20, known: new Set() }).catch(() => undefined)
+    const seen = new Map(recorder.calls.map(call => [call.name, call]))
+    await expect(renderAll([...seen.values()])).toMatchFileSnapshot(FILE('P14-media-translation'))
   })
 })

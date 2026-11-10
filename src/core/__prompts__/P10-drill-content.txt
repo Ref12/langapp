@@ -1,0 +1,242 @@
+=== request: drill_sentences ===
+
+--- system ---
+You write short Mandarin practice material for an English-speaking learner. Use simple, natural, everyday Chinese. Pinyin has tone marks and spaces between syllables. English has no Chinese characters. Reply with JSON only.
+
+--- user ---
+Write exactly one short sentence (at most 14 characters) for each item below. The Chinese sentence must contain the item's form. Every Chinese word must come from the items, otherKnownVocabulary or the basic function characters 的了吗呢吧是不很也都和在有这那我你他她们个. No other words. Return {"sentences":[{"ref","zh","py","en"}]} with the ref copied from the item.
+{"items":[{"ref":"vocabulary:ai4--love","form":"爱","pinyin":"ài","meaning":"to love; like very much"},{"ref":"vocabulary:ban4--half","form":"半","pinyin":"bàn","meaning":"half"},{"ref":"vocabulary:bu4--not","form":"不","pinyin":"bù","meaning":"not; used to negate a statement"},{"ref":"vocabulary:che1--car","form":"车","pinyin":"chē","meaning":"car"},{"ref":"vocabulary:da4--older","form":"大","pinyin":"dà","meaning":"older in age"},{"ref":"vocabulary:di4-di5--brother","form":"弟弟","pinyin":"dì di","meaning":"younger brother"}],"otherKnownVocabulary":[]}
+
+--- schema ---
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sentences"
+  ],
+  "properties": {
+    "sentences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref",
+          "zh",
+          "py",
+          "en"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "zh": {
+            "type": "string"
+          },
+          "py": {
+            "type": "string"
+          },
+          "en": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+
+=== request: drill_conversations ===
+
+--- system ---
+You write short Mandarin practice material for an English-speaking learner. Use simple, natural, everyday Chinese. Pinyin has tone marks and spaces between syllables. English has no Chinese characters. Reply with JSON only.
+
+--- user ---
+Write 2 short conversations (4 to 6 lines each, speakers A and B) that use these study items between them. After some lines add a comprehension question in English with 2 to 4 options; "after" is the 0-based index of the line it follows and "answer" the 0-based index of the right option. Each conversation has 2 questions. Every Chinese word must come from the items, otherKnownVocabulary or the basic function characters 的了吗呢吧是不很也都和在有这那我你他她们个. No other words. The English questions and options may use any English.
+{"items":[{"form":"爱","pinyin":"ài","meaning":"to love; like very much"},{"form":"半","pinyin":"bàn","meaning":"half"},{"form":"不","pinyin":"bù","meaning":"not; used to negate a statement"},{"form":"车","pinyin":"chē","meaning":"car"},{"form":"大","pinyin":"dà","meaning":"older in age"},{"form":"弟弟","pinyin":"dì di","meaning":"younger brother"}],"otherKnownVocabulary":[]}
+
+--- schema ---
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "conversations"
+  ],
+  "properties": {
+    "conversations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "lines",
+          "questions"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "who",
+                "zh",
+                "py",
+                "en"
+              ],
+              "properties": {
+                "who": {
+                  "type": "string"
+                },
+                "zh": {
+                  "type": "string"
+                },
+                "py": {
+                  "type": "string"
+                },
+                "en": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "after",
+                "question",
+                "options",
+                "answer"
+              ],
+              "properties": {
+                "after": {
+                  "type": "integer"
+                },
+                "question": {
+                  "type": "string"
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "answer": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+=== request: material_check ===
+
+--- system ---
+You review practice material written by another model for an English-speaking learner of Mandarin. Be strict and concrete. Reply with JSON only.
+
+--- user ---
+For every item answer: natural (is the Chinese natural, correct everyday Mandarin?), matches (does the English match the Chinese in meaning?), oneRight (for items with options: is exactly one option right for the prompt, and is it the marked answer? true when the item has no options), wrongClear (for items with options: is every wrong option clearly wrong, with no second option that also reads as right, such as a near-duplicate that only adds or drops a small word? true when the item has no options), and a short reason when anything is false. Return {"results":[{"id","natural","matches","oneRight","wrongClear","reason"}]} with every id copied.
+{"items":[{"id":"vocabulary:ai4--love","kind":"sentence","zh":"我爱爱爱。","en":"I love love love."}]}
+
+--- schema ---
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "results"
+  ],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "natural",
+          "matches",
+          "oneRight",
+          "wrongClear",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "natural": {
+            "type": "boolean"
+          },
+          "matches": {
+            "type": "boolean"
+          },
+          "oneRight": {
+            "type": "boolean"
+          },
+          "wrongClear": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+
+=== request: drill_sentences ===
+
+--- system ---
+You write short Mandarin practice material for an English-speaking learner. Use simple, natural, everyday Chinese. Pinyin has tone marks and spaces between syllables. English has no Chinese characters. Reply with JSON only.
+
+--- user ---
+Rewrite one short sentence (at most 14 characters) for each item below; the previous one failed review for the reason given. The Chinese sentence must contain the item's form. Every Chinese word must come from the items, otherKnownVocabulary or the basic function characters 的了吗呢吧是不很也都和在有这那我你他她们个. No other words. Return {"sentences":[{"ref","zh","py","en"}]} with the ref copied from the item.
+{"items":[{"ref":"vocabulary:ai4--love","form":"爱","previous":"我爱爱爱。","problem":"unnatural"}],"otherKnownVocabulary":["爱 (ài): to love"]}
+
+--- schema ---
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sentences"
+  ],
+  "properties": {
+    "sentences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref",
+          "zh",
+          "py",
+          "en"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "zh": {
+            "type": "string"
+          },
+          "py": {
+            "type": "string"
+          },
+          "en": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
