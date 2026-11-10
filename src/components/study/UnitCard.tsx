@@ -8,7 +8,7 @@ import { PracticeSnippet } from '../assistant/SnippetActions'
 import { getPack } from '../../core/language'
 import { BandName } from '../BandName'
 import { ReadingText } from '../display-context'
-import { useHeadword, useShowsReading } from '../display-settings'
+import { useHeadword, usePackFormsTable, useShowsReading } from '../display-settings'
 import { WordForms } from './WordForms'
 import { SaveActions } from '../collections/SaveToMenu'
 import type { AddedByIndex } from '../../core/study/addedby'
@@ -21,10 +21,11 @@ import { OtherLanguageSetting, languagesFor } from './other-language-setting'
 export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Catalog; example: Omit<AuthoredExample, 'id'>; pinyin: boolean; route?: string; actions?: ReactNode }) {
   const rendered = renderExample(catalog, example)
   const shows = useShowsReading()
+  const table = usePackFormsTable()
   const press = useWriteLongPress()
   const text = <>
     <p lang={getPack().learningTag} className="example" {...press}>{rendered.text}</p>
-    {pinyin && shows(rendered.pinyin, rendered.text) && <p className="small muted" data-assistant-exclude><ReadingText kana={rendered.pinyin} tokens={exampleReadingTokens(catalog, example)} /></p>}
+    {pinyin && shows(rendered.pinyin, rendered.text) && <p className="small muted" data-assistant-exclude><ReadingText kana={rendered.pinyin} tokens={exampleReadingTokens(catalog, example, table)} /></p>}
     <p className="small muted">{example.translation}</p>
   </>
   return <div className="study-example">{actions ? <div className="phrase-row"><div className="phrase-row-text">{text}</div>{actions}</div> : text}</div>

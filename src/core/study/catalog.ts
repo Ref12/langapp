@@ -1,5 +1,6 @@
 import { getPack, type LanguageId } from '../language'
-import { readingParts } from '../forms/display'
+import { apartOf, kindOfClass, readingParts } from '../forms/display'
+import type { PackForm } from '../language/pack-data'
 import type { RomajiToken } from '../reading/romaji'
 import { type Band, type UnitKind, bandSchema, unitRef } from './contracts'
 
@@ -126,14 +127,16 @@ export function renderExample(catalog: Catalog, example: { segments: ExampleSegm
 }
 
 /** The tokens of an example for its romaji: each word and grammar segment's kana reading, a grammar segment that is only は, へ or を marked as a particle, punctuation as it is. */
-export function exampleReadingTokens(catalog: Catalog, example: { segments: ExampleSegment[] }): RomajiToken[] {
+export function exampleReadingTokens(catalog: Catalog, example: { segments: ExampleSegment[] }, table?: readonly PackForm[]): RomajiToken[] {
+  const language = getPack().displayForms?.language
   const tokens: RomajiToken[] = []
   for (const segment of example.segments) {
     if (segment.punctuation !== undefined) tokens.push({ reading: segment.punctuation, punctuation: true })
     else if (segment.word !== undefined) {
       const unit = catalog.units.get(unitRef('vocabulary', segment.word))
       const reading = segment.reading ?? (unit?.kind === 'vocabulary' ? unit.record.pr : '')
-      const parts = unit?.kind === 'vocabulary' && segment.form ? readingParts(unit.record.cl, unit.record.pr, reading) : undefined
+      const kind = unit?.kind === 'vocabulary' && unit.record.cl && language ? kindOfClass(language, unit.record.cl) : undefined
+      const parts = unit?.kind === 'vocabulary' && segment.form ? readingParts(unit.record.cl, unit.record.pr, reading, apartOf(table, segment.form, kind)) : undefined
       if (parts) tokens.push(...parts.map(part => ({ reading: part }))); else tokens.push({ reading })
     } else if (segment.grammar !== undefined) {
       const unit = catalog.units.get(unitRef('grammar', segment.grammar))

@@ -11,11 +11,34 @@ export interface Headword { text: string; reading: string; /** The reading cut w
 
 /** The class whose words are a noun + する (勉強する): their romaji is written with a space before the する part (benkyou shimasu). */
 const SURU_COMPOUND = 'suru-compound'
-/** The reading of a word cut into its noun and its する part, from its class and the reading built for it (the dictionary form's or any other form's); undefined for any other word. */
-export function readingParts(cls: string | undefined, dictionaryReading: string, built: string): string[] | undefined {
-  if (cls !== SURU_COMPOUND || !dictionaryReading.endsWith('する')) return undefined
-  const noun = dictionaryReading.slice(0, -2)
-  return noun && built.startsWith(noun) && built.length > noun.length ? [noun, built.slice(noun.length)] : undefined
+/**
+ * The reading of a word cut into the words its romaji is written as, from its class, the reading built for it (the dictionary form's or any other form's) and the break points the forms table gives
+ * for that form and kind of word (`apart`: the words split off the end, in reading order). A する compound also divides after its noun (べんきょう + し + たい + です). Undefined when it is one word.
+ */
+export function readingParts(cls: string | undefined, dictionaryReading: string, built: string, apart?: readonly string[]): string[] | undefined {
+  let head = built
+  const tail: string[] = []
+  if (apart?.length) {
+    let rest = built
+    const found: string[] = []
+    for (let at = apart.length - 1; at >= 0; at--) {
+      if (!rest.endsWith(apart[at]) || rest.length === apart[at].length) { found.length = 0; rest = built; break }
+      found.unshift(apart[at]); rest = rest.slice(0, rest.length - apart[at].length)
+    }
+    head = rest; tail.push(...found)
+  }
+  const pieces = [head]
+  if (cls === SURU_COMPOUND && dictionaryReading.endsWith('する')) {
+    const noun = dictionaryReading.slice(0, -2)
+    if (noun && head.startsWith(noun) && head.length > noun.length) pieces.splice(0, 1, noun, head.slice(noun.length))
+  }
+  const all = [...pieces, ...tail]
+  return all.length > 1 ? all : undefined
+}
+
+/** The break points of a form for a kind of word, from the pack's forms table. */
+export function apartOf(table: readonly PackForm[] | undefined, formId: string | undefined, kind: string | undefined): readonly string[] | undefined {
+  return table && formId !== undefined && kind !== undefined ? table.find(row => row.id === formId)?.apart?.[kind] : undefined
 }
 
 type Offering = Pick<PackMeta, 'displayForms'>
@@ -37,7 +60,7 @@ export function kindOfClass(language: 'ja' | 'ko', cls: string): string | undefi
  * The text and reading to display for a vocabulary record under the form the learner chose. A record without a class, a word of a kind the form is not shown for
  * (adjectives, nouns), a form the engine cannot build, or no choice at all: the record as stored.
  */
-export function headwordFor(offer: PackDisplayForms | undefined, form: string | undefined, record: HeadwordRecord): Headword {
+export function headwordFor(offer: PackDisplayForms | undefined, form: string | undefined, record: HeadwordRecord, table?: readonly PackForm[]): Headword {
   const stored: Headword = { text: record.ch, reading: record.pr, ...(readingParts(record.cl, record.pr, record.pr) ? { parts: readingParts(record.cl, record.pr, record.pr) } : {}) }
   if (!offer || form === undefined || !record.cl) return stored
   const choice = offer.choices.find(item => item.id === form)
@@ -45,7 +68,7 @@ export function headwordFor(offer: PackDisplayForms | undefined, form: string | 
   if (!choice || kind === undefined || !choice.kinds.includes(kind)) return stored
   const built = buildForm(offer.language, record.ch, record.cl, form, { reading: record.pr })
   if (!built) return stored
-  const reading = built.reading ?? record.pr, parts = readingParts(record.cl, record.pr, reading)
+  const reading = built.reading ?? record.pr, parts = readingParts(record.cl, record.pr, reading, apartOf(table, form, kind))
   return { text: built.surface, reading, ...(parts ? { parts } : {}) }
 }
 
@@ -62,7 +85,7 @@ export function formRows(offer: PackDisplayForms | undefined, table: PackForm[] 
     if (!row.kinds.includes(kind)) continue
     const built = buildForm(offer.language, record.ch, record.cl, row.id, { reading: record.pr })
     if (!built) continue
-    const reading = built.reading ?? record.pr, parts = readingParts(record.cl, record.pr, reading)
+    const reading = built.reading ?? record.pr, parts = readingParts(record.cl, record.pr, reading, row.apart?.[kind])
     rows.push({ id: row.id, name: row.name, text: built.surface, reading, ...(parts ? { parts } : {}), ...(row.patterns[kind] ? { pattern: row.patterns[kind] } : {}) })
   }
   return rows.sort((a, b) => Number(b.id === 'dict') - Number(a.id === 'dict'))

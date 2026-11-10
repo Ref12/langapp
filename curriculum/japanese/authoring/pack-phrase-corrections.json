@@ -1,0 +1,66 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "Corrections to phrases of curriculum/japanese/parallel/zh-lessons.yaml (which, with src/data/parallel, is never edited here), applied by scripts/generate-pack-ja.mjs before anything is derived from the phrases. phrases: phrase id -> { tokens: [{ at, t, w | g }] replaces the token at that index; merge: { at, count, t, w } makes count tokens one; words: { oldEntry: newEntry | null } changes the phrase's word list }. writings: word entry -> { text written in a sentence: text the headword writes } for words the headword writes in kana (ねこ) and sentences in kanji (猫): one writing per word, the headword's, in headword and sentences alike (the phrase text follows its tokens).",
+ "phrases": {
+  "135": {
+   "why": "the lesson's word and the English are 今年 (ことし), not 今日",
+   "tokens": [
+    {
+     "at": 0,
+     "t": "今年",
+     "w": "ja-n5-00246"
+    }
+   ],
+   "words": {
+    "ja-n5-00192": "ja-n5-00246"
+   }
+  },
+  "412": {
+   "why": "the counter 人 read にん is part of the number + counter pattern, as in phrases 99, 217, 222, not the word ひと (person)",
+   "tokens": [
+    {
+     "at": 5,
+     "t": "人",
+     "g": "ja-n5-g042"
+    }
+   ],
+   "words": {
+    "ja-n5-00527": null
+   }
+  },
+  "593": {
+   "why": "八百 is one token read はっぴゃく (a sound change over 八 + 百), not は + っぴゃく",
+   "merge": {
+    "at": 2,
+    "count": 2,
+    "t": "八百",
+    "w": "ja-n5-00532"
+   }
+  },
+  "781": {
+   "why": "the sentence says お母さん; the pack's word for mother is 母 (はは), written お母さん (おかあさん) in its siblings 345, 347, 348, 352",
+   "tokens": [
+    {
+     "at": 0,
+     "t": "お母さん",
+     "w": "ja-par-00026"
+    }
+   ],
+   "words": {
+    "ja-n5-00113": "ja-par-00026"
+   }
+  }
+ },
+ "writings": {
+  "ja-n5-00476": {
+   "猫": "ねこ"
+  },
+  "ja-n5-00064": {
+   "犬": "いぬ"
+  },
+  "ja-n5-00527": {
+   "人": "ひと"
+  }
+ }
+}

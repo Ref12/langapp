@@ -1,7 +1,7 @@
 {
  "version": 1,
  "language": "ja",
- "note": "Learner-facing names of the word forms of curriculum/japanese/forms.yaml (form id -> English name, and the ending shown separately). Read by scripts/generate-pack-ja.mjs into src/data/packs/ja/forms.generated.json. Edit names here without touching the rules.",
+ "note": "Learner-facing names of the word forms of curriculum/japanese/forms.yaml (form id -> English name, and the ending shown separately). Read by scripts/generate-pack-ja.mjs into src/data/packs/ja/forms.generated.json. Edit names here without touching the rules. apart: where the romaji of a form divides into words (Hepburn), per kind of word: the words split off the end of the form's reading, in reading order (for teimasu on a verb, [\"います\"] gives shite imasu; for adj-past-neg-polite-arimasen on an i-adjective, [\"ありません\",\"でした\"] gives samuku arimasen deshita). What comes before them stays one word with the stem. Kana readings do not change. Read by scripts/generate-pack-ja.mjs into forms.generated.json.",
  "forms": {
   "dict": {
    "name": "dictionary form"
@@ -20,7 +20,12 @@
   },
   "masendeshita": {
    "name": "polite negative past",
-   "ending": "〜ませんでした"
+   "ending": "〜ませんでした",
+   "apart": {
+    "verb": [
+     "でした"
+    ]
+   }
   },
   "nai": {
    "name": "negative form",
@@ -56,11 +61,21 @@
   },
   "teiru": {
    "name": "continuous form",
-   "ending": "〜ている"
+   "ending": "〜ている",
+   "apart": {
+    "verb": [
+     "いる"
+    ]
+   }
   },
   "teimasu": {
    "name": "polite continuous form",
-   "ending": "〜ています"
+   "ending": "〜ています",
+   "apart": {
+    "verb": [
+     "います"
+    ]
+   }
   },
   "masu-stem": {
    "name": "stem form",
@@ -68,15 +83,30 @@
   },
   "tai-polite": {
    "name": "polite want-to form",
-   "ending": "〜たいです"
+   "ending": "〜たいです",
+   "apart": {
+    "verb": [
+     "です"
+    ]
+   }
   },
   "nakereba": {
    "name": "must form",
-   "ending": "〜なければなりません"
+   "ending": "〜なければなりません",
+   "apart": {
+    "verb": [
+     "なりません"
+    ]
+   }
   },
   "naide-kudasai": {
    "name": "please-don't form",
-   "ending": "〜ないでください"
+   "ending": "〜ないでください",
+   "apart": {
+    "verb": [
+     "ください"
+    ]
+   }
   },
   "nakute": {
    "name": "negative て form",
@@ -84,15 +114,30 @@
   },
   "te-kudasai": {
    "name": "please-do form",
-   "ending": "〜てください"
+   "ending": "〜てください",
+   "apart": {
+    "verb": [
+     "ください"
+    ]
+   }
   },
   "teimasen": {
    "name": "polite negative continuous form",
-   "ending": "〜ていません"
+   "ending": "〜ていません",
+   "apart": {
+    "verb": [
+     "いません"
+    ]
+   }
   },
   "te-kimashita": {
    "name": "has-come form",
-   "ending": "〜てきました"
+   "ending": "〜てきました",
+   "apart": {
+    "verb": [
+     "きました"
+    ]
+   }
   },
   "potential-masu": {
    "name": "polite potential form",
@@ -100,43 +145,160 @@
   },
   "adj-plain": {
    "name": "plain form",
-   "ending": "〜い / 〜だ"
+   "ending": "〜い / 〜だ",
+   "apart": {
+    "na-adj": [
+     "だ"
+    ],
+    "noun": [
+     "だ"
+    ]
+   }
   },
   "adj-polite": {
    "name": "polite form",
-   "ending": "〜です"
+   "ending": "〜です",
+   "apart": {
+    "i-adj": [
+     "です"
+    ],
+    "na-adj": [
+     "です"
+    ],
+    "noun": [
+     "です"
+    ]
+   }
   },
   "adj-neg": {
    "name": "negative form",
-   "ending": "〜くない / 〜ではない"
+   "ending": "〜くない / 〜ではない",
+   "apart": {
+    "na-adj": [
+     "では",
+     "ない"
+    ],
+    "noun": [
+     "では",
+     "ない"
+    ]
+   }
   },
   "adj-neg-polite": {
    "name": "polite negative",
-   "ending": "〜くないです / 〜ではないです"
+   "ending": "〜くないです / 〜ではないです",
+   "apart": {
+    "i-adj": [
+     "です"
+    ],
+    "na-adj": [
+     "では",
+     "ない",
+     "です"
+    ],
+    "noun": [
+     "では",
+     "ない",
+     "です"
+    ]
+   }
   },
   "adj-neg-polite-arimasen": {
    "name": "formal polite negative",
-   "ending": "〜くありません / 〜ではありません"
+   "ending": "〜くありません / 〜ではありません",
+   "apart": {
+    "i-adj": [
+     "ありません"
+    ],
+    "na-adj": [
+     "では",
+     "ありません"
+    ],
+    "noun": [
+     "では",
+     "ありません"
+    ]
+   }
   },
   "adj-past": {
    "name": "past form",
-   "ending": "〜かった / 〜だった"
+   "ending": "〜かった / 〜だった",
+   "apart": {
+    "na-adj": [
+     "だった"
+    ],
+    "noun": [
+     "だった"
+    ]
+   }
   },
   "adj-past-polite": {
    "name": "polite past",
-   "ending": "〜かったです / 〜でした"
+   "ending": "〜かったです / 〜でした",
+   "apart": {
+    "i-adj": [
+     "です"
+    ],
+    "na-adj": [
+     "でした"
+    ],
+    "noun": [
+     "でした"
+    ]
+   }
   },
   "adj-past-neg": {
    "name": "negative past form",
-   "ending": "〜くなかった / 〜ではなかった"
+   "ending": "〜くなかった / 〜ではなかった",
+   "apart": {
+    "na-adj": [
+     "では",
+     "なかった"
+    ],
+    "noun": [
+     "では",
+     "なかった"
+    ]
+   }
   },
   "adj-past-neg-polite": {
    "name": "polite negative past",
-   "ending": "〜くなかったです / 〜ではなかったです"
+   "ending": "〜くなかったです / 〜ではなかったです",
+   "apart": {
+    "i-adj": [
+     "です"
+    ],
+    "na-adj": [
+     "では",
+     "なかった",
+     "です"
+    ],
+    "noun": [
+     "では",
+     "なかった",
+     "です"
+    ]
+   }
   },
   "adj-past-neg-polite-arimasen": {
    "name": "formal polite negative past",
-   "ending": "〜くありませんでした / 〜ではありませんでした"
+   "ending": "〜くありませんでした / 〜ではありませんでした",
+   "apart": {
+    "i-adj": [
+     "ありません",
+     "でした"
+    ],
+    "na-adj": [
+     "では",
+     "ありません",
+     "でした"
+    ],
+    "noun": [
+     "では",
+     "ありません",
+     "でした"
+    ]
+   }
   },
   "adj-sugi": {
    "name": "too-much form",
@@ -144,15 +306,39 @@
   },
   "adj-adv": {
    "name": "adverb form",
-   "ending": "〜く / 〜に"
+   "ending": "〜く / 〜に",
+   "apart": {
+    "na-adj": [
+     "に"
+    ],
+    "noun": [
+     "に"
+    ]
+   }
   },
   "adj-te": {
    "name": "て form",
-   "ending": "〜くて / 〜で"
+   "ending": "〜くて / 〜で",
+   "apart": {
+    "na-adj": [
+     "で"
+    ],
+    "noun": [
+     "で"
+    ]
+   }
   },
   "adj-attr": {
    "name": "noun-modifying form",
-   "ending": "〜な / 〜の"
+   "ending": "〜な / 〜の",
+   "apart": {
+    "na-adj": [
+     "な"
+    ],
+    "noun": [
+     "の"
+    ]
+   }
   }
  }
 }

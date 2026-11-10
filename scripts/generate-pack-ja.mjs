@@ -14,7 +14,7 @@ import { join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createForms } from '../src/core/forms/engine.mjs'
 import { loadFormsRules } from './forms-data.mjs'
-import { glossWord, patternNameRule, patternSlug, readingOfName, shortGloss, MAX_GLOSS } from './pack-ja-names.mjs'
+import { glossWord, patternNameRule, patternSlug, readingOfName, shortGloss, shortTextRule, MAX_GLOSS } from './pack-ja-names.mjs'
 import { analyseForms, entryIndex, loadReferences, readParallel, refreshReadability, root as defaultRoot, writeAtomic } from './parallel-lessons-files.mjs'
 
 export const PACK_DIR = 'src/data/packs/ja'
@@ -25,6 +25,9 @@ export const GLOSS_OVERRIDES_FILE = 'curriculum/japanese/authoring/pack-gloss-ov
 export const NAMES_FILE = 'curriculum/japanese/authoring/pack-pattern-names.json'
 export const FORMS_FILE = 'curriculum/japanese/authoring/pack-forms.json'
 export const HEADWORDS_FILE = 'curriculum/japanese/authoring/pack-headwords.json'
+export const CORRECTIONS_FILE = 'curriculum/japanese/authoring/pack-phrase-corrections.json'
+export const SHORT_TEXTS_FILE = 'curriculum/japanese/authoring/pack-pattern-short-texts.json'
+export const EXPLANATIONS_FILE = 'curriculum/japanese/authoring/pack-pattern-explanations.json'
 export const SEALED_FILE = 'curriculum/japanese/authoring/pack-labels-sealed.json'
 export const GROUP_PREFIX = 'ja-lesson-'
 export const ALIGNMENT = 'lessons-1'
@@ -116,6 +119,37 @@ function splitReading(tokens, reading, known) {
   return walk(0, 0)?.parts ?? null
 }
 
+/** Applies pack-phrase-corrections.json to the phrases in memory (tokens, word lists, the headword's writing); returns what it changed, for the audit. */
+export function applyCorrections(lessons, corrections) {
+  const changed = []
+  const byId = new Map(lessons.flatMap(lesson => (lesson.phrases ?? []).map(phrase => [String(phrase.id), phrase])))
+  for (const [id, fix] of Object.entries(corrections.phrases ?? {})) {
+    const phrase = byId.get(id)
+    if (!phrase) throw new Error(CORRECTIONS_FILE + ' corrects an unknown phrase ' + id)
+    const before = phrase.tokens.map(token => token.t + '(' + (token.w ?? token.g ?? '') + ')').join(' ')
+    for (const { at, ...token } of fix.tokens ?? []) { if (!phrase.tokens[at]) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' has no token ' + at); phrase.tokens[at] = token }
+    if (fix.merge) {
+      const { at, count, ...token } = fix.merge
+      const joined = phrase.tokens.slice(at, at + count).map(item => item.t).join('')
+      if (joined !== token.t) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' tokens ' + at + '..' + (at + count - 1) + ' are ' + joined + ', not ' + token.t)
+      phrase.tokens.splice(at, count, token)
+    }
+    for (const [from, to] of Object.entries(fix.words ?? {})) {
+      if (!(phrase.words ?? []).includes(from)) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' does not list the word ' + from)
+      phrase.words = to ? [...new Set(phrase.words.map(word => word === from ? to : word))] : phrase.words.filter(word => word !== from)
+    }
+    changed.push({ phrase: id, before, after: phrase.tokens.map(token => token.t + '(' + (token.w ?? token.g ?? '') + ')').join(' ') })
+  }
+  for (const [entry, map] of Object.entries(corrections.writings ?? {})) for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) for (const token of phrase.tokens) {
+    if (token.w === entry && map[token.t] !== undefined) {
+      changed.push({ phrase: String(phrase.id), before: token.t, after: map[token.t] })
+      token.t = map[token.t]
+    }
+  }
+  for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) phrase.text = phrase.tokens.map(token => token.t).join('')
+  return changed
+}
+
 function readJson(file, fallback) { return existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : fallback }
 
 /** The kinds of word a form applies to, by class group (copula: the な-adjectives and the nouns). */
@@ -157,6 +191,7 @@ export function buildJaPack(base = defaultRoot) {
   const data = readParallel('ja', base)
   const references = loadReferences('ja', base)
   const lessons = [...data.lessons.lessons].sort((a, b) => a.number - b.number)
+  const corrected = applyCorrections(lessons, readJson(join(base, CORRECTIONS_FILE), {}))
   const taught = refreshReadability(lessons)
   const forms = analyseForms('ja', lessons, taught, data, references, base) // also sets each phrase's readyAt (irregular form items included)
   const rules = loadFormsRules('ja', base)
@@ -178,6 +213,18 @@ export function buildJaPack(base = defaultRoot) {
   const registry = readJson(join(base, REGISTRY_FILE), { version: 1, vocabulary: {}, grammar: {} })
   const readingFixes = readJson(join(base, READINGS_FILE), { readings: {} }).readings
   const nameOf = patternNamer(base, index)
+  // a short text written by hand (where the rule cannot make one), the plain explanations, and the name of the form a pattern teaches (for a name that is only placeholders)
+  const shortTexts = readJson(join(base, SHORT_TEXTS_FILE), { shortTexts: {} }).shortTexts
+  const explanations = readJson(join(base, EXPLANATIONS_FILE), { explanations: {} }).explanations
+  for (const id of [...Object.keys(shortTexts), ...Object.keys(explanations)]) if (!index.grammar.has(id)) throw new Error(SHORT_TEXTS_FILE + ' or ' + EXPLANATIONS_FILE + ' names an unknown pattern ' + id)
+  const formNameOfPattern = new Map()
+  {
+    const names = readJson(existsSync(join(base, FORMS_FILE)) ? join(base, FORMS_FILE) : join(defaultRoot, FORMS_FILE), { forms: {} }).forms
+    for (const [formId, spec] of Object.entries(rules.forms)) for (const kind of new Set(spec.group.flatMap(kindsOfGroup))) {
+      const unit = engine.grammarOf(formId, { verb: 'ichidan', 'i-adj': 'i-adj', 'na-adj': 'na-adj', noun: 'noun' }[kind])
+      if (unit && names[formId]?.name && !formNameOfPattern.has(unit)) formNameOfPattern.set(unit, names[formId].name)
+    }
+  }
 
   // ---- vocabulary: one item per (entry, meaning). The meaning is what the lesson teaches: its row's gloss, else the copied short gloss, else the dictionary's first sense. ----
   const isVerbEntry = entry => rules.classes[forms.classes.get(entry)?.class]?.group === 'verb'
@@ -321,7 +368,13 @@ export function buildJaPack(base = defaultRoot) {
     const tagged = phraseData.filter(p => (p.phrase.grammar ?? []).includes(id)).sort((a, b) => a.readyAt - b.readyAt || a.phrase.text.length - b.phrase.text.length || a.phrase.id - b.phrase.id)
     if (!tagged.length) throw new Error('No phrase demonstrates the grammar unit ' + id + ' (' + e.pattern + ')')
     const { id: _id, ...ex } = exampleOf(tagged[0])
-    return { id, pt: nameOf(id).name, pr: nameOf(id).reading, ds: e.english, lb: pattern(id), ex }
+    const name = nameOf(id).name
+    const onlyPlaceholders = /^(<[^>]*>)( \+ <[^>]*>)*$/.test(name)
+    const st = shortTexts[id] ?? shortTextRule(name) ?? (onlyPlaceholders ? (/^<[^>]*>$/.test(name) ? formNameOfPattern.get(id) : undefined) ?? name.replace(/[<>]/g, '') : undefined)
+    if (!st) throw new Error('No short text for the pattern ' + id + ' (' + name + '): the rule cannot make one, add it to ' + SHORT_TEXTS_FILE)
+    const plain = explanations[id]
+    if (!plain) throw new Error('The pattern ' + id + ' (' + name + ') has no plain explanation: add it to ' + EXPLANATIONS_FILE)
+    return { id, pt: name, pr: nameOf(id).reading, ds: plain, st, lb: pattern(id), ex }
   })
   const vocabulary = items.map(item => {
     const e = index.vocabulary.get(item.entry), cl = forms.classes.get(item.entry)?.class
@@ -339,7 +392,7 @@ export function buildJaPack(base = defaultRoot) {
     const kinds = [...new Set(spec.group.flatMap(kindsOfGroup))]
     const patternsByKind = {}
     for (const kind of kinds) { const unit = engine.grammarOf(id, REPRESENTATIVE[kind]); if (unit && seenGrammar.has(unit)) patternsByKind[kind] = pattern(unit) }
-    return { id, name: named.name, ...(named.ending ? { ending: named.ending } : {}), kinds, joined: kinds.filter(kind => joinsWord(kind, id)), patterns: patternsByKind }
+    return { id, name: named.name, ...(named.ending ? { ending: named.ending } : {}), kinds, joined: kinds.filter(kind => joinsWord(kind, id)), patterns: patternsByKind, ...(named.apart ? { apart: named.apart } : {}) }
   })
 
   // ---- the headword check: a conjugated token must be what its headword builds ----
@@ -407,7 +460,7 @@ export function buildJaPack(base = defaultRoot) {
       wordsWithoutPhrase: (lesson.words ?? []).filter(row => !usedWords.has(row.entry)).map(row => '`' + row.entry + '` ' + index.vocabulary.get(row.entry).target + ' (' + itemAt(row.entry, lesson.number).gloss + ')'),
     }
   })
-  return { files, band, phrases, formsTable, mismatches, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
+  return { files, band, phrases, formsTable, corrected, mismatches, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
 }
 
 /** The content gaps as markdown (docs/audits/2026-11-10-japanese-lesson-content-gaps.md). */

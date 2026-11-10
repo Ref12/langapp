@@ -1,0 +1,26 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "The short text of a pattern (the fixed written part of its name, shown in the lesson rows) where the rule in scripts/pack-ja-names.mjs (shortTextRule) cannot make one: the fixed words are split by a placeholder, or a group of alternatives sits between them, or no fixed word is left but a form's name is not meant. 〜 marks where a placeholder was. Pattern id -> text. A pattern whose name is only a placeholder of a form (<verb potential form>) takes that form's name from pack-forms.json. A name made only of placeholders without a form (<number> + <counter>) is shown as it is without the angle brackets (number + counter).",
+ "shortTexts": {
+  "ja-n5-g044": "が好き / 上手",
+  "ja-par-g010": "を / が少し",
+  "ja-par-g015": "があります / います",
+  "ja-n5-g010": "に〜があります",
+  "ja-n5-g011": "に〜がいます",
+  "ja-par-g049": "歳",
+  "ja-par-g016": "あげます / くれます",
+  "ja-par-g019": "後ろ / 前 / 隣",
+  "ja-n5-g012": "に / へ行きます",
+  "ja-par-g030": "に住みます / 住んでいます",
+  "ja-par-g025": "本当に〜です",
+  "ja-par-g063": "から出る / 降りる",
+  "ja-par-g027": "また〜ます",
+  "ja-par-g064": "午前 / 午後〜時〜分",
+  "ja-n5-g039": "は〜より",
+  "ja-par-g041": "上 / 下 / 中 / 外",
+  "ja-par-g042": "どうやって〜ますか",
+  "ja-par-g043": "年〜月〜日",
+  "ja-par-g047": "半分"
+ }
+}

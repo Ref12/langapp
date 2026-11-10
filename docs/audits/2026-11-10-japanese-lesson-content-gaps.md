@@ -7,7 +7,7 @@ Written by `node scripts/generate-pack-ja.mjs --report`. Nothing here is fixed i
 - patterns a lesson says it teaches that none of its phrases use: 24 (in 21 lessons)
 - forms a lesson uses whose pattern is taught only in a later lesson: 1 (in 1 lessons)
 - forms a lesson lists that none of its phrases use: 4 (in 4 lessons)
-- words a lesson introduces that none of its phrases use: 13 (in 13 lessons)
+- words a lesson introduces that none of its phrases use: 12 (in 12 lessons)
 - patterns used by no phrase at all, left out of the catalog: 9
 
 ## Patterns used by no phrase (left out of the catalog)
@@ -55,7 +55,6 @@ Written by `node scripts/generate-pack-ja.mjs --report`. Nothing here is fixed i
 
 - Patterns taught but used by none of its phrases: `ja-n5-g025` <verb> + (ました / ませんでした)
 - Lists `ja-n5-g025` <verb> + (ました / ませんでした) (forms `masendeshita`, `mashita`) but no phrase uses those forms
-- Words introduced but used by none of its phrases: `ja-n5-00246` 今年 (this year)
 
 ### Lesson 18
 

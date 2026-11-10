@@ -21,7 +21,8 @@ export function resolveDisplaySettings(preferences: { displayForm?: string; read
 
 /** The text and reading to show for a vocabulary record under the learner's chosen form (as stored when the pack offers none). */
 export function useHeadword(record: HeadwordRecord): Headword {
-  return headwordFor(getPack().displayForms, useDisplaySettings().form, record)
+  const table = usePackFormsTable()
+  return headwordFor(getPack().displayForms, useDisplaySettings().form, record, table)
 }
 
 /** Whether a reading line says something the line above it does not: in kana, not when it is the same as the text; in romaji, whenever there is a reading (a word written only in kana still has romaji to show). */

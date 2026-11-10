@@ -30,6 +30,8 @@ export interface PackForm {
   joined: string[]
   /** Kind -> label of the grammar unit that teaches the form (none for the dictionary form). */
   patterns: Record<string, string>
+  /** Kind -> the words the form's ending divides into where the romaji is written (the words split off the end of its reading, in order); absent when the ending is one word. */
+  apart?: Record<string, string[]>
 }
 
 export interface PackData {

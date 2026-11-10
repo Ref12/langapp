@@ -89,3 +89,27 @@ export function glossWord(text) {
   for (const words of pieces) if (words[0]) return words[0]
   return 'x'
 }
+
+// ---- short texts ----
+const isPlaceholder = piece => /^<[^>]*>$/.test(piece)
+const isPlaceholderGroup = piece => /^\(.*\)$/.test(piece) && piece.slice(1, -1).split(/\s\+\s|\s\/\s/).every(part => isPlaceholder(part.trim()))
+/**
+ * The short text of a pattern name: its fixed written part with the placeholders dropped ("<noun> + の + <noun>" is の, "<verb> + (ました / ませんでした)" is ました / ませんでした, "<noun> + が + 欲しい" is がほしい written as が欲しい).
+ * A group of alternatives keeps its words without the brackets. null where the rule cannot be trusted: nothing fixed is left, or the fixed words are separated by a placeholder (は ... に ... を), or a group stands between fixed words
+ * (の + (後ろ / 前 / 隣) + に); the authoring file gives those.
+ */
+export function shortTextRule(name) {
+  const pieces = String(name).split(/\s\+\s/).map(piece => piece.trim()).filter(Boolean)
+  const runs = []
+  let open = false
+  for (const piece of pieces) {
+    if (isPlaceholder(piece) || isPlaceholderGroup(piece)) { open = false; continue }
+    if (!open) runs.push([])
+    runs.at(-1).push(piece)
+    open = true
+  }
+  if (runs.length !== 1) return null
+  const run = runs[0]
+  if (run.length > 1 && run.some(piece => piece.startsWith('('))) return null
+  return run.map(piece => piece.replace(/^\((.*)\)$/, '$1')).join('')
+}
