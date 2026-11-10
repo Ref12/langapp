@@ -4,8 +4,8 @@ import { recordJournal } from '../backup/journal-store'
 import { cardId, type KnowledgeEntry, type StudyCard } from '../study/contracts'
 import { DOMAIN } from '../study/knowledge'
 import { emptySchedulingState, schedule, type Rating } from '../study/fsrs'
-import type { ParallelLanguage } from './data'
-import { parseParallelRef, parallelRefsOf } from './refs'
+import type { ParallelLanguage } from '../language/ids'
+import { parseParallelRef, parallelRefsOf } from '../language/refs'
 
 // Knowledge and review cards of the Japanese and Korean tracks. They sit in the same tables as the Chinese ones under language-prefixed refs (ja:w:<entry>, ja:g:<grammar>):
 // additive, no migration. The workspace view and the Chinese queues filter them out, so each language has its own queue.

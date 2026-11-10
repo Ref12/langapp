@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties } from 'react'
 import { RotateCcw } from 'lucide-react'
 import { loadCharacterAsset } from '../core/characters/assets'
 import { makeStrokeGuide, type StrokeGuide } from '../core/characters/geometry'
-import type { ParallelLanguage } from '../core/parallel/data'
+import type { ParallelLanguage } from '../core/language/ids'
 import '../pages/writing.css'
 
 function Animated({ character, language, run, reportMissing }: { character: string; language: ParallelLanguage; run: number; reportMissing?: boolean }) {

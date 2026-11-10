@@ -8,7 +8,7 @@ import { localSettingsSchema } from '../local-settings-contracts'
 import { parsePlainYaml } from '../yaml'
 import { MAX_PROFILE_BYTES, PROFILE_FORMAT, PROFILE_VERSION, profileDataSchema, profileSnapshotSchema, profileYamlSchema, type ProfileSnapshot } from './contracts'
 import { AI_ENDPOINTS_VERSION, type AIEndpointsExport } from '../assistant/contracts'
-import { type ProfileMetadata } from './identity'
+import type { ProfileMetadata } from './identity'
 import { fromProfileYaml, toProfileYaml } from './vocabulary'
 
 const INVALID_PROFILE = 'Invalid profile YAML. Check the file format, settings, and saved data.'

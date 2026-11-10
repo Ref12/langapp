@@ -5,14 +5,10 @@ import { parse as parseYaml } from 'yaml'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace } from '../database'
 import { exportWorkspaceBackup, restoreBackup } from '../backup'
-import { formItemId } from '../forms'
-import { loadParallel, resetParallel } from '../parallel/data'
-import { startTrack, markParallelStudied } from '../parallel/progress'
-import { addParallelKnowledge, recordParallelResult } from '../parallel/practice'
-import { lessonItems } from '../parallel/session'
 import { loadCatalog } from '../study/catalog'
 import { addToKnowledge } from '../study/knowledge'
 import { trackWord } from '../learning'
+import { addLanguageRows } from '../../test/language-rows'
 import type { BackupBackend, DeltaResult, PublishResult, RemoteState } from '../backup/backend'
 import { applyBackup, loadBackupVersion, runBackup, saveBackupConfig, setBackendFactoryForTests, type BackupConfig } from '../backup/service'
 import { resetBackupStateForTests } from '../backup/state'
@@ -77,26 +73,10 @@ async function chineseLesson() {
   await trackWord('tea', 'test').catch(() => undefined)
 }
 
-/** The mixed profile: Chinese lesson, Japanese track (words, grammar, a form item), one Korean item, right and wrong answers. */
+/** The mixed profile: Chinese lesson, Japanese track (words, grammar, a form item), Korean items, right and wrong answers: the rows the old screens left, as plain data. */
 async function mixedProfile() {
   await chineseLesson()
-  resetParallel()
-  await startTrack('ja')
-  await markParallelStudied('ja', 1, T0)
-  const data = await loadParallel('ja')
-  const items = lessonItems(data, 'ja', data.lessons[0]).map(item => item.ref)
-  const words = items.filter(ref => ref.includes(':w:'))
-  const grammar = items.filter(ref => ref.includes(':g:'))
-  expect(words.length).toBeGreaterThan(1)
-  expect(grammar.length).toBeGreaterThan(0)
-  await addParallelKnowledge([...words, ...grammar], T0)
-  await recordParallelResult(words[0], true, false, T0 + 1000)
-  await recordParallelResult(words[1], false, false, T0 + 2000)
-  await recordParallelResult(words[0], true, true, T0 + 3000)
-  await recordParallelResult(grammar[0], false, false, T0 + 4000)
-  await recordParallelResult(formItemId('ja', 'くる', 'masu'), true, false, T0 + 5000)
-  await recordParallelResult(formItemId('ja', 'くる', 'masu'), false, false, T0 + 6000)
-  await recordParallelResult('ko:w:ko-nikl-24021', false, false, T0 + 7000)
+  await addLanguageRows(db)
 }
 
 async function chineseOnly() {
@@ -193,5 +173,47 @@ describe('Chinese-only profiles are unchanged', () => {
     await saveBackupConfig(config)
     await applyBackup(await loadBackupVersion(config, 'default'), config)
     expect(await rows()).toEqual(before)
+  })
+})
+
+describe('an old backup with Japanese and Korean rows (frozen fixture)', () => {
+  const OLD = JSON.parse(readFileSync(join(here, 'fixtures', 'old-language-backup.json'), 'utf8')) as { backup: string; yaml: string; cloud: Record<string, string> }
+  const withoutTime = (text: string) => { const { exportedAt, ...rest } = JSON.parse(text) as { exportedAt: string }; void exportedAt; return rest }
+
+  it('holds the rows the plan names', () => {
+    const backup = JSON.parse(OLD.backup) as { study: { knowledge: { ref: string }[]; cards: { ref: string }[]; sessions: { targetRefs: string[] }[] }; workspace: { lessons: { lessonId: string }[]; preferences: Record<string, unknown> } }
+    for (const prefix of ['ja:w:', 'ja:g:', 'ja:f:', 'ko:w:', 'ko:g:']) expect(backup.study.knowledge.some(row => row.ref.startsWith(prefix))).toBe(true)
+    expect(backup.study.cards.some(row => row.ref.startsWith('ko:'))).toBe(true)
+    expect(backup.workspace.lessons.map(row => row.lessonId)).toEqual(expect.arrayContaining(['ja:lesson:1', 'ko:lesson:1']))
+    expect(backup.workspace.preferences).toMatchObject({ currentLanguage: 'ko', startedTracks: ['ja', 'ko'], otherLanguageCards: 'both' })
+    expect(backup.study.sessions[0].targetRefs.every(ref => /^(ja|ko):/.test(ref))).toBe(true)
+    expect(OLD.cloud['journal/000000001-000000024.yaml']).toMatch(/ja:w:/)
+  })
+
+  it('the JSON backup restores in the Chinese build and exports the same content again', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(T0)
+    await restoreBackup(OLD.backup)
+    expect(withoutTime(await exportWorkspaceBackup())).toEqual(withoutTime(OLD.backup))
+    expect((await db.knowledge.toArray()).filter(entry => /^(ja|ko):/.test(entry.ref)).length).toBeGreaterThan(0)
+  })
+
+  it('the cloud backup restores and the profile exports the same YAML again', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(T0)
+    const memory = memoryBackend()
+    memory.versions.push({ id: 'v1', date: new Date(T0).toISOString(), message: 'old', files: new Map(Object.entries(OLD.cloud)) })
+    setBackendFactoryForTests(() => memory.backend)
+    await saveBackupConfig(config)
+    await applyBackup(await loadBackupVersion(config, 'default'), config)
+    expect(serializeProfileYaml(await readSnapshot(db, getActiveProfile()))).toBe(OLD.yaml)
+  })
+
+  it('the profile YAML restores into an empty profile with the same rows', async () => {
+    await restoreActiveSnapshot(parseProfileYaml(OLD.yaml), [])
+    const restored = await rows()
+    await reset()
+    await restoreBackup(OLD.backup)
+    expect(restored).toEqual(await rows())
   })
 })

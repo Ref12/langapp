@@ -1,5 +1,5 @@
 import { createEmptyProfile } from './codec'
-import { type ProfileSnapshot } from './contracts'
+import type { ProfileSnapshot } from './contracts'
 
 export function populatedProfile(running = false): ProfileSnapshot {
   const snapshot = createEmptyProfile({ id: 'default', name: 'Synthetic profile' }, {

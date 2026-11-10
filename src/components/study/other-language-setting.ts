@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import type { ParallelLanguage } from '../../core/parallel/data'
+import type { ParallelLanguage } from '../../core/language/ids'
 
 /** The "Show other languages on cards" setting (App provides it from the preferences). */
 export const OtherLanguageSetting = createContext<string | undefined>(undefined)

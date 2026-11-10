@@ -4,9 +4,9 @@ import { AnswerButton } from '../components/AnswerButton'
 import { ParallelHear } from '../components/ParallelHear'
 import { Form } from '../components/ParallelForm'
 import { gradeTiles, type TilesGrade } from '../core/parallel/session'
-import { gradeConjugate } from '../core/parallel/conjugate'
+import { gradeConjugate } from '../core/forms/conjugate'
 import { ConjugateQuestion as WordFormConjugate, FormPickQuestion as WordFormPick, type WordFormContext } from '../components/WordFormQuestions'
-import type { ParallelLanguage } from '../core/parallel/data'
+import type { ParallelLanguage } from '../core/language/ids'
 import type { ChoiceItem, ConjugateItem, FormPickItem, ListenItem, MatchItem, TilesItem } from '../core/session/types'
 
 const NAME: Record<ParallelLanguage, string> = { ja: 'Japanese', ko: 'Korean' }

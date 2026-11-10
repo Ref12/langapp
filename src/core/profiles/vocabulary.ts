@@ -1,5 +1,5 @@
 import { legacyWordLabels } from '../language/word-labels'
-import { isLanguageRef } from '../parallel/refs'
+import { isLanguageRef } from '../language/refs'
 import { cardId, parseUnitRef, unitRef } from '../study/contracts'
 import { type ProfileSnapshot, type ProfileYaml } from './contracts'
 

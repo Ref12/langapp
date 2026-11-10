@@ -4,7 +4,7 @@ import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type
 import type { AIConnection, AIEndpoint, AssistantImage, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
-import { isLanguageRef } from './parallel/refs'
+import { isLanguageRef } from './language/refs'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
 import { storageNames } from './storage-names'
 import type { MahjongGame } from './games/mahjong'

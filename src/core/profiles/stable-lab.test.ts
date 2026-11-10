@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import Dexie from 'dexie'
 import { fakeGitHub } from '../backup/fake-github'
 import { formItemId } from '../forms'
+import { addPlainLanguageRows } from '../../test/language-rows'
 import { loadBuild, snapshotStable, type Build } from '../../test/channels'
 import { setBuildChannelForTests, storageNames } from '../storage-names'
 
@@ -38,8 +39,7 @@ async function seedStable(options: { second?: boolean } = {}) {
   await stable.store.initializeProfiles()
   await stable.database.initializeWorkspace()
   await stable.knowledge.addToKnowledge(['vocabulary:cha2--tea', 'grammar:s-shi4-n--identity'])
-  await stable.parallel.addParallelKnowledge([JA, KO, formItemId('ja', 'くる', 'masu')], 1_700_000_000_000)
-  await stable.parallel.recordParallelResult(JA, true, false, 1_700_000_100_000)
+  await addPlainLanguageRows(stable.database.db, [JA, KO, formItemId('ja', 'くる', 'masu')], 1_700_000_000_000, [JA])
   await stable.database.db.preferences.update('workspace', { name: 'Stable workspace', theme: 'light' })
   await stable.database.db.aiConnections.put(connection) // a setting Stable hides
   await stable.database.db.backupConfig.put({ id: 'github', owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main', lastCommit: 'abc' })
@@ -88,8 +88,7 @@ describe('Lab never touches Stable', () => {
     const first = session.exercises[session.cursor]
     await lab.knowledge.submitExerciseAnswer(id, session.cursor, first.type === 'choice' ? first.answer : first.type === 'tiles' ? first.tiles : [])
     // a Japanese lesson and a review
-    await lab.parallel.addParallelKnowledge([JA, KO])
-    await lab.parallel.recordParallelResult(KO, false)
+    await addPlainLanguageRows(db, [JA, KO], Date.now(), [KO])
     const reviewId = await lab.knowledge.startReviewSession(Date.now() + 86_400_000 * 30, true)
     await (await import('../study/generation')).whenGenerated(reviewId)
     // settings

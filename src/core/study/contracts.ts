@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { isLanguageRef } from '../parallel/refs'
+import { isLanguageRef } from '../language/refs'
 
 // Knowledge set, spaced-repetition cards and AI-generated exercise sessions
 // over the v2 Chinese curriculum. Units are referenced by kind and v2 label.

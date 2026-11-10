@@ -1,12 +1,13 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db, initializeWorkspace, loadWorkspace } from '../database'
-import { loadParallel, resetParallel, type ParallelLanguage } from './data'
+import { loadParallel, resetParallel } from './data'
+import type { ParallelLanguage } from '../language/ids'
 import { addParallelKnowledge, parallelDue, parallelKnown, recordParallelResult } from './practice'
-import { isParallelRef, parallelRef, parallelRefsOf } from './refs'
+import { isParallelRef, parallelRef, parallelRefsOf } from '../language/refs'
 import { gradeTiles, itemsUpTo, lessonItems, normaliseTile, planParallel, usablePhrases } from './session'
 import { dueCards } from '../study/knowledge'
 import { replay } from '../backup/journal'
-import { romanizeKorean } from './romanize'
+import { romanizeKorean } from '../language/romanize'
 
 beforeEach(async () => { resetParallel(); await db.delete(); await db.open(); await initializeWorkspace() })
 

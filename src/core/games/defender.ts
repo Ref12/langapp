@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { advanceRun, allowsPinyinAnnotations, ANSWER_BANK_SIZE, createRun, leadingWord, paceAt, pauseRun, resumeRun, SHIELDS, submitTranslation, type Settings, type Word } from '../../../shared/defender-engine'
 import { distinctWords, gameWordSchema } from './game-vocabulary'
-import { type Catalog } from '../study/catalog'
+import type { Catalog } from '../study/catalog'
 import type { Workspace } from '../model'
 
 export { answerText, directionForms, isDirection, allowsPinyinAnnotations, leadingWord, promptText, SHIELDS } from '../../../shared/defender-engine'

@@ -1,4 +1,4 @@
-import { parseParallelRef } from '../parallel/refs'
+import { parseParallelRef } from './refs'
 import { isLanguageId, type LanguageId } from './ids'
 import { buildLanguage } from '../storage-names'
 import { currentLanguageOf } from '../../data/tracks'

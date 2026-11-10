@@ -1,4 +1,4 @@
-import { isLanguageRef } from '../parallel/refs'
+import { isLanguageRef } from '../language/refs'
 import { languageOfRefs } from '../language/scope'
 import { curriculum } from '../../data/curriculum'
 import { lessons, stories, words } from '../../data/mandarin'

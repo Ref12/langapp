@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { getWord } from '../../data/mandarin'
 import type { Workspace } from '../model'
 import { glosses } from '../questions'
-import { type Catalog } from '../study/catalog'
+import type { Catalog } from '../study/catalog'
 
 export const faceSchema = z.enum(['character', 'pinyin', 'meaning'])
 export type TileFace = z.infer<typeof faceSchema>

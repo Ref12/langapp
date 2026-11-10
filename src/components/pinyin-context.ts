@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext } from 'react'
-import { DEFAULT_JAPANESE_READING, type JapaneseReadingFormat } from '../core/parallel/romanize'
+import { DEFAULT_JAPANESE_READING, type JapaneseReadingFormat } from '../core/language/romanize'
 import { DEFAULT_PINYIN_FORMAT, formatPinyin, type PinyinFormat } from '../core/pinyin'
 
 export const PinyinFormatContext = createContext<PinyinFormat>(DEFAULT_PINYIN_FORMAT)

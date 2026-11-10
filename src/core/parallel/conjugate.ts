@@ -1,11 +1,9 @@
 import { formsEngine } from '../forms'
 import { buildFormPickFor, conjugable, shortOf, type FormPickBuild, type FormWord } from '../forms/conjugate'
-import { type ParallelData, type ParallelLanguage, type ParallelPhrase } from './data'
+import { type ParallelData, type ParallelPhrase } from './data'
+import type { ParallelLanguage } from '../language/ids'
 
-// Japanese and Korean word forms for the older parallel screens. The engine's word forms moved to src/core/forms/conjugate.ts (the pack asks them: src/core/language/word-forms.ts); this module re-exports them
-// and keeps what takes the parallel data shapes (ParallelData, ParallelPhrase), until step 4 removes the parallel screens.
-export { buildConjugate, conjugable, formItemId, formLabel, gradeConjugate, ruleLine, shortOf, splitPieces, taughtFormIds, wordFormsTable } from '../forms/conjugate'
-export type { ConjugateBuild, ConjugateResult, FormOption, FormPickBuild, FormRow } from '../forms/conjugate'
+// What only the older parallel screens use: it takes the parallel data shapes (ParallelData, ParallelPhrase). The engine's word forms live in src/core/forms/conjugate.ts.
 
 /** The grammar points the lessons up to N teach. */
 export function taughtGrammar(data: ParallelData, lessonNumber: number): Set<string> {

@@ -1,4 +1,4 @@
-import type { ParallelLanguage } from './data'
+import type { ParallelLanguage } from './ids'
 
 /** Knowledge ids of the parallel tracks: ja:w:<entry> (a word) and ja:g:<grammar> (a grammar point), likewise ko:. Chinese refs never look like this. */
 export type ParallelKind = 'w' | 'g' | 'f'
@@ -17,3 +17,7 @@ export function parseParallelRef(ref: string): { language: ParallelLanguage; kin
 export const isLanguageRef = (ref: string): boolean => /^[a-z]{2,3}:/.test(ref)
 /** Records of another language than ja/ko (a profile from a newer build, say) are not ours: they are left alone and never shown. */
 export const parallelRefsOf = (language: ParallelLanguage, refs: Iterable<string>): string[] => [...refs].filter(ref => parseParallelRef(ref)?.language === language)
+
+export const parallelLessonId = (language: ParallelLanguage, number: number): string => `${language}:lesson:${number}`
+/** A lesson id of a parallel track (kept in the lessons table next to the Chinese v1 ids). */
+export const isParallelLessonId = (id: string): boolean => /^(?:ja|ko):lesson:[1-9]\d*$/.test(id)

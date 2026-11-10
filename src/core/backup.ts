@@ -6,7 +6,7 @@ import type { Workspace } from './model'
 import { clearUnsavedDrafts } from './assistant/drafts'
 import { listSavedSudokuBoards } from './games/sudoku-store'
 import { exportBackup, readBackup, splitStudy } from './backup-codec'
-import { isLanguageRef } from './parallel/refs'
+import { isLanguageRef } from './language/refs'
 import { knowledgeCards, readCollectionsState, richerCard } from './collections/snapshot'
 
 export { exportBackup, readBackup, MAX_BACKUP_BYTES, type WorkspaceBackup } from './backup-codec'

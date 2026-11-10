@@ -1,4 +1,4 @@
-import { isLanguageRef } from '../parallel/refs'
+import { isLanguageRef } from '../language/refs'
 import { parse, stringify } from 'yaml'
 import { emptySchedulingState, schedule, type Rating } from '../study/fsrs'
 import { cardId, type ExerciseAttempt, type KnowledgeEntry, type StudyCard } from '../study/contracts'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MessageCircle, MoreHorizontal, PenLine, Repeat2, Square, Volume2 } from 'lucide-react'
-import type { ParallelLanguage } from '../core/parallel/data'
+import type { ParallelLanguage } from '../core/language/ids'
 import { prepareAssistantDraft } from '../core/assistant/draft-actions'
 import { openWritingSheet } from '../core/characters/writing-sheet'
 import { navigate } from '../core/routing'

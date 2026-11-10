@@ -30,7 +30,7 @@ import { fold, languageLabel, loadDictionary, makeOtherMatcher, type DictGrammar
 import { loadParallel, type ParallelData, type ParallelPhrase } from '../core/parallel/data'
 import { LanguageTag, OtherGrammarCard, OtherWordCard, DictPhrase } from '../components/dictionary/OtherEntries'
 import { languageInUse } from '../core/language/scope'
-import { isParallelRef } from '../core/parallel/refs'
+import { isParallelRef } from '../core/language/refs'
 import { loadLanguageIndex } from '../core/characters/otherLanguages'
 import { OtherCharacterCard } from '../components/characters/OtherCharacterCard'
 import { characterScript, isListed, matchesCharacter, scriptLabel, scriptsOf, type CharacterScript } from '../core/characters/other-list'

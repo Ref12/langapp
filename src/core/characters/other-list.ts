@@ -1,4 +1,4 @@
-import { romanizeJapanese, romanizeKorean } from '../parallel/romanize'
+import { romanizeJapanese, romanizeKorean } from '../language/romanize'
 
 export type CharacterScript = 'hiragana' | 'katakana' | 'kanji' | 'syllable' | 'jamo' | 'other'
 export const scriptLabel: Record<CharacterScript, string> = { hiragana: 'Hiragana', katakana: 'Katakana', kanji: 'Kanji', syllable: 'Hangul syllable', jamo: 'Hangul letter', other: 'Other' }

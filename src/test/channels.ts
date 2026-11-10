@@ -6,12 +6,12 @@ import { setBuildChannelForTests, storageNames, type BuildChannel } from '../cor
 export async function loadBuild(channel: BuildChannel) {
   setBuildChannelForTests(channel)
   vi.resetModules()
-  const [database, store, knowledge, parallel, importer, state, run, github, service, daily, copy] = await Promise.all([
-    import('../core/database'), import('../core/profiles/store'), import('../core/study/knowledge'), import('../core/parallel/practice'),
+  const [database, store, knowledge, importer, state, run, github, service, daily, copy] = await Promise.all([
+    import('../core/database'), import('../core/profiles/store'), import('../core/study/knowledge'),
     import('../core/profiles/stable-import'), import('../core/backup/state'), import('../core/backup/run'), import('../core/backup/github'),
     import('../core/backup/service'), import('../core/study/daily'), import('../core/profiles/stable-copy'),
   ])
-  return { channel, names: storageNames(channel), database, store, knowledge, parallel, importer, state, run, github, service, daily, copy, close: () => { store.resetProfilesForTests(); state.backupStateDb().close() } }
+  return { channel, names: storageNames(channel), database, store, knowledge, importer, state, run, github, service, daily, copy, close: () => { store.resetProfilesForTests(); state.backupStateDb().close() } }
 }
 export type Build = Awaited<ReturnType<typeof loadBuild>>
 

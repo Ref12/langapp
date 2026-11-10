@@ -1,6 +1,8 @@
 import { db } from '../database'
 import { savePreferences } from '../learning'
-import { isParallelLanguage, parallelLessonId, type ParallelLanguage } from './data'
+import { isParallelLanguage } from './data'
+import { parallelLessonId } from '../language/refs'
+import type { ParallelLanguage } from '../language/ids'
 
 /** Makes a track the current language; opening a Japanese or Korean track also records it as started (once). */
 export async function startTrack(language: string): Promise<void> {

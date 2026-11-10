@@ -4,7 +4,7 @@ import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from 
 import type { Workspace } from './model'
 import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
 import { studyBackupSchema, type StudyBackup } from './study/contracts'
-import { isLanguageRef } from './parallel/refs'
+import { isLanguageRef } from './language/refs'
 import { characterStateSchema } from './characters/contracts'
 import { drillSetsBackupSchema, type DrillSet } from './drills/contracts'
 import { handsfreeRunsBackupSchema, type HandsfreeRun } from './handsfree/contracts'
@@ -13,7 +13,7 @@ import { phraseHeardBackupSchema, userPhrasesBackupSchema, type PhraseHeard, typ
 import { collectionsBackupSchema, type CollectionsBackup } from './collections/contracts'
 import { librarySchema, type LibraryBook } from './library/contracts'
 import { pinyinFormatSchema } from './pinyin'
-import { isParallelLessonId } from './parallel/data'
+import { isParallelLessonId } from './language/refs'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()

@@ -1,5 +1,5 @@
-import type { ParallelLanguage } from '../core/parallel/data'
-import { readingFor } from '../core/parallel/romanize'
+import type { ParallelLanguage } from '../core/language/ids'
+import { readingFor } from '../core/language/romanize'
 import { useReadingSettings } from './pinyin-context'
 
 /** A Japanese or Korean form with its reading in the pinyin slot: the same ruby as a Chinese word, romaji or kana (Japanese) or Revised Romanization (Korean). */

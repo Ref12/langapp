@@ -3,7 +3,8 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
-import { loadParallel, resetParallel, type ParallelLanguage, glossOf } from '../core/parallel/data'
+import { loadParallel, resetParallel, glossOf } from '../core/parallel/data'
+import type { ParallelLanguage } from '../core/language/ids'
 import { parallelKnown } from '../core/parallel/practice'
 
 beforeEach(async () => { localStorage.clear(); resetParallel(); await db.delete(); await db.open(); await initializeWorkspace() })

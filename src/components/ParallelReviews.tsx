@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowRight } from 'lucide-react'
 import { parallelDue, parallelKnown } from '../core/parallel/practice'
-import type { ParallelLanguage } from '../core/parallel/data'
+import type { ParallelLanguage } from '../core/language/ids'
 import { languageName } from '../core/characters/language'
 
 /** The Reviews panel of a Japanese or Korean track: this language's own due items (never the Chinese queue). */

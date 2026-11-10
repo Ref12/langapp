@@ -6,6 +6,7 @@ import { StableCopyDialog } from './StableCopyDialog'
 import { db, initializeWorkspace } from '../core/database'
 import { initializeProfiles, resetProfilesForTests } from '../core/profiles/store'
 import { addToKnowledge } from '../core/study/knowledge'
+import { addPlainLanguageRows } from '../test/language-rows'
 import { loadBuild, snapshotStable } from '../test/channels'
 import { setBuildChannelForTests, storageNames } from '../core/storage-names'
 
@@ -15,7 +16,7 @@ async function seedStable() {
   await stable.store.initializeProfiles()
   await stable.database.initializeWorkspace()
   await stable.knowledge.addToKnowledge(['vocabulary:cha2--tea', 'grammar:s-shi4-n--identity'])
-  await stable.parallel.addParallelKnowledge(['ja:w:ja-n5-00679', 'ko:w:ko-nikl-24021'], 1_700_000_000_000)
+  await addPlainLanguageRows(stable.database.db, ['ja:w:ja-n5-00679', 'ko:w:ko-nikl-24021'], 1_700_000_000_000)
   await stable.database.db.preferences.update('workspace', { name: 'Stable workspace' })
   const other = await stable.store.createProfile('Reading', false)
   await stable.store.selectProfile(other.id)

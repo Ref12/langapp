@@ -7,7 +7,7 @@ import type { AIConnection } from '../assistant/contracts'
 import { loadCatalog, requireUnit, type Catalog, type StudyGroup, type Unit } from './catalog'
 import type { PhraseTarget } from './exercises'
 import { isSourceRef, type Exercise } from './contracts'
-import { isLanguageRef } from '../parallel/refs'
+import { isLanguageRef } from '../language/refs'
 import {
   cardId, unitRef, type Band, type ExerciseAttempt, type ExerciseSession, type KnowledgeEntry, type StudyCard, type StudyDomain,
 } from './contracts'

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
-import { cardLineFor, loadParallel, type CardLine, type ParallelLanguage } from '../../core/parallel/data'
+import { cardLineFor, loadParallel, type CardLine } from '../../core/parallel/data'
+import type { ParallelLanguage } from '../../core/language/ids'
 import { OtherLanguageSetting, languagesFor } from './other-language-setting'
 import { tracks } from '../../data/tracks'
 

@@ -1,5 +1,6 @@
+import type { ParallelLanguage } from '../language/ids'
+
 /** Japanese and Korean parallel lessons: one lesson per v2 HSK 1 group. The JSON is loaded lazily, never part of the main bundle. */
-export type ParallelLanguage = 'ja' | 'ko'
 export const parallelLanguages: readonly ParallelLanguage[] = ['ja', 'ko']
 export const isParallelLanguage = (value: unknown): value is ParallelLanguage => value === 'ja' || value === 'ko'
 
@@ -48,9 +49,6 @@ export const loadedParallel = (language: ParallelLanguage): boolean => cache.has
 export const resetParallel = (): void => cache.clear()
 
 export const LESSON_COUNT = 87
-export const parallelLessonId = (language: ParallelLanguage, number: number): string => `${language}:lesson:${number}`
-/** A lesson id of a parallel track (kept in the lessons table next to the Chinese v1 ids). */
-export const isParallelLessonId = (id: string): boolean => /^(?:ja|ko):lesson:[1-9]\d*$/.test(id)
 
 /** The lesson's new words, in order, without repeats of the same entry. */
 export function lessonWords(data: ParallelData, lesson: ParallelLesson): (ParallelEntry & { id: string })[] {
