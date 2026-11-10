@@ -1,3 +1,5 @@
+import { rowsOfCurrentLanguage } from '../core/language/scope'
+import { setsOfCurrentLanguage } from '../core/drills/set-language'
 import { useEffect, useState, type ReactNode } from 'react'
 import { ArrowRight, EyeOff, Dumbbell } from 'lucide-react'
 import { RowMenu } from '../components/RowMenu'
@@ -83,6 +85,7 @@ export function History() {
   }, [])
   const sets = useLiveQuery(() => db.drillSets.toArray().then(all => all.filter(set => !set.discarded && !set.removedAt)), [])
   const characterStates = useLiveQuery(() => db.characterStates.toArray(), []) ?? []
+  const language = useLiveQuery(() => db.preferences.get('workspace').then(item => ({ currentLanguage: item?.currentLanguage })), [])
   const stored = useLiveQuery(() => db.preferences.get('workspace').then(item => item?.historyFilter ?? 'all'), [])
   const where = readLocation(useRoute())
   const filter: Filter = where.filter ?? stored ?? 'all'
@@ -113,12 +116,13 @@ export function History() {
       setError(cause instanceof Error ? cause.message : 'Other audio could not be stopped. Try Practice again.')
     }
   }
-  const ready = entries && lessons && sets && stored
+  const ready = entries && lessons && sets && stored && language
+  // Each language is its own world: only the rows of the language the learner is in. A phrase-history entry is always Chinese (its locale is zh-Hans), a lesson's language is that of its items, a practice set's likewise.
   const rows: Row[] = ready ? [
-    ...(filter === 'lessons' || filter === 'drills' ? [] : entries.filter(entry => filter === 'all' || entryKinds(entry)[filter] !== undefined)
+    ...(filter === 'lessons' || filter === 'drills' ? [] : rowsOfCurrentLanguage(entries, () => [], language).filter(entry => filter === 'all' || entryKinds(entry)[filter] !== undefined)
       .map((entry): Row => ({ type: 'phrase', at: filter === 'all' ? entry.lastOpenedAt : entryKinds(entry)[filter]!, entry }))),
-    ...(filter === 'all' || filter === 'lessons' ? lessons.map((lesson): Row => ({ type: 'lesson', at: lesson.at, lesson })) : []),
-    ...(filter === 'all' || filter === 'drills' ? sets.map((set): Row => ({ type: 'drill', at: set.createdAt, set })) : []),
+    ...(filter === 'all' || filter === 'lessons' ? rowsOfCurrentLanguage(lessons, lesson => lesson.refs, language).map((lesson): Row => ({ type: 'lesson', at: lesson.at, lesson })) : []),
+    ...(filter === 'all' || filter === 'drills' ? setsOfCurrentLanguage(sets, language).map((set): Row => ({ type: 'drill', at: set.createdAt, set })) : []),
   ].sort((a, b) => b.at - a.at) : []
   const pages = Math.max(1, Math.ceil(rows.length / HISTORY_PAGE_SIZE))
   const page = Math.min(where.page, pages)

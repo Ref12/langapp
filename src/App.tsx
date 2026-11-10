@@ -137,7 +137,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
     return session ? <PracticeSessionPage {...props} session={session} /> : <NotFound />
   }
   if (page === 'review') return <Practice {...props} />
-  if (page === 'dictionary') return <Dictionary {...props} section={id} initialScope={lessonPage} initialQuery={new URLSearchParams(queryParts.join('?')).get('q') ?? undefined} initialWrite={new URLSearchParams(queryParts.join('?')).get('write') ?? undefined} initialLanguage={new URLSearchParams(queryParts.join('?')).get('lang') ?? undefined} />
+  if (page === 'dictionary') return <Dictionary {...props} section={id} initialScope={lessonPage} initialQuery={new URLSearchParams(queryParts.join('?')).get('q') ?? undefined} initialWrite={new URLSearchParams(queryParts.join('?')).get('write') ?? undefined} />
   if (import.meta.env.DEV && page === 'devwriting') return <WritingPreview query={queryParts.join('?')} />
   if (page === 'writing') return <Writing {...props} codepoint={id} scope={lessonPage} query={queryParts.join('?')} />
   if (page === 'settings') return <Settings {...props} />

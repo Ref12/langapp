@@ -5,12 +5,10 @@ import { studiedLessons } from '../../core/parallel/progress'
 import { wordFormsTable } from '../../core/parallel/conjugate'
 import { loadParallel, type ParallelData, type ParallelLanguage, type ParallelPhrase } from '../../core/parallel/data'
 import { languageGlyph, languageLabel, type DictGrammar, type DictWord } from '../../core/dictionary/other'
-import { lessonsTeaching, phrasesUsing, sameWordIn, type SameWord } from '../../core/dictionary/links'
-import type { Catalog } from '../../core/study/catalog'
+import { lessonsTeaching, phrasesUsing } from '../../core/dictionary/links'
 import { ParallelHear } from '../ParallelHear'
 import { ParallelStrokes } from '../ParallelStrokes'
 import { Form } from '../ParallelForm'
-import { loadDictionary } from '../../core/dictionary/other'
 import { languageName } from '../../core/characters/language'
 
 /** The small 中 / 日 / 한 tag on a result. */
@@ -19,21 +17,15 @@ export const LanguageTag = ({ language }: { language: 'zh' | ParallelLanguage })
 
 const meaningList = (meaning: string) => meaning.split(' | ').filter(Boolean)
 
-/** The detail layer of a Japanese or Korean word: writing, lessons, phrases, the same word in other languages, and the place for word forms. */
-function WordDetails({ word, language, catalog }: { word: DictWord; language: ParallelLanguage; catalog?: Catalog }) {
+/** The detail layer of a Japanese or Korean word: writing, lessons, phrases and the place for word forms. */
+function WordDetails({ word, language }: { word: DictWord; language: ParallelLanguage }) {
   const [data, setData] = useState<Partial<Record<ParallelLanguage, ParallelData>>>({})
-  const [same, setSame] = useState<SameWord[]>([])
   const [error, setError] = useState('')
   useEffect(() => {
     let live = true
-    Promise.all([loadParallel('ja'), loadParallel('ko'), loadDictionary('ja'), loadDictionary('ko')]).then(([ja, ko, dictJa, dictKo]) => {
-      if (!live) return
-      const all = { ja, ko }
-      setData(all)
-      setSame(sameWordIn(language, word, all, catalog, (lang, id) => (lang === 'ja' ? dictJa : dictKo).byId.get(id)))
-    }, reason => { if (live) setError(reason instanceof Error ? reason.message : String(reason)) })
+    loadParallel(language).then(value => { if (live) setData({ [language]: value }) }, reason => { if (live) setError(reason instanceof Error ? reason.message : String(reason)) })
     return () => { live = false }
-  }, [language, word, catalog])
+  }, [language])
   const own = data[language]
   const lessons = own ? lessonsTeaching(own, word.id) : []
   const phrases = own ? phrasesUsing(own, word.id) : []
@@ -42,10 +34,6 @@ function WordDetails({ word, language, catalog }: { word: DictWord; language: Pa
     <ParallelStrokes text={word.form} language={language} reportMissing />
     <p className="small" data-testid="word-lesson">{!own ? 'Loading lessons...' : lessons.length ? <>Taught in {lessons.map((lesson, index) => <span key={lesson.number}>{index > 0 && ', '}<a href={'#lessons/' + language + '/' + lesson.number}>lesson {lesson.number}</a></span>)}</> : 'Not taught in a lesson yet.'}</p>
     {phrases.length > 0 && <><h4 className="small muted">Lesson phrases</h4><ul className="plain-list">{phrases.slice(0, 3).map(({ lesson, phrase }) => <DictPhrase key={language + lesson + phrase.id} phrase={phrase} language={language} lesson={lesson} />)}</ul></>}
-    <div className="same-word" data-testid="same-word"><h4 className="small muted">Same word in</h4>
-      {same.length ? <ul className="plain-list">{same.map(item => <li key={item.language + item.form} className="small"><a href={item.href}><LanguageTag language={item.language} /> <span lang={item.language === 'zh' ? 'zh-Hans' : item.language}>{item.form}</span>{item.reading && item.reading !== item.form ? <span lang={item.language === 'zh' ? 'zh-Hans' : item.language}> {item.reading}</span> : null}</a> <span className="muted">{item.gloss}</span></li>)}</ul>
-        : <p className="small muted">{own ? 'No matching entry found in the other languages.' : 'Loading...'}</p>}
-    </div>
     <WordForms word={word} language={language} data={own} />
   </div>
 }
@@ -73,12 +61,12 @@ function DictPhrase({ phrase, language, lesson }: { phrase: ParallelPhrase; lang
     <p className="example" lang={language}>{phrase.text}</p>
     {phrase.reading && <p className="small muted" lang={language}>{phrase.reading}</p>}
     <p className="small">{phrase.en}</p>
-    <p className="zh-original">{phrase.zh ? <><span lang="zh-Hans">{languageGlyph.zh}</span> <span lang="zh-Hans">{phrase.zh}</span></> : null}{lesson && phrase.zh ? ' · ' : null}{lesson ? <a href={'#lessons/' + language + '/' + lesson}>lesson {lesson}</a> : null}</p>
+    {lesson ? <p className="zh-original"><a href={'#lessons/' + language + '/' + lesson}>lesson {lesson}</a></p> : null}
   </div><ParallelHear text={phrase.text} language={language} label={'Hear phrase ' + phrase.id} /></div></li>
 }
 export { DictPhrase }
 
-export function OtherWordCard({ word, language, known, catalog, tag, open: initiallyOpen = false }: { word: DictWord; language: ParallelLanguage; known: boolean; catalog?: Catalog; tag: boolean; open?: boolean }) {
+export function OtherWordCard({ word, language, known, tag, open: initiallyOpen = false }: { word: DictWord; language: ParallelLanguage; known: boolean; tag: boolean; open?: boolean }) {
   const [open, setOpen] = useState(initiallyOpen)
   const meanings = meaningList(word.meaning)
   return <article className="word-card study-unit-card lesson-word-card other-word-card" data-language={language} data-word={word.ref} aria-label={'Word ' + word.form}>
@@ -91,7 +79,7 @@ export function OtherWordCard({ word, language, known, catalog, tag, open: initi
       {word.pos && <p className="small muted" data-testid="word-pos">{word.pos}</p>}
     </div><ParallelHear text={word.form} language={language} label={'Hear ' + word.form} actions={{ meaning: word.meaning, title: languageName[language] + ' word', route: 'dictionary' }} /></div>
     <button type="button" className="text-link small" aria-expanded={open} onClick={() => setOpen(value => !value)}>{open ? 'Hide details' : 'Show details'}</button>
-    {open && <WordDetails word={word} language={language} catalog={catalog} />}
+    {open && <WordDetails word={word} language={language} />}
   </article>
 }
 

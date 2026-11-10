@@ -15,6 +15,7 @@ import { worstMark } from './write-queue'
 import { drillSkills, recordSkillPractice, SKILL_LABEL, STRATEGY_LABEL, type Skill } from '../study/skills'
 import { pickItems } from '../study/skill-pick'
 import { loadBacklogWords, pickUnwritten } from './unwritten'
+import { languageOfSet } from './set-language'
 import { DEFAULT_HANDSFREE_SETTINGS } from '../handsfree/contracts'
 import { MARK_RATING, drillSetSchema, type HandsfreeActivity, type DrillFormat, type DrillSet, type DrillTypeId, type EngineState, type Mark } from './contracts'
 
@@ -113,7 +114,8 @@ export async function createDrillSet(source: DrillSource, now = Date.now(), opti
     ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}), ...(withEngine ? { engine: { preset: 'default', length: 'standard' as const, seed: Math.floor(Math.random() * 2 ** 31), recorded: [], correct: 0, total: 0 } } : {}), ...(options.handsfree ? { handsfree: options.handsfree, shortcut: 'handsfree' as const } : {}), ...(options.handsfreeRecall ? { handsfreeRecall: options.handsfreeRecall, shortcut: 'handsfree' as const } : {}) }
   await db.transaction('rw', [db.drillSets], async () => {
     await db.drillSets.add(drillSetSchema.parse(set))
-    const unfinished = (await db.drillSets.where('status').equals('active').sortBy('createdAt')).filter(item => item.id !== id)
+    // Only unfinished sessions of the new session's language count and are set aside: a Japanese session never retires a Chinese one.
+    const unfinished = (await db.drillSets.where('status').equals('active').sortBy('createdAt')).filter(item => item.id !== id && languageOfSet(item) === languageOfSet(set))
     for (const old of unfinished.slice(0, Math.max(0, unfinished.length - (MAX_UNFINISHED_SETS - 1)))) {
       if (!Object.keys(old.progress).length) await db.drillSets.put({ ...old, status: 'abandoned', completedAt: now })
     }

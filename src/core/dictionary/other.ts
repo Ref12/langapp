@@ -1,11 +1,8 @@
 /** The Japanese and Korean dictionaries: compact files (src/data/dictionary/<language>.json) loaded on first use, never part of the main bundle. */
 export type DictLanguage = 'ja' | 'ko'
-export type FilterLanguage = 'all' | 'zh' | DictLanguage
 export const dictLanguages: readonly DictLanguage[] = ['ja', 'ko']
-export const filterLanguages: readonly FilterLanguage[] = ['all', 'zh', 'ja', 'ko']
-export const isFilterLanguage = (value: unknown): value is FilterLanguage => filterLanguages.includes(value as FilterLanguage)
 export const languageGlyph: Record<'zh' | DictLanguage, string> = { zh: '\u4E2D', ja: '\u65E5', ko: '\uD55C' }
-export const languageLabel: Record<FilterLanguage, string> = { all: 'All', zh: 'Chinese', ja: 'Japanese', ko: 'Korean' }
+export const languageLabel: Record<'zh' | DictLanguage, string> = { zh: 'Chinese', ja: 'Japanese', ko: 'Korean' }
 
 interface RawDictionary { v: number; lang: DictLanguage; levels: string[]; pos: string[]; classes?: Record<string, string>; words: (string | number)[][]; grammar: [string, string, string, string, number, [string, string][]][] }
 
@@ -78,12 +75,6 @@ export function queryScript(query: string): Script {
   if (/\p{Script=Han}/u.test(query)) return 'han'
   return 'latin'
 }
-/** The languages the typed script points to, best first; none for Latin. */
-export function scriptHint(query: string): ('zh' | DictLanguage)[] {
-  const script = queryScript(query)
-  return script === 'kana' ? ['ja'] : script === 'hangul' ? ['ko'] : script === 'han' ? ['zh', 'ja'] : []
-}
-
 const stripArticle = (value: string) => value.replace(/^(?:to|a|an|the)\s+/, '')
 function meaningRank(meaning: string, query: string, bare: string): number | undefined {
   let at = meaning.indexOf(query)

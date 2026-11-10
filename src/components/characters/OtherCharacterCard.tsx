@@ -10,7 +10,7 @@ import type { DictLanguage, Dictionary } from '../../core/dictionary/other'
 export function OtherCharacterCard({ character, strokes, language, dictionary }: { character: string; strokes: number; language: DictLanguage; dictionary?: Dictionary }) {
   const script = characterScript(character)
   const words = useMemo(() => script === 'kanji' && dictionary ? dictionary.words.filter(word => word.form.includes(character)).slice(0, 3) : [], [script, dictionary, character])
-  const route = 'dictionary/characters/all?lang=' + language
+  const route = 'dictionary/characters/all'
   return <article className="word-card character-card" aria-label={'Character ' + character} data-assistant-exclude>
     <div className="phrase-row character-head">
       <h3 lang={language} className="character-native parallel-form"><Form text={character} language={language} /></h3>

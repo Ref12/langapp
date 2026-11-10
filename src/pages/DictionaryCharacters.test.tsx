@@ -24,7 +24,7 @@ function Harness() {
   const [, section, scope] = path.split('/')
   const params = new URLSearchParams(query)
   const props = { workspace, now: 1, busy: false, run: async (operation: () => Promise<void>) => { await operation() } }
-  return <Dictionary {...props} section={section} initialScope={scope} initialQuery={params.get('q') ?? undefined} initialLanguage={params.get('lang') ?? undefined} />
+  return <Dictionary {...props} section={section} initialScope={scope} initialQuery={params.get('q') ?? undefined} />
 }
 
 vi.setConfig({ testTimeout: 30000 })
@@ -41,7 +41,7 @@ beforeEach(async () => {
 afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 
 const open = (lang: string, query = '') => {
-  window.location.hash = 'dictionary/characters/all?' + [query ? 'q=' + encodeURIComponent(query) : '', 'lang=' + lang].filter(Boolean).join('&')
+  window.location.hash = 'dictionary/characters/all' + (query ? '?q=' + encodeURIComponent(query) : '')
   return savePreferences({ startedTracks: ['ja', 'ko'], currentLanguage: lang })
 }
 const glyphs = () => [...document.querySelectorAll('article.character-card')].map(card => card.getAttribute('aria-label')!.replace('Character ', ''))

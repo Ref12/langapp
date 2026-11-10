@@ -154,6 +154,21 @@ describe('unfinished sets', () => {
     expect(unfinishedSets(await db.drillSets.toArray()).length).toBeLessThanOrEqual(MAX_UNFINISHED_SETS)
   })
 
+  it('the limit counts, and sets aside, only the unfinished sessions of the new session\'s language', async () => {
+    const chinese = ['vocabulary:wo3--me']
+    const ids: string[] = []
+    for (let index = 0; index < MAX_UNFINISHED_SETS; index++) ids.push((await created({ kind: 'review', refs: chinese }, 1000 + index)).id)
+    // A Japanese session never sets a Chinese one aside, however many are stored.
+    const ja = await created({ kind: 'review', refs: ['ja:w:ja-n5-00149'] }, 5000)
+    expect(ja.status).toBe('active')
+    for (const id of ids) expect((await getDrillSet(id))?.status).toBe('active')
+    // A ninth Chinese one sets the oldest Chinese one aside, as before, and leaves the Japanese one.
+    await created({ kind: 'review', refs: chinese }, 6000)
+    expect((await getDrillSet(ids[0]))?.status).toBe('abandoned')
+    for (const id of ids.slice(1)) expect((await getDrillSet(id))?.status).toBe('active')
+    expect((await getDrillSet(ja.id))?.status).toBe('active')
+  })
+
   it('discarding keeps the results already graded', async () => {
     await addToKnowledge(['vocabulary:wo3--me'])
     const set = await created({ kind: 'review' }, Date.now() + 1000)

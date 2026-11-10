@@ -8,7 +8,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db, initializeWorkspace, loadWorkspace } from '../core/database'
 import { savePreferences } from '../core/learning'
 import { buildCatalog, type BandData } from '../core/study/catalog'
-import { loadedDictionary, loadDictionary, makeOtherMatcher, resetDictionaries, scriptHint } from '../core/dictionary/other'
+import { loadedDictionary, loadDictionary, makeOtherMatcher, resetDictionaries } from '../core/dictionary/other'
 import { resetParallel } from '../core/parallel/data'
 import { useRoute } from '../core/routing'
 import { Dictionary } from './Dictionary'
@@ -25,7 +25,7 @@ function Harness() {
   const [, section, scope] = path.split('/')
   const params = new URLSearchParams(query)
   const props = { workspace, now: 1, busy: false, run: async (operation: () => Promise<void>) => { await operation() } }
-  return <Dictionary {...props} section={section} initialScope={scope} initialQuery={params.get('q') ?? undefined} initialLanguage={params.get('lang') ?? undefined} />
+  return <Dictionary {...props} section={section} initialScope={scope} initialQuery={params.get('q') ?? undefined} />
 }
 
 vi.setConfig({ testTimeout: 30000 })
@@ -42,45 +42,52 @@ beforeEach(async () => {
 })
 afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 
-const start = (query: string, lang?: string, current = 'zh') => {
-  window.location.hash = 'dictionary/vocabulary/all?' + [query ? 'q=' + encodeURIComponent(query) : '', lang ? 'lang=' + lang : ''].filter(Boolean).join('&')
+/** Opens the Dictionary as a learner in the given language (the Chinese build's switch): the route carries only the search text. */
+const start = (query: string, current = 'zh') => {
+  window.location.hash = 'dictionary/vocabulary/all' + (query ? '?q=' + encodeURIComponent(query) : '')
   return savePreferences({ startedTracks: ['ja', 'ko'], currentLanguage: current })
 }
 const languagesOf = () => [...document.querySelectorAll('article')].map(card => card.getAttribute('data-language') ?? (card.hasAttribute('data-unit') ? 'zh' : '?'))
 
 describe('dictionary languages', () => {
-  it('filters All, Chinese, Japanese and Korean from one compact control', async () => {
-    await start('student')
-    render(<Harness />)
-    const select = await screen.findByRole('combobox', { name: 'Language filter' })
-    expect(within(select).getAllByRole('option').map(option => option.textContent)).toEqual(['All', 'Chinese', 'Japanese', 'Korean'])
-    await waitFor(() => expect(new Set(languagesOf())).toEqual(new Set(['zh', 'ja', 'ko'])))
-    expect(screen.getAllByLabelText('Japanese')[0]).toHaveTextContent('日')
-    const user = userEvent.setup()
-    await user.selectOptions(select, 'ja')
-    await waitFor(() => expect(new Set(languagesOf())).toEqual(new Set(['ja'])))
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Language filter' }), 'ko')
-    await waitFor(() => expect(new Set(languagesOf())).toEqual(new Set(['ko'])))
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Language filter' }), 'zh')
-    await waitFor(() => expect(languagesOf()).toEqual(['zh']))
-    expect(document.querySelector('.lang-tag')).toBeNull()
-  })
-
-  it('orders All results by the current language', async () => {
-    for (const [current, first] of [['ko', 'ko'], ['ja', 'ja'], ['zh', 'zh']] as const) {
+  it('covers exactly the language the learner is in, with no Language filter and no language tag', async () => {
+    for (const current of ['zh', 'ja', 'ko'] as const) {
       cleanup()
-      await start('student', undefined, current)
+      await start('student', current)
       render(<Harness />)
       await waitFor(() => expect(languagesOf().length).toBeGreaterThan(0))
-      await waitFor(() => expect(languagesOf()[0]).toBe(first))
+      await act(async () => { await new Promise(resolve => setTimeout(resolve, 100)) })
+      expect(new Set(languagesOf())).toEqual(new Set([current]))
+      expect(screen.queryByRole('combobox', { name: 'Language filter' })).toBeNull()
+      expect(document.querySelector('.lang-tag')).toBeNull()
     }
   })
 
-  it('searches kana and Hangul by reading and form, and English across languages', async () => {
-    expect(scriptHint('べんきょう')).toEqual(['ja'])
-    expect(scriptHint('학생')).toEqual(['ko'])
-    expect(scriptHint('学生')).toEqual(['zh', 'ja'])
-    expect(scriptHint('student')).toEqual([])
+  it('a word spelled the same in two languages lists only the language the learner is in', async () => {
+    await start('学生', 'ja')
+    render(<Harness />)
+    await screen.findByRole('article', { name: 'Word 学生' })
+    expect(new Set(languagesOf())).toEqual(new Set(['ja']))
+    cleanup(); await start('学生', 'zh')
+    render(<Harness />)
+    await waitFor(() => expect(languagesOf()).toEqual(['zh']))
+    expect(document.querySelector('[data-language]')).toBeNull()
+  })
+
+  it('ignores ?lang= in the route', async () => {
+    await savePreferences({ startedTracks: ['ja', 'ko'], currentLanguage: 'zh' })
+    window.location.hash = 'dictionary/vocabulary/all?lang=ja&q=' + encodeURIComponent('学生')
+    render(<Harness />)
+    await waitFor(() => expect(languagesOf()).toEqual(['zh']))
+    cleanup()
+    await savePreferences({ currentLanguage: 'ko' })
+    window.location.hash = 'dictionary/vocabulary/all?lang=zh&q=' + encodeURIComponent('student')
+    render(<Harness />)
+    await waitFor(() => expect(languagesOf().length).toBeGreaterThan(0))
+    expect(new Set(languagesOf())).toEqual(new Set(['ko']))
+  })
+
+  it('searches kana and Hangul by reading and form', async () => {
     await start('べんきょう', 'ja')
     render(<Harness />)
     const card = await screen.findByRole('article', { name: 'Word 勉強する' })
@@ -92,12 +99,9 @@ describe('dictionary languages', () => {
     cleanup(); await start('ガクセイ', 'ja')
     render(<Harness />)
     expect(await screen.findByRole('article', { name: 'Word 学生' })).toBeInTheDocument()
-    cleanup(); await start('student')
-    render(<Harness />)
-    await waitFor(() => expect(new Set(languagesOf())).toEqual(new Set(['zh', 'ja', 'ko'])))
   })
 
-  it('shows a Japanese entry with reading, level, lesson link, phrases and Same word in', async () => {
+  it('shows a Japanese entry with reading, level, lesson link and phrases, and no Same word in block', async () => {
     await start('学生', 'ja')
     render(<Harness />)
     const card = await screen.findByRole('article', { name: 'Word 学生' })
@@ -111,11 +115,9 @@ describe('dictionary languages', () => {
     expect(lesson).toHaveAttribute('href', '#lessons/ja/1')
     const details = within(card).getByTestId('word-details')
     await waitFor(() => expect(details).toHaveTextContent('私は学生です。'))
-    expect(details).toHaveTextContent('我是学生。')
-    const same = within(card).getByTestId('same-word')
-    await waitFor(() => expect(same).toHaveTextContent('学生'))
-    expect(within(same).getByRole('link', { name: /学生/ })).toHaveAttribute('href', expect.stringContaining('lang=zh'))
-    await waitFor(() => expect(within(same).getAllByRole('link').some(link => link.getAttribute('href')?.includes('lang=ko'))).toBe(true))
+    expect(details).not.toHaveTextContent('我是学生。')
+    expect(within(card).queryByTestId('same-word')).toBeNull()
+    expect(card).not.toHaveTextContent('Same word in')
     expect(within(card).getByTestId('conjugation-slot')).toHaveTextContent('no verb or adjective forms')
     expect(within(card).getByRole('button', { name: 'Show writing' })).toBeInTheDocument()
   })
@@ -129,29 +131,23 @@ describe('dictionary languages', () => {
     expect(await within(await within(card).findByTestId('word-lesson')).findByRole('link', { name: /lesson \d+/ }, { timeout: 5000 })).toHaveAttribute('href', expect.stringMatching(/^#lessons\/ko\/\d+$/))
   })
 
-  it('does not fetch Japanese or Korean data until it is needed', async () => {
+  it('does not fetch Japanese or Korean data until the learner is in that language', async () => {
     await savePreferences({ startedTracks: ['ja', 'ko'] })
-    window.location.hash = 'dictionary/vocabulary/all?lang=zh&q=tea'
+    window.location.hash = 'dictionary/vocabulary/all?q=tea'
     render(<Harness />)
-    await screen.findByRole('combobox', { name: 'Language filter' })
+    await screen.findByRole('group', { name: 'Dictionary section' })
     await act(async () => { await new Promise(resolve => setTimeout(resolve, 50)) })
     expect(loadedDictionary('ja')).toBe(false)
     expect(loadedDictionary('ko')).toBe(false)
-    await userEvent.setup().selectOptions(screen.getByRole('combobox', { name: 'Language filter' }), 'ja')
+    expect(screen.queryByRole('combobox', { name: 'Language filter' })).toBeNull()
+    await act(async () => { await savePreferences({ currentLanguage: 'ja' }) })
     await waitFor(() => expect(loadedDictionary('ja')).toBe(true))
     expect(loadedDictionary('ko')).toBe(false)
-    // A learner who has started neither track keeps the Chinese list on All, with nothing fetched.
-    cleanup(); resetDictionaries(); await savePreferences({ startedTracks: [] })
-    window.location.hash = 'dictionary/vocabulary/all'
-    render(<Harness />)
-    await screen.findByRole('combobox', { name: 'Language filter' })
-    expect(loadedDictionary('ja')).toBe(false)
-    expect(document.querySelector('.lang-tag')).toBeNull()
   })
 
   it('applies the knowledge filter with ja:w:<id> records, and shows nothing when there are none', async () => {
-    await savePreferences({ startedTracks: ['ja', 'ko'] })
-    window.location.hash = 'dictionary/vocabulary/knowledge?lang=ja'
+    await savePreferences({ startedTracks: ['ja', 'ko'], currentLanguage: 'ja' })
+    window.location.hash = 'dictionary/vocabulary/knowledge'
     render(<Harness />)
     expect(await screen.findByText('Your knowledge set is empty')).toBeInTheDocument()
     expect(screen.queryByRole('alert')).toBeNull()
@@ -160,14 +156,16 @@ describe('dictionary languages', () => {
     expect(screen.getByRole('article', { name: 'Word 学生' })).toBeInTheDocument()
   })
 
-  it('shows Japanese and Korean lesson phrases with the Chinese original, and a Korean Characters list', async () => {
+  it('shows Japanese and Korean lesson phrases without the Chinese original, and a Korean Characters list', async () => {
     await start('', 'ja')
-    window.location.hash = 'dictionary/phrases/all?lang=ja&q=' + encodeURIComponent('学生')
+    window.location.hash = 'dictionary/phrases/all?q=' + encodeURIComponent('学生')
     render(<Harness />)
     const list = await screen.findByTestId('other-phrases', undefined, { timeout: 5000 })
-    expect(list).toHaveTextContent('我是学生。')
+    expect(list).toHaveTextContent('私は学生です。')
+    expect(list).not.toHaveTextContent('我是学生。')
     cleanup()
-    window.location.hash = 'dictionary/characters/all?lang=ko'
+    await savePreferences({ currentLanguage: 'ko' })
+    window.location.hash = 'dictionary/characters/all'
     render(<Harness />)
     expect(await screen.findByTestId('other-characters-ko')).toBeInTheDocument()
     expect(screen.queryByTestId('characters-note')).toBeNull()

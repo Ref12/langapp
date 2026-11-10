@@ -1,6 +1,11 @@
+import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowRight, BookOpen, RotateCcw, Sprout, Sparkles } from 'lucide-react'
 import { getPack, bandName, isAreaOn } from '../core/language'
 import { KnowledgeCounts } from '../components/study/KnowledgeCounts'
+import { db } from '../core/database'
+import { isParallelRef } from '../core/parallel/refs'
+import { rowsOfCurrentLanguage } from '../core/language/scope'
+import { DOMAIN } from '../core/study/knowledge'
 import { countItems } from '../core/study/daily'
 import { curriculumWords } from '../data/curriculum'
 import { RestoreOffer } from '../components/BackupPanel'
@@ -10,9 +15,16 @@ import { useStudyActions } from './useStudyActions'
 const WEEK = 7 * 24 * 60 * 60 * 1000
 
 export function Overview({ workspace, now, run, busy }: PageProps) {
-  const { catalog, connection, due, rows, next, progress, start } = useStudyActions({ workspace, now, run })
+  const { catalog, connection, rows, next, progress, start } = useStudyActions({ workspace, now, run })
+  // The counts are the learner's language only. The workspace lists are Chinese; the Lab build keeps Japanese and Korean records in the same tables under ja:/ko: refs.
+  const preferences = workspace.preferences
+  const otherKnowledge = useLiveQuery(async () => (await db.knowledge.toArray()).filter(entry => isParallelRef(entry.ref)), [])
+  const otherCards = useLiveQuery(async () => (await db.studyCards.toArray()).filter(card => isParallelRef(card.ref)), [])
+  const knowledge = rowsOfCurrentLanguage([...workspace.knowledge, ...(otherKnowledge ?? [])], entry => [entry.ref], preferences)
+  const knownRefs = new Set(knowledge.map(entry => entry.ref))
+  const due = rowsOfCurrentLanguage([...workspace.studyCards, ...(otherCards ?? [])], card => [card.ref], preferences).filter(card => (card.domain === DOMAIN || isParallelRef(card.ref)) && card.due <= now && knownRefs.has(card.ref)).length
   const resumable = rows.find(row => row.origin.kind === 'new')?.session
-  const finished = workspace.exerciseSessions.filter(session => session.status === 'completed')
+  const finished = rowsOfCurrentLanguage(workspace.exerciseSessions, session => [...session.targetRefs, ...session.reviewRefs], preferences).filter(session => session.status === 'completed')
   const lessonsDone = finished.filter(session => session.mode === 'new' && !session.redoOf).length
   const reviewsThisWeek = finished.filter(session => session.mode === 'review' && (session.completedAt ?? session.createdAt) > now - WEEK).length
   const pack = getPack()
@@ -35,14 +47,14 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
       </article>
       <article className="daily-card"><div className="card-topline"><span className="eyebrow">KEEP IT FRESH</span><Sparkles size={20} /></div>
         <div className="review-count">{due}<span>{due === 1 ? 'item to review' : 'items to review'}</span></div>
-        <p className="muted">{workspace.knowledge.length ? 'A little recall goes a long way. Review what is due.' : 'Start a lesson or add items from your Dictionary. Your review queue will grow with you.'}</p>
+        <p className="muted">{knowledge.length ? 'A little recall goes a long way. Review what is due.' : 'Start a lesson or add items from your Dictionary. Your review queue will grow with you.'}</p>
         {due ? <button className="button primary full-width" disabled={busy || !connection} onClick={() => start('review')}>Review due items <ArrowRight size={16} /></button>
           : <a className="button secondary full-width" href="#lessons">Nothing due. Go to Lessons <ArrowRight size={16} /></a>}
         <p className="small muted">Saved on this device. No account needed.</p>
       </article>
     </section>
     <section className="stats-strip" aria-label="Your actual learning progress">
-      <div><Sprout /><strong>{countItems(workspace.knowledge).words}<small>words in your knowledge set</small><KnowledgeCounts knowledge={workspace.knowledge} rest /></strong></div>
+      <div><Sprout /><strong>{countItems(knowledge).words}<small>words in your knowledge set</small><KnowledgeCounts knowledge={knowledge} rest /></strong></div>
       <div><BookOpen /><strong>{lessonsDone}<small>new-item lessons finished</small></strong></div>
       <div><RotateCcw /><strong>{reviewsThisWeek}<small>reviews finished in the last 7 days</small></strong></div>
     </section>
