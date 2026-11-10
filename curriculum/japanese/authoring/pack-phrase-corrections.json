@@ -3,6 +3,81 @@
  "language": "ja",
  "note": "Corrections to phrases of curriculum/japanese/parallel/zh-lessons.yaml (which, with src/data/parallel, is never edited here), applied by scripts/generate-pack-ja.mjs before anything is derived from the phrases. phrases: phrase id -> { tokens: [{ at, t, w | g }] replaces the token at that index; merge: { at, count, t, w } makes count tokens one; words: { oldEntry: newEntry | null } changes the phrase's word list }. writings: word entry -> { text written in a sentence: text the headword writes } for words the headword writes in kana (ねこ) and sentences in kanji (猫): one writing per word, the headword's, in headword and sentences alike (the phrase text follows its tokens).",
  "phrases": {
+  "65": {
+   "why": "好きです is the polite な-adjective form (the form tag already adds ja-par-g022 to the output); the lesson's list now names it",
+   "grammar": {
+    "add": [
+     "ja-par-g022"
+    ]
+   }
+  },
+  "67": {
+   "why": "好きです is the polite な-adjective form (the form tag already adds ja-par-g022 to the output); the lesson's list now names it",
+   "grammar": {
+    "add": [
+     "ja-par-g022"
+    ]
+   }
+  },
+  "68": {
+   "why": "好きです is the polite な-adjective form (the form tag already adds ja-par-g022 to the output); the lesson's list now names it",
+   "grammar": {
+    "add": [
+     "ja-par-g022"
+    ]
+   }
+  },
+  "117": {
+   "why": "ja-par-g005 and the word 感じる had no sentence; the English says \"I feel a little cold\"",
+   "rewrite": {
+    "reading": "わたしはちょっとさむいとかんじます。",
+    "tokens": [
+     {
+      "t": "私",
+      "w": "ja-n5-00679"
+     },
+     {
+      "t": "は",
+      "g": "ja-n5-g004"
+     },
+     {
+      "t": "ちょっと",
+      "w": "ja-n5-00385"
+     },
+     {
+      "t": "寒い",
+      "w": "ja-n5-00267"
+     },
+     {
+      "t": "と",
+      "g": "ja-par-g005"
+     },
+     {
+      "t": "感じ",
+      "w": "ja-n3-00342"
+     },
+     {
+      "t": "ます",
+      "g": "ja-n5-g023"
+     },
+     {
+      "t": "。"
+     }
+    ],
+    "words": [
+     "ja-n5-00679",
+     "ja-n5-00385",
+     "ja-n5-00267",
+     "ja-n3-00342"
+    ],
+    "grammar": [
+     "ja-n5-g004",
+     "ja-par-g004",
+     "ja-par-g005",
+     "ja-n5-g023"
+    ]
+   }
+  },
   "135": {
    "why": "the lesson's word and the English are 今年 (ことし), not 今日",
    "tokens": [
@@ -15,6 +90,520 @@
    "words": {
     "ja-n5-00192": "ja-n5-00246"
    }
+  },
+  "151": {
+   "why": "に marks the place of います (<place> + にいます), not a time",
+   "tokens": [
+    {
+     "at": 3,
+     "t": "に",
+     "g": "ja-par-g014"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ]
+   }
+  },
+  "153": {
+   "why": "に marks the place of います (<place> + にいます), not a time",
+   "tokens": [
+    {
+     "at": 4,
+     "t": "に",
+     "g": "ja-par-g014"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ]
+   }
+  },
+  "155": {
+   "why": "the sentence says ご飯が少し: <noun> + が + 少し",
+   "grammar": {
+    "add": [
+     "ja-par-g010"
+    ]
+   }
+  },
+  "162": {
+   "why": "the sentence says ご飯が少し: <noun> + が + 少し",
+   "grammar": {
+    "add": [
+     "ja-par-g010"
+    ]
+   }
+  },
+  "163": {
+   "why": "lesson 14 teaches 動詞て、動詞; the English \"work during the day and rest in the evening\" is one sentence joined with て",
+   "rewrite": {
+    "reading": "ひるまははたらいてよるはやすみます。",
+    "tokens": [
+     {
+      "t": "昼間",
+      "w": "ja-n4-00520"
+     },
+     {
+      "t": "は",
+      "g": "ja-n5-g004"
+     },
+     {
+      "t": "働い",
+      "w": "ja-n5-00501"
+     },
+     {
+      "t": "て",
+      "g": "ja-n5-g041"
+     },
+     {
+      "t": "、"
+     },
+     {
+      "t": "夜",
+      "w": "ja-n5-00654"
+     },
+     {
+      "t": "は",
+      "g": "ja-n5-g004"
+     },
+     {
+      "t": "休み",
+      "w": "ja-n5-00634"
+     },
+     {
+      "t": "ます",
+      "g": "ja-n5-g023"
+     },
+     {
+      "t": "。"
+     }
+    ],
+    "words": [
+     "ja-n4-00520",
+     "ja-n5-00501",
+     "ja-n5-00654",
+     "ja-n5-00634"
+    ],
+    "grammar": [
+     "ja-n5-g004",
+     "ja-n5-g041",
+     "ja-n5-g023"
+    ]
+   }
+  },
+  "167": {
+   "why": "the English says \"go to work\"; the lesson introduces 出勤する",
+   "rewrite": {
+    "reading": "きょうはしゅっきんします。",
+    "tokens": [
+     {
+      "t": "今日",
+      "w": "ja-n5-00192"
+     },
+     {
+      "t": "は",
+      "g": "ja-n5-g004"
+     },
+     {
+      "t": "出勤し",
+      "w": "ja-par-00011"
+     },
+     {
+      "t": "ます",
+      "g": "ja-n5-g023"
+     },
+     {
+      "t": "。"
+     }
+    ],
+    "words": [
+     "ja-n5-00192",
+     "ja-par-00011"
+    ],
+    "grammar": [
+     "ja-n5-g004",
+     "ja-n5-g023"
+    ]
+   }
+  },
+  "174": {
+   "why": "授業の前に is the pattern Nの前に, not <time> + に",
+   "tokens": [
+    {
+     "at": 5,
+     "t": "に",
+     "g": "ja-par-g011"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g011"
+    ]
+   }
+  },
+  "177": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 7,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "183": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 7,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "184": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 7,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "185": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 7,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "187": {
+   "why": "asks how many with 何 + a counter (何冊), or how much / how long with どれくらい; polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "add": [
+     "ja-par-g018",
+     "ja-n5-g027"
+    ],
+    "remove": [
+     "ja-n4-g042"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 5,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "188": {
+   "why": "十五 is 十 + a ones digit; polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "add": [
+     "ja-par-g017",
+     "ja-n5-g027"
+    ],
+    "remove": [
+     "ja-n4-g042"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 6,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "190": {
+   "why": "asks how many with 何 + a counter (何冊), or how much / how long with どれくらい",
+   "grammar": {
+    "add": [
+     "ja-par-g018"
+    ]
+   }
+  },
+  "195": {
+   "why": "asks how many with 何 + a counter (何冊), or how much / how long with どれくらい",
+   "grammar": {
+    "add": [
+     "ja-par-g018"
+    ]
+   }
+  },
+  "196": {
+   "why": "asks how many with 何 + a counter (何冊), or how much / how long with どれくらい; polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "add": [
+     "ja-par-g018",
+     "ja-n5-g027"
+    ],
+    "remove": [
+     "ja-n4-g042"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 7,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "197": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "198": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "199": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "200": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "201": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "202": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "203": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "204": {
+   "why": "the sentence says where it is with の + 後ろ / 前 / 横 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g019"
+    ]
+   }
+  },
+  "346": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 5,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "350": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 5,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "362": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 7,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "366": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 6,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "374": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 5,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "400": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 3,
+     "t": "います",
+     "g": "ja-n5-g027"
+    },
+    {
+     "at": 8,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "404": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 6,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "407": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 3,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
   },
   "412": {
    "why": "the counter 人 read にん is part of the number + counter pattern, as in phrases 99, 217, 222, not the word ひと (person)",
@@ -29,6 +618,316 @@
     "ja-n5-00527": null
    }
   },
+  "430": {
+   "why": "に marks the place where one sits or stays (<place> + に + <verb>), not a time",
+   "tokens": [
+    {
+     "at": 1,
+     "t": "に",
+     "g": "ja-par-g061"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g061"
+    ]
+   }
+  },
+  "438": {
+   "why": "に marks the place where one sits or stays (<place> + に + <verb>), not a time",
+   "tokens": [
+    {
+     "at": 1,
+     "t": "に",
+     "g": "ja-par-g061"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g061"
+    ]
+   }
+  },
+  "480": {
+   "why": "the English says \"I think\"; lesson 53 teaches 普通形と思う",
+   "rewrite": {
+    "reading": "わたしはこのほんがおもしろいとおもいます。",
+    "tokens": [
+     {
+      "t": "私",
+      "w": "ja-n5-00679"
+     },
+     {
+      "t": "は",
+      "g": "ja-n5-g004"
+     },
+     {
+      "t": "この",
+      "w": "ja-n5-00249"
+     },
+     {
+      "t": "本",
+      "w": "ja-n5-00572"
+     },
+     {
+      "t": "が",
+      "g": "ja-n5-g005"
+     },
+     {
+      "t": "面白い",
+      "w": "ja-par-00035"
+     },
+     {
+      "t": "と",
+      "g": "ja-n4-g040"
+     },
+     {
+      "t": "思い",
+      "w": "ja-n4-00101"
+     },
+     {
+      "t": "ます",
+      "g": "ja-n5-g023"
+     },
+     {
+      "t": "。"
+     }
+    ],
+    "words": [
+     "ja-n5-00679",
+     "ja-n5-00249",
+     "ja-n5-00572",
+     "ja-par-00035",
+     "ja-n4-00101"
+    ],
+    "grammar": [
+     "ja-n5-g004",
+     "ja-n5-g005",
+     "ja-n4-g040",
+     "ja-n5-g023"
+    ]
+   }
+  },
+  "522": {
+   "why": "授業の後に is the pattern Nの後に, not <time> + に",
+   "tokens": [
+    {
+     "at": 5,
+     "t": "に",
+     "g": "ja-par-g040"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g040"
+    ]
+   }
+  },
+  "523": {
+   "why": "授業の後に is the pattern Nの後に, not <time> + に",
+   "tokens": [
+    {
+     "at": 5,
+     "t": "に",
+     "g": "ja-par-g040"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g040"
+    ]
+   }
+  },
+  "524": {
+   "why": "授業の後に is the pattern Nの後に, not <time> + に",
+   "tokens": [
+    {
+     "at": 5,
+     "t": "に",
+     "g": "ja-par-g040"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g040"
+    ]
+   }
+  },
+  "525": {
+   "why": "授業の後に is the pattern Nの後に, not <time> + に",
+   "tokens": [
+    {
+     "at": 5,
+     "t": "に",
+     "g": "ja-par-g040"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g040"
+    ]
+   }
+  },
+  "526": {
+   "why": "授業の後に is the pattern Nの後に, not <time> + に",
+   "tokens": [
+    {
+     "at": 3,
+     "t": "に",
+     "g": "ja-par-g040"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g040"
+    ]
+   }
+  },
+  "527": {
+   "why": "授業の後に is the pattern Nの後に, not <time> + に",
+   "tokens": [
+    {
+     "at": 6,
+     "t": "に",
+     "g": "ja-par-g040"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g040"
+    ]
+   }
+  },
+  "531": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "532": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "533": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "534": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "535": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "536": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "537": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "538": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "539": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "540": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "541": {
+   "why": "the sentence says where it is with の + 上 / 下 / 中 / 外 + に",
+   "grammar": {
+    "add": [
+     "ja-par-g041"
+    ]
+   }
+  },
+  "559": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 6,
+     "t": "ています",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
   "593": {
    "why": "八百 is one token read はっぴゃく (a sound change over 八 + 百), not は + っぴゃく",
    "merge": {
@@ -36,6 +935,143 @@
     "count": 2,
     "t": "八百",
     "w": "ja-n5-00532"
+   }
+  },
+  "613": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   }
+  },
+  "648": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 3,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "649": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 5,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "650": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 3,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "651": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 7,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "653": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 5,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "665": {
+   "why": "polite ています is ja-n5-g027; ja-n4-g042 is the plain ている",
+   "grammar": {
+    "remove": [
+     "ja-n4-g042"
+    ],
+    "add": [
+     "ja-n5-g027"
+    ]
+   },
+   "tokens": [
+    {
+     "at": 6,
+     "t": "います",
+     "g": "ja-n5-g027"
+    }
+   ]
+  },
+  "687": {
+   "why": "に marks the place where one sits or stays (<place> + に + <verb>), not a time",
+   "tokens": [
+    {
+     "at": 2,
+     "t": "に",
+     "g": "ja-par-g061"
+    }
+   ],
+   "grammar": {
+    "remove": [
+     "ja-n5-g014"
+    ],
+    "add": [
+     "ja-par-g061"
+    ]
    }
   },
   "781": {
@@ -49,6 +1085,14 @@
    ],
    "words": {
     "ja-n5-00113": "ja-par-00026"
+   }
+  },
+  "813": {
+   "why": "asks how many with 何 + a counter (何冊), or how much / how long with どれくらい",
+   "grammar": {
+    "add": [
+     "ja-par-g018"
+    ]
    }
   }
  },

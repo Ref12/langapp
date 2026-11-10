@@ -1,0 +1,6 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "Content gaps of the Japanese lessons that are accepted, each with a reason: { lesson, kind (pattern | form-later | form-unused | word), id (the pattern or word id; for form-later form:pattern), reason }. node scripts/generate-pack-ja.mjs --check fails for a gap that is not closed and not listed here, and for a listed entry that is no longer a gap.",
+ "accepted": []
+}

@@ -447,7 +447,7 @@ export function buildJaPack(base = defaultRoot) {
   for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) {
     const tokens = phrase.tokens
     if (tokens.map(t => t.t).join('') !== phrase.text) throw new Error('Phrase ' + phrase.id + ': the tokens do not add up to the text')
-    const reading = readingFixes[phrase.id] ?? phrase.reading ?? phrase.text
+    const reading = (phrase.rewritten ? undefined : readingFixes[phrase.id]) ?? phrase.reading ?? phrase.text // a phrase rewritten whole brings its own reading
     // what a word token may read as: the entry's reading, or for an inflected token (休み of 休む) the reading's stem plus the token's own kana tail
     const known = tokens.map(token => {
       const entry = token.w ? index.vocabulary.get(token.w) : null

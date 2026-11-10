@@ -1,0 +1,152 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "Corrections to the lists of the lessons of curriculum/japanese/parallel/zh-lessons.yaml (never edited here), applied in memory by applyCorrections in scripts/generate-pack-ja.mjs. moves: { word | grammar, from, to, why } takes a word row (with its fields) from one lesson's words or a pattern from one lesson's grammar_intro to another lesson's; removals: { word | grammar, lesson, why } takes it out of the lesson's list for good; additions: { lesson, word: <a words row with entry, form, gloss> | grammar: <pattern id>, why } adds one (a word row is marked extra). A lesson's grammar_taught is derived from grammar_intro and its phrases. Each operation throws, naming the lesson, when what it refers to is not there.",
+ "moves": [
+  {
+   "word": "ja-n5-00253",
+   "from": 13,
+   "to": 34,
+   "why": "これ: the sentences of lesson 13 do not use it; the first sentence with it is in lesson 34"
+  },
+  {
+   "word": "ja-par-00013",
+   "from": 15,
+   "to": 66,
+   "why": "授業を受ける: first used in lesson 66 (568); lesson 15 says \"before class\", not \"attend\""
+  },
+  {
+   "word": "ja-n5-00059",
+   "from": 27,
+   "to": 31,
+   "why": "いつ: first used in lesson 31 (213)"
+  },
+  {
+   "word": "ja-n5-00527",
+   "from": 32,
+   "to": 41,
+   "why": "ひと: lesson 32 counts people with the counter 人; the first sentence with the word ひと is in lesson 41 (341)"
+  },
+  {
+   "word": "ja-par-00029",
+   "from": 47,
+   "to": 48,
+   "why": "いくつか: first used in lesson 48 (401)"
+  },
+  {
+   "word": "ja-n5-00610",
+   "from": 56,
+   "to": 57,
+   "why": "見る: first used in lesson 57 (463)"
+  },
+  {
+   "word": "ja-n3-00170",
+   "from": 59,
+   "to": 60,
+   "why": "円: first used in lesson 60 (587)"
+  },
+  {
+   "word": "ja-n5-00508",
+   "from": 63,
+   "to": 67,
+   "why": "早い: first used in lesson 67 (598)"
+  },
+  {
+   "word": "ja-n5-00482",
+   "from": 65,
+   "to": 66,
+   "why": "乗る: first used in lesson 66 (570)"
+  },
+  {
+   "grammar": "ja-n5-g018",
+   "from": 13,
+   "to": 28,
+   "why": "(これ / それ / あれ): first used in lesson 28 (265)"
+  },
+  {
+   "grammar": "ja-n5-g025",
+   "from": 16,
+   "to": 37,
+   "why": "past tense: the first ました sentence is in lesson 37 (307)"
+  },
+  {
+   "grammar": "ja-n5-g010",
+   "from": 18,
+   "to": 21,
+   "why": "there is (things): first used in lesson 21 (104)"
+  },
+  {
+   "grammar": "ja-n5-g011",
+   "from": 18,
+   "to": 21,
+   "why": "there is (people, animals): first used in lesson 21 (105)"
+  },
+  {
+   "grammar": "ja-par-g014",
+   "from": 20,
+   "to": 18,
+   "why": "<place> + にいます: lesson 18 is the first to use it (148)"
+  },
+  {
+   "grammar": "ja-n5-g012",
+   "from": 37,
+   "to": 27,
+   "why": "<place> + に行きます: first used in lesson 27 (256)"
+  },
+  {
+   "grammar": "ja-n5-g027",
+   "from": 38,
+   "to": 13,
+   "why": "<verb> + ています: first used in lesson 13 (156)"
+  },
+  {
+   "grammar": "ja-n4-g011",
+   "from": 39,
+   "to": 41,
+   "why": "ことができる: first used in lesson 41 (344)"
+  },
+  {
+   "grammar": "ja-n4-g012",
+   "from": 43,
+   "to": 39,
+   "why": "potential form: lesson 39 already uses it (323)"
+  },
+  {
+   "grammar": "ja-par-g028",
+   "from": 57,
+   "to": 60,
+   "why": "<noun> + がありません: first used in lesson 60 (596)"
+  },
+  {
+   "grammar": "ja-par-g022",
+   "from": 35,
+   "to": 11,
+   "why": "polite な-adjective: lesson 11 already uses it (好きです)"
+  }
+ ],
+ "removals": [
+  {
+   "grammar": "ja-par-g024",
+   "lesson": 47,
+   "why": "too vague to name: \"a sentence that shows a change\" is not one pattern; 雨が降ってきました is the pattern <verb> + てきました (ja-n3-g045), which lesson 47 already has"
+  },
+  {
+   "grammar": "ja-par-g036",
+   "lesson": 66,
+   "why": "repeats は/を and ます/ました: NをVます／NをVました is the object particle を (ja-n5-g006) with the polite verb (ja-n5-g023, ja-n5-g025), which are taught already"
+  }
+ ],
+ "additions": [
+  {
+   "lesson": 53,
+   "word": {
+    "entry": "ja-n4-00101",
+    "form": "思う",
+    "reading": "おもう",
+    "gloss": "think",
+    "pos": "verb"
+   },
+   "why": "the word of 普通形と思う (phrase 480 says 思います); a new word, a new label"
+  }
+ ]
+}

@@ -1,0 +1,263 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "Japanese-only phrases: sentences the Chinese lesson does not have (decided 2026-11-09), added in memory by applyCorrections to the end of the lesson's phrases. Each: { id (after the last source id, 817), lesson, extra: true (the mark of a Japanese-only phrase; no zh, no zh_ref), reading, en, tokens, words, grammar, checked, why }. The text is the tokens joined. A phrase may use only what is taught up to and including its lesson: the generator throws when its readyAt is later.",
+ "phrases": [
+  {
+   "id": 818,
+   "lesson": 2,
+   "extra": true,
+   "reading": "あなたはせんせいですか。",
+   "en": "(Asking someone you don't know) Are you a teacher?",
+   "tokens": [
+    {
+     "t": "あなた",
+     "w": "ja-n5-00027"
+    },
+    {
+     "t": "は",
+     "g": "ja-n5-g004"
+    },
+    {
+     "t": "先生",
+     "w": "ja-n5-00334"
+    },
+    {
+     "t": "です",
+     "g": "ja-n5-g001"
+    },
+    {
+     "t": "か",
+     "g": "ja-n5-g003"
+    },
+    {
+     "t": "。"
+    }
+   ],
+   "words": [
+    "ja-n5-00027",
+    "ja-n5-00334"
+   ],
+   "grammar": [
+    "ja-n5-g004",
+    "ja-n5-g001",
+    "ja-n5-g003"
+   ],
+   "why": "あなた is normally left out; a question to someone you do not know is where a teacher says it"
+  },
+  {
+   "id": 819,
+   "lesson": 40,
+   "extra": true,
+   "reading": "おちゃをのみすぎます。",
+   "en": "I drink too much tea.",
+   "tokens": [
+    {
+     "t": "お茶",
+     "w": "ja-n5-00111"
+    },
+    {
+     "t": "を",
+     "g": "ja-n5-g006"
+    },
+    {
+     "t": "飲み",
+     "w": "ja-n5-00481"
+    },
+    {
+     "t": "すぎます",
+     "g": "ja-n4-g037"
+    },
+    {
+     "t": "。"
+    }
+   ],
+   "words": [
+    "ja-n5-00111",
+    "ja-n5-00481"
+   ],
+   "grammar": [
+    "ja-n5-g006",
+    "ja-n4-g037"
+   ],
+   "why": "<verb stem> + すぎます: the sentences of lesson 40 are all adjectives (遅すぎます)"
+  },
+  {
+   "id": 820,
+   "lesson": 65,
+   "extra": true,
+   "reading": "このみせはどのくらいおおきいですか。",
+   "en": "How big is this shop?",
+   "tokens": [
+    {
+     "t": "この",
+     "w": "ja-n5-00249"
+    },
+    {
+     "t": "店",
+     "w": "ja-n5-00601"
+    },
+    {
+     "t": "は",
+     "g": "ja-n5-g004"
+    },
+    {
+     "t": "どのくらい",
+     "g": "ja-par-g035"
+    },
+    {
+     "t": "大きい",
+     "w": "ja-n5-00095"
+    },
+    {
+     "t": "です",
+     "g": "ja-n5-g020"
+    },
+    {
+     "t": "か",
+     "g": "ja-n5-g003"
+    },
+    {
+     "t": "。"
+    }
+   ],
+   "words": [
+    "ja-n5-00249",
+    "ja-n5-00601",
+    "ja-n5-00095"
+   ],
+   "grammar": [
+    "ja-n5-g004",
+    "ja-par-g035",
+    "ja-n5-g020",
+    "ja-n5-g003"
+   ],
+   "why": "どのくらい + <adjective> + ですか: lesson 65 asks only 何歳ですか"
+  },
+  {
+   "id": 821,
+   "lesson": 68,
+   "extra": true,
+   "reading": "しつもんがあるひとはいますか。",
+   "en": "Is there anyone who has a question?",
+   "tokens": [
+    {
+     "t": "質問",
+     "w": "ja-n5-00282"
+    },
+    {
+     "t": "が",
+     "g": "ja-n5-g005"
+    },
+    {
+     "t": "ある",
+     "w": "ja-n5-00039"
+    },
+    {
+     "t": "人",
+     "w": "ja-n5-00527"
+    },
+    {
+     "t": "は",
+     "g": "ja-n5-g004"
+    },
+    {
+     "t": "い",
+     "w": "ja-n5-00070"
+    },
+    {
+     "t": "ます",
+     "g": "ja-n5-g023"
+    },
+    {
+     "t": "か",
+     "g": "ja-n5-g003"
+    },
+    {
+     "t": "。"
+    }
+   ],
+   "words": [
+    "ja-n5-00282",
+    "ja-n5-00039",
+    "ja-n5-00527",
+    "ja-n5-00070"
+   ],
+   "grammar": [
+    "ja-n5-g005",
+    "ja-par-g039",
+    "ja-n5-g004",
+    "ja-n5-g023",
+    "ja-n5-g003"
+   ],
+   "why": "plain-form verb + noun (ある人): no sentence of lesson 68 has a verb before a noun"
+  },
+  {
+   "id": 822,
+   "lesson": 75,
+   "extra": true,
+   "reading": "かれはそのひとをしっているとおもいます。",
+   "en": "I think he knows that person.",
+   "tokens": [
+    {
+     "t": "彼",
+     "w": "ja-n4-00145"
+    },
+    {
+     "t": "は",
+     "g": "ja-n5-g004"
+    },
+    {
+     "t": "その",
+     "w": "ja-n5-00344"
+    },
+    {
+     "t": "人",
+     "w": "ja-n5-00527"
+    },
+    {
+     "t": "を",
+     "g": "ja-n5-g006"
+    },
+    {
+     "t": "知って",
+     "w": "ja-n5-00304"
+    },
+    {
+     "t": "いる",
+     "g": "ja-n4-g042"
+    },
+    {
+     "t": "と",
+     "g": "ja-n4-g040"
+    },
+    {
+     "t": "思い",
+     "w": "ja-n4-00101"
+    },
+    {
+     "t": "ます",
+     "g": "ja-n5-g023"
+    },
+    {
+     "t": "。"
+    }
+   ],
+   "words": [
+    "ja-n4-00145",
+    "ja-n5-00344",
+    "ja-n5-00527",
+    "ja-n5-00304",
+    "ja-n4-00101"
+   ],
+   "grammar": [
+    "ja-n5-g004",
+    "ja-n5-g006",
+    "ja-n4-g042",
+    "ja-n4-g040",
+    "ja-n5-g023"
+   ],
+   "why": "the plain ている (ja-n4-g042) shows before と思います; no sentence of lesson 75 had it"
+  }
+ ]
+}
