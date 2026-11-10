@@ -2,6 +2,7 @@
 //   parallel/entries.yaml + zh-lessons.yaml + the imported JLPT references (read through scripts/parallel-lessons-files.mjs), authoring/pack-glosses.json (short glosses),
 //   authoring/pack-labels.json (the label registry: id -> lb, only ever appended to).
 // Nothing is read from src/data/parallel or src/core/parallel, and no Chinese field (zh, senses) goes into the pack.
+// (No npm script: package.json is hashed into public/characters/chinese/derived-source.generated.zip, so editing it makes characters:check fail and public/ is off limits in this step.)
 // Usage: node scripts/generate-pack-ja.mjs [--check] [--root DIR]
 import { existsSync, readFileSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
@@ -276,7 +277,7 @@ export function main(argv = process.argv.slice(2)) {
     if (!check) writeAtomic(file, text)
   }
   console.log('Japanese pack data ' + (check ? 'checked' : 'generated') + ': ' + JSON.stringify(report))
-  if (check && stale.length) { for (const path of stale) console.error('Stale Japanese pack data: ' + relative(base, join(base, path))); throw new Error('Run "npm run pack:ja:generate" to regenerate the Japanese pack data.') }
+  if (check && stale.length) { for (const path of stale) console.error('Stale Japanese pack data: ' + relative(base, join(base, path))); throw new Error('Run "node scripts/generate-pack-ja.mjs" to regenerate the Japanese pack data.') }
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
