@@ -1,12 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { formRows } from '../../core/forms/display'
-import type { PackForm } from '../../core/language'
 import { getPack } from '../../core/language'
-import { loadPackForms } from '../../core/language/pack-forms'
 import type { Catalog } from '../../core/study/catalog'
 import type { VocabularyRecord } from '../../core/study/catalog'
 import { unitRef } from '../../core/study/contracts'
-import { ReadingText } from '../display-context'
+import { ReadingText, usePackFormsTable } from '../display-context'
 
 /** The lesson that teaches a grammar unit: the first group that lists it, numbered within its band. */
 function lessonOf(catalog: Catalog, label: string): { id: string; number: number } | undefined {
@@ -23,12 +21,7 @@ function lessonOf(catalog: Catalog, label: string): { id: string; number: number
 /** The forms of a word, collapsed under "Forms" on its card: one dense row per form the forms table has for the word, with the lesson that teaches it. Nothing when the pack has no forms table or the word no forms. */
 export function WordForms({ catalog, record, reading }: { catalog: Catalog; record: VocabularyRecord; reading: boolean }) {
   const offer = getPack().displayForms
-  const [table, setTable] = useState<PackForm[] | undefined>()
-  useEffect(() => {
-    let live = true
-    if (offer) void loadPackForms().then(rows => { if (live) setTable(rows) })
-    return () => { live = false }
-  }, [offer])
+  const table = usePackFormsTable()
   const rows = useMemo(() => formRows(offer, table, record), [offer, table, record])
   const lessons = useMemo(() => new Map(rows.flatMap(row => row.pattern ? [[row.pattern, lessonOf(catalog, row.pattern)] as const] : [])), [rows, catalog])
   if (!rows.length) return null

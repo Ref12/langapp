@@ -1,6 +1,7 @@
-import { createContext, useContext, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { activeDisplayForm, headwordFor, type Headword, type HeadwordRecord } from '../core/forms/display'
-import { getPack, type ReadingScript } from '../core/language'
+import { getPack, type PackForm, type ReadingScript } from '../core/language'
+import { loadPackForms } from '../core/language/pack-forms'
 import { kanaToRomaji, tokensToRomaji, type RomajiToken } from '../core/reading/romaji'
 import { showsReading } from '../core/study/reading-line'
 import { Pinyin } from './Pinyin'
@@ -47,3 +48,14 @@ export function useShowsReading(): (kana: string | undefined, text: string) => b
 export function HeadwordText({ record }: { record: HeadwordRecord }) { return <>{useHeadword(record).text}</> }
 /** Its reading line in the chosen style. */
 export function HeadwordReading({ record }: { record: HeadwordRecord }) { return <ReadingText kana={useHeadword(record).reading} /> }
+
+/** The pack's forms table once it has loaded (undefined before, and for a pack without one). */
+export function usePackFormsTable(): PackForm[] | undefined {
+  const [table, setTable] = useState<PackForm[] | undefined>()
+  useEffect(() => {
+    let live = true
+    void loadPackForms().then(rows => { if (live) setTable(rows) })
+    return () => { live = false }
+  }, [])
+  return table
+}

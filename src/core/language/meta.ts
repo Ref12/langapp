@@ -35,7 +35,12 @@ export interface PackDisplayForms {
   sample: { ch: string; pr: string; cl: string }
 }
 /** The reading styles a pack offers and the default; a pack that offers none keeps its own reading format setting. */
-export interface PackReadingStyles { choices: ReadingScript[]; default: ReadingScript }
+export interface PackReadingStyles {
+  choices: ReadingScript[]
+  default: ReadingScript
+  /** A sample reading in the option labels, as the tokens of a sentence's reading line: ["べんきょう", "します"]. */
+  sample: string[]
+}
 
 export interface PackMeta {
   id: LanguageId
@@ -74,7 +79,7 @@ export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4
 export const jaMeta: PackMeta = { id: 'ja', name: jaTrack.name, nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: nothing,
   wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', courseTracks: false, readings: 'line', countsCharacters: false,
   displayForms: { language: 'ja', choices: [{ id: 'masu', kinds: ['verb'] }, { id: 'dict', kinds: [] }], default: 'masu', sample: { ch: '\u52C9\u5F37\u3059\u308B', pr: '\u3079\u3093\u304D\u3087\u3046\u3059\u308B', cl: 'suru-compound' } },
-  readingStyles: { choices: ['kana', 'romaji'], default: 'kana' } }
+  readingStyles: { choices: ['kana', 'romaji'], default: 'kana', sample: ['\u3079\u3093\u304D\u3087\u3046', '\u3057\u307E\u3059'] } }
 export const koMeta: PackMeta = { id: 'ko', name: koTrack.name, nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: nothing,
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', courseTracks: false, readings: 'line', countsCharacters: false }
 

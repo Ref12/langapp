@@ -1,6 +1,9 @@
 import { useContext, useState } from 'react'
 import { getPack, isAreaOn, readingTitle } from '../core/language'
 import { savePreferences } from '../core/learning'
+import { formOptionLabel } from '../core/forms/display'
+import { tokensToRomaji } from '../core/reading/romaji'
+import { resolveDisplaySettings, usePackFormsTable } from '../components/display-context'
 import { PageHeading, type PageProps } from '../components/shared'
 import { AIConnectionSettings } from '../components/assistant/AIConnectionSettings'
 import { SpeechConnectionSettings } from '../components/assistant/SpeechConnectionSettings'
@@ -23,6 +26,8 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
   const [aiBusy, setAIBusy] = useState(false)
   const [speechBusy, setSpeechBusy] = useState(false)
   const busy = workspaceBusy || profileBusy || aiBusy || speechBusy
+  const formsTable = usePackFormsTable()
+  const { form: displayForm, readingStyle } = resolveDisplaySettings(workspace.preferences)
   return <>
     <PageHeading eyebrow="YOUR OWN PACE. YOUR OWN SPACE." title="Your workspace.">{`A local ${pack.wording.language} learning space, separate from the original app.`}</PageHeading>
     <ProfileSettings busy={workspaceBusy || aiBusy || speechBusy} onBusyChange={setProfileBusy} />
@@ -51,6 +56,12 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       <label>About this many exercises per lesson<input type="number" min={8} max={40} step={1} disabled={busy} defaultValue={workspace.preferences.exercisesPerLesson ?? 20} key={workspace.preferences.exercisesPerLesson ?? 20}
         onBlur={event => { const value = Number(event.target.value); if (value !== (workspace.preferences.exercisesPerLesson ?? 20)) void run(() => savePreferences({ exercisesPerLesson: Math.min(40, Math.max(8, Math.round(value) || 20)) })) }} />
         <span className="small muted">A guide for what the AI is asked to write, 8 to 40, default 20; a lesson keeps the exercises that pass checking. More than 20 are written in parallel requests of up to 20.</span></label>
+      {pack.displayForms && formsTable && <label>Show verbs as<select disabled={busy} value={displayForm} onChange={event => void run(() => savePreferences({ displayForm: event.target.value }))}>
+        {pack.displayForms.choices.map(choice => <option key={choice.id} value={choice.id}>{formOptionLabel(pack.displayForms!, formsTable, choice.id)}</option>)}
+      </select></label>}
+      {pack.readingStyles && pack.readingStyles.choices.length > 1 && <label>Readings<select disabled={busy} value={readingStyle} onChange={event => void run(() => savePreferences({ readingStyle: event.target.value === 'romaji' ? 'romaji' : 'kana' }))}>
+        {pack.readingStyles.choices.map(choice => <option key={choice} value={choice}>{choice === 'kana' ? 'Kana' : 'Romaji'} ({choice === 'kana' ? pack.readingStyles!.sample.join('') : tokensToRomaji(pack.readingStyles!.sample.map(reading => ({ reading })), pack.romaji)})</option>)}
+      </select></label>}
       {pack.readings === 'pinyin' && <>
       <label>Pinyin format<select disabled={busy || pinyinSetup === 'loading'} value={workspace.preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT} onChange={event => {
         const value = event.target.value
