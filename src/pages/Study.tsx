@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { getPack, bandName } from '../core/language'
-import { Band } from '../components/Band'
+import { BandName } from '../components/BandName'
 import { useAIConnection } from '../components/study/useAIConnection'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { navigate } from '../core/routing'
@@ -51,7 +51,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
           <span className="study-preview-form" lang={getPack().learningTag}>{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</span>
           <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /> </span>}{unit.record.ds}</span>
         </li>)}</ul>}
-        {progress && <p className="small muted"><Band n={next?.band ?? '6'} /> / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
+        {progress && <p className="small muted"><BandName n={next?.band ?? '6'} /> / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
       </section>}
       {track.parallel ? <ParallelReviews language={track.language as 'ja' | 'ko'} now={now} /> : <section className="experience-card" aria-label="Review">
         <div className="card-header-row">

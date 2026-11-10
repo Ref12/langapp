@@ -6,7 +6,7 @@ import type { KnowledgeEntry, StudyCard } from '../../core/study/contracts'
 import { cardStatus, unitKindLabel } from '../../core/study/labels'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { getPack } from '../../core/language'
-import { Band } from '../Band'
+import { BandName } from '../BandName'
 import { showsReading } from '../../core/study/reading-line'
 import { Pinyin } from '../Pinyin'
 import { SaveActions } from '../collections/SaveToMenu'
@@ -50,7 +50,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   const vocabulary = unit.kind === 'vocabulary'
   const snippet = <PracticeSnippet source={{ text: vocabulary ? unit.record.ch : renderExample(catalog, unit.record.ex).text, meaning: unit.record.ds, locale: getPack().speechLocale, title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />
   return <UnitCardShell unitRef={unit.ref} compact={compact}
-    eyebrow={<><span className="eyebrow">{unitKindLabel(unit)} / <Band n={unit.band} /></span>{!hideStatus && <span className="tag">{cardStatus(card, now)}</span>}</>}
+    eyebrow={<><span className="eyebrow">{unitKindLabel(unit)} / <BandName n={unit.band} /></span>{!hideStatus && <span className="tag">{cardStatus(card, now)}</span>}</>}
     title={<h3 {...(vocabulary ? press : {})} lang={vocabulary ? getPack().learningTag : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{title}</h3>}
     reading={pinyin && showsReading(unit.record.pr, title) && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /></p>}
     meaning={unit.record.ds}
