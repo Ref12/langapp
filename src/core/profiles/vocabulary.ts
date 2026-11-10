@@ -1,10 +1,10 @@
-import wordLabels from '../../data/v2/profile-word-labels.generated.json'
+import { legacyWordLabels } from '../language/word-labels'
 import { isLanguageRef } from '../parallel/refs'
 import { cardId, parseUnitRef, unitRef } from '../study/contracts'
 import { type ProfileSnapshot, type ProfileYaml } from './contracts'
 
-const labelsById = new Map(wordLabels.map(word => [word.id, word.lb]))
-const idsByLabel = new Map(wordLabels.map(word => [word.lb, word.id]))
+const labelsById = new Map(legacyWordLabels.map(word => [word.id, word.lb]))
+const idsByLabel = new Map(legacyWordLabels.map(word => [word.lb, word.id]))
 
 function wordLabel(id: string): string {
   const label = labelsById.get(id)
