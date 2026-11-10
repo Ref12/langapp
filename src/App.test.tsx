@@ -47,7 +47,7 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     resetProfilesForTests()
     render(<App />)
     expect(await screen.findByLabelText(/Active profile: default/)).toBeInTheDocument()
-    const topbar = document.querySelector('.topbar') as HTMLElement
+    const topbar = document.querySelector('.topbar-actions') as HTMLElement
     expect(topbar.querySelector('[aria-haspopup="menu"]')).toBeNull()
     expect(topbar.querySelector('.build-mark')).toBeNull()
     expect(topbar.querySelector('.profile-pill')?.tagName).toBe('SPAN')
