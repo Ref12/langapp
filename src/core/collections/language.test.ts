@@ -18,10 +18,8 @@ describe('collectionsOfCurrentLanguage', () => {
     expect((await collectionsOfCurrentLanguage({ currentLanguage: 'zh' })).map(c => c.id).sort()).toEqual(['empty', 'zh'])
     expect((await collectionsOfCurrentLanguage({})).map(c => c.id).sort()).toEqual(['empty', 'zh'])
   })
-  it('Japanese: only the Japanese collection', async () => {
-    expect((await collectionsOfCurrentLanguage({ currentLanguage: 'ja' })).map(c => c.id)).toEqual(['ja'])
-  })
-  it('Korean: none', async () => {
-    expect(await collectionsOfCurrentLanguage({ currentLanguage: 'ko' })).toEqual([])
+  it('an old Japanese or Korean selection chooses nothing: the Chinese build still lists its own collections only', async () => {
+    expect((await collectionsOfCurrentLanguage({ currentLanguage: 'ja' })).map(c => c.id).sort()).toEqual(['empty', 'zh'])
+    expect((await collectionsOfCurrentLanguage({ currentLanguage: 'ko' })).map(c => c.id).sort()).toEqual(['empty', 'zh'])
   })
 })

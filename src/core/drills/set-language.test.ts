@@ -17,9 +17,9 @@ describe('languageOfSet', () => {
 describe('setsOfCurrentLanguage', () => {
   afterEach(() => setBuildLanguageForTests(undefined))
   const zh = { refs: ['vocabulary:a'] }, ja = { refs: ['ja:w:ja-n5-1'] }
-  it('the Chinese build filters by the currentLanguage preference', () => {
+  it('the Chinese build keeps its own sets whatever an old currentLanguage says', () => {
     expect(setsOfCurrentLanguage([zh, ja], {})).toEqual([zh])
-    expect(setsOfCurrentLanguage([zh, ja], { currentLanguage: 'ja' })).toEqual([ja])
+    expect(setsOfCurrentLanguage([zh, ja], { currentLanguage: 'ja' })).toEqual([zh])
   })
   it('a one-language build keeps every set', () => {
     setBuildLanguageForTests('ja')

@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor, within } from '@testing-library/react'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace } from '../core/database'
@@ -42,12 +42,12 @@ describe('History by language', () => {
     expect(rowNames().filter(name => name === 'New items')).toHaveLength(1)
     expect(screen.getByRole('button', { name: 'Practice 你好' })).toBeInTheDocument()
   })
-  it('Japanese selected: the Japanese lesson and practice set only, no Chinese phrase', async () => {
+  it('an old Japanese selection no longer selects anything: the Chinese build shows its Chinese rows and hides the ja: ones', async () => {
     await open('#history', 'ja')
-    await screen.findByText('Japanese set')
-    expect(screen.queryByText('Chinese set')).toBeNull()
+    await screen.findByText('Chinese set')
+    expect(screen.queryByText('Japanese set')).toBeNull()
     expect(rowNames().filter(name => name === 'New items')).toHaveLength(1)
-    expect(screen.queryByRole('button', { name: 'Practice 你好' })).toBeNull()
+    expect(screen.getByRole('button', { name: 'Practice 你好' })).toBeInTheDocument()
   })
 })
 
@@ -59,12 +59,11 @@ describe('Overview by language', () => {
     expect(stats()).toHaveTextContent('0 grammar')
     expect(stats()).toHaveTextContent('1new-item lessons finished')
   })
-  it('Japanese selected: counts the Japanese knowledge and lessons', async () => {
+  it('an old Japanese selection no longer selects anything: the counts are the Chinese ones, the ja: rows are not counted', async () => {
     await open('#overview', 'ja')
-    await waitFor(() => expect(stats()).toHaveTextContent('2words in your knowledge set'))
-    expect(stats()).toHaveTextContent('1 grammar')
+    await waitFor(() => expect(stats()).toHaveTextContent('1words in your knowledge set'))
+    expect(stats()).toHaveTextContent('0 grammar')
     expect(stats()).toHaveTextContent('1new-item lessons finished')
-    expect(within(stats()).queryByText(/^3/)).toBeNull()
   })
 })
 

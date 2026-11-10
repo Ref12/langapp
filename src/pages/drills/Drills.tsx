@@ -41,9 +41,7 @@ import { availability } from './tasks'
 import { SKILLS, SKILL_LABEL, SKILL_SIZES, STRATEGY_LABEL, PICK_STRATEGIES, drillSkills, type Skill } from '../../core/study/skill-map'
 import { ACTIVITY_SKILLS } from '../../core/study/skill-map'
 import { recordSetIntro } from '../../core/study/skills'
-import { currentLanguageOf, trackFor } from '../../data/tracks'
 import { setsOfCurrentLanguage } from '../../core/drills/set-language'
-import { ParallelPracticeSource } from '../../components/ParallelPracticeSource'
 import './drills.css'
 
 const ICONS: Record<string, LucideIcon> = { Languages, Shuffle, GraduationCap, PenLine, Type, MessageSquareText, Repeat, Headphones, BookOpen }
@@ -407,14 +405,12 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const startHandsfree = (source: DrillSource, kind: HandsfreeKind) => void run(async () => { const activity = newHandsfreeActivity(loadHandsfreeSettings()); navigate(setRoute(await createDrillSet(source, Date.now(), kind === 'recall' ? { handsfreeRecall: activity } : { handsfree: activity }), handsfreeRoute(kind))) })
   /** New items open the Hands-free introduction; Reviews open Hands-free recall. */
   const shortcutFor: HandsfreeKind = mode === 'review' ? 'recall' : 'introduction'
-  const parallelTrack = trackFor(currentLanguageOf(workspace.preferences)).parallel === true
   return <div className="dr">
     <PageHeading eyebrow="Study" title={DRILLS_LABEL}>Practice sets of words and grammar patterns. Pick a type, do every item, pick another.</PageHeading>
-    {!parallelTrack && <KnowledgeCounts knowledge={workspace.knowledge} />}
-    {parallelTrack && <ParallelPracticeSource language={currentLanguageOf(workspace.preferences) as 'ja' | 'ko'} workspace={workspace} now={now} />}
+    <KnowledgeCounts knowledge={workspace.knowledge} />
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {getPack().modelExercises && connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
-    {!parallelTrack && <section className="panel dr-panel dr-select" aria-labelledby="dr-select"><h2 id="dr-select">What you'll practise</h2>
+    <section className="panel dr-panel dr-select" aria-labelledby="dr-select"><h2 id="dr-select">What you'll practise</h2>
       <label className="dr-source"><span className="eyebrow accent">Learning from</span>
         <select value={origin ? ORIGIN : from} aria-label="Learning from" onChange={event => { setFrom(event.target.value === ORIGIN ? from : event.target.value); if (origin && event.target.value !== ORIGIN) navigate('practice') }}>{origin && <option value={ORIGIN}>{origin.label}</option>}<option value={CURRICULUM}>{getPack().practiceWording.languageName} curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
       <div className="segmented" role="group" aria-label="What to practise"><button type="button" aria-pressed={mode === 'new'} disabled={!!origin} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button></div>
@@ -424,9 +420,9 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label={mode === 'new' ? 'Number of new items' : 'Number of reviews'} value={(origin && all) || (allDue && reviews.dueTotal > 0) ? '' : typed} placeholder={origin && all ? 'All' : allDue && reviews.dueTotal > 0 ? 'All due' : undefined} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') setCount(Number(event.target.value)) }} onBlur={() => setTyped(String(allDue ? REVIEW_COUNT_DEFAULT : count))} /></div>
       <p className="dr-summary" role="status" data-testid="selection-summary">{summary}</p>
       <div className="button-row"><button type="button" className="button secondary" disabled={nothing} onClick={() => setViewing(true)}><Eye size={16} /> View items</button></div>
-    </section>}
+    </section>
     {viewing && catalog && <ViewItems refs={selection} catalog={catalog} onClose={() => setViewing(false)} workspace={workspace} now={now} run={run} busy={busy} />}
-    {!parallelTrack && isAreaOn(getPack(), areaOfRoute('practice/handsfree')) && <section className="panel dr-panel dr-programs" aria-labelledby="dr-programs"><h2 id="dr-programs">Programs</h2>
+    {isAreaOn(getPack(), areaOfRoute('practice/handsfree')) && <section className="panel dr-panel dr-programs" aria-labelledby="dr-programs"><h2 id="dr-programs">Programs</h2>
       <ul className="dr-rows">
         <li><div><strong>Hands-free</strong><span className="small muted">Listen and answer aloud, with no screen. Uses the items above: New items open a Hands-free introduction, Reviews a Hands-free recall.</span></div>
           <span className="button-row"><button type="button" className="button primary" aria-label={`Start Hands-free ${shortcutFor}`} disabled={busy || nothing} onClick={() => startHandsfree(selectionSource(), shortcutFor)}>Start <ArrowRight size={16} /></button>
@@ -434,7 +430,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
       </ul>
     </section>}
     <div className="dr-columns">
-      {!parallelTrack && <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
+      <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
         <ul className="dr-rows">
           <li><div><strong>Practice session</strong><span className="small muted">{summary}</span></div>
             <button type="button" className="button primary" aria-label="Start practice session" disabled={busy || nothing} onClick={() => start(selectionSource())}>Start <ArrowRight size={16} /></button></li>
@@ -447,14 +443,14 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
             <span className="dr-skill-pickers"><select aria-label="Characters per set" value={unwrittenSize} onChange={event => { const next = Number(event.target.value); setUnwrittenSize(next); saveUnwrittenSize(next) }}>{UNWRITTEN_CHOICES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select></span></div>
             <button type="button" className="button primary" aria-label="Start unwritten characters" disabled={busy} onClick={() => start({ kind: 'unwritten', size: unwrittenSize })}>Start <ArrowRight size={16} /></button></li>}
         </ul>
-      </section>}
+      </section>
       <div className="dr-stack">
-      {(recent.length > 0 || !parallelTrack) && <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sessions</h2>
+      <section className="panel dr-panel" aria-labelledby="dr-recent"><h2 id="dr-recent">Recent sessions</h2>
         {recent.length === 0 ? <p className="muted small">No sessions yet.</p> : <div className="resume-list">{recent.map(set =>
           <SetRow key={set.id} set={set} characterStates={workspace.characterStates} onAsk={() => setAsking({ id: set.id, title: set.title })} onRemove={() => void removeSession(set)} />)}</div>}
         {undo && <p className="history-toast" role="status">Removed {undo.title} from Recent sessions. <button type="button" className="button secondary" onClick={() => { void restoreHistoryItems([`drill:${undo.id}`]); setUndo(undefined) }}>Undo</button></p>}
         {unfinished.length >= MAX_UNFINISHED_SETS && <p className="small muted">Up to {MAX_UNFINISHED_SETS} unfinished sets are kept; starting another sets the oldest untouched one aside.</p>}
-      </section>}
+      </section>
       </div>
     </div>
     {asking && <ConfirmDialog title="Discard this session?" confirmLabel="Discard" busy={busy} onCancel={() => setAsking(undefined)}

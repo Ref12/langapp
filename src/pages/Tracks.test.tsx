@@ -6,12 +6,8 @@ import { db, initializeWorkspace, loadWorkspace } from '../core/database'
 import { unitRef } from '../core/study/contracts'
 import { loadCatalog } from '../core/study/catalog'
 import { addUnits, nextGroup } from '../core/study/knowledge'
-import { bandSummaries, grammarLabel, groupRows, zhTrack, type Track } from '../data/tracks'
-import { TrackHeader } from '../components/TrackHeader'
-import { LanguageSwitch } from '../components/LanguageSwitch'
+import { bandSummaries, grammarLabel, groupRows, zhTrack } from '../data/tracks'
 import { workspaceSchema } from '../core/backup-codec'
-
-const fake: Track = { id: 'xx', language: 'xx', name: 'Fakish', glyph: 'X', bands: [] }
 
 beforeEach(async () => { window.location.hash = '#lessons'; await db.delete(); await db.open() })
 afterEach(cleanup)
@@ -58,7 +54,6 @@ describe('tracks', () => {
     await introduce(2)
     window.location.hash = '#lessons/list'
     render(<App />)
-    expect(await screen.findByTestId('track-header')).toHaveTextContent('Chinese')
     const list = await screen.findByRole('region', { name: 'Chinese lessons' })
     await waitFor(() => expect(within(list).getAllByRole('listitem')[2]).toHaveClass('current'))
     const rows = within(list).getAllByRole('listitem')
@@ -113,23 +108,6 @@ describe('tracks', () => {
     expect(screen.getByRole('region', { name: 'Examples' })).toHaveTextContent('I am a student.')
     expect(screen.getByRole('region', { name: 'Items' })).toHaveTextContent('学生')
     expect(screen.queryByRole('button', { name: /start/i })).toBeNull()
-  })
-
-  it('becomes a picker with a second track, started tracks first', async () => {
-    const user = userEvent.setup()
-    const picked: string[] = []
-    render(<TrackHeader tracks={[zhTrack, fake]} current={zhTrack} onSelect={track => picked.push(track.id)} />)
-    const select = screen.getByRole('combobox', { name: 'Course track' })
-    expect(within(select).getAllByRole('option').map(option => option.textContent)).toEqual(['Chinese', 'More tracks…'])
-    await user.selectOptions(select, 'More tracks…')
-    expect(picked).toEqual([])
-  })
-
-  it('hides the language switch with one language and shows it with two', () => {
-    const view = render(<LanguageSwitch tracks={[zhTrack]} current="zh" onChange={() => undefined} />)
-    expect(view.container).toBeEmptyDOMElement()
-    view.rerender(<LanguageSwitch tracks={[zhTrack, fake]} current="zh" onChange={() => undefined} />)
-    expect(screen.getByRole('group', { name: 'Current language' })).toBeInTheDocument()
   })
 
   it('labels the Practice source from the track language', async () => {

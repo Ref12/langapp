@@ -61,13 +61,10 @@ import './App.css'
 import './components/assistant/assistant.css'
 import { UpdateBar } from './components/UpdateBar'
 import { GroupDetail } from './pages/GroupDetail'
-import { ParallelPractice } from './pages/ParallelPractice'
-import { ParallelLessonView } from './pages/ParallelLessonView'
 import { DisplaySettingsProvider } from './components/display-context'
 import { resolveDisplaySettings } from './components/display-settings'
 import { OtherLanguageSetting } from './components/study/other-language-setting'
-import { LanguageSwitch } from './components/LanguageSwitch'
-import { currentLanguageOf, startedTracks } from './data/tracks'
+import { AppSwitch } from './components/AppSwitch'
 
 /** The navigation of the app; an entry with an area is shown only where the build's language pack has that area on. */
 const navigation: { id: string; label: string; icon: typeof Home; area?: Area }[] = [
@@ -94,7 +91,7 @@ function NotFound() {
 
 function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProps & { route: string; returnRoute: string; assistantHeader: HTMLElement | null }) {
   const [routePath, ...queryParts] = route.split('?')
-  const [page, id, lessonPage, lessonAction] = routePath.split('/')
+  const [page, id, lessonPage] = routePath.split('/')
   if (!isAreaOn(getPack(), areaOfRoute(routePath))) return <NotAvailable />
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
@@ -107,9 +104,8 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
     const session = props.workspace.exerciseSessions.find(item => item.id === lessonPage)
     return session ? <StudySessionPage {...props} session={session} /> : <NotFound />
   }
-  if (page === 'lessons' && (id === 'ja' || id === 'ko') && lessonPage === 'review') return <ParallelPractice key={id} {...props} language={id} />
-  if (page === 'lessons' && (id === 'ja' || id === 'ko') && /^[1-9]\d*$/.test(lessonPage ?? '') && lessonAction === 'practise') return <ParallelPractice key={id + lessonPage} {...props} language={id} lesson={Number(lessonPage)} />
-  if (page === 'lessons' && (id === 'ja' || id === 'ko') && lessonPage) return /^[1-9]\d*$/.test(lessonPage) ? <ParallelLessonView {...props} language={id} number={Number(lessonPage)} /> : <NotFound />
+  // The old Japanese and Korean lesson screens are gone (the Japanese app is its own build); their old links are not found.
+  if (page === 'lessons' && (id === 'ja' || id === 'ko')) return <NotFound />
   if (page === 'lessons' && id === 'group' && lessonPage) return <GroupDetail {...props} id={lessonPage} />
   if (page === 'lessons' && id === 'list') return <LessonsList {...props} />
   if (page === 'lessons') return <Study {...props} />
@@ -258,7 +254,7 @@ function WorkspaceApp() {
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
-        <div className="topbar-actions"><span className="language-pill profile-pill" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span>{getPack().id === 'zh' && <LanguageSwitch tracks={startedTracks(preferences)} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} />}<span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
+        <div className="topbar-actions"><span className="language-pill profile-pill" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span><AppSwitch /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <PageActionsMenu />
           <PageSettingsButton route={route} label={label} page={page} workspace={workspace} busy={busy} run={run} />
         </div></header>

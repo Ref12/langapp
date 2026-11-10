@@ -1,9 +1,6 @@
-import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowRight, BookOpen, RotateCcw, Sprout, Sparkles } from 'lucide-react'
 import { getPack, bandName, isAreaOn } from '../core/language'
 import { KnowledgeCounts } from '../components/study/KnowledgeCounts'
-import { db } from '../core/database'
-import { isParallelRef } from '../core/language/refs'
 import { rowsOfCurrentLanguage } from '../core/language/scope'
 import { DOMAIN } from '../core/study/knowledge'
 import { countItems } from '../core/study/daily'
@@ -16,13 +13,11 @@ const WEEK = 7 * 24 * 60 * 60 * 1000
 
 export function Overview({ workspace, now, run, busy }: PageProps) {
   const { catalog, connection, rows, next, progress, start } = useStudyActions({ workspace, now, run })
-  // The counts are the learner's language only. The workspace lists are Chinese; the Lab build keeps Japanese and Korean records in the same tables under ja:/ko: refs.
+  // The counts are the learner's language only. The Lab Chinese build's tables can still hold old ja:/ko: rows (kept, never shown); rowsOfCurrentLanguage leaves them out.
   const preferences = workspace.preferences
-  const otherKnowledge = useLiveQuery(async () => (await db.knowledge.toArray()).filter(entry => isParallelRef(entry.ref)), [])
-  const otherCards = useLiveQuery(async () => (await db.studyCards.toArray()).filter(card => isParallelRef(card.ref)), [])
-  const knowledge = rowsOfCurrentLanguage([...workspace.knowledge, ...(otherKnowledge ?? [])], entry => [entry.ref], preferences)
+  const knowledge = rowsOfCurrentLanguage(workspace.knowledge, entry => [entry.ref], preferences)
   const knownRefs = new Set(knowledge.map(entry => entry.ref))
-  const due = rowsOfCurrentLanguage([...workspace.studyCards, ...(otherCards ?? [])], card => [card.ref], preferences).filter(card => (card.domain === DOMAIN || isParallelRef(card.ref)) && card.due <= now && knownRefs.has(card.ref)).length
+  const due = rowsOfCurrentLanguage(workspace.studyCards, card => [card.ref], preferences).filter(card => card.domain === DOMAIN && card.due <= now && knownRefs.has(card.ref)).length
   const resumable = rows.find(row => row.origin.kind === 'new')?.session
   const finished = rowsOfCurrentLanguage(workspace.exerciseSessions, session => [...session.targetRefs, ...session.reviewRefs], preferences).filter(session => session.status === 'completed')
   const lessonsDone = finished.filter(session => session.mode === 'new' && !session.redoOf).length

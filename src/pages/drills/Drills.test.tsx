@@ -933,14 +933,13 @@ describe('Recent sessions by language', () => {
     await within(section).findByText(zh.title)
     expect(within(section).queryByText('Japanese hand-made set')).toBeNull()
   })
-  it('Japanese mode does not list the Chinese set, and leaves the section out while no Japanese set shows', async () => {
+  it('an old Japanese selection in the Chinese build chooses nothing: the Chinese set is still listed', async () => {
     const { zh } = await japanese()
     await db.preferences.update('workspace', { currentLanguage: 'ja', startedTracks: ['ja'] })
     render(<App />)
-    await screen.findByRole('heading', { name: 'Practice' })
-    await waitFor(() => expect(screen.queryByText(zh.title)).toBeNull())
-    expect(screen.queryByRole('heading', { name: 'Recent sessions' })).toBeNull()
-    expect(screen.queryByText('No sessions yet.')).toBeNull()
+    const section = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
+    await within(section).findByText(zh.title)
+    expect(within(section).queryByText('Japanese hand-made set')).toBeNull()
   })
   it('a Japanese build lists its own set (curriculum refs, not ja: refs) and keeps the normal Practice page', async () => {
     setBuildLanguageForTests('ja')

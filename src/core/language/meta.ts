@@ -70,8 +70,10 @@ export interface PackMeta extends PhraseIdentity, SentenceForms, PracticePage, P
   writing: PackWriting
   /** The locale the learned language is spoken in ("Hear", snippet actions, the voice setting). */
   speechLocale: SpeechLocale
-  /** Whether the build offers the course-track selector (a build with one language has nothing to choose). */
-  courseTracks: boolean
+  /** One glyph that stands for the language in the Lab app switch. */
+  glyph: string
+  /** Whether a Lab app of this language is published (at lab/ for Chinese, lab/<id>/ for the others): the app switch lists exactly these. Korean has none yet. */
+  published: boolean
   readings: ReadingStyle
   /** Whether the knowledge counts include a count of Han characters. */
   countsCharacters: boolean
@@ -94,15 +96,15 @@ const nothing = Object.fromEntries(AREAS.map(area => [area, false])) as Features
 const jaDisplayForms: PackDisplayForms = { language: 'ja', choices: [{ id: 'masu', kinds: ['verb'] }, { id: 'dict', kinds: [] }], default: 'masu', sample: { ch: '\u52C9\u5F37\u3059\u308B', pr: '\u3079\u3093\u304D\u3087\u3046\u3059\u308B', cl: 'suru-compound' } }
 
 export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4E2D\u6587', learningTag: 'zh-Hans', htmlLang: 'en', features: everything,
-  wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', courseTracks: true, readings: 'pinyin', countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
+  wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', glyph: '\u4E2D', published: true, readings: 'pinyin', countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
   dictionary: zhDictionary, writing: zhWriting, ...zhIdentity, ...zhSentence, ...zhPage, ...zhWordForms }
 export const jaMeta: PackMeta = { id: 'ja', name: jaTrack.name, nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
-  wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', courseTracks: false, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
+  wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', glyph: '\u65E5', published: true, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
   writing: jaWriting, ...jaIdentity, ...jaSentence, ...jaPage, ...jaWordForms,
   displayForms: jaDisplayForms, dictionary: jaDictionary(jaDisplayForms),
   readingStyles: { choices: ['kana', 'romaji'], default: 'kana', sample: ['\u3079\u3093\u304D\u3087\u3046', '\u3057\u307E\u3059'] } }
 export const koMeta: PackMeta = { id: 'ko', name: koTrack.name, nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: nothing,
-  wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', courseTracks: false, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
+  wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', glyph: '\uD55C', published: false, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
   dictionary: koDictionary, writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms }
 
 export const METAS: Record<LanguageId, PackMeta> = { zh: zhMeta, ja: jaMeta, ko: koMeta }

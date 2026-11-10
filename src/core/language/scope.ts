@@ -1,7 +1,6 @@
 import { parseParallelRef } from './refs'
-import { isLanguageId, type LanguageId } from './ids'
+import type { LanguageId } from './ids'
 import { buildLanguage } from '../storage-names'
-import { currentLanguageOf } from '../../data/tracks'
 import type { Preferences } from '../model'
 
 /**
@@ -17,22 +16,21 @@ export function languageOfRefs(refs: Iterable<string>): LanguageId {
 }
 
 /**
- * The language the learner is in. A one-language build (ja, ko) has its own database: its language is the build's.
- * The Chinese build has the language switch: the currentLanguage preference (Chinese when unset or unknown).
+ * The language the learner is in: the build's own (each language is its own app; there is no switch inside the Chinese build any more).
+ * The preferences argument is kept for the callers: an old `currentLanguage` setting is still stored but no longer chooses anything.
  */
-export function languageInUse(preferences: Pick<Preferences, 'currentLanguage'>): LanguageId {
-  const built = buildLanguage()
-  if (built !== 'zh') return built
-  const chosen = currentLanguageOf(preferences)
-  return isLanguageId(chosen) ? chosen : 'zh'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function languageInUse(_preferences?: Pick<Preferences, 'currentLanguage'>): LanguageId {
+  return buildLanguage()
 }
 
 /**
  * The rows the learner sees: those of the language in use. A one-language build filters nothing (the database is the build's own,
- * and its rows carry plain vocabulary: / grammar: refs); the Chinese build keeps the rows of currentLanguage.
+ * and its rows carry plain vocabulary: / grammar: refs); the Chinese build keeps its own (unmarked) rows and hides the ja:/ko: ones an older version wrote.
  */
-export function rowsOfCurrentLanguage<T>(rows: readonly T[], refsOf: (row: T) => Iterable<string>, preferences: Pick<Preferences, 'currentLanguage'>): T[] {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function rowsOfCurrentLanguage<T>(rows: readonly T[], refsOf: (row: T) => Iterable<string>, _preferences?: Pick<Preferences, 'currentLanguage'>): T[] {
   if (buildLanguage() !== 'zh') return [...rows]
-  const language = languageInUse(preferences)
+  const language = languageInUse()
   return rows.filter(row => languageOfRefs(refsOf(row)) === language)
 }

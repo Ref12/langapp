@@ -46,7 +46,8 @@ const open = (lang: string, query = '') => {
 }
 const glyphs = () => [...document.querySelectorAll('article.character-card')].map(card => card.getAttribute('aria-label')!.replace('Character ', ''))
 
-describe('Characters under Japanese and Korean', () => {
+// Skipped in Step 4: these cases put the Chinese build into Japanese or Korean with the old language switch and read the Dictionary's other-language branch, which the Chinese build no longer reaches. Dictionary stage 2 (which owns Dictionary.tsx) reworks or removes them.
+describe.skip('Characters under Japanese and Korean', () => {
   it('lists kana and kanji for Japanese from its own stroke data, filtered by script', async () => {
     await open('ja')
     render(<Harness />)
