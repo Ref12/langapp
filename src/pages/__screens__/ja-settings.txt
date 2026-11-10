@@ -1,0 +1,122 @@
+YOUR OWN PACE. YOUR OWN SPACE.
+Your workspace.
+A local Japanese learning space, separate from the original app.
+Profiles and backups
+Current profile:
+default
+. Each profile has separate settings, knowledge, learning progress, conversations, and imported books.
+Browser storage is the live copy. YAML files are manual snapshots, not automatic synchronization. Save unfinished settings edits before switching or exporting. Unsaved conversation drafts must be saved first.
+Browser profile
+default
+Switch profile
+New profile name
+Clone current profile, including credentials, knowledge, and conversations
+A fresh profile starts empty with default settings and no connections. Creating a profile switches to it and reloads the app.
+Create and switch
+Every YAML export includes saved AI and speech API keys in plaintext, along with conversations and transcripts. Keep these files private. Raw recordings are never included.
+Download profile
+Choose profile file
+Data-folder operations require the local development server. Browser profile downloads and imports still work here.
+Cloud backup
+Backs up profile
+default
+to a private GitHub repository you own, one commit per backup. Back up now makes one immediately; with Automatic backup on, one also runs at a natural break (after a lesson or practice session, or when you leave a page with new progress), at most every 15 minutes, and never while an exercise is open. Check Last backed up below. You can keep studying while it runs.
+Browser storage protection:
+not supported by this browser
+.
+Scan setup QR code
+GitHub owner
+Repository
+Branch
+Fine-grained token (Contents: read and write)
+The token is stored with this profile (IndexedDB and localStorage) and included in settings.yaml in the backup. Use a private repository.
+Save connection
+Back up now
+Last backed up:
+never
+Restore from GitHub backup
+Make it yours
+Workspace name
+English / Japanese.
+Save name
+How you answer in practice
+Practice sets pick the exercises and their direction for you. This is the one choice you make: how you give typed answers. Each question also has an "answer another way" control.
+I answer by typing
+I answer by speaking
+I answer by handwriting
+Reading and appearance
+Theme
+Dark
+Light
+Readings for unfamiliar words
+Vibration feedback
+(not available on this device)
+About this many exercises per lesson
+A guide for what the AI is asked to write, 8 to 40, default 20; a lesson keeps the exercises that pass checking. More than 20 are written in parallel requests of up to 20.
+Vocabulary in lessons shows its readings until it reaches Learned: unaided correct answers on three separate days. A miss or revealed answer brings the readings back.
+Hear voices
+Selections save automatically and apply to Hear, Practice, lessons, and spoken replies. Automatic prefers listed local browser voices. If no matching voice is listed, it asks the system for the requested language; it never selects Edge TTS.
+Online voices send the spoken text to the browser's speech service. A system-selected voice may also be online; its identity and availability cannot be confirmed from an empty voice list. Edge TTS sends it to Microsoft through the local server. Only Test voice or playback sends text; loading the Edge catalog sends no text.
+Japanese
+voice
+Automatic (local first)
+Test voice
+English
+voice
+Automatic (local first)
+Test voice
+Browser voices:
+Speech playback is not available in this browser.
+Edge TTS is available only through the local development server.
+Refresh voice list
+Refresh clears the page-session voice cache and checks again briefly; it does not change your saved selections. A missing selected voice never silently switches to another voice.
+Show speech debug messages
+Show voice lookup, startup, and playback details. Off by default; errors and the stop-audio control remain available.
+No active AI endpoint is saved on this device.
+AI endpoints
+Save several endpoints and choose which one the Assistant, exercises, translations and games use. Switching never changes the others.
+New endpoint
+Assistant AI connection
+: new endpoint
+Your conversations stay on this device. Sending a turn shares its relevant conversation, learning context, and selected text with your configured provider. Requests may incur provider charges.
+Endpoint name
+API protocol
+Chat Completions
+Responses API
+Select the API your endpoint supports. The app never silently switches protocols.
+API base URL
+API key
+Model
+My endpoint supports native tool calling
+Enables read-only word, lesson, and learning-context lookups. No tools can change scores or save generated content.
+My endpoint supports strict JSON-schema responses
+Applies to generated exercises, reading translations, and generated game content. Assistant replies always use compact YAML validated locally, without JSON-schema mode. Testing this option sends an additional synthetic JSON request.
+Additional headers
+Sent on every request to this endpoint, for streaming and non-streaming calls and every API protocol. Content-Type and Authorization are set by the app and cannot be customized, and browser-restricted headers (such as Host, Cookie, Origin, Proxy-* and Sec-*) are refused. Custom headers make browsers send a CORS preflight request, so your endpoint must allow these headers in Access-Control-Allow-Headers.
+Add header
+I understand that the key and any custom header values are stored in plaintext browser storage and is accessible to code on this origin.
+Profile YAML exports include this key and all custom header values in plaintext. Keep exported files private and use a restricted key. HTTPS is required except on localhost; your endpoint must allow browser CORS requests.
+Add endpoint
+Test connection
+No speech connection is saved on this device.
+Practice speech connection
+Azure Speech is separate from your Assistant AI connection. With speech feedback enabled, explicit Listen and record practice sends your recording and the expected phrase to Azure for automatic pronunciation assessment. Provider charges may apply. Practice results are not sent to the AI tutor.
+Speech provider
+Azure Speech
+Azure Speech region
+Use the region identifier for the Azure Speech resource that issued your key.
+Azure Speech key
+I understand that the speech key is stored in plaintext browser storage and is accessible to code on this origin.
+Use a restricted key. Profile YAML exports include this key in plaintext; keep them private. Raw audio is never included. Without this connection, practice compares the recognized transcript locally rather than assessing pronunciation.
+Opening these settings or saving a connection never records audio or contacts Azure. Saving validates the fields locally, not the key, region availability, or service access. Live assessment starts only when you explicitly record in Practice with speech feedback enabled.
+Save speech connection
+Diagnostics
+Build:
+Lab
+· commit
+<commit>
+Timings of the last startups, Check answer and Next saves and cloud backups on this device. They contain no credentials, backup token or learning content.
+Copy diagnostics
+Keep your learning safe
+Your profiles are saved in this browser and are not synced to an account. Clearing site data or using private browsing can remove them. Set up the GitHub cloud backup in the Cloud backup panel above to keep an off-device copy (press Back up now to update it), and still export a profile now and then using the controls above.
+Profile YAML files contain settings and credentials, knowledge and learning progress, Assistant conversations, and saved practice results including recognized transcripts. Keep exported files private. Raw recordings are never stored. Previous root-app JSON backups can still be imported without changing credentials; archived v1 backups are not compatible. Restored requests never send automatically, and practice results remain excluded from AI tutor context.
