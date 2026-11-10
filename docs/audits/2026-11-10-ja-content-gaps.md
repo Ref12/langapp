@@ -126,7 +126,7 @@ Font check first: `fonts-noto-cjk` installed (`fc-list` shows 30 Noto CJK faces)
 - Retagging (grammar list) as a fourth way to close a gap, for patterns the sentences already say (see above).
 - Moves go to the lesson whose sentences first use the item, in the `grammar_intro` / `words` lists; `ja-par-g022` was listed in lesson 35, not 13 (the report said "taught in 13" because lesson 13's sentences use it); I moved it from 35 to 11.
 - `ja-n4-g042` is kept as the plain-form pattern, since a pattern in the pack with a sealed label cannot be removed.
-- 118 phrase tags changed in all (the 23 `ja-n4-g042`, 6 patterns retagged, the に tags); the list is in `pack-phrase-corrections.json` with a `why` each.
+- 66 phrases got a correction in this step (4 rewritten, 62 retagged: the 23 `ja-n4-g042`, the patterns the sentences already said, the に tags); they are in `pack-phrase-corrections.json` with a `why` each, after the four of 3.4a.
 - Added phrases carry `source: ai` and `checked: false` (the independent reading was a model call, not a human check). Rewritten phrases keep `checked: true` from the source; I did not change it.
 - The independent reader is a model call, not a session (see above).
 - A word added to a lesson (思う) is marked `extra: true` as the build script marks Japanese-only items.
