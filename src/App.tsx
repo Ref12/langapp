@@ -65,6 +65,7 @@ import { DisplaySettingsProvider } from './components/display-context'
 import { resolveDisplaySettings } from './components/display-settings'
 import { OtherLanguageSetting } from './components/study/other-language-setting'
 import { AppSwitch } from './components/AppSwitch'
+import { appSwitchShown } from './core/language/apps'
 
 /** The navigation of the app; an entry with an area is shown only where the build's language pack has that area on. */
 const navigation: { id: string; label: string; icon: typeof Home; area?: Area }[] = [
@@ -254,7 +255,7 @@ function WorkspaceApp() {
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
-        <div className="topbar-actions"><span className="language-pill profile-pill" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span><AppSwitch /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
+        <div className="topbar-actions"><span className="language-pill profile-pill" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span><AppSwitch />{!appSwitchShown() && <span className="language-pill"><span lang={getPack().learningTag}>{getPack().glyph}</span> {getPack().wording.language}</span>}
           <PageActionsMenu />
           <PageSettingsButton route={route} label={label} page={page} workspace={workspace} busy={busy} run={run} />
         </div></header>

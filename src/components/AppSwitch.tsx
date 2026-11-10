@@ -1,10 +1,10 @@
-import { appHref, labApps } from '../core/language/apps'
-import { buildChannel, buildLanguage } from '../core/storage-names'
+import { appHref, appSwitchShown, labApps } from '../core/language/apps'
+import { buildLanguage } from '../core/storage-names'
 
 /** Top-bar switch between the Lab language apps (glyph links, the current one marked). Lab builds only; Stable has one app. */
 export function AppSwitch() {
+  if (!appSwitchShown()) return null
   const apps = labApps()
-  if (buildChannel() !== 'lab' || apps.length < 2) return null
   const current = buildLanguage()
   return <nav className="language-switch" aria-label="Language apps">
     {apps.map(app => <a key={app.id} href={appHref(app.id, current)} lang={app.id} title={app.name} aria-label={app.name}
