@@ -1,0 +1,88 @@
+id: study-04
+mode: review
+domain: reading
+targetRefs:
+  - vocabulary:hao3-ting1--pleasant
+  - vocabulary:jia1--classifier
+reviewRefs:
+  - vocabulary:hou4--behind
+exercises:
+  - id: e3-0
+    type: choice
+    targets:
+      - vocabulary:hao3-ting1--pleasant
+    direction: zh-to-en
+    question: 爱
+    options:
+      - love
+      - rain
+      - tea
+    answer: 0
+    explanation: It means love.
+  - id: e3-1
+    type: choice
+    targets:
+      - vocabulary:hou4--behind
+    direction: en-to-zh
+    question: half
+    options:
+      - 半
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 半.
+  - id: e3-2
+    type: tiles
+    targets:
+      - vocabulary:jia1--classifier
+    translation: We are going to school tomorrow.
+    tiles:
+      - 我们
+      - 明天
+      - 去
+      - 学校
+      - 昨天
+    distractors: []
+    shuffled:
+      - 1
+      - 4
+      - 2
+      - 0
+      - 3
+    explanation: "Word order: 我们 明天 去 学校."
+  - id: e3-3
+    type: match
+    targets:
+      - vocabulary:hao3-ting1--pleasant
+      - vocabulary:hou4--behind
+      - vocabulary:jia1--classifier
+      - vocabulary:jiao4--call
+    mode: zh-en
+    pairs:
+      - ref: vocabulary:hao3-ting1--pleasant
+        left: 爱
+        right: love
+      - ref: vocabulary:hou4--behind
+        left: 半
+        right: half
+      - ref: vocabulary:jia1--classifier
+        left: 不
+        right: not
+      - ref: vocabulary:jiao4--call
+        left: 车
+        right: car
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 3
+status: completed
+model: synthetic-model
+rejected:
+  - Synthetic rejected draft
+createdAt: 1789481600000
+completedAt: 1789482200000
+exerciseCount: 4

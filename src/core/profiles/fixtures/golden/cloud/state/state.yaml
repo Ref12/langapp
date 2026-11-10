@@ -1,0 +1,47 @@
+knowledge:
+  words:
+    - language: zh-Hans
+      introducedAt: 1
+      introducedFrom: dictionary
+      attempts: 1
+      independentCorrect: 1
+      successfulDays:
+        - 2026-01-01
+      successfulActivities:
+        - meaning
+      dueAt: 200000
+      lb: starter-cha2--tea
+  readings:
+    - storyId: zh:tea-house
+      passage: 1
+      completed:
+        - 0
+      updatedAt: 3
+  lessons:
+    - lessonId: zh:greetings
+      startedAt: 1
+      completedAt: 3
+  sessions:
+    - id: legacy-session
+      kind: all
+      questions:
+        - activity: meaning
+          revealed: false
+          lb: starter-cha2--tea
+          options:
+            - starter-cha2--tea
+            - starter-yu3--rain
+      cursor: 0
+      status: completed
+      createdAt: 1
+      completedAt: 3
+  attempts:
+    - id: legacy-session:0
+      sessionId: legacy-session
+      question: 0
+      activity: meaning
+      correct: true
+      assisted: false
+      createdAt: 2
+      lb: starter-cha2--tea
+      answerLb: starter-cha2--tea

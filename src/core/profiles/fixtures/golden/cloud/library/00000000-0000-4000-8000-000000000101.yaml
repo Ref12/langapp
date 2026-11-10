@@ -1,0 +1,38 @@
+id: 00000000-0000-4000-8000-000000000101
+revision: 00000000-0000-4000-8000-000000000102
+title: A Short Tea Story
+author: Synthetic Author
+sourceType: paste
+chapters:
+  - One
+  - Two
+passages:
+  - chapter: 0
+    source: 我喜欢茶。
+    translation:
+      blocks:
+        - - text: 我
+            pinyin: wǒ
+            meaning: I
+            trailing: ""
+          - text: 喜欢
+            pinyin: xǐ huan
+            meaning: to like
+            trailing: ""
+          - text: 茶
+            pinyin: chá
+            meaning: tea
+            trailing: 。
+      translatedAt: 1789913600000
+  - chapter: 1
+    source: |-
+      他喝水。
+
+      她喝茶。
+  - chapter: 1
+    source: 我们都喜欢喝茶。
+passage: 1
+completed:
+  - 0
+importedAt: 1789568000000
+updatedAt: 1789913600000

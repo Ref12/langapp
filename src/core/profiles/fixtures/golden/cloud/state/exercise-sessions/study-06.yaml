@@ -1,0 +1,85 @@
+id: study-06
+mode: review
+domain: reading
+targetRefs:
+  - vocabulary:mai3--buy
+  - vocabulary:ming2-tian1--tomorrow
+reviewRefs:
+  - vocabulary:mei2-you3--negation
+exercises:
+  - id: e5-0
+    type: choice
+    targets:
+      - vocabulary:mai3--buy
+    direction: zh-to-en
+    question: 二月
+    options:
+      - February
+      - rain
+      - tea
+    answer: 0
+    explanation: It means February.
+  - id: e5-1
+    type: choice
+    targets:
+      - vocabulary:mei2-you3--negation
+    direction: en-to-zh
+    question: minute
+    options:
+      - 分
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 分.
+  - id: e5-2
+    type: tiles
+    targets:
+      - vocabulary:ming2-tian1--tomorrow
+    translation: What do you want to eat?
+    tiles:
+      - 你
+      - 想
+      - 吃
+      - 什么
+    distractors: []
+    shuffled:
+      - 1
+      - 0
+      - 3
+      - 2
+    explanation: "Word order: 你 想 吃 什么."
+  - id: e5-3
+    type: match
+    targets:
+      - vocabulary:mai3--buy
+      - vocabulary:mei2-you3--negation
+      - vocabulary:ming2-tian1--tomorrow
+      - vocabulary:na4--that
+    mode: py-en
+    pairs:
+      - ref: vocabulary:mai3--buy
+        left: 二月
+        right: February
+      - ref: vocabulary:mei2-you3--negation
+        left: 分
+        right: minute
+      - ref: vocabulary:ming2-tian1--tomorrow
+        left: 公司
+        right: company
+      - ref: vocabulary:na4--that
+        left: 孩子
+        right: child
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 3
+status: completed
+model: synthetic-model
+rejected: []
+createdAt: 1789654400000
+completedAt: 1789655000000
+exerciseCount: 4

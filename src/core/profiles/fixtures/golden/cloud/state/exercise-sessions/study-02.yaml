@@ -1,0 +1,87 @@
+id: study-02
+mode: review
+domain: reading
+targetRefs:
+  - vocabulary:da4--older
+  - vocabulary:dian4-ying3-yuan4--cinema
+reviewRefs:
+  - vocabulary:di4-di5--brother
+exercises:
+  - id: e1-0
+    type: choice
+    targets:
+      - vocabulary:da4--older
+    direction: zh-to-en
+    question: 大
+    options:
+      - big
+      - rain
+      - tea
+    answer: 0
+    explanation: It means big.
+  - id: e1-1
+    type: choice
+    targets:
+      - vocabulary:di4-di5--brother
+    direction: en-to-zh
+    question: brother
+    options:
+      - 弟
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 弟.
+  - id: e1-2
+    type: tiles
+    targets:
+      - vocabulary:dian4-ying3-yuan4--cinema
+    translation: He likes to drink tea.
+    tiles:
+      - 他
+      - 喜欢
+      - 喝
+      - 茶
+      - 水
+    distractors: []
+    shuffled:
+      - 1
+      - 4
+      - 2
+      - 0
+      - 3
+    explanation: "Word order: 他 喜欢 喝 茶."
+  - id: e1-3
+    type: match
+    targets:
+      - vocabulary:da4--older
+      - vocabulary:di4-di5--brother
+      - vocabulary:dian4-ying3-yuan4--cinema
+      - vocabulary:dui4--correct
+    mode: zh-py
+    pairs:
+      - ref: vocabulary:da4--older
+        left: 大
+        right: big
+      - ref: vocabulary:di4-di5--brother
+        left: 弟
+        right: brother
+      - ref: vocabulary:dian4-ying3-yuan4--cinema
+        left: 电影院
+        right: cinema
+      - ref: vocabulary:dui4--correct
+        left: 对
+        right: correct
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 3
+status: completed
+model: synthetic-model
+rejected: []
+createdAt: 1789308800000
+completedAt: 1789309400000
+exerciseCount: 4

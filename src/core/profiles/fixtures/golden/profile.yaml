@@ -1,0 +1,4332 @@
+format: linguaweave-profile
+version: 5
+contentVersion: 2
+exportedAt: 1790000000000
+profile:
+  id: default
+  name: default
+settings:
+  preferences:
+    id: workspace
+    language: zh-Hans
+    name: Seeded learner
+    theme: light
+    pinyin: true
+    readingMode: target
+    sidebarCollapsed: true
+    speechVoices:
+      zh-Hans:
+        provider: edge
+        voice: zh-CN-XiaoxiaoNeural
+      en-US:
+        voiceURI: synthetic-en-voice
+        name: Synthetic English
+        lang: en-US
+        localService: true
+    defaultSpeechRate: 0.75
+    speechDebugMessages: false
+    sudokuAutoSpeak: true
+    writingSpeech: stroke
+    writingSpeechResume: transitions
+    writingColourParts: true
+    haptics: false
+    exercisesPerLesson: 12
+    sudokuShowPinyin: true
+    tileAutoSpeak: true
+    promptAutoPlay: true
+    answerMode: speak
+    practiseWriting: true
+    practiceMode: write
+    historyFilter: lessons
+    dictionaryScope: knowledge
+    characterWriteFilter: can
+    pinyinFormat: marks-and-numbers
+  aiEndpoints:
+    version: 1
+    active: default
+    endpoints:
+      - apiType: responses
+        baseUrl: https://synthetic.invalid/v1
+        apiKey: synthetic-ai-key
+        model: synthetic-model
+        nativeTools: true
+        structuredOutput: false
+        storageAcknowledged: true
+        name: Default
+        id: default
+  speechConnection:
+    provider: azure
+    region: eastus
+    apiKey: synthetic-speech-key
+    storageAcknowledged: true
+knowledge:
+  words:
+    - language: zh-Hans
+      introducedAt: 1
+      introducedFrom: dictionary
+      attempts: 1
+      independentCorrect: 1
+      successfulDays:
+        - 2026-01-01
+      successfulActivities:
+        - meaning
+      dueAt: 200000
+      lb: starter-cha2--tea
+  readings:
+    - storyId: zh:tea-house
+      passage: 1
+      completed:
+        - 0
+      updatedAt: 3
+  lessons:
+    - lessonId: zh:greetings
+      startedAt: 1
+      completedAt: 3
+  sessions:
+    - id: legacy-session
+      kind: all
+      questions:
+        - activity: meaning
+          revealed: false
+          lb: starter-cha2--tea
+          options:
+            - starter-cha2--tea
+            - starter-yu3--rain
+      cursor: 0
+      status: completed
+      createdAt: 1
+      completedAt: 3
+  attempts:
+    - id: legacy-session:0
+      sessionId: legacy-session
+      question: 0
+      activity: meaning
+      correct: true
+      assisted: false
+      createdAt: 2
+      lb: starter-cha2--tea
+      answerLb: starter-cha2--tea
+  characterStates:
+    - character: 一
+      practiceCompletions: 5
+      lastPracticedAt: 1788358400000
+    - character: 三
+      manualAddedAt: 1787926400000
+      practiceCompletions: 2
+      lastPracticedAt: 1788617600000
+      writeState: can
+    - character: 上
+      manualAddedAt: 1786544000000
+      practiceCompletions: 1
+      lastPracticedAt: 1790000000000
+    - character: 下
+      manualAddedAt: 1787408000000
+      practiceCompletions: 1
+      lastPracticedAt: 1789136000000
+    - character: 不
+      manualAddedAt: 1783260800000
+      practiceCompletions: 3
+      lastPracticedAt: 1789827200000
+    - character: 中
+      practiceCompletions: 1
+      lastPracticedAt: 1789568000000
+    - character: 习
+      manualAddedAt: 1788099200000
+      practiceCompletions: 4
+      lastPracticedAt: 1788444800000
+    - character: 买
+      manualAddedAt: 1785507200000
+      practiceCompletions: 4
+      lastPracticedAt: 1789308800000
+      writeState: can
+    - character: 二
+      manualAddedAt: 1783952000000
+      practiceCompletions: 1
+      lastPracticedAt: 1789136000000
+    - character: 五
+      practiceCompletions: 5
+      lastPracticedAt: 1789222400000
+      writeState: can
+    - character: 亮
+      practiceCompletions: 3
+      lastPracticedAt: 1788531200000
+    - character: 人
+      practiceCompletions: 0
+    - character: 做
+      manualAddedAt: 1788790400000
+      practiceCompletions: 0
+      writeState: cannot
+    - character: 儿
+      practiceCompletions: 2
+      lastPracticedAt: 1789913600000
+    - character: 公
+      practiceCompletions: 4
+      lastPracticedAt: 1788876800000
+    - character: 再
+      manualAddedAt: 1788444800000
+      practiceCompletions: 3
+      lastPracticedAt: 1789827200000
+    - character: 写
+      practiceCompletions: 4
+      lastPracticedAt: 1788876800000
+    - character: 分
+      manualAddedAt: 1784124800000
+      practiceCompletions: 0
+    - character: 前
+      manualAddedAt: 1786371200000
+      practiceCompletions: 4
+      lastPracticedAt: 1788444800000
+    - character: 包
+      practiceCompletions: 3
+      lastPracticedAt: 1789395200000
+    - character: 午
+      practiceCompletions: 0
+    - character: 半
+      practiceCompletions: 2
+      lastPracticedAt: 1789913600000
+    - character: 叫
+      practiceCompletions: 0
+      writeState: can
+    - character: 司
+      manualAddedAt: 1784297600000
+      practiceCompletions: 5
+      lastPracticedAt: 1788790400000
+      writeState: can
+    - character: 后
+      practiceCompletions: 5
+      lastPracticedAt: 1788358400000
+    - character: 听
+      manualAddedAt: 1784643200000
+      practiceCompletions: 0
+    - character: 呢
+      manualAddedAt: 1786025600000
+      practiceCompletions: 5
+      lastPracticedAt: 1788790400000
+    - character: 喂
+      manualAddedAt: 1787235200000
+      practiceCompletions: 0
+    - character: 四
+      practiceCompletions: 0
+    - character: 外
+      practiceCompletions: 3
+      lastPracticedAt: 1789395200000
+    - character: 大
+      manualAddedAt: 1783433600000
+      practiceCompletions: 5
+      lastPracticedAt: 1789654400000
+    - character: 天
+      manualAddedAt: 1785852800000
+      practiceCompletions: 3
+      lastPracticedAt: 1788963200000
+    - character: 太
+      manualAddedAt: 1787062400000
+      practiceCompletions: 2
+      lastPracticedAt: 1789481600000
+    - character: 好
+      practiceCompletions: 3
+      lastPracticedAt: 1788531200000
+    - character: 子
+      manualAddedAt: 1784470400000
+      practiceCompletions: 2
+      lastPracticedAt: 1788617600000
+    - character: 学
+      practiceCompletions: 0
+    - character: 孩
+      practiceCompletions: 0
+    - character: 家
+      manualAddedAt: 1784816000000
+      practiceCompletions: 1
+      lastPracticedAt: 1790000000000
+    - character: 对
+      practiceCompletions: 0
+    - character: 小
+      manualAddedAt: 1787580800000
+      practiceCompletions: 3
+      lastPracticedAt: 1788963200000
+    - character: 少
+      practiceCompletions: 2
+      lastPracticedAt: 1789913600000
+    - character: 弟
+      practiceCompletions: 1
+      lastPracticedAt: 1789568000000
+    - character: 影
+      practiceCompletions: 3
+      lastPracticedAt: 1789395200000
+      writeState: can
+    - character: 得
+      practiceCompletions: 4
+      lastPracticedAt: 1789740800000
+    - character: 快
+      manualAddedAt: 1785334400000
+      practiceCompletions: 2
+      lastPracticedAt: 1789481600000
+    - character: 思
+      practiceCompletions: 0
+    - character: 您
+      practiceCompletions: 1
+      lastPracticedAt: 1788704000000
+      writeState: can
+    - character: 意
+      manualAddedAt: 1788963200000
+      practiceCompletions: 4
+      lastPracticedAt: 1789308800000
+    - character: 早
+      practiceCompletions: 0
+      writeState: can
+    - character: 时
+      manualAddedAt: 1786716800000
+      practiceCompletions: 0
+      writeState: can
+    - character: 明
+      practiceCompletions: 2
+      lastPracticedAt: 1789049600000
+    - character: 星
+      manualAddedAt: 1787753600000
+      practiceCompletions: 0
+    - character: 月
+      practiceCompletions: 2
+      lastPracticedAt: 1789049600000
+      writeState: cannot
+    - character: 有
+      manualAddedAt: 1785680000000
+      practiceCompletions: 0
+    - character: 期
+      practiceCompletions: 1
+      lastPracticedAt: 1788704000000
+      writeState: cannot
+    - character: 水
+      manualAddedAt: 1786889600000
+      practiceCompletions: 5
+      lastPracticedAt: 1789654400000
+      writeState: cannot
+    - character: 没
+      practiceCompletions: 5
+      lastPracticedAt: 1789222400000
+    - character: 漂
+      manualAddedAt: 1786198400000
+      practiceCompletions: 0
+    - character: 点
+      manualAddedAt: 1788272000000
+      practiceCompletions: 0
+    - character: 爱
+      manualAddedAt: 1783088000000
+      practiceCompletions: 0
+      writeState: can
+    - character: 电
+      manualAddedAt: 1783606400000
+      practiceCompletions: 0
+    - character: 看
+      manualAddedAt: 1785161600000
+      practiceCompletions: 0
+    - character: 见
+      practiceCompletions: 1
+      lastPracticedAt: 1789568000000
+    - character: 觉
+      manualAddedAt: 1784988800000
+      practiceCompletions: 3
+      lastPracticedAt: 1789827200000
+      writeState: cannot
+    - character: 车
+      practiceCompletions: 0
+    - character: 这
+      manualAddedAt: 1788617600000
+      practiceCompletions: 5
+      lastPracticedAt: 1789654400000
+    - character: 那
+      practiceCompletions: 0
+      writeState: cannot
+    - character: 里
+      practiceCompletions: 0
+    - character: 间
+      practiceCompletions: 4
+      lastPracticedAt: 1789740800000
+    - character: 院
+      manualAddedAt: 1783779200000
+      practiceCompletions: 4
+      lastPracticedAt: 1789308800000
+  study:
+    knowledge:
+      - kind: grammar
+        lb: a-bi3-b-adj-duo1-le5--much-more
+        band: "3"
+        addedAt: 1789510400000
+        source: dictionary
+      - kind: grammar
+        lb: adj-adj-de5--vivid
+        band: "3"
+        addedAt: 1789539200000
+        source: new
+      - kind: grammar
+        lb: adjp-de5-n--describe
+        band: "2"
+        addedAt: 1789078400000
+        source: new
+      - kind: grammar
+        lb: clause-ne5--question-tone
+        band: "3"
+        addedAt: 1789568000000
+        source: new
+      - kind: grammar
+        lb: clause-s-ye3-pred--also
+        band: "2"
+        addedAt: 1789107200000
+        source: new
+      - kind: grammar
+        lb: duo1-adj-a5--how
+        band: "3"
+        addedAt: 1789596800000
+        source: new
+      - kind: grammar
+        lb: fei1-chang2-adj--very
+        band: "2"
+        addedAt: 1789136000000
+        source: new
+      - kind: grammar
+        lb: jiu4-yao4-vp-le5--soon
+        band: "3"
+        addedAt: 1789625600000
+        source: dictionary
+      - kind: grammar
+        lb: loc-shi4-np--identify
+        band: "2"
+        addedAt: 1789164800000
+        source: dictionary
+      - kind: grammar
+        lb: np-gen1-np--and
+        band: "3"
+        addedAt: 1789654400000
+        source: new
+      - kind: grammar
+        lb: np-ne5--followup
+        band: "2"
+        addedAt: 1789193600000
+        source: new
+      - kind: grammar
+        lb: option-hai2-shi5-option--choice
+        band: "3"
+        addedAt: 1789683200000
+        source: new
+      - kind: grammar
+        lb: pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+        band: "2"
+        addedAt: 1789222400000
+        source: new
+      - kind: grammar
+        lb: qu4-or-lai2-loc-vp--purpose
+        band: "2"
+        addedAt: 1789251200000
+        source: new
+      - kind: grammar
+        lb: s-he2-p-vp--with
+        band: "2"
+        addedAt: 1789280000000
+        source: dictionary
+      - kind: grammar
+        lb: s-np--nominal
+        band: "2"
+        addedAt: 1789308800000
+        source: new
+      - kind: grammar
+        lb: s-vp-vp--purpose
+        band: "2"
+        addedAt: 1789337600000
+        source: new
+      - kind: grammar
+        lb: s-zai4-loc-vp--location
+        band: "2"
+        addedAt: 1789366400000
+        source: new
+      - kind: grammar
+        lb: state-le5--change
+        band: "2"
+        addedAt: 1789395200000
+        source: dictionary
+      - kind: grammar
+        lb: topic-zen3-me5-yang4--assess
+        band: "2"
+        addedAt: 1789424000000
+        source: new
+      - kind: grammar
+        lb: xiao3-surname--address
+        band: "2"
+        addedAt: 1789452800000
+        source: new
+      - kind: grammar
+        lb: zhe4-li3-or-zhe4-r5-or-na4-li5-or-na4-r5-pred--place
+        band: "2"
+        addedAt: 1789481600000
+        source: new
+      - kind: source
+        lb: s1x3
+        band: "6"
+        addedAt: 1789712000000
+        source: new
+      - kind: source
+        lb: s2xa
+        band: "6"
+        addedAt: 1789740800000
+        source: dictionary
+      - kind: source
+        lb: s3xh
+        band: "6"
+        addedAt: 1789769600000
+        source: new
+      - kind: source
+        lb: s4xo
+        band: "6"
+        addedAt: 1789798400000
+        source: new
+      - kind: source
+        lb: s5xv
+        band: "6"
+        addedAt: 1789827200000
+        source: new
+      - kind: source
+        lb: s6x12
+        band: "6"
+        addedAt: 1789856000000
+        source: dictionary
+      - kind: source
+        lb: s7x19
+        band: "6"
+        addedAt: 1789884800000
+        source: new
+      - kind: source
+        lb: s8x1g
+        band: "6"
+        addedAt: 1789913600000
+        source: new
+      - kind: source
+        lb: s9x1n
+        band: "6"
+        addedAt: 1789942400000
+        source: new
+      - kind: source
+        lb: sax1u
+        band: "6"
+        addedAt: 1789971200000
+        source: dictionary
+      - kind: vocabulary
+        lb: ai4--love
+        band: "1"
+        addedAt: 1785478400000
+        source: dictionary
+      - kind: vocabulary
+        lb: ai4-hao4--hobby
+        band: "1"
+        addedAt: 1786918400000
+        source: new
+      - kind: vocabulary
+        lb: ba3--object
+        band: "2"
+        addedAt: 1788012800000
+        source: dictionary
+      - kind: vocabulary
+        lb: ban4--half
+        band: "1"
+        addedAt: 1785507200000
+        source: new
+      - kind: vocabulary
+        lb: ban4-fa3--method
+        band: "2"
+        addedAt: 1788041600000
+        source: new
+      - kind: vocabulary
+        lb: bao1--packet
+        band: "1"
+        addedAt: 1786947200000
+        source: new
+      - kind: vocabulary
+        lb: bei3-fang1--north
+        band: "2"
+        addedAt: 1788070400000
+        source: new
+      - kind: vocabulary
+        lb: bi3-ru2--example
+        band: "2"
+        addedAt: 1788099200000
+        source: new
+      - kind: vocabulary
+        lb: bian4-hua4--change
+        band: "2"
+        addedAt: 1788128000000
+        source: dictionary
+      - kind: vocabulary
+        lb: bing1-xiang1--refrigerator
+        band: "2"
+        addedAt: 1788156800000
+        source: new
+      - kind: vocabulary
+        lb: bu4--not
+        band: "1"
+        addedAt: 1785536000000
+        source: new
+      - kind: vocabulary
+        lb: bu4-hao3-yi4-si5--embarrassed
+        band: "1"
+        addedAt: 1786976000000
+        source: dictionary
+      - kind: vocabulary
+        lb: bu4-xing2--unacceptable
+        band: "2"
+        addedAt: 1788185600000
+        source: new
+      - kind: vocabulary
+        lb: cai2--only-then
+        band: "2"
+        addedAt: 1788214400000
+        source: new
+      - kind: vocabulary
+        lb: cha2--lookup
+        band: "2"
+        addedAt: 1788243200000
+        source: dictionary
+      - kind: vocabulary
+        lb: chang2-yong4--common
+        band: "2"
+        addedAt: 1788272000000
+        source: new
+      - kind: vocabulary
+        lb: che1--car
+        band: "1"
+        addedAt: 1785564800000
+        source: new
+      - kind: vocabulary
+        lb: chu1--result
+        band: "1"
+        addedAt: 1787004800000
+        source: new
+      - kind: vocabulary
+        lb: chu1-zhong1--school
+        band: "2"
+        addedAt: 1788300800000
+        source: new
+      - kind: vocabulary
+        lb: cong2--from
+        band: "1"
+        addedAt: 1787033600000
+        source: new
+      - kind: vocabulary
+        lb: da3-kai1--open
+        band: "1"
+        addedAt: 1787062400000
+        source: new
+      - kind: vocabulary
+        lb: da3-sao3--clean
+        band: "2"
+        addedAt: 1788329600000
+        source: new
+      - kind: vocabulary
+        lb: da4--older
+        band: "1"
+        addedAt: 1785593600000
+        source: dictionary
+      - kind: vocabulary
+        lb: da4-xiong2-mao1--panda
+        band: "2"
+        addedAt: 1788358400000
+        source: dictionary
+      - kind: vocabulary
+        lb: dao4-chu4--everywhere
+        band: "2"
+        addedAt: 1788387200000
+        source: new
+      - kind: vocabulary
+        lb: dei3--must
+        band: "2"
+        addedAt: 1788416000000
+        source: new
+      - kind: vocabulary
+        lb: deng3--wait
+        band: "1"
+        addedAt: 1787091200000
+        source: dictionary
+      - kind: vocabulary
+        lb: di4-di5--brother
+        band: "1"
+        addedAt: 1785622400000
+        source: new
+      - kind: vocabulary
+        lb: dian3--dot
+        band: "2"
+        addedAt: 1788444800000
+        source: new
+      - kind: vocabulary
+        lb: dian4-ying3-yuan4--cinema
+        band: "1"
+        addedAt: 1785651200000
+        source: new
+      - kind: vocabulary
+        lb: dong1-fang1--east
+        band: "2"
+        addedAt: 1788473600000
+        source: dictionary
+      - kind: vocabulary
+        lb: duan3--short
+        band: "2"
+        addedAt: 1788502400000
+        source: new
+      - kind: vocabulary
+        lb: dui4--correct
+        band: "1"
+        addedAt: 1785680000000
+        source: new
+      - kind: vocabulary
+        lb: er3-ji1--headphones
+        band: "2"
+        addedAt: 1788531200000
+        source: new
+      - kind: vocabulary
+        lb: er4-yue4--february
+        band: "1"
+        addedAt: 1785708800000
+        source: dictionary
+      - kind: vocabulary
+        lb: fan4-guan3--restaurant
+        band: "1"
+        addedAt: 1787120000000
+        source: new
+      - kind: vocabulary
+        lb: fang1-bian4-mian4--noodles
+        band: "2"
+        addedAt: 1788560000000
+        source: new
+      - kind: vocabulary
+        lb: fang4-xin1--reassured
+        band: "2"
+        addedAt: 1788588800000
+        source: dictionary
+      - kind: vocabulary
+        lb: fen1--minute
+        band: "1"
+        addedAt: 1785737600000
+        source: new
+      - kind: vocabulary
+        lb: fu1-qi1--couple
+        band: "2"
+        addedAt: 1788617600000
+        source: new
+      - kind: vocabulary
+        lb: gan3-mao4--catch-cold
+        band: "2"
+        addedAt: 1788646400000
+        source: new
+      - kind: vocabulary
+        lb: gei3--for
+        band: "1"
+        addedAt: 1787148800000
+        source: new
+      - kind: vocabulary
+        lb: gen1--comparison
+        band: "2"
+        addedAt: 1788675200000
+        source: new
+      - kind: vocabulary
+        lb: gong1-si1--company
+        band: "1"
+        addedAt: 1785766400000
+        source: new
+      - kind: vocabulary
+        lb: gu4-shi5--story
+        band: "2"
+        addedAt: 1788704000000
+        source: dictionary
+      - kind: vocabulary
+        lb: guan1-zhu4--follow
+        band: "2"
+        addedAt: 1788732800000
+        source: new
+      - kind: vocabulary
+        lb: guo4--time
+        band: "1"
+        addedAt: 1787177600000
+        source: new
+      - kind: vocabulary
+        lb: hai2-zi5--child
+        band: "1"
+        addedAt: 1785795200000
+        source: new
+      - kind: vocabulary
+        lb: hao3--completed
+        band: "1"
+        addedAt: 1787206400000
+        source: dictionary
+      - kind: vocabulary
+        lb: hao3-jiu3--long
+        band: "2"
+        addedAt: 1788761600000
+        source: new
+      - kind: vocabulary
+        lb: hao3-ting1--pleasant
+        band: "1"
+        addedAt: 1785824000000
+        source: dictionary
+      - kind: vocabulary
+        lb: hong2-lv4-deng1--traffic-lights
+        band: "2"
+        addedAt: 1788790400000
+        source: new
+      - kind: vocabulary
+        lb: hou4--behind
+        band: "1"
+        addedAt: 1785852800000
+        source: new
+      - kind: vocabulary
+        lb: hua1--flower
+        band: "1"
+        addedAt: 1787235200000
+        source: new
+      - kind: vocabulary
+        lb: huan1-ying2--welcome
+        band: "2"
+        addedAt: 1788819200000
+        source: dictionary
+      - kind: vocabulary
+        lb: hui2-da2--answer
+        band: "2"
+        addedAt: 1788848000000
+        source: new
+      - kind: vocabulary
+        lb: hui2-qu5--return
+        band: "1"
+        addedAt: 1787264000000
+        source: new
+      - kind: vocabulary
+        lb: ji1-hui4--opportunity
+        band: "2"
+        addedAt: 1788876800000
+        source: new
+      - kind: vocabulary
+        lb: jia1--add
+        band: "2"
+        addedAt: 1788905600000
+        source: new
+      - kind: vocabulary
+        lb: jia1--classifier
+        band: "1"
+        addedAt: 1785881600000
+        source: new
+      - kind: vocabulary
+        lb: jian4-mian4--meet
+        band: "2"
+        addedAt: 1788934400000
+        source: dictionary
+      - kind: vocabulary
+        lb: jiao4--call
+        band: "1"
+        addedAt: 1785910400000
+        source: new
+      - kind: vocabulary
+        lb: jiao4-shi4--classroom
+        band: "1"
+        addedAt: 1787292800000
+        source: new
+      - kind: vocabulary
+        lb: jie1--meet
+        band: "2"
+        addedAt: 1788963200000
+        source: new
+      - kind: vocabulary
+        lb: jie3-jue2--solve
+        band: "2"
+        addedAt: 1788992000000
+        source: new
+      - kind: vocabulary
+        lb: jiu3--alcohol
+        band: "2"
+        addedAt: 1789020800000
+        source: new
+      - kind: vocabulary
+        lb: jiu3-dian4--hotel
+        band: "1"
+        addedAt: 1787321600000
+        source: dictionary
+      - kind: vocabulary
+        lb: jue2-de5--think
+        band: "1"
+        addedAt: 1785939200000
+        source: dictionary
+      - kind: vocabulary
+        lb: kai1-hua1--bloom
+        band: "2"
+        addedAt: 1789049600000
+        source: dictionary
+      - kind: vocabulary
+        lb: kai1-shi3--beginning
+        band: "1"
+        addedAt: 1787350400000
+        source: new
+      - kind: vocabulary
+        lb: kan4-jian4--see
+        band: "1"
+        addedAt: 1785968000000
+        source: new
+      - kind: vocabulary
+        lb: ke3-neng2--possibility
+        band: "1"
+        addedAt: 1787379200000
+        source: new
+      - kind: vocabulary
+        lb: kuai4--fast
+        band: "1"
+        addedAt: 1785996800000
+        source: new
+      - kind: vocabulary
+        lb: lei4--tired
+        band: "1"
+        addedAt: 1787408000000
+        source: new
+      - kind: vocabulary
+        lb: li3--inside
+        band: "1"
+        addedAt: 1786025600000
+        source: new
+      - kind: vocabulary
+        lb: lu4-shang5--way
+        band: "1"
+        addedAt: 1787436800000
+        source: dictionary
+      - kind: vocabulary
+        lb: mai3--buy
+        band: "1"
+        addedAt: 1786054400000
+        source: dictionary
+      - kind: vocabulary
+        lb: mei2-you3--negation
+        band: "1"
+        addedAt: 1786083200000
+        source: new
+      - kind: vocabulary
+        lb: mei3--every
+        band: "1"
+        addedAt: 1787465600000
+        source: new
+      - kind: vocabulary
+        lb: ming2-tian1--tomorrow
+        band: "1"
+        addedAt: 1786112000000
+        source: new
+      - kind: vocabulary
+        lb: na2--hold
+        band: "2"
+        addedAt: 1787494400000
+        source: new
+      - kind: vocabulary
+        lb: na4--that
+        band: "1"
+        addedAt: 1786140800000
+        source: new
+      - kind: vocabulary
+        lb: nai3-nai5--grandmother
+        band: "2"
+        addedAt: 1787523200000
+        source: new
+      - kind: vocabulary
+        lb: ne5--ongoing
+        band: "1"
+        addedAt: 1786169600000
+        source: dictionary
+      - kind: vocabulary
+        lb: nin2--you
+        band: "1"
+        addedAt: 1786198400000
+        source: new
+      - kind: vocabulary
+        lb: pao3-bu4--run
+        band: "2"
+        addedAt: 1787552000000
+        source: dictionary
+      - kind: vocabulary
+        lb: piao4-liang5--pretty
+        band: "1"
+        addedAt: 1786227200000
+        source: new
+      - kind: vocabulary
+        lb: qian2--front
+        band: "1"
+        addedAt: 1786256000000
+        source: new
+      - kind: vocabulary
+        lb: rang4--allow
+        band: "2"
+        addedAt: 1787580800000
+        source: new
+      - kind: vocabulary
+        lb: ren2--person
+        band: "1"
+        addedAt: 1786284800000
+        source: dictionary
+      - kind: vocabulary
+        lb: shang4--ascend
+        band: "1"
+        addedAt: 1786313600000
+        source: new
+      - kind: vocabulary
+        lb: shao3--few
+        band: "1"
+        addedAt: 1786342400000
+        source: new
+      - kind: vocabulary
+        lb: shen1-ti3--body
+        band: "2"
+        addedAt: 1787609600000
+        source: new
+      - kind: vocabulary
+        lb: shi2-jian1--time
+        band: "1"
+        addedAt: 1786371200000
+        source: new
+      - kind: vocabulary
+        lb: shou3--hand
+        band: "2"
+        addedAt: 1787638400000
+        source: new
+      - kind: vocabulary
+        lb: shui3--water
+        band: "1"
+        addedAt: 1786400000000
+        source: dictionary
+      - kind: vocabulary
+        lb: si4-yue4--april
+        band: "1"
+        addedAt: 1786428800000
+        source: new
+      - kind: vocabulary
+        lb: song4--gift
+        band: "2"
+        addedAt: 1787667200000
+        source: dictionary
+      - kind: vocabulary
+        lb: tai4--too
+        band: "1"
+        addedAt: 1786457600000
+        source: new
+      - kind: vocabulary
+        lb: tiao4-wu3--dance
+        band: "2"
+        addedAt: 1787696000000
+        source: new
+      - kind: vocabulary
+        lb: wai4--outside
+        band: "1"
+        addedAt: 1786486400000
+        source: new
+      - kind: vocabulary
+        lb: wang3-shang4--online
+        band: "2"
+        addedAt: 1787724800000
+        source: new
+      - kind: vocabulary
+        lb: wei2--hello
+        band: "1"
+        addedAt: 1786515200000
+        source: dictionary
+      - kind: vocabulary
+        lb: wu3-yue4--may
+        band: "1"
+        addedAt: 1786544000000
+        source: new
+      - kind: vocabulary
+        lb: xia4-lai5--descend
+        band: "2"
+        addedAt: 1787753600000
+        source: new
+      - kind: vocabulary
+        lb: xia4-wu3--afternoon
+        band: "1"
+        addedAt: 1786572800000
+        source: new
+      - kind: vocabulary
+        lb: xiao3--small
+        band: "1"
+        addedAt: 1786601600000
+        source: new
+      - kind: vocabulary
+        lb: xie3--write
+        band: "1"
+        addedAt: 1786630400000
+        source: dictionary
+      - kind: vocabulary
+        lb: xing1-qi1-san1--wednesday
+        band: "1"
+        addedAt: 1786659200000
+        source: new
+      - kind: vocabulary
+        lb: xing4-ming2--name
+        band: "2"
+        addedAt: 1787782400000
+        source: dictionary
+      - kind: vocabulary
+        lb: xue2-xi2--study
+        band: "1"
+        addedAt: 1786688000000
+        source: new
+      - kind: vocabulary
+        lb: yi1-dian3-r5--little
+        band: "1"
+        addedAt: 1786716800000
+        source: new
+      - kind: vocabulary
+        lb: yi1-hui4-r5--while
+        band: "2"
+        addedAt: 1787811200000
+        source: new
+      - kind: vocabulary
+        lb: you2--swim
+        band: "2"
+        addedAt: 1787840000000
+        source: new
+      - kind: vocabulary
+        lb: you3--have
+        band: "1"
+        addedAt: 1786745600000
+        source: dictionary
+      - kind: vocabulary
+        lb: yu2--fish
+        band: "2"
+        addedAt: 1787868800000
+        source: new
+      - kind: vocabulary
+        lb: zai4--again
+        band: "1"
+        addedAt: 1786774400000
+        source: new
+      - kind: vocabulary
+        lb: zao3-shang5--morning
+        band: "1"
+        addedAt: 1786803200000
+        source: new
+      - kind: vocabulary
+        lb: zhe4-me5--this-way
+        band: "2"
+        addedAt: 1787897600000
+        source: dictionary
+      - kind: vocabulary
+        lb: zhe4-r5--here
+        band: "1"
+        addedAt: 1786832000000
+        source: new
+      - kind: vocabulary
+        lb: zhong1-wu3--noon
+        band: "1"
+        addedAt: 1786860800000
+        source: dictionary
+      - kind: vocabulary
+        lb: zhou1-san1--wednesday
+        band: "2"
+        addedAt: 1787926400000
+        source: new
+      - kind: vocabulary
+        lb: zi4-ji3--self
+        band: "2"
+        addedAt: 1787955200000
+        source: new
+      - kind: vocabulary
+        lb: zuo3-bian5--left
+        band: "2"
+        addedAt: 1787984000000
+        source: new
+      - kind: vocabulary
+        lb: zuo4--do
+        band: "1"
+        addedAt: 1786889600000
+        source: new
+    cards:
+      - domain: reading
+        due: 1789510400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789510400000
+        kind: grammar
+        lb: a-bi3-b-adj-duo1-le5--much-more
+      - domain: reading
+        due: 1789539200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789539200000
+        kind: grammar
+        lb: adj-adj-de5--vivid
+      - domain: reading
+        due: 1789049600000
+        stability: 23.9
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: grammar
+        lb: adjp-de5-n--describe
+      - domain: reading
+        due: 1789568000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789568000000
+        kind: grammar
+        lb: clause-ne5--question-tone
+      - domain: reading
+        due: 1789136000000
+        stability: 26.6
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: grammar
+        lb: clause-s-ye3-pred--also
+      - domain: reading
+        due: 1789726400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1789683200000
+        updatedAt: 1789683200000
+        kind: grammar
+        lb: duo1-adj-a5--how
+      - domain: reading
+        due: 1789222400000
+        stability: 29.3
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: grammar
+        lb: fei1-chang2-adj--very
+      - domain: reading
+        due: 1789755200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1789712000000
+        updatedAt: 1789712000000
+        kind: grammar
+        lb: jiu4-yao4-vp-le5--soon
+      - domain: reading
+        due: 1789308800000
+        stability: 32
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: grammar
+        lb: loc-shi4-np--identify
+      - domain: reading
+        due: 1790777600000
+        stability: 7.7
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: grammar
+        lb: np-gen1-np--and
+      - domain: reading
+        due: 1789848800000
+        stability: 1.5
+        difficulty: 8.6
+        reps: 6
+        lapses: 1
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: grammar
+        lb: np-ne5--followup
+      - domain: reading
+        due: 1790864000000
+        stability: 10.4
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: grammar
+        lb: option-hai2-shi5-option--choice
+      - domain: reading
+        due: 1789222400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789222400000
+        kind: grammar
+        lb: pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+      - domain: reading
+        due: 1789251200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789251200000
+        kind: grammar
+        lb: qu4-or-lai2-loc-vp--purpose
+      - domain: reading
+        due: 1789280000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789280000000
+        kind: grammar
+        lb: s-he2-p-vp--with
+      - domain: reading
+        due: 1789438400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1789395200000
+        updatedAt: 1789395200000
+        kind: grammar
+        lb: s-np--nominal
+      - domain: reading
+        due: 1789467200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1789424000000
+        updatedAt: 1789424000000
+        kind: grammar
+        lb: s-vp-vp--purpose
+      - domain: reading
+        due: 1789913600000
+        stability: 15.8
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: grammar
+        lb: s-zai4-loc-vp--location
+      - domain: reading
+        due: 1790000000000
+        stability: 18.5
+        difficulty: 5.06
+        reps: 6
+        lapses: 0
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: grammar
+        lb: state-le5--change
+      - domain: reading
+        due: 1790086400000
+        stability: 21.2
+        difficulty: 5.68
+        reps: 7
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: grammar
+        lb: topic-zen3-me5-yang4--assess
+      - domain: reading
+        due: 1790172800000
+        stability: 23.9
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: grammar
+        lb: xiao3-surname--address
+      - domain: reading
+        due: 1789676000000
+        stability: 1.1
+        difficulty: 8.6
+        reps: 8
+        lapses: 2
+        state: relearning
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: grammar
+        lb: zhe4-li3-or-zhe4-r5-or-na4-li5-or-na4-r5-pred--place
+      - domain: reading
+        due: 1790950400000
+        stability: 13.1
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: source
+        lb: s1x3
+      - domain: reading
+        due: 1791036800000
+        stability: 15.8
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789568000000
+        updatedAt: 1789568000000
+        kind: source
+        lb: s2xa
+      - domain: reading
+        due: 1789848800000
+        stability: 1.9
+        difficulty: 8.6
+        reps: 6
+        lapses: 3
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: source
+        lb: s3xh
+      - domain: reading
+        due: 1789798400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789798400000
+        kind: source
+        lb: s4xo
+      - domain: reading
+        due: 1789827200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789827200000
+        kind: source
+        lb: s5xv
+      - domain: reading
+        due: 1789856000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1789856000000
+        kind: source
+        lb: s6x12
+      - domain: reading
+        due: 1790014400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1789971200000
+        updatedAt: 1789971200000
+        kind: source
+        lb: s7x19
+      - domain: reading
+        due: 1790043200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1790000000000
+        updatedAt: 1790000000000
+        kind: source
+        lb: s8x1g
+      - domain: reading
+        due: 1788963200000
+        stability: 34.7
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: source
+        lb: s9x1n
+      - domain: reading
+        due: 1789049600000
+        stability: 2.3
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: source
+        lb: sax1u
+      - domain: reading
+        due: 1785478400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1785478400000
+        kind: vocabulary
+        lb: ai4--love
+      - domain: reading
+        due: 1786918400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786918400000
+        kind: vocabulary
+        lb: ai4-hao4--hobby
+      - domain: reading
+        due: 1791209600000
+        stability: 29.3
+        difficulty: 5.68
+        reps: 7
+        lapses: 1
+        state: review
+        lastReview: 1789308800000
+        updatedAt: 1789308800000
+        kind: vocabulary
+        lb: ba3--object
+      - domain: reading
+        due: 1785507200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1785507200000
+        kind: vocabulary
+        lb: ban4--half
+      - domain: reading
+        due: 1789848800000
+        stability: 1.9
+        difficulty: 8.6
+        reps: 6
+        lapses: 3
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: ban4-fa3--method
+      - domain: reading
+        due: 1786947200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786947200000
+        kind: vocabulary
+        lb: bao1--packet
+      - domain: reading
+        due: 1788070400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788070400000
+        kind: vocabulary
+        lb: bei3-fang1--north
+      - domain: reading
+        due: 1788099200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788099200000
+        kind: vocabulary
+        lb: bi3-ru2--example
+      - domain: reading
+        due: 1788128000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788128000000
+        kind: vocabulary
+        lb: bian4-hua4--change
+      - domain: reading
+        due: 1788286400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1788243200000
+        updatedAt: 1788243200000
+        kind: vocabulary
+        lb: bing1-xiang1--refrigerator
+      - domain: reading
+        due: 1785536000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1785536000000
+        kind: vocabulary
+        lb: bu4--not
+      - domain: reading
+        due: 1786976000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786976000000
+        kind: vocabulary
+        lb: bu4-hao3-yi4-si5--embarrassed
+      - domain: reading
+        due: 1788315200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1788272000000
+        updatedAt: 1788272000000
+        kind: vocabulary
+        lb: bu4-xing2--unacceptable
+      - domain: reading
+        due: 1789136000000
+        stability: 13.1
+        difficulty: 5.68
+        reps: 7
+        lapses: 0
+        state: review
+        lastReview: 1789481600000
+        updatedAt: 1789481600000
+        kind: vocabulary
+        lb: cai2--only-then
+      - domain: reading
+        due: 1789222400000
+        stability: 15.8
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789395200000
+        updatedAt: 1789395200000
+        kind: vocabulary
+        lb: cha2--lookup
+      - domain: reading
+        due: 1789308800000
+        stability: 18.5
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789308800000
+        updatedAt: 1789308800000
+        kind: vocabulary
+        lb: chang2-yong4--common
+      - domain: reading
+        due: 1785694400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1785651200000
+        updatedAt: 1785651200000
+        kind: vocabulary
+        lb: che1--car
+      - domain: reading
+        due: 1787134400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1787091200000
+        updatedAt: 1787091200000
+        kind: vocabulary
+        lb: chu1--result
+      - domain: reading
+        due: 1789395200000
+        stability: 21.2
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: vocabulary
+        lb: chu1-zhong1--school
+      - domain: reading
+        due: 1787163200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1787120000000
+        updatedAt: 1787120000000
+        kind: vocabulary
+        lb: cong2--from
+      - domain: reading
+        due: 1791036800000
+        stability: 10.4
+        difficulty: 6.92
+        reps: 9
+        lapses: 1
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: da3-kai1--open
+      - domain: reading
+        due: 1789676000000
+        stability: 1.5
+        difficulty: 8.6
+        reps: 8
+        lapses: 1
+        state: relearning
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: da3-sao3--clean
+      - domain: reading
+        due: 1785723200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1785680000000
+        updatedAt: 1785680000000
+        kind: vocabulary
+        lb: da4--older
+      - domain: reading
+        due: 1788358400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788358400000
+        kind: vocabulary
+        lb: da4-xiong2-mao1--panda
+      - domain: reading
+        due: 1788387200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788387200000
+        kind: vocabulary
+        lb: dao4-chu4--everywhere
+      - domain: reading
+        due: 1788416000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788416000000
+        kind: vocabulary
+        lb: dei3--must
+      - domain: reading
+        due: 1791123200000
+        stability: 13.1
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: vocabulary
+        lb: deng3--wait
+      - domain: reading
+        due: 1789395200000
+        stability: 15.8
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789481600000
+        updatedAt: 1789481600000
+        kind: vocabulary
+        lb: di4-di5--brother
+      - domain: reading
+        due: 1788574400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1788531200000
+        updatedAt: 1788531200000
+        kind: vocabulary
+        lb: dian3--dot
+      - domain: reading
+        due: 1789481600000
+        stability: 18.5
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789395200000
+        updatedAt: 1789395200000
+        kind: vocabulary
+        lb: dian4-ying3-yuan4--cinema
+      - domain: reading
+        due: 1788603200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1788560000000
+        updatedAt: 1788560000000
+        kind: vocabulary
+        lb: dong1-fang1--east
+      - domain: reading
+        due: 1790000000000
+        stability: 5
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789395200000
+        updatedAt: 1789395200000
+        kind: vocabulary
+        lb: duan3--short
+      - domain: reading
+        due: 1789568000000
+        stability: 21.2
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789308800000
+        updatedAt: 1789308800000
+        kind: vocabulary
+        lb: dui4--correct
+      - domain: reading
+        due: 1790086400000
+        stability: 7.7
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789308800000
+        updatedAt: 1789308800000
+        kind: vocabulary
+        lb: er3-ji1--headphones
+      - domain: reading
+        due: 1789654400000
+        stability: 23.9
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: vocabulary
+        lb: er4-yue4--february
+      - domain: reading
+        due: 1791209600000
+        stability: 15.8
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: fan4-guan3--restaurant
+      - domain: reading
+        due: 1790172800000
+        stability: 10.4
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: vocabulary
+        lb: fang1-bian4-mian4--noodles
+      - domain: reading
+        due: 1790259200000
+        stability: 13.1
+        difficulty: 5.06
+        reps: 6
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: vocabulary
+        lb: fang4-xin1--reassured
+      - domain: reading
+        due: 1789848800000
+        stability: 1.5
+        difficulty: 8.6
+        reps: 6
+        lapses: 1
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: fen1--minute
+      - domain: reading
+        due: 1789848800000
+        stability: 1.1
+        difficulty: 8.6
+        reps: 6
+        lapses: 2
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: fu1-qi1--couple
+      - domain: reading
+        due: 1788646400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788646400000
+        kind: vocabulary
+        lb: gan3-mao4--catch-cold
+      - domain: reading
+        due: 1791296000000
+        stability: 18.5
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789568000000
+        updatedAt: 1789568000000
+        kind: vocabulary
+        lb: gei3--for
+      - domain: reading
+        due: 1788675200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788675200000
+        kind: vocabulary
+        lb: gen1--comparison
+      - domain: reading
+        due: 1785766400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1785766400000
+        kind: vocabulary
+        lb: gong1-si1--company
+      - domain: reading
+        due: 1788704000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788704000000
+        kind: vocabulary
+        lb: gu4-shi5--story
+      - domain: reading
+        due: 1788862400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1788819200000
+        updatedAt: 1788819200000
+        kind: vocabulary
+        lb: guan1-zhu4--follow
+      - domain: reading
+        due: 1789676000000
+        stability: 1.9
+        difficulty: 8.6
+        reps: 8
+        lapses: 3
+        state: relearning
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: guo4--time
+      - domain: reading
+        due: 1785795200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1785795200000
+        kind: vocabulary
+        lb: hai2-zi5--child
+      - domain: reading
+        due: 1787206400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787206400000
+        kind: vocabulary
+        lb: hao3--completed
+      - domain: reading
+        due: 1788891200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1788848000000
+        updatedAt: 1788848000000
+        kind: vocabulary
+        lb: hao3-jiu3--long
+      - domain: reading
+        due: 1785824000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1785824000000
+        kind: vocabulary
+        lb: hao3-ting1--pleasant
+      - domain: reading
+        due: 1790864000000
+        stability: 32
+        difficulty: 5.06
+        reps: 6
+        lapses: 0
+        state: review
+        lastReview: 1789308800000
+        updatedAt: 1789308800000
+        kind: vocabulary
+        lb: hong2-lv4-deng1--traffic-lights
+      - domain: reading
+        due: 1785982400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1785939200000
+        updatedAt: 1785939200000
+        kind: vocabulary
+        lb: hou4--behind
+      - domain: reading
+        due: 1787235200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787235200000
+        kind: vocabulary
+        lb: hua1--flower
+      - domain: reading
+        due: 1790950400000
+        stability: 34.7
+        difficulty: 5.68
+        reps: 7
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: vocabulary
+        lb: huan1-ying2--welcome
+      - domain: reading
+        due: 1791036800000
+        stability: 2.3
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: vocabulary
+        lb: hui2-da2--answer
+      - domain: reading
+        due: 1787264000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787264000000
+        kind: vocabulary
+        lb: hui2-qu5--return
+      - domain: reading
+        due: 1791123200000
+        stability: 5
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: ji1-hui4--opportunity
+      - domain: reading
+        due: 1789676000000
+        stability: 1.9
+        difficulty: 8.6
+        reps: 8
+        lapses: 3
+        state: relearning
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: jia1--add
+      - domain: reading
+        due: 1786011200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1785968000000
+        updatedAt: 1785968000000
+        kind: vocabulary
+        lb: jia1--classifier
+      - domain: reading
+        due: 1788934400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788934400000
+        kind: vocabulary
+        lb: jian4-mian4--meet
+      - domain: reading
+        due: 1790259200000
+        stability: 7.7
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789395200000
+        updatedAt: 1789395200000
+        kind: vocabulary
+        lb: jiao4--call
+      - domain: reading
+        due: 1787422400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1787379200000
+        updatedAt: 1787379200000
+        kind: vocabulary
+        lb: jiao4-shi4--classroom
+      - domain: reading
+        due: 1788963200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788963200000
+        kind: vocabulary
+        lb: jie1--meet
+      - domain: reading
+        due: 1788992000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1788992000000
+        kind: vocabulary
+        lb: jie3-jue2--solve
+      - domain: reading
+        due: 1789150400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1789107200000
+        updatedAt: 1789107200000
+        kind: vocabulary
+        lb: jiu3--alcohol
+      - domain: reading
+        due: 1787451200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1787408000000
+        updatedAt: 1787408000000
+        kind: vocabulary
+        lb: jiu3-dian4--hotel
+      - domain: reading
+        due: 1790345600000
+        stability: 10.4
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789308800000
+        updatedAt: 1789308800000
+        kind: vocabulary
+        lb: jue2-de5--think
+      - domain: reading
+        due: 1789179200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1789136000000
+        updatedAt: 1789136000000
+        kind: vocabulary
+        lb: kai1-hua1--bloom
+      - domain: reading
+        due: 1789222400000
+        stability: 2.3
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: vocabulary
+        lb: kai1-shi3--beginning
+      - domain: reading
+        due: 1790432000000
+        stability: 13.1
+        difficulty: 5.06
+        reps: 6
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: vocabulary
+        lb: kan4-jian4--see
+      - domain: reading
+        due: 1789308800000
+        stability: 5
+        difficulty: 5.06
+        reps: 6
+        lapses: 1
+        state: review
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: ke3-neng2--possibility
+      - domain: reading
+        due: 1790518400000
+        stability: 15.8
+        difficulty: 5.68
+        reps: 7
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: vocabulary
+        lb: kuai4--fast
+      - domain: reading
+        due: 1789395200000
+        stability: 7.7
+        difficulty: 5.68
+        reps: 7
+        lapses: 0
+        state: review
+        lastReview: 1789568000000
+        updatedAt: 1789568000000
+        kind: vocabulary
+        lb: lei4--tired
+      - domain: reading
+        due: 1789676000000
+        stability: 1.1
+        difficulty: 8.6
+        reps: 8
+        lapses: 2
+        state: relearning
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: li3--inside
+      - domain: reading
+        due: 1789481600000
+        stability: 10.4
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789481600000
+        updatedAt: 1789481600000
+        kind: vocabulary
+        lb: lu4-shang5--way
+      - domain: reading
+        due: 1786054400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786054400000
+        kind: vocabulary
+        lb: mai3--buy
+      - domain: reading
+        due: 1786083200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786083200000
+        kind: vocabulary
+        lb: mei2-you3--negation
+      - domain: reading
+        due: 1789848800000
+        stability: 1.5
+        difficulty: 8.6
+        reps: 6
+        lapses: 1
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: mei3--every
+      - domain: reading
+        due: 1786112000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786112000000
+        kind: vocabulary
+        lb: ming2-tian1--tomorrow
+      - domain: reading
+        due: 1787494400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787494400000
+        kind: vocabulary
+        lb: na2--hold
+      - domain: reading
+        due: 1786270400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1786227200000
+        updatedAt: 1786227200000
+        kind: vocabulary
+        lb: na4--that
+      - domain: reading
+        due: 1787523200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787523200000
+        kind: vocabulary
+        lb: nai3-nai5--grandmother
+      - domain: reading
+        due: 1786299200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1786256000000
+        updatedAt: 1786256000000
+        kind: vocabulary
+        lb: ne5--ongoing
+      - domain: reading
+        due: 1791123200000
+        stability: 34.7
+        difficulty: 5.68
+        reps: 7
+        lapses: 0
+        state: review
+        lastReview: 1789308800000
+        updatedAt: 1789308800000
+        kind: vocabulary
+        lb: nin2--you
+      - domain: reading
+        due: 1787552000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787552000000
+        kind: vocabulary
+        lb: pao3-bu4--run
+      - domain: reading
+        due: 1791209600000
+        stability: 2.3
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: vocabulary
+        lb: piao4-liang5--pretty
+      - domain: reading
+        due: 1791296000000
+        stability: 5
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: vocabulary
+        lb: qian2--front
+      - domain: reading
+        due: 1787710400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1787667200000
+        updatedAt: 1787667200000
+        kind: vocabulary
+        lb: rang4--allow
+      - domain: reading
+        due: 1791382400000
+        stability: 7.7
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: ren2--person
+      - domain: reading
+        due: 1789848800000
+        stability: 1.9
+        difficulty: 8.6
+        reps: 6
+        lapses: 3
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: shang4--ascend
+      - domain: reading
+        due: 1786342400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786342400000
+        kind: vocabulary
+        lb: shao3--few
+      - domain: reading
+        due: 1787739200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1787696000000
+        updatedAt: 1787696000000
+        kind: vocabulary
+        lb: shen1-ti3--body
+      - domain: reading
+        due: 1786371200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786371200000
+        kind: vocabulary
+        lb: shi2-jian1--time
+      - domain: reading
+        due: 1790086400000
+        stability: 29.3
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: shou3--hand
+      - domain: reading
+        due: 1786400000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786400000000
+        kind: vocabulary
+        lb: shui3--water
+      - domain: reading
+        due: 1786558400000
+        stability: 1.33
+        difficulty: 5.8
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1786515200000
+        updatedAt: 1786515200000
+        kind: vocabulary
+        lb: si4-yue4--april
+      - domain: reading
+        due: 1790172800000
+        stability: 32
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789568000000
+        updatedAt: 1789568000000
+        kind: vocabulary
+        lb: song4--gift
+      - domain: reading
+        due: 1786587200000
+        stability: 1.64
+        difficulty: 6.5
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1786544000000
+        updatedAt: 1786544000000
+        kind: vocabulary
+        lb: tai4--too
+      - domain: reading
+        due: 1790259200000
+        stability: 34.7
+        difficulty: 3.2
+        reps: 3
+        lapses: 1
+        state: review
+        lastReview: 1789481600000
+        updatedAt: 1789481600000
+        kind: vocabulary
+        lb: tiao4-wu3--dance
+      - domain: reading
+        due: 1789308800000
+        stability: 26.6
+        difficulty: 3.2
+        reps: 3
+        lapses: 0
+        state: review
+        lastReview: 1789222400000
+        updatedAt: 1789222400000
+        kind: vocabulary
+        lb: wai4--outside
+      - domain: reading
+        due: 1790345600000
+        stability: 2.3
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789395200000
+        updatedAt: 1789395200000
+        kind: vocabulary
+        lb: wang3-shang4--online
+      - domain: reading
+        due: 1789395200000
+        stability: 29.3
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: vocabulary
+        lb: wei2--hello
+      - domain: reading
+        due: 1789481600000
+        stability: 32
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: wu3-yue4--may
+      - domain: reading
+        due: 1789676000000
+        stability: 1.1
+        difficulty: 8.6
+        reps: 8
+        lapses: 2
+        state: relearning
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: xia4-lai5--descend
+      - domain: reading
+        due: 1789568000000
+        stability: 34.7
+        difficulty: 5.06
+        reps: 6
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: vocabulary
+        lb: xia4-wu3--afternoon
+      - domain: reading
+        due: 1789676000000
+        stability: 1.5
+        difficulty: 8.6
+        reps: 8
+        lapses: 1
+        state: relearning
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: xiao3--small
+      - domain: reading
+        due: 1786630400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786630400000
+        kind: vocabulary
+        lb: xie3--write
+      - domain: reading
+        due: 1786659200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786659200000
+        kind: vocabulary
+        lb: xing1-qi1-san1--wednesday
+      - domain: reading
+        due: 1787782400000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787782400000
+        kind: vocabulary
+        lb: xing4-ming2--name
+      - domain: reading
+        due: 1786688000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1786688000000
+        kind: vocabulary
+        lb: xue2-xi2--study
+      - domain: reading
+        due: 1786846400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1786803200000
+        updatedAt: 1786803200000
+        kind: vocabulary
+        lb: yi1-dian3-r5--little
+      - domain: reading
+        due: 1787811200000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787811200000
+        kind: vocabulary
+        lb: yi1-hui4-r5--while
+      - domain: reading
+        due: 1787840000000
+        stability: 0
+        difficulty: 0
+        reps: 0
+        lapses: 0
+        state: new
+        updatedAt: 1787840000000
+        kind: vocabulary
+        lb: you2--swim
+      - domain: reading
+        due: 1786875200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1786832000000
+        updatedAt: 1786832000000
+        kind: vocabulary
+        lb: you3--have
+      - domain: reading
+        due: 1787998400000
+        stability: 1.33
+        difficulty: 7.2
+        reps: 1
+        lapses: 0
+        state: learning
+        lastReview: 1787955200000
+        updatedAt: 1787955200000
+        kind: vocabulary
+        lb: yu2--fish
+      - domain: reading
+        due: 1790172800000
+        stability: 18.5
+        difficulty: 5.06
+        reps: 6
+        lapses: 0
+        state: review
+        lastReview: 1789913600000
+        updatedAt: 1789913600000
+        kind: vocabulary
+        lb: zai4--again
+      - domain: reading
+        due: 1790259200000
+        stability: 21.2
+        difficulty: 5.68
+        reps: 7
+        lapses: 0
+        state: review
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: zao3-shang5--morning
+      - domain: reading
+        due: 1788027200000
+        stability: 1.64
+        difficulty: 5.1
+        reps: 2
+        lapses: 0
+        state: learning
+        lastReview: 1787984000000
+        updatedAt: 1787984000000
+        kind: vocabulary
+        lb: zhe4-me5--this-way
+      - domain: reading
+        due: 1790345600000
+        stability: 23.9
+        difficulty: 6.3
+        reps: 8
+        lapses: 0
+        state: review
+        lastReview: 1789740800000
+        updatedAt: 1789740800000
+        kind: vocabulary
+        lb: zhe4-r5--here
+      - domain: reading
+        due: 1790432000000
+        stability: 26.6
+        difficulty: 6.92
+        reps: 9
+        lapses: 0
+        state: review
+        lastReview: 1789654400000
+        updatedAt: 1789654400000
+        kind: vocabulary
+        lb: zhong1-wu3--noon
+      - domain: reading
+        due: 1790950400000
+        stability: 21.2
+        difficulty: 3.82
+        reps: 4
+        lapses: 0
+        state: review
+        lastReview: 1789568000000
+        updatedAt: 1789568000000
+        kind: vocabulary
+        lb: zhou1-san1--wednesday
+      - domain: reading
+        due: 1791036800000
+        stability: 23.9
+        difficulty: 4.44
+        reps: 5
+        lapses: 0
+        state: review
+        lastReview: 1789481600000
+        updatedAt: 1789481600000
+        kind: vocabulary
+        lb: zi4-ji3--self
+      - domain: reading
+        due: 1791123200000
+        stability: 26.6
+        difficulty: 5.06
+        reps: 6
+        lapses: 0
+        state: review
+        lastReview: 1789395200000
+        updatedAt: 1789395200000
+        kind: vocabulary
+        lb: zuo3-bian5--left
+      - domain: reading
+        due: 1789848800000
+        stability: 1.1
+        difficulty: 8.6
+        reps: 6
+        lapses: 2
+        state: relearning
+        lastReview: 1789827200000
+        updatedAt: 1789827200000
+        kind: vocabulary
+        lb: zuo4--do
+    sessions:
+      - id: study-01
+        mode: new
+        domain: reading
+        targetRefs:
+          - vocabulary:ai4--love
+          - vocabulary:bu4--not
+        reviewRefs: []
+        exercises:
+          - id: e0-0
+            type: choice
+            targets:
+              - vocabulary:ai4--love
+            direction: zh-to-en
+            question: 爱
+            options:
+              - love
+              - rain
+              - tea
+            answer: 0
+            explanation: It means love.
+          - id: e0-1
+            type: choice
+            targets:
+              - vocabulary:ban4--half
+            direction: en-to-zh
+            question: half
+            options:
+              - 半
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 半.
+          - id: e0-2
+            type: tiles
+            targets:
+              - vocabulary:bu4--not
+            translation: I love Mom.
+            tiles:
+              - 我
+              - 爱
+              - 妈妈
+              - 爸爸
+            distractors: []
+            shuffled:
+              - 1
+              - 0
+              - 3
+              - 2
+            explanation: "Word order: 我 爱 妈妈."
+          - id: e0-3
+            type: match
+            targets:
+              - vocabulary:ai4--love
+              - vocabulary:ban4--half
+              - vocabulary:bu4--not
+              - vocabulary:che1--car
+            mode: zh-en
+            pairs:
+              - ref: vocabulary:ai4--love
+                left: 爱
+                right: love
+              - ref: vocabulary:ban4--half
+                left: 半
+                right: half
+              - ref: vocabulary:bu4--not
+                left: 不
+                right: not
+              - ref: vocabulary:che1--car
+                left: 车
+                right: car
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 3
+        status: completed
+        model: synthetic-model
+        rejected: []
+        createdAt: 1789222400000
+        completedAt: 1789223000000
+        exerciseCount: 4
+      - id: study-02
+        mode: review
+        domain: reading
+        targetRefs:
+          - vocabulary:da4--older
+          - vocabulary:dian4-ying3-yuan4--cinema
+        reviewRefs:
+          - vocabulary:di4-di5--brother
+        exercises:
+          - id: e1-0
+            type: choice
+            targets:
+              - vocabulary:da4--older
+            direction: zh-to-en
+            question: 大
+            options:
+              - big
+              - rain
+              - tea
+            answer: 0
+            explanation: It means big.
+          - id: e1-1
+            type: choice
+            targets:
+              - vocabulary:di4-di5--brother
+            direction: en-to-zh
+            question: brother
+            options:
+              - 弟
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 弟.
+          - id: e1-2
+            type: tiles
+            targets:
+              - vocabulary:dian4-ying3-yuan4--cinema
+            translation: He likes to drink tea.
+            tiles:
+              - 他
+              - 喜欢
+              - 喝
+              - 茶
+              - 水
+            distractors: []
+            shuffled:
+              - 1
+              - 4
+              - 2
+              - 0
+              - 3
+            explanation: "Word order: 他 喜欢 喝 茶."
+          - id: e1-3
+            type: match
+            targets:
+              - vocabulary:da4--older
+              - vocabulary:di4-di5--brother
+              - vocabulary:dian4-ying3-yuan4--cinema
+              - vocabulary:dui4--correct
+            mode: zh-py
+            pairs:
+              - ref: vocabulary:da4--older
+                left: 大
+                right: big
+              - ref: vocabulary:di4-di5--brother
+                left: 弟
+                right: brother
+              - ref: vocabulary:dian4-ying3-yuan4--cinema
+                left: 电影院
+                right: cinema
+              - ref: vocabulary:dui4--correct
+                left: 对
+                right: correct
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 3
+        status: completed
+        model: synthetic-model
+        rejected: []
+        createdAt: 1789308800000
+        completedAt: 1789309400000
+        exerciseCount: 4
+      - id: study-03
+        mode: new
+        domain: reading
+        targetRefs:
+          - vocabulary:er4-yue4--february
+          - vocabulary:gong1-si1--company
+        reviewRefs: []
+        exercises:
+          - id: e2-0
+            type: choice
+            targets:
+              - vocabulary:er4-yue4--february
+            direction: zh-to-en
+            question: 二月
+            options:
+              - February
+              - rain
+              - tea
+            answer: 0
+            explanation: It means February.
+          - id: e2-1
+            type: choice
+            targets:
+              - vocabulary:fen1--minute
+            direction: en-to-zh
+            question: minute
+            options:
+              - 分
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 分.
+          - id: e2-2
+            type: tiles
+            targets:
+              - vocabulary:gong1-si1--company
+            translation: The weather is very good today.
+            tiles:
+              - 今天
+              - 天气
+              - 很
+              - 好
+            distractors: []
+            shuffled:
+              - 1
+              - 0
+              - 3
+              - 2
+            explanation: "Word order: 今天 天气 很 好."
+          - id: e2-3
+            type: match
+            targets:
+              - vocabulary:er4-yue4--february
+              - vocabulary:fen1--minute
+              - vocabulary:gong1-si1--company
+              - vocabulary:hai2-zi5--child
+            mode: py-en
+            pairs:
+              - ref: vocabulary:er4-yue4--february
+                left: 二月
+                right: February
+              - ref: vocabulary:fen1--minute
+                left: 分
+                right: minute
+              - ref: vocabulary:gong1-si1--company
+                left: 公司
+                right: company
+              - ref: vocabulary:hai2-zi5--child
+                left: 孩子
+                right: child
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 3
+        status: completed
+        model: synthetic-model
+        rejected: []
+        createdAt: 1789395200000
+        completedAt: 1789395800000
+        exerciseCount: 4
+      - id: study-04
+        mode: review
+        domain: reading
+        targetRefs:
+          - vocabulary:hao3-ting1--pleasant
+          - vocabulary:jia1--classifier
+        reviewRefs:
+          - vocabulary:hou4--behind
+        exercises:
+          - id: e3-0
+            type: choice
+            targets:
+              - vocabulary:hao3-ting1--pleasant
+            direction: zh-to-en
+            question: 爱
+            options:
+              - love
+              - rain
+              - tea
+            answer: 0
+            explanation: It means love.
+          - id: e3-1
+            type: choice
+            targets:
+              - vocabulary:hou4--behind
+            direction: en-to-zh
+            question: half
+            options:
+              - 半
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 半.
+          - id: e3-2
+            type: tiles
+            targets:
+              - vocabulary:jia1--classifier
+            translation: We are going to school tomorrow.
+            tiles:
+              - 我们
+              - 明天
+              - 去
+              - 学校
+              - 昨天
+            distractors: []
+            shuffled:
+              - 1
+              - 4
+              - 2
+              - 0
+              - 3
+            explanation: "Word order: 我们 明天 去 学校."
+          - id: e3-3
+            type: match
+            targets:
+              - vocabulary:hao3-ting1--pleasant
+              - vocabulary:hou4--behind
+              - vocabulary:jia1--classifier
+              - vocabulary:jiao4--call
+            mode: zh-en
+            pairs:
+              - ref: vocabulary:hao3-ting1--pleasant
+                left: 爱
+                right: love
+              - ref: vocabulary:hou4--behind
+                left: 半
+                right: half
+              - ref: vocabulary:jia1--classifier
+                left: 不
+                right: not
+              - ref: vocabulary:jiao4--call
+                left: 车
+                right: car
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 3
+        status: completed
+        model: synthetic-model
+        rejected:
+          - Synthetic rejected draft
+        createdAt: 1789481600000
+        completedAt: 1789482200000
+        exerciseCount: 4
+      - id: study-05
+        mode: new
+        domain: reading
+        targetRefs:
+          - vocabulary:jue2-de5--think
+          - vocabulary:kuai4--fast
+        reviewRefs: []
+        exercises:
+          - id: e4-0
+            type: choice
+            targets:
+              - vocabulary:jue2-de5--think
+            direction: zh-to-en
+            question: 大
+            options:
+              - big
+              - rain
+              - tea
+            answer: 0
+            explanation: It means big.
+          - id: e4-1
+            type: choice
+            targets:
+              - vocabulary:kan4-jian4--see
+            direction: en-to-zh
+            question: brother
+            options:
+              - 弟
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 弟.
+          - id: e4-2
+            type: tiles
+            targets:
+              - vocabulary:kuai4--fast
+            translation: She is my teacher.
+            tiles:
+              - 她
+              - 是
+              - 我
+              - 的
+              - 老师
+              - 朋友
+            distractors: []
+            shuffled:
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+              - 0
+            explanation: "Word order: 她 是 我 的 老师."
+          - id: e4-3
+            type: match
+            targets:
+              - vocabulary:jue2-de5--think
+              - vocabulary:kan4-jian4--see
+              - vocabulary:kuai4--fast
+              - vocabulary:li3--inside
+            mode: zh-py
+            pairs:
+              - ref: vocabulary:jue2-de5--think
+                left: 大
+                right: big
+              - ref: vocabulary:kan4-jian4--see
+                left: 弟
+                right: brother
+              - ref: vocabulary:kuai4--fast
+                left: 电影院
+                right: cinema
+              - ref: vocabulary:li3--inside
+                left: 对
+                right: correct
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 3
+        status: completed
+        model: synthetic-model
+        rejected: []
+        createdAt: 1789568000000
+        completedAt: 1789568600000
+        exerciseCount: 4
+      - id: study-06
+        mode: review
+        domain: reading
+        targetRefs:
+          - vocabulary:mai3--buy
+          - vocabulary:ming2-tian1--tomorrow
+        reviewRefs:
+          - vocabulary:mei2-you3--negation
+        exercises:
+          - id: e5-0
+            type: choice
+            targets:
+              - vocabulary:mai3--buy
+            direction: zh-to-en
+            question: 二月
+            options:
+              - February
+              - rain
+              - tea
+            answer: 0
+            explanation: It means February.
+          - id: e5-1
+            type: choice
+            targets:
+              - vocabulary:mei2-you3--negation
+            direction: en-to-zh
+            question: minute
+            options:
+              - 分
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 分.
+          - id: e5-2
+            type: tiles
+            targets:
+              - vocabulary:ming2-tian1--tomorrow
+            translation: What do you want to eat?
+            tiles:
+              - 你
+              - 想
+              - 吃
+              - 什么
+            distractors: []
+            shuffled:
+              - 1
+              - 0
+              - 3
+              - 2
+            explanation: "Word order: 你 想 吃 什么."
+          - id: e5-3
+            type: match
+            targets:
+              - vocabulary:mai3--buy
+              - vocabulary:mei2-you3--negation
+              - vocabulary:ming2-tian1--tomorrow
+              - vocabulary:na4--that
+            mode: py-en
+            pairs:
+              - ref: vocabulary:mai3--buy
+                left: 二月
+                right: February
+              - ref: vocabulary:mei2-you3--negation
+                left: 分
+                right: minute
+              - ref: vocabulary:ming2-tian1--tomorrow
+                left: 公司
+                right: company
+              - ref: vocabulary:na4--that
+                left: 孩子
+                right: child
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 3
+        status: completed
+        model: synthetic-model
+        rejected: []
+        createdAt: 1789654400000
+        completedAt: 1789655000000
+        exerciseCount: 4
+      - id: study-07
+        mode: new
+        domain: reading
+        targetRefs:
+          - vocabulary:ne5--ongoing
+          - vocabulary:piao4-liang5--pretty
+        reviewRefs: []
+        exercises:
+          - id: e6-0
+            type: choice
+            targets:
+              - vocabulary:ne5--ongoing
+            direction: zh-to-en
+            question: 爱
+            options:
+              - love
+              - rain
+              - tea
+            answer: 0
+            explanation: It means love.
+          - id: e6-1
+            type: choice
+            targets:
+              - vocabulary:nin2--you
+            direction: en-to-zh
+            question: half
+            options:
+              - 半
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 半.
+          - id: e6-2
+            type: tiles
+            targets:
+              - vocabulary:piao4-liang5--pretty
+            translation: How much is this?
+            tiles:
+              - 这
+              - 个
+              - 多少
+              - 钱
+              - 那
+            distractors: []
+            shuffled:
+              - 1
+              - 4
+              - 2
+              - 0
+              - 3
+            explanation: "Word order: 这 个 多少 钱."
+          - id: e6-3
+            type: match
+            targets:
+              - vocabulary:ne5--ongoing
+              - vocabulary:nin2--you
+              - vocabulary:piao4-liang5--pretty
+              - vocabulary:qian2--front
+            mode: zh-en
+            pairs:
+              - ref: vocabulary:ne5--ongoing
+                left: 爱
+                right: love
+              - ref: vocabulary:nin2--you
+                left: 半
+                right: half
+              - ref: vocabulary:piao4-liang5--pretty
+                left: 不
+                right: not
+              - ref: vocabulary:qian2--front
+                left: 车
+                right: car
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 2
+        status: active
+        model: synthetic-model
+        rejected: []
+        createdAt: 1789740800000
+        exerciseCount: 4
+      - id: study-08
+        mode: review
+        domain: reading
+        targetRefs:
+          - vocabulary:ren2--person
+          - vocabulary:shao3--few
+        reviewRefs:
+          - vocabulary:shang4--ascend
+        exercises:
+          - id: e7-0
+            type: choice
+            targets:
+              - vocabulary:ren2--person
+            direction: zh-to-en
+            question: 大
+            options:
+              - big
+              - rain
+              - tea
+            answer: 0
+            explanation: It means big.
+          - id: e7-1
+            type: choice
+            targets:
+              - vocabulary:shang4--ascend
+            direction: en-to-zh
+            question: brother
+            options:
+              - 弟
+              - 茶
+              - 雨
+              - 山
+            answer: 0
+            explanation: The word is 弟.
+          - id: e7-2
+            type: tiles
+            targets:
+              - vocabulary:shao3--few
+            translation: I am reading at home.
+            tiles:
+              - 我
+              - 在
+              - 家
+              - 看
+              - 书
+              - 电影
+            distractors: []
+            shuffled:
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+              - 0
+            explanation: "Word order: 我 在 家 看 书."
+          - id: e7-3
+            type: match
+            targets:
+              - vocabulary:ren2--person
+              - vocabulary:shang4--ascend
+              - vocabulary:shao3--few
+              - vocabulary:shi2-jian1--time
+            mode: zh-py
+            pairs:
+              - ref: vocabulary:ren2--person
+                left: 大
+                right: big
+              - ref: vocabulary:shang4--ascend
+                left: 弟
+                right: brother
+              - ref: vocabulary:shao3--few
+                left: 电影院
+                right: cinema
+              - ref: vocabulary:shi2-jian1--time
+                left: 对
+                right: correct
+            order:
+              - 2
+              - 0
+              - 3
+              - 1
+            explanation: Match each word with its meaning.
+        cursor: 1
+        status: abandoned
+        model: synthetic-model
+        rejected: []
+        createdAt: 1789827200000
+        exerciseCount: 4
+    attempts:
+      - id: study-01:0
+        sessionId: study-01
+        index: 0
+        refs:
+          - vocabulary:ai4--love
+        response: "0"
+        correct: false
+        createdAt: 1789222460000
+      - id: study-01:1
+        sessionId: study-01
+        index: 1
+        refs:
+          - vocabulary:ban4--half
+        response: "0"
+        correct: true
+        createdAt: 1789222520000
+      - id: study-01:2
+        sessionId: study-01
+        index: 2
+        refs:
+          - vocabulary:bu4--not
+        response: "2"
+        correct: true
+        createdAt: 1789222580000
+      - id: study-01:3
+        sessionId: study-01
+        index: 3
+        refs:
+          - vocabulary:ai4--love
+        response: "3"
+        correct: true
+        createdAt: 1789222640000
+      - id: study-02:0
+        sessionId: study-02
+        index: 0
+        refs:
+          - vocabulary:da4--older
+        response: "0"
+        correct: true
+        createdAt: 1789308860000
+      - id: study-02:1
+        sessionId: study-02
+        index: 1
+        refs:
+          - vocabulary:di4-di5--brother
+        response: "0"
+        correct: true
+        createdAt: 1789308920000
+      - id: study-02:2
+        sessionId: study-02
+        index: 2
+        refs:
+          - vocabulary:dian4-ying3-yuan4--cinema
+        response: "2"
+        correct: true
+        createdAt: 1789308980000
+      - id: study-02:3
+        sessionId: study-02
+        index: 3
+        refs:
+          - vocabulary:da4--older
+        response: "3"
+        correct: true
+        createdAt: 1789309040000
+      - id: study-03:0
+        sessionId: study-03
+        index: 0
+        refs:
+          - vocabulary:er4-yue4--february
+        response: "0"
+        correct: true
+        createdAt: 1789395260000
+      - id: study-03:1
+        sessionId: study-03
+        index: 1
+        refs:
+          - vocabulary:fen1--minute
+        response: "0"
+        correct: true
+        createdAt: 1789395320000
+      - id: study-03:2
+        sessionId: study-03
+        index: 2
+        refs:
+          - vocabulary:gong1-si1--company
+        response: "2"
+        correct: true
+        createdAt: 1789395380000
+      - id: study-03:3
+        sessionId: study-03
+        index: 3
+        refs:
+          - vocabulary:er4-yue4--february
+        response: "3"
+        correct: false
+        createdAt: 1789395440000
+      - id: study-04:0
+        sessionId: study-04
+        index: 0
+        refs:
+          - vocabulary:hao3-ting1--pleasant
+        response: "0"
+        correct: true
+        createdAt: 1789481660000
+      - id: study-04:1
+        sessionId: study-04
+        index: 1
+        refs:
+          - vocabulary:hou4--behind
+        response: "0"
+        correct: true
+        createdAt: 1789481720000
+      - id: study-04:2
+        sessionId: study-04
+        index: 2
+        refs:
+          - vocabulary:jia1--classifier
+        response: "2"
+        correct: false
+        createdAt: 1789481780000
+      - id: study-04:3
+        sessionId: study-04
+        index: 3
+        refs:
+          - vocabulary:hao3-ting1--pleasant
+        response: "3"
+        correct: true
+        createdAt: 1789481840000
+      - id: study-05:0
+        sessionId: study-05
+        index: 0
+        refs:
+          - vocabulary:jue2-de5--think
+        response: "0"
+        correct: true
+        createdAt: 1789568060000
+      - id: study-05:1
+        sessionId: study-05
+        index: 1
+        refs:
+          - vocabulary:kan4-jian4--see
+        response: "0"
+        correct: false
+        createdAt: 1789568120000
+      - id: study-05:2
+        sessionId: study-05
+        index: 2
+        refs:
+          - vocabulary:kuai4--fast
+        response: "2"
+        correct: true
+        createdAt: 1789568180000
+      - id: study-05:3
+        sessionId: study-05
+        index: 3
+        refs:
+          - vocabulary:jue2-de5--think
+        response: "3"
+        correct: true
+        createdAt: 1789568240000
+      - id: study-06:0
+        sessionId: study-06
+        index: 0
+        refs:
+          - vocabulary:mai3--buy
+        response: "0"
+        correct: false
+        createdAt: 1789654460000
+      - id: study-06:1
+        sessionId: study-06
+        index: 1
+        refs:
+          - vocabulary:mei2-you3--negation
+        response: "0"
+        correct: true
+        createdAt: 1789654520000
+      - id: study-06:2
+        sessionId: study-06
+        index: 2
+        refs:
+          - vocabulary:ming2-tian1--tomorrow
+        response: "2"
+        correct: true
+        createdAt: 1789654580000
+      - id: study-06:3
+        sessionId: study-06
+        index: 3
+        refs:
+          - vocabulary:mai3--buy
+        response: "3"
+        correct: true
+        createdAt: 1789654640000
+      - id: study-07:0
+        sessionId: study-07
+        index: 0
+        refs:
+          - vocabulary:ne5--ongoing
+        response: "0"
+        correct: true
+        createdAt: 1789740860000
+      - id: study-07:1
+        sessionId: study-07
+        index: 1
+        refs:
+          - vocabulary:nin2--you
+        response: "0"
+        correct: true
+        createdAt: 1789740920000
+      - id: study-08:0
+        sessionId: study-08
+        index: 0
+        refs:
+          - vocabulary:ren2--person
+        response: "0"
+        correct: true
+        createdAt: 1789827260000
+conversations:
+  threads:
+    - id: thread-1
+      title: Ordering tea
+      draft: ""
+      mode: conversation
+      shadowIntent: new-phrase
+      voiceEnabled: true
+      voiceInputLocale: zh-Hans
+      romanization: true
+      speechRate: 0.75
+      returnRoute: assistant
+      createdAt: 1789740800000
+      updatedAt: 1789741100000
+  messages:
+    - id: m-1
+      threadId: thread-1
+      sequence: 0
+      role: user
+      text: How do I order a cup of tea?
+      blocks: []
+      mode: conversation
+      intent: message
+      status: completed
+      runId: run-1
+      createdAt: 1789740800000
+    - id: m-2
+      threadId: thread-1
+      sequence: 1
+      role: assistant
+      text: ""
+      blocks:
+        - type: text
+          markdown: "You can say it like this:"
+        - type: speech
+          text: 我想要一杯茶。
+          locale: zh-Hans
+          romanization: wǒ xiǎng yào yì bēi chá
+          meaning: I would like a cup of tea.
+        - type: speech
+          text: 请给我一杯热茶。
+          locale: zh-Hans
+          romanization: qǐng gěi wǒ yì bēi rè chá
+          meaning: Please give me a cup of hot tea.
+      mode: conversation
+      intent: message
+      status: completed
+      runId: run-1
+      createdAt: 1789740805000
+    - id: m-3
+      threadId: thread-1
+      sequence: 2
+      role: user
+      text: And how do I say thank you?
+      blocks: []
+      mode: conversation
+      intent: message
+      status: completed
+      runId: run-2
+      createdAt: 1789741000000
+    - id: m-4
+      threadId: thread-1
+      sequence: 3
+      role: assistant
+      text: ""
+      blocks:
+        - type: speech
+          text: 谢谢你。
+          locale: zh-Hans
+          romanization: xiè xie nǐ
+          meaning: Thank you.
+      mode: conversation
+      intent: message
+      status: completed
+      runId: run-2
+      createdAt: 1789741005000
+  runs:
+    - id: run-1
+      threadId: thread-1
+      userMessageId: m-1
+      assistantMessageId: m-2
+      connectionRevision: synthetic-revision
+      status: awaiting-learner
+      steps: []
+      createdAt: 1789740800000
+      updatedAt: 1789740805000
+      expiresAt: 1789827200000
+    - id: run-2
+      threadId: thread-1
+      userMessageId: m-3
+      assistantMessageId: m-4
+      connectionRevision: synthetic-revision
+      status: awaiting-learner
+      steps: []
+      createdAt: 1789741000000
+      updatedAt: 1789741005000
+      expiresAt: 1789827200000
+library:
+  - id: 00000000-0000-4000-8000-000000000101
+    revision: 00000000-0000-4000-8000-000000000102
+    title: A Short Tea Story
+    author: Synthetic Author
+    sourceType: paste
+    chapters:
+      - One
+      - Two
+    passages:
+      - chapter: 0
+        source: 我喜欢茶。
+        translation:
+          blocks:
+            - - text: 我
+                pinyin: wǒ
+                meaning: I
+                trailing: ""
+              - text: 喜欢
+                pinyin: xǐ huan
+                meaning: to like
+                trailing: ""
+              - text: 茶
+                pinyin: chá
+                meaning: tea
+                trailing: 。
+          translatedAt: 1789913600000
+      - chapter: 1
+        source: |-
+          他喝水。
+
+          她喝茶。
+      - chapter: 1
+        source: 我们都喜欢喝茶。
+    passage: 1
+    completed:
+      - 0
+    importedAt: 1789568000000
+    updatedAt: 1789913600000
+media:
+  - url: https://media.invalid/watch?v=tea
+    title: Making tea
+    durationSec: 30
+    extractor: synthetic
+    videoId: tea
+    source: captions
+    language: zh-Hans
+    lines:
+      - start: 0
+        end: 3
+        text: 你好，欢迎回来。
+      - start: 3.5
+        end: 6.5
+        text: 今天我们做茶。
+      - start: 7
+        end: 9
+        text: 先烧水。
+      - start: 9.5
+        end: 12.5
+        text: 水开了以后放茶叶。
+      - start: 13
+        end: 15.5
+        text: 等三分钟。
+      - start: 16
+        end: 18.5
+        text: 然后倒进杯子里。
+      - start: 19
+        end: 21.5
+        text: 小心，很烫。
+      - start: 22
+        end: 28
+        text: 你可以加一点蜂蜜。
+    sync:
+      - at: 0
+        offset: 0.25
+    aligned:
+      sentences:
+        - lines:
+            - 0
+            - 0
+          translation: Hello, welcome back.
+          fragments: []
+        - lines:
+            - 1
+            - 2
+          translation: Today we make tea. First boil water.
+          fragments:
+            - line: 1
+              text: Today we make tea.
+            - line: 2
+              text: First boil water.
+        - lines:
+            - 3
+            - 3
+          translation: Once the water boils, add the tea leaves.
+          fragments: []
+      tokens:
+        - line: 0
+          items:
+            - text: 你好
+              pinyin: nǐ hǎo
+              meaning: hello
+              trailing: ，
+            - text: 欢迎
+              pinyin: huān yíng
+              meaning: welcome
+              trailing: ""
+            - text: 回来
+              pinyin: huí lái
+              meaning: come back
+              trailing: 。
+        - line: 2
+          items:
+            - text: 先
+              pinyin: xiān
+              meaning: first
+              trailing: ""
+            - text: 烧水
+              pinyin: shāo shuǐ
+              meaning: boil water
+              trailing: 。
+      upTo: 4
+      updatedAt: 1789913600000
+    entries:
+      links:
+        茶叶: source:s1x3
+        烧水: source:s2xa
+      skipped:
+        - 欢迎回来
+      counts:
+        source:s1x3: 1
+        source:s2xa: 1
+      total: 3
+      complete: false
+      updatedAt: 1789913600000
+    id: 00000000-0000-4000-8000-000000000201
+    savedAt: 1789827200000
+sourceEntries:
+  - id: s1x3
+    word: 茶叶
+    pinyin: chá yè
+    meanings:
+      - tea leaves
+    pos: noun
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 3
+        text: 水开了以后放茶叶。
+    createdAt: 1789827200000
+    updatedAt: 1789827200000
+  - id: s2xa
+    word: 烧水
+    pinyin: shāo shuǐ
+    meanings:
+      - to boil water
+    pos: verb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 2
+        text: 先烧水。
+    createdAt: 1789827200001
+    updatedAt: 1789827200001
+  - id: s3xh
+    word: 蜂蜜
+    pinyin: fēng mì
+    meanings:
+      - honey
+    pos: noun
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 7
+        text: 你可以加一点蜂蜜。
+    createdAt: 1789827200002
+    updatedAt: 1789827200002
+  - id: s4xo
+    word: 烫
+    pinyin: tàng
+    meanings:
+      - scalding
+      - to burn
+    pos: adjective
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 6
+        text: 小心，很烫。
+    createdAt: 1789827200003
+    updatedAt: 1789827200003
+  - id: s5xv
+    word: 倒进
+    pinyin: dào jìn
+    meanings:
+      - to pour into
+    pos: verb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 5
+        text: 然后倒进杯子里。
+    createdAt: 1789827200004
+    updatedAt: 1789827200004
+  - id: s6x12
+    word: 欢迎
+    pinyin: huān yíng
+    meanings:
+      - to welcome
+    pos: verb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 0
+        text: 你好，欢迎回来。
+    createdAt: 1789827200005
+    updatedAt: 1789827200005
+  - id: s7x19
+    word: 回来
+    pinyin: huí lái
+    meanings:
+      - to come back
+    pos: verb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 0
+        text: 你好，欢迎回来。
+    createdAt: 1789827200006
+    updatedAt: 1789827200006
+  - id: s8x1g
+    word: 杯子
+    pinyin: bēi zi
+    meanings:
+      - cup
+      - glass
+    pos: noun
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 5
+        text: 然后倒进杯子里。
+    createdAt: 1789827200007
+    updatedAt: 1789827200007
+  - id: s9x1n
+    word: 小心
+    pinyin: xiǎo xīn
+    meanings:
+      - to be careful
+    pos: verb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 6
+        text: 小心，很烫。
+    createdAt: 1789827200008
+    updatedAt: 1789827200008
+  - id: sax1u
+    word: 然后
+    pinyin: rán hòu
+    meanings:
+      - then
+    pos: adverb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 5
+        text: 然后倒进杯子里。
+    createdAt: 1789827200009
+    updatedAt: 1789827200009
+  - id: sbx21
+    word: 等
+    pinyin: děng
+    meanings:
+      - to wait
+    pos: verb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 4
+        text: 等三分钟。
+    createdAt: 1789827200010
+    updatedAt: 1789827200010
+  - id: scx28
+    word: 加
+    pinyin: jiā
+    meanings:
+      - to add
+    pos: verb
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 7
+        text: 你可以加一点蜂蜜。
+    createdAt: 1789827200011
+    updatedAt: 1789827200011
+  - id: sdx2f
+    word: 饮
+    pinyin: yǐn
+    meanings:
+      - to drink (literary)
+    pos: verb
+    register: literary
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 7
+        text: 你可以加一点蜂蜜。
+    createdAt: 1789827200012
+    updatedAt: 1789827200012
+  - id: sex2m
+    word: 分钟
+    pinyin: fēn zhōng
+    meanings:
+      - minute
+    pos: noun
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 4
+        text: 等三分钟。
+    createdAt: 1789827200013
+    updatedAt: 1789827200013
+  - id: sfx2t
+    word: 以后
+    pinyin: yǐ hòu
+    meanings:
+      - after
+    pos: noun
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 3
+        text: 水开了以后放茶叶。
+    createdAt: 1789827200014
+    updatedAt: 1789827200014
+  - id: sgx30
+    word: 一点
+    pinyin: yì diǎn
+    meanings:
+      - a little
+    pos: noun
+    sources:
+      - mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 7
+        text: 你可以加一点蜂蜜。
+    createdAt: 1789827200015
+    updatedAt: 1789827200015
+collections:
+  collections:
+    - id: collection-show
+      name: Making tea
+      kind: show
+      mediaId: 00000000-0000-4000-8000-000000000201
+      subtitle: 做茶
+      createdAt: 1789827200000
+      updatedAt: 1789913600000
+    - id: collection-user
+      name: Cafe phrases
+      kind: user
+      createdAt: 1789481600000
+      updatedAt: 1789827200000
+  items:
+    - id: collection-show|phrase:p1je3klbfu2i6
+      collectionId: collection-show
+      ref: phrase:p1je3klbfu2i6
+      text: 请再说一遍。
+      translation: Please say it again.
+      source:
+        mediaId: 00000000-0000-4000-8000-000000000201
+        title: Making tea
+        line: 1
+        start: 3.5
+        text: 今天我们做茶。
+      addedAt: 1789827200000
+    - id: collection-user|phrase:p1je3klbfu2i6
+      collectionId: collection-user
+      ref: phrase:p1je3klbfu2i6
+      text: 请再说一遍。
+      translation: Please say it again.
+      addedAt: 1789481600001
+    - id: collection-user|phrase:p2e8v0od4b0u4
+      collectionId: collection-user
+      ref: phrase:p2e8v0od4b0u4
+      text: 多少钱？
+      translation: How much is it?
+      addedAt: 1789481600002
+    - id: collection-user|phrase:pnu6x2ah13t7
+      collectionId: collection-user
+      ref: phrase:pnu6x2ah13t7
+      text: 我想要一杯茶。
+      translation: I would like a cup of tea.
+      addedAt: 1789481600000
+    - id: collection-user|vocabulary:gong1-si1--company
+      collectionId: collection-user
+      ref: vocabulary:gong1-si1--company
+      addedAt: 1789568000000
+    - id: collection-user|vocabulary:hai2-zi5--child
+      collectionId: collection-user
+      ref: vocabulary:hai2-zi5--child
+      addedAt: 1789568000001
+    - id: collection-user|vocabulary:hao3-ting1--pleasant
+      collectionId: collection-user
+      ref: vocabulary:hao3-ting1--pleasant
+      addedAt: 1789568000002
+    - id: collection-user|vocabulary:hou4--behind
+      collectionId: collection-user
+      ref: vocabulary:hou4--behind
+      addedAt: 1789568000003
+    - id: collection-user|vocabulary:jia1--classifier
+      collectionId: collection-user
+      ref: vocabulary:jia1--classifier
+      addedAt: 1789568000004
+    - id: collection-user|vocabulary:jiao4--call
+      collectionId: collection-user
+      ref: vocabulary:jiao4--call
+      addedAt: 1789568000005
+  cards:
+    - id: phrase:p1je3klbfu2i6:reading
+      ref: phrase:p1je3klbfu2i6
+      domain: reading
+      due: 1790000000000
+      stability: 2.5
+      difficulty: 5.5
+      reps: 2
+      lapses: 0
+      state: review
+      lastReview: 1789913600000
+      updatedAt: 1789913600000
+    - id: phrase:p2e8v0od4b0u4:reading
+      ref: phrase:p2e8v0od4b0u4
+      domain: reading
+      due: 1790086400000
+      stability: 3.5
+      difficulty: 6
+      reps: 3
+      lapses: 0
+      state: review
+      lastReview: 1789913600000
+      updatedAt: 1789913600000
+    - id: phrase:pnu6x2ah13t7:reading
+      ref: phrase:pnu6x2ah13t7
+      domain: reading
+      due: 1789913600000
+      stability: 1.5
+      difficulty: 5
+      reps: 1
+      lapses: 0
+      state: learning
+      lastReview: 1789913600000
+      updatedAt: 1789913600000
+    - id: vocabulary:gong1-si1--company:reading
+      ref: vocabulary:gong1-si1--company
+      domain: reading
+      due: 1785766400000
+      stability: 0
+      difficulty: 0
+      reps: 0
+      lapses: 0
+      state: new
+      updatedAt: 1785766400000
+    - id: vocabulary:hai2-zi5--child:reading
+      ref: vocabulary:hai2-zi5--child
+      domain: reading
+      due: 1785795200000
+      stability: 0
+      difficulty: 0
+      reps: 0
+      lapses: 0
+      state: new
+      updatedAt: 1785795200000
+    - id: vocabulary:hao3-ting1--pleasant:reading
+      ref: vocabulary:hao3-ting1--pleasant
+      domain: reading
+      due: 1785824000000
+      stability: 0
+      difficulty: 0
+      reps: 0
+      lapses: 0
+      state: new
+      updatedAt: 1785824000000
+    - id: vocabulary:hou4--behind:reading
+      ref: vocabulary:hou4--behind
+      domain: reading
+      due: 1785982400000
+      stability: 1.33
+      difficulty: 5.8
+      reps: 1
+      lapses: 0
+      state: learning
+      lastReview: 1785939200000
+      updatedAt: 1785939200000
+    - id: vocabulary:jia1--classifier:reading
+      ref: vocabulary:jia1--classifier
+      domain: reading
+      due: 1786011200000
+      stability: 1.64
+      difficulty: 6.5
+      reps: 2
+      lapses: 0
+      state: learning
+      lastReview: 1785968000000
+      updatedAt: 1785968000000
+    - id: vocabulary:jiao4--call:reading
+      ref: vocabulary:jiao4--call
+      domain: reading
+      due: 1790259200000
+      stability: 7.7
+      difficulty: 3.82
+      reps: 4
+      lapses: 0
+      state: review
+      lastReview: 1789395200000
+      updatedAt: 1789395200000

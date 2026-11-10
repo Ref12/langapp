@@ -1,0 +1,33 @@
+collections:
+  - id: collection-show
+    name: Making tea
+    kind: show
+    mediaId: 00000000-0000-4000-8000-000000000201
+    subtitle: 做茶
+    createdAt: 1789827200000
+    updatedAt: 1789913600000
+items:
+  - id: collection-show|phrase:p1je3klbfu2i6
+    collectionId: collection-show
+    ref: phrase:p1je3klbfu2i6
+    text: 请再说一遍。
+    translation: Please say it again.
+    source:
+      mediaId: 00000000-0000-4000-8000-000000000201
+      title: Making tea
+      line: 1
+      start: 3.5
+      text: 今天我们做茶。
+    addedAt: 1789827200000
+cards:
+  - id: phrase:p1je3klbfu2i6:reading
+    ref: phrase:p1je3klbfu2i6
+    domain: reading
+    due: 1790000000000
+    stability: 2.5
+    difficulty: 5.5
+    reps: 2
+    lapses: 0
+    state: review
+    lastReview: 1789913600000
+    updatedAt: 1789913600000

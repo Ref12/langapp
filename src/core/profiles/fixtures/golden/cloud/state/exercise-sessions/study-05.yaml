@@ -1,0 +1,88 @@
+id: study-05
+mode: new
+domain: reading
+targetRefs:
+  - vocabulary:jue2-de5--think
+  - vocabulary:kuai4--fast
+reviewRefs: []
+exercises:
+  - id: e4-0
+    type: choice
+    targets:
+      - vocabulary:jue2-de5--think
+    direction: zh-to-en
+    question: 大
+    options:
+      - big
+      - rain
+      - tea
+    answer: 0
+    explanation: It means big.
+  - id: e4-1
+    type: choice
+    targets:
+      - vocabulary:kan4-jian4--see
+    direction: en-to-zh
+    question: brother
+    options:
+      - 弟
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 弟.
+  - id: e4-2
+    type: tiles
+    targets:
+      - vocabulary:kuai4--fast
+    translation: She is my teacher.
+    tiles:
+      - 她
+      - 是
+      - 我
+      - 的
+      - 老师
+      - 朋友
+    distractors: []
+    shuffled:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 0
+    explanation: "Word order: 她 是 我 的 老师."
+  - id: e4-3
+    type: match
+    targets:
+      - vocabulary:jue2-de5--think
+      - vocabulary:kan4-jian4--see
+      - vocabulary:kuai4--fast
+      - vocabulary:li3--inside
+    mode: zh-py
+    pairs:
+      - ref: vocabulary:jue2-de5--think
+        left: 大
+        right: big
+      - ref: vocabulary:kan4-jian4--see
+        left: 弟
+        right: brother
+      - ref: vocabulary:kuai4--fast
+        left: 电影院
+        right: cinema
+      - ref: vocabulary:li3--inside
+        left: 对
+        right: correct
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 3
+status: completed
+model: synthetic-model
+rejected: []
+createdAt: 1789568000000
+completedAt: 1789568600000
+exerciseCount: 4

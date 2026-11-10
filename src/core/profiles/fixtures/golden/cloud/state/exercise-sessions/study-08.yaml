@@ -1,0 +1,88 @@
+id: study-08
+mode: review
+domain: reading
+targetRefs:
+  - vocabulary:ren2--person
+  - vocabulary:shao3--few
+reviewRefs:
+  - vocabulary:shang4--ascend
+exercises:
+  - id: e7-0
+    type: choice
+    targets:
+      - vocabulary:ren2--person
+    direction: zh-to-en
+    question: 大
+    options:
+      - big
+      - rain
+      - tea
+    answer: 0
+    explanation: It means big.
+  - id: e7-1
+    type: choice
+    targets:
+      - vocabulary:shang4--ascend
+    direction: en-to-zh
+    question: brother
+    options:
+      - 弟
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 弟.
+  - id: e7-2
+    type: tiles
+    targets:
+      - vocabulary:shao3--few
+    translation: I am reading at home.
+    tiles:
+      - 我
+      - 在
+      - 家
+      - 看
+      - 书
+      - 电影
+    distractors: []
+    shuffled:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 0
+    explanation: "Word order: 我 在 家 看 书."
+  - id: e7-3
+    type: match
+    targets:
+      - vocabulary:ren2--person
+      - vocabulary:shang4--ascend
+      - vocabulary:shao3--few
+      - vocabulary:shi2-jian1--time
+    mode: zh-py
+    pairs:
+      - ref: vocabulary:ren2--person
+        left: 大
+        right: big
+      - ref: vocabulary:shang4--ascend
+        left: 弟
+        right: brother
+      - ref: vocabulary:shao3--few
+        left: 电影院
+        right: cinema
+      - ref: vocabulary:shi2-jian1--time
+        left: 对
+        right: correct
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 1
+status: abandoned
+model: synthetic-model
+rejected: []
+createdAt: 1789827200000
+exerciseCount: 4

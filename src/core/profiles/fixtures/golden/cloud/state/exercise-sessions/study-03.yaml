@@ -1,0 +1,84 @@
+id: study-03
+mode: new
+domain: reading
+targetRefs:
+  - vocabulary:er4-yue4--february
+  - vocabulary:gong1-si1--company
+reviewRefs: []
+exercises:
+  - id: e2-0
+    type: choice
+    targets:
+      - vocabulary:er4-yue4--february
+    direction: zh-to-en
+    question: 二月
+    options:
+      - February
+      - rain
+      - tea
+    answer: 0
+    explanation: It means February.
+  - id: e2-1
+    type: choice
+    targets:
+      - vocabulary:fen1--minute
+    direction: en-to-zh
+    question: minute
+    options:
+      - 分
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 分.
+  - id: e2-2
+    type: tiles
+    targets:
+      - vocabulary:gong1-si1--company
+    translation: The weather is very good today.
+    tiles:
+      - 今天
+      - 天气
+      - 很
+      - 好
+    distractors: []
+    shuffled:
+      - 1
+      - 0
+      - 3
+      - 2
+    explanation: "Word order: 今天 天气 很 好."
+  - id: e2-3
+    type: match
+    targets:
+      - vocabulary:er4-yue4--february
+      - vocabulary:fen1--minute
+      - vocabulary:gong1-si1--company
+      - vocabulary:hai2-zi5--child
+    mode: py-en
+    pairs:
+      - ref: vocabulary:er4-yue4--february
+        left: 二月
+        right: February
+      - ref: vocabulary:fen1--minute
+        left: 分
+        right: minute
+      - ref: vocabulary:gong1-si1--company
+        left: 公司
+        right: company
+      - ref: vocabulary:hai2-zi5--child
+        left: 孩子
+        right: child
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 3
+status: completed
+model: synthetic-model
+rejected: []
+createdAt: 1789395200000
+completedAt: 1789395800000
+exerciseCount: 4

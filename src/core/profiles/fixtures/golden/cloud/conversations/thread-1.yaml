@@ -1,0 +1,96 @@
+thread:
+  id: thread-1
+  title: Ordering tea
+  draft: ""
+  mode: conversation
+  shadowIntent: new-phrase
+  voiceEnabled: true
+  voiceInputLocale: zh-Hans
+  romanization: true
+  speechRate: 0.75
+  returnRoute: assistant
+  createdAt: 1789740800000
+  updatedAt: 1789741100000
+messages:
+  - id: m-1
+    threadId: thread-1
+    sequence: 0
+    role: user
+    text: How do I order a cup of tea?
+    blocks: []
+    mode: conversation
+    intent: message
+    status: completed
+    runId: run-1
+    createdAt: 1789740800000
+  - id: m-2
+    threadId: thread-1
+    sequence: 1
+    role: assistant
+    text: ""
+    blocks:
+      - type: text
+        markdown: "You can say it like this:"
+      - type: speech
+        text: 我想要一杯茶。
+        locale: zh-Hans
+        romanization: wǒ xiǎng yào yì bēi chá
+        meaning: I would like a cup of tea.
+      - type: speech
+        text: 请给我一杯热茶。
+        locale: zh-Hans
+        romanization: qǐng gěi wǒ yì bēi rè chá
+        meaning: Please give me a cup of hot tea.
+    mode: conversation
+    intent: message
+    status: completed
+    runId: run-1
+    createdAt: 1789740805000
+  - id: m-3
+    threadId: thread-1
+    sequence: 2
+    role: user
+    text: And how do I say thank you?
+    blocks: []
+    mode: conversation
+    intent: message
+    status: completed
+    runId: run-2
+    createdAt: 1789741000000
+  - id: m-4
+    threadId: thread-1
+    sequence: 3
+    role: assistant
+    text: ""
+    blocks:
+      - type: speech
+        text: 谢谢你。
+        locale: zh-Hans
+        romanization: xiè xie nǐ
+        meaning: Thank you.
+    mode: conversation
+    intent: message
+    status: completed
+    runId: run-2
+    createdAt: 1789741005000
+runs:
+  - id: run-1
+    threadId: thread-1
+    userMessageId: m-1
+    assistantMessageId: m-2
+    connectionRevision: synthetic-revision
+    status: awaiting-learner
+    steps: []
+    createdAt: 1789740800000
+    updatedAt: 1789740805000
+    expiresAt: 1789827200000
+  - id: run-2
+    threadId: thread-1
+    userMessageId: m-3
+    assistantMessageId: m-4
+    connectionRevision: synthetic-revision
+    status: awaiting-learner
+    steps: []
+    createdAt: 1789741000000
+    updatedAt: 1789741005000
+    expiresAt: 1789827200000

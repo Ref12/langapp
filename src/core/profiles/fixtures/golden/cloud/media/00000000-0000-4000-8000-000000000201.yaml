@@ -1,0 +1,97 @@
+url: https://media.invalid/watch?v=tea
+title: Making tea
+durationSec: 30
+extractor: synthetic
+videoId: tea
+source: captions
+language: zh-Hans
+lines:
+  - start: 0
+    end: 3
+    text: 你好，欢迎回来。
+  - start: 3.5
+    end: 6.5
+    text: 今天我们做茶。
+  - start: 7
+    end: 9
+    text: 先烧水。
+  - start: 9.5
+    end: 12.5
+    text: 水开了以后放茶叶。
+  - start: 13
+    end: 15.5
+    text: 等三分钟。
+  - start: 16
+    end: 18.5
+    text: 然后倒进杯子里。
+  - start: 19
+    end: 21.5
+    text: 小心，很烫。
+  - start: 22
+    end: 28
+    text: 你可以加一点蜂蜜。
+sync:
+  - at: 0
+    offset: 0.25
+aligned:
+  sentences:
+    - lines:
+        - 0
+        - 0
+      translation: Hello, welcome back.
+      fragments: []
+    - lines:
+        - 1
+        - 2
+      translation: Today we make tea. First boil water.
+      fragments:
+        - line: 1
+          text: Today we make tea.
+        - line: 2
+          text: First boil water.
+    - lines:
+        - 3
+        - 3
+      translation: Once the water boils, add the tea leaves.
+      fragments: []
+  tokens:
+    - line: 0
+      items:
+        - text: 你好
+          pinyin: nǐ hǎo
+          meaning: hello
+          trailing: ，
+        - text: 欢迎
+          pinyin: huān yíng
+          meaning: welcome
+          trailing: ""
+        - text: 回来
+          pinyin: huí lái
+          meaning: come back
+          trailing: 。
+    - line: 2
+      items:
+        - text: 先
+          pinyin: xiān
+          meaning: first
+          trailing: ""
+        - text: 烧水
+          pinyin: shāo shuǐ
+          meaning: boil water
+          trailing: 。
+  upTo: 4
+  updatedAt: 1789913600000
+entries:
+  links:
+    茶叶: source:s1x3
+    烧水: source:s2xa
+  skipped:
+    - 欢迎回来
+  counts:
+    source:s1x3: 1
+    source:s2xa: 1
+  total: 3
+  complete: false
+  updatedAt: 1789913600000
+id: 00000000-0000-4000-8000-000000000201
+savedAt: 1789827200000

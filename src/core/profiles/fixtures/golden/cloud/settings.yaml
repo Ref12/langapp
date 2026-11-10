@@ -1,0 +1,61 @@
+format: linguaweave-settings
+version: 1
+settings:
+  preferences:
+    id: workspace
+    language: zh-Hans
+    name: Seeded learner
+    theme: light
+    pinyin: true
+    readingMode: target
+    sidebarCollapsed: true
+    speechVoices:
+      zh-Hans:
+        provider: edge
+        voice: zh-CN-XiaoxiaoNeural
+      en-US:
+        voiceURI: synthetic-en-voice
+        name: Synthetic English
+        lang: en-US
+        localService: true
+    defaultSpeechRate: 0.75
+    pinyinFormat: marks-and-numbers
+    speechDebugMessages: false
+    sudokuAutoSpeak: true
+    writingSpeech: stroke
+    writingSpeechResume: transitions
+    writingColourParts: true
+    haptics: false
+    exercisesPerLesson: 12
+    sudokuShowPinyin: true
+    tileAutoSpeak: true
+    promptAutoPlay: true
+    answerMode: speak
+    practiseWriting: true
+    practiceMode: write
+    historyFilter: lessons
+    dictionaryScope: knowledge
+    characterWriteFilter: can
+  aiEndpoints:
+    version: 1
+    active: default
+    endpoints:
+      - apiType: responses
+        baseUrl: https://synthetic.invalid/v1
+        apiKey: synthetic-ai-key
+        model: synthetic-model
+        nativeTools: true
+        structuredOutput: false
+        storageAcknowledged: true
+        name: Default
+        id: default
+  speechConnection:
+    provider: azure
+    region: eastus
+    apiKey: synthetic-speech-key
+    storageAcknowledged: true
+backup:
+  owner: me
+  repo: backups
+  branch: main
+  token: synthetic-token

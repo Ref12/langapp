@@ -1,0 +1,146 @@
+collections:
+  - id: collection-user
+    name: Cafe phrases
+    kind: user
+    createdAt: 1789481600000
+    updatedAt: 1789827200000
+items:
+  - id: collection-user|phrase:p1je3klbfu2i6
+    collectionId: collection-user
+    ref: phrase:p1je3klbfu2i6
+    text: 请再说一遍。
+    translation: Please say it again.
+    addedAt: 1789481600001
+  - id: collection-user|phrase:p2e8v0od4b0u4
+    collectionId: collection-user
+    ref: phrase:p2e8v0od4b0u4
+    text: 多少钱？
+    translation: How much is it?
+    addedAt: 1789481600002
+  - id: collection-user|phrase:pnu6x2ah13t7
+    collectionId: collection-user
+    ref: phrase:pnu6x2ah13t7
+    text: 我想要一杯茶。
+    translation: I would like a cup of tea.
+    addedAt: 1789481600000
+  - id: collection-user|vocabulary:gong1-si1--company
+    collectionId: collection-user
+    ref: vocabulary:gong1-si1--company
+    addedAt: 1789568000000
+  - id: collection-user|vocabulary:hai2-zi5--child
+    collectionId: collection-user
+    ref: vocabulary:hai2-zi5--child
+    addedAt: 1789568000001
+  - id: collection-user|vocabulary:hao3-ting1--pleasant
+    collectionId: collection-user
+    ref: vocabulary:hao3-ting1--pleasant
+    addedAt: 1789568000002
+  - id: collection-user|vocabulary:hou4--behind
+    collectionId: collection-user
+    ref: vocabulary:hou4--behind
+    addedAt: 1789568000003
+  - id: collection-user|vocabulary:jia1--classifier
+    collectionId: collection-user
+    ref: vocabulary:jia1--classifier
+    addedAt: 1789568000004
+  - id: collection-user|vocabulary:jiao4--call
+    collectionId: collection-user
+    ref: vocabulary:jiao4--call
+    addedAt: 1789568000005
+cards:
+  - id: phrase:p1je3klbfu2i6:reading
+    ref: phrase:p1je3klbfu2i6
+    domain: reading
+    due: 1790000000000
+    stability: 2.5
+    difficulty: 5.5
+    reps: 2
+    lapses: 0
+    state: review
+    lastReview: 1789913600000
+    updatedAt: 1789913600000
+  - id: phrase:p2e8v0od4b0u4:reading
+    ref: phrase:p2e8v0od4b0u4
+    domain: reading
+    due: 1790086400000
+    stability: 3.5
+    difficulty: 6
+    reps: 3
+    lapses: 0
+    state: review
+    lastReview: 1789913600000
+    updatedAt: 1789913600000
+  - id: phrase:pnu6x2ah13t7:reading
+    ref: phrase:pnu6x2ah13t7
+    domain: reading
+    due: 1789913600000
+    stability: 1.5
+    difficulty: 5
+    reps: 1
+    lapses: 0
+    state: learning
+    lastReview: 1789913600000
+    updatedAt: 1789913600000
+  - id: vocabulary:gong1-si1--company:reading
+    ref: vocabulary:gong1-si1--company
+    domain: reading
+    due: 1785766400000
+    stability: 0
+    difficulty: 0
+    reps: 0
+    lapses: 0
+    state: new
+    updatedAt: 1785766400000
+  - id: vocabulary:hai2-zi5--child:reading
+    ref: vocabulary:hai2-zi5--child
+    domain: reading
+    due: 1785795200000
+    stability: 0
+    difficulty: 0
+    reps: 0
+    lapses: 0
+    state: new
+    updatedAt: 1785795200000
+  - id: vocabulary:hao3-ting1--pleasant:reading
+    ref: vocabulary:hao3-ting1--pleasant
+    domain: reading
+    due: 1785824000000
+    stability: 0
+    difficulty: 0
+    reps: 0
+    lapses: 0
+    state: new
+    updatedAt: 1785824000000
+  - id: vocabulary:hou4--behind:reading
+    ref: vocabulary:hou4--behind
+    domain: reading
+    due: 1785982400000
+    stability: 1.33
+    difficulty: 5.8
+    reps: 1
+    lapses: 0
+    state: learning
+    lastReview: 1785939200000
+    updatedAt: 1785939200000
+  - id: vocabulary:jia1--classifier:reading
+    ref: vocabulary:jia1--classifier
+    domain: reading
+    due: 1786011200000
+    stability: 1.64
+    difficulty: 6.5
+    reps: 2
+    lapses: 0
+    state: learning
+    lastReview: 1785968000000
+    updatedAt: 1785968000000
+  - id: vocabulary:jiao4--call:reading
+    ref: vocabulary:jiao4--call
+    domain: reading
+    due: 1790259200000
+    stability: 7.7
+    difficulty: 3.82
+    reps: 4
+    lapses: 0
+    state: review
+    lastReview: 1789395200000
+    updatedAt: 1789395200000

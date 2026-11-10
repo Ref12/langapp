@@ -1,0 +1,84 @@
+id: study-01
+mode: new
+domain: reading
+targetRefs:
+  - vocabulary:ai4--love
+  - vocabulary:bu4--not
+reviewRefs: []
+exercises:
+  - id: e0-0
+    type: choice
+    targets:
+      - vocabulary:ai4--love
+    direction: zh-to-en
+    question: 爱
+    options:
+      - love
+      - rain
+      - tea
+    answer: 0
+    explanation: It means love.
+  - id: e0-1
+    type: choice
+    targets:
+      - vocabulary:ban4--half
+    direction: en-to-zh
+    question: half
+    options:
+      - 半
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 半.
+  - id: e0-2
+    type: tiles
+    targets:
+      - vocabulary:bu4--not
+    translation: I love Mom.
+    tiles:
+      - 我
+      - 爱
+      - 妈妈
+      - 爸爸
+    distractors: []
+    shuffled:
+      - 1
+      - 0
+      - 3
+      - 2
+    explanation: "Word order: 我 爱 妈妈."
+  - id: e0-3
+    type: match
+    targets:
+      - vocabulary:ai4--love
+      - vocabulary:ban4--half
+      - vocabulary:bu4--not
+      - vocabulary:che1--car
+    mode: zh-en
+    pairs:
+      - ref: vocabulary:ai4--love
+        left: 爱
+        right: love
+      - ref: vocabulary:ban4--half
+        left: 半
+        right: half
+      - ref: vocabulary:bu4--not
+        left: 不
+        right: not
+      - ref: vocabulary:che1--car
+        left: 车
+        right: car
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 3
+status: completed
+model: synthetic-model
+rejected: []
+createdAt: 1789222400000
+completedAt: 1789223000000
+exerciseCount: 4

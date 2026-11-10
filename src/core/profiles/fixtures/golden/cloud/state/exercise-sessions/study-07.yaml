@@ -1,0 +1,85 @@
+id: study-07
+mode: new
+domain: reading
+targetRefs:
+  - vocabulary:ne5--ongoing
+  - vocabulary:piao4-liang5--pretty
+reviewRefs: []
+exercises:
+  - id: e6-0
+    type: choice
+    targets:
+      - vocabulary:ne5--ongoing
+    direction: zh-to-en
+    question: 爱
+    options:
+      - love
+      - rain
+      - tea
+    answer: 0
+    explanation: It means love.
+  - id: e6-1
+    type: choice
+    targets:
+      - vocabulary:nin2--you
+    direction: en-to-zh
+    question: half
+    options:
+      - 半
+      - 茶
+      - 雨
+      - 山
+    answer: 0
+    explanation: The word is 半.
+  - id: e6-2
+    type: tiles
+    targets:
+      - vocabulary:piao4-liang5--pretty
+    translation: How much is this?
+    tiles:
+      - 这
+      - 个
+      - 多少
+      - 钱
+      - 那
+    distractors: []
+    shuffled:
+      - 1
+      - 4
+      - 2
+      - 0
+      - 3
+    explanation: "Word order: 这 个 多少 钱."
+  - id: e6-3
+    type: match
+    targets:
+      - vocabulary:ne5--ongoing
+      - vocabulary:nin2--you
+      - vocabulary:piao4-liang5--pretty
+      - vocabulary:qian2--front
+    mode: zh-en
+    pairs:
+      - ref: vocabulary:ne5--ongoing
+        left: 爱
+        right: love
+      - ref: vocabulary:nin2--you
+        left: 半
+        right: half
+      - ref: vocabulary:piao4-liang5--pretty
+        left: 不
+        right: not
+      - ref: vocabulary:qian2--front
+        left: 车
+        right: car
+    order:
+      - 2
+      - 0
+      - 3
+      - 1
+    explanation: Match each word with its meaning.
+cursor: 2
+status: active
+model: synthetic-model
+rejected: []
+createdAt: 1789740800000
+exerciseCount: 4
