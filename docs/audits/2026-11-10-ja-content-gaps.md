@@ -102,8 +102,32 @@ Only `src/pages/__screens__/ja-lessons-list.txt` changed (26 lines: the rows sho
 
 ## The independent reading
 
-I could not start a helper session with the tools of this session (there is no call that starts a session with a prompt), so the reading was **one batch in one call to a different model** (`gpt-6.1-sol`, no tools, given the nine sentences with reading, English and tokens, and the form names; the file was written by someone else's prompt, not by that model). It said OK for eight sentences and CHANGE for one: 163, English "rest in the evening" should be "at night" (夜). I did not change it: the English is the Chinese lesson's and stays by the brief; 夜 is glossed "evening; night" in lesson 14. It added two remarks on OK sentences: 818 あなた to a stranger is "not generally recommended" and 先生ですか is often more natural (the brief asked for exactly this sentence for あなた, kept, with the context in the English); 167 出勤します means going to work rather than simply working (what the English says). Nothing was fixed after the reading. It checked the conjugated tokens (働いて te, 飲み masu-stem + すぎます, 知っている teiru, the masu tokens) and found them right.
+I could not start a helper session with the tools of this session (there is no call that starts a session with a prompt), so the reading was **one batch in one call to a different model** (`gpt-6.1-sol`, no tools, given the nine sentences with reading, English, tokens and the form names; it did not write any of them). It said OK for eight sentences and CHANGE for one: 163, English "rest in the evening" should be "at night" (夜). I did not change it: the English is the Chinese lesson's and stays by the brief; 夜 is glossed "evening; night" in lesson 14. It added two remarks on OK sentences: 818 あなた to a stranger is "not generally recommended" and 先生ですか is often more natural (the brief asked for exactly this sentence for あなた, kept, with the context in the English); 167 出勤します means going to work rather than simply working (what the English says). Nothing was fixed after the reading. It checked the conjugated tokens (働いて te, 飲み masu-stem + すぎます, 知っている teiru, the masu tokens) and found them right.
 
 ## Tests and checks
 
-(see the end of this note)
+- `npm run lint`: 0 errors, 12 warnings (react-refresh, none in a file of this step). `npx tsc -b`: clean. `npm run build` for zh and once with `LANGAPP_LANGUAGE=ja`: built.
+- `curriculum:check`, `curriculum:v2:app:check`, `characters:check` and `node scripts/generate-pack-ja.mjs --check` pass.
+- New tests: `scripts/pack-ja-gaps.test.ts` (6: the gap check fails on a fixture lesson with an unlisted gap and passes with the accepted list, fails on a stale or reasonless entry, finds a later-taught form and an unused form; every corrections operation and each of its errors); two tests in `src/core/language/pack-ja.test.ts` (the gaps are closed or accepted; the lesson-list corrections show in the pack), and its counts (292 words, 115 patterns, 822 phrases, 536 merged tokens, 55 verbs).
+- One full `npm run test:pages` on the commit that holds all code and data of this step: **296 files passed, 4918 tests passed, 19 skipped, 0 failed** (269 s). Nothing I did not touch failed or timed out. The commits after it change this note only.
+- Golden exports, prompt pins and Chinese screen pins pass **untouched** (also on the base `15299ee`, checked in a clean worktree before I started); no pin file other than `ja-lessons-list.txt` changed. `git diff --stat 15299ee..HEAD -- src/data/v2 src/data/phrases src/data/practice src/data/parallel src/data/tracks src/data/forms public package.json .github` is empty. No phrase, word or pattern id changed; the sealed labels file gained 8 lines (7 patterns, 1 word), nothing else.
+
+## Screenshots (`docs/audits/images/2026-11-10-ja-content-gaps/`)
+
+Font check first: `fonts-noto-cjk` installed (`fc-list` shows 30 Noto CJK faces); the first Lessons screenshot shows real kanji and kana (私, 学生, 勉強します), not boxes. Japanese build (`LANGAPP_LANGUAGE=ja`), `vite preview`, headless Chromium, 430 px wide. I looked at each.
+
+- `01-lessons-list.png`: All lessons. Rows 1 to 18 in Japanese with their units; row 2 reads あなた · 先生 · か (gr.); row 14 昼間 · 夜 · 出勤します · 退勤し…; row 16 ゼロ · 六 · 今年 · 年 · 十 (the past tense is no longer listed here).
+- `02-lesson-13.png` (**moved listing**): lesson 13 has 少し, ご飯, 文字, 知ります and the patterns この / その / あの, <verb> + ています (example あなたを知っています) and <noun> + (を / が) + 少し (ご飯が少しほしいです); これ and (これ / それ / あれ) have gone to lessons 34 and 28.
+- `03-lesson-8.png` (**rewritten sentence**): lesson 8 shows 感じます (to feel) as a word and the pattern <adjective> + と + 感じます, "polite: feel that it is so; goes after an adjective", with the example 私はちょっと寒いと感じます。 (わたしはちょっとさむいとかんじます。 / I feel a little cold.), and the same sentence in Examples.
+- `04-lesson-40.png` (**added sentence**): lesson 40 shows <verb stem> + すぎます, "too much: verb + すぎます", with the example お茶を飲みすぎます。 (おちゃをのみすぎます。 / I drink too much tea.) beside the adjective pattern with 今は遅すぎます。
+
+## What I decided that the brief did not settle
+
+- Retagging (grammar list) as a fourth way to close a gap, for patterns the sentences already say (see above).
+- Moves go to the lesson whose sentences first use the item, in the `grammar_intro` / `words` lists; `ja-par-g022` was listed in lesson 35, not 13 (the report said "taught in 13" because lesson 13's sentences use it); I moved it from 35 to 11.
+- `ja-n4-g042` is kept as the plain-form pattern, since a pattern in the pack with a sealed label cannot be removed.
+- 118 phrase tags changed in all (the 23 `ja-n4-g042`, 6 patterns retagged, the に tags); the list is in `pack-phrase-corrections.json` with a `why` each.
+- Added phrases carry `source: ai` and `checked: false` (the independent reading was a model call, not a human check). Rewritten phrases keep `checked: true` from the source; I did not change it.
+- The independent reader is a model call, not a session (see above).
+- A word added to a lesson (思う) is marked `extra: true` as the build script marks Japanese-only items.
+
