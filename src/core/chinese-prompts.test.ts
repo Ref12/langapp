@@ -32,7 +32,7 @@ import type { MediaItem } from './media/contracts'
 
 const recorder = vi.hoisted(() => ({
   calls: [] as { name: string; system: string; user: string; schema: unknown }[],
-  respond: (_request: { name: string }): unknown => ({}),
+  respond: (() => ({})) as (request: { name: string }) => unknown,
 }))
 vi.mock('./ai/structured', async importOriginal => ({
   ...(await importOriginal<typeof import('./ai/structured')>()),

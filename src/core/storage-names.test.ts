@@ -4,6 +4,9 @@ import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { listStorageNames, storageNames } from './storage-names'
+import { MANIFEST_FORMAT, SETTINGS_FORMAT } from './backup/layout'
+import { CHECKPOINT_FORMAT } from './backup/files'
+import { PROFILE_FORMAT } from './profiles/contracts'
 
 /** Today's names, written out by hand. If this list changes, a learner's data moves: that must never happen by accident. */
 const STABLE_TODAY = {
@@ -21,7 +24,49 @@ const STABLE_TODAY = {
   backupFolder: 'profiles/<id>/',
 }
 
+/** Lab's names today (what main's tests see): every browser-side name of Stable with 'lab.' in front, a repository folder of its own, its own worker file. */
+const LAB_TODAY = {
+  databases: ['lab.linguaweave-next', 'lab.linguaweave-next-profile-<id>', 'lab.linguaweave-profile-registry', 'lab.linguaweave-backup-state'],
+  localStorage: STABLE_TODAY.localStorage.map(key => 'lab.' + key),
+  sessionStorage: ['lab.linguaweave-media-job-url:<id>'],
+  caches: ['lab.linguaweave-shell-<version>', 'lab.linguaweave-runtime'],
+  serviceWorker: 'sw-lab.js',
+  lock: 'lab.linguaweave-backup',
+  broadcast: 'lab.linguaweave-backup',
+  backupFolder: 'lab/profiles/<id>/',
+  labOnly: ['lab.linguaweave-copy-offer-declined', 'lab.linguaweave-next-import-<token>'],
+}
+
 describe('storage names', () => {
+  it("gives exactly today's names on the lab channel, which is what these tests run as by default", () => {
+    const n = storageNames('lab')
+    expect(n.channel).toBe('lab')
+    expect(storageNames().channel).toBe(process.env.LINGUAWEAVE_TEST_CHANNEL === 'stable' ? 'stable' : 'lab')
+    expect([n.db.learning('default'), n.db.learning('<id>'), n.db.registry, n.db.backupState]).toEqual(LAB_TODAY.databases)
+    expect([...Object.values(n.local).map(key => key.endsWith(':') ? key + '<id>' : key)].sort()).toEqual([...LAB_TODAY.localStorage].sort())
+    expect(n.session.mediaJobUrlPrefix + '<id>').toBe(LAB_TODAY.sessionStorage[0])
+    expect([n.cache.shell('<version>'), n.cache.runtime]).toEqual(LAB_TODAY.caches)
+    expect(n.cache.shellPrefix).toBe('lab.linguaweave-shell-')
+    expect([n.serviceWorkerFile, n.lock, n.broadcast, n.backupFolder('<id>'), n.backupRoot]).toEqual([LAB_TODAY.serviceWorker, LAB_TODAY.lock, LAB_TODAY.broadcast, LAB_TODAY.backupFolder, 'lab/'])
+    expect([n.labOnly.copyOfferDeclined, n.labOnly.importScratch('<token>')]).toEqual(LAB_TODAY.labOnly)
+  })
+
+  it('lists every fixed name of each channel exactly (the flattened list the isolation checks use)', () => {
+    const placeholders = (name: string) => name.replace('-profile-<id>', '-profile-<profile-id>').replace(/:<id>$/, ':').replace('profiles/<id>/', 'profiles/<profile-id>/')
+    expect([...listStorageNames('stable')].sort()).toEqual([
+      ...STABLE_TODAY.databases, ...STABLE_TODAY.localStorage, ...STABLE_TODAY.sessionStorage, ...STABLE_TODAY.caches,
+      STABLE_TODAY.serviceWorker, STABLE_TODAY.lock, STABLE_TODAY.broadcast, STABLE_TODAY.backupFolder,
+    ].map(placeholders).sort())
+    expect(listStorageNames('lab')).toHaveLength(listStorageNames('stable').length + LAB_TODAY.labOnly.length)
+  })
+
+  it('keeps the format strings written into backups (inventory section 3.3, "Backup repo")', () => {
+    expect([MANIFEST_FORMAT, SETTINGS_FORMAT, CHECKPOINT_FORMAT, PROFILE_FORMAT]).toEqual(['linguaweave-backup', 'linguaweave-settings', 'linguaweave-checkpoint', 'linguaweave-profile'])
+    const golden = (name: string) => readFileSync(join(fileURLToPath(new URL('./profiles/fixtures/golden/', import.meta.url)), name), 'utf8')
+    expect(JSON.parse(golden('backup.json')).format).toBe('linguaweave-next-backup')
+    expect(golden('cloud/state/snapshot.yaml')).toContain('format: linguaweave-snapshot')
+  })
+
   it("gives exactly today's names on the stable channel", () => {
     const n = storageNames('stable')
     expect([n.db.learning('default'), n.db.learning('<id>'), n.db.registry, n.db.backupState]).toEqual(STABLE_TODAY.databases)
@@ -104,4 +149,35 @@ describe('storage access goes through storage-names', () => {
     expect(missing).toEqual([])
   })
 
+
+  // Section 3.3 names every storage name; a name written as a literal anywhere else is one a build-derived pass would miss.
+  // The only 'linguaweave' literals outside storage-names.ts are listed here (formats, headers, file names, labels); a new one fails until it is looked at.
+  it("has no other literal 'linguaweave' name in the sources or the build scripts", () => {
+    const scripts = fileURLToPath(new URL('../../scripts', import.meta.url))
+    const all: string[] = []
+    const visit = (dir: string, skip: (name: string) => boolean) => {
+      for (const entry of readdirSync(dir)) {
+        const path = join(dir, entry)
+        if (statSync(path).isDirectory()) { if (!skip(entry)) visit(path, skip) } else if (/\.(ts|tsx)$/.test(entry) && !/\.test\.(ts|tsx)$/.test(entry)) all.push(path)
+      }
+    }
+    visit(root, name => name === 'fixtures' || name === 'test')
+    visit(scripts, name => name === 'perf' || name === 'node_modules')
+    const found: string[] = []
+    for (const file of all) {
+      const name = file.startsWith(root) ? rel(file) : 'scripts/' + relative(scripts, file).split(sep).join('/')
+      if (name === 'core/storage-names.ts') continue
+      for (const line of code(file).split('\n')) for (const literal of line.match(/(['"`])(?:(?!\1)[^\n])*linguaweave(?:(?!\1)[^\n])*\1/gi) ?? []) found.push(name + ' ' + literal)
+    }
+    const allowed = [
+      'App.tsx "LinguaWeave home"', 'App.tsx ">linguaweave</span>', // a page label in JSX, not a name
+      "pages/drills/HandsFree.tsx 'LinguaWeave'", 'components/BackupPanel.tsx `linguaweave-before-restore-', 'components/ProfileSettings.tsx',
+      "core/assistant/speech-assessment.ts 'linguaweave-mono-capture'", "core/backup/files.ts 'linguaweave-checkpoint'", "core/backup/files.ts 'linguaweave-settings'",
+      "core/backup/layout.ts 'linguaweave-backup'", "core/backup/layout.ts 'linguaweave-settings'", "core/backup/layout.ts 'linguaweave-snapshot'", "core/backup-codec.ts 'linguaweave-next-backup'",
+      "core/local-settings-contracts.ts 'x-linguaweave-local-settings'", "core/local-tts-contracts.ts 'x-linguaweave-local-tts'", "core/profiles/local-contracts.ts 'x-linguaweave-local-profiles'",
+      "core/profiles/contracts.ts 'linguaweave-profile'", "core/media/tracks.ts 'linguaweave'", "data/mandarin.ts 'Original LinguaWeave", "scripts/pwa.ts 'LinguaWeave", 'App.tsx `${label} / LinguaWeave`',
+    ]
+    const strays = found.filter(entry => !allowed.some(prefix => entry.startsWith(prefix.replace(/^(?!scripts\/)/, '')) || entry.includes(prefix)))
+    expect(strays).toEqual([])
+  })
 })
