@@ -2,6 +2,7 @@
 //   parallel/entries.yaml + zh-lessons.yaml + the imported JLPT references (read through scripts/parallel-lessons-files.mjs),
 //   authoring/pack-glosses.json (short glosses where a lesson row has none), authoring/pack-gloss-overrides.json (glosses written by hand),
 //   authoring/pack-pattern-names.json (pattern names the rule in pack-ja-names.mjs cannot make), authoring/pack-forms.json (names of the word forms),
+//   authoring/pack-headwords.json (kanji headwords for verbs the source lists in kana, so a built form matches the sentences),
 //   authoring/pack-labels.json (the label registry: id -> lb, append-only since the reissue of step 3.2) and authoring/pack-labels-sealed.json (the labels that may never change).
 // Nothing is read from src/data/parallel or src/core/parallel, and no Chinese field (zh, senses) goes into the pack.
 // (No npm script: package.json is hashed into public/characters/chinese/derived-source.generated.zip, so editing it makes characters:check fail and public/ is off limits in this step.)
@@ -23,6 +24,7 @@ export const READINGS_FILE = 'curriculum/japanese/authoring/pack-phrase-readings
 export const GLOSS_OVERRIDES_FILE = 'curriculum/japanese/authoring/pack-gloss-overrides.json'
 export const NAMES_FILE = 'curriculum/japanese/authoring/pack-pattern-names.json'
 export const FORMS_FILE = 'curriculum/japanese/authoring/pack-forms.json'
+export const HEADWORDS_FILE = 'curriculum/japanese/authoring/pack-headwords.json'
 export const SEALED_FILE = 'curriculum/japanese/authoring/pack-labels-sealed.json'
 export const GROUP_PREFIX = 'ja-lesson-'
 export const ALIGNMENT = 'lessons-1'
@@ -160,6 +162,13 @@ export function buildJaPack(base = defaultRoot) {
   const rules = loadFormsRules('ja', base)
   const engine = createForms(rules)
   const index = entryIndex(references, data.entries)
+  const headwords = readJson(existsSync(join(base, HEADWORDS_FILE)) ? join(base, HEADWORDS_FILE) : join(defaultRoot, HEADWORDS_FILE), { headwords: {} }).headwords // a test's temporary root uses the repository's overlay
+  for (const [id, headword] of Object.entries(headwords)) {
+    const entry = index.vocabulary.get(id)
+    if (!entry) throw new Error(HEADWORDS_FILE + ' names an unknown word ' + id)
+    if (!headword.ch || !headword.pr) throw new Error(HEADWORDS_FILE + ': ' + id + ' needs a headword (ch) and its reading (pr)')
+    index.vocabulary.set(id, { ...entry, target: headword.ch, reading: headword.pr })
+  }
   const glosses = readJson(join(base, GLOSSES_FILE), { glosses: {} }).glosses
   const overrides = readJson(join(base, GLOSS_OVERRIDES_FILE), { glosses: {} }).glosses
   const registry = readJson(join(base, REGISTRY_FILE), { version: 1, vocabulary: {}, grammar: {} })
@@ -328,6 +337,20 @@ export function buildJaPack(base = defaultRoot) {
     return { id, name: named.name, ...(named.ending ? { ending: named.ending } : {}), kinds, joined: kinds.filter(kind => joinsWord(kind, id)), patterns: patternsByKind }
   })
 
+  // ---- the headword check: a conjugated token must be what its headword builds ----
+  const recordOf = new Map(vocabulary.map(item => [item.lb, item]))
+  const mismatches = { differs: [], split: [], own: [] }
+  for (const p of phraseData) for (const segment of p.segments) {
+    const item = segment.word ? recordOf.get(segment.word) : undefined
+    if (!item) continue
+    if (segment.form) {
+      const built = item.cl ? engine.forms(item.ch, item.cl, segment.form, { reading: item.pr }) : null
+      if (built && built.surface === segment.text && built.reading === segment.reading) continue
+      // a headword of several words (雨が降る, 運転する) is built whole while a sentence has it in pieces: the token is the end of what is built
+      const kind = built && built.surface.endsWith(segment.text) && built.reading.endsWith(segment.reading) ? 'split' : 'differs'
+      mismatches[kind].push({ phrase: p.phrase.id, word: item.ch, form: segment.form, token: segment.text, built: built?.surface ?? null })
+    } else if (segment.text !== undefined && segment.text !== item.ch) mismatches.own.push({ phrase: p.phrase.id, word: item.ch, token: segment.text })
+  }
   const band = { schemaVersion: 1, band: '1', alignment: ALIGNMENT, vocabulary, grammar, groups }
   const catalogIndex = { schemaVersion: 1, bands: [{ band: '1', alignment: ALIGNMENT, vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length }] }
   const phrases = phraseData.map(p => ({
@@ -379,7 +402,7 @@ export function buildJaPack(base = defaultRoot) {
       wordsWithoutPhrase: (lesson.words ?? []).filter(row => !usedWords.has(row.entry)).map(row => '`' + row.entry + '` ' + index.vocabulary.get(row.entry).target + ' (' + itemAt(row.entry, lesson.number).gloss + ')'),
     }
   })
-  return { files, band, phrases, formsTable, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
+  return { files, band, phrases, formsTable, mismatches, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
 }
 
 /** The content gaps as markdown (docs/audits/2026-11-10-japanese-lesson-content-gaps.md). */
@@ -442,7 +465,11 @@ export function main(argv = process.argv.slice(2)) {
     stale.push(path)
     if (!check) writeAtomic(file, text)
   }
+  const words = list => [...new Set(list.map(item => item.word + (item.token ? ' (' + item.token + ')' : '')))].join(', ')
+  if (pack.mismatches.split.length) console.log('Headword check, compound headwords written in pieces in sentences (' + pack.mismatches.split.length + ' tokens): ' + words(pack.mismatches.split))
+  if (pack.mismatches.own.length) console.log('Headword check, tokens written differently from the headword, no form involved (' + pack.mismatches.own.length + ' tokens): ' + words(pack.mismatches.own))
   console.log('Japanese pack data ' + (check ? 'checked' : 'generated') + ': ' + JSON.stringify(report))
+  if (pack.mismatches.differs.length) { for (const item of pack.mismatches.differs.slice(0, 20)) console.error('Headword check: phrase ' + item.phrase + ' writes ' + item.word + ' (' + item.form + ') as ' + item.token + ' but the headword builds ' + item.built); throw new Error('Headword check: ' + pack.mismatches.differs.length + ' tokens differ from what their headword builds. Fix the headword in ' + HEADWORDS_FILE + '.') }
   if (check && stale.length) { for (const path of stale) console.error('Stale Japanese pack data: ' + relative(base, join(base, path))); throw new Error('Run "node scripts/generate-pack-ja.mjs" to regenerate the Japanese pack data.') }
 }
 

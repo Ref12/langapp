@@ -1,0 +1,23 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "Headwords written with kanji where the vocabulary lists a verb in kana, because the sentences write it with kanji (行きます) and a form built from a kana headword would not match them. Keyed by word id (the vocabulary record's id); applied by scripts/generate-pack-ja.mjs. Labels do not change.",
+ "headwords": {
+  "ja-n5-00048": {
+   "ch": "行く",
+   "pr": "いく"
+  },
+  "ja-n5-00217": {
+   "ch": "来る",
+   "pr": "くる"
+  },
+  "ja-n5-00610": {
+   "ch": "見る",
+   "pr": "みる"
+  },
+  "ja-n5-00001": {
+   "ch": "会う",
+   "pr": "あう"
+  }
+ }
+}
