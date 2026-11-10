@@ -1,10 +1,12 @@
 {
  "version": 1,
  "language": "ja",
- "note": "Hand-written romaji for kana readings the letter-for-letter rule would get wrong because a は (or へ) in them is said wa (e): consulted first by src/core/reading/romaji.ts, matched inside a reading. A を is always o and needs no entry. Found by listing every vocabulary reading and every phrase token of src/data/packs/ja that holds は, へ or を (see docs/audits/2026-11-10-ja-forms.md).",
+ "note": "Hand-written romaji for kana readings the letter-for-letter rule would get wrong because a は (or へ) in them is said wa (e): consulted first by src/core/reading/romaji.ts, matched inside a reading. A を is always o and needs no entry. Found by listing every vocabulary reading and every phrase token of src/data/packs/ja that holds は, へ or を and in the pattern names (<noun> + はどうですか) (see docs/audits/2026-11-10-ja-forms.md).",
  "overrides": {
   "こんにちは": "konnichiwa",
   "こんばんは": "konbanwa",
-  "ではありません": "dewa arimasen"
+  "ではありません": "dewa arimasen",
+  "はどうですか": "wa dou desu ka",
+  "はみんな": "wa minna"
  }
 }

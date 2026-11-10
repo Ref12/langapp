@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { activeDisplayForm, headwordFor, type Headword, type HeadwordRecord } from '../core/forms/display'
 import { getPack, type PackForm, type ReadingScript } from '../core/language'
 import { loadPackForms } from '../core/language/pack-forms'
-import { kanaToRomaji, tokensToRomaji, type RomajiToken } from '../core/reading/romaji'
+import { kanaToRomaji, patternToRomaji, tokensToRomaji, type RomajiToken } from '../core/reading/romaji'
 import { showsReading } from '../core/study/reading-line'
 import { Pinyin } from './Pinyin'
 
@@ -31,10 +31,11 @@ export function useHeadword(record: HeadwordRecord): Headword {
 }
 
 /** A reading line: the pack's pinyin format as before, or romaji made from the kana when the learner chose it (from the tokens when a sentence's are given). */
-export function ReadingText({ kana, tokens }: { kana: string; tokens?: RomajiToken[] }) {
+export function ReadingText({ kana, tokens, pattern }: { kana: string; tokens?: RomajiToken[]; pattern?: boolean }) {
   const style = useDisplaySettings().readingStyle
   if (style !== 'romaji') return <Pinyin text={kana} />
   const overrides = getPack().romaji
+  if (pattern) return <>{patternToRomaji(kana, overrides)}</>
   return <>{tokens ? tokensToRomaji(tokens, overrides) : kanaToRomaji(kana, overrides)}</>
 }
 

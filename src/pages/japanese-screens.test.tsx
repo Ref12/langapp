@@ -9,6 +9,7 @@ import { db, initializeWorkspace } from '../core/database'
 import { setBuildLanguageForTests } from '../core/storage-names'
 import { loadCatalog, resetCatalogCache, type Catalog } from '../core/study/catalog'
 import { resetBackupStateForTests } from '../core/backup/state'
+import { savePreferences } from '../core/learning'
 import { initializeProfiles } from '../core/profiles/store'
 import { T0 } from '../core/profiles/fixtures/learner'
 import type { KnowledgeEntry, StudyCard } from '../core/study/contracts'
@@ -87,6 +88,14 @@ describe('screen text for a small seeded Japanese learner', () => {
   })
   it('A lesson page', async () => {
     await pin('lesson', await screenText(`lessons/group/${groupIds()[4]}`, () => expect(document.querySelector('.word-card')).toBeTruthy()))
+  })
+  it('A lesson page with the dictionary form chosen', async () => {
+    await savePreferences({ displayForm: 'dict' })
+    await pin('lesson-dictionary-form', await screenText(`lessons/group/${groupIds()[4]}`, () => expect(document.querySelector('.word-card')).toBeTruthy()))
+  })
+  it('A lesson page with romaji chosen', async () => {
+    await savePreferences({ readingStyle: 'romaji' })
+    await pin('lesson-romaji', await screenText(`lessons/group/${groupIds()[0]}`, () => expect(document.querySelector('.word-card')).toBeTruthy()))
   })
   it('Settings', async () => {
     await pin('settings', await screenText('settings', () => expect(document.querySelector('main')?.textContent?.length).toBeGreaterThan(50)))

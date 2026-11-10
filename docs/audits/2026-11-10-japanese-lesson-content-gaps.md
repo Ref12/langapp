@@ -114,7 +114,7 @@ Written by `node scripts/generate-pack-ja.mjs --report`. Nothing here is fixed i
 
 ### Lesson 56
 
-- Words introduced but used by none of its phrases: `ja-n5-00610` みる (to see; look at)
+- Words introduced but used by none of its phrases: `ja-n5-00610` 見る (to see; look at)
 
 ### Lesson 57
 

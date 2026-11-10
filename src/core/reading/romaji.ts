@@ -59,7 +59,7 @@ export function kanaToRomaji(kana: string, overrides: RomajiOverrides = {}): str
     }
     if (SINGLE[ch]) { push(SINGLE[ch]); continue }
     if (PUNCTUATION[ch] !== undefined) { push(PUNCTUATION[ch]); continue }
-    push(/[A-Za-z]/.test(ch) ? ch.toLowerCase() : ch)
+    push(ch)
   }
   return out.join('').replace(/\s+/g, ' ').trim()
 }
@@ -88,4 +88,17 @@ export function tokensToRomaji(tokens: RomajiToken[], overrides: RomajiOverrides
     cut = /[っッ]$/.test(reading)
   }
   return out
+}
+
+/**
+ * The romaji of a pattern's reading line ("<noun> + は", "(に / へ) + いきます"): the text between the separators (" + ", " / ", brackets, ？) is spelled as a reading, and a piece that is only は or へ is a particle (wa, e).
+ * A piece that begins with a particle and goes on (はどうですか) is in the overrides.
+ */
+export function patternToRomaji(text: string, overrides: RomajiOverrides = {}): string {
+  return text.split(/(\s\+\s|\s\/\s|[()？])/).map(piece => {
+    if (piece === '') return ''
+    if (piece === 'は' || piece === 'へ') return PARTICLE_SOUND[piece]
+    if (/^(\s\+\s|\s\/\s|[()])$/.test(piece)) return piece
+    return kanaToRomaji(piece, overrides)
+  }).join('')
 }

@@ -60,7 +60,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
         {pack.displayForms.choices.map(choice => <option key={choice.id} value={choice.id}>{formOptionLabel(pack.displayForms!, formsTable, choice.id)}</option>)}
       </select></label>}
       {pack.readingStyles && pack.readingStyles.choices.length > 1 && <label>Readings<select disabled={busy} value={readingStyle} onChange={event => void run(() => savePreferences({ readingStyle: event.target.value === 'romaji' ? 'romaji' : 'kana' }))}>
-        {pack.readingStyles.choices.map(choice => <option key={choice} value={choice}>{choice === 'kana' ? 'Kana' : 'Romaji'} ({choice === 'kana' ? pack.readingStyles!.sample.join('') : tokensToRomaji(pack.readingStyles!.sample.map(reading => ({ reading })), pack.romaji)})</option>)}
+        {pack.readingStyles.choices.map(choice => <option key={choice} value={choice}>{`${choice === 'kana' ? 'Kana' : 'Romaji'} (${choice === 'kana' ? pack.readingStyles!.sample.join('') : tokensToRomaji(pack.readingStyles!.sample.map(reading => ({ reading })), pack.romaji)})`}</option>)}
       </select></label>}
       {pack.readings === 'pinyin' && <>
       <label>Pinyin format<select disabled={busy || pinyinSetup === 'loading'} value={workspace.preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT} onChange={event => {

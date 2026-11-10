@@ -55,7 +55,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   return <UnitCardShell unitRef={unit.ref} compact={compact}
     eyebrow={<><span className="eyebrow">{unitKindLabel(unit)} / <BandName n={unit.band} /></span>{!hideStatus && <span className="tag">{cardStatus(card, now)}</span>}</>}
     title={<h3 {...(vocabulary ? press : {})} lang={vocabulary ? getPack().learningTag : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{title}</h3>}
-    reading={pinyin && shows(vocabulary ? headword.reading : unit.record.pr, title) && <p className="small muted study-pinyin" data-assistant-exclude><ReadingText kana={vocabulary ? headword.reading : unit.record.pr} /></p>}
+    reading={pinyin && shows(vocabulary ? headword.reading : unit.record.pr, title) && <p className="small muted study-pinyin" data-assistant-exclude><ReadingText kana={vocabulary ? headword.reading : unit.record.pr} pattern={!vocabulary} /></p>}
     meaning={unit.record.ds}
     extra={<>
       {otherLines && vocabulary && other.length > 0 && <OtherLanguageLines senseId={unit.record.id} />}

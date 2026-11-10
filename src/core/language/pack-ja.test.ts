@@ -193,6 +193,10 @@ describe('a conjugated word is one word in a named form', () => {
     expect(table.get('dict')).toMatchObject({ name: 'dictionary form', patterns: {} })
   })
 
+  it('lists 行く, 来る, 見る and 会う with kanji, as the sentences write them, under the labels they had', () => {
+    expect([...['iku--go', 'kuru--come', 'miru--see', 'au--meet']].map(label => [record.get(label)!.ch, record.get(label)!.pr])).toEqual([['行く', 'いく'], ['来る', 'くる'], ['見る', 'みる'], ['会う', 'あう']])
+  })
+
   it('gives each word that inflects its conjugation class, and none to a word that does not', () => {
     const classes = new Set(band.vocabulary.map(item => item.cl).filter(Boolean))
     expect([...classes].sort()).toEqual(['godan-aru', 'godan-bu', 'godan-iku', 'godan-ku', 'godan-mu', 'godan-ru', 'godan-su', 'godan-tsu', 'godan-u', 'i-adj', 'i-adj-ii', 'ichidan', 'kuru', 'na-adj', 'suru', 'suru-compound'])
@@ -209,12 +213,13 @@ describe('a conjugated word is one word in a named form', () => {
       const built = buildForm('ja', item.ch, item.cl!, segment.form, { reading: item.pr })
       expect(built, 'phrase ' + phrase + ' ' + segment.form).not.toBeNull()
       if (built!.surface === segment.text && built!.reading === segment.reading) continue
-      if (item.ch === item.pr && built!.reading === segment.reading) { kanaOnly.push(item.ch); continue } // shown in kana, written with kanji in the sentence (行きます for いく)
+      if (item.ch === item.pr && built!.reading === segment.reading) { kanaOnly.push(item.ch); continue } // listed in kana, written with kanji in the sentence (行きます for いく): the headword overlay makes none
       expect(built!.surface.endsWith(segment.text!) && built!.reading!.endsWith(segment.reading!), 'phrase ' + phrase + ': ' + segment.text + ' vs ' + built!.surface).toBe(true)
       verbPart.push(item.ch) // the item is a phrase (雨が降る) or noun + する whose segment is only the verb part
     }
     expect([...new Set(verbPart)].sort()).toEqual(['運転する', '雨が降る'])
-    expect([...new Set(kanaOnly)].sort()).toEqual(['あう', 'いく', 'くる', 'みる'])
+    expect(kanaOnly, 'a verb listed in kana but written with kanji in the sentences (the headword overlay, pack-headwords.json)').toEqual([])
+    expect(pack.mismatches.differs).toEqual([])
   })
 
   it('builds the polite form of every verb in the catalog, with its reading', () => {
