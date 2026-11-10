@@ -27,10 +27,9 @@ export function LabMark({ className = '' }: { className?: string }) {
  * The profile item of the navigation as a menu button: it opens Stable / Lab (the current one ticked) and, in Lab, the extra items the app
  * passes in. With settingsHref it adds its own gear link to Settings beside it; leave it out where the page already shows a gear.
  */
-export function BuildSwitch({ children, className = '', variant = 'nav', settingsHref, settingsLabel = 'Settings', extraItems = [] }: {
+export function BuildSwitch({ children, className = '', settingsHref, settingsLabel = 'Settings', extraItems = [] }: {
   children: ReactNode
   className?: string
-  variant?: 'nav' | 'pill'
   settingsHref?: string
   settingsLabel?: string
   extraItems?: BuildSwitchItem[]
@@ -61,7 +60,7 @@ export function BuildSwitch({ children, className = '', variant = 'nav', setting
     else if (event.key === 'Tab') setOpen(false)
   }
 
-  return <span className={`build-switch build-switch-${variant}`} ref={root} onKeyDown={open ? move : undefined}>
+  return <span className={`build-switch build-switch-nav`} ref={root} onKeyDown={open ? move : undefined}>
     <button type="button" ref={button} className={`build-switch-button ${className}`.trim()} aria-haspopup="menu" aria-expanded={open} aria-controls={open ? menuId : undefined}
       onClick={() => setOpen(value => !value)}>
       {children}<ChevronDown size={14} aria-hidden="true" className="build-switch-chevron" />

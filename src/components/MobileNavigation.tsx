@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Menu } from 'lucide-react'
+import { LabMark } from './BuildSwitch'
 
 export function MobileNavigation({ route, children }: { route: string; children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null)
@@ -36,7 +37,7 @@ export function MobileNavigation({ route, children }: { route: string; children:
       <div className="mobile-drawer-header">
         <button className="icon-button mobile-drawer-close" aria-label="Close navigation" aria-controls="mobile-navigation" aria-expanded={open} autoFocus
           onClick={() => dialog.current?.close()}><Menu size={22} aria-hidden="true" /></button>
-        <span className="brand">linguaweave</span>
+        <span className="brand">linguaweave</span><LabMark className="sidebar-mark" />
       </div>
       <div className="mobile-drawer-content" onClick={event => {
         if (event.target instanceof Element && event.target.closest('a[href]')) dialog.current?.close()

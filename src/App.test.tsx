@@ -46,7 +46,12 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     const saved = await db.words.toArray()
     resetProfilesForTests()
     render(<App />)
-    expect(await screen.findByRole('button', { name: /Active profile: default/ })).toBeInTheDocument()
+    expect(await screen.findByLabelText(/Active profile: default/)).toBeInTheDocument()
+    const topbar = document.querySelector('.topbar') as HTMLElement
+    expect(topbar.querySelector('[aria-haspopup="menu"]')).toBeNull()
+    expect(topbar.querySelector('.build-mark')).toBeNull()
+    expect(topbar.querySelector('.profile-pill')?.tagName).toBe('SPAN')
+    expect(document.querySelector('.workspace-navigation .build-switch [aria-haspopup="menu"]')).not.toBeNull()
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     expect(await db.preferences.get('workspace')).toMatchObject({ name: 'Existing workspace', theme: 'light', defaultSpeechRate: 0.75 })
     expect(await db.words.toArray()).toEqual(saved)
