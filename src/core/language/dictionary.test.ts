@@ -57,3 +57,54 @@ describe("the Japanese pack's Dictionary", () => {
     }
   })
 })
+
+describe("the Japanese pack's look-up words", () => {
+  const catalogIds = () => new Set(units().map(unit => unit.record.id))
+  const loadLookup = () => jaPack.dictionary.lookup!.load(id => catalogIds().has(id))
+  const wordOf = (source: Awaited<ReturnType<typeof loadLookup>>, id: string) => source.words.find(word => word.id === id)!
+
+  it('lists exactly the entries of the JLPT file that are not in the catalog', async () => {
+    const source = await loadLookup()
+    const all = await (await import('../dictionary/other')).loadDictionary('ja')
+    expect(all.words).toHaveLength(7890)
+    expect(source.words).toHaveLength(7598)
+    expect(source.words.map(word => word.id).sort()).toEqual(all.words.filter(word => !catalogIds().has(word.id)).map(word => word.id).sort())
+    expect(source.grammar.map(item => item.id).sort()).toEqual(['ja-par-g024', 'ja-par-g036'])
+  })
+  it('never lists a lesson word, and no word twice', async () => {
+    const source = await loadLookup()
+    const ids = source.words.map(word => word.id)
+    expect(new Set(ids).size).toBe(ids.length)
+    expect(ids.filter(id => catalogIds().has(id))).toEqual([])
+    expect(source.grammar.filter(item => catalogIds().has(item.id))).toEqual([])
+  })
+  it('finds a look-up word by kana, kanji, romaji (long vowels ignored) and English', async () => {
+    const source = await loadLookup()
+    const lookup = source
+    const word = source.words.find(item => item.form === '東京' ) ?? source.words.find(item => /^[\u4e00-\u9fff]{2}$/.test(item.form) && /^[\u3040-\u309f]+$/.test(item.reading))!
+    const english = word.meaning.split(/ \| |; /)[0].replace(/\(.*?\)/g, '').trim().toLowerCase()
+    const romaji = (await import('../reading/romaji')).kanaToRomaji(word.reading, jaPack.romaji)
+    for (const query of [word.reading, word.form, romaji, romaji.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ou/g, 'o'), english]) {
+      expect(lookup.search(query, jaPack.romaji).word(wordOf(source, word.id)), query).not.toBeUndefined()
+    }
+    expect(lookup.search('', jaPack.romaji).empty).toBe(true)
+    expect(lookup.search('zzzzqqq', jaPack.romaji).word(word)).toBeUndefined()
+  })
+  it('scores a lesson word and a look-up word on one scale, so equal quality is a tie the page settles for the lesson word', async () => {
+    const source = await loadLookup()
+    const lesson = jaPack.dictionary.searchUnits('eat', jaPack.romaji).rank(catalog.units.get('vocabulary:taberu--eat')! as CatalogUnit)
+    const lookupSearch = source.search('eat', jaPack.romaji)
+    expect(lesson).toBe(2)
+    expect(source.words.some(word => lookupSearch.word(word) === lesson)).toBe(true)
+  })
+  it('has no look-up source in the Chinese pack', () => {
+    expect(zhPack.dictionary.lookup).toBeUndefined()
+    expect(jaPack.dictionary.lookup).toBeDefined()
+  })
+  it('names its sources in the footnote, in one line', () => {
+    expect(jaPack.dictionary.footnote).toMatch(/JMdict\/EDICT/)
+    expect(jaPack.dictionary.footnote).toMatch(/Electronic Dictionary Research and Development Group/)
+    expect(jaPack.dictionary.footnote).toMatch(/Jonathan Waller/)
+    expect(jaPack.dictionary.footnote).not.toContain('\n')
+  })
+})

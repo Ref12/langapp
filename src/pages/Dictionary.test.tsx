@@ -90,6 +90,20 @@ describe('dictionary characters', () => {
     expect(await screen.findByRole('button', { name: /^My knowledge set \(/ })).toHaveAttribute('aria-pressed', 'false')
   })
 
+  it('has no look-up words and no word-scope choice in the Chinese Dictionary, and never reads the Japanese file', async () => {
+    const other = await import('../core/dictionary/other')
+    const spy = vi.spyOn(other, 'loadDictionary')
+    window.location.hash = 'dictionary/vocabulary/all'
+    render(<Harness />)
+    await screen.findByRole('button', { name: /^My knowledge set \(/ })
+    fireEvent.change(screen.getByRole('searchbox', { name: 'Search dictionary' }), { target: { value: 'tea' } })
+    await screen.findByText('茶杯')
+    expect(screen.queryByRole('group', { name: 'Words shown' })).toBeNull()
+    expect(document.querySelector('[data-lookup]')).toBeNull()
+    expect(spy).not.toHaveBeenCalled()
+    spy.mockRestore()
+  })
+
   it('keeps My knowledge set when switching sections and remembers it for bare routes', async () => {
     const user = userEvent.setup()
     window.location.hash = 'dictionary/vocabulary/knowledge'

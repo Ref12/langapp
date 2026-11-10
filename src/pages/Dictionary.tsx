@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Suspense, lazy, useCallback, useEffect, useMemo, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
 import { savePreferences } from '../core/learning'
@@ -30,6 +30,10 @@ import { fold, languageLabel, loadDictionary, makeOtherMatcher, type DictGrammar
 import { loadParallel, type ParallelData, type ParallelPhrase } from '../core/parallel/data'
 import { LanguageTag, OtherGrammarCard, OtherWordCard, DictPhrase } from '../components/dictionary/OtherEntries'
 import { languageInUse } from '../core/language/scope'
+import type { LookupSource } from '../core/language/dictionary'
+// The look-up cards are a chunk of their own: the Chinese app never draws one.
+const LookupWordCard = lazy(() => import('../components/dictionary/LookupCards').then(module => ({ default: module.LookupWordCard })))
+const LookupGrammarCard = lazy(() => import('../components/dictionary/LookupCards').then(module => ({ default: module.LookupGrammarCard })))
 import { bandName, getPack } from '../core/language'
 import { isParallelRef } from '../core/language/refs'
 import { loadLanguageIndex } from '../core/characters/otherLanguages'
@@ -53,6 +57,10 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const [dicts, setDicts] = useState<Partial<Record<DictLanguage, OtherDictionary>>>({})
   const [dictError, setDictError] = useState('')
   const othersKey = others.join()
+  // The pack's look-up words (Japanese: the JLPT words outside the lessons), loaded on demand: when All words is chosen or a search is typed.
+  const lookup = own ? pack.dictionary.lookup : undefined
+  const [allWords, setAllWords] = useState(false)
+  const [lookupData, setLookupData] = useState<LookupSource>()
   useEffect(() => {
     let alive = true
     for (const language of others) loadDictionary(language).then(value => { if (alive) setDicts(previous => ({ ...previous, [language]: value })) }, reason => { if (alive) setDictError(reason instanceof Error ? reason.message : String(reason)) })
@@ -97,6 +105,13 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   useEffect(() => { setBand('all') }, [lang])
   const [query, setQuery] = useState(initialQuery ?? '')
   const [limit, setLimit] = useState(PAGE)
+  useEffect(() => {
+    if (!lookup || !catalog || lookupData || !(allWords || query.trim())) return
+    let alive = true
+    const ids = new Set([...catalog.units.values()].map(unit => unit.record.id))
+    lookup.load(id => ids.has(id)).then(value => { if (alive) setLookupData(value) }, reason => { if (alive) setDictError(reason instanceof Error ? reason.message : String(reason)) })
+    return () => { alive = false }
+  }, [lookup, catalog, lookupData, allWords, query])
   // A link from another page (entry word, grammar label) arrives with its search text.
   useEffect(() => { setQuery(initialQuery ?? '') }, [initialQuery])
   // The Phrases section: its band files are fetched only while it is open; the other sections show a count only once they have been loaded.
@@ -150,7 +165,8 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     return total + (scope === 'media' ? 0 : scope === 'all' ? (dict ? (value === 'vocabulary' ? dict.words.length : dict.grammar.length) : 0) : scope === 'knowledge' ? [...otherKnown].filter(ref => ref.startsWith(prefix)).length : [...collected].filter(ref => ref.startsWith(prefix)).length)
   }, 0)
   const otherCharCount = others.reduce((total, language) => total + (scope === 'all' ? otherChars[language]?.length ?? 0 : 0), 0)
-  const tabCount = (value: UnitKind | 'characters') => multi ? (own ? zhTab(value) : 0) + (value === 'characters' ? otherCharCount : otherTotal(value)) : zhTab(value)
+  const lookupShown = Boolean(lookup && lookupData && scope === 'all' && allWords)
+  const tabCount = (value: UnitKind | 'characters') => multi ? (own ? zhTab(value) : 0) + (value === 'characters' ? otherCharCount : otherTotal(value)) : zhTab(value) + (lookupShown && value !== 'characters' ? (value === 'vocabulary' ? lookupData!.words.length : lookupData!.grammar.length) : 0)
   const bandCounts = new Map<string, number>()
   if (catalog && !phrasesView) {
     const bump = (value: string) => bandCounts.set(value, (bandCounts.get(value) ?? 0) + 1)
@@ -179,6 +195,29 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     for (const [unit, rank] of ranks) zhRanks.set(unit, rank)
     return byRank(found.map(entry => entry.unit), unit => ranks.get(unit)!, unit => known.has(unit.ref), unit => bandNumber(unit.band))
   })() : []
+  // Look-up entries: with All words chosen, or for any search; lesson words first at an equal rank. A band filter is a lesson-band filter, so it leaves them out.
+  type Shown = { unit: Extract<Unit, { kind: 'vocabulary' | 'grammar' }> } | { word: DictWord } | { item: DictGrammar }
+  const lookupWanted = Boolean(lookup && lookupData && scope === 'all' && band === 'all' && (kind === 'vocabulary' || kind === 'grammar') && (allWords || !unitSearch.empty))
+  const lookupRows = useMemo(() => {
+    if (!lookup || !lookupData || !lookupWanted) return []
+    const search = lookupData.search(query, pack.romaji)
+    const found: { shown: Shown; rank: number; level: number; index: number }[] = []
+    if (kind === 'vocabulary') lookupData.words.forEach((word, index) => { const rank = search.word(word); if (rank !== undefined) found.push({ shown: { word }, rank, level: word.levelNo || 99, index }) })
+    else lookupData.grammar.forEach((item, index) => { const rank = search.grammar(item); if (rank !== undefined) found.push({ shown: { item }, rank, level: item.levelNo || 99, index }) })
+    return found.sort((a, b) => a.rank - b.rank || a.level - b.level || a.index - b.index)
+  }, [lookup, lookupData, lookupWanted, query, kind, pack])
+  const listed: Shown[] = useMemo(() => {
+    if (!lookupRows.length) return matches.map(unit => ({ unit }))
+    const merged: Shown[] = []
+    let at = 0
+    for (const row of lookupRows) {
+      while (at < matches.length && (zhRanks.get(matches[at]) ?? 0) <= row.rank) merged.push({ unit: matches[at++] })
+      merged.push(row.shown)
+    }
+    while (at < matches.length) merged.push({ unit: matches[at++] })
+    return merged
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [matches, lookupRows])
   const written = useMemo(() => writtenCharacters(workspace.characterStates), [workspace.characterStates])
   const inWriteFilter = (character: string) => scope !== 'knowledge' || writeFilter === 'all' || (writeFilter === 'can') === written.has(character)
   const setCharacters = characters.filter(entry => characterSet?.all.has(entry.character))
@@ -251,7 +290,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const phraseMatches = filteredPhrases.filter(row => inPhraseScope(row, phraseScope))
   const shownOther = (language: DictLanguage) => (otherChars[language] ?? []).filter(([character]) => (script === 'all' || characterScript(character) === script) && matchesCharacter(character, language, query))
   const otherCharacterMatches = kind === 'characters' && scope === 'all' ? others.flatMap(shownOther) : []
-  const count = phrasesView ? (own ? phraseMatches.length : 0) + otherPhrases.length : scope === 'media' ? sourceMatches.length : (kind === 'characters' ? (own ? characterMatches.length : 0) + otherCharacterMatches.length : multi ? rows.length : matches.length)
+  const count = phrasesView ? (own ? phraseMatches.length : 0) + otherPhrases.length : scope === 'media' ? sourceMatches.length : (kind === 'characters' ? (own ? characterMatches.length : 0) + otherCharacterMatches.length : multi ? rows.length : listed.length)
   const selectable = sections.characters && !phrasesView && scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
   const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })
   const pickRow = (key: string, text: string, label: string) => selecting
@@ -299,6 +338,10 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         {own && sections.media && <button aria-pressed={scope === 'media'} onClick={() => { setLimit(PAGE); go('vocabulary', 'media') }}>From your media ({sourceEntries.length})</button>}
         {kind !== 'characters' && <button aria-pressed={scope === 'collections'} onClick={() => { setLimit(PAGE); go(kind, 'collections') }}>In {TERM.plural} ({collectedCount(kind)})</button>}
       </div>}
+      {lookup && !phrasesView && scope === 'all' && (kind === 'vocabulary' || kind === 'grammar') && <div className="segmented" role="group" aria-label="Words shown">
+        <button aria-pressed={!allWords} onClick={() => { setLimit(PAGE); setAllWords(false) }}>Lesson words ({catalogCounts[kind].toLocaleString('en-US')})</button>
+        <button aria-pressed={allWords} onClick={() => { setLimit(PAGE); setAllWords(true) }}>All words{lookupData ? ` (${(catalogCounts[kind] + (kind === 'vocabulary' ? lookupData.words.length : lookupData.grammar.length)).toLocaleString('en-US')})` : ''}</button>
+      </div>}
       <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={!own ? (kind === 'characters' && !phrasesView ? 'Character or codepoint' : 'Word, reading, or English') : phrasesView ? 'Chinese, pinyin, or English' : kind === 'characters' ? 'Character, codepoint, or containing word' : pack.dictionary.placeholder[kind === 'vocabulary' ? 'vocabulary' : 'grammar']} aria-label="Search dictionary" />
         {sections.draw && <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button>}</div>
       {!multi && <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBandList().map(value => <option key={value} value={value}>{bandName(pack, value)}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>}
@@ -326,7 +369,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       {otherPhrases.length > 0 && <><h2 className="small muted">Japanese and Korean lesson phrases</h2><ul className="plain-list" data-testid="other-phrases">{otherPhrases.slice(0, limit).map(item => <div key={item.language + item.lesson + item.phrase.id} className="dict-result"><LanguageTag language={item.language} /><DictPhrase phrase={item.phrase} language={item.language} lesson={item.lesson} /></div>)}</ul></>}</>}
     {!phrasesView && scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
-    {catalog && !phrasesView && !multi && kind !== 'characters' && scope !== 'media' && <div className="word-grid">{matches.slice(0, limit).map(unit => renderZh(unit, false))}</div>}
+    {catalog && !phrasesView && !multi && kind !== 'characters' && scope !== 'media' && <div className="word-grid"><Suspense fallback={null}>{listed.slice(0, limit).map(entry => 'unit' in entry ? renderZh(entry.unit, false) : 'word' in entry ? <LookupWordCard key={entry.word.id} word={entry.word} reading={workspace.preferences.pinyin} levelName={lookup?.levelName} /> : <LookupGrammarCard key={entry.item.id} item={entry.item} levelName={lookup?.levelName} />)}</Suspense></div>}
     {!phrasesView && multi && kind !== 'characters' && scope !== 'media' && <div className="word-grid" data-testid="dictionary-results">{rows.slice(0, limit).map(row => row.language === 'zh' ? (catalog ? renderZh(row.unit as Extract<Unit, { kind: 'vocabulary' | 'grammar' }>, false) : null)
       : row.word ? <OtherWordCard key={row.word.ref} word={row.word} language={row.language} known={known.has(row.word.ref)} tag={false} />
       : row.grammar ? <OtherGrammarCard key={row.grammar.ref} item={row.grammar} language={row.language} known={known.has(row.grammar.ref)} tag={false} /> : null)}</div>}

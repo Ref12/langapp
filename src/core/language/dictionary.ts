@@ -7,11 +7,23 @@ import { kanaToRomaji, type RomajiOverrides } from '../reading/romaji'
 import type { Unit } from '../study/catalog'
 import type { PackDisplayForms } from './meta'
 import { toHiragana } from './romanize'
+import type { DictGrammar, DictWord } from '../dictionary/other'
 
 export type CatalogUnit = Extract<Unit, { kind: 'vocabulary' | 'grammar' }>
 
 /** A search over catalog units: the rank of a unit (lower is better; the scale of dictionary-search.ts), or undefined when it does not match. */
 export interface UnitSearch { empty: boolean; rank(unit: CatalogUnit): number | undefined }
+
+/** The look-up words of a pack: entries of a larger list that are not in the pack catalog, shown beside the lesson words and never studied. */
+export interface LookupSource { words: DictWord[]; grammar: DictGrammar[]; search(query: string, romaji?: RomajiOverrides): LookupSearch }
+/** A search over look-up entries on the same rank scale as UnitSearch. */
+export interface LookupSearch { empty: boolean; word(word: DictWord): number | undefined; grammar(item: DictGrammar): number | undefined }
+export interface PackLookup {
+  /** Loads the look-up entries on demand (a dynamic import): every entry of the list whose id is not a catalog id. */
+  load(inCatalog: (id: string) => boolean): Promise<LookupSource>
+  /** How a look-up level is named, when the pack has a name for it; absent: the level as written in the data. */
+  levelName?(level: string): string
+}
 
 export interface PackDictionary {
   /** The sections beyond Vocabulary and Grammar, and the Draw box of the search: a section that is off has no tab and a link to it lands on Vocabulary. */
@@ -24,6 +36,8 @@ export interface PackDictionary {
   footnote: string
   /** How the search text finds a catalog word or grammar point. romaji: the hand-written romaji of the pack's readings. */
   searchUnits(query: string, romaji?: RomajiOverrides): UnitSearch
+  /** A look-up source beside the catalog (Japanese: the JLPT words outside the lessons); absent when the pack has none. */
+  lookup?: PackLookup
 }
 
 const everySection = { characters: true, phrases: true, draw: true, media: true }
@@ -44,10 +58,11 @@ export const zhDictionary: PackDictionary = {
 
 // Japanese search. Text and kana are compared after NFKC (so width does not matter), lower case and katakana-to-hiragana; romaji after
 // dropping macrons and apostrophes and writing a long vowel short (ou, oo, uu, aa, ii, ee -> o, u, a, i, e), on both sides: toukyou, tōkyō and tokyo all find 東京.
-const foldText = (text: string): string => toHiragana(text.normalize('NFKC').toLowerCase()).replace(/\s+/g, ' ').trim()
-const foldRomaji = (text: string): string => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '').replace(/(ou|oo)/g, 'o').replace(/uu/g, 'u').replace(/aa/g, 'a').replace(/ii/g, 'i').replace(/ee/g, 'e')
+export const foldText = (text: string): string => toHiragana(text.normalize('NFKC').toLowerCase()).replace(/\s+/g, ' ').trim()
+export const foldRomaji = (text: string): string => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '').replace(/(ou|oo)/g, 'o').replace(/uu/g, 'u').replace(/aa/g, 'a').replace(/ii/g, 'i').replace(/ee/g, 'e')
 
-interface Keys { text: string[]; kana: string[]; romaji: string[]; ds: string }
+export interface Keys { text: string[]; kana: string[]; romaji: () => string[]; ds: string }
+export const lazy = <T,>(make: () => T): (() => T) => { let value: T | undefined; return () => (value ??= make()) }
 const keysCache = new WeakMap<object, Keys>()
 
 function keysOf(unit: CatalogUnit, offer: PackDisplayForms, overrides: RomajiOverrides): Keys {
@@ -67,7 +82,7 @@ function keysOf(unit: CatalogUnit, offer: PackDisplayForms, overrides: RomajiOve
     const record = unit.record
     text.add(foldText(record.pt)); if (record.st) text.add(foldText(record.st)); kana.add(foldText(record.pr))
   }
-  const value = { text: [...text], kana: [...kana], romaji: [...kana].map(item => foldRomaji(kanaToRomaji(item, overrides))), ds: unit.record.ds.toLowerCase() }
+  const value = { text: [...text], kana: [...kana], romaji: lazy(() => [...kana].map(item => foldRomaji(kanaToRomaji(item, overrides)))), ds: unit.record.ds.toLowerCase() }
   keysCache.set(unit.record, value)
   return value
 }
@@ -75,7 +90,8 @@ function keysOf(unit: CatalogUnit, offer: PackDisplayForms, overrides: RomajiOve
 const stripArticle = (value: string) => value.replace(/^(?:to|a|an|the)\s+/, '')
 const JAPANESE = /[\u3040-\u30ff\u3400-\u9fff]/u
 
-export function japaneseUnitSearch(offer: PackDisplayForms, query: string, overrides: RomajiOverrides = {}): UnitSearch {
+/** The rank of a set of keys for a query: 0 exact, 1 prefix, 1.4-1.5 inside, 2-3 English. undefined: no match. */
+export function japaneseRanker(query: string): { empty: boolean; rank(keys: Keys): number | undefined } {
   const lower = query.trim().toLowerCase().replace(/\s+/g, ' ')
   if (!lower) return { empty: true, rank: () => 0 }
   const written = foldText(lower)
@@ -84,12 +100,11 @@ export function japaneseUnitSearch(offer: PackDisplayForms, query: string, overr
   const bare = stripArticle(lower)
   return {
     empty: false,
-    rank(unit) {
-      const keys = keysOf(unit, offer, overrides)
+    rank(keys) {
       let best: number | undefined
       const take = (value: number) => { if (best === undefined || value < best) best = value }
       for (const key of [...keys.text, ...keys.kana]) { if (key === written) take(0); else if (key.startsWith(written)) take(1); else if (key.includes(written)) take(1.4) }
-      if (latin) for (const key of keys.romaji) { if (key === latin) take(0); else if (key.startsWith(latin)) take(1); else if (key.includes(latin)) take(1.5) }
+      if (latin) for (const key of keys.romaji()) { if (key === latin) take(0); else if (key.startsWith(latin)) take(1); else if (key.includes(latin)) take(1.5) }
       if (!japanese && keys.ds) {
         const parts = keys.ds.split(/[;,/]/).map(part => part.trim())
         if (parts.some(part => part === lower || stripArticle(part) === bare)) take(2)
@@ -100,13 +115,22 @@ export function japaneseUnitSearch(offer: PackDisplayForms, query: string, overr
   }
 }
 
-/** Japanese: Vocabulary and Grammar of the lessons only in this stage. */
+export function japaneseUnitSearch(offer: PackDisplayForms, query: string, overrides: RomajiOverrides = {}): UnitSearch {
+  const ranker = japaneseRanker(query)
+  return { empty: ranker.empty, rank: unit => ranker.empty ? 0 : ranker.rank(keysOf(unit, offer, overrides)) }
+}
+
+/** The JLPT list (src/data/dictionary/ja.json, read by the one reader in core/dictionary/other.ts) less the entries the lessons already have. Its code and data load on demand (lookup-ja.ts). */
+export const jaLookup: PackLookup = { load: inCatalog => import('./lookup-ja').then(module => module.loadJapaneseLookup(inCatalog)) }
+
+/** Japanese: Vocabulary and Grammar of the lessons, and the JLPT words outside them as look-up. */
 export const jaDictionary = (offer: PackDisplayForms): PackDictionary => ({
   sections: noSection,
   intro: 'Every word and grammar point in your lessons, separate from your knowledge set. Adding an item makes it eligible for review; it does not claim you know it.',
   placeholder: { vocabulary: 'Word, reading, or English', grammar: 'Pattern, reading, or English' },
-  footnote: 'Review timing for each item in your knowledge set follows FSRS spaced repetition for reading.',
+  footnote: 'Review timing for each item in your knowledge set follows FSRS spaced repetition for reading. Look-up words: JMdict/EDICT, the Electronic Dictionary Research and Development Group (EDRDG); JLPT levels from Jonathan Waller\u2019s JLPT Resources.',
   searchUnits: (query, romaji) => japaneseUnitSearch(offer, query, romaji),
+  lookup: jaLookup,
 })
 
 /** A pack with no Dictionary of its own (Korean for now): nothing is offered, the search is the plain one. */

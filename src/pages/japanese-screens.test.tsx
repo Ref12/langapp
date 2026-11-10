@@ -194,6 +194,9 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
     // the page's own words (a word's meaning, such as 中国語 = Chinese language, is lesson content)
     const chrome = document.querySelector('main')!.cloneNode(true) as HTMLElement
     chrome.querySelectorAll('.word-grid').forEach(grid => grid.remove())
+    // the footnote names JLPT Resources because the licence of the levels requires it
+    expect(chrome.querySelector('.page-footnote')?.textContent).toContain('Jonathan Waller')
+    chrome.querySelectorAll('.page-footnote').forEach(note => note.remove())
     const text = visibleText(chrome)
     expect(text.split('\n').filter(line => FORBIDDEN.test(line) || /tone|JLPT/i.test(line))).toEqual([])
     expect(screen.getByLabelText('Band')).toBeTruthy()
@@ -281,5 +284,85 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
     await search('taberu')
     expect(screen.getByRole('button', { name: /^My knowledge set/ })).toHaveAttribute('aria-pressed', 'true')
     expect(card()).toBeTruthy()
+  })
+
+  describe('look-up words', () => {
+    const lookupCards = () => [...document.querySelectorAll('[data-lookup]')] as HTMLElement[]
+    const type = (query: string) => fireEvent.change(screen.getByRole('searchbox', { name: 'Search dictionary' }), { target: { value: query } })
+    it('opens with lesson words only, and offers the lesson-words and all-words choice', async () => {
+      await open()
+      const choice = screen.getByRole('group', { name: 'Words shown' })
+      expect(within(choice).getByRole('button', { name: 'Lesson words (292)' })).toHaveAttribute('aria-pressed', 'true')
+      expect(screen.getByRole('status')).toHaveTextContent('292 items')
+      expect(lookupCards()).toHaveLength(0)
+      expect(document.querySelectorAll('[data-unit]').length).toBeGreaterThan(0)
+    })
+    it('shows look-up cards, paged, without Add to study or forms, under All words', async () => {
+      await open()
+      fireEvent.click(screen.getByRole('button', { name: /^All words/ }))
+      await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('7890 items'), { timeout: 8000 })
+      expect(screen.getByRole('button', { name: 'Vocabulary (7,890)' })).toBeTruthy()
+      // paged: never thousands of cards at once
+      expect(document.querySelectorAll('article').length).toBeLessThanOrEqual(48)
+      // lesson words come first in the list; a search brings look-up words to the top of the page
+      type('hon')
+      await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+      expect(document.querySelectorAll('article').length).toBeLessThanOrEqual(48)
+      const cards = lookupCards()
+      expect(cards.length).toBeGreaterThan(0)
+      for (const card of cards) {
+        expect(card).toHaveTextContent('Look-up only')
+        expect(within(card).queryByRole('button', { name: /knowledge set|study/i })).toBeNull()
+        expect(card.querySelector('details.word-forms')).toBeNull()
+        expect(card.textContent).toMatch(/N[1-5]/)
+      }
+    })
+    it('finds a look-up word by kana, kanji, romaji and English, after the lesson word of an equal match', async () => {
+      await open()
+      type('ひるごはん')
+      await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+      const lunch = lookupCards().find(card => card.textContent?.includes('昼御飯')) ?? lookupCards()[0]
+      const form = lunch.querySelector('h3')!.textContent!
+      for (const query of [form, 'hirugohan', 'hirugohan', 'lunch']) {
+        type(query)
+        await waitFor(() => expect(lookupCards().some(card => card.querySelector('h3')!.textContent === form)).toBe(true), { timeout: 8000 })
+      }
+      // a lesson word and look-up words in one result list, the lesson word first at equal quality
+      // 'tabe' is a prefix match (rank 1) of 食べる and of exactly one look-up word
+      type('tabe')
+      await waitFor(() => expect(document.querySelector('[data-unit="vocabulary:taberu--eat"]')).toBeTruthy())
+      await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+      const order = [...document.querySelectorAll('[data-unit="vocabulary:taberu--eat"], [data-lookup]')]
+      expect(order[0].getAttribute('data-unit')).toBe('vocabulary:taberu--eat')
+      expect(order[1].hasAttribute('data-lookup')).toBe(true)
+      expect(document.querySelectorAll('[data-unit="vocabulary:taberu--eat"]')).toHaveLength(1)
+    })
+    it('draws the reading of a look-up card in romaji once the setting says so', async () => {
+      await open()
+      type('ひるごはん')
+      await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+      expect(lookupCards()[0].querySelector('.study-pinyin')?.textContent).toMatch(/[\u3040-\u30ff]/)
+      cleanup()
+      await savePreferences({ readingStyle: 'romaji' })
+      await open()
+      type('ひるごはん')
+      await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+      expect(lookupCards()[0].querySelector('.study-pinyin')?.textContent).toMatch(/^[a-z\u0101\u0113\u012b\u014d\u016b' -]+$/i)
+    })
+    it('links each character with stroke data to the writing practice', async () => {
+      await open()
+      type('ひるごはん')
+      await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+      const buttons = within(lookupCards()[0]).getAllByRole('button', { name: /^Practise writing / })
+      expect(buttons.length).toBeGreaterThan(0)
+    })
+    it('lists the two look-up grammar entries beside the lesson grammar, under All words', async () => {
+      await open()
+      fireEvent.click(screen.getByRole('button', { name: /^Grammar/ }))
+      await waitFor(() => expect(document.querySelector('[data-unit^="grammar:"]')).toBeTruthy())
+      expect(screen.getByRole('status')).toHaveTextContent('115 items')
+      fireEvent.click(screen.getByRole('button', { name: /^All words/ }))
+      await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('117 items'), { timeout: 8000 })
+    })
   })
 })
