@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen } from '@testing-library/react'
+import { act, cleanup, render, screen, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 import { resetProfileStorage } from './test/profile-storage'
@@ -46,5 +46,17 @@ describe('a language build', { timeout: 15_000 }, () => {
     render(<App />)
     expect(await screen.findByText(/Mandarin/, { selector: '.topbar-actions .language-pill' })).toBeInTheDocument()
     expect(screen.queryByRole('navigation', { name: 'Language apps' })).toBeNull()
+  })
+
+  it.each([['zh', './ja/', 'Japanese'], ['ja', '../', 'Chinese']] as const)('lists the language apps in the side panel profile menu of the Lab %s build', async (language, href, other) => {
+    vi.stubGlobal('__BUILD_CHANNEL__', 'lab'); vi.stubGlobal('__BUILD_LANGUAGE__', language)
+    setBuildChannelForTests('lab'); setBuildLanguageForTests(language)
+    render(<App />)
+    const nav = await screen.findByRole('navigation', { name: 'Main navigation' })
+    await act(async () => { nav.parentElement?.querySelector<HTMLButtonElement>('.build-switch-button')?.click() })
+    const menu = await screen.findByRole('menu', { name: 'Build' })
+    expect(within(menu).getByRole('menuitemradio', { name: new RegExp(other) })).toHaveAttribute('href', href)
+    expect(within(menu).getAllByRole('menuitemradio', { checked: true }).map(item => item.textContent)).toHaveLength(2)
+    vi.unstubAllGlobals()
   })
 })

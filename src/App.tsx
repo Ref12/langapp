@@ -50,7 +50,7 @@ import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
 import { BuildSwitch, LabMark } from './components/BuildSwitch'
 import { StableCopyDialog } from './components/StableCopyDialog'
 import { labProfileIsEmpty } from './core/profiles/stable-import'
-import { buildChannel, storageNames } from './core/storage-names'
+import { buildChannel, buildLanguage, storageNames } from './core/storage-names'
 import { areaOfRoute, buildDisplayName, getPack, isAreaOn, type Area } from './core/language'
 import { PinyinFormatContext, ReadingSettingsContext } from './components/pinyin-context'
 import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
@@ -64,7 +64,7 @@ import { GroupDetail } from './pages/GroupDetail'
 import { DisplaySettingsProvider } from './components/display-context'
 import { resolveDisplaySettings } from './components/display-settings'
 import { AppSwitch } from './components/AppSwitch'
-import { appSwitchShown } from './core/language/apps'
+import { appHref, appSwitchShown, labApps } from './core/language/apps'
 
 /** The navigation of the app; an entry with an area is shown only where the build's language pack has that area on. */
 const navigation: { id: string; label: string; icon: typeof Home; area?: Area }[] = [
@@ -235,7 +235,7 @@ function WorkspaceApp() {
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
         <div className="sidebar-bottom"><BackupNow />
-          <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
+          <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems} apps={labApps().map(app => ({ label: app.name, glyph: app.glyph, lang: app.id, href: appHref(app.id), current: app.id === buildLanguage() }))}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
         </>
   return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><DisplaySettingsProvider settings={displaySettings}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>

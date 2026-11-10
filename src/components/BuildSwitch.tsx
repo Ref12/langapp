@@ -15,6 +15,9 @@ export const builds = (current: 'stable' | 'lab' = channel(), language: string =
   { id: 'lab' as const, label: 'Lab', href: './lab/', current: current === 'lab' },
 ].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? (language === 'zh' ? '../' : '../../') : './lab/' }))
 
+/** A language app offered in the menu (the app builds the list; this file imports none of the app's code). */
+export interface BuildSwitchApp { label: string; glyph: string; lang: string; href: string; current: boolean }
+
 export interface BuildSwitchItem { label: string; onSelect: () => void }
 
 /** A small always-visible "Lab" mark. Renders nothing in Stable. */
@@ -27,12 +30,13 @@ export function LabMark({ className = '' }: { className?: string }) {
  * The profile item of the navigation as a menu button: it opens Stable / Lab (the current one ticked) and, in Lab, the extra items the app
  * passes in. With settingsHref it adds its own gear link to Settings beside it; leave it out where the page already shows a gear.
  */
-export function BuildSwitch({ children, className = '', settingsHref, settingsLabel = 'Settings', extraItems = [] }: {
+export function BuildSwitch({ children, className = '', settingsHref, settingsLabel = 'Settings', extraItems = [], apps = [] }: {
   children: ReactNode
   className?: string
   settingsHref?: string
   settingsLabel?: string
   extraItems?: BuildSwitchItem[]
+  apps?: BuildSwitchApp[]
 }) {
   const [open, setOpen] = useState(false)
   const root = useRef<HTMLSpanElement>(null)
@@ -40,6 +44,8 @@ export function BuildSwitch({ children, className = '', settingsHref, settingsLa
   const menuId = useId()
   const current = channel()
   const items = current === 'lab' ? extraItems : []
+  const languageApps = current === 'lab' ? apps : []
+  const language = typeof __BUILD_LANGUAGE__ === 'undefined' ? 'zh' : __BUILD_LANGUAGE__
 
   useEffect(() => {
     if (!open) return undefined
@@ -69,9 +75,22 @@ export function BuildSwitch({ children, className = '', settingsHref, settingsLa
     {open && <div className="build-switch-menu" id={menuId} role="menu" aria-label="Build">
       {builds(current).map(build => build.href
         ? <a key={build.id} role="menuitemradio" aria-checked={false} href={build.href} tabIndex={-1} onClick={() => setOpen(false)}><span className="build-switch-tick" />{build.label}</a>
-        : <button key={build.id} type="button" role="menuitemradio" aria-checked tabIndex={-1} onClick={() => { setOpen(false); button.current?.focus() }}>
+        : build.id === 'lab' && language !== 'zh'
+          ? <a key={build.id} role="menuitemradio" aria-checked href="../" tabIndex={-1} onClick={() => setOpen(false)}><span className="build-switch-tick"><Check size={14} aria-hidden="true" /></span>{build.label}<small>this build</small></a>
+          : <button key={build.id} type="button" role="menuitemradio" aria-checked tabIndex={-1} onClick={() => { setOpen(false); button.current?.focus() }}>
           <span className="build-switch-tick"><Check size={14} aria-hidden="true" /></span>{build.label}<small>this build</small>
         </button>)}
+      {languageApps.length > 0 && <>
+        <div className="build-switch-rule" role="separator" />
+        <div className="build-switch-heading" role="presentation" aria-hidden="true">Language</div>
+        {languageApps.map(app => app.current
+          ? <button key={app.lang} type="button" role="menuitemradio" aria-checked tabIndex={-1} onClick={() => { setOpen(false); button.current?.focus() }}>
+            <span className="build-switch-tick"><Check size={14} aria-hidden="true" /></span><span className="build-switch-glyph" lang={app.lang} aria-hidden="true">{app.glyph}</span>{app.label}<small>this app</small>
+          </button>
+          : <a key={app.lang} role="menuitemradio" aria-checked={false} href={app.href} tabIndex={-1} onClick={() => setOpen(false)}>
+            <span className="build-switch-tick" /><span className="build-switch-glyph" lang={app.lang} aria-hidden="true">{app.glyph}</span>{app.label}
+          </a>)}
+      </>}
       {items.length > 0 && <div className="build-switch-rule" role="separator" />}
       {items.map(item => <button key={item.label} type="button" role="menuitem" tabIndex={-1} onClick={() => { setOpen(false); item.onSelect() }}>
         <span className="build-switch-tick" />{item.label}

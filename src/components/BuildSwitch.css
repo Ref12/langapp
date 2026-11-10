@@ -15,3 +15,5 @@
 .build-switch-menu small { margin-left: auto; color: var(--muted, #8b949e); font-size: 11px; }
 .build-switch-tick { display: inline-grid; place-items: center; width: 14px; flex-shrink: 0; color: var(--accent, #d9a441); }
 .build-switch-rule { height: 1px; margin: 4px 2px; background: var(--line, #333); }
+.build-switch-heading { padding: 4px 10px 2px; color: var(--muted, #8b949e); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.build-switch-glyph { display: inline-block; width: 1.4em; text-align: center; }
