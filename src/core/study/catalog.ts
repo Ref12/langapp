@@ -1,4 +1,5 @@
 import { getPack, type LanguageId } from '../language'
+import { readingParts } from '../forms/display'
 import type { RomajiToken } from '../reading/romaji'
 import { type Band, type UnitKind, bandSchema, unitRef } from './contracts'
 
@@ -131,7 +132,9 @@ export function exampleReadingTokens(catalog: Catalog, example: { segments: Exam
     if (segment.punctuation !== undefined) tokens.push({ reading: segment.punctuation, punctuation: true })
     else if (segment.word !== undefined) {
       const unit = catalog.units.get(unitRef('vocabulary', segment.word))
-      tokens.push({ reading: segment.reading ?? (unit?.kind === 'vocabulary' ? unit.record.pr : '') })
+      const reading = segment.reading ?? (unit?.kind === 'vocabulary' ? unit.record.pr : '')
+      const parts = unit?.kind === 'vocabulary' && segment.form ? readingParts(unit.record.cl, unit.record.pr, reading) : undefined
+      if (parts) tokens.push(...parts.map(part => ({ reading: part }))); else tokens.push({ reading })
     } else if (segment.grammar !== undefined) {
       const unit = catalog.units.get(unitRef('grammar', segment.grammar))
       const reading = segment.reading ?? (unit?.kind === 'grammar' ? unit.record.pr : '')

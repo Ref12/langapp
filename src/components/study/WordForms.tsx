@@ -35,7 +35,7 @@ export function WordForms({ catalog, record, reading }: { catalog: Catalog; reco
         return <tr key={row.id}>
           <th scope="row">{row.name}</th>
           <td lang={getPack().learningTag}>{row.text}</td>
-          {reading && <td className="muted"><ReadingText kana={row.reading} /></td>}
+          {reading && <td className="muted"><ReadingText kana={row.reading} parts={row.parts} /></td>}
           <td>{lesson ? <a href={`#lessons/group/${lesson.id}`}>Lesson {lesson.number}</a> : null}</td>
         </tr>
       })}</tbody>

@@ -38,21 +38,21 @@ describe('the pack fields of the display form', () => {
 
 describe('headwordFor', () => {
   it('shows verbs in the polite form by default and in the dictionary form when chosen', () => {
-    expect(headwordFor(offer, 'masu', study)).toEqual({ text: '勉強します', reading: 'べんきょうします' })
-    expect(headwordFor(offer, 'masu', eat)).toEqual({ text: '食べます', reading: 'たべます' })
-    expect(headwordFor(offer, 'masu', go)).toEqual({ text: '行きます', reading: 'いきます' })
-    expect(headwordFor(offer, 'masu', come)).toEqual({ text: '来ます', reading: 'きます' })
-    expect(headwordFor(offer, 'masu', doIt)).toEqual({ text: 'します', reading: 'します' })
-    expect(headwordFor(offer, 'masu', drink)).toEqual({ text: '飲みます', reading: 'のみます' })
-    expect(headwordFor(offer, 'dict', study)).toEqual({ text: '勉強する', reading: 'べんきょうする' })
+    expect(headwordFor(offer, 'masu', study)).toMatchObject({ text: '勉強します', reading: 'べんきょうします' })
+    expect(headwordFor(offer, 'masu', eat)).toMatchObject({ text: '食べます', reading: 'たべます' })
+    expect(headwordFor(offer, 'masu', go)).toMatchObject({ text: '行きます', reading: 'いきます' })
+    expect(headwordFor(offer, 'masu', come)).toMatchObject({ text: '来ます', reading: 'きます' })
+    expect(headwordFor(offer, 'masu', doIt)).toMatchObject({ text: 'します', reading: 'します' })
+    expect(headwordFor(offer, 'masu', drink)).toMatchObject({ text: '飲みます', reading: 'のみます' })
+    expect(headwordFor(offer, 'dict', study)).toMatchObject({ text: '勉強する', reading: 'べんきょうする' })
   })
   it('shows everything else as stored', () => {
-    expect(headwordFor(offer, 'masu', word('学生', 'がくせい'))).toEqual({ text: '学生', reading: 'がくせい' })
-    expect(headwordFor(offer, 'masu', word('寒い', 'さむい', 'i-adj'))).toEqual({ text: '寒い', reading: 'さむい' })
-    expect(headwordFor(offer, 'masu', word('きれい', 'きれい', 'na-adj'))).toEqual({ text: 'きれい', reading: 'きれい' })
-    expect(headwordFor(offer, 'masu', word('食べる', 'たべる', 'no-such-class'))).toEqual({ text: '食べる', reading: 'たべる' })
-    expect(headwordFor(undefined, 'masu', study)).toEqual({ text: '勉強する', reading: 'べんきょうする' })
-    expect(headwordFor(offer, undefined, study)).toEqual({ text: '勉強する', reading: 'べんきょうする' })
+    expect(headwordFor(offer, 'masu', word('学生', 'がくせい'))).toMatchObject({ text: '学生', reading: 'がくせい' })
+    expect(headwordFor(offer, 'masu', word('寒い', 'さむい', 'i-adj'))).toMatchObject({ text: '寒い', reading: 'さむい' })
+    expect(headwordFor(offer, 'masu', word('きれい', 'きれい', 'na-adj'))).toMatchObject({ text: 'きれい', reading: 'きれい' })
+    expect(headwordFor(offer, 'masu', word('食べる', 'たべる', 'no-such-class'))).toMatchObject({ text: '食べる', reading: 'たべる' })
+    expect(headwordFor(undefined, 'masu', study)).toMatchObject({ text: '勉強する', reading: 'べんきょうする' })
+    expect(headwordFor(offer, undefined, study)).toMatchObject({ text: '勉強する', reading: 'べんきょうする' })
   })
 })
 
@@ -83,5 +83,19 @@ describe('formRows', () => {
     expect(adjective[0]).toMatchObject({ id: 'adj-plain', text: '寒い' })
     expect(adjective.find(row => row.id === 'adj-past')).toMatchObject({ text: '寒かった', reading: 'さむかった' })
     expect(adjective.some(row => row.id === 'masu')).toBe(false)
+  })
+})
+
+describe('compound headwords and the する romaji split', () => {
+  it('show the polite form for 授業を受ける, 電話をかける, 雨が降る and 運転する', () => {
+    const words = JSON.parse(readFileSync('src/data/packs/ja/band-1.generated.json', 'utf8')).vocabulary as { ch: string; pr: string; cl?: string }[]
+    const shown = ['授業を受ける', '電話をかける', '雨が降る', '運転する'].map(ch => headwordFor(offer, 'masu', words.find(word => word.ch === ch)!).text)
+    expect(shown).toEqual(['授業を受けます', '電話をかけます', '雨が降ります', '運転します'])
+  })
+  it('cut a する compound for its romaji, in every form, from the class', () => {
+    expect(headwordFor(offer, 'masu', { ch: '勉強する', pr: 'べんきょうする', cl: 'suru-compound' }).parts).toEqual(['べんきょう', 'します'])
+    expect(headwordFor(offer, 'dict', { ch: '勉強する', pr: 'べんきょうする', cl: 'suru-compound' }).parts).toEqual(['べんきょう', 'する'])
+    expect(headwordFor(offer, 'masu', { ch: '食べる', pr: 'たべる', cl: 'ichidan' }).parts).toBeUndefined()
+    expect(formRows(offer, table, study).find(row => row.id === 'masu')?.parts).toEqual(['べんきょう', 'します'])
   })
 })

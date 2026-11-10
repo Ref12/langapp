@@ -163,7 +163,9 @@ export function buildJaPack(base = defaultRoot) {
   const engine = createForms(rules)
   const index = entryIndex(references, data.entries)
   const ownHeadwords = existsSync(join(base, HEADWORDS_FILE))
-  const headwords = readJson(ownHeadwords ? join(base, HEADWORDS_FILE) : join(defaultRoot, HEADWORDS_FILE), { headwords: {} }).headwords // a test's temporary root uses the repository's overlay, for the words it has
+  const headwordFile = readJson(ownHeadwords ? join(base, HEADWORDS_FILE) : join(defaultRoot, HEADWORDS_FILE), { headwords: {} })
+  const headwords = headwordFile.headwords
+  const classOverlay = headwordFile.classes ?? {} // a word's class where the source's part of speech gives none (授業を受ける is listed as an expression) // a test's temporary root uses the repository's overlay, for the words it has
   for (const [id, headword] of Object.entries(headwords)) {
     const entry = index.vocabulary.get(id)
     if (!entry) { if (ownHeadwords) throw new Error(HEADWORDS_FILE + ' names an unknown word ' + id); continue }
@@ -323,7 +325,8 @@ export function buildJaPack(base = defaultRoot) {
   })
   const vocabulary = items.map(item => {
     const e = index.vocabulary.get(item.entry), cl = forms.classes.get(item.entry)?.class
-    return { id: item.id, ch: e.target, pr: e.reading || e.target, ds: item.gloss, lb: vocabLabels.labels[item.id], ...(cl ? { cl } : {}) }
+    const cls = cl ?? (rules.classes[classOverlay[item.entry]] ? classOverlay[item.entry] : undefined)
+    return { id: item.id, ch: e.target, pr: e.reading || e.target, ds: item.gloss, lb: vocabLabels.labels[item.id], ...(cls ? { cl: cls } : {}) }
   })
 
   // ---- the forms table: the names of the forms and the pattern unit that teaches each ----

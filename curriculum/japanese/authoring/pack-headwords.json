@@ -1,7 +1,7 @@
 {
  "version": 1,
  "language": "ja",
- "note": "Headwords written with kanji where the vocabulary lists a verb in kana, because the sentences write it with kanji (行きます) and a form built from a kana headword would not match them. Keyed by word id (the vocabulary record's id); applied by scripts/generate-pack-ja.mjs. Labels do not change.",
+ "note": "Headwords written with kanji where the vocabulary lists a verb in kana, because the sentences write it with kanji (行きます) and a form built from a kana headword would not match them. Keyed by word id (the vocabulary record's id); applied by scripts/generate-pack-ja.mjs. Labels do not change. classes: the conjugation class of a word the source lists without one (授業を受ける is an expression), so the screens can build its forms; the class is only used where the record has none.",
  "headwords": {
   "ja-n5-00048": {
    "ch": "行く",
@@ -19,5 +19,8 @@
    "ch": "会う",
    "pr": "あう"
   }
+ },
+ "classes": {
+  "ja-par-00013": "ichidan"
  }
 }
