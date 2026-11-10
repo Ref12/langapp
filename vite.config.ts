@@ -6,10 +6,12 @@ import { localSettings } from './scripts/local-settings'
 import { localProfiles } from './scripts/local-profiles'
 import { localTts } from './scripts/local-tts'
 import { pwa } from './scripts/pwa'
-import { buildDefines } from './scripts/build-channel'
+import { buildDefines, languageFromEnv } from './scripts/build-channel'
 
 /** Which build this is: main is Lab; the Stable branch says 'stable' here. */
 const BUILD_CHANNEL = 'lab' as const
+/** Which language this build is for: LANGAPP_LANGUAGE (zh, ja, ko; default zh). */
+const BUILD_LANGUAGE = languageFromEnv(BUILD_CHANNEL)
 
 function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
   const base = server.config.base.startsWith('/') ? server.config.base : '/'
@@ -55,8 +57,8 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   cacheDir: fileURLToPath(new URL('./node_modules/.vite/next/', import.meta.url)),
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
   base: './',
-  define: buildDefines(BUILD_CHANNEL),
+  define: buildDefines(BUILD_CHANNEL, BUILD_LANGUAGE),
   appType: 'mpa',
-  plugins: [react(), localSettings(), localProfiles(), localTts(), devSite(new Set(await mockupFiles())), pwa(BUILD_CHANNEL)],
+  plugins: [react(), localSettings(), localProfiles(), localTts(), devSite(new Set(await mockupFiles())), pwa(BUILD_CHANNEL, BUILD_LANGUAGE)],
   build: { outDir: 'dist' },
 }))

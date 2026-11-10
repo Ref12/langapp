@@ -51,6 +51,7 @@ import { BuildSwitch, LabMark } from './components/BuildSwitch'
 import { StableCopyDialog } from './components/StableCopyDialog'
 import { labProfileIsEmpty } from './core/profiles/stable-import'
 import { buildChannel, storageNames } from './core/storage-names'
+import { areaOfRoute, buildDisplayName, getPack, isAreaOn, type Area } from './core/language'
 import { PinyinFormatContext, ReadingSettingsContext } from './components/pinyin-context'
 import { DEFAULT_PINYIN_FORMAT } from './core/pinyin'
 import { BackupNow } from './components/BackupNow'
@@ -66,18 +67,24 @@ import { OtherLanguageSetting } from './components/study/other-language-setting'
 import { LanguageSwitch } from './components/LanguageSwitch'
 import { currentLanguageOf, startedTracks } from './data/tracks'
 
-const navigation = [
+/** The navigation of the app; an entry with an area is shown only where the build's language pack has that area on. */
+const navigation: { id: string; label: string; icon: typeof Home; area?: Area }[] = [
   { id: 'overview', label: 'Overview', icon: Home },
   { id: 'lessons', label: 'Lessons', icon: BookOpen },
   { id: 'practice', label: DRILLS_LABEL, icon: Dumbbell },
-  { id: 'library', label: 'Library', icon: LibraryBig },
-  { id: 'media', label: 'Media', icon: Clapperboard },
-  { id: 'collections', label: TERM.Plural, icon: Layers },
-  { id: 'games', label: 'Games', icon: Gamepad2 },
-  { id: 'conversation', label: 'Assistant', icon: MessageCircle },
-  { id: 'history', label: 'History', icon: HistoryIcon },
-  { id: 'dictionary', label: 'Dictionary', icon: BookText },
+  { id: 'library', label: 'Library', icon: LibraryBig, area: 'library' },
+  { id: 'media', label: 'Media', icon: Clapperboard, area: 'media' },
+  { id: 'collections', label: TERM.Plural, icon: Layers, area: 'collections' },
+  { id: 'games', label: 'Games', icon: Gamepad2, area: 'games' },
+  { id: 'conversation', label: 'Assistant', icon: MessageCircle, area: 'assistant' },
+  { id: 'history', label: 'History', icon: HistoryIcon, area: 'history' },
+  { id: 'dictionary', label: 'Dictionary', icon: BookText, area: 'dictionary' },
 ]
+
+/** What a switched-off area shows: one plain line. */
+function NotAvailable() {
+  return <div className="empty-state"><p>{`Not available in the ${getPack().name} app yet.`}</p></div>
+}
 
 function NotFound() {
   return <EmptyState title="This page is not available"><p>The story, lesson, or saved session may no longer be in this workspace.</p><a className="button primary" href="#overview">Return to overview</a></EmptyState>
@@ -86,6 +93,7 @@ function NotFound() {
 function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProps & { route: string; returnRoute: string; assistantHeader: HTMLElement | null }) {
   const [routePath, ...queryParts] = route.split('?')
   const [page, id, lessonPage, lessonAction] = routePath.split('/')
+  if (!isAreaOn(getPack(), areaOfRoute(routePath))) return <NotAvailable />
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
   if (page === 'book' && id) return <ImportedReader {...props} id={id} />
@@ -143,9 +151,9 @@ function WorkspaceApp() {
   const workspace = useLiveQuery(loadWorkspace, [])
   // Copy profile from Stable: from the build switch's menu, or offered once up front on an empty Lab profile.
   const [copyDialog, setCopyDialog] = useState<'menu' | 'offer' | undefined>()
-  const copyItems = useMemo(() => [{ label: 'Copy profile from Stable…', onSelect: () => setCopyDialog('menu') }], [])
+  const copyItems = useMemo(() => storageNames().copyFromStable ? [{ label: 'Copy profile from Stable…', onSelect: () => setCopyDialog('menu') }] : [], [])
   useEffect(() => {
-    if (buildChannel() !== 'lab') return undefined
+    if (buildChannel() !== 'lab' || !storageNames().copyFromStable) return undefined
     let live = true
     try { if (localStorage.getItem(storageNames().labOnly.copyOfferDeclined)) return undefined } catch { /* no storage */ }
     void labProfileIsEmpty().then(empty => { if (live && empty) setCopyDialog('offer') }, () => undefined)
@@ -182,7 +190,7 @@ function WorkspaceApp() {
       setError(reason instanceof Error ? reason.message : 'Audio could not be stopped. Close this page before trying again.')
     }
     stopBrowserSpeech()
-    document.title = `${label} / LinguaWeave`
+    document.title = `${label} / ${buildChannel() === 'lab' && getPack().id !== 'zh' ? buildDisplayName('lab', getPack()) : 'LinguaWeave'}`
     main.current?.focus({ preventScroll: true })
     window.scrollTo(0, 0)
   }, [route, label, assistant])
@@ -224,7 +232,7 @@ function WorkspaceApp() {
     || (page === 'lessons' && workspace.exerciseSessions.some(session => session.id === route.split('/')[2] && session.status === 'active'))
   const workspaceNavigation = <>
         <p className="workspace-label">YOUR WORKSPACE</p>
-        <nav className="primary-nav" aria-label="Main navigation">{navigation.map(item => <a href={`#${item.id}`} key={item.id} aria-current={section === item.id ? 'page' : undefined} title={item.label}>
+        <nav className="primary-nav" aria-label="Main navigation">{navigation.filter(item => isAreaOn(getPack(), item.area)).map(item => <a href={`#${item.id}`} key={item.id} aria-current={section === item.id ? 'page' : undefined} title={item.label}>
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
         <div className="sidebar-bottom"><BackupNow />
@@ -247,7 +255,7 @@ function WorkspaceApp() {
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
-        <div className="topbar-actions"><LabMark /><BuildSwitch variant="pill" className="language-pill profile-pill" extraItems={copyItems}><span title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span></BuildSwitch><LanguageSwitch tracks={startedTracks(preferences)} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} /><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
+        <div className="topbar-actions"><LabMark /><BuildSwitch variant="pill" className="language-pill profile-pill" extraItems={copyItems}><span title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span></BuildSwitch>{getPack().id === 'zh' && <LanguageSwitch tracks={startedTracks(preferences)} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} />}<span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <PageActionsMenu />

@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
-import { listStorageNames, storageNames } from './storage-names'
+import { buildLanguage, listStorageNames, setBuildLanguageForTests, storageNames } from './storage-names'
 import { MANIFEST_FORMAT, SETTINGS_FORMAT } from './backup/layout'
 import { CHECKPOINT_FORMAT } from './backup/files'
 import { PROFILE_FORMAT } from './profiles/contracts'
@@ -93,6 +93,70 @@ describe('storage names', () => {
   })
 })
 
+const LAB_JA_TODAY = {
+  databases: ['lab.ja.linguaweave-next', 'lab.ja.linguaweave-next-profile-<id>', 'lab.ja.linguaweave-profile-registry', 'lab.ja.linguaweave-backup-state'],
+  localStorage: STABLE_TODAY.localStorage.map(key => 'lab.ja.' + key),
+  sessionStorage: ['lab.ja.linguaweave-media-job-url:<id>'],
+  caches: ['lab.ja.linguaweave-shell-<version>', 'lab.ja.linguaweave-runtime'],
+  serviceWorker: 'sw-lab-ja.js',
+  lock: 'lab.ja.linguaweave-backup',
+  broadcast: 'lab.ja.linguaweave-backup',
+  backupFolder: 'lab/ja/profiles/<id>/',
+}
+
+describe('storage names per language', () => {
+  it('tests run as Lab + zh by default, and the language can be overridden for a test', () => {
+    expect(buildLanguage()).toBe('zh')
+    setBuildLanguageForTests('ja')
+    try { expect(storageNames().language).toBe('ja') } finally { setBuildLanguageForTests(undefined) }
+    expect(storageNames().language).toBe('zh')
+  })
+
+  it("gives exactly the pinned names on Lab + ja", () => {
+    const n = storageNames('lab', 'ja')
+    expect([n.db.learning('default'), n.db.learning('<id>'), n.db.registry, n.db.backupState]).toEqual(LAB_JA_TODAY.databases)
+    expect([...Object.values(n.local).map(key => key.endsWith(':') ? key + '<id>' : key)].sort()).toEqual([...LAB_JA_TODAY.localStorage].sort())
+    expect(n.session.mediaJobUrlPrefix + '<id>').toBe(LAB_JA_TODAY.sessionStorage[0])
+    expect([n.cache.shell('<version>'), n.cache.runtime]).toEqual(LAB_JA_TODAY.caches)
+    expect(n.cache.shellPrefix).toBe('lab.ja.linguaweave-shell-')
+    expect([n.serviceWorkerFile, n.lock, n.broadcast, n.backupFolder('<id>'), n.backupRoot]).toEqual([LAB_JA_TODAY.serviceWorker, LAB_JA_TODAY.lock, LAB_JA_TODAY.broadcast, LAB_JA_TODAY.backupFolder, 'lab/ja/'])
+    expect(n.copyFromStable).toBe(false)
+    expect(storageNames('lab', 'zh').copyFromStable).toBe(true)
+    expect(storageNames('stable').copyFromStable).toBe(false)
+  })
+
+  it('keeps every Lab + zh and Stable name unchanged whatever the language argument of Stable says', () => {
+    expect(listStorageNames('lab', 'zh')).toEqual(listStorageNames('lab'))
+    expect(listStorageNames('stable', 'ja')).toEqual(listStorageNames('stable', 'zh'))
+    expect(storageNames('stable', 'ja').language).toBe('zh')
+  })
+
+  it('gives every fixed name of Lab + ja (and ko) nothing in common with Lab + zh, Stable or each other', () => {
+    const builds = [listStorageNames('stable'), listStorageNames('lab', 'zh'), listStorageNames('lab', 'ja'), listStorageNames('lab', 'ko')]
+    expect(builds.map(names => names.length)).toEqual([builds[0].length, builds[0].length + 2, builds[0].length + 2, builds[0].length + 2])
+    builds.forEach((names, index) => builds.forEach((others, other) => { if (index !== other) expect(names.filter(name => others.includes(name))).toEqual([]) }))
+    expect(storageNames('lab', 'ja').labOnly.copyOfferDeclined).toBe('lab.ja.linguaweave-copy-offer-declined')
+  })
+
+  it('has no prefix scan of one build that can match a name of another', () => {
+    const builds = (['stable-zh', 'lab-zh', 'lab-ja', 'lab-ko'] as const).map(key => {
+      const [channel, language] = key.split('-') as ['stable' | 'lab', 'zh' | 'ja' | 'ko']
+      const n = storageNames(channel, language)
+      return { key, n, names: listStorageNames(channel, language) }
+    })
+    for (const mine of builds) {
+      // Every place a build enumerates by prefix: shell caches, backup config keys, media job keys, profile databases, the repository folder.
+      const prefixes = [mine.n.cache.shellPrefix, mine.n.local.backupConfigPrefix, mine.n.session.mediaJobUrlPrefix, mine.n.db.learning('x').replace(/x$/, ''), mine.n.backupRoot + 'profiles/']
+      for (const other of builds) {
+        if (other === mine) continue
+        const theirs = [...other.names, other.n.cache.shell('1'), other.n.local.backupConfigPrefix + 'p', other.n.session.mediaJobUrlPrefix + 'j', other.n.db.learning('p'), other.n.backupFolder('p') + 'profile.yaml']
+        for (const prefix of prefixes) expect(theirs.filter(name => name.startsWith(prefix)), mine.key + ' scanning ' + prefix + ' sees ' + other.key).toEqual([])
+      }
+    }
+  })
+
+})
+
 // Every database, cache and storage key must come from storage-names.ts, so nothing can open one under a name Stable also uses.
 describe('storage access goes through storage-names', () => {
   const root = fileURLToPath(new URL('..', import.meta.url))
@@ -175,7 +239,9 @@ describe('storage access goes through storage-names', () => {
       "core/assistant/speech-assessment.ts 'linguaweave-mono-capture'", "core/backup/files.ts 'linguaweave-checkpoint'", "core/backup/files.ts 'linguaweave-settings'",
       "core/backup/layout.ts 'linguaweave-backup'", "core/backup/layout.ts 'linguaweave-settings'", "core/backup/layout.ts 'linguaweave-snapshot'", "core/backup-codec.ts 'linguaweave-next-backup'",
       "core/local-settings-contracts.ts 'x-linguaweave-local-settings'", "core/local-tts-contracts.ts 'x-linguaweave-local-tts'", "core/profiles/local-contracts.ts 'x-linguaweave-local-profiles'",
-      "core/profiles/contracts.ts 'linguaweave-profile'", "core/media/tracks.ts 'linguaweave'", "data/mandarin.ts 'Original LinguaWeave", "scripts/pwa.ts 'LinguaWeave", 'App.tsx `${label} / LinguaWeave`',
+      "core/profiles/contracts.ts 'linguaweave-profile'", "core/media/tracks.ts 'linguaweave'", "data/mandarin.ts 'Original LinguaWeave", "scripts/pwa.ts 'LinguaWeave", 'App.tsx `${label} / LinguaWeave`', // the page title
+      "App.tsx `${label} / ${buildChannel() === 'lab' && getPack().id !== 'zh' ? buildDisplayName('lab', getPack()) : 'LinguaWeave'}`", // the page title, named after the language build
+      "core/language/packs.ts 'LinguaWeave", // the build's display name (manifest and page title), not a storage name
     ]
     const strays = found.filter(entry => !allowed.some(prefix => entry.startsWith(prefix.replace(/^(?!scripts\/)/, '')) || entry.includes(prefix)))
     expect(strays).toEqual([])

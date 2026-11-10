@@ -6,7 +6,7 @@ import { storageNames } from '../storage-names'
 
 // The learner connects Lab to the same account and repository Stable already backs up to, and Lab's profile has the same id.
 const target = { owner: 'me', repo: 'backups', token: 't' }
-const make = (fake: ReturnType<typeof fakeGitHub>, channel: 'stable' | 'lab') => new GitHubBackend(target, fake.fetcher, 0, storageNames(channel))
+const make = (fake: ReturnType<typeof fakeGitHub>, channel: 'stable' | 'lab', language: 'zh' | 'ja' | 'ko' = 'zh') => new GitHubBackend(target, fake.fetcher, 0, storageNames(channel, language))
 const files = (marker: string) => new Map(Object.entries({ 'manifest.yaml': 'cursor: 5 # ' + marker + '\n', 'profile.yaml': 'id: p1\nname: "Main"\n', 'journal/a.yaml': 'e1 ' + marker + '\n' }))
 const treeOf = (fake: ReturnType<typeof fakeGitHub>) => new Map(fake.trees.get(fake.commits.get(fake.headCommit())!.tree)!)
 const under = (tree: Map<string, string>, prefix: string) => new Map([...tree].filter(([path]) => path.startsWith(prefix)))
@@ -42,6 +42,27 @@ describe('Lab and Stable backups never meet', () => {
     expect((await lab.listProfiles()).map(profile => profile.id)).toEqual(['p1'])
     expect((await stable.listProfiles()).map(profile => profile.id)).toEqual(['p1'])
     expect(first.version).toBeDefined()
+  })
+
+  it('keeps a language build to lab/<language>/ and never lists its profiles from Lab Chinese or Stable', async () => {
+    const fake = fakeGitHub()
+    const stable = make(fake, 'stable')
+    const lab = make(fake, 'lab')
+    const ja = make(fake, 'lab', 'ja')
+    const ko = make(fake, 'lab', 'ko')
+    await stable.publishDelta('s1', files('stable'), new Set(), 'stable')
+    await lab.publishDelta('l1', files('lab'), new Set(), 'lab')
+    await ja.publishDelta('j1', files('ja'), new Set(), 'ja')
+    await ko.publishDelta('k1', files('ko'), new Set(), 'ko')
+    const tree = treeOf(fake)
+    expect([...under(tree, 'lab/ja/').keys()].every(path => path.startsWith('lab/ja/profiles/j1/'))).toBe(true)
+    expect(under(tree, 'lab/ja/').size).toBe(3)
+    expect((await stable.listProfiles()).map(profile => profile.id)).toEqual(['s1'])
+    expect((await lab.listProfiles()).map(profile => profile.id)).toEqual(['l1'])
+    expect((await ja.listProfiles()).map(profile => profile.id)).toEqual(['j1'])
+    expect((await ko.listProfiles()).map(profile => profile.id)).toEqual(['k1'])
+    expect((await lab.readFiles('j1')).size).toBe(0)
+    expect((await ja.readFiles('l1')).size).toBe(0)
   })
 
   it('removes only its own files when it deletes, in both directions', async () => {

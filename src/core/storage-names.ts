@@ -9,6 +9,9 @@
 
 declare const __BUILD_CHANNEL__: 'stable' | 'lab'
 declare const __BUILD_COMMIT__: string
+declare const __BUILD_LANGUAGE__: LanguageId
+
+import { DEFAULT_BUILD_LANGUAGE, type LanguageId } from './language/ids'
 
 export type BuildChannel = 'stable' | 'lab'
 export const BUILD_CHANNELS: readonly BuildChannel[] = ['stable', 'lab']
@@ -23,11 +26,24 @@ export function buildChannel(): BuildChannel {
   if (override) return override
   return typeof __BUILD_CHANNEL__ === 'undefined' ? 'lab' : __BUILD_CHANNEL__
 }
+const LANGUAGE_OVERRIDE = '__linguaweaveLanguageOverride'
+/** Tests only: pretend this bundle was built for a language (undefined restores the build's own). */
+export function setBuildLanguageForTests(language: LanguageId | undefined): void { (globalThis as Record<string, unknown>)[LANGUAGE_OVERRIDE] = language }
+
+/** The language this bundle was built for (`__BUILD_LANGUAGE__`, from LANGAPP_LANGUAGE; Chinese when nothing says otherwise). */
+export function buildLanguage(): LanguageId {
+  const override = (globalThis as Record<string, unknown>)[LANGUAGE_OVERRIDE] as LanguageId | undefined
+  if (override) return override
+  return typeof __BUILD_LANGUAGE__ === 'undefined' ? DEFAULT_BUILD_LANGUAGE : __BUILD_LANGUAGE__
+}
 /** The short commit this bundle was built from. */
 export function buildCommit(): string { return typeof __BUILD_COMMIT__ === 'undefined' ? 'dev' : __BUILD_COMMIT__ }
 
 export interface StorageNames {
   channel: BuildChannel
+  language: LanguageId
+  /** "Copy profile from Stable" is offered: Lab Chinese only (Stable is Chinese). */
+  copyFromStable: boolean
   db: {
     /** A profile's learning database ('default' is the first profile). */
     learning(profileId: string): string
@@ -79,11 +95,17 @@ export interface StorageNames {
   }
 }
 
-export function storageNames(channel: BuildChannel = buildChannel()): StorageNames {
-  const p = channel === 'stable' ? '' : 'lab.'
-  const root = channel === 'stable' ? '' : 'lab/'
+export function storageNames(channel: BuildChannel = buildChannel(), language: LanguageId = buildLanguage()): StorageNames {
+  // Stable is Chinese, whatever the bundle asking is (Lab code reads Stable's names to copy from it).
+  if (channel === 'stable') language = 'zh'
+  // Lab Chinese keeps `lab.`; another language puts itself after it, so no prefix of one build matches a name of another.
+  const p = channel === 'stable' ? '' : language === 'zh' ? 'lab.' : 'lab.' + language + '.'
+  const root = channel === 'stable' ? '' : language === 'zh' ? 'lab/' : 'lab/' + language + '/'
+  const worker = channel === 'stable' ? 'sw.js' : language === 'zh' ? 'sw-lab.js' : 'sw-lab-' + language + '.js'
   return {
     channel,
+    language,
+    copyFromStable: channel === 'lab' && language === 'zh',
     db: {
       learning: id => id === 'default' ? p + 'linguaweave-next' : p + 'linguaweave-next-profile-' + id,
       registry: p + 'linguaweave-profile-registry',
@@ -108,18 +130,18 @@ export function storageNames(channel: BuildChannel = buildChannel()): StorageNam
     },
     session: { mediaJobUrlPrefix: p + 'linguaweave-media-job-url:' },
     cache: { shellPrefix: p + 'linguaweave-shell-', shell: version => p + 'linguaweave-shell-' + version, runtime: p + 'linguaweave-runtime' },
-    serviceWorkerFile: channel === 'stable' ? 'sw.js' : 'sw-lab.js',
+    serviceWorkerFile: worker,
     lock: p + 'linguaweave-backup',
     broadcast: p + 'linguaweave-backup',
     backupFolder: id => root + 'profiles/' + id + '/',
     backupRoot: root,
-    labOnly: { copyOfferDeclined: 'lab.linguaweave-copy-offer-declined', importScratch: token => 'lab.linguaweave-next-import-' + token },
+    labOnly: { copyOfferDeclined: p + 'linguaweave-copy-offer-declined', importScratch: token => p + 'linguaweave-next-import-' + token },
   }
 }
 
 /** Every fixed name (and prefix) of a channel, flattened: used by the tests and by anything that must not collide. */
-export function listStorageNames(channel: BuildChannel): string[] {
-  const n = storageNames(channel)
+export function listStorageNames(channel: BuildChannel, language: LanguageId = 'zh'): string[] {
+  const n = storageNames(channel, language)
   return [
     n.db.learning('default'), n.db.learning('<profile-id>'), n.db.registry, n.db.backupState,
     ...Object.values(n.local), ...Object.values(n.session),

@@ -5,14 +5,15 @@ import './BuildSwitch.css'
 // Self-contained on purpose: this file and BuildSwitch.css are copied unchanged onto the Stable branch, an older commit.
 // They depend on React, the icon library and the build constant only: import nothing else from the app.
 declare const __BUILD_CHANNEL__: 'stable' | 'lab'
+declare const __BUILD_LANGUAGE__: string
 
 const channel = (): 'stable' | 'lab' => (typeof __BUILD_CHANNEL__ === 'undefined' ? 'lab' : __BUILD_CHANNEL__)
 
 /** The two builds. The other one is a plain link to its start page (the route is not kept): ./lab/ from Stable, ../ from Lab. */
-export const builds = (current: 'stable' | 'lab' = channel()) => [
+export const builds = (current: 'stable' | 'lab' = channel(), language: string = typeof __BUILD_LANGUAGE__ === 'undefined' ? 'zh' : __BUILD_LANGUAGE__) => [
   { id: 'stable' as const, label: 'Stable', href: '../', current: current === 'stable' },
   { id: 'lab' as const, label: 'Lab', href: './lab/', current: current === 'lab' },
-].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? '../' : './lab/' }))
+].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? (language === 'zh' ? '../' : '../../') : './lab/' }))
 
 export interface BuildSwitchItem { label: string; onSelect: () => void }
 
