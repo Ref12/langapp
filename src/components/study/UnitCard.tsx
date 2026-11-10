@@ -60,10 +60,10 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
     meaning={unit.record.ds}
     extra={<>
       {otherLines && vocabulary && other.length > 0 && <OtherLanguageLines senseId={unit.record.id} />}
-      {vocabulary && !compact && <WordForms catalog={catalog} record={unit.record} reading={pinyin} />}
       {phrases && vocabulary && <a className="small phrase-word-link" href={phrases.href}>{phrases.count === undefined ? 'Phrases' : `${phrases.count} ${phrases.count === 1 ? 'phrase' : 'phrases'}`}</a>}</>}
     actions={vocabulary && snippet}
     below={<>
+      {vocabulary && !compact && <WordForms catalog={catalog} record={unit.record} reading={pinyin} />}
       {entry && <AddedByLine entry={entry} index={addedIndex} />}
       {known && !hideStatus && <SkillCounts itemRef={unit.ref} />}
       {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} actions={<PracticeSnippet source={{ text: renderExample(catalog, example).text, meaning: example.translation, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />} />)}
