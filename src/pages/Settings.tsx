@@ -2,7 +2,6 @@ import { useContext, useState } from 'react'
 import { getPack, isAreaOn, readingTitle } from '../core/language'
 import { savePreferences } from '../core/learning'
 import { formOptionLabel } from '../core/forms/display'
-import { tokensToRomaji } from '../core/reading/romaji'
 import { resolveDisplaySettings, usePackFormsTable } from '../components/display-settings'
 import { PageHeading, type PageProps } from '../components/shared'
 import { AIConnectionSettings } from '../components/assistant/AIConnectionSettings'
@@ -59,8 +58,8 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       {pack.displayForms && formsTable && <label>Show verbs as<select disabled={busy} value={displayForm} onChange={event => void run(() => savePreferences({ displayForm: event.target.value }))}>
         {pack.displayForms.choices.map(choice => <option key={choice.id} value={choice.id}>{formOptionLabel(pack.displayForms!, formsTable, choice.id)}</option>)}
       </select></label>}
-      {pack.readingStyles && pack.readingStyles.choices.length > 1 && <label>Readings<select disabled={busy} value={readingStyle} onChange={event => void run(() => savePreferences({ readingStyle: event.target.value === 'romaji' ? 'romaji' : 'kana' }))}>
-        {pack.readingStyles.choices.map(choice => <option key={choice} value={choice}>{`${choice === 'kana' ? 'Kana' : 'Romaji'} (${choice === 'kana' ? pack.readingStyles!.sample.join('') : tokensToRomaji(pack.readingStyles!.sample.map(reading => ({ reading })), pack.romaji)})`}</option>)}
+      {pack.readingStyles && pack.readingStyles.choices.length > 1 && <label>Readings<select disabled={busy} value={readingStyle} onChange={event => { const choice = pack.readingStyles!.choices.find(item => item === event.target.value); if (choice) void run(() => savePreferences({ readingStyle: choice })) }}>
+        {pack.readingStyles.choices.map(choice => <option key={choice} value={choice}>{`${pack.readingStyles!.options[choice]?.label ?? choice} (${pack.readingStyles!.options[choice]?.example ?? ''})`}</option>)}
       </select></label>}
       {pack.readings === 'pinyin' && <>
       <label>Pinyin format<select disabled={busy || pinyinSetup === 'loading'} value={workspace.preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT} onChange={event => {

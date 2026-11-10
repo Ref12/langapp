@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { activeDisplayForm, headwordFor, type Headword, type HeadwordRecord } from '../core/forms/display'
-import { getPack, type PackForm, type ReadingScript } from '../core/language'
+import { getPack, romanizesReading, type PackForm, type ReadingScript } from '../core/language'
 import { loadPackForms } from '../core/language/pack-forms'
 import { showsReading } from '../core/study/reading-line'
 
@@ -25,10 +25,10 @@ export function useHeadword(record: HeadwordRecord): Headword {
   return headwordFor(getPack().displayForms, useDisplaySettings().form, record, table)
 }
 
-/** Whether a reading line says something the line above it does not: in kana, not when it is the same as the text; in romaji, whenever there is a reading (a word written only in kana still has romaji to show). */
+/** Whether a reading line says something the line above it does not: in kana, not when it is the same as the text; in romaji or Korean romanization, whenever there is a reading (a word written only in kana or Hangul still has a romanization to show). */
 export function useShowsReading(): (kana: string | undefined, text: string) => boolean {
   const style = useDisplaySettings().readingStyle
-  return (kana, text) => style === 'romaji' ? Boolean(kana) : showsReading(kana, text)
+  return (kana, text) => romanizesReading(style) ? Boolean(kana) : showsReading(kana, text)
 }
 
 /** The pack's forms table once it has loaded (undefined before, and for a pack without one). */

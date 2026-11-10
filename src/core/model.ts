@@ -66,7 +66,7 @@ export interface Preferences {
   /** The form verbs are shown in (a form id of the language pack's forms table). Absent until the learner chooses; it changes what is displayed, never what is stored. */
   displayForm?: string
   /** Kana or romaji for the reading line. Absent until the learner chooses; romaji is made from the kana for display and never stored. */
-  readingStyle?: 'kana' | 'romaji'
+  readingStyle?: 'kana' | 'romaji' | 'hangul' | 'romanized'
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences

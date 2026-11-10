@@ -15,5 +15,5 @@ export const localSettingsSchema = z.object({
   speechVoices: speechVoicePreferencesSchema.optional(),
   pinyinFormat: pinyinFormatSchema.optional(),
   displayForm: z.string().regex(/^[a-z][a-z0-9-]{0,39}$/).optional(),
-  readingStyle: z.enum(['kana', 'romaji']).optional(),
+  readingStyle: z.enum(['kana', 'romaji', 'hangul', 'romanized']).optional(),
 }).strict()

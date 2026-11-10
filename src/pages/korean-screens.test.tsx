@@ -94,6 +94,15 @@ describe('screen text of the Korean build for a small seeded learner', () => {
   it('Lessons list', async () => {
     await pin('lessons-list', await screenText('lessons/list', () => expect(screen.getByText('Level 1')).toBeInTheDocument()))
   })
+  it('Settings offers Hangul only or Hangul with romanization', async () => {
+    await pin('settings', await screenText('settings', () => expect(screen.getByText('Hangul with romanization', { exact: false })).toBeInTheDocument()))
+  })
+  it('A lesson page with Hangul only has no romanization line', async () => {
+    await db.preferences.update('workspace', { readingStyle: 'hangul' })
+    const text = await screenText(`lessons/group/${groupIds()[4]}`, () => expect(document.querySelector('.word-card')).toBeTruthy())
+    expect(text).not.toMatch(/\buri\b/)
+    await pin('lesson-hangul-only', text)
+  })
   it('A lesson page', async () => {
     await pin('lesson', await screenText(`lessons/group/${groupIds()[4]}`, () => expect(document.querySelector('.word-card')).toBeTruthy()))
   })

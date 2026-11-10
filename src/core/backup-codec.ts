@@ -49,7 +49,7 @@ export const workspaceSchema = z.object({
     otherLanguageCards: z.enum(['off', 'ja', 'ko', 'both']).optional(),
     japaneseReading: z.enum(['romaji', 'kana']).optional(),
     displayForm: z.string().regex(/^[a-z][a-z0-9-]{0,39}$/).optional(),
-    readingStyle: z.enum(['kana', 'romaji']).optional(),
+    readingStyle: z.enum(['kana', 'romaji', 'hangul', 'romanized']).optional(),
   }).strict(),
   words: z.array(z.object({
     wordId: z.string(), language: z.literal('zh-Hans'), introducedAt: time, introducedFrom: z.string().max(200),

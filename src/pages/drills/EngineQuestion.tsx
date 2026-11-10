@@ -13,7 +13,7 @@ import type { ChoiceExercise, ExerciseAttempt, MatchExercise, TilesExercise } fr
 import { tidyPinyin } from '../../core/drills/items'
 import { gradeMeaning, type ChineseGrade, type MeaningGrade } from '../../core/session/grade'
 import type { ReadingGrade } from '../../core/language/reading-input'
-import { ReadingText } from '../../components/display-context'
+import { ModelReading, ReadingText } from '../../components/display-context'
 import type { AnswerMode, ConjugateItem, Form, FormPickItem, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
 import { ChoiceQuestion, MatchQuestion, TilesQuestion } from '../Study'
 import { ConversationQuestion, ExchangePick, WhichCorrect } from './DatasetQuestions'
@@ -75,7 +75,7 @@ function Tiles({ exercise, ctx, onDone }: { exercise: TilesItem; ctx: QuestionCo
       submit={answer => setAttempt({ answer, grade: getPack().gradeSentence({ text: answer.join(''), placed: answer, accepted: exercise.accepted, spelled: exercise.spelled, forms: ctx.forms, optional: exercise.optional, english: exercise.translation }) })} next={() => onDone({ correct: correct === true })} />
     {grade && <div className={`notice answer-feedback engine-diff${correct ? ' success' : ''}`} role="status">
       {correct ? (grade.alternative ? <p>Also correct. The model answer:</p> : null) : <p>{swapped ? `Word order: ${swapped.a} comes before ${swapped.b}.` : `Not the model answer.${grade.messages.length ? ' ' + joinNotes(grade.messages) : ''}`}</p>}
-      <p className="engine-answer-line"><span lang={getPack().learningTag}>{exercise.model}</span>{ctx.pinyin && exercise.modelPinyin ? <> <span className="small muted"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></span></> : null}</p></div>}
+      <p className="engine-answer-line"><span lang={getPack().learningTag}>{exercise.model}</span>{ctx.pinyin && exercise.modelPinyin ? <ModelReading text={tidyPinyin(exercise.modelPinyin)} /> : null}</p></div>}
   </>
 }
 

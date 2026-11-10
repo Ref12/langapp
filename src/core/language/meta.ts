@@ -28,8 +28,10 @@ export interface PackWording {
 /** How readings are written: pinyin per Han character (annotated with Han runs), or one plain reading line under the text. */
 export type ReadingStyle = 'pinyin' | 'line'
 
-/** How a reading line is written when a pack offers a choice: in kana, or in romaji made from the kana. */
-export type ReadingScript = 'kana' | 'romaji'
+/** How a reading line is written when a pack offers a choice. Japanese: kana, or romaji made from the kana. Korean: no line ('hangul'), or the Revised Romanization of the Hangul ('romanized'). */
+export type ReadingScript = 'kana' | 'romaji' | 'hangul' | 'romanized'
+/** Whether the style shows a line of Latin letters under the text (the romanized ones). */
+export const romanizesReading = (style: ReadingScript | undefined): boolean => style === 'romaji' || style === 'romanized'
 
 /** One form a learner may choose to see verbs in: its id in the pack's forms table, and the kinds of word it is shown for (the kinds the form is joined for in that table). */
 export interface DisplayFormChoice { id: string; kinds: string[] }
@@ -46,8 +48,8 @@ export interface PackDisplayForms {
 export interface PackReadingStyles {
   choices: ReadingScript[]
   default: ReadingScript
-  /** A sample reading in the option labels, as the tokens of a sentence's reading line: ["べんきょう", "します"]. */
-  sample: string[]
+  /** What the Settings select says of each choice: its name and a sample reading (shown as "Kana (べんきょうします)"). */
+  options: Partial<Record<ReadingScript, { label: string; example: string }>>
 }
 
 /** What a pack says about a sentence's identity and its tiles (phrase-identity.ts): phraseKey(text) and segment(text, words). */
@@ -102,10 +104,11 @@ export const jaMeta: PackMeta = { id: 'ja', name: 'Japanese', nativeName: '\u65E
   wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', glyph: '\u65E5', published: true, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
   writing: jaWriting, ...jaIdentity, ...jaSentence, ...jaPage, ...jaWordForms,
   displayForms: jaDisplayForms, dictionary: jaDictionary(jaDisplayForms),
-  readingStyles: { choices: ['kana', 'romaji'], default: 'kana', sample: ['\u3079\u3093\u304D\u3087\u3046', '\u3057\u307E\u3059'] } }
+  readingStyles: { choices: ['kana', 'romaji'], default: 'kana', options: { kana: { label: 'Kana', example: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059' }, romaji: { label: 'Romaji', example: 'benkyou shimasu' } } } }
 export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: { ...nothing, writing: true },
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', glyph: '\uD55C', published: true, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
-  dictionary: koDictionary, writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms }
+  dictionary: koDictionary, writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
+  readingStyles: { choices: ['hangul', 'romanized'], default: 'romanized', options: { hangul: { label: 'Hangul only', example: '공부해요' }, romanized: { label: 'Hangul with romanization', example: '공부해요 gongbuhaeyo' } } } }
 
 export const METAS: Record<LanguageId, PackMeta> = { zh: zhMeta, ja: jaMeta, ko: koMeta }
 
