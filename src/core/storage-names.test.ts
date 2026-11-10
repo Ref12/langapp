@@ -235,6 +235,7 @@ describe('storage access goes through storage-names', () => {
     }
     const allowed = [
       'App.tsx "LinguaWeave home"', 'App.tsx ">linguaweave</span>', // a page label in JSX, not a name
+      'components/MobileNavigation.tsx ">linguaweave</span>', // the drawer's brand label in JSX, not a name
       "pages/drills/HandsFree.tsx 'LinguaWeave'", 'components/BackupPanel.tsx `linguaweave-before-restore-', 'components/ProfileSettings.tsx',
       "core/assistant/speech-assessment.ts 'linguaweave-mono-capture'", "core/backup/files.ts 'linguaweave-checkpoint'", "core/backup/files.ts 'linguaweave-settings'",
       "core/backup/layout.ts 'linguaweave-backup'", "core/backup/layout.ts 'linguaweave-settings'", "core/backup/layout.ts 'linguaweave-snapshot'", "core/backup-codec.ts 'linguaweave-next-backup'",
