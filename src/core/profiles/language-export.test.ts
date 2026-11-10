@@ -1,6 +1,10 @@
 import { beforeEach, afterEach, describe, expect, it } from 'vitest'
 import { db, initializeWorkspace } from '../database'
-import { initializeProfiles } from './store'
+import { exportWorkspaceBackup, restoreBackup } from '../backup'
+import { loadWorkspace } from '../database'
+import { dueCards } from '../study/knowledge'
+import { loadBackupVersion, applyBackup } from '../backup/service'
+import { getActiveProfile, initializeProfiles, exportActiveProfile, restoreActiveProfile } from './store'
 import { resetBackupStateForTests, saveCache } from '../backup/state'
 import { runBackup, saveBackupConfig, setBackendFactoryForTests, readBackupStatus, type BackupConfig } from '../backup/service'
 import type { BackupBackend, DeltaResult, RemoteState } from '../backup/backend'
@@ -77,5 +81,86 @@ describe('reproduction: Back up now with Japanese and Korean rows in storage', (
     await runBackup()
     expect((await readBackupStatus()).lastError).toBeUndefined()
     expect(memory.versions.length).toBe(2)
+  })
+})
+
+const rows = async () => ({
+  knowledge: (await db.knowledge.toArray()).sort((a, b) => a.ref.localeCompare(b.ref)),
+  cards: (await db.studyCards.toArray()).sort((a, b) => a.id.localeCompare(b.id)),
+  lessons: (await db.lessons.toArray()).sort((a, b) => a.lessonId.localeCompare(b.lessonId)),
+  preferences: await db.preferences.get('workspace'),
+})
+async function seedAll() {
+  await seedMixed()
+  await db.lessons.bulkPut([{ lessonId: 'ja:lesson:1', startedAt: 5, completedAt: 6 }, { lessonId: 'ko:lesson:2', startedAt: 7 }])
+  await db.preferences.update('workspace', { currentLanguage: 'ja', startedTracks: ['ja', 'ko'], otherLanguageCards: 'ja', japaneseReading: 'kana' } as never)
+}
+async function wipe() {
+  await resetBackupStateForTests(); localStorage.clear()
+  await initializeProfiles(); await db.delete(); await db.open(); await initializeWorkspace()
+}
+
+describe('every export form carries the language rows and restores them exactly', () => {
+  it('profile YAML: writes the ref explicitly on language rows only', async () => {
+    await seedAll()
+    const text = await exportActiveProfile()
+    for (const ref of languageRefs) expect(text).toContain('ref: ' + ref)
+    expect(text).not.toMatch(/ref: (vocabulary|grammar):/)
+    const before = await rows()
+    await wipe()
+    await restoreActiveProfile(text)
+    expect(await rows()).toEqual(before)
+  })
+
+  it('JSON backup: export then restore gives the same rows', async () => {
+    await seedAll()
+    const before = await rows()
+    const text = await exportWorkspaceBackup()
+    await wipe()
+    await restoreBackup(text)
+    expect(await rows()).toEqual(before)
+  })
+
+  it('cloud backup: Back up now succeeds twice and restores the same rows', async () => {
+    const memory = memoryBackend()
+    setBackendFactoryForTests(() => memory.backend)
+    await saveBackupConfig(config)
+    await seedAll()
+    const before = await rows()
+    await runBackup()
+    await db.knowledge.put({ ref: 'vocabulary:shi4--identity', kind: 'vocabulary', lb: 'shi4--identity', band: '1', addedAt: T0 + 9, source: 'new' })
+    await db.studyCards.put(card('vocabulary:shi4--identity', T0 + 9))
+    await db.journal.add({ t: new Date(T0 + 9).toISOString(), op: 'add', ref: 'vocabulary:shi4--identity', band: 1, source: 'new' } as never)
+    await runBackup()
+    expect(memory.versions.length).toBe(2)
+    await wipe()
+    await saveBackupConfig(config)
+    await applyBackup(await loadBackupVersion(config, getActiveProfile().id), config)
+    const after = await rows()
+    expect(after.knowledge.filter(row => languageRefs.includes(row.ref))).toEqual(before.knowledge.filter(row => languageRefs.includes(row.ref)))
+    expect(after.cards.filter(row => languageRefs.includes(row.ref))).toEqual(before.cards.filter(row => languageRefs.includes(row.ref)))
+    expect(after.lessons).toEqual(before.lessons)
+    expect(after.preferences).toMatchObject({ startedTracks: ['ja', 'ko'], japaneseReading: 'kana' })
+    expect(after.knowledge.some(row => row.ref === 'vocabulary:shi4--identity')).toBe(true)
+  })
+})
+
+describe('the rows are carried but never shown', () => {
+  it('the workspace view and the due queue hold only Chinese items', async () => {
+    await seedAll()
+    const workspace = await loadWorkspace()
+    expect(workspace.knowledge.map(row => row.ref)).toEqual(['vocabulary:wo3--me'])
+    expect(workspace.studyCards.map(row => row.ref)).toEqual(['vocabulary:wo3--me'])
+    expect(workspace.lessons).toEqual([])
+    expect(workspace.preferences).not.toHaveProperty('startedTracks')
+    expect((await dueCards(Date.now() + 1e12)).every(due => !/^[a-z]{2,3}:/.test(due.ref))).toBe(true)
+  })
+
+  it('a Chinese-only profile exports without a single ref field', async () => {
+    await db.knowledge.put({ ref: 'vocabulary:wo3--me', kind: 'vocabulary', lb: 'wo3--me', band: '1', addedAt: T0, source: 'new' })
+    await db.studyCards.put(card('vocabulary:wo3--me', T0))
+    const text = await exportActiveProfile()
+    expect(text).not.toMatch(/\n\s+ref:/)
+    expect(text).toMatch(/kind: vocabulary\n\s+lb: wo3--me/)
   })
 })
