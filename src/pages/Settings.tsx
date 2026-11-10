@@ -10,6 +10,8 @@ import { VoiceSettings } from '../components/assistant/VoiceSettings'
 import { HandsfreeDefaults } from '../components/handsfree/HandsfreeSettingsForm'
 import { ProfileSettings } from '../components/ProfileSettings'
 import { BackupPanel } from '../components/BackupPanel'
+import { StableCopyDialog } from '../components/StableCopyDialog'
+import { storageNames } from '../core/storage-names'
 import { Diagnostics } from '../components/Diagnostics'
 import { hapticsSupported } from '../core/haptics'
 import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
@@ -21,6 +23,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
   const pack = getPack()
   const [name, setName] = useState(workspace.preferences.name)
   const [notice, setNotice] = useState('')
+  const [copyOpen, setCopyOpen] = useState(false)
   const [profileBusy, setProfileBusy] = useState(false)
   const [aiBusy, setAIBusy] = useState(false)
   const [speechBusy, setSpeechBusy] = useState(false)
@@ -31,6 +34,11 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
     <PageHeading eyebrow="YOUR OWN PACE. YOUR OWN SPACE." title="Your workspace.">{`A local ${pack.wording.language} learning space, separate from the original app.`}</PageHeading>
     <ProfileSettings busy={workspaceBusy || aiBusy || speechBusy} onBusyChange={setProfileBusy} />
     <BackupPanel busy={busy} />
+    {storageNames().copyFromStable && <section className="panel" aria-labelledby="stable-copy"><h2 id="stable-copy">Stable</h2>
+      <p className="small muted">Copy your profile from Stable into Lab. Stable is not changed.</p>
+      <div className="button-row"><button type="button" className="button secondary" disabled={busy} onClick={() => setCopyOpen(true)}>Copy profile from Stable…</button></div>
+      {copyOpen && <StableCopyDialog mode="menu" onClose={() => setCopyOpen(false)} />}
+    </section>}
     <form className="panel settings-form" onSubmit={event => {
       event.preventDefault()
       void run(async () => { await savePreferences({ name }); setNotice('Workspace name saved.') })
