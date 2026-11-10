@@ -99,6 +99,15 @@ export function createKorean(rules) {
     if (!spec || !cls) return null
     if (cls === 'copula-ida' || cls === 'copula-anida') { const text = copula(cls, formId, opts); return text == null ? null : { surface: text } }
     if (!lemma.endsWith('다') || lemma.length < 2) return null
+    // Per-lemma restrictions (forms.yaml): not: lists whose words never take the form; only: the list of words that do, with via: the intransitive partner a transitive verb takes it from (켜다 -> 켜져 있어요).
+    const listed = name => (lists[name] ?? []).includes(lemma)
+    if ([].concat(spec.not ?? []).some(listed)) return null
+    if (spec.only && !listed(spec.only)) {
+      const partner = spec.via ? rules.lemma_maps?.[spec.via]?.[lemma] : undefined
+      if (!partner) return null
+      const partnerClass = classify(partner, 'verb')
+      return partnerClass && (lists[spec.only] ?? []).includes(partner) ? forms(partner, partnerClass, formId, opts) : null
+    }
     const stem = lemma.slice(0, -1)
     let body
     switch (spec.join) {

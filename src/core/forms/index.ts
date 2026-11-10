@@ -11,7 +11,7 @@ export interface BuiltForm { surface: string; reading?: string }
 export interface FormOptions { reading?: string; after?: 'vowel' | 'consonant'; prev?: string }
 
 /** One form of the rules: its label, the grammar point that teaches it, and how it is built (Japanese: stem name + ending; Korean: join + ending, optional prefix). */
-export interface FormSpec { label: string; grammar?: unknown; stem?: string; add?: string; join?: string; prefix?: string; multiword?: boolean }
+export interface FormSpec { label: string; grammar?: unknown; stem?: string; add?: string; join?: string; prefix?: string; multiword?: boolean; /** Korean: the kinds of word the form is built for; absent: verbs and adjectives. */ kinds?: string[]; /** Korean: lemma lists (forms.yaml lemmas) the form is built only for / never for, and the map of intransitive partners a transitive verb takes it from. */ only?: string; not?: string | string[]; via?: string }
 export interface ClassMeta { description?: string; group?: string; irregular?: boolean; baseline?: string; itemised?: boolean; tails?: Record<string, Record<string, string>>; potential?: string; volitional?: string }
 export interface FormsRules { forms: Record<string, FormSpec>; classes: Record<string, ClassMeta>; templates?: Record<string, Record<string, { stem?: string; add?: string | Record<string, string> }>> }
 
@@ -23,8 +23,8 @@ export interface FormsEngine {
   forms(lemma: string, cls: string, formId: string, opts?: FormOptions): BuiltForm | null
   /** The form ids of the class that produce the surface (an empty list when none does). */
   analyse(surface: string, lemma: string, cls: string, opts?: FormOptions): string[]
-  /** The form ids that apply to a class. */
-  formIds(cls: string): string[]
+  /** The form ids that apply to a class (Korean: and to the kind of word, verb or adjective, when given). */
+  formIds(cls: string, kind?: string): string[]
   /** The grammar point (JLPT / TOPIK / parallel id) the form teaches for the class, or null. */
   grammarOf(formId: string, cls: string): string | null
   /** Is this form an irregular form of the lemma (it gets a lesson item)? */

@@ -64,7 +64,7 @@ function shuffle<T>(list: readonly T[], rng: () => number): T[] {
 export function engineWordForms(language: FormsLanguage): WordForms {
   const engine = formsEngine(language)
   const optionsOf = (word: FormWord) => word.reading ? { reading: word.reading } : {}
-  const taughtOf = (word: FormWord, taught: ReadonlySet<string>) => taughtFormIds(language, word.cls, taught).filter(id => engine.forms(word.lemma, word.cls, id, optionsOf(word)) != null)
+  const taughtOf = (word: FormWord, taught: ReadonlySet<string>) => taughtFormIds(language, word.cls, taught, word.kind).filter(id => engine.forms(word.lemma, word.cls, id, optionsOf(word)) != null)
 
   const conjugate = (request: WordFormRequest): WordFormExercise[] => {
     const out: WordFormExercise[] = []
@@ -104,7 +104,7 @@ export function engineWordForms(language: FormsLanguage): WordForms {
     const picked = new Set<string>()
     const byId = new Map(request.words.map(word => [word.id, word]))
     // Only a token the analyser confirms for its word's class and form.
-    const confirmed = (token: InflectedWord) => { const word = byId.get(token.word); return !!word && conjugable(word.cls) && engine.formIds(word.cls).includes(token.formId) && engine.analyse(token.surface, word.lemma, word.cls, optionsOf(word)).includes(token.formId) }
+    const confirmed = (token: InflectedWord) => { const word = byId.get(token.word); return !!word && conjugable(word.cls) && engine.formIds(word.cls, word.kind).includes(token.formId) && engine.analyse(token.surface, word.lemma, word.cls, optionsOf(word)).includes(token.formId) }
     const tokens = shuffle(request.inflected.filter(confirmed), request.rng)
     const taughtBy = new Map<string, string[]>()
     for (const token of tokens) {
@@ -142,7 +142,7 @@ export interface PackWordForms { wordForms: WordForms }
 const none: WordForms = { offered: false, exercises: () => [], grade: (given, answer) => given.normalize('NFC') === answer.surface.normalize('NFC') ? 'right' : 'wrong', almost: '' }
 export const zhWordForms: PackWordForms = { wordForms: none }
 export const jaWordForms: PackWordForms = { wordForms: engineWordForms('ja') }
-/** Korean: the same entry works with the forms engine as it is (rules, classes and forms ids), but it has no catalog yet, so nothing is ever asked. */
+/** Korean: the same engine, over the Korean rules; the pack's vocabulary carries each verb's and adjective's class. */
 export const koWordForms: PackWordForms = { wordForms: engineWordForms('ko') }
 
 export { formLabel }

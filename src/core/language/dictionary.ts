@@ -2,7 +2,7 @@
 // The Dictionary page asks the pack and never tests the language. Chinese's values are the strings and the search the page had before packs.
 import { makeMatcher } from '../dictionary-search'
 import { forms as buildForm } from '../forms'
-import { kindOfClass } from '../forms/display'
+import { kindOfRecord } from '../forms/display'
 import { kanaToRomaji, type RomajiOverrides } from '../reading/romaji'
 import type { Unit } from '../study/catalog'
 import type { PackDisplayForms } from './meta'
@@ -73,10 +73,10 @@ function keysOf(unit: CatalogUnit, offer: PackDisplayForms, overrides: RomajiOve
     const record = unit.record
     text.add(foldText(record.ch)); kana.add(foldText(record.pr))
     // every form the word can be shown in (a verb: polite and dictionary), as the pack's forms engine builds it
-    const kind = record.cl ? kindOfClass(offer.language, record.cl) : undefined
+    const kind = kindOfRecord(offer.language, record)
     if (record.cl && kind !== undefined) for (const choice of offer.choices) if (choice.kinds.includes(kind)) {
       const built = buildForm(offer.language, record.ch, record.cl, choice.id, { reading: record.pr })
-      if (built) { text.add(foldText(built.surface)); kana.add(foldText(built.reading ?? record.pr)) }
+      if (built) { text.add(foldText(built.surface)); kana.add(foldText(built.reading ?? (offer.language === 'ko' ? built.surface : record.pr))) }
     }
   } else {
     const record = unit.record

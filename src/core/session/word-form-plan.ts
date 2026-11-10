@@ -1,7 +1,7 @@
 // The word-form questions of a plan (Conjugate, Which form is this?): which words and sentences the pack is given, and the forms the lessons so far have taught.
 // The pack builds the questions (language/word-forms.ts); nothing here tests the language: a pack without word forms is never asked.
 import type { FormWord } from '../forms/conjugate'
-import type { HeadwordRecord, Headword } from '../forms/display'
+import { kindOfWord, type HeadwordRecord, type Headword } from '../forms/display'
 import type { InflectedWord } from '../language/word-forms'
 import type { BankPhrase } from '../phrases/contracts'
 import { usableFor } from '../phrases/bank'
@@ -48,7 +48,7 @@ export function formWords(catalog: Catalog, refs: Iterable<string>, shown?: (rec
     const unit = catalog.units.get(ref)
     if (!unit || !isVocabulary(unit) || !unit.record.cl) continue
     const word = shown?.(unit.record)
-    out.push({ id: ref, lemma: unit.record.ch, reading: unit.record.pr, cls: unit.record.cl, gloss: glossOf(unit.record.ds),
+    out.push({ id: ref, lemma: unit.record.ch, reading: unit.record.pr, cls: unit.record.cl, ...(kindOfWord(unit.record) ? { kind: kindOfWord(unit.record) } : {}), gloss: glossOf(unit.record.ds),
       ...(word && (word.text !== unit.record.ch || word.reading !== unit.record.pr) ? { shown: { text: word.text, reading: word.reading } } : {}) })
   }
   return out

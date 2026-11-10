@@ -11,13 +11,13 @@ export function createForms(rules) {
   const classes = rules.classes
   const copulaClass = cls => cls === 'copula-ida' || cls === 'copula-anida'
 
-  /** Form ids that apply to a class, in the order of the rules file. */
-  function formIds(cls) {
+  /** Form ids that apply to a class, in the order of the rules file. Korean: kind ('verb' or 'adjective') leaves out the forms built for the other kind only (kinds in forms.yaml). */
+  function formIds(cls, kind) {
     const meta = classes[cls]
     if (!meta) return []
     return Object.keys(rules.forms).filter(id => language === 'ja'
       ? rules.forms[id].group.includes(meta.group)
-      : copulaClass(cls) ? !!rules.copulas[cls].forms[id] : true)
+      : (copulaClass(cls) ? !!rules.copulas[cls].forms[id] : true) && (!kind || !rules.forms[id].kinds || rules.forms[id].kinds.includes(kind)))
   }
 
   /** The surface (and for Japanese the reading) of a lemma of a class in a form; null when the form does not apply. opts: { reading } for Japanese; { after | prev } for the Korean copula. */

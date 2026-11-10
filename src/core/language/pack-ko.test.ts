@@ -2,6 +2,8 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { afterEach, describe, expect, it } from 'vitest'
+import { formsEngine } from '../forms'
+import { kindOfWord } from '../forms/display'
 import { buildKoPack, gapsMarkdown, segmentsWithSpaces, REGISTRY_FILE, SEALED_FILE } from '../../../scripts/generate-pack-ko.mjs'
 import { setBuildLanguageForTests } from '../storage-names'
 import { loadCatalog, renderExample, resetCatalogCache, type BandData } from '../study/catalog'
@@ -25,6 +27,28 @@ describe('the Korean pack generator', () => {
     expect(band.grammar.length).toBe(133)
     expect(pack.phrases.length).toBe(905)
     expect(pack.formsTable.length).toBe(30)
+  })
+  it('classifies every lesson verb and adjective and tags the forms the sentences use', () => {
+    const engine = formsEngine('ko')
+    const inflecting = band.vocabulary.filter(item => item.ps === 'verb' || item.ps === 'adjective').filter(item => item.ch.endsWith('다'))
+    expect(inflecting.length).toBe(79) // 80 verbs and adjectives in the lessons; 비가 와요 is a whole sentence, kept as a phrase without a class
+    for (const item of inflecting) expect(engine.rules.classes[item.cl ?? ''], item.ch + ' has a class').toBeTruthy()
+    const classes = new Set(band.vocabulary.flatMap(item => item.cl ? [item.cl] : []))
+    for (const need of ['regular-vowel', 'regular-consonant', 'hada', 'b-irregular', 'd-irregular', 'reu-irregular', 'l-stem', 'eu-stem']) expect(classes.has(need), need).toBe(true)
+    // a verb-only form is never built for an adjective
+    for (const row of pack.formsTable) expect(row.joined).toEqual(row.kinds)
+    expect(pack.formsTable.find(row => row.id === 'wish')?.kinds).toEqual(['verb'])
+    const byLabel = new Map(band.vocabulary.map(item => [item.lb, item]))
+    let tagged = 0
+    for (const phrase of pack.phrases) for (const token of phrase.tokens as { word?: string; form?: string; text?: string }[]) {
+      if (!token.form) continue
+      tagged++
+      const item = byLabel.get(token.word!)!
+      expect(item.cl, item.ch).toBeTruthy()
+      expect(engine.formIds(item.cl!, kindOfWord(item)).includes(token.form), item.ch + ' ' + token.form).toBe(true)
+    }
+    expect(tagged).toBeGreaterThan(700)
+    expect(pack.mismatches).toEqual([])
   })
   it('resolves every sentence token and renders it', async () => {
     setBuildLanguageForTests('ko')

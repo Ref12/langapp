@@ -8,9 +8,9 @@ import { hira } from './japanese.mjs'
 export const conjugable = (cls: string | undefined): cls is string => !!cls && !cls.startsWith('copula') && cls !== 'noun'
 
 /** The form ids of a class whose grammar point the lessons up to N have taught (the dictionary form and forms without a grammar point never count). */
-export function taughtFormIds(language: FormsLanguage, cls: string, grammar: ReadonlySet<string>): string[] {
+export function taughtFormIds(language: FormsLanguage, cls: string, grammar: ReadonlySet<string>, kind?: string): string[] {
   const engine = formsEngine(language)
-  return engine.formIds(cls).filter(id => {
+  return engine.formIds(cls, kind).filter(id => {
     if (id === 'dict') return false
     const point = engine.grammarOf(id, cls)
     return point != null && grammar.has(point)
@@ -150,7 +150,7 @@ export function wordFormsTable(language: FormsLanguage, lemma: string, cls: stri
 // ---- Form to meaning -------------------------------------------------------------------------------------------------------------
 
 /** A word that inflects, as the form questions need it: its id, written form and reading, class, a short meaning and (when the learner reads it in another form) how it is shown. */
-export interface FormWord { id: string; lemma: string; reading?: string; cls: string; gloss: string; /** The text and reading shown for the word in the options (the learner's display form); absent: the lemma and reading. */ shown?: { text: string; reading?: string } }
+export interface FormWord { id: string; lemma: string; reading?: string; cls: string; /** Korean: verb or adjective, so a verb-only form is never built for an adjective; absent: any kind. */ kind?: string; gloss: string; /** The text and reading shown for the word in the options (the learner's display form); absent: the lemma and reading. */ shown?: { text: string; reading?: string } }
 export interface FormOption { lemma: string; reading?: string; gloss: string; label: string; formId: string }
 export interface FormPickBuild { surface: string; reading?: string; entryId: string; cls: string; formId: string; options: FormOption[]; answer: number; rule: string; phrase?: { text: string; en: string } }
 
@@ -171,9 +171,9 @@ export function buildFormPickFor(language: FormsLanguage, target: FormWord, form
     if (surface == null || surface === built.surface || seen.has(key) || wrong.length >= 3) return
     seen.add(key); wrong.push(option(word, form))
   }
-  const forms = (allowed ?? engine.formIds(cls)).filter(id => id !== 'dict' && id !== formId && engine.formIds(cls).includes(id))
+  const forms = (allowed ?? engine.formIds(cls, target.kind)).filter(id => id !== 'dict' && id !== formId && engine.formIds(cls, target.kind).includes(id))
   for (const form of shuffle(forms)) { push(target, form, engine.forms(target.lemma, cls, form, opts(target))?.surface); if (wrong.length >= 2) break }
-  for (const word of shuffle(pool.filter(other => other.id !== target.id && conjugable(other.cls)))) push(word, formId, engine.forms(word.lemma, word.cls, formId, opts(word))?.surface)
+  for (const word of shuffle(pool.filter(other => other.id !== target.id && conjugable(other.cls) && engine.formIds(other.cls, other.kind).includes(formId)))) push(word, formId, engine.forms(word.lemma, word.cls, formId, opts(word))?.surface)
   if (wrong.length < 2) return undefined
   const options = shuffle([right, ...wrong])
   return { surface: built.surface, reading: built.reading, entryId: target.id, cls, formId, options, answer: options.indexOf(right), rule: ruleLine(language, target.lemma, cls, formId), ...(phrase ? { phrase } : {}) }

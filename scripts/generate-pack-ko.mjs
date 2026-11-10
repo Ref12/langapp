@@ -13,10 +13,11 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createForms } from '../src/core/forms/engine.mjs'
 import { loadFormsRules } from './forms-data.mjs'
 import { patternNameRule, patternSlug, posLabel, shortTextRule, slugOfKorean } from './pack-ko-names.mjs'
 import { applyCorrections as applyCorrectionsShared, checkGaps, checkLabels, computeGaps, gapsMarkdown as gapsMarkdownShared, glossWord, issueLabels, MAX_GLOSS, readJson, sealText as sealShared, shortGloss, writeFiles } from './pack-shared.mjs'
-import { entryIndex, loadReferences, readParallel, refreshReadability, root as defaultRoot, writeAtomic } from './parallel-lessons-files.mjs'
+import { analyseForms, entryIndex, loadReferences, readParallel, refreshReadability, root as defaultRoot, writeAtomic } from './parallel-lessons-files.mjs'
 
 export const PACK_DIR = 'src/data/packs/ko'
 const AUTHORING = 'curriculum/korean/authoring/'
@@ -80,7 +81,9 @@ export function buildKoPack(base = defaultRoot) {
   })
   const taught = refreshReadability(lessons)
   for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) if ((phrase.added || phrase.rewritten) && phrase.readyAt > lesson.number) throw new Error('Phrase ' + phrase.id + ' (lesson ' + lesson.number + ', ' + (phrase.added ? 'added' : 'rewritten') + ') uses something taught only in lesson ' + phrase.readyAt)
+  const forms = analyseForms('ko', lessons, taught, data, references, base) // classes of the lesson words, the form each inflected token is in; also sets each phrase's readyAt (irregular form items included)
   const rules = loadFormsRules('ko', base)
+  const engine = createForms(rules)
   const index = entryIndex(references, data.entries)
   const headwords = readJson(join(base, HEADWORDS_FILE), { headwords: {} }).headwords
   for (const [id, headword] of Object.entries(headwords)) {
@@ -153,9 +156,21 @@ export function buildKoPack(base = defaultRoot) {
   const word = (entry, number) => vocabLabels.labels[itemAt(entry, number).id], pattern = id => grammarLabels.labels[id]
 
   // ---- phrase tokens as example segments (a word or grammar token is one segment; a space between tokens is a space segment) ----
-  const phraseData = []
+  const phraseData = [], stats = { tagged: forms.tags.size, merged: 0, absorbed: 0, byForm: {}, missingGrammar: [] }
   for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) {
-    const segments = segmentsWithSpaces(phrase, (token, written) => {
+    // a conjugated word is one segment: the word's token and the tokens its form absorbs (추워 + 요, 만들 + 수 + 있어요) become one token carrying the form id
+    const mergedGrammar = [], tokens = []
+    for (let at = 0; at < phrase.tokens.length; at++) {
+      const token = phrase.tokens[at], tag = token.w ? forms.tags.get(lesson.number + ':' + phrase.id + ':' + at) : undefined
+      if (!tag) { tokens.push(token); continue }
+      const span = tag.span ?? 0
+      // a form inside the span (the 있어요 of 쓸 수 있어요 is a form of 있다) belongs to the outer one: the outer form's tokens are one token
+      tokens.push({ t: phrase.tokens.slice(at, at + 1 + span).map(item => item.t).join(''), w: token.w, form: tag.form })
+      stats.merged++; stats.absorbed += span; stats.byForm[tag.form] = (stats.byForm[tag.form] ?? 0) + 1
+      if (tag.grammar && !(phrase.grammar ?? []).includes(tag.grammar) && seenGrammar.has(tag.grammar)) { stats.missingGrammar.push(phrase.id + ':' + tag.grammar); mergedGrammar.push(tag.grammar) }
+      at += span
+    }
+    const segments = segmentsWithSpaces({ ...phrase, tokens }, (token, written) => {
       if (!token.w && !token.g) {
         if (!PUNCTUATION.test(token.t)) throw new Error('Phrase ' + phrase.id + ': token "' + token.t + '" is neither a word, a grammar unit nor punctuation')
         return { punctuation: written }
@@ -163,12 +178,12 @@ export function buildKoPack(base = defaultRoot) {
       if (token.w) {
         const entry = index.vocabulary.get(token.w)
         if (!entry) throw new Error('Phrase ' + phrase.id + ': unknown word ' + token.w)
-        return { word: word(token.w, lesson.number), ...(written !== entry.target ? { text: written, reading: written } : {}) }
+        return { word: word(token.w, lesson.number), ...(written !== entry.target || token.form ? { text: written, reading: written } : {}), ...(token.form ? { form: token.form } : {}) }
       }
       return { grammar: pattern(token.g), text: written, reading: written }
     })
-    const wordIds = [...new Set([...(phrase.words ?? []), ...phrase.tokens.filter(token => token.w).map(token => token.w)])]
-    const grammarOfPhrase = [...new Set([...(phrase.grammar ?? []), ...phrase.tokens.filter(token => token.g).map(token => token.g)])]
+    const wordIds = [...new Set([...(phrase.words ?? []), ...tokens.filter(token => token.w).map(token => token.w)])]
+    const grammarOfPhrase = [...new Set([...(phrase.grammar ?? []), ...mergedGrammar, ...tokens.filter(token => token.g).map(token => token.g)])]
     if (!wordIds.length) throw new Error('Phrase ' + phrase.id + ' has no word')
     phraseData.push({ lesson: lesson.number, phrase, segments, words: [...new Set(wordIds.map(entry => word(entry, lesson.number)))], grammar: grammarOfPhrase.map(pattern), wordIds, grammarIds: grammarOfPhrase, readyAt: phrase.readyAt })
   }
@@ -216,20 +231,34 @@ export function buildKoPack(base = defaultRoot) {
   })
   const vocabulary = items.map(item => {
     const e = index.vocabulary.get(item.entry)
-    return { id: item.id, ch: e.target, pr: e.target, ds: item.gloss, lb: vocabLabels.labels[item.id], ps: item.ps }
+    const cls = forms.classes.get(item.entry)?.class
+    return { id: item.id, ch: e.target, pr: e.target, ds: item.gloss, lb: vocabLabels.labels[item.id], ps: item.ps, ...(cls ? { cl: cls } : {}) }
   })
 
-  // ---- the forms table: the names of the forms and the pattern unit that teaches each (the forms are used by Practice in a later stage) ----
+  // ---- the forms table: the names of the forms and the pattern unit that teaches each (Practice and the cards use them) ----
   const formNames = readJson(join(base, FORMS_FILE), { forms: {} }).forms
   for (const id of Object.keys(formNames)) if (!rules.forms[id]) throw new Error(FORMS_FILE + ' names an unknown form ' + id)
   const formsTable = Object.entries(rules.forms).map(([id, spec]) => {
     const named = formNames[id]
     if (!named?.name) throw new Error('The form ' + id + ' has no learner-facing name in ' + FORMS_FILE)
-    const kinds = ['verb', 'adjective']
+    const kinds = spec.kinds ?? ['verb', 'adjective']
     const patterns = spec.grammar && seenGrammar.has(spec.grammar) ? Object.fromEntries(kinds.map(kind => [kind, pattern(spec.grammar)])) : {}
-    return { id, name: named.name, ...(named.ending ? { ending: named.ending } : {}), kinds, joined: [], patterns }
+    return { id, name: named.name, ...(named.ending ? { ending: named.ending } : {}), kinds, joined: kinds, patterns }
   })
 
+  // ---- the headword check: a conjugated token must be what its headword builds (spaces apart) ----
+  const recordOf = new Map(vocabulary.map(item => [item.lb, item]))
+  const mismatches = []
+  const noSpace = text => text.replace(/\s+/g, '')
+  for (const p of phraseData) for (const segment of p.segments) {
+    const item = segment.word && segment.form ? recordOf.get(segment.word) : undefined
+    if (!item) continue
+    const built = item.cl ? engine.forms(item.ch, item.cl, segment.form) : null
+    if (built && noSpace(built.surface) === noSpace(segment.text)) continue
+    // a headword of several words (수업을 듣다, 듣기 좋다) is built whole while a sentence has it in pieces: the token is the end of what is built
+    if (built && noSpace(built.surface).endsWith(noSpace(segment.text))) continue
+    mismatches.push({ phrase: p.phrase.id, word: item.ch, form: segment.form, token: segment.text, built: built?.surface ?? null })
+  }
   const band = { schemaVersion: 1, band: '1', alignment: ALIGNMENT, vocabulary, grammar, groups }
   const catalogIndex = { schemaVersion: 1, bands: [{ band: '1', alignment: ALIGNMENT, vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length }] }
   const phrases = phraseData.map(p => ({
@@ -262,7 +291,7 @@ export function buildKoPack(base = defaultRoot) {
   })
   const gapProblems = checkGaps(gaps, accepted)
   const notes = existsSync(join(base, GAP_NOTES_FILE)) ? readFileSync(join(base, GAP_NOTES_FILE), 'utf8').replace(/\r\n/g, '\n') : ''
-  return { files, band, phrases, formsTable, corrected, gapProblems, missingExplanations, notes, accepted, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: nameOf(id) })), report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length } }
+  return { files, band, phrases, formsTable, mismatches, stats, classes: forms.classes, corrected, gapProblems, missingExplanations, notes, accepted, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: nameOf(id) })), report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length } }
 }
 
 /** The content gaps as markdown (docs/audits/2026-11-10-korean-lesson-content-gaps.md): the work list of stage 4. An accepted gap says so, with its reason. */
