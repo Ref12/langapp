@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationC
 import { db } from '../../core/database'
 import { navigate, useRoute } from '../../core/routing'
 import { itemCount } from '../../core/collections/terms'
+import { collectionsOfCurrentLanguage } from '../../core/collections/language'
 import { TERM } from '../../core/collections/terms'
 import { useCatalog } from '../../components/study/useCatalog'
 import { KnowledgeCounts } from '../../components/study/KnowledgeCounts'
@@ -321,7 +322,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const { catalog, error } = useCatalog()
   const connection = useAIConnection()
   const sets = useLiveQuery(() => db.drillSets.toArray(), []) ?? []
-  const collections = useLiveQuery(() => db.collections.toArray(), []) ?? []
+  const collections = useLiveQuery(async () => (await collectionsOfCurrentLanguage(workspace.preferences)), [workspace.preferences.currentLanguage]) ?? []
   const collectionItems = useLiveQuery(() => db.collectionItems.toArray(), []) ?? []
   const [from, setFrom] = useState(CURRICULUM)
   const originParam = new URLSearchParams(useRoute().split('?').slice(1).join('?')).get('from') ?? ''

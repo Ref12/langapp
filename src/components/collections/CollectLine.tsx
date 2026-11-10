@@ -3,6 +3,7 @@ import { BookmarkPlus, GraduationCap } from 'lucide-react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../../core/database'
 import { navigate } from '../../core/routing'
+import { collectionsOfCurrentLanguage } from '../../core/collections/language'
 import { addLines, createCollection, studyLines } from '../../core/collections/store'
 import type { LineInput } from '../../core/collections/store'
 import { suggestName } from '../../core/collections/naming'
@@ -16,7 +17,7 @@ export function CollectLine({ line }: { line: LineInput }) {
   const [busy, setBusy] = useState(false)
   const [picking, setPicking] = useState(false)
   const [naming, setNaming] = useState<string>()
-  const sets = useLiveQuery(() => picking ? db.collections.orderBy('updatedAt').reverse().toArray() : [], [picking]) ?? []
+  const sets = useLiveQuery(async () => picking ? collectionsOfCurrentLanguage({ currentLanguage: (await db.preferences.get('workspace'))?.currentLanguage }) : [], [picking]) ?? []
   const source = line.source
   if (!source) return null
   const act = async (work: () => Promise<void>) => {

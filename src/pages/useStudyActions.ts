@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
 import { resumeRows } from '../core/study/origin'
+import { rowsOfCurrentLanguage } from '../core/language/scope'
 import { useAIConnection } from '../components/study/useAIConnection'
 import { useCatalog } from '../components/study/useCatalog'
 import type { PageProps } from '../components/shared'
@@ -16,7 +17,8 @@ export function useStudyActions({ workspace, now, run }: Pick<PageProps, 'worksp
   const known = new Set(workspace.knowledge.map(entry => entry.ref))
   const due = workspace.studyCards.filter(card => card.domain === DOMAIN && card.due <= now && known.has(card.ref)).length
   const collections = useLiveQuery(() => db.collections.toArray(), []) ?? []
-  const rows = resumeRows(workspace.exerciseSessions, collections, catalog)
+  // Unfinished lessons of the language in use only (a session's language is that of its target and review refs).
+  const rows = resumeRows(rowsOfCurrentLanguage(workspace.exerciseSessions, session => [...session.targetRefs, ...session.reviewRefs], workspace.preferences), collections, catalog)
   const curriculumOpen = { new: rows.some(row => row.origin.kind === 'new'), review: rows.some(row => row.origin.kind === 'review') }
   const next = catalog ? nextGroup(catalog, known) : undefined
   const progress = catalog ? groupProgress(catalog, known) : undefined

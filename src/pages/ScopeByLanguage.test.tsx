@@ -67,3 +67,16 @@ describe('Overview by language', () => {
     expect(within(stats()).queryByText(/^3/)).toBeNull()
   })
 })
+
+describe('Pick up where you left off, by language', () => {
+  it('lists only the unfinished lessons of the language in use', async () => {
+    await db.exerciseSessions.bulkAdd([
+      { ...lesson('zh-open', ['vocabulary:wo3--me']), status: 'active' as const, completedAt: undefined },
+      { ...lesson('ja-open', ['ja:w:ja-n5-00149']), status: 'active' as const, completedAt: undefined },
+    ])
+    await open('#lessons', 'zh')
+    await screen.findByText('Pick up where you left off')
+    expect(document.querySelector('a[href="#lessons/session/zh-open"]')).not.toBeNull()
+    expect(document.querySelector('a[href="#lessons/session/ja-open"]')).toBeNull()
+  })
+})

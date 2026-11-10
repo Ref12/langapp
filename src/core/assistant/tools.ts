@@ -1,4 +1,5 @@
 import { isLanguageRef } from '../parallel/refs'
+import { languageOfRefs } from '../language/scope'
 import { curriculum } from '../../data/curriculum'
 import { lessons, stories, words } from '../../data/mandarin'
 import conversationPrompt from '../../../settings/system-prompts/conversation.md?raw'
@@ -177,7 +178,7 @@ const ago = (at: number | undefined) => at === undefined ? null : new Date(at).t
 export async function getLearningContext(query: string): Promise<string> {
   const now = Date.now()
   const [catalog, knowledge, cards, sessions, attempts, practice, characters, readings] = await Promise.all([
-    loadCatalog(), db.knowledge.filter(entry => !isLanguageRef(entry.ref)).toArray(), db.studyCards.filter(card => !isLanguageRef(card.ref)).toArray(), db.exerciseSessions.toArray(), db.exerciseAttempts.toArray(),
+    loadCatalog(), db.knowledge.filter(entry => !isLanguageRef(entry.ref)).toArray(), db.studyCards.filter(card => !isLanguageRef(card.ref)).toArray(), db.exerciseSessions.toArray().then(all => all.filter(session => languageOfRefs([...session.targetRefs, ...session.reviewRefs]) === 'zh')), db.exerciseAttempts.toArray(),
     db.practiceHistory.toArray(), db.characterStates.toArray(), db.readings.orderBy('updatedAt').reverse().limit(3).toArray(),
   ])
   const chinese = (ref: string) => {

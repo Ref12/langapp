@@ -10,6 +10,7 @@ import { cardId, isPhraseRef, isSourceRef } from '../core/study/contracts'
 import { DOMAIN } from '../core/study/knowledge'
 import { useCatalog } from '../components/study/useCatalog'
 import { unitMeaning, unitTitle } from '../core/study/catalog'
+import { collectionsOfCurrentLanguage, storedLanguagePreference } from '../core/collections/language'
 import { renameMediaNamedSets } from '../core/collections/naming'
 import { createCollection, deleteCollection, dueItems, promoteItems, removeItems, renameCollection, startCollectionSession } from '../core/collections/store'
 import type { CollectionItem } from '../core/collections/contracts'
@@ -54,7 +55,7 @@ function List({ busy, run, now }: Pick<PageProps, 'busy' | 'run' | 'now'>) {
   const [editing, setEditing] = useState<string>()
   useEffect(() => { void renameMediaNamedSets().catch(() => undefined) }, [])
   const rows = useLiveQuery(async () => {
-    const collections = await db.collections.orderBy('updatedAt').reverse().toArray()
+    const collections = await collectionsOfCurrentLanguage(await storedLanguagePreference())
     return Promise.all(collections.map(async collection => ({ collection, count: await db.collectionItems.where('collectionId').equals(collection.id).count(), due: (await dueItems(collection.id, now)).length })))
   }, [now])
   return <>

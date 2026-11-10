@@ -6,6 +6,7 @@ import { db } from '../../core/database'
 import { isPhraseRef, isSourceRef } from '../../core/study/contracts'
 import { addSourceEntriesToKnowledge, addToKnowledge } from '../../core/study/knowledge'
 import { addUnitsToCollection, createCollection, removeItems } from '../../core/collections/store'
+import { collectionsOfCurrentLanguage, storedLanguagePreference } from '../../core/collections/language'
 import { itemId } from '../../core/collections/contracts'
 import { shortGist, withDate } from '../../core/collections/naming'
 import { TERM, itemCount } from '../../core/collections/terms'
@@ -77,7 +78,7 @@ export function SaveToMenu({ refs, name, title, knowledge, label, className = ''
 
   const rows = useLiveQuery(async () => {
     if (!open) return undefined
-    const sets = await db.collections.orderBy('updatedAt').reverse().toArray()
+    const sets = await collectionsOfCurrentLanguage(await storedLanguagePreference())
     return Promise.all(sets.map(async set => ({
       set,
       count: await db.collectionItems.where('collectionId').equals(set.id).count(),
