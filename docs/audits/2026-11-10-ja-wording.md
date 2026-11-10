@@ -303,20 +303,40 @@ Font check: `fonts-noto-cjk` installed, the first screenshot shows real kana and
 - 11-lesson-12.png: lesson 12 (欲しい): the pattern card "<noun> + が欲しい", "says what thing you want, or don't want", and "<い-adjective> + くないです" "polite: is not, with an adjective (くないです)".
 - 12-samui-forms-open-romaji.png: 寒い Forms open in romaji: "samui desu", "samukunai desu", "samuku arimasen", "samukatta desu", "samukunakatta desu", "samuku arimasen deshita".
 
-## 9. How a correction to a lesson's sentence or list is made
-
-The sources (`curriculum/japanese/parallel/zh-lessons.yaml`, written by `scripts/build-parallel-lessons.mjs`, and `src/data/parallel`) are not edited: a rerun of the build script would undo an edit there. A correction goes in `curriculum/japanese/authoring/pack-phrase-corrections.json`, which `scripts/generate-pack-ja.mjs` applies in memory (`applyCorrections`) right after reading the lessons and before readability, forms analysis, readings, tokens, labels, examples or the report are derived. So everything downstream (the pack files, the content-gaps report, the checks) sees the corrected data.
-
-1. Edit `pack-phrase-corrections.json`. Under `phrases`, key = the phrase id (a string), value an object (`why` is a free note):
-   - `tokens: [{ at, t, w | g }]`: replaces the token at index `at` (0-based, counting punctuation tokens) with `{ t, w }` (a word entry id such as `ja-n5-00246`) or `{ t, g }` (a grammar entry id). The phrase text is rebuilt from the tokens.
-   - `merge: { at, count, t, w | g }`: makes `count` tokens from `at` one token; it throws unless their texts join to `t`.
-   - `words: { oldEntry: newEntry | null }`: changes the phrase's word list (the tags that decide which words the phrase counts for); `null` drops the entry. Change `words` whenever a token's word changes. The phrase's grammar list is not touched by this file yet.
-   Under `writings`, key = a word entry id, value = `{ "written in sentences": "the headword's writing" }`: every token of that word written the first way is rewritten the second way, in every phrase.
-2. Run `node scripts/generate-pack-ja.mjs`. It throws, naming the phrase, when a correction refers to a phrase, token or word that is not there or does not match. It then writes `src/data/packs/ja/*`. Then `node scripts/generate-pack-ja.mjs --report docs/audits/2026-11-10-japanese-lesson-content-gaps.md` for the report, and `node scripts/generate-pack-ja.mjs --check` to confirm nothing is stale. The test `src/core/language/pack-ja.test.ts` fails when the committed files are not what the generator makes.
-3. The phrase's reading is the source's `reading` (or `pack-phrase-readings.json` for a lost kana): a token change that changes the reading needs an entry there too, since the reading is split over the tokens and the split throws when it cannot match.
-4. **Not yet in the mechanism** (3.4b would add them to `applyCorrections`, in the same file, and to the audit note): moving a pattern or a word to another lesson (a lesson's `words`, `grammar_taught`, `grammar_intro` lists), adding a phrase, and changing a phrase's `grammar` list or its English. `grammar_taught` is derived from the phrases by `refreshReadability` in `scripts/parallel-lessons-files.mjs`, so what is listed where follows the phrases; a lesson's `words` list is its own and is the place a word is moved. A new word or pattern is a new entry (`curriculum/japanese/parallel/entries.yaml` through the build script, or a new overlay) and a new label that must be appended to the registry and sealed (`--seal`); never rename a sealed label.
-5. Labels, the registry and the sealed file are not part of corrections: `--check` fails when a label would change or disappear.
-
 ## 8. What did not change
 
-(filled in by the final run, see below)
+Checked on the base of step 3.4b (`15299ee`, a clean worktree) before any change, and again on the final commit:
+
+- Pass untouched, nothing regenerated: `src/core/profiles/golden-exports.test.ts` (golden exports), `src/core/chinese-prompts.test.ts` (prompt pins), `src/pages/chinese-screens.test.tsx` (Chinese screen pins), `src/core/storage-names.test.ts` (storage names), `src/pages/japanese-screens.test.tsx` and `src/core/language/*.test.ts` (76 tests in the seven files run together).
+- Pass: `node scripts/generate-pack-ja.mjs --check`, `npm run curriculum:check`, `npm run curriculum:v2:app:check`, `npm run characters:check`.
+- Not touched by 3.4a (and not by 3.4b): `src/data/v2`, `src/data/phrases`, `src/data/practice`, `src/data/parallel`, `src/data/tracks`, `src/data/forms`, `public`, `package.json`, `.github`; the sealed labels file only gains labels; no phrase, word or pattern id and no sealed label changes.
+- Pins: the Chinese screen pins (`src/pages/__screens__/` files not starting with `ja-`) and the golden and prompt pins are the committed ones. Only the Japanese pins may change, where a pinned lesson's content changed.
+
+## 9. How a correction to a lesson's sentence or list is made
+
+The sources (`curriculum/japanese/parallel/zh-lessons.yaml`, written by `scripts/build-parallel-lessons.mjs`, and `src/data/parallel`) are not edited: a rerun of the build script would undo an edit there. A correction goes in one of the files below under `curriculum/japanese/authoring/`. `scripts/generate-pack-ja.mjs` applies them in memory (`applyCorrections`) right after reading the lessons and before readability, forms analysis, readings, tokens, labels, examples or the report are derived, so everything downstream (the pack files, the content-gaps report, the checks) sees the corrected data. `applyCorrections` runs in this order: added phrases, phrase corrections, the lessons' lists (moves, removals, additions), writings. Every operation throws, naming the lesson or phrase, when what it refers to is not there (a test, `scripts/pack-ja-gaps.test.ts`, checks each).
+
+### The files
+
+1. `pack-phrase-corrections.json`, `phrases`: phrase id (a string) -> an object (`why` is a free note, kept for the audit):
+   - `tokens: [{ at, t, w | g }]`: replaces the token at index `at` (0-based, punctuation counts) with `{ t, w }` (a word entry id) or `{ t, g }` (a grammar entry id). The phrase text is rebuilt from the tokens.
+   - `merge: { at, count, t, w | g }`: makes `count` tokens from `at` one token; throws unless their texts join to `t`.
+   - `words: { oldEntry: newEntry | null }`: changes the phrase's word list (null drops the entry). Change it whenever a token's word changes.
+   - `grammar: { add: [ids], remove: [ids] }`: changes the phrase's grammar list, the tags that decide which patterns the phrase counts for. It throws when a pattern to remove is not listed or one to add already is. A token's `g` and the list are separate: change both when a pattern changes (a token's `g` through `tokens`).
+   - `rewrite: { tokens, reading, words, grammar }`: replaces the phrase's Japanese as a whole (the text is the tokens joined; the English, the Chinese reference and the id stay). It takes no other operation on the same phrase, and throws when a word token is not in `words` or a grammar token is not in `grammar`. A rewritten phrase brings its own reading (an entry for it in `pack-phrase-readings.json` is not used).
+   `writings`: word entry -> `{ "written in sentences": "the headword's writing" }`: every token of that word written the first way is rewritten the second way, in every phrase.
+2. `pack-added-phrases.json`, `phrases`: Japanese-only phrases (the user's decision of 2026-11-09), appended to the end of the lesson's phrases: `{ id, lesson, extra: true, reading, en, tokens, words, grammar, checked, why }`. `extra: true` is the mark of a Japanese-only phrase (a phrase with a `zh` or `zh_ref` is refused); the id must be after the last source id (817) and new; the text is the tokens joined. The generator throws when an added or rewritten phrase uses something taught only after its lesson (`readyAt` later than the lesson), so a Japanese-only sentence cannot use what the lesson has not taught.
+3. `pack-lesson-corrections.json`: the lessons' own lists.
+   - `moves: [{ word | grammar, from, to, why }]`: a word row (with its fields) from the `words` of lesson `from` to lesson `to`, or a pattern from the `grammar_intro` of `from` to that of `to`. A lesson's `grammar_taught` is derived from its `grammar_intro` and its phrases (`refreshReadability` in `scripts/parallel-lessons-files.mjs`: a pattern is taught in the first lesson that lists it or whose phrases use it), so a pattern moves in `grammar_intro`; a lesson's `words` list is its own.
+   - `removals: [{ word | grammar, lesson, why }]`: out of the lesson's list for good.
+   - `additions: [{ lesson, word: { entry, form, gloss, ... } | grammar, why }]`: a word row (marked `extra`) or a pattern id added to the end of the list.
+4. `pack-accepted-gaps.json`: `accepted: [{ lesson, kind (pattern | form-later | form-unused | word), id, reason }]`, the hand-written list of content gaps that stay, one reason each. Empty after step 3.4b.
+5. `pack-phrase-readings.json` (reading of a phrase where the source lost a kana), `pack-pattern-names.json`, `pack-pattern-short-texts.json`, `pack-pattern-explanations.json` (the text of a pattern) are as before.
+
+### Doing a correction
+
+1. Edit the file above that holds the operation.
+2. `node scripts/generate-pack-ja.mjs` writes `src/data/packs/ja/*` (never edit those by hand). A new word or pattern is a new label in `pack-labels.json`; `node scripts/generate-pack-ja.mjs --seal` appends it to the sealed file (a sealed label never changes, an entry in the pack is never removed). A new pattern needs a name (`pack-pattern-names.json`), a short text where the rule cannot make one, and a plain explanation (`--check` fails without it).
+3. `node scripts/generate-pack-ja.mjs --report docs/audits/2026-11-10-japanese-lesson-content-gaps.md` writes the content-gaps report.
+4. `node scripts/generate-pack-ja.mjs --check` confirms nothing is stale. It also **fails on a content gap**: a pattern a lesson lists that none of its sentences use, a form used before its pattern is taught, a listed pattern whose forms no sentence shows, or a word a lesson introduces that none of its sentences use, unless the gap is in `pack-accepted-gaps.json` with a reason. It fails as well on an accepted entry that is no gap any more or has no reason.
+5. Labels, the registry and the sealed file are not part of corrections: `--check` fails when a label would change or disappear.
