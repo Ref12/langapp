@@ -1,4 +1,6 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
+import { getPack, bandName } from '../core/language'
+import { Band } from '../components/Band'
 import { useAIConnection } from '../components/study/useAIConnection'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { navigate } from '../core/routing'
@@ -46,10 +48,10 @@ export function Study({ workspace, now, run, busy }: PageProps) {
         </div>
         {curriculumOpen.new && <p className="small muted">Your unfinished lesson is in Pick up where you left off.</p>}
         {next && <ul className="study-preview" aria-label="Items in this group">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>
-          <span className="study-preview-form" lang="zh-Hans">{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</span>
+          <span className="study-preview-form" lang={getPack().learningTag}>{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</span>
           <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /> </span>}{unit.record.ds}</span>
         </li>)}</ul>}
-        {progress && <p className="small muted">HSK {next?.band ?? '6'} / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
+        {progress && <p className="small muted"><Band n={next?.band ?? '6'} /> / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
       </section>}
       {track.parallel ? <ParallelReviews language={track.language as 'ja' | 'ko'} now={now} /> : <section className="experience-card" aria-label="Review">
         <div className="card-header-row">
@@ -233,7 +235,7 @@ function SessionIntroduction({ catalog, session, workspace, run, busy, now, begi
   const examplesFor = (ref: string) => (group?.group.examples ?? []).filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
   return <>
     <a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
-    <PageHeading eyebrow={session.mode === 'new' ? `NEW ITEMS / HSK ${units[0]?.band ?? ''}` : 'REVIEW'} title={session.mode === 'new' ? 'Meet your new items.' : 'Items in this review.'}>
+    <PageHeading eyebrow={session.mode === 'new' ? `NEW ITEMS / ${bandName(getPack(), units[0]?.band ?? '').toUpperCase()}` : 'REVIEW'} title={session.mode === 'new' ? 'Meet your new items.' : 'Items in this review.'}>
       {session.mode === 'new' ? 'Read each item and its examples, then try the exercises. Items you saw in recent sessions are mixed in.' : 'These items are due according to your review schedule.'}
     </PageHeading>
     <div className="word-grid">{units.map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))}
@@ -304,9 +306,9 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
     {session.aiNotice && noticeShown && <p className="notice small ai-notice" role="status">{session.aiNotice} <button type="button" className="text-link" onClick={() => { setNoticeShown(false); void dismissAiNotice(session.id) }}>Dismiss</button></p>}
     {running ? <progress aria-label="Session progress" /> : <progress aria-label="Session progress" value={session.cursor} max={total} />}
     <div className="practice-question-content">
-      <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : 'Which Mandarin matches?' : exercise.type === 'match' ? 'Match the pairs: tap one, then its partner.' : 'Arrange the tiles to translate this.'}</h2>
+      <h2 ref={title} tabIndex={-1}>{exercise.type === 'choice' ? exercise.direction === 'zh-to-en' ? 'What does this mean?' : `Which ${getPack().wording.language} matches?` : exercise.type === 'match' ? 'Match the pairs: tap one, then its partner.' : 'Arrange the tiles to translate this.'}</h2>
       <div className="button-row practice-tools">
-        {!(exercise.type === 'match' && exercise.mode === 'zh-py') && <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button>}
+        {!(exercise.type === 'match' && exercise.mode === 'zh-py') && <button type="button" className="button secondary snippet-button" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? `Hide ${getPack().wording.reading}` : `Show ${getPack().wording.reading}`}</button>}
         {(exercise.type === 'tiles' || (exercise.type === 'match' && exercise.mode !== 'py-en')) && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
           onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute tiles' : 'Speak tiles'}</button>}
         {hasPrompt && <button type="button" className="button secondary snippet-button" aria-pressed={promptSpeech} disabled={busy}

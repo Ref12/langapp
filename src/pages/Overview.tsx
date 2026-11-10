@@ -1,4 +1,5 @@
 import { ArrowRight, BookOpen, RotateCcw, Sprout, Sparkles } from 'lucide-react'
+import { getPack, bandName, isAreaOn } from '../core/language'
 import { KnowledgeCounts } from '../components/study/KnowledgeCounts'
 import { countItems } from '../core/study/daily'
 import { curriculumWords } from '../data/curriculum'
@@ -14,16 +15,17 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
   const finished = workspace.exerciseSessions.filter(session => session.status === 'completed')
   const lessonsDone = finished.filter(session => session.mode === 'new' && !session.redoOf).length
   const reviewsThisWeek = finished.filter(session => session.mode === 'review' && (session.completedAt ?? session.createdAt) > now - WEEK).length
+  const pack = getPack()
   return <>
     <PageHeading eyebrow="A LITTLE EVERY DAY" title="Make the language yours." action={<a className="button secondary" href="#lessons">New or review <ArrowRight size={16} /></a>}>
-      Build useful Mandarin through short lessons and regular practice.
+      {`Build useful ${pack.wording.language} through short lessons and regular practice.`}
     </PageHeading>
     <RestoreOffer />
     <section className="overview-feature">
       <article className="course-card panel feature-panel" aria-label="Next step">
-        <p className="eyebrow accent">{resumable ? 'PICK UP YOUR LESSON' : next ? 'YOUR NEXT STEP IN MANDARIN' : catalog ? 'KEEP YOUR MOMENTUM' : 'LOADING'}</p>
-        <h2>{next ? `HSK ${next.band}, group ${Math.min((progress?.completed ?? 0) + 1, progress?.total ?? 1)} of ${progress?.total ?? 1}` : catalog ? 'You have added every group.' : 'Loading the curriculum...'}</h2>
-        <p>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'} to add to your knowledge set.` : catalog ? 'Review what is due and keep building toward the HSK goals.' : ''}</p>
+        <p className="eyebrow accent">{resumable ? 'PICK UP YOUR LESSON' : next ? `YOUR NEXT STEP IN ${pack.wording.language.toUpperCase()}` : catalog ? 'KEEP YOUR MOMENTUM' : 'LOADING'}</p>
+        <h2>{next ? `${bandName(pack, next.band)}, group ${Math.min((progress?.completed ?? 0) + 1, progress?.total ?? 1)} of ${progress?.total ?? 1}` : catalog ? 'You have added every group.' : 'Loading the curriculum...'}</h2>
+        <p>{next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'} to add to your knowledge set.`   : catalog ? `Review what is due and keep building toward ${pack.wording.goals}.` : ''}</p>
         {resumable ? <a className="button primary" href={`#lessons/session/${resumable.id}`}>Resume lesson <ArrowRight size={16} /></a>
           : <button className="button primary" disabled={busy || !next || !connection} onClick={() => start('new')}>Start new items <ArrowRight size={16} /></button>}
         {!connection && next && <p className="small muted"><a className="text-link" href="#settings">Connect a model in Settings</a> to start a session.</p>}
@@ -44,11 +46,11 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
       <div><BookOpen /><strong>{lessonsDone}<small>new-item lessons finished</small></strong></div>
       <div><RotateCcw /><strong>{reviewsThisWeek}<small>reviews finished in the last 7 days</small></strong></div>
     </section>
-    <div className="section-heading"><div><h2>Your next useful idea</h2><p className="muted">One connected learning journey. Start wherever you are curious.</p></div><span className="tag">Practical Mandarin</span></div>
+    <div className="section-heading"><div><h2>Your next useful idea</h2><p className="muted">One connected learning journey. Start wherever you are curious.</p></div><span className="tag">{`Practical ${pack.wording.language}`}</span></div>
     <div className="experience-grid">
-      <a className="experience-card" href="#curriculum"><span className="eyebrow accent">YOUR MANDARIN PATH</span><h3>See where you are headed.</h3><p>Explore HSK 1-6 readiness sections across six phases and thirty levels. The lessons are ready now; later skills and mock work are mapped transparently.</p><span className="text-link">Explore course map <ArrowRight size={16} /></span></a>
-      <a className="experience-card" href="#dictionary"><span className="eyebrow accent">YOUR WORDS, TOGETHER</span><h3>See what is taking root.</h3><p>{curriculumWords.length} real curriculum senses and your preserved starter examples. Only items you add count as introduced.</p><span className="text-link">Open Dictionary <ArrowRight size={16} /></span></a>
-      <a className="experience-card" href="#review"><span className="eyebrow accent">MEANING BEFORE MEMORIZATION</span><h3>Give a word another moment.</h3><p>Recognize characters and meanings. Hints are recorded separately from unaided answers.</p><span className="text-link">Explore practice <ArrowRight size={16} /></span></a>
+      {isAreaOn(pack, 'wordLists') && <a className="experience-card" href="#curriculum"><span className="eyebrow accent">{`YOUR ${pack.wording.language.toUpperCase()} PATH`}</span><h3>See where you are headed.</h3><p>Explore HSK 1-6 readiness sections across six phases and thirty levels. The lessons are ready now; later skills and mock work are mapped transparently.</p><span className="text-link">Explore course map <ArrowRight size={16} /></span></a>}
+      {isAreaOn(pack, 'dictionary') && <a className="experience-card" href="#dictionary"><span className="eyebrow accent">YOUR WORDS, TOGETHER</span><h3>See what is taking root.</h3><p>{curriculumWords.length} real curriculum senses and your preserved starter examples. Only items you add count as introduced.</p><span className="text-link">Open Dictionary <ArrowRight size={16} /></span></a>}
+      <a className="experience-card" href="#review"><span className="eyebrow accent">MEANING BEFORE MEMORIZATION</span><h3>Give a word another moment.</h3><p>{`Recognize ${pack.countsCharacters ? 'characters' : 'words'} and meanings. Hints are recorded separately from unaided answers.`}</p><span className="text-link">Explore practice <ArrowRight size={16} /></span></a>
     </div>
   </>
 }

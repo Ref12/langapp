@@ -1,4 +1,5 @@
 import { ArrowLeft } from 'lucide-react'
+import { getPack, bandName } from '../core/language'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { ExampleLine, UnitCard } from '../components/study/UnitCard'
 import { useCatalog } from '../components/study/useCatalog'
@@ -15,7 +16,7 @@ export function GroupDetail({ workspace, now, run, busy, id }: PageProps & { id:
   const route = `lessons/group/${id}`
   return <>
     <a className="back-link" href="#lessons"><ArrowLeft size={16} /> Lessons</a>
-    <PageHeading eyebrow={`HSK ${band} / LESSON ${number}`} title={`HSK ${band}, lesson ${number}`}>{group.units.length} items{group.examples.length ? ` and ${group.examples.length} examples` : ''}.</PageHeading>
+    <PageHeading eyebrow={`${bandName(getPack(), band).toUpperCase()} / LESSON ${number}`} title={`${bandName(getPack(), band)}, lesson ${number}`}>{group.units.length} items{group.examples.length ? ` and ${group.examples.length} examples` : ''}.</PageHeading>
     <section aria-label="Items">{group.units.map(unit => {
       const resolved = catalog.units.get(unit.kind === 'vocabulary' ? `vocabulary:${unit.ref}` : `grammar:${unit.ref}`)
       return resolved ? <UnitCard key={resolved.ref} catalog={catalog} unit={resolved} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={route} hideStatus compact otherLines /> : null

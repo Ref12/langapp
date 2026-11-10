@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getPack } from '../core/language'
 import { ArrowLeft } from 'lucide-react'
 import { PageHeading, type PageProps } from '../components/shared'
 import { LessonList } from '../components/LessonList'
@@ -15,9 +16,9 @@ export function LessonsList({ workspace, now, run }: PageProps) {
   const [moreTracks, setMoreTracks] = useState(false)
   return <>
     <a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
-    <PageHeading eyebrow="ALL LESSONS" title="Every lesson, in order.">The whole course for the current track. Open a lesson to read it, or go back to Lessons for what is next.</PageHeading>
-    <TrackHeader tracks={tracks} current={track} all={moreTracks} started={item => startedTracks(workspace.preferences).some(other => other.id === item.id)}
-      onMore={() => setMoreTracks(true)} onSelect={item => void run(() => startTrack(item.language))} />
+    <PageHeading eyebrow="ALL LESSONS" title="Every lesson, in order.">{`${getPack().courseTracks ? 'The whole course for the current track.' : 'The whole course.'} Open a lesson to read it, or go back to Lessons for what is next.`}</PageHeading>
+    {getPack().courseTracks && <TrackHeader tracks={tracks} current={track} all={moreTracks} started={item => startedTracks(workspace.preferences).some(other => other.id === item.id)}
+      onMore={() => setMoreTracks(true)} onSelect={item => void run(() => startTrack(item.language))} />}
     {track.parallel ? <ParallelLessonList track={track} catalog={catalog} workspace={workspace} />
       : <LessonList track={track} catalog={catalog} knowledge={workspace.knowledge} nextId={next?.group.id} nextBand={next?.band} />}
   </>
