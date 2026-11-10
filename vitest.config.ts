@@ -18,6 +18,7 @@ const domInCore = [
   'src/core/assistant/speech-capture.test.ts',
   'src/core/assistant/speech-warmup.test.ts',
   'src/core/assistant/speech.test.ts',
+  'src/core/backup/diagnostics.test.ts',
   'src/core/backup/journal.test.ts',
   'src/core/backup/setup-link.test.ts',
   'src/core/backup/service.test.tsx',
