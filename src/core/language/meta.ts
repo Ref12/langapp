@@ -85,6 +85,8 @@ export interface PackMeta extends PhraseIdentity, SentenceForms, PracticePage, P
   readingStyles?: PackReadingStyles
   /** The Dictionary of the language: its sections, wording and search (dictionary.ts). */
   dictionary: PackDictionary
+  /** An optional page of help beside the lessons (a link on the Lessons page): its label and its address relative to the app's root. Set only by a language whose lessons assume something they do not teach. */
+  guide?: { label: string; href: string }
 }
 
 /** "HSK 1" or "Level 1". */
@@ -107,6 +109,7 @@ export const jaMeta: PackMeta = { id: 'ja', name: 'Japanese', nativeName: '\u65E
   readingStyles: { choices: ['kana', 'romaji'], default: 'kana', options: { kana: { label: 'Kana', example: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059' }, romaji: { label: 'Romaji', example: 'benkyou shimasu' } } } }
 export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: { ...nothing, writing: true },
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', glyph: '\uD55C', published: true, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
+  guide: { label: 'New to Hangul? Learn to read and write it', href: 'guides/hangul.html' },
   dictionary: koDictionary, writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
   readingStyles: { choices: ['hangul', 'romanized'], default: 'romanized', options: { hangul: { label: 'Hangul only', example: '공부해요' }, romanized: { label: 'Hangul with romanization', example: '공부해요 gongbuhaeyo' } } } }
 

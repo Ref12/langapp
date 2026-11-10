@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Learn to read and write Hangul – LinguaWeave Korean</title>
+<meta name="description" content="The Korean alphabet in one page: the letters, how syllable blocks are built, stroke order, and the sound changes a beginner meets.">
+<style>
+:root { color-scheme: dark; --bg:#0d1117; --surface:#151b23; --raised:#20262f; --line:#30363d; --line-strong:#4c5869; --text:#f0f6fc; --text2:#bdc6d2; --muted:#9198a1; --accent:#58a6ff; --on-accent:#0d1117; --accent-soft:#1b2c42; --accent-line:#375a7f; --feature:#172332; --s1:#58a6ff; --s2:#f0883e; --s3:#56d364; --s4:#d2a8ff; --s5:#ff7b72; --s6:#e3b341; --s7:#39c5cf; --s8:#ffa657; }
+@media (prefers-color-scheme: light) { :root { color-scheme: light; --bg:#f6f8fa; --surface:#ffffff; --raised:#f0f3f6; --line:#d0d7de; --line-strong:#8c959f; --text:#1f2328; --text2:#39434f; --muted:#59636e; --accent:#075bbb; --on-accent:#ffffff; --accent-soft:#ddedff; --accent-line:#80b6ef; --feature:#eaf3ff; --s1:#075bbb; --s2:#b35900; --s3:#17784a; --s4:#8250df; --s5:#cf222e; --s6:#8a6d00; --s7:#007f8a; --s8:#bc4c00; } }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans CJK KR","Noto Sans KR",sans-serif; font-size:15px; line-height:1.55; }
+.wrap { max-width:980px; margin:0 auto; padding:18px 16px 64px; }
+a { color:var(--accent); }
+.top { display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; justify-content:space-between; padding-bottom:12px; border-bottom:1px solid var(--line); font-size:13px; }
+.top .brand { font-weight:650; letter-spacing:-.4px; color:var(--text); text-decoration:none; }
+.top .brand b { color:var(--on-accent); background:var(--accent); padding:2px 7px 4px; border-radius:7px; margin-right:6px; }
+h1 { font-size:clamp(26px,5vw,34px); font-weight:550; letter-spacing:-.8px; line-height:1.25; margin:22px 0 8px; }
+h2 { font-size:21px; font-weight:550; letter-spacing:-.3px; margin:0 0 10px; }
+h3 { font-size:16px; font-weight:600; margin:20px 0 6px; }
+p { margin:0 0 10px; }
+.eyebrow { font-size:10px; font-weight:650; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); margin:0 0 6px; }
+.lede { color:var(--text2); max-width:62ch; }
+nav.toc { display:flex; flex-wrap:wrap; gap:6px; margin:16px 0 4px; padding:0; list-style:none; }
+nav.toc a { display:inline-block; min-height:36px; padding:7px 12px; border:1px solid var(--line); border-radius:6px; background:var(--surface); color:var(--text); text-decoration:none; font-size:13px; }
+nav.toc a:hover { background:var(--raised); border-color:var(--line-strong); }
+section { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px; margin-top:18px; scroll-margin-top:12px; }
+.scroll { overflow-x:auto; margin:8px 0 14px; border:1px solid var(--line); border-radius:8px; }
+table { border-collapse:collapse; width:100%; font-size:13.5px; }
+caption { text-align:left; font-size:11px; font-weight:650; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:8px 10px 0; caption-side:top; }
+th, td { text-align:left; padding:7px 10px; border-top:1px solid var(--line); vertical-align:top; }
+thead th { font-size:11px; letter-spacing:.6px; text-transform:uppercase; color:var(--muted); border-top:0; white-space:nowrap; }
+tbody tr:nth-child(even) { background:var(--raised); }
+th.L { font-size:22px; font-weight:500; color:var(--accent); white-space:nowrap; }
+td i { font-style:normal; color:var(--text2); }
+td i::before { content:"("; } td i::after { content:")"; }
+[lang="ko"] { font-size:1.08em; }
+.note { margin:10px 0; padding:10px 12px; background:var(--feature); border:1px solid var(--accent-line); border-radius:8px; font-size:14px; }
+.facts { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin:12px 0; }
+.fact { background:var(--raised); border:1px solid var(--line); border-radius:8px; padding:10px 12px; }
+.fact b { display:block; font-size:22px; color:var(--accent); line-height:1.2; }
+.fact span { font-size:12px; color:var(--text2); }
+.blk { display:inline-grid; gap:2px; width:64px; height:64px; vertical-align:middle; }
+.blk span { display:grid; place-items:center; border:1px solid var(--accent-line); background:var(--accent-soft); border-radius:4px; font-size:19px; color:var(--text); }
+.blk.cv { grid-template-columns:1fr 1fr; }
+.blk.c-v { grid-template-rows:1fr 1fr; }
+.blk.cvf { grid-template-columns:1fr 1fr; grid-template-rows:2fr 1fr; }
+.blk.cvf span:first-child, .blk.cvf span:nth-child(2) { grid-row:1; }
+.blk.cvf span:nth-child(3) { grid-column:1 / 3; grid-row:2; }
+.blk.c-vf { grid-template-rows:2fr 2fr 1.4fr; }
+.blk.wrapv { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; }
+.blk.wrapv span:nth-child(1) { grid-column:1; grid-row:1; }
+.blk.wrapv span:nth-child(2) { grid-column:1; grid-row:2; }
+.blk.wrapv span:nth-child(3) { grid-column:2; grid-row:1 / 3; }
+.big { font-size:26px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(112px,1fr)); gap:8px; margin:10px 0; }
+.card { margin:0; background:var(--raised); border:1px solid var(--line); border-radius:8px; padding:6px; text-align:center; }
+.card svg { display:block; width:100%; height:auto; background:var(--bg); border-radius:6px; }
+.card .guide { stroke:var(--line); stroke-width:.6; stroke-dasharray:2 2; fill:none; }
+.card .stroke { fill:none; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+.card .num { font-size:9px; font-weight:700; fill:var(--bg); text-anchor:middle; dominant-baseline:central; font-family:sans-serif; }
+.card figcaption { font-size:11.5px; color:var(--text2); line-height:1.3; margin-top:4px; }
+.card figcaption b { font-size:15px; color:var(--text); font-weight:500; }
+.card.none { display:grid; place-items:center; min-height:120px; font-size:12px; color:var(--muted); }
+button { font:inherit; font-size:12px; min-height:32px; padding:4px 10px; color:var(--text); background:var(--surface); border:1px solid var(--line-strong); border-radius:6px; cursor:pointer; }
+button:hover { background:var(--raised); }
+.btn { display:inline-flex; align-items:center; min-height:44px; padding:10px 15px; border-radius:6px; border:1px solid var(--line); font-size:13px; font-weight:600; text-decoration:none; color:var(--text); background:var(--surface); margin:0 8px 8px 0; }
+.btn.primary { background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
+ol.refs { padding-left:20px; margin:8px 0; font-size:13px; color:var(--text2); }
+ol.refs li { margin-bottom:4px; overflow-wrap:anywhere; }
+.small { font-size:12.5px; color:var(--muted); }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@media (max-width:520px) { section { padding:14px; } table { font-size:13px; } th, td { padding:6px 8px; } }
+@media print { nav.toc, button { display:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="top">
+    <a class="brand" href="../"><b lang="ko">한</b>LinguaWeave Korean</a>
+    <span><a href="../#lessons">&larr; Back to Lessons</a> &nbsp;·&nbsp; <a href="../#writing">Writing area</a></span>
+  </div>
+  <p class="eyebrow" style="margin-top:22px">Guide</p>
+  <h1>Learn to read and write <span lang="ko">한글</span> (Hangul)</h1>
+  <p class="lede">Korean has its own alphabet, small enough to learn in a day or two. This page is a reference: how the letters fit together, what each one sounds like, how to write it, and the few sound changes you meet early. The lessons start with words and do not teach the letters, so use this page beside them.</p>
+  <nav class="toc" aria-label="On this page">
+    <a href="#how">1 How Hangul works</a><a href="#letters">2 The letters</a><a href="#writing">3 Writing</a><a href="#sounds">4 Sounds change</a><a href="#next">5 Where next</a><a href="#refs">References</a>
+  </nav>
+</header>
+<main>
+
+<section id="how">
+<p class="eyebrow">1</p>
+<h2>How Hangul works</h2>
+<div class="facts">
+  <div class="fact"><b>40</b><span>letters in all (21 vowels, 19 consonants)</span></div>
+  <div class="fact"><b>14 + 10</b><span>basic consonants and vowels: learn these first</span></div>
+  <div class="fact"><b>5 + 11</b><span>doubled consonants and combined vowels, built from the basic ones</span></div>
+</div>
+<p>Letters are not written in a line. They are stacked into square <strong>syllable blocks</strong>, one block for each syllable. A block is an <strong>initial consonant</strong> + a <strong>vowel</strong> (+ an optional <strong>final consonant</strong>, the <em lang="ko">받침</em>). If a syllable starts with a vowel sound, the silent consonant <span lang="ko">ㅇ</span> holds the first place, so every block has a consonant on top or on the left.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Block shapes"><table>
+<caption>Where each letter goes in a block</caption>
+<thead><tr><th scope="col">Shape</th><th scope="col">Diagram</th><th scope="col">Rule</th><th scope="col">Examples</th></tr></thead>
+<tbody>
+<tr><th scope="row" class="L">Vertical vowel</th><td><span class="blk cv" aria-hidden="true"><span lang="ko">ㄱ</span><span lang="ko">ㅏ</span></span></td><td>Consonant left, vowel right. Vertical vowels: <span lang="ko">ㅏ ㅑ ㅓ ㅕ ㅣ ㅐ ㅒ ㅔ ㅖ</span>.</td><td><span lang="ko">가</span> <i>ga</i> = <span lang="ko">ㄱ+ㅏ</span><br><span lang="ko">나</span> <i>na</i> = <span lang="ko">ㄴ+ㅏ</span></td></tr>
+<tr><th scope="row" class="L">Horizontal vowel</th><td><span class="blk c-v" aria-hidden="true"><span lang="ko">ㄱ</span><span lang="ko">ㅗ</span></span></td><td>Consonant on top, vowel below. Horizontal vowels: <span lang="ko">ㅗ ㅛ ㅜ ㅠ ㅡ</span>.</td><td><span lang="ko">고</span> <i>go</i> = <span lang="ko">ㄱ+ㅗ</span><br><span lang="ko">그</span> <i>geu</i> = <span lang="ko">ㄱ+ㅡ</span></td></tr>
+<tr><th scope="row" class="L">Mixed vowel</th><td><span class="blk wrapv" aria-hidden="true"><span lang="ko">ㄱ</span><span lang="ko">ㅗ</span><span lang="ko">ㅏ</span></span></td><td>The vowels <span lang="ko">ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ</span> have a horizontal and a vertical part: the consonant sits at the top left and the vowel wraps round it (<span lang="ko">ㅘ</span> = <span lang="ko">ㅗ</span> under the consonant, <span lang="ko">ㅏ</span> beside it).</td><td><span lang="ko">과</span> <i>gwa</i> = <span lang="ko">ㄱ+ㅘ</span><br><span lang="ko">위</span> <i>wi</i> = <span lang="ko">ㅇ+ㅟ</span></td></tr>
+<tr><th scope="row" class="L">With a final</th><td><span class="blk cvf" aria-hidden="true"><span lang="ko">ㅎ</span><span lang="ko">ㅏ</span><span lang="ko">ㄴ</span></span></td><td>The final consonant goes in the bottom row, under the vowel, and is read last.</td><td><span lang="ko">한</span> <i>han</i> = <span lang="ko">ㅎ+ㅏ+ㄴ</span></td></tr>
+<tr><th scope="row" class="L">Final under a horizontal vowel</th><td><span class="blk c-vf" aria-hidden="true"><span lang="ko">ㄱ</span><span lang="ko">ㅡ</span><span lang="ko">ㄹ</span></span></td><td>Three rows: consonant, vowel, final.</td><td><span lang="ko">글</span> <i>geul</i> = <span lang="ko">ㄱ+ㅡ+ㄹ</span></td></tr>
+</tbody></table></div>
+<p>So <span lang="ko" class="big">한글</span> <i>Hangeul</i> is two blocks: <span lang="ko">한</span> (<span lang="ko">ㅎ+ㅏ+ㄴ</span>) and <span lang="ko">글</span> (<span lang="ko">ㄱ+ㅡ+ㄹ</span>). Read blocks left to right, and inside a block read the consonant, then the vowel, then the final. The name means "Korean script" (<span lang="ko">한</span> Korean + <span lang="ko">글</span> writing); it is often spelled "Hangul".</p>
+<p class="note">A final consonant is written with the same letters as an initial one, but only <strong>seven sounds</strong> are possible at the end of a syllable. They are listed in section 2.</p>
+</section>
+
+<section id="letters">
+<p class="eyebrow">2</p>
+<h2>The letters</h2>
+<p>Names and order are the official ones (NIKL). Sounds are for standard (Seoul) Korean. "Romanization" is the Revised Romanization used on signs and in the app. Examples are common words with their romanization and meaning.</p>
+<h3>Basic consonants</h3>
+<div class="scroll" tabindex="0" role="region" aria-label="The 14 basic consonants"><table><caption>The 14 basic consonants</caption><thead><tr><th scope="col">Letter</th><th scope="col">Name</th><th scope="col">Start of a syllable</th><th scope="col">End of a syllable</th><th scope="col">Romanization</th><th scope="col">Example</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko">ㄱ</th><td lang="ko">기역</td><td>g: soft and unvoiced at the start of a word, voiced between vowels</td><td>k</td><td>g, k</td><td><span lang="ko">가방</span> <i>gabang</i> bag</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㄴ</th><td lang="ko">니은</td><td>n</td><td>n</td><td>n</td><td><span lang="ko">나라</span> <i>nara</i> country</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㄷ</th><td lang="ko">디귿</td><td>d: soft and unvoiced at the start of a word, voiced between vowels</td><td>t</td><td>d, t</td><td><span lang="ko">다리</span> <i>dari</i> leg; bridge</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㄹ</th><td lang="ko">리을</td><td>r (a quick tap of the tongue)</td><td>l</td><td>r, l</td><td><span lang="ko">머리</span> <i>meori</i> head</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅁ</th><td lang="ko">미음</td><td>m</td><td>m</td><td>m</td><td><span lang="ko">모자</span> <i>moja</i> hat</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅂ</th><td lang="ko">비읍</td><td>b: soft and unvoiced at the start of a word, voiced between vowels</td><td>p</td><td>b, p</td><td><span lang="ko">바다</span> <i>bada</i> sea</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅅ</th><td lang="ko">시옷</td><td>s (sh before <span lang="ko">ㅣ</span>: <span lang="ko">시</span> is "shi")</td><td>t</td><td>s</td><td><span lang="ko">사과</span> <i>sagwa</i> apple</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅇ</th><td lang="ko">이응</td><td>silent: only fills the empty place</td><td>ng</td><td>ng (at the end)</td><td><span lang="ko">아이</span> <i>ai</i> child<br><span lang="ko">강</span> <i>gang</i> river</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅈ</th><td lang="ko">지읒</td><td>j (as in "jam", softer)</td><td>t</td><td>j</td><td><span lang="ko">자리</span> <i>jari</i> seat; place</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅊ</th><td lang="ko">치읓</td><td>ch, with a puff of air</td><td>t</td><td>ch</td><td><span lang="ko">차</span> <i>cha</i> tea; car</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅋ</th><td lang="ko">키읔</td><td>k, with a puff of air</td><td>k</td><td>k</td><td><span lang="ko">커피</span> <i>keopi</i> coffee</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅌ</th><td lang="ko">티읕</td><td>t, with a puff of air</td><td>t</td><td>t</td><td><span lang="ko">토끼</span> <i>tokki</i> rabbit</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅍ</th><td lang="ko">피읖</td><td>p, with a puff of air</td><td>p</td><td>p</td><td><span lang="ko">포도</span> <i>podo</i> grape</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅎ</th><td lang="ko">히읗</td><td>h</td><td>t on its own; usually it blends into the next sound (section 4)</td><td>h</td><td><span lang="ko">하나</span> <i>hana</i> one</td></tr></tbody></table></div>
+<p class="small">Plain <span lang="ko">ㄱ ㄷ ㅂ ㅈ</span> are lax and soft, between English g/k, d/t, b/p, j/ch; they sound voiced between vowels. <span lang="ko">ㅋ ㅌ ㅍ ㅊ</span> are the same sounds with a strong puff of air, and <span lang="ko">ㄲ ㄸ ㅃ ㅉ</span> (below) with a tight throat and no puff. Romanization writes g, d, b before a vowel and k, t, p before a consonant or at the end of a word.</p>
+<h3>Basic vowels</h3>
+<div class="scroll" tabindex="0" role="region" aria-label="The 10 basic vowels"><table><caption>The 10 basic vowels</caption><thead><tr><th scope="col">Letter</th><th scope="col">Name</th><th scope="col">Sound</th><th scope="col">Romanization</th><th scope="col">Example</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko">ㅏ</th><td lang="ko">아</td><td>a, as in "father"</td><td>a</td><td><span lang="ko">아기</span> <i>agi</i> baby</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅑ</th><td lang="ko">야</td><td>ya</td><td>ya</td><td><span lang="ko">야구</span> <i>yagu</i> baseball</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅓ</th><td lang="ko">어</td><td>eo: open "o", like the "u" in "cup"</td><td>eo</td><td><span lang="ko">어머니</span> <i>eomeoni</i> mother</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅕ</th><td lang="ko">여</td><td>yeo</td><td>yeo</td><td><span lang="ko">여자</span> <i>yeoja</i> woman</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅗ</th><td lang="ko">오</td><td>o, as in "go" (no glide)</td><td>o</td><td><span lang="ko">오이</span> <i>oi</i> cucumber</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅛ</th><td lang="ko">요</td><td>yo</td><td>yo</td><td><span lang="ko">요리</span> <i>yori</i> cooking</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅜ</th><td lang="ko">우</td><td>u, as in "moon"</td><td>u</td><td><span lang="ko">우유</span> <i>uyu</i> milk</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅠ</th><td lang="ko">유</td><td>yu</td><td>yu</td><td><span lang="ko">유리</span> <i>yuri</i> glass (material)</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅡ</th><td lang="ko">으</td><td>eu: "oo" with the lips spread flat</td><td>eu</td><td><span lang="ko">그림</span> <i>geurim</i> picture</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅣ</th><td lang="ko">이</td><td>i, as in "machine"</td><td>i</td><td><span lang="ko">이름</span> <i>ireum</i> name</td></tr></tbody></table></div>
+<p class="small"><span lang="ko">ㅑ ㅕ ㅛ ㅠ</span> are the same as <span lang="ko">ㅏ ㅓ ㅗ ㅜ</span> with a "y" in front: one more short stroke.</p>
+<h3>Doubled consonants</h3>
+<div class="scroll" tabindex="0" role="region" aria-label="The 5 doubled (tense) consonants"><table><caption>The 5 doubled (tense) consonants</caption><thead><tr><th scope="col">Letter</th><th scope="col">Name</th><th scope="col">Sound</th><th scope="col">Romanization</th><th scope="col">Example</th><th scope="col">As a final</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko">ㄲ</th><td lang="ko">쌍기역</td><td>tense: no puff of air, throat tight</td><td>kk</td><td><span lang="ko">까치</span> <i>kkachi</i> magpie</td><td>k</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㄸ</th><td lang="ko">쌍디귿</td><td>tense: no puff of air, throat tight</td><td>tt</td><td><span lang="ko">딸</span> <i>ttal</i> daughter</td><td>not used as a final</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅃ</th><td lang="ko">쌍비읍</td><td>tense: no puff of air, throat tight</td><td>pp</td><td><span lang="ko">빵</span> <i>ppang</i> bread</td><td>not used as a final</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅆ</th><td lang="ko">쌍시옷</td><td>tense: no puff of air, throat tight</td><td>ss</td><td><span lang="ko">싸다</span> <i>ssada</i> to be cheap</td><td>t (before a vowel it links: see section 4)</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅉ</th><td lang="ko">쌍지읒</td><td>tense: no puff of air, throat tight</td><td>jj</td><td><span lang="ko">짜다</span> <i>jjada</i> to be salty</td><td>not used as a final</td></tr></tbody></table></div>
+<h3>Combined vowels</h3>
+<div class="scroll" tabindex="0" role="region" aria-label="The 11 combined vowels"><table><caption>The 11 combined vowels</caption><thead><tr><th scope="col">Letter</th><th scope="col">Name</th><th scope="col">Sound</th><th scope="col">Romanization</th><th scope="col">Example</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko">ㅐ</th><td lang="ko">애</td><td>ae: sounds like <span lang="ko">ㅔ</span> for most speakers</td><td>ae</td><td><span lang="ko">개</span> <i>gae</i> dog</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅒ</th><td lang="ko">얘</td><td>yae: sounds like <span lang="ko">ㅖ</span> for most speakers</td><td>yae</td><td><span lang="ko">얘기</span> <i>yaegi</i> talk (short for <span lang="ko">이야기</span>)</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅔ</th><td lang="ko">에</td><td>e, as in "bed"</td><td>e</td><td><span lang="ko">네</span> <i>ne</i> yes</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅖ</th><td lang="ko">예</td><td>ye (often said like <span lang="ko">ㅔ</span> after a consonant: <span lang="ko">시계</span> is said sigye or sige)</td><td>ye</td><td><span lang="ko">예</span> <i>ye</i> yes (polite)</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅘ</th><td lang="ko">와</td><td>wa: <span lang="ko">ㅗ+ㅏ</span></td><td>wa</td><td><span lang="ko">과자</span> <i>gwaja</i> snack; biscuit</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅙ</th><td lang="ko">왜</td><td>wae: <span lang="ko">ㅗ+ㅐ</span>; in speech close to <span lang="ko">ㅚ</span> and <span lang="ko">ㅞ</span></td><td>wae</td><td><span lang="ko">왜</span> <i>wae</i> why</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅚ</th><td lang="ko">외</td><td>oe: said "we" by most speakers today</td><td>oe</td><td><span lang="ko">외국</span> <i>oeguk</i> foreign country</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅝ</th><td lang="ko">워</td><td>wo: <span lang="ko">ㅜ+ㅓ</span></td><td>wo</td><td><span lang="ko">뭐</span> <i>mwo</i> what</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅞ</th><td lang="ko">웨</td><td>we: <span lang="ko">ㅜ+ㅔ</span>; in speech close to <span lang="ko">ㅙ</span> and <span lang="ko">ㅚ</span></td><td>we</td><td><span lang="ko">웨이터</span> <i>weiteo</i> waiter</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅟ</th><td lang="ko">위</td><td>wi: <span lang="ko">ㅜ+ㅣ</span></td><td>wi</td><td><span lang="ko">위</span> <i>wi</i> top; above</td></tr>
+<tr><th scope="row" class="L" lang="ko">ㅢ</th><td lang="ko">의</td><td>ui: "eu" and "i" run together (see the note below)</td><td>ui</td><td><span lang="ko">의사</span> <i>uisa</i> doctor</td></tr></tbody></table></div>
+<p class="note"><strong>Alike in speech:</strong> <span lang="ko">ㅐ</span> and <span lang="ko">ㅔ</span> are said the same by most speakers today (both are "e" as in "bed"), so spelling is learned word by word; so are <span lang="ko">ㅒ</span> and <span lang="ko">ㅖ</span>. <span lang="ko">ㅚ</span>, <span lang="ko">ㅙ</span> and <span lang="ko">ㅞ</span> are all close to "we" in everyday speech. <span lang="ko">ㅢ</span> is "ui" at the start of a word (<span lang="ko">의사</span> <i>uisa</i>), is said like <span lang="ko">ㅣ</span> after another consonant (<span lang="ko">희</span> <i>hui</i>, said "hi"), and, as the word "of" (<span lang="ko">의</span>), is often said like <span lang="ko">ㅔ</span>.</p>
+<h3>What a final consonant can sound like</h3>
+<div class="scroll" tabindex="0" role="region" aria-label="The seven sounds a final consonant can make"><table><caption>The seven sounds a final consonant can make</caption><thead><tr><th scope="col">Sound</th><th scope="col">Letters</th><th scope="col">Examples</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko">k</th><td><span lang="ko">ㄱ ㅋ ㄲ</span></td><td><span lang="ko">부엌</span> <i>bueok</i> kitchen [<span lang="ko">부억</span>]; <span lang="ko">밖</span> <i>bak</i> outside [<span lang="ko">박</span>]</td></tr>
+<tr><th scope="row" class="L" lang="ko">n</th><td><span lang="ko">ㄴ</span></td><td><span lang="ko">눈</span> <i>nun</i> eye; snow</td></tr>
+<tr><th scope="row" class="L" lang="ko">t</th><td><span lang="ko">ㄷ ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ</span></td><td><span lang="ko">옷</span> <i>ot</i> clothes [<span lang="ko">옫</span>]; <span lang="ko">낮</span> <i>nat</i> daytime [<span lang="ko">낟</span>]; <span lang="ko">꽃</span> <i>kkot</i> flower [<span lang="ko">꼳</span>]</td></tr>
+<tr><th scope="row" class="L" lang="ko">l</th><td><span lang="ko">ㄹ</span></td><td><span lang="ko">물</span> <i>mul</i> water</td></tr>
+<tr><th scope="row" class="L" lang="ko">m</th><td><span lang="ko">ㅁ</span></td><td><span lang="ko">봄</span> <i>bom</i> spring</td></tr>
+<tr><th scope="row" class="L" lang="ko">p</th><td><span lang="ko">ㅂ ㅍ</span></td><td><span lang="ko">집</span> <i>jip</i> home; <span lang="ko">앞</span> <i>ap</i> front</td></tr>
+<tr><th scope="row" class="L" lang="ko">ng</th><td><span lang="ko">ㅇ</span></td><td><span lang="ko">강</span> <i>gang</i> river</td></tr></tbody></table></div>
+<p class="small">The seven final sounds are held in, with no puff of air after them. If a vowel follows, the letter is said in full (see "Linking" in section 4).</p>
+</section>
+
+<section id="writing">
+<p class="eyebrow">3</p>
+<h2>Writing</h2>
+<table style="margin-bottom:8px">
+<caption>Stroke order rules</caption>
+<tbody>
+<tr><th scope="row">1</th><td>Top to bottom, left to right.</td></tr>
+<tr><th scope="row">2</th><td>Inside a block: initial consonant, then vowel, then final consonant.</td></tr>
+<tr><th scope="row">3</th><td>In a vowel, the stroke that is further up or further left comes first: <span lang="ko">ㅏ</span> the stem, then the tick on its right; <span lang="ko">ㅓ</span> the tick on the left, then the stem; <span lang="ko">ㅗ</span> the short upright, then the bar under it; <span lang="ko">ㅜ</span> the bar, then the short stem under it.</td></tr>
+<tr><th scope="row">4</th><td>In <span lang="ko">ㅁ</span> the left side comes first, then the top and right side in one stroke, then the bottom; in <span lang="ko">ㅂ</span> the two uprights, then the middle bar, then the bottom bar. The circle <span lang="ko">ㅇ</span> is one stroke, from the top, anticlockwise. A short tick on top (<span lang="ko">ㅊ ㅎ</span>) comes first.</td></tr>
+<tr><th scope="row">5</th><td>A doubled consonant is the single letter twice, left one first (<span lang="ko">ㄲ</span> = <span lang="ko">ㄱ</span> + <span lang="ko">ㄱ</span>).</td></tr>
+</tbody></table>
+<p>Below is each of the 24 basic letters in stroke order. A number marks where each stroke starts; strokes follow the colours in order. "Play" draws them one by one. The stroke data comes from the app (<code>characters/korean</code>): the strokes were drawn for the app and checked by a model, not by a person, so treat them as a guide to the order, not as calligraphy.</p>
+<p><button type="button" id="play-all">Play all</button> <span id="stroke-status" class="small" role="status">Loading stroke data…</span></p>
+<h3>Consonants</h3>
+<div class="cards" id="cards-c"></div>
+<h3>Vowels</h3>
+<div class="cards" id="cards-v"></div>
+<noscript><p class="note">The stroke diagrams need JavaScript to load the app's stroke data.</p></noscript>
+<p>The app's <a href="../#writing">Writing area</a> lets you practise every letter and syllable by tracing and drawing.</p>
+</section>
+
+<section id="sounds">
+<p class="eyebrow">4</p>
+<h2>Sounds change between syllables</h2>
+<p>Korean is not said letter by letter. Where two syllables meet, the sounds adjust, and the spelling does not follow. The rules are regular. Five come up in the first lessons. "Said" shows the standard pronunciation written in Hangul, to show the change.</p>
+<h3>Linking</h3><p>A final consonant moves onto a following syllable that starts with the silent <span lang="ko">ㅇ</span>.</p><div class="scroll" tabindex="0" role="region" aria-label="Linking"><table><caption>Linking</caption><thead><tr><th scope="col">Written</th><th scope="col">Romanization</th><th scope="col">Said</th><th scope="col">Note</th><th scope="col">Where</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko"><span lang="ko">읽어요</span></th><td>ilgeoyo</td><td><span lang="ko">일거요</span></td><td>The <span lang="ko">ㄹ</span> stays, the <span lang="ko">ㄱ</span> moves</td><td>lesson 49 (<span lang="ko">읽다</span>)</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">먹어요</span></th><td>meogeoyo</td><td><span lang="ko">머거요</span></td><td></td><td>lesson 15 (<span lang="ko">먹다</span>)</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">있어요</span></th><td>isseoyo</td><td><span lang="ko">이써요</span></td><td><span lang="ko">ㅆ</span> moves and stays tense</td><td>lesson 21 (<span lang="ko">있다</span>)</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">옷이</span></th><td>osi</td><td><span lang="ko">오시</span></td><td></td><td>lesson 29 (<span lang="ko">옷</span>); NIKL example</td></tr></tbody></table></div>
+<h3>Nasal sounds</h3><p>A k, t or p sound before <span lang="ko">ㄴ</span> or <span lang="ko">ㅁ</span> turns into ng, n or m.</p><div class="scroll" tabindex="0" role="region" aria-label="Nasal sounds"><table><caption>Nasal sounds</caption><thead><tr><th scope="col">Written</th><th scope="col">Romanization</th><th scope="col">Said</th><th scope="col">Note</th><th scope="col">Where</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko"><span lang="ko">입니다</span></th><td>imnida</td><td><span lang="ko">임니다</span></td><td>"it is" (formal); p becomes m</td><td>not in the early lessons</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">먹는</span></th><td>meongneun</td><td><span lang="ko">멍는</span></td><td>k becomes ng</td><td>from <span lang="ko">먹다</span> (lesson 15); NIKL example</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">한국말</span></th><td>hangungmal</td><td><span lang="ko">한궁말</span></td><td>k becomes ng: "Korean (language)"</td><td>common word</td></tr></tbody></table></div>
+<h3>Tensing</h3><p>After a k, t or p sound, the next <span lang="ko">ㄱ</span> <span lang="ko">ㄷ</span> <span lang="ko">ㅂ</span> <span lang="ko">ㅅ</span> <span lang="ko">ㅈ</span> is said tense. The official romanization does not write it; the brackets mark it.</p><div class="scroll" tabindex="0" role="region" aria-label="Tensing"><table><caption>Tensing</caption><thead><tr><th scope="col">Written</th><th scope="col">Romanization</th><th scope="col">Said</th><th scope="col">Note</th><th scope="col">Where</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko"><span lang="ko">학생</span></th><td>haksaeng (hak-ssaeng)</td><td><span lang="ko">학쌩</span></td><td>student</td><td>lesson 1</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">학교</span></th><td>hakgyo (hak-kkyo)</td><td><span lang="ko">학꾜</span></td><td>school</td><td>lesson 10</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">먹다</span></th><td>meokda (meok-tta)</td><td><span lang="ko">먹따</span></td><td>to eat</td><td>lesson 15</td></tr></tbody></table></div>
+<h3><span lang="ko">ㅎ</span> weakens</h3><p>A final <span lang="ko">ㅎ</span> is not said before a vowel, and it joins a neighbouring <span lang="ko">ㄱ</span> <span lang="ko">ㄷ</span> <span lang="ko">ㅂ</span> <span lang="ko">ㅈ</span> into <span lang="ko">ㅋ</span> <span lang="ko">ㅌ</span> <span lang="ko">ㅍ</span> <span lang="ko">ㅊ</span>.</p><div class="scroll" tabindex="0" role="region" aria-label="ㅎ weakens"><table><caption><span lang="ko">ㅎ</span> weakens</caption><thead><tr><th scope="col">Written</th><th scope="col">Romanization</th><th scope="col">Said</th><th scope="col">Note</th><th scope="col">Where</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko"><span lang="ko">좋아요</span></th><td>joayo</td><td><span lang="ko">조아요</span></td><td>the final <span lang="ko">ㅎ</span> is not said before a vowel</td><td>lesson 7 (<span lang="ko">좋다</span>)</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">좋고</span></th><td>joko</td><td><span lang="ko">조코</span></td><td><span lang="ko">ㅎ+ㄱ</span> becomes k</td><td>NIKL example</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">많아요</span></th><td>manayo</td><td><span lang="ko">마나요</span></td><td>the final <span lang="ko">ㅎ</span> is not said before a vowel</td><td>common word</td></tr></tbody></table></div>
+<h3>Palatalisation</h3><p>A final <span lang="ko">ㄷ</span> or <span lang="ko">ㅌ</span> before the suffix <span lang="ko">이</span> (or <span lang="ko">히</span>) is said j or ch. This only happens at the join of a word and its ending, not in every word: <span lang="ko">티켓</span> stays "tiket".</p><div class="scroll" tabindex="0" role="region" aria-label="Palatalisation"><table><caption>Palatalisation</caption><thead><tr><th scope="col">Written</th><th scope="col">Romanization</th><th scope="col">Said</th><th scope="col">Note</th><th scope="col">Where</th></tr></thead><tbody><tr><th scope="row" class="L" lang="ko"><span lang="ko">같이</span></th><td>gachi</td><td><span lang="ko">가치</span></td><td>together</td><td>NIKL example</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">굳이</span></th><td>guji</td><td><span lang="ko">구지</span></td><td>insistently</td><td>NIKL example</td></tr>
+<tr><th scope="row" class="L" lang="ko"><span lang="ko">닫히다</span></th><td>dachida</td><td><span lang="ko">다치다</span></td><td>to be closed</td><td>NIKL example</td></tr></tbody></table></div>
+<p class="note"><strong>Why the app's readings follow the pronunciation.</strong> The official Revised Romanization is a transcription of how Korean is <em>said</em> (rule 1 of the NIKL system), not a letter-for-letter transliteration. A reading that spells <span lang="ko">입니다</span> as "ibnida" teaches a sound nobody says, so the app's readings follow the sound: <i>imnida</i>. The official system leaves out tensing (so <span lang="ko">학생</span> is <i>haksaeng</i>, said "hak-ssaeng"), and a hyphen or doubled letter in brackets on this page only helps you hear it.</p>
+</section>
+
+<section id="next">
+<p class="eyebrow">5</p>
+<h2>Where to go next</h2>
+<p><a class="btn primary" href="../#lessons/group/ko-lesson-0001">Start Lesson 1</a><a class="btn" href="../#lessons">Back to Lessons</a><a class="btn" href="../#writing">Practise in the Writing area</a></p>
+<p class="small">Return to this page whenever a letter or a sound looks strange. The lessons stay in the same order as before.</p>
+</section>
+
+<section id="refs">
+<h2>References</h2>
+<ol class="refs">
+<li>National Institute of Korean Language (NIKL), <em>Romanization of Korean</em> (Revised Romanization, 2000): <a href="https://www.korean.go.kr/front_eng/roman/roman_01.do">korean.go.kr/front_eng/roman/roman_01.do</a></li>
+<li>NIKL, <em>Standard Pronunciation</em> (<span lang="ko">표준 발음법</span>, part 2 of <span lang="ko">표준어 규정</span>): <a href="https://korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0002">korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0002</a></li>
+<li>NIKL, <em>Hangul Spelling Rules</em> (<span lang="ko">한글 맞춤법</span>), article 4: the names and order of the letters: <a href="https://korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0001">korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0001</a></li>
+<li>Wikipedia, <em>Korean phonology</em> (vowel inventory; <span lang="ko">ㅐ</span> and <span lang="ko">ㅔ</span>, and <span lang="ko">ㅚ</span>, as said today): <a href="https://en.wikipedia.org/wiki/Korean_phonology">en.wikipedia.org/wiki/Korean_phonology</a></li>
+<li>Stroke data: the app's own <code>characters/korean</code> data (CC0; see its ATTRIBUTION page): <a href="../characters/korean/ATTRIBUTION.html">characters/korean/ATTRIBUTION.html</a></li>
+</ol>
+</section>
+</main>
+</div>
+<script>
+(function () {
+  var BASIC = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ","ㅏ","ㅑ","ㅓ","ㅕ","ㅗ","ㅛ","ㅜ","ㅠ","ㅡ","ㅣ"];
+  var CONS = BASIC.slice(0, 14), VOW = BASIC.slice(14);
+  var COLORS = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)','var(--s6)','var(--s7)','var(--s8)'];
+  var NS = 'http://www.w3.org/2000/svg';
+  var status = document.getElementById('stroke-status');
+  var all = [];
+  function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function page(ch) { return 'u' + (ch.codePointAt(0) >>> 8).toString(16).padStart(4, '0'); }
+  function card(ch, rec, host) {
+    var fig = document.createElement('figure');
+    if (!rec) { fig.className = 'card none'; fig.innerHTML = '<span><b lang="ko">' + ch + '</b><br>No stroke data in the app for this letter.</span>'; host.appendChild(fig); return; }
+    fig.className = 'card';
+    var svg = el('svg', { viewBox: '0 0 100 100', role: 'img', 'aria-label': 'Stroke order of ' + ch + ': ' + rec.strokeCount + ' strokes' }, fig);
+    el('path', { 'class': 'guide', d: 'M50 4 V96 M4 50 H96' }, svg);
+    var paths = [];
+    rec.paths.forEach(function (d, i) {
+      paths.push(el('path', { 'class': 'stroke', d: d, pathLength: '1', stroke: COLORS[i % COLORS.length] }, svg));
+    });
+    rec.paths.forEach(function (d, i) {
+      var m = /^M\s*(-?[\d.]+)[\s,]+(-?[\d.]+)/.exec(d); if (!m) return;
+      var g = el('g', {}, svg);
+      el('circle', { cx: m[1], cy: m[2], r: 5.5, fill: COLORS[i % COLORS.length] }, g);
+      var t = el('text', { x: m[1], y: m[2], 'class': 'num' }, g); t.textContent = String(i + 1);
+    });
+    var cap = document.createElement('figcaption');
+    cap.innerHTML = '<b lang="ko">' + ch + '</b> · ' + rec.strokeCount + (rec.strokeCount === 1 ? ' stroke' : ' strokes') + '<br>';
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Play'; b.setAttribute('aria-label', 'Play stroke order of ' + ch);
+    var play = function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !paths[0].animate) return;
+      paths.forEach(function (p, i) { p.animate([{ strokeDasharray: '1 1', strokeDashoffset: 1 }, { strokeDasharray: '1 1', strokeDashoffset: 0 }], { duration: 550, delay: i * 650, fill: 'backwards', easing: 'ease-in-out' }); });
+    };
+    b.addEventListener('click', play); all.push(play);
+    cap.appendChild(b); fig.appendChild(cap); host.appendChild(fig);
+  }
+  document.getElementById('play-all').addEventListener('click', function () { all.forEach(function (f) { f(); }); });
+  var pageName = page(BASIC[0]); // all of ㄱ..ㅣ are in the Hangul Compatibility Jamo block, one page
+  fetch('../characters/korean/' + pageName + '.generated.json').then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status); return r.json();
+  }).then(function (data) {
+    var by = {}; data.characters.forEach(function (c) { by[c.character] = c; });
+    var missing = [];
+    CONS.forEach(function (ch) { if (!by[ch]) missing.push(ch); card(ch, by[ch], document.getElementById('cards-c')); });
+    VOW.forEach(function (ch) { if (!by[ch]) missing.push(ch); card(ch, by[ch], document.getElementById('cards-v')); });
+    status.textContent = missing.length ? 'No stroke data for: ' + missing.join(' ') : 'All 24 basic letters have stroke data.';
+  }).catch(function (e) {
+    status.textContent = 'The stroke data could not be loaded (' + e.message + '). Open this page from the app, not as a file.';
+  });
+})();
+</script>
+</body>
+</html>
