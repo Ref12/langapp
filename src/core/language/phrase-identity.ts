@@ -1,0 +1,69 @@
+// What makes two sentences the same sentence, and how a sentence is cut into the tiles of Word order: the pack answers, no caller tests the language.
+// Chinese is the Han-only key and the Han-run segmenter exactly as they were (moved here from phrases/key.ts and session/grade.ts); Japanese and Korean read the sentence's own tokens.
+
+/** One token of a sentence as the pack's data writes it (the same shape as an authored example's segment, phrases/contracts.ts). */
+export interface SentenceToken { word?: string; grammar?: string; punctuation?: string; text?: string; reading?: string; form?: string }
+
+/** What the segmenter may use: the known written forms (Chinese), and the sentence's tokens with a way to read a word's written form (Japanese, Korean). */
+export interface SegmentWords {
+  forms: ReadonlySet<string>
+  tokens?: readonly SentenceToken[]
+  /** The written form of a vocabulary ref, for a token that carries no text of its own. */
+  surface?: (ref: string) => string | undefined
+}
+
+export interface PhraseIdentity {
+  /** What makes two sentences the same: equal keys mean the same sentence. Stored data is keyed by it. */
+  phraseKey(text: string): string
+  /** The tiles of a sentence, in order, without punctuation. Empty when the data cannot say. */
+  segment(text: string, words: SegmentWords): string[]
+}
+
+const NOT_HAN = /[^\p{Script=Han}]/gu
+
+/** Chinese: the Han characters only, so punctuation, spaces and full-width marks do not count. Kept in step with phraseKey in scripts/build-phrase-bank.mjs (a test compares them). */
+export const hanPhraseKey = (zh: string): string => zh.replace(NOT_HAN, '')
+
+/** Words of a text: the longest known form at each position, an uncovered Han character on its own. Punctuation and spaces are dropped. */
+export function segmentHan(text: string, forms: ReadonlySet<string>): string[] {
+  const longest = Math.max(1, ...[...forms].map(form => form.length))
+  const out: string[] = []
+  for (const run of text.match(/\p{Script=Han}+/gu) ?? []) {
+    let start = 0
+    while (start < run.length) {
+      let length = Math.min(longest, run.length - start)
+      while (length > 1 && !forms.has(run.slice(start, start + length))) length--
+      out.push(run.slice(start, start + length)); start += length
+    }
+  }
+  return out
+}
+
+export const zhIdentity: PhraseIdentity = { phraseKey: hanPhraseKey, segment: (text, words) => segmentHan(text, words.forms) }
+
+const NOT_LETTER = /[^\p{L}\p{N}\p{M}]/gu
+
+/**
+ * Japanese and Korean: letters and numbers only. Full-width and half-width forms are folded (NFKC), spaces and punctuation, Japanese and Latin, are dropped, Latin case does not count.
+ * Hiragana and katakana are different letters (ケーキ is not けーき), and the reading is not the key.
+ */
+export const lettersPhraseKey = (text: string): string => text.normalize('NFKC').toLowerCase().replace(NOT_LETTER, '')
+
+/** The tiles from the sentence's tokens: a word or grammar token is one tile with its whole surface (勉強します), punctuation is no tile. */
+export function segmentTokens(words: SegmentWords): string[] {
+  const out: string[] = []
+  for (const token of words.tokens ?? []) {
+    if (token.punctuation !== undefined) continue
+    const text = token.text ?? (token.word !== undefined ? words.surface?.(token.word) : undefined)
+    if (text && lettersPhraseKey(text)) out.push(text)
+  }
+  return out
+}
+
+export const jaIdentity: PhraseIdentity = { phraseKey: lettersPhraseKey, segment: (_text, words) => segmentTokens(words) }
+
+/** Korean has no data yet: the same key, tiles from tokens when there are some, else the words between spaces (Korean is written with them). */
+export const koIdentity: PhraseIdentity = {
+  phraseKey: lettersPhraseKey,
+  segment: (text, words) => words.tokens?.length ? segmentTokens(words) : text.split(/\s+/u).filter(part => lettersPhraseKey(part)),
+}

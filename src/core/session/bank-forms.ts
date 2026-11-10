@@ -1,5 +1,6 @@
 import type { Catalog } from '../study/catalog'
 import type { BankPhrase } from '../phrases/contracts'
+import { unitRef } from '../study/contracts'
 import { phraseKey } from '../phrases/key'
 import { buildChoice, createRng, shortMeaning, type VocabularyUnit } from '../study/local-exercises'
 import { acceptedAnswers, acceptedEnglish, englishKey, segmentWords, sensesOf } from './grade'
@@ -68,7 +69,7 @@ export function buildDictation(slot: Slot, phrase: BankPhrase, context: FormCont
 
 /** Word order: the phrase's words as tiles, with up to two known words that are not in it as distractors. Undefined when the phrase has fewer than 2 or more than 14 words. */
 export function buildTiles(slot: Slot, phrase: BankPhrase, context: FormContext): TilesItem | undefined {
-  const tiles = segmentWords(phrase.zh, phraseForms(context, phrase))
+  const tiles = segmentWords(phrase.zh, phraseForms(context, phrase), phrase.tokens, label => formOf(context.catalog, unitRef('vocabulary', label)))
   if (tiles.length < 2 || tiles.length > 14 || tiles.some(tile => tile.length > 12)) return undefined
   const rng = rngFor(context, slot.id)
   const inside = new Set(tiles)

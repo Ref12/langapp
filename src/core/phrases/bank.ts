@@ -47,7 +47,7 @@ export function catalogBankPhrases(catalog: Catalog, ref: string): BankPhrase[] 
   const seen = new Set<string>()
   return catalogExamples(catalog, ref).filter(example => example.translation.trim() && syllableCount(example.text) <= MAX_PHRASE_SYLLABLES && !seen.has(example.text) && !!seen.add(example.text))
     .map((example, at) => ({ at, example })).sort((a, b) => syllableCount(a.example.text) - syllableCount(b.example.text) || a.at - b.at)
-    .map(({ example }) => ({ zh: example.text, py: example.pinyin, en: example.translation.trim(), words: [...new Set(example.words)], ...(example.grammar.length ? { grammar: example.grammar } : {}), source: 'catalog' as const, checked: true }))
+    .map(({ example }) => ({ zh: example.text, py: example.pinyin, en: example.translation.trim(), words: [...new Set(example.words)], ...(example.grammar.length ? { grammar: example.grammar } : {}), source: 'catalog' as const, checked: true, tokens: example.tokens }))
 }
 
 /** What a learner's own words are as forms: the vocabulary in `allowed`, with the function characters every sentence may use. */

@@ -1,4 +1,6 @@
 import type { BankPhrase } from '../phrases/contracts'
+import { getPack } from '../language'
+import type { SegmentWords } from '../language/phrase-identity'
 import { phraseKey } from '../phrases/key'
 import { formatPinyin, parseReadings, withTone, type Syllable } from '../pinyin'
 
@@ -40,19 +42,9 @@ export function acceptedEnglish(model: Pick<BankPhrase, 'zh' | 'en'>, bank: read
   return out
 }
 
-/** Words of a text: the longest known form at each position, an uncovered Han character on its own. Punctuation and spaces are dropped. */
-export function segmentWords(text: string, forms: ReadonlySet<string>): string[] {
-  const longest = Math.max(1, ...[...forms].map(form => form.length))
-  const out: string[] = []
-  for (const run of text.match(/\p{Script=Han}+/gu) ?? []) {
-    let start = 0
-    while (start < run.length) {
-      let length = Math.min(longest, run.length - start)
-      while (length > 1 && !forms.has(run.slice(start, start + length))) length--
-      out.push(run.slice(start, start + length)); start += length
-    }
-  }
-  return out
+/** The tiles of a text, asked of the language pack: Chinese cuts Han runs by the known forms; Japanese reads the sentence's tokens (`tokens`, with `surface` giving a word's written form). */
+export function segmentWords(text: string, forms: ReadonlySet<string>, tokens?: SegmentWords['tokens'], surface?: SegmentWords['surface']): string[] {
+  return getPack().segment(text, { forms, tokens, surface })
 }
 
 /** Chinese wordings the English cannot tell apart: a swap of these is as right as the model answer. Add rows to extend. */

@@ -1,7 +1,7 @@
 import { phrasePinyin } from '../pinyin/phrase'
 import { phraseReadingsOf } from '../pinyin/phrase-readings'
 import { db } from '../database'
-import { loadCatalog, renderExample, type Catalog } from '../study/catalog'
+import { loadCatalog, renderExample, type Catalog, type ExampleSegment } from '../study/catalog'
 import { isPhraseRef, isSourceRef } from '../study/contracts'
 import type { Sentence } from './contracts'
 
@@ -38,18 +38,18 @@ export async function loadItems(refs: readonly string[], catalog?: Catalog): Pro
   return items
 }
 
-const exampleIndexes = new WeakMap<Catalog, Map<string, { text: string; pinyin: string; translation: string; /** The vocabulary refs the example is made of. */ words: string[]; /** The grammar refs it demonstrates, where known. */ grammar: string[] }[]>>()
+const exampleIndexes = new WeakMap<Catalog, Map<string, { text: string; pinyin: string; translation: string; /** The vocabulary refs the example is made of. */ words: string[]; /** The grammar refs it demonstrates, where known. */ grammar: string[]; /** The segments it is made of (a pack that cuts sentences by their tokens reads them). */ tokens: ExampleSegment[] }[]>>()
 
 /** Every authored example by the vocabulary refs and grammar labels it uses, built once per catalog. */
 function exampleIndex(catalog: Catalog) {
   let index = exampleIndexes.get(catalog)
   if (index) return index
   index = new Map()
-  const add = (ref: string, example: { segments: { word?: string; punctuation?: string }[]; translation: string; grammar?: string[] }) => {
+  const add = (ref: string, example: { segments: ExampleSegment[]; translation: string; grammar?: string[] }) => {
     try {
       const rendered = renderExample(catalog, example)
       const list = index!.get(ref) ?? []
-      list.push({ ...rendered, translation: example.translation, words: example.segments.flatMap(segment => segment.word ? [`vocabulary:${segment.word}`] : []), grammar: (example.grammar ?? []).map(label => `grammar:${label}`) })
+      list.push({ ...rendered, translation: example.translation, words: example.segments.flatMap(segment => segment.word ? [`vocabulary:${segment.word}`] : []), grammar: (example.grammar ?? []).map(label => `grammar:${label}`), tokens: example.segments })
       index!.set(ref, list)
     } catch { /* an example that cannot be rendered is not offered */ }
   }
