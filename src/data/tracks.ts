@@ -66,8 +66,9 @@ export interface GroupSource {
 
 const TITLE_ITEMS = 5
 
-/** A short label for a grammar pattern: its Chinese key word(s) plus "(gr.)", else the pattern's name from its label. */
-export function grammarLabel(pattern: string, label: string): string {
+/** A short label for a grammar pattern: its own short text (a record that has one: Japanese) plus "(gr.)", else its Chinese key word(s) plus "(gr.)", else the pattern's name from its label. */
+export function grammarLabel(pattern: string, label: string, shortText?: string): string {
+  if (shortText) return `${shortText} (gr.)`
   const keyWords = pattern.match(/[\u3400-\u9fff]+/g)
   if (keyWords) return `${[...new Set(keyWords)].join('')} (gr.)`
   const name = label.split('--')[1]?.replace(/-/g, ' ')

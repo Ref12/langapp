@@ -33,7 +33,7 @@ export function useBandRows(track: Track, catalog: Catalog | undefined, known: M
     titleOf: (kind, ref) => {
       const unit = catalog.units.get(refFor(kind, ref))
       if (!unit) return ref
-      return unit.kind === 'vocabulary' ? headwordFor(getPack().displayForms, form, unit.record).text : grammarLabel(unit.record.pt, unit.record.lb)
+      return unit.kind === 'vocabulary' ? headwordFor(getPack().displayForms, form, unit.record).text : grammarLabel(unit.record.pt, unit.record.lb, unit.record.st)
     },
   }, known, nextId, refFor, band) : [], [track, catalog, known, nextId, band, open, form])
 }

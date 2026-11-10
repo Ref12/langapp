@@ -15,7 +15,8 @@ export interface VocabularyRecord { id: string; ch: string; pr: string; ds: stri
  */
 export interface ExampleSegment { word?: string; grammar?: string; punctuation?: string; text?: string; reading?: string; form?: string }
 export interface AuthoredExample { id: string; segments: ExampleSegment[]; translation: string; grammar: string[] }
-export interface GrammarRecord { id: string; pt: string; pr: string; ds: string; lb: string; ex: AuthoredExample | Omit<AuthoredExample, 'id'> }
+/** `st` (absent in Chinese): the pattern's short text, the fixed written part of its name, which names it in a list row. */
+export interface GrammarRecord { id: string; pt: string; pr: string; ds: string; st?: string; lb: string; ex: AuthoredExample | Omit<AuthoredExample, 'id'> }
 export interface StudyGroup { id: string; units: { kind: UnitKind; ref: string }[]; examples: AuthoredExample[] }
 export interface BandData {
   schemaVersion: 1
