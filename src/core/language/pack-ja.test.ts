@@ -175,7 +175,7 @@ describe('the Japanese build language', () => {
     setBuildLanguageForTests('ko')
     expect(catalogBandList()).toEqual(['1'])
     expect((await loadCatalog()).orderedGroups.length).toBe(87)
-    expect((await loadPhraseIndex())?.total).toBe(801)
+    expect((await loadPhraseIndex())?.total).toBe(905)
     expect((await loadPracticeData()).data.counts.exchanges).toBe(0)
   })
 })

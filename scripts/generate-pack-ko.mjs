@@ -1,7 +1,7 @@
 // Writes the Korean language pack's data (src/data/packs/ko) from the authoring data under curriculum/korean:
 //   parallel/entries.yaml + zh-lessons.yaml + the imported TOPIK references (read through scripts/parallel-lessons-files.mjs),
 //   authoring/pack-glosses.json (short glosses where a lesson row has none), authoring/pack-gloss-overrides.json (glosses written by hand),
-//   authoring/pack-pattern-names.json (pattern names the rule in pack-ko-names.mjs cannot make), authoring/pack-pattern-short-texts.json, authoring/pack-forms.json (names of the word forms),
+//   authoring/pack-pattern-names.json (pattern names the rule in pack-ko-names.mjs cannot make), authoring/pack-pattern-short-texts.json, authoring/pack-pattern-explanations.json, authoring/pack-forms.json (names of the word forms),
 //   authoring/pack-headwords.json (a headword written differently from the source's), authoring/pack-labels.json (the label registry, append-only) and pack-labels-sealed.json (labels that may never change),
 //   authoring/pack-phrase-corrections.json, pack-lesson-corrections.json, pack-added-phrases.json (corrections of the lesson source) and pack-accepted-gaps.json (content gaps accepted for a later stage, each with a reason).
 // The language-free parts (label registry and sealed list, corrections, gap check, writer, short glosses) are in scripts/pack-shared.mjs, shared with generate-pack-ja.mjs.
@@ -10,7 +10,7 @@
 // Usage: node scripts/generate-pack-ko.mjs [--check] [--root DIR]
 //        node scripts/generate-pack-ko.mjs --report [FILE]   the content gaps of the lessons (markdown, to FILE or stdout)
 //        node scripts/generate-pack-ko.mjs --seal            add the registry's labels to the sealed file (never changes a sealed one)
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { loadFormsRules } from './forms-data.mjs'
@@ -26,12 +26,14 @@ export const GLOSSES_FILE = AUTHORING + 'pack-glosses.json'
 export const GLOSS_OVERRIDES_FILE = AUTHORING + 'pack-gloss-overrides.json'
 export const NAMES_FILE = AUTHORING + 'pack-pattern-names.json'
 export const SHORT_TEXTS_FILE = AUTHORING + 'pack-pattern-short-texts.json'
+export const EXPLANATIONS_FILE = AUTHORING + 'pack-pattern-explanations.json'
 export const FORMS_FILE = AUTHORING + 'pack-forms.json'
 export const HEADWORDS_FILE = AUTHORING + 'pack-headwords.json'
 export const CORRECTIONS_FILE = AUTHORING + 'pack-phrase-corrections.json'
 export const LESSON_CORRECTIONS_FILE = AUTHORING + 'pack-lesson-corrections.json'
 export const ADDED_PHRASES_FILE = AUTHORING + 'pack-added-phrases.json'
 export const ACCEPTED_GAPS_FILE = AUTHORING + 'pack-accepted-gaps.json'
+export const GAP_NOTES_FILE = AUTHORING + 'pack-gap-notes.md'
 export const GAPS_REPORT_FILE = 'docs/audits/2026-11-10-korean-lesson-content-gaps.md'
 export const GROUP_PREFIX = 'ko-lesson-'
 export const ALIGNMENT = 'lessons-1'
@@ -92,7 +94,9 @@ export function buildKoPack(base = defaultRoot) {
   const registry = readJson(join(base, REGISTRY_FILE), { version: 1, vocabulary: {}, grammar: {} })
   const names = readJson(join(base, NAMES_FILE), { names: {} }).names
   const shortTexts = readJson(join(base, SHORT_TEXTS_FILE), { shortTexts: {} }).shortTexts
-  for (const id of [...Object.keys(names), ...Object.keys(shortTexts)]) if (!index.grammar.has(id)) throw new Error(NAMES_FILE + ' or ' + SHORT_TEXTS_FILE + ' names an unknown pattern ' + id)
+  const explanations = readJson(join(base, EXPLANATIONS_FILE), { explanations: {} }).explanations
+  for (const id of [...Object.keys(names), ...Object.keys(shortTexts), ...Object.keys(explanations)]) if (!index.grammar.has(id)) throw new Error(NAMES_FILE + ', ' + SHORT_TEXTS_FILE + ' or ' + EXPLANATIONS_FILE + ' names an unknown pattern ' + id)
+  const missingExplanations = [] // course-written patterns (ko-par-g*) with no plain explanation: --check fails
   /** The name of a pattern in the convention (overlay first, then the rule), and the label slug of it. */
   const nameOf = id => {
     const e = index.grammar.get(id)
@@ -206,7 +210,9 @@ export function buildKoPack(base = defaultRoot) {
     const name = nameOf(id)
     const st = shortTexts[id] ?? shortTextRule(name)
     if (!st) throw new Error('No short text for the pattern ' + id + ' (' + name + '): the rule cannot make one, add it to ' + SHORT_TEXTS_FILE)
-    return { id, pt: name, pr: name, ds: e.english, st, lb: pattern(id), ex }
+    const plain = explanations[id]
+    if (!plain && id.startsWith('ko-par-g')) missingExplanations.push(id)
+    return { id, pt: name, pr: name, ds: plain ?? e.english, st, lb: pattern(id), ex }
   })
   const vocabulary = items.map(item => {
     const e = index.vocabulary.get(item.entry)
@@ -255,11 +261,12 @@ export function buildKoPack(base = defaultRoot) {
     wordTitle: (entry, number) => '`' + entry + '` ' + index.vocabulary.get(entry).target + ' (' + itemAt(entry, number).gloss + ')',
   })
   const gapProblems = checkGaps(gaps, accepted)
-  return { files, band, phrases, formsTable, corrected, gapProblems, accepted, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: nameOf(id) })), report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length } }
+  const notes = existsSync(join(base, GAP_NOTES_FILE)) ? readFileSync(join(base, GAP_NOTES_FILE), 'utf8').replace(/\r\n/g, '\n') : ''
+  return { files, band, phrases, formsTable, corrected, gapProblems, missingExplanations, notes, accepted, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: nameOf(id) })), report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length } }
 }
 
 /** The content gaps as markdown (docs/audits/2026-11-10-korean-lesson-content-gaps.md): the work list of stage 4. An accepted gap says so, with its reason. */
-export const gapsMarkdown = pack => gapsMarkdownShared(pack, { language: 'Korean', command: COMMAND, lead: "A gap is a place where a lesson's list and its sentences do not meet. `--check` fails for a gap that is neither closed nor in the accepted list (`curriculum/korean/authoring/pack-accepted-gaps.json`, one reason each). Every gap below is accepted for now with the reason \"stage 4\": this list is the work list of stage 4 of docs/audits/2026-11-10-korean-plan.md." })
+export const gapsMarkdown = pack => gapsMarkdownShared(pack, { language: 'Korean', command: COMMAND, lead: "A gap is a place where a lesson's list and its sentences do not meet. `--check` fails for a gap that is neither closed nor in the accepted list (`curriculum/korean/authoring/pack-accepted-gaps.json`, one reason each). Stage 4 of docs/audits/2026-11-10-korean-plan.md closed the 75 gaps the data pack had accepted for it; the gaps still listed below are accepted with a real reason, and the notes after the list (curriculum/korean/authoring/pack-gap-notes.md) say what was done for each gap." }) + (pack.notes ? '\n' + pack.notes : '')
 
 /** The sealed file with every label of the registry added; a sealed label is never changed. */
 export const sealText = (base = defaultRoot) => sealShared(base, { REGISTRY_FILE, SEALED_FILE, command: COMMAND })
@@ -286,6 +293,7 @@ export function main(argv = process.argv.slice(2)) {
     for (const item of pack.gapProblems.stale) console.error('Accepted gap that is no gap, or has no reason: lesson ' + item.lesson + ', ' + item.kind + ' ' + item.id)
     throw new Error('The lessons have content gaps that are not in ' + ACCEPTED_GAPS_FILE + ' (close them in the lesson source corrections, or accept them there with a reason).')
   }
+  if (check && pack.missingExplanations.length) throw new Error('No plain explanation (' + EXPLANATIONS_FILE + ') for: ' + pack.missingExplanations.join(', '))
   const stale = writeFiles(base, pack.files, check)
   console.log('Korean pack data ' + (check ? 'checked' : 'generated') + ': ' + JSON.stringify(pack.report))
   if (check && stale.length) { for (const path of stale) console.error('Stale Korean pack data: ' + relative(base, join(base, path))); throw new Error('Run "node scripts/generate-pack-ko.mjs" to regenerate the Korean pack data.') }

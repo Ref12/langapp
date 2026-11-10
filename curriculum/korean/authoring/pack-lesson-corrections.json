@@ -2,7 +2,14 @@
  "version": 1,
  "language": "ko",
  "note": "Corrections of the lessons' lists: moves, removals, additions of words and patterns.",
- "moves": [],
+ "moves": [
+  {
+   "grammar": "ko-topik1-g008",
+   "from": 10,
+   "to": 14,
+   "why": "N에 가다/오다: the sentences of lesson 10 use 도착하다 with 에 (pg048), not 가다/오다; the first sentence with it is in lesson 14 (139, 학교에 도착하고), which had no grammar point of its own"
+  }
+ ],
  "removals": [],
  "additions": []
 }

@@ -22,8 +22,8 @@ describe('the Korean pack generator', () => {
   it('has the exact counts', () => {
     expect(band.groups.length).toBe(87)
     expect(band.vocabulary.length).toBe(300)
-    expect(band.grammar.length).toBe(107)
-    expect(pack.phrases.length).toBe(801)
+    expect(band.grammar.length).toBe(133)
+    expect(pack.phrases.length).toBe(905)
     expect(pack.formsTable.length).toBe(30)
   })
   it('resolves every sentence token and renders it', async () => {
@@ -41,15 +41,15 @@ describe('the Korean pack generator', () => {
       if (s.grammar) expect(catalog.units.has(unitRef('grammar', s.grammar))).toBe(true)
     }
   })
-  it('renders each phrase segments to its text, with distinct keys except one known repeat', () => {
+  it('renders each phrase segments to its text, with distinct keys (no repeated sentence)', () => {
     const seen = new Map<string, number>()
     for (const p of pack.phrases) {
       const text = p.tokens.map((s: { punctuation?: string; text?: string; word?: string; grammar?: string }) => s.punctuation ?? s.text ?? (s.word ? band.vocabulary.find(v => v.lb === s.word)!.ch : band.grammar.find(g => g.lb === s.grammar)!.pt)).join('')
       expect(text.replace(/\s/g, '')).toBe(p.zh.replace(/\s/g, ''))
       seen.set(p.zh, (seen.get(p.zh) ?? 0) + 1)
     }
-    expect(new Set(pack.phrases.map((p: { id: number }) => p.id)).size).toBe(801)
-    expect([...seen].filter(([, n]) => n > 1).map(([t]) => t)).toEqual(['여러분은 다 아주 좋아요.'])
+    expect(new Set(pack.phrases.map((p: { id: number }) => p.id)).size).toBe(905)
+    expect([...seen].filter(([, n]) => n > 1).map(([t]) => t)).toEqual([])
   })
   it('keeps ids stable and sealed, labels unique, homographs apart', () => {
     const registry = JSON.parse(onDisk(REGISTRY_FILE)), sealed = JSON.parse(onDisk(SEALED_FILE))

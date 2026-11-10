@@ -1,6 +1,4824 @@
 {
  "version": 1,
  "language": "ko",
- "note": "Korean-only sentences added to a lesson (id after the last source id, extra: true, no zh).",
- "phrases": []
+ "note": "Korean-only sentences added to a lesson (id after the last source id, extra: true, no zh). Each: { id, lesson, extra: true, text, en, tokens, words, grammar, checked, why }. The text is the tokens joined, with the spaces the sentence has. A phrase may use only what is taught up to and including its lesson: the generator throws when its readyAt is later. All are AI-written and were reviewed once (docs/audits/2026-11-10-korean-lesson-content-gaps.md).",
+ "phrases": [
+  {
+   "id": 802,
+   "lesson": 1,
+   "extra": true,
+   "text": "저는 학생이 아니에요.",
+   "en": "I am not a student.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "학생",
+     "w": "ko-nikl-24021"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "아니에요",
+     "g": "ko-topik1-g002"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-24021"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g004",
+    "ko-topik1-g002"
+   ],
+   "checked": false,
+   "why": "lesson 1 had only three sentences"
+  },
+  {
+   "id": 803,
+   "lesson": 1,
+   "extra": true,
+   "text": "학생도 공부해요.",
+   "en": "The student studies too.",
+   "tokens": [
+    {
+     "t": "학생",
+     "w": "ko-nikl-24021"
+    },
+    {
+     "t": "도",
+     "g": "ko-topik1-g012"
+    },
+    {
+     "t": "공부",
+     "w": "ko-par-00001"
+    },
+    {
+     "t": "해요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-24021",
+    "ko-par-00001"
+   ],
+   "grammar": [
+    "ko-topik1-g012",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "lesson 1 had only three sentences"
+  },
+  {
+   "id": 804,
+   "lesson": 3,
+   "extra": true,
+   "text": "저는 공부 안 해요.",
+   "en": "I don't study.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "공부",
+     "w": "ko-par-00001"
+    },
+    {
+     "t": "안",
+     "g": "ko-topik1-g021"
+    },
+    {
+     "t": "해요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-par-00001"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g021",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik1-g021 (안 + verb) is taught in lesson 3; no sentence of the lesson showed it"
+  },
+  {
+   "id": 805,
+   "lesson": 3,
+   "extra": true,
+   "text": "학생은 공부 안 해요.",
+   "en": "The student doesn't study.",
+   "tokens": [
+    {
+     "t": "학생",
+     "w": "ko-nikl-24021"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "공부",
+     "w": "ko-par-00001"
+    },
+    {
+     "t": "안",
+     "g": "ko-topik1-g021"
+    },
+    {
+     "t": "해요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-24021",
+    "ko-par-00001"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g021",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik1-g021"
+  },
+  {
+   "id": 806,
+   "lesson": 5,
+   "extra": true,
+   "text": "공부하세요.",
+   "en": "Please study.",
+   "tokens": [
+    {
+     "t": "공부",
+     "w": "ko-par-00001"
+    },
+    {
+     "t": "하세요",
+     "g": "ko-topik1-g023"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-par-00001"
+   ],
+   "grammar": [
+    "ko-topik1-g023"
+   ],
+   "checked": false,
+   "why": "topik1-g023 (-(으)세요) is taught in lesson 5; its only sentence was tagged as the honorific marker"
+  },
+  {
+   "id": 807,
+   "lesson": 5,
+   "extra": true,
+   "text": "우리 쉴까요?",
+   "en": "Shall we take a break?",
+   "tokens": [
+    {
+     "t": "우리",
+     "w": "ko-nikl-49275"
+    },
+    {
+     "t": "쉴",
+     "w": "ko-nikl-02389"
+    },
+    {
+     "t": "까요",
+     "g": "ko-topik1-g030"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-49275",
+    "ko-nikl-02389"
+   ],
+   "grammar": [
+    "ko-topik1-g030"
+   ],
+   "checked": false,
+   "why": "topik1-g030 (-(으)ㄹ까요?) is taught in lesson 5; no sentence showed it"
+  },
+  {
+   "id": 808,
+   "lesson": 5,
+   "extra": true,
+   "text": "우리 일할까요?",
+   "en": "Shall we work?",
+   "tokens": [
+    {
+     "t": "우리",
+     "w": "ko-nikl-49275"
+    },
+    {
+     "t": "일할",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "까요",
+     "g": "ko-topik1-g030"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-49275",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik1-g030"
+   ],
+   "checked": false,
+   "why": "topik1-g030"
+  },
+  {
+   "id": 809,
+   "lesson": 10,
+   "extra": true,
+   "text": "저는 오 분 동안 쉬어요.",
+   "en": "I rest for five minutes.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "오",
+     "w": "ko-nikl-48097"
+    },
+    {
+     "t": "분",
+     "w": "ko-nikl-06807"
+    },
+    {
+     "t": "동안",
+     "g": "ko-par-g009"
+    },
+    {
+     "t": "쉬",
+     "w": "ko-nikl-02389"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-48097",
+    "ko-nikl-06807",
+    "ko-nikl-02389"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-par-g009",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "pg009 (duration + 동안) is taught in lesson 10; no sentence showed it"
+  },
+  {
+   "id": 810,
+   "lesson": 12,
+   "extra": true,
+   "text": "저는 우유를 마시지 않아요.",
+   "en": "I don't drink milk.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "우유",
+     "w": "ko-nikl-49381"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "마시",
+     "w": "ko-nikl-35856"
+    },
+    {
+     "t": "지",
+     "g": "ko-topik2-g036"
+    },
+    {
+     "t": "않아요",
+     "g": "ko-topik2-g036"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-49381",
+    "ko-nikl-35856"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik2-g036"
+   ],
+   "checked": false,
+   "why": "topik2-g036 (-지 않다) is listed in lesson 12; no sentence of the lesson showed it"
+  },
+  {
+   "id": 811,
+   "lesson": 12,
+   "extra": true,
+   "text": "우유 주세요.",
+   "en": "Milk, please.",
+   "tokens": [
+    {
+     "t": "우유",
+     "w": "ko-nikl-49381"
+    },
+    {
+     "t": "주세요",
+     "w": "ko-par-00010"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-49381",
+    "ko-par-00010"
+   ],
+   "grammar": [],
+   "checked": false,
+   "why": "the word 주세요 had no sentence in its lesson"
+  },
+  {
+   "id": 812,
+   "lesson": 12,
+   "extra": true,
+   "text": "그거 주세요.",
+   "en": "Please give me that one.",
+   "tokens": [
+    {
+     "t": "그거",
+     "w": "ko-nikl-31936"
+    },
+    {
+     "t": "주세요",
+     "w": "ko-par-00010"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-31936",
+    "ko-par-00010"
+   ],
+   "grammar": [],
+   "checked": false,
+   "why": "the word 주세요"
+  },
+  {
+   "id": 813,
+   "lesson": 16,
+   "extra": true,
+   "text": "저는 이천이십오 년에 중국어를 공부했어요.",
+   "en": "In 2025 I studied Chinese.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "이천이십오",
+     "g": "ko-par-g046"
+    },
+    {
+     "t": "년",
+     "w": "ko-nikl-35380"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g009"
+    },
+    {
+     "t": "중국어",
+     "w": "ko-nikl-42120"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "공부했",
+     "w": "ko-par-00001"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g018"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-35380",
+    "ko-nikl-42120",
+    "ko-par-00001"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-par-g046",
+    "ko-topik1-g009",
+    "ko-topik1-g005",
+    "ko-topik1-g018",
+    "ko-par-g013"
+   ],
+   "checked": false,
+   "why": "pg013 (number + 년) and topik1-g018 (past tense) had no sentence in lesson 16"
+  },
+  {
+   "id": 814,
+   "lesson": 16,
+   "extra": true,
+   "text": "저는 육 년 동안 공부했어요.",
+   "en": "I studied for six years.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "육",
+     "w": "ko-nikl-50498"
+    },
+    {
+     "t": "년",
+     "w": "ko-nikl-35380"
+    },
+    {
+     "t": "동안",
+     "g": "ko-par-g009"
+    },
+    {
+     "t": "공부했",
+     "w": "ko-par-00001"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g018"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-50498",
+    "ko-nikl-35380",
+    "ko-par-00001"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-par-g009",
+    "ko-topik1-g018",
+    "ko-par-g013"
+   ],
+   "checked": false,
+   "why": "the word 육 had no sentence in lesson 16"
+  },
+  {
+   "id": 815,
+   "lesson": 16,
+   "extra": true,
+   "text": "저는 십 년 동안 일했어요.",
+   "en": "I worked for ten years.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "십",
+     "w": "ko-nikl-03699"
+    },
+    {
+     "t": "년",
+     "w": "ko-nikl-35380"
+    },
+    {
+     "t": "동안",
+     "g": "ko-par-g009"
+    },
+    {
+     "t": "일했",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g018"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-03699",
+    "ko-nikl-35380",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-par-g009",
+    "ko-topik1-g018",
+    "ko-par-g013"
+   ],
+   "checked": false,
+   "why": "the word 십 had no sentence in lesson 16"
+  },
+  {
+   "id": 816,
+   "lesson": 20,
+   "extra": true,
+   "text": "남동생은 아홉 살이지요?",
+   "en": "The younger brother is nine, isn't he?",
+   "tokens": [
+    {
+     "t": "남동생",
+     "w": "ko-nikl-34622"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "아홉",
+     "w": "ko-nikl-04320"
+    },
+    {
+     "t": "살",
+     "w": "ko-nikl-08818"
+    },
+    {
+     "t": "이지요",
+     "g": "ko-topik2-g026"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-34622",
+    "ko-nikl-04320",
+    "ko-nikl-08818"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik2-g026",
+    "ko-topik1-g001"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -지요? (checking) fits its age sentences"
+  },
+  {
+   "id": 817,
+   "lesson": 20,
+   "extra": true,
+   "text": "회사에서 일하지요?",
+   "en": "You work at a company, don't you?",
+   "tokens": [
+    {
+     "t": "회사",
+     "w": "ko-nikl-52048"
+    },
+    {
+     "t": "에서",
+     "g": "ko-topik1-g007"
+    },
+    {
+     "t": "일하",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "지요",
+     "g": "ko-topik2-g026"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-52048",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik1-g007",
+    "ko-topik2-g026"
+   ],
+   "checked": false,
+   "why": "-지요?"
+  },
+  {
+   "id": 818,
+   "lesson": 21,
+   "extra": true,
+   "text": "방이 두 개 있어요.",
+   "en": "There are two rooms.",
+   "tokens": [
+    {
+     "t": "방",
+     "w": "ko-nikl-40271"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "두",
+     "w": "ko-nikl-18823"
+    },
+    {
+     "t": "개",
+     "w": "ko-nikl-26923"
+    },
+    {
+     "t": "있어요",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-40271",
+    "ko-nikl-18823",
+    "ko-nikl-26923",
+    "ko-nikl-11948"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016",
+    "ko-topik1-g035"
+   ],
+   "checked": false,
+   "why": "the counter 개 had no sentence in its lesson"
+  },
+  {
+   "id": 819,
+   "lesson": 21,
+   "extra": true,
+   "text": "집에 방이 한 개 있어요.",
+   "en": "The house has one room.",
+   "tokens": [
+    {
+     "t": "집",
+     "w": "ko-nikl-43350"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g006"
+    },
+    {
+     "t": "방",
+     "w": "ko-nikl-40271"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "한",
+     "w": "ko-nikl-23787"
+    },
+    {
+     "t": "개",
+     "w": "ko-nikl-26923"
+    },
+    {
+     "t": "있어요",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-43350",
+    "ko-nikl-40271",
+    "ko-nikl-23787",
+    "ko-nikl-26923",
+    "ko-nikl-11948"
+   ],
+   "grammar": [
+    "ko-topik1-g006",
+    "ko-topik1-g004",
+    "ko-topik1-g016",
+    "ko-topik1-g035"
+   ],
+   "checked": false,
+   "why": "the counter 개"
+  },
+  {
+   "id": 820,
+   "lesson": 23,
+   "extra": true,
+   "text": "저는 책이 열한 권 있어요.",
+   "en": "I have eleven books.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "책",
+     "w": "ko-nikl-44341"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "열한",
+     "w": "ko-nikl-47617"
+    },
+    {
+     "t": "권",
+     "w": "ko-nikl-31647"
+    },
+    {
+     "t": "있어요",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-44341",
+    "ko-nikl-47617",
+    "ko-nikl-31647",
+    "ko-nikl-11948"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g004",
+    "ko-par-g017",
+    "ko-topik1-g035"
+   ],
+   "checked": false,
+   "why": "pg017 (eleven to nineteen) had no sentence in lesson 23"
+  },
+  {
+   "id": 821,
+   "lesson": 23,
+   "extra": true,
+   "text": "남동생은 물을 얼마나 마셔요?",
+   "en": "How much water does your younger brother drink?",
+   "tokens": [
+    {
+     "t": "남동생",
+     "w": "ko-nikl-34622"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "물",
+     "w": "ko-nikl-38551"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "얼마나",
+     "w": "ko-nikl-46744"
+    },
+    {
+     "t": "마셔",
+     "w": "ko-nikl-35856"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-34622",
+    "ko-nikl-38551",
+    "ko-nikl-46744",
+    "ko-nikl-35856"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik1-g016",
+    "ko-par-g018"
+   ],
+   "checked": false,
+   "why": "pg018 (N을/를 얼마나 + V?) had a sentence without the pattern tag"
+  },
+  {
+   "id": 822,
+   "lesson": 25,
+   "extra": true,
+   "text": "뭐를 원해요?",
+   "en": "What do you want?",
+   "tokens": [
+    {
+     "t": "뭐",
+     "w": "ko-nikl-38773"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "원해",
+     "w": "ko-nikl-49829"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-38773",
+    "ko-nikl-49829"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik1-g016",
+    "ko-par-g020"
+   ],
+   "checked": false,
+   "why": "the word 원하다 had no sentence in its lesson"
+  },
+  {
+   "id": 823,
+   "lesson": 25,
+   "extra": true,
+   "text": "몇 시부터 몇 시까지 일해요?",
+   "en": "From what time to what time do you work?",
+   "tokens": [
+    {
+     "t": "몇",
+     "w": "ko-nikl-37356"
+    },
+    {
+     "t": "시",
+     "w": "ko-nikl-02671"
+    },
+    {
+     "t": "부터",
+     "g": "ko-topik1-g014"
+    },
+    {
+     "t": "몇",
+     "w": "ko-nikl-37356"
+    },
+    {
+     "t": "시",
+     "w": "ko-nikl-02671"
+    },
+    {
+     "t": "까지",
+     "g": "ko-topik1-g014"
+    },
+    {
+     "t": "일해요",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-37356",
+    "ko-nikl-02671",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik1-g014"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: topik1-g014 (N부터 N까지) fits the question words"
+  },
+  {
+   "id": 824,
+   "lesson": 25,
+   "extra": true,
+   "text": "그거는 제가 가져요.",
+   "en": "I'll take that one.",
+   "tokens": [
+    {
+     "t": "그거",
+     "w": "ko-nikl-31936"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "제",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "가져",
+     "w": "ko-nikl-26027"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-31936",
+    "ko-nikl-13297",
+    "ko-nikl-26027"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the word 가지다 had no sentence in its lesson"
+  },
+  {
+   "id": 825,
+   "lesson": 26,
+   "extra": true,
+   "text": "여러분은 저를 선생님으로 불러요.",
+   "en": "You all call me \"teacher.\"",
+   "tokens": [
+    {
+     "t": "여러분",
+     "w": "ko-nikl-47062"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "선생님",
+     "w": "ko-nikl-10048"
+    },
+    {
+     "t": "으로",
+     "g": "ko-par-g021"
+    },
+    {
+     "t": "불러",
+     "w": "ko-nikl-06413"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-47062",
+    "ko-nikl-13297",
+    "ko-nikl-10048",
+    "ko-nikl-06413"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-par-g021",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "pg021 (N을/를 N(으)로 부르다) had no sentence"
+  },
+  {
+   "id": 826,
+   "lesson": 27,
+   "extra": true,
+   "text": "서점에 갈 때 책을 사요.",
+   "en": "When I go to the bookstore, I buy books.",
+   "tokens": [
+    {
+     "t": "서점",
+     "w": "ko-nikl-09851"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "갈",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "때",
+     "w": "ko-nikl-19621"
+    },
+    {
+     "t": "책",
+     "w": "ko-nikl-44341"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "사",
+     "w": "ko-nikl-08234"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-09851",
+    "ko-nikl-25603",
+    "ko-nikl-19621",
+    "ko-nikl-44341",
+    "ko-nikl-08234"
+   ],
+   "grammar": [
+    "ko-topik1-g008",
+    "ko-topik1-g005",
+    "ko-topik1-g016",
+    "ko-topik3-g016"
+   ],
+   "checked": false,
+   "why": "the word 때 had no sentence in its lesson (shows topik3-g016, -(으)ㄹ 때)"
+  },
+  {
+   "id": 827,
+   "lesson": 27,
+   "extra": true,
+   "text": "친구가 서점에 와요.",
+   "en": "A friend comes to the bookstore.",
+   "tokens": [
+    {
+     "t": "친구",
+     "w": "ko-nikl-20362"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "서점",
+     "w": "ko-nikl-09851"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "와",
+     "w": "ko-nikl-48128"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-20362",
+    "ko-nikl-09851",
+    "ko-nikl-48128"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g008",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the word 오다 had no sentence"
+  },
+  {
+   "id": 828,
+   "lesson": 27,
+   "extra": true,
+   "text": "언제 와요?",
+   "en": "When are you coming?",
+   "tokens": [
+    {
+     "t": "언제",
+     "w": "ko-nikl-46681"
+    },
+    {
+     "t": "와",
+     "w": "ko-nikl-48128"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-46681",
+    "ko-nikl-48128"
+   ],
+   "grammar": [
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the word 오다"
+  },
+  {
+   "id": 829,
+   "lesson": 29,
+   "extra": true,
+   "text": "비싼 옷이 있어요.",
+   "en": "There is expensive clothing.",
+   "tokens": [
+    {
+     "t": "비싼",
+     "w": "ko-nikl-07564"
+    },
+    {
+     "t": "옷",
+     "w": "ko-nikl-48499"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "있어요",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-07564",
+    "ko-nikl-48499",
+    "ko-nikl-11948"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g034",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik1-g034 (adjective + ㄴ + noun) is taught in lesson 29; no sentence showed it"
+  },
+  {
+   "id": 830,
+   "lesson": 29,
+   "extra": true,
+   "text": "이 비싼 옷은 새 옷이에요.",
+   "en": "This expensive piece of clothing is new.",
+   "tokens": [
+    {
+     "t": "이",
+     "g": "ko-par-g011"
+    },
+    {
+     "t": "비싼",
+     "w": "ko-nikl-07564"
+    },
+    {
+     "t": "옷",
+     "w": "ko-nikl-48499"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "새",
+     "w": "ko-nikl-09325"
+    },
+    {
+     "t": "옷",
+     "w": "ko-nikl-48499"
+    },
+    {
+     "t": "이에요",
+     "g": "ko-topik1-g001"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-07564",
+    "ko-nikl-48499",
+    "ko-nikl-09325"
+   ],
+   "grammar": [
+    "ko-par-g011",
+    "ko-topik1-g003",
+    "ko-topik1-g001",
+    "ko-topik1-g034"
+   ],
+   "checked": false,
+   "why": "topik1-g034"
+  },
+  {
+   "id": 831,
+   "lesson": 35,
+   "extra": true,
+   "text": "옷이 예뻐요.",
+   "en": "The clothes are pretty.",
+   "tokens": [
+    {
+     "t": "옷",
+     "w": "ko-nikl-48499"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "예뻐",
+     "w": "ko-nikl-47995"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48499",
+    "ko-nikl-47995"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik1-g004 (N이/가) is listed here; no sentence of the lesson showed it"
+  },
+  {
+   "id": 832,
+   "lesson": 35,
+   "extra": true,
+   "text": "글자가 맞아요.",
+   "en": "The character is correct.",
+   "tokens": [
+    {
+     "t": "글자",
+     "w": "ko-nikl-32368"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "맞아",
+     "w": "ko-nikl-36518"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-32368",
+    "ko-nikl-36518"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik1-g004"
+  },
+  {
+   "id": 833,
+   "lesson": 35,
+   "extra": true,
+   "text": "저는 \"감사해요\"라고 말해요.",
+   "en": "I say \"thank you.\"",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "\""
+    },
+    {
+     "t": "감사해요",
+     "w": "ko-par-00004"
+    },
+    {
+     "t": "\""
+    },
+    {
+     "t": "라고",
+     "g": "ko-par-g025"
+    },
+    {
+     "t": "말해",
+     "w": "ko-par-00021"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-par-00004",
+    "ko-par-00021"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-par-g025",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "pg025 (quote + (이)라고 말하다) and the word 말하다 had no sentence"
+  },
+  {
+   "id": 834,
+   "lesson": 35,
+   "extra": true,
+   "text": "친구는 \"괜찮아요\"라고 말해요.",
+   "en": "My friend says \"it is okay.\"",
+   "tokens": [
+    {
+     "t": "친구",
+     "w": "ko-nikl-20362"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "\""
+    },
+    {
+     "t": "괜찮아요",
+     "w": "ko-par-00003"
+    },
+    {
+     "t": "\""
+    },
+    {
+     "t": "라고",
+     "g": "ko-par-g025"
+    },
+    {
+     "t": "말해",
+     "w": "ko-par-00021"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-20362",
+    "ko-par-00003",
+    "ko-par-00021"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-par-g025",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "pg025"
+  },
+  {
+   "id": 835,
+   "lesson": 38,
+   "extra": true,
+   "text": "저는 병원에 갈 거예요.",
+   "en": "I will go to the hospital.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "병원",
+     "w": "ko-nikl-05623"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "갈",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "거예요",
+     "g": "ko-topik1-g019"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-05623",
+    "ko-nikl-25603"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g008",
+    "ko-topik1-g019"
+   ],
+   "checked": false,
+   "why": "topik1-g019 (-(으)ㄹ 거예요) is listed here and no sentence showed it"
+  },
+  {
+   "id": 836,
+   "lesson": 38,
+   "extra": true,
+   "text": "아들은 집에 돌아갈 거예요.",
+   "en": "My son will go back home.",
+   "tokens": [
+    {
+     "t": "아들",
+     "w": "ko-nikl-04087"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "집",
+     "w": "ko-nikl-43350"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "돌아갈",
+     "w": "ko-nikl-18250"
+    },
+    {
+     "t": "거예요",
+     "g": "ko-topik1-g019"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-04087",
+    "ko-nikl-43350",
+    "ko-nikl-18250"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g008",
+    "ko-topik1-g019"
+   ],
+   "checked": false,
+   "why": "topik1-g019"
+  },
+  {
+   "id": 837,
+   "lesson": 39,
+   "extra": true,
+   "text": "저는 만두를 만들 줄 알아요.",
+   "en": "I know how to make dumplings.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "만두",
+     "w": "ko-nikl-36064"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "만들",
+     "w": "ko-nikl-36068"
+    },
+    {
+     "t": "줄",
+     "g": "ko-topik3-g024"
+    },
+    {
+     "t": "알",
+     "w": "ko-nikl-04578"
+    },
+    {
+     "t": "아요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-36064",
+    "ko-nikl-36068",
+    "ko-nikl-04578"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik3-g024",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik3-g024 (-(으)ㄹ 줄 알다) had no sentence in its lesson"
+  },
+  {
+   "id": 838,
+   "lesson": 39,
+   "extra": true,
+   "text": "남동생은 한자를 쓸 줄 알아요.",
+   "en": "My younger brother knows how to write Chinese characters.",
+   "tokens": [
+    {
+     "t": "남동생",
+     "w": "ko-nikl-34622"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "한자",
+     "w": "ko-nikl-24263"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "쓸",
+     "w": "ko-nikl-03918"
+    },
+    {
+     "t": "줄",
+     "g": "ko-topik3-g024"
+    },
+    {
+     "t": "알",
+     "w": "ko-nikl-04578"
+    },
+    {
+     "t": "아요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-34622",
+    "ko-nikl-24263",
+    "ko-nikl-03918",
+    "ko-nikl-04578"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik3-g024",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik3-g024"
+  },
+  {
+   "id": 839,
+   "lesson": 31,
+   "extra": true,
+   "text": "거기에 가면 친구가 있어요.",
+   "en": "If you go there, a friend is there.",
+   "tokens": [
+    {
+     "t": "거기",
+     "w": "ko-nikl-27326"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "가",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "면",
+     "g": "ko-topik2-g008"
+    },
+    {
+     "t": "친구",
+     "w": "ko-nikl-20362"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "있어요",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-27326",
+    "ko-nikl-25603",
+    "ko-nikl-20362",
+    "ko-nikl-11948"
+   ],
+   "grammar": [
+    "ko-topik1-g008",
+    "ko-topik2-g008",
+    "ko-topik1-g004"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)면 (if) fits"
+  },
+  {
+   "id": 840,
+   "lesson": 31,
+   "extra": true,
+   "text": "시간이 있으면 거기에 가요.",
+   "en": "If I have time, I go there.",
+   "tokens": [
+    {
+     "t": "시간",
+     "w": "ko-nikl-02694"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "있",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "으면",
+     "g": "ko-topik2-g008"
+    },
+    {
+     "t": "거기",
+     "w": "ko-nikl-27326"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "가",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-02694",
+    "ko-nikl-11948",
+    "ko-nikl-27326",
+    "ko-nikl-25603"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik2-g008",
+    "ko-topik1-g008",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "-(으)면"
+  },
+  {
+   "id": 841,
+   "lesson": 32,
+   "extra": true,
+   "text": "방이 커요.",
+   "en": "The room is big.",
+   "tokens": [
+    {
+     "t": "방",
+     "w": "ko-nikl-40271"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "커",
+     "w": "ko-nikl-20920"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-40271",
+    "ko-nikl-20920"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the word 크다 had no sentence with its own token in lesson 32"
+  },
+  {
+   "id": 842,
+   "lesson": 32,
+   "extra": true,
+   "text": "비가 많이 오네요.",
+   "en": "Oh, it is raining a lot.",
+   "tokens": [
+    {
+     "t": "비",
+     "w": "ko-nikl-07431"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "많이",
+     "w": "ko-nikl-36200"
+    },
+    {
+     "t": "오",
+     "w": "ko-nikl-48128"
+    },
+    {
+     "t": "네요",
+     "g": "ko-topik2-g027"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-07431",
+    "ko-nikl-36200",
+    "ko-nikl-48128"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik2-g027"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -네요 (noticing) fits the rain sentences"
+  },
+  {
+   "id": 843,
+   "lesson": 32,
+   "extra": true,
+   "text": "회사가 크네요.",
+   "en": "Oh, the company is big.",
+   "tokens": [
+    {
+     "t": "회사",
+     "w": "ko-nikl-52048"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "크",
+     "w": "ko-nikl-20920"
+    },
+    {
+     "t": "네요",
+     "g": "ko-topik2-g027"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-52048",
+    "ko-nikl-20920"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik2-g027"
+   ],
+   "checked": false,
+   "why": "-네요"
+  },
+  {
+   "id": 844,
+   "lesson": 33,
+   "extra": true,
+   "text": "고양이는 작지만 비싸요.",
+   "en": "The cat is small, but expensive.",
+   "tokens": [
+    {
+     "t": "고양이",
+     "w": "ko-nikl-29196"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "작",
+     "w": "ko-nikl-12453"
+    },
+    {
+     "t": "지만",
+     "g": "ko-topik1-g027"
+    },
+    {
+     "t": "비싸",
+     "w": "ko-nikl-07564"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-29196",
+    "ko-nikl-12453",
+    "ko-nikl-07564"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g027",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -지만 (but) fits"
+  },
+  {
+   "id": 845,
+   "lesson": 33,
+   "extra": true,
+   "text": "그것은 작지만 좋아요.",
+   "en": "That one is small, but good.",
+   "tokens": [
+    {
+     "t": "그것",
+     "w": "ko-nikl-31940"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "작",
+     "w": "ko-nikl-12453"
+    },
+    {
+     "t": "지만",
+     "g": "ko-topik1-g027"
+    },
+    {
+     "t": "좋아",
+     "w": "ko-nikl-41488"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-31940",
+    "ko-nikl-12453",
+    "ko-nikl-41488"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g027",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "-지만"
+  },
+  {
+   "id": 846,
+   "lesson": 34,
+   "extra": true,
+   "text": "이 컵은 작겠어요.",
+   "en": "This cup must be small.",
+   "tokens": [
+    {
+     "t": "이",
+     "g": "ko-par-g011"
+    },
+    {
+     "t": "컵",
+     "w": "ko-nikl-20681"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "작",
+     "w": "ko-nikl-12453"
+    },
+    {
+     "t": "겠어요",
+     "g": "ko-topik2-g028"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-20681",
+    "ko-nikl-12453"
+   ],
+   "grammar": [
+    "ko-par-g011",
+    "ko-topik1-g003",
+    "ko-topik2-g028"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -겠어요 (guess) fits"
+  },
+  {
+   "id": 847,
+   "lesson": 34,
+   "extra": true,
+   "text": "그 컵은 비싸겠어요.",
+   "en": "That cup must be expensive.",
+   "tokens": [
+    {
+     "t": "그",
+     "g": "ko-par-g024"
+    },
+    {
+     "t": "컵",
+     "w": "ko-nikl-20681"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "비싸",
+     "w": "ko-nikl-07564"
+    },
+    {
+     "t": "겠어요",
+     "g": "ko-topik2-g028"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-20681",
+    "ko-nikl-07564"
+   ],
+   "grammar": [
+    "ko-par-g024",
+    "ko-topik1-g003",
+    "ko-topik2-g028"
+   ],
+   "checked": false,
+   "why": "-겠어요"
+  },
+  {
+   "id": 848,
+   "lesson": 37,
+   "extra": true,
+   "text": "이거는 이 가게 물건 중에서 가장 싸요.",
+   "en": "This is the cheapest of the things in this shop.",
+   "tokens": [
+    {
+     "t": "이거",
+     "w": "ko-nikl-10452"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "이",
+     "g": "ko-par-g011"
+    },
+    {
+     "t": "가게",
+     "w": "ko-nikl-25524"
+    },
+    {
+     "t": "물건",
+     "w": "ko-nikl-38585"
+    },
+    {
+     "t": "중에서 가장",
+     "g": "ko-topik2-g019"
+    },
+    {
+     "t": "싸",
+     "w": "ko-nikl-03760"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-10452",
+    "ko-nikl-25524",
+    "ko-nikl-38585",
+    "ko-nikl-03760"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-par-g011",
+    "ko-topik2-g019",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: N 중에서 가장 (the most among) fits the 싸다 sentences"
+  },
+  {
+   "id": 849,
+   "lesson": 41,
+   "extra": true,
+   "text": "엄마는 시간이 없잖아요.",
+   "en": "Mom has no time, you know.",
+   "tokens": [
+    {
+     "t": "엄마",
+     "w": "ko-nikl-46789"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "시간",
+     "w": "ko-nikl-02694"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "없",
+     "w": "ko-nikl-46845"
+    },
+    {
+     "t": "잖아요",
+     "g": "ko-topik3-g036"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-46789",
+    "ko-nikl-02694",
+    "ko-nikl-46845"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g004",
+    "ko-topik3-g036"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -잖아요 (as you know) fits"
+  },
+  {
+   "id": 850,
+   "lesson": 41,
+   "extra": true,
+   "text": "여자 의사는 바쁘잖아요.",
+   "en": "The female doctor is busy, you know.",
+   "tokens": [
+    {
+     "t": "여자",
+     "w": "ko-nikl-47169"
+    },
+    {
+     "t": "의사",
+     "w": "ko-nikl-10319"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "바쁘",
+     "w": "ko-nikl-39429"
+    },
+    {
+     "t": "잖아요",
+     "g": "ko-topik3-g036"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-47169",
+    "ko-nikl-10319",
+    "ko-nikl-39429"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik3-g036"
+   ],
+   "checked": false,
+   "why": "-잖아요"
+  },
+  {
+   "id": 851,
+   "lesson": 42,
+   "extra": true,
+   "text": "아빠가 일하는 동안 엄마는 쉬어요.",
+   "en": "While Dad works, Mom rests.",
+   "tokens": [
+    {
+     "t": "아빠",
+     "w": "ko-nikl-04193"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "일하",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "는 동안",
+     "g": "ko-topik3-g011"
+    },
+    {
+     "t": "엄마",
+     "w": "ko-nikl-46789"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "쉬",
+     "w": "ko-nikl-02389"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-04193",
+    "ko-par-00006",
+    "ko-nikl-46789",
+    "ko-nikl-02389"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik3-g011",
+    "ko-topik1-g003",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -는 동안 (while) fits"
+  },
+  {
+   "id": 852,
+   "lesson": 42,
+   "extra": true,
+   "text": "오빠는 중학교에 가요.",
+   "en": "My older brother goes to middle school.",
+   "tokens": [
+    {
+     "t": "오빠",
+     "w": "ko-nikl-48250"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "중학교",
+     "w": "ko-nikl-42309"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "가",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48250",
+    "ko-nikl-42309",
+    "ko-nikl-25603"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g008",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "more sentences for the lesson"
+  },
+  {
+   "id": 853,
+   "lesson": 43,
+   "extra": true,
+   "text": "여동생은 아직 어린 것 같아요.",
+   "en": "My younger sister seems still young.",
+   "tokens": [
+    {
+     "t": "여동생",
+     "w": "ko-nikl-47052"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "아직",
+     "w": "ko-nikl-04284"
+    },
+    {
+     "t": "어린",
+     "w": "ko-nikl-46392"
+    },
+    {
+     "t": "것 같아요",
+     "g": "ko-topik2-g034"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-47052",
+    "ko-nikl-04284",
+    "ko-nikl-46392"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik2-g034"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)ㄴ 것 같다 (it seems) fits"
+  },
+  {
+   "id": 854,
+   "lesson": 43,
+   "extra": true,
+   "text": "언니는 친절한 것 같아요.",
+   "en": "My older sister seems kind.",
+   "tokens": [
+    {
+     "t": "언니",
+     "w": "ko-nikl-46648"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "친절한",
+     "w": "ko-par-00024"
+    },
+    {
+     "t": "것 같아요",
+     "g": "ko-topik2-g034"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-46648",
+    "ko-par-00024"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik2-g034"
+   ],
+   "checked": false,
+   "why": "-(으)ㄴ 것 같다"
+  },
+  {
+   "id": 855,
+   "lesson": 45,
+   "extra": true,
+   "text": "저는 핸드폰을 못 찾아요.",
+   "en": "I can't find my phone.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "핸드폰",
+     "w": "ko-par-00026"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "못",
+     "g": "ko-topik1-g022"
+    },
+    {
+     "t": "찾",
+     "w": "ko-nikl-44265"
+    },
+    {
+     "t": "아요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-par-00026",
+    "ko-nikl-44265"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik1-g022",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: 못 + verb (cannot) fits 찾다"
+  },
+  {
+   "id": 856,
+   "lesson": 45,
+   "extra": true,
+   "text": "만두를 못 찾아요.",
+   "en": "I can't find the dumplings.",
+   "tokens": [
+    {
+     "t": "만두",
+     "w": "ko-nikl-36064"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "못",
+     "g": "ko-topik1-g022"
+    },
+    {
+     "t": "찾",
+     "w": "ko-nikl-44265"
+    },
+    {
+     "t": "아요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-36064",
+    "ko-nikl-44265"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik1-g022",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "못 + verb"
+  },
+  {
+   "id": 857,
+   "lesson": 48,
+   "extra": true,
+   "text": "저는 친구에게 컴퓨터를 사 줘요.",
+   "en": "I buy a computer for my friend.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "친구",
+     "w": "ko-nikl-20362"
+    },
+    {
+     "t": "에게",
+     "g": "ko-topik2-g021"
+    },
+    {
+     "t": "컴퓨터",
+     "w": "ko-nikl-20679"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "사",
+     "w": "ko-nikl-08234"
+    },
+    {
+     "t": "줘요",
+     "g": "ko-topik2-g022"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-20362",
+    "ko-nikl-20679",
+    "ko-nikl-08234"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik2-g021",
+    "ko-topik1-g005",
+    "ko-topik2-g022"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -아/어 주다 (do for someone) fits"
+  },
+  {
+   "id": 858,
+   "lesson": 48,
+   "extra": true,
+   "text": "엄마에게 만두를 만들어 줘요.",
+   "en": "I make dumplings for Mom.",
+   "tokens": [
+    {
+     "t": "엄마",
+     "w": "ko-nikl-46789"
+    },
+    {
+     "t": "에게",
+     "g": "ko-topik2-g021"
+    },
+    {
+     "t": "만두",
+     "w": "ko-nikl-36064"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "만들",
+     "w": "ko-nikl-36068"
+    },
+    {
+     "t": "어 줘요",
+     "g": "ko-topik2-g022"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-46789",
+    "ko-nikl-36064",
+    "ko-nikl-36068"
+   ],
+   "grammar": [
+    "ko-topik2-g021",
+    "ko-topik1-g005",
+    "ko-topik2-g022"
+   ],
+   "checked": false,
+   "why": "-아/어 주다"
+  },
+  {
+   "id": 859,
+   "lesson": 52,
+   "extra": true,
+   "text": "노래하면서 일해요.",
+   "en": "I work while singing.",
+   "tokens": [
+    {
+     "t": "노래하",
+     "w": "ko-par-00031"
+    },
+    {
+     "t": "면서",
+     "g": "ko-topik2-g007"
+    },
+    {
+     "t": "일해요",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-par-00031",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik2-g007"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)면서 (while) fits"
+  },
+  {
+   "id": 860,
+   "lesson": 52,
+   "extra": true,
+   "text": "여기에서 노래하면서 일해요.",
+   "en": "I work here while singing.",
+   "tokens": [
+    {
+     "t": "여기",
+     "w": "ko-nikl-47023"
+    },
+    {
+     "t": "에서",
+     "g": "ko-topik1-g007"
+    },
+    {
+     "t": "노래하",
+     "w": "ko-par-00031"
+    },
+    {
+     "t": "면서",
+     "g": "ko-topik2-g007"
+    },
+    {
+     "t": "일해요",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-47023",
+    "ko-par-00031",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik1-g007",
+    "ko-topik2-g007"
+   ],
+   "checked": false,
+   "why": "-(으)면서"
+  },
+  {
+   "id": 861,
+   "lesson": 53,
+   "extra": true,
+   "text": "책을 읽는 것을 좋아해요.",
+   "en": "I like reading books.",
+   "tokens": [
+    {
+     "t": "책",
+     "w": "ko-nikl-44341"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "읽",
+     "w": "ko-nikl-11667"
+    },
+    {
+     "t": "는 것",
+     "g": "ko-topik2-g016"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "좋아해",
+     "w": "ko-nikl-41493"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-44341",
+    "ko-nikl-11667",
+    "ko-nikl-41493"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik2-g016",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik2-g016 (-는 것) is listed in lesson 53 and no sentence showed it"
+  },
+  {
+   "id": 862,
+   "lesson": 53,
+   "extra": true,
+   "text": "우리는 노래하는 것을 좋아해요.",
+   "en": "We like singing.",
+   "tokens": [
+    {
+     "t": "우리",
+     "w": "ko-nikl-49275"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "노래하",
+     "w": "ko-par-00031"
+    },
+    {
+     "t": "는 것",
+     "g": "ko-topik2-g016"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "좋아해",
+     "w": "ko-nikl-41493"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-49275",
+    "ko-par-00031",
+    "ko-nikl-41493"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik2-g016",
+    "ko-topik1-g005",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik2-g016"
+  },
+  {
+   "id": 863,
+   "lesson": 54,
+   "extra": true,
+   "text": "국수를 먹고 나서 쉬어요.",
+   "en": "After eating noodles, I rest.",
+   "tokens": [
+    {
+     "t": "국수",
+     "w": "ko-nikl-31317"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "먹",
+     "w": "ko-nikl-36950"
+    },
+    {
+     "t": "고 나서",
+     "g": "ko-topik2-g032"
+    },
+    {
+     "t": "쉬",
+     "w": "ko-nikl-02389"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-31317",
+    "ko-nikl-36950",
+    "ko-nikl-02389"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik2-g032",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -고 나서 (after finishing) fits"
+  },
+  {
+   "id": 864,
+   "lesson": 54,
+   "extra": true,
+   "text": "그들은 국수를 먹고 나서 일해요.",
+   "en": "After eating noodles, they work.",
+   "tokens": [
+    {
+     "t": "그들",
+     "w": "ko-par-00033"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "국수",
+     "w": "ko-nikl-31317"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "먹",
+     "w": "ko-nikl-36950"
+    },
+    {
+     "t": "고 나서",
+     "g": "ko-topik2-g032"
+    },
+    {
+     "t": "일해요",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-par-00033",
+    "ko-nikl-31317",
+    "ko-nikl-36950",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik2-g032"
+   ],
+   "checked": false,
+   "why": "-고 나서"
+  },
+  {
+   "id": 865,
+   "lesson": 55,
+   "extra": true,
+   "text": "점심을 먹은 후에 다시 일해요.",
+   "en": "After lunch, I work again.",
+   "tokens": [
+    {
+     "t": "점심",
+     "w": "ko-nikl-14255"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "먹은",
+     "w": "ko-nikl-36950"
+    },
+    {
+     "t": "후에",
+     "g": "ko-topik2-g005"
+    },
+    {
+     "t": "다시",
+     "w": "ko-nikl-16209"
+    },
+    {
+     "t": "일해요",
+     "w": "ko-par-00006"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-14255",
+    "ko-nikl-36950",
+    "ko-nikl-16209",
+    "ko-par-00006"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik2-g005"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)ㄴ 후에 (after) fits 점심 and 다시"
+  },
+  {
+   "id": 866,
+   "lesson": 55,
+   "extra": true,
+   "text": "내일 점심을 먹은 후에 쉬어요.",
+   "en": "Tomorrow, after lunch, I rest.",
+   "tokens": [
+    {
+     "t": "내일",
+     "w": "ko-nikl-35010"
+    },
+    {
+     "t": "점심",
+     "w": "ko-nikl-14255"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "먹은",
+     "w": "ko-nikl-36950"
+    },
+    {
+     "t": "후에",
+     "g": "ko-topik2-g005"
+    },
+    {
+     "t": "쉬",
+     "w": "ko-nikl-02389"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-35010",
+    "ko-nikl-14255",
+    "ko-nikl-36950",
+    "ko-nikl-02389"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik2-g005",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "-(으)ㄴ 후에"
+  },
+  {
+   "id": 867,
+   "lesson": 56,
+   "extra": true,
+   "text": "대학교에 가기 전에 중국어를 공부해요.",
+   "en": "Before going to university, I study Chinese.",
+   "tokens": [
+    {
+     "t": "대학교",
+     "w": "ko-nikl-17369"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "가",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "기 전에",
+     "g": "ko-topik2-g006"
+    },
+    {
+     "t": "중국어",
+     "w": "ko-nikl-42120"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "공부해요",
+     "w": "ko-par-00001"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-17369",
+    "ko-nikl-25603",
+    "ko-nikl-42120",
+    "ko-par-00001"
+   ],
+   "grammar": [
+    "ko-topik1-g008",
+    "ko-topik2-g006",
+    "ko-topik1-g005"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -기 전에 (before) fits"
+  },
+  {
+   "id": 868,
+   "lesson": 56,
+   "extra": true,
+   "text": "책을 읽기 전에 차를 마셔요.",
+   "en": "Before reading a book, I drink tea.",
+   "tokens": [
+    {
+     "t": "책",
+     "w": "ko-nikl-44341"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "읽",
+     "w": "ko-nikl-11667"
+    },
+    {
+     "t": "기 전에",
+     "g": "ko-topik2-g006"
+    },
+    {
+     "t": "차",
+     "w": "ko-nikl-43833"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "마셔요",
+     "w": "ko-nikl-35856"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-44341",
+    "ko-nikl-11667",
+    "ko-nikl-43833",
+    "ko-nikl-35856"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik2-g006"
+   ],
+   "checked": false,
+   "why": "-기 전에"
+  },
+  {
+   "id": 869,
+   "lesson": 58,
+   "extra": true,
+   "text": "월요일은 좋은 요일이에요.",
+   "en": "Monday is a good day of the week.",
+   "tokens": [
+    {
+     "t": "월요일",
+     "w": "ko-nikl-49885"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "좋은",
+     "w": "ko-nikl-41488"
+    },
+    {
+     "t": "요일",
+     "w": "ko-nikl-49048"
+    },
+    {
+     "t": "이에요",
+     "g": "ko-topik1-g001"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-49885",
+    "ko-nikl-41488",
+    "ko-nikl-49048"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g001",
+    "ko-par-g031",
+    "ko-topik1-g034"
+   ],
+   "checked": false,
+   "why": "the words 요일 and 월요일 and pg031 had no sentence in lesson 58"
+  },
+  {
+   "id": 870,
+   "lesson": 58,
+   "extra": true,
+   "text": "일요일도 좋은 요일이에요.",
+   "en": "Sunday is a good day of the week too.",
+   "tokens": [
+    {
+     "t": "일요일",
+     "w": "ko-nikl-11550"
+    },
+    {
+     "t": "도",
+     "g": "ko-topik1-g012"
+    },
+    {
+     "t": "좋은",
+     "w": "ko-nikl-41488"
+    },
+    {
+     "t": "요일",
+     "w": "ko-nikl-49048"
+    },
+    {
+     "t": "이에요",
+     "g": "ko-topik1-g001"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-11550",
+    "ko-nikl-41488",
+    "ko-nikl-49048"
+   ],
+   "grammar": [
+    "ko-topik1-g012",
+    "ko-topik1-g001",
+    "ko-par-g031",
+    "ko-topik1-g034"
+   ],
+   "checked": false,
+   "why": "pg031 / 요일"
+  },
+  {
+   "id": 871,
+   "lesson": 59,
+   "extra": true,
+   "text": "천 원이에요.",
+   "en": "It is 1,000 won.",
+   "tokens": [
+    {
+     "t": "천",
+     "w": "ko-nikl-44467"
+    },
+    {
+     "t": "원",
+     "w": "ko-nikl-49668"
+    },
+    {
+     "t": "이에요",
+     "g": "ko-topik1-g001"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-44467",
+    "ko-nikl-49668"
+   ],
+   "grammar": [
+    "ko-topik1-g001"
+   ],
+   "checked": false,
+   "why": "lesson 59 had one sentence; the word 원 had no sentence in its lesson"
+  },
+  {
+   "id": 872,
+   "lesson": 59,
+   "extra": true,
+   "text": "오천 원이에요.",
+   "en": "It is 5,000 won.",
+   "tokens": [
+    {
+     "t": "오",
+     "w": "ko-nikl-48097"
+    },
+    {
+     "t": "천",
+     "w": "ko-nikl-44467"
+    },
+    {
+     "t": "원",
+     "w": "ko-nikl-49668"
+    },
+    {
+     "t": "이에요",
+     "g": "ko-topik1-g001"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48097",
+    "ko-nikl-44467",
+    "ko-nikl-49668"
+   ],
+   "grammar": [
+    "ko-topik1-g001"
+   ],
+   "checked": false,
+   "why": "the word 원"
+  },
+  {
+   "id": 873,
+   "lesson": 61,
+   "extra": true,
+   "text": "저는 학교에 다녀요.",
+   "en": "I go to school (I am a student there).",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "학교",
+     "w": "ko-nikl-23980"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g009"
+    },
+    {
+     "t": "다녀",
+     "w": "ko-nikl-16079"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-23980",
+    "ko-nikl-16079"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g009",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the word 다니다 had no sentence in its lesson"
+  },
+  {
+   "id": 874,
+   "lesson": 61,
+   "extra": true,
+   "text": "남동생은 초등학교에 다녀요.",
+   "en": "My younger brother goes to primary school.",
+   "tokens": [
+    {
+     "t": "남동생",
+     "w": "ko-nikl-34622"
+    },
+    {
+     "t": "은",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "초등학교",
+     "w": "ko-nikl-45051"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g009"
+    },
+    {
+     "t": "다녀",
+     "w": "ko-nikl-16079"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-34622",
+    "ko-nikl-45051",
+    "ko-nikl-16079"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g009",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "다니다"
+  },
+  {
+   "id": 875,
+   "lesson": 62,
+   "extra": true,
+   "text": "내일 영화를 보기로 했어요.",
+   "en": "I have decided to watch a movie tomorrow.",
+   "tokens": [
+    {
+     "t": "내일",
+     "w": "ko-nikl-35010"
+    },
+    {
+     "t": "영화",
+     "w": "ko-nikl-47912"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "보",
+     "w": "ko-nikl-05699"
+    },
+    {
+     "t": "기로 했어요",
+     "g": "ko-topik2-g029"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-35010",
+    "ko-nikl-47912",
+    "ko-nikl-05699"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik2-g029"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -기로 하다 (decide to) fits its movie sentences"
+  },
+  {
+   "id": 876,
+   "lesson": 62,
+   "extra": true,
+   "text": "친구하고 영화를 보기로 했어요.",
+   "en": "I have decided to watch a movie with a friend.",
+   "tokens": [
+    {
+     "t": "친구",
+     "w": "ko-nikl-20362"
+    },
+    {
+     "t": "하고",
+     "g": "ko-topik1-g011"
+    },
+    {
+     "t": "영화",
+     "w": "ko-nikl-47912"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "보",
+     "w": "ko-nikl-05699"
+    },
+    {
+     "t": "기로 했어요",
+     "g": "ko-topik2-g029"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-20362",
+    "ko-nikl-47912",
+    "ko-nikl-05699"
+   ],
+   "grammar": [
+    "ko-topik1-g011",
+    "ko-topik1-g005",
+    "ko-topik2-g029"
+   ],
+   "checked": false,
+   "why": "-기로 하다"
+  },
+  {
+   "id": 877,
+   "lesson": 63,
+   "extra": true,
+   "text": "요리가 맛있으니까 식당에 가요.",
+   "en": "The food is tasty, so I go to the restaurant.",
+   "tokens": [
+    {
+     "t": "요리",
+     "w": "ko-nikl-48987"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "맛있",
+     "w": "ko-nikl-36444"
+    },
+    {
+     "t": "으니까",
+     "g": "ko-topik2-g011"
+    },
+    {
+     "t": "식당",
+     "w": "ko-nikl-03030"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "가",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48987",
+    "ko-nikl-36444",
+    "ko-nikl-03030",
+    "ko-nikl-25603"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik2-g011",
+    "ko-topik1-g008",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)니까 (since) fits its restaurant sentences"
+  },
+  {
+   "id": 878,
+   "lesson": 63,
+   "extra": true,
+   "text": "새 요리가 있으니까 식당에 가요.",
+   "en": "There is a new dish, so I go to the restaurant.",
+   "tokens": [
+    {
+     "t": "새",
+     "w": "ko-nikl-09325"
+    },
+    {
+     "t": "요리",
+     "w": "ko-nikl-48987"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "있",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "으니까",
+     "g": "ko-topik2-g011"
+    },
+    {
+     "t": "식당",
+     "w": "ko-nikl-03030"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "가",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-09325",
+    "ko-nikl-48987",
+    "ko-nikl-11948",
+    "ko-nikl-03030",
+    "ko-nikl-25603"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik2-g011",
+    "ko-topik1-g008",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "-(으)니까"
+  },
+  {
+   "id": 879,
+   "lesson": 64,
+   "extra": true,
+   "text": "아침에 계란이나 빵을 먹어요.",
+   "en": "In the morning I eat eggs or bread.",
+   "tokens": [
+    {
+     "t": "아침",
+     "w": "ko-nikl-04296"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g009"
+    },
+    {
+     "t": "계란",
+     "w": "ko-nikl-28629"
+    },
+    {
+     "t": "이나",
+     "g": "ko-topik2-g025"
+    },
+    {
+     "t": "빵",
+     "w": "ko-nikl-07920"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "먹",
+     "w": "ko-nikl-36950"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-04296",
+    "ko-nikl-28629",
+    "ko-nikl-07920",
+    "ko-nikl-36950"
+   ],
+   "grammar": [
+    "ko-topik1-g009",
+    "ko-topik2-g025",
+    "ko-topik1-g005",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: N(이)나 (or) fits 계란 and 빵"
+  },
+  {
+   "id": 880,
+   "lesson": 64,
+   "extra": true,
+   "text": "계란이나 빵을 주세요.",
+   "en": "Please give me eggs or bread.",
+   "tokens": [
+    {
+     "t": "계란",
+     "w": "ko-nikl-28629"
+    },
+    {
+     "t": "이나",
+     "g": "ko-topik2-g025"
+    },
+    {
+     "t": "빵",
+     "w": "ko-nikl-07920"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "주세요",
+     "w": "ko-par-00010"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-28629",
+    "ko-nikl-07920",
+    "ko-par-00010"
+   ],
+   "grammar": [
+    "ko-topik2-g025",
+    "ko-topik1-g005"
+   ],
+   "checked": false,
+   "why": "N(이)나"
+  },
+  {
+   "id": 881,
+   "lesson": 65,
+   "extra": true,
+   "text": "한 시간이 넘어요.",
+   "en": "It is over an hour.",
+   "tokens": [
+    {
+     "t": "한",
+     "w": "ko-nikl-23787"
+    },
+    {
+     "t": "시간",
+     "w": "ko-nikl-02694"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "넘어",
+     "w": "ko-nikl-35310"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-23787",
+    "ko-nikl-02694",
+    "ko-nikl-35310"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the word 넘다 had no sentence in its lesson"
+  },
+  {
+   "id": 882,
+   "lesson": 65,
+   "extra": true,
+   "text": "오 분이 넘어요.",
+   "en": "It is over five minutes.",
+   "tokens": [
+    {
+     "t": "오",
+     "w": "ko-nikl-48097"
+    },
+    {
+     "t": "분",
+     "w": "ko-nikl-06807"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "넘어",
+     "w": "ko-nikl-35310"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48097",
+    "ko-nikl-06807",
+    "ko-nikl-35310"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "넘다"
+  },
+  {
+   "id": 883,
+   "lesson": 66,
+   "extra": true,
+   "text": "중국에 간 적이 있어요.",
+   "en": "I have been to China.",
+   "tokens": [
+    {
+     "t": "중국",
+     "w": "ko-nikl-42119"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "간",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "적이 있어요",
+     "g": "ko-topik3-g007"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-42119",
+    "ko-nikl-25603"
+   ],
+   "grammar": [
+    "ko-topik1-g008",
+    "ko-topik3-g007"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)ㄴ 적이 있다 (have done) fits its class sentences"
+  },
+  {
+   "id": 884,
+   "lesson": 66,
+   "extra": true,
+   "text": "여자친구는 중국어 수업을 들은 적이 있어요.",
+   "en": "My girlfriend has taken a Chinese class.",
+   "tokens": [
+    {
+     "t": "여자친구",
+     "w": "ko-par-00036"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "중국어",
+     "w": "ko-nikl-42120"
+    },
+    {
+     "t": "수업",
+     "w": "ko-par-00014"
+    },
+    {
+     "t": "을",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "들은",
+     "w": "ko-nikl-19164"
+    },
+    {
+     "t": "적이 있어요",
+     "g": "ko-topik3-g007"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-par-00036",
+    "ko-nikl-42120",
+    "ko-par-00014",
+    "ko-nikl-19164"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik3-g007"
+   ],
+   "checked": false,
+   "why": "-(으)ㄴ 적이 있다"
+  },
+  {
+   "id": 885,
+   "lesson": 67,
+   "extra": true,
+   "text": "왕 씨는 식당에 있어요.",
+   "en": "Mr./Ms. Wang is at the restaurant.",
+   "tokens": [
+    {
+     "t": "왕",
+     "w": "ko-nikl-48668"
+    },
+    {
+     "t": "씨",
+     "g": "ko-par-g034"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "식당",
+     "w": "ko-nikl-03030"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g006"
+    },
+    {
+     "t": "있어요",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48668",
+    "ko-nikl-03030",
+    "ko-nikl-11948"
+   ],
+   "grammar": [
+    "ko-par-g034",
+    "ko-topik1-g003",
+    "ko-topik1-g006"
+   ],
+   "checked": false,
+   "why": "pg034 (name + 씨) had no sentence in lesson 67"
+  },
+  {
+   "id": 886,
+   "lesson": 67,
+   "extra": true,
+   "text": "맛있게 먹어요.",
+   "en": "Enjoy your meal.",
+   "tokens": [
+    {
+     "t": "맛있",
+     "w": "ko-nikl-36444"
+    },
+    {
+     "t": "게",
+     "g": "ko-topik3-g028"
+    },
+    {
+     "t": "먹",
+     "w": "ko-nikl-36950"
+    },
+    {
+     "t": "어요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-36444",
+    "ko-nikl-36950"
+   ],
+   "grammar": [
+    "ko-topik3-g028",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik3-g028 (adjective + 게) had no sentence"
+  },
+  {
+   "id": 887,
+   "lesson": 67,
+   "extra": true,
+   "text": "글자를 예쁘게 써요.",
+   "en": "I write the characters nicely.",
+   "tokens": [
+    {
+     "t": "글자",
+     "w": "ko-nikl-32368"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "예쁘",
+     "w": "ko-nikl-47995"
+    },
+    {
+     "t": "게",
+     "g": "ko-topik3-g028"
+    },
+    {
+     "t": "써",
+     "w": "ko-nikl-03918"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-32368",
+    "ko-nikl-47995",
+    "ko-nikl-03918"
+   ],
+   "grammar": [
+    "ko-topik1-g005",
+    "ko-topik3-g028",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "topik3-g028"
+  },
+  {
+   "id": 888,
+   "lesson": 68,
+   "extra": true,
+   "text": "어제 본 영화가 재미있어요.",
+   "en": "The movie I saw yesterday is interesting.",
+   "tokens": [
+    {
+     "t": "어제",
+     "w": "ko-nikl-46521"
+    },
+    {
+     "t": "본",
+     "w": "ko-nikl-05699"
+    },
+    {
+     "t": "영화",
+     "w": "ko-nikl-47912"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "재미있어요",
+     "w": "ko-nikl-13081"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-46521",
+    "ko-nikl-05699",
+    "ko-nikl-47912",
+    "ko-nikl-13081"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik2-g014"
+   ],
+   "checked": false,
+   "why": "topik2-g014 (verb + ㄴ + noun) had no sentence in lesson 68"
+  },
+  {
+   "id": 889,
+   "lesson": 68,
+   "extra": true,
+   "text": "아침에 먹은 계란이 맛있어요.",
+   "en": "The egg I ate this morning is tasty.",
+   "tokens": [
+    {
+     "t": "아침",
+     "w": "ko-nikl-04296"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g009"
+    },
+    {
+     "t": "먹은",
+     "w": "ko-nikl-36950"
+    },
+    {
+     "t": "계란",
+     "w": "ko-nikl-28629"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "맛있어요",
+     "w": "ko-nikl-36444"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-04296",
+    "ko-nikl-36950",
+    "ko-nikl-28629",
+    "ko-nikl-36444"
+   ],
+   "grammar": [
+    "ko-topik1-g009",
+    "ko-topik1-g004",
+    "ko-topik2-g014"
+   ],
+   "checked": false,
+   "why": "topik2-g014"
+  },
+  {
+   "id": 890,
+   "lesson": 72,
+   "extra": true,
+   "text": "날씨가 더울 수도 있어요.",
+   "en": "It might be hot.",
+   "tokens": [
+    {
+     "t": "날씨",
+     "w": "ko-nikl-34559"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "더울",
+     "w": "ko-nikl-17633"
+    },
+    {
+     "t": "수도 있어요",
+     "g": "ko-topik4-g026"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-34559",
+    "ko-nikl-17633"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik4-g026"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)ㄹ 수도 있다 (might) fits its weather and place sentences"
+  },
+  {
+   "id": 891,
+   "lesson": 72,
+   "extra": true,
+   "text": "하늘에 비행기가 있을 수도 있어요.",
+   "en": "There might be an airplane in the sky.",
+   "tokens": [
+    {
+     "t": "하늘",
+     "w": "ko-nikl-23796"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g006"
+    },
+    {
+     "t": "비행기",
+     "w": "ko-nikl-07700"
+    },
+    {
+     "t": "가",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "있을",
+     "w": "ko-nikl-11948"
+    },
+    {
+     "t": "수도 있어요",
+     "g": "ko-topik4-g026"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-23796",
+    "ko-nikl-07700",
+    "ko-nikl-11948"
+   ],
+   "grammar": [
+    "ko-topik1-g006",
+    "ko-topik1-g004",
+    "ko-topik4-g026"
+   ],
+   "checked": false,
+   "why": "-(으)ㄹ 수도 있다"
+  },
+  {
+   "id": 892,
+   "lesson": 73,
+   "extra": true,
+   "text": "저쪽에 돈이 없을지도 몰라요.",
+   "en": "There might be no money over there.",
+   "tokens": [
+    {
+     "t": "저쪽",
+     "w": "ko-nikl-13466"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g006"
+    },
+    {
+     "t": "돈",
+     "w": "ko-nikl-18163"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "없",
+     "w": "ko-nikl-46845"
+    },
+    {
+     "t": "을지도 몰라요",
+     "g": "ko-topik3-g022"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13466",
+    "ko-nikl-18163",
+    "ko-nikl-46845"
+   ],
+   "grammar": [
+    "ko-topik1-g006",
+    "ko-topik1-g004",
+    "ko-topik3-g022"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -(으)ㄹ지도 모르다 (might) fits the 없다 sentences"
+  },
+  {
+   "id": 893,
+   "lesson": 73,
+   "extra": true,
+   "text": "거기에 사람이 없을지도 몰라요.",
+   "en": "There might be nobody there.",
+   "tokens": [
+    {
+     "t": "거기",
+     "w": "ko-nikl-27326"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g006"
+    },
+    {
+     "t": "사람",
+     "w": "ko-nikl-08256"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "없",
+     "w": "ko-nikl-46845"
+    },
+    {
+     "t": "을지도 몰라요",
+     "g": "ko-topik3-g022"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-27326",
+    "ko-nikl-08256",
+    "ko-nikl-46845"
+   ],
+   "grammar": [
+    "ko-topik1-g006",
+    "ko-topik1-g004",
+    "ko-topik3-g022"
+   ],
+   "checked": false,
+   "why": "-(으)ㄹ지도 모르다"
+  },
+  {
+   "id": 894,
+   "lesson": 74,
+   "extra": true,
+   "text": "돈이 모자라요.",
+   "en": "I am short of money.",
+   "tokens": [
+    {
+     "t": "돈",
+     "w": "ko-nikl-18163"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "모자라",
+     "w": "ko-nikl-37514"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-18163",
+    "ko-nikl-37514"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "the word 모자라다 had no sentence in its lesson"
+  },
+  {
+   "id": 895,
+   "lesson": 74,
+   "extra": true,
+   "text": "반찬이 모자라요.",
+   "en": "We are short of side dishes.",
+   "tokens": [
+    {
+     "t": "반찬",
+     "w": "ko-nikl-39774"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "모자라",
+     "w": "ko-nikl-37514"
+    },
+    {
+     "t": "요",
+     "g": "ko-topik1-g016"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-39774",
+    "ko-nikl-37514"
+   ],
+   "grammar": [
+    "ko-topik1-g004",
+    "ko-topik1-g016"
+   ],
+   "checked": false,
+   "why": "모자라다"
+  },
+  {
+   "id": 896,
+   "lesson": 78,
+   "extra": true,
+   "text": "잠깐 앉아 주세요.",
+   "en": "Please sit down for a moment.",
+   "tokens": [
+    {
+     "t": "잠깐",
+     "w": "ko-nikl-12645"
+    },
+    {
+     "t": "앉아",
+     "w": "ko-nikl-04559"
+    },
+    {
+     "t": "주세요",
+     "g": "ko-topik1-g024"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-12645",
+    "ko-nikl-04559"
+   ],
+   "grammar": [
+    "ko-topik1-g024"
+   ],
+   "checked": false,
+   "why": "topik1-g024 (-아/어 주세요) had no sentence in lesson 78"
+  },
+  {
+   "id": 897,
+   "lesson": 78,
+   "extra": true,
+   "text": "잠깐 읽어 주세요.",
+   "en": "Please read it for a moment.",
+   "tokens": [
+    {
+     "t": "잠깐",
+     "w": "ko-nikl-12645"
+    },
+    {
+     "t": "읽어",
+     "w": "ko-nikl-11667"
+    },
+    {
+     "t": "주세요",
+     "g": "ko-topik1-g024"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-12645",
+    "ko-nikl-11667"
+   ],
+   "grammar": [
+    "ko-topik1-g024"
+   ],
+   "checked": false,
+   "why": "topik1-g024"
+  },
+  {
+   "id": 898,
+   "lesson": 79,
+   "extra": true,
+   "text": "다음 달에 중국에 가게 됐어요.",
+   "en": "As it turns out, I'm going to China next month.",
+   "tokens": [
+    {
+     "t": "다음 달",
+     "w": "ko-par-00041"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g009"
+    },
+    {
+     "t": "중국",
+     "w": "ko-nikl-42119"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g008"
+    },
+    {
+     "t": "가",
+     "w": "ko-nikl-25603"
+    },
+    {
+     "t": "게 됐어요",
+     "g": "ko-topik2-g031"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-par-00041",
+    "ko-nikl-42119",
+    "ko-nikl-25603"
+   ],
+   "grammar": [
+    "ko-topik1-g009",
+    "ko-topik1-g008",
+    "ko-topik2-g031"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -게 되다 (come to) fits its going and phone sentences"
+  },
+  {
+   "id": 899,
+   "lesson": 79,
+   "extra": true,
+   "text": "저는 전화를 하게 됐어요.",
+   "en": "I ended up making a phone call.",
+   "tokens": [
+    {
+     "t": "저",
+     "w": "ko-nikl-13297"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "전화",
+     "w": "ko-nikl-14080"
+    },
+    {
+     "t": "를",
+     "g": "ko-topik1-g005"
+    },
+    {
+     "t": "하",
+     "w": "ko-nikl-23829"
+    },
+    {
+     "t": "게 됐어요",
+     "g": "ko-topik2-g031"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-13297",
+    "ko-nikl-14080",
+    "ko-nikl-23829"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g005",
+    "ko-topik2-g031"
+   ],
+   "checked": false,
+   "why": "-게 되다"
+  },
+  {
+   "id": 900,
+   "lesson": 81,
+   "extra": true,
+   "text": "올해는 눈이 적어졌어요.",
+   "en": "There has been less snow this year.",
+   "tokens": [
+    {
+     "t": "올해",
+     "w": "ko-nikl-48477"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "눈",
+     "w": "ko-nikl-15508"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "적",
+     "w": "ko-nikl-13520"
+    },
+    {
+     "t": "어졌어요",
+     "g": "ko-topik2-g030"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48477",
+    "ko-nikl-15508",
+    "ko-nikl-13520"
+   ],
+   "grammar": [
+    "ko-topik1-g003",
+    "ko-topik1-g004",
+    "ko-topik2-g030"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: -아/어지다 (become) fits the 적다 sentences"
+  },
+  {
+   "id": 901,
+   "lesson": 81,
+   "extra": true,
+   "text": "가게에 사람이 적어졌어요.",
+   "en": "There are fewer people at the shop now.",
+   "tokens": [
+    {
+     "t": "가게",
+     "w": "ko-nikl-25524"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g006"
+    },
+    {
+     "t": "사람",
+     "w": "ko-nikl-08256"
+    },
+    {
+     "t": "이",
+     "g": "ko-topik1-g004"
+    },
+    {
+     "t": "적",
+     "w": "ko-nikl-13520"
+    },
+    {
+     "t": "어졌어요",
+     "g": "ko-topik2-g030"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-25524",
+    "ko-nikl-08256",
+    "ko-nikl-13520"
+   ],
+   "grammar": [
+    "ko-topik1-g006",
+    "ko-topik1-g004",
+    "ko-topik2-g030"
+   ],
+   "checked": false,
+   "why": "-아/어지다"
+  },
+  {
+   "id": 902,
+   "lesson": 87,
+   "extra": true,
+   "text": "왕 씨밖에 없어요.",
+   "en": "There is only Wang.",
+   "tokens": [
+    {
+     "t": "왕",
+     "w": "ko-nikl-48668"
+    },
+    {
+     "t": "씨",
+     "g": "ko-par-g034"
+    },
+    {
+     "t": "밖에",
+     "g": "ko-topik2-g023"
+    },
+    {
+     "t": "없어요",
+     "w": "ko-nikl-46845"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-48668",
+    "ko-nikl-46845"
+   ],
+   "grammar": [
+    "ko-par-g034",
+    "ko-topik2-g023"
+   ],
+   "checked": false,
+   "why": "the lesson taught no grammar point: N밖에 + negative (only) fits its place and meeting sentences"
+  },
+  {
+   "id": 903,
+   "lesson": 87,
+   "extra": true,
+   "text": "식당 앞에는 가게밖에 없어요.",
+   "en": "In front of the restaurant there is only a shop.",
+   "tokens": [
+    {
+     "t": "식당",
+     "w": "ko-nikl-03030"
+    },
+    {
+     "t": "앞",
+     "w": "ko-nikl-04763"
+    },
+    {
+     "t": "에",
+     "g": "ko-par-g019"
+    },
+    {
+     "t": "는",
+     "g": "ko-topik1-g003"
+    },
+    {
+     "t": "가게",
+     "w": "ko-nikl-25524"
+    },
+    {
+     "t": "밖에",
+     "g": "ko-topik2-g023"
+    },
+    {
+     "t": "없어요",
+     "w": "ko-nikl-46845"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-03030",
+    "ko-nikl-04763",
+    "ko-nikl-25524",
+    "ko-nikl-46845"
+   ],
+   "grammar": [
+    "ko-par-g019",
+    "ko-topik1-g003",
+    "ko-topik2-g023"
+   ],
+   "checked": false,
+   "why": "N밖에 + negative"
+  },
+  {
+   "id": 904,
+   "lesson": 86,
+   "extra": true,
+   "text": "천팔 원이에요.",
+   "en": "It is 1,008 won.",
+   "tokens": [
+    {
+     "t": "천",
+     "w": "ko-nikl-44467"
+    },
+    {
+     "t": "팔",
+     "w": "ko-nikl-22482"
+    },
+    {
+     "t": "원",
+     "w": "ko-nikl-49668"
+    },
+    {
+     "t": "이에요",
+     "g": "ko-topik1-g001"
+    },
+    {
+     "t": "."
+    }
+   ],
+   "words": [
+    "ko-nikl-44467",
+    "ko-nikl-22482",
+    "ko-nikl-49668"
+   ],
+   "grammar": [
+    "ko-topik1-g001",
+    "ko-par-g043"
+   ],
+   "checked": false,
+   "why": "pg043 (omit zero place values: 천팔) had no sentence in lesson 86"
+  },
+  {
+   "id": 905,
+   "lesson": 77,
+   "extra": true,
+   "text": "왕 선생님, 어디에 사세요?",
+   "en": "Teacher Wang, where do you live?",
+   "tokens": [
+    {
+     "t": "왕",
+     "w": "ko-nikl-48668"
+    },
+    {
+     "t": "선생님",
+     "w": "ko-nikl-10048"
+    },
+    {
+     "t": ","
+    },
+    {
+     "t": "어디",
+     "w": "ko-nikl-46352"
+    },
+    {
+     "t": "에",
+     "g": "ko-topik1-g006"
+    },
+    {
+     "t": "사",
+     "w": "ko-nikl-08832"
+    },
+    {
+     "t": "세요",
+     "g": "ko-topik1-g036"
+    },
+    {
+     "t": "?"
+    }
+   ],
+   "words": [
+    "ko-nikl-48668",
+    "ko-nikl-10048",
+    "ko-nikl-46352",
+    "ko-nikl-08832"
+   ],
+   "grammar": [
+    "ko-topik1-g006",
+    "ko-topik1-g036",
+    "ko-par-g038"
+   ],
+   "checked": false,
+   "why": "pg038"
+  }
+ ]
 }

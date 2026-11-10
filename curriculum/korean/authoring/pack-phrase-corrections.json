@@ -2,5 +2,150 @@
  "version": 1,
  "language": "ko",
  "note": "Corrections of single sentences of the lesson source (phrase id -> { rewrite: { text, en, tokens, words, grammar } | tokens | merge | words | grammar }); the source is never edited.",
- "phrases": {}
+ "phrases": {
+  "264": {
+   "why": "phrases 101 and 264 were the same sentence (여러분은 다 아주 좋아요.); 264 (lesson 28, where 행복하다 is taught) now says 행복해요",
+   "rewrite": {
+    "text": "여러분은 다 아주 행복해요.",
+    "en": "You are all very happy.",
+    "tokens": [
+     {
+      "t": "여러분",
+      "w": "ko-nikl-47062"
+     },
+     {
+      "t": "은",
+      "g": "ko-topik1-g003"
+     },
+     {
+      "t": "다",
+      "w": "ko-nikl-16008"
+     },
+     {
+      "t": "아주",
+      "w": "ko-nikl-04272"
+     },
+     {
+      "t": "행복해",
+      "w": "ko-par-00017"
+     },
+     {
+      "t": "요",
+      "g": "ko-topik1-g016"
+     },
+     {
+      "t": "."
+     }
+    ],
+    "words": [
+     "ko-nikl-47062",
+     "ko-nikl-16008",
+     "ko-nikl-04272",
+     "ko-par-00017"
+    ],
+    "grammar": [
+     "ko-topik1-g003",
+     "ko-topik1-g016",
+     "ko-par-g005",
+     "ko-par-g006"
+    ]
+   }
+  },
+  "733": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "734": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "735": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "736": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "737": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "738": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "739": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "740": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "741": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "742": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "743": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  },
+  "744": {
+   "why": "the month sentences of lesson 84 show pg042 (number + 월), the pattern the lesson lists",
+   "grammar": {
+    "add": [
+     "ko-par-g042"
+    ]
+   }
+  }
+ }
 }
