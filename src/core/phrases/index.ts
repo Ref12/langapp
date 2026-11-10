@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { getPack } from '../language'
 
 // The small generated index next to the band files (src/data/phrases/index.json, written with them): the shipped phrase count per band and per vocabulary word,
 // so a count can be shown without loading the band files. If it cannot be read, loadPhraseIndex resolves undefined and callers show no number.
@@ -20,9 +21,14 @@ export function parsePhraseIndex(raw: unknown): PhraseIndex | undefined {
   return { total, byWord }
 }
 
-let pending: Promise<PhraseIndex | undefined> | undefined
+const pending = new Map<string, Promise<PhraseIndex | undefined>>() // per language
 export function loadPhraseIndex(): Promise<PhraseIndex | undefined> {
-  pending ??= import('../../data/phrases/index.json').then(module => parsePhraseIndex(module.default)).catch(() => undefined)
-  return pending
+  const pack = getPack()
+  let loading = pending.get(pack.id)
+  if (!loading) {
+    loading = pack.phrases.index().then(module => parsePhraseIndex(module.default)).catch(() => undefined)
+    pending.set(pack.id, loading)
+  }
+  return loading
 }
 

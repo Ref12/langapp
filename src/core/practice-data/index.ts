@@ -1,3 +1,4 @@
+import { getPack } from '../language'
 import { phraseKey } from '../phrases/key'
 import {
   PRACTICE_BANDS, practiceFileSchemas, practiceIndexSchema,
@@ -6,13 +7,8 @@ import {
 
 export * from './contracts'
 
-/** Band files load on first use, the way the phrase bank's do (a band file is only fetched when needed). */
-const loaders: Record<PracticeKind, Record<string, () => Promise<{ default: unknown }>>> = {
-  accepted: { '1': () => import('../../data/practice/accepted-hsk-1.json'), '2': () => import('../../data/practice/accepted-hsk-2.json'), '3': () => import('../../data/practice/accepted-hsk-3.json'), '4': () => import('../../data/practice/accepted-hsk-4.json'), '5': () => import('../../data/practice/accepted-hsk-5.json'), '6': () => import('../../data/practice/accepted-hsk-6.json') },
-  exchanges: { '1': () => import('../../data/practice/exchanges-hsk-1.json'), '2': () => import('../../data/practice/exchanges-hsk-2.json'), '3': () => import('../../data/practice/exchanges-hsk-3.json'), '4': () => import('../../data/practice/exchanges-hsk-4.json'), '5': () => import('../../data/practice/exchanges-hsk-5.json'), '6': () => import('../../data/practice/exchanges-hsk-6.json') },
-  grammar: { '1': () => import('../../data/practice/grammar-hsk-1.json'), '2': () => import('../../data/practice/grammar-hsk-2.json'), '3': () => import('../../data/practice/grammar-hsk-3.json'), '4': () => import('../../data/practice/grammar-hsk-4.json'), '5': () => import('../../data/practice/grammar-hsk-5.json'), '6': () => import('../../data/practice/grammar-hsk-6.json') },
-  conversations: { '1': () => import('../../data/practice/conversations-hsk-1.json'), '2': () => import('../../data/practice/conversations-hsk-2.json'), '3': () => import('../../data/practice/conversations-hsk-3.json'), '4': () => import('../../data/practice/conversations-hsk-4.json'), '5': () => import('../../data/practice/conversations-hsk-5.json'), '6': () => import('../../data/practice/conversations-hsk-6.json') },
-}
+/** Band files load on first use, the way the phrase bank's do (a band file is only fetched when needed). They come from the pack; a pack without a dataset has none (every band is empty). */
+const loaders = (): Partial<Record<PracticeKind, Record<string, () => Promise<{ default: unknown }>>>> => getPack().practice?.files ?? {}
 
 type ItemOf<K extends PracticeKind> = PracticeFiles[K][number]
 
@@ -23,7 +19,7 @@ export function parsePracticeFile<K extends PracticeKind>(kind: K, json: unknown
 
 /** Loads and validates one band file. An unknown band is an empty list. */
 export async function loadPracticeFile<K extends PracticeKind>(kind: K, band: string): Promise<ItemOf<K>[]> {
-  const load = loaders[kind][band]
+  const load = loaders()[kind]?.[band]
   return load ? parsePracticeFile(kind, (await load()).default) : []
 }
 
@@ -34,7 +30,9 @@ export const loadConversations = (band: string) => loadPracticeFile('conversatio
 
 /** The index (counts per band), validated. */
 export async function loadPracticeIndex(): Promise<PracticeIndex> {
-  return practiceIndexSchema.parse((await import('../../data/practice/index.json')).default)
+  const practice = getPack().practice
+  if (!practice) return { schemaVersion: 1, bands: {}, totals: { accepted: 0, exchanges: 0, grammarPoints: 0, nearMisses: 0, conversations: 0 } }
+  return practiceIndexSchema.parse((await practice.index()).default)
 }
 
 const bare = (ref: string) => ref.replace(/^(vocabulary|grammar):/, '')

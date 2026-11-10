@@ -1,7 +1,7 @@
 import type { Plugin } from 'vite'
 import { storageNames, type BuildChannel } from '../src/core/storage-names'
 import { LANGUAGE_IDS, type LanguageId } from '../src/core/language/ids'
-import { buildDisplayName, packFor } from '../src/core/language/packs'
+import { buildDisplayName, metaFor } from '../src/core/language/meta'
 
 /**
  * PWA for every production build: emits a web manifest and a service worker. All URLs
@@ -12,7 +12,7 @@ import { buildDisplayName, packFor } from '../src/core/language/packs'
  */
 export function pwa(channel: BuildChannel = 'lab', language: LanguageId = 'zh'): Plugin {
   const names = storageNames(channel, language)
-  const pack = packFor(names.language)
+  const pack = metaFor(names.language)
   const appName = buildDisplayName(channel, pack)
   const chinese = names.language === 'zh'
   // The Lab Chinese worker (scope lab/) also contains the language builds' folders (lab/ja/, lab/ko/): those go straight to the network.

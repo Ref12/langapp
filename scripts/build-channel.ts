@@ -16,9 +16,12 @@ export function languageFromEnv(channel: BuildChannel, env: Record<string, strin
   return language
 }
 
-/** The compile-time constants `__BUILD_CHANNEL__` ('stable' | 'lab'), `__BUILD_LANGUAGE__` ('zh' | 'ja' | 'ko') and `__BUILD_COMMIT__` (short sha). */
-export function buildDefines(channel: BuildChannel, language: LanguageId = DEFAULT_BUILD_LANGUAGE): Record<string, string> {
+/**
+ * The compile-time constants `__BUILD_CHANNEL__` ('stable' | 'lab'), `__BUILD_LANGUAGE__` ('zh' | 'ja' | 'ko'), `__BUILD_COMMIT__` (short sha) and `__PACK_DATA__`: whose data the bundle may contain
+ * (the build language, so a build leaves the other languages' data out; 'all' for tests, which load any pack at run time).
+ */
+export function buildDefines(channel: BuildChannel, language: LanguageId = DEFAULT_BUILD_LANGUAGE, packData: LanguageId | 'all' = language): Record<string, string> {
   if (!isLanguageId(language)) throw new Error('"' + String(language) + '" is not a known language. Known ids: ' + LANGUAGE_IDS.join(', ') + '.')
   if (channel === 'stable' && language !== 'zh') throw new Error('The Stable channel is Chinese only.')
-  return { __BUILD_CHANNEL__: JSON.stringify(channel), __BUILD_LANGUAGE__: JSON.stringify(language), __BUILD_COMMIT__: JSON.stringify(buildCommit()) }
+  return { __BUILD_CHANNEL__: JSON.stringify(channel), __BUILD_LANGUAGE__: JSON.stringify(language), __BUILD_COMMIT__: JSON.stringify(buildCommit()), __PACK_DATA__: JSON.stringify(packData) }
 }

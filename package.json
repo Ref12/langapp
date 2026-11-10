@@ -18,6 +18,8 @@
     "forms:report": "node scripts/report-parallel-forms.mjs",
     "dictionary:generate": "node scripts/generate-app-dictionary.mjs",
     "parallel:generate": "node scripts/generate-app-parallel.mjs",
+    "pack:ja:generate": "node scripts/generate-pack-ja.mjs",
+    "pack:ja:check": "node scripts/generate-pack-ja.mjs --check",
     "parallel:build": "node scripts/build-parallel-lessons.mjs",
     "curriculum:v2:app": "node scripts/generate-v2-app-data.mjs",
     "curriculum:v2:app:check": "node scripts/generate-v2-app-data.mjs --check",

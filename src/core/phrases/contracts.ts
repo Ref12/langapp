@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type { ExampleSegment } from '../study/catalog'
 
 // The phrase bank: phrases that use vocabulary words and grammar patterns. The shipped part (src/data/phrases/hsk-N.json, a flat list per band, generated from
 // curriculum/chinese/authoring/phrases/hsk-N.yaml, which scripts/build-phrase-bank.mjs writes offline), the catalog's
@@ -32,7 +33,15 @@ export interface BankPhrase {
   readyAt?: number
   /** Passed a model check (authored catalog examples count as checked). */
   checked: boolean
+  /** The phrase as segments (words, grammar units, punctuation; see ExampleSegment), for languages whose text the Chinese segmenter cannot split. Absent in Chinese. */
+  tokens?: ExampleSegment[]
 }
+
+/** A segment of a phrase's tokens (the same shape as an authored example's). */
+export const exampleSegmentSchema = z.object({
+  word: z.string().min(1).optional(), grammar: z.string().min(1).optional(), punctuation: z.string().min(1).optional(),
+  text: z.string().min(1).optional(), reading: z.string().min(1).optional(), form: z.string().min(1).optional(), span: z.number().int().positive().optional(),
+}).strict()
 
 /** A band file of the shipped bank (generated from the YAML by scripts/generate-app-curriculum.mjs): one flat list of phrases. */
 export const shippedBandSchema = z.object({
@@ -42,7 +51,7 @@ export const shippedBandSchema = z.object({
     id: z.number().int().positive(),
     zh: z.string().min(1), py: z.string().min(1), en: z.string().min(1), words: z.array(z.string().min(1)).min(1),
     grammar: z.array(z.string()).optional(), lookahead: z.number().int().nonnegative().optional(), readyAt: z.number().int().nonnegative().optional(),
-    source: z.enum(PHRASE_SOURCES), ref: phraseRefSchema.optional(), checked: z.boolean(),
+    source: z.enum(PHRASE_SOURCES), ref: phraseRefSchema.optional(), checked: z.boolean(), tokens: z.array(exampleSegmentSchema).min(1).optional(),
   }).strict()),
 }).passthrough()
 

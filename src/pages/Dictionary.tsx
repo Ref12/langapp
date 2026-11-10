@@ -10,7 +10,7 @@ import { loadPhraseIndex, type PhraseIndex } from '../core/phrases/index'
 import { PhraseTable } from '../components/phrases/PhraseTable'
 import { usePageActions } from '../components/page-actions-context'
 import { makeMatcher, ownCharacterData, FALLBACK, type SearchTarget } from '../core/dictionary-search'
-import { catalogBands, catalogCounts, type Unit } from '../core/study/catalog'
+import { catalogBandList, catalogCounts, type Unit } from '../core/study/catalog'
 import { cardId, type UnitKind } from '../core/study/contracts'
 import { buildAddedByIndex } from '../core/study/addedby'
 import { DOMAIN } from '../core/study/knowledge'
@@ -304,7 +304,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={phrasesView ? 'Chinese, pinyin, or English' : kind === 'characters' ? 'Character, codepoint, or containing word' : kind === 'vocabulary' ? 'Character, pinyin, or meaning' : 'Pattern, pinyin, or meaning'} aria-label="Search dictionary" />
         <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button></div>
       <label className="filter-label">Language <select value={lang} onChange={event => goLanguage(event.target.value as FilterLanguage)} aria-label="Language filter">{(['all', 'zh', 'ja', 'ko'] as FilterLanguage[]).map(value => <option key={value} value={value}>{languageLabel[value]}</option>)}</select></label>
-      {!multi && <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBands.map(value => <option key={value} value={value}>HSK {value}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>}
+      {!multi && <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBandList().map(value => <option key={value} value={value}>HSK {value}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>}
       {multi && lang !== 'all' && <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)} aria-label="Band"><option value="all">All bands</option>{(dicts[lang as DictLanguage]?.levels ?? []).map(value => <option key={value} value={value}>{value}</option>)}</select></label>}
     </div>
     {selectable && selecting && <div className="select-bar" role="toolbar" aria-label="Select">

@@ -1,4 +1,5 @@
 import { db } from '../database'
+import { getPack } from '../language'
 import type { Catalog } from '../study/catalog'
 import type { DrillSet } from '../drills/contracts'
 import { catalogExamples, FUNCTION_CHARACTERS, MAX_PHRASE_SYLLABLES } from '../drills/items'
@@ -8,21 +9,20 @@ import { shippedBandSchema, type BankPhrase, type PhraseHeard, type UserPhrase }
 
 const HAN = /\p{Script=Han}/u
 const syllableCount = (zh: string) => Array.from(zh).filter(char => HAN.test(char)).length
-const shippedLoaders: Record<string, () => Promise<{ default: unknown }>> = {
-  '1': () => import('../../data/phrases/hsk-1.json'), '2': () => import('../../data/phrases/hsk-2.json'), '3': () => import('../../data/phrases/hsk-3.json'),
-  '4': () => import('../../data/phrases/hsk-4.json'), '5': () => import('../../data/phrases/hsk-5.json'), '6': () => import('../../data/phrases/hsk-6.json'),
-}
-const shippedCache = new Map<string, Promise<Record<string, BankPhrase[]>>>()
+/** The pack's shipped band files, by band (none for a pack without a phrase bank). */
+const shippedLoaders = (): Record<string, () => Promise<{ default: unknown }>> => getPack().phrases.bands
+const shippedCache = new Map<string, Promise<Record<string, BankPhrase[]>>>() // per language and band
 
 const bandNumber = (band: string | undefined) => (band ? Number.parseInt(band, 10) || 0 : 0)
 /** The shipped band files that can hold a phrase for a word of `from`: that band and the later ones up to the highest band the learner has words in. */
-const shippedBands = (from: string, top: number) => Object.keys(shippedLoaders).filter(band => Number(band) >= bandNumber(from) && Number(band) <= Math.max(top, bandNumber(from)))
+const shippedBands = (from: string, top: number) => Object.keys(shippedLoaders()).filter(band => Number(band) >= bandNumber(from) && Number(band) <= Math.max(top, bandNumber(from)))
 
 /** The shipped phrases of a band file by vocabulary ref (a phrase is listed under every word it uses), loaded on first use (a band file is only fetched when needed). */
 export function shippedPhrases(band: string): Promise<Record<string, BankPhrase[]>> {
-  let pending = shippedCache.get(band)
+  const key = getPack().id + ':' + band
+  let pending = shippedCache.get(key)
   if (!pending) {
-    const load = shippedLoaders[band]
+    const load = shippedLoaders()[band]
     pending = (load ? load() : Promise.resolve({ default: { schemaVersion: 2, band, phrases: [] } })).then(module => {
       const parsed = shippedBandSchema.safeParse(module.default)
       if (!parsed.success) return {}
@@ -31,13 +31,13 @@ export function shippedPhrases(band: string): Promise<Record<string, BankPhrase[
         const entry: BankPhrase = {
           id: phrase.id, zh: phrase.zh, py: phrase.py, en: phrase.en, words: phrase.words.map(word => `vocabulary:${word}`),
           ...(phrase.grammar?.length ? { grammar: phrase.grammar.map(label => `grammar:${label}`) } : {}), source: phrase.source, ...(phrase.ref ? { ref: phrase.ref } : {}), checked: phrase.checked,
-          ...(phrase.lookahead !== undefined ? { lookahead: phrase.lookahead } : {}), ...(phrase.readyAt !== undefined ? { readyAt: phrase.readyAt } : {}),
+          ...(phrase.lookahead !== undefined ? { lookahead: phrase.lookahead } : {}), ...(phrase.readyAt !== undefined ? { readyAt: phrase.readyAt } : {}), ...(phrase.tokens ? { tokens: phrase.tokens } : {}),
         }
         for (const word of entry.words) (byWord[word] ??= []).push(entry)
       }
       return byWord
     }).catch(() => ({}))
-    shippedCache.set(band, pending)
+    shippedCache.set(key, pending)
   }
   return pending
 }
@@ -131,7 +131,7 @@ export async function grammarPhrases(catalog: Catalog, refs: readonly string[], 
   if (!refs.length) return out
   const topBand = Math.max(1, ...[...allowed].map(ref => bandNumber(catalog.units.get(ref)?.band)))
   const all = new Set<BankPhrase>((await db.userPhrases.toArray()).map(userBankPhrase))
-  for (const band of Object.keys(shippedLoaders).filter(band => Number(band) <= topBand)) for (const list of Object.values(await shippedPhrases(band))) for (const phrase of list) all.add(phrase)
+  for (const band of Object.keys(shippedLoaders()).filter(band => Number(band) <= topBand)) for (const list of Object.values(await shippedPhrases(band))) for (const phrase of list) all.add(phrase)
   for (const phrase of all) {
     if (!usableFor(phrase, allowed)) continue
     for (const ref of phrase.grammar ?? []) out.get(ref)?.push(phrase)

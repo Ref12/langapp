@@ -1,4 +1,4 @@
-import { catalogBands, renderExample, type Catalog } from '../study/catalog'
+import { catalogBandList, renderExample, type Catalog } from '../study/catalog'
 import { makeMatcher } from '../dictionary-search'
 import { phrasePinyin } from '../pinyin/phrase'
 import { phraseReadingsOf } from '../pinyin/phrase-readings'
@@ -109,7 +109,7 @@ export function loadPhraseSources(catalog: Catalog): Promise<PhraseSources> {
   if (!pending) {
     pending = (async () => {
       const shipped: PhraseEntry[] = []
-      for (const band of catalogBands) {
+      for (const band of catalogBandList()) {
         const seen = new Set<BankPhrase>()
         for (const list of Object.values(await shippedPhrases(band))) for (const phrase of list) if (!seen.has(phrase)) seen.add(phrase)
         for (const phrase of [...seen].sort((a, b) => (a.id ?? 0) - (b.id ?? 0))) if (phrase.source !== 'drill') shipped.push({ phrase, band })

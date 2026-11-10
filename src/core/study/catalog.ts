@@ -1,11 +1,15 @@
-import index from '../../data/v2/index.generated.json'
+import { getPack, type LanguageId } from '../language'
 import { type Band, type UnitKind, bandSchema, unitRef } from './contracts'
 
-// Lazy access to the generated v2 curriculum data (src/data/v2). Each band is
+// Lazy access to the generated curriculum data of the build's language pack (Chinese: src/data/v2; getPack().catalog). Each band is
 // imported on first use so the Dictionary and study flows do not load ~4 MB up front.
 
 export interface VocabularyRecord { id: string; ch: string; pr: string; ds: string; lb: string }
-export interface ExampleSegment { word?: string; punctuation?: string }
+/**
+ * One piece of an authored example: a vocabulary word (`word` = its label), a grammar unit (`grammar` = its label) or punctuation. A Chinese segment has only that; a segment of another language may
+ * carry its own surface `text` and `reading` (inflected words, particles: 勉強し + ます), and the `form`/`span` tags of the word-forms analysis (a form id and the number of following segments that belong to the same surface).
+ */
+export interface ExampleSegment { word?: string; grammar?: string; punctuation?: string; text?: string; reading?: string; form?: string; span?: number }
 export interface AuthoredExample { id: string; segments: ExampleSegment[]; translation: string; grammar: string[] }
 export interface GrammarRecord { id: string; pt: string; pr: string; ds: string; lb: string; ex: AuthoredExample | Omit<AuthoredExample, 'id'> }
 export interface StudyGroup { id: string; units: { kind: UnitKind; ref: string }[]; examples: AuthoredExample[] }
@@ -29,29 +33,27 @@ export interface Catalog {
   orderedGroups: { band: Band; group: StudyGroup }[]
 }
 
-export const catalogBands = index.bands.map(entry => bandSchema.parse(entry.band))
+/** The bands of the build language's catalog, in order (none for a pack without data). */
+export const catalogBandList = (): Band[] => getPack().catalog.index.bands.map(entry => bandSchema.parse(entry.band))
+const countOf = (key: 'vocabulary' | 'grammar' | 'groups') => getPack().catalog.index.bands.reduce((total, entry) => total + entry[key], 0)
 export const catalogCounts = {
-  vocabulary: index.bands.reduce((total, entry) => total + entry.vocabulary, 0),
-  grammar: index.bands.reduce((total, entry) => total + entry.grammar, 0),
-  groups: index.bands.reduce((total, entry) => total + entry.groups, 0),
+  get vocabulary() { return countOf('vocabulary') },
+  get grammar() { return countOf('grammar') },
+  get groups() { return countOf('groups') },
 }
 
-const bandLoaders: Record<Band, () => Promise<{ default: unknown }>> = {
-  '1': () => import('../../data/v2/hsk-1.generated.json'),
-  '2': () => import('../../data/v2/hsk-2.generated.json'),
-  '3': () => import('../../data/v2/hsk-3.generated.json'),
-  '4': () => import('../../data/v2/hsk-4.generated.json'),
-  '5': () => import('../../data/v2/hsk-5.generated.json'),
-  '6': () => import('../../data/v2/hsk-6.generated.json'),
-}
-const bandCache = new Map<Band, Promise<BandData>>()
-let catalogCache: Promise<Catalog> | undefined
+// the caches are per language, so a test can switch the build language
+const bandCache = new Map<string, Promise<BandData>>()
+const catalogCache = new Map<LanguageId, Promise<Catalog>>()
 
 export function loadBand(band: Band): Promise<BandData> {
-  let pending = bandCache.get(band)
+  const pack = getPack()
+  const key = pack.id + ':' + band
+  let pending = bandCache.get(key)
   if (!pending) {
-    pending = bandLoaders[band]().then(module => module.default as BandData)
-    bandCache.set(band, pending)
+    const load = pack.catalog.bands[band]
+    pending = load ? load().then(module => module.default as BandData) : Promise.reject(new Error('The ' + pack.name + ' catalog has no band ' + band))
+    bandCache.set(key, pending)
   }
   return pending
 }
@@ -74,13 +76,18 @@ export function buildCatalog(bands: BandData[]): Catalog {
 
 /** Loads every app band. Cached after the first call. */
 export function loadCatalog(): Promise<Catalog> {
-  if (!catalogCache) catalogCache = Promise.all(catalogBands.map(loadBand)).then(buildCatalog)
-  return catalogCache
+  const id = getPack().id
+  let pending = catalogCache.get(id)
+  if (!pending) {
+    pending = Promise.all(catalogBandList().map(loadBand)).then(buildCatalog)
+    catalogCache.set(id, pending)
+  }
+  return pending
 }
 
 export function resetCatalogCache(): void {
   bandCache.clear()
-  catalogCache = undefined
+  catalogCache.clear()
 }
 
 export function requireUnit(catalog: Catalog, ref: string): Unit {
@@ -89,7 +96,10 @@ export function requireUnit(catalog: Catalog, ref: string): Unit {
   return unit
 }
 
-/** Renders an authored example's segments as Chinese text and pinyin. */
+/**
+ * Renders an authored example's segments as text and reading (pinyin for Chinese, kana for Japanese). A word segment shows its own `text`/`reading` when it carries them, else the vocabulary record's
+ * `ch`/`pr`; a grammar segment points at a grammar unit and shows its own text and reading (else the pattern). Readings are joined as the pack says (a space for pinyin, nothing for kana).
+ */
 export function renderExample(catalog: Catalog, example: { segments: ExampleSegment[] }): { text: string; pinyin: string } {
   const text: string[] = []
   const pinyin: string[] = []
@@ -100,11 +110,16 @@ export function renderExample(catalog: Catalog, example: { segments: ExampleSegm
     } else if (segment.word !== undefined) {
       const unit = requireUnit(catalog, unitRef('vocabulary', segment.word))
       if (unit.kind !== 'vocabulary') throw new Error(`Example segment is not vocabulary: ${segment.word}`)
-      text.push(unit.record.ch)
-      pinyin.push(unit.record.pr)
+      text.push(segment.text ?? unit.record.ch)
+      pinyin.push(segment.reading ?? unit.record.pr)
+    } else if (segment.grammar !== undefined) {
+      const unit = requireUnit(catalog, unitRef('grammar', segment.grammar))
+      if (unit.kind !== 'grammar') throw new Error(`Example segment is not grammar: ${segment.grammar}`)
+      text.push(segment.text ?? unit.record.pt)
+      pinyin.push(segment.reading ?? unit.record.pr)
     }
   }
-  return { text: text.join(''), pinyin: pinyin.join(' ') }
+  return { text: text.join(''), pinyin: pinyin.join(getPack().catalog.readingJoiner) }
 }
 
 export function unitTitle(unit: Unit): string {
