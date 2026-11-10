@@ -20,8 +20,12 @@ const strip = <T extends object>(value: T, shape: object): T => {
 
 export const chineseRows = <T>(rows: T[]): T[] => rows.filter(row => !foreignRow(row as Obj))
 export const chineseLessons = <T>(rows: T[]): T[] => rows.filter(row => !isForeignLesson((row as Obj).lessonId))
-export const chinesePreferences = <T extends object>(preferences: T): T => strip(preferences, workspaceSchema.shape.preferences.shape)
-export const chineseSettings = <T extends { preferences: object }>(settings: T): T => ({ ...settings, preferences: chinesePreferences(settings.preferences) })
+// What a screen reads: the settings of the other tracks stay in storage but are not part of this build's workspace.
+const TRACK_SETTINGS = ['currentLanguage', 'startedTracks', 'otherLanguageCards', 'japaneseReading']
+export const chinesePreferences = <T extends object>(preferences: T): T => Object.fromEntries(Object.entries(strip(preferences, workspaceSchema.shape.preferences.shape)).filter(([key]) => !TRACK_SETTINGS.includes(key))) as T
+/** What a file carries: every setting a schema of this build knows, the track settings included. */
+export const carriedPreferences = <T extends object>(preferences: T): T => strip(preferences, workspaceSchema.shape.preferences.shape)
+export const chineseSettings = <T extends { preferences: object }>(settings: T): T => ({ ...settings, preferences: carriedPreferences(settings.preferences) })
 export const chineseSessions = <T>(rows: T[]): T[] =>
   (rows as Obj[]).filter(row => ![...(row.targetRefs ?? []), ...(row.reviewRefs ?? [])].some(isForeignRef)).map(row => strip(row, exerciseSessionSchema.shape)) as T[]
 export const isForeignSession = (row: object): boolean => [...((row as Obj).targetRefs ?? []), ...((row as Obj).reviewRefs ?? [])].some(isForeignRef)
@@ -45,7 +49,7 @@ export function chineseBackup(value: unknown): unknown {
   if (typeof b !== 'object' || b === null || typeof b.workspace !== 'object' || b.workspace === null) return value
   const w = b.workspace
   return { ...b,
-    workspace: { ...w, ...(w.preferences ? { preferences: chinesePreferences(w.preferences) } : {}) },
+    workspace: { ...w, ...(w.preferences ? { preferences: carriedPreferences(w.preferences) } : {}) },
     ...(b.study && Array.isArray(b.study.sessions) ? { study: { ...b.study, sessions: b.study.sessions.map((row: Obj) => strip(row, exerciseSessionSchema.shape)) } } : {}),
   }
 }

@@ -25,7 +25,8 @@ async function expectNoOtherLanguage() {
   expect(workspace.lessons.some(row => isOtherLanguage(row.lessonId))).toBe(false)
   expect(workspace.exerciseSessions.some(row => [...row.targetRefs, ...row.reviewRefs].some(isOtherLanguage))).toBe(false)
   expect((await dueCards(Date.now() + 1000)).some(card => isOtherLanguage(card.ref))).toBe(false)
-  expect((await db.knowledge.toArray()).some(row => isOtherLanguage(row.ref))).toBe(false)
+  // The rows are carried by the restore (in storage) and never shown (the view above).
+  expect((await db.knowledge.toArray()).some(row => isOtherLanguage(row.ref))).toBe(true)
   expect(await stableView()).toEqual(expected())
 }
 

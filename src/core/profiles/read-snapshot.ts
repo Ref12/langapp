@@ -6,7 +6,7 @@ import type { JournalEvent } from '../backup/journal'
 import type { UnjournaledState } from '../backup/layout'
 import type { ProfileSnapshot } from './contracts'
 import { knowledgeCards, readCollectionsState } from '../collections/snapshot'
-import { chinesePreferences, chineseSessions } from '../chinese-only'
+import { carriedPreferences, chineseSessions } from '../chinese-only'
 
 // Short, separate read transactions for the cloud backup. None of them spans the backup, and none
 // touches the journal except the tiny cursor read, so saving an answer never waits behind one.
@@ -45,7 +45,7 @@ export async function readSettingsRows(database: LearningDatabase): Promise<Sett
       if (!parsed.success) throw new Error('Saved speech connection settings are invalid. Review them before exporting.')
       speechConnection = speechConnectionInputSchema.strip().parse(parsed.data)
     }
-    return { preferences: chinesePreferences(preferences), ...(aiEndpoints ? { aiEndpoints } : {}), ...(speechConnection ? { speechConnection } : {}) }
+    return { preferences: carriedPreferences(preferences), ...(aiEndpoints ? { aiEndpoints } : {}), ...(speechConnection ? { speechConnection } : {}) }
   })()
 }
 
