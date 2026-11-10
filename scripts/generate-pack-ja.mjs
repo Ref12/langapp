@@ -162,10 +162,12 @@ export function buildJaPack(base = defaultRoot) {
   const rules = loadFormsRules('ja', base)
   const engine = createForms(rules)
   const index = entryIndex(references, data.entries)
-  const headwords = readJson(existsSync(join(base, HEADWORDS_FILE)) ? join(base, HEADWORDS_FILE) : join(defaultRoot, HEADWORDS_FILE), { headwords: {} }).headwords // a test's temporary root uses the repository's overlay
+  const ownHeadwords = existsSync(join(base, HEADWORDS_FILE))
+  const headwords = readJson(ownHeadwords ? join(base, HEADWORDS_FILE) : join(defaultRoot, HEADWORDS_FILE), { headwords: {} }).headwords // a test's temporary root uses the repository's overlay, for the words it has
   for (const [id, headword] of Object.entries(headwords)) {
     const entry = index.vocabulary.get(id)
-    if (!entry) throw new Error(HEADWORDS_FILE + ' names an unknown word ' + id)
+    if (!entry) { if (ownHeadwords) throw new Error(HEADWORDS_FILE + ' names an unknown word ' + id); continue }
+    if (entry.target !== headword.pr) { if (ownHeadwords) throw new Error(HEADWORDS_FILE + ': ' + id + ' is listed as ' + entry.target + ', not in kana as ' + headword.pr); continue }
     if (!headword.ch || !headword.pr) throw new Error(HEADWORDS_FILE + ': ' + id + ' needs a headword (ch) and its reading (pr)')
     index.vocabulary.set(id, { ...entry, target: headword.ch, reading: headword.pr })
   }
