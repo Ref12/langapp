@@ -1,0 +1,216 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "Names of the pattern units where scripts/pack-ja-names.mjs patternNameRule gives no good result (pattern id -> name, and the reading line when the name has kanji). Convention: <english placeholder> + Japanese as written, ' + ' between parts, (a / b) for alternatives. Edit here, not in the rule.",
+ "names": {
+  "ja-par-g001": {
+   "name": "<noun> + は？"
+  },
+  "ja-par-g002": {
+   "name": "<noun> + はみんな + <predicate>"
+  },
+  "ja-n5-g045": {
+   "name": "<sentence> + (ね / よ)"
+  },
+  "ja-n5-g014": {
+   "name": "<time> + に"
+  },
+  "ja-par-g006": {
+   "name": "<time expression> + <subject> + <verb>"
+  },
+  "ja-par-g007": {
+   "name": "<place> + に着きます",
+   "reading": "<place> + につきます"
+  },
+  "ja-par-g008": {
+   "name": "<length of time> + <verb> + ます"
+  },
+  "ja-n5-g044": {
+   "name": "<noun> + が + (好き / 上手)",
+   "reading": "<noun> + が + (すき / じょうず)"
+  },
+  "ja-n5-g032": {
+   "name": "<noun> + が欲しい",
+   "reading": "<noun> + がほしい"
+  },
+  "ja-n5-g018": {
+   "name": "(これ / それ / あれ)"
+  },
+  "ja-n5-g019": {
+   "name": "(この / その / あの) + <noun>"
+  },
+  "ja-par-g010": {
+   "name": "<noun> + (を / が) + 少し",
+   "reading": "<noun> + (を / が) + すこし"
+  },
+  "ja-n5-g041": {
+   "name": "<verb> + て + <verb>"
+  },
+  "ja-par-g011": {
+   "name": "<noun> + の前に",
+   "reading": "<noun> + のまえに"
+  },
+  "ja-par-g015": {
+   "name": "<noun> + が + (あります / います)"
+  },
+  "ja-n5-g025": {
+   "name": "<verb> + (ました / ませんでした)"
+  },
+  "ja-par-g050": {
+   "name": "<number> + 杯",
+   "reading": "<number> + はい"
+  },
+  "ja-par-g012": {
+   "name": "<number> + (号室 / 番)",
+   "reading": "<number> + (ごうしつ / ばん)"
+  },
+  "ja-par-g013": {
+   "name": "<time> + 半",
+   "reading": "<time> + はん"
+  },
+  "ja-par-g049": {
+   "name": "<number> + 歳 + (です)",
+   "reading": "<number> + さい + (です)"
+  },
+  "ja-par-g016": {
+   "name": "<noun 1> + は + <noun 2> + に + <noun 3> + を + (あげます / くれます)"
+  },
+  "ja-par-g017": {
+   "name": "十 + <ones digit>",
+   "reading": "じゅう + <ones digit>"
+  },
+  "ja-par-g019": {
+   "name": "<noun> + の + (後ろ / 前 / 隣) + に",
+   "reading": "<noun> + の + (うしろ / まえ / となり) + に"
+  },
+  "ja-par-g052": {
+   "name": "<sentence with question word> + か"
+  },
+  "ja-n5-g012": {
+   "name": "<place> + (に / へ) + 行きます",
+   "reading": "<place> + (に / へ) + いきます"
+  },
+  "ja-n5-g043": {
+   "name": "<verb stem> + に行く",
+   "reading": "<verb stem> + にいく"
+  },
+  "ja-par-g054": {
+   "name": "<verb stem> + に来ます",
+   "reading": "<verb stem> + にきます"
+  },
+  "ja-par-g055": {
+   "name": "<verb ない-form> + <noun>"
+  },
+  "ja-par-g030": {
+   "name": "<place> + に + (住みます / 住んでいます)",
+   "reading": "<place> + に + (すみます / すんでいます)"
+  },
+  "ja-par-g051": {
+   "name": "<verb ない-form> + くて"
+  },
+  "ja-par-g021": {
+   "name": "<person> + に言う",
+   "reading": "<person> + にいう"
+  },
+  "ja-par-g056": {
+   "name": "<quotation> + と言います",
+   "reading": "<quotation> + といいます"
+  },
+  "ja-n4-g011": {
+   "name": "<verb dictionary form> + ことができる"
+  },
+  "ja-n4-g012": {
+   "name": "<verb potential form>"
+  },
+  "ja-par-g058": {
+   "name": "<い-adjective stem> + すぎます"
+  },
+  "ja-n4-g002": {
+   "name": "<verb> + (こと / の)"
+  },
+  "ja-par-g023": {
+   "name": "<noun> + に親切です",
+   "reading": "<noun> + にしんせつです"
+  },
+  "ja-par-g059": {
+   "name": "もう + <negative>"
+  },
+  "ja-par-g025": {
+   "name": "本当に + <adjective> + です",
+   "reading": "ほんとうに + <adjective> + です"
+  },
+  "ja-par-g062": {
+   "name": "<noun> + で大丈夫です",
+   "reading": "<noun> + でだいじょうぶです"
+  },
+  "ja-par-g063": {
+   "name": "<noun> + から + (出る / 降りる)",
+   "reading": "<noun> + から + (でる / おりる)"
+  },
+  "ja-par-g029": {
+   "name": "<day name> + 曜日",
+   "reading": "<day name> + ようび"
+  },
+  "ja-par-g031": {
+   "name": "<number> + 百 + <remaining number>",
+   "reading": "<number> + ひゃく + <remaining number>"
+  },
+  "ja-par-g032": {
+   "name": "<number> + 千 + <remaining number>",
+   "reading": "<number> + せん + <remaining number>"
+  },
+  "ja-par-g064": {
+   "name": "(午前 / 午後) + <number> + 時 + (<number> + 分)",
+   "reading": "(ごぜん / ごご) + <number> + じ + (<number> + ふん)"
+  },
+  "ja-n5-g039": {
+   "name": "<noun A> + は + <noun B> + より + <adjective>"
+  },
+  "ja-par-g066": {
+   "name": "<vehicle> + に乗ります",
+   "reading": "<vehicle> + にのります"
+  },
+  "ja-par-g038": {
+   "name": "<い-adjective stem> + く + <verb>"
+  },
+  "ja-par-g041": {
+   "name": "<noun> + の + (上 / 下 / 中 / 外) + (に)",
+   "reading": "<noun> + の + (うえ / した / なか / そと) + (に)"
+  },
+  "ja-par-g042": {
+   "name": "どうやって + <verb> + ますか"
+  },
+  "ja-par-g043": {
+   "name": "<number> + 年 + <number> + 月 + <number> + 日",
+   "reading": "<number> + ねん + <number> + がつ + <number> + にち"
+  },
+  "ja-par-g068": {
+   "name": "<vehicle> + に乗る",
+   "reading": "<vehicle> + にのる"
+  },
+  "ja-par-g069": {
+   "name": "<noun> + に電話が来る",
+   "reading": "<noun> + にでんわがくる"
+  },
+  "ja-par-g045": {
+   "name": "<number> + <counter> + 目 + の + <noun>",
+   "reading": "<number> + <counter> + め + の + <noun>"
+  },
+  "ja-par-g070": {
+   "name": "<number> + 日目",
+   "reading": "<number> + にちめ"
+  },
+  "ja-par-g046": {
+   "name": "千 + <ones digit>",
+   "reading": "せん + <ones digit>"
+  },
+  "ja-par-g047": {
+   "name": "<noun> + を + <container> + 半分 + <verb>",
+   "reading": "<noun> + を + <container> + はんぶん + <verb>"
+  },
+  "ja-par-g067": {
+   "name": "<noun> + に会う",
+   "reading": "<noun> + にあう"
+  }
+ }
+}

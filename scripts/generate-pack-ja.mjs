@@ -1,17 +1,29 @@
 // Writes the Japanese language pack's data (src/data/packs/ja) from the authoring data under curriculum/japanese:
-//   parallel/entries.yaml + zh-lessons.yaml + the imported JLPT references (read through scripts/parallel-lessons-files.mjs), authoring/pack-glosses.json (short glosses),
-//   authoring/pack-labels.json (the label registry: id -> lb, only ever appended to).
+//   parallel/entries.yaml + zh-lessons.yaml + the imported JLPT references (read through scripts/parallel-lessons-files.mjs),
+//   authoring/pack-glosses.json (short glosses where a lesson row has none), authoring/pack-gloss-overrides.json (glosses written by hand),
+//   authoring/pack-pattern-names.json (pattern names the rule in pack-ja-names.mjs cannot make), authoring/pack-forms.json (names of the word forms),
+//   authoring/pack-labels.json (the label registry: id -> lb, append-only since the reissue of step 3.2) and authoring/pack-labels-sealed.json (the labels that may never change).
 // Nothing is read from src/data/parallel or src/core/parallel, and no Chinese field (zh, senses) goes into the pack.
 // (No npm script: package.json is hashed into public/characters/chinese/derived-source.generated.zip, so editing it makes characters:check fail and public/ is off limits in this step.)
 // Usage: node scripts/generate-pack-ja.mjs [--check] [--root DIR]
+//        node scripts/generate-pack-ja.mjs --report [FILE]   the content gaps of the lessons (markdown, to FILE or stdout)
+//        node scripts/generate-pack-ja.mjs --seal            add the registry's labels to the sealed file (never changes a sealed one)
 import { existsSync, readFileSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createForms } from '../src/core/forms/engine.mjs'
+import { loadFormsRules } from './forms-data.mjs'
+import { glossWord, patternNameRule, patternSlug, readingOfName, shortGloss, MAX_GLOSS } from './pack-ja-names.mjs'
 import { analyseForms, entryIndex, loadReferences, readParallel, refreshReadability, root as defaultRoot, writeAtomic } from './parallel-lessons-files.mjs'
 
 export const PACK_DIR = 'src/data/packs/ja'
 export const REGISTRY_FILE = 'curriculum/japanese/authoring/pack-labels.json'
 export const GLOSSES_FILE = 'curriculum/japanese/authoring/pack-glosses.json'
+export const READINGS_FILE = 'curriculum/japanese/authoring/pack-phrase-readings.json'
+export const GLOSS_OVERRIDES_FILE = 'curriculum/japanese/authoring/pack-gloss-overrides.json'
+export const NAMES_FILE = 'curriculum/japanese/authoring/pack-pattern-names.json'
+export const FORMS_FILE = 'curriculum/japanese/authoring/pack-forms.json'
+export const SEALED_FILE = 'curriculum/japanese/authoring/pack-labels-sealed.json'
 export const GROUP_PREFIX = 'ja-lesson-'
 export const ALIGNMENT = 'lessons-1'
 const LABEL = /^[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/
@@ -46,31 +58,6 @@ export function romaji(kana) {
   }
   return out.join('')
 }
-const STOP = new Set(['to', 'a', 'an', 'the', 'be', 'of', 'one', 'in', 'on', 'for', 'and', 'or', 'with', 'is', 'are', 'your', 'my'])
-function glossWord(text) {
-  const clean = String(text).toLowerCase().replace(/\([^)]*\)|\[[^\]]*\]/g, ' ')
-  for (const part of clean.split(/[;,|/]/)) {
-    const words = part.match(/[a-z0-9]+/g) ?? []
-    const word = words.find(w => !STOP.has(w))
-    if (word) return word
-  }
-  return (clean.match(/[a-z0-9]+/g) ?? [])[0] ?? 'x'
-}
-const GRAMMAR_WORDS = [['形容詞', 'adj'], ['動詞', 'v'], ['助数詞', 'counter'], ['疑問詞', 'wh'], ['普通形', 'plain'], ['時間', 'time'], ['場所', 'place'], ['乗り物', 'vehicle'], ['主語', 'subj'], ['語幹', 'stem'], ['辞書形', 'dict'], ['可能形', 'potential'], ['ない形', 'nai'], ['曜日', 'weekday'], ['数', 'num'], ['文', 's'], ['人', 'person']]
-function grammarSlug(pattern) {
-  let rest = pattern, out = '', prev = ''
-  while (rest.length) {
-    const hit = GRAMMAR_WORDS.find(([kanji]) => rest.startsWith(kanji))
-    if (hit) { out += '-' + hit[1] + '-'; rest = rest.slice(hit[0].length); continue }
-    const ch = rest[0]; rest = rest.slice(1)
-    const particle = { 'は': 'wa', 'を': 'o', 'へ': 'e' }[ch]
-    if (/[\u3040-\u30ff]/.test(ch)) out += (/[a-z0-9]$/.test(out) && !/[\u3040-\u30ff]/.test(prev) ? '-' : '') + (particle ?? romaji(ch))
-    else if (/[a-z0-9]/i.test(ch)) out += (/[a-z0-9]$/.test(out) && /[\u3040-\u30ff]/.test(prev) ? '-' : '') + ch.toLowerCase()
-    else out += '-'
-    prev = ch
-  }
-  return out.replace(/-+/g, '-').replace(/^-|-$/g, '')
-}
 const clean = slug => slug.replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '')
 
 /** Issues the label of every id: the registered one, else readingSlug--glossWord (made unique with -2, -3 ... after the first), appended to the registry. */
@@ -98,120 +85,207 @@ const PUNCTUATION = /^[\p{P}\p{S}\s]+$/u
 const KANA = /^[\u3040-\u30ffー]+$/
 const hasKana = ch => /[\u3040-\u30ffー]/.test(ch)
 function splitReading(tokens, reading, known) {
+  // the split with the most tokens read as they are known to read (the entry's reading, a kana token as written), then the shortest pieces for the rest
   const memo = new Map()
   const walk = (at, pos) => {
-    if (at === tokens.length) return pos === reading.length ? [] : null
+    if (at === tokens.length) return pos === reading.length ? { score: 0, parts: [] } : null
     const key = at + ':' + pos
     if (memo.has(key)) return memo.get(key)
     const t = tokens[at].t
-    let found = null
-    const exact = PUNCTUATION.test(t) ? [t, ''] : [...new Set([known[at], KANA.test(t) ? t : undefined, KANA.test(t) ? toHiragana(t) : undefined].filter(Boolean))]
-    for (const candidate of exact) {
-      if (reading.startsWith(candidate, pos)) { const tail = walk(at + 1, pos + candidate.length); if (tail) { found = [candidate, ...tail]; break } }
+    let best = null
+    const take = (piece, bonus) => {
+      const rest = walk(at + 1, pos + piece.length)
+      if (rest && (!best || rest.score + bonus > best.score)) best = { score: rest.score + bonus, parts: [piece, ...rest.parts] }
     }
-    if (!found && !KANA.test(t)) {
+    const exact = PUNCTUATION.test(t) ? [t, ''] : [...new Set([known[at], KANA.test(t) ? t : undefined, KANA.test(t) ? toHiragana(t) : undefined].flat().filter(Boolean))]
+    for (const candidate of exact) if (reading.startsWith(candidate, pos)) take(candidate, 1)
+    if (!KANA.test(t)) {
       const lead = [...t].findIndex(ch => !hasKana(ch)), head = lead > 0 ? t.slice(0, lead) : ''
       const tail = [...t].reverse().findIndex(ch => !hasKana(ch)), foot = tail > 0 ? t.slice(t.length - tail) : ''
-      for (let length = 1; pos + length <= reading.length && !found; length++) {
+      for (let length = 1; pos + length <= reading.length; length++) {
         const piece = reading.slice(pos, pos + length)
         if ((head && !toHiragana(piece).startsWith(toHiragana(head))) || (foot && !toHiragana(piece).endsWith(toHiragana(foot)))) continue
-        const rest = walk(at + 1, pos + length)
-        if (rest) found = [piece, ...rest]
+        take(piece, 0)
       }
     }
-    memo.set(key, found)
-    return found
+    memo.set(key, best)
+    return best
   }
-  return walk(0, 0)
+  return walk(0, 0)?.parts ?? null
 }
 
 function readJson(file, fallback) { return existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : fallback }
 
-/** The whole pack in memory: { files: Map(relative path -> text), report }. */
+/** The kinds of word a form applies to, by class group (copula: the な-adjectives and the nouns). */
+const kindsOfGroup = group => group === 'copula' ? ['na-adj', 'noun'] : [group]
+/** The kind of word a class is (verb, i-adj, na-adj, noun). */
+const kindOfClass = (rules, cls) => { const group = rules.classes[cls]?.group; return group === 'copula' ? cls : group }
+/**
+ * THE TOKEN RULE. A form is one token with its word when the word itself changes or a bound ending is attached to it (the whole surface is one segment); it stays two tokens when the word is
+ * unchanged and what follows is a separate word. By kind: a verb joins in every form but the dictionary form (ます, ません, ました, ませんでした, ましょう, たい, たいです, て, てください, ています, ない…, the potential);
+ * an い-adjective joins in every form but the plain one (寒い) and the polite one (寒い + です), because くない, かった, く, くて, すぎます change the word; a noun or な-adjective never joins (学生 + です, 静か + な)
+ * except with すぎます, which is a bound ending.
+ */
+export const joinsWord = (kind, formId) => kind === 'verb' ? formId !== 'dict' : kind === 'i-adj' ? formId !== 'adj-plain' && formId !== 'adj-polite' : formId === 'adj-sugi'
+
+const isKanjiText = text => /\p{Script=Han}/u.test(text)
+
+/** nameOf(id): { name, reading } of a pattern unit, from the overlay or the rule; throws when neither has one (the unit is in the pack then). */
+function patternNamer(base, index) {
+  const overlay = readJson(join(base, NAMES_FILE), { names: {} }).names
+  for (const id of Object.keys(overlay)) if (!index.grammar.has(id)) throw new Error(NAMES_FILE + ' names an unknown pattern ' + id)
+  const memo = new Map()
+  return id => {
+    if (memo.has(id)) return memo.get(id)
+    const entry = index.grammar.get(id), given = overlay[id]
+    if (!entry) throw new Error('No definition for the grammar entry ' + id)
+    const name = given?.name ?? patternNameRule(entry.pattern)
+    if (!name) throw new Error('No name for the pattern ' + id + ' (' + entry.pattern + '): the rule cannot make one, add it to ' + NAMES_FILE)
+    const reading = given?.reading ?? (isKanjiText(name) ? null : name)
+    if (reading === null) throw new Error('The name of ' + id + ' (' + name + ') has kanji: give its reading in ' + NAMES_FILE)
+    if (isKanjiText(reading) || name.match(/<[^>]*>/g)?.join('') !== reading.match(/<[^>]*>/g)?.join('')) throw new Error('The reading of ' + id + ' (' + reading + ') does not match its name ' + name)
+    const named = { name, reading }
+    memo.set(id, named)
+    return named
+  }
+}
+
+/** The whole pack in memory: { files: Map(relative path -> text), report, gaps }. */
 export function buildJaPack(base = defaultRoot) {
   const data = readParallel('ja', base)
   const references = loadReferences('ja', base)
   const lessons = [...data.lessons.lessons].sort((a, b) => a.number - b.number)
   const taught = refreshReadability(lessons)
   const forms = analyseForms('ja', lessons, taught, data, references, base) // also sets each phrase's readyAt (irregular form items included)
+  const rules = loadFormsRules('ja', base)
+  const engine = createForms(rules)
   const index = entryIndex(references, data.entries)
   const glosses = readJson(join(base, GLOSSES_FILE), { glosses: {} }).glosses
+  const overrides = readJson(join(base, GLOSS_OVERRIDES_FILE), { glosses: {} }).glosses
   const registry = readJson(join(base, REGISTRY_FILE), { version: 1, vocabulary: {}, grammar: {} })
+  const readingFixes = readJson(join(base, READINGS_FILE), { readings: {} }).readings
+  const nameOf = patternNamer(base, index)
 
-  // vocabulary and grammar, in lesson order
-  const wordIds = [], seenWords = new Set(), grammarIds = [], seenGrammar = new Set()
-  const addWord = id => { if (id && !seenWords.has(id)) { seenWords.add(id); wordIds.push(id) } }
-  const addGrammar = id => { if (id && !seenGrammar.has(id)) { seenGrammar.add(id); grammarIds.push(id) } }
-  const lessonUnits = new Map()
+  // ---- vocabulary: one item per (entry, meaning). The meaning is what the lesson teaches: its row's gloss, else the copied short gloss, else the dictionary's first sense. ----
+  const isVerbEntry = entry => rules.classes[forms.classes.get(entry)?.class]?.group === 'verb'
+  const itemGloss = (entry, row, number) => {
+    if (!index.vocabulary.get(entry)) throw new Error('No definition for the word entry ' + entry)
+    const forced = overrides[entry + '@' + number] ?? overrides[entry]
+    const raw = row.gloss ?? glosses[entry] ?? (index.vocabulary.get(entry).english ?? '').split(' | ')[0]
+    const gloss = forced ?? shortGloss(raw, { verb: isVerbEntry(entry) })
+    if (!gloss || gloss.length > MAX_GLOSS) throw new Error('No good gloss for ' + entry + ' (' + raw + '): write one in ' + GLOSS_OVERRIDES_FILE)
+    return gloss
+  }
+  const items = [], itemsOfEntry = new Map(), lessonUnits = new Map()
+  for (const lesson of lessons) {
+    const fresh = []
+    for (const row of lesson.words ?? []) {
+      const gloss = itemGloss(row.entry, row, lesson.number)
+      const have = itemsOfEntry.get(row.entry) ?? []
+      if (have.some(item => item.gloss.toLowerCase() === gloss.toLowerCase())) continue
+      const item = { id: have.length ? row.entry + '#' + (have.length + 1) : row.entry, entry: row.entry, gloss, lesson: lesson.number }
+      have.push(item); itemsOfEntry.set(row.entry, have); items.push(item); fresh.push(item)
+    }
+    lessonUnits.set(lesson.number, { w: fresh, g: [] })
+  }
+  /** The item a phrase of lesson N means by an entry: the latest meaning introduced by lesson N (the first one when the lesson comes before them all). */
+  const itemAt = (entry, number) => {
+    const have = itemsOfEntry.get(entry)
+    if (!have) throw new Error('Phrases use the word entry ' + entry + ' that no lesson teaches')
+    return [...have].reverse().find(item => item.lesson <= number) ?? have[0]
+  }
+
+  // ---- grammar, in lesson order ----
+  const grammarIds = [], seenGrammar = new Set()
   const demonstrated = new Set(lessons.flatMap(lesson => (lesson.phrases ?? []).flatMap(phrase => phrase.grammar ?? [])))
   const skippedGrammar = new Set()
+  const addGrammar = id => { if (id && !seenGrammar.has(id)) { seenGrammar.add(id); grammarIds.push(id) } }
   for (const lesson of lessons) {
-    const w = [], g = []
-    for (const word of lesson.words ?? []) { if (!seenWords.has(word.entry)) w.push(word.entry); addWord(word.entry) }
+    const g = lessonUnits.get(lesson.number).g
     for (const id of lesson.grammar_taught ?? []) { if (!demonstrated.has(id)) { skippedGrammar.add(id); continue } if (!seenGrammar.has(id)) g.push(id); addGrammar(id) }
-    lessonUnits.set(lesson.number, { w, g })
   }
-  for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) { (phrase.words ?? []).forEach(addWord); (phrase.grammar ?? []).forEach(addGrammar) }
-  const lateWords = wordIds.filter(id => !lessons.some(l => (l.words ?? []).some(w => w.entry === id)))
+  for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) (phrase.grammar ?? []).forEach(addGrammar)
   const lateGrammar = grammarIds.filter(id => !lessons.some(l => (l.grammar_taught ?? []).includes(id)))
-  if (lateWords.length || lateGrammar.length) throw new Error('Phrases use units no lesson teaches: ' + [...lateWords, ...lateGrammar].join(', '))
+  if (lateGrammar.length) throw new Error('Phrases use units no lesson teaches: ' + lateGrammar.join(', '))
 
-  const glossFor = id => {
-    const entry = index.vocabulary.get(id)
-    if (!entry) throw new Error('No definition for the word entry ' + id)
-    return glosses[id] ?? entry.english.split(' | ')[0].replace(/^1\.\s*/, '')
-  }
-  const vocabLabels = issueLabels('vocabulary', wordIds.map(id => { const e = index.vocabulary.get(id); return { id, slug: romaji(e.reading || e.target), gloss: glossFor(id) } }), registry)
+  const vocabLabels = issueLabels('vocabulary', items.map(item => { const e = index.vocabulary.get(item.entry); return { id: item.id, slug: romaji(e.reading || e.target), gloss: item.gloss } }), registry)
   const grammarLabels = issueLabels('grammar', grammarIds.map(id => {
     const e = index.grammar.get(id)
     if (!e) throw new Error('No definition for the grammar entry ' + id)
-    return { id, slug: grammarSlug(e.pattern) || id.replace(/^ja-/, ''), gloss: e.english }
+    return { id, slug: patternSlug(nameOf(id).reading, romaji), gloss: e.english }
   }), registry)
-  for (const kind of ['vocabulary', 'grammar']) for (const id of Object.keys(registry[kind] ?? {})) if (!(kind === 'vocabulary' ? seenWords : seenGrammar).has(id)) throw new Error('The registered label of ' + kind + ' ' + id + ' (' + registry[kind][id] + ') would disappear: the entry is no longer in the pack. Entries are never removed.')
-  const word = id => vocabLabels.labels[id], pattern = id => grammarLabels.labels[id]
+  const sealed = readJson(join(base, SEALED_FILE), { vocabulary: {}, grammar: {} })
+  for (const kind of ['vocabulary', 'grammar']) {
+    const known = new Set(kind === 'vocabulary' ? items.map(item => item.id) : grammarIds)
+    for (const id of Object.keys(registry[kind] ?? {})) if (!known.has(id)) throw new Error('The registered label of ' + kind + ' ' + id + ' (' + registry[kind][id] + ') would disappear: the entry is no longer in the pack. Entries are never removed.')
+    for (const [id, label] of Object.entries(sealed[kind] ?? {})) {
+      if (registry[kind]?.[id] === undefined) throw new Error('The sealed label of ' + kind + ' ' + id + ' (' + label + ') is missing from the registry. Labels are never removed.')
+      if (registry[kind][id] !== label) throw new Error('The label of ' + kind + ' ' + id + ' would change from ' + label + ' to ' + registry[kind][id] + '. Sealed labels never change; append a new entry instead.')
+    }
+  }
+  const word = (entry, number) => vocabLabels.labels[itemAt(entry, number).id], pattern = id => grammarLabels.labels[id]
 
-  // phrase tokens as example segments
-  let fallbacks = 0
-  const tokensOf = (lesson, phrase) => phrase.tokens.map((token, at) => {
-    const tag = forms.tags.get(lesson.number + ':' + phrase.id + ':' + at)
-    return tag ? { ...token, form: tag.form, ...(tag.span ? { span: tag.span } : {}) } : token
-  })
+  // ---- phrase tokens as example segments; a joined form is one segment (see joinsWord) ----
+  const joinedTag = (lesson, phrase, at) => {
+    const tag = forms.tags.get(lesson + ':' + phrase.id + ':' + at)
+    return tag && joinsWord(kindOfClass(rules, tag.formClass), tag.form) ? tag : null
+  }
   const phraseData = []
+  const stats = { tagged: forms.tags.size, merged: 0, absorbed: 0, apart: 0, byForm: {}, missingGrammar: [] }
   for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) {
-    const tokens = tokensOf(lesson, phrase)
+    const tokens = phrase.tokens
     if (tokens.map(t => t.t).join('') !== phrase.text) throw new Error('Phrase ' + phrase.id + ': the tokens do not add up to the text')
-    const reading = phrase.reading ?? phrase.text
-    const known = tokens.map(t => t.w ? index.vocabulary.get(t.w)?.reading || undefined : undefined).map((r, at) => tokens[at].w && index.vocabulary.get(tokens[at].w).target !== tokens[at].t ? undefined : r)
+    const reading = readingFixes[phrase.id] ?? phrase.reading ?? phrase.text
+    // what a word token may read as: the entry's reading, or for an inflected token (休み of 休む) the reading's stem plus the token's own kana tail
+    const known = tokens.map(token => {
+      const entry = token.w ? index.vocabulary.get(token.w) : null
+      if (!entry?.reading) return undefined
+      if (entry.target === token.t) return entry.reading
+      const kanji = entry.target.match(/^[^\u3040-\u30ffー]+/)?.[0]
+      const okurigana = kanji ? entry.target.slice(kanji.length) : ''
+      if (!kanji || !token.t.startsWith(kanji) || !entry.reading.endsWith(okurigana)) return undefined
+      return entry.reading.slice(0, entry.reading.length - okurigana.length) + token.t.slice(kanji.length)
+    })
     const parts = splitReading(tokens, reading, known)
     if (!parts) throw new Error('Phrase ' + phrase.id + ': the reading ' + reading + ' cannot be split over the tokens')
-    const segments = tokens.map((token, at) => {
+    const segments = [], mergedGrammar = []
+    for (let at = 0; at < tokens.length; at++) {
+      const token = tokens[at]
       if (!token.w && !token.g) {
         if (!PUNCTUATION.test(token.t)) throw new Error('Phrase ' + phrase.id + ': token "' + token.t + '" is neither a word, a grammar unit nor punctuation')
-        parts[at] = token.t
-        return { punctuation: token.t }
+        segments.push({ punctuation: token.t })
+        continue
       }
-      const tags = { ...(token.form ? { form: token.form } : {}), ...(token.span ? { span: token.span } : {}) }
+      const tag = token.w ? joinedTag(lesson.number, phrase, at) : null
+      if (token.w && forms.tags.has(lesson.number + ':' + phrase.id + ':' + at) && !tag) stats.apart++
+      if (tag) {
+        const span = tag.span ?? 0
+        for (let k = 1; k <= span; k++) if (forms.tags.has(lesson.number + ':' + phrase.id + ':' + (at + k))) throw new Error('Phrase ' + phrase.id + ': a form starts inside another one')
+        segments.push({ word: word(token.w, lesson.number), text: tokens.slice(at, at + 1 + span).map(t => t.t).join(''), reading: parts.slice(at, at + 1 + span).join(''), form: tag.form })
+        stats.merged++; stats.absorbed += span; stats.byForm[tag.form] = (stats.byForm[tag.form] ?? 0) + 1
+        if (tag.grammar && !(phrase.grammar ?? []).includes(tag.grammar) && seenGrammar.has(tag.grammar)) { stats.missingGrammar.push(phrase.id + ':' + tag.grammar); mergedGrammar.push(tag.grammar) }
+        at += span
+        continue
+      }
       if (token.w) {
         const entry = index.vocabulary.get(token.w)
         const own = token.t !== entry.target, pr = entry.reading || entry.target
-        return { word: word(token.w), ...(own ? { text: token.t } : {}), ...(own || parts[at] !== pr ? { reading: parts[at] } : {}), ...tags }
-      }
-      return { grammar: pattern(token.g), text: token.t, reading: parts[at], ...tags }
-    })
-    phraseData.push({ lesson: lesson.number, phrase, segments, py: parts.join(''), words: [...new Set(phrase.words ?? [])].map(word), grammar: [...new Set(phrase.grammar ?? [])].map(pattern), readyAt: phrase.readyAt })
+        segments.push({ word: word(token.w, lesson.number), ...(own ? { text: token.t } : {}), ...(own || parts[at] !== pr ? { reading: parts[at] } : {}) })
+      } else segments.push({ grammar: pattern(token.g), text: token.t, reading: parts[at] })
+    }
+    phraseData.push({ lesson: lesson.number, phrase, segments, py: parts.join(''), words: [...new Set((phrase.words ?? []).map(entry => word(entry, lesson.number)))], grammar: [...new Set([...(phrase.grammar ?? []), ...mergedGrammar])].map(pattern), readyAt: phrase.readyAt })
   }
-  const byId = new Map(phraseData.map(p => [p.phrase.id, p]))
 
   // the example of each group: the lesson's own phrases that need nothing later, chosen to cover the lesson's new units, shortest first
   const exampleOf = p => ({ id: 'phrase-' + p.phrase.id, segments: p.segments, translation: p.phrase.en, grammar: p.grammar })
   const groups = lessons.map(lesson => {
     const units = lessonUnits.get(lesson.number)
-    const newUnits = new Set([...units.w.map(id => 'w:' + id), ...units.g.map(id => 'g:' + id)])
+    const newUnits = new Set([...units.w.map(item => 'w:' + item.id), ...units.g.map(id => 'g:' + id)])
     const own = phraseData.filter(p => p.lesson === lesson.number)
     const usable = own.filter(p => p.readyAt <= lesson.number)
     let pool = usable.length >= 2 ? usable : own
     if (pool.length < 2) pool = [...pool, ...phraseData.filter(p => p.lesson < lesson.number && p.readyAt <= lesson.number).reverse()]
-    const covers = p => new Set([...(p.phrase.words ?? []).map(id => 'w:' + id), ...(p.phrase.grammar ?? []).map(id => 'g:' + id)].filter(u => newUnits.has(u)))
+    const covers = p => new Set([...(p.phrase.words ?? []).map(entry => 'w:' + itemAt(entry, p.lesson).id), ...(p.phrase.grammar ?? []).map(id => 'g:' + id)].filter(u => newUnits.has(u)))
     const picked = [], uncovered = new Set(newUnits)
     while (picked.length < MAX_EXAMPLES) {
       const choices = pool.filter(p => !picked.includes(p)).map(p => ({ p, gain: [...covers(p)].filter(u => uncovered.has(u)).length }))
@@ -222,7 +296,7 @@ export function buildJaPack(base = defaultRoot) {
     }
     return {
       id: GROUP_PREFIX + String(lesson.number).padStart(4, '0'),
-      units: [...units.w.map(id => ({ kind: 'vocabulary', ref: word(id) })), ...units.g.map(id => ({ kind: 'grammar', ref: pattern(id) }))],
+      units: [...units.w.map(item => ({ kind: 'vocabulary', ref: vocabLabels.labels[item.id] })), ...units.g.map(id => ({ kind: 'grammar', ref: pattern(id) }))],
       examples: picked.map(exampleOf),
     }
   })
@@ -233,9 +307,25 @@ export function buildJaPack(base = defaultRoot) {
     const tagged = phraseData.filter(p => (p.phrase.grammar ?? []).includes(id)).sort((a, b) => a.readyAt - b.readyAt || a.phrase.text.length - b.phrase.text.length || a.phrase.id - b.phrase.id)
     if (!tagged.length) throw new Error('No phrase demonstrates the grammar unit ' + id + ' (' + e.pattern + ')')
     const { id: _id, ...ex } = exampleOf(tagged[0])
-    return { id, pt: e.pattern, pr: e.pattern, ds: e.english, lb: pattern(id), ex }
+    return { id, pt: nameOf(id).name, pr: nameOf(id).reading, ds: e.english, lb: pattern(id), ex }
   })
-  const vocabulary = wordIds.map(id => { const e = index.vocabulary.get(id); return { id, ch: e.target, pr: e.reading || e.target, ds: glossFor(id), lb: word(id) } })
+  const vocabulary = items.map(item => {
+    const e = index.vocabulary.get(item.entry), cl = forms.classes.get(item.entry)?.class
+    return { id: item.id, ch: e.target, pr: e.reading || e.target, ds: item.gloss, lb: vocabLabels.labels[item.id], ...(cl ? { cl } : {}) }
+  })
+
+  // ---- the forms table: the names of the forms and the pattern unit that teaches each ----
+  const formNames = readJson(join(base, FORMS_FILE), { forms: {} }).forms
+  const REPRESENTATIVE = { verb: 'ichidan', 'i-adj': 'i-adj', 'na-adj': 'na-adj', noun: 'noun' }
+  for (const id of Object.keys(formNames)) if (!rules.forms[id]) throw new Error(FORMS_FILE + ' names an unknown form ' + id)
+  const formsTable = Object.entries(rules.forms).map(([id, spec]) => {
+    const named = formNames[id]
+    if (!named?.name) throw new Error('The form ' + id + ' has no learner-facing name in ' + FORMS_FILE)
+    const kinds = [...new Set(spec.group.flatMap(kindsOfGroup))]
+    const patternsByKind = {}
+    for (const kind of kinds) { const unit = engine.grammarOf(id, REPRESENTATIVE[kind]); if (unit && seenGrammar.has(unit)) patternsByKind[kind] = pattern(unit) }
+    return { id, name: named.name, ...(named.ending ? { ending: named.ending } : {}), kinds, joined: kinds.filter(kind => joinsWord(kind, id)), patterns: patternsByKind }
+  })
 
   const band = { schemaVersion: 1, band: '1', alignment: ALIGNMENT, vocabulary, grammar, groups }
   const catalogIndex = { schemaVersion: 1, bands: [{ band: '1', alignment: ALIGNMENT, vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length }] }
@@ -246,29 +336,104 @@ export function buildJaPack(base = defaultRoot) {
   const perWord = {}
   for (const p of phrases) for (const w of p.words) perWord[w] = (perWord[w] ?? 0) + 1
   const phraseIndex = { schemaVersion: 1, bands: { 1: { count: phrases.length, words: Object.fromEntries(Object.entries(perWord).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)) } } }
-  const newRegistry = { version: 1, vocabulary: { ...(registry.vocabulary ?? {}), ...vocabLabels.added }, grammar: { ...(registry.grammar ?? {}), ...grammarLabels.added } }
   const sorted = obj => Object.fromEntries(Object.entries(obj).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0))
-  newRegistry.vocabulary = sorted(newRegistry.vocabulary); newRegistry.grammar = sorted(newRegistry.grammar)
+  const newRegistry = { version: 1, vocabulary: sorted({ ...(registry.vocabulary ?? {}), ...vocabLabels.added }), grammar: sorted({ ...(registry.grammar ?? {}), ...grammarLabels.added }) }
 
   const json = value => JSON.stringify(value) + '\n'
   const files = new Map([
     [PACK_DIR + '/index.generated.json', json(catalogIndex)],
     [PACK_DIR + '/band-1.generated.json', json(band)],
+    [PACK_DIR + '/forms.generated.json', json({ schemaVersion: 1, forms: formsTable })],
     [PACK_DIR + '/phrases-index.json', json(phraseIndex)],
     [PACK_DIR + '/phrases-band-1.json', json({ schemaVersion: 2, band: '1', phrases })],
     [REGISTRY_FILE, JSON.stringify(newRegistry, null, 1) + '\n'],
   ])
   const sizes = groups.map(g => g.units.length)
-  return { files, band, phrases, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, fallbacks } }
+
+  // ---- the content gaps (--report) ----
+  const phrasesOf = number => (lessons.find(l => l.number === number)?.phrases ?? [])
+  const formsOfPattern = new Map()
+  for (const [id, spec] of Object.entries(rules.forms)) for (const kind of spec.group.flatMap(kindsOfGroup)) { const unit = engine.grammarOf(id, REPRESENTATIVE[kind]); if (unit) { if (!formsOfPattern.has(unit)) formsOfPattern.set(unit, new Set()); formsOfPattern.get(unit).add(id) } }
+  const titleOf = id => { try { return nameOf(id).name } catch { return index.grammar.get(id)?.pattern ?? id } }
+  const patternTitle = id => '`' + id + '` ' + titleOf(id)
+  const gaps = lessons.map(lesson => {
+    const mine = phrasesOf(lesson.number)
+    const usedGrammar = new Set(mine.flatMap(p => p.grammar ?? []))
+    const usedWords = new Set(mine.flatMap(p => p.words ?? []))
+    const taggedForms = [...forms.tags.values()].filter(tag => tag.lesson === lesson.number)
+    const intro = lesson.grammar_intro ?? []
+    const later = new Map()
+    for (const tag of taggedForms) {
+      const at = tag.grammar ? taught.grammar.get(tag.grammar) ?? Infinity : 0
+      if (at <= lesson.number) continue
+      const key = tag.form + '|' + tag.grammar
+      if (!later.has(key)) later.set(key, { form: tag.form, pattern: patternTitle(tag.grammar), lesson: Number.isFinite(at) ? at : null, phrases: new Set() })
+      later.get(key).phrases.add(tag.phrase)
+    }
+    return {
+      lesson: lesson.number,
+      patternsWithoutPhrase: intro.filter(id => !usedGrammar.has(id)).sort().map(patternTitle),
+      formsTaughtLater: [...later.values()].map(item => ({ ...item, phrases: [...item.phrases].sort((x, y) => x - y) })).sort((x, y) => x.form < y.form ? -1 : x.form > y.form ? 1 : 0),
+      formsListedUnused: intro.filter(id => formsOfPattern.has(id) && ![...formsOfPattern.get(id)].some(form => taggedForms.some(tag => tag.form === form && tag.grammar === id))).sort().map(id => ({ pattern: patternTitle(id), forms: [...formsOfPattern.get(id)].sort() })),
+      wordsWithoutPhrase: (lesson.words ?? []).filter(row => !usedWords.has(row.entry)).map(row => '`' + row.entry + '` ' + index.vocabulary.get(row.entry).target + ' (' + itemAt(row.entry, lesson.number).gloss + ')'),
+    }
+  })
+  return { files, band, phrases, formsTable, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
+}
+
+/** The content gaps as markdown (docs/audits/2026-11-10-japanese-lesson-content-gaps.md). */
+export function gapsMarkdown(pack) {
+  const out = ['# Japanese lessons: content gaps', '', 'Written by `node scripts/generate-pack-ja.mjs --report`. Nothing here is fixed in step 3.2; a later step writes the missing phrases with a model pipeline.', '']
+  const total = key => pack.gaps.reduce((sum, lesson) => sum + lesson[key].length, 0)
+  out.push('## Totals', '',
+    '- patterns a lesson says it teaches that none of its phrases use: ' + total('patternsWithoutPhrase') + ' (in ' + pack.gaps.filter(l => l.patternsWithoutPhrase.length).length + ' lessons)',
+    '- forms a lesson uses whose pattern is taught only in a later lesson: ' + total('formsTaughtLater') + ' (in ' + pack.gaps.filter(l => l.formsTaughtLater.length).length + ' lessons)',
+    '- forms a lesson lists that none of its phrases use: ' + total('formsListedUnused') + ' (in ' + pack.gaps.filter(l => l.formsListedUnused.length).length + ' lessons)',
+    '- words a lesson introduces that none of its phrases use: ' + total('wordsWithoutPhrase') + ' (in ' + pack.gaps.filter(l => l.wordsWithoutPhrase.length).length + ' lessons)',
+    '- patterns used by no phrase at all, left out of the catalog: ' + pack.skippedGrammar.length, '')
+  out.push('## Patterns used by no phrase (left out of the catalog)', '', ...pack.skippedGrammar.map(item => '- `' + item.id + '` ' + item.name), '')
+  out.push('## Per lesson', '')
+  for (const lesson of pack.gaps) {
+    const lines = []
+    if (lesson.patternsWithoutPhrase.length) lines.push('- Patterns taught but used by none of its phrases: ' + lesson.patternsWithoutPhrase.join('; '))
+    for (const item of lesson.formsTaughtLater) lines.push('- Form `' + item.form + '` (phrases ' + item.phrases.join(', ') + ') uses ' + item.pattern + ', taught in ' + (item.lesson ? 'lesson ' + item.lesson : 'no lesson'))
+    for (const item of lesson.formsListedUnused) lines.push('- Lists ' + item.pattern + ' (forms ' + item.forms.map(f => '`' + f + '`').join(', ') + ') but no phrase uses those forms')
+    if (lesson.wordsWithoutPhrase.length) lines.push('- Words introduced but used by none of its phrases: ' + lesson.wordsWithoutPhrase.join('; '))
+    if (lines.length) out.push('### Lesson ' + lesson.lesson, '', ...lines, '')
+  }
+  return out.join('\n') + '\n'
+}
+
+/** The sealed file with every label of the registry added; a sealed label is never changed. */
+export function sealText(base = defaultRoot) {
+  const registry = readJson(join(base, REGISTRY_FILE), { vocabulary: {}, grammar: {} })
+  const sealed = readJson(join(base, SEALED_FILE), { vocabulary: {}, grammar: {} })
+  const next = { version: 1, note: 'Labels that are final: the registry may only add to them. node scripts/generate-pack-ja.mjs --check fails when one changes or disappears. Written by --seal, which never changes an existing pair.', vocabulary: { ...(sealed.vocabulary ?? {}) }, grammar: { ...(sealed.grammar ?? {}) } }
+  for (const kind of ['vocabulary', 'grammar']) for (const [id, label] of Object.entries(registry[kind] ?? {})) {
+    if (next[kind][id] !== undefined && next[kind][id] !== label) throw new Error('Sealed label of ' + id + ' would change')
+    next[kind][id] = label
+  }
+  return JSON.stringify(next, null, 1) + '\n'
 }
 
 export function main(argv = process.argv.slice(2)) {
-  const check = argv.includes('--check')
-  const at = argv.indexOf('--root')
-  const base = at >= 0 ? resolve(argv[at + 1]) : defaultRoot
-  const unknown = argv.filter((arg, index) => arg !== '--check' && arg !== '--root' && argv[index - 1] !== '--root')
-  if (unknown.length) throw new Error('Usage: node scripts/generate-pack-ja.mjs [--check] [--root DIR]')
-  const { files, report } = buildJaPack(base)
+  const args = [...argv]
+  const take = flag => { const at = args.indexOf(flag); if (at < 0) return undefined; args.splice(at, 1); return true }
+  const check = take('--check'), seal = take('--seal')
+  const rootAt = args.indexOf('--root')
+  const base = rootAt >= 0 ? resolve(args.splice(rootAt, 2)[1]) : defaultRoot
+  const reportAt = args.indexOf('--report')
+  let reportFile
+  if (reportAt >= 0) { reportFile = args[reportAt + 1] && !args[reportAt + 1].startsWith('--') ? args.splice(reportAt, 2)[1] : (args.splice(reportAt, 1), '') }
+  if (args.length) throw new Error('Usage: node scripts/generate-pack-ja.mjs [--check] [--root DIR] | --report [FILE] | --seal')
+  if (seal) { writeAtomic(join(base, SEALED_FILE), sealText(base)); console.log('Sealed the labels of ' + REGISTRY_FILE); return }
+  const pack = buildJaPack(base)
+  if (reportFile !== undefined) {
+    const text = gapsMarkdown(pack)
+    if (reportFile) writeAtomic(resolve(base, reportFile), text); else process.stdout.write(text)
+    return
+  }
+  const { files, report } = pack
   const stale = []
   for (const [path, text] of files) {
     const file = join(base, path)

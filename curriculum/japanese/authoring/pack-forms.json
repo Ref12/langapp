@@ -1,0 +1,158 @@
+{
+ "version": 1,
+ "language": "ja",
+ "note": "Learner-facing names of the word forms of curriculum/japanese/forms.yaml (form id -> English name, and the ending shown separately). Read by scripts/generate-pack-ja.mjs into src/data/packs/ja/forms.generated.json. Edit names here without touching the rules.",
+ "forms": {
+  "dict": {
+   "name": "dictionary form"
+  },
+  "masu": {
+   "name": "polite form",
+   "ending": "〜ます"
+  },
+  "masen": {
+   "name": "polite negative",
+   "ending": "〜ません"
+  },
+  "mashita": {
+   "name": "polite past",
+   "ending": "〜ました"
+  },
+  "masendeshita": {
+   "name": "polite negative past",
+   "ending": "〜ませんでした"
+  },
+  "nai": {
+   "name": "negative form",
+   "ending": "〜ない"
+  },
+  "nakatta": {
+   "name": "negative past form",
+   "ending": "〜なかった"
+  },
+  "te": {
+   "name": "て form",
+   "ending": "〜て / 〜で"
+  },
+  "ta": {
+   "name": "past form",
+   "ending": "〜た / 〜だ"
+  },
+  "tai": {
+   "name": "want-to form",
+   "ending": "〜たい"
+  },
+  "mashou": {
+   "name": "let's form",
+   "ending": "〜ましょう"
+  },
+  "potential": {
+   "name": "potential form",
+   "ending": "〜える / 〜られる"
+  },
+  "volitional": {
+   "name": "volitional form",
+   "ending": "〜おう / 〜よう"
+  },
+  "teiru": {
+   "name": "continuous form",
+   "ending": "〜ている"
+  },
+  "teimasu": {
+   "name": "polite continuous form",
+   "ending": "〜ています"
+  },
+  "masu-stem": {
+   "name": "stem form",
+   "ending": "〜"
+  },
+  "tai-polite": {
+   "name": "polite want-to form",
+   "ending": "〜たいです"
+  },
+  "nakereba": {
+   "name": "must form",
+   "ending": "〜なければなりません"
+  },
+  "naide-kudasai": {
+   "name": "please-don't form",
+   "ending": "〜ないでください"
+  },
+  "nakute": {
+   "name": "negative て form",
+   "ending": "〜なくて"
+  },
+  "te-kudasai": {
+   "name": "please-do form",
+   "ending": "〜てください"
+  },
+  "teimasen": {
+   "name": "polite negative continuous form",
+   "ending": "〜ていません"
+  },
+  "te-kimashita": {
+   "name": "has-come form",
+   "ending": "〜てきました"
+  },
+  "potential-masu": {
+   "name": "polite potential form",
+   "ending": "〜えます / 〜られます"
+  },
+  "adj-plain": {
+   "name": "plain form",
+   "ending": "〜い / 〜だ"
+  },
+  "adj-polite": {
+   "name": "polite form",
+   "ending": "〜です"
+  },
+  "adj-neg": {
+   "name": "negative form",
+   "ending": "〜くない / 〜ではない"
+  },
+  "adj-neg-polite": {
+   "name": "polite negative",
+   "ending": "〜くないです / 〜ではないです"
+  },
+  "adj-neg-polite-arimasen": {
+   "name": "formal polite negative",
+   "ending": "〜くありません / 〜ではありません"
+  },
+  "adj-past": {
+   "name": "past form",
+   "ending": "〜かった / 〜だった"
+  },
+  "adj-past-polite": {
+   "name": "polite past",
+   "ending": "〜かったです / 〜でした"
+  },
+  "adj-past-neg": {
+   "name": "negative past form",
+   "ending": "〜くなかった / 〜ではなかった"
+  },
+  "adj-past-neg-polite": {
+   "name": "polite negative past",
+   "ending": "〜くなかったです / 〜ではなかったです"
+  },
+  "adj-past-neg-polite-arimasen": {
+   "name": "formal polite negative past",
+   "ending": "〜くありませんでした / 〜ではありませんでした"
+  },
+  "adj-sugi": {
+   "name": "too-much form",
+   "ending": "〜すぎます"
+  },
+  "adj-adv": {
+   "name": "adverb form",
+   "ending": "〜く / 〜に"
+  },
+  "adj-te": {
+   "name": "て form",
+   "ending": "〜くて / 〜で"
+  },
+  "adj-attr": {
+   "name": "noun-modifying form",
+   "ending": "〜な / 〜の"
+  }
+ }
+}
