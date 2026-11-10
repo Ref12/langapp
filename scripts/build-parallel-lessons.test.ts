@@ -7,8 +7,7 @@ import { afterEach, describe, expect, it } from 'vitest'
 import {
   setReplyDump, isGrammarForm, assignEntries, callJSON, createBook, itemProblem, lessonPrompt, main as buildMain, matchWord, parallelReport, parseArgs, phrasesPrompt, processBatch, repairJSON, runLanguage, topUp, validateCandidate,
 } from './build-parallel-lessons.mjs'
-import { main as generateMain, parallelOutputs, synchronize } from './generate-app-parallel.mjs'
-import { appJsonFile, loadChineseLessons, loadReferences, readParallel, refreshReadability, strictReport, writeParallel } from './parallel-lessons-files.mjs'
+import { loadChineseLessons, loadReferences, readParallel, refreshReadability, strictReport, writeParallel } from './parallel-lessons-files.mjs'
 
 const dirs: string[] = []
 afterEach(() => { while (dirs.length) rmSync(dirs.pop()!, { recursive: true, force: true }) })
@@ -408,27 +407,6 @@ describe('Korean and the command line', () => {
     expect(logs.at(-1)).toMatch(/ja: 3 phrases, 3 strict; words 4 matched, 2 new/)
     await buildMain(['--root', root, '--language', 'ja', '--report'], { log: line => logs.push(line) })
     expect(JSON.parse(logs.at(-1)!).phrases).toEqual({ total: 3, strict: 3 })
-  })
-})
-
-describe('the app JSON generator', () => {
-  it('--check fails on stale data, writes it without --check and passes afterwards', async () => {
-    const { root, ids } = fixture()
-    await run(root, mockIO(ids))
-    expect(synchronize(parallelOutputs(root), true)).toHaveLength(2)
-    expect(() => generateMain(['--check', '--root', root])).toThrow(/Stale|regenerate/)
-    generateMain(['--root', root])
-    expect(() => generateMain(['--check', '--root', root])).not.toThrow()
-    const json = JSON.parse(readFileSync(appJsonFile('ja', root), 'utf8'))
-    // 飲みます is the polite form (ja-n5-g023), which this tiny fixture never teaches: that phrase is no longer strict
-    expect(json.counts).toMatchObject({ lessons: 2, phrases: 3, strict: 2 })
-    expect(json.counts.forms).toMatchObject({ lostStrict: 1 })
-    expect(json.entries['ja-par-00002']).toMatchObject({ target: 'お茶', new: true })
-    expect(json.entries['ja-n5-00027']).toMatchObject({ target: 'あなた' })
-    expect(json.lessons[0].senses[1]).toEqual({ zh: ids.hao, status: 'covered-by', entry: 'ja-n3-05724' })
-    expect(json.lessons[0].words.at(-1)).toMatchObject({ extra: true, new: true })
-    writeFileSync(appJsonFile('ja', root), '{}\n')
-    expect(() => generateMain(['--check', '--root', root])).toThrow(/Stale|regenerate/)
   })
 })
 

@@ -247,7 +247,7 @@ export async function settleInterrupted(sessionId: string): Promise<void> {
 }
 
 export async function dueCards(now: number): Promise<StudyCard[]> {
-  // Japanese and Korean cards (ja:/ko: refs) have their own queues (core/parallel/practice.ts).
+  // Japanese and Korean cards (ja:/ko: refs) are rows an older version wrote: read only, kept out of the Chinese queues.
   return db.studyCards.where('[domain+due]').between([DOMAIN, 0], [DOMAIN, now], true, true).filter(card => !isLanguageRef(card.ref)).toArray()
 }
 

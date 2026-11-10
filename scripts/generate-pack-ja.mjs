@@ -4,7 +4,7 @@
 //   authoring/pack-pattern-names.json (pattern names the rule in pack-ja-names.mjs cannot make), authoring/pack-forms.json (names of the word forms),
 //   authoring/pack-headwords.json (kanji headwords for verbs the source lists in kana, so a built form matches the sentences),
 //   authoring/pack-labels.json (the label registry: id -> lb, append-only since the reissue of step 3.2) and authoring/pack-labels-sealed.json (the labels that may never change).
-// Nothing is read from src/data/parallel or src/core/parallel, and no Chinese field (zh, senses) goes into the pack.
+// Nothing is read from src/data/parallel (removed) or the old parallel screens, and no Chinese field (zh, senses) goes into the pack.
 // (No npm script: package.json is hashed into public/characters/chinese/derived-source.generated.zip, so editing it makes characters:check fail and public/ is off limits in this step.)
 // Usage: node scripts/generate-pack-ja.mjs [--check] [--root DIR]
 //        node scripts/generate-pack-ja.mjs --report [FILE]   the content gaps of the lessons (markdown, to FILE or stdout)

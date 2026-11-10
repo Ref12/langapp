@@ -1,6 +1,6 @@
 import { getPack } from '../../core/language'
 import { openWritingSheet } from '../../core/characters/writing-sheet'
-import type { DictGrammar, DictWord } from '../../core/dictionary/other'
+import type { DictGrammar, DictWord } from '../../core/language/dictionary-file'
 import { ReadingText } from '../display-context'
 import { useShowsReading } from '../display-settings'
 

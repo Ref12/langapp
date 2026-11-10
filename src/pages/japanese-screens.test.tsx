@@ -203,7 +203,7 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
     expect(screen.getByRole('option', { name: /^Level 1 \(292\)$/ })).toBeTruthy()
   })
   it('never reads the old Japanese dictionary file or the old refs', async () => {
-    const other = await import('../core/dictionary/other')
+    const other = await import('../core/language/dictionary-file')
     const spy = vi.spyOn(other, 'loadDictionary')
     await open()
     expect(spy).not.toHaveBeenCalled()

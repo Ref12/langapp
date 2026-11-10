@@ -1,6 +1,6 @@
 // The identity part of the language packs: names, tags, feature switches. Plain data with no data files behind it, so the build scripts can import it (packs.ts adds the data).
 
-import { zhTrack, jaTrack, koTrack } from '../../data/tracks'
+import { zhTrack } from '../../data/tracks'
 import { AREAS, type Area, type Features } from './areas'
 import type { SpeechLocale } from '../assistant/contracts'
 import { isLanguageId, type LanguageId } from './ids'
@@ -98,12 +98,12 @@ const jaDisplayForms: PackDisplayForms = { language: 'ja', choices: [{ id: 'masu
 export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4E2D\u6587', learningTag: 'zh-Hans', htmlLang: 'en', features: everything,
   wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', glyph: '\u4E2D', published: true, readings: 'pinyin', countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
   dictionary: zhDictionary, writing: zhWriting, ...zhIdentity, ...zhSentence, ...zhPage, ...zhWordForms }
-export const jaMeta: PackMeta = { id: 'ja', name: jaTrack.name, nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
+export const jaMeta: PackMeta = { id: 'ja', name: 'Japanese', nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
   wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', glyph: '\u65E5', published: true, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
   writing: jaWriting, ...jaIdentity, ...jaSentence, ...jaPage, ...jaWordForms,
   displayForms: jaDisplayForms, dictionary: jaDictionary(jaDisplayForms),
   readingStyles: { choices: ['kana', 'romaji'], default: 'kana', sample: ['\u3079\u3093\u304D\u3087\u3046', '\u3057\u307E\u3059'] } }
-export const koMeta: PackMeta = { id: 'ko', name: koTrack.name, nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: nothing,
+export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: nothing,
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', glyph: '\uD55C', published: false, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
   dictionary: koDictionary, writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms }
 

@@ -1,4 +1,4 @@
-// Moved from src/core/parallel/romanize.ts (which re-exports it): Hepburn romaji of kana and the other reading helpers the Japanese pack and the parallel screens share.
+// Moved from the old src/core/parallel (removed): Hepburn romaji of kana and the other reading helpers the Japanese pack shares.
 // Revised Romanization of Korean, syllable by syllable (no sound-change rules): the reading shown in the pinyin slot.
 const INITIAL = ['g', 'kk', 'n', 'd', 'tt', 'r', 'm', 'b', 'pp', 's', 'ss', '', 'j', 'jj', 'ch', 'k', 't', 'p', 'h']
 const MEDIAL = ['a', 'ae', 'ya', 'yae', 'eo', 'e', 'yeo', 'ye', 'o', 'wa', 'wae', 'oe', 'yo', 'u', 'wo', 'we', 'wi', 'yu', 'eu', 'ui', 'i']

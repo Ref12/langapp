@@ -65,16 +65,14 @@ export interface PickedPhrase { phrase: BankPhrase; unknown?: Flagged }
 /** The language of a session or exercise. Absent means Chinese: every Chinese plan and exercise is exactly as before. */
 export type SessionLanguage = 'zh' | 'ja' | 'ko'
 
-export interface BaseExercise { /** Japanese or Korean exercises only (src/core/parallel). */ language?: 'ja' | 'ko'; id: string; stage: Stage; form: Form; /** The items this exercise practises (the ones whose results it records). */ refs: string[]; /** Retry round: 0 for the first pass; later rounds are not graded. */ round: number }
+export interface BaseExercise { id: string; stage: Stage; form: Form; /** The items this exercise practises (the ones whose results it records). */ refs: string[]; /** Retry round: 0 for the first pass; later rounds are not graded. */ round: number }
 
 export interface IntroExercise extends BaseExercise { form: 'intro' }
 export interface ChoiceItem extends BaseExercise { form: 'choice'; direction: 'zh-to-en' | 'en-to-zh'; question: string; options: string[]; answer: number; explanation: string; unknown?: Flagged }
 export interface MatchItem extends BaseExercise { form: 'match'; mode: 'zh-en' | 'zh-py' | 'py-en'; pairs: { ref: string; left: string; right: string }[]; order: number[]; explanation: string }
 /** A typed/spoken/handwritten answer. 'accepted' are the Chinese (or English, or pinyin) answers that count as right, the model answer first. */
 export interface TextItem extends BaseExercise { /** The spelled tokens of each accepted wording (a pack that marks a typed sentence by its tokens; absent in Chinese). */ spelled?: (SpelledToken[] | undefined)[]; form: 'pinyin' | 'recall' | 'translate-zh-en' | 'translate-en-zh' | 'dictation' | 'exchange-reply'; prompt: string; promptLang: 'zh' | 'en'; hearText?: string; answerLang: 'zh' | 'en' | 'py'; /** An exchange reply: the English of the question (shown on request) and of the reply to give (the cue). */ questionEn?: string; replyEn?: string; accepted: string[]; /** Words the dataset says may be left out or added without changing the meaning. */ optional?: string[]; model: string; modelPinyin?: string; explanation: string; unknown?: Flagged; /** Only wordings from the same phrase set were listed; everything else is self-marked. */ phrase?: { zh: string; py: string; en: string } }
-/** What the Japanese/Korean sentence builder needs beyond the Chinese one: the phrase, its reading and Chinese original, and which tiles are particles (with what they do). */
-export interface ParallelTilesExtra { text: string; reading?: string; zh?: string; tiles: { text: string; reading?: string; particle?: string }[] }
-export interface TilesItem extends BaseExercise { spelled?: (SpelledToken[] | undefined)[]; parallel?: ParallelTilesExtra; form: 'tiles'; translation: string; tiles: string[]; distractors: string[]; shuffled: number[]; accepted: string[]; optional?: string[]; model: string; modelPinyin?: string; explanation: string }
+export interface TilesItem extends BaseExercise { spelled?: (SpelledToken[] | undefined)[]; form: 'tiles'; translation: string; tiles: string[]; distractors: string[]; shuffled: number[]; accepted: string[]; optional?: string[]; model: string; modelPinyin?: string; explanation: string }
 export interface GapItem extends BaseExercise { form: 'gap'; sentence: string; gapped: string; options: string[]; answer: number; translation: string; explanation: string }
 export interface ListenItem extends BaseExercise { form: 'listen-pick'; hearText: string; options: string[]; answer: number; model: string; unknown?: Flagged; explanation: string }
 export interface RepeatItem extends BaseExercise { form: 'repeat'; zh: string; py: string; en: string }
@@ -89,7 +87,7 @@ export interface ConversationItem extends BaseExercise {
   form: 'conversation'; title: string; speakers: { name: string; speaker: 'female' | 'male' }[]; lines: (DialogueLine & { name: string; speaker: 'female' | 'male' })[]
   questions: { q: string; options: string[]; answer: number }[]; explanation: string
 }
-/** Japanese and Korean word forms (src/core/parallel/conjugate.ts). Conjugate: build the form of a known lemma from tiles, graded exactly against forms(). */
+/** Japanese and Korean word forms (src/core/forms). Conjugate: build the form of a known lemma from tiles, graded exactly against forms(). */
 export interface ConjugateItem extends BaseExercise {
   form: 'conjugate'; lemma: string; lemmaReading?: string; cls: string; formId: string; label: string; gloss: string
   tiles: string[]; tileReadings: (string | undefined)[]; distractors: string[]; shuffled: number[]

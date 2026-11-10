@@ -13,17 +13,8 @@ export interface Track {
   bands: Band[]
 }
 
-export const DEFAULT_LANGUAGE = 'zh'
-
 /** The Chinese course: the v2 study groups New items works through. */
 export const zhTrack: Track = { id: 'zh', language: 'zh', name: 'Chinese', glyph: '\u4E2D', bands: ['1', '2', '3', '4', '5', '6'] }
-
-/** The Japanese and Korean names and glyphs (kept for the old other-language lines of a Chinese card, study/OtherLanguageLines). */
-export const jaTrack: Track = { id: 'ja', language: 'ja', name: 'Japanese', glyph: '\u65E5', bands: ['1'] }
-export const koTrack: Track = { id: 'ko', language: 'ko', name: 'Korean', glyph: '\uD55C', bands: ['1'] }
-
-/** Every track the app ships. */
-export const tracks: Track[] = [zhTrack, jaTrack, koTrack]
 
 export type GroupStatus = 'done' | 'partial' | 'current' | 'upcoming'
 

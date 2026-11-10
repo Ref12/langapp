@@ -65,7 +65,7 @@ describe("the Japanese pack's look-up words", () => {
 
   it('lists exactly the entries of the JLPT file that are not in the catalog', async () => {
     const source = await loadLookup()
-    const all = await (await import('../dictionary/other')).loadDictionary('ja')
+    const all = await (await import('./dictionary-file')).loadDictionary('ja')
     expect(all.words).toHaveLength(7890)
     expect(source.words).toHaveLength(7598)
     expect(source.words.map(word => word.id).sort()).toEqual(all.words.filter(word => !catalogIds().has(word.id)).map(word => word.id).sort())

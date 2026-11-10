@@ -191,7 +191,7 @@ function CollectionIntroduction({ catalog, session, workspace, run, busy, now, b
   const newWords = words.filter(unit => !wellKnown(unit.ref)), knownWords = words.filter(unit => wellKnown(unit.ref))
   const lines = session.targetRefs.filter(isPhraseRef)
   const card = (unit: Unit, compact = false) => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={cardOf(unit.ref)} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy}
-    route={`lessons/session/${session.id}`} hideStatus compact={compact} otherLines />
+    route={`lessons/session/${session.id}`} hideStatus compact={compact} />
   return <>
     <a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
     <PageHeading eyebrow="COLLECTION LESSON" title="Learn the line.">Words first, then grammar, then the line itself.</PageHeading>
@@ -235,7 +235,7 @@ function SessionIntroduction({ catalog, session, workspace, run, busy, now, begi
       {session.mode === 'new' ? 'Read each item and its examples, then try the exercises. Items you saw in recent sessions are mixed in.' : 'These items are due according to your review schedule.'}
     </PageHeading>
     <div className="word-grid">{units.map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))}
-      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus otherLines />)}</div>
+      pinyin={workspace.preferences.pinyin} now={now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus />)}</div>
     <StartFooter session={session} run={run} busy={busy} begin={begin} />
   </>
 }
@@ -386,7 +386,7 @@ export function StudySessionPage(props: PageProps & { session: ExerciseSession }
       </section>
       <h2>Items in this session</h2>
       <div className="word-grid">{units.map(unit => <UnitCard key={unit.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))}
-        pinyin={workspace.preferences.pinyin} now={props.now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus otherLines />)}</div>
+        pinyin={workspace.preferences.pinyin} now={props.now} examples={examplesFor(unit.ref)} run={run} busy={busy} route={`lessons/session/${session.id}`} hideStatus />)}</div>
       <RedoPanel sessionId={session.id} run={run} busy={busy} />
     </>
   }

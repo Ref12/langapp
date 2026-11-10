@@ -60,9 +60,6 @@ export async function loadLanguageCharacters(language: WritingLanguage): Promise
   return [...(await indexFor(language)).keys()]
 }
 
-/** The language's characters with their stroke counts. */
-export const loadLanguageIndex = (language: Other): Promise<Map<string, number>> => indexFor(language)
-
 function indexFor(language: Other) {
   let request = indexes.get(language)
   if (!request) {

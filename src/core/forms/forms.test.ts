@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import { analyse, formItemId, forms, formsEngine } from './index'
-import jaParallel from '../../data/parallel/ja.json'
-import koParallel from '../../data/parallel/ko.json'
 
 const ja = (lemma: string, cls: string, form: string, reading?: string) => forms('ja', lemma, cls, form, { reading })
 const ko = (lemma: string, cls: string, form: string, opts?: { prev?: string; after?: 'vowel' | 'consonant' }) => forms('ko', lemma, cls, form, opts)?.surface
@@ -154,46 +152,5 @@ describe('Korean forms', () => {
     expect(engine.irregular('살다', 'l-stem', 'haeyo')).toBe(false)
     expect(engine.irregular('공부하다', 'hada', 'haeyo')).toBe(false)
     expect(formItemId('ko', '춥다', 'haeyo')).toBe('ko:f:춥다:haeyo')
-  })
-})
-
-type Token = { t: string; w?: string; g?: string; form?: string; span?: number }
-type Data = { entries: Record<string, { target: string; class?: string }>; formItems: Record<string, { lesson: number }>; counts: { forms: { tagged: number; unmatched: number } }; lessons: { number: number; forms?: string[]; phrases: { tokens: Token[]; strict: boolean; forms?: string[] }[] }[] }
-
-describe.each([['ja', jaParallel], ['ko', koParallel]] as const)('retagged %s parallel data', (language, raw) => {
-  const data = raw as unknown as Data
-  it('tags tokens with a form, keeps the form on a token whose entry has a class', () => {
-    const tagged = data.lessons.flatMap(lesson => lesson.phrases.flatMap(phrase => phrase.tokens.filter(token => token.form)))
-    expect(tagged.length).toBe(data.counts.forms.tagged)
-    expect(tagged.length).toBeGreaterThan(600)
-    for (const token of tagged) if (token.w) expect(data.entries[token.w]?.class).toBeTruthy()
-  })
-  it('keeps one item per irregular form however the lemma is spelled (する / 為る, くる / 来る)', () => {
-    const ids = Object.keys(data.formItems)
-    if (language === 'ja') {
-      expect(ids.filter(id => /為る|来る/.test(id))).toEqual([])
-      expect(ids).toContain('ja:f:する:masu')
-      expect(ids.filter(id => id.startsWith('ja:f:する:masu'))).toHaveLength(1)
-    }
-  })
-  it('lists each irregular form item in the lesson where it first appears', () => {
-    const firsts = new Map<string, number>()
-    for (const lesson of data.lessons) for (const id of lesson.forms ?? []) firsts.set(id, lesson.number)
-    expect([...firsts.keys()].sort()).toEqual(Object.keys(data.formItems).sort())
-    for (const [id, number] of firsts) { expect(data.formItems[id].lesson).toBe(number); expect(id.startsWith(language + ':f:')).toBe(true) }
-  })
-  it('regenerates the written surface from the lemma, class and form of the tagged words', () => {
-    const engine = formsEngine(language)
-    let checked = 0, same = 0
-    for (const lesson of data.lessons) for (const phrase of lesson.phrases) phrase.tokens.forEach((token, at) => {
-      if (!token.w || !token.form) return
-      const entry = data.entries[token.w] as { target: string; reading?: string; class?: string }
-      if (!entry.class) return
-      const written = phrase.tokens.slice(at, at + 1 + (token.span ?? 0)).map(item => item.t).join('')
-      checked++
-      if (engine.analyse(written, entry.target, entry.class, { reading: entry.reading }).includes(token.form)) same++
-    })
-    expect(checked).toBeGreaterThan(300)
-    expect(same / checked).toBeGreaterThan(0.85)
   })
 })

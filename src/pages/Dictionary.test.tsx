@@ -10,6 +10,7 @@ import { Writing } from './Writing'
 import { addCharacterToKnowledge, recordCharacterPractice, setCharacterWriteKnown } from '../core/characters/store'
 import { closeWritingSheet } from '../core/characters/writing-sheet'
 import { useRoute } from '../core/routing'
+import { addLanguageRows } from '../test/language-rows'
 
 const source = vi.hoisted(() => ({ catalog: undefined as ReturnType<typeof buildCatalog> | undefined }))
 const handwriting = vi.hoisted(() => ({ calls: [] as { strokes: number; allowed: string }[] }))
@@ -91,7 +92,7 @@ describe('dictionary characters', () => {
   })
 
   it('has no look-up words and no word-scope choice in the Chinese Dictionary, and never reads the Japanese file', async () => {
-    const other = await import('../core/dictionary/other')
+    const other = await import('../core/language/dictionary-file')
     const spy = vi.spyOn(other, 'loadDictionary')
     window.location.hash = 'dictionary/vocabulary/all'
     render(<Harness />)
@@ -100,6 +101,24 @@ describe('dictionary characters', () => {
     await screen.findByText('茶杯')
     expect(screen.queryByRole('group', { name: 'Words shown' })).toBeNull()
     expect(document.querySelector('[data-lookup]')).toBeNull()
+    expect(spy).not.toHaveBeenCalled()
+    spy.mockRestore()
+  })
+
+  it('is Chinese only: old ja:/ko: rows and an old language setting add no other-language entries, notes or loads', async () => {
+    const other = await import('../core/language/dictionary-file')
+    const spy = vi.spyOn(other, 'loadDictionary')
+    await addLanguageRows(db)
+    expect((await db.preferences.get('workspace'))?.currentLanguage).toBeTruthy()
+    window.location.hash = 'dictionary/vocabulary/all'
+    render(<Harness />)
+    await screen.findByRole('button', { name: /^My knowledge set \(/ })
+    fireEvent.change(screen.getByRole('searchbox', { name: 'Search dictionary' }), { target: { value: 'tea' } })
+    await screen.findByText('茶杯')
+    expect(document.querySelector('[data-language]')).toBeNull()
+    expect(document.querySelector('[data-testid="other-attribution"], [data-testid="dictionary-results"], .lang-tag')).toBeNull()
+    expect(screen.getByRole('option', { name: /^HSK 1 \(/ })).toBeInTheDocument()
+    expect(screen.queryByRole('option', { name: /^(JLPT|TOPIK)/ })).toBeNull()
     expect(spy).not.toHaveBeenCalled()
     spy.mockRestore()
   })

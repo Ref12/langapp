@@ -6,7 +6,7 @@ import type { Preferences } from '../model'
 /**
  * Each language is its own world. One seam for "the rows of the language the learner is in", used by every page that lists or
  * counts a table holding more than one language (the Chinese Lab build keeps zh, ja and ko rows in one database).
- * The ways of telling a ref's language live in core/parallel/refs.ts (ja:w:..., ko:g:..., ja:f:...); a ref with no mark is Chinese.
+ * The ways of telling a ref's language live in core/language/refs.ts (ja:w:..., ko:g:..., ja:f:...); a ref with no mark is Chinese.
  */
 
 /** The language of a list of refs: the first marked ref decides; no refs, or only unmarked ones (vocabulary:, grammar:, phrase:, source:), is Chinese. */

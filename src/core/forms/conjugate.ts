@@ -1,7 +1,7 @@
 import { formsEngine, formItemId, type BuiltForm, type FormOptions, type FormsLanguage } from './index'
 import { hira } from './japanese.mjs'
 
-// Word forms in practice, for the engine (src/core/language/word-forms.ts asks these) and for the older parallel screens (src/core/parallel/conjugate.ts re-exports them):
+// Word forms in practice, for the engine (src/core/language/word-forms.ts asks these) (the older parallel screens are gone):
 // which forms are taught, the Conjugate exercise (graded against forms()), the rule line and the Form to meaning exercise. They take plain records, not the parallel data shapes.
 
 /** Verbs and adjectives only: the copulas and nouns take no part in the conjugation exercises. */

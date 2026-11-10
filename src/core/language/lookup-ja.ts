@@ -1,6 +1,6 @@
 // The Japanese look-up source: the JLPT words and grammar outside the pack catalog, and the search over them. Loaded on demand (dictionary.ts imports it dynamically).
 import { kanaToRomaji, type RomajiOverrides } from '../reading/romaji'
-import { loadDictionary, type DictGrammar, type DictWord } from '../dictionary/other'
+import { loadDictionary, type DictGrammar, type DictWord } from './dictionary-file'
 import { foldRomaji, foldText, japaneseRanker, lazy, type Keys, type LookupSearch, type LookupSource } from './dictionary'
 
 const lookupKeys = new WeakMap<object, Keys>()

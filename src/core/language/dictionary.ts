@@ -7,7 +7,7 @@ import { kanaToRomaji, type RomajiOverrides } from '../reading/romaji'
 import type { Unit } from '../study/catalog'
 import type { PackDisplayForms } from './meta'
 import { toHiragana } from './romanize'
-import type { DictGrammar, DictWord } from '../dictionary/other'
+import type { DictGrammar, DictWord } from './dictionary-file'
 
 export type CatalogUnit = Extract<Unit, { kind: 'vocabulary' | 'grammar' }>
 
@@ -120,7 +120,7 @@ export function japaneseUnitSearch(offer: PackDisplayForms, query: string, overr
   return { empty: ranker.empty, rank: unit => ranker.empty ? 0 : ranker.rank(keysOf(unit, offer, overrides)) }
 }
 
-/** The JLPT list (src/data/dictionary/ja.json, read by the one reader in core/dictionary/other.ts) less the entries the lessons already have. Its code and data load on demand (lookup-ja.ts). */
+/** The JLPT list (src/data/dictionary/ja.json, read by the one reader in core/language/dictionary-file.ts) less the entries the lessons already have. Its code and data load on demand (lookup-ja.ts). */
 export const jaLookup: PackLookup = { load: inCatalog => import('./lookup-ja').then(module => module.loadJapaneseLookup(inCatalog)) }
 
 /** Japanese: Vocabulary and Grammar of the lessons, and the JLPT words outside them as look-up. */

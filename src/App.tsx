@@ -63,7 +63,6 @@ import { UpdateBar } from './components/UpdateBar'
 import { GroupDetail } from './pages/GroupDetail'
 import { DisplaySettingsProvider } from './components/display-context'
 import { resolveDisplaySettings } from './components/display-settings'
-import { OtherLanguageSetting } from './components/study/other-language-setting'
 import { AppSwitch } from './components/AppSwitch'
 import { appSwitchShown } from './core/language/apps'
 
@@ -238,7 +237,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><BackupNow />
           <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
         </>
-  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><DisplaySettingsProvider settings={displaySettings}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><DisplaySettingsProvider settings={displaySettings}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -272,7 +271,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></OtherLanguageSetting.Provider></DisplaySettingsProvider></ReadingSettingsContext.Provider></PinyinFormatContext.Provider>
+  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></DisplaySettingsProvider></ReadingSettingsContext.Provider></PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

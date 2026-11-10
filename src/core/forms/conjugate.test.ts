@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { formsEngine } from '.'
-import { loadDictionary } from '../dictionary/other'
+import { loadDictionary } from '../language/dictionary-file'
 import type { ParallelLanguage } from '../language/ids'
 import { buildConjugate, gradeConjugate, ruleLine, wordFormsTable } from './conjugate'
 
