@@ -1,0 +1,187 @@
+YOUR OWN PACE. YOUR OWN SPACE.
+Your workspace.
+A local Mandarin learning space, separate from the original app.
+Profiles and backups
+Current profile:
+default
+. Each profile has separate settings, knowledge, learning progress, conversations, and imported books.
+Browser storage is the live copy. YAML files are manual snapshots, not automatic synchronization. Save unfinished settings edits before switching or exporting. Unsaved conversation drafts must be saved first.
+Browser profile
+default
+Switch profile
+New profile name
+Clone current profile, including credentials, knowledge, and conversations
+A fresh profile starts empty with default settings and no connections. Creating a profile switches to it and reloads the app.
+Create and switch
+Every YAML export includes saved AI and speech API keys in plaintext, along with conversations and transcripts. Keep these files private. Raw recordings are never included.
+Download profile
+Choose profile file
+Data-folder operations require the local development server. Browser profile downloads and imports still work here.
+Cloud backup
+Backs up profile
+default
+to a private GitHub repository you own, one commit per backup. Back up now makes one immediately; with Automatic backup on, one also runs at a natural break (after a lesson or practice session, or when you leave a page with new progress), at most every 15 minutes, and never while an exercise is open. Check Last backed up below. You can keep studying while it runs.
+Browser storage protection:
+not supported by this browser
+.
+Scan setup QR code
+GitHub owner
+Repository
+Branch
+Fine-grained token (Contents: read and write)
+The token is stored with this profile (IndexedDB and localStorage) and included in settings.yaml in the backup. Use a private repository.
+Save connection
+Back up now
+Last backed up:
+never
+Restore from GitHub backup
+Make it yours
+Workspace name
+English / Mandarin (Simplified Chinese). Other languages will be added separately.
+Save name
+How you answer in practice
+Practice sets pick the exercises and their direction for you. This is the one choice you make: how you give typed answers. Each question also has an "answer another way" control.
+I answer by typing
+I answer by speaking
+I answer by handwriting
+Practise writing characters (yes or no)
+Reading and appearance
+Theme
+Dark
+Light
+Pinyin for unfamiliar words
+Vibration feedback
+(not available on this device)
+Say the character
+At transitions
+Every stroke
+Off
+About this many exercises per lesson
+A guide for what the AI is asked to write, 8 to 40, default 20; a lesson keeps the exercises that pass checking. More than 20 are written in parallel requests of up to 20.
+Pinyin format
+Tone marks — wǒ
+Tone marks and numbers — wǒ3
+Tone numbers — wo3
+Japanese reading format
+Romaji — gakusei
+Kana — がくせい
+Japanese readings sit where pinyin does, and Korean shows Revised Romanization there (haksaeng). Both follow the pinyin switch above.
+Applies immediately to displayed pinyin throughout this profile, including saved Assistant replies and practice. Numbered formats use 5 for the neutral tone. This does not change saved pronunciation, speech, or when pinyin is hidden.
+Vocabulary in lessons, meaning practice, reading, and the dictionary shows pinyin until it reaches Learned: unaided correct answers on three separate days across both recognition activities. Character-selection questions hide pinyin until the answer is revealed or checked. A miss or revealed answer brings pronunciation support back. Revealing an answer is still recorded as assistance.
+Hear voices
+Selections save automatically and apply to Hear, Practice, lessons, and spoken replies. Automatic prefers listed local browser voices. If no matching voice is listed, it asks the system for the requested language; it never selects Edge TTS.
+Online voices send the spoken text to the browser's speech service. A system-selected voice may also be online; its identity and availability cannot be confirmed from an empty voice list. Edge TTS sends it to Microsoft through the local server. Only Test voice or playback sends text; loading the Edge catalog sends no text.
+Mandarin
+voice
+Automatic (local first)
+zh-CN-XiaoxiaoNeural — Edge TTS (Online)
+—
+Unavailable
+Test voice
+Your saved
+Mandarin
+voice is not currently available. Hear will not use a different voice. Choose another voice or Automatic, or refresh after enabling the saved voice.
+English
+voice
+Automatic (local first)
+Synthetic English — en-US — Local
+—
+Unavailable
+Test voice
+Your saved
+English
+voice is not currently available. Hear will not use a different voice. Choose another voice or Automatic, or refresh after enabling the saved voice.
+Browser voices:
+Speech playback is not available in this browser.
+Edge TTS is available only through the local development server.
+Refresh voice list
+Refresh clears the page-session voice cache and checks again briefly; it does not change your saved selections. A missing selected voice never silently switches to another voice.
+Show speech debug messages
+Show voice lookup, startup, and playback details. Off by default; errors and the stop-audio control remain available.
+Hands-free
+New Hands-free runs start with these. Each run keeps its own copy, which you can change on its page.
+Pause length
+Short
+Normal
+Long
+Repeats of each word and sentence
+1
+2
+3
+4
+5
+Wording around each item
+Full
+Abridged
+Off
+"This is how you say, rest. As in, let's rest. In Mandarin."
+Section introductions
+Full
+Header only
+Off
+A short header, then what the section contains.
+Emphasise the English word
+Pauses only
+Slower and louder
+One utterance; commas and full stops make the pauses.
+Voices and speeds
+Active AI endpoint: Default (synthetic-model)
+AI endpoints
+Save several endpoints and choose which one the Assistant, exercises, translations and games use. Switching never changes the others.
+Default
+Active
+New endpoint
+Duplicate
+Rename
+Assistant AI connection
+: Default
+Your conversations stay on this device. Sending a turn shares its relevant conversation, learning context, and selected text with your configured provider. Requests may incur provider charges.
+Endpoint name
+API protocol
+Chat Completions
+Responses API
+Select the API your endpoint supports. The app never silently switches protocols.
+API base URL
+API key
+Model
+My endpoint supports native tool calling
+Enables read-only word, lesson, and learning-context lookups. No tools can change scores or save generated content.
+My endpoint supports strict JSON-schema responses
+Applies to generated exercises, reading translations, and generated game content. Assistant replies always use compact YAML validated locally, without JSON-schema mode. Testing this option sends an additional synthetic JSON request.
+Additional headers
+Sent on every request to this endpoint, for streaming and non-streaming calls and every API protocol. Content-Type and Authorization are set by the app and cannot be customized, and browser-restricted headers (such as Host, Cookie, Origin, Proxy-* and Sec-*) are refused. Custom headers make browsers send a CORS preflight request, so your endpoint must allow these headers in Access-Control-Allow-Headers.
+Add header
+I understand that the key and any custom header values are stored in plaintext browser storage and is accessible to code on this origin.
+Profile YAML exports include this key and all custom header values in plaintext. Keep exported files private and use a restricted key. HTTPS is required except on localhost; your endpoint must allow browser CORS requests.
+Save endpoint
+Test connection
+Delete endpoint
+An Azure Speech connection is saved on this device.
+Practice speech connection
+Azure Speech is separate from your Assistant AI connection. With speech feedback enabled, explicit Listen and record practice sends your recording and the expected phrase to Azure for automatic pronunciation assessment. Provider charges may apply. Practice results are not sent to the AI tutor.
+Speech provider
+Azure Speech
+Azure Speech region
+Use the region identifier for the Azure Speech resource that issued your key.
+Azure Speech key
+I understand that the speech key is stored in plaintext browser storage and is accessible to code on this origin.
+Use a restricted key. Profile YAML exports include this key in plaintext; keep them private. Raw audio is never included. Without this connection, practice compares the recognized transcript locally rather than assessing pronunciation.
+Opening these settings or saving a connection never records audio or contacts Azure. Saving validates the fields locally, not the key, region availability, or service access. Live assessment starts only when you explicitly record in Practice with speech feedback enabled.
+Save speech connection
+Remove speech connection
+Diagnostics
+Build:
+Lab
+· commit
+6324ec0
+Timings of the last startups, Check answer and Next saves and cloud backups on this device. They contain no credentials, backup token or learning content.
+Copy diagnostics
+Keep your learning safe
+Your profiles are saved in this browser and are not synced to an account. Clearing site data or using private browsing can remove them. Set up the GitHub cloud backup in the Cloud backup panel above to keep an off-device copy (press Back up now to update it), and still export a profile now and then using the controls above.
+Profile YAML files contain settings and credentials, knowledge and learning progress, Assistant conversations, and saved practice results including recognized transcripts. Keep exported files private. Raw recordings are never stored. Previous root-app JSON backups can still be imported without changing credentials; archived v1 backups are not compatible. Restored requests never send automatically, and practice results remain excluded from AI tutor context.
+About this checkpoint
+The 30-level Mandarin course includes an HSK 1-6 preparation map with skill and mock-test lesson outlines. Beginner levels 1-4 offer vocabulary-recognition lessons and grammar references, with whole-lesson visual and guided-audio views in the level-1 pilot. Later course levels and readiness lessons are plans, not playable assessments. Assistant supports Conversation and Shadow with typed input or opt-in voice input and replies. Playback uses your saved voice selections; Automatic prefers local voices and uses online browser voices when needed, sharing the spoken text with that voice service.
+Enable Voice input and replies in conversation settings, choose English or Mandarin, and tap the mic to dictate after the cue. Stop to review or Submit to send. Browser recognition may use an online speech service; conversation transcripts go to your AI provider only when sent. Replies are spoken without restarting the microphone. Reloading never starts recording or replays old replies.
+Practice plays the phrase first. Recording is opt-in: Listen and record sounds a short cue when the microphone is ready. Conversation's Submit shows feedback inline; Shadow automatically adds feedback when recording finishes. Azure Speech receives the audio and expected phrase only when Speech feedback is enabled and a connection is configured. Otherwise, the app compares a browser-recognized transcript locally; the browser may use an online recognition service. Results never go to the AI tutor, including in later turns. Raw recordings are never stored.
+Speech assessments are practice feedback, not evidence of mastery or official HSK certification. Hands-free turn-taking, generated activities, and handwriting assessment are not connected.
+Open design mockups
