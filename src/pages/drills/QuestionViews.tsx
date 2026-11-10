@@ -22,7 +22,7 @@ import type { PageProps } from '../../components/shared'
 import { markCharactersWritten } from '../../core/drills/store'
 import { StrokeOrder } from './StrokeOrder'
 import { StrokePad } from './StrokePad'
-import { gradePinyin, previewPinyin } from '../../core/session/grade'
+import { ReadingText } from '../../components/display-context'
 import { type ConvoAnswer, type Outcome, type Q, type QData, type TextAnswer, type WriteAnswer } from './tasks'
 
 /** `suggested`: what the automatic check made of a typed answer; `chosen`: the mark selected to confirm (starts as the suggestion). */
@@ -104,18 +104,19 @@ function PinyinView({ data, state, onAnswer, onMark }: ViewProps & { data: Extra
   const [hinted, setHinted] = useState(false)
   const locked = state.status !== 'open'
   const toneless = data.item.py.normalize('NFD').replace(/\p{M}/gu, '')
-  const read = locked && text ? gradePinyin(text, [data.item.py]) : undefined
-  const toneNote = read?.verdict === 'tones' ? read.syllables : undefined
+  const pack = getPack(), reading = pack.readingInput
+  const read = locked && text ? reading.grade(text, [data.item.py], pack.romaji) : undefined
+  const toneNote = read?.verdict === 'tones' ? read : undefined
   return <>
     <p className="practice-prompt native dr-center" lang={getPack().learningTag}>{data.item.zh}</p>
     <p className="small muted dr-center" lang="en">{data.item.en}</p>
-    <TextInput label={getPack().practiceWording.readingPlaceholder} hideLabel value={text} disabled={locked} placeholder={getPack().practiceWording.readingExample} onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
+    <TextInput label={getPack().practiceWording.readingPlaceholder} hideLabel value={text} disabled={locked} lang={reading.takesLearningScript ? pack.learningTag : undefined} placeholder={getPack().practiceWording.readingExample} onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
     <p className="small muted engine-pinyin-hint">{getPack().practiceWording.readingHelp}</p>
-    {!locked && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview">{previewPinyin(text, [data.item.py]) || '\u00a0'}</p>}
+    {!locked && reading.preview && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview">{reading.preview(text, [data.item.py]) || '\u00a0'}</p>}
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
       {hinted && <span className="small">Letters only: <strong>{toneless}</strong></span>}</div>}
-    <Confirm state={state} onMark={onMark}><p>{getPack().practiceWording.readingIs} <strong><Pinyin text={data.item.py} /></strong>.</p></Confirm>
-    <Result state={state}>{toneNote ? <p>Right syllables, tones: {toneNote.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>)}</p> : <p>{getPack().practiceWording.readingIs} <strong><Pinyin text={data.item.py} /></strong>.</p>}</Result>
+    <Confirm state={state} onMark={onMark}><p>{getPack().practiceWording.readingIs} <strong>{reading.marks ? <ReadingText kana={data.item.py} /> : <Pinyin text={data.item.py} />}</strong>.</p></Confirm>
+    <Result state={state}>{toneNote ? <p>{reading.nearNote} {toneNote.syllables ? toneNote.syllables.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>) : <ReadingText kana={toneNote.kana ?? data.item.py} />}</p> : <p>{getPack().practiceWording.readingIs} <strong>{reading.marks ? <ReadingText kana={data.item.py} /> : <Pinyin text={data.item.py} />}</strong>.</p>}</Result>
   </>
 }
 

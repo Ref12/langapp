@@ -52,11 +52,11 @@ export const zhPractice: PracticeWording = {
 }
 
 /** The same wording for a language that has readings instead of pinyin: its name for "Chinese", "reading" for "pinyin". */
-function readingLanguage(name: string, example: string): PracticeWording {
+function readingLanguage(name: string, example: string, readingHelp: string): PracticeWording {
   return {
     formLabels: { ...FORM_LABEL, pinyin: 'Type the reading', 'translate-en-zh': 'Translate to ' + name },
     instructions: { ...zhInstructions, pinyin: 'Type the reading', 'translate-en-zh': 'Translate into ' + name, 'exchange-reply': 'Answer the question in ' + name + ', as the cue says' },
-    readingPlaceholder: 'Type the reading', readingHelp: 'Type the reading in kana or romaji.', readingExample: example, readingIs: 'The reading is',
+    readingPlaceholder: 'Type the reading', readingHelp, readingExample: example, readingIs: 'The reading is',
     hideReadings: 'Hide readings', showReadings: 'Show readings',
     typeNative: 'Type the ' + name, replyNative: 'Your reply in ' + name, typeNativeOrReading: 'Type the ' + name + ', or its reading', nativeNote: 'Type ' + name + ' or its reading.',
     hearNative: 'Hear the ' + name, thinkOf: 'Think of the ' + name, listenTo: 'Listen to the ' + name, languageName: name,
@@ -71,8 +71,8 @@ function readingLanguage(name: string, example: string): PracticeWording {
   }
 }
 
-export const jaPractice: PracticeWording = readingLanguage('Japanese', '\u306b\u307b\u3093')
-export const koPractice: PracticeWording = readingLanguage('Korean', '\ud55c\uad6d')
+export const jaPractice: PracticeWording = readingLanguage('Japanese', '\u306b\u307b\u3093', 'Type the reading in kana or romaji.')
+export const koPractice: PracticeWording = readingLanguage('Korean', '\ud55c\uad6d', 'Type the reading.')
 
 /** The older drill type's name and blurb in this pack's words (an entry the pack does not override keeps its own). */
 export const drillText = (entry: { id: string; name: string; blurb: string }, wording: PracticeWording): { name: string; blurb: string } => ({ ...entry, ...wording.drillTypes[entry.id] })

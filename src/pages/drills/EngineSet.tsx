@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getPack } from '../../core/language'
+import { activeDisplayForm, headwordFor, type HeadwordRecord } from '../../core/forms/display'
+import { useDisplaySettings } from '../../components/display-settings'
 import { drillText } from '../../core/language/practice-wording'
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
@@ -34,6 +36,8 @@ function usePlan(set: DrillSet, items: ItemInfo[], catalog: Catalog, workspace: 
   const engine = set.engine!
   const [plan, setPlan] = useState<SessionPlan>()
   const [error, setError] = useState<string>()
+  // The form the learner chose to see verbs in (a pack that offers none: nothing, and the words stay as stored).
+  const shownForm = activeDisplayForm(getPack(), useDisplaySettings().form)
   const knownKey = workspace.knowledge.map(entry => entry.ref).sort().join('|')
   // Keyed by content: a refreshed list with the same refs must not re-plan (that blanked the card between exercises).
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,11 +50,12 @@ function usePlan(set: DrillSet, items: ItemInfo[], catalog: Catalog, workspace: 
       const preset = resolvePreset(engine.preset)
       // The shipped dataset (empty until the full generation lands): an invalid band file is skipped, never fatal.
       const { data } = await loadPracticeData()
-      const built = planSession({ intent: 'practice-set', items, length: engine.length, preset, seed: engine.seed, catalog, known, bank: bank.byItem, allBank: bank.all, ...datasetAcceptance(data), dataset: createDatasetSource({ data, catalog, seed: engine.seed, bank: bank.all }) })
+      const offer = getPack().displayForms
+      const built = planSession({ ...(offer && shownForm !== undefined ? { shown: (record: HeadwordRecord) => headwordFor(offer, shownForm, record) } : {}), intent: 'practice-set', items, length: engine.length, preset, seed: engine.seed, catalog, known, bank: bank.byItem, allBank: bank.all, ...datasetAcceptance(data), dataset: createDatasetSource({ data, catalog, seed: engine.seed, bank: bank.all }) })
       if (live) setPlan(built)
     })().catch(reason => { if (live) setError(reason instanceof Error ? reason.message : 'The session could not be planned.') })
     return () => { live = false }
-  }, [set.refs, engine.preset, engine.length, engine.seed, items, catalog, known])
+  }, [set.refs, engine.preset, engine.length, engine.seed, items, catalog, known, shownForm])
   return { plan, error, known }
 }
 

@@ -1,4 +1,5 @@
 import type { Catalog } from '../study/catalog'
+import type { Headword, HeadwordRecord } from '../forms/display'
 import type { BankPhrase } from '../phrases/contracts'
 import { buildMatch, createRng, isVocabulary, matchGroups, MATCH_MODES, type VocabularyUnit } from '../study/local-exercises'
 import { buildChoiceItem, buildDictation, buildGap, buildListenPick, buildPinyinItem, buildRecall, buildRepeat, buildTiles, buildTranslate, type FormContext, type Slot } from './bank-forms'
@@ -27,6 +28,8 @@ export interface PlanInput {
   extraAccepted?: FormContext['extraAccepted']
   extraAcceptedEnglish?: FormContext['extraAcceptedEnglish']
   extraOptional?: FormContext['extraOptional']
+  /** The form a word is shown in (the learner's "Show verbs as", from the pack's display forms); absent: the record as stored. Only what the learner reads changes: refs and what is recorded do not. */
+  shown?: (record: HeadwordRecord) => Headword
 }
 
 /** The stages that get filled first when Short has to leave stages out. */
@@ -66,11 +69,18 @@ function shuffle<T>(items: readonly T[], rng: () => number): T[] {
 export function planSession(input: PlanInput): SessionPlan {
   const { catalog, items, preset } = input
   const allowed = new Set([...input.known, ...items.map(item => item.ref)])
-  const vocabulary = [...catalog.units.values()].filter(isVocabulary)
-  const knownUnits = vocabulary.filter(unit => allowed.has(unit.ref))
+  // A vocabulary unit as the learner reads it: the shown form's text and reading in the record. Its ref, band and gloss stay.
+  const shownUnit = (unit: VocabularyUnit): VocabularyUnit => {
+    if (!input.shown) return unit
+    const word = input.shown(unit.record)
+    return word.text === unit.record.ch && word.reading === unit.record.pr ? unit : { ...unit, record: { ...unit.record, ch: word.text, pr: word.reading } }
+  }
+  const stored = [...catalog.units.values()].filter(isVocabulary)
+  const vocabulary = stored.map(shownUnit)
+  const knownUnits = stored.filter(unit => allowed.has(unit.ref))
   const formOf = (ref: string) => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : undefined }
   const context: FormContext = {
-    catalog, knownUnits, bank: input.allBank, seed: input.seed, extraAccepted: input.extraAccepted, extraAcceptedEnglish: input.extraAcceptedEnglish, extraOptional: input.extraOptional,
+    catalog, knownUnits, shownForm: input.shown ? unit => shownUnit(unit).record.ch : undefined, bank: input.allBank, seed: input.seed, extraAccepted: input.extraAccepted, extraAcceptedEnglish: input.extraAcceptedEnglish, extraOptional: input.extraOptional,
     forms: new Set([...knownUnits.map(unit => unit.record.ch), ...FUNCTION_CHARACTERS_LIST]),
   }
   const pool = new SentencePool(input.bank, allowed, formOf)
@@ -84,7 +94,7 @@ export function planSession(input: PlanInput): SessionPlan {
 
   const buildOne = (form: Form, item: PlanItem, stage: Stage, round: number): SessionExercise | undefined => {
     const unit = catalog.units.get(item.ref)
-    const vocab = unit && isVocabulary(unit) ? unit : undefined
+    const vocab = unit && isVocabulary(unit) ? shownUnit(unit) : undefined
     const base = slot(stage, [item.ref], round)
     switch (form) {
       case 'choice': return vocab ? buildChoiceItem(base, vocab, stage === 'recognise' ? 'zh-to-en' : 'en-to-zh', vocabulary, allowed as Set<string>, input.seed + counter * 31) : undefined
@@ -127,7 +137,7 @@ export function planSession(input: PlanInput): SessionPlan {
       const planned: SessionExercise[] = []
       // Matching joins 4 or more words in one board, the first round of a stage that lists it; it is on top of every item's own exercise.
       if (round === 1 && forms.includes('match')) {
-        const units = order.flatMap(item => { const unit = catalog.units.get(item.ref); return unit && isVocabulary(unit) ? [unit] : [] })
+        const units = order.flatMap(item => { const unit = catalog.units.get(item.ref); return unit && isVocabulary(unit) ? [shownUnit(unit)] : [] })
         matchGroups<VocabularyUnit>(units).forEach((group, index) => {
           for (let attempt = 0; attempt < MATCH_MODES.length; attempt++) {
             const match = buildMatch({ focus: group, pool: vocabulary, known: allowed as Set<string>, mode: MATCH_MODES[(index + attempt) % MATCH_MODES.length], seed: input.seed + index * 101, id: `match-${stageIndex}-${index}` })

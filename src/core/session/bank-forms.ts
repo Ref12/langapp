@@ -14,6 +14,8 @@ export interface FormContext {
   forms: ReadonlySet<string>
   /** Vocabulary the learner knows or is practising: where distractors come from. */
   knownUnits: readonly VocabularyUnit[]
+  /** The text the learner reads for a word (the shown form): the Word order distractors show it. Absent: the word as stored. */
+  shownForm?: (unit: VocabularyUnit) => string
   /** The other bank phrases: accepted alternatives and listen-and-pick distractors come from here. */
   bank: readonly BankPhrase[]
   seed: number
@@ -70,7 +72,7 @@ export function buildTiles(slot: Slot, phrase: BankPhrase, context: FormContext)
   if (tiles.length < 2 || tiles.length > 14 || tiles.some(tile => tile.length > 12)) return undefined
   const rng = rngFor(context, slot.id)
   const inside = new Set(tiles)
-  const distractors = shuffle(context.knownUnits.map(unit => unit.record.ch).filter(form => !inside.has(form) && form.length <= 3), rng).slice(0, tiles.length >= 4 ? 2 : 1)
+  const distractors = shuffle(context.knownUnits.filter(unit => !inside.has(unit.record.ch) && unit.record.ch.length <= 3).map(unit => context.shownForm?.(unit) ?? unit.record.ch).filter(form => !inside.has(form)), rng).slice(0, tiles.length >= 4 ? 2 : 1)
   const count = tiles.length + distractors.length
   let shuffled = shuffle(Array.from({ length: count }, (_, index) => index), rng)
   if (shuffled.slice(0, tiles.length).every((value, index) => value === index)) shuffled = [...shuffled.slice(1), shuffled[0]]

@@ -2,7 +2,7 @@
 // The visible text of the Overview, the Lessons list, a lesson page and Settings in a Japanese build, for a small seeded Japanese
 // learner. Next to chinese-screens.test.tsx; the same walk of the page text, pinned in __screens__/ja-<name>.txt. None of the
 // screens may speak of Mandarin, Chinese, pinyin or HSK. To accept a deliberate change, review the diff and run with -u.
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace } from '../core/database'
@@ -10,6 +10,9 @@ import { setBuildLanguageForTests } from '../core/storage-names'
 import { loadCatalog, resetCatalogCache, type Catalog } from '../core/study/catalog'
 import { resetBackupStateForTests } from '../core/backup/state'
 import { savePreferences } from '../core/learning'
+import { createDrillSet, setEngineChoice } from '../core/drills/store'
+import { whenContent } from '../core/drills/content'
+import { saveCustomPreset } from '../core/session/custom-preset'
 import { initializeProfiles } from '../core/profiles/store'
 import { T0 } from '../core/profiles/fixtures/learner'
 import type { KnowledgeEntry, StudyCard } from '../core/study/contracts'
@@ -101,6 +104,24 @@ describe('screen text for a small seeded Japanese learner', () => {
     await db.knowledge.clear(); await db.studyCards.clear()
     await pin('practice-start', await screenText('practice', () => expect(screen.getByText('Learning from')).toBeInTheDocument()))
   })
+  it('Practice: a typed-reading question', async () => {
+    saveCustomPreset({ id: 'custom-reading', name: 'Reading only', forms: ['pinyin'], stages: ['recall'] })
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'custom-reading' })
+    const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByPlaceholderText('Type the reading')).toBeInTheDocument())
+    // The word is drawn at random from the lesson's new words: the pin masks it.
+    await pin('practice-type-reading', question.replace(/(Type the reading\n)[^\n]+/, '$1<word>'))
+    expect(document.querySelector('.engine-pinyin-preview')).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Hear it' })).toBeNull()
+    const kana = document.querySelector('.engine-answer + .engine-pinyin-hint, .engine-pinyin-hint')
+    expect(kana).toHaveTextContent('Type the reading in kana or romaji.')
+    // a wrong answer: marked wrong, the reading shown, then the Hear button
+    fireEvent.change(screen.getByPlaceholderText('Type the reading'), { target: { value: 'zzz' } })
+    fireEvent.click(document.querySelector('.check-answer-button')!)
+    expect(await screen.findByText('Not the reading.')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Hear it' })).toBeInTheDocument()
+  }, 30000)
   it('Settings', async () => {
     await pin('settings', await screenText('settings', () => expect(document.querySelector('main')?.textContent?.length).toBeGreaterThan(50)))
   })
