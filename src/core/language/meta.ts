@@ -90,7 +90,7 @@ const nothing = Object.fromEntries(AREAS.map(area => [area, false])) as Features
 export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4E2D\u6587', learningTag: 'zh-Hans', htmlLang: 'en', features: everything,
   wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', courseTracks: true, readings: 'pinyin', countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
   writing: zhWriting, ...zhIdentity, ...zhSentence, ...zhPage }
-export const jaMeta: PackMeta = { id: 'ja', name: jaTrack.name, nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: nothing,
+export const jaMeta: PackMeta = { id: 'ja', name: jaTrack.name, nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: { ...nothing, writing: true },
   wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', courseTracks: false, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
   writing: jaWriting, ...jaIdentity, ...jaSentence, ...jaPage,
   displayForms: { language: 'ja', choices: [{ id: 'masu', kinds: ['verb'] }, { id: 'dict', kinds: [] }], default: 'masu', sample: { ch: '\u52C9\u5F37\u3059\u308B', pr: '\u3079\u3093\u304D\u3087\u3046\u3059\u308B', cl: 'suru-compound' } },

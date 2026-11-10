@@ -22,8 +22,12 @@ describe('which forms and drill types a build offers', () => {
       }
     }
   })
-  it('without the model or the writing area, the conversation types and Learn to write / Write it are not offered', () => {
+  it('without the model the conversation types are not offered; Japanese has the writing area, so Learn to write / Write it are', () => {
     const offered = DRILL_TYPES.filter(entry => drillTypeOffered(entry, jaPack)).map(entry => entry.id)
+    expect(offered).toEqual(['meanings', 'match', 'learn', 'write', 'pinyin', 'translate', 'repeat'])
+  })
+  it('Korean keeps the writing area off: no Learn to write / Write it', () => {
+    const offered = DRILL_TYPES.filter(entry => drillTypeOffered(entry, koPack)).map(entry => entry.id)
     expect(offered).toEqual(['meanings', 'match', 'pinyin', 'translate', 'repeat'])
   })
 })

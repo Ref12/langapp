@@ -182,7 +182,7 @@ function WorkspaceApp() {
   }, [])
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
-  const section = route === 'practice/mahjong' ? 'games' : page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' || page === 'practice' ? 'practice' : page === 'writing' ? 'dictionary' : page
+  const section = route === 'practice/mahjong' ? 'games' : page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' || page === 'practice' ? 'practice' : page === 'writing' ? (isAreaOn(getPack(), 'dictionary') ? 'dictionary' : 'practice') : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Overview')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined

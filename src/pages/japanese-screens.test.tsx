@@ -106,8 +106,9 @@ describe('screen text for a small seeded Japanese learner', () => {
   })
   it('Practice by skill, for a learner who knows some lessons', async () => {
     const text = await screenText('practice', () => expect(screen.getByText('Practice by skill')).toBeInTheDocument())
-    // nothing of the Chinese-only extras: no model notice, no Hands-free or Classic links, no writing backlog
-    for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong', 'Characters to write']) expect(text).not.toContain(absent)
+    // nothing of the Chinese-only extras: no model notice, no Hands-free or Classic links (the writing backlog is on: Japanese writes with its own stroke data)
+    for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong']) expect(text).not.toContain(absent)
+    expect(text).toContain('Characters to write')
     await pin('practice-by-skill', text)
   })
   it('The Ready page of a session, with the Writing preset', async () => {

@@ -22,9 +22,11 @@ describe('language packs', () => {
     expect(() => packFor('xx' as never)).toThrow(/Unknown language/)
   })
 
-  it('switches everything on for Chinese and every area off for Japanese and Korean', () => {
+  it('switches everything on for Chinese, only writing for Japanese and every area off for Korean', () => {
     expect(AREAS.every(area => zhPack.features[area])).toBe(true)
-    for (const pack of [jaPack, koPack]) expect(AREAS.some(area => pack.features[area])).toBe(false)
+    expect(AREAS.some(area => koPack.features[area])).toBe(false)
+    // Japanese: the writing area only (its own stroke data); everything else stays off.
+    expect(AREAS.filter(area => jaPack.features[area])).toEqual(['writing'])
     expect(jaPack.features.games).toBe(false)
   })
 
