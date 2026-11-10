@@ -1,6 +1,6 @@
 import { getPack } from '../language'
 import { writingFor } from '../language/writing'
-import { isHan, isHangul, isKana } from './scripts'
+import { isHan } from './scripts'
 import { isWritingLanguage, type WritingLanguage } from './language'
 
 export type WritingScope = 'all' | 'knowledge'
@@ -8,8 +8,7 @@ export interface WritingQuery { word: string[]; index: number; back?: string; la
 
 export { isHan }
 /** A character the language's writing practice can take: Han for Chinese, Han and kana for Japanese, Hangul for Korean. Whether stroke data exists is known only once it loads. */
-export const isWritable = (character: string, language: WritingLanguage = 'zh'): boolean =>
-  language === 'zh' ? isHan(character) : language === 'ja' ? isHan(character) || isKana(character) : isHangul(character)
+export const isWritable = (character: string, language: WritingLanguage = 'zh'): boolean => writingFor(getPack().writing, language).writes(character)
 /** Whether the build's language has a stroke guide for the character (the pack's writing entry). */
 export const hasGuide = (character: string): boolean => getPack().writing.hasGuide(character)
 /** Whether a language's guide is known for the character: the build's own index, else (another language, an old parallel screen) anything of its script. */

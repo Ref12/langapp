@@ -1,0 +1,26 @@
+version: '1'
+status: ai-reviewed-gate-lifted
+human_reviewed: false
+statement: >-
+  The 553 syllables of the dictionary headwords and the lesson pack that no earlier file composes (dictionary-syllables.yaml: 548
+  headword syllables and 5 that only the word forms use, 겠 됐 쉴 졌 죠) were made by the same
+  composer as the 521 before them (scripts/korean_dictionary_syllables.py, no model call per syllable) and reviewed in batches by
+  an AI reviewer. This is not a human review: human_reviewed stays false as a fact. The learner decided on 2026-11-08 that AI review
+  is enough for Korean writing, so the handwriting gate is lifted.
+decision:
+  date: '2026-11-08'
+  by: the learner
+  text: AI review is enough for Korean writing; the handwriting gate is lifted.
+reviewer:
+  kind: vision-capable AI model, single reviewer, no helper sessions
+  model: claude-opus-5.5
+  date: '2026-11-10'
+  first_pass: gpt-6-luna on 10 sheets of 56 (no findings; its sheets had no Hangul captions, so it is not relied on)
+sheets: 19 contact sheets of 30 syllables each (node scripts/korean-syllable-sheets.mjs OUT 30 dictionary-syllables.yaml), numbered strokes, direction arrows, Hangul captions in Noto CJK
+checked: the right letters for the caption, stroke order, stroke direction, ㅇ from the top counter-clockwise, final not touching the vowel
+findings: >-
+  One batch of four sheets and one sheet per call were reviewed. The reviewer's reports named about 30 syllables, but 17 of the names are not in
+  this set (it misread cells), so the reports were not taken as they stand: every named syllable that is in the set (득 똑 똥 뚝 뜩 쌍 쑥 씩 폭 빛 쟁 짱 흙)
+  was drawn on one enlarged sheet and looked at by the author of this change: the letters are right, the order and direction are standard, the finals
+  are crowded in 흙 only and still legible. The five form-only syllables were drawn on their own sheet and looked at the same way. No defect was confirmed. Same house style as before: ㄹ is three strokes, ㅈ two, ㅓ writes its bar first.
+rejected_syllables: {}

@@ -123,6 +123,28 @@ function selectJapanese() {
   return { entries, failures, app, gaps, list: listText(app), counts: { kana: kana.length, n5: n5.length, n4: n4.length, parallel: parallel.length, appKanji: app.kanji.length, appKanjiShipped: derivedKanji.length, course: app.course.length, acceptedGaps: Object.keys(gaps).length } }
 }
 
+const hangulSyllable = character => character >= '가' && character <= '힣'
+
+/** What the Korean app can show, derived from its data and never typed: the Hangul syllables of the dictionary headwords (src/data/dictionary/ko.json, word[1]) and of every string in the lesson pack (src/data/packs/ko/*.json: words and sentences). */
+export function koreanAppSyllables() {
+  const dictionary = new Set(), lessons = new Set()
+  for (const word of JSON.parse(readFileSync(join(root, 'src', 'data', 'dictionary', 'ko.json'), 'utf8')).words) for (const character of word[1]) if (hangulSyllable(character)) dictionary.add(character)
+  const packDir = join(root, 'src', 'data', 'packs', 'ko')
+  for (const name of readdirSync(packDir).filter(file => file.endsWith('.json')).sort()) for (const text of collectText(JSON.parse(readFileSync(join(packDir, name), 'utf8')), [])) for (const character of text) if (hangulSyllable(character)) lessons.add(character)
+  const order = (a, b) => a.codePointAt(0) - b.codePointAt(0)
+  return { dictionary: [...dictionary].sort(order), lessons: [...lessons].sort(order) }
+}
+
+/** Syllables that cannot be made well, each with the reason (curriculum/korean/characters/dictionary-accepted.yaml). */
+export function koreanAcceptedGaps() {
+  const path = join(root, 'curriculum', 'korean', 'characters', 'dictionary-accepted.yaml')
+  if (!existsSync(path)) return {}
+  const file = readYaml(path)
+  assert(file && file.version === '1' && file.gaps && typeof file.gaps === 'object', 'Unsupported dictionary-accepted.yaml')
+  for (const [character, reason] of Object.entries(file.gaps)) assert(scalar(character) && typeof reason === 'string' && reason.trim(), `dictionary-accepted.yaml: ${character} needs a one-character key and a reason`)
+  return file.gaps
+}
+
 function selectKorean() {
   const prepared = loadPrepared('korean')
   const failures = [], entries = new Map()
@@ -130,10 +152,10 @@ function selectKorean() {
     try { entries.set(character, { paths: defaultStrokes(character, record) }) } catch (error) { failures.push(error.message) }
   }
   let syllables = 0
-  // TOPIK 1 syllables, and the syllables the parallel Korean lessons use (scripts/korean_parallel_syllables.py)
-  for (const name of ['topik1-syllables.yaml', 'parallel-syllables.yaml']) {
+  // TOPIK 1 syllables, the syllables the parallel Korean lessons use (scripts/korean_parallel_syllables.py), and the dictionary headwords' (scripts/korean_dictionary_syllables.py)
+  for (const name of ['topik1-syllables.yaml', 'parallel-syllables.yaml', 'dictionary-syllables.yaml']) {
     const path = join(root, 'curriculum', 'korean', 'characters', name)
-    if (name !== 'topik1-syllables.yaml' && !existsSync(path)) continue
+    if (name === 'parallel-syllables.yaml' && !existsSync(path)) continue
     const file = readYaml(path)
     assert(file.review === 'ai-reviewed' && file.human_reviewed === false && file.syllables, 'Korean syllables must be AI-reviewed and not human-reviewed')
     for (const [character, paths] of Object.entries(file.syllables)) {
@@ -145,7 +167,17 @@ function selectKorean() {
       } catch (error) { failures.push(error.message) }
     }
   }
-  return { entries, failures, counts: { letters: entries.size - syllables, syllables } }
+  // The coverage check: every syllable of the dictionary headwords and of the lessons has a guide, or is on the accepted list with a reason.
+  const app = koreanAppSyllables(), gaps = koreanAcceptedGaps()
+  for (const character of [...app.dictionary, ...app.lessons]) {
+    if (!entries.has(character) && !gaps[character]) failures.push(`${character}: used by the Korean dictionary or lessons but has no shipped stroke data and is not in dictionary-accepted.yaml`)
+    if (gaps[character] && app.lessons.includes(character)) failures.push(`${character}: used by the Korean lessons, so it cannot be an accepted gap`)
+  }
+  for (const character of Object.keys(gaps)) {
+    if (entries.has(character)) failures.push(`${character}: listed in dictionary-accepted.yaml but strokes now exist; remove it from the list`)
+    if (!app.dictionary.includes(character) && !app.lessons.includes(character)) failures.push(`${character}: listed in dictionary-accepted.yaml but neither the dictionary nor the lessons use it`)
+  }
+  return { entries, failures, app, gaps, counts: { letters: entries.size - syllables, syllables, dictionarySyllables: app.dictionary.length, lessonSyllables: app.lessons.length, acceptedGaps: Object.keys(gaps).length } }
 }
 
 const attribution = (title, body) => `<!doctype html>

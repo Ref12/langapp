@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { characterAssetIndex } from '../characters/assets'
-import { buildWritingRoute, hasGuide, isHan, neighbourIndex } from '../characters/writing-route'
+import { buildWritingRoute, hasGuide, isHan, isWritable, neighbourIndex } from '../characters/writing-route'
 import { guidedChars, introducedChars, newCharacters } from '../drills/write-queue'
 import { setBuildLanguageForTests } from '../storage-names'
 import { getPack } from './index'
@@ -81,4 +81,38 @@ describe('the Korean pack writing entry', () => {
     expect(writing.hasGuide('\u65e5')).toBe(false)
     expect(writing.hasGuide('.')).toBe(false)
   })
+  it('has a guide for every dictionary syllable it was extended to (득, 흙, 쌍), and still for 학 and 생', () => {
+    for (const character of ['\ub4dd', '\ud759', '\uc30d', '\ud559', '\uc0dd']) expect(writing.hasGuide(character)).toBe(true)
+    expect(writing.strokeCount('\ud759')).toBe(8)
+  })
+  it('names its voice and its script, so no screen tests the language', () => {
+    expect(writing.speechLocale).toBe('ko-KR')
+    expect(jaPack.writing.speechLocale).toBe('ja-JP')
+    expect(zhPack.writing.speechLocale).toBe('zh-Hans')
+    expect(writing.writes('\ud55c')).toBe(true)
+    expect(writing.writes('\u65e5')).toBe(false)
+    expect(isWritable('\ud55c', 'ko')).toBe(true)
+    expect(isWritable('\u3042', 'ja')).toBe(true)
+    expect(isWritable('\u3042', 'ko')).toBe(false)
+  })
+  it('lists the letters first (24 basic, then doubled and combined), then the syllables by their first letter', () => {
+    const groups = writing.listGroups()
+    expect(groups.slice(0, 2).map(group => group.characters.join(''))).toEqual(['\u3131\u3134\u3137\u3139\u3141\u3142\u3145\u3147\u3148\u314a\u314b\u314c\u314d\u314e', '\u314f\u3151\u3153\u3155\u3157\u315b\u315c\u3160\u3161\u3163'])
+    expect(groups[0].characters.length + groups[1].characters.length).toBe(24)
+    expect(groups.slice(2, 4).map(group => group.id)).toEqual(['doubled-consonants', 'combined-vowels'])
+    const firstSyllable = groups.findIndex(group => group.id.startsWith('syllables-'))
+    expect(firstSyllable).toBeGreaterThanOrEqual(4)
+    expect(groups.slice(0, firstSyllable).flatMap(group => group.characters).every(character => !isSyllableOf(character))).toBe(true)
+    expect(groups.slice(firstSyllable).flatMap(group => group.characters).every(isSyllableOf)).toBe(true)
+    expect(groups.flatMap(group => group.characters).filter(isSyllableOf).length).toBeGreaterThanOrEqual(1069)
+  })
+  it('breaks a syllable into its letters, with a final only when there is one', () => {
+    expect(writing.breakdown('\ud559')).toEqual(['\u314e', '\u314f', '\u3131'])
+    expect(writing.breakdown('\uac00')).toEqual(['\u3131', '\u314f'])
+    expect(writing.breakdown('\ud759')).toEqual(['\u314e', '\u3161', '\u313a'])
+    expect(writing.breakdown('\u3131')).toBeUndefined()
+    expect(jaPack.writing.breakdown('\u3042')).toBeUndefined()
+    expect(jaPack.writing.listGroups()).toEqual([])
+  })
 })
+const isSyllableOf = (character: string) => character >= '\uac00' && character <= '\ud7a3'

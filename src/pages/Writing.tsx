@@ -17,6 +17,7 @@ import { savePreferences } from '../core/learning'
 import { writingSpeechMode, writingSpeechResume } from '../core/writing-speech'
 import { rememberWrittenPhrase } from '../core/assistant/practice-history'
 import { Pinyin } from '../components/Pinyin'
+import { WritingList } from '../components/characters/WritingList'
 import { Decomposition } from '../components/characters/Decomposition'
 import { useComponentData } from '../components/characters/useComponentData'
 import { partColour, strokeParts } from '../core/characters/components'
@@ -48,7 +49,9 @@ export function Writing({ codepoint, scope, query, ...props }: PageProps & { cod
   const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
   const { word, index, back: requestedBack, language = getPack().writing.language } = useMemo(() => parseWritingQuery(query, character), [query, character])
   // The character list lives in the Dictionary; a build without one goes back to Practice.
-  const back = requestedBack ?? (getPack().dictionary.sections.characters ? `dictionary/characters/${scopeName}` : 'practice')
+  const listed = writingFor(getPack().writing, language).listGroups()
+  const back = requestedBack ?? (getPack().dictionary.sections.characters ? `dictionary/characters/${scopeName}` : listed.length ? 'writing' : 'practice')
+  if (!character && listed.length) return <WritingList groups={listed} language={language} />
   const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack, language })
   return <WritingStage {...props} language={language} character={character} word={word} index={index} remember={!!query?.includes('word=')} backHref={`#${back}`}
     skipHref={at => `#${routeFor(at)}`} onGo={at => go(routeFor(at))} onFinish={() => go(back)} />
@@ -158,21 +161,22 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
   const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
   const marker = useId().replace(/:/g, '')
   const speechId = useId()
+  const locale = writing.speechLocale
   const speech = writingSpeechMode(workspace.preferences)
   const autoSpeak = speech !== 'off'
   const speechRef = useRef(speech)
   speechRef.current = speech
   const say = useCallback(() => {
     try {
-      if (writing.characterData) { playBrowserSpeech(speechId, asset.character, 'zh-Hans'); return }
+      if (writing.characterData) { playBrowserSpeech(speechId, asset.character, locale); return }
       const synth = window.speechSynthesis
       if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return
       synth.cancel()
       const utterance = new SpeechSynthesisUtterance(asset.character)
-      utterance.lang = language === 'ja' ? 'ja-JP' : 'ko-KR'
+      utterance.lang = locale
       synth.speak(utterance)
     } catch { /* blocked speech stays silent */ }
-  }, [speechId, asset.character, language, writing.characterData])
+  }, [speechId, asset.character, locale, writing.characterData])
   useEffect(() => () => {
     if (getPlaybackState().activeId === speechId) stopBrowserSpeech()
   }, [speechId])
@@ -318,6 +322,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
   const phaseHelp = round.phase === 0 ? 'Trace the outlines in order. Start at the blue dot and follow the arrow.'
     : round.phase === 1 ? 'Only the next stroke is shown. Complete it to reveal the following guide.'
       : 'Write the character you just practiced. Two misses on the same stroke reveal its guide; later strokes stay hidden.'
+  const breakdown = writing.breakdown(asset.character)
   const progress = round.finished || completed ? '' : `${round.completed}/${guides.length}`
 
   return <div className="writing-page" data-assistant-exclude>
@@ -330,6 +335,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
           <span lang="zh-Hans">{hidden ? Array.from(word.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : word.ch}</span>
           {workspace.preferences.pinyin && <> <Pinyin text={word.pr} /></>} <span className="muted">{word.ds}</span></span>}
       </p>
+      {breakdown && !hidden && <span className="writing-breakdown" role="group" aria-label="Letters in this syllable">{breakdown.map((letter, at) => <span key={at}>{at > 0 && <span aria-hidden="true"> + </span>}<span lang={language}>{letter}</span></span>)}</span>}
       {onClose && <button className="icon-button" type="button" aria-label="Close writing" title="Close writing" onClick={onClose}><X size={20} /></button>}
     </header>
     {(inWord || !!place) && ownMeaning && !(word && word.ch === asset.character) && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}

@@ -269,9 +269,10 @@ table above, U+AF9C and U+C62B, bring the Hangul scope to **1,276**:
 pronunciation displays; they are not replacement spellings for school or
 clothing and do not supply vocabulary pronunciations.
 
-Only 54 of the 1,158 required syllables are authored in this first batch.
-The other **1,104 Hangul keys remain explicitly unavailable/source-blocked**,
-including the two supplemental syllables. All 118 modern foundation identities
+The importer's own batch is 54 of the 1,158 required syllables (`coverage.yaml`
+still reports its **1,104 Hangul keys** as source-blocked: that file describes the
+pilot batch only). The app ships more, made by the same composer and AI-reviewed
+(see "Syllables beyond the pilot" below). All 118 modern foundation identities
 are present, including the final RIEUL-SIOS cluster absent from curriculum
 syllables. Positional/conjoining and compatibility keys remain distinct;
 aliases describe relationships and never silently normalize or redirect keys.
@@ -340,12 +341,26 @@ recipe hashes, original notices, shared tooling versions and curriculum input
 hashes are pinned; the review report also hashes Korean adapter modules.
 Changing paths or recipes requires a new reviewed version, not inherited
 approval. A source refresh is an explicit revision/license/checksum operation.
-Do not edit generated shards or extend the 54-syllable list to bypass review.
+Do not edit generated shards or extend the 54-syllable pilot list to bypass review (the other syllables come from the composer scripts above).
+
+### Syllables beyond the pilot (what the app ships)
+
+`public/characters/korean/` holds **1,248 characters in 47 lazy pages**: **1,128 Hangul syllables**
+(the 54 pilot syllables, 521 from `topik1-syllables.yaml` and `parallel-syllables.yaml`, and **553** from
+`dictionary-syllables.yaml`), the 118 modern jamo foundations (51 compatibility and 67 positional forms) and the two
+literal signs `.` and `?` (not written). Every syllable of every dictionary headword (1,115 distinct), of every lesson word
+and sentence, and of the word forms has a guide; the accepted list of syllables that could not be made
+(`characters/dictionary-accepted.yaml`, each with a reason) is empty. 31 of the 1,158 syllables
+`coverage.yaml` lists as required occur in no dictionary headword or lesson text and have no guide.
+`python scripts/korean_dictionary_syllables.py [--check]` makes the 553 from `src/data/dictionary/ko.json` and
+`src/data/packs/ko/*.json`; `node scripts/generate-app-writing-ja-ko.mjs --check` fails when a headword or lesson syllable has
+neither a guide nor an accepted-list entry. The review record is
+[`characters/recipes/ai-review-dictionary.yaml`](characters/recipes/ai-review-dictionary.yaml).
 
 ### Learner decision, 2026-11-08: the handwriting gate is lifted
 
 The learner decided on 2026-11-08 that **AI review is enough for Korean writing**, so the handwriting gate is lifted: composed syllables
-(TOPIK 1 and those the parallel lessons use, `characters/parallel-syllables.yaml`) ship marked `ai-reviewed`. This is a fact about the
+(TOPIK 1, those the parallel lessons use, `characters/parallel-syllables.yaml`, and those the dictionary uses, `characters/dictionary-syllables.yaml`) ship marked `ai-reviewed`. This is a fact about the
 review, not a claim of human approval: `human_reviewed` stays `false` everywhere, and the review record is
 [`characters/recipes/ai-review.yaml`](characters/recipes/ai-review.yaml). Statements below that the gates "remain in force" predate it.
 
