@@ -63,13 +63,13 @@ describe('the Japanese build language', () => {
   beforeAll(async () => { setBuildLanguageForTests('ja'); catalog = await loadCatalog(); setBuildLanguageForTests(undefined); resetCatalogCache() })
   const ja = () => { setBuildLanguageForTests('ja'); expect(getPack().id).toBe('ja') }
 
-  it('loads 87 groups, 291 vocabulary and 108 grammar units, and counts them from the index', () => {
+  it('loads 87 groups, 292 vocabulary and 115 grammar units, and counts them from the index', () => {
     ja()
     expect(catalogBandList()).toEqual(['1'])
-    expect(catalogCounts).toMatchObject({ vocabulary: 291, grammar: 108, groups: 87 })
+    expect(catalogCounts).toMatchObject({ vocabulary: 292, grammar: 115, groups: 87 })
     expect(catalog.orderedGroups).toHaveLength(87)
-    expect([...catalog.units.values()].filter(unit => unit.kind === 'vocabulary')).toHaveLength(291)
-    expect([...catalog.units.values()].filter(unit => unit.kind === 'grammar')).toHaveLength(108)
+    expect([...catalog.units.values()].filter(unit => unit.kind === 'vocabulary')).toHaveLength(292)
+    expect([...catalog.units.values()].filter(unit => unit.kind === 'grammar')).toHaveLength(115)
   })
 
   it('resolves every unit of every group, none is empty, each has 2 or 3 examples', () => {
@@ -85,7 +85,7 @@ describe('the Japanese build language', () => {
     ja()
     const phrases = Object.values(await shippedPhrases('1')).flat()
     const unique = new Set(phrases)
-    expect(unique.size).toBe(817)
+    expect(unique.size).toBe(822)
     const source = new Map(pack.phrases.map(phrase => [phrase.id, phrase]))
     for (const phrase of unique) {
       const rendered = renderExample(catalog, { segments: phrase.tokens ?? [] })
@@ -111,7 +111,7 @@ describe('the Japanese build language', () => {
     const explanations = JSON.parse(onDisk(EXPLANATIONS_FILE)).explanations as Record<string, string>
     const banned = /nonpast|predicate|copula|nominali[sz]|modifier|direct object|topic marker|subject marker|volitional|conjunctive|auxiliary|\bN\b|\bV\b/i
     const grammar = [...catalog.units.values()].filter(unit => unit.kind === 'grammar')
-    expect(grammar).toHaveLength(108)
+    expect(grammar).toHaveLength(115)
     expect(pack.missingExplanations).toEqual([])
     for (const unit of grammar) {
       if (unit.kind !== 'grammar') continue
@@ -144,7 +144,7 @@ describe('the Japanese build language', () => {
 
   it('has a phrase index and no practice dataset (the dataset is empty, not an error)', async () => {
     ja()
-    expect((await loadPhraseIndex())?.total).toBe(817)
+    expect((await loadPhraseIndex())?.total).toBe(822)
     const { data, problems } = await loadPracticeData()
     expect(problems).toEqual([])
     expect(data.counts).toEqual({ accepted: 0, exchanges: 0, grammarPoints: 0, nearMisses: 0, conversations: 0 })
@@ -180,7 +180,7 @@ describe('a conjugated word is one word in a named form', () => {
   it('has no span, and one segment per merged form with the whole surface and reading', () => {
     const merged = segmentsOf().filter(({ segment }) => segment.form)
     expect(segmentsOf().some(({ segment }) => 'span' in segment)).toBe(false)
-    expect(merged).toHaveLength(530)
+    expect(merged).toHaveLength(536)
     for (const { phrase, segment } of merged) {
       expect(segment.word, 'phrase ' + phrase).toBeDefined()
       expect(segment.grammar).toBeUndefined()
@@ -260,7 +260,7 @@ describe('a conjugated word is one word in a named form', () => {
 
   it('builds the polite form of every verb in the catalog, with its reading', () => {
     const verbs = band.vocabulary.filter(item => item.cl && !['i-adj', 'i-adj-ii', 'na-adj'].includes(item.cl))
-    expect(verbs).toHaveLength(54)
+    expect(verbs).toHaveLength(55)
     for (const item of verbs) {
       const built = buildForm('ja', item.ch, item.cl!, 'masu', { reading: item.pr })
       expect(built?.surface, item.lb).toMatch(/ます$/)
