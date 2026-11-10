@@ -217,6 +217,7 @@ export function buildJaPack(base = defaultRoot) {
   const shortTexts = readJson(join(base, SHORT_TEXTS_FILE), { shortTexts: {} }).shortTexts
   const explanations = readJson(join(base, EXPLANATIONS_FILE), { explanations: {} }).explanations
   for (const id of [...Object.keys(shortTexts), ...Object.keys(explanations)]) if (!index.grammar.has(id)) throw new Error(SHORT_TEXTS_FILE + ' or ' + EXPLANATIONS_FILE + ' names an unknown pattern ' + id)
+  const missingExplanations = [] // patterns with no plain explanation: the old wording stays as their fallback and --check fails
   const formNameOfPattern = new Map()
   {
     const names = readJson(existsSync(join(base, FORMS_FILE)) ? join(base, FORMS_FILE) : join(defaultRoot, FORMS_FILE), { forms: {} }).forms
@@ -373,8 +374,8 @@ export function buildJaPack(base = defaultRoot) {
     const st = shortTexts[id] ?? shortTextRule(name) ?? (onlyPlaceholders ? (/^<[^>]*>$/.test(name) ? formNameOfPattern.get(id) : undefined) ?? name.replace(/[<>]/g, '') : undefined)
     if (!st) throw new Error('No short text for the pattern ' + id + ' (' + name + '): the rule cannot make one, add it to ' + SHORT_TEXTS_FILE)
     const plain = explanations[id]
-    if (!plain) throw new Error('The pattern ' + id + ' (' + name + ') has no plain explanation: add it to ' + EXPLANATIONS_FILE)
-    return { id, pt: name, pr: nameOf(id).reading, ds: plain, st, lb: pattern(id), ex }
+    if (!plain) missingExplanations.push(id)
+    return { id, pt: name, pr: nameOf(id).reading, ds: plain ?? e.english, st, lb: pattern(id), ex }
   })
   const vocabulary = items.map(item => {
     const e = index.vocabulary.get(item.entry), cl = forms.classes.get(item.entry)?.class
@@ -460,7 +461,7 @@ export function buildJaPack(base = defaultRoot) {
       wordsWithoutPhrase: (lesson.words ?? []).filter(row => !usedWords.has(row.entry)).map(row => '`' + row.entry + '` ' + index.vocabulary.get(row.entry).target + ' (' + itemAt(row.entry, lesson.number).gloss + ')'),
     }
   })
-  return { files, band, phrases, formsTable, corrected, mismatches, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
+  return { files, band, phrases, formsTable, corrected, missingExplanations, mismatches, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
 }
 
 /** The content gaps as markdown (docs/audits/2026-11-10-japanese-lesson-content-gaps.md). */
@@ -515,6 +516,7 @@ export function main(argv = process.argv.slice(2)) {
     if (reportFile) writeAtomic(resolve(base, reportFile), text); else process.stdout.write(text)
     return
   }
+  if (check && pack.missingExplanations.length) throw new Error('No plain explanation (' + EXPLANATIONS_FILE + ') for: ' + pack.missingExplanations.join(', '))
   const { files, report } = pack
   const stale = []
   for (const [path, text] of files) {

@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { afterEach, beforeAll, describe, expect, it } from 'vitest'
-import { buildJaPack, gapsMarkdown, REGISTRY_FILE } from '../../../scripts/generate-pack-ja.mjs'
+import { buildJaPack, gapsMarkdown, REGISTRY_FILE, SHORT_TEXTS_FILE, EXPLANATIONS_FILE } from '../../../scripts/generate-pack-ja.mjs'
 import { setBuildLanguageForTests } from '../storage-names'
 import { loadCatalog, renderExample, resetCatalogCache, catalogBandList, catalogCounts, type BandData, type Catalog } from '../study/catalog'
 import { unitLabelSchema, unitRef } from '../study/contracts'
@@ -13,6 +13,9 @@ import { getPack } from '.'
 import { forms as buildForm } from '../forms'
 import jaForms from '../../data/packs/ja/forms.generated.json'
 import type { PackForm } from './pack-data'
+import { grammarLabel } from '../../data/tracks'
+import { exampleReadingTokens } from '../study/catalog'
+import { tokensToRomaji } from '../reading/romaji'
 
 const root = fileURLToPath(new URL('../../../', import.meta.url))
 const onDisk = (path: string) => readFileSync(root + path, 'utf8').replace(/\r\n/g, '\n')
@@ -104,6 +107,41 @@ describe('the Japanese build language', () => {
       expect(rendered.text, unit.ref).not.toBe('')
       expect(unit.record.ex.grammar, unit.ref).toContain(unit.record.lb)
     }
+  })
+
+  it('gives every pattern a short text and a plain explanation, and rows show the short text', () => {
+    const explanations = JSON.parse(onDisk(EXPLANATIONS_FILE)).explanations as Record<string, string>
+    const banned = /nonpast|predicate|copula|nominali[sz]|modifier|direct object|topic marker|subject marker|volitional|conjunctive|auxiliary|\bN\b|\bV\b/i
+    const grammar = [...catalog.units.values()].filter(unit => unit.kind === 'grammar')
+    expect(grammar).toHaveLength(108)
+    expect(pack.missingExplanations).toEqual([])
+    for (const unit of grammar) {
+      if (unit.kind !== 'grammar') continue
+      const { st, ds, pt, id } = unit.record
+      expect(st, pt).toBeTruthy()
+      expect(grammarLabel(pt, unit.record.lb, st), pt).toBe(st + ' (gr.)')
+      expect(ds, pt).toBe(explanations[id])
+      expect([...ds].length, ds).toBeLessThanOrEqual(60)
+      const lowered = ds.replace("A's B", "a's b") // the brief's own wording for 'の'
+      expect(lowered, ds).toBe(lowered.toLowerCase())
+      expect(ds.endsWith('.'), ds).toBe(false)
+      expect(ds, ds).not.toMatch(banned)
+    }
+    expect(Object.keys(explanations).sort()).toEqual(grammar.map(unit => unit.kind === 'grammar' ? unit.record.id : '').sort())
+    expect(JSON.parse(onDisk(SHORT_TEXTS_FILE)).shortTexts).toBeTypeOf('object')
+  })
+
+  it('applies the phrase corrections', () => {
+    const phrases = new Map(pack.phrases.map(phrase => [phrase.id, phrase]))
+    expect(phrases.get(135)).toMatchObject({ zh: '今年は二千二十六年です。', words: expect.arrayContaining(['kotoshi--this-year']) })
+    expect(phrases.get(135)!.words).not.toContain('kyou--today')
+    expect(phrases.get(781)!.tokens![0]).toMatchObject({ word: 'haha--mother', text: 'お母さん', reading: 'おかあさん' })
+    expect(phrases.get(412)!.tokens!.filter(token => token.grammar === 'num-counter--number' && token.text === '人')).toHaveLength(1)
+    expect(phrases.get(412)!.words).not.toContain('hito--person')
+    const hachihyaku = phrases.get(593)!.tokens!.filter(token => token.word === 'hyaku--hundred')
+    expect(hachihyaku).toEqual([{ word: 'hyaku--hundred', text: '八百', reading: 'はっぴゃく' }])
+    expect(pack.phrases.some(phrase => phrase.tokens!.some(token => token.word === 'hito--person' && token.text === '人'))).toBe(false)
+    for (const phrase of pack.phrases) for (const token of phrase.tokens!) expect(['猫', '犬'], phrase.id + '').not.toContain(token.text)
   })
 
   it('has a phrase index and no practice dataset (the dataset is empty, not an error)', async () => {

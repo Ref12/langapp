@@ -3,7 +3,8 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { jaMeta, zhMeta } from '../language/meta'
 import type { PackForm } from '../language/pack-data'
-import { activeDisplayForm, formOptionLabel, formRows, headwordFor } from './display'
+import { tokensToRomaji } from '../reading/romaji'
+import { activeDisplayForm, formOptionLabel, formRows, headwordFor, readingParts } from './display'
 
 const table = (JSON.parse(readFileSync(join(process.cwd(), 'src/data/packs/ja/forms.generated.json'), 'utf8')) as { forms: PackForm[] }).forms
 const offer = jaMeta.displayForms!
@@ -97,5 +98,55 @@ describe('compound headwords and the する romaji split', () => {
     expect(headwordFor(offer, 'dict', { ch: '勉強する', pr: 'べんきょうする', cl: 'suru-compound' }).parts).toEqual(['べんきょう', 'する'])
     expect(headwordFor(offer, 'masu', { ch: '食べる', pr: 'たべる', cl: 'ichidan' }).parts).toBeUndefined()
     expect(formRows(offer, table, study).find(row => row.id === 'masu')?.parts).toEqual(['べんきょう', 'します'])
+  })
+})
+
+describe('the romaji of a form that is more than one word', () => {
+  const overrides = {}
+  const romajiOf = (record: ReturnType<typeof word>, form: string) => {
+    const row = formRows(offer, table, record).find(item => item.id === form)!
+    return tokensToRomaji((row.parts ?? [row.reading]).map(reading => ({ reading })), overrides)
+  }
+  const cold = word('寒い', 'さむい', 'i-adj')
+  it('writes a する compound with its endings apart where Japanese romanization does', () => {
+    expect(romajiOf(study, 'masu')).toBe('benkyou shimasu')
+    expect(romajiOf(study, 'tai-polite')).toBe('benkyou shitai desu')
+    expect(romajiOf(study, 'nakereba')).toBe('benkyou shinakereba narimasen')
+    expect(romajiOf(study, 'naide-kudasai')).toBe('benkyou shinaide kudasai')
+    expect(romajiOf(study, 'te-kudasai')).toBe('benkyou shite kudasai')
+    expect(romajiOf(study, 'teimasu')).toBe('benkyou shite imasu')
+    expect(romajiOf(study, 'teimasen')).toBe('benkyou shite imasen')
+    expect(romajiOf(study, 'teiru')).toBe('benkyou shite iru')
+    expect(romajiOf(study, 'te-kimashita')).toBe('benkyou shite kimashita')
+    expect(romajiOf(study, 'masendeshita')).toBe('benkyou shimasen deshita')
+  })
+  it('keeps one word one word', () => {
+    expect(romajiOf(study, 'potential-masu')).toBe('benkyou dekimasu')
+    expect(romajiOf(study, 'mashita')).toBe('benkyou shimashita')
+    expect(romajiOf(study, 'masen')).toBe('benkyou shimasen')
+    expect(romajiOf(eat, 'masu')).toBe('tabemasu')
+    expect(romajiOf(eat, 'potential-masu')).toBe('taberaremasu')
+    expect(formRows(offer, table, eat).find(row => row.id === 'masu')?.parts).toBeUndefined()
+  })
+  it('splits other verbs and the adjectives at the table\'s break points', () => {
+    expect(romajiOf(eat, 'tai-polite')).toBe('tabetai desu')
+    expect(romajiOf(eat, 'te-kudasai')).toBe('tabete kudasai')
+    expect(romajiOf(cold, 'adj-neg-polite')).toBe('samukunai desu')
+    expect(romajiOf(cold, 'adj-neg-polite-arimasen')).toBe('samuku arimasen')
+    expect(romajiOf(cold, 'adj-past-neg-polite-arimasen')).toBe('samuku arimasen deshita')
+    expect(romajiOf(cold, 'adj-past-polite')).toBe('samukatta desu')
+    expect(romajiOf(cold, 'adj-past-neg-polite')).toBe('samukunakatta desu')
+    expect(romajiOf(cold, 'adj-neg')).toBe('samukunai')
+  })
+  it('leaves the kana readings as they are', () => {
+    expect(formRows(offer, table, study).find(row => row.id === 'te-kudasai')?.reading).toBe('べんきょうしてください')
+    expect(formRows(offer, table, cold).find(row => row.id === 'adj-past-neg-polite')?.reading).toBe('さむくなかったです')
+  })
+  it('takes the break points from the forms table, in the headword too, and ignores ones that do not fit', () => {
+    const wide = { ...offer, choices: [...offer.choices, { id: 'te-kudasai', kinds: ['verb'] }] }
+    expect(headwordFor(wide, 'te-kudasai', study, table).parts).toEqual(['べんきょう', 'して', 'ください'])
+    expect(readingParts('ichidan', 'たべる', 'たべています', ['います'])).toEqual(['たべて', 'います'])
+    expect(readingParts('ichidan', 'たべる', 'たべます', ['います'])).toBeUndefined()
+    expect(readingParts('ichidan', 'たべる', 'たべる', undefined)).toBeUndefined()
   })
 })
