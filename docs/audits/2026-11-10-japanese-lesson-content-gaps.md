@@ -49,7 +49,7 @@ Written by `node scripts/generate-pack-ja.mjs --report`. Nothing here is fixed i
 
 ### Lesson 15
 
-- Words introduced but used by none of its phrases: `ja-par-00013` 授業を受ける (attend class)
+- Words introduced but used by none of its phrases: `ja-par-00013` 授業を受ける (to attend class)
 
 ### Lesson 16
 

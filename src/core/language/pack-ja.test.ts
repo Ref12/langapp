@@ -224,7 +224,7 @@ describe('a conjugated word is one word in a named form', () => {
 
   it('builds the polite form of every verb in the catalog, with its reading', () => {
     const verbs = band.vocabulary.filter(item => item.cl && !['i-adj', 'i-adj-ii', 'na-adj'].includes(item.cl))
-    expect(verbs).toHaveLength(53)
+    expect(verbs).toHaveLength(54)
     for (const item of verbs) {
       const built = buildForm('ja', item.ch, item.cl!, 'masu', { reading: item.pr })
       expect(built?.surface, item.lb).toMatch(/ます$/)
