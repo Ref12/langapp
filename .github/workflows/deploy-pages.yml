@@ -77,26 +77,41 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment3.outputs.page_url || steps.deployment2.outputs.page_url || steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment5.outputs.page_url || steps.deployment4.outputs.page_url || steps.deployment3.outputs.page_url || steps.deployment2.outputs.page_url || steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
-      # GitHub's side sometimes never finishes a deployment (it stays in syncing_files; one that works takes under two minutes).
-      # So an attempt is given up after 5 minutes and a new deployment is made: up to three attempts, the last with the full 10 minutes.
+      # GitHub's side sometimes never finishes a deployment. Seen on 2026-11-10: one that works takes under half a minute (7 to 20 seconds),
+      # one that hangs stays in syncing_files for ever, and the next deployment for the same commit can finish at once.
+      # So an attempt is given up after 2 minutes and a new deployment is made: up to five attempts, the last with the full 10 minutes.
       - name: Deploy
         id: deployment
         continue-on-error: true
         uses: actions/deploy-pages@v4
         with:
-          timeout: 300000
+          timeout: 120000
       - name: Deploy (second attempt)
         id: deployment2
         if: steps.deployment.outcome == 'failure'
         continue-on-error: true
         uses: actions/deploy-pages@v4
         with:
-          timeout: 300000
+          timeout: 120000
       - name: Deploy (third attempt)
         id: deployment3
         if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 120000
+      - name: Deploy (fourth attempt)
+        id: deployment4
+        if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure' && steps.deployment3.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 120000
+      - name: Deploy (fifth attempt)
+        id: deployment5
+        if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure' && steps.deployment3.outcome == 'failure' && steps.deployment4.outcome == 'failure'
         uses: actions/deploy-pages@v4
