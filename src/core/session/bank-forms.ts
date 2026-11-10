@@ -49,7 +49,16 @@ export function phraseForms(context: FormContext, phrase: Pick<BankPhrase, 'word
 export const formOf = (catalog: Catalog, ref: string): string | undefined => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : undefined }
 
 /** The vocabulary word as the gap needs it: its label (which a sentence token's `word` carries), written form, reading, class and band. */
-const blankWord = (unit: VocabularyUnit) => ({ ref: unit.ref, label: unit.record.lb, ch: unit.record.ch, pr: unit.record.pr, cl: unit.record.cl, band: unit.band })
+const blankWord = (unit: VocabularyUnit, phrases?: ReadonlySet<string>) => ({ ref: unit.ref, label: unit.record.lb, ch: unit.record.ch, pr: unit.record.pr, cl: unit.record.cl, band: unit.band, phrase: phrases?.has(unit.record.lb) ?? false })
+/** The words the bank uses alone as a whole sentence (ありがとう, 大丈夫です): set phrases, not words that fill a slot in a sentence. */
+const setPhrases = (bank: readonly BankPhrase[]): Set<string> => {
+  const found = new Set<string>()
+  for (const phrase of bank) {
+    const content = (phrase.tokens ?? []).filter(token => token.punctuation === undefined)
+    if (content.length === 1 && content[0].word !== undefined) found.add(content[0].word)
+  }
+  return found
+}
 
 /** The tokens of each accepted wording with their readings, for a pack that marks a typed or built sentence by them (the pack's `spell`); undefined when it marks by the text alone. */
 function spelledAccepted(context: FormContext, phrase: BankPhrase, accepted: readonly string[]): (SpelledToken[] | undefined)[] | undefined {
@@ -106,7 +115,8 @@ export function buildGap(slot: Slot, phrase: BankPhrase, targetRef: string, cont
   const target = context.catalog.units.get(targetRef)
   if (target?.kind !== 'vocabulary') return undefined
   const rng = rngFor(context, slot.id)
-  const blanked = getPack().blank({ sentence: phrase.zh, tokens: phrase.tokens, surface: label => formOf(context.catalog, unitRef('vocabulary', label)), target: blankWord(target), known: context.knownUnits.map(blankWord), rng, shuffle })
+  const phrases = setPhrases(context.bank)
+  const blanked = getPack().blank({ sentence: phrase.zh, tokens: phrase.tokens, surface: label => formOf(context.catalog, unitRef('vocabulary', label)), target: blankWord(target, phrases), known: context.knownUnits.map(unit => blankWord(unit, phrases)), rng, shuffle })
   if (!blanked) return undefined
   const options = shuffle([blanked.answer, ...blanked.wrong], rng)
   return { ...slot, form: 'gap', sentence: phrase.zh, gapped: blanked.gapped, options, answer: options.indexOf(blanked.answer), translation: phrase.en, explanation: `${phrase.zh} (${phrase.py}): ${phrase.en}` }

@@ -139,8 +139,19 @@ export const japaneseDistractors = (rule: Rule, tiles: readonly string[]): strin
 const SENTENCE_GAP = '\uFF3F\uFF3F'
 /** What a vocabulary word is, as far as the data says: its conjugation class's kind (verb, i-adj, na-adj), else "no class" (the data does not say a noun from an adverb). */
 const kindOf = (rule: Rule, cls: string | undefined): string => cls ? kindOfClass(rule.language, cls) ?? cls : 'no-class'
+/** How near another kind of word is to a noun or pronoun (a word with no class: the data does not tell a noun from a pronoun or an adverb, so they are one group). Unlisted kinds are the farthest. */
+const NEAREST_TO_NOUN = ['no-class', 'na-adj', 'i-adj', 'verb']
+/** The tier of a candidate for a gap, 0 the best: the answer's own kind; then the nearest kinds of single words; a set phrase only for a set-phrase gap, and a single word only as its last resort. */
+export function gapTier(rule: Rule, target: { cl?: string; phrase?: boolean }, unit: { cl?: string; phrase?: boolean }): number {
+  const want = kindOf(rule, target.cl), have = kindOf(rule, unit.cl)
+  if (target.phrase) return unit.phrase ? 0 : 1
+  if (unit.phrase) return 99
+  if (want === have) return 0
+  const at = NEAREST_TO_NOUN.indexOf(have)
+  return want === 'no-class' ? 1 + (at < 0 ? NEAREST_TO_NOUN.length : at) : 1
+}
 
-/** Where a word sits in a sentence: the token that carries it, blanked whole; the wrong options are words of the same kind in the form the token is in. */
+/** Where a word sits in a sentence: the token that carries it, blanked whole; the wrong options are words of the same kind as the answer (in the form the token is in); a word with no class falls back to the nearest kinds (gapTier). */
 export function blankJapanese(rule: Rule, input: BlankInput): Blanked | undefined {
   const { tokens, target } = input
   const at = tokens?.findIndex(token => token.word === target.label) ?? -1
@@ -162,15 +173,16 @@ export function blankJapanese(rule: Rule, input: BlankInput): Blanked | undefine
   const gapped = input.sentence.slice(0, start) + SENTENCE_GAP + input.sentence.slice(start + answer.length)
   const inside = new Set(tokens.flatMap(item => item.word !== undefined ? [item.word] : []))
   const used = new Set(tokens.map(item => item.text ?? (item.word !== undefined ? input.surface?.(item.word) : undefined)).filter((text): text is string => !!text))
-  const kind = kindOf(rule, target.cl)
   const band = Number(target.band)
   const shownIn = (unit: { ch: string; pr: string; cl?: string }): string | undefined => {
     if (!unit.cl || !token.form) return unit.ch
     return buildForm(rule.language, unit.ch, unit.cl, token.form, { reading: unit.pr })?.surface
   }
-  const pool = input.shuffle(input.known, input.rng).filter(unit => unit.ref !== target.ref && !inside.has(unit.label) && kindOf(rule, unit.cl) === kind)
+  // a word with a conjugation class keeps its rule (same kind, shown in the same form); a word without one (noun, pronoun, set phrase) takes the nearest kinds first (gapTier)
+  const classed = target.cl !== undefined
+  const pool = input.shuffle(input.known, input.rng).filter(unit => unit.ref !== target.ref && !inside.has(unit.label) && (!classed || kindOf(rule, unit.cl) === kindOf(rule, target.cl)))
     .flatMap(unit => { const shown = shownIn(unit); return shown && shown !== answer && !used.has(shown) ? [{ unit, shown }] : [] })
-    .sort((a, b) => Math.abs(Number(a.unit.band) - band) - Math.abs(Number(b.unit.band) - band) || Math.abs(a.shown.length - answer.length) - Math.abs(b.shown.length - answer.length))
+    .sort((a, b) => gapTier(rule, target, a.unit) - gapTier(rule, target, b.unit) || Math.abs(Number(a.unit.band) - band) - Math.abs(Number(b.unit.band) - band) || Math.abs(a.shown.length - answer.length) - Math.abs(b.shown.length - answer.length))
   const wrong: string[] = []
   for (const { shown } of pool) { if (wrong.length >= 3) break; if (!wrong.includes(shown)) wrong.push(shown) }
   return wrong.length < 2 ? undefined : { gapped, answer, wrong }

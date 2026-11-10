@@ -4,6 +4,10 @@ import { isParticle, normaliseTile, PARTICLE_SWAPS, PARTICLES, type ParticleLang
 
 export interface TilesGrade { correct: boolean; /** Tiles of the answer that sit where a different tile belongs. */ wrong: { position: number; given: string; expected?: string; particle: boolean }[]; messages: string[] }
 
+/** The notes of a wrong built sentence. The particle notes name the particle; the order note is for the same tiles in another order. */
+export const ORDER_NOTE = 'All the words are there, but the order is different.'
+export const PARTICLE_NOTE = 'A particle is missing, extra or in the wrong place.'
+
 /** Grades a built sentence by token order (spaces and punctuation ignored); an answer that is another listed wording counts too. */
 export function gradeTiles(language: ParticleLanguage, answer: readonly string[], accepted: readonly (readonly string[])[]): TilesGrade {
   const given = answer.map(normaliseTile).filter(Boolean)
@@ -17,10 +21,11 @@ export function gradeTiles(language: ParticleLanguage, answer: readonly string[]
     wrong.push({ position, given: given[position] ?? '', expected: model[position], particle })
   }
   const messages: string[] = []
+  const sameTiles = given.length === model.length && [...given].sort().join('|') === [...model].sort().join('|')
   const swapped = wrong.filter(item => item.particle && item.given && item.expected && isParticle(language, item.given) && isParticle(language, item.expected))
-  for (const item of swapped.slice(0, 2)) messages.push(`${item.given} ${PARTICLES[language][item.given]}, but here the sentence needs ${item.expected}, which ${PARTICLES[language][item.expected!]}.`)
-  if (!messages.length && wrong.some(item => item.particle)) messages.push('A particle is missing, extra or in the wrong place.')
-  if (!messages.length && given.length === model.length && [...given].sort().join('|') === [...model].sort().join('|')) messages.push('The words are right but the order is not.')
+  if (sameTiles) messages.push(ORDER_NOTE)
+  else for (const item of swapped.slice(0, 2)) messages.push(`${item.given} ${PARTICLES[language][item.given]}, but here the sentence needs ${item.expected}, which ${PARTICLES[language][item.expected!]}.`)
+  if (!messages.length && wrong.some(item => item.particle)) messages.push(PARTICLE_NOTE)
   return { correct: false, wrong, messages }
 }
 

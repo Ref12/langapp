@@ -35,7 +35,8 @@ export interface DistractorInput {
 }
 
 /** A vocabulary word as the gap needs it. */
-export interface BlankWord { ref: string; /** The word's label, which a sentence token's `word` carries. */ label: string; ch: string; pr: string; cl?: string; band: string | number }
+export interface BlankWord { ref: string; /** The word's label, which a sentence token's `word` carries. */ label: string; ch: string; pr: string; cl?: string; band: string | number
+  /** The word is a set phrase or whole expression (the bank uses it alone as a sentence), not a single word of a sentence. */ phrase?: boolean }
 export interface BlankInput {
   sentence: string
   tokens?: readonly SentenceToken[]

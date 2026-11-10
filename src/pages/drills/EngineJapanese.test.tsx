@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import * as speech from '../../core/assistant/speech'
@@ -44,5 +44,22 @@ describe('Practice questions in a Japanese build', () => {
     await userEvent.setup().click(screen.getByRole('button', { name: 'Hear it' }))
     expect(play).toHaveBeenCalledWith(expect.any(String), '\u79C1\u306F\u5B66\u751F\u3067\u3059', 'ja-JP', undefined)
     expect(text(view)).not.toMatch(/Chinese|pinyin/i)
+  })
+  it('Word order: the feedback after a wrong particle ends in one full stop, and a reversed order says the order is different', async () => {
+    const tiles = ['\u79C1', '\u306F', '\u5B66\u751F', '\u3067\u3059']
+    const place = async (order: string[]) => {
+      const view = show({ form: 'tiles', translation: 'I am a student.', tiles, distractors: ['\u304C'], shuffled: [0, 1, 2, 3, 4], accepted: [tiles.join('')], spelled: [tiles.map(text => ({ text, reading: text }))], model: tiles.join(''), explanation: '' })
+      const user = userEvent.setup()
+      for (const tile of order) await user.click(within(view.container.querySelector('.tile-bank, .tiles, [class*=bank]') as HTMLElement ?? view.container).getAllByRole('button', { name: tile })[0])
+      await user.click(screen.getByRole('button', { name: /Check answer/ }))
+      return view.container.querySelector('.answer-feedback p')?.textContent ?? ''
+    }
+    const wrongParticle = await place(['\u79C1', '\u304C', '\u5B66\u751F', '\u3067\u3059'])
+    expect(wrongParticle).toBe('Not the model answer. が marks the subject, often new information, but here the sentence needs は, which marks the topic.')
+    expect(wrongParticle).not.toMatch(/\.\./)
+    cleanup()
+    const reversed = await place([...tiles].reverse())
+    expect(reversed).toContain('All the words are there, but the order is different.')
+    expect(reversed).not.toMatch(/\.\.|particle/)
   })
 })

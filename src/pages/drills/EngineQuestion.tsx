@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getPack } from '../../core/language'
+import { joinNotes } from '../../core/language/note-text'
 import { zhPractice } from '../../core/language/practice-wording'
 import { Mic, PenLine, Type } from 'lucide-react'
 import { AnswerButton } from '../../components/AnswerButton'
@@ -71,7 +72,7 @@ function Tiles({ exercise, ctx, onDone }: { exercise: TilesItem; ctx: QuestionCo
     <TilesQuestionBridge exercise={shape} attempt={attempt && attemptOf(exercise, JSON.stringify(attempt.answer), correct === true)} ctx={ctx}
       submit={answer => setAttempt({ answer, grade: getPack().gradeSentence({ text: answer.join(''), placed: answer, accepted: exercise.accepted, spelled: exercise.spelled, forms: ctx.forms, optional: exercise.optional, english: exercise.translation }) })} next={() => onDone({ correct: correct === true })} />
     {grade && <div className={`notice answer-feedback engine-diff${correct ? ' success' : ''}`} role="status">
-      {correct ? (grade.alternative ? <p>Also correct. The model answer:</p> : null) : <p>{swapped ? `Word order: ${swapped.a} comes before ${swapped.b}.` : `Not the model answer.${grade.messages.length ? ' ' + grade.messages.join('; ') + '.' : ''}`}</p>}
+      {correct ? (grade.alternative ? <p>Also correct. The model answer:</p> : null) : <p>{swapped ? `Word order: ${swapped.a} comes before ${swapped.b}.` : `Not the model answer.${grade.messages.length ? ' ' + joinNotes(grade.messages) : ''}`}</p>}
       <p className="engine-answer-line"><span lang={getPack().learningTag}>{exercise.model}</span>{ctx.pinyin && exercise.modelPinyin ? <> <span className="small muted"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></span></> : null}</p></div>}
   </>
 }
@@ -143,7 +144,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
       {checked.pinyin?.verdict === 'tones' ? <p>{reading.nearNote} {checked.pinyin.syllables ? checked.pinyin.syllables.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>) : <ReadingText kana={checked.pinyin.kana ?? exercise.model} />} <span className="small muted">Counted as Needed a hint.</span></p>
       : checked.correct ? <p>{checked.meaning?.verdict === 'near' ? checked.meaning.note : checked.grade?.note ? <>{checked.grade.note}{checked.grade.written ? <> <span lang={getPack().learningTag}>{checked.grade.written}</span></> : null}</> : <>{checked.grade?.alternative ? 'Also correct. The model answer: ' : 'Correct: '}{pinyinMode && reading.marks ? <ReadingText kana={exercise.model} /> : <span lang={chinese ? getPack().learningTag : undefined}>{exercise.model}</span>}</>}</p>
       : checked.pinyin?.verdict === 'wrong' ? <><p>Not the reading.</p><p>{pack.practiceWording.readingIs} <strong><ReadingText kana={checked.pinyin.kana ?? exercise.model} /></strong>.</p></>
-        : <><p>{checked.grade ? (checked.grade.messages.length ? (checked.grade.differences.length === 1 && checked.grade.differences[0].kind === 'swapped' ? `Word order: ${(checked.grade.differences[0] as { a: string; b: string }).a} comes before ${(checked.grade.differences[0] as { a: string; b: string }).b}.` : `Differences: ${checked.grade.messages.join('; ')}.`) : 'Not the model answer.') : checked.meaning?.verdict === 'wrong' ? (checked.meaning.note ?? 'Not a meaning of this word.') : checked.meaning?.verdict === 'self' ? 'Partly right. Compare with the answer and mark it yourself.' : 'Compare with the answer and mark it yourself.'}</p>
+        : <><p>{checked.grade ? (checked.grade.messages.length ? (checked.grade.differences.length === 1 && checked.grade.differences[0].kind === 'swapped' ? `Word order: ${(checked.grade.differences[0] as { a: string; b: string }).a} comes before ${(checked.grade.differences[0] as { a: string; b: string }).b}.` : `Differences: ${joinNotes(checked.grade.messages)}`) : 'Not the model answer.') : checked.meaning?.verdict === 'wrong' ? (checked.meaning.note ?? 'Not a meaning of this word.') : checked.meaning?.verdict === 'self' ? 'Partly right. Compare with the answer and mark it yourself.' : 'Compare with the answer and mark it yourself.'}</p>
           <p>{chinese ? 'Closest answer: ' : 'Answer: '}<span lang={chinese ? getPack().learningTag : undefined}>{checked.grade?.closest ?? exercise.model}</span></p></>}
       {checked.grade?.ignored.length ? <p className="small muted">{checked.grade.ignored.join(', ')} left out or added: optional here.</p> : null}
       {exercise.modelPinyin && chinese && <p className="small"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></p>}

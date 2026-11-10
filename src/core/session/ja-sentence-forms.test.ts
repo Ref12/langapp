@@ -92,6 +92,59 @@ describe('Fill the gap', () => {
   })
 })
 
+describe('Word order: why it is wrong', () => {
+  const model = ['私', 'は', '学生', 'です']
+  const item = () => buildTiles(slot, find('私は学生です。'), context(1))!
+  const notes = (placed: string[]) => grade(item(), '', placed).messages.join(' ')
+  it('a fully reversed order with every tile used says the order is different, not that a particle is wrong', () => {
+    const text = notes([...model].reverse())
+    expect(text).toBe('All the words are there, but the order is different.')
+    expect(text).not.toMatch(/particle/)
+  })
+  it('the same tiles in any other order get that note', () => {
+    expect(notes(['学生', 'は', '私', 'です'])).toBe('All the words are there, but the order is different.')
+  })
+  it('a particle swapped for another (は for が) names the particle, not the order', () => {
+    const text = notes(['私', 'が', '学生', 'です'])
+    expect(text).toContain('が marks the subject, often new information, but here the sentence needs は, which marks the topic.')
+    expect(text).not.toMatch(/order is different/)
+  })
+  it('a missing particle says a particle is missing, extra or in the wrong place', () => {
+    expect(notes(['私', '学生', 'です'])).toBe('A particle is missing, extra or in the wrong place.')
+  })
+})
+
+describe('Fill the gap: options of one kind (lessons 1 to 4)', () => {
+  const gap = (zh: string, word: string, readyAt: number) => buildGap(slot, find(zh), 'vocabulary:' + word, context(readyAt)) as GapItem
+  const SET_PHRASES = ['大丈夫です', 'ありがとう', 'すみません', 'さようなら', 'どういたしまして']
+  it('＿＿は先生ですか: the wrong options are nouns and pronouns, not a set phrase', () => {
+    const item = gap('あなたは先生ですか。', 'anata--you', 4)
+    expect(item.gapped).toBe('＿＿は先生ですか。')
+    expect(item.options[item.answer]).toBe('あなた')
+    for (const option of item.options) expect(SET_PHRASES).not.toContain(option)
+    expect(new Set(item.options).size).toBe(4)
+  })
+  it('私は＿＿の先生です: the wrong options are nouns and pronouns, not a set phrase', () => {
+    const item = gap('私は中国語の先生です。', 'chuugokugo--chinese', 4)
+    expect(item.gapped).toBe('私は＿＿の先生です。')
+    expect(item.options[item.answer]).toBe('中国語')
+    for (const option of item.options) expect(SET_PHRASES).not.toContain(option)
+  })
+  it('the same on every shuffle seed of lessons 1 to 4', () => {
+    for (let seed = 1; seed < 12; seed++) {
+      const ctx = { ...context(4), seed }
+      const item = buildGap(slot, find('私は中国語の先生です。'), 'vocabulary:chuugokugo--chinese', ctx) as GapItem
+      for (const option of item.options) expect(SET_PHRASES).not.toContain(option)
+    }
+  })
+  it('a set-phrase gap takes set phrases for its wrong options first', () => {
+    const phrase = bank.find(item => item.tokens?.filter(token => token.punctuation === undefined).length === 1 && item.words.includes('arigatou--thank'))
+    if (!phrase) return
+    const item = buildGap(slot, phrase, 'vocabulary:arigatou--thank', context(99))
+    if (item) for (const option of item.options) expect([...SET_PHRASES, ...(option === item.options[item.answer] ? [option] : [])]).toContain(option)
+  })
+})
+
 describe('a typed Japanese sentence', () => {
   let item: TextItem
   beforeAll(() => { item = dictation('私は勉強します。') })
