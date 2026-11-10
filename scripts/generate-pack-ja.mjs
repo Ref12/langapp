@@ -12,7 +12,7 @@ export const PACK_DIR = 'src/data/packs/ja'
 export const REGISTRY_FILE = 'curriculum/japanese/authoring/pack-labels.json'
 export const GLOSSES_FILE = 'curriculum/japanese/authoring/pack-glosses.json'
 export const GROUP_PREFIX = 'ja-lesson-'
-export const ALIGNMENT = 'zh-hsk-1-lessons'
+export const ALIGNMENT = 'lessons-1'
 const LABEL = /^[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/
 const MAX_EXAMPLES = 3
 
