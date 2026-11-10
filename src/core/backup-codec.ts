@@ -13,6 +13,7 @@ import { collectionsBackupSchema, type CollectionsBackup } from './collections/c
 import { librarySchema, type LibraryBook } from './library/contracts'
 import { pinyinFormatSchema } from './pinyin'
 import { chineseBackup } from './chinese-only'
+import { isLanguageLessonId, isLanguageRef } from './language-ref'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()
@@ -43,6 +44,11 @@ export const workspaceSchema = z.object({
     dictionaryScope: z.enum(['all', 'knowledge']).optional(),
     characterWriteFilter: z.enum(['all', 'can', 'not']).optional(),
     pinyinFormat: pinyinFormatSchema.optional(),
+    // Set by the Japanese and Korean tracks (main); this build never reads them, it carries them.
+    currentLanguage: z.string().regex(/^[a-z]{2,3}$/).optional(),
+    startedTracks: z.array(z.enum(['ja', 'ko'])).max(2).optional(),
+    otherLanguageCards: z.enum(['off', 'ja', 'ko', 'both']).optional(),
+    japaneseReading: z.enum(['romaji', 'kana']).optional(),
   }).strict(),
   words: z.array(z.object({
     wordId: z.string(), language: z.literal('zh-Hans'), introducedAt: time, introducedFrom: z.string().max(200),
@@ -104,7 +110,7 @@ export function validateStudy(study: StudyBackup) {
   unique(study.sessions.map(session => session.id), 'exercise sessions')
   unique(study.attempts.map(attempt => attempt.id), 'exercise answers')
   for (const entry of study.knowledge) {
-    if (entry.ref !== `${entry.kind}:${entry.lb}`) throw new BackupValidationError('Backup knowledge entry has inconsistent labels.')
+    if (!isLanguageRef(entry.ref) && entry.ref !== `${entry.kind}:${entry.lb}`) throw new BackupValidationError('Backup knowledge entry has inconsistent labels.')
   }
   const known = new Set(study.knowledge.map(entry => entry.ref))
   for (const card of study.cards) {
@@ -138,7 +144,7 @@ function unique(values: unknown[], label: string) {
 }
 
 function validateLessonReference(id: string) {
-  if (!retiredLessonIds.includes(id)) getLesson(id)
+  if (!retiredLessonIds.includes(id) && !isLanguageLessonId(id)) getLesson(id)
 }
 
 export function validateAssistant(assistant: AssistantBackup) {

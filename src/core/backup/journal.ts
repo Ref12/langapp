@@ -3,7 +3,7 @@ import { emptySchedulingState, schedule, type Rating } from '../study/fsrs'
 import { cardId, type ExerciseAttempt, type KnowledgeEntry, type StudyCard } from '../study/contracts'
 import { normalizeCharacterState, type CharacterState } from '../characters/contracts'
 import { omit } from '../omit'
-import { isForeignEvent } from '../chinese-only'
+import { isLanguageRef } from '../language-ref'
 
 // The journal is a top-level YAML sequence with one flow-style event per line,
 // so appending lines keeps a segment valid YAML. Segments are monthly files.
@@ -115,13 +115,12 @@ export function replayFrom(base: { knowledge: KnowledgeEntry[]; cards: StudyCard
 /** Applies events to state in order. Mutates and returns it. Word attempts and phrase history are records only. */
 export function replay(events: JournalEvent[], state: ReplayState = emptyReplayState()): ReplayState {
   for (const event of events) {
-    if (isForeignEvent(event)) continue // another language's event: carried in the log untouched, never replayed here
     const at = ms(event.t)
     switch (event.op) {
       case 'add': {
         const ref = String(event.ref)
         if (state.knowledge.has(ref)) break
-        const [kind, lb] = ref.split(':') as ['vocabulary' | 'grammar' | 'source', string]
+        const [kind, lb] = (isLanguageRef(ref) ? [ref.split(':')[1] === 'g' ? 'grammar' : 'vocabulary', ref.split(':').slice(2).join(':')] : ref.split(':')) as ['vocabulary' | 'grammar' | 'source', string]
         state.knowledge.set(ref, { ref, kind, lb, band: String(kind === 'source' ? 6 : event.band) as KnowledgeEntry['band'], addedAt: at, source: event.source === 'dictionary' ? 'dictionary' : 'new' })
         const id = cardId(ref, 'reading')
         if (!state.cards.has(id)) state.cards.set(id, { id, ref, domain: 'reading', ...emptySchedulingState(at), updatedAt: at })

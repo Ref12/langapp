@@ -5,7 +5,7 @@ import { clearUnsavedDrafts } from '../assistant/drafts'
 import { speechConnectionSchema } from '../assistant/speech-contracts'
 import { configureDatabaseForProfile, db, LearningDatabase, profileDatabaseName, resetDatabaseForTests } from '../database'
 import { omit } from '../omit'
-import { chineseRows, chineseSnapshot } from '../chinese-only'
+import { chineseSnapshot } from '../chinese-only'
 import { readSettingsRows } from './read-snapshot'
 import { knowledgeCards, readCollectionsState, richerCard } from '../collections/snapshot'
 import { createEmptyProfile, endpointsFromSettings, parseProfileYaml, serializeProfileYaml } from './codec'
@@ -166,7 +166,7 @@ export async function readSnapshot(database: LearningDatabase, profile: ProfileM
         characterStates: await database.characterStates.toArray(),
         study: {
           knowledge: knownEntries, cards: knowledgeCards(await database.studyCards.toArray(), new Set(knownEntries.map(entry => entry.ref))),
-          sessions: await database.exerciseSessions.toArray(), attempts: chineseRows(await database.exerciseAttempts.toArray()),
+          sessions: await database.exerciseSessions.toArray(), attempts: await database.exerciseAttempts.toArray(),
         },
       },
       conversations: {

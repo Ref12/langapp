@@ -1,4 +1,5 @@
 import wordLabels from '../../data/v2/profile-word-labels.generated.json'
+import { isLanguageRef } from '../language-ref'
 import { cardId, parseUnitRef, unitRef } from '../study/contracts'
 import { type ProfileSnapshot, type ProfileYaml } from './contracts'
 
@@ -36,12 +37,14 @@ export function toProfileYaml(snapshot: ProfileSnapshot): ProfileYaml {
       study: {
         ...knowledge.study,
         knowledge: knowledge.study.knowledge.map(({ ref, ...entry }) => {
+          // A language row keeps its ref (first key); a Chinese row is exactly what it always was.
+          if (isLanguageRef(ref)) return { ref, ...entry }
           if (ref !== unitRef(entry.kind, entry.lb)) throw new Error('The knowledge entry has inconsistent labels.')
           return entry
         }),
         cards: knowledge.study.cards.map(({ id, ref, ...card }) => {
           if (id !== cardId(ref, card.domain)) throw new Error('The study card has inconsistent labels.')
-          return { ...card, ...parseUnitRef(ref) }
+          return isLanguageRef(ref) ? { ref, ...card } : { ...card, ...parseUnitRef(ref) }
         }),
       },
     },
@@ -66,9 +69,9 @@ export function fromProfileYaml(snapshot: ProfileYaml): ProfileSnapshot {
       })),
       study: {
         ...knowledge.study,
-        knowledge: knowledge.study.knowledge.map(entry => ({ ...entry, ref: unitRef(entry.kind, entry.lb) })),
-        cards: knowledge.study.cards.map(({ kind, lb, ...card }) => {
-          const ref = unitRef(kind, lb)
+        knowledge: knowledge.study.knowledge.map(entry => ({ ...entry, ref: entry.ref ?? unitRef(entry.kind, entry.lb) })),
+        cards: knowledge.study.cards.map(({ kind, lb, ref: explicit, ...card }) => {
+          const ref = explicit ?? unitRef(kind!, lb!)
           return { ...card, ref, id: cardId(ref, card.domain) }
         }),
       },

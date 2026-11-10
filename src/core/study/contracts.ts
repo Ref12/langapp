@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { isLanguageRef } from '../language-ref'
 
 // Knowledge set, spaced-repetition cards and AI-generated exercise sessions
 // over the v2 Chinese curriculum. Units are referenced by kind and v2 label.
@@ -10,15 +11,19 @@ export const unitLabelSchema = z.string().min(1).max(200).regex(/^[a-z][a-z0-9]*
 export const unitKindSchema = z.enum(['vocabulary', 'grammar'])
 // `phrase:` refs name a collection's free phrase (see core/collections); they have no curriculum record.
 // `source:` refs name an entry drawn from a media source (see core/media/entries); it has no curriculum record either.
-export const unitRefSchema = z.string().regex(/^(?:vocabulary|grammar|phrase|source):[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
+export const unitRefSchema = z.string().regex(/^(?:(?:vocabulary|grammar|phrase|source):|(?:ja|ko):[wg]:)[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
+// A language ref (ja:w:..., ko:g:..., ja:f:<lemma>:<form>, or a language this build does not know) is stored as it is; its label is whatever follows the second colon. isLanguageRef is the one test.
+export const languageRefSchema = z.string().min(1).max(200).refine(isLanguageRef, 'A language reference is required')
+export const storedRefSchema = unitRefSchema.or(languageRefSchema)
 export const bandSchema = z.enum(['1', '2', '3', '4', '5', '6'])
 const timestamp = z.number().int().nonnegative()
 const id = z.string().min(1).max(200)
 
 export const knowledgeEntrySchema = z.object({
-  ref: unitRefSchema,
+  ref: storedRefSchema,
   kind: z.enum(['vocabulary', 'grammar', 'source']),
-  lb: unitLabelSchema,
+  /** A curriculum label; for a language ref, the part after its second colon. For Chinese rows ref = kind:lb (checked with the ref). */
+  lb: unitLabelSchema.or(z.string().min(1).max(200)),
   /** Source entries sit beyond the curriculum bands and use '6'. */
   band: bandSchema,
   addedAt: timestamp,
@@ -27,7 +32,7 @@ export const knowledgeEntrySchema = z.object({
 
 export const studyCardSchema = z.object({
   id: z.string().min(1).max(260),
-  ref: unitRefSchema,
+  ref: storedRefSchema,
   domain: z.enum(STUDY_DOMAINS),
   due: timestamp,
   stability: z.number().nonnegative(),
