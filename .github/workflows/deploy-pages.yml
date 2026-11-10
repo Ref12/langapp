@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,21 +29,81 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
-      - name: Test published app and supported curricula
-        run: npm run test:pages
+
+  # The published-app tests, in four shards that run side by side. The scripts/v2-all-bands integration test stays excluded, as in npm run test:pages.
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+      - name: Test published app and supported curricula (shard ${{ matrix.shard }}/4)
+        run: npx vitest run --maxWorkers=4 --exclude scripts/v2-all-bands.integration.test.ts --shard=${{ matrix.shard }}/4
+
+  build-lab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
       - name: Build the app (with PWA manifest and service worker)
         env:
           LANGAPP_BUILD_ID: ${{ github.sha }}
         run: npm run build
-      # The Japanese build of Lab: the same commit and build id, its own output folder, published at lab/ja/.
+      - name: Upload Lab build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-lab
+          path: dist
+          include-hidden-files: true
+          if-no-files-found: error
+
+  # The Japanese build of Lab: the same commit and build id, its own output folder, published at lab/ja/.
+  build-ja:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
       - name: Build the Japanese app (Lab, published at lab/ja/)
         env:
           LANGAPP_BUILD_ID: ${{ github.sha }}
           LANGAPP_LANGUAGE: ja
         run: npm run build:next -- --outDir dist-ja
+      - name: Upload Japanese build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-ja
+          path: dist-ja
+          include-hidden-files: true
+          if-no-files-found: error
 
-      # Checked out after Lab's lint and tests so they never see Stable's files.
-      # Stable is the same repository's `stable` branch, published at the site root.
+  # Stable is the same repository's `stable` branch, published at the site root.
+  build-stable:
+    runs-on: ubuntu-latest
+    steps:
       - name: Check that branch stable exists
         run: |
           if ! git ls-remote --exit-code --heads "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" stable >/dev/null; then
@@ -55,6 +115,12 @@ jobs:
           ref: stable
           path: stable-src
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: stable-src/package-lock.json
+
       - name: Build Stable (its build runs its own data checks and tsc)
         working-directory: stable-src
         run: |
@@ -63,6 +129,33 @@ jobs:
           LANGAPP_BUILD_ID=$(git rev-parse HEAD)
           export LANGAPP_BUILD_ID
           npm run build
+      - name: Upload Stable build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-stable
+          path: stable-src/dist
+          include-hidden-files: true
+          if-no-files-found: error
+
+  assemble:
+    runs-on: ubuntu-latest
+    needs: [lint, test, build-lab, build-ja, build-stable]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-lab
+          path: dist
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-ja
+          path: dist-ja
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-stable
+          path: stable-src/dist
+
       - name: Assemble the site (Stable at the root, Lab under lab/, Lab Japanese under lab/ja/)
         run: node scripts/assemble-site.mjs stable-src/dist dist site ja=dist-ja
 
@@ -79,7 +172,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment5.outputs.page_url || steps.deployment4.outputs.page_url || steps.deployment3.outputs.page_url || steps.deployment2.outputs.page_url || steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: assemble
     steps:
       # GitHub's side sometimes never finishes a deployment. Seen on 2026-11-10: one that works takes under half a minute (7 to 20 seconds),
       # one that hangs stays in syncing_files for ever, and the next deployment for the same commit can finish at once.
