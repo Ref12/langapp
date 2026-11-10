@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { afterEach, beforeAll, describe, expect, it } from 'vitest'
-import { buildJaPack, gapsMarkdown, REGISTRY_FILE, SHORT_TEXTS_FILE, EXPLANATIONS_FILE } from '../../../scripts/generate-pack-ja.mjs'
+import { buildJaPack, checkGaps, gapsMarkdown, REGISTRY_FILE, SHORT_TEXTS_FILE, EXPLANATIONS_FILE } from '../../../scripts/generate-pack-ja.mjs'
 import { setBuildLanguageForTests } from '../storage-names'
 import { loadCatalog, renderExample, resetCatalogCache, catalogBandList, catalogCounts, type BandData, type Catalog } from '../study/catalog'
 import { unitLabelSchema, unitRef } from '../study/contracts'
@@ -140,6 +140,26 @@ describe('the Japanese build language', () => {
     expect(hachihyaku).toEqual([{ word: 'hyaku--hundred', text: '八百', reading: 'はっぴゃく' }])
     expect(pack.phrases.some(phrase => phrase.tokens!.some(token => token.word === 'hito--person' && token.text === '人'))).toBe(false)
     for (const phrase of pack.phrases) for (const token of phrase.tokens!) expect(['猫', '犬'], phrase.id + '').not.toContain(token.text)
+  })
+
+  it('closes the content gaps: every one is closed or accepted with a reason', () => {
+    expect(checkGaps(pack.gaps, pack.accepted)).toEqual({ unaccepted: [], stale: [] })
+    expect(pack.skippedGrammar).toEqual([])
+  })
+
+  it('applies the lesson-list corrections: Japanese-only phrases, rewritten sentences, retagged patterns', () => {
+    const phrases = new Map(pack.phrases.map(phrase => [phrase.id, phrase]))
+    const added = JSON.parse(onDisk('curriculum/japanese/authoring/pack-added-phrases.json')).phrases
+    expect(added.map((item: { id: number }) => item.id)).toEqual([818, 819, 820, 821, 822])
+    for (const item of added) { expect(item.extra).toBe(true); expect(item.zh).toBeUndefined(); expect(phrases.get(item.id)!.readyAt).toBeLessThanOrEqual(item.lesson) }
+    expect(phrases.get(117)).toMatchObject({ zh: '私はちょっと寒いと感じます。', words: expect.arrayContaining(['kanjiru--feel']) })
+    expect(phrases.get(163)!.zh).toBe('昼間は働いて、夜は休みます。')
+    expect(phrases.get(167)!.zh).toBe('今日は出勤します。')
+    expect(phrases.get(480)!.zh).toBe('私はこの本が面白いと思います。')
+    // the wrong <time> + に tags of 3.4a: に after a place or a person is not a time
+    for (const id of [151, 153, 430, 438, 687]) expect(phrases.get(id)!.grammar, String(id)).not.toContain('time-ni--at')
+    // ja-n4-g042 (plain ている) is on sentences that have the plain ている, not on polite ています
+    for (const phrase of pack.phrases) if ((phrase.grammar ?? []).includes('v-teiru--resulting')) expect(phrase.tokens!.some(token => token.form === 'teiru'), String(phrase.id)).toBe(true)
   })
 
   it('has a phrase index and no practice dataset (the dataset is empty, not an error)', async () => {
