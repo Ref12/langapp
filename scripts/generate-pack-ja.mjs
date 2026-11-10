@@ -354,7 +354,7 @@ export function buildJaPack(base = defaultRoot) {
   // ---- the content gaps (--report) ----
   const phrasesOf = number => (lessons.find(l => l.number === number)?.phrases ?? [])
   const formsOfPattern = new Map()
-  for (const [id, spec] of Object.entries(rules.forms)) for (const kind of spec.group.flatMap(kindsOfGroup)) { const unit = engine.grammarOf(id, REPRESENTATIVE[kind]); if (unit) { if (!formsOfPattern.has(unit)) formsOfPattern.set(unit, new Set()); formsOfPattern.get(unit).add(id) } }
+  for (const [id, spec] of Object.entries(rules.forms)) for (const kind of spec.group.flatMap(kindsOfGroup).filter(item => item !== 'noun')) { const unit = engine.grammarOf(id, REPRESENTATIVE[kind]); if (unit) { if (!formsOfPattern.has(unit)) formsOfPattern.set(unit, new Set()); formsOfPattern.get(unit).add(id) } }
   const titleOf = id => { try { return nameOf(id).name } catch { return index.grammar.get(id)?.pattern ?? id } }
   const patternTitle = id => '`' + id + '` ' + titleOf(id)
   const gaps = lessons.map(lesson => {

@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { afterEach, beforeAll, describe, expect, it } from 'vitest'
-import { buildJaPack, REGISTRY_FILE } from '../../../scripts/generate-pack-ja.mjs'
+import { buildJaPack, gapsMarkdown, REGISTRY_FILE } from '../../../scripts/generate-pack-ja.mjs'
 import { setBuildLanguageForTests } from '../storage-names'
 import { loadCatalog, renderExample, resetCatalogCache, catalogBandList, catalogCounts, type BandData, type Catalog } from '../study/catalog'
 import { unitLabelSchema, unitRef } from '../study/contracts'
@@ -29,6 +29,10 @@ describe('the Japanese pack generator', () => {
       expect(again.files.get(path) === text, path + ' is deterministic').toBe(true)
       expect(onDisk(path) === text, path + ' equals the committed file').toBe(true)
     }
+  })
+
+  it('has a content-gaps report that equals the committed one', () => {
+    expect(gapsMarkdown(pack)).toBe(onDisk('docs/audits/2026-11-10-japanese-lesson-content-gaps.md'))
   })
 
   it('keeps a label registry that agrees with the data, with valid unique labels', () => {
