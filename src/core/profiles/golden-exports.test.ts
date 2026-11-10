@@ -119,10 +119,10 @@ function listGolden(dir = GOLDEN): string[] {
   }).sort()
 }
 
-/** Compares as bytes; on a difference fails with the changed lines. */
-function expectGolden(name: string, actual: string) {
+/** Compares as bytes; on a difference fails with the changed lines. Only the export test (writable) may regenerate a file: round-trip tests never do. */
+function expectGolden(name: string, actual: string, writable = false) {
   const path = goldenPath(name)
-  if (UPDATE) { mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, actual) }
+  if (UPDATE && writable) { mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, actual) }
   expect(existsSync(path), name + ' is missing; regenerate with LINGUAWEAVE_UPDATE_GOLDEN=1').toBe(true)
   const golden = readFileSync(path)
   expect(golden.includes(13), name + ' must be LF only').toBe(false)
@@ -159,9 +159,9 @@ describe('the seeded Chinese learner', () => {
 describe('golden exports', () => {
   it('writes every stored form exactly as the golden files hold it', async () => {
     const out = await exportAll(fixture)
-    expectGolden('backup.json', out.json)
-    expectGolden('profile.yaml', out.yaml)
-    for (const [path, text] of out.cloud) expectGolden('cloud/' + path, text)
+    expectGolden('backup.json', out.json, true)
+    expectGolden('profile.yaml', out.yaml, true)
+    for (const [path, text] of out.cloud) expectGolden('cloud/' + path, text, true)
     // no file may be missing from the repository's set, nor an old one left behind
     const expected = ['backup.json', 'profile.yaml', ...[...out.cloud.keys()].map(path => 'cloud/' + path)].sort()
     if (UPDATE) for (const stale of listGolden().filter(name => !expected.includes(name))) rmSync(goldenPath(stale))

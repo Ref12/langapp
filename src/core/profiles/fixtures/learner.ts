@@ -9,7 +9,11 @@ import type { PhraseHeard, UserPhrase } from '../../phrases/contracts'
 import type { SkillPractice } from '../../study/skill-map'
 import type { Exercise, ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from '../../study/contracts'
 import { createEmptyProfile } from '../codec'
-import type { ProfileSnapshot } from '../contracts'
+import { profileSnapshotSchema, type ProfileSnapshot } from '../contracts'
+import { drillSetSchema } from '../../drills/contracts'
+import { savedSudokuBoardSchema } from '../../games/sudoku-contracts'
+import { skillPracticeSchema } from '../../study/skill-map'
+import { phraseHeardSchema, userPhraseSchema } from '../../phrases/contracts'
 import { populatedProfile } from '../test-fixtures'
 import { LEARNER_CHARACTERS, LEARNER_GRAMMAR, LEARNER_VOCABULARY } from './learner-labels'
 
@@ -277,5 +281,12 @@ export function learnerFixture(): LearnerFixture {
   const phraseHeard: PhraseHeard[] = phrases.map((zh, n) => ({ zh, heard: n + 2, lastHeardAt: T0 - n * DAY }))
   const userPhrases: UserPhrase[] = [{ zh: '我想要一杯茶。', py: 'wǒ xiǎng yào yì bēi chá.', en: 'I would like a cup of tea.', words: ['vocabulary:' + LEARNER_VOCABULARY[0]], grammar: [], source: 'user', addedAt: T0 - 3 * DAY }]
   void iso
-  return { snapshot, journal, extras: { drillSets, sudokuBoards, skillPractice, phraseHeard, userPhrases } }
+  // Every object goes through its schema once, so its keys are in schema order: a file read from a golden export and written again has the same key order as the first export.
+  return {
+    snapshot: profileSnapshotSchema.parse(snapshot), journal,
+    extras: {
+      drillSets: drillSets.map(row => drillSetSchema.parse(row)), sudokuBoards: sudokuBoards.map(row => savedSudokuBoardSchema.parse(row)), skillPractice: skillPractice.map(row => skillPracticeSchema.parse(row)),
+      phraseHeard: phraseHeard.map(row => phraseHeardSchema.parse(row)), userPhrases: userPhrases.map(row => userPhraseSchema.parse(row)),
+    },
+  }
 }

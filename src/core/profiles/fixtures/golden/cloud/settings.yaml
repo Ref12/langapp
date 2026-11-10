@@ -19,7 +19,6 @@ settings:
         lang: en-US
         localService: true
     defaultSpeechRate: 0.75
-    pinyinFormat: marks-and-numbers
     speechDebugMessages: false
     sudokuAutoSpeak: true
     writingSpeech: stroke
@@ -36,6 +35,7 @@ settings:
     historyFilter: lessons
     dictionaryScope: knowledge
     characterWriteFilter: can
+    pinyinFormat: marks-and-numbers
   aiEndpoints:
     version: 1
     active: default
