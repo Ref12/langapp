@@ -28,8 +28,8 @@ export function pwa(channel: BuildChannel = 'lab', language: LanguageId = 'zh'):
     transformIndexHtml: (html = '') => {
       const tags = [{ tag: 'link', attrs: { rel: 'manifest', href: './manifest.webmanifest', crossorigin: 'use-credentials' }, injectTo: 'head' as const }]
       if (chinese) return tags
-      // Another language names itself in the title and <html lang>; Chinese keeps index.html as it is.
-      return { html: html.replace(/<title>[^<]*<\/title>/, '<title>' + appName + '</title>').replace(/<html lang="[^"]*"/, '<html lang="' + pack.htmlLang + '"'), tags }
+      // Another language names itself in the title, <html lang> and the description; Chinese keeps index.html as it is (its pack's description is the text index.html has).
+      return { html: html.replace(/<title>[^<]*<\/title>/, '<title>' + appName + '</title>').replace(/<html lang="[^"]*"/, '<html lang="' + pack.htmlLang + '"').replace(/(<meta name="description" content=")[^"]*"/, (_all, head: string) => head + pack.pageDescription + '"'), tags }
     },
     generateBundle(_options, bundle) {
       const precache = ['./', ...Object.keys(bundle).filter(name => /\.(js|css|html|svg)$/.test(name)).map(name => './' + name), './icon.svg']

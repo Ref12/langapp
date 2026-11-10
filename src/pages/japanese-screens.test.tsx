@@ -104,6 +104,18 @@ describe('screen text for a small seeded Japanese learner', () => {
     await db.knowledge.clear(); await db.studyCards.clear()
     await pin('practice-start', await screenText('practice', () => expect(screen.getByText('Learning from')).toBeInTheDocument()))
   })
+  it('Practice by skill, for a learner who knows some lessons', async () => {
+    const text = await screenText('practice', () => expect(screen.getByText('Practice by skill')).toBeInTheDocument())
+    // nothing of the Chinese-only extras: no model notice, no Hands-free or Classic links, no writing backlog
+    for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong', 'Characters to write']) expect(text).not.toContain(absent)
+    await pin('practice-by-skill', text)
+  })
+  it('The Ready page of a session, with the Writing preset', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'writing' })
+    await pin('practice-ready', await screenText(`practice/set/${id}`, () => expect(screen.getByRole('button', { name: 'Start session' })).toBeEnabled()))
+  })
   it('Practice: a typed-reading question', async () => {
     saveCustomPreset({ id: 'custom-reading', name: 'Reading only', forms: ['pinyin'], stages: ['recall'] })
     const id = await createDrillSet({ kind: 'new' })

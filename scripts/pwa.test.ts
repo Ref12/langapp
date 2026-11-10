@@ -1,6 +1,9 @@
 // @vitest-environment node
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { runInNewContext } from 'node:vm'
 import { describe, expect, it } from 'vitest'
+import { metaFor } from '../src/core/language/meta'
 import { pwa } from './pwa'
 
 type Emitted = { fileName: string; source: string }
@@ -164,5 +167,15 @@ describe('PWA plugin, language builds', () => {
     expect(ja.html).toContain('<title>LinguaWeave Lab Japanese</title>')
     expect(ja.html).toContain('<html lang="en"')
     expect(Array.isArray((pwa('lab', 'zh') as unknown as { transformIndexHtml: () => unknown }).transformIndexHtml())).toBe(true)
+  })
+
+  it('gives a language build its own description, from the pack; Chinese is the text index.html has', () => {
+    const index = readFileSync(join(process.cwd(), 'index.html'), 'utf8')
+    const meta = (html: string) => /<meta name="description" content="([^"]*)"/.exec(html)?.[1]
+    expect(metaFor('zh').pageDescription).toBe(meta(index))
+    const html = (language: 'ja' | 'ko') => (pwa('lab', language) as unknown as { transformIndexHtml: (html: string) => { html: string } }).transformIndexHtml(index).html
+    expect(meta(html('ja'))).toBe(metaFor('ja').pageDescription)
+    expect(meta(html('ja'))).not.toMatch(/Mandarin/)
+    expect(meta(html('ko'))).toBe(metaFor('ko').pageDescription)
   })
 })

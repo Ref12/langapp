@@ -34,6 +34,8 @@ export interface PracticeWording {
   drillTypes: Record<string, { name?: string; blurb?: string }>
   /** Titles of the older drill screen's question pages that name the language or its reading. */
   drillTitles: Record<string, string>
+  /** The one-line description of a built-in preset that names the language or its reading (an entry the pack does not override keeps the preset's own). */
+  presetBlurbs: Record<string, string>
 }
 
 const zhInstructions: Record<Form, string> = {
@@ -48,7 +50,7 @@ export const zhPractice: PracticeWording = {
   hideReadings: 'Hide pinyin', showReadings: 'Show pinyin',
   typeNative: 'Type the Chinese', replyNative: 'Your reply in Chinese', typeNativeOrReading: 'Type the Chinese, or its pinyin', nativeNote: 'Type Chinese characters or pinyin.',
   hearNative: 'Hear the Chinese', thinkOf: 'Think of the Chinese', listenTo: 'Listen to the Chinese', languageName: 'Chinese',
-  drillTypes: {}, drillTitles: {},
+  drillTypes: {}, drillTitles: {}, presetBlurbs: {},
 }
 
 /** The same wording for a language that has readings instead of pinyin: its name for "Chinese", "reading" for "pinyin". */
@@ -68,6 +70,7 @@ function readingLanguage(name: string, example: string, readingHelp: string): Pr
       read: { blurb: 'The same conversation as text with readings' },
     },
     drillTitles: { pinyin: 'Type the reading', translate: 'Translate into ' + name },
+    presetBlurbs: { writing: 'Produce ' + name + ': translate, dictation, word order, reading.' },
   }
 }
 

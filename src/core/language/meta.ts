@@ -8,6 +8,7 @@ import { kanaInput, pinyinInput, selfMarkedInput, type ReadingInput } from './re
 import { jaIdentity, koIdentity, zhIdentity, type PhraseIdentity } from './phrase-identity'
 import { zhWriting, jaWriting, koWriting, type PackWriting } from './writing'
 import { jaPractice, koPractice, zhPractice, type PracticeWording } from './practice-wording'
+import { jaPage, koPage, zhPage, type PracticePage } from './practice-page'
 
 /** The wording the screens use about the language; Chinese's values are the literal strings the screens had before packs. */
 export interface PackWording {
@@ -47,7 +48,7 @@ export interface PackReadingStyles {
 }
 
 /** What a pack says about a sentence's identity and its tiles (phrase-identity.ts): phraseKey(text) and segment(text, words). */
-export interface PackMeta extends PhraseIdentity {
+export interface PackMeta extends PhraseIdentity, PracticePage {
   id: LanguageId
   /** The language's English name, e.g. "Japanese". */
   name: string
@@ -87,15 +88,15 @@ const nothing = Object.fromEntries(AREAS.map(area => [area, false])) as Features
 
 export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4E2D\u6587', learningTag: 'zh-Hans', htmlLang: 'en', features: everything,
   wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', courseTracks: true, readings: 'pinyin', countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
-  writing: zhWriting, ...zhIdentity }
+  writing: zhWriting, ...zhIdentity, ...zhPage }
 export const jaMeta: PackMeta = { id: 'ja', name: jaTrack.name, nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: nothing,
   wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', courseTracks: false, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
-  writing: jaWriting, ...jaIdentity,
+  writing: jaWriting, ...jaIdentity, ...jaPage,
   displayForms: { language: 'ja', choices: [{ id: 'masu', kinds: ['verb'] }, { id: 'dict', kinds: [] }], default: 'masu', sample: { ch: '\u52C9\u5F37\u3059\u308B', pr: '\u3079\u3093\u304D\u3087\u3046\u3059\u308B', cl: 'suru-compound' } },
   readingStyles: { choices: ['kana', 'romaji'], default: 'kana', sample: ['\u3079\u3093\u304D\u3087\u3046', '\u3057\u307E\u3059'] } }
 export const koMeta: PackMeta = { id: 'ko', name: koTrack.name, nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: nothing,
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', courseTracks: false, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
-  writing: koWriting, ...koIdentity }
+  writing: koWriting, ...koIdentity, ...koPage }
 
 export const METAS: Record<LanguageId, PackMeta> = { zh: zhMeta, ja: jaMeta, ko: koMeta }
 

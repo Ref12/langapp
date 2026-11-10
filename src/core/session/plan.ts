@@ -3,7 +3,7 @@ import type { Headword, HeadwordRecord } from '../forms/display'
 import type { BankPhrase } from '../phrases/contracts'
 import { buildMatch, createRng, isVocabulary, matchGroups, MATCH_MODES, type VocabularyUnit } from '../study/local-exercises'
 import { buildChoiceItem, buildDictation, buildGap, buildListenPick, buildPinyinItem, buildRecall, buildRepeat, buildTiles, buildTranslate, type FormContext, type Slot } from './bank-forms'
-import { FUNCTION_CHARACTERS_LIST } from './function-characters'
+import { getPack } from '../language'
 import { LENGTH_FACTOR, estimateMinutes } from './presets'
 import { SentencePool } from './sentences'
 import type { DatasetSource } from './sources'
@@ -81,7 +81,7 @@ export function planSession(input: PlanInput): SessionPlan {
   const formOf = (ref: string) => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : undefined }
   const context: FormContext = {
     catalog, knownUnits, shownForm: input.shown ? unit => shownUnit(unit).record.ch : undefined, bank: input.allBank, seed: input.seed, extraAccepted: input.extraAccepted, extraAcceptedEnglish: input.extraAcceptedEnglish, extraOptional: input.extraOptional,
-    forms: new Set([...knownUnits.map(unit => unit.record.ch), ...FUNCTION_CHARACTERS_LIST]),
+    forms: new Set([...knownUnits.map(unit => unit.record.ch), ...getPack().functionWords]),
   }
   const pool = new SentencePool(input.bank, allowed, formOf)
   // An item that is the learner's own phrase is its own sentence, used by one exercise.

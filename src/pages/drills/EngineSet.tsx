@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getPack } from '../../core/language'
-import { activeDisplayForm, headwordFor, type HeadwordRecord } from '../../core/forms/display'
+import { activeDisplayForm } from '../../core/forms/display'
 import { useDisplaySettings } from '../../components/display-settings'
 import { drillText } from '../../core/language/practice-wording'
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react'
@@ -12,19 +12,18 @@ import { readingIndex } from '../../core/study/annotate'
 import { DRILLS_LABEL, DRILL_TYPES, type DrillSet } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { availability } from './tasks'
+import { drillTypeOffered } from '../../core/drills/offered'
 import type { ItemInfo } from '../../core/drills/items'
 import { createDrillSet, finishEngineRun, recordEngineResult, saveEngineAnswer, setEngineChoice, shortDate } from '../../core/drills/store'
 import { itemCount } from '../../core/collections/terms'
-import { planSession, estimateMinutes } from '../../core/session/plan'
-import { loadSessionBank } from '../../core/session/sources'
-import { loadPracticeData } from '../../core/practice-data'
-import { createDatasetSource, datasetAcceptance } from '../../core/session/dataset-source'
+import { estimateMinutes } from '../../core/session/plan'
+import { planSetSession } from '../../core/session/set-plan'
 import { BUILTIN_PRESETS, FORMS_BY_STAGE, SPOKEN_PRESETS } from '../../core/session/presets'
-import { loadCustomPresets, resolvePreset, saveCustomPreset } from '../../core/session/custom-preset'
+import { loadCustomPresets, saveCustomPreset } from '../../core/session/custom-preset'
 import { answerCurrent, currentExercise, currentStage, progressOf, replayRunner, skillsOf, summarise, type RunnerState } from '../../core/session/runner'
+import { isFormOffered } from '../../core/session/offered'
 import { formLabel } from '../../core/session/form-label'
 import { LENGTHS, LENGTH_LABEL, STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
-import { FUNCTION_CHARACTERS_LIST } from '../../core/session/function-characters'
 import { ExerciseQuestion, type Outcome } from './EngineQuestion'
 import { IntroCard } from './IntroCards'
 
@@ -45,13 +44,7 @@ function usePlan(set: DrillSet, items: ItemInfo[], catalog: Catalog, workspace: 
   useEffect(() => {
     let live = true
     void (async () => {
-      const allowed = new Set([...known, ...set.refs])
-      const bank = await loadSessionBank(catalog, items, allowed)
-      const preset = resolvePreset(engine.preset)
-      // The shipped dataset (empty until the full generation lands): an invalid band file is skipped, never fatal.
-      const { data } = await loadPracticeData()
-      const offer = getPack().displayForms
-      const built = planSession({ ...(offer && shownForm !== undefined ? { shown: (record: HeadwordRecord) => headwordFor(offer, shownForm, record) } : {}), intent: 'practice-set', items, length: engine.length, preset, seed: engine.seed, catalog, known, bank: bank.byItem, allBank: bank.all, ...datasetAcceptance(data), dataset: createDatasetSource({ data, catalog, seed: engine.seed, bank: bank.all }) })
+      const built = await planSetSession({ catalog, items, refs: set.refs, known, engine: { preset: engine.preset, length: engine.length, seed: engine.seed }, shown: shownForm })
       if (live) setPlan(built)
     })().catch(reason => { if (live) setError(reason instanceof Error ? reason.message : 'The session could not be planned.') })
     return () => { live = false }
@@ -65,7 +58,7 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
   const [custom, setCustom] = useState(() => loadCustomPresets())
   const [building, setBuilding] = useState(false)
   const content = effectiveContent(set)
-  const presets = [...BUILTIN_PRESETS.map(entry => ({ id: entry.id, name: entry.name, blurb: entry.blurb })), ...custom.map(entry => ({ id: entry.id, name: entry.name, blurb: 'Your own preset.' }))]
+  const presets = [...BUILTIN_PRESETS.map(entry => ({ id: entry.id, name: entry.name, blurb: getPack().practiceWording.presetBlurbs[entry.id] ?? entry.blurb })), ...custom.map(entry => ({ id: entry.id, name: entry.name, blurb: 'Your own preset.' }))]
   const active = presets.find(entry => entry.id === engine.preset) ?? presets[0]
   const resumable = !!engine.answers?.length && !!engine.planned && engine.done! < engine.planned
   const counts = plan ? plan.stages.filter(entry => entry.stage !== 'introduce').map(entry => ({ stage: entry.stage, count: entry.exercises.length })) : []
@@ -106,7 +99,7 @@ function PresetBuilder({ onSave }: { onSave: (preset: { id: string; name: string
   const [stages, setStages] = useState<Stage[]>(['introduce', 'recognise', 'recall', 'produce', 'use'])
   const [forms, setForms] = useState<Form[]>(['choice', 'recall', 'tiles', 'gap', 'translate-zh-en'])
   const toggle = <T,>(list: T[], value: T) => list.includes(value) ? list.filter(item => item !== value) : [...list, value]
-  const every = [...new Set(STAGES.flatMap(stage => FORMS_BY_STAGE[stage]))].filter(form => form !== 'intro')
+  const every = [...new Set(STAGES.flatMap(stage => FORMS_BY_STAGE[stage]))].filter(form => form !== 'intro' && isFormOffered(form, getPack()))
   return <fieldset className="engine-builder"><legend>Your own preset</legend>
     <label>Name<input value={name} maxLength={40} onChange={event => setName(event.target.value)} /></label>
     <div role="group" aria-label="Stages">{STAGES.map(stage => <label key={stage} className="toggle"><input type="checkbox" checked={stages.includes(stage)} onChange={() => setStages(toggle(stages, stage))} /> {STAGE_LABEL[stage]}</label>)}</div>
@@ -120,7 +113,7 @@ function SkillFocus({ set, items }: { set: DrillSet; items: ItemInfo[] }) {
   const content = effectiveContent(set)
   return <section className="panel dr-panel" aria-labelledby="engine-skill"><h2 id="engine-skill">Practise one skill</h2>
     <p className="small muted">One kind of exercise on its own, outside the session.</p>
-    <ul className="dr-rows">{DRILL_TYPES.map(entry => { const avail = availability(entry.id, items, content); const ready = avail.state === 'ready'
+    <ul className="dr-rows">{DRILL_TYPES.filter(entry => drillTypeOffered(entry, getPack())).map(entry => { const avail = availability(entry.id, items, content); const ready = avail.state === 'ready'
       return <li key={entry.id}><div><strong>{drillText(entry, getPack().practiceWording).name}</strong><span className="small muted">{ready ? drillText(entry, getPack().practiceWording).blurb : avail.message}</span></div>
         <span className="dr-actions">{ready ? <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Practise ${entry.name}`} title="Practise"><Play size={18} /></a> : <button type="button" className="icon-button" disabled aria-label={`${entry.name} is not available`}><Play size={18} /></button>}</span></li> })}</ul></section>
 }
@@ -133,7 +126,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   useEffect(() => { if (plan && !state) setState(replayRunner(plan, engine.answers ?? [])) }, [plan, state, engine.answers])
   const readings = useMemo(() => readingIndex([...new Set([...known, ...set.refs])].flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit] : [] })), [known, set.refs, catalog])
   const [pinyin, setPinyin] = useState(workspace.preferences.pinyin)
-  const forms = useMemo(() => new Set([...[...catalog.units.values()].flatMap(unit => unit.kind === 'vocabulary' && (known.has(unit.ref) || set.refs.includes(unit.ref)) ? [unit.record.ch] : []), ...FUNCTION_CHARACTERS_LIST]), [catalog, known, set.refs])
+  const forms = useMemo(() => new Set([...[...catalog.units.values()].flatMap(unit => unit.kind === 'vocabulary' && (known.has(unit.ref) || set.refs.includes(unit.ref)) ? [unit.record.ch] : []), ...getPack().functionWords]), [catalog, known, set.refs])
   const characters = useMemo(() => new Set([...forms].flatMap(form => Array.from(form))), [forms])
   const finished = useRef(false)
   const score = state ? summarise(state.log) : undefined

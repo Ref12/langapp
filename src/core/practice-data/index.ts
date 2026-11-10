@@ -88,6 +88,8 @@ export function createPracticeData(files: Partial<PracticeFiles> = {}): Practice
 export async function loadPracticeData(bands: readonly string[] = PRACTICE_BANDS): Promise<{ data: PracticeData; problems: string[] }> {
   const files: PracticeFiles = { accepted: [], exchanges: [], grammar: [], conversations: [] }
   const problems: string[] = []
+  // A pack without a dataset has no band files to ask for: nothing is requested.
+  if (!getPack().practice) return { data: createPracticeData(files), problems }
   const kinds = ['accepted', 'exchanges', 'grammar', 'conversations'] as const
   await Promise.all(bands.flatMap(band => kinds.map(async kind => {
     try { (files[kind] as unknown[]).push(...(await loadPracticeFile(kind, band))) } catch (reason) { problems.push(kind + ' hsk-' + band + ': ' + (reason instanceof Error ? reason.message.slice(0, 300) : String(reason))) }

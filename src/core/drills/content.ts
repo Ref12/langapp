@@ -1,4 +1,5 @@
 import { db } from '../database'
+import { getPack } from '../language'
 import { requestStructuredJSON } from '../ai/structured'
 import { judgeWith, reviewMaterial } from '../ai/check'
 import { loadCatalog, type Catalog } from '../study/catalog'
@@ -174,6 +175,8 @@ async function generate(setId: string, signal: AbortSignal): Promise<void> {
   const taken = Object.entries(sentences).filter(([ref, sentence]) => (!open || !sentence.unknown?.length) && !pending.some(item => item.ref === ref)).map(([, sentence]) => sentence.zh)
   const chosen = await pickSentences(catalog, pending, new Set([...knowledge.map(entry => entry.ref), ...set.refs]), taken)
   Object.assign(sentences, chosen)
+  // A pack whose prompts are not written yet (Japanese, Korean): the catalog's sentences are all there is. No connection is read and nothing is sent.
+  if (!getPack().modelExercises) { await patch(setId, content => ({ ...content, sentences, state: 'ready', error: undefined })); return }
   const allowed = allowedVocabulary(catalog, items, knowledge)
   const gaps = items.filter(item => isGap(item.ref) && item.kind !== 'phrase')
   const wantConversations = set.content.conversations.length === 0
