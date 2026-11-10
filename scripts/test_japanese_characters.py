@@ -13,7 +13,7 @@ from character_geometry import normalize_svg_path, sample_path
 from character_inventory import extract_inventory
 from import_japanese_characters import (
     APL, BLOCKED, FIRST_BATCH, LGPL, ROOT, SVG, animcjk_paths, build_records,
-    chosen_characters, classify, generate, kanjivg_paths, load_inputs, local_path,
+    app_characters, chosen_characters, classify, generate, kanjivg_paths, load_inputs, local_path,
     normalized_strokes, review_only_fish, source_path, svg_root,
 )
 
@@ -33,11 +33,14 @@ class JapaneseWritingTests(unittest.TestCase):
                 / f"{ord(character)}.svg").read_bytes()
 
     def test_authoritative_scope_and_batch_remain_distinct(self):
-        self.assertEqual(len(self.inventory["required"]), 2211)
+        self.assertEqual(len(self.inventory["required"]), 2233)
         self.assertEqual(self.inventory["components"], ["\u3099", "\u309a"])
         self.assertEqual(self.inventory["literal_cross_script"], list("\uff27\uff2b\uff2f\uff58"))
-        self.assertEqual(len(self.inventory["required"]) + len(self.inventory["components"]), 2213)
+        self.assertEqual(len(self.inventory["required"]) + len(self.inventory["components"]), 2235)
         self.assertEqual(set(chosen_characters(self.inventory, "first")), set(FIRST_BATCH))
+        self.assertEqual(set(chosen_characters(self.inventory, "full", ROOT)),
+                         set(self.inventory["required"]) | set(self.inventory["components"])
+                         | set(app_characters(ROOT)))
         self.assertEqual(set(chosen_characters(self.inventory, "full")),
                          set(self.inventory["required"]) | set(self.inventory["components"]))
         self.assertEqual(len(self.records), 34)
@@ -148,9 +151,12 @@ class JapaneseWritingTests(unittest.TestCase):
 
     def test_bundle_is_structurally_valid_but_not_complete_or_reviewed(self):
         coverage = validate_bundle(ROOT)
-        expected = (set(self.inventory["required"]) | set(self.inventory["components"])) - set(BLOCKED)
+        # The inventory plus the kanji the Japanese app shows (app-kanji.yaml, derived from its course and dictionary data).
+        expected = (set(self.inventory["required"]) | set(self.inventory["components"])
+                    | set(app_characters(ROOT))) - set(BLOCKED)
         self.assertEqual(coverage["drawable"], sorted(expected))
-        self.assertEqual(len(coverage["drawable"]), 2212)
+        self.assertEqual(len(coverage["drawable"]), 2236)
+        self.assertTrue({"\u5b09", "\u6905", "\u9903", "\u9eba"} <= set(coverage["drawable"]))
         self.assertEqual(coverage["validated"], coverage["drawable"])
         self.assertEqual(coverage["missing"], ["\u9c5d"])
         self.assertEqual(coverage["reviewed"], [])

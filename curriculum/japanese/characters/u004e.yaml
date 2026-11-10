@@ -1041,6 +1041,47 @@
       - 109
       - 109
       version: '1'
+乞:
+  default_variant: japanese-source
+  kind: character
+  script: Han
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/04e5e.svg
+      sha256: fb7983b85b60211844f60b8bc9030d609e5ed7e108b3d84e86d67fab30de8e0d
+      source_entry: kanji/04e5e.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M36.743119 10.091743 C36.807339 10.93578 36.798165 12.082569 36.394495 13.018349 C31.651376
+        23.853211 24.880734 34.513761 13.073394 45.412844
+    - path: M33.715596 25.229358 C36.697248 25.33945 38.706422 24.990826 41.183486 24.633028 C49.348624
+        23.46789 59.981651 22.018349 69.844037 20.12844 C72.697248 19.577982 75.550459 19.550459 78.449541
+        19.724771
+    - path: M27.522936 45.036697 C30.073394 46.009174 32.495413 45.944954 35.211009 45.495413 C41.825688
+        44.385321 53.981651 42.33945 58.495413 41.706422 C62 41.211009 63.045872 42.752294 60.238532 45.12844
+        C50.550459 53.33945 39.87156 65.889908 35.119266 72.238532 C24.201835 86.816514 43.238532 89.486239
+        59.293578 89.486239 C83.146789 89.486239 84.522936 88.880734 85.110092 81.330275
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
 乱:
   default_variant: japanese-source
   kind: character

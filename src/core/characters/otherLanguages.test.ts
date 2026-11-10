@@ -40,8 +40,8 @@ describe('per-language writing loaders', () => {
   it('a Japanese miss is a miss: no Chinese strokes', async () => {
     const fetch = serve()
     const { loadCharacterAsset } = await import('./assets')
-    // 鱝 is not in the Japanese set (and 的 is not N5/N4), but both exist in Chinese data.
-    await expect(loadCharacterAsset('的', 'ja')).rejects.toThrow(/No Japanese writing guide/)
+    // 这 (simplified) is not in the Japanese set, but exists in the Chinese data. 的 is now in it: the Japanese dictionary uses it.
+    await expect(loadCharacterAsset('这', 'ja')).rejects.toThrow(/No Japanese writing guide/)
     await expect(loadCharacterAsset('一', 'ko')).rejects.toThrow(/No Korean writing guide/)
     expect((fetch.mock.calls.map(call => call[0] as string)).every(url => !url.includes('/chinese/'))).toBe(true)
   })

@@ -83,12 +83,30 @@ def source_request(character: str) -> tuple[str, str, str]:
     return "kanjivg", f"kanji/{ord(character):05x}.svg", KVG
 
 
-def chosen_characters(inventory: dict, batch: str) -> list[str]:
+def app_characters(root: Path) -> list[str]:
+    """Kanji the app shows (derived by scripts/generate-app-writing-ja-ko.mjs into app-kanji.yaml) that need a record.
+
+    Characters in app-accepted-gaps.yaml (neither pinned source has them) are left out; the generator's check reports them.
+    """
+    listing = root / "characters" / "app-kanji.yaml"
+    if not listing.exists():
+        return []
+    data = load_yaml(listing)
+    if not isinstance(data, dict) or data.get("version") != "1" or not isinstance(data.get("kanji"), str):
+        raise ValueError("Unsupported app-kanji.yaml")
+    gaps_file = root / "characters" / "app-accepted-gaps.yaml"
+    gaps = load_yaml(gaps_file).get("gaps", {}) if gaps_file.exists() else {}
+    return [c for c in data["kanji"] if c not in gaps and c not in BLOCKED]
+
+
+def chosen_characters(inventory: dict, batch: str, root: Path | None = None) -> list[str]:
     expected = set(inventory["required"]) | set(inventory["components"])
     if batch == "first":
         if not set(FIRST_BATCH) <= expected:
             raise ValueError("First batch disagrees with the shared Japanese inventory")
         return sorted(FIRST_BATCH)
+    if root is not None:
+        expected |= set(app_characters(root))
     return sorted(expected)
 
 
@@ -122,7 +140,7 @@ def requested_members(characters: list[str], recipes: dict) -> dict:
 
 def download(root: Path, inventory: dict, batch: str, archive_directory: Path | None) -> None:
     recipes = load_yaml(root / "characters" / "recipes.yaml")
-    requested = requested_members(chosen_characters(inventory, batch), recipes)
+    requested = requested_members(chosen_characters(inventory, batch, root), recipes)
     pending, downloads = {}, []
     for provider, configuration in ARCHIVES.items():
         commit = configuration["commit"]
@@ -317,7 +335,7 @@ def build_records(root: Path, inventory: dict, batch: str) -> tuple[dict, list[d
     inputs, pins, recipes = load_inputs(root)
     records = {}
     recipe_pin = inputs["characters/recipes.yaml"][0]
-    for character in chosen_characters(inventory, batch):
+    for character in chosen_characters(inventory, batch, root):
         if character in BLOCKED:
             continue
         if character in recipes["combining_marks"]:

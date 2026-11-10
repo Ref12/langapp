@@ -1,0 +1,6 @@
+# Characters the Japanese course or dictionary uses that neither pinned Japanese source has, so the app ships no strokes for them.
+# Checked by scripts/generate-app-writing-ja-ko.mjs (--check fails on any other uncovered character, and on a stale entry here).
+# Never fill a gap from the Chinese data. The course may not use a character listed here.
+version: '1'
+gaps:
+  鱝: "U+9C5D is absent from the pinned KanjiVG (422b5538) and from AnimCJK svgsJa (ec5e17cc); the 23-stroke donor recipe in recipes.yaml is review-only, not accepted artwork (BLOCKED in import_japanese_characters.py)."

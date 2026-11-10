@@ -40,6 +40,58 @@ function loadPrepared(language) {
   return records
 }
 
+const hanLike = code => (code >= 0x3400 && code <= 0x4dbf) || (code >= 0x4e00 && code <= 0x9fff) || (code >= 0xf900 && code <= 0xfaff) || (code >= 0x20000 && code <= 0x323af) || (code >= 0x3005 && code <= 0x3007)
+
+/** Every string value under a JSON value (keys are ids, not text). */
+function collectText(value, out) {
+  if (typeof value === 'string') out.push(value)
+  else if (Array.isArray(value)) for (const item of value) collectText(item, out)
+  else if (value && typeof value === 'object') for (const item of Object.values(value)) collectText(item, out)
+  return out
+}
+
+const listPath = join('curriculum', 'japanese', 'characters', 'app-kanji.yaml')
+const gapsPath = join(root, 'curriculum', 'japanese', 'characters', 'app-accepted-gaps.yaml')
+
+/**
+ * What the Japanese app can show, derived from its data and never typed: the kanji (and kana) in the course packs
+ * (src/data/packs/ja/*.json) and in the dictionary (src/data/dictionary/ja.json). Strokes must ship for all of them.
+ */
+export function appCharacters() {
+  const packDir = join(root, 'src', 'data', 'packs', 'ja')
+  const course = new Set(), dictionary = new Set(), kana = new Set()
+  const scan = (texts, kanjiTarget) => {
+    for (const text of texts) for (const character of text) {
+      const code = character.codePointAt(0)
+      if (hanLike(code)) kanjiTarget.add(character)
+      else if (kanaOrMark(code)) kana.add(character)
+    }
+  }
+  for (const name of readdirSync(packDir).filter(file => file.endsWith('.json')).sort()) scan(collectText(JSON.parse(readFileSync(join(packDir, name), 'utf8')), []), course)
+  scan(collectText(JSON.parse(readFileSync(join(root, 'src', 'data', 'dictionary', 'ja.json'), 'utf8')), []), dictionary)
+  const order = (a, b) => a.codePointAt(0) - b.codePointAt(0)
+  const all = [...new Set([...course, ...dictionary])].sort(order)
+  return { course: [...course].sort(order), dictionary: [...dictionary].sort(order), kanji: all, kana: [...kana].sort(order) }
+}
+
+/** Characters no pinned Japanese source has, each with the reason (curriculum/japanese/characters/app-accepted-gaps.yaml). */
+export function acceptedGaps() {
+  if (!existsSync(gapsPath)) return {}
+  const file = readYaml(gapsPath)
+  assert(file && file.version === '1' && file.gaps && typeof file.gaps === 'object', 'Unsupported app-accepted-gaps.yaml')
+  for (const [character, reason] of Object.entries(file.gaps)) assert(scalar(character) && typeof reason === 'string' && reason.trim(), `app-accepted-gaps.yaml: ${character} needs a one-character key and a reason`)
+  return file.gaps
+}
+
+const listText = app => `# Derived by scripts/generate-app-writing-ja-ko.mjs; do not edit. Regenerate: npm run characters:generate (or node scripts/generate-app-writing-ja-ko.mjs).
+# The kanji that the Japanese course (src/data/packs/ja/*.json) and the Japanese
+# dictionary (src/data/dictionary/ja.json) use. scripts/import_japanese_characters.py prepares a record for each; the generator ships them all.
+version: '1'
+course_kanji: ${app.course.length}
+kanji_count: ${app.kanji.length}
+kanji: ${JSON.stringify(app.kanji.join(''))}
+`
+
 function selectJapanese() {
   const selection = readYaml(join(root, 'curriculum', 'japanese', 'characters', 'app-selection.yaml'))
   assert(selection.version === '1', 'Unsupported Japanese selection')
@@ -49,11 +101,26 @@ function selectJapanese() {
   const n5 = [...selection.kanji.n5], n4 = [...selection.kanji.n4], parallel = [...(selection.kanji.parallel ?? '')]
   assert(new Set([...n5, ...n4, ...parallel]).size === n5.length + n4.length + parallel.length, 'Japanese selection lists a kanji twice')
   const wanted = [...new Set([...kana, ...n5, ...n4, ...parallel])].sort((a, b) => a.codePointAt(0) - b.codePointAt(0))
+  const app = appCharacters(), gaps = acceptedGaps()
   const entries = new Map()
-  for (const character of wanted) {
+  const wantedAll = [...new Set([...wanted, ...app.kanji, ...app.kana])].sort((a, b) => a.codePointAt(0) - b.codePointAt(0))
+  for (const character of wantedAll) {
+    if (gaps[character] && !prepared.has(character)) continue
     try { entries.set(character, { paths: defaultStrokes(character, prepared.get(character)) }) } catch (error) { failures.push(error.message) }
   }
-  return { entries, failures, counts: { kana: kana.length, n5: n5.length, n4: n4.length, parallel: parallel.length } }
+  // The coverage check: everything the course or the dictionary uses has data, or is in the short accepted list with a reason.
+  const course = new Set(app.course)
+  for (const character of [...app.kanji, ...app.kana]) {
+    const label = `U+${character.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')} ${character}`
+    if (!entries.has(character) && !gaps[character]) failures.push(`${label}: used by the Japanese course or dictionary but has no shipped stroke data and is not in app-accepted-gaps.yaml`)
+    if (gaps[character] && course.has(character)) failures.push(`${label}: used by the Japanese course, so it cannot be an accepted gap`)
+  }
+  for (const character of Object.keys(gaps)) {
+    if (entries.has(character)) failures.push(`${character}: listed in app-accepted-gaps.yaml but strokes now exist; remove it from the list`)
+    if (!app.kanji.includes(character)) failures.push(`${character}: listed in app-accepted-gaps.yaml but neither the course nor the dictionary uses it`)
+  }
+  const derivedKanji = app.kanji.filter(character => entries.has(character))
+  return { entries, failures, app, gaps, list: listText(app), counts: { kana: kana.length, n5: n5.length, n4: n4.length, parallel: parallel.length, appKanji: app.kanji.length, appKanjiShipped: derivedKanji.length, course: app.course.length, acceptedGaps: Object.keys(gaps).length } }
 }
 
 function selectKorean() {
@@ -135,6 +202,14 @@ export function synchronize(outputs, folder, check) {
   return stale
 }
 
+/** One derived file outside public/ (the list the importer reads): write it, or report it stale. */
+export function synchronizeFile(path, text, check) {
+  const full = join(root, path)
+  if (existsSync(full) && readFileSync(full, 'utf8') === text) return []
+  if (!check) writeFileSync(full, text)
+  return [path]
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     assert(process.argv.slice(2).every(arg => arg === '--check'), 'Usage: node scripts/generate-app-writing-ja-ko.mjs [--check]')
@@ -142,6 +217,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     const data = buildWritingJaKo()
     let stale = []
     for (const [name, language] of [['japanese', data.japanese], ['korean', data.korean]]) {
+      if (language.list) stale = stale.concat(synchronizeFile(listPath, language.list, check))
       assert(language.failures.length === 0, `${name} validation failures:\n${language.failures.join('\n')}`)
       stale = stale.concat(synchronize(language.outputs, name, check))
       const bytes = [...language.outputs.values()].reduce((sum, value) => sum + value.length, 0)
