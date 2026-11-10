@@ -28,6 +28,9 @@ export const HEADWORDS_FILE = 'curriculum/japanese/authoring/pack-headwords.json
 export const CORRECTIONS_FILE = 'curriculum/japanese/authoring/pack-phrase-corrections.json'
 export const SHORT_TEXTS_FILE = 'curriculum/japanese/authoring/pack-pattern-short-texts.json'
 export const EXPLANATIONS_FILE = 'curriculum/japanese/authoring/pack-pattern-explanations.json'
+export const LESSON_CORRECTIONS_FILE = 'curriculum/japanese/authoring/pack-lesson-corrections.json'
+export const ADDED_PHRASES_FILE = 'curriculum/japanese/authoring/pack-added-phrases.json'
+export const ACCEPTED_GAPS_FILE = 'curriculum/japanese/authoring/pack-accepted-gaps.json'
 export const SEALED_FILE = 'curriculum/japanese/authoring/pack-labels-sealed.json'
 export const GROUP_PREFIX = 'ja-lesson-'
 export const ALIGNMENT = 'lessons-1'
@@ -119,14 +122,61 @@ function splitReading(tokens, reading, known) {
   return walk(0, 0)?.parts ?? null
 }
 
-/** Applies pack-phrase-corrections.json to the phrases in memory (tokens, word lists, the headword's writing); returns what it changed, for the audit. */
+const tokenText = tokens => tokens.map(token => token.t + '(' + (token.w ?? token.g ?? '') + ')').join(' ')
+const unique = list => [...new Set(list)]
+
+/** A phrase written whole (a rewrite or an added phrase): every word token is in its word list and every grammar token in its grammar list, so the tags cannot drift from the tokens. */
+function checkWholePhrase(where, phrase) {
+  if (!Array.isArray(phrase.tokens) || !phrase.tokens.length) throw new Error(where + ': needs tokens')
+  if (typeof phrase.reading !== 'string' || !phrase.reading) throw new Error(where + ': needs a reading')
+  if (!Array.isArray(phrase.words) || !Array.isArray(phrase.grammar)) throw new Error(where + ': needs words and grammar lists')
+  for (const token of phrase.tokens) {
+    if (typeof token.t !== 'string' || !token.t) throw new Error(where + ': a token has no text')
+    if (token.w && token.g) throw new Error(where + ': token ' + token.t + ' is both a word and a grammar unit')
+    if (token.w && !phrase.words.includes(token.w)) throw new Error(where + ': the word ' + token.w + ' of token ' + token.t + ' is not in its words list')
+    if (token.g && !phrase.grammar.includes(token.g)) throw new Error(where + ': the grammar unit ' + token.g + ' of token ' + token.t + ' is not in its grammar list')
+  }
+}
+
+/**
+ * Applies the corrections of the lesson source to the lessons in memory, before anything is derived. The sources are never edited.
+ * corrections = { phrases, writings, added, moves, removals, additions } (the files pack-phrase-corrections.json, pack-added-phrases.json and pack-lesson-corrections.json, see docs/audits/2026-11-10-ja-wording.md section 9).
+ * Order: added phrases, phrase corrections, the lessons' lists (moves, removals, additions), writings. Each operation throws, naming the lesson or phrase, when what it refers to is not there.
+ * Returns what it changed, for the audit.
+ */
 export function applyCorrections(lessons, corrections) {
   const changed = []
+  const byNumber = new Map(lessons.map(lesson => [lesson.number, lesson]))
+  const lessonOf = (where, number) => { const lesson = byNumber.get(number); if (!lesson) throw new Error(where + ': there is no lesson ' + number); return lesson }
   const byId = new Map(lessons.flatMap(lesson => (lesson.phrases ?? []).map(phrase => [String(phrase.id), phrase])))
+  const lastId = Math.max(0, ...[...byId.keys()].map(Number))
+  // 1. phrases the Chinese lesson does not have (Japanese-only): appended to the lesson's phrases, marked extra
+  for (const add of corrections.added ?? []) {
+    const where = ADDED_PHRASES_FILE + ': phrase ' + add.id
+    const lesson = lessonOf(where, add.lesson)
+    if (!Number.isInteger(add.id) || add.id <= lastId) throw new Error(where + ' must be a new id after the last one (' + lastId + ')')
+    if (byId.has(String(add.id))) throw new Error(where + ' is added twice')
+    if (add.extra !== true) throw new Error(where + ' must be marked extra: true (a Japanese-only phrase)')
+    if (add.zh !== undefined || add.zh_ref !== undefined) throw new Error(where + ' is Japanese-only: no zh or zh_ref')
+    if (typeof add.en !== 'string' || !add.en) throw new Error(where + ': needs an English translation')
+    const phrase = { id: add.id, text: '', reading: add.reading, en: add.en, tokens: add.tokens, words: add.words, grammar: add.grammar, source: 'ai', checked: add.checked === true, extra: true, added: true }
+    checkWholePhrase(where, phrase)
+    phrase.text = phrase.tokens.map(token => token.t).join('')
+    lesson.phrases = [...(lesson.phrases ?? []), phrase]
+    byId.set(String(add.id), phrase)
+    changed.push({ phrase: String(add.id), before: '(added to lesson ' + add.lesson + ')', after: tokenText(phrase.tokens) })
+  }
+  // 2. corrections of one phrase
   for (const [id, fix] of Object.entries(corrections.phrases ?? {})) {
     const phrase = byId.get(id)
     if (!phrase) throw new Error(CORRECTIONS_FILE + ' corrects an unknown phrase ' + id)
-    const before = phrase.tokens.map(token => token.t + '(' + (token.w ?? token.g ?? '') + ')').join(' ')
+    const before = tokenText(phrase.tokens)
+    if (fix.rewrite) {
+      if (fix.tokens || fix.merge || fix.words || fix.grammar) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' is rewritten as a whole, it takes no other operation')
+      const whole = { ...phrase, tokens: fix.rewrite.tokens, reading: fix.rewrite.reading, words: fix.rewrite.words, grammar: fix.rewrite.grammar }
+      checkWholePhrase(CORRECTIONS_FILE + ': rewrite of phrase ' + id, whole)
+      Object.assign(phrase, whole, { rewritten: true })
+    }
     for (const { at, ...token } of fix.tokens ?? []) { if (!phrase.tokens[at]) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' has no token ' + at); phrase.tokens[at] = token }
     if (fix.merge) {
       const { at, count, ...token } = fix.merge
@@ -136,10 +186,62 @@ export function applyCorrections(lessons, corrections) {
     }
     for (const [from, to] of Object.entries(fix.words ?? {})) {
       if (!(phrase.words ?? []).includes(from)) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' does not list the word ' + from)
-      phrase.words = to ? [...new Set(phrase.words.map(word => word === from ? to : word))] : phrase.words.filter(word => word !== from)
+      phrase.words = to ? unique(phrase.words.map(word => word === from ? to : word)) : phrase.words.filter(word => word !== from)
     }
-    changed.push({ phrase: id, before, after: phrase.tokens.map(token => token.t + '(' + (token.w ?? token.g ?? '') + ')').join(' ') })
+    if (fix.grammar) {
+      const list = [...(phrase.grammar ?? [])]
+      for (const unit of fix.grammar.remove ?? []) { if (!list.includes(unit)) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' does not list the pattern ' + unit); list.splice(list.indexOf(unit), 1) }
+      for (const unit of fix.grammar.add ?? []) { if (list.includes(unit)) throw new Error(CORRECTIONS_FILE + ': phrase ' + id + ' already lists the pattern ' + unit); list.push(unit) }
+      phrase.grammar = list
+    }
+    changed.push({ phrase: id, before, after: tokenText(phrase.tokens) })
   }
+  // 3. the lessons' own lists. A word row moves with its fields; a lesson's grammar_taught is derived from its phrases and grammar_intro (refreshReadability), so a pattern moves in grammar_intro.
+  for (const move of corrections.moves ?? []) {
+    const what = move.word ?? move.grammar, where = LESSON_CORRECTIONS_FILE + ': moving ' + what + ' from lesson ' + move.from + ' to lesson ' + move.to
+    if (!what || (move.word && move.grammar)) throw new Error(where + ': name exactly one of word or grammar')
+    const from = lessonOf(where, move.from), to = lessonOf(where, move.to)
+    if (move.word) {
+      const row = (from.words ?? []).find(item => item.entry === move.word)
+      if (!row) throw new Error(where + ': lesson ' + move.from + ' does not list that word')
+      if ((to.words ?? []).some(item => item.entry === move.word)) throw new Error(where + ': lesson ' + move.to + ' lists it already')
+      from.words = from.words.filter(item => item !== row)
+      to.words = [...(to.words ?? []), row]
+    } else {
+      if (!(from.grammar_intro ?? []).includes(move.grammar)) throw new Error(where + ': lesson ' + move.from + ' does not list that pattern')
+      from.grammar_intro = from.grammar_intro.filter(id => id !== move.grammar)
+      to.grammar_intro = unique([...(to.grammar_intro ?? []), move.grammar])
+    }
+    changed.push({ phrase: 'lesson ' + move.from, before: what + ' listed here', after: 'listed in lesson ' + move.to })
+  }
+  for (const removal of corrections.removals ?? []) {
+    const what = removal.word ?? removal.grammar, where = LESSON_CORRECTIONS_FILE + ': removing ' + what + ' from lesson ' + removal.lesson
+    if (!what || (removal.word && removal.grammar)) throw new Error(where + ': name exactly one of word or grammar')
+    const lesson = lessonOf(where, removal.lesson)
+    if (removal.word) {
+      if (!(lesson.words ?? []).some(item => item.entry === removal.word)) throw new Error(where + ': the lesson does not list that word')
+      lesson.words = lesson.words.filter(item => item.entry !== removal.word)
+    } else {
+      if (!(lesson.grammar_intro ?? []).includes(removal.grammar)) throw new Error(where + ': the lesson does not list that pattern')
+      lesson.grammar_intro = lesson.grammar_intro.filter(id => id !== removal.grammar)
+    }
+    changed.push({ phrase: 'lesson ' + removal.lesson, before: what + ' listed here', after: 'removed from the list' })
+  }
+  for (const addition of corrections.additions ?? []) {
+    const what = addition.word?.entry ?? addition.grammar, where = LESSON_CORRECTIONS_FILE + ': adding ' + what + ' to lesson ' + addition.lesson
+    if (!what || (addition.word && addition.grammar)) throw new Error(where + ': name exactly one of word (a row with an entry) or grammar')
+    const lesson = lessonOf(where, addition.lesson)
+    if (addition.word) {
+      if ((lesson.words ?? []).some(item => item.entry === what)) throw new Error(where + ': the lesson lists that word already')
+      if (!addition.word.form || !addition.word.gloss) throw new Error(where + ': a word row needs form and gloss')
+      lesson.words = [...(lesson.words ?? []), { status: 'word', zh: [], extra: true, ...addition.word }]
+    } else {
+      if ((lesson.grammar_intro ?? []).includes(what)) throw new Error(where + ': the lesson lists that pattern already')
+      lesson.grammar_intro = [...(lesson.grammar_intro ?? []), what]
+    }
+    changed.push({ phrase: 'lesson ' + addition.lesson, before: '', after: what + ' added to the list' })
+  }
+  // 4. the headword's writing
   for (const [entry, map] of Object.entries(corrections.writings ?? {})) for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) for (const token of phrase.tokens) {
     if (token.w === entry && map[token.t] !== undefined) {
       changed.push({ phrase: String(phrase.id), before: token.t, after: map[token.t] })
@@ -148,6 +250,50 @@ export function applyCorrections(lessons, corrections) {
   }
   for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) phrase.text = phrase.tokens.map(token => token.t).join('')
   return changed
+}
+
+/**
+ * The content gaps of the lessons, per lesson (pure: the lessons after the corrections, the form tags of analyseForms, the first lesson that teaches each pattern):
+ * patterns the lesson lists that none of its phrases use, forms used before their pattern is taught, forms a listed pattern teaches that no phrase uses, words introduced that no phrase uses.
+ * Every item carries its id (the key of the accepted-gaps list) and its title (the line of the report).
+ */
+export function computeGaps(lessons, { tags, taught, formsOfPattern, patternTitle, wordTitle }) {
+  return lessons.map(lesson => {
+    const mine = lesson.phrases ?? []
+    const usedGrammar = new Set(mine.flatMap(p => p.grammar ?? []))
+    const usedWords = new Set(mine.flatMap(p => p.words ?? []))
+    const taggedForms = [...tags.values()].filter(tag => tag.lesson === lesson.number)
+    const intro = lesson.grammar_intro ?? []
+    const later = new Map()
+    for (const tag of taggedForms) {
+      const at = tag.grammar ? taught.grammar.get(tag.grammar) ?? Infinity : 0
+      if (at <= lesson.number) continue
+      const key = tag.form + '|' + tag.grammar
+      if (!later.has(key)) later.set(key, { id: tag.form + ':' + tag.grammar, form: tag.form, pattern: patternTitle(tag.grammar), lesson: Number.isFinite(at) ? at : null, phrases: new Set() })
+      later.get(key).phrases.add(tag.phrase)
+    }
+    const sortById = (x, y) => x.id < y.id ? -1 : x.id > y.id ? 1 : 0
+    return {
+      lesson: lesson.number,
+      patternsWithoutPhrase: intro.filter(id => !usedGrammar.has(id)).map(id => ({ id, title: patternTitle(id) })).sort(sortById),
+      formsTaughtLater: [...later.values()].map(item => ({ ...item, phrases: [...item.phrases].sort((x, y) => x - y) })).sort(sortById),
+      formsListedUnused: intro.filter(id => formsOfPattern.has(id) && ![...formsOfPattern.get(id)].some(form => taggedForms.some(tag => tag.form === form && tag.grammar === id))).map(id => ({ id, pattern: patternTitle(id), forms: [...formsOfPattern.get(id)].sort() })).sort(sortById),
+      wordsWithoutPhrase: (lesson.words ?? []).filter(row => !usedWords.has(row.entry)).map(row => ({ id: row.entry, title: wordTitle(row.entry, lesson.number) })),
+    }
+  })
+}
+
+const GAP_KINDS = { pattern: 'patternsWithoutPhrase', 'form-later': 'formsTaughtLater', 'form-unused': 'formsListedUnused', word: 'wordsWithoutPhrase' }
+/** Every gap as { lesson, kind, id } (kind: pattern, form-later, form-unused, word). */
+export const gapList = gaps => gaps.flatMap(lesson => Object.entries(GAP_KINDS).flatMap(([kind, key]) => lesson[key].map(item => ({ lesson: lesson.lesson, kind, id: item.id }))))
+/** Compares the gaps with the hand-written accepted list ([{ lesson, kind, id, reason }]): { unaccepted: gaps not in the list, stale: list entries that are no gap (or have no reason) }. */
+export function checkGaps(gaps, accepted = []) {
+  const key = item => item.lesson + ' ' + item.kind + ' ' + item.id
+  const gapKeys = new Set(gapList(gaps).map(key)), listed = new Set(accepted.map(key))
+  return {
+    unaccepted: gapList(gaps).filter(item => !listed.has(key(item))),
+    stale: accepted.filter(item => !gapKeys.has(key(item)) || typeof item.reason !== 'string' || !item.reason.trim()),
+  }
 }
 
 function readJson(file, fallback) { return existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : fallback }
@@ -191,9 +337,14 @@ export function buildJaPack(base = defaultRoot) {
   const data = readParallel('ja', base)
   const references = loadReferences('ja', base)
   const lessons = [...data.lessons.lessons].sort((a, b) => a.number - b.number)
-  const corrected = applyCorrections(lessons, readJson(join(base, CORRECTIONS_FILE), {}))
+  const corrected = applyCorrections(lessons, {
+    ...readJson(join(base, CORRECTIONS_FILE), {}),
+    added: readJson(join(base, ADDED_PHRASES_FILE), { phrases: [] }).phrases,
+    ...(({ moves, removals, additions }) => ({ moves, removals, additions }))(readJson(join(base, LESSON_CORRECTIONS_FILE), {})),
+  })
   const taught = refreshReadability(lessons)
   const forms = analyseForms('ja', lessons, taught, data, references, base) // also sets each phrase's readyAt (irregular form items included)
+  for (const lesson of lessons) for (const phrase of lesson.phrases ?? []) if ((phrase.added || phrase.rewritten) && phrase.readyAt > lesson.number) throw new Error('Phrase ' + phrase.id + ' (lesson ' + lesson.number + ', ' + (phrase.added ? 'added' : 'rewritten') + ') uses something taught only in lesson ' + phrase.readyAt)
   const rules = loadFormsRules('ja', base)
   const engine = createForms(rules)
   const index = entryIndex(references, data.entries)
@@ -434,39 +585,23 @@ export function buildJaPack(base = defaultRoot) {
   const sizes = groups.map(g => g.units.length)
 
   // ---- the content gaps (--report) ----
-  const phrasesOf = number => (lessons.find(l => l.number === number)?.phrases ?? [])
   const formsOfPattern = new Map()
   for (const [id, spec] of Object.entries(rules.forms)) for (const kind of spec.group.flatMap(kindsOfGroup).filter(item => item !== 'noun')) { const unit = engine.grammarOf(id, REPRESENTATIVE[kind]); if (unit) { if (!formsOfPattern.has(unit)) formsOfPattern.set(unit, new Set()); formsOfPattern.get(unit).add(id) } }
   const titleOf = id => { try { return nameOf(id).name } catch { return index.grammar.get(id)?.pattern ?? id } }
   const patternTitle = id => '`' + id + '` ' + titleOf(id)
-  const gaps = lessons.map(lesson => {
-    const mine = phrasesOf(lesson.number)
-    const usedGrammar = new Set(mine.flatMap(p => p.grammar ?? []))
-    const usedWords = new Set(mine.flatMap(p => p.words ?? []))
-    const taggedForms = [...forms.tags.values()].filter(tag => tag.lesson === lesson.number)
-    const intro = lesson.grammar_intro ?? []
-    const later = new Map()
-    for (const tag of taggedForms) {
-      const at = tag.grammar ? taught.grammar.get(tag.grammar) ?? Infinity : 0
-      if (at <= lesson.number) continue
-      const key = tag.form + '|' + tag.grammar
-      if (!later.has(key)) later.set(key, { form: tag.form, pattern: patternTitle(tag.grammar), lesson: Number.isFinite(at) ? at : null, phrases: new Set() })
-      later.get(key).phrases.add(tag.phrase)
-    }
-    return {
-      lesson: lesson.number,
-      patternsWithoutPhrase: intro.filter(id => !usedGrammar.has(id)).sort().map(patternTitle),
-      formsTaughtLater: [...later.values()].map(item => ({ ...item, phrases: [...item.phrases].sort((x, y) => x - y) })).sort((x, y) => x.form < y.form ? -1 : x.form > y.form ? 1 : 0),
-      formsListedUnused: intro.filter(id => formsOfPattern.has(id) && ![...formsOfPattern.get(id)].some(form => taggedForms.some(tag => tag.form === form && tag.grammar === id))).sort().map(id => ({ pattern: patternTitle(id), forms: [...formsOfPattern.get(id)].sort() })),
-      wordsWithoutPhrase: (lesson.words ?? []).filter(row => !usedWords.has(row.entry)).map(row => '`' + row.entry + '` ' + index.vocabulary.get(row.entry).target + ' (' + itemAt(row.entry, lesson.number).gloss + ')'),
-    }
+  const accepted = readJson(join(base, ACCEPTED_GAPS_FILE), { accepted: [] }).accepted
+  const gaps = computeGaps(lessons, {
+    tags: forms.tags, taught, formsOfPattern,
+    patternTitle, wordTitle: (entry, number) => '`' + entry + '` ' + index.vocabulary.get(entry).target + ' (' + itemAt(entry, number).gloss + ')',
   })
-  return { files, band, phrases, formsTable, corrected, missingExplanations, mismatches, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
+  const gapProblems = checkGaps(gaps, accepted)
+  return { files, band, phrases, formsTable, corrected, gapProblems, accepted, missingExplanations, mismatches, items, gaps, skippedGrammar: [...skippedGrammar].sort().map(id => ({ id, name: titleOf(id) })), stats, report: { vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length, phrases: phrases.length, unitsPerGroup: [Math.min(...sizes), Math.max(...sizes)], skippedGrammar: [...skippedGrammar].sort(), examplesPerGroup: [Math.min(...groups.map(g => g.examples.length)), Math.max(...groups.map(g => g.examples.length))], newLabels: Object.keys(vocabLabels.added).length + Object.keys(grammarLabels.added).length, forms: formsTable.length, merged: stats.merged } }
 }
 
-/** The content gaps as markdown (docs/audits/2026-11-10-japanese-lesson-content-gaps.md). */
+/** The content gaps as markdown (docs/audits/2026-11-10-japanese-lesson-content-gaps.md); an accepted gap says so, with its reason. */
 export function gapsMarkdown(pack) {
-  const out = ['# Japanese lessons: content gaps', '', 'Written by `node scripts/generate-pack-ja.mjs --report`. Nothing here is fixed in step 3.2; a later step writes the missing phrases with a model pipeline.', '']
+  const reasonOf = (lesson, kind, id) => { const hit = (pack.accepted ?? []).find(item => item.lesson === lesson && item.kind === kind && item.id === id); return hit ? ' (accepted: ' + hit.reason + ')' : '' }
+  const out = ['# Japanese lessons: content gaps', '', 'Written by `node scripts/generate-pack-ja.mjs --report`. A gap is a place where a lesson\'s list and its sentences do not meet. `--check` fails for a gap that is neither closed nor in the accepted list (`curriculum/japanese/authoring/pack-accepted-gaps.json`, one reason each); step 3.4b closed the gaps of the first version of this report.', '']
   const total = key => pack.gaps.reduce((sum, lesson) => sum + lesson[key].length, 0)
   out.push('## Totals', '',
     '- patterns a lesson says it teaches that none of its phrases use: ' + total('patternsWithoutPhrase') + ' (in ' + pack.gaps.filter(l => l.patternsWithoutPhrase.length).length + ' lessons)',
@@ -474,16 +609,17 @@ export function gapsMarkdown(pack) {
     '- forms a lesson lists that none of its phrases use: ' + total('formsListedUnused') + ' (in ' + pack.gaps.filter(l => l.formsListedUnused.length).length + ' lessons)',
     '- words a lesson introduces that none of its phrases use: ' + total('wordsWithoutPhrase') + ' (in ' + pack.gaps.filter(l => l.wordsWithoutPhrase.length).length + ' lessons)',
     '- patterns used by no phrase at all, left out of the catalog: ' + pack.skippedGrammar.length, '')
-  out.push('## Patterns used by no phrase (left out of the catalog)', '', ...pack.skippedGrammar.map(item => '- `' + item.id + '` ' + item.name), '')
+  if (pack.skippedGrammar.length) out.push('## Patterns used by no phrase (left out of the catalog)', '', ...pack.skippedGrammar.map(item => '- `' + item.id + '` ' + item.name), '')
   out.push('## Per lesson', '')
   for (const lesson of pack.gaps) {
     const lines = []
-    if (lesson.patternsWithoutPhrase.length) lines.push('- Patterns taught but used by none of its phrases: ' + lesson.patternsWithoutPhrase.join('; '))
-    for (const item of lesson.formsTaughtLater) lines.push('- Form `' + item.form + '` (phrases ' + item.phrases.join(', ') + ') uses ' + item.pattern + ', taught in ' + (item.lesson ? 'lesson ' + item.lesson : 'no lesson'))
-    for (const item of lesson.formsListedUnused) lines.push('- Lists ' + item.pattern + ' (forms ' + item.forms.map(f => '`' + f + '`').join(', ') + ') but no phrase uses those forms')
-    if (lesson.wordsWithoutPhrase.length) lines.push('- Words introduced but used by none of its phrases: ' + lesson.wordsWithoutPhrase.join('; '))
+    if (lesson.patternsWithoutPhrase.length) lines.push('- Patterns taught but used by none of its phrases: ' + lesson.patternsWithoutPhrase.map(item => item.title + reasonOf(lesson.lesson, 'pattern', item.id)).join('; '))
+    for (const item of lesson.formsTaughtLater) lines.push('- Form `' + item.form + '` (phrases ' + item.phrases.join(', ') + ') uses ' + item.pattern + ', taught in ' + (item.lesson ? 'lesson ' + item.lesson : 'no lesson') + reasonOf(lesson.lesson, 'form-later', item.id))
+    for (const item of lesson.formsListedUnused) lines.push('- Lists ' + item.pattern + ' (forms ' + item.forms.map(f => '`' + f + '`').join(', ') + ') but no phrase uses those forms' + reasonOf(lesson.lesson, 'form-unused', item.id))
+    if (lesson.wordsWithoutPhrase.length) lines.push('- Words introduced but used by none of its phrases: ' + lesson.wordsWithoutPhrase.map(item => item.title + reasonOf(lesson.lesson, 'word', item.id)).join('; '))
     if (lines.length) out.push('### Lesson ' + lesson.lesson, '', ...lines, '')
   }
+  if (!pack.gaps.some(lesson => Object.values(GAP_KINDS).some(key => lesson[key].length))) out.push('No gaps.', '')
   return out.join('\n') + '\n'
 }
 
@@ -515,6 +651,11 @@ export function main(argv = process.argv.slice(2)) {
     const text = gapsMarkdown(pack)
     if (reportFile) writeAtomic(resolve(base, reportFile), text); else process.stdout.write(text)
     return
+  }
+  if (check && (pack.gapProblems.unaccepted.length || pack.gapProblems.stale.length)) {
+    for (const item of pack.gapProblems.unaccepted) console.error('Content gap not accepted: lesson ' + item.lesson + ', ' + item.kind + ' ' + item.id)
+    for (const item of pack.gapProblems.stale) console.error('Accepted gap that is no gap, or has no reason: lesson ' + item.lesson + ', ' + item.kind + ' ' + item.id)
+    throw new Error('The lessons have content gaps that are not in ' + ACCEPTED_GAPS_FILE + ' (close them in the lesson source corrections, or accept them there with a reason).')
   }
   if (check && pack.missingExplanations.length) throw new Error('No plain explanation (' + EXPLANATIONS_FILE + ') for: ' + pack.missingExplanations.join(', '))
   const { files, report } = pack
