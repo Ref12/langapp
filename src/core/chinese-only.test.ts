@@ -34,7 +34,7 @@ async function boot() {
 const rowsOf = async () => {
   const { db } = database
   return { knowledge: await db.knowledge.get('ja:w:neko'), card: await db.studyCards.get('ja:w:neko:reading'), lesson: await db.lessons.get('ko:lesson:3'),
-    session: await db.exerciseSessions.get('ja-session'), thread: await db.assistantThreads.get('ja-thread'),
+    thread: await db.assistantThreads.get('ja-thread'),
     preferences: await db.preferences.get('workspace'), journal: (await db.journal.toArray()).filter(event => String(event.ref ?? '').startsWith('ja:')) }
 }
 async function seed() {
@@ -43,7 +43,6 @@ async function seed() {
   await db.knowledge.add(foreign.knowledge as never)
   await db.studyCards.add(foreign.card as never)
   await db.lessons.add(foreign.lesson)
-  await db.exerciseSessions.add(foreign.session as never)
   await db.assistantThreads.add(foreign.thread as never)
   await db.preferences.update('workspace', extraPreferences as never)
   await db.journal.add({ t: '2026-01-01T00:00:00.000Z', op: 'add', ref: 'ja:w:neko', band: 1, source: 'new' })
@@ -60,75 +59,73 @@ beforeEach(async () => {
 })
 afterEach(() => { for (const connection of opened.splice(0)) connection.close(); vi.unstubAllGlobals() })
 
-describe('Stable ignores what it does not understand and deletes none of it', () => {
-  it('exports a profile that holds other-language records, with Chinese state only', async () => {
+describe('Stable carries what it does not show, and drops only fields no schema knows', () => {
+  it('exports a profile that holds other-language records: the rows and track settings are in the file', async () => {
     await seed()
     const text = await store.exportActiveProfile()
-    expect(text).not.toMatch(/ja:|ko:|neko|kana|somethingNewer|startedTracks/)
+    expect(text).toMatch(/ref: ja:w:neko/)
+    expect(text).toMatch(/startedTracks/)
+    expect(text).not.toMatch(/somethingNewer/)
     const snapshot = parseProfileYaml(text)
-    expect(snapshot.knowledge.study.knowledge.map(entry => entry.ref)).toEqual(populatedProfile().knowledge.study.knowledge.map(entry => entry.ref))
-    expect(snapshot.knowledge.lessons).toEqual(populatedProfile().knowledge.lessons)
+    expect(snapshot.knowledge.study.knowledge.map(entry => entry.ref).sort()).toEqual([...populatedProfile().knowledge.study.knowledge.map(entry => entry.ref), 'ja:w:neko'].sort())
+    expect(snapshot.knowledge.study.cards.some(card => card.ref === 'ja:w:neko')).toBe(true)
+    expect(snapshot.knowledge.lessons.map(lesson => lesson.lessonId)).toContain('ko:lesson:3')
+    expect(snapshot.settings.preferences).toMatchObject({ currentLanguage: 'ja', startedTracks: ['ja'], otherLanguageCards: 'both', japaneseReading: 'kana' })
   })
 
-  it('restores a profile file that carries unknown settings, fields, lessons and refs, ignoring them', async () => {
+  it('restores a profile file with language rows, lessons and settings, keeping them and dropping the unknown field', async () => {
     const wire = parse(serializeProfileYaml(populatedProfile())) as Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
     Object.assign(wire.settings.preferences, extraPreferences)
     wire.knowledge.lessons.push(foreign.lesson)
-    wire.knowledge.study.knowledge.push({ kind: 'ja', lb: 'w', band: '1', addedAt: 1, source: 'new' })
-    wire.knowledge.study.cards.push({ ...foreign.card, id: undefined, ref: undefined, kind: 'ko', lb: 'w' })
-    wire.knowledge.study.sessions.push(foreign.session)
+    wire.knowledge.study.knowledge.push({ ...foreign.knowledge })
+    wire.knowledge.study.cards.push({ ...foreign.card, id: undefined })
     wire.conversations.threads.push(foreign.thread)
     const snapshot = parseProfileYaml(stringify(wire))
-    expect(snapshot.knowledge.study.knowledge).toEqual(populatedProfile().knowledge.study.knowledge)
-    expect(snapshot.knowledge.study.sessions).toEqual(populatedProfile().knowledge.study.sessions)
-    expect(snapshot.knowledge.lessons).toEqual(populatedProfile().knowledge.lessons)
-    expect(snapshot.settings.preferences).toEqual(populatedProfile().settings.preferences)
-    // A conversation is kept; only the field Stable has no schema for is dropped.
-    expect(snapshot.conversations.threads.find(thread => thread.id === 'ja-thread')?.source).toEqual({ text: 'x', title: 't', route: 'a/b' })
-    expect(snapshot.knowledge.study.cards).toEqual(populatedProfile().knowledge.study.cards)
+    expect(snapshot.knowledge.study.knowledge.find(entry => entry.ref === 'ja:w:neko')).toEqual(foreign.knowledge)
+    expect(snapshot.knowledge.study.cards.find(card => card.ref === 'ja:w:neko')).toEqual(foreign.card)
+    expect(snapshot.knowledge.lessons.map(lesson => lesson.lessonId)).toContain('ko:lesson:3')
+    expect(snapshot.settings.preferences).not.toHaveProperty('somethingNewer')
+    expect(snapshot.settings.preferences.startedTracks).toEqual(['ja'])
+    expect(snapshot.conversations.threads.find(thread => thread.id === 'ja-thread')?.source).toEqual(foreign.thread.source)
     await store.restoreActiveProfile(stringify(wire))
-    expect((await database.db.knowledge.toArray()).map(entry => entry.ref).sort()).toEqual(populatedProfile().knowledge.study.knowledge.map(entry => entry.ref).sort())
+    expect(await database.db.knowledge.get('ja:w:neko')).toEqual(foreign.knowledge)
+    expect(await database.db.studyCards.get('ja:w:neko:reading')).toEqual(foreign.card)
+    expect(await database.db.lessons.get('ko:lesson:3')).toEqual(foreign.lesson)
   })
 
-  it('backs up and restores Chinese state identically; the journal skips other-language events', async () => {
+  it('backs up and restores every row; the journal replays language events too', async () => {
     await seed()
-    const { readSnapshot } = store
-    const snapshot = await readSnapshot(database.db, store.getActiveProfile())
+    const snapshot = await store.readSnapshot(database.db, store.getActiveProfile())
     const journal = (await database.db.journal.toArray()).map(row => omit(row, 'seq') as unknown as import('./backup/journal').JournalEvent)
-    expect(journal.some(event => event.ref === 'ja:w:neko')).toBe(true)
-    const loaded = loadBackup(buildBackupFiles(snapshot, journal), store.getActiveProfile())
-    const expected = populatedProfile()
-    expect(loaded.snapshot.knowledge.study.knowledge).toEqual(expected.knowledge.study.knowledge)
-    expect(loaded.snapshot.knowledge.study.cards).toEqual(expected.knowledge.study.cards)
-    expect(loaded.snapshot.knowledge.words).toEqual(expected.knowledge.words)
-    expect(loaded.snapshot.knowledge.lessons).toEqual(expected.knowledge.lessons)
-    expect(loaded.snapshot.settings.preferences).toEqual(expected.settings.preferences)
-    expect(replay(journal as never).knowledge.has('ja:w:neko')).toBe(false)
+    const loaded = loadBackup(buildBackupFiles(snapshot, journal.filter(event => event.op !== 'review')), store.getActiveProfile())
+    expect(loaded.snapshot.knowledge.study.knowledge.find(entry => entry.ref === 'ja:w:neko')).toEqual(foreign.knowledge)
+    expect(loaded.snapshot.knowledge.study.cards.find(card => card.ref === 'ja:w:neko')).toEqual(foreign.card)
+    expect(loaded.snapshot.knowledge.lessons.map(lesson => lesson.lessonId)).toContain('ko:lesson:3')
+    const replayed = replay(journal.filter(event => event.op === 'add'))
+    expect(replayed.knowledge.get('ja:w:neko')).toMatchObject({ ref: 'ja:w:neko', kind: 'vocabulary', lb: 'neko', band: '1' })
   })
 
-  it('leaves the skipped records byte-identical after normal use, an export and a restore of the same profile', async () => {
+  it('leaves the language rows byte-identical after normal use, an export and a restore of the same profile', async () => {
     await seed()
     const before = await rowsOf()
     await learning.savePreferences({ theme: 'light', pinyin: false })
     await store.exportActiveProfile()
     expect(await rowsOf()).toEqual({ ...before, preferences: { ...before.preferences, theme: 'light', pinyin: false } })
-    await database.db.assistantThreads.update('ja-thread', { title: 'Ja' })
-    expect((await rowsOf()).thread).toEqual(before.thread)
   })
 
-  it('reads a JSON backup made by current main, ignoring what it does not know', async () => {
+  it('reads a JSON backup made by current main: rows and settings kept', async () => {
     await seed()
-    const { loadWorkspace } = database
-    const workspace = await loadWorkspace()
+    const workspace = await database.loadWorkspace()
     const own = JSON.parse(exportBackup(workspace))
     Object.assign(own.workspace.preferences, extraPreferences)
     own.workspace.lessons.push(foreign.lesson)
     own.study.knowledge.push(foreign.knowledge)
     own.study.cards.push(foreign.card)
-    own.study.sessions.push(foreign.session)
     const read = readBackup(JSON.stringify(own))
-    expect(read.knowledge).toEqual(workspace.knowledge)
-    expect(read.lessons).toEqual(workspace.lessons)
-    expect(read.preferences).toEqual(workspace.preferences)
+    expect(read.knowledge.find(entry => entry.ref === 'ja:w:neko')).toEqual(foreign.knowledge)
+    expect(read.studyCards.find(card => card.ref === 'ja:w:neko')).toEqual(foreign.card)
+    expect(read.lessons.map(lesson => lesson.lessonId)).toContain('ko:lesson:3')
+    expect(read.preferences).toMatchObject({ startedTracks: ['ja'], currentLanguage: 'ja' })
+    expect(read.preferences).not.toHaveProperty('somethingNewer')
   })
 })

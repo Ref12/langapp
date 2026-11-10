@@ -111,9 +111,10 @@ describe('normal Stable use leaves every row of another language as it was', () 
     await runBackup()
     expect(memory.versions).toHaveLength(2)
     expect((await readBackupStatus()).lastError).toBeUndefined()
-    // The backup holds no other-language record, and restores.
+    // The backup carries the other-language records (explicit refs), and restores.
     const text = [...memory.versions[1]].filter(([path]) => !path.startsWith('journal/')).map(([, body]) => body).join('\n')
-    expect(text).not.toMatch(/\b(ja|ko):[wgf]:|ja:lesson|kana|japaneseReading|startedTracks/)
+    expect(text).toMatch(/ref: ja:w:/)
+    expect(text).toMatch(/startedTracks/)
     expect(() => loadBackup(memory.versions[1], getActiveProfile())).not.toThrow()
     await exportActiveProfile(); await exportWorkspaceBackup()
     // Every foreign row is still there, field for field.
