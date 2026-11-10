@@ -171,12 +171,11 @@ describe('the Japanese build language', () => {
     expect((await loadPracticeIndex()).totals.exchanges).toBe(0)
   })
 
-  it('has an empty catalog and phrase bank for the Korean placeholder', async () => {
+  it('has the Korean catalog and phrase bank, and no practice dataset', async () => {
     setBuildLanguageForTests('ko')
-    expect(catalogBandList()).toEqual([])
-    expect((await loadCatalog()).orderedGroups).toEqual([])
-    expect(await shippedPhrases('1')).toEqual({})
-    expect(await loadPhraseIndex()).toBeUndefined()
+    expect(catalogBandList()).toEqual(['1'])
+    expect((await loadCatalog()).orderedGroups.length).toBe(87)
+    expect((await loadPhraseIndex())?.total).toBe(801)
     expect((await loadPracticeData()).data.counts.exchanges).toBe(0)
   })
 })

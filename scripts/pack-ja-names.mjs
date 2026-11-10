@@ -2,21 +2,9 @@
 // A rule gives a result only where it can be trusted; everything else comes from the authoring overlays (curriculum/japanese/authoring/pack-*.json), never from a fallback.
 const toHiragana = text => String(text).replace(/[\u30a1-\u30f6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
 
-export const MAX_GLOSS = 40
+export { MAX_GLOSS, shortGloss, glossWord } from './pack-shared.mjs'
 const HAN = /\p{Script=Han}/u
-
-// ---- glosses ----
-/** One gloss in the Chinese data's style: no brackets, at most three alternatives, a verb's first alternative starts with "to ", at most 40 characters. null when the rule cannot make one. */
-export function shortGloss(text, { verb = false } = {}) {
-  let parts = String(text ?? '').replace(/^\d+\.\s*/, '').split(' | ')[0]
-    .replace(/\s*\([^)]*\)/g, '').replace(/\s*\[[^\]]*\]/g, '').split(/\s*;\s*/).map(part => part.trim().replace(/\s+/g, ' ')).filter(Boolean)
-  parts = parts.filter((part, at) => parts.findIndex(other => other.toLowerCase() === part.toLowerCase()) === at).slice(0, 3)
-  if (!parts.length) return null
-  if (verb && !/^to /i.test(parts[0])) parts[0] = 'to ' + parts[0]
-  while (parts.length > 1 && parts.join('; ').length > MAX_GLOSS) parts.pop()
-  const gloss = parts.join('; ')
-  return gloss.length > MAX_GLOSS ? null : gloss
-}
+// (the short gloss rule and glossWord moved to pack-shared.mjs, where the Korean pack uses them too)
 
 // ---- pattern names ----
 const PLACEHOLDERS = [['い形容詞', '<い-adjective>'], ['な形容詞', '<な-adjective>'], ['形容詞', '<adjective>'], ['動詞', '<verb>'], ['疑問詞', '<question word>'], ['助数詞', '<counter>'], ['時間表現', '<time expression>'], ['時刻', '<time>'], ['場所', '<place>'], ['乗り物', '<vehicle>'], ['主語', '<subject>'], ['数', '<number>'], ['文', '<sentence>'], ['人', '<person>'], ['普通形', '<plain form>']]
@@ -79,16 +67,6 @@ export function patternSlug(reading, romaji) {
   return out.join('-').replace(/-+/g, '-')
 }
 
-const WEAK = new Set(["i'm", "i'll", 'it', 'its', "it's", 'you', 'your', 'i', 'me', 'my', 'we', 'no', 'not', 'one', 'someone', 'something', 's', 'that', 'this', 'there'])
-const STOP = new Set(['to', 'a', 'an', 'the', 'be', 'of', 'in', 'on', 'for', 'and', 'or', 'with', 'is', 'are'])
-/** The English word that ends a label: the first meaningful word of the gloss, skipping little words and pronouns where another word exists. */
-export function glossWord(text) {
-  const clean = String(text).toLowerCase().replace(/\([^)]*\)|\[[^\]]*\]/g, ' ')
-  const pieces = clean.split(/[;,|/]/).map(part => (part.match(/[a-z0-9]+(?:'[a-z]+)?/g) ?? []).filter(word => !STOP.has(word)))
-  for (const words of pieces) { const word = words.find(item => !WEAK.has(item)); if (word) return word }
-  for (const words of pieces) if (words[0]) return words[0]
-  return 'x'
-}
 
 // ---- short texts ----
 const isPlaceholder = piece => /^<[^>]*>$/.test(piece)

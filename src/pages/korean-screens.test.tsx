@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-// The visible text of the Overview and the Lessons page in a Korean build, which has no lessons yet. Next to japanese-screens.test.tsx; the same walk
+// The visible text of the Overview, the Lessons page, the Lessons list and a lesson page in a Korean build, for a small seeded learner. Next to japanese-screens.test.tsx; the same walk
 // of the page text, pinned in __screens__/ko-<name>.txt. None of the screens may speak of Mandarin, Chinese, pinyin or HSK. To accept a deliberate
 // change, review the diff and run with -u.
 import { cleanup, render, screen, waitFor } from '@testing-library/react'
@@ -7,10 +7,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace } from '../core/database'
 import { setBuildLanguageForTests } from '../core/storage-names'
-import { resetCatalogCache } from '../core/study/catalog'
+import { loadCatalog, resetCatalogCache, type Catalog } from '../core/study/catalog'
 import { resetBackupStateForTests } from '../core/backup/state'
 import { initializeProfiles } from '../core/profiles/store'
 import { T0 } from '../core/profiles/fixtures/learner'
+import type { KnowledgeEntry, StudyCard } from '../core/study/contracts'
+
+const DAY = 86_400_000
 
 const FORBIDDEN = /Mandarin|Chinese|pinyin|HSK/i
 
@@ -42,9 +45,13 @@ async function screenText(route: string, ready: () => unknown): Promise<string> 
   return maskBuild(last)
 }
 
+let catalog: Catalog
+const groupIds = () => catalog.orderedGroups.map(item => item.group.id)
+
 beforeEach(async () => {
   setBuildLanguageForTests('ko')
   resetCatalogCache()
+  catalog = await loadCatalog()
   vi.useFakeTimers({ toFake: ['Date'] })
   vi.setSystemTime(T0)
   await resetBackupStateForTests()
@@ -53,22 +60,41 @@ beforeEach(async () => {
   await db.delete()
   await db.open()
   await initializeWorkspace()
+  // a small learner: the first four lessons' items are known, the rest new
+  const units = catalog.orderedGroups.slice(0, 4).flatMap(item => item.group.units.map(unit => catalog.units.get(`${unit.kind}:${unit.ref}`)).filter(Boolean))
+  const knowledge: KnowledgeEntry[] = []
+  const cards: StudyCard[] = []
+  for (const [i, unit] of units.entries()) {
+    if (!unit) continue
+    const addedAt = T0 - (units.length - i) * (DAY / 3)
+    knowledge.push({ ref: unit.ref, kind: unit.kind, lb: unit.record.lb, band: unit.band, addedAt, source: 'new' })
+    cards.push({ id: unit.ref + ':reading', ref: unit.ref, domain: 'reading', due: T0 + (i % 5 - 2) * DAY, stability: 2 + (i % 4), difficulty: 5, reps: 2, lapses: 0, state: 'review', lastReview: T0 - DAY, updatedAt: T0 - DAY })
+  }
+  await db.knowledge.bulkPut(knowledge)
+  await db.studyCards.bulkPut(cards)
 })
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); setBuildLanguageForTests(undefined); resetCatalogCache() })
 
-describe('screen text of the Korean build while its catalog is empty', () => {
+describe('screen text of the Korean build for a small seeded learner', () => {
   const pin = async (name: string, text: string) => {
     expect(text.split('\n').filter(line => FORBIDDEN.test(line)).map(line => line.slice(0, 160))).toEqual([])
     await expect(text).toMatchFileSnapshot(`./__screens__/ko-${name}.txt`)
   }
-  it('Overview says lessons are on their way, not that every group is added', async () => {
+  it('Overview shows real counts, not the empty message', async () => {
     const text = await screenText('overview', () => expect(screen.getByLabelText('Your actual learning progress')).toBeInTheDocument())
-    expect(text).toContain('Lessons are on their way for Korean.')
-    expect(text).not.toMatch(/every group|0 \/ 0/)
+    expect(text).not.toContain('Lessons are on their way for Korean.')
+    expect(text).toContain('87')
     await pin('overview', text)
   })
-  it('Lessons says lessons are on their way', async () => {
-    const text = await screenText('lessons', () => expect(screen.getByText('Lessons are on their way for Korean.')).toBeInTheDocument())
+  it('Lessons shows the next group', async () => {
+    const text = await screenText('lessons', () => expect(screen.getByText(/of 87/)).toBeInTheDocument())
+    expect(text).not.toContain('Lessons are on their way for Korean.')
     await pin('lessons', text)
+  })
+  it('Lessons list', async () => {
+    await pin('lessons-list', await screenText('lessons/list', () => expect(screen.getByText('Level 1')).toBeInTheDocument()))
+  })
+  it('A lesson page', async () => {
+    await pin('lesson', await screenText(`lessons/group/${groupIds()[4]}`, () => expect(document.querySelector('.word-card')).toBeTruthy()))
   })
 })

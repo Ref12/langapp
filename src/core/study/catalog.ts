@@ -8,7 +8,7 @@ import { type Band, type UnitKind, bandSchema, unitRef } from './contracts'
 // imported on first use so the Dictionary and study flows do not load ~4 MB up front.
 
 /** `cl` (absent in Chinese): the conjugation class of a word that inflects (ichidan, godan-mu, suru-compound, i-adj, na-adj …), as decided by the forms rules of the language. */
-export interface VocabularyRecord { id: string; ch: string; pr: string; ds: string; lb: string; cl?: string }
+export interface VocabularyRecord { id: string; ch: string; pr: string; ds: string; lb: string; cl?: string; /** The English part of speech (Korean pack: noun, verb, adjective, adverb, numeral, counter, pronoun, determiner, expression). */ ps?: string }
 /**
  * One piece of an authored example: a vocabulary word (`word` = its label), a grammar unit (`grammar` = its label) or punctuation. A Chinese segment has only that; a segment of another language may
  * carry its own surface `text` and `reading`. A conjugated word is one segment: the word's label, the whole surface (勉強します) and `form`, the id of the form it is in (the pack's forms table names it and points at the pattern that teaches it).

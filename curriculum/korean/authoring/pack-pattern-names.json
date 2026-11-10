@@ -1,0 +1,19 @@
+{
+ "version": 1,
+ "language": "ko",
+ "note": "Names of the pattern units where scripts/pack-ko-names.mjs patternNameRule gives no good result (pattern id -> { name }). Convention: <english placeholder> + Korean as written, ' + ' between parts. Edit here, not in the rule.",
+ "names": {
+  "ko-par-g003": {
+   "name": "<noun> + <noun>"
+  },
+  "ko-par-g005": {
+   "name": "<noun> + 은/는 + 다 + <predicate>"
+  },
+  "ko-par-g054": {
+   "name": "<place> + 에"
+  },
+  "ko-par-g057": {
+   "name": "구 (nine)"
+  }
+ }
+}

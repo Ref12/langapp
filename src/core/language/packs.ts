@@ -7,6 +7,7 @@ import { jaMeta, koMeta, zhMeta, type PackMeta } from './meta'
 import type { PackData } from './pack-data'
 import { emptyData } from './data/empty'
 import { jaData } from './data/ja'
+import { koData } from './data/ko'
 import { zhData } from './data/zh'
 
 export * from './meta'
@@ -24,8 +25,7 @@ declare const __PACK_DATA__: string
 
 export const zhPack: LanguagePack = { ...zhMeta, ...(typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ === 'all' || __PACK_DATA__ === 'zh' ? zhData : emptyData) }
 export const jaPack: LanguagePack = { ...jaMeta, ...(typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ === 'all' || __PACK_DATA__ === 'ja' ? jaData : emptyData) }
-/** A placeholder: Korean has no data yet, so its catalog is empty (no bands), its phrase bank is empty and it has no dataset. */
-export const koPack: LanguagePack = { ...koMeta, ...emptyData }
+export const koPack: LanguagePack = { ...koMeta, ...(typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ === 'all' || __PACK_DATA__ === 'ko' ? koData : emptyData) }
 
 export const PACKS: Record<LanguageId, LanguagePack> = { zh: zhPack, ja: jaPack, ko: koPack }
 
