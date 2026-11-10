@@ -7,6 +7,7 @@ import { applyAnswer } from './progress'
 import { makeQuestions } from './questions'
 import { speechVoicePreferencesSchema } from './assistant/contracts'
 import { pinyinFormatSchema } from './pinyin'
+import { getPack } from './language'
 import { WRITING_SPEECH } from './writing-speech'
 
 export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 'language'>>): Promise<void> {
@@ -16,6 +17,8 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     const next = { ...current, ...changes, name: (changes.name ?? current.name).trim() }
     if (!next.name || next.name.length > 80) throw new Error('Use a workspace name between 1 and 80 characters.')
     if (next.pinyinFormat !== undefined) next.pinyinFormat = pinyinFormatSchema.parse(next.pinyinFormat)
+    if (next.displayForm !== undefined && !getPack().displayForms?.choices.some(choice => choice.id === next.displayForm)) throw new Error('Choose one of the forms this language offers.')
+    if (next.readingStyle !== undefined && !getPack().readingStyles?.choices.includes(next.readingStyle)) throw new Error('Choose one of the reading styles this language offers.')
     if (changes.speechVoices !== undefined) next.speechVoices = { ...current.speechVoices, ...changes.speechVoices }
     if (next.speechVoices !== undefined) next.speechVoices = speechVoicePreferencesSchema.parse(next.speechVoices)
     if (next.speechDebugMessages !== undefined && typeof next.speechDebugMessages !== 'boolean') throw new Error('Choose whether speech debug messages are shown.')

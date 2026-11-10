@@ -20,6 +20,23 @@ export interface PackWording {
 /** How readings are written: pinyin per Han character (annotated with Han runs), or one plain reading line under the text. */
 export type ReadingStyle = 'pinyin' | 'line'
 
+/** How a reading line is written when a pack offers a choice: in kana, or in romaji made from the kana. */
+export type ReadingScript = 'kana' | 'romaji'
+
+/** One form a learner may choose to see verbs in: its id in the pack's forms table, and the kinds of word it is shown for (the kinds the form is joined for in that table). */
+export interface DisplayFormChoice { id: string; kinds: string[] }
+/** The forms a pack lets the learner choose for display (Japanese: polite or dictionary), the default, and a sample word for the option labels. A pack without a forms table has none. */
+export interface PackDisplayForms {
+  /** The language of the forms engine (src/core/forms). */
+  language: 'ja' | 'ko'
+  choices: DisplayFormChoice[]
+  default: string
+  /** The word the option labels show their form of: "Polite form (勉強します)". */
+  sample: { ch: string; pr: string; cl: string }
+}
+/** The reading styles a pack offers and the default; a pack that offers none keeps its own reading format setting. */
+export interface PackReadingStyles { choices: ReadingScript[]; default: ReadingScript }
+
 export interface PackMeta {
   id: LanguageId
   /** The language's English name, e.g. "Japanese". */
@@ -38,6 +55,10 @@ export interface PackMeta {
   readings: ReadingStyle
   /** Whether the knowledge counts include a count of Han characters. */
   countsCharacters: boolean
+  /** Which form a verb is shown in, as a setting. Absent: no setting, words are shown as stored. */
+  displayForms?: PackDisplayForms
+  /** Kana or romaji for the reading line, as a setting. Absent: no setting. */
+  readingStyles?: PackReadingStyles
 }
 
 /** "HSK 1" or "Level 1". */
@@ -51,7 +72,9 @@ const nothing = Object.fromEntries(AREAS.map(area => [area, false])) as Features
 export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4E2D\u6587', learningTag: 'zh-Hans', htmlLang: 'en', features: everything,
   wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', courseTracks: true, readings: 'pinyin', countsCharacters: true }
 export const jaMeta: PackMeta = { id: 'ja', name: jaTrack.name, nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: nothing,
-  wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', courseTracks: false, readings: 'line', countsCharacters: false }
+  wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', courseTracks: false, readings: 'line', countsCharacters: false,
+  displayForms: { language: 'ja', choices: [{ id: 'masu', kinds: ['verb'] }, { id: 'dict', kinds: [] }], default: 'masu', sample: { ch: '\u52C9\u5F37\u3059\u308B', pr: '\u3079\u3093\u304D\u3087\u3046\u3059\u308B', cl: 'suru-compound' } },
+  readingStyles: { choices: ['kana', 'romaji'], default: 'kana' } }
 export const koMeta: PackMeta = { id: 'ko', name: koTrack.name, nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: nothing,
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', courseTracks: false, readings: 'line', countsCharacters: false }
 

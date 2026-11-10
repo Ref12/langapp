@@ -63,6 +63,7 @@ import { UpdateBar } from './components/UpdateBar'
 import { GroupDetail } from './pages/GroupDetail'
 import { ParallelPractice } from './pages/ParallelPractice'
 import { ParallelLessonView } from './pages/ParallelLessonView'
+import { DisplaySettingsProvider, resolveDisplaySettings } from './components/display-context'
 import { OtherLanguageSetting } from './components/study/other-language-setting'
 import { LanguageSwitch } from './components/LanguageSwitch'
 import { currentLanguageOf, startedTracks } from './data/tracks'
@@ -224,6 +225,7 @@ function WorkspaceApp() {
   useBackupBoundaries(route, practicingNow)
   if (!workspace) return <div className="opening-workspace" role="status">Opening your saved workspace...</div>
   const { preferences } = workspace
+  const displaySettings = resolveDisplaySettings(preferences)
   const collapsed = preferences.sidebarCollapsed
   const due = workspace.words.filter(word => word.dueAt <= now).length
   const busy = pending > 0
@@ -238,7 +240,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><BackupNow />
           <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
         </>
-  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><DisplaySettingsProvider settings={displaySettings}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -274,7 +276,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></OtherLanguageSetting.Provider></ReadingSettingsContext.Provider></PinyinFormatContext.Provider>
+  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></OtherLanguageSetting.Provider></DisplaySettingsProvider></ReadingSettingsContext.Provider></PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

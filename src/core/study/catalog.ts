@@ -1,4 +1,5 @@
 import { getPack, type LanguageId } from '../language'
+import type { RomajiToken } from '../reading/romaji'
 import { type Band, type UnitKind, bandSchema, unitRef } from './contracts'
 
 // Lazy access to the generated curriculum data of the build's language pack (Chinese: src/data/v2; getPack().catalog). Each band is
@@ -121,6 +122,23 @@ export function renderExample(catalog: Catalog, example: { segments: ExampleSegm
     }
   }
   return { text: text.join(''), pinyin: pinyin.join(getPack().catalog.readingJoiner) }
+}
+
+/** The tokens of an example for its romaji: each word and grammar segment's kana reading, a grammar segment that is only は, へ or を marked as a particle, punctuation as it is. */
+export function exampleReadingTokens(catalog: Catalog, example: { segments: ExampleSegment[] }): RomajiToken[] {
+  const tokens: RomajiToken[] = []
+  for (const segment of example.segments) {
+    if (segment.punctuation !== undefined) tokens.push({ reading: segment.punctuation, punctuation: true })
+    else if (segment.word !== undefined) {
+      const unit = catalog.units.get(unitRef('vocabulary', segment.word))
+      tokens.push({ reading: segment.reading ?? (unit?.kind === 'vocabulary' ? unit.record.pr : '') })
+    } else if (segment.grammar !== undefined) {
+      const unit = catalog.units.get(unitRef('grammar', segment.grammar))
+      const reading = segment.reading ?? (unit?.kind === 'grammar' ? unit.record.pr : '')
+      tokens.push({ reading, particle: segment.text !== undefined && segment.text === reading && /^[はへを]$/.test(reading) })
+    }
+  }
+  return tokens
 }
 
 export function unitTitle(unit: Unit): string {

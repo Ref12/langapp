@@ -33,6 +33,8 @@ export interface PackForm {
 }
 
 export interface PackData {
+  /** Hand-written romaji for readings the letter-for-letter rule gets wrong (a は said wa inside こんにちは); absent when the language has no romaji. */
+  romaji?: Readonly<Record<string, string>>
   catalog: CatalogSource
   phrases: PhraseBankSource
   /** Absent when the language has no dataset: the dataset forms then get no material. */

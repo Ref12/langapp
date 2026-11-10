@@ -47,6 +47,8 @@ export function createEmptyProfile(profile: ProfileMetadata, localSettings?: z.i
           ...(settings.defaultSpeechRate === undefined ? {} : { defaultSpeechRate: settings.defaultSpeechRate }),
           ...(settings.speechVoices === undefined ? {} : { speechVoices: settings.speechVoices }),
           ...(settings.pinyinFormat === undefined ? {} : { pinyinFormat: settings.pinyinFormat }),
+          ...(settings.displayForm === undefined ? {} : { displayForm: settings.displayForm }),
+          ...(settings.readingStyle === undefined ? {} : { readingStyle: settings.readingStyle }),
         },
         ...(settings.aiConnection ? { aiConnection: settings.aiConnection } : {}),
         ...(settings.speechConnection ? { speechConnection: settings.speechConnection } : {}),

@@ -3,6 +3,9 @@ import { unitRef, type Band } from '../core/study/contracts'
 import type { Catalog } from '../core/study/catalog'
 import { bandSummaries, grammarLabel, groupRows, type BandSummary, type GroupRow, type Track } from '../data/tracks'
 import type { Workspace } from '../core/model'
+import { headwordFor } from '../core/forms/display'
+import { getPack } from '../core/language'
+import { useDisplaySettings } from './display-context'
 
 const refFor = (kind: string, ref: string) => unitRef(kind as 'vocabulary' | 'grammar', ref)
 
@@ -24,12 +27,13 @@ export function useBandSummaries(track: Track, catalog: Catalog | undefined, kno
 
 /** The rows of one band, built only while it is open. */
 export function useBandRows(track: Track, catalog: Catalog | undefined, known: Map<string, number>, nextId: string | undefined, band: Band, open: boolean): GroupRow[] {
+  const form = useDisplaySettings().form
   return useMemo(() => catalog && open ? groupRows(track, {
     orderedGroups: catalog.orderedGroups,
     titleOf: (kind, ref) => {
       const unit = catalog.units.get(refFor(kind, ref))
       if (!unit) return ref
-      return unit.kind === 'vocabulary' ? unit.record.ch : grammarLabel(unit.record.pt, unit.record.lb)
+      return unit.kind === 'vocabulary' ? headwordFor(getPack().displayForms, form, unit.record).text : grammarLabel(unit.record.pt, unit.record.lb)
     },
-  }, known, nextId, refFor, band) : [], [track, catalog, known, nextId, band, open])
+  }, known, nextId, refFor, band) : [], [track, catalog, known, nextId, band, open, form])
 }

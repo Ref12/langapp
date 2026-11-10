@@ -63,6 +63,10 @@ export interface Preferences {
   /** Reading aids per language on Japanese and Korean practice: furigana (ja, on unless false) and romanization (ko, off unless true). */
   /** How Japanese readings show in the pinyin slot: romaji (default) or kana. */
   japaneseReading?: 'romaji' | 'kana'
+  /** The form verbs are shown in (a form id of the language pack's forms table). Absent until the learner chooses; it changes what is displayed, never what is stored. */
+  displayForm?: string
+  /** Kana or romaji for the reading line. Absent until the learner chooses; romaji is made from the kana for display and never stored. */
+  readingStyle?: 'kana' | 'romaji'
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences

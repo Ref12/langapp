@@ -13,12 +13,12 @@ import { MAX_REDOS_PER_EXERCISE, playItem, queueLength, redosRemaining } from '.
 import { advanceExercise, discardSession, dismissAiNotice, DOMAIN, settleInterrupted, startRedoSession, submitExerciseAnswer } from '../core/study/knowledge'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
 import { ResumeList } from '../components/study/ResumeList'
+import { HeadwordReading, HeadwordText } from '../components/display-context'
 import { UnitCard } from '../components/study/UnitCard'
 import { useCatalog } from '../components/study/useCatalog'
 import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
 import { AnnotatedChinese } from '../components/study/AnnotatedChinese'
 import { AnswerButton } from '../components/AnswerButton'
-import { Pinyin } from '../components/Pinyin'
 import { readingIndex } from '../core/study/annotate'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { savePreferences } from '../core/learning'
@@ -48,8 +48,8 @@ export function Study({ workspace, now, run, busy }: PageProps) {
         </div>
         {curriculumOpen.new && <p className="small muted">Your unfinished lesson is in Pick up where you left off.</p>}
         {next && <ul className="study-preview" aria-label="Items in this group">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>
-          <span className="study-preview-form" lang={getPack().learningTag}>{unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt}</span>
-          <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><Pinyin text={unit.record.pr} /> </span>}{unit.record.ds}</span>
+          <span className="study-preview-form" lang={getPack().learningTag}>{unit.kind === 'vocabulary' ? <HeadwordText record={unit.record} /> : unit.record.pt}</span>
+          <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><HeadwordReading record={unit.record} /> </span>}{unit.record.ds}</span>
         </li>)}</ul>}
         {progress && <p className="small muted"><BandName n={next?.band ?? '6'} /> / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}
       </section>}
