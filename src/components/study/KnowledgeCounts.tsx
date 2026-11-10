@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { getPack } from '../../core/language'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../../core/database'
 import { countItems } from '../../core/study/daily'
@@ -22,6 +23,8 @@ export function KnowledgeCounts({ knowledge, className = 'dr-known', rest }: { k
     }
     return seen.size
   }, [knowledge, catalog, sourceRows])
+  if (!getPack().countsCharacters) return rest ? <small className={className} aria-label="Your knowledge set">{counts.grammar} grammar</small>
+    : <p className={className} aria-label="Your knowledge set"><strong className="dr-known-words">{counts.words}</strong> {counts.words === 1 ? 'word' : 'words'} · {counts.grammar} grammar</p>
   if (rest) return <small className={className} aria-label="Your knowledge set">{counts.grammar} grammar · {characters} {characters === 1 ? 'character' : 'characters'}</small>
   return <p className={className} aria-label="Your knowledge set"><strong className="dr-known-words">{counts.words}</strong> {counts.words === 1 ? 'word' : 'words'} · {counts.grammar} grammar · {characters} {characters === 1 ? 'character' : 'characters'}</p>
 }

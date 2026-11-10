@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import { getPack } from '../../core/language'
 import { createGuidedAudio, type GuidedAudioState } from '../../core/guided-audio'
 import { buildLessonAudioScript, type LessonDefinition } from '../../core/learning-content'
 import { contentWords, contentModels, contentGrammar } from '../../data/learning-content'
@@ -26,7 +27,7 @@ export function GuidedAudio({ lesson }: { lesson: LessonDefinition }) {
   return <section className="panel guided-audio" aria-label="Guided audio player">
     <h2>Listen to the lesson</h2>
     <p>The lesson description, goals, vocabulary, grammar explanations, concepts, conversations, and exercises follow the same order as the visual lesson. Exercises leave time to respond before a model answer. No reading is required during playback.</p>
-    <p className="small muted">Uses your English and Mandarin voices from <a href="#settings">Settings</a>. Online browser voices may send spoken text to their provider. Nothing is recorded here. Resume replays the current segment; Repeat restarts the current section or content item.</p>
+    <p className="small muted">{`Uses your English and ${getPack().wording.language} voices from `}<a href="#settings">Settings</a>. Online browser voices may send spoken text to their provider. Nothing is recorded here. Resume replays the current segment; Repeat restarts the current section or content item.</p>
     <div className="button-row">
       {!running && <button type="button" className="button primary" onClick={() => state.status === 'idle' || state.status === 'completed' ? controller.current?.start() : controller.current?.resume()}>
         {state.status === 'idle' ? 'Start guided audio' : state.status === 'completed' ? 'Replay guided audio' : 'Resume guided audio'}

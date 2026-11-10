@@ -6,11 +6,19 @@ import { savePreferences } from '../../core/learning'
 import type { PageProps } from '../shared'
 import { LocalSpeechRateSetupContext, LocalSpeechVoicesSetupContext } from './local-ai-setup-context'
 import { HearButton } from './SnippetActions'
+import { getPack } from '../../core/language'
 
-const languages: { locale: SpeechLocale; label: string }[] = [
-  { locale: 'zh-Hans', label: 'Mandarin' },
+/** The voices a build offers: the language it teaches (named by the pack), then English. */
+const languagesOf = (): { locale: SpeechLocale; label: string }[] => [
+  { locale: getPack().speechLocale, label: getPack().wording.language },
   { locale: 'en-US', label: 'English' },
 ]
+const TEST_PHRASES: Record<SpeechLocale, string> = {
+  'en-US': 'Hello! This is your English voice.',
+  'zh-Hans': '你好！这是你选择的中文声音。',
+  'ja-JP': 'こんにちは。これはあなたが選んだ日本語の声です。',
+  'ko-KR': '안녕하세요. 선택하신 한국어 목소리입니다.',
+}
 
 /** One voice picker for a language, with Automatic and the browser and Edge voices; `onPick` gets the chosen voice or undefined for Automatic. */
 export function VoiceSelect({ locale, label, value, onPick, disabled, automatic = 'Automatic (local first)', catalog }: {
@@ -58,7 +66,7 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
     {voiceSetup === 'error' && <p className="notice error" role="alert">Voice selections could not be loaded. Check the profile YAML in data/ and reload. Your previous selections were kept.</p>}
     <p className="small muted" id={`${id}-help`}>Selections save automatically and apply to Hear, Practice, lessons, and spoken replies. Automatic prefers listed local browser voices. If no matching voice is listed, it asks the system for the requested language; it never selects Edge TTS.</p>
     <p className="small muted" id={`${id}-privacy`}>Online voices send the spoken text to the browser's speech service. A system-selected voice may also be online; its identity and availability cannot be confirmed from an empty voice list. Edge TTS sends it to Microsoft through the local server. Only Test voice or playback sends text; loading the Edge catalog sends no text.</p>
-    {languages.map(({ locale, label }) => {
+    {languagesOf().map(({ locale, label }) => {
       const voices = [...new Map(state.voices.filter(voice => browserVoiceMatches(voice, locale)).map(voice => [browserVoiceKey(voice), voice])).values()]
         .sort((left, right) => Number(right.localService) - Number(left.localService) || left.name.localeCompare(right.name) || left.lang.localeCompare(right.lang))
       const selected = workspace.preferences.speechVoices?.[locale]
@@ -93,7 +101,7 @@ export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspa
             {edgeVoices.map(voice => <option key={voice.id} value={`edge:${voice.id}`}>{voice.name} — {voice.gender} — Edge TTS</option>)}
           </optgroup>}
         </select></label>
-        <HearButton text={locale === 'en-US' ? 'Hello! This is your English voice.' : '你好！这是你选择的中文声音。'}
+        <HearButton text={TEST_PHRASES[locale]}
           locale={locale} label={`Test ${label} voice`} buttonText="Test voice"
           disabled={busy || voiceSetup === 'loading' || unavailable || (isEdgeVoice(selected) && edge.loading)} />
         {unavailable && <p className="notice" id={`${id}-${locale}-unavailable`} role="status">Your saved {label} voice is not currently available. Hear will not use a different voice. Choose another voice or Automatic, or refresh after enabling the saved voice.</p>}

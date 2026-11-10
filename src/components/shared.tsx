@@ -4,6 +4,7 @@ import { trackWord } from '../core/learning'
 import type { Word, WordState, Workspace } from '../core/model'
 import { readingStage } from '../core/progress'
 import { SnippetActions } from './assistant/SnippetActions'
+import { getPack } from '../core/language'
 import { MandarinWord } from './MandarinWord'
 
 export interface PageProps {
@@ -34,7 +35,7 @@ export function WordCard({ word, state, pinyin, source, run, busy, compact = fal
   word: Word; state?: WordState; pinyin: boolean; source: string; compact?: boolean; returnRoute?: string
 } & Pick<PageProps, 'run' | 'busy'>) {
   const route = returnRoute ?? (source.startsWith('story:') ? `reader/${source.slice(6)}` : source.startsWith('lesson:') ? `lesson/${source.slice(7)}` : 'dictionary')
-  const example = word.example && <><p lang="zh-Hans" className="example">{word.example}</p><p className="small muted">{word.translation}</p></>
+  const example = word.example && <><p lang={getPack().learningTag} className="example">{word.example}</p><p className="small muted">{word.translation}</p></>
   const curriculumLink = word.curriculum
     ? <p className="small muted"><a className="text-link" href={`#level/${word.curriculum.levelId}`}>View curriculum level</a></p>
     : <p className="small muted">Starter example / separate from curriculum evidence</p>
@@ -42,10 +43,10 @@ export function WordCard({ word, state, pinyin, source, run, busy, compact = fal
     <div className="card-topline"><span className="eyebrow">{word.kind}</span><span className="tag">{readingStage(state)}</span></div>
     <div className="phrase-row">
       <div className="phrase-row-text">
-    <h3 lang="zh-Hans" className="word-native"><MandarinWord word={word} state={state} pinyin={pinyin} /></h3>
+    <h3 lang={getPack().learningTag} className="word-native"><MandarinWord word={word} state={state} pinyin={pinyin} /></h3>
     <p className="word-meaning">{word.meaning}</p>
       </div>
-      <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: 'zh-Hans', title: `Word: ${word.meaning}`, route }} />
+      <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: getPack().speechLocale, title: `Word: ${word.meaning}`, route }} />
     </div>
     {!compact && example}
     {!compact && curriculumLink}

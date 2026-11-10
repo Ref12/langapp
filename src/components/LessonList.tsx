@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { getPack } from '../core/language'
+import { Band } from './Band'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import type { Band } from '../core/study/contracts'
 import type { Catalog } from '../core/study/catalog'
@@ -15,7 +17,7 @@ function BandRows({ track, catalog, known, nextId, band }: { track: Track; catal
   useEffect(() => { next.current?.scrollIntoView?.({ block: 'center' }) }, [nextId])
   return <ol>{rows.map(row => <li key={row.id} ref={row.status === 'current' ? next : undefined} className={`lesson-index-row ${row.status}`} aria-current={row.status === 'current' ? 'step' : undefined} id={row.status === 'current' ? 'current-lesson' : undefined}>
     <a href={`#lessons/group/${row.id}`}>
-      <span className="num">{row.number}</span><span className="title" lang="zh-Hans">{row.title}</span>
+      <span className="num">{row.number}</span><span className="title" lang={getPack().learningTag}>{row.title}</span>
       <span className="status">{statusText(row)}</span>
       <span className="date">{row.completedAt !== undefined ? dateOf(row.completedAt) : ''}</span>
     </a></li>)}</ol>
@@ -36,7 +38,7 @@ export function LessonList({ track, catalog, knowledge, nextId, nextBand }: { tr
       const open = toggled[band] ?? band === nextBand
       return <div key={band} className="lesson-index-group">
         <button type="button" className="lesson-index-band" aria-expanded={open} onClick={() => setToggled(state => ({ ...state, [band]: !open }))}>
-          {open ? <ChevronDown size={16} /> : <ChevronRight size={16} />}<h3>HSK {band}</h3><span className="small muted">{done} of {total} done</span>
+          {open ? <ChevronDown size={16} /> : <ChevronRight size={16} />}<h3><Band n={band} /></h3><span className="small muted">{done} of {total} done</span>
         </button>
         {open && <BandRows track={track} catalog={catalog} known={known} nextId={nextId} band={band} />}
       </div>

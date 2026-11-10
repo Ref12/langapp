@@ -236,7 +236,7 @@ function WorkspaceApp() {
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
         <div className="sidebar-bottom"><BackupNow />
-          <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></BuildSwitch></div>
+          <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
         </>
   return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><OtherLanguageSetting.Provider value={preferences.otherLanguageCards}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
@@ -331,7 +331,7 @@ export default function App() {
     {bootstrap
       ? <LocalAIConnectionSetup onImported={markLocalSettingsImported}><WorkspaceApp /></LocalAIConnectionSetup>
       : <WorkspaceApp />}
-  </WorkspaceBoundary></> : <div className="opening-workspace" role="status">Opening your Mandarin workspace...</div>
+  </WorkspaceBoundary></> : <div className="opening-workspace" role="status">{`Opening your ${getPack().wording.language} workspace...`}</div>
 }
 
 function Redirect({ to }: { to: string }) {
