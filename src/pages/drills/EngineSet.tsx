@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { getPack } from '../../core/language'
+import { drillText } from '../../core/language/practice-wording'
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
 import { HearButton } from '../../components/assistant/SnippetActions'
@@ -18,7 +20,8 @@ import { createDatasetSource, datasetAcceptance } from '../../core/session/datas
 import { BUILTIN_PRESETS, FORMS_BY_STAGE, SPOKEN_PRESETS } from '../../core/session/presets'
 import { loadCustomPresets, resolvePreset, saveCustomPreset } from '../../core/session/custom-preset'
 import { answerCurrent, currentExercise, currentStage, progressOf, replayRunner, skillsOf, summarise, type RunnerState } from '../../core/session/runner'
-import { FORM_LABEL, LENGTHS, LENGTH_LABEL, STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
+import { formLabel } from '../../core/session/form-label'
+import { LENGTHS, LENGTH_LABEL, STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
 import { FUNCTION_CHARACTERS_LIST } from '../../core/session/function-characters'
 import { ExerciseQuestion, type Outcome } from './EngineQuestion'
 import { IntroCard } from './IntroCards'
@@ -102,7 +105,7 @@ function PresetBuilder({ onSave }: { onSave: (preset: { id: string; name: string
   return <fieldset className="engine-builder"><legend>Your own preset</legend>
     <label>Name<input value={name} maxLength={40} onChange={event => setName(event.target.value)} /></label>
     <div role="group" aria-label="Stages">{STAGES.map(stage => <label key={stage} className="toggle"><input type="checkbox" checked={stages.includes(stage)} onChange={() => setStages(toggle(stages, stage))} /> {STAGE_LABEL[stage]}</label>)}</div>
-    <div role="group" aria-label="Exercise types">{every.map(form => <label key={form} className="toggle"><input type="checkbox" checked={forms.includes(form)} onChange={() => setForms(toggle(forms, form))} /> {FORM_LABEL[form]}</label>)}</div>
+    <div role="group" aria-label="Exercise types">{every.map(form => <label key={form} className="toggle"><input type="checkbox" checked={forms.includes(form)} onChange={() => setForms(toggle(forms, form))} /> {formLabel(form)}</label>)}</div>
     <button type="button" className="button primary" disabled={!name.trim() || !stages.length} onClick={() => onSave({ id: `custom-${name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40) || 'preset'}`, name: name.trim(), forms, stages })}>Save preset</button>
   </fieldset>
 }
@@ -113,7 +116,7 @@ function SkillFocus({ set, items }: { set: DrillSet; items: ItemInfo[] }) {
   return <section className="panel dr-panel" aria-labelledby="engine-skill"><h2 id="engine-skill">Practise one skill</h2>
     <p className="small muted">One kind of exercise on its own, outside the session.</p>
     <ul className="dr-rows">{DRILL_TYPES.map(entry => { const avail = availability(entry.id, items, content); const ready = avail.state === 'ready'
-      return <li key={entry.id}><div><strong>{entry.name}</strong><span className="small muted">{ready ? entry.blurb : avail.message}</span></div>
+      return <li key={entry.id}><div><strong>{drillText(entry, getPack().practiceWording).name}</strong><span className="small muted">{ready ? drillText(entry, getPack().practiceWording).blurb : avail.message}</span></div>
         <span className="dr-actions">{ready ? <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Practise ${entry.name}`} title="Practise"><Play size={18} /></a> : <button type="button" className="icon-button" disabled aria-label={`${entry.name} is not available`}><Play size={18} /></button>}</span></li> })}</ul></section>
 }
 
@@ -155,7 +158,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
     <a className="back-link" href={`#${setRoute(set.id)}`}><ArrowLeft size={16} /> {set.title}</a>
     <div className="engine-progress"><span className="eyebrow">{stage ? STAGE_LABEL[stage] : ''}{exercise && exercise.round > 0 ? ' · another try' : ''}</span>
       <progress aria-label="Session progress" value={Math.min(doneCount, total)} max={Math.max(1, total)} /><span className="small muted">{Math.min(doneCount, total)} of {total}</span>
-      <button type="button" className="button secondary small engine-pinyin" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? 'Hide pinyin' : 'Show pinyin'}</button></div>
+      <button type="button" className="button secondary small engine-pinyin" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? getPack().practiceWording.hideReadings : getPack().practiceWording.showReadings}</button></div>
     <section className="panel practice-card" aria-live="polite" data-form={exercise?.form} data-answer-lang={exercise && 'answerLang' in exercise ? exercise.answerLang : undefined}>
       {exercise?.form === 'intro' && (() => { const item = items.find(entry => entry.ref === exercise.refs[0]); return <>
         <p className="engine-instruction small" data-instruction="intro">Learn the new word <span className="muted">· {intro + 1}</span></p>
@@ -163,8 +166,8 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => { setIntro(intro + 1); advance(true) }}>Got it <ArrowRight size={16} /></button></div></> })()}
       {exercise?.form === 'repeat' && <>
         <p className="engine-instruction small" data-instruction="repeat">Say it after the audio</p><p className="small muted">Nothing is graded.</p>
-        <p className="practice-prompt native" lang="zh-Hans">{exercise.zh}</p><p className="small">{exercise.py}</p><p lang="en">{exercise.en}</p>
-        <p><HearButton text={exercise.zh} locale="zh-Hans" label="Hear it" /></p>
+        <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.zh}</p><p className="small">{exercise.py}</p><p lang="en">{exercise.en}</p>
+        <p><HearButton text={exercise.zh} locale={getPack().speechLocale} label="Hear it" /></p>
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => advance(true)}>Next <ArrowRight size={16} /></button></div></>}
       {exercise && exercise.form !== 'intro' && exercise.form !== 'repeat' && <ExerciseQuestion key={exercise.id} exercise={exercise} ctx={ctx} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed, outcome.hint)} />}
     </section>
@@ -183,7 +186,7 @@ function EngineSummary({ set, state, items, busy, run }: { set: DrillSet; state:
         <progress aria-label={`${STAGE_LABEL[entry.stage]} score`} value={entry.correct} max={Math.max(1, entry.total)} /></li>)}</ul>
       {summary.retried > 0 && <p className="small muted">{summary.retried} {summary.retried === 1 ? 'exercise was' : 'exercises were'} tried again. Second tries are not scored.</p>}</section>
     <section className="panel dr-panel" aria-labelledby="engine-missed"><h2 id="engine-missed">{missed ? 'To look at again' : 'No misses'}</h2>
-      {missed > 0 ? <ul className="dr-rows">{summary.missedRefs.map(ref => { const item = name(ref); return <li key={ref}><div><strong lang="zh-Hans">{item?.zh ?? ref}</strong><span className="small muted">{[item?.py, item?.en].filter(Boolean).join(' · ')}</span></div></li> })}</ul> : <p className="small muted">Every item was right on its first try.</p>}</section>
+      {missed > 0 ? <ul className="dr-rows">{summary.missedRefs.map(ref => { const item = name(ref); return <li key={ref}><div><strong lang={getPack().learningTag}>{item?.zh ?? ref}</strong><span className="small muted">{[item?.py, item?.en].filter(Boolean).join(' · ')}</span></div></li> })}</ul> : <p className="small muted">Every item was right on its first try.</p>}</section>
     <section className="panel dr-panel engine-next" aria-labelledby="engine-next"><h2 id="engine-next">What next?</h2>
       <div className="button-row engine-next-actions">
         <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await setEngineChoice(set.id, {}); navigate(setRoute(set.id)) })}>Practise again</button>

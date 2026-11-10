@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { getPack } from '../../core/language'
+import { drillText } from '../../core/language/practice-wording'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import type { Workspace } from '../../core/model'
 import type { PageProps } from '../../components/shared'
@@ -27,6 +29,8 @@ interface RunProps extends Pick<PageProps, 'now' | 'run' | 'busy'> {
 const TITLES: Record<string, string> = {
   choice: 'Choose the answer', match: 'Match the pairs', free: 'Type the answer', pinyin: 'Type the pinyin', learn: 'Learn to write', write: 'Write it', translate: 'Translate into Chinese', repeat: 'Repeat after me', convo: 'Answer the questions',
 }
+
+const titleOf = (key: string) => getPack().practiceWording.drillTitles[key] ?? TITLES[key]
 
 /** One drill type over the items of a set: one at a time, or as a single page answered in bulk. The first pass of a type is graded; a redo is not. */
 export function DrillRun({ set, type, items, catalog, workspace, only, backHref, now, run, busy }: RunProps) {
@@ -85,7 +89,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     if (quiz || !isAuto(q)) { patch(q.key, { answer: value }); return }
     if (value !== undefined && !states[q.key]?.outcome && states[q.key]?.status !== 'marking') check(q, value)
   }
-  const name = drillType(type).name
+  const name = drillText(drillType(type), getPack().practiceWording).name
 
   const toolbar = <div className="dr-toolbar dr-modes-bar" data-assistant-exclude>
     {type === 'meanings' && <>
@@ -124,7 +128,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     const checked = queue.some(q => (states[q.key]?.status ?? 'open') !== 'open')
     const checkAll = () => { for (const q of queue) { const state = states[q.key]; if (state?.answer !== undefined && (state.status ?? 'open') === 'open') check(q, state.answer) } }
     return <div className="dr">{header}{toolbar}
-      <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel"><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{TITLES[q.data.t]}</h2></div>
+      <ol className="dr-quiz">{queue.map((q, number) => <li key={q.key} className="panel"><div className="dr-qhead"><span className="eyebrow">{number + 1}</span><h2 className="small">{titleOf(q.data.t)}</h2></div>
         <QuestionView q={q} quiz state={states[q.key] ?? { status: 'open' }} ctx={ctx} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} /></li>)}</ol>
       <div className="dr-sticky" role="region" aria-label="Quiz progress"><span><strong>{answered} of {queue.length}</strong> answered</span>
         {toConfirm.length > 0 ? <button type="button" className="button primary" disabled={toConfirm.some(q => !states[q.key]?.chosen)} onClick={() => toConfirm.forEach(confirm)}>Confirm marks</button>
@@ -139,7 +143,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     <progress aria-label="Progress" value={index} max={queue.length} />
     {toolbar}
     <div className="dr-question" {...(q.data.t === 'write' || q.data.t === 'learn' ? { 'data-assistant-exclude': '' } : {})}>
-    <h2 className="small dr-qtitle">{TITLES[q.data.t]}</h2>
+    <h2 className="small dr-qtitle">{titleOf(q.data.t)}</h2>
     <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} arrive={arrived === q.key ? 'last' : undefined} onPrevious={type === 'learn' && index > 0 ? () => { setArrived(queue[index - 1].key); setIndex(index - 1) } : undefined} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
     </div>
     <DrillAnswer q={q} state={state} last={index + 1 >= queue.length} busy={busy} canCheck={canCheck} onCheck={() => check(q, state.answer)} onNext={() => { if (state.status === 'marking') confirm(q); setIndex(index + 1) }} />

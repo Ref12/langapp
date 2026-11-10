@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { getPack } from '../../core/language'
+import { drillText } from '../../core/language/practice-wording'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, GraduationCap, Headphones, Languages, ListChecks, MessageSquareText, PenLine, Play, Repeat, RefreshCw, RotateCcw, Shuffle, Trash2, Type, type LucideIcon } from 'lucide-react'
 import { db } from '../../core/database'
@@ -16,7 +18,7 @@ import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, 
 import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId, type TypeProgress } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
-import { describeItems } from '../../core/drills/write-queue'
+import { describeItems as describeWithCharacters } from '../../core/drills/write-queue'
 import { UNWRITTEN_CHOICES, countUnwritten, loadBacklogWords, loadUnwrittenSize, pickUnwritten, saveUnwrittenSize } from '../../core/drills/unwritten'
 import { startContent } from '../../core/drills/content'
 import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, ensureHandsfree, restartHandsfree, activityOf, handsfreeRoute, type HandsfreeKind, restartDrillType, handsfreeStopped, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
@@ -48,6 +50,12 @@ const setRoute = (id: string, page = '') => `practice/set/${id}${page ? `/${page
 const RECENT_SETS = 10
 const CURRICULUM = 'curriculum'
 const ORIGIN = 'origin'
+
+/** What a set holds, in words; a pack that does not count Han characters (countsCharacters: false) leaves "N new characters" out. */
+const describeItems: typeof describeWithCharacters = (...args) => {
+  const text = describeWithCharacters(...args)
+  return getPack().countsCharacters ? text : text.split(' · ').filter(part => !/ new characters?$/.test(part)).join(' · ')
+}
 
 function useItems(set: DrillSet | undefined | null): ItemInfo[] | undefined {
   const { catalog } = useCatalog()
@@ -106,7 +114,7 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
     const unit = catalog.units.get(item.ref)
     return unit ? <UnitCard key={item.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(entry => entry.id === cardId(item.ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={now}
       examples={examplesFor(item.ref)} run={run} busy={busy} route={setRoute(set.id, 'intro')} hideStatus otherLines />
-      : <article key={item.ref} className="word-card"><div className="card-topline"><span className="eyebrow">{item.kind}</span></div><h3 lang="zh-Hans" className="word-native">{item.zh}</h3>
+      : <article key={item.ref} className="word-card"><div className="card-topline"><span className="eyebrow">{item.kind}</span></div><h3 lang={getPack().learningTag} className="word-native">{item.zh}</h3>
         {item.py && <p className="study-pinyin small muted">{item.py}</p>}<p className="word-meaning">{item.en}</p></article>
   }
   const count = `${items.length} ${items.length === 1 ? 'item' : 'items'}`
@@ -124,7 +132,7 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
         <button type="button" className="button secondary" onClick={() => setOpen(allOpen ? new Set() : new Set(items.map(item => item.ref)))}>{allOpen ? <><EyeOff size={16} /> Hide meanings</> : <><Eye size={16} /> Show all meanings</>}</button></div>
       <ul className="dr-tiles">{items.map(item => <li key={item.ref} className={open.has(item.ref) ? 'open' : undefined}>
         <button type="button" className="dr-tile" aria-expanded={open.has(item.ref)} onClick={() => toggle(item.ref)}>
-          <span lang="zh-Hans" className="dr-tile-zh">{item.zh}</span><span className="dr-tile-kind">{item.kind}</span></button>
+          <span lang={getPack().learningTag} className="dr-tile-zh">{item.zh}</span><span className="dr-tile-kind">{item.kind}</span></button>
         {open.has(item.ref) && <div className="dr-tile-card">{card(item)}</div>}</li>)}</ul>
       <div className="button-row dr-end">{start}</div>
     </section>}
@@ -147,6 +155,8 @@ function useQuietRetry(setId: string, failed: boolean) {
   }, [setId, failed])
 }
 
+/** The older drill types, named in this build's words. */
+const drillTypeList = () => DRILL_TYPES.map(entry => ({ ...entry, ...drillText(entry, getPack().practiceWording) }))
 const TYPE_COUNT = DRILL_TYPES.length + 2
 /** The two Hands-free practice types of a set. */
 const HANDSFREE_TYPES: { kind: HandsfreeKind; name: string; blurb: string }[] = [
@@ -161,7 +171,7 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const connection = useAIConnection()
   const quiz = set.format === 'quiz'
   useQuietRetry(set.id, content.state === 'failed' && connection !== null)
-  const rows = DRILL_TYPES.map(entry => ({ entry, avail: availability(entry.id, items, content), progress: set.progress[entry.id] }))
+  const rows = drillTypeList().map(entry => ({ entry, avail: availability(entry.id, items, content), progress: set.progress[entry.id] }))
   // A Practice by skill set lists the types for its skill first.
   if (set.emphasis) rows.sort((a, b) => Number(drillSkills(b.entry.id).includes(set.emphasis!)) - Number(drillSkills(a.entry.id).includes(set.emphasis!)))
   const finished = set.status === 'completed'
@@ -235,7 +245,7 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
     for (const progress of Object.values(set.progress)) for (const [ref, mark] of Object.entries(progress.results)) if (mark !== 'got' && worst.get(ref) !== 'missed') worst.set(ref, mark)
     return items.filter(item => worst.has(item.ref)).map(item => ({ item, mark: worst.get(item.ref)! }))
   }, [set.progress, items])
-  const missedType = DRILL_TYPES.find(entry => Object.values(set.progress[entry.id]?.results ?? {}).includes('missed'))
+  const missedType = drillTypeList().find(entry => Object.values(set.progress[entry.id]?.results ?? {}).includes('missed'))
   const active = set.status === 'active'
   return <div className="dr">
     <a className="back-link" href={active ? `#${setRoute(set.id)}` : '#practice'}><ArrowLeft size={16} /> {active ? set.title : DRILLS_LABEL}</a>
@@ -245,12 +255,12 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
       <p className="dr-stats"><span><strong>{counts.got}</strong>{MARK_LABEL.got}</span><span><strong>{counts.hint}</strong>{MARK_LABEL.hint}</span><span><strong>{counts.missed}</strong>{MARK_LABEL.missed}</span></p></section>
     <section className="panel dr-panel"><h2>By type</h2>
       <table className="dr-table"><thead><tr><th>Type</th><th>Score</th><th title="Got it · Needed a hint · Missed">Got · Hint · Missed</th><th className="dr-action-cell" /></tr></thead>
-        <tbody>{DRILL_TYPES.map(entry => { const progress = set.progress[entry.id]; const c = countMarks({ progress: progress ? { [entry.id]: progress } : {} }, [entry.id]); const s = scoreOf(c)
+        <tbody>{drillTypeList().map(entry => { const progress = set.progress[entry.id]; const c = countMarks({ progress: progress ? { [entry.id]: progress } : {} }, [entry.id]); const s = scoreOf(c)
           return <tr key={entry.id}><td>{entry.name}</td><td>{progress ? `${s.correct}/${s.total}${progress.done ? '' : ' (partial)'}` : '–'}</td><td>{progress ? `${c.got} · ${c.hint} · ${c.missed}` : '–'}</td>
             <td className="dr-action-cell">{progress?.done ? <a className="button secondary" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Redo ${entry.name}`}>Redo</a> : null}</td></tr> })}</tbody></table></section>
     <section className="panel dr-panel"><h2>Items to revisit</h2>
       {revisit.length === 0 ? <p className="small muted">{score.total ? 'Nothing to revisit: every answer was Got it.' : 'Nothing yet.'}</p>
-        : <ul className="dr-rows">{revisit.map(({ item, mark }) => <li key={item.ref}><div><strong lang="zh-Hans" className="dr-zh">{item.zh}</strong><span className="small muted">{item.py} {item.en}</span></div><span className={`tag dr-tag-${mark}`}>{MARK_LABEL[mark]}</span></li>)}</ul>}
+        : <ul className="dr-rows">{revisit.map(({ item, mark }) => <li key={item.ref}><div><strong lang={getPack().learningTag} className="dr-zh">{item.zh}</strong><span className="small muted">{item.py} {item.en}</span></div><span className={`tag dr-tag-${mark}`}>{MARK_LABEL[mark]}</span></li>)}</ul>}
       {missedType && <div className="button-row"><a className="button secondary" href={`#${setRoute(set.id, `run/${missedType.id}?missed=1`)}`}>Practise missed (ungraded)</a></div>}</section>
     <div className="button-row">{active && <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await finishDrillSet(set.id); navigate('practice') })}>Finish set</button>}
       <a className="button secondary" href="#practice">{DRILLS_LABEL} home</a></div>
@@ -269,7 +279,7 @@ function SetMeta({ set, typesDone, characterStates }: { set: DrillSet; typesDone
 export function continueOf(set: DrillSet): { route: string; label: string; type: string } | undefined {
   if (set.status !== 'active') return undefined
   for (const entry of HANDSFREE_TYPES) if (handsfreeStopped(set, entry.kind)) return { route: `practice/set/${set.id}/${handsfreeRoute(entry.kind)}`, label: `Continue ${entry.name} at prompt ${activityOf(set, entry.kind)!.position + 1}`, type: entry.name }
-  const type = DRILL_TYPES.find(entry => set.progress[entry.id] && !set.progress[entry.id]!.done)
+  const type = drillTypeList().find(entry => set.progress[entry.id] && !set.progress[entry.id]!.done)
   return type ? { route: setRoute(set.id, `run/${type.id}`), label: `Continue ${type.name}`, type: type.name } : undefined
 }
 
@@ -358,7 +368,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   [catalog, mode, count, reviews, from, known, collectionItems, origin, all])
   const selectionUnits = selection.flatMap(ref => { const unit = catalog?.units.get(ref); return unit ? [unit] : [] })
   const selectionCounts = countItems(selection.map(ref => ({ kind: ref.startsWith('grammar:') ? 'grammar' as const : 'vocabulary' as const })))
-  const newCharacters = catalog ? describeItems(selectionUnits.map(unit => ({ kind: unit.kind, zh: unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt })), workspace.characterStates).match(/\d+ new characters?/)?.[0] : undefined
+  const newCharacters = catalog && getPack().countsCharacters ? describeItems(selectionUnits.map(unit => ({ kind: unit.kind, zh: unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt })), workspace.characterStates).match(/\d+ new characters?/)?.[0] : undefined
   const lessons = catalog && !origin && !fromSet && mode === 'new' ? lessonCount(catalog, selection) : 0
   const itemsNoun = (n: number) => `${n} ${n === 1 ? 'item' : 'items'}`
   const summary = origin ? `${selection.length} of ${itemsNoun(origin.refs.length)} from ${origin.label}` : !catalog ? 'Loading the curriculum...'
@@ -395,7 +405,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     {connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
     {!parallelTrack && <section className="panel dr-panel dr-select" aria-labelledby="dr-select"><h2 id="dr-select">What you'll practise</h2>
       <label className="dr-source"><span className="eyebrow accent">Learning from</span>
-        <select value={origin ? ORIGIN : from} aria-label="Learning from" onChange={event => { setFrom(event.target.value === ORIGIN ? from : event.target.value); if (origin && event.target.value !== ORIGIN) navigate('practice') }}>{origin && <option value={ORIGIN}>{origin.label}</option>}<option value={CURRICULUM}>{trackFor(currentLanguageOf(workspace.preferences)).name} curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
+        <select value={origin ? ORIGIN : from} aria-label="Learning from" onChange={event => { setFrom(event.target.value === ORIGIN ? from : event.target.value); if (origin && event.target.value !== ORIGIN) navigate('practice') }}>{origin && <option value={ORIGIN}>{origin.label}</option>}<option value={CURRICULUM}>{getPack().practiceWording.languageName} curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
       <div className="segmented" role="group" aria-label="What to practise"><button type="button" aria-pressed={mode === 'new'} disabled={!!origin} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button></div>
       <div role="group" aria-label={mode === 'new' ? 'New items per set' : 'Reviews per set'} className="dr-count-picker">
         <span className="dr-count-label"><span className="small">{mode === 'new' ? 'New items per set' : 'Reviews per set'}</span><span className="small muted">{origin ? 'all of them, or the first few' : mode === 'new' ? 'at least — whole lessons are kept together' : 'the due ones first, then the ones coming up next'}</span></span>

@@ -97,6 +97,10 @@ describe('screen text for a small seeded Japanese learner', () => {
     await savePreferences({ readingStyle: 'romaji' })
     await pin('lesson-romaji', await screenText(`lessons/group/${groupIds()[0]}`, () => expect(document.querySelector('.word-card')).toBeTruthy()))
   })
+  it('Practice start, before anything is learned', async () => {
+    await db.knowledge.clear(); await db.studyCards.clear()
+    await pin('practice-start', await screenText('practice', () => expect(screen.getByText('Learning from')).toBeInTheDocument()))
+  })
   it('Settings', async () => {
     await pin('settings', await screenText('settings', () => expect(document.querySelector('main')?.textContent?.length).toBeGreaterThan(50)))
   })

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
+import { getPack } from '../../core/language'
 import { Eye, Mic, PenLine, Pause, Play, RotateCcw, SkipForward, Square, Volume2 } from 'lucide-react'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
@@ -89,12 +90,12 @@ function FreeView({ data, state, onAnswer, onMark }: ViewProps & { data: Extract
   const set = (value: string, hint = hinted) => { setText(value); onAnswer(value.trim() ? { text: value, hinted: hint } : undefined) }
   const locked = state.status !== 'open'
   return <>
-    {zh ? <p className="practice-prompt native dr-center" lang="zh-Hans">{data.item.zh}</p> : <p className="practice-prompt dr-center" lang="en">{data.item.en}</p>}
-    <TextInput label={zh ? 'Type the English meaning' : 'Type the Chinese, or its pinyin'} value={text} disabled={locked} lang={zh ? 'en' : undefined} onChange={value => set(value)} />
+    {zh ? <p className="practice-prompt native dr-center" lang={getPack().learningTag}>{data.item.zh}</p> : <p className="practice-prompt dr-center" lang="en">{data.item.en}</p>}
+    <TextInput label={zh ? 'Type the English meaning' : getPack().practiceWording.typeNativeOrReading} value={text} disabled={locked} lang={zh ? 'en' : undefined} onChange={value => set(value)} />
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
-      {hinted && <span className="small" lang="zh-Hans"><Pinyin text={data.item.py} />{zh ? '' : ''}</span>}</div>}
-    <Confirm state={state} onMark={onMark}><p lang="zh-Hans">{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Confirm>
-    <Result state={state}><p lang="zh-Hans">{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Result>
+      {hinted && <span className="small" lang={getPack().learningTag}><Pinyin text={data.item.py} />{zh ? '' : ''}</span>}</div>}
+    <Confirm state={state} onMark={onMark}><p lang={getPack().learningTag}>{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Confirm>
+    <Result state={state}><p lang={getPack().learningTag}>{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Result>
   </>
 }
 
@@ -106,15 +107,15 @@ function PinyinView({ data, state, onAnswer, onMark }: ViewProps & { data: Extra
   const read = locked && text ? gradePinyin(text, [data.item.py]) : undefined
   const toneNote = read?.verdict === 'tones' ? read.syllables : undefined
   return <>
-    <p className="practice-prompt native dr-center" lang="zh-Hans">{data.item.zh}</p>
+    <p className="practice-prompt native dr-center" lang={getPack().learningTag}>{data.item.zh}</p>
     <p className="small muted dr-center" lang="en">{data.item.en}</p>
-    <TextInput label="Type the pinyin" hideLabel value={text} disabled={locked} placeholder="nǐ hǎo" onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
-    <p className="small muted engine-pinyin-hint">Pinyin with tones: type numbers (xue2 xi2) or marks (xué xí). Use v for ü (lv4).</p>
+    <TextInput label={getPack().practiceWording.readingPlaceholder} hideLabel value={text} disabled={locked} placeholder={getPack().practiceWording.readingExample} onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
+    <p className="small muted engine-pinyin-hint">{getPack().practiceWording.readingHelp}</p>
     {!locked && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview">{previewPinyin(text, [data.item.py]) || '\u00a0'}</p>}
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
       {hinted && <span className="small">Letters only: <strong>{toneless}</strong></span>}</div>}
-    <Confirm state={state} onMark={onMark}><p>The pinyin is <strong><Pinyin text={data.item.py} /></strong>.</p></Confirm>
-    <Result state={state}>{toneNote ? <p>Right syllables, tones: {toneNote.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>)}</p> : <p>The pinyin is <strong><Pinyin text={data.item.py} /></strong>.</p>}</Result>
+    <Confirm state={state} onMark={onMark}><p>{getPack().practiceWording.readingIs} <strong><Pinyin text={data.item.py} /></strong>.</p></Confirm>
+    <Result state={state}>{toneNote ? <p>Right syllables, tones: {toneNote.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>)}</p> : <p>{getPack().practiceWording.readingIs} <strong><Pinyin text={data.item.py} /></strong>.</p>}</Result>
   </>
 }
 
@@ -176,8 +177,8 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
   </>
   return <>
     <PinyinSentence py={data.sentence.py} target={data.item.py} syllable={syllable} />
-    {revealed && !locked && <p className="dr-center dr-sentence-zh" lang="zh-Hans">{data.sentence.zh}</p>}
-    <div className="dr-center"><HearButton text={data.sentence.zh} locale="zh-Hans" label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
+    {revealed && !locked && <p className="dr-center dr-sentence-zh" lang={getPack().learningTag}>{data.sentence.zh}</p>}
+    <div className="dr-center"><HearButton text={data.sentence.zh} locale={getPack().speechLocale} label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
     <p className="small dr-center dr-write-line">Write <mark className="dr-target">{prompt}</mark></p>
     {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} haptics={ctx.workspace.preferences.haptics !== false} onStep={onStep} onDone={done} />}
     {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it anywhere, then check your answer.</p>
@@ -187,13 +188,12 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
       <button type="button" className="button secondary" aria-pressed={revealed} onClick={() => { setRevealed(true); setHinted(true) }}><Eye size={16} /> Reveal</button>
       <button type="button" className="button secondary" disabled={!characters.length} onClick={() => { setHinted(true); setPractising(true) }}><PenLine size={16} /> Practise writing</button>
       {data.mode === 'pad' && <button type="button" className="button secondary" onClick={() => onAnswer({ misses: 0, hinted, skipped: true } satisfies WriteAnswer)}>Give up</button>}</div>}
-    {locked && (data.mode === 'paper' ? <StrokeOrder text={target} /> : <p className="dr-reveal"><span className="dr-zh" lang="zh-Hans">{target}</span></p>)}
+    {locked && (data.mode === 'paper' ? <StrokeOrder text={target} /> : <p className="dr-reveal"><span className="dr-zh" lang={getPack().learningTag}>{target}</span></p>)}
     {state.status === 'marking' && <SelfMark onMark={onMark} />}
     <Result state={state} />
   </>
 }
 
-const LANG_NOTE = 'Type Chinese characters or pinyin.'
 function TranslateView({ data, state, ctx, onAnswer, onMark }: ViewProps & { data: Extract<QData, { t: 'translate' }> }) {
   const [text, setText] = useState((state.answer as TextAnswer | undefined)?.text ?? '')
   const [method, setMethod] = useState<'type' | 'speak' | 'write'>('type')
@@ -215,13 +215,13 @@ function TranslateView({ data, state, ctx, onAnswer, onMark }: ViewProps & { dat
     <p className="practice-prompt dr-center" lang="en">{data.sentence.en}</p>
     {!locked && <div className="segmented dr-modes" role="group" aria-label="How to answer">
       {(['type', 'speak', 'write'] as const).map(value => <button key={value} type="button" aria-pressed={method === value} onClick={() => setMethod(value)}>{value === 'type' ? 'Type' : value === 'speak' ? 'Speak' : 'Handwrite'}</button>)}</div>}
-    {!locked && <TextInput label={LANG_NOTE} value={text} disabled={false} lang="zh-Hans" onChange={set} />}
+    {!locked && <TextInput label={getPack().practiceWording.nativeNote} value={text} disabled={false} lang={getPack().learningTag} onChange={set} />}
     {!locked && method === 'speak' && <div className="button-row">
       {speechCaptureSupported() ? <button type="button" className="button secondary" onClick={speak}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser.</p>}</div>}
     {!locked && method === 'write' && <HandwritingPad allowed={allowed} onPick={character => set(text + character)} onClose={() => setMethod('type')} />}
     {state.status !== 'open' && <div className="dr-model-box"><p className="small muted">Model answer</p>
-      <p className="dr-model" lang="zh-Hans">{data.sentence.zh}</p><p className="small"><Pinyin text={tidyPinyin(data.sentence.py)} /></p>
-      {text && <p className="small muted">You wrote: <span lang="zh-Hans">{text}</span></p>}</div>}
+      <p className="dr-model" lang={getPack().learningTag}>{data.sentence.zh}</p><p className="small"><Pinyin text={tidyPinyin(data.sentence.py)} /></p>
+      {text && <p className="small muted">You wrote: <span lang={getPack().learningTag}>{text}</span></p>}</div>}
     {state.status === 'marking' && (state.suggested ? <Confirm state={state} onMark={onMark} /> : <SelfMark onMark={onMark} chosen={state.chosen} />)}
     <Result state={state}>{state.outcome && state.outcome.correct && sentenceExact(text, data) ? <p className="small">Exact match, marked automatically.</p> : null}</Result>
   </>
@@ -238,14 +238,14 @@ function RepeatView({ data, quiz, state, onAnswer }: ViewProps & { data: Extract
     const next = createGuidedAudio(id, [
       { kind: 'speech', modelId: 'prompt', text: data.sentence.en, locale: 'en-US' },
       { kind: 'response', modelId: 'prompt', seconds: 3 },
-      { kind: 'speech', modelId: 'answer', text: data.sentence.zh, locale: 'zh-Hans' },
+      { kind: 'speech', modelId: 'answer', text: data.sentence.zh, locale: getPack().speechLocale },
       { kind: 'response', modelId: 'repeat', seconds },
     ], setAudio)
     player.current = next
     return () => { next.dispose?.(); if (getPlaybackState().activeId === id) stopBrowserSpeech() }
   }, [id, data.sentence, seconds])
   useEffect(() => { if (audio.status === 'completed' && !quiz) onAnswer(true) }, [audio.status, quiz, onAnswer])
-  const phase = ['Listen to the English', 'Think of the Chinese', 'Listen to the Chinese', 'Say it aloud'][Math.min(audio.index, 3)]
+  const phase = ['Listen to the English', getPack().practiceWording.thinkOf, getPack().practiceWording.listenTo, 'Say it aloud'][Math.min(audio.index, 3)]
   const playing = audio.status === 'playing' || audio.status === 'responding'
   return <>
     <div className="dr-speak" aria-live="polite"><p className="dr-phase">{audio.status === 'idle' ? 'Press play and listen. You do not need to look.' : audio.status === 'completed' ? 'Done. Press play to hear it again.' : phase}</p></div>
@@ -256,7 +256,7 @@ function RepeatView({ data, quiz, state, onAnswer }: ViewProps & { data: Extract
       <button type="button" className="button secondary" aria-label="Skip to the end" onClick={() => { player.current?.stop?.(); onAnswer(true) }}><SkipForward size={28} /></button>
     </div>
     {quiz && state.status === 'open' && <label className="dr-check"><input type="checkbox" checked={Boolean(state.answer)} onChange={event => onAnswer(event.target.checked ? true : undefined)} /> I said it aloud</label>}
-    <Result state={state}><p lang="zh-Hans">{data.sentence.zh} <Pinyin text={tidyPinyin(data.sentence.py)} /> <span lang="en" className="muted">{data.sentence.en}</span></p><p className="small muted">Repeating is practice only; nothing was checked.</p></Result>
+    <Result state={state}><p lang={getPack().learningTag}>{data.sentence.zh} <Pinyin text={tidyPinyin(data.sentence.py)} /> <span lang="en" className="muted">{data.sentence.en}</span></p><p className="small muted">Repeating is practice only; nothing was checked.</p></Result>
   </>
 }
 
@@ -280,7 +280,7 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
     for (let index = from; index < upTo; index++) {
       if (mine !== token.current) return
       setPlaying(index)
-      const result = await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, 'zh-Hans', 0.85)
+      const result = await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, getPack().speechLocale, 0.85)
       if (result.status !== 'completed') break
     }
     if (mine === token.current) setPlaying(-1)
@@ -288,7 +288,7 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
   const playLine = async (index: number) => {
     const mine = ++token.current
     setPlaying(index)
-    await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, 'zh-Hans', 0.85)
+    await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, getPack().speechLocale, 0.85)
     if (mine === token.current) setPlaying(-1)
   }
   const choose = (question: number, option: number) => {
@@ -306,7 +306,7 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
       {playing >= 0 && <button type="button" className="button secondary" onClick={() => { token.current++; stopBrowserSpeech(); setPlaying(-1) }}><Square size={16} /> Stop</button>}
       {!locked && <button type="button" className="button secondary" aria-pressed={shown} onClick={() => { setShown(!shown); setHinted(true) }}>{shown ? 'Hide transcript' : 'Show transcript (hint)'}</button>}</div>}
     {(!listen || shown || locked) && <ul className="dr-lines">{talk.lines.map((line, index) => visible(index) || (!listen) && index < upTo ? <li key={index}>
-      <strong>{line.who}</strong>{listen && <button type="button" className="button secondary icon-button dr-line-play" aria-label={`Play line ${index + 1}`} onClick={() => void playLine(index)}><Volume2 size={14} /></button>}<span lang="zh-Hans">{line.zh}</span><span className="small muted">{ctx.pinyinOn || listen ? <Pinyin text={tidyPinyin(line.py)} /> : null}{' '}{(locked || listen) && line.en}</span></li> : null)}</ul>}
+      <strong>{line.who}</strong>{listen && <button type="button" className="button secondary icon-button dr-line-play" aria-label={`Play line ${index + 1}`} onClick={() => void playLine(index)}><Volume2 size={14} /></button>}<span lang={getPack().learningTag}>{line.zh}</span><span className="small muted">{ctx.pinyinOn || listen ? <Pinyin text={tidyPinyin(line.py)} /> : null}{' '}{(locked || listen) && line.en}</span></li> : null)}</ul>}
     {questionsShown.map(index => { const item = talk.questions[index]; return <fieldset key={index} className="answer-options dr-inline" disabled={locked}><legend className="small">{item.question}</legend>
       {item.options.map((option, optionIndex) => <label key={optionIndex} className={`answer-option ${picked[index] === optionIndex ? 'selected' : ''} ${locked && optionIndex === item.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={`q${index}`} checked={picked[index] === optionIndex} onChange={() => choose(index, optionIndex)} /><span lang="en">{option}</span></label>)}</fieldset> })}

@@ -1,4 +1,5 @@
 import { UnitCard } from '../../components/study/UnitCard'
+import { getPack } from '../../core/language'
 import type { Catalog } from '../../core/study/catalog'
 import { cardId } from '../../core/study/contracts'
 import { DOMAIN } from '../../core/study/knowledge'
@@ -13,7 +14,7 @@ export function IntroCard({ item, catalog, workspace, now, run, busy, route }: P
   const unit = catalog.units.get(item.ref)
   return unit ? <UnitCard key={item.ref} catalog={catalog} unit={unit} card={workspace.studyCards.find(card => card.id === cardId(item.ref, DOMAIN))} pinyin={workspace.preferences.pinyin} now={now}
     examples={examplesFor(catalog, item.ref)} run={run} busy={busy} route={route} hideStatus />
-    : <article key={item.ref} className="word-card"><div className="card-topline"><span className="eyebrow">{item.kind}</span></div><h3 lang="zh-Hans" className="word-native">{item.zh}</h3>
+    : <article key={item.ref} className="word-card"><div className="card-topline"><span className="eyebrow">{item.kind}</span></div><h3 lang={getPack().learningTag} className="word-native">{item.zh}</h3>
       {item.py && <p className="study-pinyin small muted">{item.py}</p>}<p className="word-meaning">{item.en}</p></article>
 }
 

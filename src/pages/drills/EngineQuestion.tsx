@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { getPack } from '../../core/language'
+import { zhPractice } from '../../core/language/practice-wording'
 import { Mic, PenLine, Type } from 'lucide-react'
 import { AnswerButton } from '../../components/AnswerButton'
 import { AnnotatedChinese } from '../../components/study/AnnotatedChinese'
@@ -31,19 +33,15 @@ export interface QuestionContext {
 export interface Outcome { correct: boolean; missed?: string[]; /** Right with help: the tones were off. Counts as Needed a hint: it is not a first-try right, but never a miss to self-mark. */ hint?: boolean }
 
 /** What to do, in action words: one line between the stage header and the prompt, for every form. */
-export const INSTRUCTION: Record<Form, string> = {
-  intro: 'Learn the new word', choice: 'Choose the meaning', match: 'Match the pairs', pinyin: 'Type the pinyin', recall: 'Type the meaning', 'translate-zh-en': 'Translate into English',
-  'translate-en-zh': 'Translate into Chinese', tiles: 'Build the sentence', gap: 'Fill the gap', 'listen-pick': 'Listen and pick the meaning', dictation: 'Type what you hear', repeat: 'Say it after the audio',
-  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Answer the question in Chinese, as the cue says', 'which-correct': 'Which sentence is correct?', conversation: 'Listen, then answer the questions', conjugate: 'Conjugate', 'form-pick': 'Which form is this?',
-}
-export function Instruction({ form }: { form: Form }) { return <p className="engine-instruction small" data-instruction={form}>{INSTRUCTION[form]}</p> }
+export const INSTRUCTION: Record<Form, string> = zhPractice.instructions
+export function Instruction({ form }: { form: Form }) { return <p className="engine-instruction small" data-instruction={form}>{getPack().practiceWording.instructions[form]}</p> }
 
 const attemptOf = (exercise: SessionExercise, response: string, correct: boolean): ExerciseAttempt => ({ id: exercise.id, sessionId: 'engine', index: 0, refs: exercise.refs.slice(0, 6), response, correct, createdAt: 0 })
 const MODE_LABEL: Record<AnswerMode, string> = { type: 'Type', speak: 'Speak', write: 'Handwrite' }
 
 function Flag({ exercise }: { exercise: SessionExercise }) {
   const unknown = 'unknown' in exercise ? exercise.unknown : undefined
-  return unknown ? <p className="small notice engine-flag" role="note">New word in this sentence: <strong lang="zh-Hans">{unknown.form}</strong>. You have not learned it yet, so it is flagged.</p> : null
+  return unknown ? <p className="small notice engine-flag" role="note">New word in this sentence: <strong lang={getPack().learningTag}>{unknown.form}</strong>. You have not learned it yet, so it is flagged.</p> : null
 }
 
 /** A multiple-choice exercise from the lesson's ChoiceQuestion (choice, fill the gap and listen and pick all use it). */
@@ -72,7 +70,7 @@ function Tiles({ exercise, ctx, onDone }: { exercise: TilesItem; ctx: QuestionCo
       submit={answer => setAttempt({ answer, grade: gradeChinese(answer.join(''), exercise.accepted, ctx.forms, exercise.optional, exercise.translation) })} next={() => onDone({ correct: correct === true })} />
     {grade && <div className={`notice answer-feedback engine-diff${correct ? ' success' : ''}`} role="status">
       {correct ? (grade.alternative ? <p>Also correct. The model answer:</p> : null) : <p>{swapped ? `Word order: ${swapped.a} comes before ${swapped.b}.` : `Not the model answer.${grade.messages.length ? ' ' + grade.messages.join('; ') + '.' : ''}`}</p>}
-      <p className="engine-answer-line"><span lang="zh-Hans">{exercise.model}</span>{ctx.pinyin && exercise.modelPinyin ? <> <span className="small muted"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></span></> : null}</p></div>}
+      <p className="engine-answer-line"><span lang={getPack().learningTag}>{exercise.model}</span>{ctx.pinyin && exercise.modelPinyin ? <> <span className="small muted"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></span></> : null}</p></div>}
   </>
 }
 
@@ -123,12 +121,12 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
     {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin && (exercise.answerLang !== 'py' || locked)} /></p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
     {exercise.form === 'exchange-reply' && exercise.replyEn && <p className="engine-cue" lang="en">Reply: “{exercise.replyEn}”</p>}
     {exercise.form === 'exchange-reply' && exercise.questionEn && <p className="small engine-meaning"><button type="button" className="link-button" aria-expanded={meaning} onClick={() => setMeaning(!meaning)}>{meaning ? 'Hide meaning' : 'Show meaning'}</button>{meaning && <span lang="en"> “{exercise.questionEn}”</span>}</p>}
-    {exercise.hearText && <p><HearButton text={exercise.hearText} locale="zh-Hans" label="Hear it" /></p>}
+    {exercise.hearText && <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} label="Hear it" /></p>}
     <label className="engine-answer dr-free"><span className="visually-hidden">Your answer</span>
-      <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? 'zh-Hans' : exercise.answerLang === 'py' ? undefined : 'en'} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="text" aria-describedby={pinyinMode ? 'pinyin-hint' : undefined}
-        placeholder={chinese ? exercise.form === 'exchange-reply' ? 'Your reply in Chinese' : 'Type the Chinese' : exercise.answerLang === 'py' ? 'Type the pinyin' : 'Type the meaning'} onChange={event => setText(event.target.value)}
+      <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? getPack().learningTag : exercise.answerLang === 'py' ? undefined : 'en'} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="text" aria-describedby={pinyinMode ? 'pinyin-hint' : undefined}
+        placeholder={chinese ? exercise.form === 'exchange-reply' ? getPack().practiceWording.replyNative : getPack().practiceWording.typeNative : exercise.answerLang === 'py' ? getPack().practiceWording.readingPlaceholder : 'Type the meaning'} onChange={event => setText(event.target.value)}
         onKeyDown={event => { if (event.key === 'Enter' && text.trim() && !locked) check() }} /></label>
-    {pinyinMode && <p id="pinyin-hint" className="small muted engine-pinyin-hint">Pinyin with tones: type numbers (xue2 xi2) or marks (xué xí). Use v for ü (lv4).</p>}
+    {pinyinMode && <p id="pinyin-hint" className="small muted engine-pinyin-hint">{getPack().practiceWording.readingHelp}</p>}
     {pinyinMode && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{previewPinyin(text, exercise.accepted) || '\u00a0'}</p>}
     {mode === 'speak' && <div className="button-row" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{speechCaptureSupported() ? <button type="button" className="button secondary" onClick={listen}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser. Type instead.</p>}</div>}
     {mode === 'write' && <div style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}><HandwritingPad allowed={ctx.characters} onPick={character => setText(text + character)} onClose={() => setMode('type')} /></div>}
@@ -137,9 +135,9 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
         {modes.map(value => <button key={value} type="button" className="button secondary small" onClick={() => setMode(value)}>{value === 'type' ? <Type size={14} /> : value === 'speak' ? <Mic size={14} /> : <PenLine size={14} />} {MODE_LABEL[value]}</button>)}</span> : undefined} />
     {checked && <div className={`notice answer-feedback engine-diff${checked.correct ? ' success' : ''}`} role="status">
       {checked.pinyin?.verdict === 'tones' ? <p>Right syllables, tones: {checked.pinyin.syllables!.map((entry, index) => <span key={index}>{index > 0 && ' '}{entry.off ? <strong className="engine-tone-off" aria-label={`${entry.marked}, tone to fix`}>{entry.marked}</strong> : entry.marked}</span>)} <span className="small muted">Counted as Needed a hint.</span></p>
-      : checked.correct ? <p>{checked.meaning?.verdict === 'near' ? checked.meaning.note : checked.grade?.note ? checked.grade.note : <>{checked.grade?.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang={chinese ? 'zh-Hans' : undefined}>{exercise.model}</span></>}</p>
+      : checked.correct ? <p>{checked.meaning?.verdict === 'near' ? checked.meaning.note : checked.grade?.note ? checked.grade.note : <>{checked.grade?.alternative ? 'Also correct. The model answer: ' : 'Correct: '}<span lang={chinese ? getPack().learningTag : undefined}>{exercise.model}</span></>}</p>
         : <><p>{checked.grade ? (checked.grade.messages.length ? (checked.grade.differences.length === 1 && checked.grade.differences[0].kind === 'swapped' ? `Word order: ${(checked.grade.differences[0] as { a: string; b: string }).a} comes before ${(checked.grade.differences[0] as { a: string; b: string }).b}.` : `Differences: ${checked.grade.messages.join('; ')}.`) : 'Not the model answer.') : checked.meaning?.verdict === 'wrong' ? (checked.meaning.note ?? 'Not a meaning of this word.') : checked.meaning?.verdict === 'self' ? 'Partly right. Compare with the answer and mark it yourself.' : 'Compare with the answer and mark it yourself.'}</p>
-          <p>{chinese ? 'Closest answer: ' : 'Answer: '}<span lang={chinese ? 'zh-Hans' : undefined}>{checked.grade?.closest ?? exercise.model}</span></p></>}
+          <p>{chinese ? 'Closest answer: ' : 'Answer: '}<span lang={chinese ? getPack().learningTag : undefined}>{checked.grade?.closest ?? exercise.model}</span></p></>}
       {checked.grade?.ignored.length ? <p className="small muted">{checked.grade.ignored.join(', ')} left out or added: optional here.</p> : null}
       {exercise.modelPinyin && chinese && <p className="small"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></p>}
       {!checked.correct && <button type="button" className="link-button" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'I was right: count it'}</button>}
@@ -159,7 +157,7 @@ function ExerciseBody({ exercise, ctx, onDone }: { exercise: Exclude<SessionExer
     return undefined
   }, [exercise])
   if (choiceShape && (exercise.form === 'choice' || exercise.form === 'gap' || exercise.form === 'listen-pick')) {
-    const header = exercise.form === 'gap' ? <p className="practice-prompt native" lang="zh-Hans">{exercise.gapped}</p> : exercise.form === 'listen-pick' ? <p><HearButton text={exercise.hearText} locale="zh-Hans" label="Hear it" /></p> : undefined
+    const header = exercise.form === 'gap' ? <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.gapped}</p> : exercise.form === 'listen-pick' ? <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} label="Hear it" /></p> : undefined
     return <PickQuestion exercise={exercise} shape={choiceShape} header={header} ctx={ctx} onDone={onDone} />
   }
   if (exercise.form === 'exchange-pick') return <ExchangePick exercise={exercise} ctx={ctx} onDone={onDone} />
