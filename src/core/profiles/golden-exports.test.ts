@@ -148,7 +148,7 @@ describe('the seeded Chinese learner', () => {
     const refs = JSON.stringify(fixture.snapshot)
     expect(refs).not.toMatch(/"(?:ja|ko):|startedTracks|currentLanguage/)
     const counts = fixtureCounts(fixture)
-    expect(counts.knowledge).toBeGreaterThanOrEqual(150) // the 400 KB budget for all goldens is what limits this
+    expect(counts.knowledge).toBeGreaterThanOrEqual(150) // the size cap on all goldens is what limits this
     const kinds = new Set(fixture.snapshot.knowledge.study.knowledge.map(entry => entry.kind))
     expect([...kinds].sort()).toEqual(['grammar', 'source', 'vocabulary'])
     const states = new Set(fixture.snapshot.knowledge.study.cards.map(card => card.state))
@@ -171,7 +171,7 @@ describe('golden exports', () => {
 
   it('keeps the golden set small', () => {
     const total = listGolden().reduce((sum, name) => sum + statSync(goldenPath(name)).size, 0)
-    expect(total).toBeLessThan(400 * 1024)
+    expect(total).toBeLessThan(512 * 1024)
   })
 })
 

@@ -292,8 +292,7 @@ describe('source-block popup practice', () => {
     expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
   })
 
-  // Skipped 2026-11-09: flaky timeout (5000ms) in Actions deploy run 42673368416; passes locally.
-  it.skip('never begins recording after navigation while the phrase is still playing', async () => {
+  it('never begins recording after navigation while the phrase is still playing', async () => {
     const voice = deferred<playback.PlaybackOutcome>()
     vi.mocked(playback.playBrowserSpeechToEnd).mockReturnValueOnce(voice.promise)
     render(<App />)
