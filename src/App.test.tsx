@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor } from '@testing-library/react'
+import { act, cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -291,7 +291,9 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('heading', { name: 'Make the language yours.' })
-    await user.click(screen.getByRole('button', { name: 'Switch to light theme' }))
+    expect(screen.queryByRole('button', { name: /theme/i })).toBeNull()
+    await user.click(screen.getByRole('button', { name: 'Workspace settings' }))
+    await user.click(within(await screen.findByRole('dialog', { name: 'Page settings' })).getByLabelText('Dark theme'))
     await waitFor(() => expect(document.documentElement.dataset.theme).toBe('light'))
     await act(() => trackWord('zh:tea', 'test'))
     await go('dictionary')

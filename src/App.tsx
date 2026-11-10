@@ -1,6 +1,6 @@
 import { Component, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, Clapperboard, Dumbbell, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, Clapperboard, Dumbbell, Gamepad2, History as HistoryIcon, Home, Layers, LibraryBig, MessageCircle, PanelLeftClose, PanelLeftOpen, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { requestPersistence } from './core/backup/service'
 import { removeBackgroundBackupRegistrations } from './core/backup/cleanup'
@@ -259,8 +259,6 @@ function WorkspaceApp() {
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
         <div className="topbar-actions"><span className="language-pill profile-pill" title={profile.name} aria-label={`Active profile: ${profile.name}`}>{profile.name}</span>{getPack().id === 'zh' && <LanguageSwitch tracks={startedTracks(preferences)} current={currentLanguageOf(preferences)} onChange={language => void run(() => savePreferences({ currentLanguage: language }))} />}<span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
-          <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
-            onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <PageActionsMenu />
           <PageSettingsButton route={route} label={label} page={page} workspace={workspace} busy={busy} run={run} />
         </div></header>
