@@ -20,7 +20,6 @@ import { SourceEntryCard } from '../components/study/SourceEntryCard'
 import { useCatalog } from '../components/study/useCatalog'
 import { guidedChars, writtenCharacters } from '../core/drills/write-queue'
 import { setCharactersWriteState, undoWriteChanges, type WriteChange } from '../core/characters/store'
-import { hasGuide } from '../core/characters/writing-route'
 import { characterKnowledge, dictionaryCharacters } from '../core/characters/dictionary'
 import { characterAttributionUrl, characterAttributionUrlFor } from '../core/characters/assets'
 import { CharacterCard } from '../components/characters/CharacterCard'
@@ -251,7 +250,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })
   const pickRow = (key: string, text: string, label: string) => selecting
     ? <label className="select-pick"><input type="checkbox" checked={picked.has(key)} onChange={() => togglePick(key, text)} aria-label={`Select ${label}`} /><span className="small">{picked.has(key) ? 'Selected' : 'Select'}</span></label> : null
-  const wordCharacters = (zh: string) => guidedChars(zh, hasGuide)
+  const wordCharacters = (zh: string) => guidedChars(zh)
   /** A vocabulary card's derived tag: Can write when all its guided characters can be written, otherwise how many are left. */
   const writeTag = (zh: string) => { const chars = wordCharacters(zh); if (!chars.length) return null
     const left = new Set(chars.filter(character => !written.has(character))).size

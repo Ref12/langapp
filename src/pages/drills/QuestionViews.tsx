@@ -3,7 +3,7 @@ import { getPack } from '../../core/language'
 import { Eye, Mic, PenLine, Pause, Play, RotateCcw, SkipForward, Square, Volume2 } from 'lucide-react'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
-import { guidedChars } from '../../core/drills/write-queue'
+import { guidedChars, introducedChars } from '../../core/drills/write-queue'
 import { IntroCard } from './IntroCards'
 import { CharacterLoop } from './Teach'
 import { WordParts } from './CharacterIntro'
@@ -138,7 +138,7 @@ const practisedWord = (item: { kind: string; zh: string; py: string; en: string 
 
 function LearnView({ data, state, ctx, onAnswer, onPrevious, arrive }: ViewProps & { data: Extract<QData, { t: 'learn' }> }) {
   const [started, setStarted] = useState(arrive === 'last')
-  const characters = useMemo(() => data.chars ?? guidedChars(data.item.zh), [data.chars, data.item.zh])
+  const characters = useMemo(() => data.chars ?? introducedChars(data.item.zh), [data.chars, data.item.zh])
   const locked = state.status !== 'open'
   // A word that already has its result stays as it is when revisited; the loop is only for another look.
   const finish = () => { setStarted(false); if (!locked) onAnswer({ misses: 0, hinted: false } satisfies WriteAnswer) }

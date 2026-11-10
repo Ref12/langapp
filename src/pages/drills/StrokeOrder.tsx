@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { RotateCcw } from 'lucide-react'
 import { loadCharacterAsset } from '../../core/characters/assets'
 import { makeStrokeGuide, type StrokeGuide } from '../../core/characters/geometry'
-import { hasGuide, isHan } from '../../core/characters/writing-route'
+import { getPack } from '../../core/language'
 import '../writing.css'
 
 /** One character drawn stroke by stroke with the writing practice's replay styling; it ends with every stroke shown. */
@@ -11,7 +11,7 @@ function AnimatedCharacter({ character, run }: { character: string; run: number 
   const [at, setAt] = useState(0)
   useEffect(() => {
     let live = true
-    loadCharacterAsset(character).then(asset => { if (live) setGuides(asset.paths.map(makeStrokeGuide)) }, () => { if (live) setGuides([]) })
+    loadCharacterAsset(character, getPack().writing.language).then(asset => { if (live) setGuides(asset.paths.map(makeStrokeGuide)) }, () => { if (live) setGuides([]) })
     return () => { live = false }
   }, [character])
   useEffect(() => { setAt(0) }, [run, guides])
@@ -32,7 +32,7 @@ function AnimatedCharacter({ character, run }: { character: string; run: number 
 
 /** The answer of a Write elsewhere question: each character with its stroke-order animation, and a Replay. */
 export function StrokeOrder({ text }: { text: string }) {
-  const characters = useMemo(() => Array.from(text).filter(character => isHan(character) && hasGuide(character)), [text])
+  const characters = useMemo(() => getPack().writing.guidedChars(text), [text])
   const [run, setRun] = useState(0)
   if (!characters.length) return <p className="dr-reveal"><span className="dr-zh" lang="zh-Hans">{text}</span></p>
   return <div className="dr-order" aria-label="Stroke order">

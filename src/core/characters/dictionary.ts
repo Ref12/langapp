@@ -1,7 +1,8 @@
 import { buildWritingRoute } from './writing-route'
 import type { Catalog, Unit } from '../study/catalog'
 import type { Band, KnowledgeEntry } from '../study/contracts'
-import { characterAssetIndex, type CharacterAssetSummary } from './assets'
+import type { CharacterAssetSummary } from './assets'
+import { getPack } from '../language'
 import type { CharacterState } from './contracts'
 
 export interface DictionaryCharacter {
@@ -16,7 +17,7 @@ export function wordCharacters(text: string): string[] {
 }
 
 /** Writing identities come from exact spellings, not inferred readings or morpheme meanings. */
-export function dictionaryCharacters(catalog: Catalog, assets = characterAssetIndex, states: CharacterState[] = []): DictionaryCharacter[] {
+export function dictionaryCharacters(catalog: Catalog, assets: CharacterAssetSummary[] = getPack().writing.summaries(), states: CharacterState[] = []): DictionaryCharacter[] {
   const entries = new Map<string, DictionaryCharacter>(assets.map(asset => [
     asset.character, { character: asset.character, asset, words: [], bands: [] },
   ]))

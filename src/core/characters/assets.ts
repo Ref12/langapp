@@ -1,13 +1,9 @@
-import index from '../../data/characters/index.generated.json'
+import zhIndexData from '../../data/characters/index.generated.json'
+import type { CharacterAssetSummary } from './summary'
 import { makeStrokeGuide } from './geometry'
 import { defaultWritingLanguage, languageAssetUrl, languageName, type WritingLanguage } from './language'
 
-export interface CharacterAssetSummary {
-  character: string
-  strokeCount: number
-  reviewed: boolean
-  variant: string
-}
+export type { CharacterAssetSummary }
 
 interface CharacterRecipe {
   id: string
@@ -39,6 +35,10 @@ export interface CharacterAsset extends CharacterAssetSummary {
   }
 }
 
+declare const __PACK_DATA__: string
+// A build for another language leaves the Chinese index out (the constant folds the import away, as in language/writing.ts); its loader is then never asked.
+const index = (typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ === 'all' || __PACK_DATA__ === 'zh') ? zhIndexData
+  : { characters: [], sourcePins: { 'zh-writing-hanzi-writer': { archive: '', archiveSha256: '', revision: '' } }, authoredRecipes: {}, fittedRecipe: { id: '', input: '', sha256: '', version: '' } } as unknown as typeof zhIndexData
 export const characterAssetIndex: CharacterAssetSummary[] = index.characters
 const summaries = new Map(characterAssetIndex.map(summary => [summary.character, { ...summary }]))
 const pageFor = (character: string) => `u${(character.codePointAt(0)! >>> 8).toString(16).padStart(4, '0')}`

@@ -1,4 +1,3 @@
-import { characterAssetIndex } from '../../core/characters/assets'
 import { formatPinyin } from '../../core/pinyin'
 import { getPack } from '../../core/language'
 import type { Catalog } from '../../core/study/catalog'
@@ -8,7 +7,7 @@ import { buildChoice, buildMatch, createRng, isVocabulary, matchGroups, seedFrom
 import type { Conversation, DrillContent, DrillTypeId, Mark, Sentence } from '../../core/drills/contracts'
 import { drillType } from '../../core/drills/contracts'
 import type { ItemInfo } from '../../core/drills/items'
-import { guidedChars } from '../../core/drills/write-queue'
+import { introducedChars } from '../../core/drills/write-queue'
 
 // Builds the questions of each drill type from a set's items and content, and grades answers. Pure code: the pages only show it.
 
@@ -131,7 +130,7 @@ export function buildQuestions(type: DrillTypeId, input: { setId: string; items:
       const taught = new Set<string>()
       return items.map(item => {
         if (!input.written) return q(`learn-${item.ref}`, [item.ref], { t: 'learn', item })
-        const chars = [...new Set(guidedChars(item.zh))].filter(character => !input.written!.has(character) && !taught.has(character))
+        const chars = [...new Set(introducedChars(item.zh))].filter(character => !input.written!.has(character) && !taught.has(character))
         chars.forEach(character => taught.add(character))
         return q(`learn-${item.ref}`, [item.ref], { t: 'learn', item, chars })
       })
@@ -189,7 +188,7 @@ export function selfGrade(question: Q, answer: unknown, mark: Mark): Outcome {
   return { marks: Object.fromEntries(question.refs.map(ref => [ref, final])), correct: final !== 'missed' }
 }
 
-export const catalogCharacters = () => new Set(characterAssetIndex.map(asset => asset.character))
+export const catalogCharacters = () => new Set(getPack().writing.guideCharacters())
 
 /** Questions whose answer is complete the moment it is given: no Check button in one-at-a-time format. */
 export const isAuto = (q: Q) => q.data.t === 'match' || q.data.t === 'repeat' || q.data.t === 'write' || q.data.t === 'learn' || q.data.t === 'convo'

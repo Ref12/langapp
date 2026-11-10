@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { loadCharacterAsset, type CharacterAsset } from '../../core/characters/assets'
+import { getPack } from '../../core/language'
 import type { Workspace } from '../../core/model'
 import { setCharacterWriteState } from '../../core/characters/store'
 import { usePageActions } from '../../components/page-actions-context'
@@ -18,7 +19,7 @@ export function TeachCharacter({ character, workspace, onTaught, onNextCharacter
   useEffect(() => {
     let live = true
     setAsset(undefined)
-    loadCharacterAsset(character).then(value => { if (live) setAsset(value) }, reason => { void reportLoadFailure(reason); if (live) setError('The stroke guide is unavailable offline. Check your connection and try again.') })
+    loadCharacterAsset(character, getPack().writing.language).then(value => { if (live) setAsset(value) }, reason => { void reportLoadFailure(reason); if (live) setError('The stroke guide is unavailable offline. Check your connection and try again.') })
     return () => { live = false }
   }, [character])
   const player = useRef<HTMLDivElement>(null)

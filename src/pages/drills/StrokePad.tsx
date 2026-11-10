@@ -3,13 +3,13 @@ import { CheckCircle2 } from 'lucide-react'
 import { loadCharacterAsset } from '../../core/characters/assets'
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../../core/characters/geometry'
 import { commitStroke, memoryHint, newWritingRound, type WritingRound } from '../../core/characters/practice'
-import { hasGuide, isHan } from '../../core/characters/writing-route'
+import { getPack } from '../../core/language'
 import { haptic } from '../../core/haptics'
 import '../writing.css'
 
 /** Draw the target characters from memory, no outline: each stroke is checked against the character's stroke data. Two misses on a stroke reveal it (a hint). */
 export function StrokePad({ text, disabled, haptics = true, onDone, onStep }: { text: string; disabled?: boolean; haptics?: boolean; onDone: (result: { misses: number; hinted: boolean }) => void; onStep?: (index: number, total: number) => void }) {
-  const characters = useMemo(() => Array.from(text).filter(character => isHan(character) && hasGuide(character)), [text])
+  const characters = useMemo(() => getPack().writing.guidedChars(text), [text])
   const [index, setIndex] = useState(0)
   const [paths, setPaths] = useState<string[]>()
   const [error, setError] = useState('')
@@ -24,7 +24,7 @@ export function StrokePad({ text, disabled, haptics = true, onDone, onStep }: { 
     let live = true
     setPaths(undefined)
     if (!character) return
-    loadCharacterAsset(character).then(asset => { if (live) setPaths(asset.paths) }, reason => { if (live) setError(reason instanceof Error ? reason.message : 'The stroke data could not be loaded.') })
+    loadCharacterAsset(character, getPack().writing.language).then(asset => { if (live) setPaths(asset.paths) }, reason => { if (live) setError(reason instanceof Error ? reason.message : 'The stroke data could not be loaded.') })
     return () => { live = false }
   }, [character])
   const guides = useMemo(() => (paths ?? []).map(makeStrokeGuide), [paths])

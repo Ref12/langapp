@@ -6,7 +6,9 @@ import { recordCharacterPractice } from '../core/characters/store'
 import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '../core/characters/meanings'
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/characters/geometry'
 import { allPartsWritten, commitStroke, isLastStep, memoryHint, newWritingRound, nextPart, partIndex, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
-import { buildWritingRoute, hasGuide, isWritable, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
+import { buildWritingRoute, hasGuideIn, isWritable, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
+import { getPack } from '../core/language'
+import { writingFor } from '../core/language/writing'
 import { useCatalog } from '../components/study/useCatalog'
 import { EmptyState, type PageProps } from '../components/shared'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
@@ -29,8 +31,8 @@ function routeCharacter(codepoint?: string): string | undefined {
   if (code > 0x10ffff) return undefined
   return String.fromCodePoint(code)
 }
-/** Chinese knows its guides up front; Japanese and Korean find out when the data loads (a miss says so). */
-const hasAsset = (character: string | undefined, language: WritingLanguage = 'zh') => character !== undefined && (language === 'zh' ? hasGuide(character) : isWritable(character, language))
+/** The build's own language knows its guides up front; another language's (the old parallel screens) finds out when the data loads (a miss says so). */
+const hasAsset = (character: string | undefined, language: WritingLanguage = getPack().writing.language) => character !== undefined && hasGuideIn(character, language)
 const MISSING = /^No .* writing guide is available/
 
 /** Where a freshly opened character starts; set by Previous/Next so a hash-only route change can carry it. */
@@ -44,7 +46,7 @@ export function Writing({ codepoint, scope, query, ...props }: PageProps & { cod
   usePageSettings({ title: 'Writing settings', content: <WritingSpeechSelect workspace={props.workspace} busy={props.busy} run={props.run} /> })
   const character = routeCharacter(codepoint)
   const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
-  const { word, index, back: requestedBack, language = 'zh' } = useMemo(() => parseWritingQuery(query, character), [query, character])
+  const { word, index, back: requestedBack, language = getPack().writing.language } = useMemo(() => parseWritingQuery(query, character), [query, character])
   const back = requestedBack ?? `dictionary/characters/${scopeName}`
   const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack, language })
   return <WritingStage {...props} language={language} character={character} word={word} index={index} remember={!!query?.includes('word=')} backHref={`#${back}`}
@@ -68,7 +70,7 @@ export interface WritingStageProps {
 }
 
 /** The writing exercise for one character of a word, independent of how it was reached (hash route or overlay sheet). */
-export function WritingStage({ language = 'zh', character, word, index, remember, backHref, skipHref, onBack, onClose, onGo, onFinish, ...props }: PageProps & WritingStageProps) {
+export function WritingStage({ language = getPack().writing.language, character, word, index, remember, backHref, skipHref, onBack, onClose, onGo, onFinish, ...props }: PageProps & WritingStageProps) {
   const playable = hasAsset(character, language) ? character : undefined
   const [asset, setAsset] = useState<CharacterAsset>()
   const [error, setError] = useState('')
@@ -139,7 +141,8 @@ export interface WritingPlayerProps {
   practised?: HeadingWord
 }
 
-export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onPreviousCharacter, onNextCharacter, onNext, teach = false, inWord = false, practised, workspace, run, busy }: PageProps & WritingPlayerProps) {
+export function WritingPlayer({ language = getPack().writing.language, asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onPreviousCharacter, onNextCharacter, onNext, teach = false, inWord = false, practised, workspace, run, busy }: PageProps & WritingPlayerProps) {
+  const writing = writingFor(getPack().writing, language)
   const guides = useMemo(() => asset.paths.map(makeStrokeGuide), [asset.paths])
   const [arrived] = useState(() => takeArrival(asset.character))
   const [round, setRound] = useState<WritingRound>(() => arrived ? { ...newWritingRound(), phase: arrived.phase, repetition: arrived.repetition } : newWritingRound())
@@ -160,7 +163,7 @@ export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClos
   speechRef.current = speech
   const say = useCallback(() => {
     try {
-      if (language === 'zh') { playBrowserSpeech(speechId, asset.character, 'zh-Hans'); return }
+      if (writing.characterData) { playBrowserSpeech(speechId, asset.character, 'zh-Hans'); return }
       const synth = window.speechSynthesis
       if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return
       synth.cancel()
@@ -168,7 +171,7 @@ export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClos
       utterance.lang = language === 'ja' ? 'ja-JP' : 'ko-KR'
       synth.speak(utterance)
     } catch { /* blocked speech stays silent */ }
-  }, [speechId, asset.character, language])
+  }, [speechId, asset.character, language, writing.characterData])
   useEffect(() => () => {
     if (getPlaybackState().activeId === speechId) stopBrowserSpeech()
   }, [speechId])
@@ -176,25 +179,25 @@ export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClos
     if (!autoSpeak && getPlaybackState().activeId === speechId) stopBrowserSpeech()
   }, [autoSpeak, speechId])
   const { catalog } = useCatalog()
-  const word = useMemo(() => language === 'zh' ? headingWord(catalog, asset.character, practised) : undefined, [catalog, asset.character, practised, language])
+  const word = useMemo(() => writing.characterData ? headingWord(catalog, asset.character, practised) : undefined, [catalog, asset.character, practised, writing])
   const [meaning, setMeaning] = useState<CharacterMeaning>()
   useEffect(() => {
     let live = true
     setMeaning(undefined)
-    if (language === 'zh') void loadCharacterMeaning(asset.character).then(value => { if (live) setMeaning(value) }, () => undefined)
+    if (writing.characterData) void loadCharacterMeaning(asset.character).then(value => { if (live) setMeaning(value) }, () => undefined)
     return () => { live = false }
-  }, [asset.character, language])
+  }, [asset.character, language, writing.characterData])
   // The character as a word of its own: the dictionary's senses first, the curriculum's meaning after them.
-  const own = useMemo(() => catalog && language === 'zh' ? [...catalog.units.values()].find(unit => unit.kind === 'vocabulary' && unit.record.ch === asset.character) : undefined, [catalog, asset.character, language])
+  const own = useMemo(() => catalog && writing.characterData ? [...catalog.units.values()].find(unit => unit.kind === 'vocabulary' && unit.record.ch === asset.character) : undefined, [catalog, asset.character, writing.characterData])
   const ownPinyin = meaning?.pinyin || (own?.kind === 'vocabulary' ? own.record.pr : undefined)
-  const ownMeaning = language !== 'zh' ? undefined : combineMeanings(meaning?.meaning, own?.kind === 'vocabulary' ? own.record.ds : undefined)
+  const ownMeaning = !writing.characterData ? undefined : combineMeanings(meaning?.meaning, own?.kind === 'vocabulary' ? own.record.ds : undefined)
   const completed = round.completed === guides.length
   const hint = memoryHint(round) && !completed
   const hidden = round.phase === 2 && !round.finished
   const current = guides[round.completed]
   const colour = workspace.preferences.writingColourParts === true
-  const { data: partData } = useComponentData()
-  const owners = useMemo(() => partData && language === 'zh' ? strokeParts(partData, asset.character, guides.length) : [], [partData, asset.character, guides.length, language])
+  const { data: partData } = useComponentData(writing.characterData)
+  const owners = useMemo(() => partData && writing.characterData ? strokeParts(partData, asset.character, guides.length) : [], [partData, asset.character, guides.length, writing.characterData])
   const state = workspace.characterStates.find(entry => entry.character === asset.character)
   const atStart = round.phase === 0 && round.repetition === 0 && !round.finished
   const canPrevious = !saving && !busy && (!atStart || hasPrevious)
@@ -297,7 +300,7 @@ export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClos
     setSaving(true)
     void run(async () => {
       try {
-        if (language === 'zh') await recordCharacterPractice(asset.character)
+        if (writing.records) await recordCharacterPractice(asset.character)
         saved.current = true
         setRound(value => ({ ...value, finished: true, feedback: '' }))
         onNext?.(true)
@@ -321,7 +324,7 @@ export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClos
       {onBack ? <button type="button" className="text-link writing-back" onClick={onBack} aria-label="Back" title="Back"><ArrowLeft size={16} />Back</button>
         : backHref ? <a className="text-link writing-back" href={backHref} aria-label="Back" title="Back"><ArrowLeft size={16} />Back</a> : null}
       <p className="writing-title">
-        <span className={hidden ? 'writing-title-hidden' : 'writing-title-character'} lang={hidden ? undefined : language === 'zh' ? 'zh-Hans' : language} aria-label={hidden ? 'From memory' : undefined}>{hidden ? '\u25a1' : asset.character}</span>
+        <span className={hidden ? 'writing-title-hidden' : 'writing-title-character'} lang={hidden ? undefined : writing.characterData ? 'zh-Hans' : language} aria-label={hidden ? 'From memory' : undefined}>{hidden ? '\u25a1' : asset.character}</span>
         {word && <span className="writing-title-word">
           <span lang="zh-Hans">{hidden ? Array.from(word.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : word.ch}</span>
           {workspace.preferences.pinyin && <> <Pinyin text={word.pr} /></>} <span className="muted">{word.ds}</span></span>}
@@ -329,7 +332,7 @@ export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClos
       {onClose && <button className="icon-button" type="button" aria-label="Close writing" title="Close writing" onClick={onClose}><X size={20} /></button>}
     </header>
     {(inWord || !!place) && ownMeaning && !(word && word.ch === asset.character) && <p className="writing-meaning small" data-testid="character-meaning"><span lang="zh-Hans">{hidden ? '\u25a1' : asset.character}</span>{ownPinyin && <> <Pinyin text={ownPinyin} /></>} <span aria-hidden="true">&middot;</span> <span className="muted">{ownMeaning}</span></p>}
-    {language === 'zh' && <div className="writing-parts"><Decomposition character={asset.character} colour={colour} label="Parts" hideLabel="Parts" maskHead={hidden} extra={<button className={`icon-button cmp-colour${colour ? ' is-on' : ''}`} title="Colour parts" aria-label="Colour parts" aria-pressed={colour} disabled={busy} onClick={() => { void run(() => savePreferences({ writingColourParts: !colour })) }}><Palette size={18} /></button>} /></div>}
+    {writing.characterData && <div className="writing-parts"><Decomposition character={asset.character} colour={colour} label="Parts" hideLabel="Parts" maskHead={hidden} extra={<button className={`icon-button cmp-colour${colour ? ' is-on' : ''}`} title="Colour parts" aria-label="Colour parts" aria-pressed={colour} disabled={busy} onClick={() => { void run(() => savePreferences({ writingColourParts: !colour })) }}><Palette size={18} /></button>} /></div>}
     <section className="writing-workbench" aria-label="Writing exercise">
       <div className="writing-statusline">
         <span><strong>{PHASES[round.phase]}</strong> &middot; {round.repetition + 1}/{REPETITIONS}</span>
@@ -343,7 +346,7 @@ export function WritingPlayer({ language = 'zh', asset, backHref, onBack, onClos
           <p>Watching stroke order is optional and does not count as tracing. Press Escape to cancel an in-progress stroke. Leaving this page restarts an unfinished round.</p>
           <p>{asset.reviewed ? 'This guide retains the earlier prototype artwork review.' : 'Source-derived artwork; this character has not received an individual visual review.'} Matching is a tracing aid, not handwriting recognition.</p>
           {state && state.practiceCompletions > 0 && <p>Completed rounds: {state.practiceCompletions}</p>}
-          <a className="text-link" href={language === 'zh' ? characterAttributionUrl : languageAssetUrl(language, 'ATTRIBUTION.html')} target="_blank" rel="noreferrer">Artwork sources and licenses</a>
+          <a className="text-link" href={writing.characterData ? characterAttributionUrl : languageAssetUrl(language, 'ATTRIBUTION.html')} target="_blank" rel="noreferrer">Artwork sources and licenses</a>
         </div>}
       </div>
       {skipped.length > 0 && <p className="writing-skipped small muted">No guide for {skipped.join(', ')}; skipped.</p>}

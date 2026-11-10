@@ -23,6 +23,11 @@ vi.mock('../core/characters/handwriting', () => ({
   }),
 }))
 vi.mock('../components/study/useCatalog', () => ({ useCatalog: () => ({ catalog: source.catalog }) }))
+// The zh pack's writing entry reads the Chinese index file itself (core/language/writing.ts).
+vi.mock('../data/characters/index.generated.json', () => ({ default: { characters: [
+  { character: '\u8336', strokeCount: 9, reviewed: true, variant: 'reviewed-monoline' },
+  { character: '\u4e00', strokeCount: 1, reviewed: true, variant: 'reviewed-monoline' },
+] } }))
 vi.mock('../core/characters/assets', () => ({
   characterAttributionUrl: './characters/chinese/attribution.html',
   characterAssetIndex: [

@@ -1,5 +1,6 @@
 import type { WritingLanguage } from './language'
-import { hasGuide, isWritable, type WritingScope } from './writing-route'
+import { getPack } from '../language'
+import { hasGuideIn, type WritingScope } from './writing-route'
 
 /** What the writing overlay sheet is showing. `fromList`: opened from a word list that stays open underneath, so Back reveals it. */
 export interface WritingSheetRequest { word: string[]; index: number; scope: WritingScope; remember: boolean; fromList: boolean; language: WritingLanguage }
@@ -22,8 +23,8 @@ export function closeWritingSheet(): void {
 /** Opens the sheet on the first practicable character of `text` without touching the hash. False when nothing in it can be written. */
 export function openWritingSheet(text: string, options: { scope?: WritingScope; fromList?: boolean; remember?: boolean; language?: WritingLanguage } = {}): boolean {
   const word = Array.from(text)
-  const language = options.language ?? 'zh'
-  const index = word.findIndex(character => isWritable(character, language) && (language !== 'zh' || hasGuide(character)))
+  const language = options.language ?? getPack().writing.language
+  const index = word.findIndex(character => hasGuideIn(character, language))
   if (index < 0) return false
   current = { word, index, scope: options.scope ?? 'all', remember: options.remember ?? true, fromList: options.fromList ?? false, language }
   emit()

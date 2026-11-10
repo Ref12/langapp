@@ -1,8 +1,11 @@
-import { hasGuide, isHan } from '../characters/writing-route'
+import { getPack } from '../language'
+import { hasGuide } from '../characters/writing-route'
 import type { Mark } from './contracts'
 
-/** The characters of a word that Write it can check stroke by stroke: Han characters with a stroke guide. */
-export const guidedChars = (zh: string, has: (character: string) => boolean = hasGuide): string[] => Array.from(zh).filter(character => isHan(character) && has(character))
+/** The characters of a word that Write it and the stroke views take: every one the language has a stroke guide for (the pack's writing entry; Japanese: kanji and kana). */
+export const guidedChars = (zh: string, has: (character: string) => boolean = hasGuide): string[] => Array.from(zh).filter(has)
+/** The characters of a word that get a "new character" introduction: guided ones the pack's rule introduces (Japanese: kanji only). */
+export const introducedChars = (zh: string, has: (character: string) => boolean = hasGuide): string[] => guidedChars(zh, has).filter(character => getPack().writing.introduces(character))
 
 const SEVERITY: Record<Mark, number> = { got: 0, hint: 1, missed: 2 }
 /** A word's result for Write it: the worst of its characters' results. */
@@ -16,10 +19,10 @@ export const canWrite = (state: WriteState | undefined): boolean =>
 export const writtenCharacters = (states: readonly WriteState[]): Set<string> =>
   new Set(states.filter(canWrite).map(state => state.character))
 
-/** Distinct characters of these words that Write it can teach: guided Han characters never written successfully. */
+/** Distinct characters of these words that Write it can teach: guided characters the language introduces, never written successfully. */
 export function newCharacters(words: readonly string[], states: readonly WriteState[], has?: (character: string) => boolean): string[] {
   const written = writtenCharacters(states)
-  return [...new Set(words.flatMap(zh => guidedChars(zh, has)))].filter(char => !written.has(char))
+  return [...new Set(words.flatMap(zh => introducedChars(zh, has)))].filter(char => !written.has(char))
 }
 
 const plural = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`

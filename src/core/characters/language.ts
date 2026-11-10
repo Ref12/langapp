@@ -1,5 +1,6 @@
 /** The languages that have writing data: Chinese (default), Japanese and Korean. Each lives in public/characters/<folder>/. */
-export type WritingLanguage = 'zh' | 'ja' | 'ko'
+import type { WritingLanguage } from './summary'
+export type { WritingLanguage }
 
 export const writingLanguages: readonly WritingLanguage[] = ['zh', 'ja', 'ko']
 export const defaultWritingLanguage: WritingLanguage = 'zh'

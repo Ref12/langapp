@@ -17,6 +17,8 @@ import { PhraseKnowledge } from './PhraseKnowledge'
 import { AddToPhraseBank } from './AddToPhraseBank'
 import { WritePractice } from './WritePractice'
 import { savePreferences } from '../../core/learning'
+import { getPack } from '../../core/language'
+import { openWritingSheet } from '../../core/characters/writing-sheet'
 
 export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false, buttonText = 'Hear', disabled = false }: { text: string; locale: SpeechLocale; rate?: number; label?: string; iconOnly?: boolean; buttonText?: string; disabled?: boolean }) {
   const id = useId()
@@ -32,8 +34,8 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
 }
 
 /** The phrase's actions, always beside the phrase: an icon Hear button and a "…" menu (Ask, Practice, Write, Learn). */
-export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase', knowledge = true, learn, phraseBank }: {
-  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; onWrite?: () => void; practiceDisabled?: boolean; practiceTitle?: string
+export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, practiceDisabled = false, writeDisabled = practiceDisabled, practiceTitle = 'Practice repeating this phrase', knowledge = true, learn, phraseBank }: {
+  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; onWrite?: () => void; practiceDisabled?: boolean; /** Write's own switch; it follows practiceDisabled when absent. */ writeDisabled?: boolean; practiceTitle?: string
   knowledge?: boolean
   /** Replaces the Learn item (null hides it), e.g. a character is added to the character set. */
   learn?: ReactNode
@@ -63,7 +65,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, 
         {onPractice && <button type="button" className="button secondary snippet-button" title={practiceTitle} disabled={practiceDisabled} onClick={() => { close(); onPractice() }}>
           <Repeat2 size={15} />Practice
         </button>}
-        {onWrite && <button type="button" className="button secondary snippet-button" title="Practice writing this phrase" disabled={practiceDisabled} onClick={() => { close(); onWrite() }}>
+        {onWrite && <button type="button" className="button secondary snippet-button" title="Practice writing this phrase" disabled={writeDisabled} onClick={() => { close(); onWrite() }}>
           <PenLine size={15} />Write
         </button>}
         {learn !== undefined ? learn : knowledge && source.locale === 'zh-Hans' && <PhraseKnowledge text={source.text} />}
@@ -152,6 +154,8 @@ export function PracticeSnippet({ source, knowledge = true, learn, practiceMode,
   const [saved, setSaved] = useState<{ text: string; ends: number[]; items?: PracticePlaylistItem[] }>()
   const preferences = useLiveQuery(() => db.preferences.get('workspace'), [])
   const unavailable = selectionPracticeUnavailable(source.text)
+  // Phrase practice is Mandarin-only; a card in another language writes with the pack's own stroke data, straight in the writing sheet.
+  const ownWriting = source.locale !== 'zh-Hans'
   const open = (next?: 'speak' | 'write') => {
     setError('')
     try {
@@ -168,7 +172,7 @@ export function PracticeSnippet({ source, knowledge = true, learn, practiceMode,
     }
   }
   return <>
-    <SnippetActions source={source} knowledge={knowledge} learn={learn} rate={preferences?.defaultSpeechRate} onPractice={() => open(practiceMode)} onWrite={onWrite ?? (() => open('write'))} practiceDisabled={Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
+    <SnippetActions source={source} knowledge={knowledge} learn={learn} rate={preferences?.defaultSpeechRate} onPractice={() => open(practiceMode)} onWrite={onWrite ?? (() => { if (ownWriting) openWritingSheet(source.text); else open('write') })} practiceDisabled={Boolean(unavailable)} writeDisabled={ownWriting ? !getPack().writing.guidedChars(source.text).length : Boolean(unavailable)} practiceTitle={unavailable ?? 'Practice repeating this phrase'} />
     {error && <p role="alert" className="small connection-error">{error}</p>}
     {practice && <PracticeSheet route={source.route} forced={mode} phrase={practice} rate={preferences?.defaultSpeechRate ?? 1}
       savedEnds={saved?.text === practice.text ? saved.ends : undefined} savedItems={saved?.text === practice.text ? saved.items : undefined}
