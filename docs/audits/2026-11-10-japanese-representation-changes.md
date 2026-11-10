@@ -473,3 +473,17 @@ Written from the pack before and after step 3.2. Old = the committed pack at 9a2
 | adj-adv | adverb form | 〜く / 〜に | i-adj, na-adj, noun | i-adj | i-adj: i-adj-stem-ku-v--adverb; na-adj: i-adj-stem-ku-v--adverb; noun: i-adj-stem-ku-v--adverb |
 | adj-te | て form | 〜くて / 〜で | i-adj, na-adj, noun | i-adj | none |
 | adj-attr | noun-modifying form | 〜な / 〜の | na-adj, noun | apart | na-adj: na-adj-na-n--na |
+
+## Screenshots (docs/audits/images/2026-11-10-ja/)
+
+Built with `LANGAPP_LANGUAGE=ja`, served with `vite preview`, headless Chromium at 430 px, with fonts-noto-cjk installed (the first screenshot, 02, shows real kana and kanji, so the font check passed). Chinese labels ("Mandarin", "HSK", "pinyin") are known and belong to the next step.
+
+- 01-lessons.png: the Lessons page, "HSK 1, lesson 1 ... 87".
+- 02-lessons-list.png: all 87 lessons; each row lists its words in Japanese and its grammar units by their label word ("polite (gr.)").
+- 03-lesson-1-intro.png: lesson 1, intro cards (私, 学生, 勉強する, then the patterns).
+- 04-word-card-verb.png: the word card of 勉強する, gloss "to study" (one meaning, one short gloss).
+- 05-pattern-card-verb-masu.png: the pattern card "<verb> + ます" (lesson 1, where it is introduced) with its example 勉強します。 as one word in the polite form. The name and the reading line are the same text because the name has no kanji; showing both is screen code, left for the next step.
+- 06-lesson-1-verb-example.png: lesson 1 scrolled to the example 勉強します。.
+- 07-lesson-5-top.png: lesson 5, which teaches <verb> + てください.
+- 08-pattern-card-te-kudasai.png: the pattern card "<verb> + てください", example 休んでください。 (one word, form te-kudasai).
+- 09-practice-start.png, 10-practice-question.png: Practice, "New items" for lesson 1: the session start, and the first question after the intro cards ("Listen and pick the meaning").
