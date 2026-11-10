@@ -25,6 +25,11 @@ function visibleText(root: Element): string {
   return lines.join('\n') + '\n'
 }
 
+// the build's commit hash changes with every commit, so it is not part of the pinned text
+function maskBuild(text: string): string {
+  return text.replace(/(· commit\n)[0-9a-f]{7,40}/, '$1<commit>')
+}
+
 async function screenText(route: string, ready: () => unknown): Promise<string> {
   window.location.hash = '#' + route
   render(<App />)
@@ -35,10 +40,10 @@ async function screenText(route: string, ready: () => unknown): Promise<string> 
   for (let n = 0; n < 40; n++) {
     await new Promise(resolve => setTimeout(resolve, 50))
     const now = main()
-    if (now === last && n > 2) return now
+    if (now === last && n > 2) return maskBuild(now)
     last = now
   }
-  return last
+  return maskBuild(last)
 }
 
 beforeEach(async () => {
