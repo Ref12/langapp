@@ -15,7 +15,7 @@ import { useAIConnection } from '../../components/study/useAIConnection'
 import { EmptyState, PageHeading, type PageProps } from '../../components/shared'
 import { cardId } from '../../core/study/contracts'
 import { DOMAIN } from '../../core/study/knowledge'
-import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, lessonCount, pickReviews, loadNewCount, loadReviewCount, saveNewCount, saveReviewCount } from '../../core/study/daily'
+import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, lessonCount, pickReviews, reviewLimit, REVIEW_COUNT_DEFAULT, loadNewCount, loadReviewCount, saveNewCount, saveReviewCount } from '../../core/study/daily'
 import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId, type TypeProgress } from '../../core/drills/contracts'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
@@ -354,14 +354,18 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const [counts, setCounts] = useState({ new: loadNewCount(), review: loadReviewCount() })
   const [typed, setTyped] = useState(String(counts.new))
   const [viewing, setViewing] = useState(false)
-  const count = counts[mode]
   const setCount = (value: number) => { setAll(false); const next = clampCount(value); setCounts(before => ({ ...before, [mode]: next })); setTyped(String(next)); if (mode === 'new') saveNewCount(next); else saveReviewCount(next) }
-  const pickMode = (next: 'new' | 'review') => { setMode(next); setTyped(String(counts[next])) }
+  /** Reviews only: every item due now (remembered like a number). */
+  const setAllDue = () => { setAll(false); setCounts(before => ({ ...before, review: 'all' })); saveReviewCount('all') }
   const inFrom = fromSet ? new Set(collectionItems.filter(item => item.collectionId === fromSet.id).map(item => item.ref)) : undefined
   // Reviews: the due items, then the ones coming up next to fill the count.
   const reviews = useMemo(() => pickReviews(workspace.studyCards.filter(card => card.domain === DOMAIN && known.has(card.ref) && (!inFrom || inFrom.has(card.ref)) && (!catalog || catalog.units.has(card.ref) || isSourceRef(card.ref) || isPhraseRef(card.ref))), now, counts.review),
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [workspace.studyCards, now, known, catalog, from, collectionItems, counts.review])
+  const allDue = mode === 'review' && !origin && counts.review === 'all'
+  // The number the choice means now: a typed or picked number, or (All due) every due item, or 10 when nothing is due.
+  const count = mode === 'new' ? counts.new : reviewLimit(counts.review, reviews.dueTotal)
+  const pickMode = (next: 'new' | 'review') => { setMode(next); setTyped(String(next === 'new' ? counts.new : reviewLimit(counts.review, reviews.dueTotal))) }
   const freshFromSet = fromSet ? collectionItems.filter(item => item.collectionId === fromSet.id && !known.has(item.ref)).sort((a, b) => a.addedAt - b.addedAt).map(item => item.ref) : []
   /** The one selection: View items shows it and Start creates exactly it. */
   const selection = useMemo(() => origin ? (all ? origin.refs : origin.refs.slice(0, count)) : !catalog ? [] : mode === 'review' ? reviews.refs : fromSet ? freshFromSet.slice(0, count) : fillByItems(catalog, known, count),
@@ -410,8 +414,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
       <div className="segmented" role="group" aria-label="What to practise"><button type="button" aria-pressed={mode === 'new'} disabled={!!origin} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button></div>
       <div role="group" aria-label={mode === 'new' ? 'New items per set' : 'Reviews per set'} className="dr-count-picker">
         <span className="dr-count-label"><span className="small">{mode === 'new' ? 'New items per set' : 'Reviews per set'}</span><span className="small muted">{origin ? 'all of them, or the first few' : mode === 'new' ? 'at least — whole lessons are kept together' : 'the due ones first, then the ones coming up next'}</span></span>
-        <span className="segmented">{origin && <button type="button" aria-pressed={all} onClick={() => { setAll(true) }}>All</button>}{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={!(origin && all) && count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
-        <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label={mode === 'new' ? 'Number of new items' : 'Number of reviews'} value={origin && all ? '' : typed} placeholder={origin && all ? 'All' : undefined} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') setCount(Number(event.target.value)) }} onBlur={() => setTyped(String(count))} /></div>
+        <span className="segmented">{origin && <button type="button" aria-pressed={all} onClick={() => { setAll(true) }}>All</button>}{mode === 'review' && !origin && <button type="button" aria-pressed={allDue && reviews.dueTotal > 0} disabled={reviews.dueTotal === 0} onClick={setAllDue}>All due ({reviews.dueTotal})</button>}{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={!(origin && all) && !(allDue && reviews.dueTotal > 0) && count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
+        <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label={mode === 'new' ? 'Number of new items' : 'Number of reviews'} value={(origin && all) || (allDue && reviews.dueTotal > 0) ? '' : typed} placeholder={origin && all ? 'All' : allDue && reviews.dueTotal > 0 ? 'All due' : undefined} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') setCount(Number(event.target.value)) }} onBlur={() => setTyped(String(allDue ? REVIEW_COUNT_DEFAULT : count))} /></div>
       <p className="dr-summary" role="status" data-testid="selection-summary">{summary}</p>
       <div className="button-row"><button type="button" className="button secondary" disabled={nothing} onClick={() => setViewing(true)}><Eye size={16} /> View items</button></div>
     </section>}

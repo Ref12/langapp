@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { loadCatalog } from './catalog'
-import { clampCount, describeCounts, fillByItems, lessonCount, loadNewCount, pickReviews, saveNewCount } from './daily'
+import { clampCount, describeCounts, fillByItems, lessonCount, loadNewCount, loadReviewCount, pickReviews, saveNewCount, saveReviewCount } from './daily'
 import { storageNames } from '../storage-names'
 
 beforeEach(() => localStorage.clear())
@@ -74,3 +74,47 @@ describe('review sets', () => {
   })
 })
 
+
+describe('the review choice', () => {
+  const DAY = 24 * 60 * 60 * 1000
+  const now = 100 * DAY
+  const card = (ref: string, due: number) => ({ ref, due: now + due * DAY, stability: 10, difficulty: 5, reps: 3, lapses: 0, state: 'review' as const, lastReview: now - 5 * DAY })
+  const twelveDue = Array.from({ length: 12 }, (_, index) => card('due' + index, -1 - index))
+  const upcoming = Array.from({ length: 15 }, (_, index) => card('next' + index, 2 + index))
+  beforeEach(() => localStorage.clear())
+
+  it('never chosen: all due, however many', () => {
+    expect(loadReviewCount()).toBe('all')
+    const picked = pickReviews([...twelveDue, ...upcoming], now, loadReviewCount())
+    expect(picked.refs).toHaveLength(12)
+    expect(picked).toMatchObject({ due: 12, dueTotal: 12, upcoming: 0 })
+  })
+  it('nothing due: ten of the ones coming up next', () => {
+    const picked = pickReviews(upcoming, now, 'all')
+    expect(picked).toMatchObject({ due: 0, dueTotal: 0, upcoming: 10 })
+    expect(picked.refs).toHaveLength(10)
+  })
+  it('all due stops at 200, the most a practice set can hold', () => {
+    const many = Array.from({ length: 230 }, (_, index) => card('d' + index, -1 - index))
+    expect(pickReviews(many, now, 'all')).toMatchObject({ due: 200, dueTotal: 230, upcoming: 0 })
+  })
+  it('a stored number keeps working, and is clamped as before', () => {
+    saveReviewCount(5)
+    expect(loadReviewCount()).toBe(5)
+    expect(pickReviews([...twelveDue, ...upcoming], now, loadReviewCount()).refs).toHaveLength(5)
+    localStorage.setItem(storageNames().local.reviewCount, '40')
+    expect(loadReviewCount()).toBe(20)
+  })
+  it('a stored All due behaves like never having chosen', () => {
+    saveReviewCount(5); saveReviewCount('all')
+    expect(localStorage.getItem(storageNames().local.reviewCount)).toBe('all')
+    expect(loadReviewCount()).toBe('all')
+    localStorage.setItem(storageNames().local.reviewCount, 'junk')
+    expect(loadReviewCount()).toBe(5)
+  })
+  it('a number above the due count: due first, then the ones coming up next', () => {
+    const picked = pickReviews([...twelveDue.slice(0, 3), ...upcoming], now, 7)
+    expect(picked).toMatchObject({ due: 3, dueTotal: 3, upcoming: 4 })
+    expect(picked.refs.slice(0, 3)).toEqual(['due2', 'due1', 'due0'])
+  })
+})
