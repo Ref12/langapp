@@ -7,7 +7,7 @@ import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '..
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/characters/geometry'
 import { allPartsWritten, commitStroke, isLastStep, memoryHint, newWritingRound, nextPart, partIndex, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
 import { buildWritingRoute, hasGuideIn, isWritable, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
-import { getPack, isAreaOn } from '../core/language'
+import { getPack } from '../core/language'
 import { writingFor } from '../core/language/writing'
 import { useCatalog } from '../components/study/useCatalog'
 import { EmptyState, type PageProps } from '../components/shared'
@@ -48,7 +48,7 @@ export function Writing({ codepoint, scope, query, ...props }: PageProps & { cod
   const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
   const { word, index, back: requestedBack, language = getPack().writing.language } = useMemo(() => parseWritingQuery(query, character), [query, character])
   // The character list lives in the Dictionary; a build without one goes back to Practice.
-  const back = requestedBack ?? (isAreaOn(getPack(), 'dictionary') ? `dictionary/characters/${scopeName}` : 'practice')
+  const back = requestedBack ?? (getPack().dictionary.sections.characters ? `dictionary/characters/${scopeName}` : 'practice')
   const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack, language })
   return <WritingStage {...props} language={language} character={character} word={word} index={index} remember={!!query?.includes('word=')} backHref={`#${back}`}
     skipHref={at => `#${routeFor(at)}`} onGo={at => go(routeFor(at))} onFinish={() => go(back)} />
@@ -91,7 +91,7 @@ export function WritingStage({ language = getPack().writing.language, character,
   const backControl = onBack ? <button type="button" className="button secondary" onClick={onBack}>Back</button>
     : backHref ? <a className="button secondary" href={backHref}>Back</a> : onClose ? <button type="button" className="button secondary" onClick={onClose}>Close</button> : null
   if (!playable) return <EmptyState title="This stroke guide is not available.">
-    <p>{character && word.length ? `No guide for ${character}.` : isAreaOn(getPack(), 'dictionary') ? 'No character was substituted. Choose an available guide from the dictionary.' : 'No character was substituted. Open a character from a practice set.'}</p>
+    <p>{character && word.length ? `No guide for ${character}.` : getPack().dictionary.sections.characters ? 'No character was substituted. Choose an available guide from the dictionary.' : 'No character was substituted. Open a character from a practice set.'}</p>
     <div className="button-row">{nextIndex !== undefined && (skipHref ? <a className="button primary" href={skipHref(nextIndex)}>Skip to next character</a>
       : <button type="button" className="button primary" onClick={() => onGo(nextIndex)}>Skip to next character</button>)}
       {backControl}</div></EmptyState>

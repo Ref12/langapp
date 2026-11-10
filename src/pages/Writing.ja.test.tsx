@@ -4,7 +4,7 @@ import { setBuildLanguageForTests } from '../core/storage-names'
 import { Writing } from './Writing'
 import type { Workspace } from '../core/model'
 
-// The Japanese build has no Dictionary: the Writing page's empty state and its default Back point at Practice, never at the dictionary.
+// The Japanese Dictionary has no Characters section yet: the Writing page's empty state and its default Back point at Practice, never at the character list.
 const props = { workspace: { preferences: {}, characterStates: [] } as unknown as Workspace, busy: false, now: 0, run: async (operation: () => Promise<void>) => { await operation() } }
 beforeEach(() => setBuildLanguageForTests('ja'))
 afterEach(() => { cleanup(); setBuildLanguageForTests(undefined) })

@@ -2,7 +2,7 @@
 // The visible text of the Overview, the Lessons list, a lesson page and Settings in a Japanese build, for a small seeded Japanese
 // learner. Next to chinese-screens.test.tsx; the same walk of the page text, pinned in __screens__/ja-<name>.txt. None of the
 // screens may speak of Mandarin, Chinese, pinyin or HSK. To accept a deliberate change, review the diff and run with -u.
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace } from '../core/database'
@@ -169,5 +169,117 @@ describe('screen text for a small seeded Japanese learner', () => {
   }, 30000)
   it('Settings', async () => {
     await pin('settings', await screenText('settings', () => expect(document.querySelector('main')?.textContent?.length).toBeGreaterThan(50)))
+  })
+})
+
+describe('the Japanese Dictionary (the own-language branch: the pack catalog, UnitCard and plain refs)', () => {
+  const open = async (route = 'dictionary') => {
+    window.location.hash = '#' + route
+    render(<App />)
+    await waitFor(() => expect(document.querySelector('[data-unit]')).toBeTruthy(), { timeout: 8000 })
+  }
+  const search = async (query: string) => {
+    fireEvent.change(screen.getByRole('searchbox', { name: 'Search dictionary' }), { target: { value: query } })
+    await waitFor(() => expect(document.querySelector('[data-unit="vocabulary:taberu--eat"]')).toBeTruthy())
+  }
+  const card = () => document.querySelector('[data-unit="vocabulary:taberu--eat"]') as HTMLElement
+
+  it('opens with Vocabulary and Grammar only, scoped to the lessons, in the Japanese app words', async () => {
+    await open()
+    const sections = within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)
+    expect(sections).toEqual(['Vocabulary (292)', 'Grammar (115)'])
+    expect(within(screen.getByRole('group', { name: 'Dictionary scope' })).getAllByRole('button').map(button => button.textContent)).toEqual(['Full list', expect.stringMatching(/^My knowledge set/), expect.stringMatching(/^In .*\(\d+\)$/)])
+    expect(screen.queryByRole('button', { name: /Draw/ })).toBeNull()
+    expect(screen.getByRole('status')).toHaveTextContent('292 items')
+    // the page's own words (a word's meaning, such as 中国語 = Chinese language, is lesson content)
+    const chrome = document.querySelector('main')!.cloneNode(true) as HTMLElement
+    chrome.querySelectorAll('.word-grid').forEach(grid => grid.remove())
+    const text = visibleText(chrome)
+    expect(text.split('\n').filter(line => FORBIDDEN.test(line) || /tone|JLPT/i.test(line))).toEqual([])
+    expect(screen.getByLabelText('Band')).toBeTruthy()
+    expect(screen.getByRole('option', { name: /^Level 1 \(292\)$/ })).toBeTruthy()
+  })
+  it('never reads the old Japanese dictionary file or the old refs', async () => {
+    const other = await import('../core/dictionary/other')
+    const spy = vi.spyOn(other, 'loadDictionary')
+    await open()
+    expect(spy).not.toHaveBeenCalled()
+    expect(document.querySelector('[data-testid="dictionary-results"]')).toBeNull()
+    expect(document.querySelector('.phrase-word-link')).toBeNull()
+  })
+  it('lands on Vocabulary from a link to a section that is off', async () => {
+    await open('dictionary/characters/all')
+    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getByRole('button', { name: /Vocabulary/ })).toHaveAttribute('aria-pressed', 'true')
+    cleanup()
+    await open('dictionary/phrases/all')
+    expect(screen.getByRole('status')).toHaveTextContent('292 items')
+    cleanup()
+    await open('dictionary/vocabulary/media')
+    expect(screen.queryByText('From your media')).toBeNull()
+  })
+  it.each([['たべ'], ['食'], ['taberu'], ['eat'], ['食べます'], ['食べる']])('finds 食べる by %s', async query => {
+    await open()
+    await search(query)
+    expect(card()).toBeTruthy()
+  })
+  it('shows a verb in the polite form, and in the dictionary form once the setting says so', async () => {
+    await open()
+    await search('taberu')
+    expect(within(card()).getByRole('heading', { level: 3 })).toHaveTextContent('食べます')
+    expect(card()).toHaveTextContent('たべます')
+    cleanup()
+    await savePreferences({ displayForm: 'dict' })
+    await open()
+    await search('taberu')
+    expect(within(card()).getByRole('heading', { level: 3 })).toHaveTextContent('食べる')
+    expect(within(card()).getByRole('heading', { level: 3 })).not.toHaveTextContent('食べます')
+  })
+  it('shows kana readings, and romaji once the setting says so', async () => {
+    await open()
+    await search('taberu')
+    expect(card().querySelector('.study-pinyin')).toHaveTextContent('たべます')
+    cleanup()
+    await savePreferences({ readingStyle: 'romaji' })
+    await open()
+    await search('taberu')
+    expect(card().querySelector('.study-pinyin')).toHaveTextContent('tabemasu')
+  })
+  it('offers the forms view and links to the lesson that teaches a form', async () => {
+    await open()
+    await search('taberu')
+    const forms = card().querySelector('details.word-forms') as HTMLElement
+    expect(forms).toBeTruthy()
+    const rows = [...forms.querySelectorAll('tbody tr')]
+    expect(rows.length).toBeGreaterThanOrEqual(3)
+    expect(forms.textContent).toContain('食べる')
+    expect(forms.textContent).toContain('食べます')
+    const links = [...forms.querySelectorAll('a')].map(link => link.getAttribute('href'))
+    expect(links.length).toBeGreaterThan(0)
+    for (const href of links) expect(href).toMatch(/^#lessons\/group\//)
+  })
+  it('opens the Grammar section', async () => {
+    await open()
+    fireEvent.click(screen.getByRole('button', { name: /^Grammar/ }))
+    await waitFor(() => expect(document.querySelector('[data-unit^="grammar:"]')).toBeTruthy())
+    expect(screen.getByRole('status')).toHaveTextContent('115 items')
+    fireEvent.change(screen.getByRole('searchbox', { name: 'Search dictionary' }), { target: { value: 'desu' } })
+    await waitFor(() => expect(document.querySelector('[data-unit="grammar:n-desu--noun"]')).toBeTruthy())
+  })
+  it('adds a word to study from the Dictionary: it is learning, in the knowledge set and has a plain knowledge row', async () => {
+    const known = new Set((await db.knowledge.toArray()).map(row => row.ref))
+    expect(known.has('vocabulary:taberu--eat')).toBe(false)
+    await open()
+    await search('taberu')
+    expect(card()).toHaveTextContent('Not in knowledge set')
+    fireEvent.click(within(card()).getByRole('button', { name: 'Add to knowledge set' }))
+    await waitFor(async () => expect((await db.knowledge.toArray()).some(row => row.ref === 'vocabulary:taberu--eat' && row.kind === 'vocabulary')).toBe(true))
+    await waitFor(() => expect(card()).toHaveTextContent('In your knowledge set'))
+    expect(card()).toHaveTextContent('Eligible for review')
+    expect((await db.studyCards.toArray()).some(row => row.ref === 'vocabulary:taberu--eat')).toBe(true)
+    cleanup()
+    await open('dictionary/vocabulary/knowledge')
+    await search('taberu')
+    expect(screen.getByRole('button', { name: /^My knowledge set/ })).toHaveAttribute('aria-pressed', 'true')
+    expect(card()).toBeTruthy()
   })
 })

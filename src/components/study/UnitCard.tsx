@@ -31,7 +31,7 @@ export function ExampleLine({ catalog, example, pinyin, actions }: { catalog: Ca
   return <div className="study-example">{actions ? <div className="phrase-row"><div className="phrase-row-text">{text}</div>{actions}</div> : text}</div>
 }
 
-export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false, entry, addedIndex, phrases, otherLines = false }: {
+export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run, busy, route, compact = false, hideStatus = false, entry, addedIndex, phrases, otherLines = false, forms = false }: {
   catalog: Catalog; unit: Unit; card?: StudyCard; pinyin: boolean; now?: number; examples?: Omit<AuthoredExample, 'id'>[]
   run: (operation: () => Promise<void>) => Promise<void>; busy: boolean; route: string; compact?: boolean
   /** Hide the knowledge-set state (badge and button) where it is the same for every card, e.g. a lesson's introduction. */
@@ -43,6 +43,8 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   phrases?: { href: string; count?: number }
   /** Show the "Show other languages on cards" line (vocabulary only). Pass it on word and detail views, never while a practice question is open. */
   otherLines?: boolean
+  /** Show the forms view of a compact card too (the Dictionary): the pack's forms table for a word that inflects; nothing for a pack without one. */
+  forms?: boolean
 }) {
   const known = Boolean(card)
   const other = languagesFor(useContext(OtherLanguageSetting))
@@ -64,10 +66,10 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
       {phrases && vocabulary && <a className="small phrase-word-link" href={phrases.href}>{phrases.count === undefined ? 'Phrases' : `${phrases.count} ${phrases.count === 1 ? 'phrase' : 'phrases'}`}</a>}</>}
     actions={vocabulary && snippet}
     below={<>
-      {vocabulary && !compact && <WordForms catalog={catalog} record={unit.record} reading={pinyin} />}
+      {vocabulary && (!compact || forms) && <WordForms catalog={catalog} record={unit.record} reading={pinyin} />}
       {entry && <AddedByLine entry={entry} index={addedIndex} />}
       {known && !hideStatus && <SkillCounts itemRef={unit.ref} />}
-      {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} actions={<PracticeSnippet source={{ text: renderExample(catalog, example).text, meaning: example.translation, locale: 'zh-Hans', title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />} />)}
+      {shown.slice(0, compact ? 1 : 3).map((example, index) => <ExampleLine key={index} route={route} catalog={catalog} example={example} pinyin={pinyin} actions={<PracticeSnippet source={{ text: renderExample(catalog, example).text, meaning: example.translation, locale: getPack().speechLocale, title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />} />)}
       {!hideStatus && <SaveActions refs={[unit.ref]} name={title} title={unit.record.ds} primary={<button className="button secondary full-width" disabled={busy || known} onClick={() => void run(() => addToKnowledge([unit.ref]))}>
           {known ? <Check size={16} /> : <Plus size={16} />}{known ? 'In your knowledge set' : 'Add to knowledge set'}
         </button>} />}</>} />

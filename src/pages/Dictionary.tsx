@@ -30,6 +30,7 @@ import { fold, languageLabel, loadDictionary, makeOtherMatcher, type DictGrammar
 import { loadParallel, type ParallelData, type ParallelPhrase } from '../core/parallel/data'
 import { LanguageTag, OtherGrammarCard, OtherWordCard, DictPhrase } from '../components/dictionary/OtherEntries'
 import { languageInUse } from '../core/language/scope'
+import { bandName, getPack } from '../core/language'
 import { isParallelRef } from '../core/language/refs'
 import { loadLanguageIndex } from '../core/characters/otherLanguages'
 import { OtherCharacterCard } from '../components/characters/OtherCharacterCard'
@@ -41,10 +42,14 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const { catalog, error } = useCatalog()
   // The Dictionary covers exactly one language: the one the learner is in (languageInUse: the build's own in a one-language build, the language switch in the Chinese build). The route says nothing about it.
   const shown = languageInUse(workspace.preferences)
+  const pack = getPack()
   const lang: 'zh' | DictLanguage = shown === 'ja' || shown === 'ko' ? shown : 'zh'
-  const others: DictLanguage[] = lang === 'zh' ? [] : [lang]
-  const showZh = lang === 'zh'
-  const multi = !showZh
+  // The build's own language is served by the catalog branch (the pack's catalog, UnitCard, the pack's refs); the old Other branch only shows a language that is not the build's (the Chinese build's language switch).
+  const own = shown === pack.id
+  const others: DictLanguage[] = own ? [] : [lang as DictLanguage]
+  const multi = !own
+  // What the pack offers beyond Vocabulary and Grammar (every section stays on for the Other branch).
+  const sections = own ? pack.dictionary.sections : { characters: true, phrases: true, draw: true, media: true }
   const [dicts, setDicts] = useState<Partial<Record<DictLanguage, OtherDictionary>>>({})
   const [dictError, setDictError] = useState('')
   const othersKey = others.join()
@@ -54,7 +59,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     return () => { alive = false }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [othersKey])
-  const kind: UnitKind | 'characters' = section === 'characters' ? 'characters' : section === 'grammar' ? 'grammar' : 'vocabulary'
+  const kind: UnitKind | 'characters' = section === 'characters' && sections.characters ? 'characters' : section === 'grammar' ? 'grammar' : 'vocabulary'
   // Japanese and Korean characters (kana, kanji, Hangul): the language's own stroke index, never the Chinese one.
   const [otherChars, setOtherChars] = useState<Partial<Record<DictLanguage, [string, number][]>>>({})
   const [script, setScript] = useState<CharacterScript | 'all'>('all')
@@ -67,11 +72,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [othersKey, kind === 'characters'])
   const [lessonData, setLessonData] = useState<Partial<Record<DictLanguage, ParallelData>>>({})
-  const explicit = initialScope === 'knowledge' || initialScope === 'all' || initialScope === 'collections' || initialScope === 'media' ? initialScope : undefined
+  const explicit = initialScope === 'knowledge' || initialScope === 'all' || initialScope === 'collections' || (initialScope === 'media' && sections.media) ? initialScope : undefined
   const scope: 'all' | 'knowledge' | 'collections' | 'media' = explicit ?? workspace.preferences.dictionaryScope ?? 'all'
   // Words drawn from the learner's media sources (pass 2 of the annotated source).
   const chineseSourceEntries = useLiveQuery(() => db.sourceEntries.orderBy('word').toArray(), []) ?? []
-  const sourceEntries = showZh ? chineseSourceEntries : []
+  const sourceEntries = own && sections.media ? chineseSourceEntries : []
   // Items gathered in collections (not necessarily in the knowledge set).
   const collected = useLiveQuery(async () => new Set((await db.collectionItems.toArray()).map(item => item.ref)), []) ?? new Set<string>()
   useEffect(() => {
@@ -95,24 +100,24 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   // A link from another page (entry word, grammar label) arrives with its search text.
   useEffect(() => { setQuery(initialQuery ?? '') }, [initialQuery])
   // The Phrases section: its band files are fetched only while it is open; the other sections show a count only once they have been loaded.
-  const phrasesView = section === 'phrases'
+  const phrasesView = section === 'phrases' && sections.phrases
   const phraseScope: PhraseScope = isPhraseScope(initialScope) ? initialScope : 'all'
   const userPhraseRows = useLiveQuery(() => db.userPhrases.toArray(), [])
   const heardRows = useLiveQuery(() => db.phraseHeard.toArray(), [])
   const [fetched, setFetched] = useState<PhraseSources | undefined>()
   useEffect(() => {
-    if (!phrasesView || !catalog || !showZh) return
+    if (!phrasesView || !catalog || !own) return
     let alive = true
     void loadPhraseSources(catalog).then(value => { if (alive) setFetched(value) }).catch(() => undefined)
     return () => { alive = false }
-  }, [phrasesView, catalog, showZh])
+  }, [phrasesView, catalog, own])
   const phraseSources = catalog ? fetched && peekPhraseSources(catalog) === fetched ? fetched : peekPhraseSources(catalog) : undefined
   const phraseRows = useMemo(() => catalog && phraseSources && userPhraseRows
     ? buildPhraseRows(catalog, mergePhrases(catalog, phraseSources, userPhraseRows), new Set(workspace.knowledge.map(entry => entry.ref)), new Map((heardRows ?? []).map(row => [row.zh, row])))
     : undefined, [catalog, phraseSources, userPhraseRows, heardRows, workspace.knowledge])
   // Counts without the band files: the shipped counts from the small index, plus the catalog's examples and the learner's own phrases.
   const [phraseIndex, setPhraseIndex] = useState<PhraseIndex | undefined>()
-  useEffect(() => { let alive = true; void loadPhraseIndex().then(value => { if (alive) setPhraseIndex(value) }); return () => { alive = false } }, [])
+  useEffect(() => { if (!sections.phrases) return; let alive = true; void loadPhraseIndex().then(value => { if (alive) setPhraseIndex(value) }); return () => { alive = false } }, [sections.phrases])
   const examples = useMemo(() => catalog && phraseIndex ? catalogEntries(catalog) : [], [catalog, phraseIndex])
   const indexedTotal = catalog && phraseIndex && userPhraseRows ? phraseIndex.total + examples.length + userPhraseRows.length : undefined
   const indexedUse = (ref: string) => catalog && phraseIndex && userPhraseRows ? (phraseIndex.byWord.get(ref) ?? 0) + examples.filter(entry => entry.phrase.words.includes(ref)).length + userPhraseRows.filter(row => row.words.includes(ref)).length : undefined
@@ -131,9 +136,9 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const otherKnown = useLiveQuery(async () => new Set((await db.knowledge.toArray()).map(entry => entry.ref).filter(isParallelRef)), []) ?? new Set<string>()
   const known = new Set([...workspace.knowledge.map(entry => entry.ref), ...otherKnown])
   const inScope = (ref: string) => scope === 'all' || (scope === 'knowledge' ? known.has(ref) : collected.has(ref))
-  const characters = useMemo(() => catalog ? dictionaryCharacters(catalog, undefined, workspace.characterStates) : [], [catalog, workspace.characterStates])
-  const characterSet = useMemo(() => catalog ? characterKnowledge(catalog, workspace.knowledge, workspace.characterStates) : undefined,
-    [catalog, workspace.knowledge, workspace.characterStates])
+  const characters = useMemo(() => catalog && sections.characters ? dictionaryCharacters(catalog, undefined, workspace.characterStates) : [], [catalog, workspace.characterStates, sections.characters])
+  const characterSet = useMemo(() => catalog && sections.characters ? characterKnowledge(catalog, workspace.knowledge, workspace.characterStates) : undefined,
+    [catalog, workspace.knowledge, workspace.characterStates, sections.characters])
   const knownCounts = { vocabulary: workspace.knowledge.filter(entry => entry.kind === 'vocabulary').length, grammar: workspace.knowledge.filter(entry => entry.kind === 'grammar').length, characters: characterSet?.all.size ?? 0 }
   const collectedCount = (value: UnitKind) => [...collected].filter(ref => ref.startsWith(`${value}:`)).length
   const zhTab = (value: UnitKind | 'characters') => scope === 'media' ? (value === 'vocabulary' ? sourceEntries.length : 0) : scope === 'collections' ? (value === 'characters' ? 0 : collectedCount(value)) : scope === 'knowledge' ? knownCounts[value] : value === 'characters' ? characters.length : catalogCounts[value]
@@ -145,7 +150,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     return total + (scope === 'media' ? 0 : scope === 'all' ? (dict ? (value === 'vocabulary' ? dict.words.length : dict.grammar.length) : 0) : scope === 'knowledge' ? [...otherKnown].filter(ref => ref.startsWith(prefix)).length : [...collected].filter(ref => ref.startsWith(prefix)).length)
   }, 0)
   const otherCharCount = others.reduce((total, language) => total + (scope === 'all' ? otherChars[language]?.length ?? 0 : 0), 0)
-  const tabCount = (value: UnitKind | 'characters') => multi ? (showZh ? zhTab(value) : 0) + (value === 'characters' ? otherCharCount : otherTotal(value)) : zhTab(value)
+  const tabCount = (value: UnitKind | 'characters') => multi ? (own ? zhTab(value) : 0) + (value === 'characters' ? otherCharCount : otherTotal(value)) : zhTab(value)
   const bandCounts = new Map<string, number>()
   if (catalog && !phrasesView) {
     const bump = (value: string) => bandCounts.set(value, (bandCounts.get(value) ?? 0) + 1)
@@ -153,20 +158,21 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     else for (const unit of catalog.units.values()) if (unit.kind === kind && inScope(unit.ref)) bump(unit.band)
   }
   // Handwriting candidates stay inside the catalog; the Characters section also honours its scope.
-  const drawable = useMemo(() => showZh ? new Set(characters.filter(entry => scope !== 'knowledge' || characterSet?.all.has(entry.character)).map(entry => entry.character)) : new Set((otherChars[lang as DictLanguage] ?? []).map(([character]) => character)),
-    [characters, characterSet, scope, showZh, otherChars, lang])
+  const drawable = useMemo(() => own ? new Set(characters.filter(entry => scope !== 'knowledge' || characterSet?.all.has(entry.character)).map(entry => entry.character)) : new Set((otherChars[lang as DictLanguage] ?? []).map(([character]) => character)),
+    [characters, characterSet, scope, own, otherChars, lang])
   const matcher = makeMatcher(query)
+  const unitSearch = useMemo(() => pack.dictionary.searchUnits(query, pack.romaji), [pack, query])
   const bandNumber = (value: string) => Number(value) || 99
   /** Orders by rank, then knowledge-set items first, then HSK band; ties keep catalog order. */
   const byRank = <T,>(items: T[], rankOf: (item: T) => number, inSet: (item: T) => boolean, bandOf: (item: T) => number): T[] =>
     items.map((item, index) => ({ item, index, rank: rankOf(item), set: inSet(item) ? 0 : 1, band: bandOf(item) }))
       .sort((a, b) => a.rank - b.rank || a.set - b.set || a.band - b.band || a.index - b.index).map(entry => entry.item)
   const zhRanks = new Map<Unit, number>()
-  const matches = catalog && !phrasesView && showZh ? (() => {
+  const matches = catalog && !phrasesView && own ? (() => {
     const found: { unit: Extract<Unit, { kind: 'vocabulary' | 'grammar' }>; rank: number }[] = []
     for (const unit of catalog.units.values()) {
       if (unit.kind !== kind || !inScope(unit.ref) || (band !== 'all' && unit.band !== band)) continue
-      const rank = matcher.empty ? 0 : matcher.rank({ text: [unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt], pr: unit.record.pr, ds: unit.record.ds })
+      const rank = unitSearch.rank(unit)
       if (rank !== undefined) found.push({ unit, rank })
     }
     const ranks = new Map(found.map(entry => [entry.unit, entry.rank]))
@@ -245,8 +251,8 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const phraseMatches = filteredPhrases.filter(row => inPhraseScope(row, phraseScope))
   const shownOther = (language: DictLanguage) => (otherChars[language] ?? []).filter(([character]) => (script === 'all' || characterScript(character) === script) && matchesCharacter(character, language, query))
   const otherCharacterMatches = kind === 'characters' && scope === 'all' ? others.flatMap(shownOther) : []
-  const count = phrasesView ? (showZh ? phraseMatches.length : 0) + otherPhrases.length : scope === 'media' ? sourceMatches.length : (kind === 'characters' ? (showZh ? characterMatches.length : 0) + otherCharacterMatches.length : multi ? rows.length : matches.length)
-  const selectable = !phrasesView && scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
+  const count = phrasesView ? (own ? phraseMatches.length : 0) + otherPhrases.length : scope === 'media' ? sourceMatches.length : (kind === 'characters' ? (own ? characterMatches.length : 0) + otherCharacterMatches.length : multi ? rows.length : matches.length)
+  const selectable = sections.characters && !phrasesView && scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
   const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })
   const pickRow = (key: string, text: string, label: string) => selecting
     ? <label className="select-pick"><input type="checkbox" checked={picked.has(key)} onChange={() => togglePick(key, text)} aria-label={`Select ${label}`} /><span className="small">{picked.has(key) ? 'Selected' : 'Select'}</span></label> : null
@@ -269,12 +275,12 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     : [...(scope === 'media' ? [] : matches.slice(0, limit).flatMap(unit => unit.kind === 'vocabulary' ? [[unit.ref, unit.record.ch] as [string, string]] : [])), ...sourceMatches.slice(0, limit).map(entry => [`source:${entry.id}`, entry.word] as [string, string])]
     const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
   usePageActions(selectable ? [{ id: 'select', label: 'Select items', checked: selecting, onSelect: () => { setSelecting(!selecting); setPicked(new Map()) } }] : [])
-  const renderZh = (unit: Extract<Unit, { kind: 'vocabulary' | 'grammar' }>, tagged: boolean) => <div key={unit.ref} className={`select-item${picked.has(unit.ref) ? ' picked' : ''}`}>{tagged && <LanguageTag language="zh" />}{unit.kind === 'vocabulary' && <div className="select-row">{pickRow(unit.ref, unit.record.ch, unit.record.ch)}{writeTag(unit.record.ch)}</div>}<UnitCard catalog={catalog!} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
-      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact otherLines phrases={unit.kind === 'vocabulary' ? { href: `#${phrasesRouteFor(unit.record.ch)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : indexedUse(unit.ref) } : undefined} /></div>
+  const renderZh = (unit: Extract<Unit, { kind: 'vocabulary' | 'grammar' }>, tagged: boolean) => <div key={unit.ref} className={`select-item${picked.has(unit.ref) ? ' picked' : ''}`}>{tagged && <LanguageTag language="zh" />}{unit.kind === 'vocabulary' && sections.characters && <div className="select-row">{pickRow(unit.ref, unit.record.ch, unit.record.ch)}{writeTag(unit.record.ch)}</div>}<UnitCard catalog={catalog!} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
+      card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact forms otherLines phrases={unit.kind === 'vocabulary' && sections.phrases ? { href: `#${phrasesRouteFor(unit.record.ch)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : indexedUse(unit.ref) } : undefined} /></div>
   return <>
     <PageHeading eyebrow="THE WHOLE CURRICULUM" title={phrasesView ? 'Phrases, ready or pending.' : kind === 'characters' ? 'Characters, one stroke at a time.' : 'Vocabulary and grammar, by band.'}>
       {phrasesView ? 'Every phrase the app can use: lesson examples, the generated bank and the phrases you added. A phrase is ready when you know all its words (and grammar, for a generated one).' : kind === 'characters' ? 'Your character set includes characters from words in your knowledge set, plus any you add manually. Practice their strokes here; inclusion does not claim writing proficiency.'
-        : !multi ? 'Every HSK 1-6 sense and construction in the curriculum, separate from your knowledge set. Adding an item makes it eligible for review; it does not claim you know it.'
+        : !multi ? pack.dictionary.intro
         : `Every ${lang === 'ja' ? 'JLPT N5-N1' : 'TOPIK 1-6'} word and grammar point in the curriculum, separate from your knowledge set. Adding an item makes it eligible for review; it does not claim you know it.`}</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {dictError && <div className="notice error" role="alert"><p>The Japanese or Korean dictionary could not be loaded. {dictError}</p></div>}
@@ -282,20 +288,20 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       <div className="segmented" role="group" aria-label="Dictionary section">
         <button aria-pressed={!phrasesView && kind === 'vocabulary'} onClick={() => { goSection('vocabulary') }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
         <button aria-pressed={!phrasesView && kind === 'grammar'} onClick={() => { goSection('grammar') }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
-        <button aria-pressed={!phrasesView && kind === 'characters'} onClick={() => { goSection('characters') }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>
-        <button aria-pressed={phrasesView} onClick={() => { goSection('phrases') }}>Phrases{!showZh ? '' : phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : indexedTotal !== undefined ? ` (${indexedTotal.toLocaleString('en-US')})` : ''}</button>
+        {sections.characters && <button aria-pressed={!phrasesView && kind === 'characters'} onClick={() => { goSection('characters') }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>}
+        {sections.phrases && <button aria-pressed={phrasesView} onClick={() => { goSection('phrases') }}>Phrases{!own ? '' : phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : indexedTotal !== undefined ? ` (${indexedTotal.toLocaleString('en-US')})` : ''}</button>}
       </div>
       {phrasesView ? <div className="segmented" role="group" aria-label="Phrase scope">
         {PHRASE_SCOPES.map(value => <button key={value} aria-pressed={phraseScope === value} onClick={() => goPhrases(value)}>{{ all: 'All', ready: 'Ready', pending: 'Pending', mine: 'Added by me' }[value]}{phraseRows ? ` (${phraseCounts[value].toLocaleString('en-US')})` : ''}</button>)}
       </div> : <div className="segmented" role="group" aria-label="Dictionary scope">
         <button aria-pressed={scope === 'all'} onClick={() => { setLimit(PAGE); go(kind, 'all') }}>Full list</button>
         <button aria-pressed={scope === 'knowledge'} onClick={() => { setLimit(PAGE); go(kind, 'knowledge') }}>My knowledge set ({knownCounts[kind]})</button>
-        {showZh && <button aria-pressed={scope === 'media'} onClick={() => { setLimit(PAGE); go('vocabulary', 'media') }}>From your media ({sourceEntries.length})</button>}
+        {own && sections.media && <button aria-pressed={scope === 'media'} onClick={() => { setLimit(PAGE); go('vocabulary', 'media') }}>From your media ({sourceEntries.length})</button>}
         {kind !== 'characters' && <button aria-pressed={scope === 'collections'} onClick={() => { setLimit(PAGE); go(kind, 'collections') }}>In {TERM.plural} ({collectedCount(kind)})</button>}
       </div>}
-      <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={!showZh ? (kind === 'characters' && !phrasesView ? 'Character or codepoint' : 'Word, reading, or English') : phrasesView ? 'Chinese, pinyin, or English' : kind === 'characters' ? 'Character, codepoint, or containing word' : kind === 'vocabulary' ? 'Character, pinyin, or meaning' : 'Pattern, pinyin, or meaning'} aria-label="Search dictionary" />
-        <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button></div>
-      {!multi && <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBandList().map(value => <option key={value} value={value}>HSK {value}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>}
+      <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={!own ? (kind === 'characters' && !phrasesView ? 'Character or codepoint' : 'Word, reading, or English') : phrasesView ? 'Chinese, pinyin, or English' : kind === 'characters' ? 'Character, codepoint, or containing word' : pack.dictionary.placeholder[kind === 'vocabulary' ? 'vocabulary' : 'grammar']} aria-label="Search dictionary" />
+        {sections.draw && <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button>}</div>
+      {!multi && <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBandList().map(value => <option key={value} value={value}>{bandName(pack, value)}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>}
       {multi && <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)} aria-label="Band"><option value="all">All bands</option>{(dicts[lang as DictLanguage]?.levels ?? []).map(value => <option key={value} value={value}>{value}</option>)}</select></label>}
     </div>
     {selectable && selecting && <div className="select-bar" role="toolbar" aria-label="Select">
@@ -312,11 +318,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       <button aria-pressed={writeFilter === 'can'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'can') }}>Can write {canWriteCount}</button>
       <button aria-pressed={writeFilter === 'not'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'not') }}>Not yet {setCharacters.length - canWriteCount}</button>
     </div>}
-    {drawing && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => select(setQuery)(query + character)} />}
-    {kind === 'characters' && showZh && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
-    <p className="small muted" role="status">{others.some(language => !dicts[language]) && !dictError ? `Loading ${others.filter(language => !dicts[language]).map(language => languageLabel[language]).join(' and ')}...` : (catalog || !showZh) ? phrasesView && showZh && !phraseRows ? 'Loading phrases...' : phrasesView ? `${count} ${count === 1 ? 'phrase' : 'phrases'}` : `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
+    {drawing && sections.draw && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => select(setQuery)(query + character)} />}
+    {kind === 'characters' && own && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
+    <p className="small muted" role="status">{others.some(language => !dicts[language]) && !dictError ? `Loading ${others.filter(language => !dicts[language]).map(language => languageLabel[language]).join(' and ')}...` : (catalog || !own) ? phrasesView && own && !phraseRows ? 'Loading phrases...' : phrasesView ? `${count} ${count === 1 ? 'phrase' : 'phrases'}` : `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {phrasesView && <>
-      {showZh && phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, 'zh-Hans')} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}
+      {own && phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, 'zh-Hans')} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}
       {otherPhrases.length > 0 && <><h2 className="small muted">Japanese and Korean lesson phrases</h2><ul className="plain-list" data-testid="other-phrases">{otherPhrases.slice(0, limit).map(item => <div key={item.language + item.lesson + item.phrase.id} className="dict-result"><LanguageTag language={item.language} /><DictPhrase phrase={item.phrase} language={item.language} lesson={item.lesson} /></div>)}</ul></>}</>}
     {!phrasesView && scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
@@ -333,14 +339,14 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         {!otherChars[language] ? <p className="small muted" role="status">Loading the {languageLabel[language]} writing guides...</p> : <div className="word-grid character-grid">{shownOther(language).slice(0, limit).map(([character, strokes]) => <OtherCharacterCard key={character} character={character} strokes={strokes} language={language} dictionary={dicts[language]} />)}</div>}
       </section>)}
     </>}
-    {catalog && !phrasesView && kind === 'characters' && showZh && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <div key={entry.character} className={`select-item${picked.has(entry.character) ? ' picked' : ''}`}>{selecting && <div className="select-row">{pickRow(entry.character, entry.character, entry.character)}</div>}<CharacterCard entry={entry}
+    {catalog && !phrasesView && kind === 'characters' && own && <div className="word-grid character-grid">{characterMatches.slice(0, limit).map(entry => <div key={entry.character} className={`select-item${picked.has(entry.character) ? ' picked' : ''}`}>{selecting && <div className="select-row">{pickRow(entry.character, entry.character, entry.character)}</div>}<CharacterCard entry={entry}
       automatic={characterSet?.automatic.has(entry.character) ?? false} manual={characterSet?.manual.has(entry.character) ?? false}
       state={workspace.characterStates.find(state => state.character === entry.character)} known={known} scope={scope === 'collections' || scope === 'media' ? 'all' : scope} pinyin={workspace.preferences.pinyin} run={run} busy={busy} /></div>)}</div>}
     {undo && <p className="history-toast" role="status">{undo.label}{undo.changes.length > 0 && <> <button type="button" className="button secondary" onClick={restore}>Undo</button></>}</p>}
     {count > limit && <div className="button-row"><button className="button secondary" onClick={() => setLimit(limit + PAGE)}>Show more ({count - limit} remaining)</button></div>}
-    {(catalog || !showZh) && !count && !(phrasesView && showZh && !phraseRows) && !(kind === 'characters' && !phrasesView && !showZh) && !others.some(language => !dicts[language]) && <EmptyState title={phrasesView ? 'No matching phrases' : scope === 'collections' && !collected.size ? `No ${TERM.plural} items yet` : scope === 'knowledge' && !(multi ? tabCount(kind) : knownCounts[kind]) ? 'Your knowledge set is empty' : 'No matching items'}><p>{phrasesView ? 'Try another search, band, or scope.' : scope === 'knowledge' && !(multi ? tabCount(kind) : knownCounts[kind]) ? kind === 'characters' ? 'Add a character from the full list, or add a word to your knowledge set.' : 'Add items here, or start with New in Lessons.' : 'Try another search, band, or section.'}</p><a href="#lessons" className="button secondary">Go to Lessons</a></EmptyState>}
-    {(showZh || phrasesView) && <p className="page-footnote">{phrasesView ? 'Practice-set sentences are not listed here. Heard counts come from Hands-free.' : kind === 'characters' ? <>Guided writing records completed practice, not mastery or an FSRS writing schedule. Most guides are source-derived and unreviewed. <a href={characterAttributionUrl} target="_blank" rel="noreferrer">Artwork sources and licenses</a>.</>
-      : 'Review timing for each item in your knowledge set follows FSRS spaced repetition for reading. Writing practice is available in Characters and is tracked separately. The inventory follows the November 2025 HSK examination syllabus; it is an AI-assisted editorial draft, not an official sense list.'}</p>}
+    {(catalog || !own) && !count && !(phrasesView && own && !phraseRows) && !(kind === 'characters' && !phrasesView && !own) && !others.some(language => !dicts[language]) && <EmptyState title={phrasesView ? 'No matching phrases' : scope === 'collections' && !collected.size ? `No ${TERM.plural} items yet` : scope === 'knowledge' && !(multi ? tabCount(kind) : knownCounts[kind]) ? 'Your knowledge set is empty' : 'No matching items'}><p>{phrasesView ? 'Try another search, band, or scope.' : scope === 'knowledge' && !(multi ? tabCount(kind) : knownCounts[kind]) ? kind === 'characters' ? 'Add a character from the full list, or add a word to your knowledge set.' : 'Add items here, or start with New in Lessons.' : 'Try another search, band, or section.'}</p><a href="#lessons" className="button secondary">Go to Lessons</a></EmptyState>}
+    {(own || phrasesView) && <p className="page-footnote">{phrasesView ? 'Practice-set sentences are not listed here. Heard counts come from Hands-free.' : kind === 'characters' ? <>Guided writing records completed practice, not mastery or an FSRS writing schedule. Most guides are source-derived and unreviewed. <a href={characterAttributionUrl} target="_blank" rel="noreferrer">Artwork sources and licenses</a>.</>
+      : pack.dictionary.footnote}</p>}
     {kind === 'characters' && !phrasesView && others.length > 0 && <p className="page-footnote" data-testid="other-writing-attribution">{others.map(language => <span key={language}>{languageLabel[language]} stroke data: <a href={characterAttributionUrlFor(language)} target="_blank" rel="noreferrer">Artwork sources and licenses</a>. </span>)}</p>}
     {others.length > 0 && <p className="page-footnote" data-testid="other-attribution">{others.map(language => <span key={language}>{language === 'ja' ? 'Japanese words: JMdict/EDICT (EDRDG), levels from Waller\u2019s JLPT Resources.' : 'Korean words: National Institute of Korean Language, Korean-English Learners\u2019 Dictionary (CC BY-SA 2.0 KR).'} <a href={`${import.meta.env.BASE_URL}dictionary/${language === 'ja' ? 'japanese' : 'korean'}/ATTRIBUTION.txt`} target="_blank" rel="noreferrer">Sources and licenses</a>. </span>)}Levels are estimates, not an official list.</p>}
   </>

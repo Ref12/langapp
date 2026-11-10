@@ -16,7 +16,7 @@ describe('a language build', { timeout: 15_000 }, () => {
     setBuildLanguageForTests('ja')
     render(<App />)
     const nav = await screen.findByRole('navigation', { name: 'Main navigation' })
-    expect([...nav.querySelectorAll('a')].map(link => link.getAttribute('title'))).toEqual(['Overview', 'Lessons', 'Practice'])
+    expect([...nav.querySelectorAll('a')].map(link => link.getAttribute('title'))).toEqual(['Overview', 'Lessons', 'Practice', 'Dictionary'])
     await go('games')
     expect(await screen.findByText('Not available in the Japanese app yet.')).toBeInTheDocument()
     expect(screen.queryByText('Word Defender')).not.toBeInTheDocument()
