@@ -5,7 +5,7 @@ import { bandSummaries, grammarLabel, groupRows, type BandSummary, type GroupRow
 import type { Workspace } from '../core/model'
 import { headwordFor } from '../core/forms/display'
 import { getPack } from '../core/language'
-import { useDisplaySettings } from './display-context'
+import { useDisplaySettings } from './display-settings'
 
 const refFor = (kind: string, ref: string) => unitRef(kind as 'vocabulary' | 'grammar', ref)
 

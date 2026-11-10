@@ -4,7 +4,8 @@ import { getPack } from '../../core/language'
 import type { Catalog } from '../../core/study/catalog'
 import type { VocabularyRecord } from '../../core/study/catalog'
 import { unitRef } from '../../core/study/contracts'
-import { ReadingText, usePackFormsTable } from '../display-context'
+import { ReadingText } from '../display-context'
+import { usePackFormsTable } from '../display-settings'
 
 /** The lesson that teaches a grammar unit: the first group that lists it, numbered within its band. */
 function lessonOf(catalog: Catalog, label: string): { id: string; number: number } | undefined {
