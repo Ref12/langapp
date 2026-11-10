@@ -116,6 +116,18 @@ describe('screen text for a small seeded Japanese learner', () => {
     await setEngineChoice(id, { preset: 'writing' })
     await pin('practice-ready', await screenText(`practice/set/${id}`, () => expect(screen.getByRole('button', { name: 'Start session' })).toBeEnabled()))
   })
+  it('Practice: a Word order question', async () => {
+    vi.spyOn(Math, 'random').mockReturnValue(0.05)
+    saveCustomPreset({ id: 'custom-order', name: 'Word order only', forms: ['tiles'], stages: ['produce'] })
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'custom-order' })
+    const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByText('Tap the tiles in order to build the sentence.')).toBeInTheDocument())
+    // The sentence is drawn at random from the lesson's new words: the pin masks its English and its tiles.
+    await pin('practice-word-order', question.replace(/(Build the sentence\n)[^\n]+/, '$1<English>').replace(/(Tap the tiles in order to build the sentence\.\n)[\s\S]*?(Check answer)/, '$1<tiles>\n$2'))
+    expect(document.querySelectorAll('.tile-bank .tile').length).toBeGreaterThanOrEqual(3)
+    vi.restoreAllMocks()
+  }, 30000)
   it('Practice: a typed-reading question', async () => {
     saveCustomPreset({ id: 'custom-reading', name: 'Reading only', forms: ['pinyin'], stages: ['recall'] })
     const id = await createDrillSet({ kind: 'new' })

@@ -1,6 +1,8 @@
 import type { Catalog } from '../study/catalog'
 import type { BankPhrase } from '../phrases/contracts'
 import { unitRef } from '../study/contracts'
+import { getPack } from '../language'
+import type { SpelledToken } from '../language/sentence-forms'
 import { phraseKey } from '../phrases/key'
 import { buildChoice, createRng, shortMeaning, type VocabularyUnit } from '../study/local-exercises'
 import { acceptedAnswers, acceptedEnglish, englishKey, segmentWords, sensesOf } from './grade'
@@ -46,13 +48,29 @@ export function phraseForms(context: FormContext, phrase: Pick<BankPhrase, 'word
 
 export const formOf = (catalog: Catalog, ref: string): string | undefined => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : undefined }
 
+/** The vocabulary word as the gap needs it: its label (which a sentence token's `word` carries), written form, reading, class and band. */
+const blankWord = (unit: VocabularyUnit) => ({ ref: unit.ref, label: unit.record.lb, ch: unit.record.ch, pr: unit.record.pr, cl: unit.record.cl, band: unit.band })
+
+/** The tokens of each accepted wording with their readings, for a pack that marks a typed or built sentence by them (the pack's `spell`); undefined when it marks by the text alone. */
+function spelledAccepted(context: FormContext, phrase: BankPhrase, accepted: readonly string[]): (SpelledToken[] | undefined)[] | undefined {
+  const surface = (label: string) => formOf(context.catalog, unitRef('vocabulary', label))
+  const reading = (label: string) => { const unit = context.catalog.units.get(unitRef('vocabulary', label)); return unit?.kind === 'vocabulary' ? unit.record.pr : undefined }
+  const spelled = accepted.map((text, index) => {
+    const source = index === 0 ? phrase : context.bank.find(other => phraseKey(other.zh) === phraseKey(text))
+    return source ? getPack().spell(text, { forms: new Set(), tokens: source.tokens, surface, reading, wholeReading: source.py }) : undefined
+  })
+  return spelled.some(Boolean) ? spelled : undefined
+}
+
 /** Translate, in either direction. The phrase is the model answer; other bank phrases with its words and meaning count as alternatives. */
 export function buildTranslate(slot: Slot, form: 'translate-zh-en' | 'translate-en-zh', phrase: BankPhrase, context: FormContext, unknown?: Flagged): TextItem {
   const zhToEn = form === 'translate-zh-en'
+  const accepted = zhToEn ? acceptedEnglish(phrase, context.bank, context.extraAcceptedEnglish?.(phrase)) : acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase))
+  const spelled = zhToEn ? undefined : spelledAccepted(context, phrase, accepted)
   return {
     ...slot, form, prompt: zhToEn ? phrase.zh : phrase.en, promptLang: zhToEn ? 'zh' : 'en', answerLang: zhToEn ? 'en' : 'zh',
     ...(zhToEn ? { hearText: phrase.zh } : {}),
-    accepted: zhToEn ? acceptedEnglish(phrase, context.bank, context.extraAcceptedEnglish?.(phrase)) : acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)),
+    accepted, ...(spelled ? { spelled } : {}),
     ...(!zhToEn && context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}),
       model: zhToEn ? phrase.en : phrase.zh, modelPinyin: phrase.py, explanation: zhToEn ? phrase.zh : phrase.en,
     phrase: { zh: phrase.zh, py: phrase.py, en: phrase.en }, ...(unknown ? { unknown } : {}),
@@ -61,8 +79,10 @@ export function buildTranslate(slot: Slot, form: 'translate-zh-en' | 'translate-
 
 /** Dictation: hear the phrase, type the characters. */
 export function buildDictation(slot: Slot, phrase: BankPhrase, context: FormContext): TextItem {
+  const accepted = acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase))
+  const spelled = spelledAccepted(context, phrase, accepted)
   return {
-    ...slot, form: 'dictation', prompt: '', promptLang: 'zh', hearText: phrase.zh, answerLang: 'zh', accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py,
+    ...slot, form: 'dictation', prompt: '', promptLang: 'zh', hearText: phrase.zh, answerLang: 'zh', accepted, ...(spelled ? { spelled } : {}), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py,
     explanation: phrase.en, phrase: { zh: phrase.zh, py: phrase.py, en: phrase.en },
   }
 }
@@ -72,28 +92,24 @@ export function buildTiles(slot: Slot, phrase: BankPhrase, context: FormContext)
   const tiles = segmentWords(phrase.zh, phraseForms(context, phrase), phrase.tokens, label => formOf(context.catalog, unitRef('vocabulary', label)))
   if (tiles.length < 2 || tiles.length > 14 || tiles.some(tile => tile.length > 12)) return undefined
   const rng = rngFor(context, slot.id)
-  const inside = new Set(tiles)
-  const distractors = shuffle(context.knownUnits.filter(unit => !inside.has(unit.record.ch) && unit.record.ch.length <= 3).map(unit => context.shownForm?.(unit) ?? unit.record.ch).filter(form => !inside.has(form)), rng).slice(0, tiles.length >= 4 ? 2 : 1)
+  const distractors = getPack().distractors({ tiles, known: context.knownUnits.map(unit => ({ text: unit.record.ch, shown: context.shownForm?.(unit) ?? unit.record.ch })), rng, shuffle })
   const count = tiles.length + distractors.length
   let shuffled = shuffle(Array.from({ length: count }, (_, index) => index), rng)
   if (shuffled.slice(0, tiles.length).every((value, index) => value === index)) shuffled = [...shuffled.slice(1), shuffled[0]]
-  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted: acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase)), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py, explanation: `${phrase.zh} (${phrase.py})` }
+  const accepted = acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase))
+  const spelled = spelledAccepted(context, phrase, accepted)
+  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted, ...(spelled ? { spelled } : {}), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py, explanation: `${phrase.zh} (${phrase.py})` }
 }
 
 /** Fill the gap: the target word blanked out, three known words that do not occur in the phrase as the wrong options. */
 export function buildGap(slot: Slot, phrase: BankPhrase, targetRef: string, context: FormContext): GapItem | undefined {
-  const target = formOf(context.catalog, targetRef)
-  if (!target || !phrase.zh.includes(target)) return undefined
+  const target = context.catalog.units.get(targetRef)
+  if (target?.kind !== 'vocabulary') return undefined
   const rng = rngFor(context, slot.id)
-  const band = Number(context.catalog.units.get(targetRef)?.band ?? 1)
-  const inPhrase = (form: string) => phrase.zh.includes(form) || form.includes(target) || target.includes(form)
-  const pool = shuffle(context.knownUnits, rng).filter(unit => unit.ref !== targetRef && !inPhrase(unit.record.ch))
-    .sort((a, b) => Math.abs(Number(a.band) - band) - Math.abs(Number(b.band) - band) || Math.abs(a.record.ch.length - target.length) - Math.abs(b.record.ch.length - target.length))
-  const wrong: string[] = []
-  for (const unit of pool) { if (wrong.length >= 3) break; if (!wrong.includes(unit.record.ch)) wrong.push(unit.record.ch) }
-  if (wrong.length < 2) return undefined
-  const options = shuffle([target, ...wrong], rng)
-  return { ...slot, form: 'gap', sentence: phrase.zh, gapped: phrase.zh.replace(target, '＿＿'), options, answer: options.indexOf(target), translation: phrase.en, explanation: `${phrase.zh} (${phrase.py}): ${phrase.en}` }
+  const blanked = getPack().blank({ sentence: phrase.zh, tokens: phrase.tokens, surface: label => formOf(context.catalog, unitRef('vocabulary', label)), target: blankWord(target), known: context.knownUnits.map(blankWord), rng, shuffle })
+  if (!blanked) return undefined
+  const options = shuffle([blanked.answer, ...blanked.wrong], rng)
+  return { ...slot, form: 'gap', sentence: phrase.zh, gapped: blanked.gapped, options, answer: options.indexOf(blanked.answer), translation: phrase.en, explanation: `${phrase.zh} (${phrase.py}): ${phrase.en}` }
 }
 
 /** Listen and pick: hear the phrase, choose its English. The wrong options are the English of other phrases that share words with it (any other phrase when too few do). */

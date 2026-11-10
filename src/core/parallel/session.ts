@@ -84,30 +84,11 @@ export function lessonItems(data: ParallelData, language: ParallelLanguage, less
 }
 
 // The particle table, its descriptions and the tile text rule moved to the language pack (language/particles.ts); re-exported for the parallel screens until they go.
-import { isParticle, isPunctuation, normaliseTile, PARTICLE_SWAPS, PARTICLES } from '../language/particles'
+import { isParticle, isPunctuation, normaliseTile, PARTICLES } from '../language/particles'
+import { gradeTiles, swappedParticle, type TilesGrade } from '../language/tiles-grade'
 export { isParticle, normaliseTile, PARTICLES }
 
-export interface TilesGrade { correct: boolean; /** Tiles of the answer that sit where a different tile belongs. */ wrong: { position: number; given: string; expected?: string; particle: boolean }[]; messages: string[] }
-
-/** Grades a built sentence by token order (spaces and punctuation ignored); an answer that is another listed wording counts too. */
-export function gradeTiles(language: ParallelLanguage, answer: readonly string[], accepted: readonly (readonly string[])[]): TilesGrade {
-  const given = answer.map(normaliseTile).filter(Boolean)
-  const wordings = accepted.map(tokens => tokens.map(normaliseTile).filter(Boolean))
-  if (wordings.some(tokens => tokens.length === given.length && tokens.every((token, index) => token === given[index]))) return { correct: true, wrong: [], messages: [] }
-  const model = wordings[0] ?? []
-  const wrong: TilesGrade['wrong'] = []
-  for (let position = 0; position < Math.max(given.length, model.length); position++) {
-    if (given[position] === model[position]) continue
-    const particle = (given[position] !== undefined && isParticle(language, given[position])) || (model[position] !== undefined && isParticle(language, model[position]))
-    wrong.push({ position, given: given[position] ?? '', expected: model[position], particle })
-  }
-  const messages: string[] = []
-  const swapped = wrong.filter(item => item.particle && item.given && item.expected && isParticle(language, item.given) && isParticle(language, item.expected))
-  for (const item of swapped.slice(0, 2)) messages.push(`${item.given} ${PARTICLES[language][item.given]}, but here the sentence needs ${item.expected}, which ${PARTICLES[language][item.expected!]}.`)
-  if (!messages.length && wrong.some(item => item.particle)) messages.push('A particle is missing, extra or in the wrong place.')
-  if (!messages.length && given.length === model.length && [...given].sort().join('|') === [...model].sort().join('|')) messages.push('The words are right but the order is not.')
-  return { correct: false, wrong, messages }
-}
+export { gradeTiles, type TilesGrade }
 
 const gloss = (english: string, short?: string): string => {
     const first = (short ?? shortGloss(english)).replace(/\s*\([^)]*\)\s*$/, '').trim()
@@ -258,9 +239,7 @@ export function tilesFor(language: ParallelLanguage, data: ParallelData, phrase:
   if (tokens.length < 2) return undefined
   const tiles = tokens.map(token => token.t)
   const distractors: string[] = []
-  const particle = tokens.find(token => isParticle(language, token.t))
-  const swap = particle ? PARTICLE_SWAPS[language][particle.t] : undefined
-  if (swap && !tiles.includes(swap)) distractors.push(swap)
+  distractors.push(...swappedParticle(language, tiles))
   const shuffle = shuffled([...tiles, ...distractors].map((_, index) => index), rng)
   // never open on the answer's own order
   const ordered = shuffle.length > 2 && shuffle.every((value, index) => value === index) ? [...shuffle.slice(1), shuffle[0]] : shuffle

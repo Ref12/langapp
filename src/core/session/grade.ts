@@ -142,6 +142,8 @@ export interface ChineseGrade {
   messages: string[]
   /** A one-line reason the answer is as right as the model one (an equivalent wording). */
   note?: string
+  /** The sentence as it is written, shown after the note when a spelling other than the written one was right (Japanese: kana for kanji). */
+  written?: string
 }
 
 /** Grades a Chinese answer against the accepted answers. `forms` are the words the segmenter knows (the learner's vocabulary and the phrases' own words). */
@@ -268,7 +270,8 @@ export interface MeaningGrade {
 
 /** Grades an English meaning (a word's senses, or a sentence's wordings) locally, no AI. */
 export function gradeMeaning(answer: string, accepted: readonly string[]): MeaningGrade {
-  if (/\p{Script=Han}/u.test(answer)) return { verdict: 'wrong', note: 'The answer should be in English.' }
+  const { pattern, note } = getPack().practiceWording.notEnglish
+  if (pattern.test(answer)) return { verdict: 'wrong', note }
   const key = meaningKey(answer)
   if (!key) return { verdict: 'wrong' }
   const options = accepted.map(text => ({ text, key: meaningKey(text) })).filter(option => option.key)
