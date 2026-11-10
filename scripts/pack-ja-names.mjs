@@ -77,12 +77,12 @@ export function patternSlug(reading, romaji) {
   return out.join('-').replace(/-+/g, '-')
 }
 
-const WEAK = new Set(['it', 'its', "it's", 'you', 'your', 'i', 'me', 'my', 'we', 'no', 'not', 'one', 'someone', 'something', 's', 'that', 'this', 'there'])
+const WEAK = new Set(["i'm", "i'll", 'it', 'its', "it's", 'you', 'your', 'i', 'me', 'my', 'we', 'no', 'not', 'one', 'someone', 'something', 's', 'that', 'this', 'there'])
 const STOP = new Set(['to', 'a', 'an', 'the', 'be', 'of', 'in', 'on', 'for', 'and', 'or', 'with', 'is', 'are'])
 /** The English word that ends a label: the first meaningful word of the gloss, skipping little words and pronouns where another word exists. */
 export function glossWord(text) {
   const clean = String(text).toLowerCase().replace(/\([^)]*\)|\[[^\]]*\]/g, ' ')
-  const pieces = clean.split(/[;,|/]/).map(part => (part.match(/[a-z0-9]+/g) ?? []).filter(word => !STOP.has(word)))
+  const pieces = clean.split(/[;,|/]/).map(part => (part.match(/[a-z0-9]+(?:'[a-z]+)?/g) ?? []).filter(word => !STOP.has(word)))
   for (const words of pieces) { const word = words.find(item => !WEAK.has(item)); if (word) return word }
   for (const words of pieces) if (words[0]) return words[0]
   return 'x'
