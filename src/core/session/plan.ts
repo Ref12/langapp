@@ -8,9 +8,11 @@ import { LENGTH_FACTOR, estimateMinutes } from './presets'
 import { SentencePool } from './sentences'
 import { formWords, inflectedWords, takesWordForms, taughtGrammarIds, wordFormCount } from './word-form-plan'
 import type { DatasetSource } from './sources'
-import { DATASET_FORMS, STAGES, WORD_FORMS, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan, type TextItem } from './types'
+import { DATASET_FORMS, PHRASE_FORMS, STAGES, WORD_FORMS, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan, type TextItem } from './types'
 
-export interface PlanItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; py: string; en: string }
+export interface PlanItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; py: string; en: string
+  /** A shipped phrase practised as an item of its own (a sentence ref): it is its own sentence in every exercise, with its words, grammar and tokens. */
+  phrase?: BankPhrase }
 
 export interface PlanInput {
   intent: Intent
@@ -60,10 +62,27 @@ export const needsKnownSentence = (form: Form, stage: Stage) => producesChinese(
 
 const FALLBACK_FORMS: Record<'vocabulary' | 'other', readonly Form[]> = { vocabulary: ['choice', 'recall', 'pinyin'], other: [] }
 
+/** The sentence forms of a stage's list for a phrase item; none left: translate to English, then listen and pick. */
+export const sentenceForms = (forms: readonly Form[]): Form[] => {
+  const kept = forms.filter(form => PHRASE_FORMS.includes(form))
+  return kept.length ? kept : ['translate-zh-en', 'listen-pick']
+}
+
 function shuffle<T>(items: readonly T[], rng: () => number): T[] {
   const out = [...items]
   for (let index = out.length - 1; index > 0; index--) { const other = Math.floor(rng() * (index + 1)); [out[index], out[other]] = [out[other], out[index]] }
   return out
+}
+
+/** A gap for a phrase item: the blanked word is chosen from the phrase's own words (the first, from a place the exercise's slot picks, that can be blanked); no item is credited for it beyond the phrase itself. */
+function buildPhraseGap(base: Slot, phrase: BankPhrase, context: FormContext) {
+  const words = phrase.words
+  const start = words.length ? Math.floor(createRng(context.seed + [...base.id].reduce((sum, char) => (sum * 31 + char.charCodeAt(0)) | 0, 7))() * words.length) : 0
+  for (let at = 0; at < words.length; at++) {
+    const built = buildGap(base, phrase, words[(start + at) % words.length], context)
+    if (built) return built
+  }
+  return undefined
 }
 
 /** The staged plan: introduce (only new items), recognise, recall, produce, use. Within a round every item comes once, in mixed order. Pure for a seed. */
@@ -86,7 +105,9 @@ export function planSession(input: PlanInput): SessionPlan {
   }
   const pool = new SentencePool(input.bank, allowed, formOf)
   // An item that is the learner's own phrase is its own sentence, used by one exercise.
-  const ownPhrase = (item: PlanItem): BankPhrase | undefined => item.kind === 'phrase' && item.en ? { zh: item.zh, py: item.py, en: item.en, words: [], source: 'user', checked: true } : undefined
+  const ownPhrase = (item: PlanItem): BankPhrase | undefined => item.phrase ?? (item.kind === 'phrase' && item.en ? { zh: item.zh, py: item.py, en: item.en, words: [], source: 'user', checked: true } : undefined)
+  // A bank phrase practised for itself is used by one item: its later exercises (other forms, other rounds) are on the same sentence, and no other item or dataset exercise takes it.
+  const reservedPhrases = new Set<string>()
   const rounds = stageRounds(preset, input.length)
   const stages: StagePlan[] = []
   const covered = new Set<string>()
@@ -104,16 +125,16 @@ export function planSession(input: PlanInput): SessionPlan {
       case 'match': case 'intro': case 'exchange-pick': case 'exchange-reply': case 'which-correct': case 'conversation': return undefined
       default: {
         const own = ownPhrase(item)
-        const picked = own ? (pool.reserve(own.zh) ? { phrase: own } : undefined) : pool.take(item.ref, needsKnownSentence(form, stage))
+        const picked = own ? (item.phrase && reservedPhrases.has(item.ref) ? { phrase: own } : pool.reserve(own.zh) ? (item.phrase && reservedPhrases.add(item.ref), { phrase: own }) : undefined) : pool.take(item.ref, needsKnownSentence(form, stage))
         if (!picked) return undefined
         const { phrase, unknown } = picked
         const exercise = form === 'translate-zh-en' || form === 'translate-en-zh' ? buildTranslate(base, form, phrase, context, unknown)
           : form === 'dictation' ? buildDictation(base, phrase, context)
           : form === 'tiles' ? buildTiles(base, phrase, context)
-          : form === 'gap' ? buildGap(base, phrase, item.ref, context)
+          : form === 'gap' ? (item.phrase ? buildPhraseGap(base, phrase, context) : buildGap(base, phrase, item.ref, context))
           : form === 'listen-pick' ? buildListenPick(base, phrase, context, unknown)
           : form === 'repeat' ? buildRepeat(base, phrase) : undefined
-        if (!exercise) pool.release(phrase)
+        if (!exercise && !item.phrase) pool.release(phrase)
         return exercise
       }
     }
@@ -121,6 +142,8 @@ export function planSession(input: PlanInput): SessionPlan {
 
   // The pack's word forms (Conjugate, Which form is this?): a part of a stage, from the words of the set (else the words the learner knows), in the forms the lessons so far have taught.
   const extraForms = (stage: Stage, stageIndex: number, planned: number): SessionExercise[] => {
+    // A set of phrases practises sentences only: no word-form questions open its stages.
+    if (items.length && items.every(item => item.phrase)) return []
     if (!takesWordForms(preset, stage, getPack())) return []
     const count = wordFormCount(planned)
     if (!count) return []
@@ -140,12 +163,13 @@ export function planSession(input: PlanInput): SessionPlan {
     if (!count) continue
     const exercises: SessionExercise[] = []
     if (stage === 'introduce') {
-      for (const item of items) if (!input.known.has(item.ref)) exercises.push({ ...slot(stage, [item.ref], 0), form: 'intro' })
+      // A phrase has nothing to teach (its words are known): it gets no Introduce card.
+      for (const item of items) if (!input.known.has(item.ref) && !item.phrase) exercises.push({ ...slot(stage, [item.ref], 0), form: 'intro' })
       if (exercises.length) stages.push({ stage, rounds: 1, exercises })
       continue
     }
     const forms = (preset.forms[stage] ?? []).filter(form => form !== 'intro')
-    const itemForms = forms.filter(form => form !== 'match' && !DATASET_FORMS.includes(form) && !WORD_FORMS.includes(form))
+    const allItemForms = forms.filter(form => form !== 'match' && !DATASET_FORMS.includes(form) && !WORD_FORMS.includes(form))
     const rng = createRng(input.seed + stageIndex * 7919)
     // The dataset goes first so its sentences are reserved before the phrase exercises pick theirs (no sentence twice).
     const fromDataset = input.dataset?.exercises({ stage, forms: preset.forms[stage] ?? [], items, allowed, taken: zh => pool.has(zh), take: zh => pool.reserve(zh) }) ?? []
@@ -163,10 +187,12 @@ export function planSession(input: PlanInput): SessionPlan {
         })
       }
       order.forEach((item, at) => {
+        // A phrase takes the stage's sentence forms and no others; when the stage has none, translation, then listen-and-pick.
+        const itemForms = item.phrase ? sentenceForms(allItemForms) : allItemForms
         const rotation: Form[] = itemForms.length ? [...itemForms.slice((at + round - 1 + stageIndex) % itemForms.length), ...itemForms.slice(0, (at + round - 1 + stageIndex) % itemForms.length)] : []
         const fallback = FALLBACK_FORMS[item.kind === 'vocabulary' ? 'vocabulary' : 'other'].filter(form => !rotation.includes(form))
         // A new item never types Chinese: every Chinese-writing form becomes the sentence builder, and a failed build never falls back to typing.
-        const fresh = !input.known.has(item.ref)
+        const fresh = !input.known.has(item.ref) && !item.phrase
         const tried = new Set<Form>()
         for (const wanted of [...rotation, ...fallback]) {
           const form = fresh && producesChinese(wanted) ? 'tiles' : wanted

@@ -105,7 +105,7 @@ export type EngineState = z.infer<typeof engineStateSchema>
 
 export const drillSetSchema = z.object({
   id,
-  source: z.enum(['new', 'review', 'study-set', 'lesson', 'drill']),
+  source: z.enum(['new', 'review', 'study-set', 'lesson', 'drill', 'phrases']),
   collectionId: id.optional(),
   /** lesson: the lesson session drilled; drill: the earlier drill set drilled again. */
   originId: id.optional(),

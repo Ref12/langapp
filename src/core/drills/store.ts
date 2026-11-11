@@ -14,6 +14,7 @@ import { cancelContent, startContent } from './content'
 import { worstMark } from './write-queue'
 import { drillSkills, recordSkillPractice, SKILL_LABEL, STRATEGY_LABEL, type Skill } from '../study/skills'
 import { pickItems } from '../study/skill-pick'
+import { PHRASE_COUNT_DEFAULT, loadPhrasePick, type PhraseOrder } from '../session/phrase-pick'
 import { loadBacklogWords, pickUnwritten } from './unwritten'
 import { languageOfSet } from './set-language'
 import { DEFAULT_HANDSFREE_SETTINGS } from '../handsfree/contracts'
@@ -25,6 +26,8 @@ export const STUDY_SET_LIMIT = 40
 export const MAX_UNFINISHED_SETS = 8
 
 export type DrillSource = { kind: 'new'; from?: string; /** At least this many new items (1 to 20, default 5), whole lessons only. */ count?: number; /** The items the picker showed: used as they are, so what was viewed is what starts. */ refs?: readonly string[] } | { kind: 'review'; from?: string; refs?: readonly string[] } | { kind: 'study-set'; collectionId: string }
+  /** Phrases: shipped phrases as items of their own, in an order (least practised or recent). refs are the phrases the picker showed: used as they are. */
+  | { kind: 'phrases'; from?: string; count?: number; order?: PhraseOrder; refs?: readonly string[] }
   /** An explicit list of items drilled again, from a past lesson (its session id) or an earlier drill set (its id). */
   /** Practice by skill: the size least practised (or recently added) items in a skill. */
   | { kind: 'skill'; skill: Skill; size: number; strategy: 'least' | 'recent' }
@@ -34,7 +37,7 @@ export type DrillSource = { kind: 'new'; from?: string; /** At least this many n
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 export const shortDate = (time: number) => { const date = new Date(time); return `${date.getDate()} ${MONTHS[date.getMonth()]}` }
-export const originLabel = (source: DrillSource['kind']) => source === 'review' ? 'Reviews' : 'New items'
+export const originLabel = (source: DrillSource['kind']) => source === 'review' ? 'Reviews' : source === 'phrases' ? 'Phrases' : 'New items'
 
 function emptySet(fields: Pick<DrillSet, 'id' | 'source' | 'title' | 'refs' | 'createdAt'> & { collectionId?: string; originId?: string }): DrillSet {
   return { ...fields, status: 'active', format: 'single', progress: {}, content: { state: 'pending', sentences: {}, conversations: [] }, updatedAt: fields.createdAt }
@@ -62,6 +65,11 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
     const earlier = await db.drillSets.get(source.origin.id)
     if (!earlier) throw new Error('That practice set could not be found.')
     return { refs, title: `Again: ${earlier.title.replace(/^Again: /, '')}`.slice(0, 200), originId: source.origin.id, setSource: earlier.source === 'new' || earlier.source === 'lesson' ? earlier.source : 'drill' }
+  }
+  if (source.kind === 'phrases') {
+    const refs = source.refs?.length ? [...new Set(source.refs)].slice(0, 200) : (await loadPhrasePick(await loadCatalog(), { order: source.order ?? 'least', count: Math.min(20, Math.max(1, source.count ?? PHRASE_COUNT_DEFAULT)), seed: Math.floor(now % 2 ** 31) })).refs
+    if (!refs.length) throw new Error('No phrases are ready yet: they come with the words and grammar you know.')
+    return { refs, title: `Phrases · ${shortDate(now)}`, ...(source.from ? { collectionId: source.from } : {}) }
   }
   if (source.kind === 'review' && source.refs?.length) return { refs: [...source.refs], title: `Reviews · ${shortDate(now)}`, ...(source.from ? { collectionId: source.from } : {}) }
   const catalog = await loadCatalog()
@@ -162,7 +170,7 @@ export async function recordEngineResult(setId: string, ref: string, skills: rea
     if (!fresh.length) return { graded: false }
     await db.drillSets.put({ ...set, updatedAt: now, engine: { ...set.engine, startedAt: set.engine.startedAt ?? now, recorded: [...set.engine.recorded, ...fresh.map(skill => ref + '|' + skill)], total: set.engine.total + 1, correct: set.engine.correct + (correct ? 1 : 0) } })
     await reviewItem(setId, 'engine:' + form, ref, correct ? (hint ? 'hint' : 'got') : 'missed', now)
-    await recordSkillPractice([ref], fresh, now)
+    await recordSkillPractice([ref], fresh, now, correct)
     return { graded: true }
   })
 }

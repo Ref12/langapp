@@ -1,9 +1,9 @@
 import type { ParallelLanguage } from './ids'
 
-/** Knowledge ids of the parallel tracks: ja:w:<entry> (a word) and ja:g:<grammar> (a grammar point), likewise ko:. Chinese refs never look like this. */
-export type ParallelKind = 'w' | 'g' | 'f'
+/** Knowledge ids of the parallel tracks: ja:w:<entry> (a word) and ja:g:<grammar> (a grammar point), likewise ko:. ja:s:<band>-<id> (a shipped sentence, practised as a phrase; it is never in the knowledge set). Chinese refs never look like this. */
+export type ParallelKind = 'w' | 'g' | 'f' | 's'
 export const parallelRef = (language: ParallelLanguage, kind: ParallelKind, id: string): string => `${language}:${kind}:${id}`
-const PATTERN = /^(ja|ko):([wg]):([a-z][a-z0-9]*(?:--?[a-z0-9]+)*)$/
+const PATTERN = /^(ja|ko):([wgs]):([a-z][a-z0-9]*(?:--?[a-z0-9]+)*)$/
 /** An irregular form item: ja:f:<lemma>:<form id>, e.g. ja:f:くる:masu or ko:f:듣다:haeyo. */
 const FORM_PATTERN = /^(ja|ko):f:([^:\s]+):([a-z][a-z0-9-]*)$/u
 export const isParallelRef = (ref: string): boolean => PATTERN.test(ref) || FORM_PATTERN.test(ref)

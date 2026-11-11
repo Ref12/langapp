@@ -12,7 +12,7 @@ export const unitKindSchema = z.enum(['vocabulary', 'grammar'])
 // `phrase:` refs name a collection's free phrase (see core/collections); they have no curriculum record.
 // `source:` refs name an entry drawn from a media source (see core/media/entries); it has no curriculum record either.
 // `ja:w:`/`ja:g:` and `ko:w:`/`ko:g:` refs belong to the Japanese and Korean tracks (core/language/refs.ts); Chinese code never sees them.
-export const unitRefSchema = z.string().regex(/^(?:(?:vocabulary|grammar|phrase|source):|(?:ja|ko):[wg]:)[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
+export const unitRefSchema = z.string().regex(/^(?:(?:vocabulary|grammar|phrase|source|sentence):|(?:ja|ko):[wgs]:)[a-z][a-z0-9]*(?:--?[a-z0-9]+)*$/)
 // A language ref (ja:w:..., ko:g:..., ja:f:<lemma>:<form>) is stored as it is; its label is whatever follows the second colon. isLanguageRef is the one test.
 export const languageRefSchema = z.string().min(1).max(200).refine(isLanguageRef, 'A language reference is required')
 export const storedRefSchema = unitRefSchema.or(languageRefSchema)
@@ -193,6 +193,11 @@ export function unitRef(kind: UnitKind | 'source', lb: string): string {
 
 export function isSourceRef(ref: string): boolean {
   return ref.startsWith('source:')
+}
+
+/** `sentence:<band>-<id>`, `ja:s:<band>-<id>`, `ko:s:<band>-<id>`: a shipped phrase of the bank, practised as an item of its own (core/phrases/sentence-ref.ts). */
+export function isSentenceRef(ref: string): boolean {
+  return /^(?:sentence:|(?:ja|ko):s:)/.test(ref)
 }
 
 export function isPhraseRef(ref: string): boolean {

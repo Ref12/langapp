@@ -48,6 +48,8 @@ export async function loadSessionBank(catalog: Catalog, items: readonly ItemInfo
   }
   const byItem = new Map<string, BankPhrase[]>()
   for (const item of items) {
+    // A phrase practised for itself is its own and only candidate.
+    if (item.phrase) { byItem.set(item.ref, [item.phrase]); continue }
     const first = preferred[item.ref]
     const list = [...(known.get(item.ref) ?? []), ...(tagged.get(item.ref) ?? [])]
     const head = first && !first.unknown?.length ? list.find(phrase => phraseKey(phrase.zh) === phraseKey(first.zh)) : undefined

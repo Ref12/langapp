@@ -2,8 +2,9 @@ import { phrasePinyin } from '../pinyin/phrase'
 import { phraseReadingsOf } from '../pinyin/phrase-readings'
 import { db } from '../database'
 import { loadCatalog, renderExample, type Catalog, type ExampleSegment } from '../study/catalog'
-import { isPhraseRef, isSourceRef } from '../study/contracts'
+import { isPhraseRef, isSentenceRef, isSourceRef } from '../study/contracts'
 import type { Sentence } from './contracts'
+import type { BankPhrase } from '../phrases/contracts'
 
 /** One drillable item as the drills see it: Chinese form, pinyin and English gloss, wherever it comes from. */
 export interface ItemInfo {
@@ -12,6 +13,8 @@ export interface ItemInfo {
   zh: string
   py: string
   en: string
+  /** A shipped phrase practised as an item of its own (a sentence ref): the bank phrase itself, with its words, grammar and tokens. */
+  phrase?: BankPhrase
 }
 
 /** Resolves refs to display data: curriculum units from the catalog, phrases from study-set items, source words from saved entries. */
@@ -21,8 +24,12 @@ export async function loadItems(refs: readonly string[], catalog?: Catalog): Pro
   const phraseRows = phrases.length ? (await db.collectionItems.where('ref').anyOf(phrases).toArray()) : []
   const sources = refs.filter(isSourceRef)
   const sourceRows = sources.length ? await db.sourceEntries.bulkGet(sources.map(ref => ref.slice('source:'.length))) : []
+  // Loaded only when a ref asks for it (the sentence refs module reads the shipped phrase files, and imports this one).
+  const sentences = refs.some(isSentenceRef) ? await (await import('../phrases/sentence-ref')).resolveSentences(refs) : new Map<string, { phrase: BankPhrase }>()
   const items: ItemInfo[] = []
   for (const ref of refs) {
+    const sentence = sentences.get(ref)
+    if (sentence) { items.push({ ref, kind: 'phrase', zh: sentence.phrase.zh, py: sentence.phrase.py, en: sentence.phrase.en, phrase: sentence.phrase }); continue }
     const unit = cat.units.get(ref)
     if (unit?.kind === 'vocabulary') items.push({ ref, kind: 'vocabulary', zh: unit.record.ch, py: unit.record.pr, en: unit.record.ds })
     else if (unit) {

@@ -38,6 +38,8 @@ export const skillPracticeSchema = z.object({
   count: z.number().int().nonnegative(),
   lastAt: z.number().int().nonnegative(),
   familiar: z.boolean(),
+  /** How many of the counted attempts were right the first time (written by the practice engine's first graded attempt; absent on rows from before it existed, and on rows only other activities wrote). */
+  correct: z.number().int().nonnegative().optional(),
 }).strict()
 export type SkillPractice = z.infer<typeof skillPracticeSchema>
 export const skillPracticeBackupSchema = z.array(skillPracticeSchema).max(20000)

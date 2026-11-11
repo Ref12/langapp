@@ -6,19 +6,21 @@ export * from './skill-map'
 const DAY = 86_400_000
 
 /** Adds one to each (item, skill) pair, once each. Runs inside the caller's transaction when it has one. */
-async function bump(pairs: readonly { ref: string; skill: Skill }[], now: number): Promise<void> {
+async function bump(pairs: readonly { ref: string; skill: Skill }[], now: number, right?: boolean): Promise<void> {
   for (const { ref, skill } of pairs) {
     const current = await db.skillPractice.get([ref, skill])
-    await db.skillPractice.put({ ref, skill, count: (current?.count ?? 0) + 1, lastAt: now, familiar: current?.familiar ?? false })
+    // `correct` follows only the engine's graded attempts: other activities keep what is there.
+    const correct = right === undefined ? current?.correct : (current?.correct ?? 0) + (right ? 1 : 0)
+    await db.skillPractice.put({ ref, skill, count: (current?.count ?? 0) + 1, lastAt: now, familiar: current?.familiar ?? false, ...(correct === undefined ? {} : { correct }) })
   }
 }
 
 const unique = (pairs: readonly { ref: string; skill: Skill }[]) => [...new Map(pairs.map(pair => [pair.ref + '|' + pair.skill, pair])).values()]
 
 /** Counts a practice of these items in these skills, once per pair. */
-export async function recordSkillPractice(refs: readonly string[], skills: readonly Skill[], now = Date.now()): Promise<void> {
+export async function recordSkillPractice(refs: readonly string[], skills: readonly Skill[], now = Date.now(), right?: boolean): Promise<void> {
   if (!refs.length || !skills.length) return
-  await db.transaction('rw', db.skillPractice, () => bump(unique(refs.flatMap(ref => skills.map(skill => ({ ref, skill })))), now))
+  await db.transaction('rw', db.skillPractice, () => bump(unique(refs.flatMap(ref => skills.map(skill => ({ ref, skill })))), now, right))
 }
 
 /** Counts pairs once per set's Hands-free activity: it remembers which (item, skill) pairs it has counted, so a replay or resume adds nothing. */
@@ -51,7 +53,7 @@ export async function recordSetIntro(setId: string, refs: readonly string[], ski
 export async function setFamiliar(ref: string, skill: Skill, familiar: boolean): Promise<void> {
   await db.transaction('rw', db.skillPractice, async () => {
     const current = await db.skillPractice.get([ref, skill])
-    await db.skillPractice.put({ ref, skill, count: current?.count ?? 0, lastAt: current?.lastAt ?? 0, familiar })
+    await db.skillPractice.put({ ref, skill, count: current?.count ?? 0, lastAt: current?.lastAt ?? 0, familiar, ...(current?.correct === undefined ? {} : { correct: current.correct }) })
   })
 }
 
