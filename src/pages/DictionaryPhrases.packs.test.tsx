@@ -54,7 +54,7 @@ describe.each(Object.values(LANGUAGES))('the $id Dictionary Phrases section', la
 
   it('has a Phrases tab and lists the lesson sentences, with the pack column names and language tag', async () => {
     await open()
-    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)).toEqual([expect.stringMatching(/^Vocabulary/), expect.stringMatching(/^Grammar/), expect.stringMatching(/^Phrases \(/)])
+    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)).toEqual([expect.stringMatching(/^Vocabulary/), expect.stringMatching(/^Grammar/), ...(lang.id === 'ja' ? [expect.stringMatching(/^Characters \(/)] : []), expect.stringMatching(/^Phrases \(/)])
     await waitFor(() => expect(Number(/^(\d+) phrases$/.exec(status())?.[1])).toBe(lang.total), { timeout: 15000 })
     const headers = [...document.querySelectorAll('thead th')].map(th => th.textContent)
     expect(headers.slice(0, 3)).toEqual(lang.id === 'ja' ? ['Japanese', 'Reading', 'English'] : ['Korean', 'Reading', 'English'])

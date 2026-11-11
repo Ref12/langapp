@@ -10,11 +10,10 @@ beforeEach(() => setBuildLanguageForTests('ja'))
 afterEach(() => { cleanup(); setBuildLanguageForTests(undefined) })
 
 describe('the Writing page in a Japanese build', () => {
-  it('an empty page sends the learner to a practice set and Back to Practice', () => {
+  it('an empty page sends the learner to the Dictionary\'s Characters and Back there', () => {
     render(<Writing {...props} />)
-    expect(screen.getByText(/Open a character from a practice set/)).toBeInTheDocument()
-    expect(screen.queryByText(/dictionary/i)).toBeNull()
-    expect(screen.getByRole('link', { name: 'Back' })).toHaveAttribute('href', '#practice')
+    expect(screen.getByText(/Choose an available guide from the dictionary/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Back' })).toHaveAttribute('href', '#dictionary/characters/all')
   })
   it('a character with no Japanese guide is the same empty page (no Chinese fallback)', () => {
     render(<Writing {...props} codepoint={'9c1d'} />)

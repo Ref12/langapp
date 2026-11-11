@@ -46,6 +46,21 @@ export interface PackPhrases {
   search(query: string, romaji?: RomajiOverrides): PhraseSearch
 }
 
+/** What a character of the Characters section is searched by: itself and its own reading (a kana: its sound). */
+export interface CharacterSearchRow { character: string; reading?: string }
+/** A search over characters on the same rank scale as UnitSearch. */
+export interface CharacterSearch { empty: boolean; rank(row: CharacterSearchRow): number | undefined }
+/** How the Characters section speaks for a pack with its own list (PackWriting.characterList): its wording and its search. */
+export interface PackCharacters {
+  title: string
+  /** The sentence under the heading. */
+  intro: string
+  /** The note above the list. */
+  note: string
+  placeholder: string
+  search(query: string, romaji?: RomajiOverrides): CharacterSearch
+}
+
 export interface PackDictionary {
   /** The sections beyond Vocabulary and Grammar, and the Draw box of the search: a section that is off has no tab and a link to it lands on Vocabulary. */
   sections: { characters: boolean; phrases: boolean; draw: boolean; media: boolean }
@@ -59,6 +74,8 @@ export interface PackDictionary {
   searchUnits(query: string, romaji?: RomajiOverrides): UnitSearch
   /** A look-up source beside the catalog (Japanese: the JLPT words outside the lessons); absent when the pack has none. */
   lookup?: PackLookup
+  /** The Characters section's wording and search for a pack with its own character list; absent for Chinese, whose section keeps its own. */
+  characters?: PackCharacters
   /** The Phrases section's wording, reading and search; absent for Chinese, whose section keeps its own. */
   phrases?: PackPhrases
 }
@@ -158,6 +175,31 @@ export function japanesePhraseSearch(query: string, overrides: RomajiOverrides =
   return { empty: ranker.empty, rank: row => ranker.empty ? 0 : ranker.rank(keysOfRow(row)) }
 }
 
+const characterKeys = new WeakMap<object, Keys>()
+/** Japanese character search: the character (a katakana letter also by its hiragana), its kana sound and its romaji with long vowels folded. */
+export function japaneseCharacterSearch(query: string, overrides: RomajiOverrides = {}): CharacterSearch {
+  const ranker = japaneseRanker(query)
+  const keysOfRow = (row: CharacterSearchRow): Keys => {
+    let keys = characterKeys.get(row)
+    if (!keys) {
+      const kana = row.reading ? foldText(row.reading.split(' \u00b7 ')[0]) : ''
+      keys = { text: [foldText(row.character)], kana: kana ? [kana] : [], romaji: lazy(() => kana ? [foldRomaji(kanaToRomaji(kana, overrides))] : []), ds: '' }
+      characterKeys.set(row, keys)
+    }
+    return keys
+  }
+  return { empty: ranker.empty, rank: row => ranker.empty ? 0 : ranker.rank(keysOfRow(row)) }
+}
+
+/** The Japanese Characters section: kana and kanji to practise writing. */
+export const jaCharacters: PackCharacters = {
+  title: 'Kana and kanji, one stroke at a time.',
+  intro: 'Hiragana and katakana, then the kanji of your lesson words. Practise writing any of them here; this is separate from the writing in Practice sessions, which takes kanji only.',
+  note: 'Kana are in table order, then the kanji by the lesson that first uses them. All kanji adds every kanji with a stroke guide, for look-up. A kanji card shows the lesson words that use it, with their readings.',
+  placeholder: 'Character, reading, or romaji',
+  search: japaneseCharacterSearch,
+}
+
 /** The Japanese Phrases section: the lesson sentences with their kana, or the romaji made from it. */
 export const jaPhrases: PackPhrases = {
   intro: 'Every sentence of the lessons, with the words and grammar it uses. A sentence is ready when you know all its words and grammar.',
@@ -170,8 +212,9 @@ export const jaPhrases: PackPhrases = {
 
 /** Japanese: Vocabulary and Grammar of the lessons, the lesson sentences as Phrases, and the JLPT words outside them as look-up. */
 export const jaDictionary = (offer: PackDisplayForms): PackDictionary => ({
-  sections: { ...noSection, phrases: true },
+  sections: { ...noSection, phrases: true, characters: true },
   phrases: jaPhrases,
+  characters: jaCharacters,
   intro: 'Every word and grammar point in your lessons, separate from your knowledge set. Adding an item makes it eligible for review; it does not claim you know it.',
   placeholder: { vocabulary: 'Word, reading, or English', grammar: 'Pattern, reading, or English' },
   footnote: 'Review timing for each item in your knowledge set follows FSRS spaced repetition for reading. Look-up words: JMdict/EDICT, the Electronic Dictionary Research and Development Group (EDRDG); JLPT levels from Jonathan Waller\u2019s JLPT Resources.',

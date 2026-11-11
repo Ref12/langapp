@@ -187,7 +187,7 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
   it('opens with Vocabulary, Grammar and Phrases, scoped to the lessons, in the Japanese app words', async () => {
     await open()
     const sections = within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)
-    expect(sections).toEqual(['Vocabulary (292)', 'Grammar (115)', expect.stringMatching(/^Phrases/)])
+    expect(sections).toEqual(['Vocabulary (292)', 'Grammar (115)', expect.stringMatching(/^Characters/), expect.stringMatching(/^Phrases/)])
     expect(within(screen.getByRole('group', { name: 'Dictionary scope' })).getAllByRole('button').map(button => button.textContent)).toEqual(['Full list', expect.stringMatching(/^My knowledge set/), expect.stringMatching(/^In .*\(\d+\)$/)])
     expect(screen.queryByRole('button', { name: /Draw/ })).toBeNull()
     expect(screen.getByRole('status')).toHaveTextContent('292 items')
@@ -210,6 +210,37 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
     expect(visibleText(chrome).split('\n').filter(line => FORBIDDEN.test(line)).map(line => line.slice(0, 160))).toEqual([])
     await expect(text).toMatchFileSnapshot('./__screens__/ja-dictionary-phrases.txt')
   })
+  it('Characters', async () => {
+    // the Characters section lists kana in table order, then the lesson kanji; the first page is the start of Hiragana
+    const text = await screenText('dictionary/characters/all', () => expect(screen.getByRole('status')).toHaveTextContent('373 characters'))
+    expect(document.querySelectorAll('.character-card')).toHaveLength(48)
+    expect(document.querySelector('.character-card')).toHaveAttribute('aria-label', 'Character あ')
+    expect(document.querySelector('.search-draw')).toBeNull()
+    await expect(text).toMatchFileSnapshot('./__screens__/ja-dictionary-characters.txt')
+    expect(text.split('\n').filter(line => FORBIDDEN.test(line)).map(line => line.slice(0, 160))).toEqual([])
+  })
+  it('Characters: groups, a kana card, a kanji card and Practise writing', async () => {
+    await screenText('dictionary/characters/all', () => expect(screen.getByRole('status')).toHaveTextContent('373 characters'))
+    const group = screen.getByLabelText('Group')
+    fireEvent.change(group, { target: { value: 'katakana' } })
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('84 characters'))
+    const first = document.querySelector('.character-card')!
+    expect(first).toHaveAttribute('aria-label', 'Character ア')
+    expect(within(first as HTMLElement).getByTestId('character-own-reading')).toHaveTextContent('あ · a')
+    fireEvent.change(group, { target: { value: 'kanji' } })
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('205 characters'))
+    const kanji = document.querySelector('.character-card') as HTMLElement
+    expect(kanji).toHaveAttribute('aria-label', 'Character 私')
+    expect(within(kanji).getByText('Lesson 1')).toBeInTheDocument()
+    expect(within(kanji).getByTestId('character-usage')).toHaveTextContent('私')
+    fireEvent.click(within(kanji).getByRole('button', { name: 'Practice writing 私' }))
+    await waitFor(() => expect(document.querySelector('.writing-page, .writing-sheet, [role="dialog"]')).toBeTruthy())
+    // the look-up scope holds every kanji with a stroke guide
+    cleanup()
+    await screenText('dictionary/characters/all', () => expect(screen.getByRole('status')).toHaveTextContent('373 characters'))
+    fireEvent.change(screen.getByLabelText('Group'), { target: { value: 'kanji-all' } })
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('2039 characters'))
+  })
   it('never reads the old Japanese dictionary file or the old refs', async () => {
     const other = await import('../core/language/dictionary-file')
     const spy = vi.spyOn(other, 'loadDictionary')
@@ -220,10 +251,8 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
     for (const link of document.querySelectorAll('.phrase-word-link')) expect(link.getAttribute('href')).toMatch(/^#dictionary\/phrases\/all\?q=/)
   })
   it('lands on Vocabulary from a link to a section that is off', async () => {
-    await open('dictionary/characters/all')
-    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getByRole('button', { name: /Vocabulary/ })).toHaveAttribute('aria-pressed', 'true')
-    cleanup()
     await open('dictionary/vocabulary/media')
+    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getByRole('button', { name: /Vocabulary/ })).toHaveAttribute('aria-pressed', 'true')
     expect(screen.queryByText('From your media')).toBeNull()
   })
   it.each([['たべ'], ['食'], ['taberu'], ['eat'], ['食べます'], ['食べる']])('finds 食べる by %s', async query => {

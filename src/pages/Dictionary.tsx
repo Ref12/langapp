@@ -21,7 +21,7 @@ import { SourceEntryCard } from '../components/study/SourceEntryCard'
 import { useCatalog } from '../components/study/useCatalog'
 import { guidedChars, writtenCharacters } from '../core/drills/write-queue'
 import { setCharactersWriteState, undoWriteChanges, type WriteChange } from '../core/characters/store'
-import { characterKnowledge, dictionaryCharacters } from '../core/characters/dictionary'
+import { characterKnowledge, dictionaryCharacters, inCharacterGroup } from '../core/characters/dictionary'
 import { characterAttributionUrl } from '../core/characters/assets'
 import { CharacterCard } from '../components/characters/CharacterCard'
 import { HandwritingPad } from '../components/characters/HandwritingPad'
@@ -42,6 +42,10 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const packPhrases = pack.dictionary.phrases
   const sections = pack.dictionary.sections
   const [dictError, setDictError] = useState('')
+  // A pack with its own character list (Japanese: kana, then the lesson kanji) groups it, words it and searches it itself; Chinese keeps its single list.
+  const charList = pack.writing.characterList
+  const charText = pack.dictionary.characters
+  const [group, setGroup] = useState('all')
   // The pack's look-up words (Japanese: the JLPT words outside the lessons), loaded on demand: when All words is chosen or a search is typed.
   const lookup = pack.dictionary.lookup
   const [allWords, setAllWords] = useState(false)
@@ -121,7 +125,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     [catalog, workspace.knowledge, workspace.characterStates, sections.characters])
   const knownCounts = { vocabulary: workspace.knowledge.filter(entry => entry.kind === 'vocabulary').length, grammar: workspace.knowledge.filter(entry => entry.kind === 'grammar').length, characters: characterSet?.all.size ?? 0 }
   const collectedCount = (value: UnitKind) => [...collected].filter(ref => ref.startsWith(`${value}:`)).length
-  const zhTab = (value: UnitKind | 'characters') => scope === 'media' ? (value === 'vocabulary' ? sourceEntries.length : 0) : scope === 'collections' ? (value === 'characters' ? 0 : collectedCount(value)) : scope === 'knowledge' ? knownCounts[value] : value === 'characters' ? characters.length : catalogCounts[value]
+  const zhTab = (value: UnitKind | 'characters') => scope === 'media' ? (value === 'vocabulary' ? sourceEntries.length : 0) : scope === 'collections' ? (value === 'characters' ? 0 : collectedCount(value)) : scope === 'knowledge' ? knownCounts[value] : value === 'characters' ? (charList ? characters.filter(entry => inCharacterGroup(entry, 'all', charList)).length : characters.length) : catalogCounts[value]
   const lookupShown = Boolean(lookup && lookupData && scope === 'all' && allWords)
   const tabCount = (value: UnitKind | 'characters') => zhTab(value) + (lookupShown && value !== 'characters' ? (value === 'vocabulary' ? lookupData!.words.length : lookupData!.grammar.length) : 0)
   const bandCounts = new Map<string, number>()
@@ -181,14 +185,17 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const canWriteCount = setCharacters.filter(entry => written.has(entry.character)).length
   // A character's own readings and meanings, from the words that contain it (computed once per character).
   const ownData = useMemo(() => new Map(characters.map(entry => [entry.character, ownCharacterData(entry.character, entry.words.map(word => word.record))] as const)), [characters])
+  const charSearch = useMemo(() => charText?.search(query, pack.romaji), [charText, query, pack])
   const characterMatches = kind === 'characters' ? (() => {
-    const pool = characters.filter(entry => (scope !== 'knowledge' || characterSet?.all.has(entry.character)) && inWriteFilter(entry.character) && (band === 'all' || entry.bands.some(value => value === band)))
-    const rankOf = (entry: (typeof pool)[number]) => { const own = ownData.get(entry.character); return matcher.rank({ character: entry.character, readings: own?.readings, ds: own?.ds }) }
-    const direct = pool.map(entry => ({ entry, rank: matcher.empty ? 0 : rankOf(entry) })).filter((item): item is { entry: (typeof pool)[number]; rank: number } => item.rank !== undefined)
+    const pool = characters.filter(entry => (scope !== 'knowledge' || characterSet?.all.has(entry.character)) && inWriteFilter(entry.character) && (charList ? inCharacterGroup(entry, group, charList) : band === 'all' || entry.bands.some(value => value === band)))
+    const rankOf = (entry: (typeof pool)[number]) => { if (charSearch) return charSearch.rank({ character: entry.character, reading: entry.reading }); const own = ownData.get(entry.character); return matcher.rank({ character: entry.character, readings: own?.readings, ds: own?.ds }) }
+    const direct = pool.map(entry => ({ entry, rank: (charSearch ? charSearch.empty : matcher.empty) ? 0 : rankOf(entry) })).filter((item): item is { entry: (typeof pool)[number]; rank: number } => item.rank !== undefined)
     // Only when nothing matches directly: characters whose containing words match, ranked last.
-    const found = direct.length || matcher.empty ? direct : pool.flatMap(entry => entry.words.some(word => matcher.rank({ text: [word.record.ch], pr: word.record.pr, ds: word.record.ds }) !== undefined) ? [{ entry, rank: FALLBACK }] : [])
+    const wordMatches = (word: (typeof pool)[number]['words'][number]) => (charSearch ? unitSearch.rank(word) : matcher.rank({ text: [word.record.ch], pr: word.record.pr, ds: word.record.ds })) !== undefined
+    const found = direct.length || (charSearch ? charSearch.empty : matcher.empty) ? direct : pool.flatMap(entry => entry.words.some(wordMatches) ? [{ entry, rank: FALLBACK }] : [])
     const ranks = new Map(found.map(item => [item.entry, item.rank]))
-    return byRank(found.map(item => item.entry), entry => ranks.get(entry)!, entry => characterSet?.all.has(entry.character) ?? false, entry => Math.min(99, ...entry.bands.map(bandNumber)))
+    // a character list in the pack's own order (the kana table, the lessons) keeps it: knowledge-set characters do not float up
+    return byRank(found.map(item => item.entry), entry => ranks.get(entry)!, entry => !charList && (characterSet?.all.has(entry.character) ?? false), entry => charList ? 0 : Math.min(99, ...entry.bands.map(bandNumber)))
   })() : []
   const sourceMatches = phrasesView ? [] : (() => {
     const found = sourceEntries.flatMap(entry => {
@@ -211,7 +218,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const phraseCounts = phraseScopeCounts(filteredPhrases)
   const phraseMatches = filteredPhrases.filter(row => inPhraseScope(row, phraseScope))
   const count = phrasesView ? phraseMatches.length : scope === 'media' ? sourceMatches.length : kind === 'characters' ? characterMatches.length : listed.length
-  const selectable = sections.characters && !phrasesView && scope !== 'collections' && (kind === 'characters' || kind === 'vocabulary')
+  const selectable = sections.characters && !phrasesView && scope !== 'collections' && (kind === 'characters' || (kind === 'vocabulary' && !charList))
   const togglePick = (key: string, text: string) => setPicked(previous => { const next = new Map(previous); if (next.has(key)) next.delete(key); else next.set(key, text); return next })
   const pickRow = (key: string, text: string, label: string) => selecting
     ? <label className="select-pick"><input type="checkbox" checked={picked.has(key)} onChange={() => togglePick(key, text)} aria-label={`Select ${label}`} /><span className="small">{picked.has(key) ? 'Selected' : 'Select'}</span></label> : null
@@ -234,11 +241,11 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     : [...(scope === 'media' ? [] : matches.slice(0, limit).flatMap(unit => unit.kind === 'vocabulary' ? [[unit.ref, unit.record.ch] as [string, string]] : [])), ...sourceMatches.slice(0, limit).map(entry => [`source:${entry.id}`, entry.word] as [string, string])]
     const select = <T,>(setter: (value: T) => void) => (value: T) => { setter(value); setLimit(PAGE) }
   usePageActions(selectable ? [{ id: 'select', label: 'Select items', checked: selecting, onSelect: () => { setSelecting(!selecting); setPicked(new Map()) } }] : [])
-  const renderZh = (unit: Extract<Unit, { kind: 'vocabulary' | 'grammar' }>) => <div key={unit.ref} className={`select-item${picked.has(unit.ref) ? ' picked' : ''}`}>{unit.kind === 'vocabulary' && sections.characters && <div className="select-row">{pickRow(unit.ref, unit.record.ch, unit.record.ch)}{writeTag(unit.record.ch)}</div>}<UnitCard catalog={catalog!} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
+  const renderZh = (unit: Extract<Unit, { kind: 'vocabulary' | 'grammar' }>) => <div key={unit.ref} className={`select-item${picked.has(unit.ref) ? ' picked' : ''}`}>{unit.kind === 'vocabulary' && sections.characters && !charList && <div className="select-row">{pickRow(unit.ref, unit.record.ch, unit.record.ch)}{writeTag(unit.record.ch)}</div>}<UnitCard catalog={catalog!} unit={unit} pinyin={workspace.preferences.pinyin} now={now}
       card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact forms phrases={unit.kind === 'vocabulary' && sections.phrases ? { href: `#${phrasesRouteFor(unit.record.ch)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : indexedUse(unit.ref) } : undefined} /></div>
   return <>
-    <PageHeading eyebrow="THE WHOLE CURRICULUM" title={phrasesView ? 'Phrases, ready or pending.' : kind === 'characters' ? 'Characters, one stroke at a time.' : 'Vocabulary and grammar, by band.'}>
-      {phrasesView && packPhrases ? packPhrases.intro : phrasesView ? 'Every phrase the app can use: lesson examples, the generated bank and the phrases you added. A phrase is ready when you know all its words (and grammar, for a generated one).' : kind === 'characters' ? 'Your character set includes characters from words in your knowledge set, plus any you add manually. Practice their strokes here; inclusion does not claim writing proficiency.'
+    <PageHeading eyebrow="THE WHOLE CURRICULUM" title={phrasesView ? 'Phrases, ready or pending.' : kind === 'characters' ? charText?.title ?? 'Characters, one stroke at a time.' : 'Vocabulary and grammar, by band.'}>
+      {phrasesView && packPhrases ? packPhrases.intro : phrasesView ? 'Every phrase the app can use: lesson examples, the generated bank and the phrases you added. A phrase is ready when you know all its words (and grammar, for a generated one).' : kind === 'characters' ? charText?.intro ?? 'Your character set includes characters from words in your knowledge set, plus any you add manually. Practice their strokes here; inclusion does not claim writing proficiency.'
         : pack.dictionary.intro}</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {dictError && <div className="notice error" role="alert"><p>The look-up words could not be loaded. {dictError}</p></div>}
@@ -261,9 +268,10 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button aria-pressed={!allWords} onClick={() => { setLimit(PAGE); setAllWords(false) }}>Lesson words ({catalogCounts[kind].toLocaleString('en-US')})</button>
         <button aria-pressed={allWords} onClick={() => { setLimit(PAGE); setAllWords(true) }}>All words{lookupData ? ` (${(catalogCounts[kind] + (kind === 'vocabulary' ? lookupData.words.length : lookupData.grammar.length)).toLocaleString('en-US')})` : ''}</button>
       </div>}
-      <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={phrasesView ? packPhrases?.placeholder ?? 'Chinese, pinyin, or English' : kind === 'characters' ? 'Character, codepoint, or containing word' : pack.dictionary.placeholder[kind === 'vocabulary' ? 'vocabulary' : 'grammar']} aria-label="Search dictionary" />
+      <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={phrasesView ? packPhrases?.placeholder ?? 'Chinese, pinyin, or English' : kind === 'characters' ? charText?.placeholder ?? 'Character, codepoint, or containing word' : pack.dictionary.placeholder[kind === 'vocabulary' ? 'vocabulary' : 'grammar']} aria-label="Search dictionary" />
         {sections.draw && <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button>}</div>
       {phrasesView && packPhrases ? <label className="filter-label">Lessons <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All lessons</option>{lessonChoices.map(range => <option key={lessonRangeKey(range)} value={lessonRangeKey(range)}>{range[0]}–{range[1]}</option>)}</select></label>
+      : kind === 'characters' && charList ? <label className="filter-label">Group <select value={group} onChange={event => select(setGroup)(event.target.value)}><option value="all">All ({characters.filter(entry => inCharacterGroup(entry, 'all', charList)).length.toLocaleString('en-US')})</option>{charList.groups().map(item => <option key={item.id} value={item.id}>{item.title} ({characters.filter(entry => inCharacterGroup(entry, item.id, charList)).length.toLocaleString('en-US')})</option>)}</select></label>
       : <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBandList().map(value => <option key={value} value={value}>{bandName(pack, value)}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>}
     </div>
     {selectable && selecting && <div className="select-bar" role="toolbar" aria-label="Select">
@@ -281,7 +289,8 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       <button aria-pressed={writeFilter === 'not'} onClick={() => { setLimit(PAGE); go('characters', 'knowledge', 'not') }}>Not yet {setCharacters.length - canWriteCount}</button>
     </div>}
     {drawing && sections.draw && <HandwritingPad allowed={drawable} onClose={() => setDrawing(false)} onPick={character => select(setQuery)(query + character)} />}
-    {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
+    {kind === 'characters' && charText && <p className="small muted">{charText.note}</p>}
+    {kind === 'characters' && !charText && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? phrasesView && !phraseRows ? 'Loading phrases...' : phrasesView ? `${count} ${count === 1 ? 'phrase' : 'phrases'}` : `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {phrasesView && <>
       {phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} view={phraseView} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, pack.speechLocale)} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}</>}

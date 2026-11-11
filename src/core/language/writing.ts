@@ -4,6 +4,7 @@
 import type { CharacterAssetSummary, WritingLanguage } from '../characters/summary'
 import zhIndex from '../../data/characters/index.generated.json'
 import type { SpeechLocale } from '../assistant/contracts'
+import { japaneseCharacterList } from './character-list-ja'
 import { isHan, isHangul, isKana } from '../characters/scripts'
 import jaIndex from '../../../public/characters/japanese/index.generated.json'
 import koIndex from '../../../public/characters/korean/index.generated.json'
@@ -12,6 +13,18 @@ declare const __PACK_DATA__: string
 
 /** A titled run of characters of the Writing list. */
 export interface WritingGroup { id: string; title: string; characters: string[] }
+
+/** A group of the Dictionary's Characters list. Listed outright (kana), or by role: 'lessons' takes the kanji of the lesson words (by lesson), 'lookup' the rest of the kanji the stroke data has, and is chosen on its own. */
+export interface CharacterListGroup { id: string; title: string; characters: string[]; role?: 'lessons' | 'lookup' }
+/** What a language that lists characters in its Dictionary (Japanese: kana and kanji) says about that list. Absent: the Chinese Characters section as it was. */
+export interface PackCharacterList {
+  /** The groups of the list in display order; a character is in the first group that lists it, else in the group its script says. */
+  groups(): CharacterListGroup[]
+  /** The group id of a character that no group lists outright (Japanese: a kanji is in 'kanji'); undefined: not listed. */
+  classify(character: string): string | undefined
+  /** A character's own reading shown on its card (a kana: its sound and romaji); undefined for a character read from its words. */
+  reading(character: string): string | undefined
+}
 
 export interface PackWriting {
   /** The language whose stroke data this build writes with (the folder under public/characters). */
@@ -38,13 +51,15 @@ export interface PackWriting {
   guideCharacters(): string[]
   /** The same, as the asset index lists them (the Chinese index entries themselves; Japanese and Korean: count only). */
   summaries(): CharacterAssetSummary[]
+  /** The Dictionary's Characters list, for a language that has one besides the Chinese section; absent otherwise. */
+  characterList?: PackCharacterList
   /** Whether the language has Chinese-style character data around the strokes (meanings, parts, practice history). Only Chinese does. */
   characterData: boolean
   /** Whether finishing a character's practice is recorded in this build's own character states (true for the build's language, false for another language's guide shown beside it). */
   records: boolean
 }
 
-interface Extras { speechLocale: SpeechLocale, writes: (character: string) => boolean, listGroups?: (has: (character: string) => boolean) => WritingGroup[], breakdown?: (character: string) => string[] | undefined }
+interface Extras { characterList?: PackCharacterList, speechLocale: SpeechLocale, writes: (character: string) => boolean, listGroups?: (has: (character: string) => boolean) => WritingGroup[], breakdown?: (character: string) => string[] | undefined }
 const writesHan = isHan
 const writesHanKana = (character: string) => isHan(character) || isKana(character)
 
@@ -53,7 +68,7 @@ function entry(language: WritingLanguage, strokes: () => Map<string, number>, su
   const guidedChars = (word: string) => Array.from(word).filter(hasGuide)
   return {
     language, hasGuide, strokeCount: character => strokes().get(character), guidedChars, introduces,
-    speechLocale: extras.speechLocale, writes: extras.writes, listGroups: () => extras.listGroups?.(hasGuide) ?? [], breakdown: extras.breakdown ?? (() => undefined),
+    speechLocale: extras.speechLocale, characterList: extras.characterList, writes: extras.writes, listGroups: () => extras.listGroups?.(hasGuide) ?? [], breakdown: extras.breakdown ?? (() => undefined),
     introducedChars: word => guidedChars(word).filter(introduces), guideCharacters: () => [...strokes().keys()], summaries, characterData, records: true,
   }
 }
@@ -99,7 +114,7 @@ const koData = fromMap((typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ ==
 /** Chinese: today's rule. A Han character with a guide, taught as it is written. */
 export const zhWriting: PackWriting = entry('zh', zhStrokes, () => zhCharacters, isHan, { speechLocale: 'zh-Hans', writes: writesHan }, true)
 /** Japanese: every character with a guide, kanji and kana, is written; only kanji get an introduction (change `introduces` to teach kana as characters). */
-export const jaWriting: PackWriting = entry('ja', jaData.strokes, jaData.summaries, isHan, { speechLocale: 'ja-JP', writes: writesHanKana })
+export const jaWriting: PackWriting = entry('ja', jaData.strokes, jaData.summaries, isHan, { speechLocale: 'ja-JP', writes: writesHanKana, characterList: japaneseCharacterList(character => jaData.strokes().has(character)) })
 /** Korean: Hangul, from its own index; every Hangul character with a guide is written and introduced. */
 export const koWriting: PackWriting = entry('ko', koData.strokes, koData.summaries, isHangul, { speechLocale: 'ko-KR', writes: isHangul, listGroups: koreanListGroups, breakdown: hangulBreakdown })
 

@@ -39,9 +39,9 @@ describe("the Japanese pack's Phrases section", () => {
 })
 
 describe("the Japanese pack's Dictionary", () => {
-  it('has Vocabulary, Grammar and Phrases, and the Chinese pack all of them', () => {
+  it('has Vocabulary, Grammar, Characters and Phrases (no Draw), and the Chinese pack all of them', () => {
     expect(jaPack.features.dictionary).toBe(true)
-    expect(jaPack.dictionary.sections).toEqual({ characters: false, phrases: true, draw: false, media: false })
+    expect(jaPack.dictionary.sections).toEqual({ characters: true, phrases: true, draw: false, media: false })
     expect(zhPack.dictionary.sections).toEqual({ characters: true, phrases: true, draw: true, media: true })
     expect(zhPack.dictionary.phrases).toBeUndefined()
   })
