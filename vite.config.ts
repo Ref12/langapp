@@ -5,6 +5,7 @@ import { mockupFiles } from './scripts/mockup-files.mjs'
 import { localSettings } from './scripts/local-settings'
 import { localProfiles } from './scripts/local-profiles'
 import { localTts } from './scripts/local-tts'
+import { languageCharacters } from './scripts/language-characters'
 import { pwa } from './scripts/pwa'
 import { buildDefines, languageFromEnv } from './scripts/build-channel'
 
@@ -59,6 +60,7 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   base: './',
   define: buildDefines(BUILD_CHANNEL, BUILD_LANGUAGE),
   appType: 'mpa',
-  plugins: [react(), localSettings(), localProfiles(), localTts(), devSite(new Set(await mockupFiles())), pwa(BUILD_CHANNEL, BUILD_LANGUAGE)],
-  build: { outDir: 'dist' },
+  plugins: [react(), localSettings(), localProfiles(), localTts(), devSite(new Set(await mockupFiles())), languageCharacters(BUILD_LANGUAGE), pwa(BUILD_CHANNEL, BUILD_LANGUAGE)],
+  // public/ is copied by languageCharacters, which leaves out the other languages' stroke data.
+  build: { outDir: 'dist', copyPublicDir: false },
 }))
