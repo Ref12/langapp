@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
-import { getPack } from '../../core/language'
+import { getPack, spokenText } from '../../core/language'
 import { Eye, Mic, PenLine, Pause, Play, RotateCcw, SkipForward, Square, Volume2 } from 'lucide-react'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
@@ -178,7 +178,7 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
   return <>
     <PinyinSentence py={data.sentence.py} target={data.item.py} syllable={syllable} />
     {revealed && !locked && <p className="dr-center dr-sentence-zh" lang={getPack().learningTag}>{data.sentence.zh}</p>}
-    <div className="dr-center"><HearButton text={data.sentence.zh} locale={getPack().speechLocale} label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
+    <div className="dr-center"><HearButton text={data.sentence.zh} locale={getPack().speechLocale} kind="sentence" label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
     <p className="small dr-center dr-write-line">Write <mark className="dr-target">{prompt}</mark></p>
     {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} haptics={ctx.workspace.preferences.haptics !== false} onStep={onStep} onDone={done} />}
     {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it anywhere, then check your answer.</p>
@@ -280,7 +280,7 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
     for (let index = from; index < upTo; index++) {
       if (mine !== token.current) return
       setPlaying(index)
-      const result = await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, getPack().speechLocale, 0.85)
+      const result = await playBrowserSpeechToEnd(`${talk.title}-${index}`, spokenText(getPack().speechLocale, talk.lines[index].zh, { kind: 'sentence' }), getPack().speechLocale, 0.85)
       if (result.status !== 'completed') break
     }
     if (mine === token.current) setPlaying(-1)
@@ -288,7 +288,7 @@ function ConvoView({ data, quiz, state, ctx, onAnswer }: ViewProps & { data: Ext
   const playLine = async (index: number) => {
     const mine = ++token.current
     setPlaying(index)
-    await playBrowserSpeechToEnd(`${talk.title}-${index}`, talk.lines[index].zh, getPack().speechLocale, 0.85)
+    await playBrowserSpeechToEnd(`${talk.title}-${index}`, spokenText(getPack().speechLocale, talk.lines[index].zh, { kind: 'sentence' }), getPack().speechLocale, 0.85)
     if (mine === token.current) setPlaying(-1)
   }
   const choose = (question: number, option: number) => {

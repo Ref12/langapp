@@ -17,10 +17,11 @@ import { PhraseKnowledge } from './PhraseKnowledge'
 import { AddToPhraseBank } from './AddToPhraseBank'
 import { WritePractice } from './WritePractice'
 import { savePreferences } from '../../core/learning'
-import { getPack } from '../../core/language'
+import { getPack, spokenText, type SpeechKind } from '../../core/language'
 import { openWritingSheet } from '../../core/characters/writing-sheet'
 
-export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false, buttonText = 'Hear', disabled = false }: { text: string; locale: SpeechLocale; rate?: number; label?: string; iconOnly?: boolean; buttonText?: string; disabled?: boolean }) {
+/** `reading` and `kind` are the pack's hint for what is spoken (the Japanese pack speaks a word or a sentence piece from its kana reading); the text goes through the pack before it is spoken. */
+export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false, buttonText = 'Hear', disabled = false, reading, kind }: { text: string; locale: SpeechLocale; rate?: number; reading?: string; kind?: SpeechKind; label?: string; iconOnly?: boolean; buttonText?: string; disabled?: boolean }) {
   const id = useId()
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const active = playback.activeId === id
@@ -28,7 +29,7 @@ export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = fals
   useEffect(() => () => { if (getPlaybackState().activeId === id) stopBrowserSpeech() }, [id])
   return <button className={`button secondary snippet-button${iconOnly ? ' icon-only' : ''}`} type="button" title={active ? stopLabel : 'Hear with your selected voice; Automatic prefers local voices before online voices'}
     disabled={disabled && !active}
-    aria-label={active ? stopLabel : label} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, text, locale, rate)}>
+    aria-label={active ? stopLabel : label} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, spokenText(locale, text, { reading, kind }), locale, rate)}>
     {active ? <Square size={15} /> : <Volume2 size={15} />}{!iconOnly && (active ? 'Stop' : buttonText)}
   </button>
 }
@@ -50,7 +51,7 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, onWrite, 
   const createsConversation = page !== 'conversation' || !currentId
   return <div className="snippet-actions" data-assistant-exclude>
     <div className="snippet-actions-row">
-      {source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} iconOnly label={`Hear ${source.text}`} />}
+      {source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} reading={source.reading} iconOnly label={`Hear ${source.text}`} />}
       <ActionMenu label="Phrase actions" trigger={<MoreHorizontal size={20} />}>{close => <div className="phrase-menu">
         <button type="button" className="button secondary snippet-button" disabled={pending || (createsConversation && speedSetup === 'loading')} onClick={() => {
           setPending(true)

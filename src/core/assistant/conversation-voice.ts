@@ -3,6 +3,7 @@ import { assistantReplySchema, speechLocaleSchema, speechRateSchema, type Assist
 import { prepareRecordingCue, type RecordingCue } from './recording-cue'
 import { speechCaptureSupported, startSpeechCapture, type SpeechCaptureSession, type SpeechCaptureState } from './speech-capture'
 import { playBrowserSpeechToEnd, stopBrowserSpeech, type PlaybackOutcome } from './speech'
+import { spokenText } from '../language'
 
 export type ConversationCaptureState = Omit<SpeechCaptureState, 'phase'> & {
   phase: SpeechCaptureState['phase'] | 'cue'
@@ -258,7 +259,7 @@ export function speakConversationReply(
         if (finished) return
         if (!lease!.isCurrent()) { cancel(); return }
         playing = true
-        const outcome = await playBrowserSpeechToEnd(`conversation-reply-${id}-${index}`, block.text, block.locale, block.locale === 'en-US' ? 1 : rate)
+        const outcome = await playBrowserSpeechToEnd(`conversation-reply-${id}-${index}`, spokenText(block.locale, block.text), block.locale, block.locale === 'en-US' ? 1 : rate)
         if (finished) return
         playing = false
         if (!lease!.isCurrent()) { cancel(); return }

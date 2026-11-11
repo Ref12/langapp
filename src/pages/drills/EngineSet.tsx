@@ -165,7 +165,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
       {exercise?.form === 'repeat' && <>
         <p className="engine-instruction small" data-instruction="repeat">Say it after the audio</p><p className="small muted">Nothing is graded.</p>
         <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.zh}</p><p className="small">{exercise.py}</p><p lang="en">{exercise.en}</p>
-        <p><HearButton text={exercise.zh} locale={getPack().speechLocale} label="Hear it" /></p>
+        <p><HearButton text={exercise.zh} locale={getPack().speechLocale} kind="sentence" label="Hear it" /></p>
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => advance(true)}>Next <ArrowRight size={16} /></button></div></>}
       {exercise && exercise.form !== 'intro' && exercise.form !== 'repeat' && <ExerciseQuestion key={exercise.id} exercise={exercise} ctx={ctx} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed, outcome.hint)} />}
     </section>

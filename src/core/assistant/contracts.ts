@@ -49,6 +49,8 @@ export const assistantSourceSchema = z.object({
   locale: speechLocaleSchema.optional(),
   /** Japanese or Korean material (Chinese is the default and is not marked): the Ask prompt names the language. */
   language: z.enum(['ja', 'ko']).optional(),
+  /** The kana reading of a Japanese word, so Hear speaks it from the reading (the pack's speechText). */
+  reading: z.string().max(200).optional(),
 }).strict()
 
 export const textBlockSchema = z.object({

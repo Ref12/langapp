@@ -1,6 +1,7 @@
 import { getPlaybackState, playBrowserSpeechToEnd, stopBrowserSpeech, subscribeSpeechInterruption } from './assistant/speech'
 import { acquireAudio, type AudioLease } from './assistant/audio-owner'
 import type { AudioStep } from './learning-content'
+import { spokenText } from './language'
 
 export interface GuidedAudioState {
   status: 'idle' | 'playing' | 'responding' | 'paused' | 'completed' | 'error'
@@ -58,7 +59,7 @@ export function createGuidedAudio(id: string, steps: AudioStep[], changed: (stat
     if (step.kind === 'response') {
       timer = setTimeout(() => { if (request === version) play(index + 1) }, step.seconds * 1000)
     } else {
-      void playBrowserSpeechToEnd(id, step.text, step.locale, step.locale === 'zh-Hans' ? 0.85 : 1).then(result => {
+      void playBrowserSpeechToEnd(id, spokenText(step.locale, step.text), step.locale, step.locale === 'zh-Hans' ? 0.85 : 1).then(result => {
         if (request !== version) return
         if (result.status === 'completed') {
           // Yield out of the utterance callback so cancellation can invalidate the next segment.

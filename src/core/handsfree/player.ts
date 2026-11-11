@@ -2,6 +2,7 @@ import { getPlaybackState, playBrowserSpeechToEnd, stopBrowserSpeech, subscribeS
 import { acquireAudio, type AudioLease } from '../assistant/audio-owner'
 import type { SpeechVoicePreference } from '../assistant/contracts'
 import type { Script, Segment } from './script'
+import { spokenText } from '../language'
 
 /** The voices a script's segments ask for; an unset one follows the saved voice for its language. */
 export type HandsfreeVoices = Partial<Record<Extract<Segment, { kind: 'say' }>['voice'], SpeechVoicePreference>>
@@ -74,7 +75,7 @@ export function createHandsfreePlayer(id: string, getScript: () => Script, chang
       if (segment.kind === 'pause') { timer = setTimeout(() => step(index + 1), pauseLength(segment, lastSpoken)); return }
       onSpeak(segment)
       const began = Date.now()
-      void playBrowserSpeechToEnd(id, segment.text, segment.locale, segment.rate, { voice: getVoices()[segment.voice], anyRate: true, ...(segment.volume !== undefined ? { volume: segment.volume } : {}) }).then(result => {
+      void playBrowserSpeechToEnd(id, spokenText(segment.locale, segment.text), segment.locale, segment.rate, { voice: getVoices()[segment.voice], anyRate: true, ...(segment.volume !== undefined ? { volume: segment.volume } : {}) }).then(result => {
         if (request !== version) return
         if (result.status === 'completed') { lastSpoken = Date.now() - began; timer = setTimeout(() => step(index + 1), 0) }
         else if (result.status === 'error') publish({ status: 'error', prompt, error: result.error })

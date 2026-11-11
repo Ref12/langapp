@@ -7,7 +7,7 @@ import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '..
 import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/characters/geometry'
 import { allPartsWritten, commitStroke, isLastStep, memoryHint, newWritingRound, nextPart, partIndex, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
 import { buildWritingRoute, hasGuideIn, isWritable, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
-import { getPack } from '../core/language'
+import { getPack, spokenText } from '../core/language'
 import { writingFor } from '../core/language/writing'
 import { useCatalog } from '../components/study/useCatalog'
 import { EmptyState, type PageProps } from '../components/shared'
@@ -168,11 +168,11 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
   speechRef.current = speech
   const say = useCallback(() => {
     try {
-      if (writing.characterData) { playBrowserSpeech(speechId, asset.character, locale); return }
+      if (writing.characterData) { playBrowserSpeech(speechId, spokenText(locale, asset.character, { kind: 'word' }), locale); return }
       const synth = window.speechSynthesis
       if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return
       synth.cancel()
-      const utterance = new SpeechSynthesisUtterance(asset.character)
+      const utterance = new SpeechSynthesisUtterance(spokenText(locale, asset.character, { kind: 'word' }))
       utterance.lang = locale
       synth.speak(utterance)
     } catch { /* blocked speech stays silent */ }

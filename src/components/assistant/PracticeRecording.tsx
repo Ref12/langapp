@@ -11,6 +11,7 @@ import { HearButton } from './SnippetActions'
 import { PracticeFeedback } from './PracticeFeedback'
 import { acquireAudio, type AudioLease } from '../../core/assistant/audio-owner'
 import { Pinyin } from '../Pinyin'
+import { spokenText } from '../../core/language'
 
 interface PendingResult { id: string; result: PracticeResult }
 interface InlinePractice {
@@ -251,7 +252,7 @@ export function PracticeRecording({ thread, phrase, busy, speechConnection, conn
       return
     }
     setLeadIn('phrase')
-    void playBrowserSpeechToEnd(playbackId, parsed.data.text, parsed.data.locale, playbackRate).then(outcome => {
+    void playBrowserSpeechToEnd(playbackId, spokenText(parsed.data.locale, parsed.data.text), parsed.data.locale, playbackRate).then(outcome => {
       if (!lifecycle.current.mounted || lifecycle.current.version !== version) return
       setLeadIn(undefined)
       if (outcome.status !== 'completed') {

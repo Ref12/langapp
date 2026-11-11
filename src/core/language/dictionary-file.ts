@@ -1,6 +1,7 @@
 /**
  * The reader of the compact dictionary files (src/data/dictionary/<language>.json), loaded on first use. The look-up sources of the Japanese and Korean apps (lookup-ja.ts, lookup-ko.ts) read ja.json and ko.json through it. A build keeps only its own language's file (__PACK_DATA__), so the Chinese build ships neither.
  */
+import { noteJapaneseReadings } from './speech-text'
 declare const __PACK_DATA__: string
 export type DictLanguage = 'ja' | 'ko'
 
@@ -57,7 +58,7 @@ export function buildDictionary(raw: RawDictionary): Dictionary {
 export function loadDictionary(language: DictLanguage): Promise<Dictionary> {
   let pending = cache.get(language)
   if (!pending) {
-    pending = loaders[language]().then(module => buildDictionary(module.default as RawDictionary))
+    pending = loaders[language]().then(module => buildDictionary(module.default as RawDictionary)).then(dictionary => { if (language === 'ja') noteJapaneseReadings('dictionary', dictionary.words.map(word => [word.form, word.reading] as const)); return dictionary })
     cache.set(language, pending)
     pending.catch(() => { if (cache.get(language) === pending) cache.delete(language) })
   }

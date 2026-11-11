@@ -15,7 +15,7 @@ export interface WordFormContext {
   /** A written form with its reading, as the screen draws words. */
   written(text: string, reading?: string): ReactNode
   /** The Hear button for a text, with its label. */
-  hear(text: string, label: string): ReactNode
+  hear(text: string, label: string, reading?: string): ReactNode
   /** What "almost" means here, as the feedback says it. */
   almost: string
   /** Marks a built form against the form asked for. */
@@ -42,7 +42,7 @@ export function ConjugateQuestion({ exercise, ctx, onDone }: { exercise: Conjuga
     <AnswerButton result={result === undefined ? undefined : ok} busy={ctx.busy} ready={placed.length >= 1} onCheck={() => setResult(ctx.grade(placed.map(index => all[index]).join(''), { surface: exercise.answer, reading: exercise.answerReading }))} onNext={() => onDone({ correct: ok })} />
     {result && <div className={`notice answer-feedback engine-diff${ok ? ' success' : ''}`} role="status" data-testid="conjugate-result">
       <p>{result === 'right' ? 'Correct.' : result === 'almost' ? ctx.almost : 'Not quite.'}</p>
-      <p className="engine-answer-line parallel-answer">{ctx.written(exercise.answer, exercise.answerReading)} {ctx.hear(exercise.answer, 'Hear the answer')}</p>
+      <p className="engine-answer-line parallel-answer">{ctx.written(exercise.answer, exercise.answerReading)} {ctx.hear(exercise.answer, 'Hear the answer', exercise.answerReading)}</p>
       <p className="small" data-testid="conjugate-rule">Rule: <span lang={ctx.lang}>{exercise.rule}</span></p>
       {exercise.irregular && <p className="small" data-testid="conjugate-irregular"><span className="tag">irregular</span>{exercise.itemRef ? <> item <span lang={ctx.lang}>{exercise.itemRef}</span></> : null}</p>}</div>}
   </>
@@ -53,7 +53,7 @@ export function FormPickQuestion({ exercise, ctx, onDone }: { exercise: FormPick
   const [selected, setSelected] = useState(-1)
   const [result, setResult] = useState<boolean>()
   return <>
-    <p className="practice-prompt native" data-testid="form-pick-prompt">{ctx.written(exercise.surface, exercise.reading)} {ctx.hear(exercise.surface, 'Hear the form')}</p>
+    <p className="practice-prompt native" data-testid="form-pick-prompt">{ctx.written(exercise.surface, exercise.reading)} {ctx.hear(exercise.surface, 'Hear the form', exercise.reading)}</p>
     <fieldset className="answer-options" disabled={ctx.busy || result !== undefined}><legend className="visually-hidden">Choose the word and form</legend>
       {exercise.options.map((option, index) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${result !== undefined && index === exercise.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={exercise.id} checked={selected === index} onChange={() => setSelected(index)} />

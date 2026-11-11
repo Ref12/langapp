@@ -130,7 +130,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
     {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin && (exercise.answerLang !== 'py' || locked)} /></p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
     {exercise.form === 'exchange-reply' && exercise.replyEn && <p className="engine-cue" lang="en">Reply: “{exercise.replyEn}”</p>}
     {exercise.form === 'exchange-reply' && exercise.questionEn && <p className="small engine-meaning"><button type="button" className="link-button" aria-expanded={meaning} onClick={() => setMeaning(!meaning)}>{meaning ? 'Hide meaning' : 'Show meaning'}</button>{meaning && <span lang="en"> “{exercise.questionEn}”</span>}</p>}
-    {exercise.hearText && hearNow && <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} label="Hear it" /></p>}
+    {exercise.hearText && hearNow && <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} kind={exercise.form === 'recall' || exercise.form === 'pinyin' ? 'word' : 'sentence'} reading={exercise.form === 'recall' || exercise.form === 'pinyin' ? exercise.modelPinyin : undefined} label="Hear it" /></p>}
     <label className="engine-answer dr-free"><span className="visually-hidden">Your answer</span>
       <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? getPack().learningTag : exercise.answerLang === 'py' ? (reading.takesLearningScript ? pack.learningTag : undefined) : 'en'} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="text" aria-describedby={pinyinMode ? 'pinyin-hint' : undefined}
         placeholder={chinese ? exercise.form === 'exchange-reply' ? getPack().practiceWording.replyNative : getPack().practiceWording.typeNative : exercise.answerLang === 'py' ? getPack().practiceWording.readingPlaceholder : 'Type the meaning'} onChange={event => setText(event.target.value)}
@@ -162,7 +162,7 @@ function WordForm({ exercise, ctx, onDone }: { exercise: ConjugateItem | FormPic
   const shared: WordFormContext = {
     lang: pack.learningTag, busy: ctx.busy, almost: pack.wordForms.almost,
     written: (text, reading) => ctx.pinyin && shows(reading, text) ? <ruby className="mandarin-word" lang={pack.learningTag}>{text}<rt aria-hidden="true" data-assistant-exclude><ReadingText kana={reading!} /></rt></ruby> : <span lang={pack.learningTag}>{text}</span>,
-    hear: (text, label) => <HearButton text={text} locale={pack.speechLocale} label={label} iconOnly />,
+    hear: (text, label, reading) => <HearButton text={text} locale={pack.speechLocale} kind="word" reading={reading} label={label} iconOnly />,
     grade: (given, answer) => pack.wordForms.grade(given, answer, pack.romaji),
   }
   return exercise.form === 'conjugate' ? <ConjugateQuestion exercise={exercise} ctx={shared} onDone={onDone} /> : <FormPickQuestion exercise={exercise} ctx={shared} onDone={onDone} />
@@ -180,7 +180,7 @@ function ExerciseBody({ exercise, ctx, onDone }: { exercise: Exclude<SessionExer
     return undefined
   }, [exercise])
   if (choiceShape && (exercise.form === 'choice' || exercise.form === 'gap' || exercise.form === 'listen-pick')) {
-    const header = exercise.form === 'gap' ? <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.gapped}</p> : exercise.form === 'listen-pick' ? <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} label="Hear it" /></p> : undefined
+    const header = exercise.form === 'gap' ? <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.gapped}</p> : exercise.form === 'listen-pick' ? <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} kind="sentence" label="Hear it" /></p> : undefined
     return <PickQuestion exercise={exercise} shape={choiceShape} header={header} ctx={ctx} onDone={onDone} />
   }
   if (exercise.form === 'conjugate' || exercise.form === 'form-pick') return <WordForm exercise={exercise} ctx={ctx} onDone={onDone} />

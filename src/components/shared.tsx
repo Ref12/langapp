@@ -46,7 +46,7 @@ export function WordCard({ word, state, pinyin, source, run, busy, compact = fal
     <h3 lang={getPack().learningTag} className="word-native"><MandarinWord word={word} state={state} pinyin={pinyin} /></h3>
     <p className="word-meaning">{word.meaning}</p>
       </div>
-      <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: getPack().speechLocale, title: `Word: ${word.meaning}`, route }} />
+      <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: getPack().speechLocale, reading: word.pinyin, title: `Word: ${word.meaning}`, route }} />
     </div>
     {!compact && example}
     {!compact && curriculumLink}

@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
-import { getPack, bandName } from '../core/language'
+import { getPack, bandName, spokenText } from '../core/language'
 import { BandName } from '../components/BandName'
 import { useAIConnection } from '../components/study/useAIConnection'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
@@ -74,6 +74,14 @@ export function Study({ workspace, now, run, busy }: PageProps) {
 
 export interface Annotation { readings: Map<string, Set<string>>; pinyin: boolean }
 
+/** The one reading the lesson's own readings hold for a text, if exactly one. */
+const readingOf = (text: string, readings: Map<string, Set<string>>): string | undefined => { const options = readings.get(text); return options?.size === 1 ? [...options][0] : undefined }
+/** What a tile, option or cell is spoken as: the pack's speech text, given that reading (kind: a word, or a piece of a sentence). */
+export function spoken(text: string, readings: Map<string, Set<string>>, kind: 'word' | 'fragment' = 'fragment'): string {
+  // A piece of a sentence is read as its sentence reads it (the tokens), not as the catalog teaches the word alone (日: にち / つか), so only a word takes the lesson's reading.
+  return spokenText(getPack().speechLocale, text, { kind, ...(kind === 'word' ? { reading: readingOf(text, readings) } : {}) })
+}
+
 /** `bare` leaves out the Check/Next button (a drill page supplies its own) and reports the selection through `onSelect`. */
 export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak, bare, onSelect, name = 'answer' }: Annotation & { name?: string; bare?: boolean; onSelect?: (index: number) => void; speak: boolean; exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const [selected, setSelected] = useState(attempt ? Number(attempt.response) : -1)
@@ -84,7 +92,7 @@ export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings
     setSelected(index)
     onSelect?.(index)
     if (!speak || chineseQuestion) return
-    try { playBrowserSpeech(speechId, exercise.options[index], getPack().speechLocale) } catch (reason) { console.error('Choice speech failed.', reason) }
+    try { playBrowserSpeech(speechId, spoken(exercise.options[index], readings, 'word'), getPack().speechLocale) } catch (reason) { console.error('Choice speech failed.', reason) }
   }
   return <>
     {chineseQuestion
@@ -94,7 +102,7 @@ export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings
       {visibleOptions(exercise).map(index => [exercise.options[index], index] as const).map(([option, index]) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${attempt && index === exercise.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={name} value={index} checked={selected === index} onChange={() => choose(index)} />
         {chineseQuestion ? <span lang="en">{option}</span> : <span><AnnotatedChinese text={option} readings={readings} pinyin={pinyin} /></span>}
-        {!chineseQuestion && <HearButton text={option} locale={getPack().speechLocale} label={`Hear option ${index + 1}`} iconOnly />}
+        {!chineseQuestion && <HearButton text={option} locale={getPack().speechLocale} kind="word" reading={readingOf(option, readings)} label={`Hear option ${index + 1}`} iconOnly />}
         <span className="answer-option-mark">{attempt && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
       </label>)}
     </fieldset>
@@ -119,7 +127,7 @@ export function TilesQuestion({ exercise, attempt, submit, next, busy, readings,
   useEffect(() => () => { if (getPlaybackState().activeId === speechId) stopBrowserSpeech() }, [speechId])
   const say = (index: number) => {
     if (!speak) return
-    try { playBrowserSpeech(speechId, all[index], getPack().speechLocale) } catch (reason) { console.error('Tile speech failed.', reason) }
+    try { playBrowserSpeech(speechId, spoken(all[index], readings), getPack().speechLocale) } catch (reason) { console.error('Tile speech failed.', reason) }
   }
   return <>
     <p className="practice-prompt" lang="en">{exercise.translation}</p>
@@ -152,7 +160,7 @@ export function MatchQuestion({ exercise, attempt, submit, next, busy, readings,
     if (busy || attempt || locked.includes(cell.ref)) return
     setWrong(undefined)
     if (speak && sideOf(cell) !== 'en') {
-      try { playBrowserSpeech(speechId, sideOf(cell) === 'zh' ? cell.text : chinese(cell.ref), getPack().speechLocale) } catch (reason) { console.error('Match speech failed.', reason) }
+      try { playBrowserSpeech(speechId, spoken(sideOf(cell) === 'zh' ? cell.text : chinese(cell.ref), readings, 'word'), getPack().speechLocale) } catch (reason) { console.error('Match speech failed.', reason) }
     }
     if (!selected || selected.side === cell.side) { setSelected(cell); return }
     if (selected.ref === cell.ref) {
@@ -268,7 +276,7 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
   useEffect(() => {
     if (!hasPrompt) return
     if (promptSpeechRef.current && !answeredRef.current) {
-      try { playBrowserSpeech(promptId, (exercise as ChoiceExercise).question, getPack().speechLocale) } catch (reason) { console.error('Prompt speech failed.', reason) }
+      try { playBrowserSpeech(promptId, spoken((exercise as ChoiceExercise).question, readings, 'word'), getPack().speechLocale) } catch (reason) { console.error('Prompt speech failed.', reason) }
     }
     return () => { if (getPlaybackState().activeId === promptId) stopBrowserSpeech() }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -315,7 +323,7 @@ function ExercisePlayer({ catalog, session, attempt: persistedAttempt, workspace
           onClick={() => { if (promptSpeech) stopBrowserSpeech(); void run(() => savePreferences({ promptAutoPlay: !promptSpeech })) }}>{promptSpeech ? 'Auto-play' : 'Auto-play off'}</button>}
         {exercise.type === 'choice' && exercise.direction === 'en-to-zh' && <button type="button" className="button secondary snippet-button" aria-pressed={tileSpeech} disabled={busy}
           onClick={() => { if (tileSpeech) stopBrowserSpeech(); void run(() => savePreferences({ tileAutoSpeak: !tileSpeech })) }}>{tileSpeech ? 'Mute choices' : 'Speak choices'}</button>}
-        {hasPrompt && <HearButton text={exercise.question} locale={getPack().speechLocale} label={getPack().practiceWording.hearNative} />}
+        {hasPrompt && <HearButton text={exercise.question} locale={getPack().speechLocale} kind="word" reading={readingOf(exercise.question, readings)} label={getPack().practiceWording.hearNative} />}
       </div>
     </div>
     {exercise.type === 'match'

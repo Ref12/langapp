@@ -73,7 +73,8 @@ describe('Practice questions in a Japanese build', () => {
     expect(screen.getByTestId('conjugate-result')).toHaveTextContent('Correct.')
     expect(screen.getByTestId('conjugate-rule')).toHaveTextContent('noun + suru')
     await user.click(screen.getAllByRole('button', { name: 'Hear the answer' })[0])
-    expect(play).toHaveBeenCalledWith(expect.any(String), '\u52C9\u5F37\u3057\u307E\u305B\u3093', 'ja-JP', undefined)
+    // a word is spoken from its kana reading, not its kanji
+    expect(play).toHaveBeenCalledWith(expect.any(String), '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u305B\u3093', 'ja-JP', undefined)
     expect(text(view)).not.toMatch(/Chinese|pinyin/i)
     expect(view.container.querySelector('[lang="zh-Hans"]')).toBeNull()
   })

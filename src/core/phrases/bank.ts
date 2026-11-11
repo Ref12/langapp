@@ -1,5 +1,6 @@
 import { db } from '../database'
 import { getPack } from '../language'
+import { noteJapaneseReadings, noteJapaneseSentence } from '../language/speech-text'
 import type { Catalog } from '../study/catalog'
 import type { DrillSet } from '../drills/contracts'
 import { catalogExamples, FUNCTION_CHARACTERS, MAX_PHRASE_SYLLABLES } from '../drills/items'
@@ -28,6 +29,10 @@ export function shippedPhrases(band: string): Promise<Record<string, BankPhrase[
       if (!parsed.success) return {}
       const byWord: Record<string, BankPhrase[]> = {}
       for (const phrase of parsed.data.phrases) {
+        if (getPack().id === 'ja') {
+          for (const source of ['phrase', 'piece'] as const) noteJapaneseReadings(source, (phrase.tokens ?? []).filter(token => (token.grammar !== undefined) === (source === 'piece')).map(token => [token.text ?? '', token.reading] as const))
+          noteJapaneseSentence(phrase.zh, phrase.tokens)
+        }
         const entry: BankPhrase = {
           id: phrase.id, zh: phrase.zh, py: phrase.py, en: phrase.en, words: phrase.words.map(word => `vocabulary:${word}`),
           ...(phrase.grammar?.length ? { grammar: phrase.grammar.map(label => `grammar:${label}`) } : {}), source: phrase.source, ...(phrase.ref ? { ref: phrase.ref } : {}), checked: phrase.checked,

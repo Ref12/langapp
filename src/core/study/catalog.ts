@@ -1,4 +1,5 @@
 import { getPack, type LanguageId } from '../language'
+import { noteJapaneseReadings, noteJapaneseWords } from '../language/speech-text'
 import { apartOf, kindOfClass, readingParts } from '../forms/display'
 import type { PackForm } from '../language/pack-data'
 import type { RomajiToken } from '../reading/romaji'
@@ -51,13 +52,24 @@ export const catalogCounts = {
 const bandCache = new Map<string, Promise<BandData>>()
 const catalogCache = new Map<LanguageId, Promise<Catalog>>()
 
+/** The Japanese pack speaks a word from its reading (language/speech-text.ts): what the catalog loads, it notes. */
+function noteSpeech(data: BandData): BandData {
+  if (getPack().id === 'ja') {
+    noteJapaneseReadings('catalog', data.vocabulary.map(word => [word.ch, word.pr] as const))
+    noteJapaneseWords(data.vocabulary)
+    const examples = [...data.grammar.map(item => item.ex), ...data.groups.flatMap(group => group.examples)]
+    for (const source of ['phrase', 'piece'] as const) noteJapaneseReadings(source, examples.flatMap(example => example.segments.filter(segment => (segment.grammar !== undefined) === (source === 'piece')).map(segment => [segment.text ?? '', segment.reading] as const)))
+  }
+  return data
+}
+
 export function loadBand(band: Band): Promise<BandData> {
   const pack = getPack()
   const key = pack.id + ':' + band
   let pending = bandCache.get(key)
   if (!pending) {
     const load = pack.catalog.bands[band]
-    pending = load ? load().then(module => module.default as BandData) : Promise.reject(new Error('The ' + pack.name + ' catalog has no band ' + band))
+    pending = load ? load().then(module => noteSpeech(module.default as BandData)) : Promise.reject(new Error('The ' + pack.name + ' catalog has no band ' + band))
     bandCache.set(key, pending)
   }
   return pending

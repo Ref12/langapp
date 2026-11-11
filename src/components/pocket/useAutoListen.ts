@@ -3,6 +3,7 @@ import { createAutoListenLoop, pauseCue, type AutoListenPhase, type PauseReason 
 import { playBrowserSpeechToEnd } from '../../core/assistant/speech'
 import type { SpeechLocale, SpeechRate } from '../../core/assistant/contracts'
 import { storageNames } from '../../core/storage-names'
+import { spokenText } from '../../core/language'
 
 const storageKey = () => storageNames().local.autoListen
 
@@ -44,7 +45,7 @@ export function useAutoListen({ voice, send, locale, rate }: {
       respond: async text => { await latest.current.send(text); await latest.current.voice.replyFinished() },
       say: async reason => {
         const text = pauseCue(reason, latest.current.locale)
-        if (text) await playBrowserSpeechToEnd('pocket-cue', text, latest.current.locale, latest.current.rate).catch(() => {})
+        if (text) await playBrowserSpeechToEnd('pocket-cue', spokenText(latest.current.locale, text), latest.current.locale, latest.current.rate).catch(() => {})
       },
       now: () => Date.now(),
       setTimer: (fn, ms) => setTimeout(fn, ms),

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { getPack } from '../../core/language'
+import { getPack, spokenText } from '../../core/language'
 import { CheckCircle2, Square, Volume2 } from 'lucide-react'
 import { AnswerButton } from '../../components/AnswerButton'
 import { AnnotatedChinese } from '../../components/study/AnnotatedChinese'
@@ -21,12 +21,12 @@ export function ExchangePick({ exercise, ctx, onDone }: { exercise: ExchangePick
   const checked = result !== undefined
   return <>
     <p className="small muted">{exercise.question.speaker === 'male' ? 'He asks' : 'She asks'}:</p>
-    <p className="practice-prompt native" lang={getPack().learningTag}><AnnotatedChinese text={exercise.question.zh} readings={ctx.readings} pinyin={ctx.pinyin} /> <HearButton text={exercise.question.zh} locale={getPack().speechLocale} label="Hear the question" iconOnly /></p>
+    <p className="practice-prompt native" lang={getPack().learningTag}><AnnotatedChinese text={exercise.question.zh} readings={ctx.readings} pinyin={ctx.pinyin} /> <HearButton text={exercise.question.zh} locale={getPack().speechLocale} kind="sentence" label="Hear the question" iconOnly /></p>
     <fieldset className="answer-options" disabled={ctx.busy || checked}><legend className="visually-hidden">Pick the reply</legend>
       {exercise.options.map((option, index) => <label key={index} className={optionClass(selected === index, checked, index === exercise.answer)}>
         <input type="radio" name={exercise.id} checked={selected === index} onChange={() => setSelected(index)} />
         <span><AnnotatedChinese text={option.zh} readings={ctx.readings} pinyin={ctx.pinyin} /></span>
-        <HearButton text={option.zh} locale={getPack().speechLocale} label={`Hear reply ${index + 1}`} iconOnly />
+        <HearButton text={option.zh} locale={getPack().speechLocale} kind="sentence" label={`Hear reply ${index + 1}`} iconOnly />
         <span className="answer-option-mark">{checked && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
       </label>)}
     </fieldset>
@@ -65,7 +65,7 @@ export function ConversationQuestion({ exercise, ctx, onDone }: { exercise: Conv
   const token = useRef(0)
   const checked = result !== undefined
   useEffect(() => () => { token.current++; stopBrowserSpeech() }, [])
-  const say = (index: number) => playBrowserSpeechToEnd(`${exercise.id}-${index}`, exercise.lines[index].zh, getPack().speechLocale, 0.85, speakerOptions(exercise.lines[index].speaker))
+  const say = (index: number) => playBrowserSpeechToEnd(`${exercise.id}-${index}`, spokenText(getPack().speechLocale, exercise.lines[index].zh, { kind: 'sentence' }), getPack().speechLocale, 0.85, speakerOptions(exercise.lines[index].speaker))
   const play = async () => {
     const mine = ++token.current
     for (let index = 0; index < exercise.lines.length; index++) {
