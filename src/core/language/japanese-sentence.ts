@@ -4,7 +4,8 @@ import { forms as buildForm } from '../forms'
 import { kindOfClass } from '../forms/display'
 import { describeDifference, diffWords, type ChineseGrade, type Difference } from '../session/grade'
 import { kanaKey, romajiToKana } from './japanese-reading'
-import { isParticle, normaliseTile, PARTICLES, type ParticleLanguage } from './particles'
+import { englishSubject } from './english-subject'
+import { isParticle, normaliseTile, PARTICLES, SUBJECT_WORDS, type ParticleLanguage, type SubjectPerson } from './particles'
 import type { Blanked, BlankInput, SentenceInput, SpelledToken, SpellInput } from './sentence-forms'
 import { gradeTiles, swappedParticle } from './tiles-grade'
 import { toHiragana } from './romanize'
@@ -151,6 +152,32 @@ const right = (wording: Wording, index: number, plain: boolean, note?: string): 
 /** Korean is written with spaces between words: the right letters with other spacing are right, with a note on the spacing. */
 const SPACING_NOTE = 'Almost: the letters are right, mind the spacing. The sentence as written:'
 
+/** The English subject names who the sentence is about: I → 私は, we → 私たちは (저는, 우리는). */
+const ENGLISH_PERSON: Record<string, SubjectPerson> = { i: 'i', we: 'we', you: 'you', he: 'he', she: 'she', they: 'they' }
+
+/**
+ * An answer that opens with a subject phrase the English names (the English says I: 私は, わたしは, 僕が …; we: 私たちは): the subject is set aside and the rest is compared as it is, with the sentence's own leading subject left out too.
+ * A subject the English does not name stays a difference. Undefined when the answer does not open that way, or what follows is not the sentence.
+ */
+function withAddedSubject(rule: Rule, folded: string, english: string | undefined, wordings: readonly Wording[], optional: readonly string[]): ChineseGrade | undefined {
+  const pronoun = english ? englishSubject(english) : undefined
+  const person = pronoun ? ENGLISH_PERSON[pronoun] : undefined
+  if (!person) return undefined
+  const { words, particles } = SUBJECT_WORDS[rule.language]
+  const candidates = [...wordings, ...withoutLeading(wordings, optional)]
+  for (const [word, who] of Object.entries(words).sort((a, b) => b[0].length - a[0].length)) {
+    if (who !== person) continue
+    for (const particle of particles) {
+      const head = fold(word + particle)
+      if (!folded.startsWith(head)) continue
+      const rest = folded.slice(head.length)
+      const hit = candidates.find(wording => wording.tokens ? covers(rest, wording.tokens, rule) : fold(wording.sentence) === rest)
+      if (hit) return { verdict: 'correct', closest: wordings[0].sentence, alternative: true, differences: [], ignored: [], messages: [], note: `Right: ${word + particle} fits, and the subject can also be left out. The sentence as written:`, written: (hit.full ?? hit.sentence) }
+    }
+  }
+  return undefined
+}
+
 /** Marks a built (placed tiles) or typed sentence. */
 export function gradeJapaneseSentence(rule: Rule, input: SentenceInput): ChineseGrade {
   const wordings: Wording[] = input.accepted.map((sentence, index) => ({ sentence, tokens: input.spelled?.[index] }))
@@ -159,6 +186,9 @@ export function gradeJapaneseSentence(rule: Rule, input: SentenceInput): Chinese
     const given = input.placed.map(normaliseTile).filter(Boolean)
     const hit = wordings.findIndex(wording => wording.tokens ? wording.tokens.length === given.length && wording.tokens.every((token, at) => normaliseTile(token.text) === given[at]) : written(wording.sentence) === given.join(''))
     if (hit >= 0) return right(wordings[hit], hit, true)
+    // the leading subject tiles are optional: the sentence without them is right too
+    const leftOut = withoutLeading(wordings, input.optional ?? []).find(wording => wording.tokens && wording.tokens.length === given.length && wording.tokens.every((token, at) => normaliseTile(token.text) === given[at]))
+    if (leftOut) return right(leftOut, 1, false)
     return wrong(rule, wordings, given, input.placed)
   }
   const raw = input.text.normalize('NFKC')
@@ -179,6 +209,8 @@ export function gradeJapaneseSentence(rule: Rule, input: SentenceInput): Chinese
   if (variant >= 0) return right(wordings[variant], variant, false, spacing(wordings[variant]))
   const dropped = withoutLeading(wordings, input.optional ?? []).find(wording => written(wording.sentence) === written(raw) || (wording.tokens && covers(folded, wording.tokens, rule)))
   if (dropped) return right(dropped, 1, false)
+  const added = withAddedSubject(rule, folded, input.english, wordings, input.optional ?? [])
+  if (added) return added
   const model = wordings.find(wording => wording.tokens)?.tokens ?? []
   return wrong(rule, wordings, tokenise(raw, model, rule), [])
 }

@@ -2,6 +2,7 @@
 // The builders (session/bank-forms.ts) and the question screens ask the pack; none tests the language. Chinese is the code that was in those builders and in gradeChinese, moved; Japanese and Korean are in japanese-sentence.ts.
 import type { ChineseGrade } from '../session/grade'
 import { gradeChinese } from '../session/grade'
+import { SUBJECT_WORDS, type ParticleLanguage, type SubjectPerson } from './particles'
 import { blankJapanese, gradeJapaneseSentence, japaneseDistractors, JA_RULE, KO_RULE, spellKoreanTokens, spellTokens } from './japanese-sentence'
 import type { SegmentWords, SentenceToken } from './phrase-identity'
 
@@ -54,6 +55,8 @@ export interface SentenceForms {
   spell(text: string, words: SpellInput): SpelledToken[] | undefined
   /** The leading words of a sentence that may be left out when it is typed from its English (Korean 저는); undefined or empty: none. */
   optionalWords?(tokens: readonly SpelledToken[]): string[]
+  /** Does the sentence leave its subject open, so that the English of it may have any subject pronoun? (Japanese and Korean without a subject; undefined: no.) */
+  subjectOpen?(sentence: string): boolean
   /** Marks a built or typed sentence against the accepted wordings. */
   gradeSentence(input: SentenceInput): SentenceGrade
   /** The wrong tiles of a sentence. */
@@ -82,22 +85,40 @@ export const zhSentence: SentenceForms = {
   },
 }
 
+/** The first subject phrase of a sentence's tokens: a pronoun from the pack's table and a subject or topic particle (私は, 私たちは, 저는), each a token or the two split into pieces. The phrase as written and who it names; undefined when the sentence does not open with one, or it is the whole sentence. */
+export function leadingSubject(language: ParticleLanguage, tokens: readonly SpelledToken[]): { text: string; person: SubjectPerson } | undefined {
+  const { words, particles } = SUBJECT_WORDS[language]
+  let joined = ''
+  for (let at = 0; at < Math.min(3, tokens.length - 1); at++) {
+    joined += tokens[at].text
+    for (const [word, person] of Object.entries(words)) for (const particle of particles) if (joined === word + particle) return { text: joined, person }
+  }
+  return undefined
+}
+const subjectRegex = (language: ParticleLanguage): RegExp => {
+  const { words, particles } = SUBJECT_WORDS[language]
+  const alternatives = (items: string[]) => items.sort((a, b) => b.length - a.length).join('|')
+  return new RegExp(`${language === 'ko' ? '(?<![\\uAC00-\\uD7A3])' : ''}(?:${alternatives(Object.keys(words))})(?:${alternatives([...particles])})`, 'u')
+}
+const SUBJECT_REGEX: Record<ParticleLanguage, RegExp> = { ja: subjectRegex('ja'), ko: subjectRegex('ko') }
+/** Does a sentence name its subject anywhere (私は…, …彼女が…)? One that does not says nothing about who: its English subject is open. */
+export const hasSubject = (language: ParticleLanguage, sentence: string): boolean => SUBJECT_REGEX[language].test(sentence.normalize('NFKC'))
+
 /** Japanese: tokens with readings; kana for kanji, katakana for hiragana and romaji are right (japanese-sentence.ts). */
 export const jaSentence: SentenceForms = {
   spell: spellTokens,
+  optionalWords: tokens => { const subject = leadingSubject('ja', tokens); return subject ? [subject.text] : [] },
+  subjectOpen: sentence => !hasSubject('ja', sentence),
   gradeSentence: input => gradeJapaneseSentence(JA_RULE, input),
   distractors: ({ tiles }) => japaneseDistractors(JA_RULE, tiles),
   blank: input => blankJapanese(JA_RULE, input),
 }
 
 /** Korean: tokens as the data cuts them (a particle is its own tile, a token of several words is cut at its spaces); the sentence as written is what is right, with other spacing right but noted, and a leading 저는 may be left out when typing from English. */
-const KO_SUBJECTS = ['\uC800', '\uB098', '\uC81C', '\uB0B4']
 export const koSentence: SentenceForms = {
   spell: spellKoreanTokens,
-  optionalWords: tokens => {
-    const [first, second] = tokens
-    return first && second?.grammar && KO_SUBJECTS.includes(first.text) && ['\uB294', '\uC740', '\uAC00', '\uC774'].includes(second.text) ? [first.text + second.text] : []
-  },
+  optionalWords: tokens => { const subject = leadingSubject('ko', tokens); return subject ? [subject.text] : [] },
+  subjectOpen: sentence => !hasSubject('ko', sentence),
   gradeSentence: input => gradeJapaneseSentence(KO_RULE, input),
   distractors: ({ tiles }) => japaneseDistractors(KO_RULE, tiles),
   blank: input => blankJapanese(KO_RULE, input),

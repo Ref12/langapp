@@ -19,3 +19,17 @@ export const PARTICLE_SWAPS: Record<ParticleLanguage, Record<string, string>> = 
   ko: { '은': '는', '는': '은', '이': '가', '가': '이', '을': '를', '를': '을', '에': '에서', '에서': '에', '도': '는', '와': '과', '과': '와', '의': '는', '하고': '와', '에게': '한테', '한테': '에게', '부터': '까지', '까지': '부터', '로': '으로', '으로': '로', '만': '도', '마다': '도', '보다': '만', '이나': '도', '밖에': '만' },
 }
 export const isParticle = (language: ParticleLanguage, text: string): boolean => text in PARTICLES[language]
+
+/** Who a subject word names, as the English subject pronouns do. */
+export type SubjectPerson = 'i' | 'you' | 'he' | 'she' | 'we' | 'they'
+/** The words that may open a sentence as its subject (a pronoun), and the particles that make them the subject or topic: a phrase made of one of each may be left out when a sentence is typed from its English. */
+export const SUBJECT_WORDS: Record<ParticleLanguage, { words: Record<string, SubjectPerson>; particles: readonly string[] }> = {
+  ja: {
+    words: { '私': 'i', 'わたし': 'i', 'あたし': 'i', '僕': 'i', 'ぼく': 'i', '俺': 'i', 'おれ': 'i', '私たち': 'we', 'わたしたち': 'we', '私達': 'we', '僕たち': 'we', 'あなた': 'you', '君': 'you', 'きみ': 'you', 'あなたたち': 'you', '彼': 'he', '彼女': 'she', '彼ら': 'they', '彼女たち': 'they', '彼女ら': 'they' },
+    particles: ['は', 'が', 'も'],
+  },
+  ko: {
+    words: { '저': 'i', '나': 'i', '제': 'i', '내': 'i', '우리': 'we', '저희': 'we', '당신': 'you', '너': 'you', '그': 'he', '그녀': 'she', '그들': 'they' },
+    particles: ['는', '은', '가', '이', '도'],
+  },
+}

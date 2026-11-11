@@ -109,7 +109,9 @@ export function buildTiles(slot: Slot, phrase: BankPhrase, context: FormContext)
   if (shuffled.slice(0, tiles.length).every((value, index) => value === index)) shuffled = [...shuffled.slice(1), shuffled[0]]
   const accepted = acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase))
   const spelled = spelledAccepted(context, phrase, accepted)
-  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted, ...(spelled ? { spelled } : {}), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py, explanation: `${phrase.zh} (${phrase.py})` }
+  // the leading subject tiles (私は, 저는) are optional: leaving them out is accepted
+  const optional = [...(context.extraOptional?.(phrase) ?? []), ...(spelled?.[0] ? getPack().optionalWords?.(spelled[0]) ?? [] : [])]
+  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted, ...(spelled ? { spelled } : {}), ...(optional.length ? { optional } : {}), model: phrase.zh, modelPinyin: phrase.py, explanation: `${phrase.zh} (${phrase.py})` }
 }
 
 /** Fill the gap: the target word blanked out, three known words that do not occur in the phrase as the wrong options. */

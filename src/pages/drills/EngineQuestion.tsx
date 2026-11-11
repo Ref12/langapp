@@ -11,7 +11,7 @@ import { Pinyin } from '../../components/Pinyin'
 import { speechCaptureSupported, startSpeechCapture, type SpeechCaptureSession } from '../../core/assistant/speech-capture'
 import type { ChoiceExercise, ExerciseAttempt, MatchExercise, TilesExercise } from '../../core/study/contracts'
 import { tidyPinyin } from '../../core/drills/items'
-import { gradeMeaning, type ChineseGrade, type MeaningGrade } from '../../core/session/grade'
+import { gradeSentenceMeaning, type ChineseGrade, type MeaningGrade } from '../../core/session/grade'
 import type { ReadingGrade } from '../../core/language/reading-input'
 import { ModelReading, ReadingText } from '../../components/display-context'
 import type { AnswerMode, ConjugateItem, Form, FormPickItem, GapItem, ListenItem, SessionExercise, TextItem, TilesItem, ChoiceItem, MatchItem } from '../../core/session/types'
@@ -110,7 +110,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   const modes = (['type', 'speak', 'write'] as const).filter(value => value !== mode && (value !== 'write' || (ctx.writing && chinese)) && (value !== 'speak' || chinese || exercise.answerLang === 'en'))
   const check = () => {
     if (chinese) { const grade = pack.gradeSentence({ text, accepted: exercise.accepted, spelled: exercise.spelled, forms: ctx.forms, optional: exercise.optional, english: exercise.replyEn ?? (exercise.promptLang === 'en' ? exercise.prompt : '') }); setChecked({ correct: grade.verdict === 'correct', grade }) }
-    else if (exercise.answerLang === 'en') { const meaning = gradeMeaning(text, exercise.accepted); setChecked({ correct: meaning.verdict === 'correct' || meaning.verdict === 'near', meaning, self: meaning.verdict === 'self' }) }
+    else if (exercise.answerLang === 'en') { const meaning = gradeSentenceMeaning(text, exercise.accepted, !!exercise.phrase && !!pack.subjectOpen?.(exercise.phrase.zh)); setChecked({ correct: meaning.verdict === 'correct' || meaning.verdict === 'near', meaning, self: meaning.verdict === 'self' }) }
       else { const pinyin = pack.readingInput.grade(text, exercise.accepted, pack.romaji); setChecked({ correct: pinyin.verdict === 'correct' || pinyin.verdict === 'tones', self: pinyin.verdict === 'self', pinyin }) }
   }
   const listen = () => {

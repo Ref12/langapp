@@ -1,5 +1,6 @@
 import type { BankPhrase } from '../phrases/contracts'
 import { getPack } from '../language'
+import { openSubjectMatch } from '../language/english-subject'
 import type { SegmentWords } from '../language/phrase-identity'
 import { phraseKey } from '../phrases/key'
 import { formatPinyin, parseReadings, withTone, type Syllable } from '../pinyin'
@@ -290,4 +291,15 @@ export function gradeMeaning(answer: string, accepted: readonly string[]): Meani
   }
   if (!best) return { verdict: 'wrong', closest: options[0]?.text }
   return { verdict: 'self', closest: best.text }
+}
+
+/** The note under an English answer that is right apart from its subject. */
+export const OPEN_SUBJECT_NOTE = 'No subject in the sentence, so I / you / he / she / it / we / they all fit.'
+
+/** Grades an English meaning of a sentence whose own subject is open (Japanese or Korean with none written): an answer that differs from a wording only in its subject pronoun, and the agreement that follows, is right. A sentence with a subject (`open` false) is graded as gradeMeaning does. */
+export function gradeSentenceMeaning(answer: string, accepted: readonly string[], open: boolean): MeaningGrade {
+  const meaning = gradeMeaning(answer, accepted)
+  if (!open || meaning.verdict === 'correct') return meaning
+  const same = openSubjectMatch(answer, accepted)
+  return same ? { verdict: 'correct', closest: same, note: OPEN_SUBJECT_NOTE } : meaning
 }
