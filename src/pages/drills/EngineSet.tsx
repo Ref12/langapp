@@ -26,6 +26,7 @@ import { formLabel } from '../../core/session/form-label'
 import { LENGTHS, LENGTH_LABEL, STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
 import { ExerciseQuestion, type Outcome } from './EngineQuestion'
 import { IntroCard } from './IntroCards'
+import { PhraseCounts } from './PhraseItems'
 
 const setRoute = (id: string, page = '') => `practice/set/${id}${page ? `/${page}` : ''}`
 type Props = PageProps & { set: DrillSet; items: ItemInfo[]; catalog: Catalog }
@@ -64,12 +65,12 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
   const counts = plan ? plan.stages.filter(entry => entry.stage !== 'introduce').map(entry => ({ stage: entry.stage, count: entry.exercises.length })) : []
   return <div className="dr engine">
     <a className="back-link" href="#practice"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
-    <PageHeading eyebrow="Practice session" title={set.title}>{itemCount(set.refs.length)}</PageHeading>
+    <PageHeading eyebrow="Practice session" title={set.title}>{set.source === 'phrases' ? <PhraseCounts refs={set.refs} /> : itemCount(set.refs.length)}</PageHeading>
     <section className="panel dr-panel engine-start" aria-labelledby="engine-start">
       <h2 id="engine-start">Ready when you are</h2>
       {engine.lastRun && <p className="engine-last-run" role="status">Last run: {engine.lastRun.correct} of {engine.lastRun.total} right, {shortDate(engine.lastRun.at)}</p>}
       {resumable && <p className="engine-resume" role="status"><strong>In progress: {engine.done} of {engine.planned}.</strong> Resume where you left off, or change the preset or length to start a fresh run.</p>}
-      <p className="small muted">The app picks the exercises and their order: recognise, recall, produce, then use the words in sentences. Nothing to choose; press Start.</p>
+      <p className="small muted">{set.source === 'phrases' ? 'Phrases are practised as whole sentences: translating, building, filling a gap, listening. None is added to your knowledge set. Nothing to choose; press Start.' : 'The app picks the exercises and their order: recognise, recall, produce, then use the words in sentences. Nothing to choose; press Start.'}</p>
       <div className="engine-options">
         <div><span className="eyebrow">Preset</span>
           <div className="segmented engine-presets" role="group" aria-label="Preset">
@@ -89,7 +90,7 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
         <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}>{set.source === 'new' || set.source === 'lesson' ? 'Intro cards' : 'Items'}</a></div>
       {building && <PresetBuilder onSave={preset => { setCustom(saveCustomPreset(preset)); setBuilding(false); void run(async () => { await setEngineChoice(set.id, { preset: preset.id }) }) }} />}
     </section>
-    <SkillFocus set={set} items={items} />
+    {set.source !== 'phrases' && <SkillFocus set={set} items={items} />}
   </div>
 }
 
@@ -178,7 +179,7 @@ function EngineSummary({ set, state, items, busy, run }: { set: DrillSet; state:
   const missed = summary.missedRefs.length
   return <div className="dr engine engine-summary">
     <a className="back-link" href="#practice"><ArrowLeft size={16} /> {DRILLS_LABEL}</a>
-    <PageHeading eyebrow="Session complete" title={set.title}>{summary.correct} of {summary.total} right the first time</PageHeading>
+    <PageHeading eyebrow="Session complete" title={set.title}>{summary.correct} of {summary.total} right the first time{set.source === 'phrases' ? <> · <PhraseCounts refs={set.refs} /></> : null}</PageHeading>
     <section className="panel dr-panel" aria-labelledby="engine-stages"><h2 id="engine-stages">By stage</h2>
       <ul className="dr-rows">{summary.stages.map(entry => <li key={entry.stage}><div><strong>{STAGE_LABEL[entry.stage]}</strong><span className="small muted">{entry.correct} of {entry.total} right</span></div>
         <progress aria-label={`${STAGE_LABEL[entry.stage]} score`} value={entry.correct} max={Math.max(1, entry.total)} /></li>)}</ul>
@@ -188,7 +189,7 @@ function EngineSummary({ set, state, items, busy, run }: { set: DrillSet; state:
     <section className="panel dr-panel engine-next" aria-labelledby="engine-next"><h2 id="engine-next">What next?</h2>
       <div className="button-row engine-next-actions">
         <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await setEngineChoice(set.id, {}); navigate(setRoute(set.id)) })}>Practise again</button>
-        {missed > 0 && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { navigate(setRoute(await createDrillSet({ kind: 'refs', refs: summary.missedRefs, origin: { kind: 'drill', id: set.id } }), '')) })}>Practise the missed items ({missed})</button>}
+        {missed > 0 && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { navigate(setRoute(await createDrillSet({ kind: 'refs', refs: summary.missedRefs, origin: { kind: 'drill', id: set.id } }), '')) })}>{set.source === 'phrases' ? `Practise the missed phrases (${missed})` : `Practise the missed items (${missed})`}</button>}
         <a className="button secondary" href="#practice">New practice set</a>
         <a className="button secondary" href="#practice">Back to Practice</a></div>
       <p className="small muted">Practise again opens the Start screen, where you can change the preset and length.</p></section>
