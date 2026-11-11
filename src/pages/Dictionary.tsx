@@ -5,9 +5,10 @@ import { savePreferences } from '../core/learning'
 import { PenLine, Search } from 'lucide-react'
 import { playBrowserSpeech } from '../core/assistant/speech'
 import { removeUserPhrase } from '../core/phrases/user'
-import { catalogEntries, buildPhraseRows, filterPhraseRows, inPhraseScope, isPhraseScope, loadPhraseSources, mergePhrases, peekPhraseSources, phrasesRouteFor, phraseScopeCounts, PHRASE_SCOPES, type PhraseScope, type PhraseSources } from '../core/phrases/dictionary'
+import { catalogEntries, buildPhraseRows, filterPhraseRows, inPhraseScope, isPhraseScope, lessonRangeKey, lessonRanges, loadPhraseSources, parseLessonRange, mergePhrases, peekPhraseSources, phrasesRouteFor, phraseScopeCounts, PHRASE_SCOPES, type PhraseScope, type PhraseSources } from '../core/phrases/dictionary'
+import { resolveDisplaySettings } from '../components/display-settings'
 import { loadPhraseIndex, type PhraseIndex } from '../core/phrases/index'
-import { PhraseTable } from '../components/phrases/PhraseTable'
+import { PhraseTable, type PhraseTableView } from '../components/phrases/PhraseTable'
 import { usePageActions } from '../components/page-actions-context'
 import { makeMatcher, ownCharacterData, FALLBACK, type SearchTarget } from '../core/dictionary-search'
 import { catalogBandList, catalogCounts, type Unit } from '../core/study/catalog'
@@ -38,6 +39,7 @@ const PAGE = 48
 export function Dictionary({ workspace, now, run, busy, section, initialScope, initialQuery, initialWrite }: PageProps & { section?: string; initialScope?: string; initialQuery?: string; initialWrite?: string }) {
   const { catalog, error } = useCatalog()
   const pack = getPack()
+  const packPhrases = pack.dictionary.phrases
   const sections = pack.dictionary.sections
   const [dictError, setDictError] = useState('')
   // The pack's look-up words (Japanese: the JLPT words outside the lessons), loaded on demand: when All words is chosen or a search is typed.
@@ -65,7 +67,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   const withQuery = (parts: string[]) => { const all = [...(query.trim() ? [`q=${encodeURIComponent(query)}`] : []), ...parts]; return all.length ? `?${all.join('&')}` : '' }
   const goPhrases = (next: PhraseScope) => { setLimit(PAGE); window.location.hash = `dictionary/phrases/${next}${withQuery([])}` }
   const go = (section: string, next: 'all' | 'knowledge' | 'collections' | 'media', write: 'all' | 'can' | 'not' = writeFilter) => { window.location.hash = `dictionary/${section}/${next}${withQuery(section === 'characters' && next === 'knowledge' && write !== 'all' ? [`write=${write}`] : [])}` }
-  const goSection = (section: string) => { setQuery(''); setLimit(PAGE); window.location.hash = (section === 'phrases' ? 'dictionary/phrases/all' : `dictionary/${section}/${scope}`) }
+  const goSection = (section: string) => { setQuery(''); setBand('all'); setLimit(PAGE); window.location.hash = (section === 'phrases' ? 'dictionary/phrases/all' : `dictionary/${section}/${scope}`) }
   const [band, setBand] = useState('all')
   const [query, setQuery] = useState(initialQuery ?? '')
   const [limit, setLimit] = useState(PAGE)
@@ -97,7 +99,8 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
   // Counts without the band files: the shipped counts from the small index, plus the catalog's examples and the learner's own phrases.
   const [phraseIndex, setPhraseIndex] = useState<PhraseIndex | undefined>()
   useEffect(() => { if (!sections.phrases) return; let alive = true; void loadPhraseIndex().then(value => { if (alive) setPhraseIndex(value) }); return () => { alive = false } }, [sections.phrases])
-  const examples = useMemo(() => catalog && phraseIndex ? catalogEntries(catalog) : [], [catalog, phraseIndex])
+  // a pack with its own Phrases section has the lesson sentences as its bank (the examples are the same sentences), so only the Chinese count adds them
+  const examples = useMemo(() => catalog && phraseIndex && !packPhrases ? catalogEntries(catalog) : [], [catalog, phraseIndex, packPhrases])
   const indexedTotal = catalog && phraseIndex && userPhraseRows ? phraseIndex.total + examples.length + userPhraseRows.length : undefined
   const indexedUse = (ref: string) => catalog && phraseIndex && userPhraseRows ? (phraseIndex.byWord.get(ref) ?? 0) + examples.filter(entry => entry.phrase.words.includes(ref)).length + userPhraseRows.filter(row => row.words.includes(ref)).length : undefined
   const phraseUse = useMemo(() => { const counts = new Map<string, number>(); for (const row of phraseRows ?? []) for (const ref of new Set(row.phrase.words)) counts.set(ref, (counts.get(ref) ?? 0) + 1); return counts }, [phraseRows])
@@ -198,7 +201,13 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     return byRank(eligible.map(item => item.entry), entry => ranks.get(entry)!, entry => known.has(`source:${entry.id}`), () => 0)
   })()
   const formOf = useCallback((ref: string) => { const unit = catalog?.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : undefined }, [catalog])
-  const filteredPhrases = useMemo(() => filterPhraseRows(phraseRows ?? [], { band, query, formOf }), [phraseRows, band, query, formOf])
+  const romajiOverrides = pack.romaji
+  const lessons = packPhrases ? parseLessonRange(band) : undefined
+  const phraseSearch = useMemo(() => packPhrases?.search(query, romajiOverrides), [packPhrases, query, romajiOverrides])
+  const lessonChoices = useMemo(() => packPhrases ? lessonRanges(phraseRows ?? []) : [], [packPhrases, phraseRows])
+  const filteredPhrases = useMemo(() => filterPhraseRows(phraseRows ?? [], { band: packPhrases ? 'all' : band, query, formOf, search: phraseSearch, lessons }), [phraseRows, band, query, formOf, phraseSearch, packPhrases, lessons])
+  const readingStyle = resolveDisplaySettings(workspace.preferences).readingStyle
+  const phraseView: PhraseTableView | undefined = packPhrases ? { columns: packPhrases.columns, lang: packPhrases.lang, reading: packPhrases.reading({ text: '', reading: '' }, readingStyle) === undefined ? undefined : row => packPhrases.reading({ text: row.phrase.zh, reading: row.pinyin }, readingStyle, romajiOverrides) ?? '' } : undefined
   const phraseCounts = phraseScopeCounts(filteredPhrases)
   const phraseMatches = filteredPhrases.filter(row => inPhraseScope(row, phraseScope))
   const count = phrasesView ? phraseMatches.length : scope === 'media' ? sourceMatches.length : kind === 'characters' ? characterMatches.length : listed.length
@@ -229,7 +238,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
       card={workspace.studyCards.find(card => card.id === cardId(unit.ref, DOMAIN))} entry={entries.get(unit.ref)} addedIndex={addedIndex} run={run} busy={busy} route={`dictionary/${kind}/${scope}`} compact forms phrases={unit.kind === 'vocabulary' && sections.phrases ? { href: `#${phrasesRouteFor(unit.record.ch)}`, count: phraseRows ? phraseUse.get(unit.ref) ?? 0 : indexedUse(unit.ref) } : undefined} /></div>
   return <>
     <PageHeading eyebrow="THE WHOLE CURRICULUM" title={phrasesView ? 'Phrases, ready or pending.' : kind === 'characters' ? 'Characters, one stroke at a time.' : 'Vocabulary and grammar, by band.'}>
-      {phrasesView ? 'Every phrase the app can use: lesson examples, the generated bank and the phrases you added. A phrase is ready when you know all its words (and grammar, for a generated one).' : kind === 'characters' ? 'Your character set includes characters from words in your knowledge set, plus any you add manually. Practice their strokes here; inclusion does not claim writing proficiency.'
+      {phrasesView && packPhrases ? packPhrases.intro : phrasesView ? 'Every phrase the app can use: lesson examples, the generated bank and the phrases you added. A phrase is ready when you know all its words (and grammar, for a generated one).' : kind === 'characters' ? 'Your character set includes characters from words in your knowledge set, plus any you add manually. Practice their strokes here; inclusion does not claim writing proficiency.'
         : pack.dictionary.intro}</PageHeading>
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {dictError && <div className="notice error" role="alert"><p>The look-up words could not be loaded. {dictError}</p></div>}
@@ -238,7 +247,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button aria-pressed={!phrasesView && kind === 'vocabulary'} onClick={() => { goSection('vocabulary') }}>Vocabulary ({tabCount('vocabulary').toLocaleString('en-US')})</button>
         <button aria-pressed={!phrasesView && kind === 'grammar'} onClick={() => { goSection('grammar') }}>Grammar ({tabCount('grammar').toLocaleString('en-US')})</button>
         {sections.characters && <button aria-pressed={!phrasesView && kind === 'characters'} onClick={() => { goSection('characters') }}>Characters{catalog ? ` (${tabCount('characters').toLocaleString('en-US')})` : ''}</button>}
-        {sections.phrases && <button aria-pressed={phrasesView} onClick={() => { goSection('phrases') }}>Phrases{phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : indexedTotal !== undefined ? ` (${indexedTotal.toLocaleString('en-US')})` : ''}</button>}
+        {sections.phrases && <button aria-pressed={phrasesView} onClick={() => { goSection('phrases') }}>Phrases{phraseRows ? ` (${phraseRows.length.toLocaleString('en-US')})` : indexedTotal !== undefined && !packPhrases ? ` (${indexedTotal.toLocaleString('en-US')})` : ''}</button>}
       </div>
       {phrasesView ? <div className="segmented" role="group" aria-label="Phrase scope">
         {PHRASE_SCOPES.map(value => <button key={value} aria-pressed={phraseScope === value} onClick={() => goPhrases(value)}>{{ all: 'All', ready: 'Ready', pending: 'Pending', mine: 'Added by me' }[value]}{phraseRows ? ` (${phraseCounts[value].toLocaleString('en-US')})` : ''}</button>)}
@@ -252,9 +261,10 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
         <button aria-pressed={!allWords} onClick={() => { setLimit(PAGE); setAllWords(false) }}>Lesson words ({catalogCounts[kind].toLocaleString('en-US')})</button>
         <button aria-pressed={allWords} onClick={() => { setLimit(PAGE); setAllWords(true) }}>All words{lookupData ? ` (${(catalogCounts[kind] + (kind === 'vocabulary' ? lookupData.words.length : lookupData.grammar.length)).toLocaleString('en-US')})` : ''}</button>
       </div>}
-      <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={phrasesView ? 'Chinese, pinyin, or English' : kind === 'characters' ? 'Character, codepoint, or containing word' : pack.dictionary.placeholder[kind === 'vocabulary' ? 'vocabulary' : 'grammar']} aria-label="Search dictionary" />
+      <div className="search-field"><Search size={18} /><input type="search" value={query} onChange={event => select(setQuery)(event.target.value)} placeholder={phrasesView ? packPhrases?.placeholder ?? 'Chinese, pinyin, or English' : kind === 'characters' ? 'Character, codepoint, or containing word' : pack.dictionary.placeholder[kind === 'vocabulary' ? 'vocabulary' : 'grammar']} aria-label="Search dictionary" />
         {sections.draw && <button type="button" className="search-draw" aria-expanded={drawing} disabled={!catalog} onClick={() => setDrawing(value => !value)}><PenLine size={16} />Draw</button>}</div>
-      <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBandList().map(value => <option key={value} value={value}>{bandName(pack, value)}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>
+      {phrasesView && packPhrases ? <label className="filter-label">Lessons <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All lessons</option>{lessonChoices.map(range => <option key={lessonRangeKey(range)} value={lessonRangeKey(range)}>{range[0]}–{range[1]}</option>)}</select></label>
+      : <label className="filter-label">Band <select value={band} onChange={event => select(setBand)(event.target.value)}><option value="all">All bands</option>{catalogBandList().map(value => <option key={value} value={value}>{bandName(pack, value)}{catalog && !phrasesView ? ` (${(bandCounts.get(value) ?? 0).toLocaleString('en-US')})` : ''}</option>)}</select></label>}
     </div>
     {selectable && selecting && <div className="select-bar" role="toolbar" aria-label="Select">
       <button type="button" className="button secondary" onClick={() => { setSelecting(false); setPicked(new Map()) }}>Done</button>
@@ -274,7 +284,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     {kind === 'characters' && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? phrasesView && !phraseRows ? 'Loading phrases...' : phrasesView ? `${count} ${count === 1 ? 'phrase' : 'phrases'}` : `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {phrasesView && <>
-      {phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, 'zh-Hans')} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}</>}
+      {phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} view={phraseView} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, pack.speechLocale)} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}</>}
     {!phrasesView && scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
     {catalog && !phrasesView && kind !== 'characters' && scope !== 'media' && <div className="word-grid"><Suspense fallback={null}>{listed.slice(0, limit).map(entry => 'unit' in entry ? renderZh(entry.unit) : 'word' in entry ? <LookupWordCard key={entry.word.id} word={entry.word} reading={workspace.preferences.pinyin} levelName={lookup?.levelName} /> : <LookupGrammarCard key={entry.item.id} item={entry.item} levelName={lookup?.levelName} />)}</Suspense></div>}

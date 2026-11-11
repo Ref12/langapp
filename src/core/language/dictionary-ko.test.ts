@@ -26,10 +26,28 @@ async function listed(query: string): Promise<string[]> {
   return rows.sort((a, b) => a.rank - b.rank || a.order - b.order).map(row => row.form)
 }
 
+describe("the Korean pack's Phrases section", () => {
+  const phrases = () => koPack.dictionary.phrases!
+  const row = { text: '저는 학생이에요.', reading: '저는 학생이에요.', en: 'I am a student.' }
+  const finds = (query: string) => phrases().search(query).rank(row) !== undefined
+  it('names its columns and cells for Korean', () => {
+    expect(phrases().columns).toEqual({ text: 'Korean', reading: 'Reading' })
+    expect(phrases().lang).toBe('ko')
+    expect(phrases().placeholder).toBe('Korean, romanization, or English')
+  })
+  it('romanizes the Hangul, or hides the column when the setting is Hangul only', () => {
+    expect(phrases().reading(row, 'romanized')).toBe('jeoneun haksaengieyo.')
+    expect(phrases().reading(row, undefined)).toBe('jeoneun haksaengieyo.')
+    expect(phrases().reading(row, 'hangul')).toBeUndefined()
+  })
+  it.each([['학생'], ['저는'], ['haksaeng'], ['Haksaeng'], ['jeoneun haksaengieyo'], ['ㅈㄴㅎㅅ'], ['student']])('finds a sentence by %s', query => { expect(finds(query)).toBe(true) })
+  it.each([['공부'], ['ㅂㅂ'], ['water']])('does not find it by %s', query => { expect(finds(query)).toBe(false) })
+})
+
 describe("the Korean pack's Dictionary", () => {
-  it('has Vocabulary and Grammar only, and the Dictionary on', () => {
+  it('has Vocabulary, Grammar and Phrases, and the Dictionary on', () => {
     expect(koPack.features.dictionary).toBe(true)
-    expect(koPack.dictionary.sections).toEqual({ characters: false, phrases: false, draw: false, media: false })
+    expect(koPack.dictionary.sections).toEqual({ characters: false, phrases: true, draw: false, media: false })
     expect(koPack.dictionary.placeholder.vocabulary).toBe('Word, romanization, or English')
     expect(koPack.dictionary.footnote).toContain('National Institute of Korean Language')
     expect(koPack.dictionary.footnote).toContain('Korean-English Learners')

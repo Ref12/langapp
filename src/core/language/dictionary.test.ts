@@ -16,11 +16,34 @@ const found = (query: string, kind: 'vocabulary' | 'grammar' = 'vocabulary') => 
   return units().filter(unit => unit.kind === kind && search.rank(unit) !== undefined).map(unit => unit.record.lb)
 }
 
+describe("the Japanese pack's Phrases section", () => {
+  const phrases = () => jaPack.dictionary.phrases!
+  const row = { text: '私は勉強します。', reading: 'わたしはべんきょうします。', en: 'I study.' }
+  const finds = (query: string) => phrases().search(query, jaPack.romaji).rank(row) !== undefined
+  it('names its columns and cells for Japanese', () => {
+    expect(phrases().columns).toEqual({ text: 'Japanese', reading: 'Reading' })
+    expect(phrases().lang).toBe('ja')
+    expect(phrases().placeholder).toBe('Japanese, reading, or English')
+  })
+  it('writes the reading as kana or as romaji, by the setting', () => {
+    expect(phrases().reading(row, 'kana')).toBe('わたしはべんきょうします。')
+    expect(phrases().reading(row, undefined)).toBe('わたしはべんきょうします。')
+    expect(phrases().reading(row, 'romaji', jaPack.romaji)).toBe('watashihabenkyoushimasu.')
+  })
+  it.each([['勉強'], ['べんきょう'], ['ベンキョウ'], ['benkyou'], ['benkyo'], ['benkyō'], ['benkyoushimasu'], ['study'], ['STUDY']])('finds a sentence by %s', query => { expect(finds(query)).toBe(true) })
+  it.each([['食べる'], ['tabe'], ['drink']])('does not find it by %s', query => { expect(finds(query)).toBe(false) })
+  it('is empty for an empty query and ranks the exact sentence first', () => {
+    expect(phrases().search('').empty).toBe(true)
+    expect(phrases().search(row.text).rank(row)).toBe(0)
+  })
+})
+
 describe("the Japanese pack's Dictionary", () => {
-  it('has the Vocabulary and Grammar sections only, and the Chinese pack all of them', () => {
+  it('has Vocabulary, Grammar and Phrases, and the Chinese pack all of them', () => {
     expect(jaPack.features.dictionary).toBe(true)
-    expect(jaPack.dictionary.sections).toEqual({ characters: false, phrases: false, draw: false, media: false })
+    expect(jaPack.dictionary.sections).toEqual({ characters: false, phrases: true, draw: false, media: false })
     expect(zhPack.dictionary.sections).toEqual({ characters: true, phrases: true, draw: true, media: true })
+    expect(zhPack.dictionary.phrases).toBeUndefined()
   })
   it('lists every word and grammar point of the pack catalog and nothing else', () => {
     const empty = jaPack.dictionary.searchUnits('')

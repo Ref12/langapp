@@ -184,10 +184,10 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
   }
   const card = () => document.querySelector('[data-unit="vocabulary:taberu--eat"]') as HTMLElement
 
-  it('opens with Vocabulary and Grammar only, scoped to the lessons, in the Japanese app words', async () => {
+  it('opens with Vocabulary, Grammar and Phrases, scoped to the lessons, in the Japanese app words', async () => {
     await open()
     const sections = within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)
-    expect(sections).toEqual(['Vocabulary (292)', 'Grammar (115)'])
+    expect(sections).toEqual(['Vocabulary (292)', 'Grammar (115)', expect.stringMatching(/^Phrases/)])
     expect(within(screen.getByRole('group', { name: 'Dictionary scope' })).getAllByRole('button').map(button => button.textContent)).toEqual(['Full list', expect.stringMatching(/^My knowledge set/), expect.stringMatching(/^In .*\(\d+\)$/)])
     expect(screen.queryByRole('button', { name: /Draw/ })).toBeNull()
     expect(screen.getByRole('status')).toHaveTextContent('292 items')
@@ -202,20 +202,26 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
     expect(screen.getByLabelText('Band')).toBeTruthy()
     expect(screen.getByRole('option', { name: /^Level 1 \(292\)$/ })).toBeTruthy()
   })
+  it('Phrases', async () => {
+    const text = await screenText('dictionary/phrases/all', () => expect(document.querySelector('tr[data-phrase]')).toBeTruthy())
+    // the page's own words: the sentences and their meanings are lesson content (a lesson about Chinese says so)
+    const chrome = document.querySelector('main')!.cloneNode(true) as HTMLElement
+    chrome.querySelectorAll('tbody').forEach(body => body.remove())
+    expect(visibleText(chrome).split('\n').filter(line => FORBIDDEN.test(line)).map(line => line.slice(0, 160))).toEqual([])
+    await expect(text).toMatchFileSnapshot('./__screens__/ja-dictionary-phrases.txt')
+  })
   it('never reads the old Japanese dictionary file or the old refs', async () => {
     const other = await import('../core/language/dictionary-file')
     const spy = vi.spyOn(other, 'loadDictionary')
     await open()
     expect(spy).not.toHaveBeenCalled()
     expect(document.querySelector('[data-testid="dictionary-results"]')).toBeNull()
-    expect(document.querySelector('.phrase-word-link')).toBeNull()
+    // a word's card links to the phrases that use it (the section is on), never to old refs
+    for (const link of document.querySelectorAll('.phrase-word-link')) expect(link.getAttribute('href')).toMatch(/^#dictionary\/phrases\/all\?q=/)
   })
   it('lands on Vocabulary from a link to a section that is off', async () => {
     await open('dictionary/characters/all')
     expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getByRole('button', { name: /Vocabulary/ })).toHaveAttribute('aria-pressed', 'true')
-    cleanup()
-    await open('dictionary/phrases/all')
-    expect(screen.getByRole('status')).toHaveTextContent('292 items')
     cleanup()
     await open('dictionary/vocabulary/media')
     expect(screen.queryByText('From your media')).toBeNull()

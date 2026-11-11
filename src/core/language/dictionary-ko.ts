@@ -7,7 +7,7 @@ import type { Unit } from '../study/catalog'
 import type { PackDisplayForms } from './meta'
 import { romanizeKorean } from './korean-reading'
 import type { DictGrammar, DictWord } from './dictionary-file'
-import type { LookupSearch, PackDictionary, PackLookup, UnitSearch } from './dictionary'
+import type { LookupSearch, PackDictionary, PackLookup, PackPhrases, PhraseSearch, PhraseSearchRow, UnitSearch } from './dictionary'
 
 type CatalogUnit = Extract<Unit, { kind: 'vocabulary' | 'grammar' }>
 
@@ -97,11 +97,34 @@ export function koreanLookupSearch(query: string): LookupSearch {
 /** The TOPIK list (src/data/dictionary/ko.json, read by core/language/dictionary-file.ts) less the entries the lessons already have. Its code and data load on demand (lookup-ko.ts). */
 export const koLookup: PackLookup = { load: inCatalog => import('./lookup-ko').then(module => module.loadKoreanLookup(inCatalog)), levelName: level => level }
 
+const phraseKeys = new WeakMap<object, KoKeys>()
+/** Korean phrase search: Hangul spelling, initial consonants, the romanization of the sentence, and the English. */
+export function koreanPhraseSearch(query: string): PhraseSearch {
+  const ranker = koreanRanker(query)
+  const keysOfRow = (row: PhraseSearchRow): KoKeys => {
+    let keys = phraseKeys.get(row)
+    if (!keys) { keys = keysOfText([foldSpelling(row.text)], row.en.toLowerCase()); phraseKeys.set(row, keys) }
+    return keys
+  }
+  return { empty: ranker.empty, rank: row => ranker.empty ? 0 : ranker.rank(keysOfRow(row)) }
+}
+
+/** The Korean Phrases section: the lesson sentences, with the romanization of the Hangul unless the learner chose Hangul only. */
+export const koPhrases: PackPhrases = {
+  intro: 'Every sentence of the lessons, with the words and grammar it uses. A sentence is ready when you know all its words and grammar.',
+  placeholder: 'Korean, romanization, or English',
+  columns: { text: 'Korean', reading: 'Reading' },
+  lang: 'ko',
+  reading: (row, style) => style === 'hangul' ? undefined : romanizeKorean(row.text),
+  search: koreanPhraseSearch,
+}
+
 const noSection = { characters: false, phrases: false, draw: false, media: false }
 
 /** Korean: Vocabulary and Grammar of the lessons, and the TOPIK words outside them as look-up. */
 export const koDictionary = (offer: PackDisplayForms): PackDictionary => ({
-  sections: noSection,
+  sections: { ...noSection, phrases: true },
+  phrases: koPhrases,
   intro: 'Every word and grammar point in your lessons, separate from your knowledge set. Adding an item makes it eligible for review; it does not claim you know it.',
   placeholder: { vocabulary: 'Word, romanization, or English', grammar: 'Pattern, romanization, or English' },
   footnote: 'Review timing for each item in your knowledge set follows FSRS spaced repetition for reading. Look-up words: Korean-English Learners\u2019 Dictionary, National Institute of Korean Language (CC BY-SA 2.0 KR); TOPIK levels as given in that list.',

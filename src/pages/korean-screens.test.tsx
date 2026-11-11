@@ -202,12 +202,21 @@ describe('the Korean Dictionary: lesson words first, the TOPIK words as look-up'
     await expect(text).toMatchFileSnapshot('./__screens__/ko-dictionary.txt')
     cleanup()
     await open()
-    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)).toEqual([expect.stringMatching(/^Vocabulary \(\d+\)$/), expect.stringMatching(/^Grammar \(\d+\)$/)])
-    expect(screen.queryByRole('button', { name: /Draw|Characters|Phrases/ })).toBeNull()
+    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)).toEqual([expect.stringMatching(/^Vocabulary \(\d+\)$/), expect.stringMatching(/^Grammar \(\d+\)$/), expect.stringMatching(/^Phrases/)])
+    expect(screen.queryByRole('button', { name: /Draw|Characters/ })).toBeNull()
+    expect(screen.getByRole('button', { name: /^Phrases/ })).toBeTruthy()
     expect(screen.getByPlaceholderText('Word, romanization, or English')).toBeTruthy()
     expect(within(screen.getByRole('group', { name: 'Words shown' })).getByRole('button', { name: /^Lesson words/ })).toHaveAttribute('aria-pressed', 'true')
     expect(lookupCards()).toHaveLength(0)
     expect(document.querySelector('.page-footnote')?.textContent).toContain('National Institute of Korean Language')
+  })
+  it('Phrases', async () => {
+    const text = await screenText('dictionary/phrases/all', () => expect(document.querySelector('tr[data-phrase]')).toBeTruthy())
+    // the page's own words: the sentences and their meanings are lesson content (a lesson about Chinese says so)
+    const chrome = document.querySelector('main')!.cloneNode(true) as HTMLElement
+    chrome.querySelectorAll('tbody').forEach(body => body.remove())
+    expect(visibleText(chrome).split('\n').filter(line => FORBIDDEN.test(line)).map(line => line.slice(0, 160))).toEqual([])
+    await expect(text).toMatchFileSnapshot('./__screens__/ko-dictionary-phrases.txt')
   })
   it('All words adds the TOPIK words as look-up cards without Add to study', async () => {
     await open()

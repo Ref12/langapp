@@ -5,6 +5,7 @@ import { phraseReadingsOf } from '../pinyin/phrase-readings'
 import { tidyPinyin } from '../drills/items'
 import { catalogBankPhrases, shippedPhrases, userBankPhrase, usableFor } from './bank'
 import type { BankPhrase, PhraseHeard, UserPhrase } from './contracts'
+import type { PhraseSearch, PhraseSearchRow } from '../language/dictionary'
 import { phraseKey } from './key'
 
 // The Dictionary's Phrases section: every phrase of the bank (the catalog's examples, the shipped files, the learner's own) as one list with its state for the learner.
@@ -171,10 +172,21 @@ export function buildPhraseRows(catalog: Catalog, entries: readonly PhraseEntry[
   return built.map((row, at) => ({ row, at })).sort((a, b) => a.row.lesson - b.row.lesson || sourceOrder(a.row.phrase) - sourceOrder(b.row.phrase) || a.at - b.at).map(item => item.row)
 }
 
-export interface PhraseFilter { scope?: PhraseScope; band?: string; query?: string; formOf?: (ref: string) => string | undefined }
+export interface PhraseFilter { scope?: PhraseScope; band?: string; query?: string; formOf?: (ref: string) => string | undefined; search?: PhraseSearch; lessons?: LessonRange }
+
+/** A range of lessons, both ends included. */
+export type LessonRange = readonly [from: number, to: number]
+/** The ranges a pack with one band is filtered by: every `size` lessons up to the last one any phrase is ready at. */
+export function lessonRanges(rows: readonly Pick<PhraseRow, 'lesson'>[], size = 10): LessonRange[] {
+  const last = Math.max(0, ...rows.map(row => row.lesson))
+  return Array.from({ length: Math.ceil(last / size) }, (_, at) => [at * size + 1, Math.min(last, (at + 1) * size)] as const)
+}
+export const lessonRangeKey = (range: LessonRange) => `${range[0]}-${range[1]}`
+export const parseLessonRange = (key: string): LessonRange | undefined => { const found = /^(\d+)-(\d+)$/.exec(key); return found ? [Number(found[1]), Number(found[2])] : undefined }
 
 /** Rows matching band and search (formOf maps a vocabulary ref to its Chinese, to rank phrases that use the searched word as a word first), not yet by scope; search ranks like the vocabulary search (Chinese, toneless pinyin, English), best first. */
-export function filterPhraseRows(rows: readonly PhraseRow[], { band = 'all', query = '', formOf }: Omit<PhraseFilter, 'scope'>): PhraseRow[] {
+export function filterPhraseRows(rows: readonly PhraseRow[], { band = 'all', query = '', formOf, search, lessons }: Omit<PhraseFilter, 'scope'>): PhraseRow[] {
+  if (search) return filterPackPhraseRows(rows, query, search, lessons, formOf)
   const matcher = makeMatcher(query)
   const wanted = query.trim()
   const found: { row: PhraseRow; rank: number; at: number }[] = []
@@ -185,6 +197,22 @@ export function filterPhraseRows(rows: readonly PhraseRow[], { band = 'all', que
     // A phrase that uses the searched word as a word (its segmented refs) comes before one that only contains the characters inside other words.
     const asWord = !matcher.empty && !!formOf && row.phrase.words.some(ref => formOf(ref) === wanted)
     found.push({ row, rank: asWord ? -1 : rank, at })
+  })
+  return found.sort((a, b) => a.rank - b.rank || a.at - b.at).map(item => item.row)
+}
+
+const searchRows = new WeakMap<PhraseRow, PhraseSearchRow>()
+/** The pack's own search (a language whose text the Chinese matcher cannot fold) and the lesson-range filter: best rank first, then the order of the rows; a phrase that uses the searched word as a word is always found. */
+function filterPackPhraseRows(rows: readonly PhraseRow[], query: string, search: PhraseSearch, lessons: LessonRange | undefined, formOf: ((ref: string) => string | undefined) | undefined): PhraseRow[] {
+  const wanted = query.trim()
+  const found: { row: PhraseRow; rank: number; at: number }[] = []
+  rows.forEach((row, at) => {
+    if (lessons && (row.lesson < lessons[0] || row.lesson > lessons[1])) return
+    let rank = search.empty ? 0 : search.rank(searchRows.get(row) ?? (searchRows.set(row, { text: row.phrase.zh, reading: row.pinyin, en: row.phrase.en }), searchRows.get(row)!))
+    const asWord = !search.empty && !!formOf && row.phrase.words.some(ref => formOf(ref) === wanted)
+    if (asWord) rank = -1
+    if (rank === undefined) return
+    found.push({ row, rank, at })
   })
   return found.sort((a, b) => a.rank - b.rank || a.at - b.at).map(item => item.row)
 }
