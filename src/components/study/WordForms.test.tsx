@@ -56,4 +56,18 @@ describe('the word card in a Japanese build', () => {
     await waitFor(() => expect(screen.getByText('Forms')).toBeInTheDocument())
     expect(screen.getByText('benkyou suru')).toBeInTheDocument()
   })
+  it('fills the dictionary form with the lesson that teaches the word, marks later forms, and dashes forms no lesson teaches', async () => {
+    card(vocabulary('勉強する'))
+    const details = (await screen.findByText('Forms')).closest('details')!
+    const rows = within(details).getAllByRole('row').slice(1)
+    const cell = (name: string) => rows.find(row => row.querySelector('th')?.textContent === name)!
+    await waitFor(() => expect(within(cell('dictionary form')).getByRole('link').textContent).toMatch(/^Lesson \d+$/))
+    // a learner with nothing known is on the first lesson: the dictionary form's own lesson is reached or later, never empty
+    for (const row of rows) expect(row.lastElementChild?.textContent).toMatch(/Lesson \d+|\u2014/)
+    const later = rows.filter(row => row.getAttribute('data-reached') === 'false')
+    expect(later.length).toBeGreaterThan(0)
+    for (const row of later) expect(row.lastElementChild?.textContent).toContain('later')
+    expect(details.textContent).toContain('Greyed rows are taught in a later lesson')
+    expect(rows.every(row => row.hasAttribute('data-reached') || row.lastElementChild?.textContent === '\u2014')).toBe(true)
+  })
 })

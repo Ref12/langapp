@@ -67,8 +67,8 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
         {pack.displayForms.choices.map(choice => <option key={choice.id} value={choice.id}>{formOptionLabel(pack.displayForms!, formsTable, choice.id)}</option>)}
       </select></label>}
       {pack.readingStyles && pack.readingStyles.choices.length > 1 && <label>Readings<select disabled={busy} value={readingStyle} onChange={event => { const choice = pack.readingStyles!.choices.find(item => item === event.target.value); if (choice) void run(() => savePreferences({ readingStyle: choice })) }}>
-        {pack.readingStyles.choices.map(choice => <option key={choice} value={choice}>{`${pack.readingStyles!.options[choice]?.label ?? choice} (${pack.readingStyles!.options[choice]?.example ?? ''})`}</option>)}
-      </select></label>}
+        {pack.readingStyles.choices.map(choice => <option key={choice} value={choice}>{pack.readingStyles!.options[choice]?.label ?? choice}</option>)}
+      </select><span className="small muted" data-testid="reading-example">{`Example: ${pack.readingStyles.options[readingStyle as keyof typeof pack.readingStyles.options]?.example ?? ''}`}</span></label>}
       {pack.readings === 'pinyin' && <>
       <label>Pinyin format<select disabled={busy || pinyinSetup === 'loading'} value={workspace.preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT} onChange={event => {
         const value = event.target.value

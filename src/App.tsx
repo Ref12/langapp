@@ -179,7 +179,7 @@ function WorkspaceApp() {
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
   const section = route === 'practice/mahjong' ? 'games' : page === 'reader' || page === 'book' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' || page === 'practice' ? 'practice' : page === 'writing' ? (isAreaOn(getPack(), 'dictionary') ? 'dictionary' : 'practice') : page
-  const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Overview')
+  const label = page === 'writing' ? 'Writing' : navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Overview')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
   useEffect(() => {
@@ -258,7 +258,7 @@ function WorkspaceApp() {
           <PageActionsMenu />
           <PageSettingsButton route={route} label={label} page={page} workspace={workspace} busy={busy} run={run} />
         </div></header>
-        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : route === 'games/potions' ? 'potions-main' : practicing ? 'practice-main' : page === 'writing' ? 'writing-main' : page === 'lesson' ? 'lesson-main' : undefined}>
+        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : route === 'games/potions' ? 'potions-main' : practicing ? 'practice-main' : page === 'writing' && route.split('?')[0].split('/')[1] ? 'writing-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {currentPage}
         </main>

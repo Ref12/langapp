@@ -329,7 +329,7 @@ it('names the section in the top banner instead of Workspace', async () => {
   await screen.findByRole('heading', { name: 'No phrases yet' })
   const banner = () => document.querySelector('.breadcrumb')!.textContent
   expect(banner()).toBe('History')
-  for (const [route, title] of [['#dictionary', 'Dictionary'], ['#writing', 'Dictionary'], ['#practice', 'Practice'], ['#collections', 'Study sets'], ['#settings', 'Settings'], ['#unknown-page', 'Overview']] as const) {
+  for (const [route, title] of [['#dictionary', 'Dictionary'], ['#writing', 'Writing'], ['#practice', 'Practice'], ['#collections', 'Study sets'], ['#settings', 'Settings'], ['#unknown-page', 'Overview']] as const) {
     await go(route)
     await waitFor(() => expect(banner()).toBe(title))
     expect(document.querySelector('.topbar')).not.toHaveTextContent('Workspace')

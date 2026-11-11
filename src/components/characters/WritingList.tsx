@@ -1,3 +1,4 @@
+import { PageHeading } from '../shared'
 import { buildWritingRoute } from '../../core/characters/writing-route'
 import type { WritingGroup } from '../../core/language/writing'
 import type { WritingLanguage } from '../../core/characters/language'
@@ -6,8 +7,7 @@ import type { WritingLanguage } from '../../core/characters/language'
 export function WritingList({ groups, language }: { groups: WritingGroup[]; language: WritingLanguage }) {
   const total = groups.reduce((sum, group) => sum + group.characters.length, 0)
   return <div className="writing-list">
-    <h1 className="writing-list-title">Writing</h1>
-    <p className="small muted">{total} guides. Choose a letter or a syllable to practise writing it.</p>
+    <PageHeading eyebrow="WRITE IT BY HAND" title="Writing">{total} guides. Choose a letter or a syllable to practise writing it.</PageHeading>
     {groups.map(group => <section key={group.id} className="writing-list-group" aria-labelledby={'writing-group-' + group.id}>
       <h2 id={'writing-group-' + group.id} className="writing-list-heading">{group.title}</h2>
       <ul className="writing-list-grid">

@@ -549,7 +549,14 @@ ruby[lang="ja"] > rt { letter-spacing: 0; }
 
 .word-forms { margin-top: 12px; }
 .word-forms > summary { font-size: 13px; }
+.forms-scroll { overflow-x: auto; }
 .forms-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; }
-.forms-table th, .forms-table td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.forms-table th, .forms-table td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; overflow-wrap: normal; word-break: keep-all; }
+/* A word is never split across lines: the reading sits under the word, and a form too wide for a phone scrolls sideways. */
+.forms-reading { display: block; font-size: 12px; }
+.forms-table td a { white-space: nowrap; }
+.forms-later { opacity: 0.55; }
+.forms-later a { color: inherit; }
+.forms-note { margin: 6px 0 0; }
 .forms-table thead th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
 .forms-table tbody th { font-weight: 400; color: var(--muted); }

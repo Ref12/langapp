@@ -27,6 +27,13 @@ describe('the Writing page in a Korean build', () => {
     expect(basic[0]).toHaveAttribute('href', '#writing/3131/all?lang=ko&back=writing')
     expect(screen.getByRole('link', { name: '\ud759' })).toHaveAttribute('href', '#writing/d759/all?lang=ko&back=writing')
   })
+  it('is a normal page: a Writing heading with an eyebrow line, then the guides', () => {
+    const { container } = render(<Writing {...props} />)
+    const heading = container.querySelector('.page-heading')!
+    expect(within(heading as HTMLElement).getByRole('heading', { level: 1 })).toHaveTextContent('Writing')
+    expect(heading.querySelector('.eyebrow')?.textContent).toMatch(/\S/)
+    expect(heading).toHaveTextContent(/\d+ guides/)
+  })
   it('a syllable shows its letters (the jamo breakdown) and goes back to the list', async () => {
     render(<Writing {...props} codepoint={'d759'} />)
     const letters = await screen.findByRole('group', { name: 'Letters in this syllable' })

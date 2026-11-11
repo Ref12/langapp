@@ -100,6 +100,11 @@ describe('screen text of the Korean build for a small seeded learner', () => {
   })
   it('Settings offers Hangul only or Hangul with romanization', async () => {
     await pin('settings', await screenText('settings', () => expect(screen.getByText('Hangul with romanization', { exact: false })).toBeInTheDocument()))
+    // The option labels are short enough for a phone-width select; the example sits under it for the chosen style.
+    const readings = screen.getByRole('combobox', { name: /^Readings/ }) as HTMLSelectElement
+    expect([...readings.options].map(option => option.text)).toEqual(['Hangul only', 'Hangul with romanization'])
+    expect(Math.max(...[...readings.options].map(option => option.text.length))).toBeLessThanOrEqual(26)
+    expect(screen.getByTestId('reading-example')).toHaveTextContent('Example: \uacf5\ubd80\ud574\uc694 gongbuhaeyo')
   })
   it('A lesson page with Hangul only has no romanization line', async () => {
     await db.preferences.update('workspace', { readingStyle: 'hangul' })
