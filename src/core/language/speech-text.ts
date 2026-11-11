@@ -15,8 +15,12 @@
 //  So kana gives no gain on Edge (it already reads kanji sentences right in context) and takes away the accent cues, spaces do nothing there, and the other engines are unknown: sentences stay 'written'. Change the constant to try the others after listening.
 // Chinese and Korean return the text unchanged (Korean is written phonetically).
 import type { SpeechLocale } from '../assistant/contracts'
+import { characterReadingIn } from './japanese-alignment'
 
-export type SpeechKind = 'word' | 'fragment' | 'sentence'
+/** `character`: one character of the writing views, said for what it is in the word being practised (hint.within) or in the lessons' words (hint.lesson). */
+export type SpeechKind = 'word' | 'fragment' | 'sentence' | 'character'
+/** A word with its kana reading, when known. */
+export interface WordReading { text: string; reading?: string }
 /** One token of an authored sentence: the written form and its kana reading (a token with only a `word` label is the catalog word of that label); `grammar` marks a particle or an ending. */
 export interface SentenceToken { text?: string; reading?: string; word?: string; grammar?: unknown; punctuation?: string }
 export interface SpeechHint {
@@ -25,6 +29,10 @@ export interface SpeechHint {
   /** The kana reading of the text, when the caller has it (the word's reading as shown, a token's reading). */
   reading?: string
   kind?: SpeechKind
+  /** For kind 'character': the word the character is being practised in. Its reading is the hint's, else the one this module knows for the word. */
+  within?: WordReading
+  /** For kind 'character' with no word: lesson words that use it, best first (the first one the alignment can read it in decides). */
+  lesson?: readonly WordReading[]
 }
 /** How a whole sentence is spoken: as written, kana from its tokens, or kana from its tokens in 分かち書き. The one place to change the choice. */
 export const SENTENCE_STYLE: 'written' | 'kana' | 'kana-spaced' = 'written'
@@ -93,9 +101,26 @@ export const knownJapaneseReading = (text: string, kind: 'word' | 'fragment' = '
   return undefined
 }
 
+/** A character of the writing views. Kana say themselves (は is は here, there is no sentence for a particle). A kanji says its reading in the word being practised (the whole word's kana when the alignment is uncertain),
+ *  else its reading in the first lesson word it can be aligned in, else it is left as written. */
+function japaneseCharacterSpeech(text: string, bare: string, hint: SpeechHint | undefined): string {
+  if (!HAN.test(bare)) return text
+  const within = hint?.within
+  const whole = within && (cleanReading(within.reading) ?? knownJapaneseReading(within.text))
+  if (within && whole) return within.text.normalize('NFC').trim() === bare ? whole : characterReadingIn(bare, within.text, whole) ?? whole
+  for (const word of hint?.lesson ?? []) {
+    const reading = cleanReading(word.reading)
+    if (!reading) continue
+    const said = word.text.normalize('NFC').trim() === bare ? reading : characterReadingIn(bare, word.text, reading)
+    if (said) return said
+  }
+  return text
+}
+
 export function japaneseSpeechText(text: string, hint?: SpeechHint): string {
   const bare = text.normalize('NFC').trim()
   if (!bare) return text
+  if (hint?.kind === 'character') return japaneseCharacterSpeech(text, bare, hint)
   const kind = hint?.kind ?? (SENTENCE_MARK.test(bare) ? 'sentence' : undefined)
   if (kind === 'sentence') {
     if (SENTENCE_STYLE === 'written') return text

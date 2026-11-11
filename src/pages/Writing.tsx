@@ -8,6 +8,7 @@ import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/cha
 import { allPartsWritten, commitStroke, isLastStep, memoryHint, newWritingRound, nextPart, partIndex, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
 import { buildWritingRoute, hasGuideIn, isWritable, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
 import { getPack, spokenText } from '../core/language'
+import type { WordReading } from '../core/language/speech-text'
 import { writingFor } from '../core/language/writing'
 import { useCatalog } from '../components/study/useCatalog'
 import { EmptyState, type PageProps } from '../components/shared'
@@ -24,7 +25,7 @@ import { partColour, strokeParts } from '../core/characters/components'
 import { usePageSettings } from '../components/page-settings-context'
 import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
 import './writing.css'
-import { headingWord, type HeadingWord } from '../core/writing-heading'
+import { headingWord, lessonWords, type HeadingWord } from '../core/writing-heading'
 
 function routeCharacter(codepoint?: string): string | undefined {
   if (!codepoint || !/^[\da-f]{4,6}$/i.test(codepoint)) return undefined
@@ -47,13 +48,13 @@ export function Writing({ codepoint, scope, query, ...props }: PageProps & { cod
   usePageSettings({ title: 'Writing settings', content: <WritingSpeechSelect workspace={props.workspace} busy={props.busy} run={props.run} /> })
   const character = routeCharacter(codepoint)
   const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
-  const { word, index, back: requestedBack, language = getPack().writing.language } = useMemo(() => parseWritingQuery(query, character), [query, character])
+  const { word, index, back: requestedBack, reading, language = getPack().writing.language } = useMemo(() => parseWritingQuery(query, character), [query, character])
   // The character list lives in the Dictionary; a build without one goes back to Practice.
   const listed = writingFor(getPack().writing, language).listGroups()
   const back = requestedBack ?? (getPack().dictionary.sections.characters ? `dictionary/characters/${scopeName}` : listed.length ? 'writing' : 'practice')
   if (!character && listed.length) return <WritingList groups={listed} language={language} />
-  const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack, language })
-  return <WritingStage {...props} language={language} character={character} word={word} index={index} remember={!!query?.includes('word=')} backHref={`#${back}`}
+  const routeFor = (at: number) => buildWritingRoute(word[at], scopeName, { word: word.join(''), index: at, back: requestedBack, language, reading })
+  return <WritingStage {...props} language={language} character={character} word={word} index={index} within={reading && word.length ? { text: word.join(''), reading } : undefined} remember={!!query?.includes('word=')} backHref={`#${back}`}
     skipHref={at => `#${routeFor(at)}`} onGo={at => go(routeFor(at))} onFinish={() => go(back)} />
 }
 
@@ -65,6 +66,8 @@ export interface WritingStageProps {
   index: number
   /** Remember the word as a written phrase (when it came from a word). */
   remember: boolean
+  /** The word being practised, when the character was opened on its own (a look-up card): its text and reading. A word of two or more characters is its own word. */
+  within?: WordReading
   backHref?: string
   skipHref?: (at: number) => string
   onBack?: () => void
@@ -74,7 +77,7 @@ export interface WritingStageProps {
 }
 
 /** The writing exercise for one character of a word, independent of how it was reached (hash route or overlay sheet). */
-export function WritingStage({ language = getPack().writing.language, character, word, index, remember, backHref, skipHref, onBack, onClose, onGo, onFinish, ...props }: PageProps & WritingStageProps) {
+export function WritingStage({ language = getPack().writing.language, character, word, index, remember, within, backHref, skipHref, onBack, onClose, onGo, onFinish, ...props }: PageProps & WritingStageProps) {
   const playable = hasAsset(character, language) ? character : undefined
   const [asset, setAsset] = useState<CharacterAsset>()
   const [error, setError] = useState('')
@@ -107,7 +110,7 @@ export function WritingStage({ language = getPack().writing.language, character,
   const han = word.filter(item => isWritable(item, language))
   const skipped = word.filter(item => isWritable(item, language) && !hasAsset(item, language))
   const hanPosition = word.slice(0, index + 1).filter(item => isWritable(item, language)).length
-  return asset ? <WritingPlayer key={asset.character} {...props} language={language} asset={asset} backHref={backHref} onBack={onBack} onClose={onClose}
+  return asset ? <WritingPlayer key={asset.character} {...props} language={language} asset={asset} within={within ?? (word.length > 1 ? { text: word.join('') } : undefined)} backHref={backHref} onBack={onBack} onClose={onClose}
     place={han.length > 1 ? { number: hanPosition, total: han.length } : undefined} skipped={skipped}
     hasPrevious={previousIndex !== undefined} last={nextIndex === undefined}
     onPrevious={() => { if (previousIndex === undefined) return; arrival = { character: word[previousIndex], phase: PHASES.length - 1, repetition: REPETITIONS - 1, saved: true, at: Date.now() }; onGo(previousIndex) }}
@@ -119,6 +122,8 @@ export function WritingStage({ language = getPack().writing.language, character,
 
 export interface WritingPlayerProps {
   asset: CharacterAsset
+  /** The word this character is practised in (text, and its reading when known), when the opener knows it. */
+  within?: WordReading
   language?: WritingLanguage
   /** Hash link for the Back control (routed page). */
   backHref?: string
@@ -145,7 +150,7 @@ export interface WritingPlayerProps {
   practised?: HeadingWord
 }
 
-export function WritingPlayer({ language = getPack().writing.language, asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onPreviousCharacter, onNextCharacter, onNext, teach = false, inWord = false, practised, workspace, run, busy }: PageProps & WritingPlayerProps) {
+export function WritingPlayer({ language = getPack().writing.language, asset, backHref, onBack, onClose, place, skipped = [], hasPrevious = false, last = true, onPrevious, onPreviousCharacter, onNextCharacter, onNext, teach = false, inWord = false, practised, within, workspace, run, busy }: PageProps & WritingPlayerProps) {
   const writing = writingFor(getPack().writing, language)
   const guides = useMemo(() => asset.paths.map(makeStrokeGuide), [asset.paths])
   const [arrived] = useState(() => takeArrival(asset.character))
@@ -166,24 +171,29 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
   const autoSpeak = speech !== 'off'
   const speechRef = useRef(speech)
   speechRef.current = speech
+  const { catalog } = useCatalog()
+  // What is said for the character: its reading in the word being practised (Learn to write, a Write link, a route), else in the first lesson word that has it; the pack decides what that sounds like.
+  const spoken = useCallback(() => {
+    const practising = practised?.ch.includes(asset.character) ? { text: practised.ch, reading: practised.pr } : within
+    return spokenText(locale, asset.character, { kind: 'character', ...(practising ? { within: practising } : {}), lesson: lessonWords(catalog, asset.character).map(item => ({ text: item.ch, reading: item.pr })) })
+  }, [asset.character, practised, within, catalog, locale])
   const say = useCallback(() => {
     try {
-      if (writing.characterData) { playBrowserSpeech(speechId, spokenText(locale, asset.character, { kind: 'word' }), locale); return }
+      if (writing.characterData) { playBrowserSpeech(speechId, spoken(), locale); return }
       const synth = window.speechSynthesis
       if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return
       synth.cancel()
-      const utterance = new SpeechSynthesisUtterance(spokenText(locale, asset.character, { kind: 'word' }))
+      const utterance = new SpeechSynthesisUtterance(spoken())
       utterance.lang = locale
       synth.speak(utterance)
     } catch { /* blocked speech stays silent */ }
-  }, [speechId, asset.character, locale, writing.characterData])
+  }, [speechId, spoken, locale, writing.characterData])
   useEffect(() => () => {
     if (getPlaybackState().activeId === speechId) stopBrowserSpeech()
   }, [speechId])
   useEffect(() => {
     if (!autoSpeak && getPlaybackState().activeId === speechId) stopBrowserSpeech()
   }, [autoSpeak, speechId])
-  const { catalog } = useCatalog()
   const word = useMemo(() => writing.characterData ? headingWord(catalog, asset.character, practised) : undefined, [catalog, asset.character, practised, writing])
   const [meaning, setMeaning] = useState<CharacterMeaning>()
   useEffect(() => {

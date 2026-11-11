@@ -4,7 +4,8 @@ import { isHan } from './scripts'
 import { isWritingLanguage, type WritingLanguage } from './language'
 
 export type WritingScope = 'all' | 'knowledge'
-export interface WritingQuery { word: string[]; index: number; back?: string; language?: WritingLanguage }
+/** `reading`: the kana reading of the word in `word` (route parameter `r`), when the link knows it. */
+export interface WritingQuery { word: string[]; index: number; back?: string; language?: WritingLanguage; reading?: string }
 
 export { isHan }
 /** A character the language's writing practice can take: Han for Chinese, Han and kana for Japanese, Hangul for Korean. Whether stroke data exists is known only once it loads. */
@@ -27,13 +28,15 @@ export function parseWritingQuery(query: string | undefined, character?: string)
   if (!word.length || index < 0 || index >= word.length) { word = []; index = 0 }
   const back = cleanRoute(params.get('back') ?? '')
   const lang = params.get('lang')
-  return { word, index, back: back || undefined, ...(isWritingLanguage(lang) && lang !== 'zh' ? { language: lang } : {}) }
+  const reading = word.length ? params.get('r')?.trim() : undefined
+  return { word, index, back: back || undefined, ...(reading ? { reading } : {}), ...(isWritingLanguage(lang) && lang !== 'zh' ? { language: lang } : {}) }
 }
 
 /** Builds `writing/<hex>/<scope>[?word=&i=&back=]` (no leading "#"). */
-export function buildWritingRoute(character: string, scope: WritingScope, options: { word?: string; index?: number; back?: string; language?: WritingLanguage } = {}): string {
+export function buildWritingRoute(character: string, scope: WritingScope, options: { word?: string; index?: number; back?: string; language?: WritingLanguage; reading?: string } = {}): string {
   const query: string[] = []
   if (options.word) { query.push(`word=${encodeURIComponent(options.word)}`); if (options.index) query.push(`i=${options.index}`) }
+  if (options.word && options.reading) query.push(`r=${encodeURIComponent(options.reading)}`)
   const language = options.language ?? getPack().writing.language
   if (language !== 'zh') query.push(`lang=${language}`)
   if (options.back) query.push(`back=${encodeURIComponent(cleanRoute(options.back))}`)

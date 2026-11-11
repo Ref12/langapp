@@ -27,7 +27,7 @@ export function LookupWordCard({ word, reading, levelName }: { word: DictWord; r
       {word.short === undefined && senses.length > 2 && <details className="small"><summary>{senses.length - 2} more {senses.length - 2 === 1 ? 'meaning' : 'meanings'}</summary>{senses.slice(2).map((sense, index) => <p key={index} className="word-meaning">{sense}</p>)}</details>}
       {word.pos && <p className="small muted" data-testid="lookup-pos">{word.pos}</p>}
     </div></div>
-    {written.length > 0 && <p className="small lookup-writing" aria-label="Writing practice">Write: {written.map(character => <button key={character} type="button" className="text-link" lang={pack.learningTag} aria-label={`Practise writing ${character}`} onClick={() => { openWritingSheet(character, { remember: false }) }}>{character}</button>)}</p>}
+    {written.length > 0 && <p className="small lookup-writing" aria-label="Writing practice">Write: {written.map(character => <button key={character} type="button" className="text-link" lang={pack.learningTag} aria-label={`Practise writing ${character}`} onClick={() => { openWritingSheet(character, { remember: false, within: { text: word.form, reading: word.reading } }) }}>{character}</button>)}</p>}
   </article>
 }
 

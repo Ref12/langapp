@@ -38,7 +38,7 @@ export function WritePractice({ text, romanization, onSpeak, onOpen }: {
         <span lang={getPack().learningTag} className="word-native">{word.text}</span>
         <span lang="zh-Latn" className="small muted"><Pinyin text={word.pinyin} /></span>
         {canWrite
-          ? <button type="button" className="button primary" onClick={() => { if (openWritingSheet(word.text, { scope, fromList: true })) onOpen?.() }}><Pencil size={16} />Write {word.text}</button>
+          ? <button type="button" className="button primary" onClick={() => { if (openWritingSheet(word.text, { scope, fromList: true, within: { text: word.text, reading: word.pinyin } })) onOpen?.() }}><Pencil size={16} />Write {word.text}</button>
           : <button type="button" className="button primary" disabled><Pencil size={16} />Write {word.text}</button>}
         {missing.length > 0 && <span className="small muted" role="note">{missing.join(' ')}: no strokes yet{first < 0 ? '' : ' (skipped)'}</span>}
       </li>
