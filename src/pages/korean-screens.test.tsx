@@ -130,7 +130,9 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong']) expect(text).not.toContain(absent)
     await pin('practice-by-skill', text)
   })
-  it('The Ready page of a session, with the Writing preset', async () => {
+  // Skipped 2026-11-11: the pinned item counts of this page differ under load (seen in a session on 2026-11-10 and in Pages run
+  // 43066983523 on a docs-only commit). Re-enable once the page's counts are awaited deterministically before the snapshot.
+  it.skip('The Ready page of a session, with the Writing preset', async () => {
     const id = await createDrillSet({ kind: 'new' })
     await whenContent(id)
     await setEngineChoice(id, { preset: 'writing' })
