@@ -15,6 +15,7 @@ import { storageNames } from '../core/storage-names'
 import { Diagnostics } from '../components/Diagnostics'
 import { hapticsSupported } from '../core/haptics'
 import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
+import { StrokeMatchingSelect } from '../components/StrokeMatchingSelect'
 import { DEFAULT_PINYIN_FORMAT, pinyinFormatSchema } from '../core/pinyin'
 import { LocalPinyinSetupContext } from '../components/assistant/local-ai-setup-context'
 
@@ -60,6 +61,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> {`${readingTitle(pack)} for unfamiliar words`}</label>
       <label className="toggle"><input type="checkbox" disabled={busy || !hapticsSupported()} checked={workspace.preferences.haptics !== false} onChange={event => void run(() => savePreferences({ haptics: event.target.checked }))} /> Vibration feedback{!hapticsSupported() && ' (not available on this device)'}</label>
       {isAreaOn(pack, 'writing') && <WritingSpeechSelect workspace={workspace} busy={busy} run={run} />}
+      {isAreaOn(pack, 'writing') && <StrokeMatchingSelect workspace={workspace} busy={busy} run={run} />}
       <label>About this many exercises per lesson<input type="number" min={8} max={40} step={1} disabled={busy} defaultValue={workspace.preferences.exercisesPerLesson ?? 20} key={workspace.preferences.exercisesPerLesson ?? 20}
         onBlur={event => { const value = Number(event.target.value); if (value !== (workspace.preferences.exercisesPerLesson ?? 20)) void run(() => savePreferences({ exercisesPerLesson: Math.min(40, Math.max(8, Math.round(value) || 20)) })) }} />
         <span className="small muted">A guide for what the AI is asked to write, 8 to 40, default 20; a lesson keeps the exercises that pass checking. More than 20 are written in parallel requests of up to 20.</span></label>

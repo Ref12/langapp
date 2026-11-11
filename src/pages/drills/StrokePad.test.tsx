@@ -47,3 +47,17 @@ describe('Write it pad vibration', () => {
     expect(vibrate).not.toHaveBeenCalled()
   })
 })
+
+describe('Write it pad tracer', () => {
+  it('traces the stroke after three misses and reports the result as hinted', async () => {
+    const done = vi.fn()
+    render(<StrokePad text={'\u4e00'} onDone={done} />)
+    await stroke([0, 0], [1, 1]); await stroke([0, 0], [1, 1]); await stroke([0, 0], [1, 1])
+    expect(screen.getByText(/Tracer on/)).toBeInTheDocument()
+    const pad = screen.getByRole('img', { name: 'Handwriting area' })
+    expect(pad).toHaveAttribute('data-tracer')
+    expect(done).not.toHaveBeenCalled()
+    await stroke([10, 50], [30, 50]); await stroke([30, 50], [60, 50]); await stroke([60, 50], [88, 50])
+    await waitFor(() => expect(done).toHaveBeenCalledWith({ misses: 3, hinted: true }))
+  })
+})

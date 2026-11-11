@@ -68,31 +68,64 @@ export function sampleStroke(points: Point[]): Point[] {
   return result
 }
 
+/** How forgiving stroke matching is. Strict is the original set of limits; every limit of the others scales with one factor. */
+export const STROKE_MATCHING = ['strict', 'normal', 'relaxed'] as const
+export type StrokeMatching = typeof STROKE_MATCHING[number]
+export const DEFAULT_STROKE_MATCHING: StrokeMatching = 'normal'
+export const STROKE_MATCHING_LABEL: Record<StrokeMatching, string> = { strict: 'Strict', normal: 'Normal', relaxed: 'Relaxed' }
+/** The leniency factor of each level (Strict is exactly the original numbers). */
+export const STROKE_LENIENCY: Record<StrokeMatching, number> = { strict: 1, normal: 1.5, relaxed: 2 }
+export const strokeMatching = (value: unknown): StrokeMatching => STROKE_MATCHING.includes(value as StrokeMatching) ? value as StrokeMatching : DEFAULT_STROKE_MATCHING
+
+/** The limits of one level, in the 100-unit box. */
+export function strokeLimits(guideLength: number, level: StrokeMatching) {
+  const k = STROKE_LENIENCY[level]
+  return {
+    /** How far the start and end may be from the guide's ends. */
+    tolerance: Math.min(10 * k, Math.max(5.5 * k, guideLength * 0.45 * k)),
+    /** How far any point may stray from the guide. */
+    gap: 11 * k,
+    /** How far the stroke may move back along the guide. */
+    backtrack: 9 * k,
+    minLength: guideLength * 0.4 / k,
+    maxLength: guideLength * 2.2 * k + 4 * k,
+    /** Share of the guide's own start-to-end travel the stroke must make in that direction. */
+    direction: 0.25 / k,
+  }
+}
+
+/** Where a point is on the guide: its distance from the nearest place on the path and how far along the path that place is. */
+export function projectOnGuide(point: Point, expected: Point[]): { gap: number; progress: number } {
+  let gap = Infinity, progress = 0, offset = 0
+  for (let index = 1; index < expected.length; index++) {
+    const a = expected[index - 1], b = expected[index]
+    const span = distance(a, b)
+    if (!span) continue
+    const t = Math.max(0, Math.min(1, ((point[0] - a[0]) * (b[0] - a[0]) + (point[1] - a[1]) * (b[1] - a[1])) / (span * span)))
+    const away = distance(point, [a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])])
+    if (away < gap) { gap = away; progress = offset + t * span }
+    offset += span
+  }
+  return { gap, progress }
+}
+
 /** Lenient tracing feedback, not handwriting recognition or a mastery assessment. */
-export function matchesStroke(stroke: Point[], guide: StrokeGuide): boolean {
+export function matchesStroke(stroke: Point[], guide: StrokeGuide, level: StrokeMatching = DEFAULT_STROKE_MATCHING): boolean {
   if (stroke.length < 2 || stroke.some(point => point.some(value => !Number.isFinite(value)))) return false
   const expected = guide.points
   const start = expected[0], end = expected[expected.length - 1]
   const first = stroke[0], last = stroke[stroke.length - 1]
-  const tolerance = Math.min(10, Math.max(5.5, guide.length * 0.45))
+  const limits = strokeLimits(guide.length, level)
+  const { tolerance } = limits
   if (distance(first, start) > tolerance || distance(last, end) > tolerance) return false
   const length = strokeLength(stroke)
-  if (length < guide.length * 0.4 || length > guide.length * 2.2 + 4) return false
+  if (length < limits.minLength || length > limits.maxLength) return false
   const dx = end[0] - start[0], dy = end[1] - start[1]
-  if ((last[0] - first[0]) * dx + (last[1] - first[1]) * dy < (dx * dx + dy * dy) * 0.25) return false
+  if ((last[0] - first[0]) * dx + (last[1] - first[1]) * dy < (dx * dx + dy * dy) * limits.direction) return false
   let furthest = 0
   for (const point of sampleStroke(stroke)) {
-    let nearest = Infinity, progress = 0, offset = 0
-    for (let index = 1; index < expected.length; index++) {
-      const a = expected[index - 1], b = expected[index]
-      const span = distance(a, b)
-      if (!span) continue
-      const t = Math.max(0, Math.min(1, ((point[0] - a[0]) * (b[0] - a[0]) + (point[1] - a[1]) * (b[1] - a[1])) / (span * span)))
-      const gap = distance(point, [a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])])
-      if (gap < nearest) { nearest = gap; progress = offset + t * span }
-      offset += span
-    }
-    if (nearest > 11 || progress < furthest - 9) return false
+    const { gap, progress } = projectOnGuide(point, expected)
+    if (gap > limits.gap || progress < furthest - limits.backtrack) return false
     furthest = Math.max(furthest, progress)
   }
   return furthest >= guide.length - tolerance

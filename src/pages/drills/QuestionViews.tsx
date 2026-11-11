@@ -180,7 +180,7 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
     {revealed && !locked && <p className="dr-center dr-sentence-zh" lang={getPack().learningTag}>{data.sentence.zh}</p>}
     <div className="dr-center"><HearButton text={data.sentence.zh} locale={getPack().speechLocale} kind="sentence" label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
     <p className="small dr-center dr-write-line">Write <mark className="dr-target">{prompt}</mark></p>
-    {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} haptics={ctx.workspace.preferences.haptics !== false} onStep={onStep} onDone={done} />}
+    {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} haptics={ctx.workspace.preferences.haptics !== false} matching={ctx.workspace.preferences.strokeMatching} onStep={onStep} onDone={done} />}
     {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it anywhere, then check your answer.</p>
       {quiz ? <button type="button" className="button secondary" aria-pressed={written} onClick={() => { setWritten(!written); onAnswer(written ? undefined : { misses: 0, hinted, paper: true } satisfies WriteAnswer) }}>{written ? 'Written ✓' : 'I have written it'}</button>
         : <button type="button" className="button primary" onClick={() => onAnswer({ misses: 0, hinted, paper: true } satisfies WriteAnswer)}>Check answer</button>}</div>}

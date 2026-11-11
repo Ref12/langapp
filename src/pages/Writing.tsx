@@ -4,8 +4,9 @@ import { characterAttributionUrl, loadCharacterAsset, type CharacterAsset } from
 import { languageAssetUrl, languageName, type WritingLanguage } from '../core/characters/language'
 import { recordCharacterPractice } from '../core/characters/store'
 import { combineMeanings, loadCharacterMeaning, type CharacterMeaning } from '../core/characters/meanings'
-import { distance, makeStrokeGuide, writingPoint, type Point } from '../core/characters/geometry'
-import { allPartsWritten, commitStroke, isLastStep, memoryHint, newWritingRound, nextPart, partIndex, PHASES, previousRound, REPETITIONS, type WritingRound } from '../core/characters/practice'
+import { distance, makeStrokeGuide, strokeMatching, writingPoint, type Point } from '../core/characters/geometry'
+import { advanceTrace, traceComplete, tracedPoints } from '../core/characters/tracer'
+import { allPartsWritten, commitStroke, completeTracedStroke, isLastStep, memoryHint, newWritingRound, nextPart, partIndex, PHASES, previousRound, REPETITIONS, tracerStroke, type WritingRound } from '../core/characters/practice'
 import { buildWritingRoute, hasGuideIn, isWritable, neighbourIndex, parseWritingQuery } from '../core/characters/writing-route'
 import { getPack, spokenText } from '../core/language'
 import type { WordReading } from '../core/language/speech-text'
@@ -24,6 +25,7 @@ import { useComponentData } from '../components/characters/useComponentData'
 import { partColour, strokeParts } from '../core/characters/components'
 import { usePageSettings } from '../components/page-settings-context'
 import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
+import { StrokeMatchingSelect } from '../components/StrokeMatchingSelect'
 import './writing.css'
 import { headingWord, lessonWords, type HeadingWord } from '../core/writing-heading'
 
@@ -45,7 +47,7 @@ function takeArrival(character: string) {
 const go = (route: string) => { window.location.replace(`#${route}`) }
 
 export function Writing({ codepoint, scope, query, ...props }: PageProps & { codepoint?: string; scope?: string; query?: string }) {
-  usePageSettings({ title: 'Writing settings', content: <WritingSpeechSelect workspace={props.workspace} busy={props.busy} run={props.run} /> })
+  usePageSettings({ title: 'Writing settings', content: <><WritingSpeechSelect workspace={props.workspace} busy={props.busy} run={props.run} /><StrokeMatchingSelect workspace={props.workspace} busy={props.busy} run={props.run} /></> })
   const character = routeCharacter(codepoint)
   const scopeName = scope === 'knowledge' ? 'knowledge' : 'all'
   const { word, index, back: requestedBack, reading, language = getPack().writing.language } = useMemo(() => parseWritingQuery(query, character), [query, character])
@@ -163,7 +165,10 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
   const written = useRef(new Set<number>())
   const saved = useRef(arrived?.saved ?? false)
   const svg = useRef<SVGSVGElement>(null)
-  const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect }>()
+  const pointer = useRef<{ id: number; points: Point[]; bounds: DOMRect; tracer: boolean }>()
+  // How far the tracer has drawn the current stroke: it is kept between drags and only moves forward. Valid for one stroke of one part.
+  const [trace, setTrace] = useState({ key: '', progress: 0 })
+  const traceRef = useRef(trace)
   const marker = useId().replace(/:/g, '')
   const speechId = useId()
   const locale = writing.speechLocale
@@ -210,6 +215,10 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
   const hint = memoryHint(round) && !completed
   const hidden = round.phase === 2 && !round.finished
   const current = guides[round.completed]
+  const level = strokeMatching(workspace.preferences.strokeMatching)
+  const traceKey = `${partIndex(round)}:${round.completed}`
+  const tracing = tracerStroke(round) && !completed && replay === null && !!current
+  const traced = trace.key === traceKey ? trace.progress : 0
   const colour = workspace.preferences.writingColourParts === true
   const { data: partData } = useComponentData(writing.characterData)
   const owners = useMemo(() => partData && writing.characterData ? strokeParts(partData, asset.character, guides.length) : [], [partData, asset.character, guides.length, writing.characterData])
@@ -263,15 +272,34 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
     const bounds = event.currentTarget.getBoundingClientRect()
     if (!bounds.width || !bounds.height) return
     const points = [writingPoint(event.clientX, event.clientY, bounds)]
-    pointer.current = { id: event.pointerId, points, bounds }
+    pointer.current = { id: event.pointerId, points, bounds, tracer: tracing }
     event.currentTarget.focus({ preventScroll: true })
     event.currentTarget.setPointerCapture(event.pointerId)
+    if (tracing) { followTrace(points[0]); return }
     setInk(points)
+  }
+  /** Tracer: move the drawn part of the stroke forward to the pointer, and finish the stroke at its end. */
+  function followTrace(point: Point) {
+    const guide = guides[round.completed]
+    if (!guide) return
+    const before = traceRef.current.key === traceKey ? traceRef.current.progress : 0
+    const after = advanceTrace(before, point, guide)
+    if (after === before && traceRef.current.key === traceKey) return
+    traceRef.current = { key: traceKey, progress: after }
+    setTrace(traceRef.current)
+    if (!traceComplete(after, guide)) return
+    const active = pointer.current
+    pointer.current = undefined
+    if (active && svg.current?.hasPointerCapture(active.id)) svg.current.releasePointerCapture(active.id)
+    haptic('success', workspace.preferences.haptics !== false)
+    setRound(value => completeTracedStroke(value, guides))
+    if (speech === 'stroke') say()
   }
   function move(event: ReactPointerEvent<SVGSVGElement>) {
     const active = pointer.current
     if (!active || active.id !== event.pointerId) return
     const point = writingPoint(event.clientX, event.clientY, active.bounds)
+    if (active.tracer) { followTrace(point); return }
     if (distance(active.points[active.points.length - 1], point) >= 0.35) {
       active.points.push(point)
       setInk([...active.points])
@@ -284,9 +312,11 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
     pointer.current = undefined
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
     setInk([])
-    const next = commitStroke(round, active.points, guides)
+    // Lifting during the tracer is not a miss: the progress is kept for the next drag.
+    if (active.tracer) { followTrace(active.points[active.points.length - 1]); return }
+    const next = commitStroke(round, active.points, guides, level)
     if (next !== round) haptic(next.completed > round.completed ? 'success' : 'error', workspace.preferences.haptics !== false)
-    setRound(value => commitStroke(value, active.points, guides))
+    setRound(value => commitStroke(value, active.points, guides, level))
     // Every stroke mode: each finished stroke, accepted or missed, says the character. At transitions never speaks per stroke.
     if (speech === 'stroke') say()
   }
@@ -294,7 +324,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
     if (!canPrevious) return
     cancelStroke()
     setReplay(null)
-    if (completed) written.current.add(partIndex(round))
+    if (completed && !round.helped) written.current.add(partIndex(round))
     const earlier = previousRound(round)
     if (earlier) setRound(earlier)
     else onPrevious?.()
@@ -303,7 +333,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
     if (saveLock.current || round.finished) return
     cancelStroke()
     setReplay(null)
-    if (completed) written.current.add(partIndex(round))
+    if (completed && !round.helped) written.current.add(partIndex(round))
     const later = nextPart(round)
     if (later) { setRound(later); return }
     // The ninth part: practice counts only when every part was actually written.
@@ -327,6 +357,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
   }
   const status = round.feedback || (round.finished ? 'All nine repetitions done. Practice saved; no mastery score is assigned.'
     : replay !== null ? `Watching stroke ${replay + 1} of ${guides.length}. This does not complete a stroke.`
+      : tracing ? 'Tracer on: drag along the stroke; you can lift and continue. This counts as help.'
       : completed ? 'Complete. Press Next.'
         : `${round.completed}/${guides.length} strokes. ${hint ? 'Trace the revealed stroke.' : hidden ? 'Write from memory.' : 'Follow the blue dot and arrow.'}`)
   const phaseHelp = round.phase === 0 ? 'Trace the outlines in order. Start at the blue dot and follow the arrow.'
@@ -354,6 +385,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
       <div className="writing-statusline">
         <span><strong>{PHASES[round.phase]}</strong> &middot; {round.repetition + 1}/{REPETITIONS}</span>
         <ol className="writing-phases" aria-label="Phase">{PHASES.map((phase, index) => <li key={phase} title={phase} data-done={round.phase > index || round.finished ? '' : undefined} aria-current={round.phase === index ? 'step' : undefined}><span className="visually-hidden">{phase}</span></li>)}</ol>
+        {tracing && <span className="writing-tracer-badge" data-testid="tracer-badge" title="Tracer is on for this stroke">Tracer</span>}
         {place && <span className="writing-place">Character {place.number} of {place.total}</span>}
         <button className="icon-button writing-help-button" type="button" aria-label="About this exercise" title="About this exercise" aria-expanded={help} aria-controls="writing-sheet" onClick={() => setHelp(value => !value)}><CircleHelp size={18} /></button>
         {help && <div id="writing-sheet" className="writing-sheet" role="dialog" aria-label="About this exercise">
@@ -367,7 +399,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
         </div>}
       </div>
       {skipped.length > 0 && <p className="writing-skipped small muted">No guide for {skipped.join(', ')}; skipped.</p>}
-      <svg ref={svg} viewBox="0 0 100 100" className="writing-pad" role="img" aria-label="Handwriting area" aria-describedby="writing-status" tabIndex={0}
+      <svg ref={svg} viewBox="0 0 100 100" className="writing-pad" role="img" aria-label="Handwriting area" aria-describedby="writing-status" tabIndex={0} data-tracer={tracing ? '' : undefined}
         onPointerDown={start} onPointerMove={move} onPointerUp={finish}
         onPointerCancel={event => { if (pointer.current?.id === event.pointerId) cancelStroke() }}
         onLostPointerCapture={event => { if (pointer.current?.id === event.pointerId) cancelStroke() }}
@@ -389,6 +421,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
           <circle cx={current.points[0][0]} cy={current.points[0][1]} r={Math.min(5.2, Math.max(1, current.length * 0.2))} />
           {current.length >= 20 && <text x={current.points[0][0]} y={current.points[0][1]}>{round.completed + 1}</text>}
         </g>}
+        {tracing && traced > 0 && <polyline points={tracedPoints(current, traced).map(point => point.join(',')).join(' ')} className="writing-trace" data-testid="tracer-trace" aria-hidden="true" />}
         {ink.length > 0 && <polyline points={ink.map(point => point.join(',')).join(' ')} className="writing-ink" aria-hidden="true" />}
       </svg>
       <div className="writing-controls" role="toolbar" aria-label="Writing controls">
@@ -397,7 +430,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
           title={autoSpeak ? 'Mute automatic character audio' : 'Unmute automatic character audio'} disabled={busy}
           onClick={() => { if (autoSpeak) stopBrowserSpeech(); void run(() => savePreferences(autoSpeak ? { writingSpeech: 'off', writingSpeechResume: speech as 'transitions' | 'stroke' } : { writingSpeech: writingSpeechResume(workspace.preferences) })) }}>{autoSpeak ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
       <button className="icon-button" title="Undo last stroke" aria-label="Undo" disabled={!round.completed || round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: Math.max(0, value.completed - 1), feedback: '' })) }}><Undo2 size={18} /></button>
-        <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], feedback: '' })) }}><Eraser size={18} /></button>
+        <button className="icon-button" title="Clear this character" aria-label="Clear" disabled={round.finished || saving || busy} onClick={() => { cancelStroke(); setReplay(null); setRound(value => ({ ...value, completed: 0, misses: [], missed: [], feedback: '' })) }}><Eraser size={18} /></button>
         <button className="icon-button" title={replay === null ? 'Watch stroke order' : 'Stop demonstration'} aria-label={replay === null ? 'Watch stroke order' : 'Stop demonstration'} disabled={saving || busy} onClick={() => { cancelStroke(); setReplay(value => value === null ? 0 : null) }}>{replay === null ? <Play size={18} /> : <Square size={18} />}</button>
         <span className="writing-progress" data-complete={completed || round.finished ? '' : undefined} title={round.finished ? 'Saved' : completed ? 'Complete' : 'Stroke progress'} aria-hidden="true">{(completed || round.finished) && <Check size={15} />}{progress}</span>
         <button className="button primary writing-step" title={finalStep && last ? 'Finish' : 'Next part'} aria-label={finalStep && last ? 'Finish' : 'Next'} disabled={saving || busy || round.finished} onClick={next}><span>{saving ? 'Saving' : finalStep && last ? 'Finish' : 'Next'}</span><ChevronRight size={18} /></button>

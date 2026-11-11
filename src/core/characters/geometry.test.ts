@@ -1,6 +1,45 @@
 import { describe, expect, it } from 'vitest'
-import { makeStrokeGuide, matchesStroke, writingPoint, type Point } from './geometry'
+import { makeStrokeGuide, matchesStroke, STROKE_LENIENCY, strokeLimits, strokeMatching, writingPoint, type Point } from './geometry'
 import { advanceRound, commitStroke, memoryHint, newWritingRound, REPETITIONS } from './practice'
+
+describe('stroke matching levels', () => {
+  const guide = makeStrokeGuide('M10 50 L90 50')
+  const wobble = (size: number): Point[] => guide.points.map(([x, y], index) => [x, y + (index === 20 ? size : 0)] as Point)
+  it('Strict is the original limits, exactly', () => {
+    expect(STROKE_LENIENCY.strict).toBe(1)
+    expect(strokeLimits(4, 'strict')).toEqual({ tolerance: 5.5, gap: 11, backtrack: 9, minLength: 1.6, maxLength: 12.8, direction: 0.25 })
+    expect(strokeLimits(80, 'strict')).toMatchObject({ tolerance: 10, minLength: 32, maxLength: 80 * 2.2 + 4 })
+    expect(strokeLimits(20, 'strict').tolerance).toBe(9)
+  })
+  it('Strict keeps the old results on the old edge cases', () => {
+    expect(matchesStroke(wobble(10.5), guide, 'strict')).toBe(true)
+    expect(matchesStroke(wobble(12), guide, 'strict')).toBe(false)
+    expect(matchesStroke([[21, 50], [90, 50]], guide, 'strict')).toBe(false)
+    expect(matchesStroke([[21, 50], [90, 50]], guide, 'normal')).toBe(true)
+    expect(matchesStroke([[11, 50], [90, 50]], guide, 'strict')).toBe(true)
+    expect(matchesStroke([...guide.points].reverse(), guide, 'strict')).toBe(false)
+  })
+  it('Normal and Relaxed forgive more, Relaxed the most', () => {
+    expect(matchesStroke(wobble(12), guide, 'normal')).toBe(true)
+    expect(matchesStroke(wobble(20), guide, 'normal')).toBe(false)
+    expect(matchesStroke(wobble(20), guide, 'relaxed')).toBe(true)
+    expect(matchesStroke(wobble(26), guide, 'relaxed')).toBe(false)
+    const dot = makeStrokeGuide('M40 40 L43 43')
+    expect(matchesStroke([[33, 40], [43, 43]], dot, 'strict')).toBe(false)
+    expect(matchesStroke([[33, 40], [43, 43]], dot, 'normal')).toBe(true)
+  })
+  it('every level rejects reversed and misplaced strokes, and Normal is the default', () => {
+    for (const level of ['strict', 'normal', 'relaxed'] as const) {
+      expect(matchesStroke([...guide.points].reverse(), guide, level)).toBe(false)
+      expect(matchesStroke(guide.points.map(([x, y]) => [x, y + 30] as Point), guide, level)).toBe(false)
+      expect(matchesStroke([[50, 50], [90, 50]], guide, level)).toBe(false)
+    }
+    expect(matchesStroke(wobble(12), guide)).toBe(matchesStroke(wobble(12), guide, 'normal'))
+    expect(strokeMatching(undefined)).toBe('normal')
+    expect(strokeMatching('relaxed')).toBe('relaxed')
+    expect(strokeMatching('lax')).toBe('normal')
+  })
+})
 
 describe('exact-path writing geometry', () => {
   it('samples line endpoints at spacing two and retains the displayed path', () => {

@@ -28,6 +28,7 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (next.writingSpeech !== undefined && !WRITING_SPEECH.includes(next.writingSpeech)) throw new Error('Choose when the writing practice says the character.')
     if (next.writingSpeechResume !== undefined && next.writingSpeechResume !== 'transitions' && next.writingSpeechResume !== 'stroke') throw new Error('Choose when the writing practice says the character.')
     if (next.writingAutoSpeak !== undefined && typeof next.writingAutoSpeak !== 'boolean') throw new Error('Choose whether automatic writing speech is on or off.')
+    if (next.strokeMatching !== undefined && !['strict', 'normal', 'relaxed'].includes(next.strokeMatching)) throw new Error('Choose how forgiving stroke matching is.')
     if (next.writingColourParts !== undefined && typeof next.writingColourParts !== 'boolean') throw new Error('Choose whether the writing parts are coloured.')
     if (next.sudokuShowPinyin !== undefined && typeof next.sudokuShowPinyin !== 'boolean') throw new Error('Choose whether selected-character pinyin is shown.')
     if (next.tileAutoSpeak !== undefined && typeof next.tileAutoSpeak !== 'boolean') throw new Error('Choose whether tile speech is on or off.')

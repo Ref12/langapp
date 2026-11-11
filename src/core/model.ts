@@ -80,6 +80,8 @@ export interface Preferences {
   /** The last non-Off `writingSpeech`, what the quick mute restores. */
   writingSpeechResume?: 'transitions' | 'stroke'
   haptics?: boolean
+  /** How forgiving the writing practice is when it checks a stroke: strict, normal (default) or relaxed. */
+  strokeMatching?: 'strict' | 'normal' | 'relaxed'
   /** Writing player: colour each stroke by its character part (the Palette button). Off by default. */
   writingColourParts?: boolean
   /** Exercises written for each lesson (new, review, collection, span): 8 to 40, default 20. */
