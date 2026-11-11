@@ -1,0 +1,10 @@
+KANJIDIC2 - kanji readings
+
+The kanji reading table (src/data/packs/ja/kanji-readings.generated.json, written by scripts/generate-kanji-readings.mjs) is derived from KANJIDIC2,
+the kanji dictionary file of the Electronic Dictionary Research and Development Group (EDRDG), compiled by Jim Breen and contributors.
+https://www.edrdg.org/wiki/index.php/KANJIDIC_Project
+Retrieved 2026-11-11 from https://www.edrdg.org/kanjidic/kanjidic2.xml.gz (database version 2026-315; sha256 of the downloaded .gz: f3bfc5a832a974e452e186f3f990573dcde61ed63956db71d65fc353e4c4584d).
+
+Licence: Creative Commons Attribution-ShareAlike 4.0 (CC-BY-SA-4.0.txt in this folder), under the EDRDG licence (EDRDG-license.html in this folder, section 8 for KANJIDIC2).
+Modification: only the on'yomi and kun'yomi of the kanji with stroke data are kept, katakana on'yomi are written in hiragana, a kun'yomi is cut to its stem (without okurigana),
+and a few readings are added or dropped for the words the app teaches (listed in the script).

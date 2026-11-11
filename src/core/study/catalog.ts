@@ -1,5 +1,6 @@
 import { getPack, type LanguageId } from '../language'
 import { noteJapaneseReadings, noteJapaneseWords } from '../language/speech-text'
+import { setKanjiReadings, type KanjiReadingTable } from '../language/japanese-alignment'
 import { apartOf, kindOfClass, readingParts } from '../forms/display'
 import type { PackForm } from '../language/pack-data'
 import type { RomajiToken } from '../reading/romaji'
@@ -63,13 +64,21 @@ function noteSpeech(data: BandData): BandData {
   return data
 }
 
+/** The Japanese pack's kanji reading table, loaded (once) with its first band, so each kanji is spoken with its own reading in a word. */
+let kanjiTable: Promise<void> | undefined
+function loadKanjiReadings(pack: ReturnType<typeof getPack>): Promise<void> {
+  if (pack.id !== 'ja' || !pack.kanjiReadings) return Promise.resolve()
+  kanjiTable ??= pack.kanjiReadings().then(module => setKanjiReadings((module.default as { kanji: KanjiReadingTable }).kanji), () => { kanjiTable = undefined })
+  return kanjiTable
+}
+
 export function loadBand(band: Band): Promise<BandData> {
   const pack = getPack()
   const key = pack.id + ':' + band
   let pending = bandCache.get(key)
   if (!pending) {
     const load = pack.catalog.bands[band]
-    pending = load ? load().then(module => noteSpeech(module.default as BandData)) : Promise.reject(new Error('The ' + pack.name + ' catalog has no band ' + band))
+    pending = load ? Promise.all([load(), loadKanjiReadings(pack)]).then(([module]) => noteSpeech(module.default as BandData)) : Promise.reject(new Error('The ' + pack.name + ' catalog has no band ' + band))
     bandCache.set(key, pending)
   }
   return pending

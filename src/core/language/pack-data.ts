@@ -43,4 +43,6 @@ export interface PackData {
   practice?: PracticeSource
   /** The word forms of the language (a file of { schemaVersion, forms: PackForm[] }); absent when the language has none. */
   forms?: JsonLoader
+  /** The kanji reading table (kanji -> [on, kun]; src/data/packs/ja/kanji-readings.generated.json): only the Japanese pack has one, and it is loaded lazily with the catalog. */
+  kanjiReadings?: JsonLoader
 }

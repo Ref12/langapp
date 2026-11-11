@@ -4,10 +4,12 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { getPack } from '.'
 import { noteJapaneseReadings, resetJapaneseReadings } from './speech-text'
 import { setBuildLanguageForTests } from '../storage-names'
+import { setKanjiReadings, type KanjiReadingTable } from './japanese-alignment'
+import table from '../../data/packs/ja/kanji-readings.generated.json'
 
 const say = (text: string, hint?: Parameters<ReturnType<typeof getPack>['speechText']>[1]) => getPack().speechText(text, { kind: 'character', ...hint })
-beforeEach(() => { setBuildLanguageForTests('ja'); resetJapaneseReadings() })
-afterEach(() => { setBuildLanguageForTests(undefined); resetJapaneseReadings() })
+beforeEach(() => { setBuildLanguageForTests('ja'); resetJapaneseReadings(); setKanjiReadings(table.kanji as unknown as KanjiReadingTable) })
+afterEach(() => { setBuildLanguageForTests(undefined); resetJapaneseReadings(); setKanjiReadings(undefined) })
 
 describe('Japanese: a character in the word being practised', () => {
   it('speaks the reading of the character within the word', () => {
@@ -40,10 +42,19 @@ describe('Japanese: no word known', () => {
     expect(say('学', { lesson })).toBe('がっ')
     expect(say('校', { lesson })).toBe('こう')
   })
-  it('is the text as written when no lesson word reads it', () => {
-    expect(say('今', { lesson })).toBe('今')
-    expect(say('山', { lesson })).toBe('山')
-    expect(say('山')).toBe('山')
+  it('is the table\'s first on\'yomi when no lesson word reads it and the kanji is no word on its own', () => {
+    expect(say('今', { lesson })).toBe('こん')
+    expect(say('山', { lesson })).toBe('さん')
+    expect(say('山')).toBe('さん')
+  })
+  it('is the table\'s first kun\'yomi when the kanji is a word on its own in the data', () => {
+    noteJapaneseReadings('catalog', [['山', 'やま']])
+    expect(say('山')).toBe('やま')
+  })
+  it('says the kanji of 中国語 with its own reading, with the word or without', () => {
+    const within = { text: '中国語', reading: 'ちゅうごくご' }
+    expect([say('中', { within }), say('国', { within }), say('語', { within })]).toEqual(['ちゅう', 'ごく', 'ご'])
+    expect(say('中', { lesson: [within] })).toBe('ちゅう')
   })
   it('a word without a known reading falls through to the lesson words', () => {
     expect(say('学', { within: { text: '学ぶ?' }, lesson })).toBe('がっ')

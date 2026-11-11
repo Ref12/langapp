@@ -15,7 +15,7 @@
 //  So kana gives no gain on Edge (it already reads kanji sentences right in context) and takes away the accent cues, spaces do nothing there, and the other engines are unknown: sentences stay 'written'. Change the constant to try the others after listening.
 // Chinese and Korean return the text unchanged (Korean is written phonetically).
 import type { SpeechLocale } from '../assistant/contracts'
-import { characterReadingIn } from './japanese-alignment'
+import { characterReadingIn, kanjiReadingsOf } from './japanese-alignment'
 
 /** `character`: one character of the writing views, said for what it is in the word being practised (hint.within) or in the lessons' words (hint.lesson). */
 export type SpeechKind = 'word' | 'fragment' | 'sentence' | 'character'
@@ -102,7 +102,7 @@ export const knownJapaneseReading = (text: string, kind: 'word' | 'fragment' = '
 }
 
 /** A character of the writing views. Kana say themselves (は is は here, there is no sentence for a particle). A kanji says its reading in the word being practised (the whole word's kana when the alignment is uncertain),
- *  else its reading in the first lesson word it can be aligned in, else it is left as written. */
+ *  else its reading in the first lesson word it can be aligned in, else (no certain lesson word) the table's reading of the kanji on its own (see the end of the function). */
 function japaneseCharacterSpeech(text: string, bare: string, hint: SpeechHint | undefined): string {
   if (!HAN.test(bare)) return text
   const within = hint?.within
@@ -114,7 +114,10 @@ function japaneseCharacterSpeech(text: string, bare: string, hint: SpeechHint | 
     const said = word.text.normalize('NFC').trim() === bare ? reading : characterReadingIn(bare, word.text, reading)
     if (said) return said
   }
-  return text
+  // No word to read it in: the table's first kun'yomi when the kanji is a word on its own, else its first on'yomi.
+  const own = known.has(bare)
+  const entry = kanjiReadingsOf(bare)
+  return (own ? entry?.kun[0] : undefined) ?? entry?.on[0] ?? entry?.kun[0] ?? text
 }
 
 export function japaneseSpeechText(text: string, hint?: SpeechHint): string {

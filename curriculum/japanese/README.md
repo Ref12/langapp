@@ -41,6 +41,8 @@ See the list in `sources.yaml` for exact URLs, pins, component usage and attribu
 
 **Dictionary component:** English senses, readings and POS derive from **JMdict/EDICT**, copyright James William Breen and the **Electronic Dictionary Research and Development Group (EDRDG)**, used in conformance with [the Group's licence](https://www.edrdg.org/edrdg/licence.html). The underlying license is **CC-BY-SA 4.0**. Credit EDRDG and provide documentation/license access in deployed apps. EDRDG's statement requires a regular updating procedure and gives at least monthly updates for web dictionary servers as an example. A static curriculum snapshot is not a deployment refresh service.
 
+**Kanji readings:** the per-kanji on'yomi and kun'yomi used to say a kanji in a word derive from **KANJIDIC2** (EDRDG, **CC-BY-SA 4.0**); see `licenses/KANJIDIC2-NOTICE.txt`.
+
 **Level component:** Jonathan Waller's [JLPT Resources](https://www.tanos.co.uk/jlpt/) permit nonsold material under **CC BY**; Waller's sharing page does not state a version, so we do not invent one. **stephenmk/yomitan-jlpt-vocab** provides reviewed JMdict entry-ID matching and is **CC-BY-SA 4.0**. Credit both Waller and stephenmk. These estimates are neither new official lists nor guarantees about exam placement.
 
 **Transformation component:** JSON dictionary transformation is from **scriptin/jmdict-simplified**, release `3.6.2+20260831182826`. Credit it as well as EDRDG. Its published 11,510,336-byte English archive is SHA256-verified. Only mapped entries are retained locally; no sentence corpus, paid course, audio, kanji stroke artwork or Tatoeba examples are redistributed.

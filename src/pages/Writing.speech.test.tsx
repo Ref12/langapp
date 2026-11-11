@@ -3,6 +3,8 @@ import { cleanup, render, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { setBuildLanguageForTests } from '../core/storage-names'
 import { resetJapaneseReadings } from '../core/language/speech-text'
+import { setKanjiReadings, type KanjiReadingTable } from '../core/language/japanese-alignment'
+import kanjiTable from '../data/packs/ja/kanji-readings.generated.json'
 import { Writing, WritingPlayer, WritingStage } from './Writing'
 import { buildWritingRoute, parseWritingQuery } from '../core/characters/writing-route'
 import type { Workspace } from '../core/model'
@@ -27,6 +29,7 @@ const hex = (character: string) => character.codePointAt(0)!.toString(16).padSta
 const lastSpoken = async () => { await waitFor(() => expect(spoken.length).toBeGreaterThan(0)); return spoken[spoken.length - 1] }
 
 beforeEach(() => {
+  setKanjiReadings(kanjiTable.kanji as unknown as KanjiReadingTable)
   spoken = []
   resetJapaneseReadings()
   setBuildLanguageForTests('ja')
@@ -34,7 +37,7 @@ beforeEach(() => {
   vi.stubGlobal('speechSynthesis', { cancel: () => undefined, speak: (utterance: { text: string }) => { spoken.push(utterance.text) } })
   Object.defineProperty(window, 'speechSynthesis', { value: (globalThis as { speechSynthesis: unknown }).speechSynthesis, configurable: true })
 })
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); setBuildLanguageForTests(undefined) })
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); setBuildLanguageForTests(undefined); setKanjiReadings(undefined) })
 
 describe('the Writing page speaks a kanji with its reading', () => {
   it('a word on the route with its reading: the character within it', async () => {
@@ -67,9 +70,9 @@ describe('the Writing page speaks a kanji with its reading', () => {
     render(<Writing {...props} codepoint={hex('学')} scope="all" />)
     expect(await lastSpoken()).toBe('がっ')
   })
-  it('no word and no lesson word: as written', async () => {
+  it('no word and no lesson word: the table\'s first on\'yomi', async () => {
     render(<Writing {...props} codepoint={hex('山')} scope="all" />)
-    expect(await lastSpoken()).toBe('山')
+    expect(await lastSpoken()).toBe('さん')
   })
   it('a kana is spoken as itself', async () => {
     render(<Writing {...props} codepoint={hex('は')} scope="all" />)

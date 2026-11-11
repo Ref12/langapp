@@ -8,4 +8,5 @@ export const jaData: PackData = {
   phrases: { bands: { '1': () => import('../../../data/packs/ja/phrases-band-1.json') }, index: () => import('../../../data/packs/ja/phrases-index.json') },
   romaji: romajiOverrides.overrides,
   forms: () => import('../../../data/packs/ja/forms.generated.json'),
+  kanjiReadings: () => import('../../../data/packs/ja/kanji-readings.generated.json'),
 }
