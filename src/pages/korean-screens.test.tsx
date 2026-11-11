@@ -116,6 +116,49 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     expect(text).toContain('일하다')
     await pin('lesson-dictionary-form', text)
   })
+  it('Practice start, before anything is learned', async () => {
+    await db.knowledge.clear(); await db.studyCards.clear()
+    await pin('practice-start', await screenText('practice', () => expect(screen.getByText('Learning from')).toBeInTheDocument()))
+  })
+  it('Practice by skill, for a learner who knows some lessons', async () => {
+    const text = await screenText('practice', () => expect(screen.getByText('Practice by skill')).toBeInTheDocument())
+    for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong']) expect(text).not.toContain(absent)
+    await pin('practice-by-skill', text)
+  })
+  it('The Ready page of a session, with the Writing preset', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'writing' })
+    await pin('practice-ready', await screenText(`practice/set/${id}`, () => expect(screen.getByRole('button', { name: 'Start session' })).toBeEnabled()))
+  })
+  it('Practice: a Word order question', async () => {
+    vi.spyOn(Math, 'random').mockReturnValue(0.05)
+    saveCustomPreset({ id: 'custom-order', name: 'Word order only', forms: ['tiles'], stages: ['produce'] })
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'custom-order' })
+    const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByText('Tap the tiles in order to build the sentence.')).toBeInTheDocument())
+    // The sentence is drawn at random from the lesson's new words: the pin masks its English and its tiles.
+    await pin('practice-word-order', question.replace(/(Build the sentence\n)[^\n]+/, '$1<English>').replace(/(Tap the tiles in order to build the sentence\.\n)[\s\S]*?(Check answer)/, '$1<tiles>\n$2'))
+    expect(document.querySelectorAll('.tile-bank .tile').length).toBeGreaterThanOrEqual(2)
+    vi.restoreAllMocks()
+  }, 30000)
+  it('Practice: a typed-romanization question', async () => {
+    saveCustomPreset({ id: 'custom-reading', name: 'Romanization only', forms: ['pinyin'], stages: ['recall'] })
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    await setEngineChoice(id, { preset: 'custom-reading' })
+    const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByPlaceholderText('Type the romanization')).toBeInTheDocument())
+    // The word is drawn at random from the lesson's new words: the pin masks it.
+    await pin('practice-type-reading', question.replace(/(Type the romanization\n)[^\n]+/, '$1<word>'))
+    expect(document.querySelector('.engine-pinyin-preview')).toBeNull()
+    expect(document.querySelector('.engine-pinyin-hint')).toHaveTextContent('Type the romanization, with or without spaces and hyphens (gongbuhaeyo).')
+    // a wrong answer: marked wrong, the romanization shown
+    fireEvent.change(screen.getByPlaceholderText('Type the romanization'), { target: { value: 'zzz' } })
+    fireEvent.click(document.querySelector('.check-answer-button')!)
+    expect(await screen.findByText('Not the reading.')).toBeInTheDocument()
+    expect(screen.getByText(/The romanization is/)).toBeInTheDocument()
+  }, 30000)
   it('Practice: a Conjugate question', async () => {
     saveCustomPreset({ id: 'custom-conjugate', name: 'Conjugate only', forms: ['conjugate'], stages: ['produce'] })
     const id = await createDrillSet({ kind: 'new' })

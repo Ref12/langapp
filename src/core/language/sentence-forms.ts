@@ -2,7 +2,7 @@
 // The builders (session/bank-forms.ts) and the question screens ask the pack; none tests the language. Chinese is the code that was in those builders and in gradeChinese, moved; Japanese and Korean are in japanese-sentence.ts.
 import type { ChineseGrade } from '../session/grade'
 import { gradeChinese } from '../session/grade'
-import { blankJapanese, gradeJapaneseSentence, japaneseDistractors, JA_RULE, KO_RULE, spellTokens } from './japanese-sentence'
+import { blankJapanese, gradeJapaneseSentence, japaneseDistractors, JA_RULE, KO_RULE, spellKoreanTokens, spellTokens } from './japanese-sentence'
 import type { SegmentWords, SentenceToken } from './phrase-identity'
 
 /** One token of a sentence as written, with its reading in kana; `grammar` marks a particle or an ending. */
@@ -52,6 +52,8 @@ export interface Blanked { gapped: string; answer: string; wrong: string[] }
 export interface SentenceForms {
   /** The tokens of a sentence with their readings, for marking a typed sentence; undefined when the pack marks by the text alone. */
   spell(text: string, words: SpellInput): SpelledToken[] | undefined
+  /** The leading words of a sentence that may be left out when it is typed from its English (Korean 저는); undefined or empty: none. */
+  optionalWords?(tokens: readonly SpelledToken[]): string[]
   /** Marks a built or typed sentence against the accepted wordings. */
   gradeSentence(input: SentenceInput): SentenceGrade
   /** The wrong tiles of a sentence. */
@@ -88,9 +90,14 @@ export const jaSentence: SentenceForms = {
   blank: input => blankJapanese(JA_RULE, input),
 }
 
-/** Korean has no data yet: the same marking with the simplest rule (the sentence as written, tile by tile), no kana and no romaji. */
+/** Korean: tokens as the data cuts them (a particle is its own tile, a token of several words is cut at its spaces); the sentence as written is what is right, with other spacing right but noted, and a leading 저는 may be left out when typing from English. */
+const KO_SUBJECTS = ['\uC800', '\uB098', '\uC81C', '\uB0B4']
 export const koSentence: SentenceForms = {
-  spell: spellTokens,
+  spell: spellKoreanTokens,
+  optionalWords: tokens => {
+    const [first, second] = tokens
+    return first && second?.grammar && KO_SUBJECTS.includes(first.text) && ['\uB294', '\uC740', '\uAC00', '\uC774'].includes(second.text) ? [first.text + second.text] : []
+  },
   gradeSentence: input => gradeJapaneseSentence(KO_RULE, input),
   distractors: ({ tiles }) => japaneseDistractors(KO_RULE, tiles),
   blank: input => blankJapanese(KO_RULE, input),

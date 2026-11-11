@@ -3,6 +3,7 @@
 import type { RomajiOverrides } from '../reading/romaji'
 import { gradePinyin, previewPinyin } from '../session/grade'
 import { gradeKanaReading } from './japanese-reading'
+import { romanizeKorean, romanizePronunciation } from './korean-reading'
 
 export interface ReadingGrade {
   /** correct; tones: right apart from tones (Chinese) or a long vowel written short (Japanese), counted as Needed a hint; wrong: a reading that is not the word's; self: the learner marks it. */
@@ -40,7 +41,28 @@ export const kanaInput: ReadingInput = {
   grade: (answer, accepted, romaji) => gradeKanaReading(answer, accepted, romaji), nearNote: 'Right sounds, long vowels:', audioIsAnswer: true, takesLearningScript: true, marks: true, hint: firstKana,
 }
 
-/** Korean: a typed reading is not graded yet; every answer is compared with the model and marked by the learner. */
-export const selfMarkedInput: ReadingInput = {
-  grade: () => ({ verdict: 'self' }), nearNote: 'Right sounds:', audioIsAnswer: false, takesLearningScript: false, marks: false,
+
+const HANGUL = /[\u3131-\u318e\uac00-\ud7a3]/u
+/** A typed romanization as it is compared: letters only, in lower case, accents gone, so spaces, hyphens and apostrophes do not count. */
+const romanKey = (text: string): string => text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z]/g, '')
+const hangulKey = (text: string): string => text.normalize('NFC').replace(/[^\u3131-\u318e\uac00-\ud7a3]/gu, '')
+
+/**
+ * Korean: a typed romanization (Revised Romanization) is marked against the word's Hangul, with the sound changes (haksaeng, gongbuhaeyo) or as spelled (hagsaeng); spaces, hyphens, capitals and apostrophes do not count.
+ * The Hangul itself, typed, is right too. A word that is not in letters or Hangul is left to the learner.
+ */
+export const romanizationInput: ReadingInput = {
+  grade: (answer, accepted) => {
+    const meant = accepted[0]
+    const typed = answer.normalize('NFC').trim()
+    if (!typed) return { verdict: 'self', kana: meant }
+    const hangul = HANGUL.test(typed)
+    const latin = /^[\p{Script=Latin}\s'\u2019\u00b7.-]+$/u.test(typed) && /[a-z]/i.test(typed)
+    if (!hangul && !latin) return { verdict: 'self', kana: meant }
+    for (const reading of accepted) {
+      if (hangul ? hangulKey(typed) === hangulKey(reading) : [romanizeKorean(reading), romanizePronunciation(reading)].some(roman => romanKey(roman) === romanKey(typed))) return { verdict: 'correct', kana: reading }
+    }
+    return { verdict: 'wrong', kana: meant }
+  },
+  nearNote: 'Right sounds:', audioIsAnswer: false, takesLearningScript: false, marks: true,
 }

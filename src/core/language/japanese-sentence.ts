@@ -38,6 +38,20 @@ export function spellTokens(text: string, words: SpellInput): SpelledToken[] | u
   return words.wholeReading ? [{ text, reading: words.wholeReading }] : undefined
 }
 
+/**
+ * The tokens of a Korean sentence with the reading of each. A token that holds several words (공부하지 않아요) is cut at its spaces, so a tile is a word between spaces and a particle is its own tile (저는 is 저 + 는).
+ * Korean's reading is the Hangul itself, so a piece reads as itself.
+ */
+export function spellKoreanTokens(text: string, words: SpellInput): SpelledToken[] | undefined {
+  const spelled = spellTokens(text, words)
+  return spelled?.flatMap(token => {
+    const pieces = token.text.split(/\s+/u).filter(Boolean)
+    if (pieces.length < 2) return [token]
+    const readings = token.reading.split(/\s+/u).filter(Boolean)
+    return pieces.map((piece, at) => ({ text: piece, reading: readings.length === pieces.length ? readings[at] : piece, ...(token.grammar ? { grammar: true } : {}) }))
+  })
+}
+
 /** Every way a token may be typed, folded: as written, and (when the rule allows) as its reading. */
 function variantsOf(token: SpelledToken, rule: Rule): string[] {
   const out = new Set([fold(token.text)])
@@ -90,7 +104,36 @@ function tokenise(raw: string, tokens: readonly SpelledToken[], rule: Rule): str
   return out
 }
 
-interface Wording { sentence: string; tokens?: readonly SpelledToken[] }
+interface Wording { sentence: string; tokens?: readonly SpelledToken[]
+  /** A wording that is the sentence with its leading words left out: what was left out, and the sentence in full. */
+  without?: string; full?: string }
+
+/** A text with its punctuation gone and its spaces kept as single spaces: what "the same spacing" compares. */
+const spaced = (text: string): string => text.normalize('NFKC').replace(PUNCTUATION_NOT_SPACE, '').replace(/\s+/g, ' ').trim()
+const PUNCTUATION_NOT_SPACE = /[.,!?;:'"()[\]\u3001\u3002\uFF0C\uFF0E\uFF01\uFF1F\uFF1B\uFF1A\u300C\u300D\u300E\u300F\u30FB\uFF5E~\u2026-]/gu
+
+/** The wordings that leave out leading words the data allows to drop (저는 in "저는 학생이에요."): the sentence from the next word on, as another way to say it. */
+function withoutLeading(wordings: readonly Wording[], optional: readonly string[]): Wording[] {
+  const out: Wording[] = []
+  for (const wording of wordings) {
+    if (!wording.tokens) continue
+    for (const word of optional) {
+      const want = normaliseTile(word)
+      if (!want) continue
+      let joined = ''
+      for (let at = 0; at < wording.tokens.length - 1; at++) {
+        joined += normaliseTile(wording.tokens[at].text)
+        if (joined.length > want.length) break
+        if (joined !== want) continue
+        let seen = 0, cut = 0
+        for (; cut < wording.sentence.length && seen < want.length; cut++) seen += normaliseTile(wording.sentence[cut]).length
+        out.push({ sentence: wording.sentence.slice(cut).trim(), tokens: wording.tokens.slice(at + 1), without: word, full: wording.sentence })
+        break
+      }
+    }
+  }
+  return out
+}
 
 function wrong(rule: Rule, wordings: readonly Wording[], given: readonly string[], placed: readonly string[]): ChineseGrade {
   const texts = (wording: Wording): string[] => wording.tokens ? wording.tokens.map(token => token.text) : [wording.sentence]
@@ -102,7 +145,11 @@ function wrong(rule: Rule, wordings: readonly Wording[], given: readonly string[
   return { verdict: 'diff', closest: best.sentence, alternative: false, differences, ignored: [], messages: tiles.messages.length ? tiles.messages : differences.map(describeDifference) }
 }
 
-const right = (wording: Wording, index: number, plain: boolean): ChineseGrade => ({ verdict: 'correct', closest: wording.sentence, alternative: index > 0, differences: [], ignored: [], messages: [], ...(plain ? {} : { note: 'Right. The sentence as written:', written: wording.sentence }) })
+const right = (wording: Wording, index: number, plain: boolean, note?: string): ChineseGrade => wording.without !== undefined
+  ? { verdict: 'correct', closest: wording.sentence, alternative: true, differences: [], ignored: [], messages: [], note: `Right: ${wording.without} may be left out. The full sentence:`, written: wording.full }
+  : { verdict: 'correct', closest: wording.sentence, alternative: index > 0, differences: [], ignored: [], messages: [], ...(note ? { note, written: wording.sentence } : plain ? {} : { note: 'Right. The sentence as written:', written: wording.sentence }) }
+/** Korean is written with spaces between words: the right letters with other spacing are right, with a note on the spacing. */
+const SPACING_NOTE = 'Almost: the letters are right, mind the spacing. The sentence as written:'
 
 /** Marks a built (placed tiles) or typed sentence. */
 export function gradeJapaneseSentence(rule: Rule, input: SentenceInput): ChineseGrade {
@@ -124,11 +171,14 @@ export function gradeJapaneseSentence(rule: Rule, input: SentenceInput): Chinese
     if (hit >= 0) return right(wordings[hit], hit, false)
     return { verdict: 'diff', closest: wordings[0].sentence, alternative: false, differences: [], ignored: [], messages: [] }
   }
+  const spacing = (wording: Wording): string | undefined => rule.language === 'ko' && spaced(wording.sentence) !== spaced(raw) ? SPACING_NOTE : undefined
   const literal = wordings.findIndex(wording => written(wording.sentence) === written(raw))
-  if (literal >= 0) return right(wordings[literal], literal, true)
+  if (literal >= 0) return right(wordings[literal], literal, true, spacing(wordings[literal]))
   const folded = fold(raw)
   const variant = wordings.findIndex(wording => wording.tokens ? covers(folded, wording.tokens, rule) : fold(wording.sentence) === folded)
-  if (variant >= 0) return right(wordings[variant], variant, false)
+  if (variant >= 0) return right(wordings[variant], variant, false, spacing(wordings[variant]))
+  const dropped = withoutLeading(wordings, input.optional ?? []).find(wording => written(wording.sentence) === written(raw) || (wording.tokens && covers(folded, wording.tokens, rule)))
+  if (dropped) return right(dropped, 1, false)
   const model = wordings.find(wording => wording.tokens)?.tokens ?? []
   return wrong(rule, wordings, tokenise(raw, model, rule), [])
 }
@@ -150,6 +200,10 @@ export function gapTier(rule: Rule, target: { cl?: string; phrase?: boolean }, u
   const at = NEAREST_TO_NOUN.indexOf(have)
   return want === 'no-class' ? 1 + (at < 0 ? NEAREST_TO_NOUN.length : at) : 1
 }
+
+/** Korean, a word with no class (a noun): not a whole polite expression (죄송해요, ends in 요) nor a word group with a space (그 사람) as a wrong option, unless the answer is one itself. */
+const oddForKorean = (rule: Rule, classed: boolean, answer: string, shown: string): boolean =>
+  rule.language === 'ko' && !classed && ((/\u750D$|\uC694$/u.test(shown) && !/\uC694$/u.test(answer)) || (/\s/u.test(shown) && !/\s/u.test(answer)))
 
 /** Where a word sits in a sentence: the token that carries it, blanked whole; the wrong options are words of the same kind as the answer (in the form the token is in); a word with no class falls back to the nearest kinds (gapTier). */
 export function blankJapanese(rule: Rule, input: BlankInput): Blanked | undefined {
@@ -181,7 +235,7 @@ export function blankJapanese(rule: Rule, input: BlankInput): Blanked | undefine
   // a word with a conjugation class keeps its rule (same kind, shown in the same form); a word without one (noun, pronoun, set phrase) takes the nearest kinds first (gapTier)
   const classed = target.cl !== undefined
   const pool = input.shuffle(input.known, input.rng).filter(unit => unit.ref !== target.ref && !inside.has(unit.label) && (!classed || kindOf(rule, unit.cl) === kindOf(rule, target.cl)))
-    .flatMap(unit => { const shown = shownIn(unit); return shown && shown !== answer && !used.has(shown) ? [{ unit, shown }] : [] })
+    .flatMap(unit => { const shown = shownIn(unit); return shown && shown !== answer && !used.has(shown) && !oddForKorean(rule, classed, answer, shown) ? [{ unit, shown }] : [] })
     .sort((a, b) => gapTier(rule, target, a.unit) - gapTier(rule, target, b.unit) || Math.abs(Number(a.unit.band) - band) - Math.abs(Number(b.unit.band) - band) || Math.abs(a.shown.length - answer.length) - Math.abs(b.shown.length - answer.length))
   const wrong: string[] = []
   for (const { shown } of pool) { if (wrong.length >= 3) break; if (!wrong.includes(shown)) wrong.push(shown) }

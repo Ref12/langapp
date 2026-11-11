@@ -49,21 +49,25 @@ const NOT_LETTER = /[^\p{L}\p{N}\p{M}]/gu
  */
 export const lettersPhraseKey = (text: string): string => text.normalize('NFKC').toLowerCase().replace(NOT_LETTER, '')
 
-/** The tiles from the sentence's tokens: a word or grammar token is one tile with its whole surface (勉強します), punctuation is no tile. */
-export function segmentTokens(words: SegmentWords): string[] {
+/** The tiles from the sentence's tokens: a word or grammar token is one tile with its whole surface (勉強します), punctuation is no tile. `atSpaces`: a token of several words is cut at its spaces (Korean). */
+export function segmentTokens(words: SegmentWords, atSpaces = false): string[] {
   const out: string[] = []
   for (const token of words.tokens ?? []) {
     if (token.punctuation !== undefined) continue
     const text = token.text ?? (token.word !== undefined ? words.surface?.(token.word) : undefined)
-    if (text && lettersPhraseKey(text)) out.push(text)
+    if (!text) continue
+    for (const piece of atSpaces ? text.split(/\s+/u) : [text]) if (lettersPhraseKey(piece)) out.push(piece)
   }
   return out
 }
 
 export const jaIdentity: PhraseIdentity = { phraseKey: lettersPhraseKey, segment: (_text, words) => segmentTokens(words) }
 
-/** Korean has no data yet: the same key, tiles from tokens when there are some, else the words between spaces (Korean is written with them). */
+/**
+ * Korean: the letters key, and a question mark counts (공부해요? asks what 공부해요. states, so they are two sentences). The tiles are the sentence's tokens cut at spaces, so a particle is its own tile
+ * (저는 is 저 + 는) and a word between spaces is one tile; a sentence with no tokens is cut at its spaces.
+ */
 export const koIdentity: PhraseIdentity = {
-  phraseKey: lettersPhraseKey,
-  segment: (text, words) => words.tokens?.length ? segmentTokens(words) : text.split(/\s+/u).filter(part => lettersPhraseKey(part)),
+  phraseKey: text => lettersPhraseKey(text) + (/[?\uFF1F]\s*$/u.test(text.trim()) ? '?' : ''),
+  segment: (text, words) => words.tokens?.length ? segmentTokens(words, true) : text.split(/\s+/u).filter(part => lettersPhraseKey(part)),
 }

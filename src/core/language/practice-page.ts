@@ -29,8 +29,10 @@ export const jaPage: PracticePage = {
   pageDescription: 'A local Japanese learning workspace. Learn useful phrases and practice your words.',
 }
 
+/** Korean: the particles (the table in particles.ts) and the copula endings, which a sentence uses freely. */
+const KO_ENDINGS = ['\uC774\uC5D0\uC694', '\uC608\uC694', '\uC774\uC138\uC694', '\uC774\uC9C0\uC694', '\uC785\uB2C8\uB2E4', '\uC774\uB2E4', '\uC544\uB2C8\uC5D0\uC694', '\uC544\uB2D9\uB2C8\uB2E4', '\uC774\uC5C8\uC5B4\uC694', '\uC600\uC5B4\uC694']
 export const koPage: PracticePage = {
-  functionWords: Object.keys(PARTICLES.ko),
+  functionWords: [...Object.keys(PARTICLES.ko), ...KO_ENDINGS],
   modelExercises: false,
   pageDescription: 'A local Korean learning workspace. Learn useful phrases and practice your words.',
 }

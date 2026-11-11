@@ -57,29 +57,29 @@ export const zhPractice: PracticeWording = {
 }
 
 /** The same wording for a language that has readings instead of pinyin: its name for "Chinese", "reading" for "pinyin". */
-function readingLanguage(name: string, example: string, readingHelp: string, script: RegExp): PracticeWording {
+function readingLanguage(name: string, example: string, readingHelp: string, script: RegExp, reading = 'reading'): PracticeWording {
   return {
-    formLabels: { ...FORM_LABEL, pinyin: 'Type the reading', 'translate-en-zh': 'Translate to ' + name },
-    instructions: { ...zhInstructions, pinyin: 'Type the reading', 'translate-en-zh': 'Translate into ' + name, 'exchange-reply': 'Answer the question in ' + name + ', as the cue says' },
-    readingPlaceholder: 'Type the reading', readingHelp, readingExample: example, readingIs: 'The reading is',
+    formLabels: { ...FORM_LABEL, pinyin: 'Type the ' + reading, 'translate-en-zh': 'Translate to ' + name },
+    instructions: { ...zhInstructions, pinyin: 'Type the ' + reading, 'translate-en-zh': 'Translate into ' + name, 'exchange-reply': 'Answer the question in ' + name + ', as the cue says' },
+    readingPlaceholder: 'Type the ' + reading, readingHelp, readingExample: example, readingIs: 'The ' + reading + ' is',
     hideReadings: 'Hide readings', showReadings: 'Show readings',
-    typeNative: 'Type the ' + name, replyNative: 'Your reply in ' + name, typeNativeOrReading: 'Type the ' + name + ', or its reading', nativeNote: 'Type ' + name + ' or its reading.',
+    typeNative: 'Type the ' + name, replyNative: 'Your reply in ' + name, typeNativeOrReading: 'Type the ' + name + ', or its ' + reading, nativeNote: 'Type ' + name + ' or its ' + reading + '.',
     hearNative: 'Hear the ' + name, thinkOf: 'Think of the ' + name, listenTo: 'Listen to the ' + name, languageName: name,
     notEnglish: { pattern: script, note: 'The answer should be in English, not ' + name + '.' },
     drillTypes: {
       meanings: { blurb: name + ' \u2194 English: choose or type' },
       write: { blurb: 'A reading sentence, write the highlighted word from memory' },
-      pinyin: { name: 'Say the reading', blurb: 'See the word, type its reading' },
+      pinyin: { name: 'Say the ' + reading, blurb: 'See the word, type its ' + reading },
       translate: { blurb: 'English to ' + name + ': type, speak or write' },
       read: { blurb: 'The same conversation as text with readings' },
     },
-    drillTitles: { pinyin: 'Type the reading', translate: 'Translate into ' + name },
-    presetBlurbs: { writing: 'Produce ' + name + ': translate, dictation, word order, reading.' },
+    drillTitles: { pinyin: 'Type the ' + reading, translate: 'Translate into ' + name },
+    presetBlurbs: { writing: 'Produce ' + name + ': translate, dictation, word order, ' + reading + '.' },
   }
 }
 
 export const jaPractice: PracticeWording = readingLanguage('Japanese', '\u306b\u307b\u3093', 'Type the reading in kana or romaji.', /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u)
-export const koPractice: PracticeWording = readingLanguage('Korean', '\ud55c\uad6d', 'Type the reading.', /[\p{Script=Han}\p{Script=Hangul}]/u)
+export const koPractice: PracticeWording = readingLanguage('Korean', '\ud55c\uad6d', 'Type the romanization, with or without spaces and hyphens (gongbuhaeyo).', /[\p{Script=Han}\p{Script=Hangul}]/u, 'romanization')
 
 /** The older drill type's name and blurb in this pack's words (an entry the pack does not override keeps its own). */
 export const drillText = (entry: { id: string; name: string; blurb: string }, wording: PracticeWording): { name: string; blurb: string } => ({ ...entry, ...wording.drillTypes[entry.id] })

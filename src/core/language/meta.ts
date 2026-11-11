@@ -4,7 +4,7 @@ import { zhTrack } from '../../data/tracks'
 import { AREAS, type Area, type Features } from './areas'
 import type { SpeechLocale } from '../assistant/contracts'
 import { isLanguageId, type LanguageId } from './ids'
-import { kanaInput, pinyinInput, selfMarkedInput, type ReadingInput } from './reading-input'
+import { kanaInput, pinyinInput, romanizationInput, type ReadingInput } from './reading-input'
 import { jaIdentity, koIdentity, zhIdentity, type PhraseIdentity } from './phrase-identity'
 import { zhWriting, jaWriting, koWriting, type PackWriting } from './writing'
 import { jaSentence, koSentence, zhSentence, type SentenceForms } from './sentence-forms'
@@ -110,7 +110,7 @@ export const jaMeta: PackMeta = { id: 'ja', name: 'Japanese', nativeName: '\u65E
   displayForms: jaDisplayForms, dictionary: jaDictionary(jaDisplayForms),
   readingStyles: { choices: ['kana', 'romaji'], default: 'kana', options: { kana: { label: 'Kana', example: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059' }, romaji: { label: 'Romaji', example: 'benkyou shimasu' } } } }
 export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
-  wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', glyph: '\uD55C', published: true, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
+  wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', glyph: '\uD55C', published: true, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: romanizationInput,
   guide: { label: 'New to Hangul? Learn to read and write it', href: 'guides/hangul.html' },
   displayForms: koDisplayForms, dictionary: koDictionary(koDisplayForms), writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
   readingStyles: { choices: ['hangul', 'romanized'], default: 'romanized', options: { hangul: { label: 'Hangul only', example: '공부해요' }, romanized: { label: 'Hangul with romanization', example: '공부해요 gongbuhaeyo' } } } }

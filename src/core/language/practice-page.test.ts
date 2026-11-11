@@ -17,8 +17,10 @@ describe('the practice page entries of the packs', () => {
     expect(jaMeta.modelExercises).toBe(false)
     expect(jaMeta.pageDescription).not.toMatch(/Mandarin|Chinese/)
   })
-  it('Korean: its particles, no model exercises', () => {
-    expect(koMeta.functionWords).toEqual(Object.keys(PARTICLES.ko))
+  it('Korean: its particles and the copula endings, no model exercises', () => {
+    expect(koMeta.functionWords.slice(0, Object.keys(PARTICLES.ko).length)).toEqual(Object.keys(PARTICLES.ko))
+    for (const word of ['은', '는', '이', '가', '을', '를', '에', '에서', '하고', '이에요', '예요', '입니다', '아니에요']) expect(koMeta.functionWords).toContain(word)
+    expect(new Set(koMeta.functionWords).size).toBe(koMeta.functionWords.length)
     expect(koMeta.modelExercises).toBe(false)
   })
   it('the build asks its own pack', () => {

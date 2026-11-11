@@ -76,11 +76,13 @@ export function buildTranslate(slot: Slot, form: 'translate-zh-en' | 'translate-
   const zhToEn = form === 'translate-zh-en'
   const accepted = zhToEn ? acceptedEnglish(phrase, context.bank, context.extraAcceptedEnglish?.(phrase)) : acceptedAnswers(phrase, context.bank, context.extraAccepted?.(phrase))
   const spelled = zhToEn ? undefined : spelledAccepted(context, phrase, accepted)
+  // words the dataset marks optional, and the leading words the pack lets a sentence typed from English leave out (Korean 저는)
+  const optional = [...(context.extraOptional?.(phrase) ?? []), ...(zhToEn || !spelled?.[0] ? [] : getPack().optionalWords?.(spelled[0]) ?? [])]
   return {
     ...slot, form, prompt: zhToEn ? phrase.zh : phrase.en, promptLang: zhToEn ? 'zh' : 'en', answerLang: zhToEn ? 'en' : 'zh',
     ...(zhToEn ? { hearText: phrase.zh } : {}),
     accepted, ...(spelled ? { spelled } : {}),
-    ...(!zhToEn && context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}),
+    ...(!zhToEn && optional.length ? { optional } : {}),
       model: zhToEn ? phrase.en : phrase.zh, modelPinyin: phrase.py, explanation: zhToEn ? phrase.zh : phrase.en,
     phrase: { zh: phrase.zh, py: phrase.py, en: phrase.en }, ...(unknown ? { unknown } : {}),
   }

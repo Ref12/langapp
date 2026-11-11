@@ -48,5 +48,5 @@ describe('the packs say how a reading is marked', () => {
     expect(jaMeta.readingInput.preview).toBeUndefined()
     expect(jaMeta.readingInput.audioIsAnswer).toBe(true)
   })
-  it('Korean leaves the marking to the learner', () => expect(koMeta.readingInput.grade('hangug', ['한국']).verdict).toBe('self'))
+  it('Korean marks a typed romanization (reading-input.test.ts) and leaves other characters to the learner', () => { expect(koMeta.readingInput.grade('hanguk', ['한국']).verdict).toBe('correct'); expect(koMeta.readingInput.grade('\u3053', ['한국']).verdict).toBe('self') })
 })
