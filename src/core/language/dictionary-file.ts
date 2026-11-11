@@ -1,6 +1,5 @@
 /**
- * The reader of the compact dictionary files (src/data/dictionary/<language>.json), loaded on first use. The Japanese app's look-up source (lookup-ja.ts) reads ja.json through it;
- * ko.json waits here for the Korean app. A build keeps only its own language's file (__PACK_DATA__), so the Chinese build ships neither.
+ * The reader of the compact dictionary files (src/data/dictionary/<language>.json), loaded on first use. The look-up sources of the Japanese and Korean apps (lookup-ja.ts, lookup-ko.ts) read ja.json and ko.json through it. A build keeps only its own language's file (__PACK_DATA__), so the Chinese build ships neither.
  */
 declare const __PACK_DATA__: string
 export type DictLanguage = 'ja' | 'ko'
@@ -19,6 +18,9 @@ export interface DictWord {
   level?: string
   levelNo: number
   hanja?: string
+  /** A look-up word with several entries of one headword (Korean): the id of each, the first is `id`; and the one-line gloss for a list row. */
+  ids?: string[]
+  short?: string
   /** The word-forms class of a verb or adjective (src/core/forms); absent for other words. */
   class?: string
   /** Search keys, folded once when the dictionary loads. */

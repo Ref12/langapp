@@ -12,14 +12,19 @@ export function LookupWordCard({ word, reading, levelName }: { word: DictWord; r
   const pack = getPack()
   const shows = useShowsReading()
   const senses = word.meaning.split(' | ').filter(Boolean)
+  // a Korean entry: its senses (" / " inside one entry, " | " between entries), shown in full under the one-line gloss
+  const all = word.short === undefined ? senses : word.meaning.split(/ [|/] /).filter(Boolean)
   const written = [...new Set(pack.writing.guidedChars(word.form))]
   return <article className="word-card study-unit-card lesson-word-card lookup-card" data-lookup={word.id}>
     <div className="card-topline"><span className="eyebrow">Vocabulary{word.level ? ` / ${levelName ? levelName(word.level) : word.level}` : ''}</span><LookupMark /></div>
     <div className="phrase-row"><div className="phrase-row-text">
       <h3 lang={pack.learningTag} className="word-native">{word.form}</h3>
       {reading && word.reading && shows(word.reading, word.form) && <p className="small muted study-pinyin" data-assistant-exclude><ReadingText kana={word.reading} /></p>}
-      {senses.slice(0, 2).map((sense, index) => <p key={index} className="word-meaning">{sense}</p>)}
-      {senses.length > 2 && <details className="small"><summary>{senses.length - 2} more {senses.length - 2 === 1 ? 'meaning' : 'meanings'}</summary>{senses.slice(2).map((sense, index) => <p key={index} className="word-meaning">{sense}</p>)}</details>}
+      {word.short !== undefined
+        ? <><p className="word-meaning">{word.short}</p>
+          {all.length > 1 || word.short !== all[0] ? <details className="small" data-testid="lookup-senses"><summary>{all.length > 1 ? `All ${all.length} meanings` : 'Full definition'}</summary>{all.map((sense, index) => <p key={index} className="word-meaning">{all.length > 1 ? `${index + 1}. ` : ''}{sense}</p>)}</details> : null}</>
+        : senses.slice(0, 2).map((sense, index) => <p key={index} className="word-meaning">{sense}</p>)}
+      {word.short === undefined && senses.length > 2 && <details className="small"><summary>{senses.length - 2} more {senses.length - 2 === 1 ? 'meaning' : 'meanings'}</summary>{senses.slice(2).map((sense, index) => <p key={index} className="word-meaning">{sense}</p>)}</details>}
       {word.pos && <p className="small muted" data-testid="lookup-pos">{word.pos}</p>}
     </div></div>
     {written.length > 0 && <p className="small lookup-writing" aria-label="Writing practice">Write: {written.map(character => <button key={character} type="button" className="text-link" lang={pack.learningTag} aria-label={`Practise writing ${character}`} onClick={() => { openWritingSheet(character, { remember: false }) }}>{character}</button>)}</p>}

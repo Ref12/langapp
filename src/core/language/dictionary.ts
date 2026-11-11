@@ -133,5 +133,4 @@ export const jaDictionary = (offer: PackDisplayForms): PackDictionary => ({
   lookup: jaLookup,
 })
 
-/** A pack with no Dictionary of its own (Korean for now): nothing is offered, the search is the plain one. */
-export const koDictionary: PackDictionary = { ...zhDictionary, sections: noSection, intro: '', footnote: '', placeholder: { vocabulary: 'Word, reading, or English', grammar: 'Pattern, reading, or English' } }
+export { koDictionary } from './dictionary-ko'

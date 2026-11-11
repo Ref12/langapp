@@ -2,7 +2,7 @@
 // The visible text of the Overview, the Lessons page, the Lessons list and a lesson page in a Korean build, for a small seeded learner. Next to japanese-screens.test.tsx; the same walk
 // of the page text, pinned in __screens__/ko-<name>.txt. None of the screens may speak of Mandarin, Chinese, pinyin or HSK. To accept a deliberate
 // change, review the diff and run with -u.
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace } from '../core/database'
@@ -135,4 +135,67 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     await pin('practice-form-pick', question.replace(/(Which form is this\?\n)[\s\S]*?(Check answer)/, '$1<inflected word, reading>\nChoose the word and form\n<options>\n$2'))
     expect(screen.getAllByRole('radio').length).toBeGreaterThanOrEqual(3)
   }, 30000)
+})
+
+describe('the Korean Dictionary: lesson words first, the TOPIK words as look-up', () => {
+  const open = async (route = 'dictionary') => {
+    window.location.hash = '#' + route
+    render(<App />)
+    await waitFor(() => expect(document.querySelector('[data-unit]')).toBeTruthy(), { timeout: 8000 })
+  }
+  const lookupCards = () => [...document.querySelectorAll('[data-lookup]')] as HTMLElement[]
+  const type = (query: string) => fireEvent.change(screen.getByRole('searchbox', { name: 'Search dictionary' }), { target: { value: query } })
+  it('opens on the lesson words, with Vocabulary and Grammar and the Korean wording', async () => {
+    const text = await screenText('dictionary', () => expect(document.querySelector('[data-unit]')).toBeTruthy())
+    // a lesson word's meaning (Chinese language) is lesson content, not the page's own wording
+    expect(text.split('\n').filter(line => FORBIDDEN.test(line) && line !== 'Chinese language').map(line => line.slice(0, 160))).toEqual([])
+    await expect(text).toMatchFileSnapshot('./__screens__/ko-dictionary.txt')
+    cleanup()
+    await open()
+    expect(within(screen.getByRole('group', { name: 'Dictionary section' })).getAllByRole('button').map(button => button.textContent)).toEqual([expect.stringMatching(/^Vocabulary \(\d+\)$/), expect.stringMatching(/^Grammar \(\d+\)$/)])
+    expect(screen.queryByRole('button', { name: /Draw|Characters|Phrases/ })).toBeNull()
+    expect(screen.getByPlaceholderText('Word, romanization, or English')).toBeTruthy()
+    expect(within(screen.getByRole('group', { name: 'Words shown' })).getByRole('button', { name: /^Lesson words/ })).toHaveAttribute('aria-pressed', 'true')
+    expect(lookupCards()).toHaveLength(0)
+    expect(document.querySelector('.page-footnote')?.textContent).toContain('National Institute of Korean Language')
+  })
+  it('All words adds the TOPIK words as look-up cards without Add to study', async () => {
+    await open()
+    const lessonCount = Number(/\((\d+)\)/.exec(screen.getByRole('button', { name: /^Lesson words/ }).textContent!)![1])
+    fireEvent.click(screen.getByRole('button', { name: /^All words/ }))
+    // the lesson words come first and the list is paged: the look-up cards are reached by a search
+    await waitFor(() => expect(Number(/\((\d[\d,]*)\)/.exec(screen.getByRole('button', { name: /^All words/ }).textContent ?? '')?.[1].replace(',', ''))).toBeGreaterThan(lessonCount + 8000), { timeout: 8000 })
+    expect(document.querySelectorAll('article').length).toBeLessThanOrEqual(48)
+    type('ㅎㅅ')
+    await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+    for (const card of lookupCards()) {
+      expect(card).toHaveTextContent('Look-up only')
+      expect(card.textContent).toMatch(/TOPIK [1-6]/)
+      expect(within(card).queryByRole('button', { name: /knowledge set|study/i })).toBeNull()
+      expect(card.querySelector('.word-meaning')!.textContent!.length).toBeLessThanOrEqual(80)
+    }
+  })
+  it.each([['학생'], ['haksaeng'], ['student'], ['ㅎㅅ']])('a search for %s lists the lesson word 학생 first', async query => {
+    await open()
+    type(query)
+    await waitFor(() => expect(document.querySelector('[data-unit]')?.querySelector('h3')?.textContent).toContain('학생'), { timeout: 8000 })
+    expect(document.querySelector('article')!.hasAttribute('data-unit')).toBe(true)
+  })
+  it('a search shows a lesson word and look-up words, and a look-up card opens to its full definition', async () => {
+    await open()
+    type('ㅎㅅ')
+    await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
+    expect(document.querySelector('article')!.hasAttribute('data-unit')).toBe(true)
+    const card = lookupCards().find(item => item.querySelector('details')) ?? lookupCards()[0]
+    const details = card.querySelector('details')
+    expect(details).toBeTruthy()
+    expect(details!.textContent!.length).toBeGreaterThan(card.querySelector('.word-meaning')!.textContent!.length)
+  })
+  it('shows a repeated headword once, with its senses', async () => {
+    await open()
+    type('가깝다')
+    await waitFor(() => expect(lookupCards().length + document.querySelectorAll('[data-unit]').length).toBeGreaterThan(0), { timeout: 8000 })
+    const forms = [...document.querySelectorAll('article h3')].map(heading => heading.textContent)
+    expect(forms.filter(form => form === '가깝다').length).toBeLessThanOrEqual(1)
+  })
 })

@@ -109,10 +109,10 @@ export const jaMeta: PackMeta = { id: 'ja', name: 'Japanese', nativeName: '\u65E
   writing: jaWriting, ...jaIdentity, ...jaSentence, ...jaPage, ...jaWordForms,
   displayForms: jaDisplayForms, dictionary: jaDictionary(jaDisplayForms),
   readingStyles: { choices: ['kana', 'romaji'], default: 'kana', options: { kana: { label: 'Kana', example: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059' }, romaji: { label: 'Romaji', example: 'benkyou shimasu' } } } }
-export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: { ...nothing, writing: true },
+export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', glyph: '\uD55C', published: true, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: selfMarkedInput,
   guide: { label: 'New to Hangul? Learn to read and write it', href: 'guides/hangul.html' },
-  displayForms: koDisplayForms, dictionary: koDictionary, writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
+  displayForms: koDisplayForms, dictionary: koDictionary(koDisplayForms), writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
   readingStyles: { choices: ['hangul', 'romanized'], default: 'romanized', options: { hangul: { label: 'Hangul only', example: '공부해요' }, romanized: { label: 'Hangul with romanization', example: '공부해요 gongbuhaeyo' } } } }
 
 export const METAS: Record<LanguageId, PackMeta> = { zh: zhMeta, ja: jaMeta, ko: koMeta }

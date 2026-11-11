@@ -23,9 +23,9 @@ describe('language packs', () => {
     expect(() => packFor('xx' as never)).toThrow(/Unknown language/)
   })
 
-  it('switches everything on for Chinese, the Dictionary and writing for Japanese and writing for Korean', () => {
+  it('switches everything on for Chinese, the Dictionary and writing for Japanese and for Korean', () => {
     expect(AREAS.every(area => zhPack.features[area])).toBe(true)
-    expect(AREAS.filter(area => koPack.features[area])).toEqual(['writing'])
+    expect(AREAS.filter(area => koPack.features[area])).toEqual(['dictionary', 'writing'])
     // Japanese: the Dictionary (of the lessons) and the writing area (its own stroke data); everything else stays off.
     expect(AREAS.filter(area => jaPack.features[area])).toEqual(['dictionary', 'writing'])
     expect(jaPack.features.games).toBe(false)
