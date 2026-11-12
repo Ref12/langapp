@@ -89,4 +89,35 @@ describe('Lab and Stable backups never meet', () => {
     expect(sent.length).toBeGreaterThan(0)
     expect(sent.every(entry => entry.path.startsWith('lab/profiles/p1/'))).toBe(true)
   })
+
+  it('lets all four builds share one repository and branch, with the same profile id, and never touches another build\'s files', async () => {
+    const fake = fakeGitHub()
+    const builds = { stable: make(fake, 'stable'), lab: make(fake, 'lab'), ja: make(fake, 'lab', 'ja'), ko: make(fake, 'lab', 'ko') }
+    const prefix = { stable: 'profiles/p1/', lab: 'lab/profiles/p1/', ja: 'lab/ja/profiles/p1/', ko: 'lab/ko/profiles/p1/' }
+    const names = Object.keys(builds) as (keyof typeof builds)[]
+    const heads: Record<string, ReturnType<typeof builds.stable.publishDelta> extends Promise<infer R> ? R : never> = {}
+    for (const name of names) heads[name] = await builds[name].publishDelta('p1', files(name), new Set(), name + ' backup')
+    const ownFiles = (name: keyof typeof builds) => new Map([...treeOf(fake)].filter(([path]) => {
+      const owner = names.find(other => path.startsWith(prefix[other]))
+      return owner === name
+    }))
+    const before = Object.fromEntries(names.map(name => [name, ownFiles(name)]))
+    expect(names.map(name => before[name].size)).toEqual([3, 3, 3, 3])
+
+    // Each build backs up again, prunes, and does a full publish: only its own folder moves.
+    for (const name of names) {
+      const second = await builds[name].publishDelta('p1', new Map([['manifest.yaml', 'cursor: 9 # ' + name + '\n']]), new Set(['journal/a.yaml']), name + ' prunes', heads[name].remote)
+      expect(second.removed).toBeGreaterThan(0)
+      for (const other of names.filter(other => other !== name)) expect(ownFiles(other), name + ' touched ' + other).toEqual(before[other])
+      await builds[name].publish('p1', files(name + ' again'), name + ' full publish')
+      for (const other of names.filter(other => other !== name)) expect(ownFiles(other), name + ' touched ' + other).toEqual(before[other])
+      before[name] = ownFiles(name)
+    }
+    // Every build lists and reads only its own backup, and nothing lies outside the four folders but the README.
+    for (const name of names) {
+      expect((await builds[name].listProfiles()).map(profile => profile.id)).toEqual(['p1'])
+      expect((await builds[name].readFiles('p1')).get('manifest.yaml')).toContain(name + ' again')
+    }
+    expect([...treeOf(fake).keys()].filter(path => !names.some(name => path.startsWith(prefix[name])))).toEqual(['README.md'])
+  })
 })

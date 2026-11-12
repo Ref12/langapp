@@ -10,7 +10,8 @@ import { knowledgeCards, readCollectionsState, richerCard } from '../collections
 import { createEmptyProfile, endpointsFromSettings, parseProfileYaml, serializeProfileYaml } from './codec'
 import type { JournalEvent } from '../backup/journal'
 import { PROFILE_FORMAT, PROFILE_VERSION, type ProfileSnapshot } from './contracts'
-import { storageNames } from '../storage-names'
+import { buildLanguage, storageNames } from '../storage-names'
+import { isOtherLanguageProfile } from './profile-language'
 import { DEFAULT_PROFILE_ID, profileIdSchema, profileMetadataSchema, type ProfileMetadata } from './identity'
 
 /** This build's registry database and selected-profile key (see storage-names.ts). */
@@ -158,7 +159,7 @@ export async function readSnapshot(database: LearningDatabase, profile: ProfileM
     const practiceHistory = await database.practiceHistory.toArray()
     const knownEntries = await database.knowledge.toArray()
     return {
-      format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), profile,
+      format: PROFILE_FORMAT, version: PROFILE_VERSION, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), ...(buildLanguage() === 'zh' ? {} : { language: buildLanguage() }), profile,
       settings,
       knowledge: {
         words: await database.words.toArray(), readings: await database.readings.toArray(),
@@ -183,9 +184,22 @@ export async function readSnapshot(database: LearningDatabase, profile: ProfileM
   })
 }
 
-async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapshot, signal?: AbortSignal, journal: JournalEvent[] = []): Promise<void> {
-  signal?.throwIfAborted()
-  const { settings, knowledge, conversations } = snapshot
+
+/** The general settings of a workspace (not about one language's reading or writing): the only workspace preferences a file of another language lends. */
+const GENERAL_PREFERENCES = ['theme', 'sidebarCollapsed', 'haptics', 'speechDebugMessages', 'defaultSpeechRate', 'exercisesPerLesson', 'answerMode', 'promptAutoPlay'] as const
+
+/** What a file of another language brings: its connections (AI endpoints, speech) and the general preferences, laid over `base`. No learning row of any kind. */
+export function settingsOnlySnapshot(snapshot: ProfileSnapshot, base: ProfileSnapshot): ProfileSnapshot {
+  return {
+    ...base,
+    settings: { ...omit(snapshot.settings, 'preferences'), preferences: { ...base.settings.preferences, ...generalPreferences(snapshot.settings.preferences) } },
+  }
+}
+function generalPreferences(preferences: ProfileSnapshot['settings']['preferences']): Partial<ProfileSnapshot['settings']['preferences']> {
+  return Object.fromEntries(GENERAL_PREFERENCES.flatMap(key => preferences[key] === undefined ? [] : [[key, preferences[key]]]))
+}
+
+function connectionRows(settings: ProfileSnapshot['settings']) {
   const endpointList = endpointsFromSettings(settings)
   const endpoints = (endpointList?.endpoints ?? []).map((endpoint, order) => aiEndpointSchema.parse({
     ...endpoint, order, revision: crypto.randomUUID(), updatedAt: Date.now(),
@@ -198,6 +212,26 @@ async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapsh
   const speech = settings.speechConnection && speechConnectionSchema.parse({
     ...settings.speechConnection, id: 'assistant-speech', revision: crypto.randomUUID(), updatedAt: Date.now(),
   })
+  return { endpoints, ai, speech }
+}
+
+/** Puts a file of another language's connections and general preferences into the active profile; its learning, history and library stay as they are. */
+async function writeSettingsOnly(database: LearningDatabase, snapshot: ProfileSnapshot): Promise<void> {
+  const { endpoints, ai, speech } = connectionRows(snapshot.settings)
+  await database.transaction('rw', [database.preferences, database.aiEndpoints, database.aiConnections, database.speechConnections], async () => {
+    const current = await database.preferences.get('workspace')
+    if (current) await database.preferences.put({ ...current, ...generalPreferences(snapshot.settings.preferences) })
+    await database.aiEndpoints.clear(); await database.aiConnections.clear(); await database.speechConnections.clear()
+    if (endpoints.length) await database.aiEndpoints.bulkAdd(endpoints)
+    if (ai) await database.aiConnections.add(ai)
+    if (speech) await database.speechConnections.add(speech)
+  })
+}
+
+async function writeSnapshot(database: LearningDatabase, snapshot: ProfileSnapshot, signal?: AbortSignal, journal: JournalEvent[] = []): Promise<void> {
+  signal?.throwIfAborted()
+  const { settings, knowledge, conversations } = snapshot
+  const { endpoints, ai, speech } = connectionRows(settings)
   let transaction: Transaction | undefined
   const abort = () => transaction?.abort()
   signal?.addEventListener('abort', abort, { once: true })
@@ -257,6 +291,8 @@ export async function restoreActiveProfile(text: string, signal?: AbortSignal): 
   const snapshot = parseProfileYaml(text)
   await initializeProfiles()
   snapshot.profile = getActiveProfile()
+  // A file of another language lends only its settings: this profile's learning is left as it is.
+  if (isOtherLanguageProfile(snapshot)) { await writeSettingsOnly(db, snapshot); return }
   await writeSnapshot(db, snapshot, signal)
   clearUnsavedDrafts()
 }
@@ -304,8 +340,11 @@ export async function createProfile(name: string, cloneCurrent: boolean): Promis
 }
 
 export async function importNewProfile(text: string, name: string): Promise<ProfileMetadata> {
-  const snapshot = parseProfileYaml(text)
+  const parsed = parseProfileYaml(text)
   await initializeProfiles()
-  snapshot.profile = metadata(crypto.randomUUID(), name)
+  const profile = metadata(crypto.randomUUID(), name)
+  // A file of another language starts an empty profile of this one, with the file's settings only.
+  const snapshot = isOtherLanguageProfile(parsed) ? settingsOnlySnapshot(parsed, createEmptyProfile(profile)) : parsed
+  snapshot.profile = profile
   return addProfile(snapshot)
 }

@@ -7,7 +7,7 @@ import type { AIConnection } from '../assistant/contracts'
 import { loadCatalog, requireUnit, type Catalog, type StudyGroup, type Unit } from './catalog'
 import type { PhraseTarget } from './exercises'
 import { isSourceRef, type Exercise } from './contracts'
-import { isLanguageRef } from '../language/refs'
+import { getPack } from '../language'
 import {
   cardId, unitRef, type Band, type ExerciseAttempt, type ExerciseSession, type KnowledgeEntry, type StudyCard, type StudyDomain,
 } from './contracts'
@@ -247,8 +247,8 @@ export async function settleInterrupted(sessionId: string): Promise<void> {
 }
 
 export async function dueCards(now: number): Promise<StudyCard[]> {
-  // Japanese and Korean cards (ja:/ko: refs) are rows an older version wrote: read only, kept out of the Chinese queues.
-  return db.studyCards.where('[domain+due]').between([DOMAIN, 0], [DOMAIN, now], true, true).filter(card => !isLanguageRef(card.ref)).toArray()
+  // Only this build's own language's cards (pack.ownsRef): rows of another language never reach a queue.
+  return db.studyCards.where('[domain+due]').between([DOMAIN, 0], [DOMAIN, now], true, true).filter(card => getPack().ownsRef(card.ref)).toArray()
 }
 
 /** Reviews due items chosen by FSRS; with `anyway`, reviews the soonest-due items even when nothing is due. */

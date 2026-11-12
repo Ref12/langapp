@@ -39,11 +39,14 @@ export function buildLanguage(): LanguageId {
 /** The short commit this bundle was built from. */
 export function buildCommit(): string { return typeof __BUILD_COMMIT__ === 'undefined' ? 'dev' : __BUILD_COMMIT__ }
 
+/** What a build copies from Stable. */
+export type StableCopy = 'profile' | 'settings'
+
 export interface StorageNames {
   channel: BuildChannel
   language: LanguageId
-  /** "Copy profile from Stable" is offered: Lab Chinese only (Stable is Chinese). */
-  copyFromStable: boolean
+  /** What "Copy from Stable" brings into this build: the whole profile (Lab Chinese: Stable is Chinese too), only the settings (the connections and the general device settings: Lab Japanese and Korean), or nothing is offered (Stable). */
+  stableCopy: StableCopy | undefined
   db: {
     /** A profile's learning database ('default' is the first profile). */
     learning(profileId: string): string
@@ -105,7 +108,7 @@ export function storageNames(channel: BuildChannel = buildChannel(), language: L
   return {
     channel,
     language,
-    copyFromStable: channel === 'lab' && language === 'zh',
+    stableCopy: channel === 'stable' ? undefined : language === 'zh' ? 'profile' : 'settings',
     db: {
       learning: id => id === 'default' ? p + 'linguaweave-next' : p + 'linguaweave-next-profile-' + id,
       registry: p + 'linguaweave-profile-registry',

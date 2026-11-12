@@ -5,6 +5,7 @@ import { speechConnectionInputSchema } from '../assistant/speech-contracts'
 import { BackupValidationError, validateAssistant, validateCollections, validateStudy, validateWorkspace, workspaceSchema } from '../backup-codec'
 import { languageRefSchema, studyBackupSchema, unitKindSchema, unitLabelSchema } from '../study/contracts'
 import { profileMetadataSchema } from './identity'
+import { LANGUAGE_IDS } from '../language/ids'
 import { librarySchema } from '../library/contracts'
 import { mediaItemSchema, sourceEntrySchema } from '../media/contracts'
 import { collectionsBackupSchema } from '../collections/contracts'
@@ -17,6 +18,8 @@ export const profileDataSchema = z.object({
   version: z.literal(PROFILE_VERSION),
   contentVersion: z.literal(CONTENT_VERSION),
   exportedAt: z.number().int().nonnegative(),
+  /** The language of the build that wrote the file; absent means Chinese (every file written before this field was Chinese, and Chinese files still leave it out so older builds read them). */
+  language: z.enum(LANGUAGE_IDS).optional(),
   profile: profileMetadataSchema,
   settings: z.object({
     preferences: workspaceSchema.shape.preferences,

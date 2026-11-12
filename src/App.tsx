@@ -49,6 +49,7 @@ import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsL
 import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
 import { BuildSwitch, LabMark } from './components/BuildSwitch'
 import { StableCopyDialog } from './components/StableCopyDialog'
+import { markCleanupNoticed, removeForeignLanguageRows, unseenCleanupCount } from './core/profiles/language-cleanup'
 import { labProfileIsEmpty } from './core/profiles/stable-import'
 import { buildChannel, buildLanguage, storageNames } from './core/storage-names'
 import { areaOfRoute, buildDisplayName, getPack, isAreaOn, type Area } from './core/language'
@@ -149,14 +150,16 @@ function WorkspaceApp() {
   const workspace = useLiveQuery(loadWorkspace, [])
   // Copy profile from Stable: from the build switch's menu, or offered once up front on an empty Lab profile.
   const [copyDialog, setCopyDialog] = useState<'menu' | 'offer' | undefined>()
-  const copyItems = useMemo(() => storageNames().copyFromStable ? [{ label: 'Copy profile from Stable…', onSelect: () => setCopyDialog('menu') }] : [], [])
+  const copyItems = useMemo(() => storageNames().stableCopy ? [{ label: storageNames().stableCopy === 'profile' ? 'Copy profile from Stable…' : 'Copy settings from Stable…', onSelect: () => setCopyDialog('menu') }] : [], [])
   useEffect(() => {
-    if (buildChannel() !== 'lab' || !storageNames().copyFromStable) return undefined
+    if (buildChannel() !== 'lab' || storageNames().stableCopy !== 'profile') return undefined
     let live = true
     try { if (localStorage.getItem(storageNames().labOnly.copyOfferDeclined)) return undefined } catch { /* no storage */ }
     void labProfileIsEmpty().then(empty => { if (live && empty) setCopyDialog('offer') }, () => undefined)
     return () => { live = false }
   }, [])
+  const [removedCount, setRemovedCount] = useState(0)
+  useEffect(() => { void unseenCleanupCount().then(setRemovedCount, () => undefined) }, [])
   const route = useRoute()
   const [pending, setPending] = useState(0)
   const [error, setError] = useState('')
@@ -259,6 +262,7 @@ function WorkspaceApp() {
           <PageSettingsButton route={route} label={label} page={page} workspace={workspace} busy={busy} run={run} />
         </div></header>
         <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : route === 'games/potions' ? 'potions-main' : practicing ? 'practice-main' : page === 'writing' && route.split('?')[0].split('/')[1] ? 'writing-main' : page === 'lesson' ? 'lesson-main' : undefined}>
+          {removedCount > 0 && <div role="status" className="notice"><p>{`Removed ${removedCount} ${removedCount === 1 ? 'item' : 'items'} of another language that came in with an imported profile.`}</p><button className="icon-button" aria-label="Dismiss notice" onClick={() => { setRemovedCount(0); void markCleanupNoticed() }}><X size={18} /></button></div>}
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {currentPage}
         </main>
@@ -310,6 +314,7 @@ export default function App() {
       await timePhase('profiles', async () => undefined)
       await timePhase('bootstrap', bootstrapDefaultProfile)
       await timePhase('workspace', initializeWorkspace)
+      await removeForeignLanguageRows().catch(() => 0) // once per profile; a failure leaves the rows, which are never shown anyway
       const pending = import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && await needsLocalSettingsImport()
       if (!disposed) setBootstrap(pending)
     }).then(

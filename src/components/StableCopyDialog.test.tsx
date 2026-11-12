@@ -8,7 +8,7 @@ import { initializeProfiles, resetProfilesForTests } from '../core/profiles/stor
 import { addToKnowledge } from '../core/study/knowledge'
 import { addPlainLanguageRows } from '../test/language-rows'
 import { loadBuild, snapshotStable } from '../test/channels'
-import { setBuildChannelForTests, storageNames } from '../core/storage-names'
+import { setBuildChannelForTests, setBuildLanguageForTests, storageNames } from '../core/storage-names'
 
 const caches = new Map<string, unknown>()
 async function seedStable() {
@@ -30,13 +30,34 @@ beforeEach(async () => {
   for (const info of await indexedDB.databases()) if (info.name) await Dexie.delete(info.name)
   localStorage.clear()
 })
-afterEach(() => { vi.restoreAllMocks(); setBuildChannelForTests(undefined) })
+afterEach(() => { vi.restoreAllMocks(); setBuildChannelForTests(undefined); setBuildLanguageForTests(undefined) })
 
 async function openLab() {
   vi.resetModules()
   await initializeProfiles()
   await initializeWorkspace()
 }
+
+describe('Copy settings from Stable (Lab Korean)', () => {
+  it('says what is copied and what is not, that apps can share one backup repository, and keeps the Korean learning', async () => {
+    await seedStable()
+    setBuildLanguageForTests('ko')
+    await openLab()
+    await db.knowledge.add({ ref: 'vocabulary:haksaeng--student', kind: 'vocabulary', lb: 'haksaeng--student', band: '1', addedAt: 1, source: 'new' } as never)
+    const user = userEvent.setup()
+    render(<StableCopyDialog mode="menu" onClose={() => undefined} />)
+    const dialog = await screen.findByRole('dialog', { name: 'Copy settings from Stable' })
+    await screen.findByRole('radio', { name: /default/ })
+    expect(dialog).toHaveTextContent('Your Korean learning is not touched.')
+    expect(dialog).toHaveTextContent('AI connections, the speech connection, the GitHub backup connection (repository, branch and token)')
+    expect(dialog).toHaveTextContent('no knowledge, study cards, answers, history, collections, conversations or media')
+    expect(dialog).toHaveTextContent('All the apps can share one backup repository and branch, because each keeps to its own folder in it (this app: lab/ko/profiles/<profile>/)')
+    expect(dialog).not.toHaveTextContent('items in the knowledge set')
+    await user.click(screen.getByRole('button', { name: 'Copy settings' }))
+    expect(await screen.findByText(/Copied/)).toBeInTheDocument()
+    expect((await db.knowledge.toArray()).map(row => row.ref)).toEqual(['vocabulary:haksaeng--student'])
+  })
+})
 
 describe('Copy profile from Stable', () => {
   it('names what is replaced and what is copied, lets the learner pick a profile, and changes nothing when declined', async () => {
@@ -57,6 +78,7 @@ describe('Copy profile from Stable', () => {
     expect(dialog).toHaveTextContent('Last activity:')
     expect(dialog).toHaveTextContent('4 items in the knowledge set (2 Japanese or Korean), 4 cards')
     expect(dialog).toHaveTextContent('replaces')
+    expect(dialog).toHaveTextContent('The GitHub backup connection (repository, branch and token) comes with it.')
     expect(dialog).toHaveTextContent('Lab profile “default” (1 items in the knowledge set')
     await user.click(screen.getByRole('button', { name: 'Cancel' }))
     expect(onClose).toHaveBeenCalledOnce()

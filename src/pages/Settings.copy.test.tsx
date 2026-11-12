@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-// Settings offers "Copy profile from Stable…" only in the Chinese Lab build; it opens the same StableCopyDialog the side-panel menu opens.
+// Settings offers "Copy profile from Stable…" in the Chinese Lab build and "Copy settings from Stable…" in Lab Japanese and Korean, never in Stable; it opens the same StableCopyDialog the side-panel menu opens.
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
@@ -35,21 +35,31 @@ async function openSettings(channel: 'lab' | 'stable', language: LanguageId) {
   render(<App />)
   await waitFor(() => expect(screen.getByRole('heading', { name: 'Make it yours' })).toBeInTheDocument(), { timeout: 8000 })
 }
-const BUTTON = 'Copy profile from Stable…'
+const PROFILE_BUTTON = 'Copy profile from Stable…'
+const SETTINGS_BUTTON = 'Copy settings from Stable…'
 
-describe('Settings: Copy profile from Stable', () => {
-  it('Chinese Lab shows the section and the button opens the dialog', async () => {
+describe('Settings: Copy from Stable', () => {
+  it('Chinese Lab copies the profile: the section and the button open the dialog', async () => {
     await openSettings('lab', 'zh')
     expect(screen.getByRole('heading', { name: 'Stable' })).toBeInTheDocument()
-    expect(screen.getByText('Copy your profile from Stable into Lab. Stable is not changed.')).toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: BUTTON }))
+    expect(screen.getByText(/Copy your profile from Stable into Lab, with its AI, speech and GitHub backup connections\. Stable is not changed\./)).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: PROFILE_BUTTON }))
     expect(await screen.findByRole('dialog', { name: 'Copy profile from Stable' })).toBeInTheDocument()
   })
-  for (const [channel, language] of [['lab', 'ja'], ['lab', 'ko'], ['stable', 'zh']] as const) {
-    it(`${channel} ${language} does not show it`, async () => {
-      await openSettings(channel, language)
-      expect(screen.queryByRole('button', { name: BUTTON })).toBeNull()
-      expect(screen.queryByRole('heading', { name: 'Stable' })).toBeNull()
+  for (const [language, name] of [['ja', 'Japanese'], ['ko', 'Korean']] as const) {
+    it(`Lab ${name} copies the settings only, and says its learning is not touched`, async () => {
+      await openSettings('lab', language)
+      expect(screen.getByRole('heading', { name: 'Stable' })).toBeInTheDocument()
+      expect(screen.queryByRole('button', { name: PROFILE_BUTTON })).toBeNull()
+      expect(screen.getByText(new RegExp(`Your ${name} learning is not touched`))).toBeInTheDocument()
+      fireEvent.click(screen.getByRole('button', { name: SETTINGS_BUTTON }))
+      expect(await screen.findByRole('dialog', { name: 'Copy settings from Stable' })).toBeInTheDocument()
     })
   }
+  it('Stable does not offer it', async () => {
+    await openSettings('stable', 'zh')
+    expect(screen.queryByRole('button', { name: PROFILE_BUTTON })).toBeNull()
+    expect(screen.queryByRole('button', { name: SETTINGS_BUTTON })).toBeNull()
+    expect(screen.queryByRole('heading', { name: 'Stable' })).toBeNull()
+  })
 })

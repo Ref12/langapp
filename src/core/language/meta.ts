@@ -13,6 +13,7 @@ import { japaneseSpeechText, plainSpeechText, type SpeechHint } from './speech-t
 import { jaPractice, koPractice, zhPractice, type PracticeWording } from './practice-wording'
 import { jaPage, koPage, zhPage, type PracticePage } from './practice-page'
 import { jaDictionary, koDictionary, zhDictionary, type PackDictionary } from './dictionary'
+import { ownershipOf, type PackOwnership } from './ownership'
 
 /** The wording the screens use about the language; Chinese's values are the literal strings the screens had before packs. */
 export interface PackWording {
@@ -54,7 +55,7 @@ export interface PackReadingStyles {
 }
 
 /** What a pack says about a sentence's identity and its tiles (phrase-identity.ts): phraseKey(text) and segment(text, words). */
-export interface PackMeta extends PhraseIdentity, SentenceForms, PracticePage, PackWordForms {
+export interface PackMeta extends PhraseIdentity, SentenceForms, PracticePage, PackWordForms, PackOwnership {
   id: LanguageId
   /** The language's English name, e.g. "Japanese". */
   name: string
@@ -106,16 +107,16 @@ const koDisplayForms: PackDisplayForms = { language: 'ko', choices: [{ id: 'haey
 
 export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4E2D\u6587', learningTag: 'zh-Hans', htmlLang: 'en', features: everything,
   wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', speechText: plainSpeechText, glyph: '\u4E2D', published: true, readings: 'pinyin', countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
-  dictionary: zhDictionary, writing: zhWriting, ...zhIdentity, ...zhSentence, ...zhPage, ...zhWordForms }
+  dictionary: zhDictionary, writing: zhWriting, ...ownershipOf('zh', true), ...zhIdentity, ...zhSentence, ...zhPage, ...zhWordForms }
 export const jaMeta: PackMeta = { id: 'ja', name: 'Japanese', nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
   wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', speechText: japaneseSpeechText, glyph: '\u65E5', published: true, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
-  writing: jaWriting, ...jaIdentity, ...jaSentence, ...jaPage, ...jaWordForms,
+  writing: jaWriting, ...ownershipOf('ja', false), ...jaIdentity, ...jaSentence, ...jaPage, ...jaWordForms,
   displayForms: jaDisplayForms, dictionary: jaDictionary(jaDisplayForms),
   readingStyles: { choices: ['kana', 'romaji'], default: 'kana', options: { kana: { label: 'Kana', example: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059' }, romaji: { label: 'Romaji', example: 'benkyou shimasu' } } } }
 export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', speechText: plainSpeechText, glyph: '\uD55C', published: true, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: romanizationInput,
   guide: { label: 'New to Hangul? Learn to read and write it', href: 'guides/hangul.html' },
-  displayForms: koDisplayForms, dictionary: koDictionary(koDisplayForms), writing: koWriting, ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
+  displayForms: koDisplayForms, dictionary: koDictionary(koDisplayForms), writing: koWriting, ...ownershipOf('ko', false), ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
   readingStyles: { choices: ['hangul', 'romanized'], default: 'romanized', options: { hangul: { label: 'Hangul only', example: '공부해요' }, romanized: { label: 'Hangul with romanization', example: '공부해요 gongbuhaeyo' } } } }
 
 export const METAS: Record<LanguageId, PackMeta> = { zh: zhMeta, ja: jaMeta, ko: koMeta }

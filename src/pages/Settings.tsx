@@ -35,9 +35,9 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
     <PageHeading eyebrow="YOUR OWN PACE. YOUR OWN SPACE." title="Your workspace.">{`A local ${pack.wording.language} learning space, separate from the original app.`}</PageHeading>
     <ProfileSettings busy={workspaceBusy || aiBusy || speechBusy} onBusyChange={setProfileBusy} />
     <BackupPanel busy={busy} />
-    {storageNames().copyFromStable && <section className="panel" aria-labelledby="stable-copy"><h2 id="stable-copy">Stable</h2>
-      <p className="small muted">Copy your profile from Stable into Lab. Stable is not changed.</p>
-      <div className="button-row"><button type="button" className="button secondary" disabled={busy} onClick={() => setCopyOpen(true)}>Copy profile from Stable…</button></div>
+    {storageNames().stableCopy && <section className="panel" aria-labelledby="stable-copy"><h2 id="stable-copy">Stable</h2>
+      <p className="small muted">{storageNames().stableCopy === 'profile' ? 'Copy your profile from Stable into Lab, with its AI, speech and GitHub backup connections. Stable is not changed.' : `Copy the AI, speech and GitHub backup connections and the general settings from Stable. Your ${pack.name} learning is not touched, and Stable is not changed.`} All the apps can back up to one repository and branch: each keeps to its own folder.</p>
+      <div className="button-row"><button type="button" className="button secondary" disabled={busy} onClick={() => setCopyOpen(true)}>{storageNames().stableCopy === 'profile' ? 'Copy profile from Stable…' : 'Copy settings from Stable…'}</button></div>
       {copyOpen && <StableCopyDialog mode="menu" onClose={() => setCopyOpen(false)} />}
     </section>}
     <form className="panel settings-form" onSubmit={event => {

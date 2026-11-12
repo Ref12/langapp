@@ -120,9 +120,10 @@ describe('storage names per language', () => {
     expect([n.cache.shell('<version>'), n.cache.runtime]).toEqual(LAB_JA_TODAY.caches)
     expect(n.cache.shellPrefix).toBe('lab.ja.linguaweave-shell-')
     expect([n.serviceWorkerFile, n.lock, n.broadcast, n.backupFolder('<id>'), n.backupRoot]).toEqual([LAB_JA_TODAY.serviceWorker, LAB_JA_TODAY.lock, LAB_JA_TODAY.broadcast, LAB_JA_TODAY.backupFolder, 'lab/ja/'])
-    expect(n.copyFromStable).toBe(false)
-    expect(storageNames('lab', 'zh').copyFromStable).toBe(true)
-    expect(storageNames('stable').copyFromStable).toBe(false)
+    expect(n.stableCopy).toBe('settings')
+    expect(storageNames('lab', 'ko').stableCopy).toBe('settings')
+    expect(storageNames('lab', 'zh').stableCopy).toBe('profile')
+    expect(storageNames('stable').stableCopy).toBeUndefined()
   })
 
   it('keeps every Lab + zh and Stable name unchanged whatever the language argument of Stable says', () => {

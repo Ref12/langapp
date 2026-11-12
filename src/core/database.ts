@@ -4,7 +4,7 @@ import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type
 import type { AIConnection, AIEndpoint, AssistantImage, AssistantMessage, AssistantRun, AssistantThread, PracticeHistoryEntry } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
 import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
-import { isLanguageRef } from './language/refs'
+import { getPack } from './language'
 import { DEFAULT_PROFILE_ID, profileIdSchema } from './profiles/identity'
 import { storageNames } from './storage-names'
 import type { MahjongGame } from './games/mahjong'
@@ -53,7 +53,7 @@ export class LearningDatabase extends Dexie {
   studyCards!: EntityTable<StudyCard, 'id'>
   exerciseSessions!: EntityTable<ExerciseSession, 'id'>
   exerciseAttempts!: EntityTable<ExerciseAttempt, 'id'>
-  profileState!: EntityTable<{ id: 'local-settings'; imported: true }, 'id'>
+  profileState!: EntityTable<{ id: 'local-settings' | 'foreign-cleanup'; imported?: true; /** foreign-cleanup: items removed, and whether the learner saw the notice. */ removed?: number; noticed?: boolean }, 'id'>
   mahjongGames!: EntityTable<MahjongGame, 'id'>
   characterStates!: EntityTable<CharacterState, 'character'>
   libraryBooks!: EntityTable<LibraryBook, 'id'>
@@ -200,10 +200,10 @@ export async function loadWorkspace(): Promise<Workspace> {
       lessons: await db.lessons.toArray(),
       sessions: await db.sessions.toArray(),
       attempts: await db.attempts.toArray(),
-      // Japanese and Korean records (ja:/ko: refs) live in the same tables but belong to their own tracks: Chinese code never sees them.
-      knowledge: (await db.knowledge.toArray()).filter(entry => !isLanguageRef(entry.ref)),
+      // Only this build's own language's rows (pack.ownsRef): the ja:/ko: rows an older Chinese Lab kept, and the rows of another language that came in with an imported profile, are never counted or listed.
+      knowledge: (await db.knowledge.toArray()).filter(entry => getPack().ownsRef(entry.ref)),
       // Cards of collection-only items stay out of the workspace view: only the knowledge set is studied daily.
-      studyCards: (await knowledgeCardsOf()).filter(card => !isLanguageRef(card.ref)),
+      studyCards: (await knowledgeCardsOf()).filter(card => getPack().ownsRef(card.ref)),
       exerciseSessions: await db.exerciseSessions.toArray(),
       exerciseAttempts: await db.exerciseAttempts.toArray(),
       characterStates: await db.characterStates.toArray(),

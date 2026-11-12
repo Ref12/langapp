@@ -13,6 +13,8 @@ import { storageNames } from '../storage-names'
 const stable = () => storageNames('stable')
 
 export interface StableCounts { knowledge: number; japaneseKorean: number; cards: number; answers: number; threads: number; journal: number }
+/** The connections a Stable profile holds: AI endpoints, speech connections, and whether a GitHub backup connection is saved (here or in Stable's localStorage copy). */
+export interface StableConnections { ai: number; speech: number; backup: boolean }
 export interface StableProfile {
   id: string
   /** The name in Stable's profile list. */
@@ -23,6 +25,7 @@ export interface StableProfile {
   /** Epoch milliseconds of the newest answer, journal event or card change; undefined for an unused profile. */
   lastActivity?: number
   counts: StableCounts
+  connections: StableConnections
 }
 
 export interface RawStore { name: string; keyPath: string | string[] | null; autoIncrement: boolean; indexes: { name: string; keyPath: string | string[]; unique: boolean; multiEntry: boolean }[] }
@@ -89,6 +92,11 @@ const newest = (rows: unknown[], fields: string[]): number | undefined => {
   return best
 }
 
+/** Stable's own localStorage copy of a profile's backup connection (JSON text), read only; null when there is none. */
+export function stableLocalBackupConfig(profileId: string): string | null {
+  try { return localStorage.getItem(stable().local.backupConfigPrefix + profileId) } catch { return null }
+}
+
 async function describe(database: IDBDatabase, profile: { id: string; name: string; selected: boolean }): Promise<StableProfile> {
   const knowledge = await readAll(database, 'knowledge')
   const isJaKo = (row: unknown) => typeof row === 'object' && row !== null && /^(ja|ko):/.test(String((row as { ref?: unknown }).ref ?? ''))
@@ -99,6 +107,10 @@ async function describe(database: IDBDatabase, profile: { id: string; name: stri
   ].filter((time): time is number => time !== undefined)
   return {
     ...profile, ...(workspace ? { workspace } : {}), ...(times.length ? { lastActivity: Math.max(...times) } : {}),
+    connections: {
+      ai: await count(database, 'aiEndpoints'), speech: await count(database, 'speechConnections'),
+      backup: (await count(database, 'backupConfig')) > 0 || stableLocalBackupConfig(profile.id) !== null,
+    },
     counts: {
       knowledge: knowledge.length, japaneseKorean: knowledge.filter(entry => isJaKo(entry.value)).length, cards: await count(database, 'studyCards'),
       answers: await count(database, 'exerciseAttempts'), threads: await count(database, 'assistantThreads'), journal: await count(database, 'journal'),

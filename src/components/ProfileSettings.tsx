@@ -6,6 +6,7 @@ import { AutoBackupSwitch } from './AutoBackupSwitch'
 import { MAX_PROFILE_BYTES, type ProfileSnapshot } from '../core/profiles/contracts'
 import { fromLegacyBackup, parseProfileYamlReport, serializeProfileYaml } from '../core/profiles/codec'
 import type { ProfileMetadata } from '../core/profiles/identity'
+import { isOtherLanguageProfile } from '../core/profiles/profile-language'
 import {
   createProfile, exportActiveProfile, getActiveProfile, importNewProfile,
   listProfiles, restoreActiveProfile, selectProfile,
@@ -220,8 +221,10 @@ export function ProfileSettings({ busy, reload = () => window.location.reload(),
     </> : <p className="small muted">Data-folder operations require the local development server. Browser profile downloads and imports still work here.</p>}
     {importing && <div className="notice"><h3>Import profile snapshot?</h3>
       {importing.skippedSessions > 0 && <p role="status">{importing.skippedSessions === 1 ? '1 practice session couldn\'t be read and was skipped.' : `${importing.skippedSessions} practice sessions couldn't be read and were skipped.`}</p>}
-      <p>{importing.snapshot.profile.name}: {importing.snapshot.knowledge.study.knowledge.length} knowledge items, {importing.snapshot.conversations.threads.length} conversations, {importing.snapshot.library.length} imported books. Replacing this profile replaces its settings, progress, conversation history, and personal library, including saved translations.</p>
-      <p>{importing.legacy ? 'This older JSON backup does not change saved credentials.' : 'Imported connection settings and credentials replace the current profile connections. Missing connections are cleared.'} Imported requests never restart automatically.</p>
+      {!importing.legacy && isOtherLanguageProfile(importing.snapshot)
+        ? <p>{importing.snapshot.profile.name} was made in a different language app. Only its AI and speech connections and its general settings come in; none of its learning does, and nothing of this app's learning is removed or added. Replacing the settings replaces this profile's connections (missing ones are cleared). Imported requests never restart automatically.</p>
+        : <><p>{importing.snapshot.profile.name}: {importing.snapshot.knowledge.study.knowledge.length} knowledge items, {importing.snapshot.conversations.threads.length} conversations, {importing.snapshot.library.length} imported books. Replacing this profile replaces its settings, progress, conversation history, and personal library, including saved translations.</p>
+      <p>{importing.legacy ? 'This older JSON backup does not change saved credentials.' : 'Imported connection settings and credentials replace the current profile connections. Missing connections are cleared.'} Imported requests never restart automatically.</p></>}
       <div className="button-row"><button type="button" className="button primary" disabled={disabled} onClick={() => void perform(async signal => {
         await stopForProfileChange()
         signal.throwIfAborted()
@@ -231,7 +234,7 @@ export function ProfileSettings({ busy, reload = () => window.location.reload(),
         signal.throwIfAborted()
         window.location.hash = 'settings'
         reload()
-      })}>Replace current profile</button>
+      })}>{!importing.legacy && isOtherLanguageProfile(importing.snapshot) ? 'Replace settings only' : 'Replace current profile'}</button>
         <button type="button" className="button secondary" disabled={disabled} onClick={() => setImporting(undefined)}>Cancel import</button></div>
       <label>Imported profile name<input maxLength={80} value={importName} disabled={disabled} onChange={event => setImportName(event.target.value)} /></label>
       <button type="button" className="button secondary" disabled={disabled || !importName.trim()} onClick={() => void perform(async signal => {

@@ -4,7 +4,7 @@ import { fakeGitHub } from '../backup/fake-github'
 import { formItemId } from '../forms'
 import { addPlainLanguageRows } from '../../test/language-rows'
 import { loadBuild, snapshotStable, type Build } from '../../test/channels'
-import { setBuildChannelForTests, storageNames } from '../storage-names'
+import { setBuildChannelForTests, setBuildLanguageForTests, storageNames } from '../storage-names'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../ai/structured', () => structured)
@@ -22,6 +22,8 @@ const proposal = (targets: string[]) => ({ exercises: [
   { id: 't1', type: 'tiles', targets, translation: 'I am a student.', tiles: ['我', '是', '学生'], distractors: ['学习'], explanation: 'Subject, 是, noun.' },
   { id: 't2', type: 'tiles', targets: targets.slice(-1), translation: 'I study.', tiles: ['我', '学习'], distractors: [], explanation: 'Subject then verb.' },
 ] })
+
+const omitKeys = (value: typeof connection) => { const { id, ...rest } = value; void id; return rest }
 
 // A cache store for the stable build to have filled; Lab code never touches Cache Storage outside its worker, and must not here.
 const caches = new Map<string, unknown>()
@@ -42,6 +44,8 @@ async function seedStable(options: { second?: boolean } = {}) {
   await addPlainLanguageRows(stable.database.db, [JA, KO, formItemId('ja', 'くる', 'masu')], 1_700_000_000_000, [JA])
   await stable.database.db.preferences.update('workspace', { name: 'Stable workspace', theme: 'light' })
   await stable.database.db.aiConnections.put(connection) // a setting Stable hides
+  await stable.database.db.aiEndpoints.put({ ...omitKeys(connection), id: 'default', name: 'Default', order: 0 } as never)
+  await stable.database.db.speechConnections.put({ id: 'assistant-speech', revision: 'r2', updatedAt: 2, provider: 'azure', region: 'eastus', apiKey: 'speech-key', storageAcknowledged: true })
   await stable.database.db.backupConfig.put({ id: 'github', owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main', lastCommit: 'abc' })
   localStorage.setItem(stable.names.local.backupConfigPrefix + 'default', JSON.stringify({ owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main' }))
   localStorage.setItem(stable.names.local.newItems, '15')
@@ -60,7 +64,7 @@ async function seedStable(options: { second?: boolean } = {}) {
 }
 
 beforeEach(async () => { await wipe(); structured.requestStructuredJSON.mockReset() })
-afterEach(async () => { setBuildChannelForTests(undefined) })
+afterEach(async () => { setBuildChannelForTests(undefined); setBuildLanguageForTests(undefined) })
 
 describe('Lab never touches Stable', () => {
   it('leaves every Stable database, key and cache identical through heavy Lab use', async () => {
@@ -132,7 +136,7 @@ describe('Lab never touches Stable', () => {
 })
 
 describe('the copy', () => {
-  it('brings every row, including ja:/ko: records and hidden settings, and no backup identity', async () => {
+  it('brings every row, including ja:/ko: records, hidden settings and the backup connection, and no backup state', async () => {
     await seedStable()
     const lab = await loadBuild('lab')
     await lab.store.initializeProfiles()
@@ -149,24 +153,27 @@ describe('the copy', () => {
     expect((await db.journal.toArray()).length).toBeGreaterThanOrEqual(4)
     expect((await db.preferences.get('workspace'))?.name).toBe('Stable workspace')
     expect((await db.aiConnections.get('assistant'))?.apiKey).toBe('k')
-    // no backup identity: the Stable connection did not arrive, Lab's own is kept, and no stable cursor, cache or auto switch
-    expect(await db.backupConfig.get('github')).toMatchObject({ owner: 'lab-owner', token: 'lab-token' })
+    // the Stable connection arrived (repository, branch, token) without its last-backup markers, and no stable cursor, cache or auto switch
+    expect(await db.backupConfig.get('github')).toEqual({ id: 'github', owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main' })
     expect(await lab.state.loadSentSeq('default')).toBeUndefined()
     expect(await lab.state.loadCache('default')).toBeUndefined()
     expect(await lab.state.loadAutoSetting('default')).toBe(true)
-    expect(await lab.service.loadBackupConfig()).toMatchObject({ owner: 'lab-owner' })
+    expect(await lab.service.loadBackupConfig()).toEqual({ owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main' })
+    expect(JSON.parse(localStorage.getItem(lab.names.local.backupConfigPrefix + 'default')!)).toEqual({ owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main' })
     lab.close()
   })
 
-  it('starts Lab with no backup setup at all when Lab had none, even though Stable has one', async () => {
+  it("brings Stable's backup connection when Lab had none, with fresh backup state", async () => {
     await seedStable()
     const lab = await loadBuild('lab')
     await lab.store.initializeProfiles()
     await lab.database.initializeWorkspace()
     const [info] = await lab.copy.readStableProfiles()
     await lab.importer.copyStableProfile(info.id)
-    expect(await lab.service.loadBackupConfig()).toBeUndefined()
-    expect(await lab.database.db.backupConfig.count()).toBe(0)
+    expect(await lab.service.loadBackupConfig()).toEqual({ owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main' })
+    expect(await lab.database.db.backupConfig.count()).toBe(1)
+    expect(await lab.state.loadCache('default')).toBeUndefined()
+    expect((await lab.service.readBackupStatus()).lastBackupAt).toBeUndefined()
     lab.close()
   })
 
@@ -180,7 +187,7 @@ describe('the copy', () => {
 })
 
 describe('the device settings', () => {
-  it("makes Lab's settings keys equal Stable's, writes nothing under a Stable name, and leaves selection, backup config and the declined flag alone", async () => {
+  it("makes Lab's settings keys equal Stable's, writes nothing under a Stable name, and leaves selection and the declined flag alone, and brings the backup connection", async () => {
     await seedStable()
     const stableNames = storageNames('stable')
     localStorage.setItem(stableNames.local.reviewCount, '40') // Stable has these; Lab's differ
@@ -195,7 +202,7 @@ describe('the device settings', () => {
     localStorage.setItem(selectedProfile, 'lab-pick')
     localStorage.setItem(backupConfigPrefix + 'default', '{"owner":"lab"}')
     localStorage.setItem('lab.linguaweave-copy-offer-declined', '1')
-    const protectedBefore = [selectedProfile, backupConfigPrefix + 'default', 'lab.linguaweave-copy-offer-declined'].map(key => [key, localStorage.getItem(key)])
+    const protectedBefore = [selectedProfile, 'lab.linguaweave-copy-offer-declined'].map(key => [key, localStorage.getItem(key)])
     const stableBefore = Object.keys(localStorage).filter(key => !key.startsWith('lab.')).sort().map(key => [key, localStorage.getItem(key)])
     const [info] = await lab.copy.readStableProfiles()
     await lab.importer.copyStableProfile(info.id)
@@ -207,6 +214,7 @@ describe('the device settings', () => {
     expect(localStorage.getItem(lab.names.local.reviewCount)).toBe('40')
     expect(localStorage.getItem(lab.names.local.unwrittenSize)).toBeNull()
     expect(protectedBefore.map(([key]) => [key, localStorage.getItem(key as string)])).toEqual(protectedBefore)
+    expect(JSON.parse(localStorage.getItem(backupConfigPrefix + 'default')!)).toEqual({ owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main' })
     expect(Object.keys(localStorage).filter(key => !key.startsWith('lab.')).sort().map(key => [key, localStorage.getItem(key)])).toEqual(stableBefore)
     lab.close()
   })
@@ -247,5 +255,58 @@ describe('the version guard', () => {
     expect(await again.database.db.knowledge.count()).toBe(5)
     expect(again.database.db.verno).toBeGreaterThan(0)
     again.close()
+  })
+})
+
+describe('the settings-only copy (Lab Japanese and Korean)', () => {
+  for (const language of ['ja', 'ko'] as const) {
+    it(`copies the AI, speech and backup connections into Lab ${language} and no learning, and leaves Stable as it was`, async () => {
+      await seedStable()
+      const stableNames = storageNames('stable')
+      localStorage.setItem(stableNames.local.reviewCount, '40')
+      localStorage.setItem(stableNames.local.unwrittenSize, '12')
+      localStorage.setItem(stableNames.local.mediaGlosses, 'on')
+      const before = await snapshotStable(caches)
+      setBuildLanguageForTests(language)
+      const lab = await loadBuild('lab')
+      expect(lab.names.stableCopy).toBe('settings')
+      await lab.store.initializeProfiles()
+      await lab.database.initializeWorkspace()
+      const { db } = lab.database
+      await db.knowledge.add({ ref: 'vocabulary:haksaeng--student', kind: 'vocabulary', lb: 'haksaeng--student', band: '1', addedAt: 1, source: 'new' } as never)
+      await db.preferences.update('workspace', { theme: 'dark', name: 'My own' })
+      localStorage.setItem(lab.names.local.unwrittenSize, '3')
+      localStorage.setItem(lab.names.local.reviewCount, '5')
+      await lab.state.saveSentSeq('default', 99)
+      const [info] = await lab.copy.readStableProfiles()
+      expect(info.connections).toEqual({ ai: 1, speech: 1, backup: true })
+      await lab.importer.copyStableProfile(info.id)
+      expect((await db.aiConnections.get('assistant'))?.apiKey).toBe('k')
+      expect((await db.aiEndpoints.toArray()).map(row => row.id)).toEqual(['default'])
+      expect((await db.speechConnections.get('assistant-speech'))?.apiKey).toBe('speech-key')
+      expect(await lab.service.loadBackupConfig()).toEqual({ owner: 'stable-owner', repo: 'stable-repo', token: 'stable-token', branch: 'main' })
+      expect(await lab.state.loadSentSeq('default')).toBeUndefined() // fresh backup state
+      // learning is untouched: Lab's own item is still there and none of Stable's came
+      expect((await db.knowledge.toArray()).map(row => row.ref)).toEqual(['vocabulary:haksaeng--student'])
+      for (const table of ['studyCards', 'exerciseSessions', 'exerciseAttempts', 'skillPractice', 'characterStates', 'collections', 'collectionItems', 'assistantThreads', 'assistantMessages', 'mediaItems', 'drillSets', 'practiceHistory', 'libraryBooks'] as const) expect(await db[table].count(), table).toBe(0)
+      expect((await db.journal.count())).toBe(0)
+      expect((await db.preferences.get('workspace'))).toMatchObject({ theme: 'dark', name: 'My own' }) // preferences stay
+      // device settings: only the listed keys
+      expect(localStorage.getItem(lab.names.local.reviewCount)).toBe('40')
+      expect(localStorage.getItem(lab.names.local.newItems)).toBe('15')
+      expect(localStorage.getItem(lab.names.local.unwrittenSize)).toBe('3')
+      expect(localStorage.getItem(lab.names.local.handsfree)).toBeNull()
+      expect(localStorage.getItem(lab.names.local.mediaGlosses)).toBeNull()
+      lab.close()
+      setBuildLanguageForTests(undefined)
+      expect(await snapshotStable(caches)).toEqual(before)
+    })
+  }
+
+  it('offers no copy in Stable', async () => {
+    const stableBuild = await loadBuild('stable')
+    expect(stableBuild.names.stableCopy).toBeUndefined()
+    await expect(stableBuild.importer.copyStableProfile('default')).rejects.toThrow('does not copy')
+    stableBuild.close()
   })
 })
