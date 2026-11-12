@@ -1,10 +1,20 @@
 import workletUrl from '../../../shared/speech/pcm-worklet.js?worker&url'
 import { assessmentTranscript, combineAssessments, parseAssessment } from '../../../shared/speech/assessment'
 import { CAPTURE_LIMITS, MonoResampler, pcmBytes, PCM_RATE } from '../../../shared/speech/pcm'
-import { MAX_DRAFT_LENGTH } from './contracts'
+import { MAX_DRAFT_LENGTH, type SpeechLocale } from './contracts'
 import {
   speechAssessmentSchema, speechConnectionSchema, type SpeechAssessment, type SpeechConnection,
 } from './speech-contracts'
+
+/** The service's recognition language for each speech locale. */
+export const recognitionLanguage: Record<SpeechLocale, 'en-US' | 'zh-CN' | 'ja-JP' | 'ko-KR'> = { 'en-US': 'en-US', 'zh-Hans': 'zh-CN', 'ja-JP': 'ja-JP', 'ko-KR': 'ko-KR' }
+/**
+ * Locales whose pronunciation is scored (accuracy, fluency, completeness, phonemes). Mandarin keeps exactly what it had.
+ * Japanese and Korean are recognised in their own language, but Azure's phoneme-level scoring is not relied on for them here,
+ * so they are graded on the transcript alone: the result is "incomplete" (no scores) with the transcript, never an error.
+ */
+export const scoredLocales: readonly SpeechLocale[] = ['zh-Hans', 'en-US']
+export const pronunciationScored = (locale: SpeechLocale) => scoredLocales.includes(locale)
 
 type SDK = typeof import('microsoft-cognitiveservices-speech-sdk')
 export interface SpeechAssessmentCaptureState {
@@ -62,12 +72,14 @@ function invoke<T>(operation: () => Promise<T>): Promise<T> {
 /** A gesture starts local PCM capture; manual mode waits for Stop even after the cap. */
 export function startAzurePracticeCapture(
   connection: SpeechConnection, referenceText: string, listener: (state: SpeechAssessmentCaptureState) => void,
-  options: { automaticAssessment?: boolean; audioContext?: AudioContext; beforeListening?: () => Promise<void> } = {},
+  options: { locale?: SpeechLocale; automaticAssessment?: boolean; audioContext?: AudioContext; beforeListening?: () => Promise<void> } = {},
 ): CaptureHandle {
   activeCapture?.cancel()
   const controller = new AbortController()
   const setupController = new AbortController()
   const { signal } = controller
+  const locale = options.locale ?? 'zh-Hans'
+  const scored = pronunciationScored(locale)
   let phase: SpeechAssessmentCaptureState['phase'] = 'starting'
   let ending = false
   let published = false
@@ -256,11 +268,11 @@ export function startAzurePracticeCapture(
     try {
       config = sdk.SpeechConfig.fromSubscription(snapshot.apiKey, snapshot.region)
       config.outputFormat = sdk.OutputFormat.Detailed
-      config.speechRecognitionLanguage = 'zh-CN'
+      config.speechRecognitionLanguage = recognitionLanguage[locale]
       push = sdk.AudioInputStream.createPushStream(sdk.AudioStreamFormat.getWaveFormatPCM(PCM_RATE, 16, 1))
       audio = sdk.AudioConfig.fromStreamInput(push)
       recognizer = new sdk.SpeechRecognizer(config, audio)
-      new sdk.PronunciationAssessmentConfig(
+      if (scored) new sdk.PronunciationAssessmentConfig(
         referenceText, sdk.PronunciationAssessmentGradingSystem.HundredMark,
         sdk.PronunciationAssessmentGranularity.Phoneme, false,
       ).applyTo(recognizer)
@@ -296,7 +308,7 @@ export function startAzurePracticeCapture(
           end(true)
           return
         }
-        const result = parseAssessment(payload)
+        const result = scored ? parseAssessment(payload) : { status: 'incomplete' as const, words: [] }
         wordCount += result.words.length
         if (wordCount > 5000) { end(true); return }
         results.push(result)
@@ -324,7 +336,7 @@ export function startAzurePracticeCapture(
       await bounded(ended, 45_000, SERVICE_ERROR, signal)
       if (!live() || serviceFailed) throw new Error(SERVICE_ERROR)
       transcript = texts.join(' ')
-      return speechAssessmentSchema.parse(combineAssessments(referenceText, results, 'zh-CN'))
+      return speechAssessmentSchema.parse(combineAssessments(referenceText, results, recognitionLanguage[locale]))
     } finally { await providerRelease() }
   }
 

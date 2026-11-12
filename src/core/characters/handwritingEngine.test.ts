@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { CHINESE_HANDWRITING } from './handwritingTarget'
 import { handwritingReport, readMode, recognizeStrokes, resetHandwritingEngine, saveMode } from './handwritingEngine'
 import type { HandwritingRecognizer } from './handwriting'
 import type { Point } from './geometry'
@@ -124,5 +125,39 @@ describe('handwriting engine', () => {
     expect((await recognizeStrokes(builtin(), drawing, all, timing, 8, 'chrome')).engine).toBe('chrome')
     saveMode('builtin'); expect(readMode()).toBe('builtin')
     saveMode('auto'); expect(readMode()).toBe('auto')
+  })
+})
+
+describe('per-language requests', () => {
+  const ja = { language: 'ja', chrome: ['ja'], google: 'ja' } as const
+  const ko = { language: 'ko', chrome: ['ko'], google: 'ko' } as const
+  afterEach(() => vi.unstubAllGlobals())
+  it.each([[ja, 'ja'], [ko, 'ko'], [CHINESE_HANDWRITING, 'zh_CN']] as const)('Google carries the language code %#', async (target, code) => {
+    const fetchMock = vi.fn(async () => ({ ok: true, status: 200, json: async () => ['SUCCESS', [['id', ['\u3042']]]] }))
+    vi.stubGlobal('fetch', fetchMock)
+    await recognizeStrokes(builtin('\u3042'), drawing, '\u3042', timing, 1, 'google', undefined, target)
+    const init = (fetchMock.mock.calls[0] as unknown as [string, { body: string }])[1]
+    expect((JSON.parse(init.body) as { requests: { language: string }[] }).requests[0].language).toBe(code)
+  })
+  it.each([[ja, 'ja'], [ko, 'ko']] as const)('Chrome is asked for %#', async (target, tag) => {
+    const chrome = chromeWith(async () => [{ text: '\u3042' }])
+    const query = vi.fn(async () => true)
+    install(query, chrome.create)
+    const result = await recognizeStrokes(builtin('\u3042'), drawing, '\u3042', timing, 1, 'chrome', undefined, target)
+    expect(query).toHaveBeenCalledWith({ languages: [tag] })
+    expect(chrome.create).toHaveBeenCalledWith({ languages: [tag] })
+    expect(result.engine).toBe('chrome')
+  })
+  it('says Chrome handwriting is not available for the language when the browser lacks it, and uses the built-in matcher', async () => {
+    const result = await recognizeStrokes(builtin('\u3042'), drawing, '\u3042', timing, 1, 'auto', undefined, ja)
+    expect(result.engine).toBe('builtin')
+    expect(result.indicator).toBe('Recognizer: built-in matcher \u00b7 Chrome handwriting not available')
+  })
+  it('keeps a working recogniser when the built-in data is missing, and reports the missing data otherwise', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, status: 200, json: async () => ['SUCCESS', [['id', ['\u3042']]]] })))
+    const broken: HandwritingRecognizer = { recognize: vi.fn(async () => { throw new Error('missing') }), dispose: vi.fn() }
+    const ok = await recognizeStrokes(broken, drawing, '\u3042\u3044', timing, 8, 'google', undefined, ja)
+    expect(ok.candidates.map(item => item.character)).toEqual(['\u3042'])
+    await expect(recognizeStrokes(broken, drawing, '\u3042', timing, 8, 'builtin', undefined, ja)).rejects.toThrow('missing')
   })
 })

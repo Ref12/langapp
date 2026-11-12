@@ -118,7 +118,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
     capture.current = startSpeechCapture(next => {
       if (next.phase === 'error') setListening(next.error ?? 'Speech capture failed.')
       else if (next.phase === 'finished') { setListening(''); if (next.transcript) setText(next.transcript) }
-    })
+    }, { locale: exercise.answerLang === 'en' && pack.writing.speechLocale !== 'zh-Hans' ? 'en-US' : pack.writing.speechLocale })
   }
   const result = checked ? checked.correct || counted : undefined
   const locked = checked !== undefined

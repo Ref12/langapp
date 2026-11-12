@@ -183,7 +183,7 @@ export function startConversationCapture(
     notify({ phase, transcript })
     if (terminal) return session
     if (!speechLocaleSchema.safeParse(locale).success) {
-      throw new Error('Voice input supports only English (en-US) and Mandarin (zh-Hans).')
+      throw new Error(`Voice input does not support the input language "${String(locale)}". Choose English, Mandarin, Japanese or Korean.`)
     }
     if (!speechCaptureSupported()) throw new Error('Browser speech recognition is not supported. Type your message instead.')
     const stopError = stopBrowserSpeech()

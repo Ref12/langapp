@@ -1,13 +1,13 @@
 import type { Point } from './geometry'
-import { defaultWritingLanguage, languageAssetUrl, type WritingLanguage } from './language'
+import { defaultWritingLanguage, languageAssetUrl, languageName, type WritingLanguage } from './language'
 import { loadRecognitionIndex, recognize, type RecognitionIndex, type RecognitionMatch } from './recognize'
 
-export interface RecognizeRequest { id: number; url: string; drawing: Point[][]; allowed: string }
+export interface RecognizeRequest { id: number; url: string; name?: string; drawing: Point[][]; allowed: string; preferred?: string }
 export type RecognizeReply = { id: number; matches: RecognitionMatch[] } | { id: number; error: string }
 
 export interface HandwritingRecognizer {
   /** Top candidates for strokes drawn in any order, limited to the characters in `allowed`. */
-  recognize(drawing: Point[][], allowed: string, language?: WritingLanguage): Promise<RecognitionMatch[]>
+  recognize(drawing: Point[][], allowed: string, language?: WritingLanguage, preferred?: string): Promise<RecognitionMatch[]>
   dispose(): void
 }
 
@@ -28,12 +28,12 @@ export function createHandwritingRecognizer(): HandwritingRecognizer {
   const fallback = new Map<string, Promise<RecognitionIndex>>()
   let next = 0
   const pending = new Map<number, { resolve: (matches: RecognitionMatch[]) => void; reject: (error: Error) => void }>()
-  const inPage = async (drawing: Point[][], allowed: string, language: WritingLanguage) => {
+  const inPage = async (drawing: Point[][], allowed: string, language: WritingLanguage, preferred?: string) => {
     const url = indexUrl(language)
     let loading = fallback.get(url)
-    if (!loading) { loading = loadRecognitionIndex(url); fallback.set(url, loading) }
+    if (!loading) { loading = loadRecognitionIndex(url, languageName[language]); fallback.set(url, loading) }
     const index = await loading.catch(error => { if (fallback.get(url) === loading) fallback.delete(url); throw error })
-    return recognize(index, drawing, { limit: 8, allowed: new Set(Array.from(allowed)) })
+    return recognize(index, drawing, { limit: 8, allowed: new Set(Array.from(allowed)), preferred: preferred ? new Set(Array.from(preferred)) : undefined })
   }
   const start = () => {
     if (worker || typeof Worker === 'undefined') return worker
@@ -59,13 +59,13 @@ export function createHandwritingRecognizer(): HandwritingRecognizer {
   }
   let unsupported = false
   return {
-    recognize(drawing, allowed, language = defaultWritingLanguage) {
+    recognize(drawing, allowed, language = defaultWritingLanguage, preferred) {
       const active = unsupported ? undefined : start()
-      if (!active) return inPage(drawing, allowed, language)
+      if (!active) return inPage(drawing, allowed, language, preferred)
       return new Promise((resolve, reject) => {
         const id = ++next
         pending.set(id, { resolve, reject })
-        active.postMessage({ id, url: indexUrl(language), drawing, allowed } satisfies RecognizeRequest)
+        active.postMessage({ id, url: indexUrl(language), name: languageName[language], drawing, allowed, preferred } satisfies RecognizeRequest)
       })
     },
     dispose() {

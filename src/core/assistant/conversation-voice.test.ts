@@ -312,7 +312,7 @@ describe('visible dictation failures', () => {
   it('rejects unsupported languages and unsupported browsers without opening audio', async () => {
     const invalid = begin('fr-FR' as SpeechLocale)
     await flush()
-    expect(invalid.last()?.error).toContain('supports only')
+    expect(invalid.last()?.error).toContain('does not support the input language')
     vi.mocked(speechCaptureSupported).mockReturnValue(false)
     const unsupported = begin()
     await flush()

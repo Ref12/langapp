@@ -115,7 +115,7 @@ describe('explicit Mandarin speech capture', () => {
     expect(prefixed).not.toHaveBeenCalled()
   })
 
-  it.each([['en-US', 'en-US'], ['zh-Hans', 'zh-CN']] as const)('uses explicit %s without changing the dictation lifecycle', (locale, language) => {
+  it.each([['en-US', 'en-US'], ['zh-Hans', 'zh-CN'], ['ja-JP', 'ja-JP'], ['ko-KR', 'ko-KR']] as const)('uses explicit %s without changing the dictation lifecycle', (locale, language) => {
     const listener = vi.fn()
     sessions.push(startSpeechCapture(listener, { locale }))
     const recognition = FakeRecognition.instances[0]
@@ -130,7 +130,7 @@ describe('explicit Mandarin speech capture', () => {
   it.each(['fr-FR', 'zh-CN', '', null])('rejects unsupported locale %s without starting a fallback', locale => {
     const listener = vi.fn()
     sessions.push(startSpeechCapture(listener, { locale: locale as SpeechLocale }))
-    expect(listener).toHaveBeenLastCalledWith(expect.objectContaining({ phase: 'error', error: expect.stringContaining('supports only') }))
+    expect(listener).toHaveBeenLastCalledWith(expect.objectContaining({ phase: 'error', error: expect.stringContaining('does not support the input language') }))
     expect(FakeRecognition.construct).not.toHaveBeenCalled()
     expectClean()
   })
@@ -140,6 +140,14 @@ describe('explicit Mandarin speech capture', () => {
     sessions.push(startSpeechCapture(listener, { locale: 'en-US' }))
     FakeRecognition.instances[0].onerror?.({ error: 'language-not-supported' })
     expect(listener).toHaveBeenLastCalledWith(expect.objectContaining({ phase: 'error', error: expect.stringContaining('English (en-US)') }))
+    expectClean(FakeRecognition.instances[0])
+  })
+
+  it.each([['ja-JP', 'Japanese (ja-JP)'], ['ko-KR', 'Korean (ko-KR)'], ['zh-Hans', 'Mandarin (zh-CN)']] as const)('names the actual language when %s is not supported', (locale, name) => {
+    const listener = vi.fn()
+    sessions.push(startSpeechCapture(listener, { locale }))
+    FakeRecognition.instances[0].onerror?.({ error: 'language-not-supported' })
+    expect(listener).toHaveBeenLastCalledWith(expect.objectContaining({ phase: 'error', error: expect.stringContaining(name) }))
     expectClean(FakeRecognition.instances[0])
   })
 

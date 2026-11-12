@@ -60,6 +60,14 @@ export function speechCaptureSupported(): boolean {
   return recognitionConstructor() !== undefined
 }
 
+/** The browser recognition language (BCP 47) and the name shown to the learner, per speech locale. */
+export const captureLanguages: Record<SpeechLocale, { tag: string; name: string }> = {
+  'zh-Hans': { tag: 'zh-CN', name: 'Mandarin' },
+  'en-US': { tag: 'en-US', name: 'English' },
+  'ja-JP': { tag: 'ja-JP', name: 'Japanese' },
+  'ko-KR': { tag: 'ko-KR', name: 'Korean' },
+}
+
 function nativeErrorMessage(error: string, locale: SpeechLocale): string {
   switch (error) {
     case 'not-allowed':
@@ -73,7 +81,7 @@ function nativeErrorMessage(error: string, locale: SpeechLocale): string {
       return 'The browser could not capture microphone audio. Check that a microphone is available and not in use.'
     case 'language-not-supported':
     case 'language-unavailable':
-      return `The browser speech service does not support ${locale === 'zh-Hans' ? 'Mandarin (zh-CN)' : 'English (en-US)'}. Try a browser that supports speech recognition in that language.`
+      return `The browser speech service does not support ${captureLanguages[locale].name} (${captureLanguages[locale].tag}). Try a browser that supports speech recognition in that language.`
     case 'aborted':
       return 'Speech capture was interrupted by the browser. Start again when ready.'
     default:
@@ -213,7 +221,7 @@ export function startSpeechCapture(
   }
 
   if (!speechLocaleSchema.safeParse(locale).success) {
-    finish('error', 'Speech capture supports only English (en-US) and Mandarin (zh-Hans). Choose a supported input language.')
+    finish('error', `Speech capture does not support the input language "${String(locale)}". Choose English, Mandarin, Japanese or Korean.`)
     return session
   }
   const Recognition = recognitionConstructor()
@@ -232,7 +240,7 @@ export function startSpeechCapture(
       if (error) completion = { ...completion, phase: 'error', transcript, error }
       return session
     }
-    recognition.lang = locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
+    recognition.lang = captureLanguages[locale].tag
     recognition.interimResults = true
     recognition.continuous = false
     recognition.maxAlternatives = 1

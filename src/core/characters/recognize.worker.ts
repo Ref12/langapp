@@ -10,12 +10,12 @@ let allowedText: string | undefined
 let allowedSet: Set<string> | undefined
 
 scope.onmessage = event => {
-  const { id, url, drawing, allowed } = event.data
+  const { id, url, name, drawing, allowed, preferred } = event.data
   let request = loading.get(url)
-  if (!request) { request = loadRecognitionIndex(url); loading.set(url, request) }
+  if (!request) { request = loadRecognitionIndex(url, name); loading.set(url, request) }
   request.then(index => {
     if (allowedText !== allowed) { allowedText = allowed; allowedSet = new Set(Array.from(allowed)) }
-    scope.postMessage({ id, matches: recognize(index, drawing, { limit: 8, allowed: allowedSet }) })
+    scope.postMessage({ id, matches: recognize(index, drawing, { limit: 8, allowed: allowedSet, preferred: preferred ? new Set(Array.from(preferred)) : undefined }) })
   }, reason => {
     loading.delete(url)
     scope.postMessage({ id, error: reason instanceof Error ? reason.message : String(reason) })

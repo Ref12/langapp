@@ -5,15 +5,18 @@ import { distance, writingPoint, type Point } from '../../core/characters/geomet
 import { createHandwritingRecognizer, type HandwritingRecognizer } from '../../core/characters/handwriting'
 import { chromeAvailable, indicatorText, probeChromeHandwriting, readMode, recognizeStrokes, saveMode, type Candidate, type EngineMode, type EngineName, type InkTiming } from '../../core/characters/handwritingEngine'
 import { Pinyin } from '../Pinyin'
+import { getPack } from '../../core/language'
 
 const DEBOUNCE_MS = 150
 const SLOTS = 8
 const engineLabel: Record<EngineName, string> = { chrome: 'Chrome', google: 'Google', builtin: 'built-in matcher' }
 
 /** Draw a character with a finger or pen; stroke order, direction and neatness do not matter. */
-export function HandwritingPad({ allowed, onPick, onClose }: {
+export function HandwritingPad({ allowed, preferred, onPick, onClose }: {
   /** Characters a result may be: the catalog (and Characters section) set. */
   allowed: ReadonlySet<string>
+  /** The learner's lesson characters: the built-in matcher favours them between close candidates. */
+  preferred?: ReadonlySet<string>
   onPick: (character: string) => void
   onClose: () => void
 }) {
@@ -25,6 +28,10 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
   const [indicator, setIndicator] = useState<string>()
   const [probed, setProbed] = useState(false)
   const [, setTick] = useState(0)
+  const pack = getPack()
+  const target = pack.writing.handwriting
+  const learningTag = pack.learningTag
+  const preferredText = useMemo(() => target.favourLessons ? [...(preferred ?? [])].join('') : '', [preferred, target])
   const candidates = useMemo(() => results.map(item => item.character), [results])
   const times = useRef(new WeakMap<Point[], number[]>())
   const origin = useRef(0)
@@ -35,13 +42,13 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
   const recognizer = useRef<HandwritingRecognizer>()
   const latest = useRef(0)
   const allowedText = useMemo(() => [...allowed].join(''), [allowed])
-  const readings = useMemo(() => new Map(candidates.map(character => [character, pinyin(character, { toneType: 'symbol' })])), [candidates])
+  const readings = useMemo(() => new Map(target.pinyin ? candidates.map(character => [character, pinyin(character, { toneType: 'symbol' })]) : []), [candidates, target])
 
   useEffect(() => {
     recognizer.current = createHandwritingRecognizer()
-    void probeChromeHandwriting().then(() => setProbed(true), () => setProbed(true))
+    void probeChromeHandwriting(target).then(() => setProbed(true), () => setProbed(true))
     return () => { recognizer.current?.dispose(); recognizer.current = undefined }
-  }, [])
+  }, [target])
   useEffect(() => {
     // Drawing never needs the keyboard: drop the focus the search box may still hold.
     if (document.activeElement instanceof HTMLElement && document.activeElement !== document.body) document.activeElement.blur()
@@ -54,7 +61,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
       setStatus('Looking...')
       const timing: InkTiming = { times: strokes.map(stroke => times.current.get(stroke) ?? []), inputType: inputType.current }
       if (!recognizer.current) return
-      void recognizeStrokes(recognizer.current, strokes, allowedText, timing, SLOTS, mode, controller.signal).then(result => {
+      void recognizeStrokes(recognizer.current, strokes, allowedText, timing, SLOTS, mode, controller.signal, target, preferredText).then(result => {
         if (request !== latest.current) return
         setResults(result.candidates); setUsed(result.engine); setIndicator(result.indicator)
         setStatus(result.candidates.length ? 'Tap the character you meant.' : 'No match. Try again or clear.')
@@ -65,7 +72,7 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
       })
     }, DEBOUNCE_MS)
     return () => { window.clearTimeout(timer); controller.abort() }
-  }, [strokes, allowedText, mode])
+  }, [strokes, allowedText, preferredText, mode, target])
 
   const cancel = useCallback(() => {
     const active = pointer.current
@@ -134,10 +141,10 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
     </svg>
     <p id="handwriting-status" className="handwriting-status small muted" role="status" aria-live="polite">{status}</p>
     <p className="handwriting-engine small muted" data-testid="handwriting-engine">
-      <span>{indicator ?? indicatorText(mode, used)}</span>
+      <span>{indicator ?? indicatorText(mode, used, target)}</span>
       <span role="group" aria-label="Recognizer" className="handwriting-engine-toggle">
         {(['auto', 'chrome', 'google', 'builtin'] as const).map(value => <button key={value} type="button" className="handwriting-engine-option" aria-pressed={mode === value}
-          disabled={value === 'chrome' && probed && !chromeAvailable()} onClick={() => { saveMode(value); setMode(value); setIndicator(undefined); setUsed(undefined); setTick(tick => tick + 1) }}>{value === 'auto' ? 'Auto' : value === 'chrome' ? 'Chrome' : value === 'google' ? 'Google' : 'Built-in'}</button>)}
+          disabled={value === 'chrome' && probed && !chromeAvailable(target)} onClick={() => { saveMode(value); setMode(value); setIndicator(undefined); setUsed(undefined); setTick(tick => tick + 1) }}>{value === 'auto' ? 'Auto' : value === 'chrome' ? 'Chrome' : value === 'google' ? 'Google' : 'Built-in'}</button>)}
       </span>
     </p>
     {mode === 'google' && <p className="small muted" data-testid="handwriting-google-note">Google: unofficial handwriting service; your strokes are sent to Google.</p>}
@@ -147,8 +154,8 @@ export function HandwritingPad({ allowed, onPick, onClose }: {
         const character = item?.character
         const topUp = used !== 'builtin' && used !== undefined && item?.engine === 'builtin'
         return <li key={slot}>{character && <button type="button" className={'handwriting-candidate' + (topUp ? ' topped-up' : '')} title={'From ' + engineLabel[item.engine]} aria-label={`${character}, from ${engineLabel[item.engine]}`} onClick={() => { cancel(); setStrokes([]); onPick(character) }}>
-          <span lang="zh-Hans" className="handwriting-character">{character}</span>
-          <span className="handwriting-reading"><Pinyin text={readings.get(character) ?? ''} /></span></button>}</li>
+          <span lang={learningTag} className="handwriting-character">{character}</span>
+          {target.pinyin && <span className="handwriting-reading"><Pinyin text={readings.get(character) ?? ''} /></span>}</button>}</li>
       })}
     </ul>
   </section>

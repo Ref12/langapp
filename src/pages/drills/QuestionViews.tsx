@@ -208,7 +208,7 @@ function TranslateView({ data, state, ctx, onAnswer, onMark }: ViewProps & { dat
     capture.current = startSpeechCapture(next => {
       if (next.phase === 'error') setListening(next.error ?? 'Speech capture failed.')
       else if (next.phase === 'finished') { setListening(''); if (next.transcript) set(next.transcript) }
-    })
+    }, { locale: getPack().writing.speechLocale })
   }
   const allowed = useMemo(() => new Set([...ctx.catalogChars, ...Array.from(data.sentence.zh)]), [ctx.catalogChars, data.sentence.zh])
   return <>

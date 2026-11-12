@@ -1,5 +1,6 @@
 import { redactImageData } from '../assistant/images'
 import { handwritingReport } from '../characters/handwritingEngine'
+import { getPack } from '../language'
 import { addMark, loadMarks, loadRuns, loadStatus, type BackupStatus, type RunRecord, type TimingMark } from './state'
 import { buildChannel, buildCommit } from '../storage-names'
 
@@ -70,7 +71,7 @@ export async function collectDiagnostics(profileId?: string): Promise<Diagnostic
       next: of('next').map(mark => ({ at: stamp(mark.at), ms: mark.ms })),
     },
     backupRuns: runs.slice(0, 20).map(describeRun),
-    handwriting: await handwritingReport().catch(error => ({ error: redact(error instanceof Error ? error.message : String(error)) })),
+    handwriting: await handwritingReport(getPack().writing.handwriting).catch(error => ({ error: redact(error instanceof Error ? error.message : String(error)) })),
   }
   // Belt and braces: nothing keyed like a credential may appear in the output.
   return JSON.parse(JSON.stringify(report, (key, value) => secretKeys.test(key) && key !== 'publishMs' ? '[redacted]' : value)) as DiagnosticsReport

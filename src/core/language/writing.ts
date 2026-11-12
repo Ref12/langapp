@@ -4,6 +4,7 @@
 import type { CharacterAssetSummary, WritingLanguage } from '../characters/summary'
 import zhIndex from '../../data/characters/index.generated.json'
 import type { SpeechLocale } from '../assistant/contracts'
+import { CHINESE_HANDWRITING, type HandwritingTarget } from '../characters/handwritingTarget'
 import { japaneseCharacterList } from './character-list-ja'
 import { isHan, isHangul, isKana } from '../characters/scripts'
 import jaIndex from '../../../public/characters/japanese/index.generated.json'
@@ -31,6 +32,8 @@ export interface PackWriting {
   language: WritingLanguage
   /** The voice that says a character in the writing views (the language's own: zh-Hans, ja-JP, ko-KR). */
   speechLocale: SpeechLocale
+  /** How the drawing pad recognises this language: the stroke data of the built-in matcher, Chrome's language tags and Google's language code. */
+  handwriting: HandwritingTarget
   /** Whether a character is of the script the language's writing practice takes (Han; Han and kana; Hangul), with or without a guide. */
   writes(character: string): boolean
   /** The Writing page's list when it is opened without a character: titled groups of the characters that have a guide, in teaching order. Empty when the language lists its characters elsewhere (the Dictionary). */
@@ -59,7 +62,9 @@ export interface PackWriting {
   records: boolean
 }
 
-interface Extras { characterList?: PackCharacterList, speechLocale: SpeechLocale, writes: (character: string) => boolean, listGroups?: (has: (character: string) => boolean) => WritingGroup[], breakdown?: (character: string) => string[] | undefined }
+interface Extras { characterList?: PackCharacterList, speechLocale: SpeechLocale, handwriting: HandwritingTarget, writes: (character: string) => boolean, listGroups?: (has: (character: string) => boolean) => WritingGroup[], breakdown?: (character: string) => string[] | undefined }
+const JAPANESE_HANDWRITING: HandwritingTarget = { language: 'ja', chrome: ['ja'], google: 'ja', favourLessons: true }
+const KOREAN_HANDWRITING: HandwritingTarget = { language: 'ko', chrome: ['ko'], google: 'ko', favourLessons: true }
 const writesHan = isHan
 const writesHanKana = (character: string) => isHan(character) || isKana(character)
 
@@ -68,7 +73,7 @@ function entry(language: WritingLanguage, strokes: () => Map<string, number>, su
   const guidedChars = (word: string) => Array.from(word).filter(hasGuide)
   return {
     language, hasGuide, strokeCount: character => strokes().get(character), guidedChars, introduces,
-    speechLocale: extras.speechLocale, characterList: extras.characterList, writes: extras.writes, listGroups: () => extras.listGroups?.(hasGuide) ?? [], breakdown: extras.breakdown ?? (() => undefined),
+    speechLocale: extras.speechLocale, handwriting: extras.handwriting, characterList: extras.characterList, writes: extras.writes, listGroups: () => extras.listGroups?.(hasGuide) ?? [], breakdown: extras.breakdown ?? (() => undefined),
     introducedChars: word => guidedChars(word).filter(introduces), guideCharacters: () => [...strokes().keys()], summaries, characterData, records: true,
   }
 }
@@ -112,18 +117,18 @@ const jaData = fromMap((typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ ==
 const koData = fromMap((typeof __PACK_DATA__ === 'undefined' || __PACK_DATA__ === 'all' || __PACK_DATA__ === 'ko') ? koIndex : { characters: {} }, 'original-monoline-pilot', isHangul) // the Korean index also holds two punctuation marks; they are not written
 
 /** Chinese: today's rule. A Han character with a guide, taught as it is written. */
-export const zhWriting: PackWriting = entry('zh', zhStrokes, () => zhCharacters, isHan, { speechLocale: 'zh-Hans', writes: writesHan }, true)
+export const zhWriting: PackWriting = entry('zh', zhStrokes, () => zhCharacters, isHan, { speechLocale: 'zh-Hans', handwriting: CHINESE_HANDWRITING, writes: writesHan }, true)
 /** Japanese: every character with a guide, kanji and kana, is written; only kanji get an introduction (change `introduces` to teach kana as characters). */
-export const jaWriting: PackWriting = entry('ja', jaData.strokes, jaData.summaries, isHan, { speechLocale: 'ja-JP', writes: writesHanKana, characterList: japaneseCharacterList(character => jaData.strokes().has(character)) })
+export const jaWriting: PackWriting = entry('ja', jaData.strokes, jaData.summaries, isHan, { speechLocale: 'ja-JP', handwriting: JAPANESE_HANDWRITING, writes: writesHanKana, characterList: japaneseCharacterList(character => jaData.strokes().has(character)) })
 /** Korean: Hangul, from its own index; every Hangul character with a guide is written and introduced. */
-export const koWriting: PackWriting = entry('ko', koData.strokes, koData.summaries, isHangul, { speechLocale: 'ko-KR', writes: isHangul, listGroups: koreanListGroups, breakdown: hangulBreakdown })
+export const koWriting: PackWriting = entry('ko', koData.strokes, koData.summaries, isHangul, { speechLocale: 'ko-KR', handwriting: KOREAN_HANDWRITING, writes: isHangul, listGroups: koreanListGroups, breakdown: hangulBreakdown })
 
 /** A language that is not the build's (the old parallel screens): no index here, so it says yes to anything of its script and the load decides. */
 const foreign = (language: WritingLanguage): PackWriting => {
   const writable = language === 'zh' ? writesHan : language === 'ja' ? writesHanKana : isHangul
   const speechLocale: SpeechLocale = language === 'zh' ? 'zh-Hans' : language === 'ja' ? 'ja-JP' : 'ko-KR'
   return {
-    language, speechLocale, writes: writable, listGroups: () => [], breakdown: language === 'ko' ? hangulBreakdown : () => undefined, hasGuide: writable, strokeCount: () => undefined, guidedChars: word => Array.from(word).filter(writable),
+    language, speechLocale, handwriting: language === 'zh' ? CHINESE_HANDWRITING : language === 'ja' ? JAPANESE_HANDWRITING : KOREAN_HANDWRITING, writes: writable, listGroups: () => [], breakdown: language === 'ko' ? hangulBreakdown : () => undefined, hasGuide: writable, strokeCount: () => undefined, guidedChars: word => Array.from(word).filter(writable),
     introduces: writable, introducedChars: word => Array.from(word).filter(writable), guideCharacters: () => [], summaries: () => [], characterData: language === 'zh', records: false,
   }
 }

@@ -19,7 +19,7 @@ export interface RecognitionGlyph {
 
 export interface RecognitionIndex { points: number; glyphs: RecognitionGlyph[] }
 export interface RecognitionMatch { character: string; score: number }
-export interface RecognizeOptions { limit?: number; allowed?: ReadonlySet<string>; mode?: 'assignment' | 'rerank' }
+export interface RecognizeOptions { limit?: number; allowed?: ReadonlySet<string>; /** Characters of the learner's lessons: a close call goes to one of these. */ preferred?: ReadonlySet<string>; mode?: 'assignment' | 'rerank' }
 
 const digits = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 const digitValue = new Map([...digits].map((digit, index) => [digit, index * 100 / 63]))
@@ -32,6 +32,11 @@ const SKIP_BASE = 4
 const SKIP_SLOPE = 1.2
 const RERANK = 16
 const FULL_SCORE = 400
+/** Score a lesson character gains: enough to settle a near tie, too little to beat a clearly better match. */
+const PREFERRED_BONUS = 1.5
+/** Small kana have the shape of their full-size twin, and the fitted frame drops the size: the full-size kana wins a tie unless the small one is a lesson character. */
+const SMALL_KANA = new Set(Array.from('ぁぃぅぇぉっゃゅょゎゕゖァィゥェォッャュョヮヵヶ'))
+const SMALL_PENALTY = 1.5
 const ROUGH_STROKE = 6
 /** A drawn stroke may sit this far (frame units) from its guide stroke's place before the distance counts it all; beyond it the extra is a plain error. */
 const SHIFT_MAX = 22
@@ -227,7 +232,7 @@ function cloudScore(a: Float32Array, b: Float32Array): number {
 
 /** Rank catalog characters for a drawing (strokes in any order, direction or scale). */
 export function recognize(index: RecognitionIndex, drawing: Point[][], options: RecognizeOptions = {}): RecognitionMatch[] {
-  const { limit = 8, allowed, mode = 'rerank' } = options
+  const { limit = 8, allowed, preferred, mode = 'rerank' } = options
   const fitted = fitStrokes(drawing.filter(stroke => stroke.length))
   if (!fitted.length) return []
   const strokes = fitted.map(stroke => resampleStroke(stroke, index.points))
@@ -256,12 +261,20 @@ export function recognize(index: RecognitionIndex, drawing: Point[][], options: 
     for (const match of scored.slice(0, RERANK)) match.score += cloudScore(cloud, byCharacter.get(match.character)!.cloud)
     scored.splice(0, RERANK, ...scored.slice(0, RERANK).sort((x, y) => x.score - y.score))
   }
+  let adjusted = false
+  for (const match of scored) {
+    if (SMALL_KANA.has(match.character) && !preferred?.has(match.character)) { match.score += SMALL_PENALTY; adjusted = true }
+    else if (preferred?.has(match.character)) { match.score -= PREFERRED_BONUS; adjusted = true }
+  }
+  // Only the reranked head is comparable; Chinese (no small kana, no lesson set) is left exactly as it was.
+  if (adjusted) scored.splice(0, RERANK, ...scored.slice(0, RERANK).sort((x, y) => x.score - y.score))
   return scored.slice(0, limit)
 }
 
 /** Fetch and decode the generated handwriting index (one request, cached by the caller). */
-export async function loadRecognitionIndex(url: string): Promise<RecognitionIndex> {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Unable to load handwriting data (${response.status}).`)
+export async function loadRecognitionIndex(url: string, languageName = 'this language'): Promise<RecognitionIndex> {
+  const response = await fetch(url).catch(() => { throw new Error(`Handwriting data for ${languageName} could not be loaded. Check your connection, or use another recognizer.`) })
+  if (response.status === 404) throw new Error(`This build has no built-in handwriting data for ${languageName}. Use another recognizer.`)
+  if (!response.ok) throw new Error(`Handwriting data for ${languageName} could not be loaded (${response.status}).`)
   return decodeRecognitionIndex(await response.json() as RecognitionFile)
 }
