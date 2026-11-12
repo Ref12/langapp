@@ -10,6 +10,10 @@
 .cmp-tp > .cmp-glyph, .cmp-tp > a .cmp-glyph { font-size: 18px; color: var(--text); }
 .cmp-tp.coloured { border-bottom-color: var(--c); background: color-mix(in srgb, var(--c) 12%, transparent); }
 .cmp-tp.none > .cmp-glyph { border-bottom: 1px dashed var(--muted); }
+.cmp-own { display: block; font-size: 11px; }
+.cmp-origin { margin: 4px 0 2px; color: var(--text-secondary); line-height: 1.5; }
+.cmp-chip.note-form { border-style: dashed; color: var(--text); }
+.cmp-chip.note-shape { color: var(--text-secondary); }
 .cmp-note { font-style: normal; color: var(--muted); font-size: 11px; }
 .cmp-link { color: var(--accent); border-bottom: 1px dotted var(--accent); }
 .cmp-toggle { font: inherit; font-size: 11.5px; color: var(--accent); background: none; border: 0; padding: 0 2px; min-height: 28px; white-space: nowrap; }

@@ -24,11 +24,12 @@ export interface ComponentData { characters: Record<string, CharacterComponents>
 export interface PartGlyphs { glyphs: Record<string, number>; missing?: string[] }
 
 const tables = new Map<WritingLanguage, Promise<ComponentData>>()
+const noteTables = new Map<WritingLanguage, Promise<PartNotes>>()
 let glyphTable: Promise<PartGlyphs> | undefined
 const url = (language: WritingLanguage) => languageAssetUrl(language, 'components.generated.json')
 
 /** For tests: forget the loaded tables. */
-export const resetComponentData = () => { tables.clear(); glyphTable = undefined; formIndex = undefined }
+export const resetComponentData = () => { tables.clear(); noteTables.clear(); glyphTable = undefined; formIndex = undefined }
 
 /** The parts file, retried once: a flaky or briefly offline network is the usual failure ("Failed to fetch"). */
 const fetchOnce = (language: WritingLanguage) => fetch(url(language)).catch(() => fetch(url(language)))
@@ -45,6 +46,27 @@ export function loadComponentData(language: WritingLanguage = defaultWritingLang
   return table
 }
 
+const NOTE_ROLES: Record<string, NoteRole> = { m: 'meaning', s: 'sound', b: 'both', f: 'form', h: 'shape' }
+
+/** The part notes, loaded with the components data. They are optional: a language without the file, or a failed fetch, gives {} and every part keeps its dictionary meaning. */
+export function loadPartNotes(language: WritingLanguage = defaultWritingLanguage): Promise<PartNotes> {
+  let table = noteTables.get(language)
+  if (!table) {
+    table = fetch(languageAssetUrl(language, 'part-notes.generated.json')).then(response => response.ok ? response.json() as Promise<{ notes?: PartNotes }> : Promise.reject(new Error(String(response.status))))
+      .then(data => data?.notes ?? {}).catch(() => { noteTables.delete(language); return {} })
+    noteTables.set(language, table)
+  }
+  return table
+}
+
+/** The parts with their notes attached, and the character's origin. Notes are used only when they fit the parts shown (same count, same characters); otherwise the display stays as it was. */
+export function applyPartNotes(notes: PartNotes | undefined, character: string, parts: PartView[]): { parts: PartView[]; origin?: string } {
+  const record = notes?.[character]
+  const fits = !!record && record.p.length === parts.length && record.p.every(([glyph, role], at) => (parts[at].drawn ? '' : parts[at].glyph) === glyph && !!NOTE_ROLES[role])
+  if (!record || !fits) return { parts }
+  return { parts: parts.map((part, at) => ({ ...part, note: { role: NOTE_ROLES[record.p[at][1]], text: record.p[at][2] } })), origin: record.o }
+}
+
 /** The drawn glyphs (Private Use Area code points in the parts font) for parts that have no font character. A small separate chunk. */
 export function loadPartGlyphs(): Promise<PartGlyphs> {
   glyphTable ??= import('../../data/characters/part-glyphs.generated.json').then(module => module.default as PartGlyphs)
@@ -52,6 +74,12 @@ export function loadPartGlyphs(): Promise<PartGlyphs> {
 }
 
 export type PartRole = 'meaning' | 'sound' | 'both'
+/** What a part does in a character, as the part notes say: the three roles above, an older or different element it stands for, or only its shape. */
+export type NoteRole = PartRole | 'form' | 'shape'
+export interface PartNote { role: NoteRole; text: string }
+/** public/characters/chinese/part-notes.generated.json, one record per character: p = [part ('' when drawn from strokes), role letter, note] in the order the parts are shown; o = a one-sentence origin. */
+export interface CharacterPartNotes { p: [string, string, string][]; o?: string }
+export type PartNotes = Record<string, CharacterPartNotes>
 export interface PartView {
   key: string
   /** The component as text (a font character), or a drawn glyph from the parts font, or undefined when neither exists. */
@@ -74,6 +102,8 @@ export interface PartView {
   children: PartView[]
   /** Position among the siblings in the data (the colour index; a hidden part leaves a gap). */
   index: number
+  /** What the part does in this character (top-level parts of a character with part notes only); it replaces the dictionary meaning on screen. */
+  note?: PartNote
 }
 
 const SLOTS: Record<string, string[]> = {

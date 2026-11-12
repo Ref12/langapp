@@ -5,6 +5,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from 'yaml'
+import { buildPartNotesJson, notesJsonPath, notesYamlPath, readNotesYaml } from './part-notes-files.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const chinese = join(root, 'curriculum', 'chinese')
@@ -33,7 +34,22 @@ export function buildOrigins() {
   return origins
 }
 
+/** The part notes JSON (public/characters/chinese/part-notes.generated.json) from curriculum/chinese/characters/part-notes.yaml; written by scripts/build-part-notes.mjs, reviewed by hand. */
+function partNotes(check) {
+  if (!existsSync(notesYamlPath)) { if (check && existsSync(notesJsonPath)) throw new Error('part-notes.generated.json has no part-notes.yaml source.'); return }
+  const body = buildPartNotesJson(readNotesYaml())
+  const count = Object.keys(JSON.parse(body).notes).length
+  if (check) {
+    if (!existsSync(notesJsonPath) || readFileSync(notesJsonPath, 'utf8') !== body) throw new Error('Run "npm run characters:origins" to regenerate public/characters/chinese/part-notes.generated.json.')
+    console.log('Character part notes current: ' + count + ' characters.')
+  } else {
+    writeFileSync(notesJsonPath, body)
+    console.log('Character part notes generated: ' + count + ' characters.')
+  }
+}
+
 function main() {
+  partNotes(process.argv.includes('--check'))
   const origins = buildOrigins()
   const body = JSON.stringify({ schemaVersion: 1, source: 'curriculum/chinese/characters/coverage.yaml inventory (curriculum-writing-inventory-v2)', origins }) + '\n'
   if (process.argv.includes('--check')) {

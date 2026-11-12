@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { describeParts, formsOf, partColour, partPinyin, type ComponentData, type PartView } from '../../core/characters/components'
+import { applyPartNotes, describeParts, formsOf, partColour, partPinyin, type ComponentData, type NoteRole, type PartView } from '../../core/characters/components'
 import { dictionaryHref, useComponentData } from './useComponentData'
 import { Pinyin } from '../Pinyin'
 import { PracticeSnippet } from '../assistant/SnippetActions'
@@ -7,6 +7,7 @@ import './decomposition.css'
 
 /** One short sense for the text line: "water, liquid, lotion, juice" reads "water". */
 const shortMeaning = (text?: string) => text?.split(/[;,]/)[0]?.trim()
+const roleLabel: Record<NoteRole, string> = { meaning: 'meaning part', sound: 'sound part', both: 'sound + meaning', form: 'older form', shape: 'shape only' }
 const formLabel = (part: PartView) => part.form ? `${part.form.place ? `${part.form.place} ` : ''}form of ${part.form.of}` : ''
 
 function Glyph({ part }: { part: PartView }) {
@@ -21,16 +22,15 @@ function Line({ character, parts, colour, sounds, maskHead }: { maskHead?: boole
       {at > 0 && ' + '}
       <span className={`cmp-tp${colour ? ' coloured' : ''}${part.noMeaning ? ' none' : ''}`} style={colour ? { '--c': partColour(part.index) } as React.CSSProperties : undefined} data-part={part.index}>
         <Glyph part={part} />
-        {(part.role === 'sound' || part.role === 'both') && part.glyph && sounds[part.glyph] && <i className="cmp-note"> <Pinyin text={sounds[part.glyph]} /></i>}
-        {part.role === 'both' && <i className="cmp-note"> sound + meaning</i>}
-        {part.role !== 'sound' && part.meaning && <i className="cmp-note"> {shortMeaning(part.meaning)}</i>}
+        {part.note && <i className="cmp-note" data-note-role={part.note.role}> {roleLabel[part.note.role]}: {part.note.text}</i>}
+        {!part.note && (part.role === 'sound' || part.role === 'both') && part.glyph && sounds[part.glyph] && <i className="cmp-note"> <Pinyin text={sounds[part.glyph]} /></i>}
+        {!part.note && part.role === 'both' && <i className="cmp-note"> sound + meaning</i>}
+        {!part.note && part.role !== 'sound' && part.meaning && <i className="cmp-note"> {shortMeaning(part.meaning)}</i>}
         {part.noMeaning && !part.drawn && <i className="cmp-note"> no meaning</i>}
       </span>
     </span>)}
   </>
 }
-
-const roleLabel = { meaning: 'meaning part', sound: 'sound part', both: 'sound + meaning' } as const
 
 function Box({ part, colourIndex, colour, nested, data, glyphsOpen, onForms, sounds }: { part: PartView; colourIndex: number; colour: boolean; nested: boolean; data: ComponentData; glyphsOpen: boolean; onForms: () => void; sounds: Record<string, string> }) {
   const [open, setOpen] = useState(false)
@@ -39,10 +39,11 @@ function Box({ part, colourIndex, colour, nested, data, glyphsOpen, onForms, sou
     <div className={`cmp-box${part.noMeaning ? ' none' : ''}${colour ? ' coloured' : ''}${nested ? ' nested' : ''}`} style={colour ? { '--c': partColour(colourIndex) } as React.CSSProperties : undefined} data-part-box={part.key}>
       <span className="cmp-bg"><Glyph part={part} /></span>
       <span className="cmp-bm">
-        <span className="cmp-mean">{part.noMeaning ? 'no meaning' : part.meaning ?? ''}</span>
+        <span className="cmp-mean">{part.note ? part.note.text : part.noMeaning ? 'no meaning' : part.meaning ?? ''}</span>
+        {part.note && part.meaning && !part.noMeaning && <span className="cmp-own small muted">on its own: {part.meaning}</span>}
         <span className="cmp-chips">
-          {part.role && !part.noMeaning && <span className={`cmp-chip ${part.role}`}>{roleLabel[part.role]}</span>}
-          {(part.role === 'sound' || part.role === 'both' || part.bound) && part.glyph && (sounds[part.glyph] ?? part.reading) && <span className="cmp-chip plain"><Pinyin text={(sounds[part.glyph] ?? part.reading)!} /></span>}
+          {part.note ? <span className={`cmp-chip ${part.note.role === 'form' || part.note.role === 'shape' ? 'note-' + part.note.role : part.note.role}`}>{roleLabel[part.note.role]}</span> : part.role && !part.noMeaning && <span className={`cmp-chip ${part.role}`}>{roleLabel[part.role]}</span>}
+          {(part.note ? part.note.role === 'sound' || part.note.role === 'both' || part.bound : part.role === 'sound' || part.role === 'both' || part.bound) && part.glyph && (sounds[part.glyph] ?? part.reading) && <span className="cmp-chip plain"><Pinyin text={(sounds[part.glyph] ?? part.reading)!} /></span>}
           {part.bound && <span className="cmp-chip bound">bound form</span>}
           {part.drawn && <span className="cmp-chip bound">drawn from strokes</span>}
           {part.form && <button type="button" className="cmp-chip form" aria-expanded={glyphsOpen} onClick={onForms}>{formLabel(part)}</button>}
@@ -61,11 +62,11 @@ function Box({ part, colourIndex, colour, nested, data, glyphsOpen, onForms, sou
 export function Decomposition({ character, colour = false, label = 'Show decomposition', hideLabel = 'Hide decomposition', defaultOpen = false, onOpenChange, maskHead = false, extra }: { maskHead?: boolean; extra?: React.ReactNode;
   character: string; colour?: boolean; label?: string; hideLabel?: string; defaultOpen?: boolean; onOpenChange?: (open: boolean) => void
 }) {
-  const { data, glyphs, error } = useComponentData()
+  const { data, glyphs, notes, error } = useComponentData()
   const [open, setOpen] = useState(defaultOpen)
   const [formsOpen, setFormsOpen] = useState<Set<string>>(new Set())
   const [sounds, setSounds] = useState<Record<string, string>>({})
-  const parts = useMemo(() => data && glyphs ? describeParts(data, character, glyphs) : [], [data, glyphs, character])
+  const { parts, origin } = useMemo(() => data && glyphs ? applyPartNotes(notes, character, describeParts(data, character, glyphs)) : { parts: [] as PartView[], origin: undefined as string | undefined }, [data, glyphs, notes, character])
   useEffect(() => {
     let live = true
     const wanted = new Set<string>()
@@ -87,6 +88,7 @@ export function Decomposition({ character, colour = false, label = 'Show decompo
       <button type="button" className="cmp-toggle" aria-expanded={open} onClick={toggle}>{open ? hideLabel : label} <span aria-hidden="true">{open ? '\u25b4' : '\u25be'}</span></button>
       {extra}
     </div>
+    {open && origin && <p className="cmp-origin small" data-testid="part-origin">{origin}</p>}
     {open && <div className="cmp-boxes">{parts.map(part => <Box key={part.key} part={part} colourIndex={part.index} colour={colour} nested={false} data={data} sounds={sounds}
       glyphsOpen={formsOpen.has(part.key)} onForms={() => setFormsOpen(current => { const next = new Set(current); if (next.has(part.key)) next.delete(part.key); else next.add(part.key); return next })} />)}</div>}
   </div>
