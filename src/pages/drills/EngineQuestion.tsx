@@ -20,6 +20,7 @@ import { ConversationQuestion, ExchangePick, WhichCorrect } from './DatasetQuest
 import { ConjugateQuestion, FormPickQuestion, type WordFormContext } from '../../components/WordFormQuestions'
 import { useShowsReading } from '../../components/display-settings'
 import { SentenceAudio } from './SentenceAudio'
+import { ToneHold, ToneText } from '../../components/ToneText'
 
 export interface QuestionContext {
   readings: Map<string, Set<string>>
@@ -131,7 +132,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   // Only a form whose answer is a whole sentence gets Play sentence: the model answer, or the Chinese prompt when the answer is its meaning.
   const sentence = exercise.form === 'translate-zh-en' ? (exercise.hearText ?? (exercise.promptLang === 'zh' ? exercise.prompt : undefined)) : exercise.form === 'translate-en-zh' || exercise.form === 'dictation' || exercise.form === 'exchange-reply' ? exercise.model : undefined
   const hearNow = !(pinyinMode && reading.audioIsAnswer) || locked
-  return <>
+  return <ToneHold when={pinyinMode && !locked}>
     <Flag exercise={exercise} />
     {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin && (exercise.answerLang !== 'py' || locked)} /></p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
     {exercise.form === 'exchange-reply' && exercise.replyEn && <p className="engine-cue" lang="en">Reply: “{exercise.replyEn}”</p>}
@@ -159,7 +160,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
       {!checked.correct && <button type="button" className="link-button" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'I was right: count it'}</button>}
       {sentence && <SentenceAudio text={sentence} autoPlay={ctx.autoPlay} />}
       {exercise.explanation && exercise.explanation.trim() !== exercise.prompt?.trim() && <p className="small muted">{exercise.explanation}</p>}</div>}
-  </>
+  </ToneHold>
 }
 
 /** The word-form questions (components/WordFormQuestions.tsx) in the engine: the pack's tag, voice and marking, and the reading line in the learner's Readings setting. */
@@ -168,7 +169,7 @@ function WordForm({ exercise, ctx, onDone }: { exercise: ConjugateItem | FormPic
   const pack = getPack()
   const shared: WordFormContext = {
     lang: pack.learningTag, busy: ctx.busy, almost: pack.wordForms.almost,
-    written: (text, reading) => ctx.pinyin && shows(reading, text) ? <ruby className="mandarin-word" lang={pack.learningTag}>{text}<rt aria-hidden="true" data-assistant-exclude><ReadingText kana={reading!} /></rt></ruby> : <span lang={pack.learningTag}>{text}</span>,
+    written: (text, reading) => ctx.pinyin && shows(reading, text) ? <ruby className="mandarin-word" lang={pack.learningTag}><ToneText text={text} reading={reading} /><rt aria-hidden="true" data-assistant-exclude><ReadingText kana={reading!} /></rt></ruby> : <span lang={pack.learningTag}>{text}</span>,
     hear: (text, label, reading) => <HearButton text={text} locale={pack.speechLocale} kind="word" reading={reading} label={label} iconOnly />,
     grade: (given, answer) => pack.wordForms.grade(given, answer, pack.romaji),
   }

@@ -36,6 +36,12 @@
   --shadow-soft: #0002;
   --shadow-medium: #0005;
   --shadow-strong: #0008;
+  /* Tone colours (Pleco-style): tones 1 to 4 and neutral; WCAG AA on --bg. */
+  --tone-1: #ff7b72;
+  --tone-2: #56d364;
+  --tone-3: #79b8ff;
+  --tone-4: #d2a8ff;
+  --tone-5: #9198a1;
 }
 
 :root[data-theme="light"] {
@@ -74,4 +80,13 @@
   --shadow-soft: #1f232810;
   --shadow-medium: #1f23281c;
   --shadow-strong: #1f232830;
+  --tone-1: #cf222e;
+  --tone-2: #1a7f37;
+  --tone-3: #0550ae;
+  --tone-4: #8250df;
+  --tone-5: #59636e;
 }
+
+/* Tone colours, Hanping-style: 1 red, 2 orange, 3 green, 4 blue, neutral grey. A custom scheme sets --tone-1 to --tone-5 inline. */
+:root[data-tone-scheme="hanping"] { --tone-2: #ffa657; --tone-3: #56d364; --tone-4: #79b8ff; }
+:root[data-theme="light"][data-tone-scheme="hanping"] { --tone-2: #953800; --tone-3: #1a7f37; --tone-4: #0550ae; }

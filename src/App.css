@@ -560,3 +560,14 @@ ruby[lang="ja"] > rt { letter-spacing: 0; }
 .forms-note { margin: 6px 0 0; }
 .forms-table thead th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
 .forms-table tbody th { font-weight: 400; color: var(--muted); }
+
+.tone-1 { color: var(--tone-1); }
+.tone-2 { color: var(--tone-2); }
+.tone-3 { color: var(--tone-3); }
+.tone-4 { color: var(--tone-4); }
+.tone-5 { color: var(--tone-5); }
+.tone-sample { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 1.3rem; }
+.tone-sample span { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.2; }
+.tone-sample small { font-size: .75rem; }
+.tone-pickers { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.tone-pickers input[type="color"] { width: 100%; min-height: 36px; padding: 0; }

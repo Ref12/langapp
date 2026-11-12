@@ -4,6 +4,8 @@ import { DEFAULT_PINYIN_FORMAT, formatPinyin, type PinyinFormat } from '../core/
 
 export const PinyinFormatContext = createContext<PinyinFormat>(DEFAULT_PINYIN_FORMAT)
 
+export const usePinyinFormat = () => useContext(PinyinFormatContext)
+
 export function usePinyinFormatter() {
   const format = useContext(PinyinFormatContext)
   return useCallback((text: string) => formatPinyin(text, format), [format])

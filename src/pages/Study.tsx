@@ -26,6 +26,7 @@ import { PHASE_LABEL, phaseAt } from '../core/collections/phases'
 import { useStudyActions } from './useStudyActions'
 import { isGenerating } from '../core/study/generation'
 import { retryGeneration } from '../core/study/retry'
+import { ToneHold } from '../components/ToneText'
 
 
 export function Study({ workspace, now, run, busy }: PageProps) {
@@ -97,14 +98,14 @@ export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings
     {chineseQuestion
       ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.question} readings={readings} pinyin={pinyin} /></p>
       : <p className="practice-prompt" lang="en">{exercise.question}</p>}
-    <fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
+    <ToneHold when={!attempt}><fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
       {visibleOptions(exercise).map(index => [exercise.options[index], index] as const).map(([option, index]) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${attempt && index === exercise.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={name} value={index} checked={selected === index} onChange={() => choose(index)} />
         {chineseQuestion ? <span lang="en">{option}</span> : <span><AnnotatedChinese text={option} readings={readings} pinyin={pinyin} /></span>}
         {!chineseQuestion && <HearButton text={option} locale={getPack().speechLocale} kind="word" reading={readingOf(option, readings)} label={`Hear option ${index + 1}`} iconOnly />}
         <span className="answer-option-mark">{attempt && index === exercise.answer && <CheckCircle2 size={18} aria-label="Correct answer" />}</span>
       </label>)}
-    </fieldset>
+    </fieldset></ToneHold>
     {!bare && <AnswerButton result={attempt?.correct} busy={busy} ready={selected >= 0} onCheck={() => submit(selected)} onNext={next} />}
   </>
 }

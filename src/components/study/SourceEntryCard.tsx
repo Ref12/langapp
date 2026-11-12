@@ -8,6 +8,7 @@ import { cardStatus } from '../../core/study/labels'
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Pinyin } from '../Pinyin'
 import { SaveActions } from '../collections/SaveToMenu'
+import { ToneText } from '../ToneText'
 
 /** A word drawn from one of the learner's media sources: not part of the curriculum, but it can join the knowledge set. */
 export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, route, added, addedIndex }: {
@@ -20,7 +21,7 @@ export function SourceEntryCard({ entry, known, card, pinyin, now, run, busy, ro
     <div className="card-topline"><span className="eyebrow">From your media{entry.pos ? ` / ${entry.pos}` : ''}</span>{entry.register === 'literary' && <span className="tag" title="Classical or court-drama language, rare in everyday speech">literary</span>}{known && <span className="tag">{cardStatus(card, now)}</span>}</div>
     <div className="phrase-row">
       <div className="phrase-row-text">
-        <h3 lang="zh-Hans" className="word-native">{entry.word}</h3>
+        <h3 lang="zh-Hans" className="word-native"><ToneText text={entry.word} reading={entry.pinyin} /></h3>
         {pinyin && <p className="small muted study-pinyin" data-assistant-exclude><Pinyin text={entry.pinyin} /></p>}
         <p className="word-meaning">{meaning}</p>
       </div>

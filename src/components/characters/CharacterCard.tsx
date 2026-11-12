@@ -13,6 +13,7 @@ import { Pinyin } from '../Pinyin'
 import { Decomposition } from './Decomposition'
 import { canWrite } from '../../core/drills/write-queue'
 import { getPack } from '../../core/language'
+import { ToneText } from '../ToneText'
 
 export function CharacterCard({ entry, automatic, manual, state, known, scope, pinyin, run, busy }: {
   entry: DictionaryCharacter; automatic: boolean; manual: boolean; state?: CharacterState; known?: ReadonlySet<string>
@@ -46,7 +47,7 @@ export function CharacterCard({ entry, automatic, manual, state, known, scope, p
   const route = `dictionary/characters/${scope}`
   // One word line: its own Hear and "..." menu beside the text, like an example line on a vocabulary card.
   const wordLine = (item: DictionaryCharacter['words'][number], extra = '') => <div className="phrase-row character-word-line" key={item.ref}>
-    <p className="small phrase-row-text"><span lang={locale}>{item.record.ch}</span>{pinyin && <span className="muted"> <Pinyin text={item.record.pr} /></span>} <span className="muted">{item.record.ds}{extra}</span></p>
+    <p className="small phrase-row-text"><span lang={locale}><ToneText text={item.record.ch} reading={item.record.pr} /></span>{pinyin && <span className="muted"> <Pinyin text={item.record.pr} /></span>} <span className="muted">{item.record.ds}{extra}</span></p>
     <PracticeSnippet source={{ text: item.record.ch, meaning: item.record.ds, locale, title: `Word: ${item.record.ds}`, route }} />
   </div>
   return <article className="word-card character-card" aria-label={`Character ${character}`} data-assistant-exclude>

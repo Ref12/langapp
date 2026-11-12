@@ -48,6 +48,8 @@ export interface PackDisplayForms {
 }
 /** The reading styles a pack offers and the default; a pack that offers none keeps its own reading format setting. */
 export interface PackReadingStyles {
+  /** What the quick setting is called: "Japanese reading format". */
+  label: string
   choices: ReadingScript[]
   default: ReadingScript
   /** What the Settings select says of each choice: its name and a sample reading (shown as "Kana (べんきょうします)"). */
@@ -81,6 +83,8 @@ export interface PackMeta extends PhraseIdentity, SentenceForms, PracticePage, P
   /** Whether a Lab app of this language is published (at lab/ for Chinese, lab/<id>/ for the others): the app switch lists exactly these. Korean has none yet. */
   published: boolean
   readings: ReadingStyle
+  /** Whether the language has tones, so tone colours and their switch apply (Chinese). */
+  tones?: boolean
   /** Whether the knowledge counts include a count of Han characters. */
   countsCharacters: boolean
   /** Which form a verb is shown in, as a setting. Absent: no setting, words are shown as stored. */
@@ -106,18 +110,18 @@ const jaDisplayForms: PackDisplayForms = { language: 'ja', choices: [{ id: 'masu
 const koDisplayForms: PackDisplayForms = { language: 'ko', choices: [{ id: 'haeyo', kinds: ['verb'] }, { id: 'dict', kinds: [] }, { id: 'formal', kinds: ['verb'] }], default: 'haeyo', sample: { ch: '공부하다', pr: '공부하다', cl: 'hada', ps: 'verb' } }
 
 export const zhMeta: PackMeta = { id: 'zh', name: zhTrack.name, nativeName: '\u4E2D\u6587', learningTag: 'zh-Hans', htmlLang: 'en', features: everything,
-  wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', speechText: plainSpeechText, glyph: '\u4E2D', published: true, readings: 'pinyin', countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
+  wording: { language: 'Mandarin', band: 'HSK {n}', reading: 'pinyin', goals: 'the HSK goals' }, speechLocale: 'zh-Hans', speechText: plainSpeechText, glyph: '\u4E2D', published: true, readings: 'pinyin', tones: true, countsCharacters: true, practiceWording: zhPractice, readingInput: pinyinInput,
   dictionary: zhDictionary, writing: zhWriting, ...ownershipOf('zh', true), ...zhIdentity, ...zhSentence, ...zhPage, ...zhWordForms }
 export const jaMeta: PackMeta = { id: 'ja', name: 'Japanese', nativeName: '\u65E5\u672C\u8A9E', learningTag: 'ja', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
   wording: { language: 'Japanese', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ja-JP', speechText: japaneseSpeechText, glyph: '\u65E5', published: true, readings: 'line', countsCharacters: false, practiceWording: jaPractice, readingInput: kanaInput,
   writing: jaWriting, ...ownershipOf('ja', false), ...jaIdentity, ...jaSentence, ...jaPage, ...jaWordForms,
   displayForms: jaDisplayForms, dictionary: jaDictionary(jaDisplayForms),
-  readingStyles: { choices: ['kana', 'romaji'], default: 'kana', options: { kana: { label: 'Kana', example: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059' }, romaji: { label: 'Romaji', example: 'benkyou shimasu' } } } }
+  readingStyles: { label: 'Japanese reading format', choices: ['kana', 'romaji'], default: 'kana', options: { kana: { label: 'Kana', example: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059' }, romaji: { label: 'Romaji', example: 'benkyou shimasu' } } } }
 export const koMeta: PackMeta = { id: 'ko', name: 'Korean', nativeName: '\uD55C\uAD6D\uC5B4', learningTag: 'ko', htmlLang: 'en', features: { ...nothing, writing: true, dictionary: true },
   wording: { language: 'Korean', band: 'Level {n}', reading: 'readings', goals: 'your goals' }, speechLocale: 'ko-KR', speechText: plainSpeechText, glyph: '\uD55C', published: true, readings: 'line', countsCharacters: false, practiceWording: koPractice, readingInput: romanizationInput,
   guide: { label: 'New to Hangul? Learn to read and write it', href: 'guides/hangul.html' },
   displayForms: koDisplayForms, dictionary: koDictionary(koDisplayForms), writing: koWriting, ...ownershipOf('ko', false), ...koIdentity, ...koSentence, ...koPage, ...koWordForms,
-  readingStyles: { choices: ['hangul', 'romanized'], default: 'romanized', options: { hangul: { label: 'Hangul only', example: '공부해요' }, romanized: { label: 'Hangul with romanization', example: '공부해요 gongbuhaeyo' } } } }
+  readingStyles: { label: 'Korean reading format', choices: ['hangul', 'romanized'], default: 'romanized', options: { hangul: { label: 'Hangul only', example: '공부해요' }, romanized: { label: 'Hangul with romanization', example: '공부해요 gongbuhaeyo' } } } }
 
 export const METAS: Record<LanguageId, PackMeta> = { zh: zhMeta, ja: jaMeta, ko: koMeta }
 

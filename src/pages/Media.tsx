@@ -20,6 +20,7 @@ import { LearnFromSpan } from '../components/media/LearnFromSpan'
 import { CollectLine } from '../components/collections/CollectLine'
 import { storageNames } from '../core/storage-names'
 import './media.css'
+import { ToneText } from '../components/ToneText'
 
 type Phase = { kind: 'idle' } | { kind: 'working'; message: string; progress?: number } | { kind: 'unreachable'; id: string } | { kind: 'failed'; message: string }
 
@@ -182,7 +183,7 @@ const PAUSE_KEY = () => storageNames().local.mediaPause
 const dictionaryLink = (text: string) => `#dictionary/${Array.from(text).length === 1 ? 'characters' : 'vocabulary'}/all?q=${encodeURIComponent(text)}`
 
 function Picked({ text, pinyin, meaning, note, context }: { text: string; pinyin?: string; meaning?: string; note?: string; context?: string }) {
-  return <p className="notice media-picked" role="status"><strong lang="zh-Hans">{text}</strong>{pinyin && <> <Pinyin text={pinyin} /></>}{meaning ? <> / {meaning}</> : null}{note && <span className="tag"> {note}</span>}{context && context !== meaning && <span className="small muted"> (here: {context})</span>} <a href={dictionaryLink(text)}>Look up in Dictionary</a></p>
+  return <p className="notice media-picked" role="status"><strong lang="zh-Hans"><ToneText text={text} reading={pinyin} /></strong>{pinyin && <> <Pinyin text={pinyin} /></>}{meaning ? <> / {meaning}</> : null}{note && <span className="tag"> {note}</span>}{context && context !== meaning && <span className="small muted"> (here: {context})</span>} <a href={dictionaryLink(text)}>Look up in Dictionary</a></p>
 }
 
 /** A line with a reading and a tap target on every Han character: catalog words as words, everything else character by character. */
@@ -195,7 +196,7 @@ function WordLine({ text, pinyin, lookup, className = 'media-now' }: { className
     <p className={className} lang="zh-Hans">{units.map((unit, index) => {
       if (!unit.pinyin) return <span key={index} className="media-plain">{unit.text}</span>
       const meaning = lookup.meanings.get(unit.text)
-      return <ruby key={index} className="mandarin-word"><button type="button" className="word" onClick={() => setSelected({ text: unit.text, pinyin: unit.pinyin, meaning })}>{unit.text}</button>
+      return <ruby key={index} className="mandarin-word"><button type="button" className="word" onClick={() => setSelected({ text: unit.text, pinyin: unit.pinyin, meaning })}><ToneText text={unit.text} reading={unit.pinyin} /></button>
         {pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={unit.pinyin} /></rt>}</ruby>
     })}</p>
     {selected && <Picked {...selected} />}
@@ -212,7 +213,7 @@ function WovenLine({ tokens, pinyin, glosses, className = 'media-now', entryOf, 
   const [selected, setSelected] = useState<WovenToken>()
   return <>
     <p className={className} lang="zh-Hans">{tokens.map((token, index) => <span key={index} className="woven-token">
-      <ruby className="mandarin-word"><button type="button" className="word" onClick={() => setSelected(token)}>{token.text}</button>
+      <ruby className="mandarin-word"><button type="button" className="word" onClick={() => setSelected(token)}><ToneText text={token.text} reading={token.pinyin} /></button>
         {pinyin && token.pinyin && <rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt>}</ruby>
       {glosses && glossFor(token, entryOf, curriculum) && <span className="woven-gloss" data-assistant-exclude>{glossFor(token, entryOf, curriculum)}</span>}
       {token.trailing}</span>)}</p>

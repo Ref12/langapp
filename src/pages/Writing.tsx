@@ -28,6 +28,7 @@ import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
 import { StrokeMatchingSelect } from '../components/StrokeMatchingSelect'
 import './writing.css'
 import { headingWord, lessonWords, type HeadingWord } from '../core/writing-heading'
+import { ToneText } from '../components/ToneText'
 
 function routeCharacter(codepoint?: string): string | undefined {
   if (!codepoint || !/^[\da-f]{4,6}$/i.test(codepoint)) return undefined
@@ -373,7 +374,7 @@ export function WritingPlayer({ language = getPack().writing.language, asset, ba
       <p className="writing-title">
         <span className={hidden ? 'writing-title-hidden' : 'writing-title-character'} lang={hidden ? undefined : writing.characterData ? 'zh-Hans' : language} aria-label={hidden ? 'From memory' : undefined}>{hidden ? '\u25a1' : asset.character}</span>
         {word && <span className="writing-title-word">
-          <span lang="zh-Hans">{hidden ? Array.from(word.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : word.ch}</span>
+          <span lang="zh-Hans">{hidden ? Array.from(word.ch).map(character => character === asset.character ? '\u25a1' : character).join('') : <ToneText text={word.ch} reading={word.pr} />}</span>
           {workspace.preferences.pinyin && <> <Pinyin text={word.pr} /></>} <span className="muted">{word.ds}</span></span>}
       </p>
       {breakdown && !hidden && <span className="writing-breakdown" role="group" aria-label="Letters in this syllable">{breakdown.map((letter, at) => <span key={at}>{at > 0 && <span aria-hidden="true"> + </span>}<span lang={language}>{letter}</span></span>)}</span>}

@@ -66,6 +66,8 @@ import { DisplaySettingsProvider } from './components/display-context'
 import { resolveDisplaySettings } from './components/display-settings'
 import { AppSwitch } from './components/AppSwitch'
 import { appHref, appSwitchShown, labApps } from './core/language/apps'
+import { ToneColourProvider } from './components/ToneText'
+import { applyToneColours } from './core/tone-colour'
 
 /** The navigation of the app; an entry with an area is shown only where the build's language pack has that area on. */
 const navigation: { id: string; label: string; icon: typeof Home; area?: Area }[] = [
@@ -210,6 +212,9 @@ function WorkspaceApp() {
     if (workspace) document.documentElement.dataset.theme = workspace.preferences.theme
   }, [workspace])
   useEffect(() => {
+    if (workspace) applyToneColours(document.documentElement, workspace.preferences, workspace.preferences.theme)
+  }, [workspace])
+  useEffect(() => {
     setSpeechVoicePreferences(workspace?.preferences.speechVoices)
   }, [workspace?.preferences.speechVoices])
   useEffect(() => {
@@ -240,7 +245,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><BackupNow />
           <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems} apps={labApps().map(app => ({ label: app.name, glyph: app.glyph, lang: app.id, href: appHref(app.id), current: app.id === buildLanguage() }))}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
         </>
-  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><DisplaySettingsProvider settings={displaySettings}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
+  return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><DisplaySettingsProvider settings={displaySettings}><ToneColourProvider on={getPack().tones === true && preferences.toneColours === true}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
@@ -275,7 +280,7 @@ function WorkspaceApp() {
       <DraftStatus />
       {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} rate={preferences.defaultSpeechRate ?? 1} />}
     </div>
-  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></DisplaySettingsProvider></ReadingSettingsContext.Provider></PinyinFormatContext.Provider>
+  </PageDockContext.Provider></PageActionsProvider></PageSettingsProvider></ToneColourProvider></DisplaySettingsProvider></ReadingSettingsContext.Provider></PinyinFormatContext.Provider>
 }
 
 function StorageFailure({ error }: { error: string }) {

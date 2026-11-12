@@ -6,11 +6,12 @@ import { contentWords, contentGrammar, contentModels, lessonRoutes } from '../..
 import { HearButton } from '../assistant/SnippetActions'
 import { MarkdownText } from '../MarkdownText'
 import { Pinyin } from '../Pinyin'
+import { ToneText } from '../ToneText'
 
 export function UtteranceView({ utterance, pinyin, translation = true }: { utterance: Utterance; pinyin: boolean; translation?: boolean }) {
   const resolved = resolveUtterance(utterance, contentWords)
   return <div className="learning-utterance">
-    <div className="button-row"><p className="learning-target" lang="zh-Hans">{resolved.text}</p><HearButton text={resolved.text} locale="zh-Hans" rate={0.85} /></div>
+    <div className="button-row"><p className="learning-target" lang="zh-Hans"><ToneText text={resolved.text} reading={resolved.pinyin} /></p><HearButton text={resolved.text} locale="zh-Hans" rate={0.85} /></div>
     {pinyin && <p className="small muted"><Pinyin text={resolved.pinyin} /></p>}
     {translation && <p>{resolved.translation}</p>}
   </div>

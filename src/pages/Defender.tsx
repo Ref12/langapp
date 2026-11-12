@@ -8,13 +8,14 @@ import type { WordForm } from '../../shared/defender-engine'
 import { Pinyin } from '../components/Pinyin'
 import { usePinyinFormatter } from '../components/pinyin-context'
 import './defender.css'
+import { ToneHold, ToneText } from '../components/ToneText'
 
 const directionNames = { chinese: 'Chinese → English', english: 'English → Chinese', 'character-pinyin': 'Chinese → Pinyin', 'pinyin-character': 'Pinyin → Chinese' }
-function WordFace({ word, form, pinyin }: { word: Word; form: WordForm; pinyin: boolean }) {
-  return <span lang={form === 'character' ? 'zh-Hans' : form === 'pinyin' ? 'zh-Latn' : 'en'} className={`defender-word-face${word.character.length > 2 ? ' long-word' : ''}`}>
-    {pinyin && form === 'character' ? <ruby>{word.character}<rt lang="zh-Latn"><Pinyin text={word.pinyin} /></rt></ruby>
-      : form === 'pinyin' ? <Pinyin text={word.pinyin} /> : word[form]}
-  </span>
+function WordFace({ word, form, pinyin, hold }: { word: Word; form: WordForm; pinyin: boolean; hold: boolean }) {
+  return <ToneHold when={hold}><span lang={form === 'character' ? 'zh-Hans' : form === 'pinyin' ? 'zh-Latn' : 'en'} className={`defender-word-face${word.character.length > 2 ? ' long-word' : ''}`}>
+    {pinyin && form === 'character' ? <ruby><ToneText text={word.character} reading={word.pinyin} /><rt lang="zh-Latn"><Pinyin text={word.pinyin} /></rt></ruby>
+      : form === 'pinyin' ? <Pinyin text={word.pinyin} /> : form === 'character' ? <ToneText text={word.character} reading={word.pinyin} /> : word[form]}
+  </span></ToneHold>
 }
 
 export function Defender({ workspace }: PageProps) {
@@ -98,7 +99,7 @@ export function Defender({ workspace }: PageProps) {
             return <div className={`defender-incoming${tile.id === target?.id ? ' leading' : ''}${tile.position < .23 ? ' danger' : ''}`}
               key={tile.id} data-defender-tile={tile.id} aria-label={`${tile.id === target?.id ? 'Target' : 'Incoming'}: ${forms.prompt === 'pinyin' ? formatPinyin(word.pinyin) : promptText(word, actual.direction)}`}
               style={{ '--position': tile.position, '--lane': tile.lane } as CSSProperties}>
-              <WordFace word={word} form={forms.prompt} pinyin={actual.showPinyin === true} />
+              <WordFace word={word} form={forms.prompt} pinyin={actual.showPinyin === true} hold={actual.direction.includes('pinyin')} />
             </div>
           })}
           {!playing && <div className="defender-overlay">
@@ -117,7 +118,7 @@ export function Defender({ workspace }: PageProps) {
       {inputMode === 'tap' ? <div className="defender-answer-bank" role="group" aria-label="Defender answers">
         {run.words.map(word => <button key={word.id} className="defender-answer" disabled={!playing || !target || Boolean(play.error)}
           aria-label={`Answer ${forms.answer === 'pinyin' ? formatPinyin(word.pinyin) : answerText(word, actual.direction)}`} onClick={() => submit(answerText(word, actual.direction))}>
-          <WordFace word={word} form={forms.answer} pinyin={actual.showPinyin === true} />
+          <WordFace word={word} form={forms.answer} pinyin={actual.showPinyin === true} hold={actual.direction.includes('pinyin')} />
         </button>)}
       </div> : <form className="defender-type-form" onSubmit={event => { event.preventDefault(); if (!composing.current) submit(answer) }}>
         <label className="visually-hidden" htmlFor="defender-answer-input">Defender answer</label>
@@ -130,7 +131,7 @@ export function Defender({ workspace }: PageProps) {
       </form>}
       <p className="defender-feedback" role="status">{play.message}</p>
       {between && <section className="panel defender-wave-review"><h2>Next wave's words</h2>
-        <div className="defender-vocabulary">{upcoming.map(word => <div key={word.id}><strong lang="zh-Hans">{word.character}</strong><span><Pinyin text={word.pinyin} /></span><span>{word.meaning}</span>{game.review.includes(word.id) && <small>Review from this wave</small>}</div>)}</div>
+        <div className="defender-vocabulary">{upcoming.map(word => <div key={word.id}><strong lang="zh-Hans"><ToneText text={word.character} reading={word.pinyin} /></strong><span><Pinyin text={word.pinyin} /></span><span>{word.meaning}</span>{game.review.includes(word.id) && <small>Review from this wave</small>}</div>)}</div>
       </section>}
       <details className="defender-help" onToggle={event => { if (event.currentTarget.open && playing) play.pause('Paused while viewing the rules.') }}>
         <summary aria-label="Rules, saving, and word selection"><Info size={20} /><span>Rules, saving, and word selection</span></summary>

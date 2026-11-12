@@ -12,16 +12,17 @@ import { SnippetActions } from '../components/assistant/SnippetActions'
 import './reading.css'
 
 import { Pinyin } from '../components/Pinyin'
+import { ToneText } from '../components/ToneText'
 
 function Translation({ translation, pinyin }: { translation: BookTranslation; pinyin: boolean }) {
   const [selected, setSelected] = useState<{ text: string; pinyin: string; meaning: string }>()
   return <>
     <div className="reading-text book-translation" lang="zh-Hans">{translation.blocks.map((block, index) => <p key={index}>{block.map((token, word) => <span key={word}>
       <button type="button" className="reading-token" aria-label={`Word help: ${token.text}`} onClick={() => setSelected(token)}>
-        {pinyin && token.pinyin ? <ruby className="mandarin-word">{token.text}<rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt></ruby> : token.text}
+        {pinyin && token.pinyin ? <ruby className="mandarin-word"><ToneText text={token.text} reading={token.pinyin} /><rt aria-hidden="true" data-assistant-exclude><Pinyin text={token.pinyin} /></rt></ruby> : token.text}
       </button>{token.trailing}
     </span>)}</p>)}</div>
-    {selected && <p className="notice" role="status"><strong lang="zh-Hans">{selected.text}</strong> <Pinyin text={selected.pinyin} /> / {selected.meaning}</p>}
+    {selected && <p className="notice" role="status"><strong lang="zh-Hans"><ToneText text={selected.text} reading={selected.pinyin} /></strong> <Pinyin text={selected.pinyin} /> / {selected.meaning}</p>}
   </>
 }
 

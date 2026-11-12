@@ -18,6 +18,7 @@ import { WritingSpeechSelect } from '../components/WritingSpeechSelect'
 import { StrokeMatchingSelect } from '../components/StrokeMatchingSelect'
 import { DEFAULT_PINYIN_FORMAT, pinyinFormatSchema } from '../core/pinyin'
 import { LocalPinyinSetupContext } from '../components/assistant/local-ai-setup-context'
+import { ToneColourSettings } from '../components/ToneColourSettings'
 
 export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
   const pinyinSetup = useContext(LocalPinyinSetupContext)
@@ -59,6 +60,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
         void run(() => savePreferences({ theme }))
       }}><option value="dark">Dark</option><option value="light">Light</option></select></label>
       <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> {`${readingTitle(pack)} for unfamiliar words`}</label>
+      {pack.tones && <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.toneColours === true} onChange={event => void run(() => savePreferences({ toneColours: event.target.checked }))} /> Tone colours</label>}
       <label className="toggle"><input type="checkbox" disabled={busy || !hapticsSupported()} checked={workspace.preferences.haptics !== false} onChange={event => void run(() => savePreferences({ haptics: event.target.checked }))} /> Vibration feedback{!hapticsSupported() && ' (not available on this device)'}</label>
       {isAreaOn(pack, 'writing') && <WritingSpeechSelect workspace={workspace} busy={busy} run={run} />}
       {isAreaOn(pack, 'writing') && <StrokeMatchingSelect workspace={workspace} busy={busy} run={run} />}
@@ -94,6 +96,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       </>}
       {pack.readings !== 'pinyin' && <p className="small muted">{`Vocabulary in lessons shows its ${pack.wording.reading} until it reaches Learned: unaided correct answers on three separate days. A miss or revealed answer brings the ${pack.wording.reading} back.`}</p>}
     </section>
+    {pack.tones && <ToneColourSettings workspace={workspace} busy={busy} run={run} />}
     <VoiceSettings workspace={workspace} busy={busy} run={run} />
     {isAreaOn(pack, 'handsFree') && <HandsfreeDefaults />}
     <AIConnectionSettings busy={workspaceBusy || profileBusy || speechBusy} onBusyChange={setAIBusy} />

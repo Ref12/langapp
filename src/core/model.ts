@@ -67,6 +67,12 @@ export interface Preferences {
   displayForm?: string
   /** Kana or romaji for the reading line. Absent until the learner chooses; romaji is made from the kana for display and never stored. */
   readingStyle?: 'kana' | 'romaji' | 'hangul' | 'romanized'
+  /** Colour Chinese characters and their pinyin by tone (a language with tones only). Absent means off. */
+  toneColours?: boolean
+  /** The tone colours: Pleco-style (default), Hanping-style or the learner's own. */
+  toneColourScheme?: 'pleco' | 'hanping' | 'custom'
+  /** The learner's own tone colours (tones 1 to 4 and neutral) for each theme. */
+  toneColoursCustom?: { dark: string[]; light: string[] }
   readingMode: ReadingMode
   sidebarCollapsed: boolean
   speechVoices?: SpeechVoicePreferences

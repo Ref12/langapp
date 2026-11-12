@@ -105,6 +105,39 @@ function formatSyllables(text: string, format: PinyinFormat): string {
   })
 }
 
+/** A piece of a displayed pinyin text: plain, or one syllable with its dictionary tone (1 to 4, 5 for the neutral tone). The pieces joined are exactly formatPinyin(text, format). */
+export interface PinyinPart { text: string; tone?: number }
+export function pinyinParts(text: string, format: PinyinFormat = DEFAULT_PINYIN_FORMAT): PinyinPart[] {
+  const parts: PinyinPart[] = []
+  const push = (piece: string, tone?: number) => {
+    const last = parts[parts.length - 1]
+    if (tone === undefined && last && last.tone === undefined) last.text += piece
+    else if (piece) parts.push({ text: piece, ...(tone === undefined ? {} : { tone }) })
+  }
+  text.split(/(<[^>]*>)/).forEach((section, index) => {
+    if (index % 2) { push(section); return }
+    let at = 0
+    for (const match of section.matchAll(/(?:u:|[\p{Script=Latin}\p{M}])+[0-9]*/giu)) {
+      push(section.slice(at, match.index))
+      at = match.index + match[0].length
+      const token = match[0]
+      const syllables = /^[A-Z]$/.test(token) ? undefined : splitToken(token)
+      if (!syllables) { push(token); continue }
+      for (const part of syllables) push(format === 'marks' ? part.marked : `${format === 'numbers' ? part.base : part.marked}${part.tone}`, Number(part.tone))
+    }
+    push(section.slice(at))
+  })
+  return parts
+}
+
+/** The dictionary tones of a word's reading, one per syllable, when the reading is a single pinyin reading that parses; undefined otherwise (several readings, or not pinyin). */
+export function readingTones(pr: string | undefined): number[] | undefined {
+  if (!pr) return undefined
+  const readings = parseReadings(pr)
+  if (readings.length !== 1 || parseReadings(pr.replace(/\s+/g, ' ')).length !== 1) return undefined
+  return readings[0].map(syllable => Number(syllable.tone))
+}
+
 /** A pinyin field as syllable lists, one per reading (readings are split on / ; , or "or"). A reading that does not parse as pinyin is left out. */
 export function parseReadings(pr: string): Syllable[][] {
   const readings: Syllable[][] = []

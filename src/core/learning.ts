@@ -9,6 +9,7 @@ import { speechVoicePreferencesSchema } from './assistant/contracts'
 import { pinyinFormatSchema } from './pinyin'
 import { getPack } from './language'
 import { WRITING_SPEECH } from './writing-speech'
+import { isToneColoursCustom, isToneScheme } from './tone-colour'
 
 export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 'language'>>): Promise<void> {
   await db.transaction('rw', db.preferences, async () => {
@@ -23,6 +24,9 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (next.speechVoices !== undefined) next.speechVoices = speechVoicePreferencesSchema.parse(next.speechVoices)
     if (next.speechDebugMessages !== undefined && typeof next.speechDebugMessages !== 'boolean') throw new Error('Choose whether speech debug messages are shown.')
     if (next.sudokuAutoSpeak !== undefined && typeof next.sudokuAutoSpeak !== 'boolean') throw new Error('Choose whether automatic Sudoku speech is on or off.')
+    if (next.toneColours !== undefined && typeof next.toneColours !== 'boolean') throw new Error('Choose whether tone colours are on or off.')
+    if (next.toneColourScheme !== undefined && !isToneScheme(next.toneColourScheme)) throw new Error('Choose a tone colour scheme.')
+    if (next.toneColoursCustom !== undefined && !isToneColoursCustom(next.toneColoursCustom)) throw new Error('Choose five colours for each theme.')
     if (next.haptics !== undefined && typeof next.haptics !== 'boolean') throw new Error('Choose whether vibration feedback is on or off.')
     if (next.exercisesPerLesson !== undefined && (!Number.isInteger(next.exercisesPerLesson) || next.exercisesPerLesson < 8 || next.exercisesPerLesson > 40)) throw new Error('Choose between 8 and 40 exercises per lesson.')
     if (next.writingSpeech !== undefined && !WRITING_SPEECH.includes(next.writingSpeech)) throw new Error('Choose when the writing practice says the character.')

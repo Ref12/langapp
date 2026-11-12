@@ -3,6 +3,7 @@ import { Trash2, Volume2 } from 'lucide-react'
 import { Pinyin } from '../Pinyin'
 import type { PhraseLink, PhraseRow } from '../../core/phrases/dictionary'
 import './phrases.css'
+import { ToneText } from '../ToneText'
 
 const dayOf = (at: number) => new Date(at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 const entryRoute = (section: 'vocabulary' | 'grammar', label: string) => `#dictionary/${section}/all?q=${encodeURIComponent(label)}`
@@ -24,7 +25,7 @@ export function PhraseTable({ rows, pinyin, route, onPlay, onRemove, busy, view 
   return <table className="phrase-table">
     <thead><tr><th scope="col">{textHead}</th>{showReading && <th scope="col">{readingHead}</th>}<th scope="col">English</th><th scope="col">Words</th><th scope="col">Grammar</th><th scope="col">Source</th><th scope="col">State</th><th scope="col">Heard</th><th scope="col"><span className="phrase-hidden">Actions</span></th></tr></thead>
     <tbody>{rows.map(row => <tr key={row.phrase.zh} className={row.ready ? 'ready' : 'pending'} data-phrase={row.phrase.zh}>
-      <td data-label={textHead} className="phrase-zh" lang={lang}>{row.phrase.zh}</td>
+      <td data-label={textHead} className="phrase-zh" lang={lang}><ToneText text={row.phrase.zh} reading={row.pinyin} /></td>
       {showReading && <td data-label={readingHead} className="phrase-py">{view?.reading ? <span lang={view.lang === 'ja' ? 'ja' : undefined}>{view.reading(row)}</span> : pinyin ? <Pinyin text={row.pinyin} /> : <span className="muted">-</span>}</td>}
       <td data-label="English">{row.phrase.en}</td>
       <td data-label="Words"><div className="phrase-links"><Links items={row.words} section="vocabulary" lang={lang} /></div></td>

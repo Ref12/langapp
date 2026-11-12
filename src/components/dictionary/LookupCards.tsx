@@ -3,6 +3,7 @@ import { openWritingSheet } from '../../core/characters/writing-sheet'
 import type { DictGrammar, DictWord } from '../../core/language/dictionary-file'
 import { ReadingText } from '../display-context'
 import { useShowsReading } from '../display-settings'
+import { ToneText } from '../ToneText'
 
 /** The small plain mark that tells a look-up entry from a lesson word. */
 const LookupMark = () => <span className="tag lookup-mark">Look-up only</span>
@@ -18,7 +19,7 @@ export function LookupWordCard({ word, reading, levelName }: { word: DictWord; r
   return <article className="word-card study-unit-card lesson-word-card lookup-card" data-lookup={word.id}>
     <div className="card-topline"><span className="eyebrow">Vocabulary{word.level ? ` / ${levelName ? levelName(word.level) : word.level}` : ''}</span><LookupMark /></div>
     <div className="phrase-row"><div className="phrase-row-text">
-      <h3 lang={pack.learningTag} className="word-native">{word.form}</h3>
+      <h3 lang={pack.learningTag} className="word-native"><ToneText text={word.form} reading={word.reading} /></h3>
       {reading && word.reading && shows(word.reading, word.form) && <p className="small muted study-pinyin" data-assistant-exclude><ReadingText kana={word.reading} /></p>}
       {word.short !== undefined
         ? <><p className="word-meaning">{word.short}</p>

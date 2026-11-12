@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 import { Settings as SettingsIcon, X } from 'lucide-react'
 import { savePreferences } from '../core/learning'
+import { getPack } from '../core/language'
 import type { Workspace } from '../core/model'
 import type { SpeechRate } from '../core/assistant/contracts'
 
@@ -21,6 +22,9 @@ export function PageSettingsButton({ route, label, page, workspace, busy, run }:
   const [open, setOpen] = useState(false)
   const trigger = useRef<HTMLButtonElement>(null)
   const { preferences } = workspace
+  const pack = getPack()
+  const styles = pack.readingStyles
+  const readingStyle = styles ? (preferences.readingStyle !== undefined && styles.choices.includes(preferences.readingStyle) ? preferences.readingStyle : styles.default) : undefined
   useEffect(() => { setOpen(false) }, [route])
   useEffect(() => {
     if (!open) return
@@ -47,10 +51,14 @@ export function PageSettingsButton({ route, label, page, workspace, busy, run }:
             <select value={preferences.defaultSpeechRate ?? 1} disabled={busy}
               onChange={event => void run(() => savePreferences({ defaultSpeechRate: Number(event.target.value) as SpeechRate }))}>
               {RATES.map(rate => <option key={rate} value={rate}>{rate}x</option>)}</select></label>
-          <label className="page-settings-field">Japanese reading format
-            <select value={preferences.japaneseReading ?? 'romaji'} disabled={busy}
-              onChange={event => void run(() => savePreferences({ japaneseReading: event.target.value === 'kana' ? 'kana' : 'romaji' }))}>
-              <option value="romaji">Romaji</option><option value="kana">Kana</option></select></label>
+          <label className="toggle"><input type="checkbox" checked={preferences.pinyin} disabled={busy}
+            onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> {`Show ${pack.wording.reading}`}</label>
+          {pack.tones && <label className="toggle"><input type="checkbox" checked={preferences.toneColours === true} disabled={busy}
+            onChange={event => void run(() => savePreferences({ toneColours: event.target.checked }))} /> Tone colours</label>}
+          {styles && styles.choices.length > 1 && <label className="page-settings-field">{styles.label}
+            <select value={readingStyle} disabled={busy}
+              onChange={event => { const choice = styles.choices.find(item => item === event.target.value); if (choice) void run(() => savePreferences({ readingStyle: choice })) }}>
+              {styles.choices.map(choice => <option key={choice} value={choice}>{styles.options[choice]?.label ?? choice}</option>)}</select></label>}
           {vibration
             ? <label className="toggle"><input type="checkbox" checked={preferences.haptics !== false} disabled={busy}
               onChange={event => void run(() => savePreferences({ haptics: event.target.checked }))} /> Vibration feedback</label>
