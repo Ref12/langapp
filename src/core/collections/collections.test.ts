@@ -79,7 +79,7 @@ describe('collections', () => {
     expect(await db.collectionItems.count()).toBe(items.length - 1)
   })
 
-  it('practises a collection without touching the knowledge set, and reschedules the shared cards', async () => {
+  it('practices a collection without touching the knowledge set, and reschedules the shared cards', async () => {
     await db.aiConnections.add(connection)
     structured.requestStructuredJSON.mockImplementation(async (_c: unknown, request: { user: string }) => proposalFor(JSON.parse(request.user).targets.map((target: { ref: string }) => target.ref)))
     const sessionId = await studyLines([line])

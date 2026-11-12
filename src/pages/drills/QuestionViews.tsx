@@ -171,7 +171,7 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
   const done = (result: { misses: number; hinted: boolean }) => onAnswer({ misses: result.misses, hinted: hinted || result.hinted } satisfies WriteAnswer)
   const characters = useMemo(() => guidedChars(target), [target])
   if (practising && !locked) return <>
-    <p className="small dr-center muted">Practising {target}. This counts as Needed a hint.</p>
+    <p className="small dr-center muted">Practicing {target}. This counts as Needed a hint.</p>
     <CharacterLoop characters={characters} practised={practisedWord(data.item)} workspace={ctx.workspace} onTaught={character => { void markCharactersWritten([character]) }} onDone={() => setPractising(false)} />
     <div className="button-row dr-center"><button type="button" className="button secondary" onClick={() => setPractising(false)}>Back to the question</button></div>
   </>
@@ -186,7 +186,7 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
         : <button type="button" className="button primary" onClick={() => onAnswer({ misses: 0, hinted, paper: true } satisfies WriteAnswer)}>Check answer</button>}</div>}
     {!locked && <div className="button-row dr-hints"><span className="small muted">Hints (counts as Needed a hint):</span>
       <button type="button" className="button secondary" aria-pressed={revealed} onClick={() => { setRevealed(true); setHinted(true) }}><Eye size={16} /> Reveal</button>
-      <button type="button" className="button secondary" disabled={!characters.length} onClick={() => { setHinted(true); setPractising(true) }}><PenLine size={16} /> Practise writing</button>
+      <button type="button" className="button secondary" disabled={!characters.length} onClick={() => { setHinted(true); setPractising(true) }}><PenLine size={16} /> Practice writing</button>
       {data.mode === 'pad' && <button type="button" className="button secondary" onClick={() => onAnswer({ misses: 0, hinted, skipped: true } satisfies WriteAnswer)}>Give up</button>}</div>}
     {locked && (data.mode === 'paper' ? <StrokeOrder text={target} /> : <p className="dr-reveal"><span className="dr-zh" lang={getPack().learningTag}>{target}</span></p>)}
     {state.status === 'marking' && <SelfMark onMark={onMark} />}

@@ -45,7 +45,7 @@ describe('Learn to write in an Unwritten characters set', () => {
 describe('Characters to write row on Practice home', () => {
   it('is hidden when no known word has an unwritten character', async () => {
     render(<App />)
-    await screen.findByRole('button', { name: 'Start practice by skill' })
+    await screen.findByRole('heading', { name: 'Other ways to practice' })
     expect(screen.queryByText(/Characters to write/)).toBeNull()
     expect(screen.queryByRole('button', { name: 'Start unwritten characters' })).toBeNull()
   })
@@ -68,7 +68,7 @@ describe('Characters to write row on Practice home', () => {
     await addToKnowledge(['vocabulary:wo3--me'])
     await db.characterStates.put({ character: '我', manualAddedAt: 1, practiceCompletions: 1 })
     render(<App />)
-    await screen.findByRole('button', { name: 'Start practice by skill' })
+    await screen.findByRole('heading', { name: 'Other ways to practice' })
     await waitFor(() => expect(screen.queryByText(/Characters to write/)).toBeNull())
   })
 })

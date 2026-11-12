@@ -10,7 +10,7 @@ vi.mock('../../data/phrases/hsk-1.json', () => ({ default: { schemaVersion: 2, b
   { id: 2, zh: '你是好学生吗？', py: 'nǐ shì hǎo xué sheng ma', en: 'Are you a good student?', words: ['ni3--you', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: false },
   { id: 3, zh: '我爱爸爸，也爱妈妈。', py: 'wǒ ài bà ba, yě ài mā ma', en: 'I love dad and mom, too (generated).', words: ['wo3--me', 'ai4--love', 'ba4-ba5--dad', 'ye3--also', 'ma1-ma5--mom'], source: 'ai', checked: true },
   { id: 4, zh: '学生，你好。', py: 'xué sheng, nǐ hǎo', en: 'Hello, student.', words: ['xue2-sheng5--student', 'ni3--you'], source: 'book', ref: { title: 'Reader', chapter: 2 }, checked: false },
-  { id: 5, zh: '我在练习。', py: 'wǒ zài liàn xí', en: 'I practise.', words: ['wo3--me'], source: 'drill', checked: false },
+  { id: 5, zh: '我在练习。', py: 'wǒ zài liàn xí', en: 'I practice.', words: ['wo3--me'], source: 'drill', checked: false },
 ] } }))
 vi.mock('../../data/phrases/hsk-2.json', () => ({ default: { schemaVersion: 2, band: '2', phrases: [
   { id: 1, zh: '啊，我是好学生。', py: 'a, wǒ shì xué sheng', en: 'Ah, I am a student.', words: ['a5--particle', 'wo3--me', 'shi4--identity', 'xue2-sheng5--student'], source: 'ai', checked: true },

@@ -65,7 +65,7 @@ export interface PickedPhrase { phrase: BankPhrase; unknown?: Flagged }
 /** The language of a session or exercise. Absent means Chinese: every Chinese plan and exercise is exactly as before. */
 export type SessionLanguage = 'zh' | 'ja' | 'ko'
 
-export interface BaseExercise { id: string; stage: Stage; form: Form; /** The items this exercise practises (the ones whose results it records). */ refs: string[]; /** Retry round: 0 for the first pass; later rounds are not graded. */ round: number }
+export interface BaseExercise { id: string; stage: Stage; form: Form; /** The items this exercise practices (the ones whose results it records). */ refs: string[]; /** Retry round: 0 for the first pass; later rounds are not graded. */ round: number }
 
 export interface IntroExercise extends BaseExercise { form: 'intro' }
 export interface ChoiceItem extends BaseExercise { form: 'choice'; direction: 'zh-to-en' | 'en-to-zh'; question: string; options: string[]; answer: number; explanation: string; unknown?: Flagged }

@@ -262,7 +262,7 @@ describe('dictionary characters', () => {
     expect(window.location.hash).toBe('#dictionary/characters/all')
     expect(screen.getByRole('article', { name: 'Character \u8336' })).toBe(card)
   })
-  it('filters My knowledge set by writing: counts, membership (practised, flagged, neither) and the remembered choice', async () => {
+  it('filters My knowledge set by writing: counts, membership (practiced, flagged, neither) and the remembered choice', async () => {
     const user = userEvent.setup()
     await addCharacterToKnowledge('\u8336'); await addCharacterToKnowledge('\u676f'); await addCharacterToKnowledge('\u4e00')
     await recordCharacterPractice('\u8336')

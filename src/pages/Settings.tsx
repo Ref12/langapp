@@ -51,7 +51,7 @@ export function Settings({ workspace, busy: workspaceBusy, run }: PageProps) {
       <p className="small muted">Practice sets pick the exercises and their direction for you. This is the one choice you make: how you give typed answers. Each question also has an "answer another way" control.</p>
       <div className="segmented" role="group" aria-label="I answer by">
         {(['type', 'speak', 'write'] as const).map(mode => <button key={mode} type="button" disabled={busy} aria-pressed={(workspace.preferences.answerMode ?? 'type') === mode} onClick={() => void run(() => savePreferences({ answerMode: mode }))}>{mode === 'type' ? 'I answer by typing' : mode === 'speak' ? 'I answer by speaking' : 'I answer by handwriting'}</button>)}</div>
-      {isAreaOn(pack, 'writing') && <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.practiseWriting !== false} onChange={event => void run(() => savePreferences({ practiseWriting: event.target.checked }))} /> Practise writing characters (yes or no)</label>}
+      {isAreaOn(pack, 'writing') && <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.practiseWriting !== false} onChange={event => void run(() => savePreferences({ practiseWriting: event.target.checked }))} /> Practice writing characters (yes or no)</label>}
     </section>
     <section className="panel settings-form"><h2>Reading and appearance</h2>
       <label>Theme<select disabled={busy} value={workspace.preferences.theme} onChange={event => {

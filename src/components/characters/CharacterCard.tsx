@@ -84,7 +84,7 @@ export function CharacterCard({ entry, automatic, manual, state, known, scope, p
     </div>
     {info && <div className="character-info" data-testid="character-info">
       {rich && <p className="small character-provenance" data-testid="character-provenance">{provenance || 'Source not recorded.'}</p>}
-      <p className="small muted">{asset ? `${asset.strokeCount} ${asset.strokeCount === 1 ? 'stroke' : 'strokes'}${state && state.practiceCompletions > 0 ? ` / Practised ${state.practiceCompletions}\u00d7` : ''}` : 'Stroke guide not available'}</p>
+      <p className="small muted">{asset ? `${asset.strokeCount} ${asset.strokeCount === 1 ? 'stroke' : 'strokes'}${state && state.practiceCompletions > 0 ? ` / Practiced ${state.practiceCompletions}\u00d7` : ''}` : 'Stroke guide not available'}</p>
       <p className="small muted">{asset ? (asset.reviewed ? 'Reviewed prototype guide.' : 'Source-derived guide; not individually reviewed.') : 'No stroke guide is available; none is substituted.'} {words.length ? `In ${words.length} curriculum word ${words.length === 1 ? 'sense' : 'senses'}.` : rich ? 'Not in the app\'s HSK 1\u20136 word bands.' : 'Not in a lesson word.'}</p>
       {automatic && <p className="small character-membership-note">{manual ? 'Also added manually. Removing the manual addition keeps it here while a known word uses it.' : 'Included automatically. Keep it independently to retain it even if your word set changes.'}</p>}
       {automatic && !manual && <button type="button" className="button secondary" disabled={busy} aria-label={`Keep ${character} even if my words change`}

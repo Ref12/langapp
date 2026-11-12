@@ -28,7 +28,7 @@ export function TeachCharacter({ character, workspace, onTaught, onNextCharacter
   if (error) return <p className="small error-text" role="alert">{error} <button type="button" className="button secondary" onClick={onNextCharacter}>Continue</button></p>
   if (!asset) return <p className="small muted" role="status">Loading the stroke guide…</p>
   return <div className="dr-teach">
-    <p className="small dr-center">Watch the stroke order, then practise it three times each with the full guide, the next-stroke guide and from memory. {menu ? '< and > move through the nine parts. The ⋮ menu at the top lets you mark a character you can already write, skip it, or go back to the previous one.' : '< and > move through the nine parts; the skip buttons jump to the previous or next character.'}</p>
+    <p className="small dr-center">Watch the stroke order, then practice it three times each with the full guide, the next-stroke guide and from memory. {menu ? '< and > move through the nine parts. The ⋮ menu at the top lets you mark a character you can already write, skip it, or go back to the previous one.' : '< and > move through the nine parts; the skip buttons jump to the previous or next character.'}</p>
     <div ref={player} className="dr-teach-player"><WritingPlayer key={character} asset={asset} teach inWord={inWord} practised={practised} hasPrevious={!!onPrevious} onPrevious={onPrevious} onPreviousCharacter={menu ? undefined : onPreviousCharacter} onNextCharacter={menu ? undefined : onNextCharacter} workspace={workspace} busy={false} now={Date.now()} run={operation => operation()} onNext={onTaught} /></div>
   </div>
 }
@@ -49,7 +49,7 @@ export function CharacterLoop({ characters, workspace, onTaught, onDone, onPrevi
   usePageActions(menu && showing ? [
     { id: 'can-write', label: 'I can already write this', description: 'Marks it as written and skips the rest of its practice.', onSelect: known },
     { id: 'skip', label: 'Skip for now', description: 'It stays Not yet and comes back in a later set.', onSelect: advance },
-    ...(before ? [{ id: 'relearn', label: 'Relearn previous character', description: `Go back to ${before} and practise it again.`, onSelect: () => setIndex(index - 1) }] : []),
+    ...(before ? [{ id: 'relearn', label: 'Relearn previous character', description: `Go back to ${before} and practice it again.`, onSelect: () => setIndex(index - 1) }] : []),
   ] : [])
   if (!character) return null
   // The intro comes first for each character; arriving at the end from the next word's Previous goes straight to the loop.

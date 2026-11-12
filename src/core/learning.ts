@@ -33,7 +33,7 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (next.sudokuShowPinyin !== undefined && typeof next.sudokuShowPinyin !== 'boolean') throw new Error('Choose whether selected-character pinyin is shown.')
     if (next.tileAutoSpeak !== undefined && typeof next.tileAutoSpeak !== 'boolean') throw new Error('Choose whether tile speech is on or off.')
     if (next.answerMode !== undefined && !['type', 'speak', 'write'].includes(next.answerMode)) throw new Error('Choose typing, speaking or handwriting.')
-    if (next.practiseWriting !== undefined && typeof next.practiseWriting !== 'boolean') throw new Error('Choose whether to practise writing characters.')
+    if (next.practiseWriting !== undefined && typeof next.practiseWriting !== 'boolean') throw new Error('Choose whether to practice writing characters.')
     if (next.promptAutoPlay !== undefined && typeof next.promptAutoPlay !== 'boolean') throw new Error('Choose whether prompt auto-play is on or off.')
   if (next.practiceMode !== undefined && next.practiceMode !== 'speak' && next.practiceMode !== 'write') throw new Error('Choose Speak or Write practice.')
     if (next.dictionaryScope !== undefined && !['all', 'knowledge'].includes(next.dictionaryScope)) throw new Error('Choose a Dictionary scope.')

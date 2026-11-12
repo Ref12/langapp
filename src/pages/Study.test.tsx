@@ -420,7 +420,7 @@ describe('New and Review', () => {
     expect(await db.studyCards.toArray()).toEqual(cards)
   })
 
-  it.each(['choice', 'tiles'] as const)('shows no "PRACTICES" hint while answering a %s exercise, and the practised items after the answer', async type => {
+  it.each(['choice', 'tiles'] as const)('shows no "PRACTICES" hint while answering a %s exercise, and the practiced items after the answer', async type => {
     const user = userEvent.setup()
     await seedExercise(type)
     render(<App />)

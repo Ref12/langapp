@@ -141,14 +141,14 @@ describe('writeState (Can write / Not yet)', () => {
       await setCharacterWriteKnown('茶', false)
       expect(await db.characterStates.get('茶')).toBeUndefined()
     })
-    it('effective matrix: unset/unpractised, unset/practised, can, cannot/practised, practice after cannot', () => {
+    it('effective matrix: unset/unpractised, unset/practiced, can, cannot/practiced, practice after cannot', () => {
       expect(canWrite({ character: 'a', practiceCompletions: 0 })).toBe(false)
       expect(canWrite({ character: 'a', practiceCompletions: 2 })).toBe(true)
       expect(canWrite({ character: 'a', practiceCompletions: 0, writeState: 'can' })).toBe(true)
       expect(canWrite({ character: 'a', practiceCompletions: 2, writeState: 'cannot' })).toBe(false)
       expect(canWrite(undefined)).toBe(false)
     })
-    it('turns a practised character off, keeps its history, and practising again turns it back on', async () => {
+    it('turns a practiced character off, keeps its history, and practicing again turns it back on', async () => {
       await addCharacterToKnowledge('雨'); await recordCharacterPractice('雨')
       expect(await db.characterStates.get('雨')).toMatchObject({ practiceCompletions: 1, writeState: 'can' })
       await setCharacterWriteState('雨', 'cannot')

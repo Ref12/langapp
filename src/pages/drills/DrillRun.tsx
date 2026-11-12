@@ -108,7 +108,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
       <span className="small muted">{quiz ? 'Quiz' : queue.length ? `Question ${Math.min(index + 1, queue.length)} of ${queue.length}` : ''}</span></div>
   </div>
 
-  if (!queue.length) return <div className="dr" data-assistant-exclude><section className="panel dr-run">{header}<p role="status">{graded && progress && scope.length ? 'Every item in this type already has a result.' : 'There is nothing to practise here.'}</p>
+  if (!queue.length) return <div className="dr" data-assistant-exclude><section className="panel dr-run">{header}<p role="status">{graded && progress && scope.length ? 'Every item in this type already has a result.' : 'There is nothing to practice here.'}</p>
     <div className="dr-actions"><a className="button primary" href={backHref}>Back to the set</a></div></section></div>
 
   const counts = { got: 0, hint: 0, missed: 0 } as Record<Mark, number>

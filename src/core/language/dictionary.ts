@@ -194,7 +194,7 @@ export function japaneseCharacterSearch(query: string, overrides: RomajiOverride
 /** The Japanese Characters section: kana and kanji to practise writing. */
 export const jaCharacters: PackCharacters = {
   title: 'Kana and kanji, one stroke at a time.',
-  intro: 'Hiragana and katakana, then the kanji of your lesson words. Practise writing any of them here; this is separate from the writing in Practice sessions, which takes kanji only.',
+  intro: 'Hiragana and katakana, then the kanji of your lesson words. Practice writing any of them here; this is separate from the writing in Practice sessions, which takes kanji only.',
   note: 'Kana are in table order, then the kanji by the lesson that first uses them. All kanji adds every kanji with a stroke guide, for look-up. A kanji card shows the lesson words that use it, with their readings.',
   placeholder: 'Character, reading, or romaji',
   search: japaneseCharacterSearch,

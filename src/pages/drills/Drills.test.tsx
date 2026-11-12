@@ -150,7 +150,7 @@ describe('Recent sessions: a finished session with nothing to remove from the kn
   })
 })
 
-describe('What you will practise', () => {
+describe('What you will practice', () => {
   it('offers chips 5/10/15/20, defaults to 5, clamps a typed value, remembers it, and migrates the old stored key', async () => {
     localStorage.setItem(storageNames().local.legacyNewItems, '10')
     const user = userEvent.setup()
@@ -224,10 +224,11 @@ describe('What you will practise', () => {
     const buttons = within(panel).getAllByRole('button').filter(button => /Start practice session|View items/.test(button.getAttribute('aria-label') ?? button.textContent ?? ''))
     expect(buttons[0]).toHaveAccessibleName('Start practice session')
     expect(buttons[1]).toHaveTextContent(/View items/)
-    const other = screen.getByRole('heading', { name: 'Other ways to practise' }).closest('section') as HTMLElement
+    const other = screen.getByRole('heading', { name: 'Other ways to practice' }).closest('section') as HTMLElement
     expect(within(other).queryByRole('button', { name: 'Start practice session' })).toBeNull()
     expect(within(other).queryByText('Practice session')).toBeNull()
-    expect(within(other).getByRole('button', { name: 'Start practice by skill' })).toBeInTheDocument()
+    expect(within(other).queryByText('Practice by skill')).toBeNull()
+    expect(within(other).queryByRole('button', { name: 'Start practice by skill' })).toBeNull()
   })
 
   it('a mode in the route wins over the remembered mode for that visit', async () => {
@@ -257,7 +258,7 @@ describe('What you will practise', () => {
     await waitFor(() => expect(view).toBeEnabled())
     const count = Number(/^(\d+) item/.exec(screen.getByTestId('selection-summary').textContent!)![1])
     await user.click(view)
-    const dialog = await screen.findByRole('dialog', { name: 'Items you will practise' })
+    const dialog = await screen.findByRole('dialog', { name: 'Items you will practice' })
     // just the cards under a count heading: no separate list of everything above them
     expect(await within(dialog).findByRole('heading', { name: `${count} ${count === 1 ? 'item' : 'items'}` })).toBeInTheDocument()
     expect(within(dialog).queryByLabelText('All items')).toBeNull()
@@ -279,7 +280,7 @@ describe('What you will practise', () => {
     await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])
     render(<App />)
     await user.click(await screen.findByRole('button', { name: 'Reviews' }))
-    const card = (await screen.findByRole('heading', { name: 'What you\'ll practise' })).closest('section')!
+    const card = (await screen.findByRole('heading', { name: 'What you\'ll practice' })).closest('section')!
     expect(card).toBeTruthy()
     await user.click(await screen.findByRole('button', { name: 'New items' }))
     await waitFor(() => expect(screen.getByTestId('selection-summary')).toHaveTextContent(/items?/))
@@ -527,7 +528,7 @@ describe('Practice home', () => {
 })
 
 describe('summary', () => {
-  it('shows the score, the counts, the per-type table, items to revisit and Practise missed', async () => {
+  it('shows the score, the counts, the per-type table, items to revisit and Practice missed', async () => {
     const user = userEvent.setup()
     const set = await newSet()
     const [first, second, third] = set.refs
@@ -544,7 +545,7 @@ describe('summary', () => {
     expect(within(table).getByRole('link', { name: 'Redo Word meanings' })).toBeInTheDocument()
     const revisit = screen.getByRole('heading', { name: 'Items to revisit' }).closest('section')!
     expect(within(revisit).getAllByRole('listitem')).toHaveLength(2)
-    expect(within(revisit).getByRole('link', { name: 'Practise missed (ungraded)' })).toHaveAttribute('href', expect.stringContaining('run/meanings?missed=1'))
+    expect(within(revisit).getByRole('link', { name: 'Practice missed (ungraded)' })).toHaveAttribute('href', expect.stringContaining('run/meanings?missed=1'))
     await user.click(screen.getByRole('button', { name: 'Finish set' }))
     await waitFor(async () => expect((await getDrillSet(set.id))!.status).toBe('completed'))
   }, 40000)
@@ -658,7 +659,7 @@ describe('Learning from', () => {
     window.location.hash = '#practice'
     render(<App />)
     const select = await screen.findByLabelText('Learning from')
-    const panel = (await screen.findByRole('heading', { name: "What you'll practise" })).closest('section')!
+    const panel = (await screen.findByRole('heading', { name: "What you'll practice" })).closest('section')!
     expect(panel.contains(select)).toBe(true)
     const programs = screen.getByRole('heading', { name: 'Programs' }).closest('section')!
     expect(select.compareDocumentPosition(programs) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
@@ -790,7 +791,7 @@ describe('Learn to write and Write it', () => {
     await user.click(await screen.findByRole('button', { name: 'Start writing' }, { timeout: 8000 }))
     expect(await screen.findByText(/Character 2 of 2/)).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Page actions' }))
-    expect(screen.getByText(/^Go back to .+ and practise it again\.$/)).toBeInTheDocument()
+    expect(screen.getByText(/^Go back to .+ and practice it again\.$/)).toBeInTheDocument()
     await user.keyboard('{Escape}')
     await pageMenu(user, 'Relearn previous character')
     expect(await screen.findByText(/Character 1 of 2/)).toBeInTheDocument()
@@ -843,11 +844,11 @@ describe('Learn to write and Write it', () => {
     expect(await screen.findByText('Needed a hint')).toBeInTheDocument()
   }, 40000)
 
-  it('Practise writing opens the loop inline, returns to the question and counts as a hint', async () => {
+  it('Practice writing opens the loop inline, returns to the question and counts as a hint', async () => {
     const user = userEvent.setup()
     const id = await sharedSet('review')
     await open(id, 'write')
-    await user.click(await screen.findByRole('button', { name: /Practise writing/ }, { timeout: 8000 }))
+    await user.click(await screen.findByRole('button', { name: /Practice writing/ }, { timeout: 8000 }))
     await user.click(await screen.findByRole('button', { name: 'Start writing' }, { timeout: 8000 }))
     expect((await screen.findAllByText(/Full guide/, undefined, { timeout: 8000 })).length).toBeGreaterThan(0)
     await user.click(screen.getByRole('button', { name: 'Back to the question' }))
@@ -858,15 +859,15 @@ describe('Learn to write and Write it', () => {
   }, 40000)
 })
 
-describe('Practise writing goes back within the word', () => {
+describe('Practice writing goes back within the word', () => {
   it('Previous returns from the second character to the first, which starts fresh', async () => {
     const user = userEvent.setup()
     const set = await newSet()
-    const id = 'practise-back'
+    const id = 'practice-back'
     await db.drillSets.put({ ...set, id, source: 'review', progress: {}, refs: ['vocabulary:xue2-sheng5--student'], content: { state: 'ready', sentences: { 'vocabulary:xue2-sheng5--student': { zh: '他是学生。', py: 'tā shì xué sheng.', en: 'He is a student.', source: 'catalog' } }, conversations: [] } })
     window.location.hash = `#practice/set/${id}/run/write`
     render(<App />)
-    await user.click(await screen.findByRole('button', { name: /Practise writing/ }, { timeout: 8000 }))
+    await user.click(await screen.findByRole('button', { name: /Practice writing/ }, { timeout: 8000 }))
     await user.click(await screen.findByRole('button', { name: 'Start writing' }, { timeout: 8000 }))
     expect(await screen.findByText(/Character 1 of 2/)).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Next character' }))
@@ -969,7 +970,7 @@ describe('Recent sessions by language', () => {
       render(<App />)
       const section = (await screen.findByRole('heading', { name: 'Recent sessions' })).closest('section')!
       await within(section).findByText(set.title)
-      expect(screen.getByText("What you'll practise")).toBeInTheDocument()
+      expect(screen.getByText("What you'll practice")).toBeInTheDocument()
     } finally { setBuildLanguageForTests(undefined) }
   })
 })

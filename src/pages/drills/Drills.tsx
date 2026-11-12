@@ -23,7 +23,7 @@ import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems as describeWithCharacters } from '../../core/drills/write-queue'
 import { UNWRITTEN_CHOICES, countUnwritten, loadBacklogWords, loadUnwrittenSize, pickUnwritten, saveUnwrittenSize } from '../../core/drills/unwritten'
 import { startContent } from '../../core/drills/content'
-import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, ensureHandsfree, restartHandsfree, activityOf, handsfreeRoute, type HandsfreeKind, restartDrillType, handsfreeStopped, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
+import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finishDrillSet, newHandsfreeActivity, activityOf, handsfreeRoute, type HandsfreeKind, restartDrillType, handsfreeStopped, retryContent, setFormat, unfinishedSets, type DrillSource } from '../../core/drills/store'
 import { DrillRun } from './DrillRun'
 import { EngineRun, EngineStart } from './EngineSet'
 import { IntroCards } from './IntroCards'
@@ -37,10 +37,12 @@ import { RemoveFromKnowledge } from '../../components/study/RemoveFromKnowledge'
 import { isPhraseRef, isSourceRef } from '../../core/study/contracts'
 import { loadHandsfreeSettings } from '../../core/handsfree/store'
 import { HandsFree } from './HandsFree'
+import { handsfreeTypes, handsfreeRank, useOpenHandsfree } from './handsfree-types'
+import { HandsFreeRow } from './HandsFreeRows'
 import { runAddedRefs } from '../../core/study/knowledge'
 import { availability } from './tasks'
 import { PHRASE_COUNT_DEFAULT, PHRASE_ORDERS, loadPhrasePick, type PhraseOrder, type PhrasePick } from '../../core/session/phrase-pick'
-import { SKILLS, SKILL_LABEL, SKILL_SIZES, STRATEGY_LABEL, PICK_STRATEGIES, drillSkills, type Skill } from '../../core/study/skill-map'
+import { SKILL_LABEL, drillSkills } from '../../core/study/skill-map'
 import { ACTIVITY_SKILLS } from '../../core/study/skill-map'
 import { recordSetIntro } from '../../core/study/skills'
 import { setsOfCurrentLanguage } from '../../core/drills/set-language'
@@ -111,7 +113,7 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
   const start = <a className="button primary" href={`#${setRoute(set.id)}`}>Start practicing <ArrowRight size={16} /></a>
   if (set.source === 'phrases') return <div className="dr">
     <a className="back-link" href={`#${setRoute(set.id)}`}><ArrowLeft size={16} /> {set.title}</a>
-    <PageHeading eyebrow="Phrases" title={set.title} action={start}>{items.length} {items.length === 1 ? 'phrase' : 'phrases'}. Phrases are practised as sentences; none is added to your knowledge set.</PageHeading>
+    <PageHeading eyebrow="Phrases" title={set.title} action={start}>{items.length} {items.length === 1 ? 'phrase' : 'phrases'}. Phrases are practiced as sentences; none is added to your knowledge set.</PageHeading>
     <PhraseItems items={items} />
     <div className="button-row dr-end">{start}</div></div>
   const detail = describeItems(items, workspace.characterStates) || itemCount(items.length)
@@ -164,13 +166,6 @@ function useQuietRetry(setId: string, failed: boolean) {
 
 /** The older drill types, named in this build's words. */
 const drillTypeList = () => DRILL_TYPES.filter(entry => drillTypeOffered(entry, getPack())).map(entry => ({ ...entry, ...drillText(entry, getPack().practiceWording) }))
-/** The two Hands-free practice types of a set. */
-const ALL_HANDSFREE_TYPES: { kind: HandsfreeKind; name: string; blurb: string }[] = [
-  { kind: 'introduction', name: 'Hands-free introduction', blurb: 'A hands-free lesson: each word and its phrase introduced, then recalled' },
-  { kind: 'recall', name: 'Hands-free recall', blurb: 'Scrambled recall of words and phrases, both directions' },
-]
-/** The Hands-free types of a build that has the Hands-free area. */
-const handsfreeTypes = () => isAreaOn(getPack(), 'handsFree') ? ALL_HANDSFREE_TYPES : []
 /** How many types a set lists in this build, Hands-free included. */
 const typeCount = () => drillTypeList().length + handsfreeTypes().length
 /** Types done, Hands-free included. */
@@ -187,8 +182,7 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const finished = set.status === 'completed'
   // A set made by the Hands-free shortcut starts without its sentences; opening its page writes them, so every practice type is there like for any other set.
   useEffect(() => { if (set.shortcut && set.content.state === 'pending') void startContent(set.id) }, [set.id, set.shortcut, set.content.state])
-  const openHf = (again: boolean, kind: HandsfreeKind) => void run(async () => { if (again) await restartHandsfree(set.id, kind); else await ensureHandsfree(set.id, loadHandsfreeSettings(), kind); navigate(setRoute(set.id, handsfreeRoute(kind))) })
-  const hfCount = itemCount(set.refs.length)
+  const openHf = useOpenHandsfree(set, run)
   const [restarting, setRestarting] = useState<{ type: DrillTypeId; name: string; answers: number }>()
   const answersOf = (progress: TypeProgress | undefined) => Object.keys(progress?.results ?? {}).length
   /** Restart of a started type: asks first when it has answers; a done type opens again without asking. */
@@ -201,16 +195,7 @@ function SetScreen({ set, items, run, busy, workspace }: PageProps & { set: Dril
   const doneBadge = (icon: ReactNode) => <span className="dr-icon">{icon}<CheckCircle2 size={14} className="dr-check" aria-hidden="true" /></span>
   type Entry = { rank: number; node: ReactNode }
   const entries: Entry[] = [
-    ...handsfreeTypes().map((entry): Entry => { const hf = activityOf(set, entry.kind); const stopped = !!hf?.started && !hf.done
-      if (hf?.done) return { rank: 2, node: <li key={entry.kind} className="dr-done">{doneBadge(<Headphones size={20} aria-hidden="true" />)}
-        <div><strong>{entry.name}</strong><span className="small muted"><span className="dr-sr">Done. </span>Played to the end</span></div>
-        <span className="dr-actions"><button type="button" className="icon-button" disabled={busy} aria-label={`Redo ${entry.name}, done`} title="Redo" onClick={() => openHf(true, entry.kind)}><RotateCcw size={18} /></button></span></li> }
-      return { rank: stopped ? 0 : 1, node: <li key={entry.kind}><Headphones size={20} aria-hidden="true" />
-        <div><strong>{entry.name}</strong><span className="small muted">{entry.blurb} · {hfCount}{stopped ? ` · stopped at prompt ${hf!.position + 1}` : ''}</span></div>
-        <span className="dr-actions">{stopped
-          ? <><button type="button" className="icon-button" disabled={busy} aria-label={`Continue ${entry.name} at prompt ${hf!.position + 1}`} title={`Continue at prompt ${hf!.position + 1}`} onClick={() => openHf(false, entry.kind)}><ArrowRight size={18} /></button>
-            <button type="button" className="icon-button" disabled={busy} aria-label={`Restart ${entry.name}`} title="Restart" onClick={() => openHf(true, entry.kind)}><RotateCcw size={18} /></button></>
-          : <button type="button" className="icon-button" disabled={busy} aria-label={`Start ${entry.name}`} title="Start" onClick={() => openHf(false, entry.kind)}><Play size={18} /></button>}</span></li> } }),
+    ...handsfreeTypes().map((entry): Entry => ({ rank: handsfreeRank(set, entry.kind), node: <HandsFreeRow key={entry.kind} set={set} entry={entry} busy={busy} openHf={openHf} /> })),
     ...rows.map(({ entry, avail, progress }): Entry => { const Icon = ICONS[entry.icon]; const ready = avail.state === 'ready'
       if (progress?.done) { const counts = countMarks({ progress: { [entry.id]: progress } }, [entry.id]); const score = scoreOf(counts)
         return { rank: 2, node: <li key={entry.id} className="dr-done">{doneBadge(<Icon size={20} aria-hidden="true" />)}
@@ -271,7 +256,7 @@ function Summary({ set, items, run, busy }: PageProps & { set: DrillSet; items: 
     <section className="panel dr-panel"><h2>Items to revisit</h2>
       {revisit.length === 0 ? <p className="small muted">{score.total ? 'Nothing to revisit: every answer was Got it.' : 'Nothing yet.'}</p>
         : <ul className="dr-rows">{revisit.map(({ item, mark }) => <li key={item.ref}><div><strong lang={getPack().learningTag} className="dr-zh">{item.zh}</strong><span className="small muted">{item.py} {item.en}</span></div><span className={`tag dr-tag-${mark}`}>{MARK_LABEL[mark]}</span></li>)}</ul>}
-      {missedType && <div className="button-row"><a className="button secondary" href={`#${setRoute(set.id, `run/${missedType.id}?missed=1`)}`}>Practise missed (ungraded)</a></div>}</section>
+      {missedType && <div className="button-row"><a className="button secondary" href={`#${setRoute(set.id, `run/${missedType.id}?missed=1`)}`}>Practice missed (ungraded)</a></div>}</section>
     <div className="button-row">{active && <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await finishDrillSet(set.id); navigate('practice') })}>Finish set</button>}
       <a className="button secondary" href="#practice">{DRILLS_LABEL} home</a></div>
   </div>
@@ -408,7 +393,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const itemsNoun = (n: number) => `${n} ${n === 1 ? 'item' : 'items'}`
   const phraseNoun = (n: number) => `${n} ${n === 1 ? 'phrase' : 'phrases'}`
   const phraseSummary = !phrasePick ? 'Looking for phrases...' : !phrasePick.refs.length ? 'No phrases are ready yet: they come with the words and grammar you know'
-    : [phraseNoun(phrasePick.refs.length), phrasePick.never ? `${phrasePick.never} never practised` : 'all practised before', phrasePick.lessons ? (phrasePick.lessons.from === phrasePick.lessons.to ? `lesson ${phrasePick.lessons.to}` : `lessons ${phrasePick.lessons.from} to ${phrasePick.lessons.to}`) : '',
+    : [phraseNoun(phrasePick.refs.length), phrasePick.never ? `${phrasePick.never} never practiced` : 'all practiced before', phrasePick.lessons ? (phrasePick.lessons.from === phrasePick.lessons.to ? `lesson ${phrasePick.lessons.to}` : `lessons ${phrasePick.lessons.from} to ${phrasePick.lessons.to}`) : '',
       phrasePick.refs.length < phraseCount ? `only ${phraseNoun(phrasePick.ready)} ${phrasePick.ready === 1 ? 'is' : 'are'} ready, fewer than the ${phraseCount} asked for` : `${phrasePick.ready} ready`].filter(Boolean).join(' · ')
   const summary = mode === 'phrases' ? phraseSummary : origin ? `${selection.length} of ${itemsNoun(origin.refs.length)} from ${origin.label}` : !catalog ? 'Loading the curriculum...'
     : mode === 'review' ? (!selection.length ? 'Nothing is due for review right now' : [reviews.dueTotal ? `${reviews.due} of ${reviews.dueTotal} due` : 'Nothing due', reviews.upcoming ? `${reviews.upcoming} coming up next` : ''].filter(Boolean).join(' · '))
@@ -417,9 +402,6 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const nothing = !selection.length
   // The classic links, each behind the area it belongs to (the pack's features): Classic practice is the word lists' review page, Mahjong a game.
   const classicLinks = [['review', 'review'], ['mahjong', 'practice/mahjong']].filter(([, route]) => isAreaOn(getPack(), areaOfRoute(route))).map(([name]) => name)
-  const [skill, setSkill] = useState<Skill>('reading')
-  const [size, setSize] = useState<number>(10)
-  const [strategy, setStrategy] = useState<typeof PICK_STRATEGIES[number]>('least')
   const [unwrittenSize, setUnwrittenSize] = useState(loadUnwrittenSize)
   const [backlog, setBacklog] = useState<Awaited<ReturnType<typeof loadBacklogWords>>>()
   useEffect(() => {
@@ -430,7 +412,6 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   }, [catalog, workspace.knowledge])
   const unwrittenTotal = backlog ? countUnwritten(backlog, workspace.characterStates) : 0
   const unwrittenNext = backlog ? pickUnwritten(backlog, workspace.characterStates, unwrittenSize) : undefined
-  const skillSource = (): DrillSource => ({ kind: 'skill', skill, size, strategy })
   const selectionSource = (): DrillSource => mode === 'phrases' ? { kind: 'phrases', count, order: phraseOrder, refs: selection, ...(fromSet ? { from: fromSet.id } : {}) } : mode === 'review' ? { kind: 'review', refs: selection, ...(fromSet ? { from: fromSet.id } : {}) } : { kind: 'new', count, refs: selection, ...(fromSet ? { from: fromSet.id } : {}) }
   const start = (source: DrillSource) => void run(async () => { navigate(setRoute(await createDrillSet(source), 'intro')) })
   /** The Hands-free shortcut: a practice set from the selection, opened straight on its Hands-free activity. */
@@ -442,11 +423,11 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
     <KnowledgeCounts knowledge={workspace.knowledge} />
     {error && <div className="notice error" role="alert"><p>The curriculum could not be loaded. {error}</p></div>}
     {getPack().modelExercises && connection === null && <p className="notice small" role="status">Sentence and conversation exercises are written by your own AI model. <a className="text-link" href="#settings">Connect one in Settings</a>; the other types work without it.</p>}
-    <section className="panel dr-panel dr-select" aria-labelledby="dr-select"><h2 id="dr-select">What you'll practise</h2>
+    <section className="panel dr-panel dr-select" aria-labelledby="dr-select"><h2 id="dr-select">What you'll practice</h2>
       <label className="dr-source"><span className="eyebrow accent">Learning from</span>
         <select value={origin ? ORIGIN : from} aria-label="Learning from" onChange={event => { setFrom(event.target.value === ORIGIN ? from : event.target.value); if (origin && event.target.value !== ORIGIN) navigate('practice') }}>{origin && <option value={ORIGIN}>{origin.label}</option>}<option value={CURRICULUM}>{getPack().practiceWording.languageName} curriculum</option>{collections.map(entry => <option key={entry.id} value={entry.id}>{entry.name}</option>)}</select></label>
-      <div className="segmented" role="group" aria-label="What to practise"><button type="button" aria-pressed={mode === 'new'} disabled={!!origin} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button><button type="button" aria-pressed={mode === 'phrases'} onClick={() => pickMode('phrases')}>Phrases</button></div>
-      {mode === 'phrases' && <div role="group" aria-label="Phrase order" className="dr-count-picker"><span className="dr-count-label"><span className="small">Order</span><span className="small muted">{phraseOrder === 'least' ? 'the phrases you have practised least first' : 'the phrases of your most recent lessons first'}</span></span><span className="segmented">{PHRASE_ORDERS.map(entry => <button type="button" key={entry} aria-pressed={phraseOrder === entry} onClick={() => setPhraseOrder(entry)}>{entry === 'least' ? 'Least practised' : 'Most recent lessons first'}</button>)}</span></div>}
+      <div className="segmented" role="group" aria-label="What to practice"><button type="button" aria-pressed={mode === 'new'} disabled={!!origin} onClick={() => pickMode('new')}>New items</button><button type="button" aria-pressed={mode === 'review'} onClick={() => pickMode('review')}>Reviews</button><button type="button" aria-pressed={mode === 'phrases'} onClick={() => pickMode('phrases')}>Phrases</button></div>
+      {mode === 'phrases' && <div role="group" aria-label="Phrase order" className="dr-count-picker"><span className="dr-count-label"><span className="small">Order</span><span className="small muted">{phraseOrder === 'least' ? 'the phrases you have practiced least first' : 'the phrases of your most recent lessons first'}</span></span><span className="segmented">{PHRASE_ORDERS.map(entry => <button type="button" key={entry} aria-pressed={phraseOrder === entry} onClick={() => setPhraseOrder(entry)}>{entry === 'least' ? 'Least practiced' : 'Most recent lessons first'}</button>)}</span></div>}
       <div role="group" aria-label={mode === 'phrases' ? 'Phrases per set' : mode === 'new' ? 'New items per set' : 'Reviews per set'} className="dr-count-picker">
         <span className="dr-count-label"><span className="small">{mode === 'phrases' ? 'Phrases per set' : mode === 'new' ? 'New items per set' : 'Reviews per set'}</span><span className="small muted">{mode === 'phrases' ? 'checked phrases made of words and grammar you know' : origin ? 'all of them, or the first few' : mode === 'new' ? 'at least — whole lessons are kept together' : 'the due ones first, then the ones coming up next'}</span></span>
         <span className="segmented">{origin && mode !== 'phrases' && <button type="button" aria-pressed={all} onClick={() => { setAll(true) }}>All</button>}{mode === 'review' && !origin && <button type="button" aria-pressed={allDue && reviews.dueTotal > 0} disabled={reviews.dueTotal === 0} onClick={setAllDue}>All due ({reviews.dueTotal})</button>}{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={mode === 'phrases' ? phraseCount === choice : !(origin && all) && !(allDue && reviews.dueTotal > 0) && count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
@@ -459,17 +440,12 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
       <ul className="dr-rows">
         <li><div><strong>Hands-free</strong><span className="small muted">Listen and answer aloud, with no screen. Uses the items above: New items open a Hands-free introduction, Reviews a Hands-free recall.</span></div>
           <span className="button-row"><button type="button" className="button primary" aria-label={`Start Hands-free ${shortcutFor}`} disabled={busy || nothing || mode === 'phrases'} onClick={() => startHandsfree(selectionSource(), shortcutFor)}>Start <ArrowRight size={16} /></button>
-            <button type="button" className="button secondary" aria-label="Hands-free least practised (listening)" disabled={busy || !known.size} onClick={() => startHandsfree({ kind: 'skill', skill: 'listening', size: 10, strategy: 'least' }, 'recall')}>Least practised (listening)</button></span></li>
+            <button type="button" className="button secondary" aria-label="Hands-free least practiced (listening)" disabled={busy || !known.size} onClick={() => startHandsfree({ kind: 'skill', skill: 'listening', size: 10, strategy: 'least' }, 'recall')}>Least practiced (listening)</button></span></li>
       </ul>
     </section>}
     <div className="dr-columns">
-      <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Other ways to practise</h2>
+      <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Other ways to practice</h2>
         <ul className="dr-rows">
-          <li className="dr-skill dr-skill-block"><div><strong>Practice by skill</strong><span className="small muted dr-skill-note">Picks its own items by skill, not from the selection above. </span><span className="small muted">{known.size ? `${Math.min(size, known.size)} of your ${known.size} items, ${strategy === 'least' ? 'least practised first' : 'added in the last 3 days'}` : 'Add items to your knowledge set first'}</span>
-            <span className="dr-skill-pickers"><select aria-label="Skill" value={skill} onChange={event => setSkill(event.target.value as Skill)}>{SKILLS.map(entry => <option key={entry} value={entry}>{SKILL_LABEL[entry]}</option>)}</select>
-              <select aria-label="Set size" value={size} onChange={event => setSize(Number(event.target.value))}>{SKILL_SIZES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select>
-              <select aria-label="Strategy" value={strategy} onChange={event => setStrategy(event.target.value as typeof strategy)}>{PICK_STRATEGIES.map(entry => <option key={entry} value={entry}>{STRATEGY_LABEL[entry]}</option>)}</select></span></div>
-            <button type="button" className="button primary" aria-label="Start practice by skill" disabled={busy || !known.size} onClick={() => start(skillSource())}>Start <ArrowRight size={16} /></button></li>
           {unwrittenTotal > 0 && isAreaOn(getPack(), 'writing') && <li className="dr-skill dr-skill-block"><div><strong>Characters to write: {unwrittenTotal}</strong><span className="small muted">From words you know. Starts a set of the oldest words, about {unwrittenSize} new characters{unwrittenNext ? ` (${unwrittenNext.refs.length} ${unwrittenNext.refs.length === 1 ? 'word' : 'words'})` : ''}.</span>
             <span className="dr-skill-pickers"><select aria-label="Characters per set" value={unwrittenSize} onChange={event => { const next = Number(event.target.value); setUnwrittenSize(next); saveUnwrittenSize(next) }}>{UNWRITTEN_CHOICES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select></span></div>
             <button type="button" className="button primary" aria-label="Start unwritten characters" disabled={busy} onClick={() => start({ kind: 'unwritten', size: unwrittenSize })}>Start <ArrowRight size={16} /></button></li>}
@@ -502,7 +478,7 @@ function ViewItems({ refs, catalog, onClose, workspace, now, run, busy }: Pick<P
     void loadItems([...refs], catalog).then(found => { if (live) setItems(found) })
     return () => { live = false }
   }, [refs, catalog])
-  return <Sheet title="Items" label="Items you will practise" wide onClose={onClose}>
+  return <Sheet title="Items" label="Items you will practice" wide onClose={onClose}>
     {items ? items.length > 0 && items.every(item => item.phrase) ? <PhraseItems items={items} /> : <IntroCards items={items} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route="practice" /> : <p className="small muted" role="status">Opening the intro cards...</p>}
   </Sheet>
 }

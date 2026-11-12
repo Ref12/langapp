@@ -7,7 +7,7 @@ beforeEach(async () => { await db.delete(); await db.open(); await initializeWor
 afterEach(cleanup)
 
 describe('the old Japanese and Korean lesson routes', () => {
-  for (const route of ['#lessons/ja/1', '#lessons/ko/1', '#lessons/ja/review', '#lessons/ko/3/practise']) {
+  for (const route of ['#lessons/ja/1', '#lessons/ko/1', '#lessons/ja/review', '#lessons/ko/3/practice']) {
     it(`${route} shows the not-found page`, async () => {
       window.location.hash = route
       render(<App />)

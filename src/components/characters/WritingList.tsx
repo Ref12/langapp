@@ -7,7 +7,7 @@ import type { WritingLanguage } from '../../core/characters/language'
 export function WritingList({ groups, language }: { groups: WritingGroup[]; language: WritingLanguage }) {
   const total = groups.reduce((sum, group) => sum + group.characters.length, 0)
   return <div className="writing-list">
-    <PageHeading eyebrow="WRITE IT BY HAND" title="Writing">{total} guides. Choose a letter or a syllable to practise writing it.</PageHeading>
+    <PageHeading eyebrow="WRITE IT BY HAND" title="Writing">{total} guides. Choose a letter or a syllable to practice writing it.</PageHeading>
     {groups.map(group => <section key={group.id} className="writing-list-group" aria-labelledby={'writing-group-' + group.id}>
       <h2 id={'writing-group-' + group.id} className="writing-list-heading">{group.title}</h2>
       <ul className="writing-list-grid">

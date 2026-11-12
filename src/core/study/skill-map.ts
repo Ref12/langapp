@@ -15,7 +15,7 @@ export const RECENT_DAYS = 3
 export const SKILL_SIZES = [10, 20] as const
 export const PICK_STRATEGIES = ['least', 'recent'] as const
 export type PickStrategy = typeof PICK_STRATEGIES[number] | 'due'
-export const STRATEGY_LABEL: Record<typeof PICK_STRATEGIES[number], string> = { least: 'Least practised', recent: 'Recent' }
+export const STRATEGY_LABEL: Record<typeof PICK_STRATEGIES[number], string> = { least: 'Least practiced', recent: 'Recent' }
 
 /** The skills each drill type counts towards. Match pairs and Word meanings show Chinese, so they are reading. */
 export const DRILL_SKILLS: Record<string, readonly Skill[]> = {

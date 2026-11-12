@@ -55,7 +55,7 @@ describe('CharacterCard provenance', () => {
 })
 
 describe('CharacterCard I can write this and Keep', () => {
-    it('treats a practised character as Can write, and the toggle turns it off (to cannot)', async () => {
+    it('treats a practiced character as Can write, and the toggle turns it off (to cannot)', async () => {
       stubTables()
       const run = vi.fn((operation: () => Promise<unknown>) => operation())
       const { db } = await import('../../core/database')
@@ -63,7 +63,7 @@ describe('CharacterCard I can write this and Keep', () => {
       render(<CharacterCard {...props} run={run as never} entry={{ character: '\u9e23', asset, words: [], bands: [] }} automatic={false} manual={false} state={{ character: '\u9e23', practiceCompletions: 3, lastPracticedAt: 5 }} />)
       expect(screen.getByText('Can write')).toBeInTheDocument()
       await userEvent.setup().click(screen.getByRole('button', { name: 'Details for \u9e23' }))
-      expect(screen.getByText(/Practised 3×/)).toBeInTheDocument()
+      expect(screen.getByText(/Practiced 3×/)).toBeInTheDocument()
       await userEvent.setup().click(screen.getByRole('button', { name: /^I can write \u9e23/ }))
       await vi.waitFor(async () => expect((await db.characterStates.get('\u9e23'))?.writeState).toBe('cannot'))
       expect((await db.characterStates.get('\u9e23'))?.practiceCompletions).toBe(3)

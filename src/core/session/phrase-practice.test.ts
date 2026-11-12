@@ -70,7 +70,7 @@ describe('the picker is pure and keeps to the rules', () => {
     const entries = [fake(1), fake(2, { words: ['vocabulary:b'] })]
     expect(pickPhrases({ ...base, entries, scope: new Set(['vocabulary:b']) }).refs).toEqual([entries[1].ref])
   })
-  it('least practised comes first, ties by the seed; recent puts the latest lessons first', () => {
+  it('least practiced comes first, ties by the seed; recent puts the latest lessons first', () => {
     const entries = [fake(1, { readyAt: 1 }), fake(2, { readyAt: 4 }), fake(3, { readyAt: 3 }), fake(4, { readyAt: 5 })]
     const practice = practiceByRef([{ ref: entries[0].ref, skill: 'reading', count: 0, lastAt: 0, familiar: false }, { ref: entries[1].ref, skill: 'reading', count: 3, lastAt: 1, familiar: false }, { ref: entries[2].ref, skill: 'reading', count: 1, lastAt: 1, familiar: false }, { ref: entries[3].ref, skill: 'listening', count: 3, lastAt: 1, familiar: false, correct: 2 }])
     expect(pickPhrases({ ...base, entries, practice, order: 'least', count: 3 }).refs).toEqual([entries[0].ref, entries[2].ref, expect.stringMatching(/ja:s:b1-[24]/)])
@@ -190,7 +190,7 @@ describe.each(['zh', 'ja', 'ko'] as const)('phrases as items (%s)', language => 
     }
   })
 
-  it('practising a phrase counts it and its wins, and changes no card, knowledge or journal', async () => {
+  it('practicing a phrase counts it and its wins, and changes no card, knowledge or journal', async () => {
     const id = await createDrillSet({ kind: 'phrases', count: 3, order: 'least' })
     const set = (await getDrillSet(id))!
     const [first, second] = set.refs

@@ -42,14 +42,14 @@ describe.each([['zh', 6], ['ja', 12], ['ko', 12]] as const)('Practice home Phras
   it('offers Phrases beside New items and Reviews, with two orders and a count', async () => {
     const user = userEvent.setup()
     render(<App />)
-    const choice = await screen.findByRole('group', { name: 'What to practise' }, { timeout: 15000 })
+    const choice = await screen.findByRole('group', { name: 'What to practice' }, { timeout: 15000 })
     expect([...choice.querySelectorAll('button')].map(button => button.textContent)).toEqual(['New items', 'Reviews', 'Phrases'])
     await user.click(screen.getByRole('button', { name: 'Phrases' }))
     const order = screen.getByRole('group', { name: 'Phrase order' })
-    expect([...order.querySelectorAll('button')].map(button => button.textContent)).toEqual(['Least practised', 'Most recent lessons first'])
-    expect(screen.getByRole('button', { name: 'Least practised' })).toHaveAttribute('aria-pressed', 'true')
+    expect([...order.querySelectorAll('button')].map(button => button.textContent)).toEqual(['Least practiced', 'Most recent lessons first'])
+    expect(screen.getByRole('button', { name: 'Least practiced' })).toHaveAttribute('aria-pressed', 'true')
     expect(screen.getByRole('group', { name: 'Phrases per set' })).toBeInTheDocument()
-    await waitFor(() => expect(screen.getByTestId('selection-summary').textContent).toMatch(/^10 phrases · 10 never practised/), { timeout: 15000 })
+    await waitFor(() => expect(screen.getByTestId('selection-summary').textContent).toMatch(/^10 phrases · 10 never practiced/), { timeout: 15000 })
   }, 40000)
 
   it('Start makes a Phrases set of exactly the picked phrases, which are not added to knowledge', async () => {
@@ -69,7 +69,7 @@ describe.each([['zh', 6], ['ja', 12], ['ko', 12]] as const)('Practice home Phras
     expect(await db.knowledge.count()).toBe(before)
   }, 40000)
 
-  it('View items lists the phrases with their practice counts and the never-practised total', async () => {
+  it('View items lists the phrases with their practice counts and the never-practiced total', async () => {
     const first = (await loadPhrasePick(catalog, { order: 'least', count: 10, seed: 1 })).refs
     await recordSkillPractice([first[0]], ['reading'], Date.now(), true)
     const user = userEvent.setup()
@@ -78,15 +78,15 @@ describe.each([['zh', 6], ['ja', 12], ['ko', 12]] as const)('Practice home Phras
     await waitFor(() => expect(screen.getByTestId('selection-summary').textContent).toMatch(/10 phrases/), { timeout: 15000 })
     await user.click(screen.getByRole('button', { name: /View items/ }))
     await waitFor(() => expect(document.querySelectorAll('[data-phrase-ref]').length).toBe(10), { timeout: 15000 })
-    expect(screen.getByRole('heading', { name: /10 phrases · \d+ never practised/ })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /10 phrases · \d+ never practiced/ })).toBeInTheDocument()
     expect(document.querySelectorAll('.phrase-practised').length).toBe(10)
   }, 40000)
 })
 
 describe('practisedLine', () => {
   it('says never, or the count, the wins and the last time', () => {
-    expect(practisedLine(undefined)).toBe('Never practised')
-    expect(practisedLine({ count: 3, wins: 2, lastAt: new Date(2026, 10, 4).getTime() })).toBe('Practised 3 times · 2 right the first time · last 4 Nov')
-    expect(practisedLine({ count: 1, wins: 0, lastAt: new Date(2026, 10, 4).getTime() })).toBe('Practised 1 time · 0 right the first time · last 4 Nov')
+    expect(practisedLine(undefined)).toBe('Never practiced')
+    expect(practisedLine({ count: 3, wins: 2, lastAt: new Date(2026, 10, 4).getTime() })).toBe('Practiced 3 times · 2 right the first time · last 4 Nov')
+    expect(practisedLine({ count: 1, wins: 0, lastAt: new Date(2026, 10, 4).getTime() })).toBe('Practiced 1 time · 0 right the first time · last 4 Nov')
   })
 })

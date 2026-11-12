@@ -19,7 +19,7 @@ describe('Component data is loaded lazily', () => {
     const seen: string[] = []
     vi.stubGlobal('fetch', vi.fn((input: RequestInfo | URL, init?: RequestInit) => { seen.push(String(input)); return real(input, init) }))
     render(<App />)
-    await screen.findByRole('heading', { name: /Practice/i })
+    await screen.findByRole('heading', { name: 'Other ways to practice' })
     await new Promise(resolve => setTimeout(resolve, 300))
     expect(seen.filter(url => url.includes('components.generated'))).toEqual([])
     vi.unstubAllGlobals()

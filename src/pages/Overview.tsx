@@ -34,7 +34,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
       <article className="course-card panel feature-panel" aria-label="Next step">
         <p className="eyebrow accent">{resumable ? 'PICK UP YOUR LESSON' : empty ? 'COMING SOON' : next ? `YOUR NEXT STEP IN ${pack.wording.language.toUpperCase()}` : catalog ? 'KEEP YOUR MOMENTUM' : 'LOADING'}</p>
         <h2>{empty ? `Lessons are on their way for ${pack.wording.language}.` : next ? `${bandName(pack, next.band)}, group ${Math.min((progress?.completed ?? 0) + 1, progress?.total ?? 1)} of ${progress?.total ?? 1}` : catalog ? 'You have added every group.' : 'Loading the curriculum...'}</h2>
-        <p>{empty ? 'You can already practise writing. Reviews and practice will follow with the lessons.' : next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'} to add to your knowledge set.`   : catalog ? `Review what is due and keep building toward ${pack.wording.goals}.` : ''}</p>
+        <p>{empty ? 'You can already practice writing. Reviews and practice will follow with the lessons.' : next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'} to add to your knowledge set.`   : catalog ? `Review what is due and keep building toward ${pack.wording.goals}.` : ''}</p>
         {resumable ? <a className="button primary" href={`#lessons/session/${resumable.id}`}>Resume lesson <ArrowRight size={16} /></a>
           : <button className="button primary" disabled={busy || !next || !connection} onClick={() => start('new')}>Start new items <ArrowRight size={16} /></button>}
         {!connection && next && <p className="small muted"><a className="text-link" href="#settings">Connect a model in Settings</a> to start a session.</p>}

@@ -77,7 +77,7 @@ describe('muted browser speech preparation', () => {
     ['zh-Hans', 0.25], ['zh-Hans', 0.5], ['zh-Hans', 0.75], ['zh-Hans', 1], ['zh-Hans', 1.25],
     ['en-US', 0.25], ['en-US', 0.5], ['en-US', 0.75], ['en-US', 1], ['en-US', 1.25],
   ] as const)('queues muted %s preparation and an unchanged target synchronously at requested rate %s', async (locale, rate) => {
-    const text = locale === 'zh-Hans' ? ' 你好，今天我们一起练习中文。 ' : ' Hello, let us practise together. '
+    const text = locale === 'zh-Hans' ? ' 你好，今天我们一起练习中文。 ' : ' Hello, let us practice together. '
     const pending = playBrowserSpeechToEnd('cold', text, locale, rate)
     expect(native.speak).toHaveBeenCalledTimes(2)
     const [prep, target] = queued()

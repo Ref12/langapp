@@ -87,7 +87,7 @@ describe('screen text for a small seeded Japanese learner', () => {
     await pin('practice-start', await screenText('practice', () => expect(screen.getByText('Learning from')).toBeInTheDocument()))
   })
   it('Practice by skill, for a learner who knows some lessons', async () => {
-    const text = await screenText('practice', () => expect(screen.getByText('Practice by skill')).toBeInTheDocument())
+    const text = await screenText('practice', () => expect(screen.getByText(/Characters to write/)).toBeInTheDocument())
     // nothing of the Chinese-only extras: no model notice, no Hands-free or Classic links (the writing backlog is on: Japanese writes with its own stroke data)
     for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong']) expect(text).not.toContain(absent)
     expect(text).toContain('Characters to write')
@@ -201,7 +201,7 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
     await expect(text).toMatchFileSnapshot('./__screens__/ja-dictionary-characters.txt')
     expect(text.split('\n').filter(line => FORBIDDEN.test(line)).map(line => line.slice(0, 160))).toEqual([])
   })
-  it('Characters: groups, a kana card, a kanji card and Practise writing', async () => {
+  it('Characters: groups, a kana card, a kanji card and Practice writing', async () => {
     await screenText('dictionary/characters/all', () => expect(screen.getByRole('status')).toHaveTextContent('373 characters'))
     const group = screen.getByLabelText('Group')
     fireEvent.change(group, { target: { value: 'katakana' } })
@@ -370,7 +370,7 @@ describe('the Japanese Dictionary (the own-language branch: the pack catalog, Un
       await open()
       type('ひるごはん')
       await waitFor(() => expect(lookupCards().length).toBeGreaterThan(0), { timeout: 8000 })
-      const buttons = within(lookupCards()[0]).getAllByRole('button', { name: /^Practise writing / })
+      const buttons = within(lookupCards()[0]).getAllByRole('button', { name: /^Practice writing / })
       expect(buttons.length).toBeGreaterThan(0)
     })
     it('lists the two look-up grammar entries beside the lesson grammar, under All words', async () => {

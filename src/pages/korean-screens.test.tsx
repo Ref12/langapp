@@ -108,7 +108,7 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     await pin('practice-start', await screenText('practice', () => expect(screen.getByText('Learning from')).toBeInTheDocument()))
   })
   it('Practice by skill, for a learner who knows some lessons', async () => {
-    const text = await screenText('practice', () => expect(screen.getByText('Practice by skill')).toBeInTheDocument())
+    const text = await screenText('practice', () => expect(screen.getByText(/Characters to write/)).toBeInTheDocument())
     for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong']) expect(text).not.toContain(absent)
     await pin('practice-by-skill', text)
   })

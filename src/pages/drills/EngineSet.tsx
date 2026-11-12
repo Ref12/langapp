@@ -28,6 +28,7 @@ import { LENGTHS, LENGTH_LABEL, STAGES, STAGE_LABEL, type AnswerMode, type Form,
 import { ExerciseQuestion, type Outcome } from './EngineQuestion'
 import { IntroCard } from './IntroCards'
 import { PhraseCounts } from './PhraseItems'
+import { HandsFreeSection } from './HandsFreeRows'
 
 const setRoute = (id: string, page = '') => `practice/set/${id}${page ? `/${page}` : ''}`
 type Props = PageProps & { set: DrillSet; items: ItemInfo[]; catalog: Catalog }
@@ -71,7 +72,7 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
       <h2 id="engine-start">Ready when you are</h2>
       {engine.lastRun && <p className="engine-last-run" role="status">Last run: {engine.lastRun.correct} of {engine.lastRun.total} right, {shortDate(engine.lastRun.at)}</p>}
       {resumable && <p className="engine-resume" role="status"><strong>In progress: {engine.done} of {engine.planned}.</strong> Resume where you left off, or change the preset or length to start a fresh run.</p>}
-      <p className="small muted">{set.source === 'phrases' ? 'Phrases are practised as whole sentences: translating, building, filling a gap, listening. None is added to your knowledge set. Nothing to choose; press Start.' : 'The app picks the exercises and their order: recognise, recall, produce, then use the words in sentences. Nothing to choose; press Start.'}</p>
+      <p className="small muted">{set.source === 'phrases' ? 'Phrases are practiced as whole sentences: translating, building, filling a gap, listening. None is added to your knowledge set. Nothing to choose; press Start.' : 'The app picks the exercises and their order: recognise, recall, produce, then use the words in sentences. Nothing to choose; press Start.'}</p>
       <div className="engine-options">
         <div><span className="eyebrow">Preset</span>
           <div className="segmented engine-presets" role="group" aria-label="Preset">
@@ -86,14 +87,15 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
       {error && <p className="notice error" role="alert">{error}</p>}
       {!plan && !error && <p className="small muted" role="status">Planning the session…</p>}
       {plan && <p className="engine-estimate" role="status"><strong>{plan.total} exercises</strong> · about {estimateMinutes(plan.total)} min · {counts.map(entry => `${STAGE_LABEL[entry.stage]} ${entry.count}`).join(' · ')}</p>}
-      {plan && plan.uncovered.length > 0 && <p className="small muted">{plan.uncovered.length} {plan.uncovered.length === 1 ? 'item has' : 'items have'} no exercise in the bank yet{content.state === 'running' ? ' (sentences are still being written)' : ''}. Practise one skill below covers {plan.uncovered.length === 1 ? 'it' : 'them'}.</p>}
+      {plan && plan.uncovered.length > 0 && <p className="small muted">{plan.uncovered.length} {plan.uncovered.length === 1 ? 'item has' : 'items have'} no exercise in the bank yet{content.state === 'running' ? ' (sentences are still being written)' : ''}.</p>}
       <div className="button-row">
-        <button type="button" className="button primary" aria-label={resumable ? 'Resume session' : 'Start session'} disabled={busy || !plan || plan.total === 0} onClick={() => navigate(setRoute(set.id, 'engine'))}><Play size={16} /> {resumable ? 'Resume' : set.status === 'completed' ? 'Practise again' : 'Start'}</button>
+        <button type="button" className="button primary" aria-label={resumable ? 'Resume session' : 'Start session'} disabled={busy || !plan || plan.total === 0} onClick={() => navigate(setRoute(set.id, 'engine'))}><Play size={16} /> {resumable ? 'Resume' : set.status === 'completed' ? 'Back to session' : 'Start'}</button>
         {resumable && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { await setEngineChoice(set.id, {}) })}>Start over</button>}
         <button type="button" className="button secondary" onClick={() => setBuilding(!building)} aria-expanded={building}>Build your own preset</button>
         <a className="button secondary" href={`#${setRoute(set.id, 'intro')}`}>{set.source === 'new' || set.source === 'lesson' ? 'Intro cards' : 'Items'}</a></div>
       {building && <PresetBuilder onSave={preset => { setCustom(saveCustomPreset(preset)); setBuilding(false); void run(async () => { await setEngineChoice(set.id, { preset: preset.id }) }) }} />}
     </section>
+    <HandsFreeSection set={set} run={run} busy={busy} />
     {set.source !== 'phrases' && <SkillFocus set={set} items={items} />}
   </div>
 }
@@ -113,14 +115,17 @@ function PresetBuilder({ onSave }: { onSave: (preset: { id: string; name: string
   </fieldset>
 }
 
-/** The old drill types, kept only as a skill focus: one form of one stage. */
+/** The writing drills (Learn to write, Write it), kept as a focus outside the session. The other single-skill drills are not listed; their routes still open. */
+const WRITING_DRILLS: readonly string[] = ['learn', 'write']
 function SkillFocus({ set, items }: { set: DrillSet; items: ItemInfo[] }) {
   const content = effectiveContent(set)
-  return <section className="panel dr-panel" aria-labelledby="engine-skill"><h2 id="engine-skill">Practise one skill</h2>
-    <p className="small muted">One kind of exercise on its own, outside the session.</p>
-    <ul className="dr-rows">{DRILL_TYPES.filter(entry => drillTypeOffered(entry, getPack())).map(entry => { const avail = availability(entry.id, items, content); const ready = avail.state === 'ready'
+  const types = DRILL_TYPES.filter(entry => WRITING_DRILLS.includes(entry.id) && drillTypeOffered(entry, getPack()))
+  if (!types.length) return null
+  return <section className="panel dr-panel" aria-labelledby="engine-skill"><h2 id="engine-skill">Writing</h2>
+    <p className="small muted">Writing practice on its own, outside the session.</p>
+    <ul className="dr-rows">{types.map(entry => { const avail = availability(entry.id, items, content); const ready = avail.state === 'ready'
       return <li key={entry.id}><div><strong>{drillText(entry, getPack().practiceWording).name}</strong><span className="small muted">{ready ? drillText(entry, getPack().practiceWording).blurb : avail.message}</span></div>
-        <span className="dr-actions">{ready ? <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Practise ${entry.name}`} title="Practise"><Play size={18} /></a> : <button type="button" className="icon-button" disabled aria-label={`${entry.name} is not available`}><Play size={18} /></button>}</span></li> })}</ul></section>
+        <span className="dr-actions">{ready ? <a className="icon-button" href={`#${setRoute(set.id, `run/${entry.id}`)}`} aria-label={`Practice ${entry.name}`} title="Practice"><Play size={18} /></a> : <button type="button" className="icon-button" disabled aria-label={`${entry.name} is not available`}><Play size={18} /></button>}</span></li> })}</ul></section>
 }
 
 export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Props) {
@@ -192,10 +197,10 @@ function EngineSummary({ set, state, items, busy, run }: { set: DrillSet; state:
       {missed > 0 ? <ul className="dr-rows">{summary.missedRefs.map(ref => { const item = name(ref); return <li key={ref}><div><strong lang={getPack().learningTag}>{item?.zh ?? ref}</strong><span className="small muted">{[item?.py, item?.en].filter(Boolean).join(' · ')}</span></div></li> })}</ul> : <p className="small muted">Every item was right on its first try.</p>}</section>
     <section className="panel dr-panel engine-next" aria-labelledby="engine-next"><h2 id="engine-next">What next?</h2>
       <div className="button-row engine-next-actions">
-        <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await setEngineChoice(set.id, {}); navigate(setRoute(set.id)) })}>Practise again</button>
-        {missed > 0 && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { navigate(setRoute(await createDrillSet({ kind: 'refs', refs: summary.missedRefs, origin: { kind: 'drill', id: set.id } }), '')) })}>{set.source === 'phrases' ? `Practise the missed phrases (${missed})` : `Practise the missed items (${missed})`}</button>}
+        <button type="button" className="button primary" disabled={busy} onClick={() => void run(async () => { await setEngineChoice(set.id, {}); navigate(setRoute(set.id)) })}>Back to session</button>
+        {missed > 0 && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { navigate(setRoute(await createDrillSet({ kind: 'refs', refs: summary.missedRefs, origin: { kind: 'drill', id: set.id } }), '')) })}>{set.source === 'phrases' ? `Practice the missed phrases (${missed})` : `Practice the missed items (${missed})`}</button>}
         <a className="button secondary" href="#practice">New practice set</a>
         <a className="button secondary" href="#practice">Back to Practice</a></div>
-      <p className="small muted">Practise again opens the Start screen, where you can change the preset and length.</p></section>
+      <p className="small muted">Back to session opens the Start screen, where you can change the preset and length.</p></section>
   </div>
 }

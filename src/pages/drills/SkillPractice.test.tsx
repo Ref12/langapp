@@ -20,29 +20,20 @@ beforeEach(async () => {
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
 describe('Practice by skill', () => {
-  it('starts a set of the least practised items with the skill\'s types first', async () => {
-    const user = userEvent.setup()
-    await addToKnowledge(['vocabulary:wo3--me', 'vocabulary:ni3--you'])
-    await recordSkillPractice(['vocabulary:wo3--me'], ['writing'])
+  it('the Practice home has no Practice by skill row', async () => {
+    await addToKnowledge(['vocabulary:wo3--me'])
     render(<App />)
-    await user.selectOptions(await screen.findByRole('combobox', { name: 'Skill' }), 'writing')
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Set size' }), '10')
-    expect(screen.getByRole('combobox', { name: 'Strategy' })).toHaveValue('least')
-    const start = screen.getByRole('button', { name: 'Start practice by skill' })
-    await waitFor(() => expect(start).toBeEnabled())
-    await user.click(start)
-    await waitFor(async () => expect(await db.drillSets.count()).toBe(1))
-    const set = (await db.drillSets.toArray())[0]
-    expect(set.emphasis).toBe('writing')
-    expect(set.refs[0]).toBe('vocabulary:ni3--you')
-    expect(set.refs).toHaveLength(2)
+    await screen.findByRole('heading', { name: 'Other ways to practice' })
+    expect(screen.queryByText('Practice by skill')).toBeNull()
+    expect(screen.queryByRole('combobox', { name: 'Skill' })).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Start practice by skill' })).toBeNull()
   })
 
-  it('offers a Least practised (listening) Hands-free source', async () => {
+  it('offers a Least practiced (listening) Hands-free source', async () => {
     const user = userEvent.setup()
     await addToKnowledge(['vocabulary:wo3--me'])
     render(<App />)
-    const button = await screen.findByRole('button', { name: 'Hands-free least practised (listening)' })
+    const button = await screen.findByRole('button', { name: 'Hands-free least practiced (listening)' })
     await waitFor(() => expect(button).toBeEnabled())
     await user.click(button)
     await waitFor(async () => expect(await db.drillSets.count()).toBe(1))
