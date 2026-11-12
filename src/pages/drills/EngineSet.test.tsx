@@ -9,6 +9,8 @@ import { createDrillSet, finishEngineRun, getDrillSet, recordDrillResult, record
 import { replayRunner, progressOf } from '../../core/session/runner'
 import { engineStanding } from './Drills'
 import * as speech from '../../core/assistant/speech'
+import { ExerciseQuestion, type QuestionContext } from './EngineQuestion'
+import type { SessionExercise } from '../../core/session/types'
 
 vi.mock('../../core/ai/structured', () => ({ requestStructuredJSON: vi.fn() }))
 
@@ -57,6 +59,42 @@ describe('practice-set entry', () => {
     await user.click(screen.getByRole('button', { name: 'Long' }))
     await waitFor(async () => expect((await getDrillSet(id))!.engine).toMatchObject({ preset: 'listening', length: 'long' }))
   })
+})
+
+describe('Auto-play sentences', () => {
+  const gap = { id: 'g', refs: ['a'], stage: 'use', round: 0, form: 'gap', sentence: '下午上课前喝茶。', gapped: '下午上课____喝茶。', options: ['好', '前', '和', '天'], answer: 1, translation: 'Drink tea before class in the afternoon.', explanation: '' } as unknown as Exclude<SessionExercise, { form: 'intro' | 'repeat' }>
+  const reveal = async (user: ReturnType<typeof userEvent.setup>) => {
+    const autoPlay = (await db.preferences.get('workspace'))?.promptAutoPlay === true
+    const ctx: QuestionContext = { readings: new Map(), pinyin: false, speak: false, autoPlay, busy: false, forms: new Set(), characters: new Set(), mode: 'type', writing: false, chinese: ref => ref }
+    render(<ExerciseQuestion exercise={gap} ctx={ctx} onDone={() => undefined} />)
+    await user.click(screen.getByRole('radio', { name: '前' }))
+    await user.click(screen.getByRole('button', { name: /Check answer/ }))
+  }
+  it('is off by default on the Ready page; switching it on is saved, and the sentence then plays on reveal; off again, it does not', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    window.location.hash = `#practice/set/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    const toggle = await screen.findByRole('switch', { name: 'Auto-play sentences' })
+    expect(toggle).not.toBeChecked()
+    await user.click(toggle)
+    await waitFor(async () => expect((await db.preferences.get('workspace'))?.promptAutoPlay).toBe(true))
+    expect(screen.getByRole('switch', { name: 'Auto-play sentences' })).toBeChecked()
+    cleanup()
+    await reveal(user)
+    expect(speech.playBrowserSpeech).toHaveBeenCalledTimes(1)
+    expect(speech.playBrowserSpeech).toHaveBeenCalledWith(expect.any(String), '下午上课前喝茶。', 'zh-Hans')
+    cleanup(); vi.mocked(speech.playBrowserSpeech).mockClear()
+    window.location.hash = `#practice/set/${id}`
+    render(<App />)
+    await waitFor(() => expect(screen.getByRole('switch', { name: 'Auto-play sentences' })).toBeChecked())
+    await user.click(screen.getByRole('switch', { name: 'Auto-play sentences' }))
+    await waitFor(async () => expect((await db.preferences.get('workspace'))?.promptAutoPlay).toBe(false))
+    cleanup()
+    await reveal(user)
+    expect(speech.playBrowserSpeech).not.toHaveBeenCalled()
+  }, 40000)
 })
 
 describe('recording', () => {

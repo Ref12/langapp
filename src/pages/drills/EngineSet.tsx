@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, Play } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { navigate } from '../../core/routing'
+import { savePreferences } from '../../core/learning'
 import type { Catalog } from '../../core/study/catalog'
 import { readingIndex } from '../../core/study/annotate'
 import { DRILLS_LABEL, DRILL_TYPES, type DrillSet } from '../../core/drills/contracts'
@@ -78,7 +79,10 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
           <p className="small muted">{active.blurb}</p></div>
         <div><span className="eyebrow">Length</span>
           <div className="segmented" role="group" aria-label="Length">
-            {LENGTHS.map(value => <button key={value} type="button" disabled={busy} aria-pressed={engine.length === value} onClick={() => void run(async () => { await setEngineChoice(set.id, { length: value }) })}>{LENGTH_LABEL[value]}</button>)}</div></div></div>
+            {LENGTHS.map(value => <button key={value} type="button" disabled={busy} aria-pressed={engine.length === value} onClick={() => void run(async () => { await setEngineChoice(set.id, { length: value }) })}>{LENGTH_LABEL[value]}</button>)}</div></div>
+          <div><span className="eyebrow">Sound</span>
+            <label className="toggle engine-autoplay"><input type="checkbox" role="switch" checked={workspace.preferences.promptAutoPlay === true} disabled={busy} onChange={event => { const on = event.target.checked; void run(async () => { await savePreferences({ promptAutoPlay: on }) }) }} /> Auto-play sentences</label>
+            <p className="small muted">Plays the whole sentence by itself when you answer. Off by default.</p></div></div>
       {error && <p className="notice error" role="alert">{error}</p>}
       {!plan && !error && <p className="small muted" role="status">Planning the session…</p>}
       {plan && <p className="engine-estimate" role="status"><strong>{plan.total} exercises</strong> · about {estimateMinutes(plan.total)} min · {counts.map(entry => `${STAGE_LABEL[entry.stage]} ${entry.count}`).join(' · ')}</p>}
@@ -136,7 +140,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   if (!plan || !state) return <div className="opening-workspace" role="status">Planning the session…</div>
   const spoken = SPOKEN_PRESETS.includes(engine.preset)
   const mode: AnswerMode = spoken ? 'speak' : workspace.preferences.answerMode ?? 'type'
-  const ctx = { readings, pinyin, speak: workspace.preferences.tileAutoSpeak !== false, busy, forms, characters, mode, writing: workspace.preferences.practiseWriting !== false, chinese: (ref: string) => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : ref } }
+  const ctx = { readings, pinyin, speak: workspace.preferences.tileAutoSpeak !== false, autoPlay: workspace.preferences.promptAutoPlay === true, busy, forms, characters, mode, writing: workspace.preferences.practiseWriting !== false, chinese: (ref: string) => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : ref } }
   const exercise = currentExercise(state)
   const stage = currentStage(state)
   const advance = (correct: boolean, refsOverride?: string[], hint?: boolean) => {
