@@ -5,6 +5,7 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
+import { settledText, visibleText } from './screen-settle'
 import { db, initializeWorkspace } from '../core/database'
 import { setBuildLanguageForTests } from '../core/storage-names'
 import { loadCatalog, resetCatalogCache, type Catalog } from '../core/study/catalog'
@@ -20,32 +21,13 @@ import type { KnowledgeEntry, StudyCard } from '../core/study/contracts'
 const DAY = 86_400_000
 const FORBIDDEN = /Mandarin|Chinese|pinyin|HSK/i
 
-function visibleText(root: Element): string {
-  const lines: string[] = []
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
-  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-    const element = node.parentElement
-    if (!element || ['SCRIPT', 'STYLE'].includes(element.tagName)) continue
-    const text = (node.textContent ?? '').replace(/\s+/g, ' ').trim()
-    if (text) lines.push(text)
-  }
-  return lines.join('\n') + '\n'
-}
 const maskBuild = (text: string) => text.replace(/(· commit\n)[0-9a-f]{7,40}/, '$1<commit>')
 
 async function screenText(route: string, ready: () => unknown): Promise<string> {
   window.location.hash = '#' + route
   render(<App />)
   await waitFor(ready, { timeout: 8000 })
-  const main = () => visibleText(document.querySelector('main') ?? document.body)
-  let last = main()
-  for (let n = 0; n < 60; n++) {
-    await new Promise(resolve => setTimeout(resolve, 50))
-    const now = main()
-    if (now === last && n > 4) return maskBuild(now)
-    last = now
-  }
-  return maskBuild(last)
+  return maskBuild(await settledText())
 }
 
 let catalog: Catalog

@@ -137,9 +137,7 @@ describe.each(['zh', 'ja', 'ko'] as const)('phrases as items (%s)', language => 
     expect((await loadPhrasePick(catalog, options)).refs).toEqual([])
   })
 
-  // Skipped 2026-11-11: plans every preset x length over the whole Chinese bank and timed out at 20 s in a deploy test shard
-  // (Pages run 43112360800). Re-enable once it plans over a smaller sample or carries its own longer timeout.
-  it.skip('plans sentence forms only, no introduce stage and each sentence once, for every preset and length', async () => {
+  it('plans sentence forms only, no introduce stage and each sentence once, for every preset and length', async () => {
     const id = await createDrillSet({ kind: 'phrases', count: 6, order: 'least' })
     await whenContent(id)
     const set = (await getDrillSet(id))!
@@ -149,7 +147,12 @@ describe.each(['zh', 'ja', 'ko'] as const)('phrases as items (%s)', language => 
     expect(set.addOnFinish).toBeUndefined()
     const items = await loadItems(set.refs, catalog)
     const known = await knownSet()
-    for (const preset of BUILTIN_PRESETS) for (const length of LENGTHS) {
+    // A fixed sample instead of the full preset x length grid (which took 10 s alone and timed out under load): every preset appears
+    // (its length rotating through LENGTHS) and every length appears (with the first preset), the same pairs on every run.
+    const pairs = new Map<string, (typeof BUILTIN_PRESETS)[number] & { length: (typeof LENGTHS)[number] }>()
+    BUILTIN_PRESETS.forEach((preset, index) => pairs.set(preset.id + ' ' + LENGTHS[index % LENGTHS.length], { ...preset, length: LENGTHS[index % LENGTHS.length] }))
+    for (const length of LENGTHS) pairs.set(BUILTIN_PRESETS[0].id + ' ' + length, { ...BUILTIN_PRESETS[0], length })
+    for (const { length, ...preset } of pairs.values()) {
       const plan: SessionPlan = await planSetSession({ catalog, items, refs: set.refs, known, engine: { preset: preset.id, length, seed: set.engine!.seed } })
       const label = preset.id + ' ' + length
       expect(plan.total, label).toBeGreaterThan(0)
@@ -166,7 +169,7 @@ describe.each(['zh', 'ja', 'ko'] as const)('phrases as items (%s)', language => 
       }
       expect(new Set(items.map(item => item.phrase!.zh)).size).toBe(items.length)
     }
-  })
+  }, 60_000)
 
   it('builds the gap from a word of the phrase and the tiles from its pieces', async () => {
     const id = await createDrillSet({ kind: 'phrases', count: 6, order: 'least' })

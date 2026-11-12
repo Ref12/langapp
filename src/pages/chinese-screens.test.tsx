@@ -6,6 +6,7 @@
 import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
+import { settledText } from './screen-settle'
 import { db, initializeWorkspace } from '../core/database'
 import { learnerFixture, T0 } from '../core/profiles/fixtures/learner'
 import { resetBackupStateForTests } from '../core/backup/state'
@@ -13,17 +14,6 @@ import { initializeProfiles, restoreActiveSnapshot } from '../core/profiles/stor
 
 const FIXED_REVISION = '00000000-0000-4000-8000-000000000102'
 
-function visibleText(root: Element): string {
-  const lines: string[] = []
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
-  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-    const element = node.parentElement
-    if (!element || ['SCRIPT', 'STYLE'].includes(element.tagName)) continue
-    const text = (node.textContent ?? '').replace(/\s+/g, ' ').trim()
-    if (text) lines.push(text)
-  }
-  return lines.join('\n') + '\n'
-}
 
 // the build's commit hash changes with every commit, so it is not part of the pinned text
 function maskBuild(text: string): string {
@@ -34,16 +24,7 @@ async function screenText(route: string, ready: () => unknown): Promise<string> 
   window.location.hash = '#' + route
   render(<App />)
   await waitFor(ready)
-  const main = () => visibleText(document.querySelector('main') ?? document.body)
-  // wait until the page stops changing (live queries settle)
-  let last = main()
-  for (let n = 0; n < 40; n++) {
-    await new Promise(resolve => setTimeout(resolve, 50))
-    const now = main()
-    if (now === last && n > 2) return maskBuild(now)
-    last = now
-  }
-  return maskBuild(last)
+  return maskBuild(await settledText())
 }
 
 beforeEach(async () => {

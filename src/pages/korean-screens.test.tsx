@@ -5,6 +5,7 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
+import { settledText, visibleText } from './screen-settle'
 import { db, initializeWorkspace } from '../core/database'
 import { setBuildLanguageForTests } from '../core/storage-names'
 import { loadCatalog, resetCatalogCache, type Catalog } from '../core/study/catalog'
@@ -21,32 +22,13 @@ const DAY = 86_400_000
 
 const FORBIDDEN = /Mandarin|Chinese|pinyin|HSK/i
 
-function visibleText(root: Element): string {
-  const lines: string[] = []
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
-  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-    const element = node.parentElement
-    if (!element || ['SCRIPT', 'STYLE'].includes(element.tagName)) continue
-    const text = (node.textContent ?? '').replace(/\s+/g, ' ').trim()
-    if (text) lines.push(text)
-  }
-  return lines.join('\n') + '\n'
-}
 const maskBuild = (text: string) => text.replace(/(· commit\n)[0-9a-f]{7,40}/, '$1<commit>')
 
 async function screenText(route: string, ready: () => unknown): Promise<string> {
   window.location.hash = '#' + route
   render(<App />)
   await waitFor(ready, { timeout: 8000 })
-  const main = () => visibleText(document.querySelector('main') ?? document.body)
-  let last = main()
-  for (let n = 0; n < 60; n++) {
-    await new Promise(resolve => setTimeout(resolve, 50))
-    const now = main()
-    if (now === last && n > 4) return maskBuild(now)
-    last = now
-  }
-  return maskBuild(last)
+  return maskBuild(await settledText())
 }
 
 let catalog: Catalog
@@ -130,13 +112,14 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     for (const absent of ['written by your own AI model', 'Hands-free', 'Classic practice', 'Mahjong']) expect(text).not.toContain(absent)
     await pin('practice-by-skill', text)
   })
-  // Skipped 2026-11-11: the pinned item counts of this page differ under load (seen in a session on 2026-11-10 and in Pages run
-  // 43066983523 on a docs-only commit). Re-enable once the page's counts are awaited deterministically before the snapshot.
-  it.skip('The Ready page of a session, with the Writing preset', async () => {
+  it('The Ready page of a session, with the Writing preset', async () => {
+    // The session plan is drawn from a random seed (createDrillSet / setEngineChoice), and the pinned exercise counts depend on it: fix it.
+    vi.spyOn(Math, 'random').mockReturnValue(0.05)
     const id = await createDrillSet({ kind: 'new' })
     await whenContent(id)
     await setEngineChoice(id, { preset: 'writing' })
     await pin('practice-ready', await screenText(`practice/set/${id}`, () => expect(screen.getByRole('button', { name: 'Start session' })).toBeEnabled()))
+    vi.restoreAllMocks()
   })
   it('Practice: a Word order question', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.05)
@@ -195,9 +178,7 @@ describe('the Korean Dictionary: lesson words first, the TOPIK words as look-up'
   }
   const lookupCards = () => [...document.querySelectorAll('[data-lookup]')] as HTMLElement[]
   const type = (query: string) => fireEvent.change(screen.getByRole('searchbox', { name: 'Search dictionary' }), { target: { value: query } })
-  // Skipped 2026-11-11: the snapshot is taken before the page's counts settle under load (Pages run 43113521093; also seen in sessions).
-  // Re-enable once screen snapshots wait for loaded counts.
-  it.skip('opens on the lesson words, with Vocabulary and Grammar and the Korean wording', async () => {
+  it('opens on the lesson words, with Vocabulary and Grammar and the Korean wording', async () => {
     const text = await screenText('dictionary', () => expect(document.querySelector('[data-unit]')).toBeTruthy())
     // a lesson word's meaning (Chinese language) is lesson content, not the page's own wording
     expect(text.split('\n').filter(line => FORBIDDEN.test(line) && line !== 'Chinese language').map(line => line.slice(0, 160))).toEqual([])
