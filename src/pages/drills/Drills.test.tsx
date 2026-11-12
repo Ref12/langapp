@@ -218,6 +218,26 @@ describe('What you will practise', () => {
     expect(set.engine).toBeTruthy()
   }, 60000)
 
+  it('the Start sits in the selection panel next to View items; Start a set has no Practice session row', async () => {
+    render(<App />)
+    const panel = (await screen.findByRole('button', { name: /View items/ })).closest('.panel') as HTMLElement
+    const buttons = within(panel).getAllByRole('button').filter(button => /Start practice session|View items/.test(button.getAttribute('aria-label') ?? button.textContent ?? ''))
+    expect(buttons[0]).toHaveAccessibleName('Start practice session')
+    expect(buttons[1]).toHaveTextContent(/View items/)
+    const other = screen.getByRole('heading', { name: 'Other ways to practise' }).closest('section') as HTMLElement
+    expect(within(other).queryByRole('button', { name: 'Start practice session' })).toBeNull()
+    expect(within(other).queryByText('Practice session')).toBeNull()
+    expect(within(other).getByRole('button', { name: 'Start practice by skill' })).toBeInTheDocument()
+  })
+
+  it('a mode in the route wins over the remembered mode for that visit', async () => {
+    window.location.hash = '#practice?mode=review'
+    localStorage.setItem(storageNames().local.reviewCount, '10')
+    render(<App />)
+    expect(await screen.findByRole('button', { name: 'Reviews' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'New items' })).toHaveAttribute('aria-pressed', 'false')
+  })
+
   it('Reviews with nothing due: All due (0) is not selectable and 10 is selected', async () => {
     const user = userEvent.setup()
     render(<App />)

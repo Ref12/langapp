@@ -63,6 +63,7 @@ describe.each([['zh', 6], ['ja', 12], ['ko', 12]] as const)('Practice home Phras
     const set = (await db.drillSets.toArray())[0]
     await whenContent(set.id)
     expect(set).toMatchObject({ source: 'phrases' })
+    await waitFor(() => expect(window.location.hash).toMatch(new RegExp(`^#practice/set/${set.id}`)))
     expect(set.refs).toHaveLength(10)
     expect(set.addOnFinish).toBeUndefined()
     expect(await db.knowledge.count()).toBe(before)

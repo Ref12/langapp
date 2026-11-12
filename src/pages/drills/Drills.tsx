@@ -334,7 +334,10 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const collections = useLiveQuery(async () => (await collectionsOfCurrentLanguage(workspace.preferences)), [workspace.preferences.currentLanguage]) ?? []
   const collectionItems = useLiveQuery(() => db.collectionItems.toArray(), []) ?? []
   const [from, setFrom] = useState(CURRICULUM)
-  const originParam = new URLSearchParams(useRoute().split('?').slice(1).join('?')).get('from') ?? ''
+  const routeQuery = new URLSearchParams(useRoute().split('?').slice(1).join('?'))
+  const originParam = routeQuery.get('from') ?? ''
+  /** An explicit mode in the route (from the Lessons page) wins over the remembered mode for that visit. */
+  const modeParam = ((value): 'new' | 'review' | 'phrases' | undefined => value === 'new' || value === 'review' || value === 'phrases' ? value : undefined)(routeQuery.get('mode'))
   /** The items of a past lesson, practice set or Hands-free run named in the hash (undefined while loading, null when there is none). */
   const origin = useLiveQuery(async (): Promise<{ label: string; refs: string[] } | null> => {
     const at = originParam.indexOf(':'); const kind = originParam.slice(0, at), id = originParam.slice(at + 1)
@@ -358,7 +361,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   const finished = ownSets.filter(set => set.status === 'completed' && !set.removedAt).sort((a, b) => touched(b) - touched(a)).slice(0, RECENT_SETS)
   const recent = [...unfinished, ...finished].sort((a, b) => touched(b) - touched(a))
   const fromSet = !origin && from !== CURRICULUM ? collections.find(entry => entry.id === from) : undefined
-  const [chosenMode, setMode] = useState<'new' | 'review' | 'phrases'>('new')
+  const [chosenMode, setMode] = useState<'new' | 'review' | 'phrases'>(modeParam ?? 'new')
   const mode = origin && chosenMode !== 'phrases' ? 'review' : chosenMode
   const [phraseCount, setPhraseCount] = useState(PHRASE_COUNT_DEFAULT)
   const [phraseOrder, setPhraseOrder] = useState<PhraseOrder>('least')
@@ -379,6 +382,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
   // The number the choice means now: a typed or picked number, or (All due) every due item, or 10 when nothing is due.
   const count = mode === 'phrases' ? phraseCount : mode === 'new' ? counts.new : reviewLimit(counts.review, reviews.dueTotal)
   const pickMode = (next: 'new' | 'review' | 'phrases') => { setMode(next); setTyped(String(next === 'phrases' ? phraseCount : next === 'new' ? counts.new : reviewLimit(counts.review, reviews.dueTotal))) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { if (modeParam) pickMode(modeParam) }, [modeParam])
   // Phrases: the picker's choice for the knowledge set now, the order and the count (a study set or a past session limits it to phrases that use its items).
   const phraseScope = mode === 'phrases' ? (origin ? new Set(origin.refs) : inFrom) : undefined
   const scopeKey = phraseScope ? [...phraseScope].join(',') : ''
@@ -447,7 +452,7 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
         <span className="segmented">{origin && mode !== 'phrases' && <button type="button" aria-pressed={all} onClick={() => { setAll(true) }}>All</button>}{mode === 'review' && !origin && <button type="button" aria-pressed={allDue && reviews.dueTotal > 0} disabled={reviews.dueTotal === 0} onClick={setAllDue}>All due ({reviews.dueTotal})</button>}{NEW_COUNT_CHOICES.map(choice => <button type="button" key={choice} aria-pressed={mode === 'phrases' ? phraseCount === choice : !(origin && all) && !(allDue && reviews.dueTotal > 0) && count === choice} onClick={() => setCount(choice)}>{choice}</button>)}</span>
         <input type="number" inputMode="numeric" min={1} max={NEW_COUNT_MAX} aria-label={mode === 'phrases' ? 'Number of phrases' : mode === 'new' ? 'Number of new items' : 'Number of reviews'} value={mode === 'phrases' ? typed : (origin && all) || (allDue && reviews.dueTotal > 0) ? '' : typed} placeholder={origin && all ? 'All' : allDue && reviews.dueTotal > 0 ? 'All due' : undefined} onChange={event => { setTyped(event.target.value); if (event.target.value !== '') setCount(Number(event.target.value)) }} onBlur={() => setTyped(String(allDue ? REVIEW_COUNT_DEFAULT : count))} /></div>
       <p className="dr-summary" role="status" data-testid="selection-summary">{summary}</p>
-      <div className="button-row"><button type="button" className="button secondary" disabled={nothing} onClick={() => setViewing(true)}><Eye size={16} /> View items</button></div>
+      <div className="button-row"><button type="button" className="button primary" aria-label="Start practice session" disabled={busy || nothing} onClick={() => start(selectionSource())}>Start <ArrowRight size={16} /></button> <button type="button" className="button secondary" disabled={nothing} onClick={() => setViewing(true)}><Eye size={16} /> View items</button></div>
     </section>
     {viewing && catalog && <ViewItems refs={selection} catalog={catalog} onClose={() => setViewing(false)} workspace={workspace} now={now} run={run} busy={busy} />}
     {isAreaOn(getPack(), areaOfRoute('practice/handsfree')) && <section className="panel dr-panel dr-programs" aria-labelledby="dr-programs"><h2 id="dr-programs">Programs</h2>
@@ -458,10 +463,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
       </ul>
     </section>}
     <div className="dr-columns">
-      <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Start a set</h2>
+      <section className="panel dr-panel" aria-labelledby="dr-start"><h2 id="dr-start">Other ways to practise</h2>
         <ul className="dr-rows">
-          <li><div><strong>Practice session</strong><span className="small muted">{summary}</span></div>
-            <button type="button" className="button primary" aria-label="Start practice session" disabled={busy || nothing} onClick={() => start(selectionSource())}>Start <ArrowRight size={16} /></button></li>
           <li className="dr-skill dr-skill-block"><div><strong>Practice by skill</strong><span className="small muted dr-skill-note">Picks its own items by skill, not from the selection above. </span><span className="small muted">{known.size ? `${Math.min(size, known.size)} of your ${known.size} items, ${strategy === 'least' ? 'least practised first' : 'added in the last 3 days'}` : 'Add items to your knowledge set first'}</span>
             <span className="dr-skill-pickers"><select aria-label="Skill" value={skill} onChange={event => setSkill(event.target.value as Skill)}>{SKILLS.map(entry => <option key={entry} value={entry}>{SKILL_LABEL[entry]}</option>)}</select>
               <select aria-label="Set size" value={size} onChange={event => setSize(Number(event.target.value))}>{SKILL_SIZES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select>

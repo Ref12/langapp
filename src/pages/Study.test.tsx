@@ -8,7 +8,7 @@ import { loadCatalog } from '../core/study/catalog'
 import type { Exercise } from '../core/study/contracts'
 import * as speech from '../core/assistant/speech'
 import { savePreferences } from '../core/learning'
-import { addToKnowledge, nextGroup } from '../core/study/knowledge'
+import { addToKnowledge, nextGroup, startNewSession } from '../core/study/knowledge'
 
 // These tests cover the AI path alone; the programmatic opening set has its own tests (local-exercises.test.ts, local-lesson.test.ts).
 vi.mock('../core/study/local-exercises', async importOriginal => ({ ...await importOriginal<typeof import('../core/study/local-exercises')>(), localVocabularyExercises: () => [], fillLocalExercises: () => [] }))
@@ -67,31 +67,37 @@ function expectResultAction(button: HTMLElement, result: 'correct' | 'incorrect'
 }
 
 describe('New and Review', () => {
-  it('Start makes a new session; a redo row does not trigger the New card note', async () => {
+  it('Start opens Practice with New items chosen and starts no session; a redo row does not trigger the New card note', async () => {
     const user = userEvent.setup()
-    await db.aiConnections.add(connection)
     const group = nextGroup(await loadCatalog(), new Set())!
     const refs = group.units.map(unit => unit.ref)
     await db.exerciseSessions.add({ id: 'old-redo', mode: 'new', domain: 'reading', groupId: group.group.id, targetRefs: refs, reviewRefs: [], exercises: [], cursor: 0,
       status: 'active', model: 'm', rejected: [], createdAt: 1, redoOf: 'x' })
-    structured.requestStructuredJSON.mockImplementation(async (_c, request) => {
-      const targets = JSON.parse(request.user).targets.map((target: { ref: string }) => target.ref)
-      return { exercises: [
-        { id: 'c1', type: 'choice', targets: targets.slice(0, 1), direction: 'zh-to-en', question: '我是学生。', options: ['I am a student.', 'I study.'], answer: 0, explanation: 'x' },
-        { id: 'c2', type: 'choice', targets: targets.slice(0, 2), direction: 'en-to-zh', question: 'I study.', options: ['我学习。', '我是学生。'], answer: 0, explanation: 'x' },
-        { id: 't1', type: 'tiles', targets, translation: 'I am a student.', tiles: ['我', '是', '学生'], distractors: ['学习'], explanation: 'x' },
-        { id: 't2', type: 'tiles', targets: targets.slice(-1), translation: 'I study.', tiles: ['我', '学习'], distractors: [], explanation: 'x' },
-      ] }
-    })
     render(<App />)
     expect(await screen.findByText(/^Redo: lesson of /)).toBeInTheDocument()
     expect(screen.queryByText('Your unfinished lesson is in Pick up where you left off.')).not.toBeInTheDocument()
     const start = screen.getByRole('button', { name: 'Start new items' })
     await waitFor(() => expect(start).toBeEnabled())
     await user.click(start)
-    await waitFor(async () => expect(await db.exerciseSessions.count()).toBe(2))
-    expect(window.location.hash).not.toContain('old-redo')
-    expect((await db.exerciseSessions.get('old-redo'))!.status).toBe('active')
+    await waitFor(() => expect(window.location.hash).toBe('#practice?mode=new'))
+    expect(await screen.findByRole('button', { name: 'New items' })).toHaveAttribute('aria-pressed', 'true')
+    expect(await db.exerciseSessions.count()).toBe(1)
+    expect(await db.drillSets.count()).toBe(0)
+    expect(structured.requestStructuredJSON).not.toHaveBeenCalled()
+  })
+
+  it('Review opens Practice with Reviews chosen, without an AI connection', async () => {
+    const user = userEvent.setup()
+    const refs = nextGroup(await loadCatalog(), new Set())!.units.map(unit => unit.ref)
+    await addToKnowledge(refs.slice(0, 2))
+    await db.studyCards.toCollection().modify({ due: 1 })
+    render(<App />)
+    const review = await screen.findByRole('button', { name: 'Review due items' })
+    await waitFor(() => expect(review).toBeEnabled())
+    await user.click(review)
+    await waitFor(() => expect(window.location.hash).toBe('#practice?mode=review'))
+    expect(await screen.findByRole('button', { name: 'Reviews' })).toHaveAttribute('aria-pressed', 'true')
+    expect(await db.exerciseSessions.count()).toBe(0)
   })
 
   it('lists unfinished lessons by origin and Discard removes an empty one after confirming', async () => {
@@ -117,12 +123,12 @@ describe('New and Review', () => {
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Discard My phrases · Review' })).not.toBeInTheDocument())
   })
 
-  it('asks for an AI connection before any session can start', async () => {
+  it('needs no AI connection to reach Practice', async () => {
     render(<App />)
     await screen.findByRole('heading', { name: 'Learn something new, or keep what you know.' })
     await screen.findByRole('heading', { name: /new items$/ })
-    expect(await screen.findByRole('link', { name: 'Connect a model in Settings' })).toHaveAttribute('href', '#settings')
-    expect(screen.getByRole('button', { name: 'Start new items' })).toBeDisabled()
+    expect(screen.queryByRole('link', { name: 'Connect a model in Settings' })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Start new items' })).toBeEnabled()
     expect(screen.getByRole('button', { name: 'Start new items' })).toHaveTextContent(/^Start$/)
     expect(screen.getByRole('button', { name: 'Review due items' })).toBeDisabled()
     expect(screen.getByRole('heading', { name: '0 items due' })).toBeInTheDocument()
@@ -141,12 +147,9 @@ describe('New and Review', () => {
     let release: (value: unknown) => void = () => undefined
     let fail: (reason: Error) => void = () => undefined
     structured.requestStructuredJSON.mockImplementationOnce(() => new Promise((_resolve, reject) => { fail = reject }))
+    const id = await startNewSession(undefined, { resume: false })
+    window.location.hash = `lessons/session/${id}`
     render(<App />)
-    const newCard = await screen.findByRole('region', { name: 'New items' })
-    await within(newCard).findByRole('heading', { name: `${refs.length} new items` })
-    const start = screen.getByRole('button', { name: 'Start new items' })
-    await waitFor(() => expect(start).toBeEnabled())
-    await user.click(start)
     await screen.findByRole('heading', { name: 'Meet your new items.' })
     expect(screen.queryByText(/Preparing your/)).not.toBeInTheDocument()
     const footer = screen.getByRole('region', { name: 'Start the exercises' })

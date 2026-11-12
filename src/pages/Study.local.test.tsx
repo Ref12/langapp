@@ -5,7 +5,7 @@ import App from '../App'
 import { db } from '../core/database'
 import { loadCatalog } from '../core/study/catalog'
 import * as speech from '../core/assistant/speech'
-import { nextGroup } from '../core/study/knowledge'
+import { nextGroup, startNewSession } from '../core/study/knowledge'
 
 const structured = vi.hoisted(() => ({ requestStructuredJSON: vi.fn() }))
 vi.mock('../core/ai/structured', () => structured)
@@ -24,14 +24,14 @@ beforeEach(async () => {
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
-async function begin(user: ReturnType<typeof userEvent.setup>) {
+async function begin() {
   await db.aiConnections.add(connection)
   await db.preferences.put({ id: 'workspace', language: 'zh-Hans', name: 'Me', theme: 'dark', pinyin: false, readingMode: 'source', sidebarCollapsed: false, exercisesPerLesson: 8 })
   const refs = nextGroup(await loadCatalog(), new Set())!.units.map(unit => unit.ref)
   render(<App />)
-  const start = await screen.findByRole('button', { name: 'Start new items' })
-  await waitFor(() => expect(start).toBeEnabled())
-  await user.click(start)
+  // The Lessons page no longer starts an AI lesson; one is started here and opened as a resumed session.
+  const id = await startNewSession(undefined, { resume: false })
+  await act(async () => { window.location.hash = `lessons/session/${id}`; window.dispatchEvent(new HashChangeEvent('hashchange')) })
   await screen.findByRole('heading', { name: 'Meet your new items.' })
   return refs
 }
@@ -41,7 +41,7 @@ describe('lessons that start on programmatic exercises', () => {
     const user = userEvent.setup()
     let release: (value: unknown) => void = () => undefined
     structured.requestStructuredJSON.mockImplementation(() => new Promise(resolve => { release = resolve }))
-    const refs = await begin(user)
+    const refs = await begin()
     const footer = screen.getByRole('region', { name: 'Start the exercises' })
     expect(await within(footer).findByText(/exercises ready, more coming/)).toBeInTheDocument()
     expect(within(footer).getByRole('button', { name: 'Start' })).toBeEnabled()
@@ -101,7 +101,7 @@ describe('lessons that start on programmatic exercises', () => {
   it('fills the shortfall with more programmatic exercises and shows the AI failure once, quietly', async () => {
     const user = userEvent.setup()
     structured.requestStructuredJSON.mockRejectedValue(new Error('Model unavailable'))
-    await begin(user)
+    await begin()
     await waitFor(async () => expect((await db.exerciseSessions.toArray())[0].generation).toBeUndefined())
     const session = (await db.exerciseSessions.toArray())[0]
     expect(session.aiNotice).toBe('Model unavailable')
