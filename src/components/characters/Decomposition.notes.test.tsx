@@ -55,6 +55,14 @@ describe('Decomposition with part notes', () => {
     expect(screen.queryByTestId('part-origin')).toBeNull()
     expect(document.querySelector('.cmp-line')).not.toHaveTextContent('part:')
   })
+  it('丑 has no note: a part with no role says its meaning is its own', async () => {
+    stub(true)
+    render(<Decomposition character="丑" defaultOpen />)
+    await waitFor(() => expect(document.querySelector('.cmp-line')).toHaveTextContent('丑 ='))
+    expect(document.querySelector('.cmp-line .cmp-own')).toHaveTextContent('on its own: knife')
+    expect(document.querySelector('.cmp-line')).toHaveTextContent('on its own: two')
+    expect(document.querySelector('[data-part-box] .cmp-mean')).toHaveTextContent('on its own: knife')
+  })
   it('notes that do not fit the shown parts are ignored', async () => {
     stub(true)
     render(<Decomposition character="好" defaultOpen />)

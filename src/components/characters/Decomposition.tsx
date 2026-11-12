@@ -25,7 +25,7 @@ function Line({ character, parts, colour, sounds, maskHead }: { maskHead?: boole
         {part.note && <i className="cmp-note" data-note-role={part.note.role}> {roleLabel[part.note.role]}: {part.note.text}</i>}
         {!part.note && (part.role === 'sound' || part.role === 'both') && part.glyph && sounds[part.glyph] && <i className="cmp-note"> <Pinyin text={sounds[part.glyph]} /></i>}
         {!part.note && part.role === 'both' && <i className="cmp-note"> sound + meaning</i>}
-        {!part.note && part.role !== 'sound' && part.meaning && <i className="cmp-note"> {shortMeaning(part.meaning)}</i>}
+        {!part.note && part.role !== 'sound' && part.meaning && (part.role ? <i className="cmp-note"> {shortMeaning(part.meaning)}</i> : <i className="cmp-note cmp-own muted"> on its own: {shortMeaning(part.meaning)}</i>)}
         {part.noMeaning && !part.drawn && <i className="cmp-note"> no meaning</i>}
       </span>
     </span>)}
@@ -39,7 +39,7 @@ function Box({ part, colourIndex, colour, nested, data, glyphsOpen, onForms, sou
     <div className={`cmp-box${part.noMeaning ? ' none' : ''}${colour ? ' coloured' : ''}${nested ? ' nested' : ''}`} style={colour ? { '--c': partColour(colourIndex) } as React.CSSProperties : undefined} data-part-box={part.key}>
       <span className="cmp-bg"><Glyph part={part} /></span>
       <span className="cmp-bm">
-        <span className="cmp-mean">{part.note ? part.note.text : part.noMeaning ? 'no meaning' : part.meaning ?? ''}</span>
+        <span className="cmp-mean">{part.note ? part.note.text : part.noMeaning ? 'no meaning' : part.meaning ? (part.role ? part.meaning : 'on its own: ' + part.meaning) : ''}</span>
         {part.note && part.meaning && !part.noMeaning && <span className="cmp-own small muted">on its own: {part.meaning}</span>}
         <span className="cmp-chips">
           {part.note ? <span className={`cmp-chip ${part.note.role === 'form' || part.note.role === 'shape' ? 'note-' + part.note.role : part.note.role}`}>{roleLabel[part.note.role]}</span> : part.role && !part.noMeaning && <span className={`cmp-chip ${part.role}`}>{roleLabel[part.role]}</span>}
