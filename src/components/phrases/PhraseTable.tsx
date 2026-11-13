@@ -1,5 +1,6 @@
 import { PracticeSnippet } from '../assistant/SnippetActions'
 import { Trash2, Volume2 } from 'lucide-react'
+import { getPack } from '../../core/language'
 import { Pinyin } from '../Pinyin'
 import type { PhraseLink, PhraseRow } from '../../core/phrases/dictionary'
 import './phrases.css'
@@ -27,7 +28,7 @@ export function PhraseTable({ rows, pinyin, route, onPlay, onRemove, busy, view 
     <tbody>{rows.map(row => <tr key={row.phrase.zh} className={row.ready ? 'ready' : 'pending'} data-phrase={row.phrase.zh}>
       <td data-label={textHead} className="phrase-zh" lang={lang}><ToneText text={row.phrase.zh} reading={row.pinyin} /></td>
       {showReading && <td data-label={readingHead} className="phrase-py">{view?.reading ? <span lang={view.lang === 'ja' ? 'ja' : undefined}>{view.reading(row)}</span> : pinyin ? <Pinyin text={row.pinyin} /> : <span className="muted">-</span>}</td>}
-      <td data-label="English">{row.phrase.en}</td>
+      <td data-label="English">{getPack().meaningText(row.phrase)}</td>
       <td data-label="Words"><div className="phrase-links"><Links items={row.words} section="vocabulary" lang={lang} /></div></td>
       <td data-label="Grammar"><div className="phrase-links phrase-grammar"><Links items={row.grammar} section="grammar" lang={lang} /></div></td>
       <td data-label="Source">{row.sourceLabel}</td>

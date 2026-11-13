@@ -31,7 +31,7 @@ export function PhraseItems({ items }: { items: readonly ItemInfo[] }) {
       <div className="card-topline"><span className="eyebrow">phrase</span></div>
       <h3 lang={getPack().learningTag} className="word-native">{item.zh}</h3>
       {item.py && <p className="study-pinyin small muted">{item.py}</p>}
-      <p className="word-meaning">{item.en}</p>
+      <p className="word-meaning">{item.phrase ? getPack().meaningText(item.phrase) : item.en}</p>
       <p className="small muted phrase-practised">{rows ? practisedLine(practice.get(item.ref)) : ''}</p>
       <p><HearButton text={item.zh} locale={getPack().speechLocale} kind="sentence" label="Hear it" /></p>
     </article>)}</div>

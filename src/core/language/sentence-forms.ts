@@ -1,5 +1,6 @@
 // What a pack says about the sentence forms of Practice (Word order, Fill the gap, Dictation and typing the sentence): how a built or typed sentence is marked, the wrong tiles, and where a word sits in a sentence.
 // The builders (session/bank-forms.ts) and the question screens ask the pack; none tests the language. Chinese is the code that was in those builders and in gradeChinese, moved; Japanese and Korean are in japanese-sentence.ts.
+import { bracketSubject, differsOnlyInWho, isImpliedSubject, type SubjectPhrase } from './subject-rules'
 import type { ChineseGrade } from '../session/grade'
 import { gradeChinese } from '../session/grade'
 import { SUBJECT_WORDS, type ParticleLanguage, type SubjectPerson } from './particles'
@@ -57,6 +58,12 @@ export interface SentenceForms {
   optionalWords?(tokens: readonly SpelledToken[]): string[]
   /** Does the sentence leave its subject open, so that the English of it may have any subject pronoun? (Japanese and Korean without a subject; undefined: no.) */
   subjectOpen?(sentence: string): boolean
+  /** The language drops the subject when context makes it plain (Japanese, Korean): sentences without a stated one are flagged impliedSubject, shown with the subject in brackets, and never get a wrong answer that differs only in who does it. */
+  dropsSubject?: boolean
+  /** The English meaning of a phrase as it is shown: the leading subject pronoun of a flagged sentence in brackets, otherwise the English as it is. The one place every screen asks. */
+  meaningText(phrase: SubjectPhrase): string
+  /** May the candidate not be a wrong answer to the question's meaning because it differs only in who does it? Always false where the subject is not dropped. */
+  sameMeaningApartFromWho(question: SubjectPhrase, candidate: SubjectPhrase): boolean
   /** Marks a built or typed sentence against the accepted wordings. */
   gradeSentence(input: SentenceInput): SentenceGrade
   /** The wrong tiles of a sentence. */
@@ -65,8 +72,12 @@ export interface SentenceForms {
   blank(input: BlankInput): Blanked | undefined
 }
 
+const keepMeaning = (phrase: SubjectPhrase): string => phrase.en
+const neverSameWho = (): boolean => false
 export const zhSentence: SentenceForms = {
   spell: () => undefined,
+  meaningText: keepMeaning,
+  sameMeaningApartFromWho: neverSameWho,
   gradeSentence: input => gradeChinese(input.text, input.accepted, input.forms, input.optional, input.english),
   distractors: ({ tiles, known, rng, shuffle }) => {
     const inside = new Set(tiles)
@@ -109,6 +120,9 @@ export const jaSentence: SentenceForms = {
   spell: spellTokens,
   optionalWords: tokens => { const subject = leadingSubject('ja', tokens); return subject ? [subject.text] : [] },
   subjectOpen: sentence => !hasSubject('ja', sentence),
+  dropsSubject: true,
+  meaningText: phrase => isImpliedSubject('ja', phrase) ? bracketSubject(phrase.en) : phrase.en,
+  sameMeaningApartFromWho: (question, candidate) => isImpliedSubject('ja', question) && differsOnlyInWho('ja', question, candidate),
   gradeSentence: input => gradeJapaneseSentence(JA_RULE, input),
   distractors: ({ tiles }) => japaneseDistractors(JA_RULE, tiles),
   blank: input => blankJapanese(JA_RULE, input),
@@ -119,6 +133,9 @@ export const koSentence: SentenceForms = {
   spell: spellKoreanTokens,
   optionalWords: tokens => { const subject = leadingSubject('ko', tokens); return subject ? [subject.text] : [] },
   subjectOpen: sentence => !hasSubject('ko', sentence),
+  dropsSubject: true,
+  meaningText: phrase => isImpliedSubject('ko', phrase) ? bracketSubject(phrase.en) : phrase.en,
+  sameMeaningApartFromWho: (question, candidate) => isImpliedSubject('ko', question) && differsOnlyInWho('ko', question, candidate),
   gradeSentence: input => gradeJapaneseSentence(KO_RULE, input),
   distractors: ({ tiles }) => japaneseDistractors(KO_RULE, tiles),
   blank: input => blankJapanese(KO_RULE, input),

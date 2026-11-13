@@ -60,7 +60,7 @@ describe('English to Japanese: the subject may be left out', () => {
   })
   it('a sentence stored without a subject takes the one the English names', () => {
     const open = translate('勉強します。')
-    expect(open.prompt).toBe('You study.')
+    expect(open.prompt).toBe('(You) study.')
     expect(open.optional).toBeUndefined()
     expect(typed(open, '勉強します').verdict).toBe('correct')
     expect(typed(open, 'あなたは勉強します').verdict).toBe('correct')

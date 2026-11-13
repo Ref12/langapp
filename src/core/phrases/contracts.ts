@@ -33,6 +33,8 @@ export interface BankPhrase {
   readyAt?: number
   /** Passed a model check (authored catalog examples count as checked). */
   checked: boolean
+  /** Japanese and Korean: the sentence states no subject (scripts/mark-implied-subject.mjs), so its English subject is open. Absent: it states one, or the language does not drop it. */
+  impliedSubject?: boolean
   /** The phrase as segments (words, grammar units, punctuation; see ExampleSegment), for languages whose text the Chinese segmenter cannot split. Absent in Chinese. */
   tokens?: ExampleSegment[]
 }
@@ -51,7 +53,7 @@ export const shippedBandSchema = z.object({
     id: z.number().int().positive(),
     zh: z.string().min(1), py: z.string().min(1), en: z.string().min(1), words: z.array(z.string().min(1)).min(1),
     grammar: z.array(z.string()).optional(), lookahead: z.number().int().nonnegative().optional(), readyAt: z.number().int().nonnegative().optional(),
-    source: z.enum(PHRASE_SOURCES), ref: phraseRefSchema.optional(), checked: z.boolean(), tokens: z.array(exampleSegmentSchema).min(1).optional(),
+    impliedSubject: z.boolean().optional(), source: z.enum(PHRASE_SOURCES), ref: phraseRefSchema.optional(), checked: z.boolean(), tokens: z.array(exampleSegmentSchema).min(1).optional(),
   }).strict()),
 }).passthrough()
 

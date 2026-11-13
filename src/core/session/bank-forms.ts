@@ -4,6 +4,7 @@ import { unitRef } from '../study/contracts'
 import { getPack } from '../language'
 import type { SpelledToken } from '../language/sentence-forms'
 import { phraseKey } from '../phrases/key'
+import type { SubjectPhrase } from '../language/subject-rules'
 import { buildChoice, createRng, shortMeaning, type VocabularyUnit } from '../study/local-exercises'
 import { acceptedAnswers, acceptedEnglish, englishKey, segmentWords, sensesOf } from './grade'
 import type { ChoiceItem, Flagged, GapItem, ListenItem, RepeatItem, Stage, TextItem, TilesItem } from './types'
@@ -32,6 +33,8 @@ export interface FormContext {
 
 export interface Slot { id: string; stage: Stage; refs: string[]; round: number }
 
+/** The English meaning of a phrase as every screen shows it (a flagged Japanese or Korean sentence has its subject pronoun in brackets). */
+const meaning = (phrase: BankPhrase): string => getPack().meaningText(phrase)
 const rngFor = (context: FormContext, id: string) => createRng(context.seed ^ [...id].reduce((hash, char) => Math.imul(hash ^ char.charCodeAt(0), 16777619), 2166136261))
 function shuffle<T>(items: readonly T[], rng: () => number): T[] {
   const out = [...items]
@@ -79,12 +82,12 @@ export function buildTranslate(slot: Slot, form: 'translate-zh-en' | 'translate-
   // words the dataset marks optional, and the leading words the pack lets a sentence typed from English leave out (Korean 저는)
   const optional = [...(context.extraOptional?.(phrase) ?? []), ...(zhToEn || !spelled?.[0] ? [] : getPack().optionalWords?.(spelled[0]) ?? [])]
   return {
-    ...slot, form, prompt: zhToEn ? phrase.zh : phrase.en, promptLang: zhToEn ? 'zh' : 'en', answerLang: zhToEn ? 'en' : 'zh',
+    ...slot, form, prompt: zhToEn ? phrase.zh : meaning(phrase), promptLang: zhToEn ? 'zh' : 'en', answerLang: zhToEn ? 'en' : 'zh',
     ...(zhToEn ? { hearText: phrase.zh } : {}),
     accepted, ...(spelled ? { spelled } : {}),
     ...(!zhToEn && optional.length ? { optional } : {}),
-      model: zhToEn ? phrase.en : phrase.zh, modelPinyin: phrase.py, explanation: zhToEn ? phrase.zh : phrase.en,
-    phrase: { zh: phrase.zh, py: phrase.py, en: phrase.en }, ...(unknown ? { unknown } : {}),
+      model: zhToEn ? meaning(phrase) : phrase.zh, modelPinyin: phrase.py, explanation: zhToEn ? phrase.zh : meaning(phrase),
+    phrase: { zh: phrase.zh, py: phrase.py, en: meaning(phrase) }, ...(unknown ? { unknown } : {}),
   }
 }
 
@@ -94,7 +97,7 @@ export function buildDictation(slot: Slot, phrase: BankPhrase, context: FormCont
   const spelled = spelledAccepted(context, phrase, accepted)
   return {
     ...slot, form: 'dictation', prompt: '', promptLang: 'zh', hearText: phrase.zh, answerLang: 'zh', accepted, ...(spelled ? { spelled } : {}), ...(context.extraOptional?.(phrase).length ? { optional: [...context.extraOptional(phrase)] } : {}), model: phrase.zh, modelPinyin: phrase.py,
-    explanation: phrase.en, phrase: { zh: phrase.zh, py: phrase.py, en: phrase.en },
+    explanation: meaning(phrase), phrase: { zh: phrase.zh, py: phrase.py, en: meaning(phrase) },
   }
 }
 
@@ -111,7 +114,7 @@ export function buildTiles(slot: Slot, phrase: BankPhrase, context: FormContext)
   const spelled = spelledAccepted(context, phrase, accepted)
   // the leading subject tiles (私は, 저는) are optional: leaving them out is accepted
   const optional = [...(context.extraOptional?.(phrase) ?? []), ...(spelled?.[0] ? getPack().optionalWords?.(spelled[0]) ?? [] : [])]
-  return { ...slot, form: 'tiles', translation: phrase.en, tiles, distractors, shuffled, accepted, ...(spelled ? { spelled } : {}), ...(optional.length ? { optional } : {}), model: phrase.zh, modelPinyin: phrase.py, explanation: `${phrase.zh} (${phrase.py})` }
+  return { ...slot, form: 'tiles', translation: meaning(phrase), tiles, distractors, shuffled, accepted, ...(spelled ? { spelled } : {}), ...(optional.length ? { optional } : {}), model: phrase.zh, modelPinyin: phrase.py, explanation: `${phrase.zh} (${phrase.py})` }
 }
 
 /** Fill the gap: the target word blanked out, three known words that do not occur in the phrase as the wrong options. */
@@ -123,15 +126,15 @@ export function buildGap(slot: Slot, phrase: BankPhrase, targetRef: string, cont
   const blanked = getPack().blank({ sentence: phrase.zh, tokens: phrase.tokens, surface: label => formOf(context.catalog, unitRef('vocabulary', label)), target: blankWord(target, phrases), known: context.knownUnits.map(unit => blankWord(unit, phrases)), rng, shuffle })
   if (!blanked) return undefined
   const options = shuffle([blanked.answer, ...blanked.wrong], rng)
-  return { ...slot, form: 'gap', sentence: phrase.zh, gapped: blanked.gapped, options, answer: options.indexOf(blanked.answer), translation: phrase.en, explanation: `${phrase.zh} (${phrase.py}): ${phrase.en}` }
+  return { ...slot, form: 'gap', sentence: phrase.zh, gapped: blanked.gapped, options, answer: options.indexOf(blanked.answer), translation: meaning(phrase), explanation: `${phrase.zh} (${phrase.py}): ${meaning(phrase)}` }
 }
 
-/** Listen and pick: hear the phrase, choose its English. The wrong options are the English of other phrases that share words with it (any other phrase when too few do). */
+/** Listen and pick: hear the phrase, choose its English. A sentence without a stated subject (Japanese, Korean) gets no wrong option that differs only in who does it. The wrong options are the English of other phrases that share words with it (any other phrase when too few do). */
 export function buildListenPick(slot: Slot, phrase: BankPhrase, context: FormContext, unknown?: Flagged): ListenItem | undefined {
   const rng = rngFor(context, slot.id)
   const key = englishKey(phrase.en)
   const mine = new Set(phrase.words)
-  const others = context.bank.filter(other => phraseKey(other.zh) !== phraseKey(phrase.zh) && englishKey(other.en) !== key && other.en.trim())
+  const others = context.bank.filter(other => phraseKey(other.zh) !== phraseKey(phrase.zh) && englishKey(other.en) !== key && other.en.trim() && !getPack().sameMeaningApartFromWho(phrase as SubjectPhrase, other as SubjectPhrase))
   const sharing = shuffle(others.filter(other => other.words.some(word => mine.has(word))), rng)
   const rest = shuffle(others.filter(other => !other.words.some(word => mine.has(word))), rng)
   const wrong: string[] = []
@@ -140,15 +143,16 @@ export function buildListenPick(slot: Slot, phrase: BankPhrase, context: FormCon
     if (wrong.length >= 3) break
     const otherKey = englishKey(other.en)
     if (taken.has(otherKey)) continue
-    taken.add(otherKey); wrong.push(other.en)
+    taken.add(otherKey); wrong.push(meaning(other))
   }
   if (wrong.length < 2) return undefined
-  const options = shuffle([phrase.en, ...wrong], rng)
-  return { ...slot, form: 'listen-pick', hearText: phrase.zh, options, answer: options.indexOf(phrase.en), model: phrase.zh, explanation: `${phrase.zh} (${phrase.py}): ${phrase.en}`, ...(unknown ? { unknown } : {}) }
+  const shown = meaning(phrase)
+  const options = shuffle([shown, ...wrong], rng)
+  return { ...slot, form: 'listen-pick', hearText: phrase.zh, options, answer: options.indexOf(shown), model: phrase.zh, explanation: `${phrase.zh} (${phrase.py}): ${shown}`, ...(unknown ? { unknown } : {}) }
 }
 
 /** Repeat after me: hear it, say it. Nothing is graded. */
-export const buildRepeat = (slot: Slot, phrase: BankPhrase): RepeatItem => ({ ...slot, form: 'repeat', zh: phrase.zh, py: phrase.py, en: phrase.en })
+export const buildRepeat = (slot: Slot, phrase: BankPhrase): RepeatItem => ({ ...slot, form: 'repeat', zh: phrase.zh, py: phrase.py, en: meaning(phrase) })
 
 /** The meaning typed from memory: every sense of the gloss is accepted. */
 export function buildRecall(slot: Slot, unit: VocabularyUnit): TextItem {

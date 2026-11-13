@@ -12,6 +12,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { impliedSubject } from '../src/core/language/implied-subject.mjs'
 import { createForms } from '../src/core/forms/engine.mjs'
 import { loadFormsRules } from './forms-data.mjs'
 import { patternNameRule, patternSlug, readingOfName, shortTextRule } from './pack-ja-names.mjs'
@@ -367,7 +368,7 @@ export function buildJaPack(base = defaultRoot) {
   const catalogIndex = { schemaVersion: 1, bands: [{ band: '1', alignment: ALIGNMENT, vocabulary: vocabulary.length, grammar: grammar.length, groups: groups.length }] }
   const phrases = phraseData.map(p => ({
     id: p.phrase.id, zh: p.phrase.text, py: p.py, en: p.phrase.en, words: p.words, ...(p.grammar.length ? { grammar: p.grammar } : {}),
-    source: p.phrase.source, checked: p.phrase.checked === true, readyAt: p.readyAt, tokens: p.segments,
+    source: p.phrase.source, checked: p.phrase.checked === true, readyAt: p.readyAt, ...(impliedSubject('ja', p.segments) ? { impliedSubject: true } : {}), tokens: p.segments,
   }))
   const perWord = {}
   for (const p of phrases) for (const w of p.words) perWord[w] = (perWord[w] ?? 0) + 1

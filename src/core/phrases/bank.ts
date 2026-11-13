@@ -36,7 +36,7 @@ export function shippedPhrases(band: string): Promise<Record<string, BankPhrase[
         const entry: BankPhrase = {
           id: phrase.id, zh: phrase.zh, py: phrase.py, en: phrase.en, words: phrase.words.map(word => `vocabulary:${word}`),
           ...(phrase.grammar?.length ? { grammar: phrase.grammar.map(label => `grammar:${label}`) } : {}), source: phrase.source, ...(phrase.ref ? { ref: phrase.ref } : {}), checked: phrase.checked,
-          ...(phrase.lookahead !== undefined ? { lookahead: phrase.lookahead } : {}), ...(phrase.readyAt !== undefined ? { readyAt: phrase.readyAt } : {}), ...(phrase.tokens ? { tokens: phrase.tokens } : {}),
+          ...(phrase.lookahead !== undefined ? { lookahead: phrase.lookahead } : {}), ...(phrase.readyAt !== undefined ? { readyAt: phrase.readyAt } : {}), ...(phrase.tokens ? { tokens: phrase.tokens } : {}), ...(phrase.impliedSubject ? { impliedSubject: true } : {}),
         }
         for (const word of entry.words) (byWord[word] ??= []).push(entry)
       }
