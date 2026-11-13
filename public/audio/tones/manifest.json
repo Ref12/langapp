@@ -3420,6 +3420,22 @@
   {
    "id": "base-zhao",
    "reason": "a tone has no clear clip in two voices"
+  },
+  {
+   "id": "base-di",
+   "reason": "a tone has no clip the tone judge hears right in two voices"
+  },
+  {
+   "id": "base-hu",
+   "reason": "a tone has no clip the tone judge hears right in two voices"
+  },
+  {
+   "id": "base-ji",
+   "reason": "a tone has no clip the tone judge hears right in two voices"
+  },
+  {
+   "id": "base-qi",
+   "reason": "a tone has no clip the tone judge hears right in two voices"
   }
  ],
  "items": [
@@ -3445,10 +3461,6 @@
    "clips": {
     "xiaoxiao": {
      "file": "xiaoxiao/s-bao1.mp3",
-     "chars": "煲"
-    },
-    "yunxi": {
-     "file": "yunxi/s-bao1.mp3",
      "chars": "煲"
     },
     "xiaoyi": {
@@ -3481,10 +3493,6 @@
     "xiaoyi": {
      "file": "xiaoyi/s-bao2.mp3",
      "chars": "雹"
-    },
-    "yunxia": {
-     "file": "yunxia/s-bao2.mp3",
-     "chars": "嫑"
     }
    }
   },
@@ -3796,10 +3804,6 @@
     "yunyang": {
      "file": "yunyang/s-chi3.mp3",
      "chars": "齿"
-    },
-    "yunxia": {
-     "file": "yunxia/s-chi3.mp3",
-     "chars": "齿"
     }
    }
   },
@@ -3864,10 +3868,6 @@
     "yunyang": {
      "file": "yunyang/s-chong1.mp3",
      "chars": "充"
-    },
-    "yunjian": {
-     "file": "yunjian/s-chong1.mp3",
-     "chars": "充"
     }
    }
   },
@@ -3886,10 +3886,6 @@
    "clips": {
     "xiaoxiao": {
      "file": "xiaoxiao/s-chong2.mp3",
-     "chars": "崇"
-    },
-    "yunyang": {
-     "file": "yunyang/s-chong2.mp3",
      "chars": "崇"
     },
     "xiaoyi": {
@@ -4049,10 +4045,6 @@
     "yunyang": {
      "file": "yunyang/s-chou3.mp3",
      "chars": "丑"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-chou3.mp3",
-     "chars": "丑"
     }
    }
   },
@@ -4112,10 +4104,6 @@
     },
     "xiaoyi": {
      "file": "xiaoyi/s-chu1.mp3",
-     "chars": "出"
-    },
-    "yunxia": {
-     "file": "yunxia/s-chu1.mp3",
      "chars": "出"
     }
    }
@@ -4187,10 +4175,6 @@
     },
     "yunyang": {
      "file": "yunyang/s-chu3.mp3",
-     "chars": "储"
-    },
-    "yunxia": {
-     "file": "yunxia/s-chu3.mp3",
      "chars": "储"
     }
    }
@@ -4351,144 +4335,6 @@
    }
   },
   {
-   "id": "s-di1",
-   "kind": "single",
-   "chars": "低",
-   "pinyin": "di1",
-   "tones": [
-    1
-   ],
-   "alternates": [
-    "滴",
-    "仾",
-    "啲",
-    "埞",
-    "彽",
-    "磾",
-    "羝",
-    "袛",
-    "趆",
-    "鞮"
-   ],
-   "clips": {
-    "xiaoyi": {
-     "file": "xiaoyi/s-di1.mp3",
-     "chars": "低"
-    },
-    "yunxia": {
-     "file": "yunxia/s-di1.mp3",
-     "chars": "低"
-    }
-   }
-  },
-  {
-   "id": "s-di2",
-   "kind": "single",
-   "chars": "涤",
-   "pinyin": "di2",
-   "tones": [
-    2
-   ],
-   "alternates": [
-    "笛",
-    "迪",
-    "唙",
-    "嚁",
-    "嫡",
-    "廸",
-    "敵",
-    "梑",
-    "滌",
-    "糴",
-    "苖"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-di2.mp3",
-     "chars": "涤"
-    },
-    "yunyang": {
-     "file": "yunyang/s-di2.mp3",
-     "chars": "涤"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-di2.mp3",
-     "chars": "涤"
-    },
-    "yunxia": {
-     "file": "yunxia/s-di2.mp3",
-     "chars": "涤"
-    }
-   }
-  },
-  {
-   "id": "s-di3",
-   "kind": "single",
-   "chars": "呧",
-   "pinyin": "di3",
-   "tones": [
-    3
-   ],
-   "alternates": [
-    "坘",
-    "弤",
-    "拞",
-    "聜",
-    "菧",
-    "诋",
-    "邸",
-    "阺",
-    "骶",
-    "鯳"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-di3.mp3",
-     "chars": "呧"
-    },
-    "yunxi": {
-     "file": "yunxi/s-di3.mp3",
-     "chars": "呧"
-    },
-    "yunxia": {
-     "file": "yunxia/s-di3.mp3",
-     "chars": "呧"
-    }
-   }
-  },
-  {
-   "id": "s-di4",
-   "kind": "single",
-   "chars": "第",
-   "pinyin": "di4",
-   "tones": [
-    4
-   ],
-   "alternates": [
-    "递",
-    "帝",
-    "缔",
-    "蒂",
-    "俤",
-    "偙",
-    "僀",
-    "埊",
-    "墑",
-    "墬",
-    "娣"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-di4.mp3",
-     "chars": "第"
-    },
-    "yunxi": {
-     "file": "yunxi/s-di4.mp3",
-     "chars": "第"
-    }
-   }
-  },
-  {
    "id": "s-du1",
    "kind": "single",
    "chars": "督",
@@ -4575,10 +4421,6 @@
    "clips": {
     "xiaoxiao": {
      "file": "xiaoxiao/s-du3.mp3",
-     "chars": "睹"
-    },
-    "yunxi": {
-     "file": "yunxi/s-du3.mp3",
      "chars": "睹"
     },
     "yunyang": {
@@ -5058,10 +4900,6 @@
     "xiaoyi": {
      "file": "xiaoyi/s-fu2.mp3",
      "chars": "浮"
-    },
-    "yunxia": {
-     "file": "yunxia/s-fu2.mp3",
-     "chars": "浮"
     }
    }
   },
@@ -5097,10 +4935,6 @@
     },
     "yunyang": {
      "file": "yunyang/s-fu3.mp3",
-     "chars": "府"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-fu3.mp3",
      "chars": "府"
     }
    }
@@ -5142,148 +4976,6 @@
     "yunxia": {
      "file": "yunxia/s-fu4.mp3",
      "chars": "付"
-    }
-   }
-  },
-  {
-   "id": "s-hu1",
-   "kind": "single",
-   "chars": "乎",
-   "pinyin": "hu1",
-   "tones": [
-    1
-   ],
-   "alternates": [
-    "忽",
-    "乯",
-    "匢",
-    "匫",
-    "唿",
-    "垀",
-    "寣",
-    "惚",
-    "昒",
-    "曶",
-    "歑"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-hu1.mp3",
-     "chars": "乎"
-    },
-    "yunxia": {
-     "file": "yunxia/s-hu1.mp3",
-     "chars": "乎"
-    }
-   }
-  },
-  {
-   "id": "s-hu2",
-   "kind": "single",
-   "chars": "湖",
-   "pinyin": "hu2",
-   "tones": [
-    2
-   ],
-   "alternates": [
-    "壶",
-    "胡",
-    "蝴",
-    "弧",
-    "喖",
-    "嘝",
-    "囫",
-    "壷",
-    "壺",
-    "媩",
-    "抇"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-hu2.mp3",
-     "chars": "湖"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-hu2.mp3",
-     "chars": "湖"
-    },
-    "yunxia": {
-     "file": "yunxia/s-hu2.mp3",
-     "chars": "湖"
-    }
-   }
-  },
-  {
-   "id": "s-hu3",
-   "kind": "single",
-   "chars": "乕",
-   "pinyin": "hu3",
-   "tones": [
-    3
-   ],
-   "alternates": [
-    "琥",
-    "萀",
-    "虝",
-    "錿",
-    "鯱"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-hu3.mp3",
-     "chars": "乕"
-    },
-    "yunxi": {
-     "file": "yunxi/s-hu3.mp3",
-     "chars": "乕"
-    },
-    "yunyang": {
-     "file": "yunyang/s-hu3.mp3",
-     "chars": "乕"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-hu3.mp3",
-     "chars": "乕"
-    }
-   }
-  },
-  {
-   "id": "s-hu4",
-   "kind": "single",
-   "chars": "户",
-   "pinyin": "hu4",
-   "tones": [
-    4
-   ],
-   "alternates": [
-    "互",
-    "护",
-    "乥",
-    "冱",
-    "冴",
-    "嗀",
-    "婟",
-    "嫭",
-    "嫮",
-    "岵",
-    "帍"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-hu4.mp3",
-     "chars": "户"
-    },
-    "yunxi": {
-     "file": "yunxi/s-hu4.mp3",
-     "chars": "户"
-    },
-    "yunyang": {
-     "file": "yunyang/s-hu4.mp3",
-     "chars": "户"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-hu4.mp3",
-     "chars": "户"
     }
    }
   },
@@ -5417,154 +5109,6 @@
     "xiaoyi": {
      "file": "xiaoyi/s-huan4.mp3",
      "chars": "换"
-    }
-   }
-  },
-  {
-   "id": "s-ji1",
-   "kind": "single",
-   "chars": "鸡",
-   "pinyin": "ji1",
-   "tones": [
-    1
-   ],
-   "alternates": [
-    "击",
-    "基",
-    "饥",
-    "讥",
-    "乩",
-    "僟",
-    "刉",
-    "刏",
-    "剞",
-    "勣",
-    "喞"
-   ],
-   "clips": {
-    "xiaoyi": {
-     "file": "xiaoyi/s-ji1.mp3",
-     "chars": "鸡"
-    },
-    "yunjian": {
-     "file": "yunjian/s-ji1.mp3",
-     "chars": "鸡"
-    }
-   }
-  },
-  {
-   "id": "s-ji2",
-   "kind": "single",
-   "chars": "急",
-   "pinyin": "ji2",
-   "tones": [
-    2
-   ],
-   "alternates": [
-    "极",
-    "及",
-    "级",
-    "集",
-    "即",
-    "吉",
-    "疾",
-    "辑",
-    "嫉",
-    "棘",
-    "亼"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-ji2.mp3",
-     "chars": "急"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-ji2.mp3",
-     "chars": "急"
-    },
-    "yunxia": {
-     "file": "yunxia/s-ji2.mp3",
-     "chars": "急"
-    }
-   }
-  },
-  {
-   "id": "s-ji3",
-   "kind": "single",
-   "chars": "挤",
-   "pinyin": "ji3",
-   "tones": [
-    3
-   ],
-   "alternates": [
-    "丮",
-    "妀",
-    "戟",
-    "撠",
-    "擠",
-    "泲",
-    "犱",
-    "魕",
-    "魢",
-    "鱾",
-    "麂"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-ji3.mp3",
-     "chars": "挤"
-    },
-    "yunxi": {
-     "file": "yunxi/s-ji3.mp3",
-     "chars": "挤"
-    },
-    "yunyang": {
-     "file": "yunyang/s-ji3.mp3",
-     "chars": "挤"
-    },
-    "yunxia": {
-     "file": "yunxia/s-ji3.mp3",
-     "chars": "挤"
-    }
-   }
-  },
-  {
-   "id": "s-ji4",
-   "kind": "single",
-   "chars": "季",
-   "pinyin": "ji4",
-   "tones": [
-    4
-   ],
-   "alternates": [
-    "记",
-    "寄",
-    "寂",
-    "继",
-    "计",
-    "际",
-    "剂",
-    "忌",
-    "兾",
-    "冀",
-    "剤"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-ji4.mp3",
-     "chars": "季"
-    },
-    "yunxi": {
-     "file": "yunxi/s-ji4.mp3",
-     "chars": "季"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-ji4.mp3",
-     "chars": "季"
-    },
-    "yunjian": {
-     "file": "yunjian/s-ji4.mp3",
-     "chars": "季"
     }
    }
   },
@@ -5796,10 +5340,6 @@
      "file": "yunxi/s-pin3.mp3",
      "chars": "品"
     },
-    "yunyang": {
-     "file": "yunyang/s-pin3.mp3",
-     "chars": "品"
-    },
     "xiaoyi": {
      "file": "xiaoyi/s-pin3.mp3",
      "chars": "品"
@@ -5826,10 +5366,6 @@
     },
     "xiaoyi": {
      "file": "xiaoyi/s-pin4.mp3",
-     "chars": "牝"
-    },
-    "yunxia": {
-     "file": "yunxia/s-pin4.mp3",
      "chars": "牝"
     }
    }
@@ -5951,149 +5487,9 @@
      "file": "yunxi/s-pu4.mp3",
      "chars": "舖"
     },
-    "yunyang": {
-     "file": "yunyang/s-pu4.mp3",
-     "chars": "舖"
-    },
     "xiaoyi": {
      "file": "xiaoyi/s-pu4.mp3",
      "chars": "舖"
-    }
-   }
-  },
-  {
-   "id": "s-qi1",
-   "kind": "single",
-   "chars": "欺",
-   "pinyin": "qi1",
-   "tones": [
-    1
-   ],
-   "alternates": [
-    "凄",
-    "僛",
-    "娸",
-    "慼",
-    "慽",
-    "捿",
-    "柒",
-    "桤",
-    "桼",
-    "榿",
-    "紪"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-qi1.mp3",
-     "chars": "欺"
-    },
-    "yunjian": {
-     "file": "yunjian/s-qi1.mp3",
-     "chars": "欺"
-    }
-   }
-  },
-  {
-   "id": "s-qi2",
-   "kind": "single",
-   "chars": "骑",
-   "pinyin": "qi2",
-   "tones": [
-    2
-   ],
-   "alternates": [
-    "旗",
-    "歧",
-    "亓",
-    "剘",
-    "埼",
-    "岐",
-    "岓",
-    "嵜",
-    "愭",
-    "掑",
-    "斉"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-qi2.mp3",
-     "chars": "骑"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-qi2.mp3",
-     "chars": "骑"
-    }
-   }
-  },
-  {
-   "id": "s-qi3",
-   "kind": "single",
-   "chars": "起",
-   "pinyin": "qi3",
-   "tones": [
-    3
-   ],
-   "alternates": [
-    "企",
-    "启",
-    "唘",
-    "啓",
-    "啔",
-    "啟",
-    "婍",
-    "屺",
-    "杞",
-    "棨",
-    "玘"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-qi3.mp3",
-     "chars": "起"
-    },
-    "yunxi": {
-     "file": "yunxi/s-qi3.mp3",
-     "chars": "起"
-    },
-    "yunyang": {
-     "file": "yunyang/s-qi3.mp3",
-     "chars": "起"
-    },
-    "yunxia": {
-     "file": "yunxia/s-qi3.mp3",
-     "chars": "起"
-    }
-   }
-  },
-  {
-   "id": "s-qi4",
-   "kind": "single",
-   "chars": "器",
-   "pinyin": "qi4",
-   "tones": [
-    4
-   ],
-   "alternates": [
-    "弃",
-    "迄",
-    "咠",
-    "唭",
-    "噐",
-    "夡",
-    "憇",
-    "憩",
-    "暣",
-    "栔",
-    "棄"
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/s-qi4.mp3",
-     "chars": "器"
-    },
-    "yunxi": {
-     "file": "yunxi/s-qi4.mp3",
-     "chars": "器"
     }
    }
   },
@@ -6661,10 +6057,6 @@
     "yunxia": {
      "file": "yunxia/s-shen1.mp3",
      "chars": "深"
-    },
-    "yunjian": {
-     "file": "yunjian/s-shen1.mp3",
-     "chars": "深"
     }
    }
   },
@@ -7151,10 +6543,6 @@
      "file": "xiaoxiao/s-tang3.mp3",
      "chars": "伖"
     },
-    "yunxi": {
-     "file": "yunxi/s-tang3.mp3",
-     "chars": "伖"
-    },
     "yunyang": {
      "file": "yunyang/s-tang3.mp3",
      "chars": "伖"
@@ -7243,10 +6631,6 @@
      "file": "xiaoxiao/s-ti2.mp3",
      "chars": "题"
     },
-    "xiaoyi": {
-     "file": "xiaoyi/s-ti2.mp3",
-     "chars": "题"
-    },
     "yunxia": {
      "file": "yunxia/s-ti2.mp3",
      "chars": "题"
@@ -7272,10 +6656,6 @@
     },
     "yunxi": {
      "file": "yunxi/s-ti3.mp3",
-     "chars": "躰"
-    },
-    "yunxia": {
-     "file": "yunxia/s-ti3.mp3",
      "chars": "躰"
     }
    }
@@ -7381,10 +6761,6 @@
     "xiaoyi": {
      "file": "xiaoyi/s-tiao2.mp3",
      "chars": "条"
-    },
-    "yunxia": {
-     "file": "yunxia/s-tiao2.mp3",
-     "chars": "条"
     }
    }
   },
@@ -7405,10 +6781,6 @@
     "xiaoxiao": {
      "file": "xiaoxiao/s-tiao3.mp3",
      "chars": "宨"
-    },
-    "yunxi": {
-     "file": "yunxi/s-tiao3.mp3",
-     "chars": "脁"
     },
     "yunyang": {
      "file": "yunyang/s-tiao3.mp3",
@@ -7530,10 +6902,6 @@
    "clips": {
     "xiaoxiao": {
      "file": "xiaoxiao/s-tu3.mp3",
-     "chars": "圡"
-    },
-    "yunxi": {
-     "file": "yunxi/s-tu3.mp3",
      "chars": "圡"
     },
     "yunyang": {
@@ -8053,10 +7421,6 @@
      "file": "xiaoxiao/s-xing1.mp3",
      "chars": "星"
     },
-    "yunyang": {
-     "file": "yunyang/s-xing1.mp3",
-     "chars": "星"
-    },
     "xiaoyi": {
      "file": "xiaoyi/s-xing1.mp3",
      "chars": "星"
@@ -8119,10 +7483,6 @@
    "clips": {
     "xiaoxiao": {
      "file": "xiaoxiao/s-xing3.mp3",
-     "chars": "擤"
-    },
-    "yunxi": {
-     "file": "yunxi/s-xing3.mp3",
      "chars": "擤"
     },
     "yunyang": {
@@ -8195,10 +7555,6 @@
    "clips": {
     "yunxi": {
      "file": "yunxi/s-yang1.mp3",
-     "chars": "殃"
-    },
-    "yunyang": {
-     "file": "yunyang/s-yang1.mp3",
      "chars": "殃"
     },
     "xiaoyi": {
@@ -8406,10 +7762,6 @@
      "file": "xiaoxiao/s-yao3.mp3",
      "chars": "偠"
     },
-    "yunxi": {
-     "file": "yunxi/s-yao3.mp3",
-     "chars": "偠"
-    },
     "yunyang": {
      "file": "yunyang/s-yao3.mp3",
      "chars": "偠"
@@ -8560,10 +7912,6 @@
     },
     "yunyang": {
      "file": "yunyang/s-yi3.mp3",
-     "chars": "蚁"
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/s-yi3.mp3",
      "chars": "蚁"
     }
    }
@@ -8736,10 +8084,6 @@
     },
     "yunxi": {
      "file": "yunxi/s-zhi4.mp3",
-     "chars": "制"
-    },
-    "yunxia": {
-     "file": "yunxia/s-zhi4.mp3",
      "chars": "制"
     }
    }
@@ -8919,12 +8263,6 @@
      "chars": "飞机",
      "t0": 0.1,
      "t1": 0.6
-    },
-    "yunxia": {
-     "file": "yunxia/w-fei1-ji1.mp3",
-     "chars": "飞机",
-     "t0": 0.1,
-     "t1": 0.663
     }
    }
   },
@@ -8943,12 +8281,6 @@
      "chars": "星期",
      "t0": 0.1,
      "t1": 0.775
-    },
-    "yunyang": {
-     "file": "yunyang/w-xing1-qi1.mp3",
-     "chars": "星期",
-     "t0": 0.1,
-     "t1": 0.713
     },
     "xiaoyi": {
      "file": "xiaoyi/w-xing1-qi1.mp3",
@@ -9094,12 +8426,6 @@
     1
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-can1-jia1.mp3",
-     "chars": "参加",
-     "t0": 0.1,
-     "t1": 0.688
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-can1-jia1.mp3",
      "chars": "参加",
@@ -9124,18 +8450,6 @@
     1
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-chu1-fa1.mp3",
-     "chars": "出发",
-     "t0": 0.1,
-     "t1": 0.663
-    },
-    "yunxi": {
-     "file": "yunxi/w-chu1-fa1.mp3",
-     "chars": "出发",
-     "t0": 0.1,
-     "t1": 0.688
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-chu1-fa1.mp3",
      "chars": "出发",
@@ -9171,18 +8485,6 @@
      "chars": "出生",
      "t0": 0.1,
      "t1": 0.575
-    },
-    "yunxia": {
-     "file": "yunxia/w-chu1-sheng1.mp3",
-     "chars": "出生",
-     "t0": 0.1,
-     "t1": 0.65
-    },
-    "yunjian": {
-     "file": "yunjian/w-chu1-sheng1.mp3",
-     "chars": "出生",
-     "t0": 0.1,
-     "t1": 0.612
     }
    }
   },
@@ -9207,12 +8509,6 @@
      "chars": "初中",
      "t0": 0.1,
      "t1": 0.688
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-chu1-zhong1.mp3",
-     "chars": "初中",
-     "t0": 0.109,
-     "t1": 0.579
     },
     "yunjian": {
      "file": "yunjian/w-chu1-zhong1.mp3",
@@ -9279,30 +8575,6 @@
      "chars": "发烧",
      "t0": 0.1,
      "t1": 0.6
-    }
-   }
-  },
-  {
-   "id": "w-jia1-you2",
-   "kind": "pair",
-   "chars": "加油",
-   "pinyin": "jia1 you2",
-   "tones": [
-    1,
-    2
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-jia1-you2.mp3",
-     "chars": "加油",
-     "t0": 0.1,
-     "t1": 0.7
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-jia1-you2.mp3",
-     "chars": "加油",
-     "t0": 0.1,
-     "t1": 0.588
     }
    }
   },
@@ -9385,54 +8657,6 @@
    }
   },
   {
-   "id": "w-chu1-ji2",
-   "kind": "pair",
-   "chars": "初级",
-   "pinyin": "chu1 ji2",
-   "tones": [
-    1,
-    2
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-chu1-ji2.mp3",
-     "chars": "初级",
-     "t0": 0.1,
-     "t1": 0.725
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-chu1-ji2.mp3",
-     "chars": "初级",
-     "t0": 0.109,
-     "t1": 0.668
-    }
-   }
-  },
-  {
-   "id": "w-dang1-qian2",
-   "kind": "pair",
-   "chars": "当前",
-   "pinyin": "dang1 qian2",
-   "tones": [
-    1,
-    2
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-dang1-qian2.mp3",
-     "chars": "当前",
-     "t0": 0.1,
-     "t1": 0.775
-    },
-    "yunxia": {
-     "file": "yunxia/w-dang1-qian2.mp3",
-     "chars": "当前",
-     "t0": 0.1,
-     "t1": 0.675
-    }
-   }
-  },
-  {
    "id": "w-tong1-chang2",
    "kind": "pair",
    "chars": "通常",
@@ -9459,30 +8683,6 @@
      "chars": "通常",
      "t0": 0.1,
      "t1": 0.6
-    }
-   }
-  },
-  {
-   "id": "w-xiu1-xian2",
-   "kind": "pair",
-   "chars": "休闲",
-   "pinyin": "xiu1 xian2",
-   "tones": [
-    1,
-    2
-   ],
-   "clips": {
-    "xiaoyi": {
-     "file": "xiaoyi/w-xiu1-xian2.mp3",
-     "chars": "休闲",
-     "t0": 0.1,
-     "t1": 0.713
-    },
-    "yunxia": {
-     "file": "yunxia/w-xiu1-xian2.mp3",
-     "chars": "休闲",
-     "t0": 0.1,
-     "t1": 0.813
     }
    }
   },
@@ -9537,6 +8737,30 @@
      "chars": "增强",
      "t0": 0.1,
      "t1": 0.737
+    }
+   }
+  },
+  {
+   "id": "w-zhong1-hua2",
+   "kind": "pair",
+   "chars": "中华",
+   "pinyin": "zhong1 hua2",
+   "tones": [
+    1,
+    2
+   ],
+   "clips": {
+    "xiaoyi": {
+     "file": "xiaoyi/w-zhong1-hua2.mp3",
+     "chars": "中华",
+     "t0": 0.1,
+     "t1": 0.65
+    },
+    "yunxia": {
+     "file": "yunxia/w-zhong1-hua2.mp3",
+     "chars": "中华",
+     "t0": 0.1,
+     "t1": 0.713
     }
    }
   },
@@ -9601,6 +8825,78 @@
    }
   },
   {
+   "id": "w-ji1-qing2",
+   "kind": "pair",
+   "chars": "激情",
+   "pinyin": "ji1 qing2",
+   "tones": [
+    1,
+    2
+   ],
+   "clips": {
+    "yunxia": {
+     "file": "yunxia/w-ji1-qing2.mp3",
+     "chars": "激情",
+     "t0": 0.109,
+     "t1": 0.815
+    },
+    "yunjian": {
+     "file": "yunjian/w-ji1-qing2.mp3",
+     "chars": "激情",
+     "t0": 0.109,
+     "t1": 0.829
+    }
+   }
+  },
+  {
+   "id": "w-jia1-chang2",
+   "kind": "pair",
+   "chars": "家常",
+   "pinyin": "jia1 chang2",
+   "tones": [
+    1,
+    2
+   ],
+   "clips": {
+    "xiaoxiao": {
+     "file": "xiaoxiao/w-jia1-chang2.mp3",
+     "chars": "家常",
+     "t0": 0.1,
+     "t1": 0.713
+    },
+    "yunxia": {
+     "file": "yunxia/w-jia1-chang2.mp3",
+     "chars": "家常",
+     "t0": 0.1,
+     "t1": 0.75
+    }
+   }
+  },
+  {
+   "id": "w-xiang1-chuan2",
+   "kind": "pair",
+   "chars": "相传",
+   "pinyin": "xiang1 chuan2",
+   "tones": [
+    1,
+    2
+   ],
+   "clips": {
+    "xiaoxiao": {
+     "file": "xiaoxiao/w-xiang1-chuan2.mp3",
+     "chars": "相传",
+     "t0": 0.1,
+     "t1": 0.788
+    },
+    "xiaoyi": {
+     "file": "xiaoyi/w-xiang1-chuan2.mp3",
+     "chars": "相传",
+     "t0": 0.1,
+     "t1": 0.725
+    }
+   }
+  },
+  {
    "id": "w-zhong1-wu3",
    "kind": "pair",
    "chars": "中午",
@@ -9615,12 +8911,6 @@
      "chars": "中午",
      "t0": 0.1,
      "t1": 0.675
-    },
-    "yunxia": {
-     "file": "yunxia/w-zhong1-wu3.mp3",
-     "chars": "中午",
-     "t0": 0.1,
-     "t1": 0.688
     },
     "yunjian": {
      "file": "yunjian/w-zhong1-wu3.mp3",
@@ -9640,23 +8930,11 @@
     3
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-ji1-chang3.mp3",
-     "chars": "机场",
-     "t0": 0.1,
-     "t1": 0.7
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-ji1-chang3.mp3",
      "chars": "机场",
      "t0": 0.1,
      "t1": 0.6
-    },
-    "yunxia": {
-     "file": "yunxia/w-ji1-chang3.mp3",
-     "chars": "机场",
-     "t0": 0.1,
-     "t1": 0.725
     },
     "yunjian": {
      "file": "yunjian/w-ji1-chang3.mp3",
@@ -9693,36 +8971,6 @@
      "chars": "开始",
      "t0": 0.1,
      "t1": 0.725
-    }
-   }
-  },
-  {
-   "id": "w-shang1-chang3",
-   "kind": "pair",
-   "chars": "商场",
-   "pinyin": "shang1 chang3",
-   "tones": [
-    1,
-    3
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-shang1-chang3.mp3",
-     "chars": "商场",
-     "t0": 0.1,
-     "t1": 0.763
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-shang1-chang3.mp3",
-     "chars": "商场",
-     "t0": 0.109,
-     "t1": 0.726
-    },
-    "yunxia": {
-     "file": "yunxia/w-shang1-chang3.mp3",
-     "chars": "商场",
-     "t0": 0.1,
-     "t1": 0.763
     }
    }
   },
@@ -9772,12 +9020,6 @@
     3
    ],
    "clips": {
-    "yunxi": {
-     "file": "yunxi/w-zhou1-wu3.mp3",
-     "chars": "周五",
-     "t0": 0.1,
-     "t1": 0.737
-    },
     "yunxia": {
      "file": "yunxia/w-zhou1-wu3.mp3",
      "chars": "周五",
@@ -9838,12 +9080,6 @@
      "t0": 0.109,
      "t1": 0.815
     },
-    "yunyang": {
-     "file": "yunyang/w-dong1-bei3.mp3",
-     "chars": "东北",
-     "t0": 0.109,
-     "t1": 0.771
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-dong1-bei3.mp3",
      "chars": "东北",
@@ -9855,6 +9091,30 @@
      "chars": "东北",
      "t0": 0.1,
      "t1": 0.612
+    }
+   }
+  },
+  {
+   "id": "w-fa1-zhan3",
+   "kind": "pair",
+   "chars": "发展",
+   "pinyin": "fa1 zhan3",
+   "tones": [
+    1,
+    3
+   ],
+   "clips": {
+    "xiaoxiao": {
+     "file": "xiaoxiao/w-fa1-zhan3.mp3",
+     "chars": "发展",
+     "t0": 0.1,
+     "t1": 0.725
+    },
+    "xiaoyi": {
+     "file": "xiaoyi/w-fa1-zhan3.mp3",
+     "chars": "发展",
+     "t0": 0.1,
+     "t1": 0.6
     }
    }
   },
@@ -9879,48 +9139,30 @@
      "chars": "方法",
      "t0": 0.109,
      "t1": 0.682
-    },
-    "yunxia": {
-     "file": "yunxia/w-fang1-fa3.mp3",
-     "chars": "方法",
-     "t0": 0.109,
-     "t1": 0.726
     }
    }
   },
   {
-   "id": "w-xin1-li3",
+   "id": "w-hei1-ban3",
    "kind": "pair",
-   "chars": "心里",
-   "pinyin": "xin1 li3",
+   "chars": "黑板",
+   "pinyin": "hei1 ban3",
    "tones": [
     1,
     3
    ],
    "clips": {
     "xiaoxiao": {
-     "file": "xiaoxiao/w-xin1-li3.mp3",
-     "chars": "心里",
-     "t0": 0.1,
-     "t1": 0.725
-    },
-    "yunxi": {
-     "file": "yunxi/w-xin1-li3.mp3",
-     "chars": "心里",
+     "file": "xiaoxiao/w-hei1-ban3.mp3",
+     "chars": "黑板",
      "t0": 0.1,
      "t1": 0.7
     },
-    "yunyang": {
-     "file": "yunyang/w-xin1-li3.mp3",
-     "chars": "心里",
-     "t0": 0.1,
-     "t1": 0.6
-    },
-    "yunxia": {
-     "file": "yunxia/w-xin1-li3.mp3",
-     "chars": "心里",
-     "t0": 0.1,
-     "t1": 0.638
+    "xiaoyi": {
+     "file": "xiaoyi/w-hei1-ban3.mp3",
+     "chars": "黑板",
+     "t0": 0.109,
+     "t1": 0.771
     }
    }
   },
@@ -9940,59 +9182,41 @@
      "t0": 0.1,
      "t1": 0.725
     },
-    "yunyang": {
-     "file": "yunyang/w-biao1-zhun3.mp3",
-     "chars": "标准",
-     "t0": 0.1,
-     "t1": 0.675
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-biao1-zhun3.mp3",
      "chars": "标准",
      "t0": 0.1,
      "t1": 0.5
-    },
-    "yunjian": {
-     "file": "yunjian/w-biao1-zhun3.mp3",
-     "chars": "标准",
-     "t0": 0.109,
-     "t1": 0.741
     }
    }
   },
   {
-   "id": "w-cao1-chang3",
+   "id": "w-chu1-kou3",
    "kind": "pair",
-   "chars": "操场",
-   "pinyin": "cao1 chang3",
+   "chars": "出口",
+   "pinyin": "chu1 kou3",
    "tones": [
     1,
     3
    ],
    "clips": {
     "xiaoxiao": {
-     "file": "xiaoxiao/w-cao1-chang3.mp3",
-     "chars": "操场",
-     "t0": 0.1,
-     "t1": 0.725
-    },
-    "yunyang": {
-     "file": "yunyang/w-cao1-chang3.mp3",
-     "chars": "操场",
+     "file": "xiaoxiao/w-chu1-kou3.mp3",
+     "chars": "出口",
      "t0": 0.1,
      "t1": 0.7
     },
     "xiaoyi": {
-     "file": "xiaoyi/w-cao1-chang3.mp3",
-     "chars": "操场",
+     "file": "xiaoyi/w-chu1-kou3.mp3",
+     "chars": "出口",
      "t0": 0.1,
-     "t1": 0.612
+     "t1": 0.638
     },
     "yunxia": {
-     "file": "yunxia/w-cao1-chang3.mp3",
-     "chars": "操场",
+     "file": "yunxia/w-chu1-kou3.mp3",
+     "chars": "出口",
      "t0": 0.1,
-     "t1": 0.725
+     "t1": 0.6
     }
    }
   },
@@ -10023,12 +9247,6 @@
      "chars": "超市",
      "t0": 0.1,
      "t1": 0.675
-    },
-    "yunjian": {
-     "file": "yunjian/w-chao1-shi4.mp3",
-     "chars": "超市",
-     "t0": 0.109,
-     "t1": 0.726
     }
    }
   },
@@ -10269,12 +9487,6 @@
      "chars": "天气",
      "t0": 0.1,
      "t1": 0.675
-    },
-    "yunxia": {
-     "file": "yunxia/w-tian1-qi4.mp3",
-     "chars": "天气",
-     "t0": 0.109,
-     "t1": 0.815
     }
    }
   },
@@ -10534,23 +9746,11 @@
      "t0": 0.1,
      "t1": 0.688
     },
-    "yunyang": {
-     "file": "yunyang/w-ge1-ge5.mp3",
-     "chars": "哥哥",
-     "t0": 0.1,
-     "t1": 0.575
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-ge1-ge5.mp3",
      "chars": "哥哥",
      "t0": 0.1,
      "t1": 0.625
-    },
-    "yunjian": {
-     "file": "yunjian/w-ge1-ge5.mp3",
-     "chars": "哥哥",
-     "t0": 0.1,
-     "t1": 0.788
     }
    }
   },
@@ -10971,12 +10171,6 @@
      "chars": "邮箱",
      "t0": 0.1,
      "t1": 0.625
-    },
-    "yunxia": {
-     "file": "yunxia/w-you2-xiang1.mp3",
-     "chars": "邮箱",
-     "t0": 0.1,
-     "t1": 0.688
     }
    }
   },
@@ -11061,12 +10255,6 @@
      "chars": "农村",
      "t0": 0.1,
      "t1": 0.663
-    },
-    "yunjian": {
-     "file": "yunjian/w-nong2-cun1.mp3",
-     "chars": "农村",
-     "t0": 0.1,
-     "t1": 0.612
     }
    }
   },
@@ -11182,12 +10370,6 @@
      "t0": 0.1,
      "t1": 0.763
     },
-    "yunxi": {
-     "file": "yunxi/w-lan2-qiu2.mp3",
-     "chars": "篮球",
-     "t0": 0.109,
-     "t1": 1.035
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-lan2-qiu2.mp3",
      "chars": "篮球",
@@ -11211,12 +10393,6 @@
      "chars": "平时",
      "t0": 0.1,
      "t1": 0.8
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-ping2-shi2.mp3",
-     "chars": "平时",
-     "t0": 0.1,
-     "t1": 0.7
     },
     "yunxia": {
      "file": "yunxia/w-ping2-shi2.mp3",
@@ -11272,12 +10448,6 @@
      "t0": 0.1,
      "t1": 0.725
     },
-    "xiaoyi": {
-     "file": "xiaoyi/w-zhao2-ji2.mp3",
-     "chars": "着急",
-     "t0": 0.1,
-     "t1": 0.588
-    },
     "yunxia": {
      "file": "yunxia/w-zhao2-ji2.mp3",
      "chars": "着急",
@@ -11307,12 +10477,6 @@
      "chars": "儿童",
      "t0": 0.1,
      "t1": 0.575
-    },
-    "yunxia": {
-     "file": "yunxia/w-er2-tong2.mp3",
-     "chars": "儿童",
-     "t0": 0.1,
-     "t1": 0.713
     }
    }
   },
@@ -11367,18 +10531,6 @@
      "chars": "零钱",
      "t0": 0.1,
      "t1": 0.65
-    },
-    "yunxia": {
-     "file": "yunxia/w-ling2-qian2.mp3",
-     "chars": "零钱",
-     "t0": 0.1,
-     "t1": 0.737
-    },
-    "yunjian": {
-     "file": "yunjian/w-ling2-qian2.mp3",
-     "chars": "零钱",
-     "t0": 0.1,
-     "t1": 0.7
     }
    }
   },
@@ -11433,12 +10585,6 @@
      "chars": "提前",
      "t0": 0.1,
      "t1": 0.663
-    },
-    "yunxia": {
-     "file": "yunxia/w-ti2-qian2.mp3",
-     "chars": "提前",
-     "t0": 0.1,
-     "t1": 0.737
     }
    }
   },
@@ -11469,12 +10615,6 @@
      "chars": "从前",
      "t0": 0.1,
      "t1": 0.763
-    },
-    "yunjian": {
-     "file": "yunjian/w-cong2-qian2.mp3",
-     "chars": "从前",
-     "t0": 0.109,
-     "t1": 0.8
     }
    }
   },
@@ -11493,12 +10633,6 @@
      "chars": "集合",
      "t0": 0.1,
      "t1": 0.638
-    },
-    "yunxia": {
-     "file": "yunxia/w-ji2-he2.mp3",
-     "chars": "集合",
-     "t0": 0.1,
-     "t1": 0.725
     },
     "yunjian": {
      "file": "yunjian/w-ji2-he2.mp3",
@@ -11548,12 +10682,6 @@
     3
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-niu2-nai3.mp3",
-     "chars": "牛奶",
-     "t0": 0.1,
-     "t1": 0.713
-    },
     "yunyang": {
      "file": "yunyang/w-niu2-nai3.mp3",
      "chars": "牛奶",
@@ -11589,18 +10717,6 @@
      "chars": "苹果",
      "t0": 0.1,
      "t1": 0.75
-    },
-    "yunxi": {
-     "file": "yunxi/w-ping2-guo3.mp3",
-     "chars": "苹果",
-     "t0": 0.109,
-     "t1": 0.859
-    },
-    "yunyang": {
-     "file": "yunyang/w-ping2-guo3.mp3",
-     "chars": "苹果",
-     "t0": 0.109,
-     "t1": 0.771
     },
     "xiaoyi": {
      "file": "xiaoyi/w-ping2-guo3.mp3",
@@ -11656,12 +10772,6 @@
      "t0": 0.1,
      "t1": 0.713
     },
-    "yunyang": {
-     "file": "yunyang/w-men2-kou3.mp3",
-     "chars": "门口",
-     "t0": 0.109,
-     "t1": 0.726
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-men2-kou3.mp3",
      "chars": "门口",
@@ -11673,36 +10783,6 @@
      "chars": "门口",
      "t0": 0.1,
      "t1": 0.612
-    }
-   }
-  },
-  {
-   "id": "w-you2-yong3",
-   "kind": "pair",
-   "chars": "游泳",
-   "pinyin": "you2 yong3",
-   "tones": [
-    2,
-    3
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-you2-yong3.mp3",
-     "chars": "游泳",
-     "t0": 0.1,
-     "t1": 0.7
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-you2-yong3.mp3",
-     "chars": "游泳",
-     "t0": 0.1,
-     "t1": 0.525
-    },
-    "yunxia": {
-     "file": "yunxia/w-you2-yong3.mp3",
-     "chars": "游泳",
-     "t0": 0.1,
-     "t1": 0.7
     }
    }
   },
@@ -11737,36 +10817,6 @@
    }
   },
   {
-   "id": "w-qiu2-chang3",
-   "kind": "pair",
-   "chars": "球场",
-   "pinyin": "qiu2 chang3",
-   "tones": [
-    2,
-    3
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-qiu2-chang3.mp3",
-     "chars": "球场",
-     "t0": 0.1,
-     "t1": 0.737
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-qiu2-chang3.mp3",
-     "chars": "球场",
-     "t0": 0.1,
-     "t1": 0.6
-    },
-    "yunxia": {
-     "file": "yunxia/w-qiu2-chang3.mp3",
-     "chars": "球场",
-     "t0": 0.1,
-     "t1": 0.725
-    }
-   }
-  },
-  {
    "id": "w-ru2-guo3",
    "kind": "pair",
    "chars": "如果",
@@ -11782,23 +10832,11 @@
      "t0": 0.1,
      "t1": 0.7
     },
-    "yunyang": {
-     "file": "yunyang/w-ru2-guo3.mp3",
-     "chars": "如果",
-     "t0": 0.1,
-     "t1": 0.638
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-ru2-guo3.mp3",
      "chars": "如果",
      "t0": 0.1,
      "t1": 0.625
-    },
-    "yunxia": {
-     "file": "yunxia/w-ru2-guo3.mp3",
-     "chars": "如果",
-     "t0": 0.1,
-     "t1": 0.675
     }
    }
   },
@@ -11829,12 +10867,6 @@
      "chars": "白酒",
      "t0": 0.1,
      "t1": 0.575
-    },
-    "yunxia": {
-     "file": "yunxia/w-bai2-jiu3.mp3",
-     "chars": "白酒",
-     "t0": 0.1,
-     "t1": 0.675
     }
    }
   },
@@ -11889,12 +10921,6 @@
      "chars": "词语",
      "t0": 0.1,
      "t1": 0.788
-    },
-    "yunxia": {
-     "file": "yunxia/w-ci2-yu3.mp3",
-     "chars": "词语",
-     "t0": 0.1,
-     "t1": 0.713
     }
    }
   },
@@ -11935,6 +10961,30 @@
    }
   },
   {
+   "id": "w-du2-zhe3",
+   "kind": "pair",
+   "chars": "读者",
+   "pinyin": "du2 zhe3",
+   "tones": [
+    2,
+    3
+   ],
+   "clips": {
+    "xiaoxiao": {
+     "file": "xiaoxiao/w-du2-zhe3.mp3",
+     "chars": "读者",
+     "t0": 0.1,
+     "t1": 0.713
+    },
+    "xiaoyi": {
+     "file": "xiaoyi/w-du2-zhe3.mp3",
+     "chars": "读者",
+     "t0": 0.1,
+     "t1": 0.575
+    }
+   }
+  },
+  {
    "id": "w-men2-piao4",
    "kind": "pair",
    "chars": "门票",
@@ -11955,12 +11005,6 @@
      "chars": "门票",
      "t0": 0.109,
      "t1": 0.8
-    },
-    "yunjian": {
-     "file": "yunjian/w-men2-piao4.mp3",
-     "chars": "门票",
-     "t0": 0.109,
-     "t1": 0.859
     }
    }
   },
@@ -11985,12 +11029,6 @@
      "chars": "游戏",
      "t0": 0.1,
      "t1": 0.625
-    },
-    "yunxia": {
-     "file": "yunxia/w-you2-xi4.mp3",
-     "chars": "游戏",
-     "t0": 0.1,
-     "t1": 0.688
     }
    }
   },
@@ -12034,12 +11072,6 @@
     4
    ],
    "clips": {
-    "yunyang": {
-     "file": "yunyang/w-chang2-du4.mp3",
-     "chars": "长度",
-     "t0": 0.109,
-     "t1": 0.741
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-chang2-du4.mp3",
      "chars": "长度",
@@ -12364,12 +11396,6 @@
     5
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-hui2-lai5.mp3",
-     "chars": "回来",
-     "t0": 0.109,
-     "t1": 0.8
-    },
     "yunxi": {
      "file": "yunxi/w-hui2-lai5.mp3",
      "chars": "回来",
@@ -12381,12 +11407,6 @@
      "chars": "回来",
      "t0": 0.109,
      "t1": 0.712
-    },
-    "yunxia": {
-     "file": "yunxia/w-hui2-lai5.mp3",
-     "chars": "回来",
-     "t0": 0.1,
-     "t1": 0.612
     }
    }
   },
@@ -12432,12 +11452,6 @@
    "clips": {
     "xiaoxiao": {
      "file": "xiaoxiao/w-chu2-le5.mp3",
-     "chars": "除了",
-     "t0": 0.1,
-     "t1": 0.663
-    },
-    "yunxi": {
-     "file": "yunxi/w-chu2-le5.mp3",
      "chars": "除了",
      "t0": 0.1,
      "t1": 0.663
@@ -12502,12 +11516,6 @@
      "t0": 0.1,
      "t1": 0.612
     },
-    "yunxia": {
-     "file": "yunxia/w-ping2-zi5.mp3",
-     "chars": "瓶子",
-     "t0": 0.1,
-     "t1": 0.675
-    },
     "yunjian": {
      "file": "yunjian/w-ping2-zi5.mp3",
      "chars": "瓶子",
@@ -12561,18 +11569,6 @@
      "chars": "行李",
      "t0": 0.1,
      "t1": 0.725
-    },
-    "yunyang": {
-     "file": "yunyang/w-xing2-li5.mp3",
-     "chars": "行李",
-     "t0": 0.1,
-     "t1": 0.612
-    },
-    "yunxia": {
-     "file": "yunxia/w-xing2-li5.mp3",
-     "chars": "行李",
-     "t0": 0.1,
-     "t1": 0.663
     },
     "yunjian": {
      "file": "yunjian/w-xing2-li5.mp3",
@@ -12771,18 +11767,6 @@
      "chars": "老师",
      "t0": 0.1,
      "t1": 0.6
-    },
-    "yunxia": {
-     "file": "yunxia/w-lao3-shi1.mp3",
-     "chars": "老师",
-     "t0": 0.1,
-     "t1": 0.713
-    },
-    "yunjian": {
-     "file": "yunjian/w-lao3-shi1.mp3",
-     "chars": "老师",
-     "t0": 0.109,
-     "t1": 0.712
     }
    }
   },
@@ -13168,12 +12152,6 @@
      "t0": 0.1,
      "t1": 0.788
     },
-    "xiaoyi": {
-     "file": "xiaoyi/w-xiao3-shi2.mp3",
-     "chars": "小时",
-     "t0": 0.1,
-     "t1": 0.675
-    },
     "yunxia": {
      "file": "yunxia/w-xiao3-shi2.mp3",
      "chars": "小时",
@@ -13228,12 +12206,6 @@
      "t0": 0.1,
      "t1": 0.638
     },
-    "yunxia": {
-     "file": "yunxia/w-ke3-neng2.mp3",
-     "chars": "可能",
-     "t0": 0.1,
-     "t1": 0.588
-    },
     "yunjian": {
      "file": "yunjian/w-ke3-neng2.mp3",
      "chars": "可能",
@@ -13269,12 +12241,6 @@
      "chars": "旅游",
      "t0": 0.1,
      "t1": 0.575
-    },
-    "yunxia": {
-     "file": "yunxia/w-lv3-you2.mp3",
-     "chars": "旅游",
-     "t0": 0.109,
-     "t1": 0.682
     }
    }
   },
@@ -13371,12 +12337,6 @@
      "chars": "比如",
      "t0": 0.1,
      "t1": 0.563
-    },
-    "yunxia": {
-     "file": "yunxia/w-bi3-ru2.mp3",
-     "chars": "比如",
-     "t0": 0.1,
-     "t1": 0.65
     }
    }
   },
@@ -13467,12 +12427,6 @@
      "chars": "女人",
      "t0": 0.1,
      "t1": 0.538
-    },
-    "yunxia": {
-     "file": "yunxia/w-nv3-ren2.mp3",
-     "chars": "女人",
-     "t0": 0.1,
-     "t1": 0.6
     }
    }
   },
@@ -13612,23 +12566,11 @@
      "t0": 0.1,
      "t1": 0.725
     },
-    "yunxi": {
-     "file": "yunxi/w-cao3-di4.mp3",
-     "chars": "草地",
-     "t0": 0.1,
-     "t1": 0.888
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-cao3-di4.mp3",
      "chars": "草地",
      "t0": 0.1,
      "t1": 0.638
-    },
-    "yunxia": {
-     "file": "yunxia/w-cao3-di4.mp3",
-     "chars": "草地",
-     "t0": 0.109,
-     "t1": 0.8
     }
    }
   },
@@ -13642,23 +12584,11 @@
     4
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-duan3-ku4.mp3",
-     "chars": "短裤",
-     "t0": 0.109,
-     "t1": 0.785
-    },
     "yunxi": {
      "file": "yunxi/w-duan3-ku4.mp3",
      "chars": "短裤",
      "t0": 0.109,
      "t1": 0.815
-    },
-    "yunyang": {
-     "file": "yunyang/w-duan3-ku4.mp3",
-     "chars": "短裤",
-     "t0": 0.1,
-     "t1": 0.7
     },
     "xiaoyi": {
      "file": "xiaoyi/w-duan3-ku4.mp3",
@@ -13750,12 +12680,6 @@
      "t0": 0.1,
      "t1": 0.65
     },
-    "yunxi": {
-     "file": "yunxi/w-yi3-shang4.mp3",
-     "chars": "以上",
-     "t0": 0.109,
-     "t1": 0.888
-    },
     "yunxia": {
      "file": "yunxia/w-yi3-shang4.mp3",
      "chars": "以上",
@@ -13780,12 +12704,6 @@
      "t0": 0.1,
      "t1": 0.737
     },
-    "yunxi": {
-     "file": "yunxi/w-bi3-shi4.mp3",
-     "chars": "笔试",
-     "t0": 0.109,
-     "t1": 0.756
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-bi3-shi4.mp3",
      "chars": "笔试",
@@ -13809,12 +12727,6 @@
      "chars": "表示",
      "t0": 0.1,
      "t1": 0.737
-    },
-    "yunxi": {
-     "file": "yunxi/w-biao3-shi4.mp3",
-     "chars": "表示",
-     "t0": 0.109,
-     "t1": 0.8
     },
     "xiaoyi": {
      "file": "xiaoyi/w-biao3-shi4.mp3",
@@ -13876,12 +12788,6 @@
      "t0": 0.1,
      "t1": 0.725
     },
-    "yunyang": {
-     "file": "yunyang/w-jiao3-zi5.mp3",
-     "chars": "饺子",
-     "t0": 0.109,
-     "t1": 0.712
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-jiao3-zi5.mp3",
      "chars": "饺子",
@@ -13917,12 +12823,6 @@
      "chars": "姐姐",
      "t0": 0.1,
      "t1": 0.513
-    },
-    "yunxia": {
-     "file": "yunxia/w-jie3-jie5.mp3",
-     "chars": "姐姐",
-     "t0": 0.1,
-     "t1": 0.625
     }
    }
   },
@@ -13947,12 +12847,6 @@
      "chars": "哪个",
      "t0": 0.1,
      "t1": 0.713
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-na3-ge5.mp3",
-     "chars": "哪个",
-     "t0": 0.1,
-     "t1": 0.6
     },
     "yunxia": {
      "file": "yunxia/w-na3-ge5.mp3",
@@ -13983,18 +12877,6 @@
      "chars": "哪儿",
      "t0": 0.1,
      "t1": 0.7
-    },
-    "yunyang": {
-     "file": "yunyang/w-na3-r5.mp3",
-     "chars": "哪儿",
-     "t0": 0.109,
-     "t1": 0.565
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-na3-r5.mp3",
-     "chars": "哪儿",
-     "t0": 0.109,
-     "t1": 0.491
     }
    }
   },
@@ -14071,42 +12953,6 @@
    }
   },
   {
-   "id": "w-wo3-men5",
-   "kind": "pair",
-   "chars": "我们",
-   "pinyin": "wo3 men5",
-   "tones": [
-    3,
-    5
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-wo3-men5.mp3",
-     "chars": "我们",
-     "t0": 0.1,
-     "t1": 0.588
-    },
-    "yunxi": {
-     "file": "yunxi/w-wo3-men5.mp3",
-     "chars": "我们",
-     "t0": 0.1,
-     "t1": 0.688
-    },
-    "yunyang": {
-     "file": "yunyang/w-wo3-men5.mp3",
-     "chars": "我们",
-     "t0": 0.109,
-     "t1": 0.653
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-wo3-men5.mp3",
-     "chars": "我们",
-     "t0": 0.1,
-     "t1": 0.513
-    }
-   }
-  },
-  {
    "id": "w-xi3-huan5",
    "kind": "pair",
    "chars": "喜欢",
@@ -14133,12 +12979,6 @@
      "chars": "喜欢",
      "t0": 0.1,
      "t1": 0.663
-    },
-    "yunjian": {
-     "file": "yunjian/w-xi3-huan5.mp3",
-     "chars": "喜欢",
-     "t0": 0.109,
-     "t1": 0.756
     }
    }
   },
@@ -14266,23 +13106,47 @@
      "t0": 0.1,
      "t1": 0.588
     },
-    "yunxi": {
-     "file": "yunxi/w-zen3-me5.mp3",
-     "chars": "怎么",
-     "t0": 0.1,
-     "t1": 0.575
-    },
     "yunxia": {
      "file": "yunxia/w-zen3-me5.mp3",
      "chars": "怎么",
      "t0": 0.1,
      "t1": 0.563
-    },
-    "yunjian": {
-     "file": "yunjian/w-zen3-me5.mp3",
-     "chars": "怎么",
+    }
+   }
+  },
+  {
+   "id": "w-ben3-zi5",
+   "kind": "pair",
+   "chars": "本子",
+   "pinyin": "ben3 zi5",
+   "tones": [
+    3,
+    5
+   ],
+   "clips": {
+    "xiaoxiao": {
+     "file": "xiaoxiao/w-ben3-zi5.mp3",
+     "chars": "本子",
      "t0": 0.1,
-     "t1": 0.513
+     "t1": 0.663
+    },
+    "yunxi": {
+     "file": "yunxi/w-ben3-zi5.mp3",
+     "chars": "本子",
+     "t0": 0.1,
+     "t1": 0.65
+    },
+    "xiaoyi": {
+     "file": "xiaoyi/w-ben3-zi5.mp3",
+     "chars": "本子",
+     "t0": 0.1,
+     "t1": 0.525
+    },
+    "yunxia": {
+     "file": "yunxia/w-ben3-zi5.mp3",
+     "chars": "本子",
+     "t0": 0.1,
+     "t1": 0.612
     }
    }
   },
@@ -14668,12 +13532,6 @@
      "t0": 0.1,
      "t1": 0.725
     },
-    "yunxia": {
-     "file": "yunxia/w-di4-tu2.mp3",
-     "chars": "地图",
-     "t0": 0.109,
-     "t1": 0.726
-    },
     "yunjian": {
      "file": "yunjian/w-di4-tu2.mp3",
      "chars": "地图",
@@ -14962,12 +13820,6 @@
      "t0": 0.1,
      "t1": 0.7
     },
-    "yunxi": {
-     "file": "yunxi/w-da4-yu2.mp3",
-     "chars": "大于",
-     "t0": 0.109,
-     "t1": 0.741
-    },
     "xiaoyi": {
      "file": "xiaoyi/w-da4-yu2.mp3",
      "chars": "大于",
@@ -15043,42 +13895,6 @@
    }
   },
   {
-   "id": "w-dian4-nao3",
-   "kind": "pair",
-   "chars": "电脑",
-   "pinyin": "dian4 nao3",
-   "tones": [
-    4,
-    3
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-dian4-nao3.mp3",
-     "chars": "电脑",
-     "t0": 0.1,
-     "t1": 0.663
-    },
-    "yunxi": {
-     "file": "yunxi/w-dian4-nao3.mp3",
-     "chars": "电脑",
-     "t0": 0.1,
-     "t1": 0.713
-    },
-    "yunyang": {
-     "file": "yunyang/w-dian4-nao3.mp3",
-     "chars": "电脑",
-     "t0": 0.1,
-     "t1": 0.638
-    },
-    "yunxia": {
-     "file": "yunxia/w-dian4-nao3.mp3",
-     "chars": "电脑",
-     "t0": 0.1,
-     "t1": 0.7
-    }
-   }
-  },
-  {
    "id": "w-dian4-ying3",
    "kind": "pair",
    "chars": "电影",
@@ -15088,12 +13904,6 @@
     3
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-dian4-ying3.mp3",
-     "chars": "电影",
-     "t0": 0.1,
-     "t1": 0.688
-    },
     "yunxi": {
      "file": "yunxi/w-dian4-ying3.mp3",
      "chars": "电影",
@@ -15196,18 +14006,6 @@
      "t0": 0.1,
      "t1": 0.725
     },
-    "yunxi": {
-     "file": "yunxi/w-xia4-wu3.mp3",
-     "chars": "下午",
-     "t0": 0.1,
-     "t1": 0.737
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-xia4-wu3.mp3",
-     "chars": "下午",
-     "t0": 0.1,
-     "t1": 0.7
-    },
     "yunxia": {
      "file": "yunxia/w-xia4-wu3.mp3",
      "chars": "下午",
@@ -15277,42 +14075,6 @@
    }
   },
   {
-   "id": "w-fan4-guan3",
-   "kind": "pair",
-   "chars": "饭馆",
-   "pinyin": "fan4 guan3",
-   "tones": [
-    4,
-    3
-   ],
-   "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-fan4-guan3.mp3",
-     "chars": "饭馆",
-     "t0": 0.1,
-     "t1": 0.725
-    },
-    "yunyang": {
-     "file": "yunyang/w-fan4-guan3.mp3",
-     "chars": "饭馆",
-     "t0": 0.109,
-     "t1": 0.771
-    },
-    "xiaoyi": {
-     "file": "xiaoyi/w-fan4-guan3.mp3",
-     "chars": "饭馆",
-     "t0": 0.1,
-     "t1": 0.625
-    },
-    "yunxia": {
-     "file": "yunxia/w-fan4-guan3.mp3",
-     "chars": "饭馆",
-     "t0": 0.1,
-     "t1": 0.725
-    }
-   }
-  },
-  {
    "id": "w-shang4-wang3",
    "kind": "pair",
    "chars": "上网",
@@ -15322,23 +14084,11 @@
     3
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-shang4-wang3.mp3",
-     "chars": "上网",
-     "t0": 0.1,
-     "t1": 0.725
-    },
     "yunxi": {
      "file": "yunxi/w-shang4-wang3.mp3",
      "chars": "上网",
      "t0": 0.1,
      "t1": 0.825
-    },
-    "yunyang": {
-     "file": "yunyang/w-shang4-wang3.mp3",
-     "chars": "上网",
-     "t0": 0.109,
-     "t1": 0.785
     },
     "xiaoyi": {
      "file": "xiaoyi/w-shang4-wang3.mp3",
@@ -15375,12 +14125,6 @@
      "chars": "跳舞",
      "t0": 0.1,
      "t1": 0.612
-    },
-    "yunxia": {
-     "file": "yunxia/w-tiao4-wu3.mp3",
-     "chars": "跳舞",
-     "t0": 0.1,
-     "t1": 0.763
     }
    }
   },
@@ -15394,12 +14138,6 @@
     3
    ],
    "clips": {
-    "xiaoxiao": {
-     "file": "xiaoxiao/w-hao4-ma3.mp3",
-     "chars": "号码",
-     "t0": 0.1,
-     "t1": 0.65
-    },
     "yunxi": {
      "file": "yunxi/w-hao4-ma3.mp3",
      "chars": "号码",
@@ -15447,6 +14185,60 @@
      "chars": "或者",
      "t0": 0.1,
      "t1": 0.7
+    }
+   }
+  },
+  {
+   "id": "w-ke4-ben3",
+   "kind": "pair",
+   "chars": "课本",
+   "pinyin": "ke4 ben3",
+   "tones": [
+    4,
+    3
+   ],
+   "clips": {
+    "yunxi": {
+     "file": "yunxi/w-ke4-ben3.mp3",
+     "chars": "课本",
+     "t0": 0.1,
+     "t1": 0.813
+    },
+    "yunxia": {
+     "file": "yunxia/w-ke4-ben3.mp3",
+     "chars": "课本",
+     "t0": 0.1,
+     "t1": 0.612
+    }
+   }
+  },
+  {
+   "id": "w-wai4-yu3",
+   "kind": "pair",
+   "chars": "外语",
+   "pinyin": "wai4 yu3",
+   "tones": [
+    4,
+    3
+   ],
+   "clips": {
+    "xiaoxiao": {
+     "file": "xiaoxiao/w-wai4-yu3.mp3",
+     "chars": "外语",
+     "t0": 0.1,
+     "t1": 0.688
+    },
+    "yunxi": {
+     "file": "yunxi/w-wai4-yu3.mp3",
+     "chars": "外语",
+     "t0": 0.1,
+     "t1": 0.813
+    },
+    "xiaoyi": {
+     "file": "xiaoyi/w-wai4-yu3.mp3",
+     "chars": "外语",
+     "t0": 0.1,
+     "t1": 0.612
     }
    }
   },
@@ -15819,12 +14611,6 @@
      "chars": "过度",
      "t0": 0.1,
      "t1": 0.488
-    },
-    "yunxia": {
-     "file": "yunxia/w-guo4-du4.mp3",
-     "chars": "过度",
-     "t0": 0.1,
-     "t1": 0.588
     }
    }
   },
