@@ -23,6 +23,8 @@
 //   Options: --kind accepted,exchanges,grammar,conversations (default all), --band 1,2, --lessons 1-10 (lessons counted from 1; for phrases: their readyAt lesson),
 //            --concurrency 32 (env PRACTICE_CONCURRENCY), --session-id ID (env PRACTICE_SESSION_ID; x-session-id on every call), --base-url URL (env PRACTICE_BASE_URL),
 //            --writer-model gpt-6-luna --writer-api responses --checker-model DeepSeek-V4.1-Flash --checker-api chat, --api-key-env NAME (default PRACTICE_API_KEY, then PHRASE_API_KEY),
+//            --conv-target N (top up conversations: plan a fresh unit for each lesson with fewer than N ready; run again for the next round), --conv-target-late M --conv-late-from K (target M from lesson K),
+//            --check-concurrency N (at most N checker calls at once),
 //            --batch-size N (accepted 25, grammar 4), --per-lesson 6, --conv-per-lesson 2, --per-point 6, --min-vocab 25, --limit N (units per kind), --redo, --dry-run,
 //            --save-interval 5, --state FILE (default build/practice-dataset/state.json), --out DIR (default src/data/practice), --phrases-dir DIR (default src/data/phrases),
 //            --data-dir DIR (default src/data/v2)
@@ -419,10 +421,13 @@ export function namesFor(unitId, slot) {
   for (let at = 0; picked.length < count; at++) { const name = NAME_POOL[(start + at * step) % NAME_POOL.length]; if (!picked.includes(name)) picked.push(name) }
   return picked.map(([name, py, en, speaker]) => ({ name, py, en, speaker }))
 }
-const conversationPrompt = (curriculum, lesson, count, unitId = '') => ({
+/** A few words naming what an existing conversation is about (the first English line), so a new one can be asked to be about something else. */
+export const conversationGist = item => text(item.lines?.[0]?.en).slice(0, 70)
+const conversationPrompt = (curriculum, lesson, count, unitId = '', avoid = []) => ({
   system: SYSTEM,
   user: 'Decide whether the vocabulary up to lesson ' + lessonNumber(lesson) + ' supports a short conversation worth listening to (something to actually talk about: not just greetings repeated or a list of nouns). If it does not, reply {"conversations":[]}: that is a good answer, never pad. Otherwise write up to ' + count + ' conversations that use the newest words of lesson ' + lessonNumber(lesson) + '.\n' +
     'Each conversation: 4 to 8 lines, 2 or 3 speakers. Use ONLY the speakers given for each conversation below, with the gender given (a speaker keeps one voice): ' + Array.from({ length: count }, (_, slot) => 'conversation ' + (slot + 1) + ': ' + namesFor(unitId, slot).map(item => item.name + ' (' + item.en + ', ' + item.speaker + ')').join(', ')).join('; ') + '. Never pinyin names and never a bare role. List the speakers once in "speakers" as {"name":"小明","py":"xiǎo míng","en":"Xiao Ming"} (en is how the name is written in English, e.g. "Teacher Wang" for 王老师); a line may use a name from that list in Chinese (小明，你好) and the English questions may use the en form. No other names. ' + FUNCTION_NOTE + ' Lines are short and natural. ' +
+    (avoid.length ? 'These conversations already exist for these lessons (their opening lines): ' + avoid.map(gist => '"' + gist + '"').join('; ') + '. Write about different situations, places, people and things from all of them, and from each other. ' : '') +
     'Then write 3 comprehension questions IN ENGLISH about the conversation, each with 3 or 4 English options of which exactly ONE is consistent with the conversation (answer = its 0-based index). Ask about one fact the conversation states once. Every wrong option must be contradicted by the conversation or not mentioned in it. Do NOT ask about something with two true answers (if the children are in the room and also outside, "Where are the children?" is a bad question), and no option may be a partial or alternative true answer. List "grammar" refs the lines really use.\n\n' +
     'Vocabulary by lesson (newest first):\n' + vocabularyText(curriculum, lesson) + '\n\nGrammar points by lesson (newest first):\n' + grammarText(curriculum, lesson) +
     '\n\nReply {"conversations":[{"speakers":[{"name":"小明","py":"xiǎo míng","en":"Xiao Ming"}],"lines":[{"name":"小明","speaker":"male","zh":"","en":""}],"questions":[{"q":"","options":["","",""],"answer":0}],"grammar":[]}]}.',
@@ -579,8 +584,18 @@ export const KIND_SPECS = {
     plan({ curriculum, state, options }) {
       const bands = lessonBands(curriculum)
       const out = []
+      // --conv-target N [--conv-target-late M --conv-late-from K]: top up. A lesson is planned (a fresh unit, 'conversations:LESSON+ROUND') while fewer than its target
+      // conversations are ready by it; call again for the next round.
+      const ready = Object.values(state.conversations).map(item => item.readyAt)
+      const targetAt = number => number >= (options.convLateFrom ?? Infinity) ? options.convTargetLate ?? options.convTarget : options.convTarget
       for (let lesson = 0; lesson < curriculum.groupCount; lesson++) {
         if (!wantBand(options, bands[lesson]) || !inRange(lessonNumber(lesson), options)) continue
+        if (options.convTarget) {
+          if (ready.filter(at => at <= lessonNumber(lesson)).length >= targetAt(lessonNumber(lesson)) || vocabularyCount(curriculum, lesson) < options.minVocab) continue
+          const prefix = 'conversations:' + lessonNumber(lesson) + '+'
+          out.push({ id: prefix + (Object.keys(state.done).filter(key => key.startsWith(prefix)).length + 1), lesson, band: bands[lesson] })
+          continue
+        }
         const id = 'conversations:' + lessonNumber(lesson)
         if (isDone(state, options, id) && state.done[id].status === 'done') continue
         // too few words to talk about: no call at all (recorded as skipped, planned again when --min-vocab is lowered)
@@ -589,8 +604,10 @@ export const KIND_SPECS = {
       }
       return out
     },
-    async run({ curriculum, options }, unit, io) {
-      const reply = await askJSON(io.write, conversationPrompt(curriculum, unit.lesson, options.convPerLesson, unit.id))
+    async run({ curriculum, options, state }, unit, io) {
+      const here = lessonNumber(unit.lesson)
+      const avoid = options.convTarget ? Object.values(state.conversations).filter(item => item.readyAt <= here && item.readyAt >= here - 8).sort((a, b) => b.readyAt - a.readyAt).slice(0, 40).map(conversationGist) : []
+      const reply = await askJSON(io.write, conversationPrompt(curriculum, unit.lesson, options.convPerLesson, unit.id, avoid))
       const allowed = allowedAt(curriculum, unit.lesson)
       const drafts = [], seen = new Set()
       let invalid = 0
@@ -618,7 +635,7 @@ export const KIND_SPECS = {
         if (state.conversations[item.id] || keys.has(key)) { stats.duplicates++; continue }
         keys.add(key); state.conversations[item.id] = { band: unit.band, ...item }; stats.kept++
       }
-      state.done[unit.id] = { status: result.items.length ? 'done' : 'done', kept: result.items.length }
+      state.done[unit.id] = { status: 'done', kept: result.items.length }
     },
   },
 }
@@ -646,7 +663,14 @@ export async function runKind({ kind, ctx, io, log = () => {}, save = () => {} }
   ctx.stats = newStats()
   let units = spec.plan(ctx)
   if (ctx.options.limit !== undefined) units = units.slice(0, ctx.options.limit)
-  const counted = { write: io.write, check: io.check }
+  // --check-concurrency N: at most N checker calls in flight (the checker model may take fewer requests than the writer).
+  let checking = 0
+  const waiting = []
+  const gated = async (...args) => {
+    if (ctx.options.checkConcurrency) { while (checking >= ctx.options.checkConcurrency) await new Promise(resolve => waiting.push(resolve)); checking++ }
+    try { return await io.check(...args) } finally { if (ctx.options.checkConcurrency) { checking--; waiting.shift()?.() } }
+  }
+  const counted = { write: io.write, check: gated }
   const counting = { write: (...args) => { ctx.stats.calls++; return counted.write(...args) }, check: (...args) => { ctx.stats.calls++; return counted.check(...args) } }
   await pool(units, ctx.options.concurrency, async unit => {
     try {
@@ -699,6 +723,8 @@ export function parseArgs(argv, env = process.env) {
     concurrency: Math.max(1, Math.floor(number('concurrency', 'CONCURRENCY', 32)) || 1), sessionId: get('session-id', 'SESSION_ID', 'practice-dataset-' + new Date().toISOString().slice(0, 19)),
     saveInterval: Math.max(0, number('save-interval', 'SAVE_INTERVAL', 5)) * 1000,
     batchSize: { accepted: batch || 25, grammar: batch || 4 }, perLesson: number('per-lesson', 'PER_LESSON', 6), convPerLesson: number('conv-per-lesson', 'CONV_PER_LESSON', 2), perPoint: number('per-point', 'PER_POINT', 6), minVocab: number('min-vocab', 'MIN_VOCAB', 25),
+    convTarget: number('conv-target', 'CONV_TARGET', 0) || undefined, convTargetLate: number('conv-target-late', 'CONV_TARGET_LATE', 0) || undefined, convLateFrom: number('conv-late-from', 'CONV_LATE_FROM', 0) || undefined,
+    checkConcurrency: Math.max(0, Math.floor(number('check-concurrency', 'CHECK_CONCURRENCY', 0))) || undefined,
     baseUrl: get('base-url', 'BASE_URL', env.PHRASE_BASE_URL ?? 'http://localhost:5210/v1'),
     apiKey: env[get('api-key-env', 'API_KEY_ENV', env.PRACTICE_API_KEY !== undefined ? 'PRACTICE_API_KEY' : 'PHRASE_API_KEY')],
     roles: { writer: { model: get('writer-model', 'WRITER_MODEL', 'gpt-6-luna'), api: get('writer-api', 'WRITER_API', 'responses') }, checker: { model: get('checker-model', 'CHECKER_MODEL', 'DeepSeek-V4.1-Flash'), api: get('checker-api', 'CHECKER_API', 'chat') } },

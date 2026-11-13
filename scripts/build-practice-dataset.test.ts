@@ -283,6 +283,21 @@ describe('kinds', () => {
     expect(grammarFileSchema.parse(file).items[0].note).toContain('between two nouns')
   })
 
+  it('conversations: --conv-target tops each lesson up in rounds and tells the writer what already exists', async () => {
+    const ctx = ctxOf({ lessons: { from: 5, to: 5 }, convTarget: 2 })
+    let prompt = ''
+    const io = () => fakeIO({ write: user => { prompt = user; return { conversations: [conversation()] } }, check: user => ({ items: idsIn(user).map(id => ({ id, natural: true, consistent: [[0], [0]] })) }) })
+    await runKind({ kind: 'conversations', ctx, io: io() })
+    expect(Object.keys(ctx.state.done)).toEqual(['conversations:5+1'])
+    expect(Object.keys(ctx.state.conversations)).toHaveLength(1)
+    // one ready by lesson 5 and the target is 2: another round, whose prompt names the one already written
+    expect(KIND_SPECS.conversations.plan(ctx).map(unit => unit.id)).toEqual(['conversations:5+2'])
+    await runKind({ kind: 'conversations', ctx, io: io() })
+    expect(prompt).toContain('already exist')
+    // a target that is met plans nothing
+    expect(KIND_SPECS.conversations.plan({ ...ctx, options: options({ lessons: { from: 5, to: 5 }, convTarget: 1 }) })).toEqual([])
+  })
+
   it('conversations: skipped without a call when the words cannot support one; the blind checker must find the one right answer', async () => {
     const few = ctxOf({ minVocab: 100 })
     const idle = fakeIO({ write: () => { throw new Error('no call expected') }, check: () => ({}) })
