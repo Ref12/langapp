@@ -1,6 +1,6 @@
 import type { BankPhrase } from '../phrases/contracts'
 import { getPack } from '../language'
-import { openSubjectMatch } from '../language/english-subject'
+import { numberFreeMatch, openNumberFreeMatch, openSubjectMatch } from '../language/english-subject'
 import type { SegmentWords } from '../language/phrase-identity'
 import { phraseKey } from '../phrases/key'
 import { formatPinyin, parseReadings, withTone, type Syllable } from '../pinyin'
@@ -294,12 +294,20 @@ export function gradeMeaning(answer: string, accepted: readonly string[]): Meani
 }
 
 /** The note under an English answer that is right apart from its subject. */
+/** The note under an English answer that is right apart from articles and number. */
+export const NUMBER_FREE_NOTE = 'The sentence marks neither articles nor number, so a / the / none and singular / plural all fit.'
 export const OPEN_SUBJECT_NOTE = 'No subject in the sentence, so I / you / he / she / it / we / they all fit.'
 
 /** Grades an English meaning of a sentence whose own subject is open (Japanese or Korean with none written): an answer that differs from a wording only in its subject pronoun, and the agreement that follows, is right. A sentence with a subject (`open` false) is graded as gradeMeaning does. */
-export function gradeSentenceMeaning(answer: string, accepted: readonly string[], open: boolean): MeaningGrade {
+export function gradeSentenceMeaning(answer: string, accepted: readonly string[], open: boolean, numberFree = false): MeaningGrade {
   const meaning = gradeMeaning(answer, accepted)
-  if (!open || meaning.verdict === 'correct') return meaning
+  if (meaning.verdict === 'correct') return meaning
+  if (numberFree) {
+    const same = numberFreeMatch(answer, accepted)
+    if (same) return { verdict: 'correct', closest: same, note: NUMBER_FREE_NOTE }
+  }
+  if (!open) return meaning
+  if (numberFree) { const both = openNumberFreeMatch(answer, accepted); if (both) return { verdict: 'correct', closest: both, note: OPEN_SUBJECT_NOTE } }
   const same = openSubjectMatch(answer, accepted)
   return same ? { verdict: 'correct', closest: same, note: OPEN_SUBJECT_NOTE } : meaning
 }

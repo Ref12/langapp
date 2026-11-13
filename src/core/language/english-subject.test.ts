@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { englishParts, englishSubject, englishWords, openSubjectMatch, sameApartFromSubject } from './english-subject'
+import { numberFreeMatch, sameApartFromNumber, englishParts, englishSubject, englishWords, openSubjectMatch, sameApartFromSubject } from './english-subject'
 import { gradeSentenceMeaning } from '../session/grade'
 
 describe('the English subject, set aside', () => {
@@ -45,5 +45,36 @@ describe('the English subject, set aside', () => {
     expect(gradeSentenceMeaning('She studies.', ['You study.'], false).verdict).toBe('self')
     expect(gradeSentenceMeaning('You study.', ['You study.'], true)).toMatchObject({ verdict: 'correct' })
     expect(gradeSentenceMeaning('She works.', ['You study.'], true).verdict).toBe('wrong')
+  })
+})
+
+describe('articles and number count as the same answer where the language marks neither', () => {
+  it('the owner case: 学生は勉強します。 typed "The student studies." against "Students study."', () => {
+    const grade = gradeSentenceMeaning('The student studies.', ['Students study.'], false, true)
+    expect(grade.verdict).toBe('correct')
+  })
+  it('Chinese: 学生学习 typed "The student studies." is right against "Students study."', () => {
+    expect(gradeSentenceMeaning('The student studies.', ['Students study.'], false, true).verdict).toBe('correct')
+    expect(gradeSentenceMeaning('A student studies', ['The students study.'], false, true).verdict).toBe('correct')
+  })
+  it('a / an / the or none, singular or plural, with the agreement', () => {
+    for (const [a, b] of [['The student studies.', 'Students study.'], ['A dog is here.', 'The dogs are here.'], ['The child has a book.', 'Children have books.'.replace('Children', 'Childs')], ['I read a book.', 'I read books.'], ['The class was big.', 'The class were big.'], ['The teacher does not study.', 'Teachers do not study.']]) expect(sameApartFromNumber(a, b), a + ' / ' + b).toBe(true)
+  })
+  it('implied subject: any pronoun still fits, with number free as well', () => {
+    expect(gradeSentenceMeaning('We study.', ['I study.'], true, true).verdict).toBe('correct')
+    expect(gradeSentenceMeaning('You read a book.', ['I read books.'], true, true).verdict).toBe('correct')
+  })
+  it('real differences are still rejected', () => {
+    expect(gradeSentenceMeaning('The student does not study.', ['Students study.'], false, true).verdict).not.toBe('correct')
+    expect(gradeSentenceMeaning('The teacher studies.', ['Students study.'], false, true).verdict).not.toBe('correct')
+    expect(numberFreeMatch('The student studies Chinese.', ['Students study.'])).toBeUndefined()
+    expect(gradeSentenceMeaning('The student studies.', ['Students study.'], false, false).verdict).not.toBe('correct')
+  })
+})
+
+describe('the pack flag', () => {
+  it('is set for zh, ja and ko', async () => {
+    const { zhSentence, jaSentence, koSentence } = await import('./sentence-forms')
+    for (const pack of [zhSentence, jaSentence, koSentence]) expect(pack.englishNumberFree).toBe(true)
   })
 })

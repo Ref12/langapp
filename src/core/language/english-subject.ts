@@ -87,3 +87,30 @@ export function sameApartFromSubject(a: string, b: string): boolean {
 export function openSubjectMatch(answer: string, accepted: readonly string[]): string | undefined {
   return accepted.find(text => sameApartFromSubject(answer, text))
 }
+
+// Chinese, Japanese and Korean mark neither articles nor number: "The student studies." and "Students study." are one answer.
+const KEEP = new Set(['is', 'was', 'this', 'his', 'its', 'us', 'yes', 'as', 'has', 'does', 'always', 'perhaps', 'bus', 'gas', 'class', 'glass', 'dress', 'news', 'sometimes', 'lots', 'thanks', 'less', 'across', 'unless', 'plus', 'chinese', 'japanese', 'korean', 'series'])
+const singular = (word: string): string => {
+  if (AGREEING[word]) return AGREEING[word]
+  if (KEEP.has(word) || word.length < 4 || /ss$/.test(word) || !/s$/.test(word)) return word
+  if (/ies$/.test(word)) return word.slice(0, -3) + 'y'
+  if (/(s|x|z|ch|sh|o)es$/.test(word)) return word.slice(0, -2)
+  return word.slice(0, -1)
+}
+/** The comparable form of an English sentence for a language without articles or number: no a/an/the, nouns and verbs in the singular, agreement (is/are, was/were, has/have, does/do) set aside. */
+export const numberFreeKey = (text: string): string => englishWords(text).filter(word => !['a', 'an', 'the'].includes(word)).map(singular).join(' ')
+
+/** Are the two sentences the same apart from articles and singular/plural (with the verb agreement that follows)? */
+export const sameApartFromNumber = (a: string, b: string): boolean => { const key = numberFreeKey(a); return key !== '' && key === numberFreeKey(b) }
+
+/** The accepted wording the answer matches apart from articles and number, when it does. */
+export const numberFreeMatch = (answer: string, accepted: readonly string[]): string | undefined => accepted.find(text => sameApartFromNumber(answer, text))
+
+const restKey = (rest: readonly string[]): string => rest.filter(word => !['a', 'an', 'the'].includes(word)).map(singular).join(' ')
+/** Same apart from the subject pronoun, articles and number (an implied-subject sentence of a language without number). */
+export function sameApartFromSubjectAndNumber(a: string, b: string): boolean {
+  const left = englishParts(a), right = englishParts(b)
+  if (!left || !right || left.question !== right.question || restKey(left.rest) !== restKey(right.rest)) return false
+  return left.verbs.length === 0 ? right.verbs.length === 0 : left.verbs.some(verb => right.verbs.includes(verb))
+}
+export const openNumberFreeMatch = (answer: string, accepted: readonly string[]): string | undefined => accepted.find(text => sameApartFromSubjectAndNumber(answer, text))

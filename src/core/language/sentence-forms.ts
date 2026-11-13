@@ -60,6 +60,8 @@ export interface SentenceForms {
   subjectOpen?(sentence: string): boolean
   /** The language drops the subject when context makes it plain (Japanese, Korean): sentences without a stated one are flagged impliedSubject, shown with the subject in brackets, and never get a wrong answer that differs only in who does it. */
   dropsSubject?: boolean
+  /** The language marks neither articles nor number (Chinese, Japanese, Korean): a typed English translation differing only in a / an / the and singular / plural is right. */
+  englishNumberFree?: boolean
   /** The English meaning of a phrase as it is shown: the leading subject pronoun of a flagged sentence in brackets, otherwise the English as it is. The one place every screen asks. */
   meaningText(phrase: SubjectPhrase): string
   /** May the candidate not be a wrong answer to the question's meaning because it differs only in who does it? Always false where the subject is not dropped. */
@@ -75,6 +77,7 @@ export interface SentenceForms {
 const keepMeaning = (phrase: SubjectPhrase): string => phrase.en
 const neverSameWho = (): boolean => false
 export const zhSentence: SentenceForms = {
+  englishNumberFree: true,
   spell: () => undefined,
   meaningText: keepMeaning,
   sameMeaningApartFromWho: neverSameWho,
@@ -117,6 +120,7 @@ export const hasSubject = (language: ParticleLanguage, sentence: string): boolea
 
 /** Japanese: tokens with readings; kana for kanji, katakana for hiragana and romaji are right (japanese-sentence.ts). */
 export const jaSentence: SentenceForms = {
+  englishNumberFree: true,
   spell: spellTokens,
   optionalWords: tokens => { const subject = leadingSubject('ja', tokens); return subject ? [subject.text] : [] },
   subjectOpen: sentence => !hasSubject('ja', sentence),
@@ -130,6 +134,7 @@ export const jaSentence: SentenceForms = {
 
 /** Korean: tokens as the data cuts them (a particle is its own tile, a token of several words is cut at its spaces); the sentence as written is what is right, with other spacing right but noted, and a leading 저는 may be left out when typing from English. */
 export const koSentence: SentenceForms = {
+  englishNumberFree: true,
   spell: spellKoreanTokens,
   optionalWords: tokens => { const subject = leadingSubject('ko', tokens); return subject ? [subject.text] : [] },
   subjectOpen: sentence => !hasSubject('ko', sentence),
