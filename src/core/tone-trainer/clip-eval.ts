@@ -1,17 +1,14 @@
 // Runs the classifier over the shipped clips' tracked pitch (fixtures/clip-curves.json, made by scripts/tone-clip-curves.ts) and tallies hits and confusions.
-// The voice's range is taken the way a learner's calibration takes it: the 5th to 95th percentile of its single-syllable clips' voiced pitch.
+// The voice's range is its VOICE_RANGE entry, which is the way a learner's calibration takes it: the 5th to 95th percentile of the voice's pitch.
 import clips from './fixtures/clip-curves.json'
 import { classifyTone, type Rules, RULES, type SyllablePlace } from './classify'
-import { toLevel } from './pitch'
+import { toLevel, VOICE_RANGE } from './pitch'
 
 interface ClipRow { id: string; voice: string; tones: number[]; hz: (number | null)[][] }
 const rows = clips as ClipRow[]
 
-export function voiceRanges(): Record<string, [number, number]> {
-  const pool: Record<string, number[]> = {}
-  for (const row of rows) if (row.tones.length === 1) for (const curve of row.hz) for (const hz of curve) if (hz) (pool[row.voice] ??= []).push(hz)
-  return Object.fromEntries(Object.entries(pool).map(([voice, list]) => { list.sort((a, b) => a - b); return [voice, [list[Math.floor(0.05 * (list.length - 1))], list[Math.floor(0.95 * (list.length - 1))]] as [number, number]] }))
-}
+/** The voices' ranges (pitch.ts's VOICE_RANGE, the 5th to 95th percentile of the kept clips: what a learner's calibration is for their own voice). */
+export const voiceRanges = (): Record<string, [number, number]> => VOICE_RANGE
 
 export interface Tally { total: number; hit: number; unmeasured: number; /** said[expected][heard], heard 0 = no tone could be told. */ said: number[][] }
 const empty = (): Tally => ({ total: 0, hit: 0, unmeasured: 0, said: [1, 2, 3, 4].map(() => [0, 0, 0, 0, 0]) })

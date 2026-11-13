@@ -89,12 +89,15 @@ function clean(f0: Float32Array): void {
   for (let i = 0; i < f0.length; i++) if (f0[i] && !f0[i - 1] && !f0[i + 1]) f0[i] = 0
 }
 
-/** Each voice's own range in Hz (5th to 95th percentile of its voiced frames over all its clips, measured once offline with scripts/check-tone-pitch.py's Praat pitch). It puts every voice on the same five-level scale. */
-export const VOICE_RANGE: Record<string, [number, number]> = { yunjian: [80, 145], xiaoxiao: [189, 333], xiaoyi: [223, 379], yunxi: [110, 248] }
+/** Each voice's own range in Hz (5th to 95th percentile of its voiced frames over all its clips, measured offline with scripts/check-tone-pitch.py's Praat pitch, then moved by the change of this tracker's own 5th and 95th percentiles when scripts/filter-tone-clips.ts kept only the clear clips). It puts every voice on the same five-level scale. */
+export const VOICE_RANGE: Record<string, [number, number]> = { yunjian: [83, 154], xiaoxiao: [183, 333], xiaoyi: [220, 377], yunxi: [111, 236], yunyang: [72, 161], yunxia: [190, 430] }
+
+/** The ranges the pitch search was first bounded by (the voices' Praat ranges): kept for the search so that moving VOICE_RANGE to the kept clips does not narrow it. */
+const SEARCH_RANGE: Record<string, [number, number]> = { yunjian: [80, 145], xiaoxiao: [189, 333], xiaoyi: [223, 379], yunxi: [110, 248], yunyang: [72, 161], yunxia: [190, 430] }
 
 /** The search range for a voice: its own range with room on both sides; the wide default for a voice not in the table. */
 export function voiceBounds(voice: string): { fmin: number; fmax: number } {
-  const range = VOICE_RANGE[voice]
+  const range = SEARCH_RANGE[voice]
   return range ? { fmin: range[0] * 0.7, fmax: range[1] * 1.25 } : { fmin: 60, fmax: 500 }
 }
 

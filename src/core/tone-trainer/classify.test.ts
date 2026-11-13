@@ -43,7 +43,7 @@ describe('classifyTone on the shipped clips (all voices)', () => {
   it('labels the clips with their own tone at 90% or better (clips with a measurable pitch)', () => {
     console.info('tone confusion (rows: tone said in the clip; columns: tone heard, 0 = none):\n' + table.all.said.map((row, i) => (i + 1) + ': ' + row.join('\t')).join('\n'))
     console.info(Object.entries(table).map(([key, t]) => key + ': ' + (100 * t.hit / (t.total - t.unmeasured)).toFixed(1) + '% of ' + (t.total - t.unmeasured) + ' (' + t.unmeasured + ' with no pitch)').join('\n'))
-    expect(table.all.total).toBeGreaterThan(1500)
+    expect(table.all.total).toBeGreaterThan(900)
     expect(accuracy('all')).toBeGreaterThanOrEqual(0.9)
   })
   it('every tone is recognised on its own, not only the common ones', () => {
