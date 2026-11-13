@@ -159,7 +159,7 @@ export const DRILL_TYPES: { id: DrillTypeId; name: string; blurb: string; icon: 
   { id: 'meanings', name: 'Word meanings', blurb: 'Chinese ↔ English: choose or type', icon: 'Languages', needs: 'none' },
   { id: 'match', name: 'Match pairs', blurb: 'Join each word to its meaning, a board at a time', icon: 'Shuffle', needs: 'none' },
   { id: 'learn', name: 'Learn to write', blurb: 'Each word, then its characters: watch, trace, write from memory', icon: 'GraduationCap', needs: 'none' },
-  { id: 'write', name: 'Write it', blurb: 'A pinyin sentence, write the highlighted word from memory', icon: 'PenLine', needs: 'sentences' },
+  { id: 'write', name: 'Write it', blurb: 'A pinyin sentence, write the highlighted word from memory', icon: 'PenLine', needs: 'none' },
   { id: 'pinyin', name: 'Say the pinyin', blurb: 'See the word, type its pinyin', icon: 'Type', needs: 'none' },
   { id: 'translate', name: 'Translate sentences', blurb: 'English to Chinese: type, speak or write', icon: 'MessageSquareText', needs: 'sentences' },
   { id: 'repeat', name: 'Repeat after me', blurb: 'Timed audio loop, nothing to look at', icon: 'Repeat', needs: 'sentences' },

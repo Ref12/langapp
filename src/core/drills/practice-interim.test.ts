@@ -83,7 +83,7 @@ describe('a fallback is only a gap for the AI', () => {
     const fallback = { zh: '我要回家。', py: 'wǒ yào huí jiā', en: 'I want to go home.', source: 'catalog' as const, unknown: ['回', '家'] }
     const content = { state: 'ready' as const, sentences: { [YAO]: fallback }, conversations: [] }
     expect(applicable('translate', items, content)).toHaveLength(0)
-    expect(applicable('write', items, content)).toHaveLength(0)
+    expect(applicable('write', items, content)).toHaveLength(1) // Write it shows the word alone
     expect(applicable('repeat', items, content)).toHaveLength(1)
     const known = { ...content, sentences: { [YAO]: { ...fallback, unknown: undefined } } }
     expect(applicable('translate', items, known)).toHaveLength(1)

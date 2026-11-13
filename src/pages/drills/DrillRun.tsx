@@ -13,7 +13,7 @@ import { recordDrillResult, recordRedo } from '../../core/drills/store'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { QuestionView, type QState, type ViewContext } from './QuestionViews'
 import { AnswerButton } from '../../components/AnswerButton'
-import { DEFAULT_OPTIONS, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, toneOnly, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
+import { DEFAULT_OPTIONS, markable, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, toneOnly, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
 
 interface RunProps extends Pick<PageProps, 'now' | 'run' | 'busy'> {
   set: DrillSet
@@ -39,7 +39,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   const [graded] = useState(() => !only && !progress?.done)
   const scope = useMemo(() => applicable(type, items, set.content).map(item => item.ref), [type, items, set.content])
   const known = useMemo(() => new Set(workspace.knowledge.map(entry => entry.ref)), [workspace.knowledge])
-  const [options, setOptions] = useState<Options>(() => ({ ...DEFAULT_OPTIONS, ...(type === 'write' ? loadWriteChoice(set.source) : {}) }))
+  const [options, setOptions] = useState<Options>(() => ({ ...DEFAULT_OPTIONS, ...(type === 'write' ? loadWriteChoice() : {}) }))
   const build = useCallback((next: Options) => {
     const left = only ?? (graded ? scope.filter(ref => !progress?.results[ref]) : undefined)
     return buildQuestions(type, { setId: set.id, items, catalog, known, content: set.content, options: next, refs: left, ...(set.unwritten ? { written: writtenCharacters(workspace.characterStates) } : {}) })
@@ -51,6 +51,9 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   const [index, setIndex] = useState(0)
   const [arrived, setArrived] = useState<string>()
   const [local, setLocal] = useState<Record<string, Mark>>({})
+  // A pad result of Needed a hint or Missed is held until Next or Mark correct, so the one recorded result is the final one.
+  const held = useRef<Outcome>()
+  useEffect(() => () => { const outcome = held.current; if (outcome) for (const [ref, mark] of Object.entries(outcome.marks)) void recordDrillResult(set.id, type, ref, mark, scope) }, [set.id, type, scope])
   const quiz = set.format === 'quiz'
   const counted = useRef(false)
   useEffect(() => {
@@ -75,7 +78,15 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     if (needsConfirm(q) && !toneOnly(q, answer)) { const suggested = suggestedMark(result); patch(q.key, { answer, status: 'marking', suggested, chosen: suggested }); return }
     if (result === 'self') { patch(q.key, { answer, status: 'marking' }); return }
     patch(q.key, { answer, status: 'done', outcome: result })
+    if (!quiz && markable(q, answer, result)) { held.current = result; return }
     record(result)
+  }
+  const release = () => { const outcome = held.current; held.current = undefined; if (outcome) record(outcome) }
+  const markCorrect = (q: Q) => {
+    const outcome: Outcome = { marks: Object.fromEntries(q.refs.map(ref => [ref, 'got' as Mark])), correct: true }
+    held.current = undefined
+    patch(q.key, { status: 'done', outcome })
+    record(outcome)
   }
   const mark = (q: Q, chosen: Mark) => {
     const outcome = selfGrade(q, states[q.key]?.answer, chosen)
@@ -146,12 +157,12 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
     <h2 className="small dr-qtitle">{titleOf(q.data.t)}</h2>
     <QuestionView key={q.key} q={q} quiz={false} state={state} ctx={ctx} arrive={arrived === q.key ? 'last' : undefined} onPrevious={type === 'learn' && index > 0 ? () => { setArrived(queue[index - 1].key); setIndex(index - 1) } : undefined} onAnswer={value => answer(q, value)} onMark={chosen => pick(q, chosen)} />
     </div>
-    <DrillAnswer q={q} state={state} last={index + 1 >= queue.length} busy={busy} canCheck={canCheck} onCheck={() => check(q, state.answer)} onNext={() => { if (state.status === 'marking') confirm(q); setIndex(index + 1) }} />
+    <DrillAnswer q={q} state={state} last={index + 1 >= queue.length} busy={busy} canCheck={canCheck} onCheck={() => check(q, state.answer)} onNext={() => { if (state.status === 'marking') confirm(q); release(); setIndex(index + 1) }} onMarkCorrect={!quiz && markable(q, state.answer, state.outcome) ? () => markCorrect(q) : undefined} />
   </section></div>
 }
 
 /** The run's one answer button, the lesson's: Check answer turns into Next (Finish on the last question) in place. Types that check themselves show it once answered; a typed answer waits for its mark. */
-function DrillAnswer({ q, state, last, busy, canCheck, onCheck, onNext }: { q: Q; state: QState; last: boolean; busy: boolean; canCheck: boolean; onCheck: () => void; onNext: () => void }) {
+function DrillAnswer({ q, state, last, busy, canCheck, onCheck, onNext, onMarkCorrect }: { q: Q; state: QState; last: boolean; busy: boolean; canCheck: boolean; onCheck: () => void; onNext: () => void; /** Pad results of Needed a hint or Missed: the pad's check can be wrong, so the learner may overrule it. */ onMarkCorrect?: () => void }) {
   const confirming = state.status === 'marking' && needsConfirm(q)
   if (isAuto(q) && state.status !== 'done') return null
   const checked = state.status === 'done' || confirming
@@ -159,5 +170,5 @@ function DrillAnswer({ q, state, last, busy, canCheck, onCheck, onNext }: { q: Q
   const marks = state.status === 'done' ? Object.values(state.outcome?.marks ?? {}) : mark ? [mark] : []
   const hint = marks.includes('hint') && !marks.includes('missed')
   const correct = marks.length > 0 && marks.every(value => value === 'got') || hint
-  return <AnswerButton result={checked ? correct : undefined} hint={checked && hint} busy={busy} ready={checked ? !confirming || !!state.chosen : canCheck} onCheck={onCheck} onNext={onNext} nextLabel={last ? 'Finish' : 'Next'} />
+  return <AnswerButton result={checked ? correct : undefined} hint={checked && hint} busy={busy} ready={checked ? !confirming || !!state.chosen : canCheck} onCheck={onCheck} onNext={onNext} nextLabel={last ? 'Finish' : 'Next'} secondary={onMarkCorrect ? <button type="button" className="button secondary" onClick={onMarkCorrect}>Mark correct</button> : undefined} />
 }

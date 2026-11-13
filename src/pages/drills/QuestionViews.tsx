@@ -180,10 +180,12 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
     <CharacterLoop characters={characters} practised={practisedWord(data.item)} workspace={ctx.workspace} onTaught={character => { void markCharactersWritten([character]) }} onDone={() => setPractising(false)} />
     <div className="button-row dr-center"><button type="button" className="button secondary" onClick={() => setPractising(false)}>Back to the question</button></div>
   </>
+  // A word with no shipped sentence is shown on its own, with its meaning.
+  const sentence = data.sentence ?? { zh: data.item.zh, py: data.item.py, en: data.item.en }
   return <>
-    <PinyinSentence py={data.sentence.py} target={data.item.py} syllable={syllable} />
-    {revealed && !locked && <p className="dr-center dr-sentence-zh" lang={getPack().learningTag}>{data.sentence.zh}</p>}
-    <div className="dr-center"><HearButton text={data.sentence.zh} locale={getPack().speechLocale} kind="sentence" label="Play the sentence" iconOnly /> <span className="small muted" lang="en">{data.sentence.en}</span></div>
+    <PinyinSentence py={sentence.py} target={data.item.py} syllable={syllable} />
+    {revealed && !locked && <p className="dr-center dr-sentence-zh" lang={getPack().learningTag}>{sentence.zh}</p>}
+    <div className="dr-center"><HearButton text={sentence.zh} locale={getPack().speechLocale} kind="sentence" label={data.sentence ? 'Play the sentence' : 'Play the word'} iconOnly /> <span className="small muted" lang="en">{sentence.en}</span></div>
     <p className="small dr-center dr-write-line">Write <mark className="dr-target">{prompt}</mark></p>
     {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} haptics={ctx.workspace.preferences.haptics !== false} matching={ctx.workspace.preferences.strokeMatching} onStep={onStep} onDone={done} />}
     {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it anywhere, then check your answer.</p>

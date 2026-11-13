@@ -815,15 +815,15 @@ describe('Learn to write and Write it', () => {
     expect(await db.characterStates.count()).toBe(0)
   }, 40000)
 
-  it('Write it is a test only: no Learn / Test switch, no teaching, Write elsewhere for reviews', async () => {
+  it('Write it is a test only: no Learn / Test switch, no teaching, the handwriting pad for reviews too', async () => {
     const id = await sharedSet('review')
     await open(id, 'write')
-    expect(await screen.findByRole('button', { name: 'Write elsewhere', pressed: true }, { timeout: 8000 })).toBeInTheDocument()
+    expect(await screen.findByRole('button', { name: 'Handwriting pad', pressed: true }, { timeout: 8000 })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Learn' })).toBeNull()
     expect(screen.queryByRole('button', { name: 'Test' })).toBeNull()
     expect(screen.queryByRole('button', { name: 'Characters' })).toBeNull()
     expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
-    expect(document.querySelector('.dr-write-line')!.textContent).toMatch(/^Write \S+ \S+$/)
+    expect(document.querySelector('.dr-write-line')!.textContent).toMatch(/^Write \S+( \S+)?$/)
   }, 40000)
 
   it('a new-item set opens Write it on the pad straight away, without teaching', async () => {
@@ -835,10 +835,11 @@ describe('Learn to write and Write it', () => {
 
   it('Reveal shows the Chinese sentence and counts as a hint', async () => {
     const user = userEvent.setup()
+    localStorage.setItem(storageNames().local.writeDrill, JSON.stringify({ mode: 'paper' }))
     const id = await sharedSet('review')
     await open(id, 'write')
     await user.click(await screen.findByRole('button', { name: /Reveal/ }, { timeout: 8000 }))
-    expect(document.querySelector('.dr-sentence-zh')).toHaveTextContent(/^(他是学生。|我学习中文。)$/)
+    expect(document.querySelector('.dr-sentence-zh')).toHaveTextContent(/学/)
     await user.click(screen.getByRole('button', { name: 'Check answer' }))
     await user.click(screen.getByRole('button', { name: 'Got it' }))
     expect(await screen.findByText('Needed a hint')).toBeInTheDocument()
@@ -846,6 +847,7 @@ describe('Learn to write and Write it', () => {
 
   it('Practice writing opens the loop inline, returns to the question and counts as a hint', async () => {
     const user = userEvent.setup()
+    localStorage.setItem(storageNames().local.writeDrill, JSON.stringify({ mode: 'paper' }))
     const id = await sharedSet('review')
     await open(id, 'write')
     await user.click(await screen.findByRole('button', { name: /Practice writing/ }, { timeout: 8000 }))

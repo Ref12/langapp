@@ -26,7 +26,7 @@ export type QData =
   /** Learn to write: the word's intro card, then the full writing loop for each of its characters. */
   | { t: 'learn'; item: ItemInfo; /** The characters to teach, when only some are (an Unwritten characters set skips the ones already written). */ chars?: string[] }
   /** Write it: one word from memory. */
-  | { t: 'write'; item: ItemInfo; sentence: Sentence; mode: WriteMode }
+  | { t: 'write'; item: ItemInfo; sentence?: Sentence; mode: WriteMode }
   | { t: 'translate'; item: ItemInfo; sentence: Sentence }
   | { t: 'repeat'; item: ItemInfo; sentence: Sentence }
   | { t: 'convo'; conversation: Conversation; mode: 'listen' | 'read' }
@@ -74,7 +74,7 @@ export function applicable(type: DrillTypeId, items: readonly ItemInfo[], conten
     case 'meanings': case 'match': return items.filter(item => item.kind === 'vocabulary')
     case 'pinyin': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && item.py)
     case 'learn': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && han.test(item.zh))
-    case 'write': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && produced(content.sentences[item.ref]) && han.test(item.zh))
+    case 'write': return items.filter(item => (item.kind === 'vocabulary' || item.kind === 'source') && han.test(item.zh))
     case 'translate': return items.filter(item => produced(content.sentences[item.ref]))
     case 'repeat': return items.filter(item => content.sentences[item.ref])
     default: return items.filter(item => content.conversations.some(conversation => conversation.lines.some(line => appearsIn(item, line.zh))))
@@ -135,7 +135,7 @@ export function buildQuestions(type: DrillTypeId, input: { setId: string; items:
         return q(`learn-${item.ref}`, [item.ref], { t: 'learn', item, chars })
       })
     }
-  if (type === 'write') return order.map(item => q(`write-${item.ref}`, [item.ref], { t: 'write', item, sentence: content.sentences[item.ref], mode: options.writeMode }))
+  if (type === 'write') return order.map(item => q(`write-${item.ref}`, [item.ref], { t: 'write', item, sentence: produced(content.sentences[item.ref]) ? content.sentences[item.ref] : undefined, mode: options.writeMode }))
   if (type === 'translate') return order.map(item => q(`translate-${item.ref}`, [item.ref], { t: 'translate', item, sentence: content.sentences[item.ref] }))
   if (type === 'repeat') return order.map(item => q(`repeat-${item.ref}`, [item.ref], { t: 'repeat', item, sentence: content.sentences[item.ref] }))
   return content.conversations.flatMap((conversation, index) => {
@@ -189,6 +189,10 @@ export function selfGrade(question: Q, answer: unknown, mark: Mark): Outcome {
 }
 
 export const catalogCharacters = () => new Set(getPack().writing.guideCharacters())
+
+/** A Write it pad result the learner may overrule: the stroke check said Needed a hint or Missed. */
+export const markable = (q: Q, answer: unknown, result: Outcome | 'self' | undefined): boolean =>
+  q.data.t === 'write' && q.data.mode === 'pad' && !(answer as WriteAnswer | undefined)?.paper && !!result && result !== 'self' && Object.values(result.marks).some(mark => mark !== 'got')
 
 /** Questions whose answer is complete the moment it is given: no Check button in one-at-a-time format. */
 export const isAuto = (q: Q) => q.data.t === 'match' || q.data.t === 'repeat' || q.data.t === 'write' || q.data.t === 'learn' || q.data.t === 'convo'

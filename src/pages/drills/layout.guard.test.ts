@@ -32,7 +32,7 @@ describe.skipIf(!chrome)('writing screens fit the viewport', () => {
       await page.getByRole('button', { name: 'Start unwritten characters' }).click()
       await page.getByText('Start practicing').first().click()
       await page.locator(`[aria-label="Start ${type}"]`).click()
-      await page.getByRole('button', { name: 'Learn to write it' }).or(page.getByRole('button', { name: 'Start writing' })).or(page.getByRole('button', { name: 'Check answer' })).first().waitFor()
+      await page.getByRole('button', { name: 'Learn to write it' }).or(page.getByRole('button', { name: 'Start writing' })).or(page.getByRole('button', { name: 'Check answer' })).or(page.getByRole('button', { name: 'Give up' })).first().waitFor()
       let seen = 0
       for (let step = 0; step < 3; step++) {
         const { scroll, inner } = await fits()

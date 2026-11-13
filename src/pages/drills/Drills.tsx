@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ComponentProps, type ReactNode } from 'react'
 import { getPack, isAreaOn, areaOfRoute } from '../../core/language'
 import { drillTypeOffered } from '../../core/drills/offered'
 import { drillText } from '../../core/language/practice-wording'
@@ -17,7 +17,8 @@ import { EmptyState, PageHeading, type PageProps } from '../../components/shared
 import { cardId } from '../../core/study/contracts'
 import { DOMAIN } from '../../core/study/knowledge'
 import { NEW_COUNT_CHOICES, NEW_COUNT_MAX, clampCount, countItems, fillByItems, lessonCount, pickReviews, reviewLimit, REVIEW_COUNT_DEFAULT, loadNewCount, loadReviewCount, saveNewCount, saveReviewCount } from '../../core/study/daily'
-import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId, type TypeProgress } from '../../core/drills/contracts'
+import { MARK_LABEL, DRILLS_LABEL, DRILL_TYPES, countMarks, scoreOf, type DrillSet, type DrillTypeId, type Sentence, type TypeProgress } from '../../core/drills/contracts'
+import { loadWriteSentences } from '../../core/drills/write-sentences'
 import { effectiveContent } from '../../core/drills/content'
 import { loadItems, type ItemInfo } from '../../core/drills/items'
 import { describeItems as describeWithCharacters } from '../../core/drills/write-queue'
@@ -85,6 +86,19 @@ export function Drills(props: PageProps & { route: string }) {
   return <SetPage {...props} set={set} page={page} type={type as DrillTypeId | undefined} query={props.route.split('?')[1] ?? ''} />
 }
 
+/** Write it: the sentences come from what ships, read here before the run starts; no model is asked. */
+function WriteRun(props: Omit<ComponentProps<typeof DrillRun>, 'type'>) {
+  const { set, items, catalog } = props
+  const [sentences, setSentences] = useState<Record<string, Sentence>>()
+  useEffect(() => {
+    let live = true
+    void loadWriteSentences(catalog, items, set.refs).then(found => { if (live) setSentences(found) })
+    return () => { live = false }
+  }, [catalog, items, set.refs])
+  if (!sentences) return <div className="opening-workspace" role="status">Opening the practice set...</div>
+  return <DrillRun {...props} type="write" set={{ ...set, content: { ...set.content, sentences } }} />
+}
+
 function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillSet; page?: string; type?: DrillTypeId; query: string }) {
   const { catalog, error } = useCatalog()
   const items = useItems(set)
@@ -93,6 +107,7 @@ function SetPage({ set, page, type, query, ...props }: PageProps & { set: DrillS
   if (page === 'intro') return <Intro {...props} set={set} items={items} catalog={catalog} />
   if (page === 'run' && type && DRILL_TYPES.some(entry => entry.id === type)) {
     const only = new URLSearchParams(query).get('missed') ? Object.entries(set.progress[type]?.results ?? {}).filter(([, mark]) => mark === 'missed').map(([ref]) => ref) : undefined
+    if (type === 'write') return <WriteRun key={`${type}:${only?.join() ?? ''}`} set={set} items={items} catalog={catalog} workspace={props.workspace} now={props.now} run={props.run} busy={props.busy} only={only} backHref={`#${setRoute(set.id)}`} />
     return <DrillRun key={`${type}:${only?.join() ?? ''}`} set={set} type={type} items={items} catalog={catalog} workspace={props.workspace} now={props.now} run={props.run} busy={props.busy} only={only} backHref={`#${setRoute(set.id)}`} />
   }
   // A set made for the engine opens on its Start screen. A set from before has no engine state (or has old-style progress) and keeps the classic view until it is finished.
