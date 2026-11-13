@@ -69,6 +69,8 @@ export interface CompletionOptions {
   toolChoice?: 'none' | 'lookup_words'
   /** Overrides the default request timeout. */
   timeoutMs?: number
+  /** The reply is plain text (not YAML blocks): used to read handwriting from a photo. */
+  plainText?: boolean
   /** Include the provider's own error message (key and header values redacted) in a failure; for the connection test, where the person needs it. */
   showDetail?: boolean
 }
@@ -229,9 +231,11 @@ function parseToolCalls(calls: { id: unknown; name: unknown; arguments: unknown 
   })
 }
 
-function parseReply(content: string): ParsedCompletion {
+function parseReply(content: string, plainText = false): ParsedCompletion {
   if (!content.trim()) return invalid('The AI returned no final reply. Try again or check the model.')
   if (content.length > MAX_REPLY_LENGTH) return invalid('The AI reply was too large. Ask for a shorter response.')
+  // A plain-text turn (photo transcription): the reply is the text itself, not a YAML document of blocks.
+  if (plainText) return { kind: 'reply', reply: { blocks: [{ type: 'text', markdown: content.trim() }] } }
   let reply: unknown
   try { reply = parsePlainYaml(content) } catch {
     return invalid('The AI reply was not valid YAML. Use one document without duplicate keys, tags, anchors, aliases, or Markdown fences; check the model or try again.')
@@ -239,7 +243,7 @@ function parseReply(content: string): ParsedCompletion {
   return { kind: 'reply', reply: validateAssistantReply(reply) }
 }
 
-function parseChatCompletion(value: unknown, nativeTools: boolean): ParsedCompletion {
+function parseChatCompletion(value: unknown, nativeTools: boolean, plainText = false): ParsedCompletion {
   if (!object(value) || !Array.isArray(value.choices) || value.choices.length !== 1 || !object(value.choices[0])) {
     return invalid('The AI service returned an invalid chat response. Check the endpoint and model.')
   }
@@ -269,10 +273,10 @@ function parseChatCompletion(value: unknown, nativeTools: boolean): ParsedComple
     return { kind: 'tools', calls, continuation: [{ role: 'assistant', content: message.content ?? null, tool_calls }] }
   }
   if (choice.finish_reason !== 'stop' || typeof message.content !== 'string' || !message.content.trim()) return invalid('The AI returned no final reply. Try again or check the model.')
-  return parseReply(message.content)
+  return parseReply(message.content, plainText)
 }
 
-function parseResponsesCompletion(value: unknown, nativeTools: boolean): ParsedCompletion {
+function parseResponsesCompletion(value: unknown, nativeTools: boolean, plainText = false): ParsedCompletion {
   if (!object(value) || !Array.isArray(value.output)) return invalid('The AI service returned an invalid Responses response. Check the endpoint and selected API type in Settings.')
   if (value.status === 'incomplete' && object(value.incomplete_details) && value.incomplete_details.reason === 'max_output_tokens') {
     return invalid('The AI response was cut off at its output-token limit. Ask for a shorter response or choose a model with lower reasoning requirements.')
@@ -342,7 +346,7 @@ function parseResponsesCompletion(value: unknown, nativeTools: boolean): ParsedC
     if (missingEncryptedReasoning) return invalid('The AI omitted encrypted reasoning needed for a stateless tool exchange. Check reasoning.encrypted_content support or choose another model; provider storage will not be enabled.')
     return { kind: 'tools', calls: parsed, continuation }
   }
-  return parseReply(text)
+  return parseReply(text, plainText)
 }
 
 function requestBody(connection: AIConnectionInput, items: unknown[], options: CompletionOptions): string {
@@ -387,7 +391,7 @@ async function requestCompletion(connection: AIConnectionInput, body: string, op
       throw httpFailure(response.status, detail)
     }
     const value = await readJSON(response, controller.signal)
-    return connection.apiType === 'responses' ? parseResponsesCompletion(value, connection.nativeTools) : parseChatCompletion(value, connection.nativeTools)
+    return connection.apiType === 'responses' ? parseResponsesCompletion(value, connection.nativeTools, options.plainText) : parseChatCompletion(value, connection.nativeTools, options.plainText)
   } catch (error) {
     if (timedOut) throw new AITransportError('The AI request timed out. Check your connection or local server and try again.')
     if (controller.signal.aborted) throw new AssistantCancelledError()

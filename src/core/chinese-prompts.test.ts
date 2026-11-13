@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-// The words the app sends to a model about Mandarin (docs/audits/2026-11-09-chinese-specific-inventory.md section 2.9, P1 to P14).
+// The words the app sends to a model about Mandarin (docs/audits/2026-11-09-chinese-specific-inventory.md section 2.9, P1 to P15).
 // Each prompt is built by the app's own code for a fixed input and compared with a readable text file in __prompts__/. A failure shows the
 // changed words as a diff of that file. Where a prompt is not exported, the call is driven through its public entry point with the model
 // call replaced by a recorder (no production code is touched); the recorder keeps what would have been sent: name, system, user and schema.
@@ -24,6 +24,7 @@ import { checkSentences, startContent } from './drills/content'
 import { learnerFixture } from './profiles/fixtures/learner'
 import { loadCatalog } from './study/catalog'
 import { initializeWorkspace, loadWorkspace } from './database'
+import { photoReadingPrompt } from './assistant/photo-answer'
 import { generateSudokuPhrase } from './games/sudoku-phrases'
 import { translateBook } from './library/translation'
 import { linkEntries } from './media/entries'
@@ -193,5 +194,10 @@ describe('prompts built inside a request (P8 to P14), recorded at the model call
     await translateMedia(media(false).id, new AbortController().signal, undefined, { concurrency: 1, chunkSize: 20, known: new Set() }).catch(() => undefined)
     const seen = new Map(recorder.calls.map(call => [call.name, call]))
     await expect(renderAll([...seen.values()])).toMatchFileSnapshot(FILE('P14-media-translation'))
+  })
+
+  it('P15 handwriting photo reading, for the three languages', async () => {
+    const text = ['Chinese', 'Japanese', 'Korean'].map(name => { const prompt = photoReadingPrompt(name); return `### ${name}\n\n--- system ---\n${prompt.system}\n\n--- user (with the photo as an image part) ---\n${prompt.user}` }).join('\n\n') + '\n'
+    await expect(text).toMatchFileSnapshot(FILE('P15-photo-answer'))
   })
 })

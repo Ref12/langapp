@@ -2,6 +2,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNod
 import { getPack, spokenText } from '../../core/language'
 import { Eye, Mic, PenLine, Pause, Play, RotateCcw, SkipForward, Square, Volume2 } from 'lucide-react'
 import { HearButton } from '../../components/assistant/SnippetActions'
+import { PhotoAnswer } from '../../components/PhotoAnswer'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
 import { guidedChars, introducedChars } from '../../core/drills/write-queue'
 import { IntroCard } from './IntroCards'
@@ -92,6 +93,7 @@ function FreeView({ data, state, onAnswer, onMark }: ViewProps & { data: Extract
   return <>
     {zh ? <p className="practice-prompt native dr-center" lang={getPack().learningTag}>{data.item.zh}</p> : <p className="practice-prompt dr-center" lang="en">{data.item.en}</p>}
     <TextInput label={zh ? 'Type the English meaning' : getPack().practiceWording.typeNativeOrReading} value={text} disabled={locked} lang={zh ? 'en' : undefined} onChange={value => set(value)} />
+    {!zh && !locked && <PhotoAnswer onText={value => set(value)} />}
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
       {hinted && <span className="small" lang={getPack().learningTag}><Pinyin text={data.item.py} />{zh ? '' : ''}</span>}</div>}
     <Confirm state={state} onMark={onMark}><p lang={getPack().learningTag}>{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Confirm>
@@ -160,6 +162,9 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
   const [practising, setPractising] = useState(false)
   const locked = state.status !== 'open'
   const [written, setWritten] = useState(false)
+  // A photo of the handwritten answer, read by the AI connection: shown as editable text; it counts as right when it holds the word.
+  const [photo, setPhoto] = useState<string>()
+  const paperAnswer = (): WriteAnswer => ({ misses: photo === undefined || photo.includes(data.item.zh) ? 0 : 1, hinted, paper: true })
   const [stroke, setStroke] = useState<{ index: number; total: number }>()
   const onStep = useCallback((index: number, total: number) => setStroke({ index, total }), [])
   const syllableList = data.item.py.trim().split(/\s+/)
@@ -182,8 +187,12 @@ function WriteView({ data, state, ctx, onAnswer, onMark, quiz }: ViewProps & { d
     <p className="small dr-center dr-write-line">Write <mark className="dr-target">{prompt}</mark></p>
     {data.mode === 'pad' && !locked && <StrokePad key={target} text={target} haptics={ctx.workspace.preferences.haptics !== false} matching={ctx.workspace.preferences.strokeMatching} onStep={onStep} onDone={done} />}
     {data.mode === 'paper' && !locked && <div className="dr-pad" role="note"><p className="small muted">Write it anywhere, then check your answer.</p>
-      {quiz ? <button type="button" className="button secondary" aria-pressed={written} onClick={() => { setWritten(!written); onAnswer(written ? undefined : { misses: 0, hinted, paper: true } satisfies WriteAnswer) }}>{written ? 'Written ✓' : 'I have written it'}</button>
-        : <button type="button" className="button primary" onClick={() => onAnswer({ misses: 0, hinted, paper: true } satisfies WriteAnswer)}>Check answer</button>}</div>}
+      {quiz ? <button type="button" className="button secondary" aria-pressed={written} onClick={() => { setWritten(!written); onAnswer(written ? undefined : paperAnswer()) }}>{written ? 'Written ✓' : 'I have written it'}</button>
+        : <button type="button" className="button primary" onClick={() => onAnswer(paperAnswer())}>Check answer</button>}</div>}
+    {!locked && <div className="dr-center">
+      <PhotoAnswer onText={setPhoto} />
+      {photo !== undefined && <TextInput label="What was read from your photo" value={photo} disabled={false} lang={getPack().learningTag} onChange={setPhoto} />}
+      {photo !== undefined && data.mode === 'pad' && <div className="button-row"><button type="button" className="button primary" onClick={() => onAnswer(paperAnswer())}>Check answer</button></div>}</div>}
     {!locked && <div className="button-row dr-hints"><span className="small muted">Hints (counts as Needed a hint):</span>
       <button type="button" className="button secondary" aria-pressed={revealed} onClick={() => { setRevealed(true); setHinted(true) }}><Eye size={16} /> Reveal</button>
       <button type="button" className="button secondary" disabled={!characters.length} onClick={() => { setHinted(true); setPractising(true) }}><PenLine size={16} /> Practice writing</button>
@@ -216,6 +225,7 @@ function TranslateView({ data, state, ctx, onAnswer, onMark }: ViewProps & { dat
     {!locked && <div className="segmented dr-modes" role="group" aria-label="How to answer">
       {(['type', 'speak', 'write'] as const).map(value => <button key={value} type="button" aria-pressed={method === value} onClick={() => setMethod(value)}>{value === 'type' ? 'Type' : value === 'speak' ? 'Speak' : 'Handwrite'}</button>)}</div>}
     {!locked && <TextInput label={getPack().practiceWording.nativeNote} value={text} disabled={false} lang={getPack().learningTag} onChange={set} />}
+    {!locked && <PhotoAnswer onText={set} />}
     {!locked && method === 'speak' && <div className="button-row">
       {speechCaptureSupported() ? <button type="button" className="button secondary" onClick={speak}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser.</p>}</div>}
     {!locked && method === 'write' && <HandwritingPad allowed={allowed} onPick={character => set(text + character)} onClose={() => setMethod('type')} />}

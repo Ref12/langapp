@@ -571,3 +571,13 @@ ruby[lang="ja"] > rt { letter-spacing: 0; }
 .tone-sample small { font-size: .75rem; }
 .tone-pickers { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
 .tone-pickers input[type="color"] { width: 100%; min-height: 36px; padding: 0; }
+
+.photo-answer { display: grid; gap: 8px; margin: 8px 0; }
+.photo-crop-frame { position: relative; width: calc(100% - 22px); margin: 12px 11px 16px; line-height: 0; touch-action: none; user-select: none; }
+.photo-crop-frame img { width: 100%; height: auto; display: block; border-radius: 6px; }
+.photo-crop-box { position: absolute; box-sizing: border-box; border: 2px solid var(--accent); box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.45); cursor: move; touch-action: none; }
+.photo-crop-handle { position: absolute; width: 22px; height: 22px; background: var(--accent); border: 2px solid #fff; border-radius: 50%; touch-action: none; }
+.photo-crop-nw { left: -11px; top: -11px; cursor: nwse-resize; } .photo-crop-ne { right: -11px; top: -11px; cursor: nesw-resize; }
+.photo-crop-sw { left: -11px; bottom: -11px; cursor: nesw-resize; } .photo-crop-se { right: -11px; bottom: -11px; cursor: nwse-resize; }
+.photo-crop-n { left: calc(50% - 11px); top: -11px; cursor: ns-resize; } .photo-crop-s { left: calc(50% - 11px); bottom: -11px; cursor: ns-resize; }
+.photo-crop-w { left: -11px; top: calc(50% - 11px); cursor: ew-resize; } .photo-crop-e { right: -11px; top: calc(50% - 11px); cursor: ew-resize; }

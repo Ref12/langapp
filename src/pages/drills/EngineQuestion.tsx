@@ -6,6 +6,7 @@ import { Mic, PenLine, Type } from 'lucide-react'
 import { AnswerButton } from '../../components/AnswerButton'
 import { AnnotatedChinese } from '../../components/study/AnnotatedChinese'
 import { HearButton } from '../../components/assistant/SnippetActions'
+import { PhotoAnswer } from '../../components/PhotoAnswer'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
 import { Pinyin } from '../../components/Pinyin'
 import { speechCaptureSupported, startSpeechCapture, type SpeechCaptureSession } from '../../core/assistant/speech-capture'
@@ -154,6 +155,7 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
     {pinyinMode && <p id="pinyin-hint" className="small muted engine-pinyin-hint">{getPack().practiceWording.readingHelp}</p>}
     {pinyinMode && reading.preview && <p className="engine-pinyin-preview" aria-live="polite" aria-label="Preview" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{reading.preview(text, exercise.accepted) || '\u00a0'}</p>}
     {mode === 'speak' && <div className="button-row" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}>{speechCaptureSupported() ? <button type="button" className="button secondary" onClick={listen}><Mic size={16} /> {listening || 'Start speaking'}</button> : <p className="small muted">Speech recognition is not available in this browser. Type instead.</p>}</div>}
+    {chinese && <div style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}><PhotoAnswer disabled={ctx.busy || locked} onText={setText} /></div>}
     {mode === 'write' && <div style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked}><HandwritingPad allowed={ctx.characters} onPick={character => setText(text + character)} onClose={() => setMode('type')} /></div>}
     <AnswerButton result={result} hint={checked?.pinyin?.verdict === 'tones'} busy={ctx.busy} ready={text.trim().length > 0} onCheck={check} onNext={() => onDone({ correct: result === true, ...(checked?.pinyin?.verdict === 'tones' ? { hint: true } : {}) })}
       secondary={modes.length ? <span className="engine-another" style={locked ? { visibility: 'hidden' } : undefined} aria-hidden={locked} role="group" aria-label="Answer another way"><span className="small muted">Answer another way:</span>
