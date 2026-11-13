@@ -5,6 +5,7 @@ import { toneClass } from '../components/tone-colour-context'
 import { getPack } from '../core/language'
 import { loadToneManifest, type ToneManifest } from '../core/tone-trainer/manifest'
 import { playClip } from '../core/tone-trainer/play'
+import { contrastPlan, type ContrastPlan } from '../core/tone-trainer/contrast'
 import { confusionRows, pickRound, recordAnswer, ROUND_SIZE, stageAccuracy, STAGE_NAME, STAGES, UNLOCK_ACCURACY, UNLOCK_WINDOW, unlockedStages, type RoundItem, type TrainerProgress, type TrainerStage } from '../core/tone-trainer/engine'
 import { loadTrainerProgress, saveTrainerAnswer } from '../core/tone-trainer/store'
 import { withTone } from '../core/pinyin'
@@ -35,6 +36,8 @@ function Round({ manifest, stage, progress, onDone, onExit }: { manifest: ToneMa
   const [local, setLocal] = useState(progress)
   const [playing, setPlaying] = useState(false)
   const [trouble, setTrouble] = useState('')
+  const [contrast, setContrast] = useState<ContrastPlan>()
+  const [contrastPlaying, setContrastPlaying] = useState(false)
   const item: RoundItem | undefined = round[at]
   const syllables = item?.item.tones.length ?? 1
   const play = useCallback(async () => {
@@ -50,16 +53,21 @@ function Round({ manifest, stage, progress, onDone, onExit }: { manifest: ToneMa
   const slots = item.item.tones.length === 2 ? [0, 1] : [0]
   const heardTones = item.item.tones
   const ready = chosen.filter(tone => tone !== undefined).length === syllables && chosen.length === syllables
+  const playContrast = async (plan: ContrastPlan) => {
+    setContrastPlaying(true); setTrouble('')
+    try { await playClip(plan.heard.file); if (plan.picked) await playClip(plan.picked.file) } catch { setTrouble('The sound could not be played. Check your connection and try again.') } finally { setContrastPlaying(false) }
+  }
   const check = async () => {
     const correct = heardTones.every((tone, index) => tone === chosen[index])
     setResult(correct); if (correct) setRight(value => value + 1)
+    if (!correct && stage !== 3) { const plan = contrastPlan(manifest, item.item, item.voice, chosen[0]); setContrast(plan); if (plan) void playContrast(plan) }
     const answer = { stage, item: item.item.id, voice: item.voice, heard: heardTones, chosen: [...chosen], correct, at: Date.now() }
     setLocal(recordAnswer(local, answer))
     await saveTrainerAnswer(answer)
   }
   const next = () => {
     if (at + 1 >= round.length) { onDone(local, right); return }
-    setAt(at + 1); setChosen([]); setResult(undefined)
+    setAt(at + 1); setChosen([]); setResult(undefined); setContrast(undefined)
   }
   const pickers = stage === 3 ? [1, 2, 3, 4, 5] : options
   return <section className="panel tt-card" aria-labelledby="tt-q">
@@ -73,11 +81,20 @@ function Round({ manifest, stage, progress, onDone, onExit }: { manifest: ToneMa
     </div>)}
     {result !== undefined && <div className={'notice answer-feedback' + (result ? ' success' : '')} role="status">
       <p>{result ? 'Right.' : 'Not quite.'} You heard <span lang={getPack().learningTag} className="tt-word">{item.item.chars.split('').map((char, index) => <span key={index} className={toneClass(heardTones[index] ?? heardTones[0])}>{char}</span>)}</span>, <span className="tt-pinyin">{item.item.pinyin.split(' ').map((syllable, index) => { const m = /^([a-z]+)([1-5])$/.exec(syllable); return <span key={index} className={toneClass(Number(m?.[2] ?? 5))}>{index > 0 && ' '}{m ? withTone(m[1], m[2]) : syllable}</span> })}</span>.</p>
-      <p className="small muted">{heardTones.map(toneLabel).join(' then ')}.</p></div>}
+      <p className="small muted">{heardTones.map(toneLabel).join(' then ')}.</p>
+      {contrast && <div className="tt-contrast" aria-label="The right tone and the one you picked">
+        <p className="tt-contrast-line"><strong>You heard:</strong> <span className="tt-pinyin">{contrast.heard.label}</span></p>
+        {contrast.picked ? <p className="tt-contrast-line"><strong>You picked:</strong> <span className="tt-pinyin">{contrast.picked.label}</span></p>
+          : <p className="small muted">There is no recording of {syllableOf(item.item, chosen[0])} in any voice, so only the right tone plays.</p>}
+        {contrast.voiceChanged && <p className="small muted">Both are in another voice, because this voice has no recording of the tone you picked.</p>}
+        <button type="button" className="button secondary" onClick={() => void playContrast(contrast)} disabled={contrastPlaying}><Play size={16} aria-hidden="true" /> {contrastPlaying ? 'Playing…' : contrast.picked ? 'Hear both again' : 'Hear it again'}</button>
+      </div>}</div>}
     <div className="answer-actions"><button type="button" className="button secondary" onClick={onExit}><ArrowLeft size={16} aria-hidden="true" /> Stop</button>
       <button type="button" className={'button primary check-answer-button' + (result === undefined ? '' : result ? ' answer-result-correct' : ' answer-result-incorrect')} disabled={result === undefined && !ready} onClick={result === undefined ? () => void check() : next}>{result === undefined ? 'Check answer' : at + 1 >= round.length ? 'Finish' : 'Next'}</button></div>
   </section>
 }
+
+const syllableOf = (item: RoundItem['item'], tone: number): string => withTone(item.pinyin.replace(/[1-5]$/, ''), String(tone))
 
 export function ToneTrainer() {
   const [manifest, setManifest] = useState<ToneManifest | null | undefined>()

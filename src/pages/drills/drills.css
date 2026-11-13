@@ -334,3 +334,5 @@
 .tt-tone[data-mark="wrong"] { border-color: #da3633; box-shadow: inset 0 0 0 2px #da3633; }
 .tt-play { min-height: 52px; font-size: 1.05rem; }
 .tt-word { font-size: 1.6rem; }
+.tt-contrast { display: grid; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border, rgba(128,128,128,.35)); }
+.tt-contrast-line { margin: 0; font-size: 1.15rem; }

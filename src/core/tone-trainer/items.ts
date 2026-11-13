@@ -59,7 +59,8 @@ export function buildSingles(bands: VocabLike[][], singleChars: Record<string, s
 
 export function pairKey(tones: number[]): string { return tones.join('') }
 
-export function buildPairs(bands: VocabLike[][]): ToneItem[] {
+/** Every curriculum word of each tone pair in curriculum order (lower HSK bands first), without the per-group cap: the audio build works down this list. */
+export function buildPairCandidates(bands: VocabLike[][]): Map<string, ToneItem[]> {
   const groups = new Map<string, ToneItem[]>()
   const seen = new Set<string>()
   for (const band of bands) for (const v of band) {
@@ -69,14 +70,18 @@ export function buildPairs(bands: VocabLike[][]): ToneItem[] {
     if (a === 5 || (a === 3 && b === 3) || /[一不]/.test(v.ch)) continue
     const id = pairId(parsed.syllables)
     if (seen.has(id)) continue
+    seen.add(id)
     const key = pairKey(parsed.tones)
     const list = groups.get(key) ?? []
-    if (list.length >= PAIR_WORDS_PER_GROUP) continue
-    seen.add(id)
     list.push({ id, kind: 'pair', chars: v.ch, pinyin: parsed.syllables.join(' '), tones: parsed.tones })
     groups.set(key, list)
   }
-  return [...groups.keys()].sort().flatMap(key => groups.get(key)!)
+  return groups
+}
+
+export function buildPairs(bands: VocabLike[][]): ToneItem[] {
+  const groups = buildPairCandidates(bands)
+  return [...groups.keys()].sort().flatMap(key => groups.get(key)!.slice(0, PAIR_WORDS_PER_GROUP))
 }
 
 export function buildToneItems(bands: VocabLike[][], singleChars: Record<string, string[]>): { singles: ToneItem[]; pairs: ToneItem[] } {
