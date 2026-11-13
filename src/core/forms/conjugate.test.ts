@@ -74,3 +74,21 @@ describe('the dictionary word forms table', () => {
     expect(hada.rows.every(row => !row.irregular)).toBe(true)
   })
 })
+
+describe('the Conjugate prompt names the form without its ending', () => {
+  it('shows no part of the ending for any form of Japanese or Korean', async () => {
+    const { formName } = await import('./conjugate')
+    for (const language of ['ja', 'ko'] as const) {
+      for (const [id, spec] of Object.entries(formsEngine(language).rules.forms)) {
+        const name = formName(language, id)
+        expect(name, language + ' ' + id).not.toMatch(/[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF\u3040-\u30FF\u4E00-\u9FFF\uFF5E~]/)
+        if (spec.add && !/^[a-z-]+$/.test(spec.add)) expect(name.includes(spec.add), language + ' ' + id + ' ' + name).toBe(false)
+      }
+    }
+  })
+  it('keeps the full label with the ending in the explanation', async () => {
+    const built = buildConjugate('ja', '勉強する', 'suru-compound', 'masu', { taught: ['masu'] })!
+    expect(built.name).toBe('polite present')
+    expect(built.label).toContain('ます')
+  })
+})

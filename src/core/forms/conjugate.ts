@@ -92,7 +92,7 @@ function pieceReadings(language: FormsLanguage, pieces: string[], reading?: stri
 }
 
 export interface ConjugateBuild {
-  lemma: string; lemmaReading?: string; cls: string; formId: string; label: string
+  lemma: string; lemmaReading?: string; cls: string; formId: string; /** The form's name without its ending: what the prompt shows. */ name: string; label: string
   answer: BuiltForm; pieces: string[]; pieceReadings: (string | undefined)[]; distractors: string[]
   rule: string; irregular: boolean
 }
@@ -119,7 +119,7 @@ export function buildConjugate(language: FormsLanguage, lemma: string, cls: stri
     const wrong = engine.forms(lemma, base, formId, options)
     if (wrong && wrong.surface !== answer.surface) for (const piece of splitPieces(lemma, wrong.surface, endingOf(language, base, formId))) add(piece)
   }
-  return { lemma, lemmaReading: opts.reading, cls, formId, label: formLabel(language, formId), answer, pieces, pieceReadings: pieceReadings(language, pieces, answer.reading), distractors, rule: ruleLine(language, lemma, cls, formId), irregular }
+  return { lemma, lemmaReading: opts.reading, cls, formId, name: formName(language, formId), label: formLabel(language, formId), answer, pieces, pieceReadings: pieceReadings(language, pieces, answer.reading), distractors, rule: ruleLine(language, lemma, cls, formId), irregular }
 }
 
 export type ConjugateResult = 'right' | 'almost' | 'wrong'

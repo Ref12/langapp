@@ -91,7 +91,7 @@ export interface ConversationItem extends BaseExercise {
 }
 /** Japanese and Korean word forms (src/core/forms). Conjugate: build the form of a known lemma from tiles, graded exactly against forms(). */
 export interface ConjugateItem extends BaseExercise {
-  form: 'conjugate'; lemma: string; lemmaReading?: string; cls: string; formId: string; label: string; gloss: string
+  form: 'conjugate'; lemma: string; lemmaReading?: string; cls: string; formId: string; name: string; label: string; gloss: string
   tiles: string[]; tileReadings: (string | undefined)[]; distractors: string[]; shuffled: number[]
   answer: string; answerReading?: string; rule: string; irregular: boolean; /** The irregular form item (ja:f:<lemma>:<form>) when the form is one. */ itemRef?: string; explanation: string
 }

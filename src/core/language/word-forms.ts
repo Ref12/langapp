@@ -89,7 +89,7 @@ export function engineWordForms(language: FormsLanguage): WordForms {
         const base = word.shown && !gives ? word.shown : { text: word.lemma, reading: word.reading }
         const shown = base.text
         out.push({
-          form: 'conjugate', refs: [word.id], lemma: shown, lemmaReading: base.reading, cls: word.cls, formId, label: built.label, gloss: word.gloss,
+          form: 'conjugate', refs: [word.id], lemma: shown, lemmaReading: base.reading, cls: word.cls, formId, name: built.name, label: built.label, gloss: word.gloss,
           tiles: built.pieces, tileReadings: [...built.pieceReadings, ...built.distractors.map(() => undefined)], distractors: built.distractors, shuffled,
           answer: built.answer.surface, answerReading: built.answer.reading, rule: built.rule, irregular: built.irregular, explanation: shown + ' in the ' + built.label + ' form is ' + built.answer.surface + '.',
         })

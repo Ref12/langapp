@@ -119,7 +119,7 @@ describe('screen text for a small seeded Japanese learner', () => {
     const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByTestId('conjugate-prompt')).toBeInTheDocument())
     // The word, its form and the meaning are drawn at random from what the lessons so far teach, and the tiles are shuffled: the pin masks them. The word is shown as the learner reads verbs (polite).
     await pin('practice-conjugate', question.replace(/(Conjugate\n)[\s\S]*?(Tap the tiles in order to build the form\.\n)[\s\S]*?(Check answer)/, '$1<word, form, meaning>\n$2<tiles>\n$3'))
-    expect(screen.getByTestId('conjugate-prompt')).toHaveTextContent(/ます/)
+    expect(screen.getByTestId('conjugate-prompt')).toHaveTextContent(/\u2192 [A-Za-z ,'()]+$/)
   }, 30000)
   it('Practice: a Which form is this? question', async () => {
     saveCustomPreset({ id: 'custom-form-pick', name: 'Which form only', forms: ['form-pick'], stages: ['recognise'] })

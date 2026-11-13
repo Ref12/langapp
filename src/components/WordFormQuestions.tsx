@@ -32,7 +32,7 @@ export function ConjugateQuestion({ exercise, ctx, onDone }: { exercise: Conjuga
   const ok = result === 'right' || result === 'almost'
   const tile = (index: number) => ctx.written(all[index], exercise.tileReadings[index])
   return <>
-    <p className="practice-prompt" data-testid="conjugate-prompt">{ctx.written(exercise.lemma, exercise.lemmaReading)} <span aria-hidden="true">{'\u2192'}</span> <span lang="en">{exercise.label}</span></p>
+    <p className="practice-prompt" data-testid="conjugate-prompt">{ctx.written(exercise.lemma, exercise.lemmaReading)} <span aria-hidden="true">{'\u2192'}</span> <span lang="en">{exercise.name}</span></p>
     <p className="small muted" lang="en">{exercise.gloss}</p>
     <div className="tile-answer" lang={ctx.lang} role="group" aria-label="Your form">
       {placed.length ? placed.map(index => <button key={index} type="button" className={`tile${result ? ok ? ' match-locked' : ' match-wrong' : ''}`} disabled={locked} onClick={() => setPlaced(placed.filter(item => item !== index))}>{tile(index)}</button>)

@@ -64,7 +64,7 @@ describe('Practice questions in a Japanese build', () => {
   })
   it('Conjugate: the answer in kana and in romaji is right, the pack\'s voice, no Chinese', async () => {
     const play = vi.spyOn(speech, 'playBrowserSpeech').mockImplementation(() => undefined)
-    const exercise = { form: 'conjugate', lemma: '\u52C9\u5F37\u3059\u308B', lemmaReading: '\u3079\u3093\u304D\u3087\u3046\u3059\u308B', cls: 'suru-compound', formId: 'masen', label: 'polite negative', gloss: 'to study', tiles: ['\u52C9\u5F37', '\u3057', '\u307E\u305B\u3093'], tileReadings: ['\u3079\u3093\u304D\u3087\u3046', undefined, undefined], distractors: [], shuffled: [2, 0, 1], answer: '\u52C9\u5F37\u3057\u307E\u305B\u3093', answerReading: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u305B\u3093', rule: 'noun + suru', irregular: false, explanation: '' }
+    const exercise = { form: 'conjugate', lemma: '\u52C9\u5F37\u3059\u308B', lemmaReading: '\u3079\u3093\u304D\u3087\u3046\u3059\u308B', cls: 'suru-compound', formId: 'masen', name: 'polite negative', label: 'polite negative', gloss: 'to study', tiles: ['\u52C9\u5F37', '\u3057', '\u307E\u305B\u3093'], tileReadings: ['\u3079\u3093\u304D\u3087\u3046', undefined, undefined], distractors: [], shuffled: [2, 0, 1], answer: '\u52C9\u5F37\u3057\u307E\u305B\u3093', answerReading: '\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u305B\u3093', rule: 'noun + suru', irregular: false, explanation: '' }
     const user = userEvent.setup()
     const view = show(exercise)
     expect(view.container.querySelector('.engine-instruction')).toHaveTextContent('Conjugate')
