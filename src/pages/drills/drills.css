@@ -345,7 +345,13 @@
 .tt-contrast-line.is-playing { font-weight: 600; }
 /* The key beside "You heard" / "You picked" is the line of the chart: solid for the right tone, dashed for the picked one. */
 .tt-key { display: inline-block; width: 26px; vertical-align: middle; border-top: 4px solid currentColor; border-radius: 2px; }
-.tt-key[data-series="picked"] { border-top-style: dashed; }
+.tt-key[data-series="picked"], .tt-key[data-series="you"] { border-top-style: dashed; }
+.tt-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 4px 0; }
+.tt-record { width: 100%; }
+.tt-level { display: block; height: 6px; border-radius: 3px; background: var(--accent, #3b82f6); transform-origin: left; transition: transform .1s; }
+.tt-level-track { height: 6px; border-radius: 3px; background: var(--line, rgba(128,128,128,.25)); margin: 6px 0; }
+.tt-speak-word { font-size: 2.4rem; line-height: 1.2; margin: 0; }
+.tt-speak-pinyin { font-size: 1.3rem; margin: 0 0 8px; }
 /* The pitch chart: about 120 px tall, the card's full width, the four tones' shapes faint behind the clip's line. */
 .tt-chart { display: block; width: 100%; height: 120px; }
 .tt-grid { stroke: var(--border, rgba(128,128,128,.35)); stroke-width: 1; opacity: .45; vector-effect: non-scaling-stroke; }

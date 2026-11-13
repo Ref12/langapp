@@ -10,6 +10,8 @@ import { contrastPlan, type ContrastPlan } from '../core/tone-trainer/contrast'
 import { confusionRows, pickRound, recordAnswer, ROUND_SIZE, stageAccuracy, STAGE_NAME, STAGES, UNLOCK_ACCURACY, UNLOCK_WINDOW, unlockedStages, type RoundItem, type TrainerProgress, type TrainerStage } from '../core/tone-trainer/engine'
 import { loadTrainerProgress, saveTrainerAnswer } from '../core/tone-trainer/store'
 import { withTone } from '../core/pinyin'
+import { SpeakCalibration, SpeakRound } from './ToneSpeak'
+import { SPEAK_ROUND_SIZE, SPEAK_STAGE_NAME, SPEAK_STAGES, speakAccuracy, speakStageUnlocked, type SpeakStage } from '../core/tone-trainer/speaking'
 import { TONE_WORDS, toneLabel } from '../core/tone-trainer/engine'
 
 
@@ -139,23 +141,46 @@ export function ToneTrainer() {
   const [progress, setProgress] = useState<TrainerProgress>()
   const [stage, setStage] = useState<TrainerStage>()
   const [summary, setSummary] = useState<{ right: number; stage: TrainerStage }>()
+  /** The speaking practice: the stage to run (after the calibration when there is none yet), whether the calibration is open, and whether the learner skipped it. */
+  const [speakStage, setSpeakStage] = useState<SpeakStage>()
+  const [calibrating, setCalibrating] = useState(false)
+  const [skipped, setSkipped] = useState(false)
+  const [speakSummary, setSpeakSummary] = useState<{ right: number; stage: SpeakStage }>()
   useEffect(() => { void loadToneManifest().then(found => setManifest(found ?? null)); void loadTrainerProgress().then(setProgress) }, [])
   /** The X: stops a round (as Stop does) and goes back to Practice. */
-  const close = () => { setStage(undefined); window.location.hash = '#practice' }
+  const close = () => { setStage(undefined); setSpeakStage(undefined); setCalibrating(false); window.location.hash = '#practice' }
+  const toListening = () => { setSpeakStage(undefined); setCalibrating(false) }
+  const speaking = progress?.speaking
+  const speakOpen = (entry: SpeakStage) => speakStageUnlocked(speaking?.answers ?? [], entry)
+  const showPicker = manifest && progress && stage === undefined && speakStage === undefined && !calibrating
   const unlocked = progress ? unlockedStages(progress.answers) : [1]
   const rows = progress ? confusionRows(progress).slice(0, 3) : []
   return <div className="page tone-trainer">
     {manifest === undefined && <p role="status" className="muted">Loading the sounds…</p>}
     {manifest === null && <p className="notice" role="alert">The sounds could not be loaded. Open the trainer once while online; after that it works offline.</p>}
-    {manifest && progress && stage === undefined && <section className="panel tt-card" aria-labelledby="tt-stages"><CloseButton onClose={close} /><h2 id="tt-stages">Pick a stage</h2>
+    {showPicker && <section className="panel tt-card" aria-labelledby="tt-stages"><CloseButton onClose={close} /><h2 id="tt-stages">Pick a stage</h2>
       {summary && <p className="notice success" role="status">Round finished: {summary.right} of {ROUND_SIZE} right in {STAGE_NAME[summary.stage]}.</p>}
       <ul className="dr-rows">{STAGES.map(entry => { const accuracy = stageAccuracy(progress.answers, entry); const open = unlocked.includes(entry)
         return <li key={entry}><div><strong>Stage {entry}: {STAGE_NAME[entry]}</strong>
           <span className="small muted">{entry === 1 ? 'One syllable, two tones to choose from.' : entry === 2 ? 'One syllable, any of the four tones.' : 'A two-syllable word: a tone for each syllable.'}{' '}
             {open ? (accuracy === undefined ? 'Unlocks the next stage at ' + Math.round(UNLOCK_ACCURACY * 100) + '% over ' + UNLOCK_WINDOW + ' answers.' : 'Last ' + UNLOCK_WINDOW + ': ' + Math.round(accuracy * 100) + '% right.') : 'Locked: reach ' + Math.round(UNLOCK_ACCURACY * 100) + '% over ' + UNLOCK_WINDOW + ' answers in stage ' + (entry - 1) + '.'}</span></div>
           <button type="button" className="button primary" disabled={!open} aria-label={'Start stage ' + entry} onClick={() => { setSummary(undefined); setStage(entry) }}>Start</button></li> })}</ul>
+      <h3 id="tt-say">Say the tone</h3>
+      {speakSummary && <p className="notice success" role="status">Round finished: {speakSummary.right} of {SPEAK_ROUND_SIZE} right first time in {SPEAK_STAGE_NAME[speakSummary.stage]}.</p>}
+      <ul className="dr-rows" aria-labelledby="tt-say">{SPEAK_STAGES.map(entry => { const accuracy = speakAccuracy(speaking?.answers ?? [], entry); const open = speakOpen(entry)
+        return <li key={entry}><div><strong>Say the tone {entry}: {SPEAK_STAGE_NAME[entry]}</strong>
+          <span className="small muted">{entry === 1 ? 'Hear a syllable, say it, and see your pitch over the model\'s.' : 'Hear a word, say it, and each syllable is judged.'}{' '}
+            {open ? (accuracy === undefined ? 'Unlocks the next at ' + Math.round(UNLOCK_ACCURACY * 100) + '% over ' + UNLOCK_WINDOW + ' first tries.' : 'Last ' + UNLOCK_WINDOW + ': ' + Math.round(accuracy * 100) + '% right.') : 'Locked: reach ' + Math.round(UNLOCK_ACCURACY * 100) + '% over ' + UNLOCK_WINDOW + ' first tries in Say the tone 1.'}</span></div>
+          <button type="button" className="button primary" disabled={!open} aria-label={'Start Say the tone ' + entry} onClick={() => { setSpeakSummary(undefined); setSpeakStage(entry); if (!speaking?.range && !skipped) setCalibrating(true) }}>Start</button></li> })}</ul>
+      <p className="small muted">{speaking?.range ? 'Your range: ' + speaking.range[0] + '–' + speaking.range[1] + ' Hz. ' : 'No range yet: the first time you say a tone you will be asked to say mā, má, mǎ, mà. '}
+        <button type="button" className="button secondary" onClick={() => { setSpeakStage(undefined); setCalibrating(true) }}>Recalibrate</button></p>
       {rows.length > 0 && <p className="small muted">You mix up most: {rows.map(row => 'tone ' + row.heard + ' heard as tone ' + row.chosen + ' (' + row.count + ')').join(', ')}. These come up more often.</p>}
     </section>}
+    {manifest && progress && calibrating && <SpeakCalibration hasRange={!!speaking?.range} onClose={close} onListening={toListening}
+      onExit={() => { setCalibrating(false); setSpeakStage(undefined) }} onSkip={() => { setSkipped(true); setCalibrating(false) }}
+      onRange={range => { setProgress({ ...progress, speaking: { answers: [], ...progress.speaking, range, rangeAt: Date.now() } }); setCalibrating(false) }} />}
+    {manifest && progress && speakStage !== undefined && !calibrating && <SpeakRound key={speakStage + ':' + (speakSummary ? 1 : 0)} manifest={manifest} stage={speakStage} progress={progress} onExit={() => setSpeakStage(undefined)} onClose={close} onListening={toListening}
+      onRecalibrate={() => setCalibrating(true)} onDone={(next, right) => { setProgress(next); setSpeakSummary({ right, stage: speakStage }); setSpeakStage(undefined) }} />}
     {manifest && progress && stage !== undefined && <Round key={stage + ':' + (summary ? 1 : 0)} manifest={manifest} stage={stage} progress={progress} onExit={() => setStage(undefined)} onClose={close}
       onDone={(next, right) => { setProgress(next); setSummary({ right, stage }); setStage(undefined) }} />}
   </div>

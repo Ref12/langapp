@@ -2,7 +2,7 @@ import { describeCurve, TONE_SHAPES, type Curve } from '../core/tone-trainer/cur
 
 /** One line on the chart: a clip's curves (one per syllable), in the colour of the tone it carries. */
 export interface CurveSeries {
-  id: 'heard' | 'picked'
+  id: 'heard' | 'picked' | 'you'
   /** The tone of each syllable (1-4, 5 neutral): the line's colour. */
   tones: number[]
   curves: (Curve | null)[]
@@ -10,6 +10,8 @@ export interface CurveSeries {
   state?: 'playing' | 'dimmed'
   /** Said in the text alternative ("You heard"); left out for a chart with one line. */
   label?: string
+  /** A fixed colour instead of the tone's (the learner's own line). */
+  colour?: string
 }
 
 const W = 300, H = 120, PAD = 8, GAP = 16, TOP = 12, BOTTOM = 108
@@ -50,7 +52,7 @@ export function ToneCurveChart({ series, syllables }: { series: CurveSeries[]; s
     </g>)}
     {series.map(line => <g key={line.id} aria-hidden="true">
       {line.curves.map((curve, segment) => curve && <path key={segment} className="tt-line" data-series={line.id} data-state={line.state ?? 'idle'} d={pathOf(curve, segments[segment] ?? segments[0], width)}
-        stroke={colour(line.tones[segment] ?? line.tones[0])} strokeDasharray={line.id === 'picked' ? '7 5' : undefined} />)}
+        stroke={line.colour ?? colour(line.tones[segment] ?? line.tones[0])} strokeDasharray={line.id === 'heard' ? undefined : '7 5'} />)}
     </g>)}
   </svg>
 }

@@ -1,6 +1,7 @@
 // The tone trainer's rules, with no UI: stages, the unlock rule, and the adaptive picker.
 // Stage 1: single syllables, two tones to choose from (contrasting 1/4 first, then 2/3). Stage 2: singles, all four tones. Stage 3: two-syllable words, a tone per syllable.
 import type { ToneManifest, ToneManifestItem } from './manifest'
+import type { SpeakingProgress } from './speaking'
 
 export const ROUND_SIZE = 20
 /** A stage unlocks the next when this share of the last UNLOCK_WINDOW answers in it are right. */
@@ -21,6 +22,8 @@ export interface TrainerProgress {
   /** Per voice: [answered, missed]. */
   voices: Record<string, [number, number]>
   stage: TrainerStage
+  /** The speaking practice ("Say the tone"): its own answers and the learner's pitch range, kept apart from the listening stages above. */
+  speaking?: SpeakingProgress
 }
 export const MAX_KEPT_ANSWERS = 300
 export const emptyProgress = (): TrainerProgress => ({ id: 'progress', answers: [], confusion: {}, voices: {}, stage: 1 })
