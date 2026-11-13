@@ -2,7 +2,9 @@
 // The files are plain same-origin GETs, so the app's service worker keeps them in its runtime cache: a second visit works offline.
 import type { ToneItem } from './items'
 
-export interface ToneClip { file: string; chars: string }
+
+/** t0/t1: a pair's word timings. */
+export interface ToneClip { file: string; chars: string; t0?: number; t1?: number; }
 export interface ToneManifestItem extends ToneItem { clips: Record<string, ToneClip> }
 export interface ToneManifest { version: 1; voices: { id: string; voice: string; gender: string }[]; items: ToneManifestItem[] }
 

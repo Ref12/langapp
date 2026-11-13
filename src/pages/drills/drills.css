@@ -326,7 +326,12 @@
 .engine-meaning { margin: 2px 0 8px; }
 
 /* Tone trainer */
-.tone-trainer .tt-card { display: grid; gap: 10px; }
+.tone-trainer .tt-card { display: grid; gap: 10px; position: relative; }
+/* The X sits at the top right of the card; the eyebrow leaves room for it. */
+.tt-close { position: absolute; top: 4px; right: 4px; }
+.tt-card > .eyebrow { padding-right: 44px; }
+.tt-card > h2 { padding-right: 44px; margin: 0; }
+.tt-mark { min-height: 1.3em; }
 .tt-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
 .tt-tone { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-height: 56px; text-align: left; }
 .tt-tone.selected { outline: 2px solid var(--accent, #58a6ff); outline-offset: 1px; }
@@ -336,3 +341,15 @@
 .tt-word { font-size: 1.6rem; }
 .tt-contrast { display: grid; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border, rgba(128,128,128,.35)); }
 .tt-contrast-line { margin: 0; font-size: 1.15rem; }
+.tt-contrast-line.is-dimmed { opacity: .55; }
+.tt-contrast-line.is-playing { font-weight: 600; }
+/* The key beside "You heard" / "You picked" is the line of the chart: solid for the right tone, dashed for the picked one. */
+.tt-key { display: inline-block; width: 26px; vertical-align: middle; border-top: 4px solid currentColor; border-radius: 2px; }
+.tt-key[data-series="picked"] { border-top-style: dashed; }
+/* The pitch chart: about 120 px tall, the card's full width, the four tones' shapes faint behind the clip's line. */
+.tt-chart { display: block; width: 100%; height: 120px; }
+.tt-grid { stroke: var(--border, rgba(128,128,128,.35)); stroke-width: 1; opacity: .45; vector-effect: non-scaling-stroke; }
+.tt-shape { fill: none; stroke-width: 6; opacity: .16; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.tt-line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; transition: opacity .15s; }
+.tt-line[data-state="playing"] { stroke-width: 5; }
+.tt-line[data-state="dimmed"] { opacity: .3; }
