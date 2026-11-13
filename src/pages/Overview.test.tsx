@@ -35,7 +35,7 @@ describe('Overview on the study model', () => {
     expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0words in your knowledge set0 grammar · 0 characters')
     expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0new-item lessons finished')
     expect(screen.getByText('Nothing due. Go to Lessons')).toHaveAttribute('href', '#lessons')
-    expect(screen.getByRole('button', { name: /Start new items/ })).toBeDisabled()
+    await waitFor(() => expect(screen.getByRole('button', { name: /Start new items/ })).toBeEnabled())
   })
 
   // Flaky under CI load (progressbar not found, 2026-10-30; Overview unchanged since it last passed). Skipped until fixed properly.
@@ -63,22 +63,30 @@ describe('Overview on the study model', () => {
     const review = await screen.findByRole('button', { name: /Review due items/ })
     await waitFor(() => expect(review).toBeEnabled())
     await user.click(review)
-    await waitFor(() => expect(window.location.hash).toMatch(/^#lessons\/session\//))
+    await waitFor(() => expect(window.location.hash).toBe('#practice?mode=review'))
   })
 
-  it('Start opens a new v2 session for the next group', async () => {
+  it('with no AI connection, Start new items and Review due items are enabled and open Practice', async () => {
     const user = userEvent.setup()
-    await db.aiConnections.add(connection)
-    structured.requestStructuredJSON.mockImplementation(async (_c, request) => {
-      const targets = JSON.parse(request.user).targets.map((target: { ref: string }) => target.ref)
-      return { exercises: ['c1', 'c2', 'c3', 'c4'].map(id => ({ id, type: 'choice', targets, direction: 'zh-to-en', question: '我', options: ['I', 'you'], answer: 0, explanation: 'I.' })) }
-    })
+    const catalog = await loadCatalog()
+    await addToKnowledge(nextGroup(catalog, new Set())!.units.map(unit => unit.ref))
+    const cards = await db.studyCards.toArray()
+    await db.studyCards.bulkPut(cards.map(card => ({ ...card, due: Date.now() - 60_000 })))
+    expect(await db.aiConnections.count()).toBe(0)
     render(<App />)
+    expect(screen.queryByText(/Connect a model in Settings/)).not.toBeInTheDocument()
+    const review = await screen.findByRole('button', { name: /Review due items/ })
+    await waitFor(() => expect(review).toBeEnabled())
+    await user.click(review)
+    await waitFor(() => expect(window.location.hash).toBe('#practice?mode=review'))
+    expect(await db.exerciseSessions.count()).toBe(0)
+    window.location.hash = '#overview'
     const start = await screen.findByRole('button', { name: /Start new items/ })
     await waitFor(() => expect(start).toBeEnabled())
+    expect(screen.queryByText(/Connect a model in Settings/)).not.toBeInTheDocument()
     await user.click(start)
-    await waitFor(() => expect(window.location.hash).toMatch(/^#lessons\/session\//))
-    expect(await db.exerciseSessions.count()).toBe(1)
+    await waitFor(() => expect(window.location.hash).toBe('#practice?mode=new'))
+    expect(await db.exerciseSessions.count()).toBe(0)
   })
 
   it('offers Resume for an unfinished new session instead of Start', async () => {

@@ -7,12 +7,13 @@ import { countItems } from '../core/study/daily'
 import { curriculumWords } from '../data/curriculum'
 import { RestoreOffer } from '../components/BackupPanel'
 import { PageHeading, type PageProps } from '../components/shared'
+import { navigate } from '../core/routing'
 import { useStudyActions } from './useStudyActions'
 
 const WEEK = 7 * 24 * 60 * 60 * 1000
 
 export function Overview({ workspace, now, run, busy }: PageProps) {
-  const { catalog, connection, rows, next, progress, start } = useStudyActions({ workspace, now, run })
+  const { catalog, rows, next, progress } = useStudyActions({ workspace, now, run })
   // The counts are the learner's language only. The Lab Chinese build's tables can still hold old ja:/ko: rows (kept, never shown); rowsOfCurrentLanguage leaves them out.
   const preferences = workspace.preferences
   const knowledge = rowsOfCurrentLanguage(workspace.knowledge, entry => [entry.ref], preferences)
@@ -36,8 +37,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
         <h2>{empty ? `Lessons are on their way for ${pack.wording.language}.` : next ? `${bandName(pack, next.band)}, group ${Math.min((progress?.completed ?? 0) + 1, progress?.total ?? 1)} of ${progress?.total ?? 1}` : catalog ? 'You have added every group.' : 'Loading the curriculum...'}</h2>
         <p>{empty ? 'You can already practice writing. Reviews and practice will follow with the lessons.' : next ? `${next.newUnits.length} new ${next.newUnits.length === 1 ? 'item' : 'items'} to add to your knowledge set.`   : catalog ? `Review what is due and keep building toward ${pack.wording.goals}.` : ''}</p>
         {resumable ? <a className="button primary" href={`#lessons/session/${resumable.id}`}>Resume lesson <ArrowRight size={16} /></a>
-          : <button className="button primary" disabled={busy || !next || !connection} onClick={() => start('new')}>Start new items <ArrowRight size={16} /></button>}
-        {!connection && next && <p className="small muted"><a className="text-link" href="#settings">Connect a model in Settings</a> to start a session.</p>}
+          : <button className="button primary" disabled={busy || !next} onClick={() => navigate('practice?mode=new')}>Start new items <ArrowRight size={16} /></button>}
         {progress && !empty && <div className="course-progress"><div className="card-topline"><span>Groups added to your knowledge set</span><strong>{progress.completed} / {progress.total}</strong></div>
           <progress aria-label="Curriculum groups completed" value={progress.completed} max={progress.total} />
           <p className="small muted">Practice is a step toward the course goals, not a fluency assessment.</p></div>}
@@ -45,7 +45,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
       <article className="daily-card"><div className="card-topline"><span className="eyebrow">KEEP IT FRESH</span><Sparkles size={20} /></div>
         <div className="review-count">{due}<span>{due === 1 ? 'item to review' : 'items to review'}</span></div>
         <p className="muted">{knowledge.length ? 'A little recall goes a long way. Review what is due.' : 'Start a lesson or add items from your Dictionary. Your review queue will grow with you.'}</p>
-        {due ? <button className="button primary full-width" disabled={busy || !connection} onClick={() => start('review')}>Review due items <ArrowRight size={16} /></button>
+        {due ? <button className="button primary full-width" disabled={busy} onClick={() => navigate('practice?mode=review')}>Review due items <ArrowRight size={16} /></button>
           : <a className="button secondary full-width" href="#lessons">Nothing due. Go to Lessons <ArrowRight size={16} /></a>}
         <p className="small muted">Saved on this device. No account needed.</p>
       </article>
