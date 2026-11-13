@@ -33,6 +33,8 @@ export function PageSettingsButton({ route, label, page, workspace, busy, run }:
     return () => document.removeEventListener('keydown', onKey)
   }, [open])
   if (page === 'settings') return <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current="page"><SettingsIcon size={20} /></a>
+  const [routePage, routeId] = route.split('?')[0].split('/')
+  const onPractice = routePage === 'practice' && (!routeId || routeId === 'set')
   const vibration = typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function'
   return <span className="page-settings-anchor">
     <button ref={trigger} className="icon-button" aria-label="Workspace settings" aria-haspopup="dialog" aria-expanded={open} aria-controls="page-settings-sheet"
@@ -55,6 +57,8 @@ export function PageSettingsButton({ route, label, page, workspace, busy, run }:
             onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> {`Show ${pack.wording.reading}`}</label>
           {pack.tones && <label className="toggle"><input type="checkbox" checked={preferences.toneColours === true} disabled={busy}
             onChange={event => void run(() => savePreferences({ toneColours: event.target.checked }))} /> Tone colours</label>}
+          {onPractice && <label className="toggle"><input type="checkbox" role="switch" checked={preferences.promptAutoPlay === true} disabled={busy}
+            onChange={event => void run(() => savePreferences({ promptAutoPlay: event.target.checked }))} /> Auto-play sound</label>}
           {styles && styles.choices.length > 1 && <label className="page-settings-field">{styles.label}
             <select value={readingStyle} disabled={busy}
               onChange={event => { const choice = styles.choices.find(item => item === event.target.value); if (choice) void run(() => savePreferences({ readingStyle: choice })) }}>

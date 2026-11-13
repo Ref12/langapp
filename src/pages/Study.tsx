@@ -83,7 +83,7 @@ export function spoken(text: string, readings: Map<string, Set<string>>, kind: '
 }
 
 /** `bare` leaves out the Check/Next button (a drill page supplies its own) and reports the selection through `onSelect`. */
-export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak, bare, onSelect, name = 'answer' }: Annotation & { name?: string; bare?: boolean; onSelect?: (index: number) => void; speak: boolean; exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
+export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings, pinyin, speak, bare, onSelect, name = 'answer', beside }: Annotation & { name?: string; /** Beside the Chinese question word, e.g. a play button. */ beside?: React.ReactNode; bare?: boolean; onSelect?: (index: number) => void; speak: boolean; exercise: ChoiceExercise; attempt?: ExerciseAttempt; submit: (response: unknown) => void; next: () => void; busy: boolean }) {
   const [selected, setSelected] = useState(attempt ? Number(attempt.response) : -1)
   const chineseQuestion = exercise.direction === 'zh-to-en'
   const speechId = useId()
@@ -96,7 +96,7 @@ export function ChoiceQuestion({ exercise, attempt, submit, next, busy, readings
   }
   return <>
     {chineseQuestion
-      ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.question} readings={readings} pinyin={pinyin} /></p>
+      ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.question} readings={readings} pinyin={pinyin} />{beside && <> {beside}</>}</p>
       : <p className="practice-prompt" lang="en">{exercise.question}</p>}
     <ToneHold when={!attempt}><fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
       {visibleOptions(exercise).map(index => [exercise.options[index], index] as const).map(([option, index]) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${attempt && index === exercise.answer ? 'correct-option' : ''}`}>

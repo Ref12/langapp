@@ -25,17 +25,17 @@ const answer = async (user: ReturnType<typeof userEvent.setup>, option: string) 
   await user.click(screen.getByRole('button', { name: /Check answer/ }))
 }
 
-describe('Play sentence after an answer', () => {
-  it('has no Play sentence button before the answer, and the button speaks the whole sentence after it, again on each press', async () => {
+describe('Play the sentence after an answer', () => {
+  it('has no Play the sentence button before the answer, and the button speaks the whole sentence after it, again on each press', async () => {
     const user = userEvent.setup()
     render(<ExerciseQuestion exercise={gap} ctx={ctx} onDone={vi.fn()} />)
-    expect(screen.queryByRole('button', { name: 'Play sentence' })).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Play the sentence' })).toBeNull()
     await answer(user, '前')
     expect(play).not.toHaveBeenCalled()
-    await user.click(screen.getByRole('button', { name: 'Play sentence' }))
+    await user.click(screen.getByRole('button', { name: 'Play the sentence' }))
     expect(play).toHaveBeenCalledTimes(1)
     expect(play).toHaveBeenLastCalledWith(expect.any(String), '下午上课前喝茶。', 'zh-Hans')
-    await user.click(screen.getByRole('button', { name: 'Play sentence' }))
+    await user.click(screen.getByRole('button', { name: 'Play the sentence' }))
     expect(play).toHaveBeenCalledTimes(2)
   })
   it('with auto-play on, speaks the sentence once when the answer is revealed', async () => {
@@ -67,7 +67,7 @@ describe('Play sentence after an answer', () => {
     const user = userEvent.setup()
     render(<ExerciseQuestion exercise={ja} ctx={ctx} onDone={vi.fn()} />)
     await answer(user, '学生')
-    await user.click(screen.getByRole('button', { name: 'Play sentence' }))
+    await user.click(screen.getByRole('button', { name: 'Play the sentence' }))
     expect(play).toHaveBeenCalledWith(expect.any(String), expect.stringContaining('学生'), 'ja-JP')
   })
 })

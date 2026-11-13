@@ -64,7 +64,7 @@ describe('practice-set entry', () => {
   })
 })
 
-describe('Auto-play sentences', () => {
+describe('Auto-play sound', () => {
   const gap = { id: 'g', refs: ['a'], stage: 'use', round: 0, form: 'gap', sentence: '下午上课前喝茶。', gapped: '下午上课____喝茶。', options: ['好', '前', '和', '天'], answer: 1, translation: 'Drink tea before class in the afternoon.', explanation: '' } as unknown as Exclude<SessionExercise, { form: 'intro' | 'repeat' }>
   const reveal = async (user: ReturnType<typeof userEvent.setup>) => {
     const autoPlay = (await db.preferences.get('workspace'))?.promptAutoPlay === true
@@ -79,11 +79,11 @@ describe('Auto-play sentences', () => {
     window.location.hash = `#practice/set/${id}`
     const user = userEvent.setup()
     render(<App />)
-    const toggle = await screen.findByRole('switch', { name: 'Auto-play sentences' })
+    const toggle = await screen.findByRole('switch', { name: 'Auto-play sound' })
     expect(toggle).not.toBeChecked()
     await user.click(toggle)
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.promptAutoPlay).toBe(true))
-    await waitFor(() => expect(screen.getByRole('switch', { name: 'Auto-play sentences' })).toBeChecked())
+    await waitFor(() => expect(screen.getByRole('switch', { name: 'Auto-play sound' })).toBeChecked())
     cleanup()
     await reveal(user)
     expect(speech.playBrowserSpeech).toHaveBeenCalledTimes(1)
@@ -91,8 +91,8 @@ describe('Auto-play sentences', () => {
     cleanup(); vi.mocked(speech.playBrowserSpeech).mockClear()
     window.location.hash = `#practice/set/${id}`
     render(<App />)
-    await waitFor(() => expect(screen.getByRole('switch', { name: 'Auto-play sentences' })).toBeChecked())
-    await user.click(screen.getByRole('switch', { name: 'Auto-play sentences' }))
+    await waitFor(() => expect(screen.getByRole('switch', { name: 'Auto-play sound' })).toBeChecked())
+    await user.click(screen.getByRole('switch', { name: 'Auto-play sound' }))
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.promptAutoPlay).toBe(false))
     cleanup()
     await reveal(user)

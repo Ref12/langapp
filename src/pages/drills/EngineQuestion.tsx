@@ -20,6 +20,7 @@ import { ConversationQuestion, ExchangePick, WhichCorrect } from './DatasetQuest
 import { ConjugateQuestion, FormPickQuestion, type WordFormContext } from '../../components/WordFormQuestions'
 import { useShowsReading } from '../../components/display-settings'
 import { SentenceAudio } from './SentenceAudio'
+import { PlayButton } from '../../components/PlayButton'
 import { ToneHold, ToneText } from '../../components/ToneText'
 import { WhichTones } from './WhichTones'
 
@@ -55,16 +56,19 @@ function Flag({ exercise }: { exercise: SessionExercise }) {
 }
 
 /** A multiple-choice exercise from the lesson's ChoiceQuestion (choice, fill the gap and listen and pick all use it). */
-function PickQuestion({ exercise, shape, header, ctx, onDone }: { exercise: ChoiceItem | GapItem | ListenItem; shape: ChoiceExercise; header?: React.ReactNode; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
+function PickQuestion({ exercise, shape, header, ctx, onDone }: { exercise: ChoiceItem | GapItem | ListenItem; shape: ChoiceExercise; header?: (checked: boolean) => React.ReactNode; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
   const [selected, setSelected] = useState(-1)
   const [result, setResult] = useState<boolean>()
   const attempt = result === undefined ? undefined : attemptOf(exercise, String(selected), result)
+  // "Choose the meaning": the sound gives the reading, not the meaning, so the word's button is there from the start.
+  const word = exercise.form === 'choice' && exercise.direction === 'zh-to-en' ? exercise.question : undefined
+  const wordReading = word ? (set => set?.size === 1 ? [...set][0] : undefined)(ctx.readings.get(word)) : undefined
   return <>
     <Flag exercise={exercise} />
-    {header}
-    <ChoiceQuestion exercise={shape} attempt={attempt} submit={() => undefined} next={() => undefined} busy={ctx.busy} readings={ctx.readings} pinyin={ctx.pinyin} speak={ctx.speak} bare onSelect={setSelected} name={exercise.id} />
+    {header?.(result !== undefined)}
+    <ChoiceQuestion exercise={shape} attempt={attempt} submit={() => undefined} next={() => undefined} busy={ctx.busy} readings={ctx.readings} pinyin={ctx.pinyin} speak={ctx.speak} bare onSelect={setSelected} name={exercise.id} beside={word ? <PlayButton text={word} kind="word" reading={wordReading} /> : undefined} />
     <AnswerButton result={result} busy={ctx.busy} ready={selected >= 0} onCheck={() => setResult(selected === shape.answer)} onNext={() => onDone({ correct: result === true })} />
-    {result !== undefined && <div className="notice answer-feedback" role="status"><p>{exercise.explanation}</p>{(exercise.form === 'gap' || exercise.form === 'listen-pick') && <SentenceAudio text={exercise.form === 'gap' ? exercise.sentence : exercise.hearText} autoPlay={ctx.autoPlay} />}</div>}
+    {result !== undefined && <div className="notice answer-feedback" role="status"><p>{exercise.explanation}</p>{word && <SentenceAudio text={word} kind="word" reading={wordReading} autoPlay={ctx.autoPlay} button={false} />}{(exercise.form === 'gap' || exercise.form === 'listen-pick') && <SentenceAudio text={exercise.form === 'gap' ? exercise.sentence : exercise.hearText} autoPlay={ctx.autoPlay} button={exercise.form !== 'gap'} />}</div>}
   </>
 }
 
@@ -132,13 +136,17 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
   // A pack whose typed reading is what the audio says keeps the Hear button back until the answer is checked.
   // Only a form whose answer is a whole sentence gets Play sentence: the model answer, or the Chinese prompt when the answer is its meaning.
   const sentence = exercise.form === 'translate-zh-en' ? (exercise.hearText ?? (exercise.promptLang === 'zh' ? exercise.prompt : undefined)) : exercise.form === 'translate-en-zh' || exercise.form === 'dictation' || exercise.form === 'exchange-reply' ? exercise.model : undefined
-  const hearNow = !(pinyinMode && reading.audioIsAnswer) || locked
+  // Hearing the Chinese prompt gives nothing away, so its small button sits beside it from the start; every other sentence waits for the check.
+  // A typed reading or a recalled word: the sound is the answer, so it plays (auto-play) only once checked; the Hear it button above is its button.
+  const wordForm = exercise.form === 'pinyin' || exercise.form === 'recall' ? exercise.hearText : undefined
+  const beside = exercise.form === 'translate-zh-en' && exercise.promptLang === 'zh' && !!sentence
+  const hearNow = !(exercise.form === 'pinyin' || exercise.form === 'recall') || locked
   return <ToneHold when={pinyinMode && !locked}>
     <Flag exercise={exercise} />
-    {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin && (exercise.answerLang !== 'py' || locked)} /></p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
+    {exercise.prompt && (exercise.promptLang === 'zh' ? <p className="practice-prompt native"><AnnotatedChinese text={exercise.prompt} readings={ctx.readings} pinyin={ctx.pinyin && (exercise.answerLang !== 'py' || locked)} />{beside && sentence && <> <PlayButton text={sentence} kind="sentence" /></>}</p> : <p className="practice-prompt" lang="en">{exercise.prompt}</p>)}
     {exercise.form === 'exchange-reply' && exercise.replyEn && <p className="engine-cue" lang="en">Reply: “{exercise.replyEn}”</p>}
     {exercise.form === 'exchange-reply' && exercise.questionEn && <p className="small engine-meaning"><button type="button" className="link-button" aria-expanded={meaning} onClick={() => setMeaning(!meaning)}>{meaning ? 'Hide meaning' : 'Show meaning'}</button>{meaning && <span lang="en"> “{exercise.questionEn}”</span>}</p>}
-    {exercise.hearText && hearNow && <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} kind={exercise.form === 'recall' || exercise.form === 'pinyin' ? 'word' : 'sentence'} reading={exercise.form === 'recall' || exercise.form === 'pinyin' ? exercise.modelPinyin : undefined} label="Hear it" /></p>}
+    {exercise.hearText && hearNow && !beside && <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} kind={exercise.form === 'recall' || exercise.form === 'pinyin' ? 'word' : 'sentence'} reading={exercise.form === 'recall' || exercise.form === 'pinyin' ? exercise.modelPinyin : undefined} label="Hear it" /></p>}
     <label className="engine-answer dr-free"><span className="visually-hidden">Your answer</span>
       <input type="text" value={text} disabled={locked || ctx.busy} lang={chinese ? getPack().learningTag : exercise.answerLang === 'py' ? (reading.takesLearningScript ? pack.learningTag : undefined) : 'en'} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="text" aria-describedby={pinyinMode ? 'pinyin-hint' : undefined}
         placeholder={chinese ? exercise.form === 'exchange-reply' ? getPack().practiceWording.replyNative : getPack().practiceWording.typeNative : exercise.answerLang === 'py' ? getPack().practiceWording.readingPlaceholder : 'Type the meaning'} onChange={event => setText(event.target.value)}
@@ -159,7 +167,8 @@ function Text({ exercise, ctx, onDone }: { exercise: TextItem; ctx: QuestionCont
       {checked.grade?.ignored.length ? <p className="small muted">{checked.grade.ignored.join(', ')} left out or added: optional here.</p> : null}
       {exercise.modelPinyin && chinese && <p className="small"><Pinyin text={tidyPinyin(exercise.modelPinyin)} /></p>}
       {!checked.correct && <button type="button" className="link-button" aria-pressed={counted} onClick={() => setCounted(!counted)}>{counted ? 'Counted as correct' : 'I was right: count it'}</button>}
-      {sentence && <SentenceAudio text={sentence} autoPlay={ctx.autoPlay} />}
+      {sentence && <SentenceAudio text={sentence} autoPlay={ctx.autoPlay} button={!beside} />}
+      {wordForm && <SentenceAudio text={wordForm} kind="word" reading={exercise.modelPinyin} autoPlay={ctx.autoPlay} button={false} />}
       {exercise.explanation && exercise.explanation.trim() !== exercise.prompt?.trim() && <p className="small muted">{exercise.explanation}</p>}</div>}
   </ToneHold>
 }
@@ -189,7 +198,7 @@ function ExerciseBody({ exercise, ctx, onDone }: { exercise: Exclude<SessionExer
     return undefined
   }, [exercise])
   if (choiceShape && (exercise.form === 'choice' || exercise.form === 'gap' || exercise.form === 'listen-pick')) {
-    const header = exercise.form === 'gap' ? <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.gapped}</p> : exercise.form === 'listen-pick' ? <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} kind="sentence" label="Hear it" /></p> : undefined
+    const header = exercise.form === 'gap' ? (checked: boolean) => <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.gapped}{checked && <> <PlayButton text={exercise.sentence} kind="sentence" /></>}</p> : exercise.form === 'listen-pick' ? () => <p><HearButton text={exercise.hearText} locale={getPack().speechLocale} kind="sentence" label="Hear it" /></p> : undefined
     return <PickQuestion exercise={exercise} shape={choiceShape} header={header} ctx={ctx} onDone={onDone} />
   }
   if (exercise.form === 'conjugate' || exercise.form === 'form-pick') return <WordForm exercise={exercise} ctx={ctx} onDone={onDone} />

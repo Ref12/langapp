@@ -82,8 +82,8 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
           <div className="segmented" role="group" aria-label="Length">
             {LENGTHS.map(value => <button key={value} type="button" disabled={busy} aria-pressed={engine.length === value} onClick={() => void run(async () => { await setEngineChoice(set.id, { length: value }) })}>{LENGTH_LABEL[value]}</button>)}</div></div>
           <div><span className="eyebrow">Sound</span>
-            <label className="toggle engine-autoplay"><input type="checkbox" role="switch" checked={workspace.preferences.promptAutoPlay === true} disabled={busy} onChange={event => { const on = event.target.checked; void run(async () => { await savePreferences({ promptAutoPlay: on }) }) }} /> Auto-play sentences</label>
-            <p className="small muted">Plays the whole sentence by itself when you answer. Off by default.</p></div></div>
+            <label className="toggle engine-autoplay"><input type="checkbox" role="switch" checked={workspace.preferences.promptAutoPlay === true} disabled={busy} onChange={event => { const on = event.target.checked; void run(async () => { await savePreferences({ promptAutoPlay: on }) }) }} /> Auto-play sound</label>
+            <p className="small muted">Plays the word or sentence by itself when you answer. Off by default.</p></div></div>
       {error && <p className="notice error" role="alert">{error}</p>}
       {!plan && !error && <p className="small muted" role="status">Planning the session…</p>}
       {plan && <p className="engine-estimate" role="status"><strong>{plan.total} exercises</strong> · about {estimateMinutes(plan.total)} min · {counts.map(entry => `${STAGE_LABEL[entry.stage]} ${entry.count}`).join(' · ')}</p>}
