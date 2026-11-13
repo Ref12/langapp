@@ -1,7 +1,8 @@
-import { createHash, randomBytes } from 'node:crypto'
+import { randomBytes } from 'node:crypto'
 import type { ClientRequest, IncomingMessage } from 'node:http'
 import WebSocket, { type RawData } from 'ws'
 import { z } from 'zod'
+import { secMsGecV2 } from './edge-tts-gec'
 import { edgeVoiceIdSchema } from '../src/core/assistant/contracts'
 import type { LocalTtsRequest, LocalTtsWordBoundary } from '../src/core/local-tts-contracts'
 
@@ -54,15 +55,13 @@ export class EdgeTtsError extends Error {
 }
 
 export function buildEdgeUrl(endpoint: 'synthesis' | 'voices'): URL {
-  const windowsSeconds = BigInt(Math.floor(Date.now() / 1000)) + 11_644_473_600n
-  const ticks = (windowsSeconds - windowsSeconds % 300n) * 10_000_000n
-  const gec = createHash('sha256').update(`${ticks}${CLIENT_ID}`).digest('hex').toUpperCase()
+  const gec = secMsGecV2(Date.now() / 1000, CLIENT_ID)
   const url = new URL(endpoint === 'voices'
     ? 'https://speech.platform.bing.com/consumer/speech/synthesize/readaloud/voices/list'
     : 'wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1')
   url.searchParams.set(endpoint === 'voices' ? 'trustedclienttoken' : 'TrustedClientToken', CLIENT_ID)
   url.searchParams.set('Sec-MS-GEC', gec)
-  url.searchParams.set('Sec-MS-GEC-Version', `1-${CLIENT_VERSION}`)
+  url.searchParams.set('Sec-MS-GEC-Version', `2-${CLIENT_VERSION}`)
   if (endpoint === 'synthesis') url.searchParams.set('ConnectionId', randomBytes(16).toString('hex'))
   return url
 }

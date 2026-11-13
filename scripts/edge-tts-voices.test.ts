@@ -58,8 +58,8 @@ describe('Edge catalog request protocol', () => {
     expect(url.pathname).toBe('/consumer/speech/synthesize/readaloud/voices/list')
     expect([...url.searchParams.keys()].sort()).toEqual(['Sec-MS-GEC', 'Sec-MS-GEC-Version', 'trustedclienttoken'])
     expect(url.searchParams.get('trustedclienttoken')).toMatch(/^[A-F0-9]{32}$/)
-    expect(url.searchParams.get('Sec-MS-GEC')).toBe('6043E00D83E4740FEAE1FAB745400A2AE23270E93B1CBB4B6C2A825305EC1BCA')
-    expect(url.searchParams.get('Sec-MS-GEC-Version')).toBe('1-143.0.3650.75')
+    expect(url.searchParams.get('Sec-MS-GEC')).toBe('7F1F0BB71060D137-A1D07E55744CAE75730122A01D8121E735D0AF6E4A604F5496296E8CF82265F6')
+    expect(url.searchParams.get('Sec-MS-GEC-Version')).toBe('2-143.0.3650.75')
     expect(init).toEqual({
       method: 'GET', headers: expect.any(Object), signal: expect.any(AbortSignal), redirect: 'error',
     })

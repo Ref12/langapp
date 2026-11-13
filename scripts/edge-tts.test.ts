@@ -155,7 +155,7 @@ describe('Edge speech request protocol', () => {
     ])
     expect(socket.url.searchParams.get('TrustedClientToken')?.length).toBe(32)
     expect(socket.url.searchParams.get('ConnectionId')).toMatch(/^[a-f0-9]{32}$/)
-    expect(socket.url.searchParams.get('Sec-MS-GEC-Version')).toBe('1-143.0.3650.75')
+    expect(socket.url.searchParams.get('Sec-MS-GEC-Version')).toBe('2-143.0.3650.75')
     expect(socket.options).toMatchObject({
       handshakeTimeout: 10_000, maxPayload: frameLimit, followRedirects: false, perMessageDeflate: false,
     })
@@ -170,10 +170,10 @@ describe('Edge speech request protocol', () => {
   })
 
   it.each([
-    ['2026-09-22T12:30:00Z', '6043E00D83E4740FEAE1FAB745400A2AE23270E93B1CBB4B6C2A825305EC1BCA'],
-    ['2026-09-22T12:34:59.999Z', '6043E00D83E4740FEAE1FAB745400A2AE23270E93B1CBB4B6C2A825305EC1BCA'],
-    ['2026-09-22T12:35:00Z', '3307D3E8192CD2D78E0EFF2A53A8CFD4201DF3DB9B9E652FDC144AC0B074CC14'],
-    ['1970-01-01T00:00:00Z', '7ECB79D14E3AA576D2D79E6D487A1388156D91E614B1BE11C64226A29BC8DD8C'],
+    ['2026-09-22T12:30:00Z', '7F1F0BB71060D137-A1D07E55744CAE75730122A01D8121E735D0AF6E4A604F5496296E8CF82265F6'],
+    ['2026-09-22T12:34:59.999Z', '7F1F0BB71060D137-A1D07E55744CAE75730122A01D8121E735D0AF6E4A604F5496296E8CF82265F6'],
+    ['2026-09-22T12:35:00Z', 'FB723A46D4667A7B-0628D8F0F3E6D9852628D76AF55354E010D66314170B7682581E455079016416'],
+    ['1970-01-01T00:00:00Z', '52BC7A17B50DFEC9-28C4394775C8751CD2F6859C030C06DB1489ACAB3B3A7651831FC26895177ED6'],
   ])('computes the Windows-epoch, five-minute GEC vector at %s', async (date, expected) => {
     vi.setSystemTime(new Date(date))
     const { socket, result } = start()
