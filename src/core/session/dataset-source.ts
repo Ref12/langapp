@@ -125,7 +125,10 @@ export function createDatasetSource(options: DatasetSourceOptions): DatasetSourc
           for (const line of entry.lines) take(line.zh)
           out.push({
             id: `use-ds-${entry.id}`, stage, form: 'conversation', refs: refsOf(entry), round: 0, title: entry.speakers.map(speaker => speaker.name).join(' and '), speakers: entry.speakers,
-            lines: entry.lines, questions: entry.questions, explanation: entry.lines.map(line => `${line.name}: ${line.zh}`).join(' '),
+            lines: entry.lines,
+            // Options are shuffled per question: the shipped data mostly lists the right answer first.
+            questions: entry.questions.map(question => { const order = shuffle(question.options.map((_, index) => index), rng); return { ...question, options: order.map(index => question.options[index]), answer: order.indexOf(question.answer) } }),
+            explanation: entry.lines.map(line => `${line.name}: ${line.zh}`).join(' '),
           } satisfies ConversationItem)
         }
       }

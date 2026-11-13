@@ -142,6 +142,18 @@ describe('conversations in Use', () => {
     expect(talk.speakers.map(speaker => speaker.name)).toEqual(['小明', '王老师'])
     expect(talk.lines.map(line => line.speaker)).toEqual(['male', 'female', 'male', 'female'])
     expect(talk.questions).toHaveLength(2)
+    // Options are shuffled, but the answer still points at the same option text.
+    expect(talk.questions.map(question => question.options[question.answer])).toEqual(['Xiao Ming', 'Teacher Wang'])
+    expect([...talk.questions[0].options].sort()).toEqual(['Nobody', 'Teacher Wang', 'Xiao Ming'])
+  })
+  it('does not keep the right answer first: over many seeds the right option moves', () => {
+    const firsts = new Set<number>()
+    for (let seed = 1; seed <= 20; seed++) {
+      const source = createDatasetSource({ data, catalog, seed, bank, readyAt: 100 })
+      const [talk] = source.exercises({ stage: 'use', forms: ['conversation'] as never, items, allowed, taken: () => false, take: () => true }) as ConversationItem[]
+      firsts.add(talk.questions[0].answer)
+    }
+    expect(firsts.size).toBeGreaterThan(1)
   })
   it('never forces one: not when a word is unknown, readyAt is not reached, or no session item is touched', () => {
     expect(exercises('use', ['conversation'], { allowed: new Set([...allowed].filter(ref => ref !== STUDENT)) })).toHaveLength(0)
