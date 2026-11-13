@@ -18,6 +18,7 @@ import type { ItemInfo } from '../../core/drills/items'
 import { createDrillSet, finishEngineRun, recordEngineResult, saveEngineAnswer, setEngineChoice, shortDate } from '../../core/drills/store'
 import { itemCount } from '../../core/collections/terms'
 import { estimateMinutes } from '../../core/session/plan'
+import { recordConversationsHeard } from '../../core/session/conversation-rotation'
 import { planSetSession } from '../../core/session/set-plan'
 import { BUILTIN_PRESETS, FORMS_BY_STAGE, SPOKEN_PRESETS } from '../../core/session/presets'
 import { loadCustomPresets, saveCustomPreset } from '../../core/session/custom-preset'
@@ -140,7 +141,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const characters = useMemo(() => new Set([...forms].flatMap(form => Array.from(form))), [forms])
   const finished = useRef(false)
   const score = state ? summarise(state.log) : undefined
-  useEffect(() => { if (state?.done && state.log.length && score && !finished.current) { finished.current = true; void run(async () => { await finishEngineRun(set.id, score) }) } }, [state, score, set.id, run])
+  useEffect(() => { if (state?.done && state.log.length && score && !finished.current) { finished.current = true; void run(async () => { await recordConversationsHeard(plan?.stages.flatMap(entry => entry.exercises).filter(exercise => exercise.form === 'conversation').map(exercise => exercise.id.replace(/^use-ds-/, '')) ?? []); await finishEngineRun(set.id, score) }) } }, [state, score, set.id, run, plan])
   if (error) return <div className="notice error" role="alert">{error}</div>
   if (!plan || !state) return <div className="opening-workspace" role="status">Planning the session…</div>
   const spoken = SPOKEN_PRESETS.includes(engine.preset)

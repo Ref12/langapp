@@ -1,4 +1,5 @@
 import { formatPinyin } from '../../core/pinyin'
+import { rotate, type ConversationLog } from '../../core/session/conversation-rotation'
 import { getPack } from '../../core/language'
 import type { Catalog } from '../../core/study/catalog'
 import type { ChoiceExercise, MatchExercise } from '../../core/study/contracts'
@@ -96,11 +97,14 @@ export function availability(type: DrillTypeId, items: readonly ItemInfo[], cont
   return { state: 'empty', message: 'There is nothing for this type in this set.', count }
 }
 
+/** A drill conversation has no id of its own: its first two lines name it in the heard log. */
+export const drillConversationId = (conversation: Conversation): string => 'drill:' + conversation.lines.slice(0, 2).map(line => line.zh).join('|')
+
 const ITEM_SEED = (key: string) => seedFrom(key)
 
 /** The questions of a type for the given items. */
-export function buildQuestions(type: DrillTypeId, input: { setId: string; items: readonly ItemInfo[]; catalog: Catalog; known: Set<string>; content: DrillContent; options: Options; refs?: readonly string[]; /** Characters already written: Learn to write leaves them out. Given only for an Unwritten characters set. */ written?: ReadonlySet<string> }): Q[] {
-  const { setId, catalog, known, content, options } = input
+export function buildQuestions(type: DrillTypeId, input: { setId: string; items: readonly ItemInfo[]; catalog: Catalog; known: Set<string>; content: DrillContent; options: Options; refs?: readonly string[]; /** The conversations heard so far (listen and read put the new ones first). */ heardLog?: ConversationLog; /** Characters already written: Learn to write leaves them out. Given only for an Unwritten characters set. */ written?: ReadonlySet<string> }): Q[] {
+  const { setId, catalog, known, content, options, heardLog } = input
   const only = input.refs ? new Set(input.refs) : undefined
   const items = applicable(type, input.items, content).filter(item => !only || only.has(item.ref))
   const rng = createRng(ITEM_SEED(`${setId}:${type}`))
@@ -138,7 +142,9 @@ export function buildQuestions(type: DrillTypeId, input: { setId: string; items:
   if (type === 'write') return order.map(item => q(`write-${item.ref}`, [item.ref], { t: 'write', item, sentence: produced(content.sentences[item.ref]) ? content.sentences[item.ref] : undefined, mode: options.writeMode }))
   if (type === 'translate') return order.map(item => q(`translate-${item.ref}`, [item.ref], { t: 'translate', item, sentence: content.sentences[item.ref] }))
   if (type === 'repeat') return order.map(item => q(`repeat-${item.ref}`, [item.ref], { t: 'repeat', item, sentence: content.sentences[item.ref] }))
-  return content.conversations.flatMap((conversation, index) => {
+  // Conversations the learner has not had come first, then the one heard longest ago; the one from the previous session comes last.
+  const turns = heardLog ? rotate(content.conversations.map((conversation, index) => ({ conversation, index })), turn => drillConversationId(turn.conversation), heardLog, rng) : content.conversations.map((conversation, index) => ({ conversation, index }))
+  return turns.flatMap(({ conversation, index }) => {
     const refs = items.filter(item => conversation.lines.some(line => appearsIn(item, line.zh))).map(item => item.ref)
     return refs.length ? [q(`${type}-${index}`, refs, { t: 'convo', conversation, mode: type as 'listen' | 'read' })] : []
   })

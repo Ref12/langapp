@@ -9,11 +9,12 @@ import type { Catalog } from '../../core/study/catalog'
 import { MARK_LABEL, countMarks, drillType, scoreOf, type DrillSet, type DrillTypeId, type Mark } from '../../core/drills/contracts'
 import type { ItemInfo } from '../../core/drills/items'
 import { writtenCharacters } from '../../core/drills/write-queue'
+import { conversationLog, recordConversationsHeard, type ConversationLog } from '../../core/session/conversation-rotation'
 import { recordDrillResult, recordRedo } from '../../core/drills/store'
 import { loadWriteChoice, saveWriteChoice } from './write-choice'
 import { QuestionView, type QState, type ViewContext } from './QuestionViews'
 import { AnswerButton } from '../../components/AnswerButton'
-import { DEFAULT_OPTIONS, markable, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, toneOnly, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q } from './tasks'
+import { DEFAULT_OPTIONS, markable, applicable, catalogCharacters, isAuto, needsConfirm, suggestedMark, toneOnly, buildQuestions, grade, selfGrade, type Options, type Outcome, type Q, drillConversationId } from './tasks'
 
 interface RunProps extends Pick<PageProps, 'now' | 'run' | 'busy'> {
   set: DrillSet
@@ -33,7 +34,14 @@ const TITLES: Record<string, string> = {
 const titleOf = (key: string) => getPack().practiceWording.drillTitles[key] ?? TITLES[key]
 
 /** One drill type over the items of a set: one at a time, or as a single page answered in bulk. The first pass of a type is graded; a redo is not. */
-export function DrillRun({ set, type, items, catalog, workspace, only, backHref, now, run, busy }: RunProps) {
+export function DrillRun(props: RunProps) {
+  // Listen and read put the conversations the learner has not had first, so the log is read before the queue is built.
+  const [heardLog, setHeardLog] = useState<ConversationLog | undefined>(() => props.type === 'listen' || props.type === 'read' ? undefined : new Map())
+  useEffect(() => { if (!heardLog) void conversationLog().then(setHeardLog) }, [heardLog])
+  return heardLog ? <DrillRunQueue {...props} heardLog={heardLog} /> : null
+}
+
+function DrillRunQueue({ set, type, items, catalog, workspace, only, backHref, now, run, busy, heardLog }: RunProps & { heardLog: ConversationLog }) {
   const progress = set.progress[type]
   // Fixed when the pass starts: finishing it marks the type done, which must not turn its own summary into a redo.
   const [graded] = useState(() => !only && !progress?.done)
@@ -42,7 +50,7 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   const [options, setOptions] = useState<Options>(() => ({ ...DEFAULT_OPTIONS, ...(type === 'write' ? loadWriteChoice() : {}) }))
   const build = useCallback((next: Options) => {
     const left = only ?? (graded ? scope.filter(ref => !progress?.results[ref]) : undefined)
-    return buildQuestions(type, { setId: set.id, items, catalog, known, content: set.content, options: next, refs: left, ...(set.unwritten ? { written: writtenCharacters(workspace.characterStates) } : {}) })
+    return buildQuestions(type, { setId: set.id, items, catalog, known, content: set.content, options: next, refs: left, heardLog, ...(set.unwritten ? { written: writtenCharacters(workspace.characterStates) } : {}) })
   // The queue is fixed when a pass starts or an option changes; results arriving later must not reshuffle it.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, set.id, items, catalog])
@@ -54,6 +62,15 @@ export function DrillRun({ set, type, items, catalog, workspace, only, backHref,
   // A pad result of Needed a hint or Missed is held until Next or Mark correct, so the one recorded result is the final one.
   const held = useRef<Outcome>()
   useEffect(() => () => { const outcome = held.current; if (outcome) for (const [ref, mark] of Object.entries(outcome.marks)) void recordDrillResult(set.id, type, ref, mark, scope) }, [set.id, type, scope])
+  // A conversation counts as heard once its questions are answered.
+  const heardKeys = useRef(new Set<string>())
+  useEffect(() => {
+    for (const q of queue) {
+      if (q.data.t !== 'convo' || states[q.key]?.status !== 'done' || heardKeys.current.has(q.key)) continue
+      heardKeys.current.add(q.key)
+      void recordConversationsHeard([drillConversationId(q.data.conversation)])
+    }
+  }, [queue, states])
   const quiz = set.format === 'quiz'
   const counted = useRef(false)
   useEffect(() => {

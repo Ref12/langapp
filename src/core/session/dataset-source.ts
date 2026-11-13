@@ -5,6 +5,7 @@ import { readyLesson } from '../phrases/dictionary'
 import { phraseKey } from '../phrases/key'
 import { createRng } from '../study/local-exercises'
 import type { PracticeData, Exchange, Conversation, NearMiss } from '../practice-data'
+import { rotate, type ConversationLog } from './conversation-rotation'
 import type { DatasetSource } from './sources'
 import type { ConversationItem, ExchangePickItem, Form, SessionExercise, TextItem, WhichCorrectItem } from './types'
 
@@ -21,6 +22,8 @@ export interface DatasetSourceOptions {
   bank: readonly BankPhrase[]
   /** The lesson index the learner has reached. Default: worked out from the knowledge set. */
   readyAt?: number
+  /** The conversations the learner has had (conversationLog()); none: all are new. */
+  heard?: ConversationLog
 }
 
 /** The lesson index reached by a knowledge set: the lesson by which all its words and grammar patterns are introduced. */
@@ -116,7 +119,7 @@ export function createDatasetSource(options: DatasetSourceOptions): DatasetSourc
       }
       if (stage === 'use' && want('conversation')) {
         const candidates = data.readyBy(readyAt).conversations.filter((entry: Conversation) => fits(entry) && touched(entry).length)
-        const entry = shuffle(candidates, rng)[0]
+        const entry = rotate(candidates, (candidate: Conversation) => candidate.id, options.heard ?? new Map(), rng)[0]
         if (entry) {
           // A conversation is its own context, so its lines may repeat a drill sentence; they are still reserved so later drills do not repeat them.
           for (const line of entry.lines) take(line.zh)
