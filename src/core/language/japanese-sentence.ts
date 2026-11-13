@@ -9,6 +9,7 @@ import { isParticle, normaliseTile, PARTICLES, SUBJECT_WORDS, type ParticleLangu
 import type { Blanked, BlankInput, SentenceInput, SpelledToken, SpellInput } from './sentence-forms'
 import { gradeTiles, swappedParticle } from './tiles-grade'
 import { toHiragana } from './romanize'
+import { canonicalTimeOrder, jaTime, koTime, type TimeRules } from './time-order'
 
 /**
  * THE KANA RULE (the owner's open question 4, taken as the recommendation): may a token be typed as its reading instead of as written (べんきょうします for 勉強します)?
@@ -16,9 +17,9 @@ import { toHiragana } from './romanize'
  */
 export const kanaStandsForKanji = (token: SpelledToken): boolean => token.text !== ''
 
-interface Rule { language: ParticleLanguage; /** Japanese: kana for kanji, katakana for hiragana and romaji are accepted; Korean: the sentence as written only. */ kana: boolean }
-export const JA_RULE: Rule = { language: 'ja', kana: true }
-export const KO_RULE: Rule = { language: 'ko', kana: false }
+interface Rule { language: ParticleLanguage; /** What counts as a time expression and a subject (time-order.ts): a time word before or after the subject is the same answer. */ time: TimeRules; /** Japanese: kana for kanji, katakana for hiragana and romaji are accepted; Korean: the sentence as written only. */ kana: boolean }
+export const JA_RULE: Rule = { language: 'ja', time: jaTime, kana: true }
+export const KO_RULE: Rule = { language: 'ko', time: koTime, kana: false }
 
 /** A text as it is compared: full-width folded, spaces and punctuation gone, katakana as hiragana, Latin in lower case. */
 const fold = (text: string): string => toHiragana(normaliseTile(text)).toLowerCase()
@@ -136,6 +137,16 @@ function withoutLeading(wordings: readonly Wording[], optional: readonly string[
   return out
 }
 
+/** The wording that is the answer's tiles with the time expression and the subject in the other order (今日は私は for 私は今日は), if any. */
+function timeReordered(rule: Rule, wordings: readonly Wording[], given: (tokens: readonly SpelledToken[]) => readonly string[]): number {
+  return wordings.findIndex(wording => {
+    if (!wording.tokens) return false
+    const mine = canonicalTimeOrder(given(wording.tokens).map(normaliseTile).filter(Boolean), rule.time)
+    const theirs = canonicalTimeOrder(wording.tokens.map(token => normaliseTile(token.text)).filter(Boolean), rule.time)
+    return mine.length === theirs.length && mine.every((tile, at) => tile === theirs[at])
+  })
+}
+
 function wrong(rule: Rule, wordings: readonly Wording[], given: readonly string[], placed: readonly string[]): ChineseGrade {
   const texts = (wording: Wording): string[] => wording.tokens ? wording.tokens.map(token => token.text) : [wording.sentence]
   let best = wordings[0], cost = Infinity
@@ -189,6 +200,8 @@ export function gradeJapaneseSentence(rule: Rule, input: SentenceInput): Chinese
     // the leading subject tiles are optional: the sentence without them is right too
     const leftOut = withoutLeading(wordings, input.optional ?? []).find(wording => wording.tokens && wording.tokens.length === given.length && wording.tokens.every((token, at) => normaliseTile(token.text) === given[at]))
     if (leftOut) return right(leftOut, 1, false)
+    const moved = timeReordered(rule, wordings, () => given)
+    if (moved >= 0) return right(wordings[moved], moved, true)
     return wrong(rule, wordings, given, input.placed)
   }
   const raw = input.text.normalize('NFKC')
@@ -207,6 +220,8 @@ export function gradeJapaneseSentence(rule: Rule, input: SentenceInput): Chinese
   const folded = fold(raw)
   const variant = wordings.findIndex(wording => wording.tokens ? covers(folded, wording.tokens, rule) : fold(wording.sentence) === folded)
   if (variant >= 0) return right(wordings[variant], variant, false, spacing(wordings[variant]))
+  const moved = timeReordered(rule, wordings, tokens => tokenise(raw, tokens, rule))
+  if (moved >= 0) return right(wordings[moved], moved, true)
   const dropped = withoutLeading(wordings, input.optional ?? []).find(wording => written(wording.sentence) === written(raw) || (wording.tokens && covers(folded, wording.tokens, rule)))
   if (dropped) return right(dropped, 1, false)
   const added = withAddedSubject(rule, folded, input.english, wordings, input.optional ?? [])

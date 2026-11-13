@@ -12,11 +12,15 @@ export interface SegmentWords {
   surface?: (ref: string) => string | undefined
 }
 
+import { canonicalTimeOrder, jaTime, koTime, zhTime } from './time-order'
+
 export interface PhraseIdentity {
   /** What makes two sentences the same: equal keys mean the same sentence. Stored data is keyed by it. */
   phraseKey(text: string): string
   /** The tiles of a sentence, in order, without punctuation. Empty when the data cannot say. */
   segment(text: string, words: SegmentWords): string[]
+  /** The tiles with a sentence-initial time expression and the subject in one order (time first): a time word before or after the subject is the same answer (time-order.ts). */
+  canonicalTimeOrder(words: readonly string[]): string[]
 }
 
 const NOT_HAN = /[^\p{Script=Han}]/gu
@@ -39,7 +43,7 @@ export function segmentHan(text: string, forms: ReadonlySet<string>): string[] {
   return out
 }
 
-export const zhIdentity: PhraseIdentity = { phraseKey: hanPhraseKey, segment: (text, words) => segmentHan(text, words.forms) }
+export const zhIdentity: PhraseIdentity = { phraseKey: hanPhraseKey, segment: (text, words) => segmentHan(text, words.forms), canonicalTimeOrder: words => canonicalTimeOrder(words, zhTime) }
 
 const NOT_LETTER = /[^\p{L}\p{N}\p{M}]/gu
 
@@ -61,7 +65,7 @@ export function segmentTokens(words: SegmentWords, atSpaces = false): string[] {
   return out
 }
 
-export const jaIdentity: PhraseIdentity = { phraseKey: lettersPhraseKey, segment: (_text, words) => segmentTokens(words) }
+export const jaIdentity: PhraseIdentity = { phraseKey: lettersPhraseKey, segment: (_text, words) => segmentTokens(words), canonicalTimeOrder: words => canonicalTimeOrder(words, jaTime) }
 
 /**
  * Korean: the letters key, and a question mark counts (공부해요? asks what 공부해요. states, so they are two sentences). The tiles are the sentence's tokens cut at spaces, so a particle is its own tile
@@ -70,4 +74,5 @@ export const jaIdentity: PhraseIdentity = { phraseKey: lettersPhraseKey, segment
 export const koIdentity: PhraseIdentity = {
   phraseKey: text => lettersPhraseKey(text) + (/[?\uFF1F]\s*$/u.test(text.trim()) ? '?' : ''),
   segment: (text, words) => words.tokens?.length ? segmentTokens(words, true) : text.split(/\s+/u).filter(part => lettersPhraseKey(part)),
+  canonicalTimeOrder: words => canonicalTimeOrder(words, koTime),
 }

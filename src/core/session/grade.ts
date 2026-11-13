@@ -152,8 +152,10 @@ export function gradeChinese(answer: string, accepted: readonly string[], forms:
   const key = phraseKey(answer)
   const exact = accepted.findIndex(candidate => phraseKey(candidate) === key)
   if (key && exact >= 0) return { verdict: 'correct', closest: accepted[exact], alternative: exact > 0, differences: [], ignored: [], messages: [] }
-  const given = segmentWords(answer, forms)
-  const options = accepted.map(candidate => ({ candidate, words: segmentWords(candidate, forms) }))
+  // a time expression before or after the subject is the same answer: compare both sides with the pair in one order
+  const inOrder = (words: string[]) => getPack().canonicalTimeOrder(words)
+  const given = inOrder(segmentWords(answer, forms))
+  const options = accepted.map(candidate => ({ candidate, words: inOrder(segmentWords(candidate, forms)) }))
   let best = options[0]
   let cost = Infinity
   for (const option of options) {
