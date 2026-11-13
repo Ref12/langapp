@@ -54,10 +54,10 @@ export function FormPickQuestion({ exercise, ctx, onDone }: { exercise: FormPick
   const [result, setResult] = useState<boolean>()
   return <>
     <p className="practice-prompt native" data-testid="form-pick-prompt">{ctx.written(exercise.surface, exercise.reading)} {ctx.hear(exercise.surface, 'Hear the form', exercise.reading)}</p>
-    <fieldset className="answer-options" disabled={ctx.busy || result !== undefined}><legend className="visually-hidden">Choose the word and form</legend>
+    <fieldset className="answer-options" disabled={ctx.busy || result !== undefined}><legend className="visually-hidden">Choose the form</legend>
       {exercise.options.map((option, index) => <label key={index} className={`answer-option ${selected === index ? 'selected' : ''} ${result !== undefined && index === exercise.answer ? 'correct-option' : ''}`}>
         <input type="radio" name={exercise.id} checked={selected === index} onChange={() => setSelected(index)} />
-        <span>{ctx.written(option.lemma, option.reading)} <span lang="en">{'\u00B7'} {option.label}</span><span className="small muted" lang="en"> {'\u2014'} {option.gloss}</span></span>
+        <span lang="en">{option.name}</span>
         <span className="answer-option-mark">{result !== undefined && index === exercise.answer && <Check size={18} aria-label="Correct answer" />}</span></label>)}
     </fieldset>
     <AnswerButton result={result} busy={ctx.busy} ready={selected >= 0} onCheck={() => setResult(selected === exercise.answer)} onNext={() => onDone({ correct: result === true })} />

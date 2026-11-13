@@ -121,8 +121,8 @@ export function engineWordForms(language: FormsLanguage): WordForms {
       picked.add(token.surface)
       const right = built.options[built.answer]
       out.push({
-        form: 'form-pick', refs: [word.id], surface: built.surface, reading: built.reading, options: built.options.map(({ lemma, reading, gloss, label }) => ({ lemma, reading, gloss, label })), answer: built.answer, rule: built.rule, phrase: built.phrase,
-        explanation: built.surface + ' is ' + right.label + ' of ' + right.lemma + ' ("' + right.gloss + '").',
+        form: 'form-pick', refs: [word.id], surface: built.surface, reading: built.reading, options: built.options, answer: built.answer, rule: built.rule, phrase: built.phrase,
+        explanation: built.surface + ' is the ' + right.label + ' form of ' + built.lemma + ', ' + built.gloss + '.',
       })
     }
     return out

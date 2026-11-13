@@ -165,7 +165,7 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     await setEngineChoice(id, { preset: 'custom-form-pick' })
     const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByTestId('form-pick-prompt')).toBeInTheDocument())
     // The sentence's word and the options are drawn at random: the pin masks them.
-    await pin('practice-form-pick', question.replace(/(Which form is this\?\n)[\s\S]*?(Check answer)/, '$1<inflected word, reading>\nChoose the word and form\n<options>\n$2'))
+    await pin('practice-form-pick', question.replace(/(Which form is this\?\n)[\s\S]*?(Check answer)/, '$1<inflected word, reading>\nChoose the form\n<options>\n$2'))
     expect(screen.getAllByRole('radio').length).toBeGreaterThanOrEqual(3)
   }, 30000)
 })

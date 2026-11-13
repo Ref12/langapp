@@ -139,11 +139,44 @@ describe('Which form is this?, from a real inflected token', () => {
     expect(made.length).toBeGreaterThan(0)
     for (const entry of made) {
       expect(entry.options.length).toBeGreaterThanOrEqual(3)
-      expect(new Set(entry.options.map(option => option.lemma + option.label)).size).toBe(entry.options.length)
+      expect(new Set(entry.options.map(option => option.name)).size).toBe(entry.options.length)
       expect(entry.options[entry.answer].label).toBeTruthy()
       expect(entry.phrase?.text).toContain(entry.surface)
       expect(entry.refs).toHaveLength(1)
     }
+  })
+})
+
+describe('Which form is this?: the choices are form names only', () => {
+  it('for 働きましょう the choices name forms, hold the right one and no ending, English or other word; the feedback names the ending', async () => {
+    const { allowed } = await planFor(12)
+    const items = await loadItems([...allowed], catalog)
+    const bank = await loadSessionBank(catalog, items, allowed)
+    const made = wf.exercises({ ...request('recognise', allowed, 12, 40), inflected: inflectedWords(bank.all, allowed) }) as FormPickItem[]
+    expect(made.length).toBeGreaterThan(0)
+    for (const entry of made) {
+      const names = entry.options.map(option => option.name)
+      expect(new Set(names).size).toBe(names.length)
+      for (const name of names) { expect(name).not.toMatch(/[\u3040-\u30FF\u4E00-\u9FFF\uFF5E~]/); expect(name).not.toMatch(/\u52C9\u5F37|\u50CD/) }
+      expect(names).toContain(entry.options[entry.answer].name)
+      expect(entry.explanation).toContain(entry.options[entry.answer].label)
+    }
+    const mashou = made.find(entry => entry.options[entry.answer].formId === 'mashou')
+    if (mashou) { expect(mashou.options[mashou.answer].name).toBe("let's (volitional)"); expect(mashou.explanation).toMatch(/ましょう form of/) }
+  })
+})
+
+describe('Which form is this? for 働きましょう', () => {
+  it('has form names only, the right one among them, and the feedback names the ending', async () => {
+    const { buildFormPickFor } = await import('../forms/conjugate')
+    const word = { id: 'w', lemma: '働く', reading: 'はたらく', cls: 'godan-ku', gloss: 'to work' }
+    const built = buildFormPickFor('ja', word, 'mashou', [{ id: 'x', lemma: '勉強する', cls: 'suru', gloss: 'to study' }], () => 0.3)!
+    expect(built.surface).toBe('働きましょう')
+    const names = built.options.map(option => option.name)
+    expect(new Set(names).size).toBe(names.length)
+    expect(names).toContain("let's (volitional)")
+    for (const name of names) expect(name).not.toMatch(/[\u3040-\u30FF\u4E00-\u9FFF\uFF5E~]|勉強/)
+    expect(built.options[built.answer].label).toBe("let's ～ましょう")
   })
 })
 

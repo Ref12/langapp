@@ -80,7 +80,7 @@ describe('Practice questions in a Japanese build', () => {
   })
   it('Which form is this?: a pick is marked and the form explained', async () => {
     const user = userEvent.setup()
-    const view = show({ form: 'form-pick', surface: '\u4F11\u3093\u3067\u304F\u3060\u3055\u3044', reading: '\u3084\u3059\u3093\u3067\u304F\u3060\u3055\u3044', answer: 1, rule: 'godan', explanation: 'x is te form of y.', options: [{ lemma: '\u4F11\u3080', reading: '\u3084\u3059\u3080', gloss: 'to rest', label: 'polite' }, { lemma: '\u4F11\u3080', reading: '\u3084\u3059\u3080', gloss: 'to rest', label: 'please' }, { lemma: '\u884C\u304F', gloss: 'to go', label: 'please' }] })
+    const view = show({ form: 'form-pick', surface: '\u4F11\u3093\u3067\u304F\u3060\u3055\u3044', reading: '\u3084\u3059\u3093\u3067\u304F\u3060\u3055\u3044', answer: 1, rule: 'godan', explanation: 'x is te form of y.', options: [{ name: 'polite present', label: 'polite present \u307E\u3059', formId: 'masu' }, { name: 'please do', label: 'please \u301C\u3066\u304F\u3060\u3055\u3044', formId: 'te-kudasai' }, { name: 'te form', label: 'te form', formId: 'te' }] })
     await user.click(screen.getAllByRole('radio')[1])
     await user.click(screen.getByRole('button', { name: 'Check answer' }))
     expect(screen.getByRole('status')).toHaveTextContent('x is te form of y.')

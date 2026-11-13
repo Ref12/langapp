@@ -97,7 +97,7 @@ export interface ConjugateItem extends BaseExercise {
 }
 /** Form to meaning: pick the lemma and form of an inflected form from the lessons. */
 export interface FormPickItem extends BaseExercise {
-  form: 'form-pick'; surface: string; reading?: string; options: { lemma: string; reading?: string; gloss: string; label: string }[]; answer: number; rule: string; phrase?: { text: string; en: string }; explanation: string
+  form: 'form-pick'; surface: string; reading?: string; options: { name: string; label: string; formId: string }[]; answer: number; rule: string; phrase?: { text: string; en: string }; explanation: string
 }
 /** Hear a known two-syllable word (a pre-generated voice) and pick the tone of each syllable. The characters and pinyin are shown only after Check. */
 export interface WhichTonesItem extends BaseExercise { form: 'which-tones'; word: string; pinyin: string; tones: number[]; file: string; voice: string; explanation: string }

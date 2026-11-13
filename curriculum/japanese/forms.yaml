@@ -154,43 +154,43 @@ godan_tails: { う: godan-u, く: godan-ku, ぐ: godan-gu, す: godan-su, つ: g
 # Forms. grammar: the existing JLPT (ja-n*) and parallel (ja-par-*) grammar point a form teaches (by group; "default" for the others); null when no grammar point matches.
 forms:
   dict:        { label: dictionary form, group: [verb], grammar: null }
-  masu:        { label: polite present ます, group: [verb], grammar: ja-n5-g023, stem: i, add: ます }
-  masen:       { label: polite negative ません, group: [verb], grammar: ja-n5-g024, stem: i, add: ません }
-  mashita:     { label: polite past ました, group: [verb], grammar: ja-n5-g025, stem: i, add: ました }
-  masendeshita: { label: polite negative past ませんでした, group: [verb], grammar: ja-n5-g025, stem: i, add: ませんでした }
-  nai:         { label: plain negative ない, group: [verb], grammar: null, stem: a, add: ない }
-  nakatta:     { label: plain negative past なかった, group: [verb], grammar: null, stem: a, add: なかった }
-  te:          { label: て form, group: [verb], grammar: null, stem: te, add: "" }
-  ta:          { label: plain past た, group: [verb], grammar: null, stem: ta, add: "" }
-  tai:         { label: want to ～たい, group: [verb], grammar: ja-n5-g031, stem: i, add: たい }
-  mashou:      { label: let's ～ましょう, group: [verb], grammar: ja-n5-g034, stem: i, add: ましょう }
-  potential:   { label: potential 可能形, group: [verb], grammar: ja-n4-g012, stem: e, add: potential }
-  volitional:  { label: volitional ～う/よう, group: [verb], grammar: null, stem: o, add: volitional }
-  teiru:       { label: ～ている, group: [verb], grammar: ja-n4-g042, stem: te, add: いる, multiword: true }
-  teimasu:     { label: ～ています, group: [verb], grammar: ja-n5-g027, stem: te, add: います, multiword: true }
-  masu-stem:   { label: ます stem (連用形), group: [verb], grammar: null, stem: i, add: "" }
-  tai-polite:  { label: want to, polite ～たいです, group: [verb], grammar: ja-n5-g031, stem: i, add: たいです }
-  nakereba:    { label: must ～なければなりません, group: [verb], grammar: ja-n4-g022, stem: a, add: なければなりません }
-  naide-kudasai: { label: please do not ～ないでください, group: [verb], grammar: ja-n5-g030, stem: a, add: ないでください, multiword: true }
-  nakute:      { label: ～なくて, group: [verb], grammar: ja-par-g051, stem: a, add: なくて }
-  te-kudasai:  { label: please ～てください, group: [verb], grammar: ja-n5-g026, stem: te, add: ください, multiword: true }
-  teimasen:    { label: not ～ていません, group: [verb], grammar: ja-n5-g027, stem: te, add: いません, multiword: true }
-  te-kimashita: { label: ～てきました, group: [verb], grammar: ja-n3-g045, stem: te, add: きました, multiword: true }
-  potential-masu: { label: potential, polite 可能形ます, group: [verb], grammar: ja-n4-g012, stem: e, add: ます }
-  adj-plain:   { label: adjective plain present, group: [i-adj, copula], grammar: null }
-  adj-polite:  { label: adjective polite present, group: [i-adj, copula], grammar: { i-adj: ja-n5-g020, na-adj: ja-par-g022, noun: ja-n5-g001 } }
-  adj-neg:     { label: adjective plain negative, group: [i-adj, copula], grammar: null }
-  adj-neg-polite: { label: adjective polite negative (ないです), group: [i-adj, copula], grammar: { i-adj: ja-par-g009 } }
-  adj-neg-polite-arimasen: { label: adjective polite negative (ありません), group: [i-adj, copula], grammar: { i-adj: ja-par-g057 } }
-  adj-past:    { label: adjective plain past, group: [i-adj, copula], grammar: null }
-  adj-past-polite: { label: adjective polite past, group: [i-adj, copula], grammar: null }
-  adj-past-neg: { label: adjective plain negative past, group: [i-adj, copula], grammar: null }
-  adj-past-neg-polite: { label: adjective polite negative past (なかったです), group: [i-adj, copula], grammar: null }
-  adj-past-neg-polite-arimasen: { label: adjective polite negative past (ありませんでした), group: [i-adj, copula], grammar: null }
-  adj-sugi:    { label: too ～すぎます, group: [i-adj, copula], grammar: ja-par-g058 }
-  adj-adv:     { label: adverbial く / に, group: [i-adj, copula], grammar: ja-par-g038 }
-  adj-te:      { label: ～くて / で, group: [i-adj, copula], grammar: null }
-  adj-attr:    { label: before a noun (な / の), group: [copula], grammar: { na-adj: ja-n5-g021 } }
+  masu:        { label: polite present ます, name: "polite present", group: [verb], grammar: ja-n5-g023, stem: i, add: ます }
+  masen:       { label: polite negative ません, name: "polite negative", group: [verb], grammar: ja-n5-g024, stem: i, add: ません }
+  mashita:     { label: polite past ました, name: "polite past", group: [verb], grammar: ja-n5-g025, stem: i, add: ました }
+  masendeshita: { label: polite negative past ませんでした, name: "polite negative past", group: [verb], grammar: ja-n5-g025, stem: i, add: ませんでした }
+  nai:         { label: plain negative ない, name: "plain negative", group: [verb], grammar: null, stem: a, add: ない }
+  nakatta:     { label: plain negative past なかった, name: "plain negative past", group: [verb], grammar: null, stem: a, add: なかった }
+  te:          { label: て form, name: "te form", group: [verb], grammar: null, stem: te, add: "" }
+  ta:          { label: plain past た, name: "plain past", group: [verb], grammar: null, stem: ta, add: "" }
+  tai:         { label: want to ～たい, name: "want to", group: [verb], grammar: ja-n5-g031, stem: i, add: たい }
+  mashou:      { label: let's ～ましょう, name: "let's (volitional)", group: [verb], grammar: ja-n5-g034, stem: i, add: ましょう }
+  potential:   { label: potential 可能形, name: "potential", group: [verb], grammar: ja-n4-g012, stem: e, add: potential }
+  volitional:  { label: volitional ～う/よう, name: "plain volitional", group: [verb], grammar: null, stem: o, add: volitional }
+  teiru:       { label: ～ている, name: "ongoing, plain", group: [verb], grammar: ja-n4-g042, stem: te, add: いる, multiword: true }
+  teimasu:     { label: ～ています, name: "ongoing, polite", group: [verb], grammar: ja-n5-g027, stem: te, add: います, multiword: true }
+  masu-stem:   { label: ます stem (連用形), name: "stem", group: [verb], grammar: null, stem: i, add: "" }
+  tai-polite:  { label: want to, name: "want to, polite", polite ～たいです, group: [verb], grammar: ja-n5-g031, stem: i, add: たいです }
+  nakereba:    { label: must ～なければなりません, name: "must", group: [verb], grammar: ja-n4-g022, stem: a, add: なければなりません }
+  naide-kudasai: { label: please do not ～ないでください, name: "please do not", group: [verb], grammar: ja-n5-g030, stem: a, add: ないでください, multiword: true }
+  nakute:      { label: ～なくて, name: "negative te form", group: [verb], grammar: ja-par-g051, stem: a, add: なくて }
+  te-kudasai:  { label: please ～てください, name: "please do", group: [verb], grammar: ja-n5-g026, stem: te, add: ください, multiword: true }
+  teimasen:    { label: not ～ていません, name: "not ongoing, polite", group: [verb], grammar: ja-n5-g027, stem: te, add: いません, multiword: true }
+  te-kimashita: { label: ～てきました, name: "has come to", group: [verb], grammar: ja-n3-g045, stem: te, add: きました, multiword: true }
+  potential-masu: { label: potential, name: "potential, polite", polite 可能形ます, group: [verb], grammar: ja-n4-g012, stem: e, add: ます }
+  adj-plain:   { label: adjective plain present, name: "adjective plain present", group: [i-adj, copula], grammar: null }
+  adj-polite:  { label: adjective polite present, name: "adjective polite present", group: [i-adj, copula], grammar: { i-adj: ja-n5-g020, na-adj: ja-par-g022, noun: ja-n5-g001 } }
+  adj-neg:     { label: adjective plain negative, name: "adjective plain negative", group: [i-adj, copula], grammar: null }
+  adj-neg-polite: { label: adjective polite negative (ないです), name: "adjective polite negative (spoken)", group: [i-adj, copula], grammar: { i-adj: ja-par-g009 } }
+  adj-neg-polite-arimasen: { label: adjective polite negative (ありません), name: "adjective polite negative (formal)", group: [i-adj, copula], grammar: { i-adj: ja-par-g057 } }
+  adj-past:    { label: adjective plain past, name: "adjective plain past", group: [i-adj, copula], grammar: null }
+  adj-past-polite: { label: adjective polite past, name: "adjective polite past", group: [i-adj, copula], grammar: null }
+  adj-past-neg: { label: adjective plain negative past, name: "adjective plain negative past", group: [i-adj, copula], grammar: null }
+  adj-past-neg-polite: { label: adjective polite negative past (なかったです), name: "adjective polite negative past (spoken)", group: [i-adj, copula], grammar: null }
+  adj-past-neg-polite-arimasen: { label: adjective polite negative past (ありませんでした), name: "adjective polite negative past (formal)", group: [i-adj, copula], grammar: null }
+  adj-sugi:    { label: too ～すぎます, name: "too much", group: [i-adj, copula], grammar: ja-par-g058 }
+  adj-adv:     { label: adverbial く / に, name: "adverbial", group: [i-adj, copula], grammar: ja-par-g038 }
+  adj-te:      { label: ～くて / で, name: "te form of an adjective", group: [i-adj, copula], grammar: null }
+  adj-attr:    { label: before a noun (な / の), name: "before a noun", group: [copula], grammar: { na-adj: ja-n5-g021 } }
 
 # What each group adds: stem = lemma (whole word), base (the adjective stem), or the verb stems above; add = text. The verb groups use the stems of the class tail.
 templates:

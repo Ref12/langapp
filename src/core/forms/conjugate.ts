@@ -23,6 +23,8 @@ export const shortOf = (entry: { english: string; gloss?: string }): string => {
   return first.length > 40 ? first.slice(0, 37).replace(/\s+\S*$/, '') + '\u2026' : first
 }
 
+/** The name of a form without its ending, for the choices of Which form is this? (the label when a form has no separate name). */
+export const formName = (language: FormsLanguage, formId: string): string => { const spec = formsEngine(language).rules.forms[formId]; return spec?.name ?? spec?.label ?? formId }
 export const formLabel = (language: FormsLanguage, formId: string): string => formsEngine(language).rules.forms[formId]?.label ?? formId
 
 const KO_JOIN: Record<string, string> = { plain: '', ao: '\uC544/\uC5B4', 'ao-past': '\uC558/\uC5C8', 'eu-s': '(\uC73C)\uC138', 'eu-l': '(\uC73C)\u3139', 'eu-b': '(\uC73C)\u3142', eu: '(\uC73C)', 'eu-n': '(\uC73C)\u3134', neun: '' }
@@ -151,32 +153,33 @@ export function wordFormsTable(language: FormsLanguage, lemma: string, cls: stri
 
 /** A word that inflects, as the form questions need it: its id, written form and reading, class, a short meaning and (when the learner reads it in another form) how it is shown. */
 export interface FormWord { id: string; lemma: string; reading?: string; cls: string; /** Korean: verb or adjective, so a verb-only form is never built for an adjective; absent: any kind. */ kind?: string; gloss: string; /** The text and reading shown for the word in the options (the learner's display form); absent: the lemma and reading. */ shown?: { text: string; reading?: string } }
-export interface FormOption { lemma: string; reading?: string; gloss: string; label: string; formId: string }
-export interface FormPickBuild { surface: string; reading?: string; entryId: string; cls: string; formId: string; options: FormOption[]; answer: number; rule: string; phrase?: { text: string; en: string } }
+export interface FormOption { /** The name without its ending: all a choice shows. */ name: string; /** The full label, with the ending: for the feedback. */ label: string; formId: string }
+export interface FormPickBuild { surface: string; reading?: string; entryId: string; cls: string; formId: string; options: FormOption[]; answer: number; lemma: string; lemmaReading?: string; gloss: string; rule: string; phrase?: { text: string; en: string } }
 
-/** Form to meaning: the inflected form and four lemma-and-form options (the right one, the same word in other forms, other words in the same form). */
-export function buildFormPickFor(language: FormsLanguage, target: FormWord, formId: string, pool: readonly FormWord[], rng: () => number, phrase?: { text: string; en: string }, allowed?: readonly string[]): FormPickBuild | undefined {
+/** Form to meaning: the inflected form and choices that are only form names (no word, meaning or ending): the right one and other forms this word can take, each name once. */
+export function buildFormPickFor(language: FormsLanguage, target: FormWord, formId: string, _pool: readonly FormWord[], rng: () => number, phrase?: { text: string; en: string }, allowed?: readonly string[]): FormPickBuild | undefined {
   const engine = formsEngine(language)
   const cls = target.cls
-  const opts = (word: FormWord): FormOptions => word.reading ? { reading: word.reading } : {}
-  const built = engine.forms(target.lemma, cls, formId, opts(target))
+  const opts: FormOptions = target.reading ? { reading: target.reading } : {}
+  const built = engine.forms(target.lemma, cls, formId, opts)
   if (!built) return undefined
-  const option = (word: FormWord, form: string): FormOption => ({ lemma: word.shown?.text ?? word.lemma, reading: word.shown ? word.shown.reading : word.reading, gloss: word.gloss, label: formLabel(language, form), formId: form })
-  const right = option(target, formId)
+  const option = (form: string): FormOption => ({ name: formName(language, form), label: formLabel(language, form), formId: form })
+  const right = option(formId)
   const shuffle = <T,>(list: T[]): T[] => { const out = [...list]; for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [out[i], out[j]] = [out[j], out[i]] } return out }
   const wrong: FormOption[] = []
-  const seen = new Set([target.lemma + '|' + formId])
-  const push = (word: FormWord, form: string, surface: string | undefined) => {
-    const key = word.lemma + '|' + form
-    if (surface == null || surface === built.surface || seen.has(key) || wrong.length >= 3) return
-    seen.add(key); wrong.push(option(word, form))
+  const names = new Set([right.name])
+  const takes = engine.formIds(cls, target.kind)
+  for (const form of shuffle((allowed ?? takes).filter(id => id !== 'dict' && id !== formId && takes.includes(id)))) {
+    if (wrong.length >= 3) break
+    const surface = engine.forms(target.lemma, cls, form, opts)?.surface
+    const choice = option(form)
+    if (surface == null || surface === built.surface || names.has(choice.name)) continue
+    names.add(choice.name); wrong.push(choice)
   }
-  const forms = (allowed ?? engine.formIds(cls, target.kind)).filter(id => id !== 'dict' && id !== formId && engine.formIds(cls, target.kind).includes(id))
-  for (const form of shuffle(forms)) { push(target, form, engine.forms(target.lemma, cls, form, opts(target))?.surface); if (wrong.length >= 2) break }
-  for (const word of shuffle(pool.filter(other => other.id !== target.id && conjugable(other.cls) && engine.formIds(other.cls, other.kind).includes(formId)))) push(word, formId, engine.forms(word.lemma, word.cls, formId, opts(word))?.surface)
   if (wrong.length < 2) return undefined
   const options = shuffle([right, ...wrong])
-  return { surface: built.surface, reading: built.reading, entryId: target.id, cls, formId, options, answer: options.indexOf(right), rule: ruleLine(language, target.lemma, cls, formId), ...(phrase ? { phrase } : {}) }
+  const lemma = target.lemma
+  return { surface: built.surface, reading: built.reading, entryId: target.id, cls, formId, options, answer: options.indexOf(right), lemma, lemmaReading: target.reading, gloss: target.gloss, rule: ruleLine(language, target.lemma, cls, formId), ...(phrase ? { phrase } : {}) }
 }
 
 export { formItemId }
