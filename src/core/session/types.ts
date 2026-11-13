@@ -20,18 +20,18 @@ export const LENGTH_LABEL: Record<Length, string> = { short: 'Short', standard: 
  * The exercise forms. The first three are built from vocabulary records (src/core/study/local-exercises.ts); the next five from bank phrases;
  * 'intro' and 'repeat' do not grade. Pre-generated dataset exercises plug in through DatasetSource (sources.ts) and use these same forms.
  */
-export const FORMS = ['intro', 'choice', 'match', 'pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat', 'exchange-pick', 'exchange-reply', 'which-correct', 'conversation', 'conjugate', 'form-pick'] as const
+export const FORMS = ['intro', 'choice', 'match', 'pinyin', 'recall', 'translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat', 'exchange-pick', 'exchange-reply', 'which-correct', 'conversation', 'conjugate', 'form-pick', 'which-tones'] as const
 export type Form = typeof FORMS[number]
 export const FORM_LABEL: Record<Form, string> = {
   intro: 'Intro cards', choice: 'Choose the meaning', match: 'Match pairs', pinyin: 'Type the pinyin', recall: 'Type the meaning', 'translate-zh-en': 'Translate to English',
   'translate-en-zh': 'Translate to Chinese', tiles: 'Word order', gap: 'Fill the gap', 'listen-pick': 'Listen and pick', dictation: 'Dictation', repeat: 'Repeat after me',
-  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Reply to the question', 'which-correct': 'Which is correct?', conversation: 'Listen and answer', conjugate: 'Conjugate', 'form-pick': 'Which form is this?',
+  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Reply to the question', 'which-correct': 'Which is correct?', conversation: 'Listen and answer', conjugate: 'Conjugate', 'form-pick': 'Which form is this?', 'which-tones': 'Which tones?',
 }
 /** The skills an exercise form practises, for the skill counts. */
 export const FORM_SKILLS: Record<Form, readonly Skill[]> = {
   intro: [], choice: ['reading'], match: ['reading'], pinyin: ['reading'], recall: ['reading'], 'translate-zh-en': ['reading'], 'translate-en-zh': ['writing'], tiles: ['writing'],
   gap: ['reading'], 'listen-pick': ['listening'], dictation: ['listening', 'writing'], repeat: ['speaking'],
-  'exchange-pick': ['reading'], 'exchange-reply': ['writing'], 'which-correct': ['reading'], conversation: ['listening'], conjugate: ['writing'], 'form-pick': ['reading'],
+  'exchange-pick': ['reading'], 'exchange-reply': ['writing'], 'which-correct': ['reading'], conversation: ['listening'], conjugate: ['writing'], 'form-pick': ['reading'], 'which-tones': ['listening'],
 }
 /** Forms that need a phrase from the bank. */
 export const PHRASE_FORMS: readonly Form[] = ['translate-zh-en', 'translate-en-zh', 'tiles', 'gap', 'listen-pick', 'dictation', 'repeat']
@@ -41,6 +41,8 @@ export const TYPED_FORMS: readonly Form[] = ['pinyin', 'recall', 'translate-zh-e
 export const DATASET_FORMS: readonly Form[] = ['exchange-pick', 'exchange-reply', 'which-correct', 'conversation']
 /** Forms the pack's word-form entry supplies (language/word-forms.ts); the planner never builds them from phrases or vocabulary records, and a pack without word forms never plans, lists or counts them. */
 export const WORD_FORMS: readonly Form[] = ['conjugate', 'form-pick']
+/** Forms that need the pack's tones and the trainer's recordings (a pack without tones never plans, lists or counts them). */
+export const TONE_FORMS: readonly Form[] = ['which-tones']
 
 export type AnswerMode = 'type' | 'speak' | 'write'
 
@@ -97,7 +99,9 @@ export interface ConjugateItem extends BaseExercise {
 export interface FormPickItem extends BaseExercise {
   form: 'form-pick'; surface: string; reading?: string; options: { lemma: string; reading?: string; gloss: string; label: string }[]; answer: number; rule: string; phrase?: { text: string; en: string }; explanation: string
 }
-export type SessionExercise = ConjugateItem | FormPickItem | IntroExercise | ChoiceItem | MatchItem | TextItem | TilesItem | GapItem | ListenItem | RepeatItem | ExchangePickItem | WhichCorrectItem | ConversationItem
+/** Hear a known two-syllable word (a pre-generated voice) and pick the tone of each syllable. The characters and pinyin are shown only after Check. */
+export interface WhichTonesItem extends BaseExercise { form: 'which-tones'; word: string; pinyin: string; tones: number[]; file: string; voice: string; explanation: string }
+export type SessionExercise = WhichTonesItem | ConjugateItem | FormPickItem | IntroExercise | ChoiceItem | MatchItem | TextItem | TilesItem | GapItem | ListenItem | RepeatItem | ExchangePickItem | WhichCorrectItem | ConversationItem
 
 export interface StagePlan { stage: Stage; rounds: number; exercises: SessionExercise[] }
 export interface SessionPlan {

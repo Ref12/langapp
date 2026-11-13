@@ -324,3 +324,13 @@
 .engine-instruction { margin: 0 0 6px; font-weight: 600; color: var(--muted, #9fb0c0); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .engine-cue { margin: 4px 0 0; font-size: 1.05rem; }
 .engine-meaning { margin: 2px 0 8px; }
+
+/* Tone trainer */
+.tone-trainer .tt-card { display: grid; gap: 10px; }
+.tt-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.tt-tone { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-height: 56px; text-align: left; }
+.tt-tone.selected { outline: 2px solid var(--accent, #58a6ff); outline-offset: 1px; }
+.tt-tone[data-mark="right"] { border-color: #2ea043; box-shadow: inset 0 0 0 2px #2ea043; }
+.tt-tone[data-mark="wrong"] { border-color: #da3633; box-shadow: inset 0 0 0 2px #da3633; }
+.tt-play { min-height: 52px; font-size: 1.05rem; }
+.tt-word { font-size: 1.6rem; }

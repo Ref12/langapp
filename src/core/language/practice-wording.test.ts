@@ -11,7 +11,7 @@ afterEach(() => setBuildLanguageForTests(undefined))
 const ZH_LABELS = {
   intro: 'Intro cards', choice: 'Choose the meaning', match: 'Match pairs', pinyin: 'Type the pinyin', recall: 'Type the meaning', 'translate-zh-en': 'Translate to English',
   'translate-en-zh': 'Translate to Chinese', tiles: 'Word order', gap: 'Fill the gap', 'listen-pick': 'Listen and pick', dictation: 'Dictation', repeat: 'Repeat after me',
-  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Reply to the question', 'which-correct': 'Which is correct?', conversation: 'Listen and answer', conjugate: 'Conjugate', 'form-pick': 'Which form is this?',
+  'exchange-pick': 'Pick the reply', 'exchange-reply': 'Reply to the question', 'which-correct': 'Which is correct?', conversation: 'Listen and answer', conjugate: 'Conjugate', 'form-pick': 'Which form is this?', 'which-tones': 'Which tones?',
 }
 
 describe('the practice wording of the packs', () => {

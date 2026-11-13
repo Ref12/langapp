@@ -20,6 +20,7 @@ import { ImportedReader } from './pages/ImportedReader'
 import { LessonDetail, Lessons } from './pages/Lessons'
 import { Study, StudySessionPage } from './pages/Study'
 import { Practice, PracticeSessionPage } from './pages/Practice'
+import { ToneTrainer } from './pages/ToneTrainer'
 import { Mahjong } from './pages/Mahjong'
 import { Games } from './pages/Games'
 import { Sudoku } from './pages/Sudoku'
@@ -121,6 +122,7 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
     const lesson = lessons.find(item => item.id === id)
     return lesson ? <LessonDetail {...props} lesson={lesson} page={lessonPage} /> : <NotFound />
   }
+  if (page === 'practice' && id === 'tones') return getPack().tones ? <ToneTrainer /> : <NotFound />
   if (page === 'practice' && id === 'mahjong') return <Mahjong {...props} />
   if (page === 'games' && id === 'mahjong') return <Mahjong {...props} />
   if (page === 'games' && id === 'sudoku') return <Sudoku {...props} />

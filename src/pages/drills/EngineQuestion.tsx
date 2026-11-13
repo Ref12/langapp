@@ -21,6 +21,7 @@ import { ConjugateQuestion, FormPickQuestion, type WordFormContext } from '../..
 import { useShowsReading } from '../../components/display-settings'
 import { SentenceAudio } from './SentenceAudio'
 import { ToneHold, ToneText } from '../../components/ToneText'
+import { WhichTones } from './WhichTones'
 
 export interface QuestionContext {
   readings: Map<string, Set<string>>
@@ -192,6 +193,7 @@ function ExerciseBody({ exercise, ctx, onDone }: { exercise: Exclude<SessionExer
     return <PickQuestion exercise={exercise} shape={choiceShape} header={header} ctx={ctx} onDone={onDone} />
   }
   if (exercise.form === 'conjugate' || exercise.form === 'form-pick') return <WordForm exercise={exercise} ctx={ctx} onDone={onDone} />
+  if (exercise.form === 'which-tones') return <WhichTones exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'exchange-pick') return <ExchangePick exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'which-correct') return <WhichCorrect exercise={exercise} ctx={ctx} onDone={onDone} />
   if (exercise.form === 'conversation') return <ConversationQuestion exercise={exercise} ctx={ctx} onDone={onDone} />

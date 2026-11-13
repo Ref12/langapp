@@ -22,6 +22,7 @@ export function areaOfRoute(route: string): Area | undefined {
     case 'practice':
       if (id === 'mahjong') return 'games'
       if (id === 'handsfree') return 'handsFree'
+      if (id === 'tones') return undefined
       return id && id !== 'set' ? 'wordLists' : undefined
     default: return undefined
   }

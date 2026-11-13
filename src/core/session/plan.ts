@@ -8,6 +8,8 @@ import { LENGTH_FACTOR, estimateMinutes } from './presets'
 import { SentencePool } from './sentences'
 import { formWords, inflectedWords, takesWordForms, taughtGrammarIds, wordFormCount } from './word-form-plan'
 import type { DatasetSource } from './sources'
+import type { ToneManifest } from '../tone-trainer/manifest'
+import { itemForWord } from '../tone-trainer/manifest'
 import { DATASET_FORMS, PHRASE_FORMS, STAGES, WORD_FORMS, type Form, type Intent, type Length, type Preset, type SessionExercise, type SessionPlan, type Stage, type StagePlan, type TextItem } from './types'
 
 export interface PlanItem { ref: string; kind: 'vocabulary' | 'grammar' | 'phrase' | 'source'; zh: string; py: string; en: string
@@ -31,6 +33,8 @@ export interface PlanInput {
   extraAccepted?: FormContext['extraAccepted']
   extraAcceptedEnglish?: FormContext['extraAcceptedEnglish']
   extraOptional?: FormContext['extraOptional']
+  /** The tone trainer's recordings (loaded only for a pack with tones): Which tones? is built from a known two-syllable word that has one. */
+  tones?: ToneManifest
   /** The form a word is shown in (the learner's "Show verbs as", from the pack's display forms); absent: the record as stored. Only what the learner reads changes: refs and what is recorded do not. */
   shown?: (record: HeadwordRecord) => Headword
 }
@@ -122,6 +126,14 @@ export function planSession(input: PlanInput): SessionPlan {
       case 'choice': return vocab ? buildChoiceItem(base, vocab, stage === 'recognise' ? 'zh-to-en' : 'en-to-zh', vocabulary, allowed as Set<string>, input.seed + counter * 31) : undefined
       case 'recall': return vocab ? buildRecall(base, vocab) : undefined
       case 'pinyin': return vocab ? buildPinyinItem(base, vocab) : undefined
+      case 'which-tones': {
+        const word = vocab ? catalog.units.get(item.ref) : undefined
+        const entry = word && isVocabulary(word) && input.tones && getPack().tones ? itemForWord(input.tones, word.record.ch) : undefined
+        if (!entry || !input.known.has(item.ref)) return undefined
+        const voices = Object.keys(entry.clips)
+        const voice = voices[Math.floor(createRng(input.seed + counter * 17)() * voices.length)]
+        return { ...base, form: 'which-tones', word: entry.chars, pinyin: entry.pinyin, tones: entry.tones, file: entry.clips[voice].file, voice, explanation: entry.chars + ' (' + entry.pinyin + ')' }
+      }
       case 'match': case 'intro': case 'exchange-pick': case 'exchange-reply': case 'which-correct': case 'conversation': return undefined
       default: {
         const own = ownPhrase(item)
@@ -169,7 +181,7 @@ export function planSession(input: PlanInput): SessionPlan {
       continue
     }
     const forms = (preset.forms[stage] ?? []).filter(form => form !== 'intro')
-    const allItemForms = forms.filter(form => form !== 'match' && !DATASET_FORMS.includes(form) && !WORD_FORMS.includes(form))
+    const allItemForms = forms.filter(form => form !== 'match' && !DATASET_FORMS.includes(form) && !WORD_FORMS.includes(form) && (form !== 'which-tones' || !!input.tones))
     const rng = createRng(input.seed + stageIndex * 7919)
     // The dataset goes first so its sentences are reserved before the phrase exercises pick theirs (no sentence twice).
     const fromDataset = input.dataset?.exercises({ stage, forms: preset.forms[stage] ?? [], items, allowed, taken: zh => pool.has(zh), take: zh => pool.reserve(zh) }) ?? []

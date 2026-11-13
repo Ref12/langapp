@@ -22,6 +22,7 @@ const shapes: Record<string, object> = {
   'which-correct': { en: 'study', options: [{ zh: '学习' }, { zh: '习学' }], answer: 0, whys: [], explanation: '' },
   conjugate: { lemma: '学习', cls: 'x', formId: 'f', label: 'form', gloss: 'study', tiles: ['学', '习'], tileReadings: [], distractors: [], shuffled: [0, 1], answer: '学习', rule: 'rule', irregular: false, explanation: '' },
   'form-pick': { surface: '学习', options: [{ lemma: '学', gloss: 'a', label: 'b' }, { lemma: '习', gloss: 'c', label: 'd' }], answer: 0, rule: 'rule', explanation: '' },
+  'which-tones': { word: '学习', pinyin: 'xue2 xi2', tones: [2, 2], file: 'x/y.mp3', voice: 'x', explanation: '' },
   conversation: { title: 't', lines: [{ who: 'A', zh: '你好', py: '', en: '' }], questions: [{ after: 0, question: 'q', options: opt, answer: 0 }], explanation: '' },
 }
 const exercise = (form: string, extra: object = {}) => ({ ...base, form, ...shapes[form], ...extra }) as unknown as Exclude<SessionExercise, { form: 'intro' | 'repeat' }>

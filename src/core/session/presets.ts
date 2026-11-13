@@ -24,7 +24,7 @@ export const SKILL_PRESETS: Preset[] = [
     forms: { introduce: ['intro'], recognise: ['choice'], recall: ['pinyin'], produce: ['translate-en-zh', 'tiles', 'dictation'], use: ['dictation', 'translate-en-zh'] },
     rounds: { introduce: 1, recognise: 1, recall: 1, produce: 2, use: 0 }, wordForms: ['produce'] },
   { id: 'listening', name: 'Listening', blurb: 'Hear it: listen and pick, dictation.',
-    forms: { introduce: ['intro'], recognise: ['listen-pick'], recall: ['listen-pick', 'dictation'], produce: ['dictation'], use: ['listen-pick', 'dictation', 'conversation'] },
+    forms: { introduce: ['intro'], recognise: ['listen-pick', 'which-tones'], recall: ['listen-pick', 'dictation'], produce: ['dictation'], use: ['listen-pick', 'dictation', 'conversation'] },
     rounds: { introduce: 1, recognise: 2, recall: 0, produce: 1, use: 1 } },
   { id: 'speaking', name: 'Speaking', blurb: 'Say it: repeat after me and spoken translation.',
     forms: { introduce: ['intro'], recognise: ['repeat'], recall: ['recall'], produce: ['translate-en-zh'], use: ['repeat', 'translate-en-zh'] },
@@ -64,7 +64,7 @@ export function presetFromCustom(custom: CustomPreset): Preset {
 export const FORMS_BY_STAGE: Record<Stage, readonly Form[]> = {
   introduce: ['intro'],
   recognise: ['choice', 'match', 'listen-pick', 'repeat', 'exchange-pick', 'which-correct', 'form-pick'],
-  recall: ['recall', 'pinyin', 'choice', 'listen-pick', 'dictation'],
+  recall: ['recall', 'pinyin', 'choice', 'listen-pick', 'dictation', 'which-tones'],
   produce: ['tiles', 'translate-en-zh', 'gap', 'dictation', 'conjugate'],
   use: ['translate-zh-en', 'listen-pick', 'gap', 'dictation', 'translate-en-zh', 'repeat', 'exchange-reply', 'conversation'],
 }

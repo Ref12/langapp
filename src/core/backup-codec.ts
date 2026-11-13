@@ -9,6 +9,8 @@ import { characterStateSchema } from './characters/contracts'
 import { drillSetsBackupSchema, type DrillSet } from './drills/contracts'
 import { handsfreeRunsBackupSchema, type HandsfreeRun } from './handsfree/contracts'
 import { skillPracticeBackupSchema, type SkillPractice } from './study/skill-map'
+import { toneTrainerBackupSchema } from './tone-trainer/contracts'
+import type { TrainerProgress } from './tone-trainer/engine'
 import { phraseHeardBackupSchema, userPhrasesBackupSchema, type PhraseHeard, type UserPhrase } from './phrases/contracts'
 import { collectionsBackupSchema, type CollectionsBackup } from './collections/contracts'
 import { librarySchema, type LibraryBook } from './library/contracts'
@@ -81,16 +83,16 @@ const backupSchema = z.discriminatedUnion('version', [
   legacyBackupSchema.extend({ version: z.literal(2), assistant: assistantBackupSchema }).strict(),
   legacyBackupSchema.extend({ version: z.literal(3), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
   legacyBackupSchema.extend({ version: z.literal(4), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
-  legacyBackupSchema.extend({ version: z.literal(5), assistant: assistantBackupSchema, study: studyBackupSchema, library: librarySchema, collections: collectionsBackupSchema.optional(), drillSets: drillSetsBackupSchema.optional(), handsfreeRuns: handsfreeRunsBackupSchema.optional(), skillPractice: skillPracticeBackupSchema.optional(), phraseHeard: phraseHeardBackupSchema.optional(), userPhrases: userPhrasesBackupSchema.optional(), sudokuBoards: z.array(z.unknown()).max(MAX_SAVED_SUDOKU_BOARDS).optional() }).strict(),
+  legacyBackupSchema.extend({ version: z.literal(5), assistant: assistantBackupSchema, study: studyBackupSchema, library: librarySchema, collections: collectionsBackupSchema.optional(), drillSets: drillSetsBackupSchema.optional(), handsfreeRuns: handsfreeRunsBackupSchema.optional(), skillPractice: skillPracticeBackupSchema.optional(), phraseHeard: phraseHeardBackupSchema.optional(), userPhrases: userPhrasesBackupSchema.optional(), toneTrainer: toneTrainerBackupSchema.optional(), sudokuBoards: z.array(z.unknown()).max(MAX_SAVED_SUDOKU_BOARDS).optional() }).strict(),
 ])
 
-export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup; library?: LibraryBook[]; collections?: CollectionsBackup; sudokuBoards?: SavedSudokuBoard[]; drillSets?: DrillSet[]; handsfreeRuns?: HandsfreeRun[]; skillPractice?: SkillPractice[]; phraseHeard?: PhraseHeard[]; userPhrases?: UserPhrase[] }
+export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup; library?: LibraryBook[]; collections?: CollectionsBackup; sudokuBoards?: SavedSudokuBoard[]; drillSets?: DrillSet[]; handsfreeRuns?: HandsfreeRun[]; skillPractice?: SkillPractice[]; phraseHeard?: PhraseHeard[]; userPhrases?: UserPhrase[]; toneTrainer?: TrainerProgress[] }
 
 const emptyStudy = (): StudyBackup => ({ knowledge: [], cards: [], sessions: [], attempts: [] })
 
-export function splitStudy(workspace: WorkspaceBackup): { learning: Omit<WorkspaceBackup, 'assistant' | 'library' | 'collections' | 'sudokuBoards' | 'drillSets' | 'handsfreeRuns' | 'skillPractice' | 'phraseHeard' | 'userPhrases' | 'knowledge' | 'studyCards' | 'exerciseSessions' | 'exerciseAttempts'>; assistant?: AssistantBackup; library: LibraryBook[]; collections?: CollectionsBackup; sudokuBoards: SavedSudokuBoard[]; drillSets: DrillSet[]; handsfreeRuns: HandsfreeRun[]; skillPractice: SkillPractice[]; phraseHeard: PhraseHeard[]; userPhrases: UserPhrase[]; study: StudyBackup } {
-  const { assistant, library = [], collections, sudokuBoards = [], drillSets = [], handsfreeRuns = [], skillPractice = [], phraseHeard = [], userPhrases = [], knowledge = [], studyCards = [], exerciseSessions = [], exerciseAttempts = [], ...learning } = workspace
-  return { learning, assistant, library, ...(collections ? { collections } : {}), sudokuBoards, drillSets, handsfreeRuns, skillPractice, phraseHeard, userPhrases, study: { knowledge, cards: studyCards, sessions: exerciseSessions, attempts: exerciseAttempts } }
+export function splitStudy(workspace: WorkspaceBackup): { learning: Omit<WorkspaceBackup, 'assistant' | 'library' | 'collections' | 'sudokuBoards' | 'drillSets' | 'handsfreeRuns' | 'skillPractice' | 'phraseHeard' | 'userPhrases' | 'toneTrainer' | 'knowledge' | 'studyCards' | 'exerciseSessions' | 'exerciseAttempts'>; assistant?: AssistantBackup; library: LibraryBook[]; collections?: CollectionsBackup; sudokuBoards: SavedSudokuBoard[]; drillSets: DrillSet[]; handsfreeRuns: HandsfreeRun[]; skillPractice: SkillPractice[]; phraseHeard: PhraseHeard[]; userPhrases: UserPhrase[]; toneTrainer: TrainerProgress[]; study: StudyBackup } {
+  const { assistant, library = [], collections, sudokuBoards = [], drillSets = [], handsfreeRuns = [], skillPractice = [], phraseHeard = [], userPhrases = [], toneTrainer = [], knowledge = [], studyCards = [], exerciseSessions = [], exerciseAttempts = [], ...learning } = workspace
+  return { learning, assistant, library, ...(collections ? { collections } : {}), sudokuBoards, drillSets, handsfreeRuns, skillPractice, phraseHeard, userPhrases, toneTrainer, study: { knowledge, cards: studyCards, sessions: exerciseSessions, attempts: exerciseAttempts } }
 }
 
 function withStudy(workspace: z.infer<typeof workspaceSchema>, study: StudyBackup): Workspace {
@@ -283,15 +285,16 @@ export function readBackup(text: string): WorkspaceBackup {
       ...('skillPractice' in backup && backup.skillPractice?.length ? { skillPractice: backup.skillPractice } : {}),
       ...('phraseHeard' in backup && backup.phraseHeard?.length ? { phraseHeard: backup.phraseHeard } : {}),
       ...('userPhrases' in backup && backup.userPhrases?.length ? { userPhrases: backup.userPhrases } : {}),
+      ...('toneTrainer' in backup && backup.toneTrainer?.length ? { toneTrainer: backup.toneTrainer } : {}),
       ...('sudokuBoards' in backup && backup.sudokuBoards?.length ? { sudokuBoards: readSavedBoards(backup.sudokuBoards) } : {}) }
   }
   return withStudy(workspace, emptyStudy())
 }
 
 export function exportBackup(workspace: WorkspaceBackup, assistant?: AssistantBackup): string {
-  const { learning, assistant: includedAssistant, study, library, collections, sudokuBoards, drillSets, handsfreeRuns, skillPractice, phraseHeard, userPhrases } = splitStudy(workspace)
+  const { learning, assistant: includedAssistant, study, library, collections, sudokuBoards, drillSets, handsfreeRuns, skillPractice, phraseHeard, userPhrases, toneTrainer } = splitStudy(workspace)
   const snapshot = assistant ?? includedAssistant ?? { threads: [], messages: [], runs: [] }
-  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 5, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study, library, ...(collections ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(handsfreeRuns.length ? { handsfreeRuns } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(phraseHeard.length ? { phraseHeard } : {}), ...(userPhrases.length ? { userPhrases } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, null, 2)
+  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 5, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study, library, ...(collections ? { collections } : {}), ...(drillSets.length ? { drillSets } : {}), ...(handsfreeRuns.length ? { handsfreeRuns } : {}), ...(skillPractice.length ? { skillPractice } : {}), ...(phraseHeard.length ? { phraseHeard } : {}), ...(userPhrases.length ? { userPhrases } : {}), ...(toneTrainer.length ? { toneTrainer } : {}), ...(sudokuBoards.length ? { sudokuBoards } : {}) }, null, 2)
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('This workspace exceeds the 5 MiB backup limit.')
   readBackup(text)
   return text

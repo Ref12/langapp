@@ -449,6 +449,8 @@ function DrillsHome({ workspace, now, run, busy }: PageProps) {
           {unwrittenTotal > 0 && isAreaOn(getPack(), 'writing') && <li className="dr-skill dr-skill-block"><div><strong>Characters to write: {unwrittenTotal}</strong><span className="small muted">From words you know. Starts a set of the oldest words, about {unwrittenSize} new characters{unwrittenNext ? ` (${unwrittenNext.refs.length} ${unwrittenNext.refs.length === 1 ? 'word' : 'words'})` : ''}.</span>
             <span className="dr-skill-pickers"><select aria-label="Characters per set" value={unwrittenSize} onChange={event => { const next = Number(event.target.value); setUnwrittenSize(next); saveUnwrittenSize(next) }}>{UNWRITTEN_CHOICES.map(entry => <option key={entry} value={entry}>{entry}</option>)}</select></span></div>
             <button type="button" className="button primary" aria-label="Start unwritten characters" disabled={busy} onClick={() => start({ kind: 'unwritten', size: unwrittenSize })}>Start <ArrowRight size={16} /></button></li>}
+          {getPack().tones && <li className="dr-skill dr-skill-block"><div><strong>Hear the tones</strong><span className="small muted">Listen to syllables and words from four voices and pick the tone. Rounds of 20.</span></div>
+            <a className="button primary" href="#practice/tones" aria-label="Open the tone trainer">Open <ArrowRight size={16} /></a></li>}
         </ul>
       </section>
       <div className="dr-stack">

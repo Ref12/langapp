@@ -20,6 +20,7 @@ import type { Collection, CollectionItem } from './collections/contracts'
 import type { DrillSet } from './drills/contracts'
 import type { Skill, SkillPractice } from './study/skill-map'
 import type { PhraseHeard, UserPhrase } from './phrases/contracts'
+import type { TrainerProgress } from './tone-trainer/engine'
 import { handsfreeRunToSet } from './handsfree/migrate'
 import { sourceTitle } from './drills/title'
 
@@ -73,6 +74,7 @@ export class LearningDatabase extends Dexie {
   skillPractice!: Table<SkillPractice, [string, Skill]>
   phraseHeard!: EntityTable<PhraseHeard, 'zh'>
   userPhrases!: EntityTable<UserPhrase, 'zh'>
+  toneTrainer!: EntityTable<TrainerProgress, 'id'>
 
   constructor(name = storageNames().db.learning(DEFAULT_PROFILE_ID)) {
     super(name)
@@ -140,6 +142,8 @@ export class LearningDatabase extends Dexie {
     this.version(25).stores({ phraseHeard: '&zh' })
     // Phrases the learner added to the bank from an Assistant phrase block, keyed by their text.
     this.version(26).stores({ userPhrases: '&zh' })
+    // The tone trainer's progress (one row: the latest answers, the confusion tally, the voices' results).
+    this.version(27).stores({ toneTrainer: '&id' })
   }
 }
 

@@ -7,6 +7,7 @@ import { createDatasetSource, datasetAcceptance } from './dataset-source'
 import { resolvePreset } from './custom-preset'
 import { offeredPreset } from './offered'
 import { planSession } from './plan'
+import { loadToneManifest } from '../tone-trainer/manifest'
 import { loadSessionBank } from './sources'
 import type { Length, SessionPlan } from './types'
 
@@ -22,5 +23,7 @@ export async function planSetSession(input: { catalog: Catalog; items: ItemInfo[
   // The shipped dataset (a pack without one has none: nothing is requested); an invalid band file is skipped, never fatal.
   const { data } = await loadPracticeData()
   const offer = getPack().displayForms
-  return planSession({ ...(offer && input.shown !== undefined ? { shown: (record: HeadwordRecord) => headwordFor(offer, input.shown!, record) } : {}), intent: 'practice-set', items, length: engine.length, preset, seed: engine.seed, catalog, known, bank: bank.byItem, allBank: bank.all, ...datasetAcceptance(data), dataset: createDatasetSource({ data, catalog, seed: engine.seed, bank: bank.all }) })
+  // The tone recordings' list is fetched only when this build has tones and the preset asks for Which tones?
+  const tones = getPack().tones && Object.values(preset.forms).some(list => list?.includes('which-tones')) ? await loadToneManifest() : undefined
+  return planSession({ ...(tones ? { tones } : {}), ...(offer && input.shown !== undefined ? { shown: (record: HeadwordRecord) => headwordFor(offer, input.shown!, record) } : {}), intent: 'practice-set', items, length: engine.length, preset, seed: engine.seed, catalog, known, bank: bank.byItem, allBank: bank.all, ...datasetAcceptance(data), dataset: createDatasetSource({ data, catalog, seed: engine.seed, bank: bank.all }) })
 }

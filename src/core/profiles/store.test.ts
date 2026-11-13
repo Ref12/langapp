@@ -81,7 +81,7 @@ describe('isolated named browser profiles', () => {
     legacy.close()
     await reopenPage()
     expect(database.db.name).toBe(storageNames().db.learning('default'))
-    expect(database.db.verno).toBe(26)
+    expect(database.db.verno).toBe(27)
     expect(await database.db.practiceHistory.count()).toBe(0)
     expect(await database.db.sudokuGames.count()).toBe(0)
     expect(await database.db.memoryGames.count()).toBe(0)
