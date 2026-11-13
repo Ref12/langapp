@@ -1,4 +1,5 @@
 import { getPack } from '../language'
+import { noteChineseReadings } from '../language/speech-chinese'
 import { phraseKey } from '../phrases/key'
 import {
   PRACTICE_BANDS, practiceFileSchemas, practiceIndexSchema,
@@ -70,6 +71,7 @@ export function createPracticeData(files: Partial<PracticeFiles> = {}): Practice
   const exchangesByWord = group(exchanges, item => item.words), exchangesByGrammar = group(exchanges, item => item.grammar)
   const conversationsByWord = group(conversations, item => item.words), conversationsByGrammar = group(conversations, item => item.grammar)
   const missesByPhrase = group(nearMisses, item => [item.phrase])
+  noteChineseReadings([...exchanges.flatMap(item => [[item.q.zh, item.q.py], [item.a.zh, item.a.py]] as const), ...conversations.flatMap(item => item.lines.map(line => [line.zh, line.py] as const))])
   return {
     accepted: phrase => accepted.get(accepted.has(phrase) ? phrase : phraseKey(phrase)),
     exchangesForWord: (ref, readyAt) => ready(exchangesByWord.get(bare(ref)), readyAt),

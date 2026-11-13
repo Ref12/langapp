@@ -1,4 +1,5 @@
 import { getPack, type LanguageId } from '../language'
+import { noteChineseReadings } from '../language/speech-chinese'
 import { noteJapaneseReadings, noteJapaneseWords } from '../language/speech-text'
 import { setKanjiReadings, type KanjiReadingTable } from '../language/japanese-alignment'
 import { apartOf, kindOfClass, readingParts } from '../forms/display'
@@ -55,6 +56,7 @@ const catalogCache = new Map<LanguageId, Promise<Catalog>>()
 
 /** The Japanese pack speaks a word from its reading (language/speech-text.ts): what the catalog loads, it notes. */
 function noteSpeech(data: BandData): BandData {
+  if (getPack().id === 'zh') noteChineseReadings(data.vocabulary.map(word => [word.ch, word.pr] as const))
   if (getPack().id === 'ja') {
     noteJapaneseReadings('catalog', data.vocabulary.map(word => [word.ch, word.pr] as const))
     noteJapaneseWords(data.vocabulary)
@@ -145,7 +147,9 @@ export function renderExample(catalog: Catalog, example: { segments: ExampleSegm
       pinyin.push(segment.reading ?? unit.record.pr)
     }
   }
-  return { text: text.join(''), pinyin: pinyin.join(getPack().catalog.readingJoiner) }
+  const rendered = { text: text.join(''), pinyin: pinyin.join(getPack().catalog.readingJoiner) }
+  if (getPack().id === 'zh') noteChineseReadings([[rendered.text, rendered.pinyin]])
+  return rendered
 }
 
 /** The tokens of an example for its romaji: each word and grammar segment's kana reading, a grammar segment that is only は, へ or を marked as a particle, punctuation as it is. */

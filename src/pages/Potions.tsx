@@ -1,4 +1,5 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { spokenText } from '../core/language'
 import { createPortal } from 'react-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, Eye, FlaskConical, Info, ListOrdered, RotateCcw, Star, Undo2, Volume2, X } from 'lucide-react'
@@ -141,7 +142,7 @@ function PotionsBoard({ game: savedGame, busy, run, onLevel, onLevels }: {
   }, [speechId])
   const speak = (text: string) => {
     speechGeneration.current++
-    playBrowserSpeech(speechId, text, 'zh-Hans')
+    playBrowserSpeech(speechId, spokenText('zh-Hans', text), 'zh-Hans')
   }
   const act = (action: PotionsAction, note: string) => {
     if (acting.current || locked) return
@@ -166,7 +167,7 @@ function PotionsBoard({ game: savedGame, busy, run, onLevel, onLevels }: {
         const brewed = fresh.findIndex(Boolean)
         if (brewed >= 0) {
           setMessage(`${phraseText(next.phrases[brewed])} \u2014 ${next.phrases[brewed].translation}`)
-          if (generation === speechGeneration.current && !document.hidden) playBrowserSpeech(speechId, phraseText(next.phrases[brewed]), 'zh-Hans')
+          if (generation === speechGeneration.current && !document.hidden) playBrowserSpeech(speechId, spokenText('zh-Hans', phraseText(next.phrases[brewed])), 'zh-Hans')
         } else setMessage(note)
       } finally {
         acting.current = false

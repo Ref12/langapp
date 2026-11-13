@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { spokenText } from '../../core/language'
 import { db } from '../../core/database'
 import { answerDefender, createDefenderGame, endDefender, pauseDefender, readDefenderGame, resumeDefender, startNextDefenderWave, tickDefender, type DefenderGame, type Settings, type Word } from '../../core/games/defender'
 import { saveDefenderGame, type DefenderRevision } from '../../core/games/defender-store'
@@ -152,7 +153,7 @@ export function useDefender() {
     void checkpoint(result.game)
     if (result.outcome === 'hit') {
       const matched = result.game.run.words.find(word => word.id === result.tile?.wordId)!
-      playBrowserSpeech(speechId, matched.character, 'zh-Hans')
+      playBrowserSpeech(speechId, spokenText('zh-Hans', matched.character), 'zh-Hans')
     }
     return result.outcome
   }

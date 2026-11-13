@@ -13,7 +13,8 @@
 //  - What kana loses: the kanji tell the engine which word it is for its pitch accent and homographs (橋/箸, 雨/飴, 今日は/きょう は). Kana-only text hands it only the sounds. The browser voices (macOS Kyoko, Windows, Chrome's own) document nothing about
 //    spaces or kana-only text, and cannot be checked from here.
 //  So kana gives no gain on Edge (it already reads kanji sentences right in context) and takes away the accent cues, spaces do nothing there, and the other engines are unknown: sentences stay 'written'. Change the constant to try the others after listening.
-// Chinese and Korean return the text unchanged (Korean is written phonetically).
+// Within a sentence (SENTENCE_STYLE 'written') only the ambiguous words (AMBIGUOUS_WORDS) are said from their token kana; particles and everything else stay as written.
+// Chinese is speech-chinese.ts (characters with two readings); Korean is koreanSpeechText, unchanged text for now (Hangul is phonetic).
 import type { SpeechLocale } from '../assistant/contracts'
 import { characterReadingIn, kanjiReadingsOf } from './japanese-alignment'
 
@@ -120,14 +121,56 @@ function japaneseCharacterSpeech(text: string, bare: string, hint: SpeechHint | 
   return (own ? entry?.kun[0] : undefined) ?? entry?.on[0] ?? entry?.kun[0] ?? text
 }
 
+/** Words whose kanji the engine reads more than one common way, so inside a sentence they are said from their reading (the token's kana): 今日 きょう / こんにち, 明日 あした / あす / みょうにち, 一日 ついたち / いちにち, 上手 じょうず / うわて, 人気 にんき / ひとけ,
+ *  生物 せいぶつ / なまもの, 大人 おとな / だいじん, 何 なに / なん. Particles and everything else stay as written. */
+const AMBIGUOUS_WORDS = new Set(['今日', '明日', '昨日', '今朝', '一日', '二日', '三日', '四日', '五日', '六日', '七日', '八日', '九日', '十日', '二十日', '一人', '二人', '上手', '下手', '人気', '生物', '大人', '大勢', '今年', '去年', '昨年', '何', '行方', '日本'])
+const isAmbiguousWord = (text: string): boolean => {
+  const form = text.normalize('NFC').trim()
+  if (!HAN.test(form)) return false
+  return AMBIGUOUS_WORDS.has(form) || form.startsWith('何')
+}
+const stripSpace = (text: string) => text.replace(/\s+/gu, '')
+
+/** A written sentence with only its ambiguous words replaced by their kana, from the tokens (which must spell the sentence), else from the lexicon: a word of the list whose reading the catalog or dictionary knows. */
+function ambiguousWordsInSentence(text: string, bare: string, tokens: readonly SentenceToken[] | undefined): string {
+  if (tokens?.length) {
+    const pieces: string[] = []
+    let written = ''
+    let changed = false
+    for (const token of tokens) {
+      if (token.punctuation !== undefined) { pieces.push(token.punctuation); written += token.punctuation; continue }
+      const label = token.word !== undefined ? labels.get(token.word) : undefined
+      const form = token.text ?? label?.[0]
+      if (form === undefined) return text
+      const reading = cleanReading(token.reading) ?? (token.text === undefined ? cleanReading(label?.[1]) : undefined)
+      written += form
+      if (reading && token.grammar === undefined && isAmbiguousWord(form)) { pieces.push(reading); changed = true } else pieces.push(form)
+    }
+    // The tokens must spell the sentence.
+    return changed && stripSpace(written) === stripSpace(bare) ? pieces.join('') : text
+  }
+  const longest = [...AMBIGUOUS_WORDS].reduce((n, word) => Math.max(n, word.length), 1)
+  let out = ''
+  for (let at = 0; at < bare.length;) {
+    let hit = false
+    for (let length = Math.min(longest, bare.length - at); length >= 1 && !hit; length--) {
+      const form = bare.slice(at, at + length)
+      const reading = AMBIGUOUS_WORDS.has(form) ? knownJapaneseReading(form, 'word') : undefined
+      if (reading) { out += reading; at += length; hit = true }
+    }
+    if (!hit) out += bare[at++]
+  }
+  return out === bare ? text : out
+}
+
 export function japaneseSpeechText(text: string, hint?: SpeechHint): string {
   const bare = text.normalize('NFC').trim()
   if (!bare) return text
   if (hint?.kind === 'character') return japaneseCharacterSpeech(text, bare, hint)
   const kind = hint?.kind ?? (SENTENCE_MARK.test(bare) ? 'sentence' : undefined)
   if (kind === 'sentence') {
-    if (SENTENCE_STYLE === 'written') return text
     const tokens = hint?.tokens ?? sentences.get(bare)
+    if (SENTENCE_STYLE === 'written') return ambiguousWordsInSentence(text, bare, tokens)
     return (tokens && kanaSentence(tokens, SENTENCE_STYLE === 'kana-spaced')) ?? text
   }
   // The particles, alone: no sentence round them for the engine to read them in.
@@ -136,6 +179,9 @@ export function japaneseSpeechText(text: string, hint?: SpeechHint): string {
   if (!HAN.test(bare)) return text
   return cleanReading(hint?.reading) ?? knownJapaneseReading(bare, kind === 'fragment' ? 'fragment' : 'word') ?? text
 }
+
+/** Korean: Hangul is phonetic, so the text is spoken as it is. The seam exists so a fix can go in here later. */
+export const koreanSpeechText = (text: string): string => text
 
 export const plainSpeechText = (text: string): string => text
 

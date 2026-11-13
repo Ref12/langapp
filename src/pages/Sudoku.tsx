@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
+import { spokenText } from '../core/language'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, CheckCircle2, Eraser, Info, RotateCcw, Save, Trash2, Play, Volume2, VolumeX } from 'lucide-react'
 import { db } from '../core/database'
@@ -65,7 +66,7 @@ function SudokuBoard({ game, busy, run, autoSpeak, showPinyin, readings, onNewPu
   const activateSymbol = (value: number) => {
     setFocusSymbol(value)
     setAudioSymbol(value)
-    if (autoSpeak) playBrowserSpeech(speechId, game.symbols[value - 1].character, 'zh-Hans')
+    if (autoSpeak) playBrowserSpeech(speechId, spokenText('zh-Hans', game.symbols[value - 1].character), 'zh-Hans')
   }
   const act = (action: SudokuAction) => void run(async () => {
     const next = await updateSudoku(game, action)

@@ -31,7 +31,7 @@ import type { LookupSource } from '../core/language/dictionary'
 // The look-up cards are a chunk of their own: the Chinese app never draws one.
 const LookupWordCard = lazy(() => import('../components/dictionary/LookupCards').then(module => ({ default: module.LookupWordCard })))
 const LookupGrammarCard = lazy(() => import('../components/dictionary/LookupCards').then(module => ({ default: module.LookupGrammarCard })))
-import { bandName, getPack } from '../core/language'
+import { bandName, getPack, spokenText } from '../core/language'
 import type { DictGrammar, DictWord } from '../core/language/dictionary-file'
 
 const PAGE = 48
@@ -293,7 +293,7 @@ export function Dictionary({ workspace, now, run, busy, section, initialScope, i
     {kind === 'characters' && !charText && <p className="small muted">Full list includes prepared Chinese characters and characters in app vocabulary, including those without guides. Band filters use containing words, not a separate character syllabus. The built-in writing guides cover every character in the HSK 2021 standard word lists (bands 1–9) and the app course tracks. Word meanings and readings below are context, not character definitions.</p>}
     <p className="small muted" role="status">{catalog ? phrasesView && !phraseRows ? 'Loading phrases...' : phrasesView ? `${count} ${count === 1 ? 'phrase' : 'phrases'}` : `${count} ${kind === 'characters' ? count === 1 ? 'character' : 'characters' : count === 1 ? 'item' : 'items'}` : 'Loading the curriculum...'}</p>
     {phrasesView && <>
-      {phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} view={phraseView} onPlay={zh => playBrowserSpeech('dictionary-phrases', zh, pack.speechLocale)} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}</>}
+      {phraseMatches.length > 0 && <PhraseTable rows={phraseMatches.slice(0, limit)} route={`dictionary/phrases/${phraseScope}`} pinyin={workspace.preferences.pinyin} busy={busy} view={phraseView} onPlay={zh => playBrowserSpeech('dictionary-phrases', spokenText(pack.speechLocale, zh, { kind: 'sentence' }), pack.speechLocale)} onRemove={zh => void run(async () => { await removeUserPhrase(zh) })} />}</>}
     {!phrasesView && scope === 'media' && <div className="word-grid">{sourceMatches.slice(0, limit).map(entry => <SourceEntryCard key={entry.id} entry={entry} known={known.has(`source:${entry.id}`)} card={workspace.studyCards.find(card => card.id === cardId(`source:${entry.id}`, DOMAIN))}
       added={entries.get(`source:${entry.id}`)} addedIndex={addedIndex} pinyin={workspace.preferences.pinyin} now={now} run={run} busy={busy} route={`dictionary/vocabulary/media`} />)}</div>}
     {catalog && !phrasesView && kind !== 'characters' && scope !== 'media' && <div className="word-grid"><Suspense fallback={null}>{listed.slice(0, limit).map(entry => 'unit' in entry ? renderZh(entry.unit) : 'word' in entry ? <LookupWordCard key={entry.word.id} word={entry.word} reading={workspace.preferences.pinyin} levelName={lookup?.levelName} /> : <LookupGrammarCard key={entry.item.id} item={entry.item} levelName={lookup?.levelName} />)}</Suspense></div>}

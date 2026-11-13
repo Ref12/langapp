@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
+import { spokenText } from '../core/language'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, Info, Lightbulb, RotateCcw, Shuffle } from 'lucide-react'
 import { db } from '../core/database'
@@ -75,7 +76,7 @@ function MahjongBoard({ game, busy, run }: { game: MahjongGame } & Pick<PageProp
       if (operation.type === 'match' && next.removed.length > game.removed.length
         && generation === speechGeneration.current && !document.hidden) {
         const matched = next.tiles.find(tile => tile.id === operation.first)!
-        playBrowserSpeech(speechId, matched.word.character, 'zh-Hans')
+        playBrowserSpeech(speechId, spokenText('zh-Hans', matched.word.character), 'zh-Hans')
       }
     })
   }

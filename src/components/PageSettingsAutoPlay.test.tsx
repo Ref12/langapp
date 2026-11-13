@@ -93,7 +93,7 @@ describe('the small play button beside a sentence', () => {
     const user = userEvent.setup()
     render(<ExerciseQuestion exercise={choice} ctx={ctx} onDone={none} />)
     await user.click(screen.getByRole('button', { name: 'Play the word' }))
-    await waitFor(() => expect(speech.playBrowserSpeech).toHaveBeenCalledWith(expect.any(String), '同学', 'zh-Hans'))
+    await waitFor(() => expect(speech.playBrowserSpeech).toHaveBeenCalledWith(expect.any(String), '童学', 'zh-Hans'))
   })
 
   it('Choose the meaning with auto-play on plays the word after checking and not before', async () => {
@@ -103,7 +103,7 @@ describe('the small play button beside a sentence', () => {
     expect(speech.playBrowserSpeech).not.toHaveBeenCalled()
     await user.click(screen.getByRole('button', { name: /Check answer/ }))
     await waitFor(() => expect(speech.playBrowserSpeech).toHaveBeenCalledTimes(1))
-    expect(speech.playBrowserSpeech).toHaveBeenCalledWith(expect.any(String), '同学', 'zh-Hans')
+    expect(speech.playBrowserSpeech).toHaveBeenCalledWith(expect.any(String), '童学', 'zh-Hans')
   })
 
   it('Choose the meaning with auto-play off stays quiet after checking', async () => {

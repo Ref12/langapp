@@ -1,4 +1,5 @@
 import { acquireAudio, type AudioLease } from './audio-owner'
+import { spokenText } from '../language'
 import { practiceRateSchema } from './practice-chain-contracts'
 import { getPlaybackState, playBrowserSpeechToEnd, stopBrowserSpeech, subscribeSpeechInterruption, type PlaybackOutcome } from './speech'
 
@@ -220,7 +221,7 @@ export function createPracticePlayback(
     activeRun = run
     startingSpeech = true
     // Do not defer this call: Automatic must reach native speak in the tap stack.
-    const playback = playBrowserSpeechToEnd(id, phrases[index], 'zh-Hans', settings.rate)
+    const playback = playBrowserSpeechToEnd(id, spokenText('zh-Hans', phrases[index]), 'zh-Hans', settings.rate)
     startingSpeech = false
     void playback.then(outcome => finished(run, outcome), cause => {
       finished(run, { status: 'error', error: cause instanceof Error ? cause.message : 'Practice speech could not be played.' })

@@ -80,7 +80,7 @@ describe('Listen and answer can always be replayed', () => {
     const lines = screen.getAllByRole('button', { name: /^Play line/ })
     expect(lines).toHaveLength(2)
     await user.click(lines[1])
-    expect(spy).toHaveBeenCalledWith(expect.any(String), '我学习中文', 'zh-Hans', expect.any(Number))
+    expect(spy).toHaveBeenCalledWith(expect.any(String), '我学习钟文', 'zh-Hans', expect.any(Number))
     await user.click(screen.getByRole('button', { name: /^Play( the (conversation|next part))?$/ }))
     expect(within(document.body).getAllByText('我学习中文').length).toBeGreaterThan(0)
   }, 40000)

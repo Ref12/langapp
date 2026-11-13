@@ -55,7 +55,7 @@ describe('speech in a Japanese build', () => {
     expect(await hear({ text: '今日' })).toBe('きょう')
     expect(await hear({ text: '上手', reading: 'じょうず', kind: 'word' })).toBe('じょうず')
     expect(await hear({ text: 'は', kind: 'fragment' })).toBe('わ')
-    expect(await hear({ text: '今日は天気がいいです。' })).toBe('今日は天気がいいです。')
+    expect(await hear({ text: '今日は天気がいいです。' })).toBe('きょうは天気がいいです。')
     expect(await hear({ text: '難読', kind: 'word' })).toBe('難読')
   })
   it('the Hear of a phrase menu (SnippetActions) passes the word reading it was given', async () => {

@@ -86,8 +86,8 @@ describe('Japanese speechText: whole sentences', () => {
     const phrase = phrases.find(item => item.zh === '私は学生です。')!
     expect(phrase).toBeDefined()
     expect(speak(phrase.zh)).toBe(phrase.zh)
-    expect(speak('今日は天気がいいです', { kind: 'sentence', reading: 'きょうは' })).toBe('今日は天気がいいです')
-    for (const item of phrases.slice(0, 40)) expect(speak(item.zh)).toBe(item.zh)
+    expect(speak('今日は天気がいいです', { kind: 'sentence', reading: 'きょうは' })).toBe('きょうは天気がいいです') // the catalog pins 今日 as きょう: an ambiguous word in a sentence is said from its reading
+    for (const item of phrases.slice(0, 40)) expect(speak(item.zh)).toBe(item.zh.replace('今日', 'きょう')) // only an ambiguous word of the sentence is said from its reading
   })
   it('can build the kana of a sentence from its authored tokens, with and without spaces (the alternatives behind the constant)', () => {
     const phrase = phrases.find(item => item.zh === '私は勉強します。')!
