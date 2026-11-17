@@ -7,6 +7,7 @@ import { practicePhraseSchema, type AssistantSource, type SpeechBlock, type Spee
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayback } from '../../core/assistant/speech'
 import { selectedSnippet, selectionPracticeUnavailable, snippetLocale } from '../../core/assistant/selection'
 import { navigate } from '../../core/routing'
+import { SpeechError, useSpeechButton } from '../useSpeechButton'
 import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
 import { interruptAudio } from '../../core/assistant/audio-owner'
 import { db } from '../../core/database'
@@ -23,15 +24,14 @@ import { openWritingSheet } from '../../core/characters/writing-sheet'
 /** `reading` and `kind` are the pack's hint for what is spoken (the Japanese pack speaks a word or a sentence piece from its kana reading); the text goes through the pack before it is spoken. */
 export function HearButton({ text, locale, rate, label = 'Hear', iconOnly = false, buttonText = 'Hear', disabled = false, reading, kind }: { text: string; locale: SpeechLocale; rate?: number; reading?: string; kind?: SpeechKind; label?: string; iconOnly?: boolean; buttonText?: string; disabled?: boolean }) {
   const id = useId()
-  const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
-  const active = playback.activeId === id
-  const stopLabel = playback.phase === 'loading-voices' ? 'Cancel voice discovery' : 'Stop playback'
+  const spoken = spokenText(locale, text, { reading, kind })
+  const { active, error, stopLabel } = useSpeechButton(id, spoken)
   useEffect(() => () => { if (getPlaybackState().activeId === id) stopBrowserSpeech() }, [id])
-  return <button className={`button secondary snippet-button${iconOnly ? ' icon-only' : ''}`} type="button" title={active ? stopLabel : 'Hear with your selected voice; Automatic prefers local voices before online voices'}
+  return <><button className={`button secondary snippet-button${iconOnly ? ' icon-only' : ''}`} type="button" title={active ? stopLabel : 'Hear with your selected voice; Automatic prefers local voices before online voices'}
     disabled={disabled && !active}
-    aria-label={active ? stopLabel : label} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, spokenText(locale, text, { reading, kind }), locale, rate)}>
+    aria-label={active ? stopLabel : label} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, spoken, locale, rate)}>
     {active ? <Square size={15} /> : <Volume2 size={15} />}{!iconOnly && (active ? 'Stop' : buttonText)}
-  </button>
+  </button><SpeechError error={error} /></>
 }
 
 /** The phrase's actions, always beside the phrase: an icon Hear button and a "…" menu (Ask, Practice, Write, Learn). */
@@ -105,13 +105,10 @@ export function WritePracticeSheet({ route, phrase, rate, onClose }: { route: st
     onClose={async () => onClose()} />
 }
 
-export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
-  const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
-  const [error, setError] = useState('')
+/** Stops speech on Escape, when the page is hidden and when leaving the app, and reports playback errors that no button shows. It renders nothing. */
+function usePlaybackDuties() {
   const stop = useCallback(() => {
-    try { interruptAudio(); setError('') } catch (reason) {
-      setError(reason instanceof Error ? reason.message : 'Audio could not be stopped. Close this page before trying again.')
-    }
+    try { interruptAudio() } catch (reason) { console.error('Audio could not be stopped.', reason) }
     stopBrowserSpeech()
   }, [])
   useEffect(() => {
@@ -126,18 +123,22 @@ export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
       stopBrowserSpeech()
     }
   }, [stop])
-  if (!playback.activeId && !playback.error && !error) return null
-  const showMessage = debug || Boolean(playback.error || error)
-  return <div className={`playback-status${showMessage ? '' : ' playback-status-compact'}`} data-assistant-exclude role={playback.error || error ? 'alert' : debug ? 'status' : undefined}>
-    {showMessage && <span>{error || playback.error || (playback.phase === 'loading-audio' ? 'Preparing Edge speech...'
+  const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
+  useEffect(() => { if (playback.error) console.error('Speech playback failed.', playback.error) }, [playback])
+}
+
+/** No visible pill: the buttons themselves turn into Stop. Only the opt-in "speech debug messages" setting shows a status line. */
+export function PlaybackStatus({ debug = false }: { debug?: boolean }) {
+  usePlaybackDuties()
+  const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
+  if (!debug || (!playback.activeId && !playback.error)) return null
+  return <div className="playback-status" data-assistant-exclude role={playback.error ? 'alert' : 'status'}>
+    <span>{playback.error || (playback.phase === 'loading-audio' ? 'Preparing Edge speech...'
       : playback.phase === 'loading-voices' ? 'Looking for a voice...'
       : playback.voiceKind === 'edge' ? playback.phase === 'starting' ? 'Starting Edge speech...' : 'Playing with Edge TTS (online)'
       : playback.voiceKind === 'system' ? playback.phase === 'starting' ? 'Starting system-selected speech (may be online)...' : 'Playing with a system-selected voice (may be online)'
       : playback.phase === 'starting' ? `Starting ${playback.voiceKind === 'online' ? 'online' : 'local'} speech...`
-        : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>}
-    <button className="icon-button" type="button" aria-label={error ? 'Retry stopping audio' : playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stop}>
-      {playback.error && !error ? <X size={18} /> : <Square size={18} />}
-    </button>
+        : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>
   </div>
 }
 

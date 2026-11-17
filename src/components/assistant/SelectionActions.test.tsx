@@ -152,7 +152,9 @@ it('stops existing Hear playback and reports interruption failures before openin
   synthesis.cancel.mockImplementationOnce(() => { throw new Error('Device busy') })
   fireEvent.click(openPhraseActions().getByRole('button', { name: 'Practice' }))
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-  expect(screen.getByRole('alert')).toHaveTextContent('The browser could not stop speech playback.')
+  // The failure shows at the Hear button that started the playback and in the selection toolbar.
+  expect(screen.getAllByRole('alert')).toHaveLength(2)
+  for (const alert of screen.getAllByRole('alert')) expect(alert).toHaveTextContent('The browser could not stop speech playback.')
   await open()
   expect(getPlaybackState().activeId).toBeUndefined()
 })

@@ -399,7 +399,7 @@ describe('conversation voice input and replies', () => {
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
     expect(synthesis.speak.mock.calls[1][0]).toMatchObject({ text: phrase.text, lang: 'zh-CN', rate: 0.75 })
     act(() => synthesis.speak.mock.calls[1][0].onstart?.())
-    fireEvent.click(screen.getByRole('button', { name: 'Stop all playback' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Stop speaking' }))
     await waitFor(() => expect(screen.queryByText('Speaking...')).not.toBeInTheDocument())
     expect(synthesis.cancel).toHaveBeenCalled()
     expect(capture.startSpeechCapture).not.toHaveBeenCalled()

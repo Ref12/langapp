@@ -86,7 +86,7 @@ export function ConversationQuestion({ exercise, ctx, onDone }: { exercise: Conv
       {<button type="button" className="button secondary" style={checked ? { visibility: 'hidden' } : undefined} tabIndex={checked ? -1 : undefined} aria-hidden={checked} aria-pressed={shown} onClick={() => setShown(!shown)}>{shown ? 'Hide transcript' : 'Show transcript (hint)'}</button>}</div>
     <ul className="dr-lines engine-convo-lines">{exercise.lines.map((line, index) => <li key={index} data-speaker={line.speaker}>
       <strong className="engine-speaker">{line.name}<span className="small muted"> ({line.speaker})</span></strong>
-      <button type="button" className="button secondary icon-button dr-line-play" aria-label={`Play line ${index + 1}, ${line.name}`} onClick={() => void playLine(index)}><Volume2 size={14} /></button>
+      <button type="button" className="button secondary icon-button dr-line-play" aria-label={playing === index ? 'Stop playback' : `Play line ${index + 1}, ${line.name}`} onClick={() => { if (playing === index) { token.current++; stopBrowserSpeech(); setPlaying(-1) } else void playLine(index) }}>{playing === index ? <Square size={14} /> : <Volume2 size={14} />}</button>
       {transcript && <><span lang={getPack().learningTag}>{line.zh}</span><span className="small muted"><Pinyin text={tidyPinyin(line.py)} /> {checked && line.en}</span></>}</li>)}</ul>
     {exercise.questions.map((item, index) => <fieldset key={index} className="answer-options dr-inline" disabled={ctx.busy || checked}><legend className="small">{item.q}</legend>
       {item.options.map((option, optionIndex) => <label key={optionIndex} className={optionClass(picked[index] === optionIndex, checked, optionIndex === item.answer)}>

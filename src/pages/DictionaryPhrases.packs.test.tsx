@@ -71,7 +71,7 @@ describe.each(Object.values(LANGUAGES))('the $id Dictionary Phrases section', la
   it('plays in the pack speech locale', async () => {
     await open()
     fireEvent.click(rowOf(lang.first).querySelector('button[aria-label^="Play"]')!)
-    expect(speech.played).toEqual([['dictionary-phrases', lang.first, lang.locale]])
+    expect(speech.played).toEqual([[expect.any(String), lang.first, lang.locale]])
   }, 60000)
 
   it('writes the reading column as the reading setting says', async () => {

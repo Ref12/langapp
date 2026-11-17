@@ -101,12 +101,13 @@ describe('browser speech controls', () => {
     expect(vi.getTimerCount()).toBe(0)
   })
 
-  it('reports an actual system playback error and lets the learner dismiss it', () => {
+  it('shows an actual system playback error next to its button and clears it on the next play', () => {
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
     fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     act(() => synthesis.speak.mock.calls[0][0].onerror?.())
     expect(screen.getByRole('alert')).toHaveTextContent('System speech could not be played')
-    fireEvent.click(screen.getByRole('button', { name: 'Dismiss playback error' }))
+    expect(screen.getByRole('button', { name: /^Hear/ }).parentElement).toContainElement(screen.getByRole('alert'))
+    fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   })
 
@@ -126,19 +127,21 @@ describe('browser speech controls', () => {
     expect(screen.queryByText('Looking for a voice...')).not.toBeInTheDocument()
   })
 
-  it.each(['system', 'local', 'online'])('hides routine %s messages by default but keeps Stop available', source => {
+  it.each(['system', 'local', 'online'])('shows no pill for %s speech by default; the Hear button becomes Stop', source => {
     voices = source === 'system' ? [] : [{ ...mandarin, localService: source === 'local' }]
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
     fireEvent.click(screen.getByRole('button', { name: /^Hear/ }))
     expect(screen.queryByRole('status')).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Stop all playback' })).toBeVisible()
+    expect(document.querySelector('.playback-status')).toBeNull()
+    expect(screen.getByRole('button', { name: source === 'online' ? 'Cancel voice discovery' : 'Stop playback' })).toBeVisible()
     if (source === 'online') act(() => vi.advanceTimersByTime(3000))
     expect(screen.queryByText(/Starting .*speech/)).not.toBeInTheDocument()
     act(() => synthesis.speak.mock.calls[0][0].onstart?.())
     expect(screen.queryByText(/Playing with/)).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Stop all playback' }))
+    expect(document.querySelector('.playback-status')).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: 'Stop playback' }))
     expect(getPlaybackState()).toEqual({})
-    expect(screen.queryByRole('button', { name: 'Stop all playback' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Stop playback' })).not.toBeInTheDocument()
   })
 
   it('changes debug visibility without restarting or stopping active speech', () => {

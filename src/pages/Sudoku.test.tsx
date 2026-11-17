@@ -147,6 +147,8 @@ it('speaks only explicit character activations by default and offers Hear for th
   await user.click(cell(given))
   expect(speak).toHaveBeenCalledTimes(1)
   expect(speak.mock.calls[0][0]).toMatchObject({ text: character, lang: 'zh-CN', rate: .25, voice })
+  // The character is still playing: its Hear button shows Stop; stopping it makes Hear available again.
+  await user.click(await screen.findByRole('button', { name: 'Stop playback' }))
   expect(screen.getByRole('button', { name: `Hear character ${character}` })).toBeEnabled()
   expect(document.querySelector('.sudoku-selected-pinyin')).toBeNull()
   await user.click(screen.getByRole('button', { name: `Hear character ${character}` }))

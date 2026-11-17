@@ -300,8 +300,11 @@ it('surfaces speech errors without losing the match or blocking gameplay', async
   await populate(1)
   const game = await start()
   vi.stubGlobal('speechSynthesis', undefined)
+  const errorLog = vi.spyOn(console, 'error').mockImplementation(() => undefined)
   await userEvent.setup().click(screen.getByRole('button', { name: `Answer ${targetWord(game).meaning}` }))
-  expect(await screen.findByRole('alert')).toHaveTextContent('Speech playback is not available')
+  // Automatic speech has no button: the failure is logged, not shown.
+  await waitFor(() => expect(errorLog).toHaveBeenCalledWith('Speech playback failed.', expect.stringContaining('Speech playback is not available')))
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   await waitFor(async () => expect((await db.defenderGames.get('current'))?.run.hits).toBe(1))
   expect(screen.getByRole('button', { name: 'Pause Defender' })).toBeEnabled()
 })

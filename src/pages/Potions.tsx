@@ -2,7 +2,7 @@ import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSP
 import { spokenText } from '../core/language'
 import { createPortal } from 'react-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, Eye, FlaskConical, Info, ListOrdered, RotateCcw, Star, Undo2, Volume2, X } from 'lucide-react'
+import { ArrowLeft, Eye, FlaskConical, Info, ListOrdered, RotateCcw, Star, Square, Undo2, Volume2, X } from 'lucide-react'
 import { db } from '../core/database'
 import type { PageProps } from '../components/shared'
 import { useCatalog } from '../components/study/useCatalog'
@@ -10,6 +10,7 @@ import { buildPotionsLevel, canMovePotion, phraseText, potionsCompletion, potion
 import { knownPotionPhrases } from '../core/games/potions-phrases'
 import { startPotionsLevel, updatePotions } from '../core/games/potions-store'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribeSpeechInterruption } from '../core/assistant/speech'
+import { SpeechError, useSpeechButton } from '../components/useSpeechButton'
 import { capturePotionPour, usePotionAnimation } from './potions-animation'
 import { Pinyin } from '../components/Pinyin'
 import './potions.css'
@@ -19,7 +20,8 @@ function vialColor(game: PotionsGame, phrase: number) {
 }
 
 function HearPhrase({ text, speak }: { text: string; speak: (text: string) => void }) {
-  return <button type="button" className="icon-button potions-hear" aria-label={`Hear ${text}`} onClick={() => speak(text)}><Volume2 size={16} /></button>
+  const { active, error, stopLabel } = useSpeechButton(useId(), spokenText('zh-Hans', text))
+  return <><button type="button" className="icon-button potions-hear" aria-label={active ? stopLabel : `Hear ${text}`} onClick={() => active ? stopBrowserSpeech() : speak(text)}>{active ? <Square size={16} /> : <Volume2 size={16} />}</button><SpeechError error={error} /></>
 }
 
 function Stars({ count, className = '' }: { count: number; className?: string }) {

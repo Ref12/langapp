@@ -8,6 +8,8 @@ interface PlaybackState {
   voiceKind?: 'local' | 'online' | 'system' | 'edge'
   error?: string
 }
+/** Which request the current playback or error belongs to: its spoken text (so a button for the same text can show Stop for automatic speech) and, for an error, its id. */
+export interface PlaybackTarget { text?: string; errorId?: string; errorText?: string }
 interface PlaybackRequest {
   id: string
   /** The voice and speed this request asked for, instead of the saved voice for its language. */
@@ -91,8 +93,13 @@ export function setSpeechVoicePreferences(preferences: SpeechVoicePreferences = 
   stopBrowserSpeech()
 }
 
+let target: PlaybackTarget = {}
+let lastId: string | undefined
+let lastText: string | undefined
+
 function publish(next: PlaybackState) {
   state = next
+  target = next.activeId ? { text: lastText } : next.error ? { errorId: lastId, errorText: lastText } : {}
   listeners.forEach(listener => listener())
 }
 
@@ -102,6 +109,7 @@ export function subscribePlayback(listener: () => void) {
 }
 
 export function getPlaybackState() { return state }
+export function getPlaybackTarget() { return target }
 
 // Also notifies between utterances, while a guided response timer owns no speech.
 export function subscribeSpeechInterruption(listener: (nextId?: string) => void) {
@@ -400,6 +408,8 @@ function startSpeaking(request: BrowserPlaybackRequest, voice: SpeechSynthesisVo
 }
 
 export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate?: number) {
+  lastId = id
+  lastText = text
   try {
     interruptAudio()
   } catch (cause) {
@@ -422,6 +432,8 @@ function beginBrowserSpeech(
     publish({ error })
     finish?.({ status: 'error', error })
   }
+  lastId = id
+  lastText = text
   interruptionListeners.forEach(listener => listener(id))
   const version = ++generation
   const cancelError = cancelCurrent()
