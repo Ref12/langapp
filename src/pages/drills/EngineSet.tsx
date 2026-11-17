@@ -25,7 +25,7 @@ import { loadCustomPresets, saveCustomPreset } from '../../core/session/custom-p
 import { answerCurrent, currentExercise, currentStage, progressOf, replayRunner, skillsOf, summarise, type RunnerState } from '../../core/session/runner'
 import { isFormOffered } from '../../core/session/offered'
 import { formLabel } from '../../core/session/form-label'
-import { LENGTHS, LENGTH_LABEL, STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
+import { STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
 import { ExerciseQuestion, type Outcome } from './EngineQuestion'
 import { IntroCard } from './IntroCards'
 import { PhraseCounts } from './PhraseItems'
@@ -72,16 +72,13 @@ export function EngineStart({ set, items, catalog, workspace, run, busy }: Props
     <section className="panel dr-panel engine-start" aria-labelledby="engine-start">
       <h2 id="engine-start">Ready when you are</h2>
       {engine.lastRun && <p className="engine-last-run" role="status">Last run: {engine.lastRun.correct} of {engine.lastRun.total} right, {shortDate(engine.lastRun.at)}</p>}
-      {resumable && <p className="engine-resume" role="status"><strong>In progress: {engine.done} of {engine.planned}.</strong> Resume where you left off, or change the preset or length to start a fresh run.</p>}
+      {resumable && <p className="engine-resume" role="status"><strong>In progress: {engine.done} of {engine.planned}.</strong> Resume where you left off, or change the preset to start a fresh run.</p>}
       <p className="small muted">{set.source === 'phrases' ? 'Phrases are practiced as whole sentences: translating, building, filling a gap, listening. None is added to your knowledge set. Nothing to choose; press Start.' : 'The app picks the exercises and their order: recognise, recall, produce, then use the words in sentences. Nothing to choose; press Start.'}</p>
       <div className="engine-options">
         <div><span className="eyebrow">Preset</span>
           <div className="segmented engine-presets" role="group" aria-label="Preset">
             {presets.map(entry => <button key={entry.id} type="button" disabled={busy} aria-pressed={engine.preset === entry.id} title={entry.blurb} onClick={() => void run(async () => { await setEngineChoice(set.id, { preset: entry.id }) })}>{entry.name}</button>)}</div>
           <p className="small muted">{active.blurb}</p></div>
-        <div><span className="eyebrow">Length</span>
-          <div className="segmented" role="group" aria-label="Length">
-            {LENGTHS.map(value => <button key={value} type="button" disabled={busy} aria-pressed={engine.length === value} onClick={() => void run(async () => { await setEngineChoice(set.id, { length: value }) })}>{LENGTH_LABEL[value]}</button>)}</div></div>
           <div><span className="eyebrow">Sound</span>
             <label className="toggle engine-autoplay"><input type="checkbox" role="switch" checked={workspace.preferences.promptAutoPlay === true} disabled={busy} onChange={event => { const on = event.target.checked; void run(async () => { await savePreferences({ promptAutoPlay: on }) }) }} /> Auto-play sound</label>
             <p className="small muted">Plays the word or sentence by itself when you answer. Off by default.</p></div></div>
@@ -202,6 +199,6 @@ function EngineSummary({ set, state, items, busy, run }: { set: DrillSet; state:
         {missed > 0 && <button type="button" className="button secondary" disabled={busy} onClick={() => void run(async () => { navigate(setRoute(await createDrillSet({ kind: 'refs', refs: summary.missedRefs, origin: { kind: 'drill', id: set.id } }), '')) })}>{set.source === 'phrases' ? `Practice the missed phrases (${missed})` : `Practice the missed items (${missed})`}</button>}
         <a className="button secondary" href="#practice">New practice set</a>
         <a className="button secondary" href="#practice">Back to Practice</a></div>
-      <p className="small muted">Back to session opens the Start screen, where you can change the preset and length.</p></section>
+      <p className="small muted">Back to session opens the Start screen, where you can change the preset.</p></section>
   </div>
 }

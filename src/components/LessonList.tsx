@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { getPack } from '../core/language'
 import { BandName } from './BandName'
 import { ChevronDown, ChevronRight } from 'lucide-react'
@@ -6,6 +6,7 @@ import type { Band } from '../core/study/contracts'
 import type { Catalog } from '../core/study/catalog'
 import type { Workspace } from '../core/model'
 import type { GroupRow, Track } from '../data/tracks'
+import { moduleOf } from '../core/study/modules'
 import { useAfterPaint, useBandRows, useBandSummaries, useKnownTimes } from './useGroupRows'
 
 const statusText = (row: GroupRow) => row.status === 'done' ? 'Done' : row.status === 'current' ? 'Next' : row.status === 'partial' ? `${row.introduced}/${row.total}` : 'Upcoming'
@@ -15,12 +16,14 @@ function BandRows({ track, catalog, known, nextId, band }: { track: Track; catal
   const rows = useBandRows(track, catalog, known, nextId, band, true)
   const next = useRef<HTMLLIElement>(null)
   useEffect(() => { next.current?.scrollIntoView?.({ block: 'center' }) }, [nextId])
-  return <ol>{rows.map(row => <li key={row.id} ref={row.status === 'current' ? next : undefined} className={`lesson-index-row ${row.status}`} aria-current={row.status === 'current' ? 'step' : undefined} id={row.status === 'current' ? 'current-lesson' : undefined}>
+  // A heading before the first unit of each module of the level (none for a pack without modules).
+  const heading = (number: number) => { const place = moduleOf(catalog, band, number); return place && place.position === 1 ? place.module : undefined }
+  return <ol>{rows.map(row => <Fragment key={row.id}>{heading(row.number) && <li className="lesson-index-module"><h4>{heading(row.number)!.title}</h4><span className="small muted">{`units ${heading(row.number)!.from}–${heading(row.number)!.to}`}</span></li>}<li ref={row.status === 'current' ? next : undefined} className={`lesson-index-row ${row.status}`} aria-current={row.status === 'current' ? 'step' : undefined} id={row.status === 'current' ? 'current-lesson' : undefined}>
     <a href={`#lessons/group/${row.id}`}>
-      <span className="num">{row.number}</span><span className="title" lang={getPack().learningTag}>{row.title}</span>
+      <span className="num">{`Unit ${row.number}`}</span><span className="title" lang={getPack().learningTag}>{row.title}</span>
       <span className="status">{statusText(row)}</span>
       <span className="date">{row.completedAt !== undefined ? dateOf(row.completedAt) : ''}</span>
-    </a></li>)}</ol>
+    </a></li></Fragment>)}</ol>
 }
 
 /**

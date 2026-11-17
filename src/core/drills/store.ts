@@ -1,8 +1,9 @@
 import { db } from '../database'
+import type { Length } from '../session/types'
 import { loadCatalog } from '../study/catalog'
 import { cardId, isSourceRef, type StudyCard } from '../study/contracts'
 import { addUnits, dueCards, DOMAIN } from '../study/knowledge'
-import { fillByItems, NEW_COUNT_DEFAULT } from '../study/daily'
+import { fillByUnits, UNIT_DEFAULT, UNIT_MAX } from '../study/daily'
 import { schedule, type SchedulingState } from '../study/fsrs'
 import { reviewEvent } from '../backup/journal'
 import { recordJournal } from '../backup/journal-store'
@@ -89,9 +90,10 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
     if (!cards.length) throw new Error(known.size ? 'Nothing is due for review right now.' : 'Your knowledge set is empty. Start with New items, or add items from the Dictionary.')
     return { refs: cards.map(card => card.ref), title: `Reviews · ${shortDate(now)}` }
   }
-  const count = Math.min(20, Math.max(1, source.kind === 'new' ? source.count ?? NEW_COUNT_DEFAULT : NEW_COUNT_DEFAULT))
+  // New items: `count` is the number of whole units (curriculum groups); a study set has no units, so a unit stands for about five items there.
+  const count = Math.min(UNIT_MAX, Math.max(1, source.kind === 'new' ? source.count ?? UNIT_DEFAULT : UNIT_DEFAULT))
   if (source.kind === 'new' && !source.from) {
-    const refs = source.refs?.length ? [...source.refs] : fillByItems(catalog, known, count)
+    const refs = source.refs?.length ? [...source.refs] : fillByUnits(catalog, known, count)
     if (!refs.length) throw new Error('Every available curriculum group is already in your knowledge set.')
     return { refs, title: `New items · ${shortDate(now)}` }
   }
@@ -102,7 +104,7 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
   if (source.kind === 'new') {
     const cards = new Map((await db.studyCards.bulkGet(items.map(item => cardId(item.ref, DOMAIN)))).flatMap(card => card ? [[card.ref, card] as const] : []))
     const fresh = items.filter(item => isPhraseRef(item.ref) ? !(cards.get(item.ref)?.reps) : !known.has(item.ref))
-    if (source.refs?.length) { const wanted = new Set(source.refs); fresh.splice(0, fresh.length, ...fresh.filter(item => wanted.has(item.ref))) } else fresh.splice(count)
+    if (source.refs?.length) { const wanted = new Set(source.refs); fresh.splice(0, fresh.length, ...fresh.filter(item => wanted.has(item.ref))) } else fresh.splice(count * 5)
     if (!fresh.length) throw new Error(`Every item in this study set is already in your knowledge set.`)
     return { refs: fresh.map(item => item.ref), title: `New items · ${shortDate(now)}`, collectionId, promote: fresh.map(item => item.id) }
   }
@@ -114,12 +116,12 @@ export async function chooseRefs(source: DrillSource, now: number): Promise<{ re
 }
 
 /** Creates a drill set from a source and starts writing its sentences in the background. New items join the knowledge set only when the set is finished (finishDrillSet). `handsfree` makes a set of the Hands-free shortcut: it opens on that activity and is finished when it reaches its end. */
-export async function createDrillSet(source: DrillSource, now = Date.now(), options: { handsfree?: HandsfreeActivity; handsfreeRecall?: HandsfreeActivity } = {}): Promise<string> {
+export async function createDrillSet(source: DrillSource, now = Date.now(), options: { handsfree?: HandsfreeActivity; handsfreeRecall?: HandsfreeActivity; length?: Length } = {}): Promise<string> {
   const withEngine = !options.handsfree && !options.handsfreeRecall && source.kind !== 'unwritten'
   const chosen = await chooseRefs(source, now)
   const id = crypto.randomUUID()
   const set = { ...emptySet({ id, source: source.kind === 'refs' || source.kind === 'skill' || source.kind === 'unwritten' ? chosen.setSource! : source.kind, title: chosen.title, refs: chosen.refs, createdAt: now, ...(chosen.collectionId ? { collectionId: chosen.collectionId } : {}), ...(chosen.originId ? { originId: chosen.originId } : {}) }), ...(chosen.emphasis ? { emphasis: chosen.emphasis } : {}), ...(chosen.unwritten ? { unwritten: true as const } : {}),
-    ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}), ...(withEngine ? { engine: { preset: 'default', length: 'standard' as const, seed: Math.floor(Math.random() * 2 ** 31), recorded: [], correct: 0, total: 0 } } : {}), ...(options.handsfree ? { handsfree: options.handsfree, shortcut: 'handsfree' as const } : {}), ...(options.handsfreeRecall ? { handsfreeRecall: options.handsfreeRecall, shortcut: 'handsfree' as const } : {}) }
+    ...(source.kind === 'new' && !source.from ? { addOnFinish: chosen.refs } : {}), ...(chosen.promote?.length ? { promote: chosen.promote } : {}), ...(withEngine ? { engine: { preset: 'default', length: options.length ?? 'standard' as Length, seed: Math.floor(Math.random() * 2 ** 31), recorded: [], correct: 0, total: 0 } } : {}), ...(options.handsfree ? { handsfree: options.handsfree, shortcut: 'handsfree' as const } : {}), ...(options.handsfreeRecall ? { handsfreeRecall: options.handsfreeRecall, shortcut: 'handsfree' as const } : {}) }
   await db.transaction('rw', [db.drillSets], async () => {
     await db.drillSets.add(drillSetSchema.parse(set))
     // Only unfinished sessions of the new session's language count and are set aside: a Japanese session never retires a Chinese one.

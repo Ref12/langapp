@@ -5,11 +5,18 @@ export type JsonLoader = () => Promise<{ default: unknown }>
 export interface CatalogIndex { schemaVersion: number; bands: { band: string; alignment: string; vocabulary: number; grammar: number; groups: number }[] }
 export type PracticeFileKind = 'accepted' | 'exchanges' | 'grammar' | 'conversations'
 
+/** One module of a level: a run of consecutive units (`from` to `to`, 1-based inside the level) with a title that says what is learned in it. */
+export interface ModuleRecord { id: string; title: string; from: number; to: number }
+/** The modules of a pack (src/data/<pack>/modules.generated.json), by level; `band` is the catalog index's `alignment`. */
+export interface ModuleFile { schemaVersion: number; bands: { band: string; modules: ModuleRecord[] }[] }
+
 export interface CatalogSource {
   /** The small index the catalog reads for its band list and counts (read at once, so keep it small). */
   index: CatalogIndex
   /** The band files (BandData), by band. */
   bands: Record<string, JsonLoader>
+  /** The modules of each level; absent when the pack has no units to group (Korean). Small, so it is read at once like the index. */
+  modules?: ModuleFile
   /** What goes between the readings of an example's segments: ' ' for pinyin, '' for kana. */
   readingJoiner: ' ' | ''
 }

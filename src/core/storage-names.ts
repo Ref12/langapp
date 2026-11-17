@@ -59,6 +59,10 @@ export interface StorageNames {
     backupConfigPrefix: string
     newItems: string
     legacyNewItems: string
+    /** Units per set on the Practice page (1 to 4); the earlier item count in newItems is migrated from. */
+    unitsPerSet: string
+    /** Length (short, standard, long) chosen on the Practice page. */
+    practiceLength: string
     reviewCount: string
     unwrittenSize: string
     writeDrill: string
@@ -119,6 +123,8 @@ export function storageNames(channel: BuildChannel = buildChannel(), language: L
       backupConfigPrefix: p + 'linguaweave-backup-config:',
       newItems: p + 'practice.newItems',
       legacyNewItems: p + 'practice.newWords',
+      unitsPerSet: p + 'practice.unitsPerSet',
+      practiceLength: p + 'practice.length',
       reviewCount: p + 'practice.reviewCount',
       unwrittenSize: p + 'practice.unwrittenSize',
       writeDrill: p + 'drills.write',

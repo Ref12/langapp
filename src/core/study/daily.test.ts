@@ -1,18 +1,59 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { loadCatalog } from './catalog'
-import { clampCount, describeCounts, fillByItems, lessonCount, loadNewCount, loadReviewCount, pickReviews, saveNewCount, saveReviewCount } from './daily'
+import { clampCount, clampUnits, describeCounts, fillByItems, fillByUnits, loadLength, loadReviewCount, loadUnitsPerSet, pickReviews, saveLength, saveReviewCount, saveUnitsPerSet, unitCount, unitsFromItems } from './daily'
 import { storageNames } from '../storage-names'
 
 beforeEach(() => localStorage.clear())
 
-describe('new words per set', () => {
-  it('defaults to 5, clamps to 1-20 and is remembered', () => {
-    expect(loadNewCount()).toBe(5)
+describe('units per set', () => {
+  it('defaults to 1, clamps to 1-4 and is remembered', () => {
+    expect(loadUnitsPerSet()).toBe(1)
+    expect([0, -3, 2.4, 99, 'x', ''].map(clampUnits)).toEqual([1, 1, 2, 4, 1, 1])
     expect([0, -3, 7.4, 99, 'x', ''].map(clampCount)).toEqual([1, 1, 7, 20, 5, 1])
-    saveNewCount(15)
-    expect(loadNewCount()).toBe(15)
-    saveNewCount(500)
-    expect(loadNewCount()).toBe(20)
+    saveUnitsPerSet(3)
+    expect(loadUnitsPerSet()).toBe(3)
+    saveUnitsPerSet(500)
+    expect(loadUnitsPerSet()).toBe(4)
+  })
+
+  it('migrates the stored item count: 5, 10, 15, 20 become 1, 2, 3, 4 and anything else the nearest', () => {
+    expect([5, 10, 15, 20].map(unitsFromItems)).toEqual([1, 2, 3, 4])
+    expect([1, 3, 7, 8, 12, 13, 17, 18, 99, 'x'].map(unitsFromItems)).toEqual([1, 1, 1, 2, 2, 3, 3, 4, 4, 1])
+    for (const [items, units] of [['5', 1], ['10', 2], ['15', 3], ['20', 4], ['12', 2], ['3', 1]] as const) {
+      localStorage.clear()
+      localStorage.setItem(storageNames().local.newItems, items)
+      expect(loadUnitsPerSet()).toBe(units)
+    }
+    localStorage.clear()
+    localStorage.setItem(storageNames().local.legacyNewItems, '15')
+    expect(loadUnitsPerSet()).toBe(3)
+    // a units choice made since wins over the old item count
+    localStorage.setItem(storageNames().local.newItems, '20')
+    saveUnitsPerSet(2)
+    expect(loadUnitsPerSet()).toBe(2)
+  })
+
+  it('remembers the Length chosen on the Practice page, Standard until then', () => {
+    expect(loadLength()).toBe('standard')
+    saveLength('long')
+    expect(loadLength()).toBe('long')
+    localStorage.setItem(storageNames().local.practiceLength, 'huge')
+    expect(loadLength()).toBe('standard')
+  })
+
+  it('fills by whole units: the next N units that still have new items', async () => {
+    const catalog = await loadCatalog()
+    const unitRefs = (at: number) => catalog.orderedGroups[at].group.units.map(unit => `${unit.kind}:${unit.ref.replace(/^[a-z]+:/, '')}`)
+    for (const units of [1, 2, 3, 4]) {
+      const refs = fillByUnits(catalog, new Set(), units)
+      expect(unitCount(catalog, refs)).toBe(units)
+      expect(refs).toEqual(Array.from({ length: units }, (_, at) => unitRefs(at)).flat())
+    }
+    // units whose items are all known are skipped; a half-known unit counts and keeps only its new items
+    const known = new Set([...unitRefs(0), unitRefs(1)[0]])
+    const two = fillByUnits(catalog, known, 2)
+    expect(two).toEqual([...unitRefs(1).slice(1), ...unitRefs(2)])
+    expect(unitCount(catalog, two)).toBe(2)
   })
 
   it('fills by items, a minimum, with whole lessons only', async () => {
@@ -22,7 +63,7 @@ describe('new words per set', () => {
     // N smaller than one group: the first group, whole
     const one = fillByItems(catalog, new Set(), 1)
     expect(one).toHaveLength(size(0))
-    expect(lessonCount(catalog, one)).toBe(1)
+    expect(unitCount(catalog, one)).toBe(1)
     // N spanning several groups: stops at the first group boundary at or past N, never mid-group
     for (const count of [5, 10, 15, 20]) {
       const refs = fillByItems(catalog, new Set(), count)
@@ -41,14 +82,6 @@ describe('new words per set', () => {
     expect(rest.some(ref => refs.includes(ref))).toBe(false)
     const partly = fillByItems(catalog, new Set([refs[0]]), 1)
     expect(partly).toEqual(refs.slice(1, size(0)))
-  })
-
-  it('carries the stored words-per-set count over to the new items key', () => {
-    localStorage.setItem(storageNames().local.legacyNewItems, '10')
-    expect(loadNewCount()).toBe(10)
-    saveNewCount(15)
-    expect(localStorage.getItem(storageNames().local.newItems)).toBe('15')
-    expect(loadNewCount()).toBe(15)
   })
 
   it('writes the counts line with words first', () => {

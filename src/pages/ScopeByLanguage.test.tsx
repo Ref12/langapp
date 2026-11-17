@@ -57,13 +57,13 @@ describe('Overview by language', () => {
     await open('#overview', 'zh')
     await waitFor(() => expect(stats()).toHaveTextContent('1words in your knowledge set'))
     expect(stats()).toHaveTextContent('0 grammar')
-    expect(stats()).toHaveTextContent('1new-item lessons finished')
+    expect(stats()).toHaveTextContent('1new-item units finished')
   })
   it('an old Japanese selection no longer selects anything: the counts are the Chinese ones, the ja: rows are not counted', async () => {
     await open('#overview', 'ja')
     await waitFor(() => expect(stats()).toHaveTextContent('1words in your knowledge set'))
     expect(stats()).toHaveTextContent('0 grammar')
-    expect(stats()).toHaveTextContent('1new-item lessons finished')
+    expect(stats()).toHaveTextContent('1new-item units finished')
   })
 })
 

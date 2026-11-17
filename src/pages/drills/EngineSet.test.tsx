@@ -35,7 +35,6 @@ describe('practice-set entry', () => {
     render(<App />)
     expect(await screen.findByRole('heading', { name: 'Ready when you are' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Default' })).toHaveAttribute('aria-pressed', 'true')
-    expect(screen.getByRole('button', { name: 'Standard' })).toHaveAttribute('aria-pressed', 'true')
     expect(screen.queryByRole('heading', { name: 'Pick a practice type' })).toBeNull()
     expect(screen.getByRole('heading', { name: 'Writing' })).toBeInTheDocument()
     await waitFor(() => expect(screen.getByRole('button', { name: 'Start session' })).toBeEnabled(), { timeout: 20000 })
@@ -52,15 +51,14 @@ describe('practice-set entry', () => {
     expect(await screen.findByRole('heading', { name: 'Pick a practice type' })).toBeInTheDocument()
   })
 
-  it('choosing a preset and a length changes the set and starts it fresh', async () => {
+  it('choosing a preset changes the set and starts it fresh', async () => {
     const id = await createDrillSet({ kind: 'new' })
     await whenContent(id)
     window.location.hash = `#practice/set/${id}`
     const user = userEvent.setup()
     render(<App />)
     await user.click(await screen.findByRole('button', { name: 'Listening' }))
-    await user.click(screen.getByRole('button', { name: 'Long' }))
-    await waitFor(async () => expect((await getDrillSet(id))!.engine).toMatchObject({ preset: 'listening', length: 'long' }))
+    await waitFor(async () => expect((await getDrillSet(id))!.engine).toMatchObject({ preset: 'listening' }))
   })
 })
 

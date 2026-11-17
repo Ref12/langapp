@@ -55,8 +55,9 @@ describe('tracks', () => {
     window.location.hash = '#lessons/list'
     render(<App />)
     const list = await screen.findByRole('region', { name: 'Chinese lessons' })
-    await waitFor(() => expect(within(list).getAllByRole('listitem')[2]).toHaveClass('current'))
-    const rows = within(list).getAllByRole('listitem')
+    const unitRows = () => within(list).getAllByRole('listitem').filter(row => !row.classList.contains('lesson-index-module'))
+    await waitFor(() => expect(unitRows()[2]).toHaveClass('current'))
+    const rows = unitRows()
     expect(rows[0]).toHaveClass('done')
     expect(rows[0]).toHaveTextContent('我')
     expect(rows[0]).toHaveTextContent('Done')
@@ -74,9 +75,9 @@ describe('tracks', () => {
     expect(bands.map(button => button.textContent)).toEqual(expect.arrayContaining([expect.stringMatching(/HSK 1.*2 of 87 done/), expect.stringMatching(/HSK 2.*0 of 72 done/)]))
     expect(bands[0]).toHaveAttribute('aria-expanded', 'true')
     expect(bands[1]).toHaveAttribute('aria-expanded', 'false')
-    expect(within(list).getAllByRole('listitem')).toHaveLength(87)
+    expect(within(list).getAllByRole('listitem').filter(row => !row.classList.contains('lesson-index-module'))).toHaveLength(87)
     await user.click(bands[1])
-    expect(within(list).getAllByRole('listitem')).toHaveLength(87 + 72)
+    expect(within(list).getAllByRole('listitem').filter(row => !row.classList.contains('lesson-index-module'))).toHaveLength(87 + 72)
   })
 
   it('counts Done per band without building rows', async () => {

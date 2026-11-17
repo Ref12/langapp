@@ -97,7 +97,7 @@ describe('Lab never touches Stable', () => {
     await (await import('../study/generation')).whenGenerated(reviewId)
     // settings
     await db.preferences.update('workspace', { name: 'Lab workspace', theme: 'dark' })
-    lab.daily.saveNewCount(10)
+    lab.daily.saveUnitsPerSet(2)
     localStorage.setItem(lab.names.local.handsfree, '{"pause":"short"}')
     sessionStorage.setItem(lab.names.session.mediaJobUrlPrefix + 'job2', 'https://lab.test')
     // a second profile, then back

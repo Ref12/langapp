@@ -9,7 +9,7 @@ export function LessonsList({ workspace, now, run }: PageProps) {
   const { catalog, next } = useStudyActions({ workspace, now, run })
   return <>
     <a href="#lessons" className="back-link"><ArrowLeft size={16} /> Lessons</a>
-    <PageHeading eyebrow="ALL LESSONS" title="Every lesson, in order.">The whole course. Open a lesson to read it, or go back to Lessons for what is next.</PageHeading>
+    <PageHeading eyebrow="ALL UNITS" title="Every unit, in order.">The whole course, in modules. Open a unit to read it, or go back to Lessons for what is next.</PageHeading>
     <LessonList track={zhTrack} catalog={catalog} knowledge={workspace.knowledge} nextId={next?.group.id} nextBand={next?.band} />
   </>
 }

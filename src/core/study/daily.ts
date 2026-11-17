@@ -3,13 +3,16 @@ import { requireUnit, type Catalog } from './catalog'
 import { unitRef } from './contracts'
 import { retrievability, type SchedulingState } from './fsrs'
 import { storageNames } from '../storage-names'
+import { LENGTHS, type Length } from '../session/types'
 
 export const NEW_COUNT_DEFAULT = 5
 export const NEW_COUNT_MAX = 20
 export const NEW_COUNT_CHOICES = [5, 10, 15, 20] as const
-const STORAGE_KEY = () => storageNames().local.newItems
-/** The earlier key, from when the count was words only; read once and carried over. */
+/** The item count of earlier versions (5, 10, 15 or 20 new items per set) and the older words-only key before it: read to migrate the units-per-set choice. */
+const ITEMS_KEY = () => storageNames().local.newItems
 const LEGACY_KEY = () => storageNames().local.legacyNewItems
+const UNITS_KEY = () => storageNames().local.unitsPerSet
+const LENGTH_KEY = () => storageNames().local.practiceLength
 
 const REVIEW_KEY = () => storageNames().local.reviewCount
 export const REVIEW_COUNT_DEFAULT = 10
@@ -33,11 +36,36 @@ export function clampCount(value: unknown): number {
   const n = Math.round(Number(value))
   return Number.isFinite(n) ? Math.min(NEW_COUNT_MAX, Math.max(1, n)) : NEW_COUNT_DEFAULT
 }
-/** The last choice of how many new items per set (at least), remembered on this device. */
-export function loadNewCount(): number {
-  try { const raw = localStorage.getItem(STORAGE_KEY()) ?? localStorage.getItem(LEGACY_KEY()); return raw === null ? NEW_COUNT_DEFAULT : clampCount(raw) } catch { return NEW_COUNT_DEFAULT }
+/** New items mode: how many whole units a set holds. */
+export const UNIT_CHOICES = [1, 2, 3, 4] as const
+export const UNIT_DEFAULT = 1
+export const UNIT_MAX = 4
+/** A stored item count of the earlier versions as units: 5 to 1, 10 to 2, 15 to 3, 20 to 4; any other number to the nearest of those. */
+export function unitsFromItems(items: unknown): number {
+  const n = Math.round(Number(items) / 5)
+  return Number.isFinite(n) ? Math.min(UNIT_MAX, Math.max(1, n)) : UNIT_DEFAULT
 }
-export function saveNewCount(count: number) { try { localStorage.setItem(STORAGE_KEY(), String(clampCount(count))) } catch { /* storage may be unavailable */ } }
+/** A typed or stored unit count, as a whole number from 1 to 4. */
+export function clampUnits(value: unknown): number {
+  const n = Math.round(Number(value))
+  return Number.isFinite(n) ? Math.min(UNIT_MAX, Math.max(1, n)) : UNIT_DEFAULT
+}
+/** The last choice of how many units per set, remembered on this device; a count of items stored by an earlier version is migrated (default 1). */
+export function loadUnitsPerSet(): number {
+  try {
+    const raw = localStorage.getItem(UNITS_KEY())
+    if (raw !== null) return clampUnits(raw)
+    const items = localStorage.getItem(ITEMS_KEY()) ?? localStorage.getItem(LEGACY_KEY())
+    return items === null ? UNIT_DEFAULT : unitsFromItems(items)
+  } catch { return UNIT_DEFAULT }
+}
+export function saveUnitsPerSet(units: number) { try { localStorage.setItem(UNITS_KEY(), String(clampUnits(units))) } catch { /* storage may be unavailable */ } }
+
+/** The Length chosen on the Practice page (Short, Standard or Long), remembered on this device; Standard until chosen. */
+export function loadLength(): Length {
+  try { const raw = localStorage.getItem(LENGTH_KEY()); return (LENGTHS as readonly string[]).includes(raw ?? '') ? raw as Length : 'standard' } catch { return 'standard' }
+}
+export function saveLength(length: Length) { try { localStorage.setItem(LENGTH_KEY(), length) } catch { /* storage may be unavailable */ } }
 
 /** Words (curriculum vocabulary and words saved from media) and grammar patterns; characters are not items. */
 export function countItems(entries: readonly Pick<KnowledgeEntry, 'kind'>[]): ItemCounts {
@@ -66,8 +94,22 @@ export function fillByItems(catalog: Catalog, known: ReadonlySet<string>, count:
   return refs
 }
 
-/** How many curriculum lessons (groups) the refs come from. */
-export function lessonCount(catalog: Catalog, refs: readonly string[]): number {
+/** The new items of the next `units` whole units (curriculum groups) that still have new items, in order. */
+export function fillByUnits(catalog: Catalog, known: ReadonlySet<string>, units: number): string[] {
+  const refs: string[] = []
+  let taken = 0
+  for (const { group } of catalog.orderedGroups) {
+    if (taken >= units) break
+    const fresh = group.units.map(unit => requireUnit(catalog, unitRef(unit.kind, unit.ref))).filter(unit => !known.has(unit.ref))
+    if (!fresh.length) continue
+    taken++
+    for (const unit of fresh) refs.push(unit.ref)
+  }
+  return refs
+}
+
+/** How many curriculum units (groups) the refs come from. */
+export function unitCount(catalog: Catalog, refs: readonly string[]): number {
   const wanted = new Set(refs)
   return catalog.orderedGroups.filter(({ group }) => group.units.some(unit => wanted.has(unitRef(unit.kind, unit.ref)))).length
 }

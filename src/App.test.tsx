@@ -339,7 +339,7 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     expect((await db.words.get('zh:hello'))?.attempts).toBe(2)
     await go('overview')
     await screen.findByRole('heading', { name: 'Make the language yours.' })
-    expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0new-item lessons finished')
+    expect(screen.getByLabelText('Your actual learning progress')).toHaveTextContent('0new-item units finished')
     expect(screen.getByRole('article', { name: 'Next step' })).toBeInTheDocument()
   })
 })

@@ -12,7 +12,7 @@ import { PROFILE_FORMAT } from './profiles/contracts'
 const STABLE_TODAY = {
   databases: ['linguaweave-next', 'linguaweave-next-profile-<id>', 'linguaweave-profile-registry', 'linguaweave-backup-state'],
   localStorage: [
-    'linguaweave-selected-profile', 'linguaweave-backup-config:<id>', 'practice.newItems', 'practice.newWords', 'practice.reviewCount', 'practice.unwrittenSize',
+    'linguaweave-selected-profile', 'linguaweave-backup-config:<id>', 'practice.newItems', 'practice.newWords', 'practice.unitsPerSet', 'practice.length', 'practice.reviewCount', 'practice.unwrittenSize',
     'drills.write', 'handsfree.settings', 'linguaweave.autoListen', 'linguaweave.engine.customPresets', 'handwriting-engine',
     'media-translation-chunk-size', 'media-translation-concurrency', 'linguaweave-media-pause-after-line', 'linguaweave-media-glosses',
   ],

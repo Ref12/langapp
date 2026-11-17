@@ -1,10 +1,11 @@
 import index from '../../../data/v2/index.generated.json'
+import modules from '../../../data/v2/modules.generated.json'
 import type { PackData } from '../pack-data'
 
 // The Chinese pack points at today's files: the v2 catalog, the shipped phrase bank and the practice dataset.
 export const zhData: PackData = {
   catalog: {
-    index, readingJoiner: ' ',
+    index, modules, readingJoiner: ' ',
     bands: {
       '1': () => import('../../../data/v2/hsk-1.generated.json'),
       '2': () => import('../../../data/v2/hsk-2.generated.json'),
