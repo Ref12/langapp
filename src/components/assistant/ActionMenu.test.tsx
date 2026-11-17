@@ -35,3 +35,19 @@ it('keeps the popup inside the viewport near a bottom-right trigger', () => {
   expect(parseFloat(popup.style.top)).toBe(window.innerHeight - 48 - 160 - 4)
   expect(parseFloat(popup.style.left) + 200).toBeLessThanOrEqual(window.innerWidth - 8)
 })
+
+it('keeps the menu open when Safari moves focus to the page between a tap and its click', () => {
+  const onPractice = vi.fn()
+  render(<><ActionMenu label="Phrase actions" trigger="...">{() => <button onClick={onPractice}>Practice</button>}</ActionMenu>
+    <main tabIndex={-1}>Page</main></>)
+  fireEvent.click(screen.getByRole('button', { name: 'Phrase actions' }))
+  const item = screen.getByRole('button', { name: 'Practice' })
+  const page = screen.getByText('Page')
+  fireEvent.pointerDown(item)
+  item.blur()
+  fireEvent.focusOut(item, { relatedTarget: page })
+  fireEvent.pointerUp(item)
+  expect(screen.getByRole('button', { name: 'Phrase actions' })).toHaveAttribute('aria-expanded', 'true')
+  fireEvent.click(item)
+  expect(onPractice).toHaveBeenCalledTimes(1)
+})

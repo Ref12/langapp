@@ -12,6 +12,10 @@ export function ActionMenu({ label, trigger, children, className = '', align = '
   const root = useRef<HTMLDivElement>(null)
   const button = useRef<HTMLButtonElement>(null)
   const panel = useRef<HTMLDivElement>(null)
+  // Mobile Safari does not focus a tapped button, so focus moves to the page behind the menu before the click lands.
+  const pressing = useRef(false)
+  const pressTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const release = () => { clearTimeout(pressTimer.current); pressTimer.current = setTimeout(() => { pressing.current = false }, 500) }
   const close = (restoreFocus = true) => { setOpen(false); if (restoreFocus) button.current?.focus() }
   useLayoutEffect(() => {
     if (!open || !panel.current || !button.current) return
@@ -50,7 +54,12 @@ export function ActionMenu({ label, trigger, children, className = '', align = '
     return () => document.removeEventListener('pointerdown', outside)
   }, [open])
   return <div ref={root} className={`action-menu ${className}`} data-assistant-exclude
+    onPointerDownCapture={() => { clearTimeout(pressTimer.current); pressing.current = true }}
+    onPointerUpCapture={release}
+    onPointerCancelCapture={release}
+    onClickCapture={release}
     onBlur={event => {
+      if (pressing.current) return
       if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) setOpen(false)
     }}
     onKeyDown={event => {
