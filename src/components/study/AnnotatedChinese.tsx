@@ -9,10 +9,10 @@ export const isPunctuation = (text: string) => /^[\p{P}\p{S}\s]+$/u.test(text)
 type Segment = { text: string; pinyin?: string }
 
 /**
- * Groups the segments into units: a word (or, in plain text, the last character before the mark) and the punctuation after it share one
+ * Groups the segments into units: a whole word (never split, so every character keeps its tone colour) and the punctuation after it share one
  * nowrap span, so a mark never starts a line. Everything else stays inline, so plain text wraps and reads like ordinary text.
  */
-function units(segments: Segment[], pinyin: boolean) {
+function units(segments: Segment[]) {
   const out: { key: number; lead?: string; word?: Segment; punct: string }[] = []
   segments.forEach((segment, key) => {
     const mark = isPunctuation(segment.text)
@@ -22,11 +22,11 @@ function units(segments: Segment[], pinyin: boolean) {
     if (mark) { out.push({ key, punct: segment.text }); return }
     out.push({ key, word: segment, punct: '' })
   })
+  // An unread run (no reading, so no colour to lose) before a mark: only its last character is bound to the mark, the rest wraps freely.
   return out.map(entry => {
-    // Plain text before a mark: only its last character is bound to the mark, the rest wraps freely.
-    if (entry.word && entry.punct && !(pinyin && entry.word.pinyin)) {
+    if (entry.word && entry.punct && !entry.word.pinyin) {
       const chars = Array.from(entry.word.text)
-      return { ...entry, lead: chars.slice(0, -1).join(''), word: { ...entry.word, text: chars.slice(-1).join(''), pinyin: undefined } }
+      return { ...entry, lead: chars.slice(0, -1).join(''), word: { ...entry.word, text: chars.slice(-1).join('') } }
     }
     return entry
   })
@@ -41,7 +41,7 @@ export function AnnotatedChinese({ text, readings, pinyin }: { text: string; rea
   const body = (segment: Segment) => pinyin && segment.pinyin
     ? <ruby className="mandarin-word"><ToneText text={segment.text} reading={segment.pinyin} /><rt aria-hidden="true" data-assistant-exclude><Pinyin text={segment.pinyin} /></rt></ruby>
     : <ToneText text={segment.text} reading={segment.pinyin} />
-  return <span lang={lang}>{units(segments, pinyin).map(entry => {
+  return <span lang={lang}>{units(segments).map(entry => {
     if (!entry.word) return <span key={entry.key} className="zh-unit zh-punct">{entry.punct}</span>
     if (!entry.punct) return pinyin && entry.word.pinyin ? <span key={entry.key} className="zh-word">{body(entry.word)}</span> : <span key={entry.key}>{body(entry.word)}</span>
     const unit = <span className={`zh-unit${pinyin && entry.word.pinyin ? ' zh-word' : ''}`}>{body(entry.word)}{entry.punct}</span>

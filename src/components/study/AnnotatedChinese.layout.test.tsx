@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import { cleanup, render } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { AnnotatedChinese } from './AnnotatedChinese'
+import { ToneColourProvider } from './../ToneText'
 
 afterEach(cleanup)
 const css = readFileSync(join(process.cwd(), 'src', 'App.css'), 'utf8')
@@ -29,5 +30,15 @@ describe('Chinese text layout', () => {
     const units = [...container.querySelectorAll('.zh-unit')]
     expect(units).toHaveLength(1)
     expect(units[0].textContent).toMatch(/吗？！$/)
+  })
+
+  it('with tone colours on and pinyin off, the whole word before the mark keeps its tone colours and shares one unit with the mark', () => {
+    const readings = new Map([['她们', new Set(['tā men'])], ['都', new Set(['dōu'])], ['是', new Set(['shì'])], ['同学', new Set(['tóng xué'])]])
+    const { container } = render(<ToneColourProvider on><AnnotatedChinese text="她们都是同学。" readings={readings} pinyin={false} /></ToneColourProvider>)
+    const unit = container.querySelector('.zh-unit') as HTMLElement
+    expect(unit.textContent).toBe('同学。')
+    const toned = [...unit.querySelectorAll('.tone')].map(el => el.textContent)
+    expect(toned).toEqual(['同', '学'])
+    expect(container.querySelectorAll('.tone')).toHaveLength(7 - 1)
   })
 })
