@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import type { HeadwordRecord } from '../core/forms/display'
 import { getPack } from '../core/language'
 import { romanizeKorean } from '../core/language/korean-reading'
+import { patternParts } from '../core/study/pattern'
 import { kanaToRomaji, patternToRomaji, tokensToRomaji, type RomajiToken } from '../core/reading/romaji'
 import { DisplaySettingsContext, useDisplaySettings, useHeadword, type DisplaySettings } from './display-settings'
 import { Pinyin } from './Pinyin'
@@ -13,6 +14,9 @@ export function DisplaySettingsProvider({ settings, children }: { settings: Disp
 /** A reading line: the pack's pinyin format as before, or romaji made from the kana, or the romanization of the Hangul, when the learner chose it (from the tokens when a sentence's are given; as a pattern when it is one's). */
 export function ReadingText({ kana, tokens, pattern, parts }: { kana: string; tokens?: RomajiToken[]; pattern?: boolean; parts?: string[] }) {
   const style = useDisplaySettings().readingStyle
+  if (pattern && /[<+]/.test(kana)) return <>{patternParts(kana).map((part, index) => 'slot' in part ? <span key={index} className="pattern-slot">{part.slot}</span>
+    : 'plus' in part ? <span key={index} className="pattern-plus" aria-hidden="true" />
+    : part.text.trim() ? <ReadingText key={index} kana={part.text.trim()} pattern /> : null)}</>
   if (style === 'romanized') return <>{romanizeKorean(kana)}</>
   if (style !== 'romaji') return <Pinyin text={kana} />
   const overrides = getPack().romaji
