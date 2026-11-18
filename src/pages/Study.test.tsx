@@ -398,7 +398,7 @@ describe('New and Review', () => {
     await screen.findByText('Not quite.')
     expectResultAction(action, 'incorrect')
     expect(screen.getByText(session.exercises[0].explanation)).toBeInTheDocument()
-    expect(within(document.querySelector('.practice-player .notice')!).getByText('我学习')).toBeInTheDocument()
+    expect(document.querySelector('.practice-player .notice')).toHaveTextContent('我学习')
     expect((await db.exerciseSessions.get(session.id))!.status).toBe('active')
     const attempts = await db.exerciseAttempts.toArray()
     const cards = await db.studyCards.toArray()
@@ -473,7 +473,7 @@ describe('New and Review', () => {
     expect(await screen.findByText('Correct.')).toBeInTheDocument()
     expect(screen.getByText(/another good way to say it/)).toBeInTheDocument()
     expect(within(document.querySelector('.practice-player .notice')!).getByText(/Also:/)).toBeInTheDocument()
-    expect(within(document.querySelector('.practice-player .notice')!).getByText('我学习')).toBeInTheDocument()
+    expect(document.querySelector('.practice-player .notice')).toHaveTextContent('我学习')
     expect((await db.exerciseSessions.get(session.id))!.redos).toBeUndefined()
   })
 

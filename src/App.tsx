@@ -62,6 +62,7 @@ import './App.css'
 import './components/assistant/assistant.css'
 import { UpdateBar } from './components/UpdateBar'
 import { GroupDetail } from './pages/GroupDetail'
+import { FocusModeContext } from './components/focus-mode'
 import { DisplaySettingsProvider } from './components/display-context'
 import { resolveDisplaySettings } from './components/display-settings'
 import { AppSwitch } from './components/AppSwitch'
@@ -153,6 +154,7 @@ function WorkspaceApp() {
   const workspace = useLiveQuery(loadWorkspace, [])
   // Copy profile from Stable: from the build switch's menu, (the first-run offer is a card on the Overview).
   const [copyDialog, setCopyDialog] = useState<'menu' | undefined>()
+  const [focus, setFocus] = useState(false)
   const copyItems = useMemo(() => storageNames().stableCopy ? [{ label: storageNames().stableCopy === 'profile' ? 'Copy profile from Stable…' : 'Copy settings from Stable…', onSelect: () => setCopyDialog('menu') }] : [], [])
   const [removedCount, setRemovedCount] = useState(0)
   useEffect(() => { void unseenCleanupCount().then(setRemovedCount, () => undefined) }, [])
@@ -252,7 +254,7 @@ function WorkspaceApp() {
           {workspaceNavigation}
         </div>
       </aside>
-      <div className="workspace"><header className="topbar"><div className="topbar-leading">
+      <div className={`workspace${focus ? ' focus-mode' : ''}`}><header className="topbar" hidden={focus}><div className="topbar-leading">
         <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
         {assistant && route.split('/')[1] ? <div className="assistant-topbar-title" ref={setAssistantHeader} />
           : <div className="breadcrumb"><strong>{label}</strong></div>}</div>
@@ -263,7 +265,7 @@ function WorkspaceApp() {
         <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : ['practice/mahjong', 'games/mahjong'].includes(route) ? 'mahjong-main' : route === 'games/sudoku' ? 'sudoku-main' : route === 'games/memory' ? 'memory-main' : route === 'games/defender' ? 'defender-main' : route === 'games/potions' ? 'potions-main' : practicing ? 'practice-main' : page === 'writing' && route.split('?')[0].split('/')[1] ? 'writing-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {removedCount > 0 && <div role="status" className="notice"><p>{`Removed ${removedCount} ${removedCount === 1 ? 'item' : 'items'} of another language that came in with an imported profile.`}</p><button className="icon-button" aria-label="Dismiss notice" onClick={() => { setRemovedCount(0); void markCleanupNoticed() }}><X size={18} /></button></div>}
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
-          {currentPage}
+          <FocusModeContext.Provider value={setFocus}>{currentPage}</FocusModeContext.Provider>
         </main>
         <div className="page-dock" ref={setDock} />
       </div>

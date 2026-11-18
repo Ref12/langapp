@@ -277,12 +277,19 @@
 .hf-pl-row.is-current .hf-pl-dir { background: var(--accent, #0b6b5d); color: #fff; border-color: transparent; }
 
 /* Engine run: progress row (stage label, bar, counter, pinyin toggle) and the typed answer at full width. */
-.engine-progress { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto auto; align-items: center; gap: 4px 12px; }
-.engine-progress > progress { width: 100%; }
-.engine-progress .engine-back { padding: 4px; min-height: 0; }
-.engine-progress .engine-back:disabled { opacity: 0.35; }
-.engine-progress .engine-pinyin { font-size: 11px; padding: 6px 10px; min-height: 0; }
-@media (max-width: 640px) { .engine-progress { grid-template-columns: auto minmax(0, 1fr) auto; } .engine-progress > progress { grid-column: 1 / -1; grid-row: 2; } .engine-progress > .small { grid-row: 3; } .engine-progress .engine-pinyin { grid-row: 3; grid-column: 3; justify-self: end; } }
+.engine-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding-top: env(safe-area-inset-top); }
+.engine-top .engine-leave { padding: 6px; min-height: 0; }
+.engine-bar { position: relative; display: flex; align-items: center; }
+.engine-bar > progress { width: 100%; }
+.engine-bar-marker { position: absolute; top: 50%; width: 4px; height: 18px; border-radius: 2px; background: var(--text, #fff); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--bg, #000); pointer-events: none; }
+.engine-count { font-variant-numeric: tabular-nums; min-width: 3.5em; text-align: right; }
+.engine-instruction-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 6px; }
+.engine-instruction-row > .engine-instruction { margin: 0; min-width: 0; flex: 1 1 auto; }
+.engine-instruction-row .engine-pinyin { flex: none; font-size: 11px; padding: 4px 10px; min-height: 0; }
+.answer-actions.has-back { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.answer-actions.has-back > .button { width: 100%; min-width: 0; }
+.answer-actions.has-back > .answer-back:disabled { opacity: 0.45; }
+.answer-actions.has-back > .engine-another { order: 3; grid-column: 1 / -1; }
 .engine-answer { display: grid; width: 100%; }
 .engine-answer input { width: 100%; box-sizing: border-box; min-height: 44px; padding: 8px 12px; font-size: 16px; }
 .engine-another { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
@@ -364,6 +371,9 @@
 
 /* A reviewed question is read only: whatever would change a mark or result stays out of sight. */
 .engine-reviewed [hidden] { display: none !important; }
+.answer-actions.has-back:has(.engine-another) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 8px; }
+.answer-actions.has-back:has(.engine-another) > .check-answer-button { order: 0; grid-column: auto; }
+.answer-actions.has-back:has(.engine-another) > .engine-another { order: 3; grid-column: 1 / -1; }
 
 /* Intro grammar rows: anchor, pattern chips and meaning, full width. */
 .dr-grammar-h { margin-top: 18px; }

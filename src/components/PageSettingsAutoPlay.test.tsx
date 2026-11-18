@@ -38,7 +38,7 @@ describe('Auto-play sound in the quick settings', () => {
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.promptAutoPlay).toBe(false))
   })
 
-  it('shows during a running session', async () => {
+  it('is not reachable during a running session: the top bar is hidden (focus mode), and Leave brings it back', async () => {
     const id = await createDrillSet({ kind: 'new' })
     await whenContent(id)
     window.location.hash = `#practice/set/${id}`
@@ -47,6 +47,9 @@ describe('Auto-play sound in the quick settings', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: 'Start session' })).toBeEnabled(), { timeout: 20000 })
     await user.click(screen.getByRole('button', { name: 'Start session' }))
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Start session' })).toBeNull())
+    await screen.findByRole('button', { name: 'Leave session' })
+    expect(screen.queryByRole('button', { name: 'Workspace settings' })).toBeNull()
+    await user.click(screen.getByRole('button', { name: 'Leave session' }))
     const sheet = await sheetOf(user)
     await user.click(within(sheet).getByRole('switch', { name: 'Auto-play sound' }))
     await waitFor(async () => expect((await db.preferences.get('workspace'))?.promptAutoPlay).toBe(true))

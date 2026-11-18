@@ -129,7 +129,7 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     await setEngineChoice(id, { preset: 'custom-order' })
     const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByText('Tap the tiles in order to build the sentence.')).toBeInTheDocument())
     // The sentence is drawn at random from the lesson's new words: the pin masks its English and its tiles.
-    await pin('practice-word-order', question.replace(/(Build the sentence\n)[^\n]+/, '$1<English>').replace(/(Tap the tiles in order to build the sentence\.\n)[\s\S]*?(Check answer)/, '$1<tiles>\n$2'))
+    await pin('practice-word-order', question.replace(/(Build the sentence\n(?:(?:Hide|Show) [a-z]+\n)?)[^\n]+/, '$1<English>').replace(/(Tap the tiles in order to build the sentence\.\n)[\s\S]*?(Check answer)/, '$1<tiles>\n$2'))
     expect(document.querySelectorAll('.tile-bank .tile').length).toBeGreaterThanOrEqual(2)
     vi.restoreAllMocks()
   }, 30000)
@@ -140,7 +140,7 @@ describe('screen text of the Korean build for a small seeded learner', () => {
     await setEngineChoice(id, { preset: 'custom-reading' })
     const question = await screenText(`practice/set/${id}/engine`, () => expect(screen.getByPlaceholderText('Type the romanization')).toBeInTheDocument())
     // The word is drawn at random from the lesson's new words: the pin masks it.
-    await pin('practice-type-reading', question.replace(/(Type the romanization\n)[^\n]+/, '$1<word>'))
+    await pin('practice-type-reading', question.replace(/(Type the romanization\n(?:(?:Hide|Show) [a-z]+\n)?)[^\n]+/, '$1<word>'))
     expect(document.querySelector('.engine-pinyin-preview')).toBeNull()
     expect(document.querySelector('.engine-pinyin-hint')).toHaveTextContent('Type the romanization, with or without spaces and hyphens (gongbuhaeyo).')
     // a wrong answer: marked wrong, the romanization shown

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { getPack } from '../../core/language'
 import { joinNotes } from '../../core/language/note-text'
 import { zhPractice } from '../../core/language/practice-wording'
@@ -46,7 +46,18 @@ export interface Outcome { correct: boolean; missed?: string[]; /** Right with h
 
 /** What to do, in action words: one line between the stage header and the prompt, for every form. */
 export const INSTRUCTION: Record<Form, string> = zhPractice.instructions
-export function Instruction({ form }: { form: Form }) { return <p className="engine-instruction small" data-instruction={form}>{getPack().practiceWording.instructions[form]}</p> }
+/** The reading toggle of a run (Hide pinyin / Show pinyin): the run provides it, and it sits at the right end of the card's instruction line. */
+export const ReadingToggleContext = createContext<{ on: boolean; toggle: () => void } | undefined>(undefined)
+export function ReadingToggle() {
+  const reading = useContext(ReadingToggleContext)
+  if (!reading) return null
+  return <button type="button" className="button secondary small engine-pinyin" aria-pressed={reading.on} onClick={reading.toggle}>{reading.on ? getPack().practiceWording.hideReadings : getPack().practiceWording.showReadings}</button>
+}
+/** The instruction line: what to do, a muted note on a second try, and the reading toggle at the right end. */
+export function InstructionLine({ form, text, children, another }: { form: string; text: ReactNode; children?: ReactNode; another?: boolean }) {
+  return <div className="engine-instruction-row"><p className="engine-instruction small" data-instruction={form}>{text}{another && <span className="muted"> · another try</span>}{children}</p><ReadingToggle /></div>
+}
+export function Instruction({ form, another }: { form: Form; another?: boolean }) { return <InstructionLine form={form} text={getPack().practiceWording.instructions[form]} another={another} /> }
 
 const attemptOf = (exercise: SessionExercise, response: string, correct: boolean): ExerciseAttempt => ({ id: exercise.id, sessionId: 'engine', index: 0, refs: exercise.refs.slice(0, 6), response, correct, createdAt: 0 })
 const MODE_LABEL: Record<AnswerMode, string> = { type: 'Type', speak: 'Speak', write: 'Handwrite' }
@@ -189,7 +200,7 @@ function WordForm({ exercise, ctx, onDone }: { exercise: ConjugateItem | FormPic
 }
 
 export function ExerciseQuestion(props: { exercise: Exclude<SessionExercise, { form: 'intro' | 'repeat' }>; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {
-  return <><Instruction form={props.exercise.form} /><ExerciseBody {...props} /></>
+  return <><Instruction form={props.exercise.form} another={props.exercise.round > 0} /><ExerciseBody {...props} /></>
 }
 
 function ExerciseBody({ exercise, ctx, onDone }: { exercise: Exclude<SessionExercise, { form: 'intro' | 'repeat' }>; ctx: QuestionContext; onDone: (outcome: Outcome) => void }) {

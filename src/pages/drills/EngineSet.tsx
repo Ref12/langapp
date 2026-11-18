@@ -3,7 +3,7 @@ import { getPack } from '../../core/language'
 import { activeDisplayForm } from '../../core/forms/display'
 import { useDisplaySettings } from '../../components/display-settings'
 import { drillText } from '../../core/language/practice-wording'
-import { ArrowLeft, ArrowRight, Play, ChevronsRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Play, X } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { navigate } from '../../core/routing'
@@ -22,11 +22,13 @@ import { recordConversationsHeard } from '../../core/session/conversation-rotati
 import { planSetSession } from '../../core/session/set-plan'
 import { BUILTIN_PRESETS, FORMS_BY_STAGE, SPOKEN_PRESETS } from '../../core/session/presets'
 import { loadCustomPresets, saveCustomPreset } from '../../core/session/custom-preset'
-import { answerCurrent, currentExercise, currentStage, progressOf, replayRunner, skillsOf, summarise, type RunnerState } from '../../core/session/runner'
+import { answerCurrent, currentExercise, progressOf, replayRunner, skillsOf, summarise, type RunnerState } from '../../core/session/runner'
 import { isFormOffered } from '../../core/session/offered'
 import { formLabel } from '../../core/session/form-label'
 import { STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
-import type { Outcome } from './EngineQuestion'
+import { InstructionLine, ReadingToggleContext, type Outcome } from './EngineQuestion'
+import { BackButton, type RunNav } from '../../components/AnswerButton'
+import { useFocusMode } from '../../components/focus-mode'
 import { QuestionSlot, REVIEW_LIMIT, type Answered } from './EngineReview'
 import { IntroCard } from './IntroCards'
 import { PhraseCounts } from './PhraseItems'
@@ -141,6 +143,7 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const forms = useMemo(() => new Set([...[...catalog.units.values()].flatMap(unit => unit.kind === 'vocabulary' && (known.has(unit.ref) || set.refs.includes(unit.ref)) ? [unit.record.ch] : []), ...getPack().functionWords]), [catalog, known, set.refs])
   const characters = useMemo(() => new Set([...forms].flatMap(form => Array.from(form))), [forms])
   const finished = useRef(false)
+  useFocusMode(!state?.done)
   const score = state ? summarise(state.log) : undefined
   useEffect(() => { if (state?.done && state.log.length && score && !finished.current) { finished.current = true; void run(async () => { await recordConversationsHeard(plan?.stages.flatMap(entry => entry.exercises).filter(exercise => exercise.form === 'conversation').map(exercise => exercise.id.replace(/^use-ds-/, '')) ?? []); await finishEngineRun(set.id, score) }) } }, [state, score, set.id, run, plan])
   if (error) return <div className="notice error" role="alert">{error}</div>
@@ -149,7 +152,6 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const mode: AnswerMode = spoken ? 'speak' : workspace.preferences.answerMode ?? 'type'
   const ctx = { readings, pinyin, speak: workspace.preferences.tileAutoSpeak !== false, autoPlay: workspace.preferences.promptAutoPlay === true, busy, forms, characters, mode, writing: workspace.preferences.practiseWriting !== false, chinese: (ref: string) => { const unit = catalog.units.get(ref); return unit?.kind === 'vocabulary' ? unit.record.ch : ref } }
   const exercise = currentExercise(state)
-  const stage = currentStage(state)
   const advance = (correct: boolean, refsOverride?: string[], hint?: boolean) => {
     const step = answerCurrent(state, correct)
     if (exercise && exercise.form !== 'intro' && exercise.form !== 'repeat') setHistory(list => [...list, { key: state.log.length, exercise, outcome: { correct, missed: refsOverride, hint }, number: step.state.log.filter(attempt => attempt.round === 0).length }].slice(-REVIEW_LIMIT))
@@ -169,26 +171,30 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const current = exercise && exercise.form !== 'intro' && exercise.form !== 'repeat' ? exercise : undefined
   const slots = [...history.map(entry => ({ key: entry.key, exercise: entry.exercise, locked: true })), ...(current ? [{ key: state.log.length, exercise: current, locked: false }] : [])]
   const doneCount = state.log.filter(attempt => attempt.round === 0).length
+  const shownCount = reviewed ? reviewed.number : Math.min(doneCount, total)
+  const liveNav: RunNav = { back: () => setViewing(history.length - 1), canBack: history.length > 0 }
+  const navFor = (index: number): RunNav => ({ back: () => setViewing(index - 1), canBack: index > 0, review: { outcome: history[index].outcome, next: () => setViewing(index + 1 >= history.length ? undefined : index + 1) } })
+  const another = !!exercise && exercise.round > 0
+  const backRow = history.length > 0 ? <BackButton nav={liveNav} /> : <span aria-hidden="true" />
   return <div className="dr engine engine-run">
-    <a className="back-link" href={`#${setRoute(set.id)}`}><ArrowLeft size={16} /> {set.title}</a>
-    <div className="engine-progress">
-      <button type="button" className="icon-button engine-back" aria-label="Previous exercise" title="Previous exercise" disabled={viewing === undefined ? history.length === 0 : viewing === 0} onClick={() => setViewing(viewing === undefined ? history.length - 1 : viewing - 1)}><ArrowLeft size={18} /></button>
-      <span className="eyebrow">{stage ? STAGE_LABEL[stage] : ''}{exercise && exercise.round > 0 ? ' · another try' : ''}</span>
-      <progress aria-label="Session progress" value={Math.min(doneCount, total)} max={Math.max(1, total)} /><span className="small muted">{Math.min(doneCount, total)} of {total}</span>
-      <button type="button" className="button secondary small engine-pinyin" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? getPack().practiceWording.hideReadings : getPack().practiceWording.showReadings}</button></div>
-    {reviewed && <p className="engine-review-strip small" role="status">Reviewing {reviewed.number} of {total} · <button type="button" className="link-button" onClick={() => setViewing(viewing! + 1 >= history.length ? undefined : viewing! + 1)}>Forward <ChevronsRight size={14} /></button> · <button type="button" className="link-button" onClick={() => setViewing(undefined)}>Back to current</button></p>}
+    <div className="engine-top">
+      <button type="button" className="icon-button engine-leave" aria-label="Leave session" title="Leave session" onClick={() => navigate(setRoute(set.id))}><X size={20} /></button>
+      <div className="engine-bar"><progress aria-label="Session progress" value={Math.min(doneCount, total)} max={Math.max(1, total)} />{reviewed && <span className="engine-bar-marker" data-testid="review-marker" aria-hidden="true" style={{ left: `${Math.min(100, (reviewed.number / Math.max(1, total)) * 100)}%` }} />}</div>
+      <span className={`engine-count small${reviewed ? ' muted' : ''}`} data-reviewing={reviewed ? 'true' : undefined}>{shownCount}/{total}</span></div>
+    <ReadingToggleContext.Provider value={{ on: pinyin, toggle: () => setPinyin(!pinyin) }}>
     <section className="panel practice-card" aria-live="polite" data-form={reviewed ? reviewed.exercise.form : exercise?.form} data-reviewing={reviewed ? 'true' : undefined} data-answer-lang={exercise && 'answerLang' in exercise ? exercise.answerLang : undefined}>
       {!reviewed && exercise?.form === 'intro' && (() => { const item = items.find(entry => entry.ref === exercise.refs[0]); return <>
-        <p className="engine-instruction small" data-instruction="intro">Learn the new word <span className="muted">· {intro + 1}</span></p>
+        <InstructionLine form="intro" text="Learn the new word" another={another}><span className="muted"> · {intro + 1}</span></InstructionLine>
         {item && <IntroCard item={item} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route={setRoute(set.id, 'engine')} />}
-        <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => { setIntro(intro + 1); advance(true) }}>Got it <ArrowRight size={16} /></button></div></> })()}
+        <div className="answer-actions has-back">{backRow}<button type="button" className="button primary" onClick={() => { setIntro(intro + 1); advance(true) }}>Got it <ArrowRight size={16} /></button></div></> })()}
       {!reviewed && exercise?.form === 'repeat' && <>
-        <p className="engine-instruction small" data-instruction="repeat">Say it after the audio</p><p className="small muted">Nothing is graded.</p>
+        <InstructionLine form="repeat" text="Say it after the audio" another={another} /><p className="small muted">Nothing is graded.</p>
         <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.zh}</p><p className="small">{exercise.py}</p><p lang="en">{exercise.en}</p>
         <p><HearButton text={exercise.zh} locale={getPack().speechLocale} kind="sentence" label="Hear it" /></p>
-        <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => advance(true)}>Next <ArrowRight size={16} /></button></div></>}
-      {slots.map(slot => <QuestionSlot key={slot.key} exercise={slot.exercise} ctx={ctx} locked={slot.locked} hidden={reviewed ? reviewed.key !== slot.key : slot.locked} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed, outcome.hint)} />)}
+        <div className="answer-actions has-back">{backRow}<button type="button" className="button primary" onClick={() => advance(true)}>Next <ArrowRight size={16} /></button></div></>}
+      {slots.map((slot, index) => <QuestionSlot key={slot.key} exercise={slot.exercise} ctx={ctx} locked={slot.locked} nav={slot.locked ? navFor(index) : liveNav} hidden={reviewed ? reviewed.key !== slot.key : slot.locked} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed, outcome.hint)} />)}
     </section>
+    </ReadingToggleContext.Provider>
   </div>
 }
 

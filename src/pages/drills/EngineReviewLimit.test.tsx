@@ -21,19 +21,17 @@ const props = {
 beforeEach(() => { vi.spyOn(speech, 'playBrowserSpeech').mockImplementation(() => undefined); vi.mocked(store.recordEngineResult).mockClear(); vi.mocked(store.saveEngineAnswer).mockClear() })
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
-const strip = () => document.querySelector('.engine-review-strip')
 describe('the review window', () => {
-  it('keeps only the last 30 answered questions, and Back stops at the oldest kept', async () => {
+  it('keeps only the last 30 answered questions, and Previous stops at the oldest kept', async () => {
     const user = userEvent.setup()
     render(<EngineRun {...props} />)
     for (let index = 0; index < 32; index++) {
       await user.click(await screen.findByRole('radio', { name: /茶/ })); await user.click(screen.getByRole('button', { name: /Check answer/ })); await user.click(screen.getByRole('button', { name: 'Next' }))
       await waitFor(() => expect(document.querySelectorAll('.practice-card [data-review]').length).toBe(Math.min(index + 1, 30)))
     }
-    const back = screen.getByRole('button', { name: 'Previous exercise' })
-    for (let step = 0; step < 40 && !(back as HTMLButtonElement).disabled; step++) await user.click(back)
-    await waitFor(() => expect(strip()).toHaveTextContent('Reviewing 3 of 33'))
-    expect(back).toBeDisabled()
+    for (let step = 0; step < 40 && !(screen.getByRole('button', { name: 'Previous exercise' }) as HTMLButtonElement).disabled; step++) await user.click(screen.getByRole('button', { name: 'Previous exercise' }))
+    await waitFor(() => expect(document.querySelector('.engine-count')).toHaveTextContent('3/33'))
+    expect(screen.getByRole('button', { name: 'Previous exercise' })).toBeDisabled()
     expect(document.querySelectorAll('.practice-card [data-review]').length).toBe(30)
   }, 60000)
 })

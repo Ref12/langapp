@@ -51,6 +51,7 @@ p { line-height: 1.7; }
 .workspace { min-width: 0; }
 .topbar { position: sticky; top: 0; z-index: 8; background: var(--bg); min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 38px; border-bottom: 1px solid var(--line); }
 .breadcrumb, .topbar-actions { display: flex; align-items: center; gap: 14px; }
+.topbar[hidden] { display: none; }
 .topbar-leading { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .mobile-nav-trigger { display: none; padding: 0; }
 .mobile-drawer { position: fixed; inset: 0 auto 0 0; margin: 0; width: min(310px, calc(100vw - 48px)); height: 100dvh; max-height: none; max-width: none; padding: calc(6px + env(safe-area-inset-top)) 12px calc(16px + env(safe-area-inset-bottom)); border: 0; border-right: 1px solid var(--line); background: var(--sidebar); color: var(--text); overflow-y: auto; overscroll-behavior: contain; box-shadow: 12px 0 40px #0004; }
@@ -152,6 +153,9 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); width
 rt { font-size: 11px; line-height: 1.5; color: var(--muted); }
 .mandarin-word { ruby-align: center; }
 .mandarin-word + .mandarin-word { margin-inline-start: 0.4em; }
+/* Text reads as ordinary inline text (no gaps between characters); with pinyin on, words (ruby) keep a small gap and a mark stays with the word before it. */
+.zh-unit { white-space: nowrap; }
+.zh-word + .zh-word { margin-inline-start: 0.4em; }
 .mandarin-word rt { font-family: "Segoe UI", sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0; color: var(--accent); }
 .word-native .mandarin-word { display: inline-flex; flex-direction: column-reverse; align-items: center; gap: 8px; }
 .word-native .mandarin-word rt { display: block; line-height: 1.4; }
@@ -226,10 +230,6 @@ summary { cursor: pointer; min-height: 28px; }
 .answer-options { border: 0; padding: 0; margin: 0 0 25px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .answer-option { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 15px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
 .answer-option > span:not(.answer-option-mark) { flex: 1 1 0; min-width: 0; overflow-wrap: break-word; }
-.answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 0.4em; }
-.answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] > .mandarin-word + .mandarin-word { margin-inline-start: 0; }
-/* punctuation is a flex item in the row above: cancel the word gap on both sides so no space shows around it */
-.answer-option > span:not(.answer-option-mark) > [lang="zh-Hans"] > .zh-punct { margin-inline: -0.4em; }
 @media (max-width: 480px) { .answer-options { grid-template-columns: minmax(0, 1fr); } }
 .answer-option > .snippet-button { flex: 0 0 auto; }
 .answer-option input { flex: 0 0 auto; }
