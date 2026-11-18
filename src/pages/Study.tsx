@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { getPack, bandName, spokenText } from '../core/language'
 import { BandName } from '../components/BandName'
+import { PatternText } from '../components/PatternText'
 import { useAIConnection } from '../components/study/useAIConnection'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, RotateCcw, Sparkles, X } from 'lucide-react'
 import { navigate } from '../core/routing'
@@ -47,7 +48,7 @@ export function Study({ workspace, now, run, busy }: PageProps) {
         </div>
         {curriculumOpen.new && <p className="small muted">Your unfinished lesson is in Pick up where you left off.</p>}
         {next && <ul className="study-preview" aria-label="Items in this group">{next.units.map(unit => <li key={unit.ref} className={known.has(unit.ref) ? 'muted' : undefined}>
-          <span className="study-preview-form" lang={getPack().learningTag}>{unit.kind === 'vocabulary' ? <HeadwordText record={unit.record} /> : unit.record.pt}</span>
+          <span className="study-preview-form" lang={getPack().learningTag}>{unit.kind === 'vocabulary' ? <HeadwordText record={unit.record} /> : <PatternText text={unit.record.pt} />}</span>
           <span className="study-preview-gloss">{workspace.preferences.pinyin && unit.kind === 'vocabulary' && <span className="study-preview-pinyin" data-assistant-exclude><HeadwordReading record={unit.record} /> </span>}{unit.record.ds}</span>
         </li>)}</ul>}
         {progress && !empty && <p className="small muted"><BandName n={next?.band ?? '6'} /> / group {Math.min(progress.completed + 1, progress.total)} of {progress.total}. Recently introduced items come back in each new session.</p>}

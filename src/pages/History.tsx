@@ -3,6 +3,7 @@ import { setsOfCurrentLanguage } from '../core/drills/set-language'
 import { useEffect, useState, type ReactNode } from 'react'
 import { ArrowRight, EyeOff, Dumbbell } from 'lucide-react'
 import { RowMenu } from '../components/RowMenu'
+import { PatternText } from '../components/PatternText'
 import { usePageActions } from '../components/page-actions-context'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../core/database'
@@ -57,7 +58,7 @@ type Row = { type: 'phrase'; at: number; entry: PracticeHistoryEntry } | { type:
 function wordList(catalog: Catalog | undefined, refs: readonly string[]) {
   if (!catalog) return null
   const words = refs.flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [{ ref, zh: unit.kind === 'vocabulary' ? unit.record.ch : unit.record.pt, py: unit.record.pr }] : [] })
-  return words.length ? <span className="history-words" lang="zh-Hans">{words.map(word => <span key={word.ref} className="history-word"><span className="speech-native">{word.zh}</span>{word.py && <span className="small muted"><Pinyin text={word.py} /></span>}</span>)}</span> : null
+  return words.length ? <span className="history-words" lang="zh-Hans">{words.map(word => <span key={word.ref} className="history-word"><span className="speech-native"><PatternText text={word.zh} /></span>{word.py && <span className="small muted"><Pinyin text={word.py} /></span>}</span>)}</span> : null
 }
 /** "3 to write": the characters of a row's catalog words that have a stroke guide and were never written. Source words are not counted here. */
 function toWrite(catalog: Catalog | undefined, refs: readonly string[], states: readonly WriteState[]): ReactNode {

@@ -8,6 +8,7 @@ import { PracticeSnippet } from '../assistant/SnippetActions'
 import { getPack } from '../../core/language'
 import { BandName } from '../BandName'
 import { ReadingText } from '../display-context'
+import { PatternText } from '../PatternText'
 import { useHeadword, usePackFormsTable, useShowsReading } from '../display-settings'
 import { WordForms } from './WordForms'
 import { SaveActions } from '../collections/SaveToMenu'
@@ -54,7 +55,7 @@ export function UnitCard({ catalog, unit, card, pinyin, now, examples = [], run,
   const snippet = <PracticeSnippet source={{ text: vocabulary ? headword.text : renderExample(catalog, unit.record.ex).text, meaning: unit.record.ds, locale: getPack().speechLocale, title: `${unitKindLabel(unit)}: ${unit.record.ds}`, route }} knowledge={false} />
   return <UnitCardShell unitRef={unit.ref} compact={compact}
     eyebrow={<><span className="eyebrow">{unitKindLabel(unit)} / <BandName n={unit.band} /></span>{!hideStatus && <span className="tag">{cardStatus(card, now)}</span>}</>}
-    title={<h3 {...(vocabulary ? press : {})} lang={vocabulary ? getPack().learningTag : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{vocabulary ? <ToneText text={title} reading={headword.reading} /> : title}</h3>}
+    title={<h3 {...(vocabulary ? press : {})} lang={vocabulary ? getPack().learningTag : undefined} className={vocabulary ? 'word-native' : 'study-pattern'}>{vocabulary ? <ToneText text={title} reading={headword.reading} /> : <PatternText text={title} />}</h3>}
     reading={pinyin && shows(vocabulary ? headword.reading : unit.record.pr, title) && <p className="small muted study-pinyin" data-assistant-exclude><ReadingText kana={vocabulary ? headword.reading : unit.record.pr} pattern={!vocabulary} parts={vocabulary ? headword.parts : undefined} /></p>}
     meaning={unit.record.ds}
     extra={<>

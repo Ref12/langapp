@@ -364,3 +364,15 @@
 
 /* A reviewed question is read only: whatever would change a mark or result stays out of sight. */
 .engine-reviewed [hidden] { display: none !important; }
+
+/* Intro grammar rows: anchor, pattern chips and meaning, full width. */
+.dr-grammar-h { margin-top: 18px; }
+.dr-grammar-rows { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+.dr-grammar-rows li { min-width: 0; }
+.dr-grammar-row { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 10px 12px; text-align: left; border: 1px solid var(--line, #d0d5dd); border-radius: 10px; background: var(--surface, #fff); color: inherit; font: inherit; cursor: pointer; }
+.dr-grammar-row[aria-expanded="true"] { border-color: var(--accent, #2f6fed); }
+.dr-grammar-anchor, .dr-grammar-lead { font-size: 1.5rem; line-height: 1.25; overflow-wrap: anywhere; }
+.dr-grammar-lead { font-size: 1.05rem; font-weight: 600; }
+.dr-grammar-pattern { font-size: 0.85rem; line-height: 1.7; opacity: 0.9; }
+.dr-grammar-meaning { font-size: 0.85rem; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: 0.75; }
+.dr-grammar-cards { grid-template-columns: 1fr; }

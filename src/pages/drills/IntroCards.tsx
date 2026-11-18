@@ -5,6 +5,7 @@ import { cardId } from '../../core/study/contracts'
 import { DOMAIN } from '../../core/study/knowledge'
 import type { ItemInfo } from '../../core/drills/items'
 import type { PageProps } from '../../components/shared'
+import { GrammarCards, isGrammar } from './GrammarRows'
 
 const examplesFor = (catalog: Catalog, ref: string) => (catalog.orderedGroups.find(entry => entry.group.units.some(unit => unit.ref === ref))?.group.examples ?? [])
   .filter(example => example.segments.some(segment => `vocabulary:${segment.word}` === ref) || example.grammar.some(label => `grammar:${label}` === ref))
@@ -20,8 +21,10 @@ export function IntroCard({ item, catalog, workspace, now, run, busy, route }: P
 
 /** The lesson's intro cards for a set of items (the same UnitCard a lesson's introduction uses), under a count heading. */
 export function IntroCards({ items, catalog, workspace, now, run, busy, route }: Pick<PageProps, 'workspace' | 'now' | 'run' | 'busy'> & { items: ItemInfo[]; catalog: Catalog; route: string }) {
+  const card = (item: ItemInfo) => <IntroCard key={item.ref} item={item} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route={route} />
   return <>
     <h2 className="dr-h2">{items.length} {items.length === 1 ? 'item' : 'items'}</h2>
-    <div className="word-grid">{items.map(item => <IntroCard key={item.ref} item={item} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route={route} />)}</div>
+    <div className="word-grid">{items.filter(item => !isGrammar(item)).map(card)}</div>
+    <GrammarCards items={items.filter(isGrammar)} card={card} />
   </>
 }

@@ -29,6 +29,7 @@ import { MAX_UNFINISHED_SETS, shortDate, createDrillSet, discardDrillSet, finish
 import { DrillRun } from './DrillRun'
 import { EngineRun, EngineStart } from './EngineSet'
 import { IntroCards } from './IntroCards'
+import { GrammarCards, GrammarRows, isGrammar } from './GrammarRows'
 import { Sheet } from './Sheet'
 import { PhraseItems } from './PhraseItems'
 import { removeHistoryItems, restoreHistoryItems } from '../../core/history-removal'
@@ -150,15 +151,17 @@ function Intro({ set, items, catalog, workspace, now, run, busy }: PageProps & {
     <PageHeading eyebrow={fresh ? 'New set' : set.source === 'review' ? 'Review set' : TERM.Singular} title={set.title} action={start}>{detail}. {fresh ? 'Read the intro cards first.' : 'Tap an item to see its meaning.'}</PageHeading>
     {fresh ? <>
       <h2 className="dr-h2">{count}</h2>
-      <div className="word-grid">{items.map(card)}</div>
+      <div className="word-grid">{items.filter(item => !isGrammar(item)).map(card)}</div>
+      <GrammarCards items={items.filter(isGrammar)} card={card} />
       <div className="button-row dr-end">{start}</div>
     </> : <section className="panel dr-panel">
       <div className="dr-toolbar"><h2 className="dr-h2">{count}. Tap one to see its meaning.</h2>
         <button type="button" className="button secondary" onClick={() => setOpen(allOpen ? new Set() : new Set(items.map(item => item.ref)))}>{allOpen ? <><EyeOff size={16} /> Hide meanings</> : <><Eye size={16} /> Show all meanings</>}</button></div>
-      <ul className="dr-tiles">{items.map(item => <li key={item.ref} className={open.has(item.ref) ? 'open' : undefined}>
+      <ul className="dr-tiles">{items.filter(item => !isGrammar(item)).map(item => <li key={item.ref} className={open.has(item.ref) ? 'open' : undefined}>
         <button type="button" className="dr-tile" aria-expanded={open.has(item.ref)} onClick={() => toggle(item.ref)}>
           <span lang={getPack().learningTag} className="dr-tile-zh">{item.zh}</span><span className="dr-tile-kind">{item.kind}</span></button>
         {open.has(item.ref) && <div className="dr-tile-card">{card(item)}</div>}</li>)}</ul>
+      <GrammarRows items={items.filter(isGrammar)} open={open} toggle={toggle} card={card} />
       <div className="button-row dr-end">{start}</div>
     </section>}
   </div>

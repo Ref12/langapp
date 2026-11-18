@@ -2,6 +2,7 @@ import { getPack } from '../../core/language'
 import { openWritingSheet } from '../../core/characters/writing-sheet'
 import type { DictGrammar, DictWord } from '../../core/language/dictionary-file'
 import { ReadingText } from '../display-context'
+import { PatternText } from '../PatternText'
 import { useShowsReading } from '../display-settings'
 import { ToneText } from '../ToneText'
 
@@ -38,7 +39,7 @@ export function LookupGrammarCard({ item, levelName }: { item: DictGrammar; leve
   return <article className="word-card study-unit-card lesson-word-card lookup-card" data-lookup={item.id}>
     <div className="card-topline"><span className="eyebrow">Grammar{item.level ? ` / ${levelName ? levelName(item.level) : item.level}` : ''}</span><LookupMark /></div>
     <div className="phrase-row"><div className="phrase-row-text">
-      <h3 lang={pack.learningTag} className="study-pattern">{item.pattern}</h3>
+      <h3 lang={pack.learningTag} className="study-pattern"><PatternText text={item.pattern} /></h3>
       <p className="word-meaning">{item.english}</p>
       {item.note && <p className="small muted">{item.note}</p>}
     </div></div>

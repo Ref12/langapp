@@ -377,6 +377,43 @@ describe('Practice home', () => {
     expect(await db.exerciseSessions.count() + await db.practiceHistory.count()).toBe(0)
   }, 40000)
 
+  it('groups grammar under a Grammar (N) heading as full-width rows, keeps the vocabulary tiles, opens a row on tap and covers the rows in Show all meanings', async () => {
+    const user = userEvent.setup()
+    await addToKnowledge(['vocabulary:wo3--me', 'grammar:clause-s-hai2-pred--add', 'grammar:group-dou1-pred--all', 'grammar:digit-digit--serial'])
+    const id = await createDrillSet({ kind: 'review' }, Date.now() + 1000)
+    window.location.hash = `#practice/set/${id}/intro`
+    render(<App />)
+    const heading = await screen.findByRole('heading', { name: 'Grammar (3)' })
+    const rows = heading.nextElementSibling as HTMLElement
+    expect(rows.querySelectorAll('li')).toHaveLength(3)
+    expect(screen.getByRole('button', { name: /^我/ }).closest('ul')).not.toBe(rows)
+    expect(rows.textContent).toContain('…，还…')
+    expect(rows.textContent).toContain('…都…')
+    expect(rows.textContent).not.toMatch(/[<>]/)
+    const serial = within(rows).getByRole('button', { name: /Read year or identifier digits individually/ })
+    expect(serial.textContent).not.toContain('…')
+    expect(serial).toHaveAttribute('aria-expanded', 'false')
+    await user.click(serial)
+    expect(serial).toHaveAttribute('aria-expanded', 'true')
+    await waitFor(() => expect(serial.closest('li')!.querySelector('.dr-tile-card')).not.toBeNull())
+    await user.click(screen.getByRole('button', { name: 'Show all meanings' }))
+    await waitFor(() => expect(rows.querySelectorAll('.dr-tile-card')).toHaveLength(3))
+  }, 40000)
+
+  it('puts the grammar cards of a new set after the vocabulary under Grammar (N), full width', async () => {
+    const id = await createDrillSet({ kind: 'new' })
+    await whenContent(id)
+    window.location.hash = `#practice/set/${id}/intro`
+    render(<App />)
+    const heading = await screen.findByRole('heading', { name: /^Grammar \(\d+\)$/ })
+    const grid = heading.nextElementSibling as HTMLElement
+    expect(grid).toHaveClass('word-grid', 'dr-grammar-cards')
+    expect(grid.querySelectorAll('.study-pattern').length).toBeGreaterThan(0)
+    expect(grid.textContent).not.toMatch(/[<>]/)
+    const vocabulary = screen.getAllByText(/vocabulary/i)[0].closest('.word-grid') as HTMLElement
+    expect(vocabulary.compareDocumentPosition(grid) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  }, 40000)
+
   it('does a Word meanings pass: the type moves to Done with its score, and Redo stays ungraded', async () => {
     const user = userEvent.setup()
     const set = await newSet()

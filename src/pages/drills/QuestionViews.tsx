@@ -3,6 +3,7 @@ import { getPack, spokenText } from '../../core/language'
 import { Eye, Mic, PenLine, Pause, Play, RotateCcw, SkipForward, Square, Volume2 } from 'lucide-react'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { PhotoAnswer } from '../../components/PhotoAnswer'
+import { PatternText } from '../../components/PatternText'
 import { HandwritingPad } from '../../components/characters/HandwritingPad'
 import { guidedChars, introducedChars } from '../../core/drills/write-queue'
 import { IntroCard } from './IntroCards'
@@ -91,13 +92,13 @@ function FreeView({ data, state, onAnswer, onMark }: ViewProps & { data: Extract
   const set = (value: string, hint = hinted) => { setText(value); onAnswer(value.trim() ? { text: value, hinted: hint } : undefined) }
   const locked = state.status !== 'open'
   return <>
-    {zh ? <p className="practice-prompt native dr-center" lang={getPack().learningTag}>{data.item.zh}</p> : <p className="practice-prompt dr-center" lang="en">{data.item.en}</p>}
+    {zh ? <p className="practice-prompt native dr-center" lang={getPack().learningTag}><PatternText text={data.item.zh} /></p> : <p className="practice-prompt dr-center" lang="en">{data.item.en}</p>}
     <TextInput label={zh ? 'Type the English meaning' : getPack().practiceWording.typeNativeOrReading} value={text} disabled={locked} lang={zh ? 'en' : undefined} onChange={value => set(value)} />
     {!zh && !locked && <PhotoAnswer onText={value => set(value)} />}
     {!locked && <div className="button-row"><button type="button" className="button secondary" aria-pressed={hinted} onClick={() => { setHinted(true); onAnswer(text.trim() ? { text, hinted: true } : undefined) }}><Eye size={16} /> Hint</button>
       {hinted && <span className="small" lang={getPack().learningTag}><Pinyin text={data.item.py} />{zh ? '' : ''}</span>}</div>}
-    <Confirm state={state} onMark={onMark}><p lang={getPack().learningTag}>{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Confirm>
-    <Result state={state}><p lang={getPack().learningTag}>{data.item.zh} <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Result>
+    <Confirm state={state} onMark={onMark}><p lang={getPack().learningTag}><PatternText text={data.item.zh} /> <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Confirm>
+    <Result state={state}><p lang={getPack().learningTag}><PatternText text={data.item.zh} /> <Pinyin text={data.item.py} /> <span lang="en" className="muted">{data.item.en}</span></p></Result>
   </>
 }
 
@@ -109,7 +110,7 @@ function PinyinView({ data, state, onAnswer, onMark }: ViewProps & { data: Extra
   const read = locked && text ? reading.grade(text, [data.item.py], pack.romaji) : undefined
   const toneNote = read?.verdict === 'tones' ? read : undefined
   return <>
-    <p className="practice-prompt native dr-center" lang={getPack().learningTag}>{data.item.zh}</p>
+    <p className="practice-prompt native dr-center" lang={getPack().learningTag}><PatternText text={data.item.zh} /></p>
     <p className="small muted dr-center" lang="en">{data.item.en}</p>
     <TextInput label={getPack().practiceWording.readingPlaceholder} hideLabel value={text} disabled={locked} lang={reading.takesLearningScript ? pack.learningTag : undefined} placeholder={getPack().practiceWording.readingExample} onChange={value => { setText(value); onAnswer(value.trim() ? { text: value, hinted } : undefined) }} />
     <p className="small muted engine-pinyin-hint">{getPack().practiceWording.readingHelp}</p>

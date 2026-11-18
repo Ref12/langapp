@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { curriculum, curriculumLevels, curriculumProgress, nextCurriculumLesson, type CurriculumGrammar, type CurriculumLevel } from '../data/curriculum'
 import { getLesson } from '../data/mandarin'
 import { PageHeading, type PageProps } from '../components/shared'
+import { PatternText } from '../components/PatternText'
 import { lessonDefinitions } from '../data/learning-content'
 
 export function CurriculumMap({ workspace }: PageProps) {
@@ -113,7 +114,7 @@ export function GrammarReference({ grammar, page }: { grammar: CurriculumGrammar
   </>
   return <article className={`panel grammar-reference${page !== undefined ? ' lesson-grammar-card' : ''}`}>
     <p className="eyebrow accent">GRAMMAR REFERENCE / NOT ASSESSED</p><h3>{grammar.ds}</h3>
-    <p className="grammar-pattern">{grammar.pattern}</p>
+    <p className="grammar-pattern"><PatternText text={grammar.pattern} /></p>
     {typeof page !== 'number' && <><p>{grammar.english}</p><p className="muted">{grammar.note}</p></>}
     {examples.map(example => <div className="grammar-example" key={example.target}><p lang="zh-Hans">{example.target}</p><p className="small muted">{example.english}</p></div>)}
     {page === undefined ? notes : <details className="grammar-notes"><summary>Reference notes</summary>{notes}</details>}
