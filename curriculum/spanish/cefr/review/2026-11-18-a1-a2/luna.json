@@ -1,0 +1,1643 @@
+[
+ {
+  "id": "es.ustedes.pron",
+  "fix": {
+   "region_note": "Spain: vosotros"
+  },
+  "drop": false,
+  "why": "The note must use the exact Spain: <word> format."
+ },
+ {
+  "id": "es.senhor.noun",
+  "fix": {
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "Señor is masculine; señora has its own record."
+ },
+ {
+  "id": "es.don.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Dones is the regular plural, so omit the plural field."
+ },
+ {
+  "id": "es.mitad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Mitades is the regular plural formed with -es."
+ },
+ {
+  "id": "es.cantidad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Cantidades is the regular plural formed with -es."
+ },
+ {
+  "id": "es.millon.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Millones is the regular plural formed with -es."
+ },
+ {
+  "id": "es.tener.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "irregular-yo",
+    "irregular-preterite"
+   ]
+  },
+  "drop": false,
+  "why": "Tener has e-ie stem change, irregular yo form, and irregular preterite stem."
+ },
+ {
+  "id": "es.color.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "The plural colores is regular (+es), so no plural field is needed."
+ },
+ {
+  "id": "es.habitacion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Regular plural; omit the plural field."
+ },
+ {
+  "id": "es.comedor.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Regular plural; omit the plural field."
+ },
+ {
+  "id": "es.sala.noun",
+  "fix": {
+   "region_note": "Spain: salón"
+  },
+  "drop": false,
+  "why": "Spain commonly uses salón for living room."
+ },
+ {
+  "id": "es.piso.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "The note describes a different sense."
+ },
+ {
+  "id": "es.estante.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Estante is also used in Spain for shelf."
+ },
+ {
+  "id": "es.reloj.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Regular plural; omit the plural field."
+ },
+ {
+  "id": "es.jardin.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Regular plural; omit the plural field."
+ },
+ {
+  "id": "es.mes.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Regular plural; omit the plural field."
+ },
+ {
+  "id": "es.sol.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Soles is formed regularly with -es."
+ },
+ {
+  "id": "es.cumpleanhos.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Cumpleaños is unchanged in the regular plural."
+ },
+ {
+  "id": "es.viernes.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Viernes is unchanged in the regular plural."
+ },
+ {
+  "id": "es.lunes.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Lunes is unchanged in the regular plural."
+ },
+ {
+  "id": "es.jueves.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Jueves is unchanged in the regular plural."
+ },
+ {
+  "id": "es.martes.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Martes is unchanged in the regular plural."
+ },
+ {
+  "id": "es.miercoles.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Miércoles is unchanged in the regular plural."
+ },
+ {
+  "id": "es.te.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Tés is formed with regular +s."
+ },
+ {
+  "id": "es.sal.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Sales is formed with regular +es."
+ },
+ {
+  "id": "es.azucar.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Azúcares is formed with regular +es."
+ },
+ {
+  "id": "es.jamon.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Jamones is formed with regular +es."
+ },
+ {
+  "id": "es.res.noun",
+  "fix": {
+   "gloss": "beef",
+   "plural": null
+  },
+  "drop": false,
+  "why": "In Mexico, res commonly means beef; reses is regular."
+ },
+ {
+  "id": "es.tomate.noun",
+  "fix": {},
+  "drop": true,
+  "why": "Use jitomate for red tomato in Mexico."
+ },
+ {
+  "id": "es.limon.noun",
+  "fix": {
+   "gloss": "lime",
+   "plural": null
+  },
+  "drop": false,
+  "why": "Limón usually means lime in Mexico; limones is regular."
+ },
+ {
+  "id": "es.platano.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Spain also commonly uses plátano."
+ },
+ {
+  "id": "es.fresa.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Spain also commonly uses fresa."
+ },
+ {
+  "id": "es.pinha.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Spain also commonly uses piña."
+ },
+ {
+  "id": "es.almuerzo.noun",
+  "fix": {
+   "gloss": "late-morning meal"
+  },
+  "drop": false,
+  "why": "In Mexico, almuerzo usually isn't the midday lunch."
+ },
+ {
+  "id": "es.rico.adj",
+  "fix": {
+   "gloss": "rich; tasty"
+  },
+  "drop": false,
+  "why": "Rico commonly describes tasty food in Mexico."
+ },
+ {
+  "id": "es.menu.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Menús is the regular plural with -s."
+ },
+ {
+  "id": "es.sandwich.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Sándwiches is the regular plural with -es."
+ },
+ {
+  "id": "es.almorzar.verb",
+  "fix": {
+   "gloss": "to eat a late-morning meal"
+  },
+  "drop": false,
+  "why": "In Mexico, almorzar usually isn't having midday lunch."
+ },
+ {
+  "id": "es.sentir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "drop": false,
+  "why": "It also changes e to i in forms like sintió."
+ },
+ {
+  "id": "es.tenis.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Zapatillas means shoes, not tennis."
+ },
+ {
+  "id": "es.baloncesto.noun",
+  "fix": {},
+  "drop": true,
+  "why": "Mexico's everyday word is básquetbol."
+ },
+ {
+  "id": "es.cancion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "The plural is formed regularly with -es."
+ },
+ {
+  "id": "es.preferir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "drop": false,
+  "why": "Preferir also has an e-to-i stem change."
+ },
+ {
+  "id": "es.avion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "The plural is formed regularly with -es."
+ },
+ {
+  "id": "es.tren.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "The plural is formed regularly with -es."
+ },
+ {
+  "id": "es.camion.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Spain also uses camión for a truck; autobús means bus."
+ },
+ {
+  "id": "es.autobus.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "The plural is formed regularly with -es."
+ },
+ {
+  "id": "es.sur.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Sures is the regular plural."
+ },
+ {
+  "id": "es.seguir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-i",
+    "irregular-yo"
+   ]
+  },
+  "drop": false,
+  "why": "The yo form is sigo."
+ },
+ {
+  "id": "es.dolar.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Dólares is the regular plural."
+ },
+ {
+  "id": "es.billete.noun",
+  "fix": {
+   "gloss": "banknote"
+  },
+  "drop": false,
+  "why": "In Mexico, billete means banknote; ticket is boleto."
+ },
+ {
+  "id": "es.pantalon.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Pantalones is the regular plural."
+ },
+ {
+  "id": "es.efectivo.adj",
+  "fix": {
+   "gloss": "cash"
+  },
+  "drop": false,
+  "why": "In this money vocabulary context, efectivo means cash."
+ },
+ {
+  "id": "es.calcetin.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Calcetines is the regular plural."
+ },
+ {
+  "id": "es.pluma.noun",
+  "fix": {
+   "gloss": "pen",
+   "region_note": "Spain: bolígrafo"
+  },
+  "drop": false,
+  "why": "In this school context, pluma means pen in Mexico."
+ },
+ {
+  "id": "es.examen.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Exámenes is formed regularly with -es."
+ },
+ {
+  "id": "es.pizarra.noun",
+  "fix": {},
+  "drop": true,
+  "why": "Mexico commonly uses pizarrón for this; pizarra is not the main word."
+ },
+ {
+  "id": "es.raton.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Ratones is formed regularly with -es."
+ },
+ {
+  "id": "es.corazon.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Corazones is formed regularly with -es."
+ },
+ {
+  "id": "es.ensenhar.verb",
+  "fix": {
+   "lemma": "enseñar"
+  },
+  "drop": false,
+  "why": "The lemma is misspelled."
+ },
+ {
+  "id": "es.gripe.noun",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "The note repeats the lemma."
+ },
+ {
+  "id": "es.tos.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Toses follows the regular +es plural pattern."
+ },
+ {
+  "id": "es.receta.noun",
+  "fix": {
+   "gloss": "prescription; recipe"
+  },
+  "drop": false,
+  "why": "In this health context, receta also means prescription."
+ },
+ {
+  "id": "es.venir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "irregular-yo",
+    "irregular-preterite"
+   ]
+  },
+  "drop": false,
+  "why": "Venir has an e-ie stem change, irregular yo form, and irregular preterite."
+ },
+ {
+  "id": "es.oir.verb",
+  "fix": {
+   "verb_class": [
+    "irregular-yo",
+    "spell-i-y"
+   ]
+  },
+  "drop": false,
+  "why": "Oír has a regular participle and no irregular preterite stem."
+ },
+ {
+  "id": "es.tarde.adv.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "f"
+  },
+  "drop": false,
+  "why": "Tarde meaning afternoon is a feminine noun."
+ },
+ {
+  "id": "es.pronto.adv.2",
+  "fix": {
+   "gloss": "soon; quickly"
+  },
+  "drop": false,
+  "why": "The adverb means soon or quickly, not quick or prompt."
+ },
+ {
+  "id": "es.manhana.adv.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "f"
+  },
+  "drop": false,
+  "why": "Mañana meaning morning is a feminine noun."
+ },
+ {
+  "id": "es.lo.pron.2",
+  "fix": {
+   "gloss": "it (neuter)"
+  },
+  "drop": false,
+  "why": "As a pronoun, lo means neuter it, not the."
+ },
+ {
+  "id": "es.sentir.verb.2",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "drop": false,
+  "why": "Sentir also has e-i changes in forms like sintió and sintiendo."
+ },
+ {
+  "id": "es.mucho.det.2",
+  "fix": {
+   "pos": "adv"
+  },
+  "drop": false,
+  "why": "The gloss identifies the adverbial use."
+ },
+ {
+  "id": "es.ingles.adj.2",
+  "fix": {
+   "gloss": "English"
+  },
+  "drop": false,
+  "why": "The adjective means English, not English language."
+ },
+ {
+  "id": "es.frances.adj.2",
+  "fix": {
+   "gloss": "French"
+  },
+  "drop": false,
+  "why": "The adjective means French, not French language or Frenchman."
+ },
+ {
+  "id": "es.aleman.adj.2",
+  "fix": {
+   "gloss": "German"
+  },
+  "drop": false,
+  "why": "The adjective means German, not German language."
+ },
+ {
+  "id": "es.portugues.adj.2",
+  "fix": {
+   "gloss": "Portuguese"
+  },
+  "drop": false,
+  "why": "The adjective means Portuguese, not Portuguese language."
+ },
+ {
+  "id": "es.extranjero.adj.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "m",
+   "gloss": "abroad; foreign country"
+  },
+  "drop": false,
+  "why": "El extranjero is a masculine noun meaning abroad or a foreign country."
+ },
+ {
+  "id": "es.mal.adv.2",
+  "fix": {
+   "gloss": "badly; poorly"
+  },
+  "drop": false,
+  "why": "The adverb mal means badly; before nouns it is adjectival."
+ },
+ {
+  "id": "es.regular.adj.2",
+  "fix": {
+   "gloss": "so-so; average"
+  },
+  "drop": false,
+  "why": "The intended colloquial sense is so-so or average."
+ },
+ {
+  "id": "es.la.det.2",
+  "fix": {
+   "pos": "pron"
+  },
+  "drop": false,
+  "why": "Her or it as an object is a pronoun, not a determiner."
+ },
+ {
+  "id": "es.segundo.adj.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "m",
+   "gloss": "second (unit of time)"
+  },
+  "drop": false,
+  "why": "A unit of time is the masculine noun segundo."
+ },
+ {
+  "id": "es.menos.adv.2",
+  "fix": {
+   "pos": "prep"
+  },
+  "drop": false,
+  "why": "Menos meaning except functions as a preposition."
+ },
+ {
+  "id": "es.todo.det.2",
+  "fix": {
+   "pos": "pron"
+  },
+  "drop": false,
+  "why": "Todo meaning everything is a pronoun."
+ },
+ {
+  "id": "es.algo.pron.2",
+  "fix": {
+   "gloss": "something"
+  },
+  "drop": false,
+  "why": "Algo means something; somewhat is an adverbial meaning."
+ },
+ {
+  "id": "es.mitad.noun.2",
+  "fix": {
+   "gloss": "half"
+  },
+  "drop": false,
+  "why": "Mitad means half, not middle."
+ },
+ {
+  "id": "es.medio.adj.2",
+  "fix": {
+   "gloss": "half; middle"
+  },
+  "drop": false,
+  "why": "Means is a noun sense, not an adjective meaning."
+ },
+ {
+  "id": "es.par.noun.2",
+  "fix": {
+   "gloss": "pair; even number"
+  },
+  "drop": false,
+  "why": "The noun par means a pair or an even number."
+ },
+ {
+  "id": "es.cuanto.adv.2",
+  "fix": {
+   "gloss": "how much"
+  },
+  "drop": false,
+  "why": "The adverb cuánto means how much; how many is a determiner or pronoun."
+ },
+ {
+  "id": "es.efectivo.adj.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "Cash is a masculine noun in this sense."
+ },
+ {
+  "id": "es.tienda.noun.2",
+  "fix": {
+   "gloss": "store"
+  },
+  "drop": false,
+  "why": "In Mexico, tienda means store; a tent is tienda de campaña."
+ },
+ {
+  "id": "es.total.adj.2",
+  "fix": {
+   "pos": "adv"
+  },
+  "drop": false,
+  "why": "The gloss describes an adverbial use, not an adjective."
+ },
+ {
+  "id": "es.tio.noun.2",
+  "fix": {},
+  "drop": true,
+  "why": "Mexico: use tipo for “guy”; tío in this sense is mainly Spain."
+ },
+ {
+  "id": "es.joven.adj.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "mf"
+  },
+  "drop": false,
+  "why": "“Young person” is a noun; joven has the same form for both genders."
+ },
+ {
+  "id": "es.gemelo.noun.2",
+  "fix": {
+   "gender": "m",
+   "gloss": "cufflink"
+  },
+  "drop": false,
+  "why": "Gemelo is masculine; the lemma is singular."
+ },
+ {
+  "id": "es.viejo.adj.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "“Old man” is a masculine noun."
+ },
+ {
+  "id": "es.ojo.noun.2",
+  "fix": {
+   "pos": "interjection"
+  },
+  "drop": false,
+  "why": "¡Ojo! meaning “watch out!” is an interjection."
+ },
+ {
+  "id": "es.medico.noun.2",
+  "fix": {
+   "gloss": "doctor"
+  },
+  "drop": false,
+  "why": "Médico as a noun means doctor."
+ },
+ {
+  "id": "es.cafe.noun.2",
+  "fix": {
+   "gloss": "coffee"
+  },
+  "drop": false,
+  "why": "The English gloss should be coffee."
+ },
+ {
+  "id": "es.tortilla.noun.2",
+  "fix": {},
+  "drop": true,
+  "why": "Mexico: tortilla means a corn flatbread; omelet is a different sense."
+ },
+ {
+  "id": "es.platano.noun.2",
+  "fix": {
+   "lemma": "plátano macho"
+  },
+  "drop": false,
+  "why": "In Mexico, plátano macho is the word for plantain."
+ },
+ {
+  "id": "es.papa.noun.2",
+  "fix": {
+   "gloss": "pope"
+  },
+  "drop": false,
+  "why": "Remove the unnecessary gender label from the gloss."
+ },
+ {
+  "id": "es.cerdo.noun.2",
+  "fix": {
+   "gender": "m",
+   "gloss": "pig"
+  },
+  "drop": false,
+  "why": "Cerdo means pig; pork is carne de cerdo."
+ },
+ {
+  "id": "es.dulce.adj.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "“Candy” is a masculine noun."
+ },
+ {
+  "id": "es.naranja.noun.2",
+  "fix": {
+   "pos": "adj",
+   "gender": null
+  },
+  "drop": false,
+  "why": "Naranja meaning orange-colored is an adjective."
+ },
+ {
+  "id": "es.blanco.adj.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "Blanco meaning target is a masculine noun."
+ },
+ {
+  "id": "es.rosa.noun.2",
+  "fix": {
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "The color noun is el rosa."
+ },
+ {
+  "id": "es.camion.noun.2",
+  "fix": {
+   "region_note": "Spain: autobús"
+  },
+  "drop": false,
+  "why": "Spain uses autobús for this meaning."
+ },
+ {
+  "id": "es.diario.adj.2",
+  "fix": {
+   "gloss": "daily"
+  },
+  "drop": false,
+  "why": "The adjective means daily."
+ },
+ {
+  "id": "es.pluma.noun.2",
+  "fix": {
+   "gloss": "pen"
+  },
+  "drop": false,
+  "why": "Pluma commonly means pen in Mexico."
+ },
+ {
+  "id": "es.salon.noun.2",
+  "fix": {
+   "region_note": "Spain: aula"
+  },
+  "drop": false,
+  "why": "Aula is Spain's everyday word for classroom."
+ },
+ {
+  "id": "es.policia.noun.2",
+  "fix": {
+   "gender": "f"
+  },
+  "drop": false,
+  "why": "The police force is feminine."
+ },
+ {
+  "id": "es.celular.noun.2",
+  "fix": {
+   "gloss": "cell phone",
+   "region_note": "Spain: móvil"
+  },
+  "drop": false,
+  "why": "Celular means cell phone in Mexico."
+ },
+ {
+  "id": "es.tenis.noun.2",
+  "fix": {
+   "region_note": "Spain: zapatillas"
+  },
+  "drop": false,
+  "why": "Spain commonly uses zapatillas for sneakers."
+ },
+ {
+  "id": "es.radio.noun.2",
+  "fix": {
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "Radio meaning radius is masculine."
+ },
+ {
+  "id": "es.juego.noun.2",
+  "fix": {
+   "gloss": "game"
+  },
+  "drop": false,
+  "why": "Juego commonly means game."
+ },
+ {
+  "id": "es.sobre.prep.2",
+  "fix": {
+   "pos": "noun",
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "Sobre meaning envelope is a masculine noun."
+ },
+ {
+  "id": "es.que.conj.2",
+  "fix": {
+   "pos": "pron"
+  },
+  "drop": false,
+  "why": "Relative que is a pronoun here."
+ },
+ {
+  "id": "es.como.adv.2",
+  "fix": {
+   "pos": "conj"
+  },
+  "drop": false,
+  "why": "Causal como is a conjunction."
+ },
+ {
+  "id": "es.les.pron.2",
+  "fix": {
+   "gloss": "to you all"
+  },
+  "drop": false,
+  "why": "Ustedes is the taught plural you."
+ },
+ {
+  "id": "es.deber.verb",
+  "fix": {
+   "gloss": "to have to; should; to owe"
+  },
+  "drop": false,
+  "why": "“To must” is ungrammatical English."
+ },
+ {
+  "id": "es.veces.noun",
+  "fix": {
+   "lemma": "vez",
+   "plural": "veces"
+  },
+  "drop": false,
+  "why": "The dictionary form is singular; veces is its irregular plural."
+ },
+ {
+  "id": "es.parecer.verb",
+  "fix": {
+   "verb_class": [
+    "irregular-yo",
+    "spell-z-c"
+   ]
+  },
+  "drop": false,
+  "why": "Parecer has the spelling change c to z in parezco."
+ },
+ {
+  "id": "es.dios.noun",
+  "fix": {
+   "gender": "m",
+   "plural": null
+  },
+  "drop": false,
+  "why": "Dios is masculine; dioses is a regular plural."
+ },
+ {
+  "id": "es.regresar.verb",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Regresar is also everyday Spanish in Spain."
+ },
+ {
+  "id": "es.valer.verb",
+  "fix": {
+   "verb_class": [
+    "irregular-yo"
+   ]
+  },
+  "drop": false,
+  "why": "Valer has a regular participle: valido."
+ },
+ {
+  "id": "es.razon.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Razones is formed with the regular -es plural ending."
+ },
+ {
+  "id": "es.arbol.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Árboles is formed with the regular -es plural ending."
+ },
+ {
+  "id": "es.caer.verb",
+  "fix": {
+   "verb_class": [
+    "irregular-yo",
+    "spell-i-y"
+   ]
+  },
+  "drop": false,
+  "why": "Caer has a y-spelling change, not an irregular preterite stem."
+ },
+ {
+  "id": "es.pantalones.noun",
+  "fix": {
+   "lemma": "pantalón"
+  },
+  "drop": false,
+  "why": "The dictionary form is singular; pantalones is its regular plural."
+ },
+ {
+  "id": "es.fin.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Fines is the regular plural."
+ },
+ {
+  "id": "es.muchacho.noun",
+  "fix": {
+   "gender": "m/f"
+  },
+  "drop": false,
+  "why": "The masculine and feminine forms are muchacho and muchacha."
+ },
+ {
+  "id": "es.oportunidad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Oportunidades is the regular plural."
+ },
+ {
+  "id": "es.orden.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Órdenes is formed with the regular plural ending -es."
+ },
+ {
+  "id": "es.clases.noun",
+  "fix": {
+   "lemma": "clase",
+   "gloss": "class; lesson"
+  },
+  "drop": false,
+  "why": "The dictionary form is singular clase."
+ },
+ {
+  "id": "es.mantener.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "irregular-yo",
+    "irregular-preterite"
+   ]
+  },
+  "drop": false,
+  "why": "Mantener has e-ie present forms, an irregular yo form, and an irregular preterite."
+ },
+ {
+  "id": "es.huevos.noun",
+  "fix": {
+   "lemma": "huevo",
+   "gloss": "egg"
+  },
+  "drop": false,
+  "why": "The dictionary form is singular huevo."
+ },
+ {
+  "id": "es.bar.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Bares is the regular plural."
+ },
+ {
+  "id": "es.mar.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Mares is a regular +es plural."
+ },
+ {
+  "id": "es.error.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Errores is a regular +es plural."
+ },
+ {
+  "id": "es.realidad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Realidades is a regular +es plural."
+ },
+ {
+  "id": "es.informacion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Informaciones is the regular plural."
+ },
+ {
+  "id": "es.bebe.noun-2",
+  "fix": {
+   "lemma": "bebé",
+   "gender": "mf",
+   "region_note": null
+  },
+  "drop": false,
+  "why": "Mexico uses bebé; the form is the same for both genders."
+ },
+ {
+  "id": "es.relacion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Relaciones is the regular plural."
+ },
+ {
+  "id": "es.atencion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Atenciones is the regular plural."
+ },
+ {
+  "id": "es.cuanto.det",
+  "fix": {
+   "lemma": "cuánto",
+   "gloss": "how much; how many"
+  },
+  "drop": false,
+  "why": "The interrogative determiner takes an accent."
+ },
+ {
+  "id": "es.capitan.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Capitanes is the regular plural; omit regular plurals."
+ },
+ {
+  "id": "es.direccion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Direcciones is the regular plural; omit regular plurals."
+ },
+ {
+  "id": "es.detener.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "irregular-yo",
+    "irregular-preterite"
+   ]
+  },
+  "drop": false,
+  "why": "Detener has stem change, irregular yo, and irregular preterite forms."
+ },
+ {
+  "id": "es.seguridad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Seguridades is the regular plural; omit regular plurals."
+ },
+ {
+  "id": "es.opinion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Opiniones is a regular plural; omit the plural field."
+ },
+ {
+  "id": "es.vuelto.noun",
+  "fix": {},
+  "drop": true,
+  "why": "Mainly used outside Mexico; Mexican word: cambio."
+ },
+ {
+  "id": "es.accion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Acciones is a regular plural; omit the plural field."
+ },
+ {
+  "id": "es.venga.intj",
+  "fix": {},
+  "drop": true,
+  "why": "Mainly used in Spain; Mexican expression: ándale."
+ },
+ {
+  "id": "es.posicion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Posiciones is a regular plural; omit the plural field."
+ },
+ {
+  "id": "es.marron.adj",
+  "fix": {},
+  "drop": true,
+  "why": "Mainly used outside Mexico; Mexican word: café."
+ },
+ {
+  "id": "es.coger.verb",
+  "fix": {},
+  "drop": true,
+  "why": "Vulgar in Mexico; teach agarrar instead."
+ },
+ {
+  "id": "es.video.noun",
+  "fix": {
+   "region_note": "Spain: vídeo"
+  },
+  "drop": false,
+  "why": "Spain commonly stresses the final syllable and writes an accent."
+ },
+ {
+  "id": "es.miles.noun",
+  "fix": {
+   "lemma": "mil",
+   "gloss": "thousand"
+  },
+  "drop": false,
+  "why": "Mil is the dictionary form; miles is its regular plural."
+ },
+ {
+  "id": "es.convertir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "drop": false,
+  "why": "It also changes e to i in forms like convirtió."
+ },
+ {
+  "id": "es.divertir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "drop": false,
+  "why": "It also changes e to i in forms like divirtió."
+ },
+ {
+  "id": "es.adios.intj-2",
+  "fix": {
+   "lemma": "adiós"
+  },
+  "drop": false,
+  "why": "The interjection requires an accent on the o."
+ },
+ {
+  "id": "es.ud.pron",
+  "fix": {
+   "lemma": "Ud."
+  },
+  "drop": false,
+  "why": "The standard abbreviation is capitalized and includes a period."
+ },
+ {
+  "id": "es.cabello.noun",
+  "fix": {
+   "region_note": "Spain: pelo"
+  },
+  "drop": false,
+  "why": "Spain's everyday word for hair is pelo."
+ },
+ {
+  "id": "es.necesidad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Necesidades is the regular plural."
+ },
+ {
+  "id": "es.sonreir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-i"
+   ]
+  },
+  "drop": false,
+  "why": "Sonreír has a stem change, but no separate irregular-yo form."
+ },
+ {
+  "id": "es.velocidad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Velocidades is formed with the regular plural ending."
+ },
+ {
+  "id": "es.club.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Clubes is formed with the regular plural ending."
+ },
+ {
+  "id": "es.senhal.noun",
+  "fix": {
+   "lemma": "señal"
+  },
+  "drop": false,
+  "why": "The lemma is misspelled."
+ },
+ {
+  "id": "es.opcion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Opciones is formed with the regular plural ending."
+ },
+ {
+  "id": "es.discutir.verb",
+  "fix": {
+   "gloss": "to discuss, argue"
+  },
+  "drop": false,
+  "why": "The gloss omits the common Mexican sense “to discuss.”"
+ },
+ {
+  "id": "es.carcel.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Cárceles is formed with the regular plural ending."
+ },
+ {
+  "id": "es.ocupar.verb",
+  "fix": {
+   "gloss": "to occupy, take up, need"
+  },
+  "drop": false,
+  "why": "The gloss omits the common Mexican sense “to need.”"
+ },
+ {
+  "id": "es.libertad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Libertades is formed with the regular plural ending."
+ },
+ {
+  "id": "es.vuestro.det",
+  "fix": {
+   "region_note": null
+  },
+  "drop": false,
+  "why": "The note repeats the lemma instead of naming a different Spanish word."
+ },
+ {
+  "id": "es.actor.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Actores is the regular plural."
+ },
+ {
+  "id": "es.hogar.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Hogares is the regular plural."
+ },
+ {
+  "id": "es.posibilidad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Posibilidades is the regular plural."
+ },
+ {
+  "id": "es.angel.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Ángeles is the regular plural."
+ },
+ {
+  "id": "es.mision.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Misiones is the regular plural."
+ },
+ {
+  "id": "es.danhar.verb",
+  "fix": {
+   "lemma": "dañar"
+  },
+  "drop": false,
+  "why": "The correct spelling is dañar."
+ },
+ {
+  "id": "es.tamanho.noun",
+  "fix": {
+   "lemma": "tamaño"
+  },
+  "drop": false,
+  "why": "The correct spelling is tamaño."
+ },
+ {
+  "id": "es.alcohol.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Alcoholes is the regular plural."
+ },
+ {
+  "id": "es.olor.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Olores is the regular plural."
+ },
+ {
+  "id": "es.diversion.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Diversiones is the regular plural."
+ },
+ {
+  "id": "es.bolso.noun",
+  "fix": {},
+  "drop": true,
+  "why": "Mexico's everyday word is bolsa."
+ },
+ {
+  "id": "es.romantico.adj",
+  "fix": {
+   "lemma": "romántico"
+  },
+  "drop": false,
+  "why": "The lemma needs an accent."
+ },
+ {
+  "id": "es.freir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-i",
+    "irregular-participle"
+   ]
+  },
+  "drop": false,
+  "why": "It also has the irregular participle frito."
+ },
+ {
+  "id": "es.marchar.verb",
+  "fix": {
+   "gloss": "to march"
+  },
+  "drop": false,
+  "why": "In Mexico, marchar does not commonly mean to go."
+ },
+ {
+  "id": "es.chaqueta.noun",
+  "fix": {},
+  "drop": true,
+  "why": "Mexico's everyday word for jacket is chamarra."
+ },
+ {
+  "id": "es.referir.verb",
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "drop": false,
+  "why": "It has e-to-i changes in some forms."
+ },
+ {
+  "id": "es.heroe.noun",
+  "fix": {
+   "gender": "m"
+  },
+  "drop": false,
+  "why": "Héroe is masculine; the feminine is heroína."
+ },
+ {
+  "id": "es.armario.noun",
+  "fix": {},
+  "drop": true,
+  "why": "Mexico's everyday word is clóset."
+ },
+ {
+  "id": "es.amistad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Amistades is a regular plural."
+ },
+ {
+  "id": "es.pena.noun",
+  "fix": {
+   "gloss": "embarrassment; sorrow, pity"
+  },
+  "drop": false,
+  "why": "Embarrassment is a common Mexican meaning."
+ },
+ {
+  "id": "es.boton.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Botones is a regular plural."
+ },
+ {
+  "id": "es.actividad.noun",
+  "fix": {
+   "plural": null
+  },
+  "drop": false,
+  "why": "Actividades is a regular plural."
+ },
+ {
+  "id": "es.fabrica.noun",
+  "fix": {
+   "lemma": "fábrica"
+  },
+  "drop": false,
+  "why": "The lemma needs an accent."
+ },
+ {
+  "id": "es.alegria.noun",
+  "fix": {
+   "lemma": "alegría"
+  },
+  "drop": false,
+  "why": "The lemma needs an accent."
+ },
+ {
+  "id": "es.secundaria.noun",
+  "fix": {
+   "gloss": "middle school",
+   "region_note": "Spain: instituto"
+  },
+  "drop": false,
+  "why": "In Mexico, secundaria is middle school; Spain commonly calls the school an instituto."
+ }
+]

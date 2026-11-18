@@ -1,0 +1,178 @@
+[
+ {
+  "id": "es.tener.verb",
+  "drop": false,
+  "fix": {},
+  "why": "owner brief: tener stays fully irregular"
+ },
+ {
+  "id": "es.tomate.noun",
+  "drop": false,
+  "fix": {
+   "region_note": null,
+   "gloss": "tomato; tomatillo (central Mexico)"
+  },
+  "why": "central Mexico: tomate = tomatillo, jitomate = red tomato"
+ },
+ {
+  "id": "es.pizarra.noun",
+  "drop": true,
+  "fix": {},
+  "why": "pizarrón already has its own record"
+ },
+ {
+  "id": "es.tio.noun",
+  "drop": false,
+  "fix": {
+   "gender": "m"
+  },
+  "why": "Spain note was the same word"
+ },
+ {
+  "id": "es.veces.noun",
+  "drop": true,
+  "fix": {},
+  "why": "plural of vez, which has its own record"
+ },
+ {
+  "id": "es.pantalones.noun",
+  "drop": true,
+  "fix": {},
+  "why": "plural of pantalón, which has its own record"
+ },
+ {
+  "id": "es.clases.noun",
+  "drop": true,
+  "fix": {},
+  "why": "plural of clase, which has its own record"
+ },
+ {
+  "id": "es.huevos.noun",
+  "drop": true,
+  "fix": {},
+  "why": "plural of huevo, which has its own record"
+ },
+ {
+  "id": "es.miles.noun",
+  "drop": true,
+  "fix": {},
+  "why": "mil has its own record"
+ },
+ {
+  "id": "es.bebe.noun-2",
+  "drop": true,
+  "fix": {},
+  "why": "duplicate of bebé"
+ },
+ {
+  "id": "es.apartamento.noun",
+  "drop": true,
+  "fix": {},
+  "why": "departamento is the Mexican word and has its own record"
+ },
+ {
+  "id": "es.vosotros.pron",
+  "drop": false,
+  "fix": {},
+  "why": "keep the recognition-only note"
+ },
+ {
+  "id": "es.vuestro.det",
+  "drop": false,
+  "fix": {},
+  "why": "keep the recognition-only note"
+ },
+ {
+  "id": "es.cabello.noun",
+  "drop": false,
+  "fix": {},
+  "why": "Spain uses both pelo and cabello"
+ },
+ {
+  "id": "es.deprisa.adv",
+  "drop": false,
+  "fix": {},
+  "why": "deprisa is the standard spelling"
+ },
+ {
+  "id": "es.convertir.verb",
+  "drop": false,
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "why": "convirtió: e-i in preterite, like sentir"
+ },
+ {
+  "id": "es.divertir.verb",
+  "drop": false,
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "why": "divirtió: e-i in preterite"
+ },
+ {
+  "id": "es.referir.verb",
+  "drop": false,
+  "fix": {
+   "verb_class": [
+    "stem-e-ie",
+    "stem-e-i"
+   ]
+  },
+  "why": "refirió: e-i in preterite"
+ },
+ {
+  "id": "es.caer.verb",
+  "drop": false,
+  "fix": {
+   "verb_class": [
+    "irregular-yo",
+    "spell-i-y"
+   ]
+  },
+  "why": "caigo, cayó; caído is regular"
+ },
+ {
+  "id": "es.resolver.verb",
+  "drop": false,
+  "fix": {
+   "verb_class": [
+    "stem-o-ue",
+    "irregular-participle"
+   ]
+  },
+  "why": "resuelvo, resuelto"
+ },
+ {
+  "id": "es.actuar.verb",
+  "drop": false,
+  "fix": {
+   "verb_class": [
+    "regular-ar"
+   ]
+  },
+  "why": "actúo is an accent shift, regular endings"
+ },
+ {
+  "id": "es.ojo.noun.2",
+  "drop": false,
+  "fix": {
+   "pos": "intj",
+   "gender": null,
+   "gloss": "watch out!"
+  },
+  "why": "valid pos is intj"
+ },
+ {
+  "id": "es.adios.intj-2",
+  "drop": true,
+  "fix": {},
+  "why": "duplicate of A1 adiós"
+ }
+]

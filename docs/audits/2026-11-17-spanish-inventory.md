@@ -162,3 +162,23 @@ Open questions for the owner:
 6. Who reviews the glosses (including the ones for mexicanismos) and the Spain notes before licensing is decided?
 7. Do we keep all subtitle-derived vocabulary (slang, crime words) at B1+ or filter by register?
 8. Tense naming for learners: is "Past, finished / Past, ongoing" the wanted wording?
+
+## 9. Review pass, A1-A2 (2026-11-18)
+
+The A1 and A2 vocabulary (1,652 records) was reviewed after the inventory, because a spot check found about a quarter of the Spain notes wrong.
+
+- **Two reviewers.** DeepSeek V4.1 Flash and GPT-6 Luna each read every record, in batches of 60, and proposed only changes (`scripts/spanish_cefr_review.py`). DeepSeek proposed 266 changes and Luna 198. They agreed on 46 and differed on 315.
+- **A judge.** Claude Sonnet 5.5 made the final call on all 361 records with proposals (`scripts/spanish_cefr_review_apply.py judge`). It saw every A1-A2 record of each lemma together, because senses split across batches had misled both reviewers. It decided 271 changes, 46 of them drops.
+- **Owner-side overrides.** The orchestrating session overrode 23 decisions (`overrides.json`). Most were lemma fixes that would have duplicated an existing record (*veces* to *vez*, *pantalones*, *huevos*); those records were dropped instead. Others kept *tener* fully irregular, kept the *vosotros* recognition notes, and gave *convertir*, *divertir* and *referir* their e-i class.
+- **Result:** A1 741 and A2 856 records. The check and its 11 tests pass.
+- **What changed:**
+  - regular plurals removed;
+  - duplicate senses dropped;
+  - second senses given their own part of speech;
+  - genders added;
+  - Spain notes fixed (*tenis* is sneakers, *camión* is bus, notes that repeated the word removed);
+  - non-Mexican or vulgar words dropped (*coger*, *vuelto*, *vale*, *venga*, *coche*, *chaqueta*, *baloncesto*, *maldito*);
+  - lemma spellings fixed (*bebé*, *adiós*, *romántico*).
+- **Cost:** about 330k tokens in all (DeepSeek 108k, Luna 143k, Sonnet 77k).
+- All inputs and decisions are kept in `curriculum/spanish/cefr/review/2026-11-18-a1-a2/`. To rerun: run review with each model, then `merge`, `judge` and `apply`, passing the decisions and then the overrides.
+- **Still unreviewed:** B1-C2 and the grammar files. Nobody has read the A1-A2 glosses yet; the owner reads a sample.
