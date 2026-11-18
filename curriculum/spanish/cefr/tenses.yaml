@@ -1,0 +1,37 @@
+# Tenses and moods of the inventory with the level each is taught at and its learner-facing name.
+# Persons are Latin American: ustedes is "you all". Vosotros is recorded as Spain and is never taught (taught: false).
+# Conjugation tables are NOT stored here; a later session generates them with a rule conjugator.
+persons:
+  - {id: yo, taught: true}
+  - {id: tú, taught: true}
+  - {id: él/ella/usted, taught: true}
+  - {id: nosotros/nosotras, taught: true}
+  - {id: ustedes, taught: true, note: "Latin America: plural of tú and usted, uses the ellos form"}
+  - {id: ellos/ellas, taught: true}
+  - {id: vosotros/vosotras, taught: false, region: Spain, note: "recognition only, never taught as production"}
+tenses:
+  - {id: present-indicative, mood: indicative, level: a1, learner_name: "Present", note: "regular -ar/-er/-ir, then stem changes and irregular yo"}
+  - {id: near-future, mood: indicative, level: a1, learner_name: "Going to (near future)", note: "ir a + infinitive; periphrasis"}
+  - {id: present-progressive, mood: indicative, level: a1, learner_name: "Happening now", note: "estar + gerund; periphrasis"}
+  - {id: preterite, mood: indicative, level: a2, learner_name: "Past, finished", note: "regular first, then irregular stems"}
+  - {id: imperfect, mood: indicative, level: a2, learner_name: "Past, ongoing or habitual"}
+  - {id: present-perfect, mood: indicative, level: a2, learner_name: "Have done", note: "Mexico often prefers the preterite"}
+  - {id: simple-future, mood: indicative, level: a2, learner_name: "Will"}
+  - {id: imperative-affirmative, mood: imperative, level: a2, learner_name: "Commands (tú, usted, ustedes)"}
+  - {id: conditional, mood: indicative, level: b1, learner_name: "Would"}
+  - {id: present-subjunctive, mood: subjunctive, level: b1, learner_name: "Wishes and doubts (present)"}
+  - {id: imperative-negative, mood: imperative, level: b1, learner_name: "Don't commands", note: "uses present subjunctive forms"}
+  - {id: past-perfect, mood: indicative, level: b1, learner_name: "Had done"}
+  - {id: past-progressive, mood: indicative, level: b1, learner_name: "Was doing", note: "estar in the imperfect + gerund"}
+  - {id: imperfect-subjunctive, mood: subjunctive, level: b2, learner_name: "Wishes and doubts (past)"}
+  - {id: present-perfect-subjunctive, mood: subjunctive, level: b2, learner_name: "Have done (subjunctive)"}
+  - {id: pluperfect-subjunctive, mood: subjunctive, level: b2, learner_name: "Had done (subjunctive)"}
+  - {id: conditional-perfect, mood: indicative, level: b2, learner_name: "Would have done"}
+  - {id: future-perfect, mood: indicative, level: b2, learner_name: "Will have done"}
+  - {id: preterite-anterior, mood: indicative, level: c2, learner_name: "Literary past (recognition)", recognition_only: true}
+  - {id: future-subjunctive, mood: subjunctive, level: c2, learner_name: "Legal and proverb future (recognition)", recognition_only: true}
+  - {id: voseo, mood: indicative, level: c2, learner_name: "Vos forms (recognition)", recognition_only: true, region: "Argentina, Central America"}
+non_finite:
+  - {id: infinitive, level: a1, learner_name: "Dictionary form"}
+  - {id: gerund, level: a1, learner_name: "-ando / -iendo form"}
+  - {id: past-participle, level: a2, learner_name: "-ado / -ido form"}

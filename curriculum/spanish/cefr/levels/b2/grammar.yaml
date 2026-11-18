@@ -1,0 +1,121 @@
+# Grammar for the level. concept: true marks items that need a longer explanation than one line.
+- id: es.b2.imperfect-subjunctive
+  name: Imperfect subjunctive
+  explain: Take the ellos preterite, drop -ron and add -ra, -ras, -ra, -ramos, -ran; the -se forms are literary.
+  forms: [hablara, tuviera, fuera, dijera]
+  concept: true
+  concept_reason: The imperfect subjunctive combines mood and past time with several new uses, so it needs a full explanation.
+- id: es.b2.si-clauses-contrary
+  name: Contrary-to-fact si clauses
+  explain: Si + imperfect subjunctive + conditional for unreal present; si + pluperfect subjunctive + conditional perfect for unreal past.
+  forms: ['Si fuera rico, viajaría.', 'Si hubiera sabido, habría venido.']
+  concept: true
+  concept_reason: Three combinations of tenses express different degrees of reality and need a systematic explanation.
+- id: es.b2.present-perfect-subjunctive
+  name: Present perfect subjunctive
+  explain: Haya + participle expresses a finished action in a subjunctive context.
+  forms: [espero que hayas llegado]
+- id: es.b2.pluperfect-subjunctive
+  name: Pluperfect subjunctive
+  explain: Hubiera + participle expresses a past unreal action.
+  forms: [si hubiera sabido, ojalá hubiera venido]
+- id: es.b2.conditional-perfect
+  name: Conditional perfect
+  explain: Habría + participle says what would have happened.
+  forms: [habría ido, habríamos comido]
+- id: es.b2.future-perfect
+  name: Future perfect
+  explain: Habré + participle says what will have happened by a time, or a guess about the recent past.
+  forms: [habré terminado]
+- id: es.b2.sequence-of-tenses
+  name: Sequence of tenses with subjunctive
+  explain: The tense of the main verb controls whether the subordinate verb is present or imperfect subjunctive.
+  forms: [quería que vinieras, quiero que vengas]
+- id: es.b2.subjunctive-relative
+  name: Subjunctive in relative clauses
+  explain: Use the subjunctive after a noun that is unknown or nonexistent.
+  forms: [busco a alguien que hable inglés, no hay nada que me guste]
+- id: es.b2.concessive-aunque
+  name: Aunque with indicative or subjunctive
+  explain: Aunque with the indicative states a fact; with the subjunctive it states a hypothesis or lowers its importance.
+  forms: [aunque llueve, aunque llueva]
+- id: es.b2.subjunctive-temporal-past
+  name: Temporal clauses with past subjunctive
+  explain: Antes de que always takes the subjunctive; cuando after past events takes the indicative.
+  forms: [antes de que llegara]
+- id: es.b2.passive-voice
+  name: Ser passive
+  explain: Ser + participle + por makes a formal passive; it is more common in writing.
+  forms: [fue escrita por, será entregado]
+- id: es.b2.reflexive-passive-impersonal
+  name: Impersonal and se constructions
+  explain: Se me olvidó, se rompió style unplanned events with the indirect pronoun.
+  forms: [se me cayó, se nos acabó]
+- id: es.b2.relative-cuyo
+  name: Relative cuyo
+  explain: Cuyo agrees with the noun it modifies and means whose.
+  forms: [la mujer cuyo hijo]
+- id: es.b2.lo-que-lo-cual
+  name: Lo que and lo cual
+  explain: Lo que and lo cual refer to a whole idea mentioned earlier.
+  forms: [lo que pasó, lo cual es importante]
+- id: es.b2.infinitive-and-participle-clauses
+  name: Non-finite clauses
+  explain: 'Infinitive, gerund and participle clauses replace subordinate clauses: al llegar, estando cansado, terminado el trabajo.'
+  forms: [al llegar, una vez terminado]
+- id: es.b2.verbs-of-becoming
+  name: Verbs of becoming
+  explain: Ponerse, volverse, hacerse and quedarse mean become, each in different contexts.
+  forms: [se puso nervioso, se hizo médico]
+- id: es.b2.ser-estar-extended
+  name: Ser and estar in fixed and idiomatic uses
+  explain: Adjectives with ser or estar, with meaning shifts like ser listo versus estar listo.
+  forms: [ser malo / estar malo]
+- id: es.b2.word-order-emphasis
+  name: Word order and emphasis
+  explain: Spanish moves focus to the end and uses cleft sentences (es que, lo que... es).
+  forms: [Es Juan quien llama.]
+- id: es.b2.discourse-markers
+  name: Discourse markers
+  explain: Pues, bueno, o sea, es decir, en cambio, además organize speech and writing.
+  forms: [o sea, en cambio, además]
+- id: es.b2.cause-consequence
+  name: Cause and consequence clauses
+  explain: Debido a, puesto que, de modo que, tan... que express reasons and results.
+  forms: [puesto que, tan cansado que]
+- id: es.b2.concession-condition
+  name: Concession and condition
+  explain: A pesar de que, con tal de que, siempre que, a no ser que.
+  forms: [a pesar de que, siempre que]
+- id: es.b2.object-doubling
+  name: Pronoun doubling
+  explain: 'Spanish repeats an indirect object noun with a pronoun: le doy el libro a Ana.'
+  forms: [le doy el libro a Ana]
+- id: es.b2.reflexive-pronoun-meaning
+  name: Pronouns changing meaning
+  explain: Verbs like ir/irse, dormir/dormirse, comer/comerse mark a change in meaning with the reflexive.
+  forms: [me voy, se comió todo]
+- id: es.b2.gerund-adverbial
+  name: Gerund for manner and cause
+  explain: 'The gerund expresses how or why: aprende leyendo.'
+  forms: [aprendo escuchando]
+- id: es.b2.formal-register
+  name: Formal and written register
+  explain: Formal writing uses longer sentences, no contractions and set openings.
+  forms: [Estimado señor, Le saluda atentamente]
+- id: es.b2.mexican-usage
+  name: Mexican usage
+  explain: Mexican speech uses ahorita, ándale, mande and diminutives; the owner reference variety.
+  forms: [ahorita, mande, ándale]
+- id: es.b2.prefixes-suffixes
+  name: Word formation
+  explain: Prefixes (des-, in-, re-) and suffixes (-ción, -dad, -ero) build related words.
+  forms: [deshacer, nacionalidad]
+- id: es.b2.indirect-questions
+  name: Indirect questions
+  explain: 'Question words work inside a sentence without question marks: me pregunto qué hará.'
+  forms: [no sé dónde está]
+- id: es.b2.exclamatives
+  name: Exclamatives
+  explain: Qué + adjective and cuánto make exclamations.
+  forms: [¡Qué bonito!, ¡Cuánto tiempo!]

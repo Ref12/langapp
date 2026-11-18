@@ -1,0 +1,1736 @@
+# Every verb in the inventory with its irregularity class. No conjugation tables: a later session generates them with a rule conjugator cross-checked against AI-written irregular forms.
+# taught_after (A1 only): grammar ids whose unit must come first.
+- {lemma: ser, id: es.ser.verb, level: a1, group: er, class: [fully-irregular], taught_after: [ser-present]}
+- {lemma: hablar, id: es.hablar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: llamar, id: es.llamar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: vivir, id: es.vivir.verb, level: a1, group: ir, class: [regular-ir], taught_after: [present-er-ir]}
+- {lemma: disculpar, id: es.disculpar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: presentar, id: es.presentar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: tener, id: es.tener.verb, level: a1, group: er, class: [fully-irregular], taught_after: [tener-present]}
+- {lemma: restar, id: es.restar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: sumar, id: es.sumar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: estar, id: es.estar.verb, level: a1, group: ar, class: [fully-irregular], taught_after: [estar-present]}
+- {lemma: ir, id: es.ir.verb, level: a1, group: ir, class: [fully-irregular], taught_after: [ir-present]}
+- {lemma: trabajar, id: es.trabajar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: salir, id: es.salir.verb, level: a1, group: ir, class: [irregular-yo], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: conocer, id: es.conocer.verb, level: a1, group: er, class: [irregular-yo], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: llegar, id: es.llegar.verb, level: a1, group: ar, class: [spell-g-gu], taught_after: [present-ar]}
+- {lemma: terminar, id: es.terminar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: durar, id: es.durar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: cenar, id: es.cenar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: estudiar, id: es.estudiar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: descansar, id: es.descansar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: cocinar, id: es.cocinar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: nacer, id: es.nacer.verb, level: a1, group: er, class: [irregular-yo], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: desayunar, id: es.desayunar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: llamarse, id: es.llamarse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: casarse, id: es.casarse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: levantarse, id: es.levantarse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: ducharse, id: es.ducharse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: bañarse, id: es.banharse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: lavarse, id: es.lavarse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: peinarse, id: es.peinarse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: quedarse, id: es.quedarse.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar, reflexive-present]}
+- {lemma: ponerse, id: es.ponerse.verb, level: a1, group: er, class: [irregular-yo, irregular-preterite, irregular-participle], taught_after: [irregular-yo, present-er-ir, reflexive-present]}
+- {lemma: comer, id: es.comer.verb, level: a1, group: er, class: [regular-er], taught_after: [present-er-ir]}
+- {lemma: volver, id: es.volver.verb, level: a1, group: er, class: [stem-o-ue, irregular-participle], taught_after: [present-er-ir, stem-o-ue]}
+- {lemma: sentir, id: es.sentir.verb, level: a1, group: ir, class: [stem-e-ie], taught_after: [present-er-ir, stem-e-ie]}
+- {lemma: tomar, id: es.tomar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: entender, id: es.entender.verb, level: a1, group: er, class: [stem-e-ie], taught_after: [present-er-ir, stem-e-ie]}
+- {lemma: contar, id: es.contar.verb, level: a1, group: ar, class: [stem-o-ue], taught_after: [present-ar, stem-o-ue]}
+- {lemma: pedir, id: es.pedir.verb, level: a1, group: ir, class: [stem-e-i], taught_after: [present-er-ir, stem-e-i]}
+- {lemma: empezar, id: es.empezar.verb, level: a1, group: ar, class: [stem-e-ie, spell-z-c], taught_after: [present-ar, stem-e-ie]}
+- {lemma: beber, id: es.beber.verb, level: a1, group: er, class: [regular-er], taught_after: [present-er-ir]}
+- {lemma: dormir, id: es.dormir.verb, level: a1, group: ir, class: [stem-o-ue], taught_after: [present-er-ir, stem-o-ue]}
+- {lemma: preparar, id: es.preparar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: almorzar, id: es.almorzar.verb, level: a1, group: ar, class: [stem-o-ue, spell-z-c], taught_after: [present-ar, stem-o-ue]}
+- {lemma: nevar, id: es.nevar.verb, level: a1, group: ar, class: [stem-e-ie], taught_after: [present-ar, stem-e-ie]}
+- {lemma: llover, id: es.llover.verb, level: a1, group: er, class: [stem-o-ue], taught_after: [present-er-ir, stem-o-ue]}
+- {lemma: despertarse, id: es.despertarse.verb, level: a1, group: ar, class: [stem-e-ie], taught_after: [present-ar, stem-e-ie, reflexive-present]}
+- {lemma: vestirse, id: es.vestirse.verb, level: a1, group: ir, class: [stem-e-i], taught_after: [present-er-ir, stem-e-i, reflexive-present]}
+- {lemma: acostarse, id: es.acostarse.verb, level: a1, group: ar, class: [stem-o-ue], taught_after: [present-ar, stem-o-ue, reflexive-present]}
+- {lemma: sentarse, id: es.sentarse.verb, level: a1, group: ar, class: [stem-e-ie], taught_after: [present-ar, stem-e-ie, reflexive-present]}
+- {lemma: divertirse, id: es.divertirse.verb, level: a1, group: ir, class: [stem-e-ie, stem-e-i], taught_after: [present-er-ir, stem-e-ie, stem-e-i, reflexive-present]}
+- {lemma: nadar, id: es.nadar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: gustar, id: es.gustar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: escuchar, id: es.escuchar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: perder, id: es.perder.verb, level: a1, group: er, class: [stem-e-ie], taught_after: [present-er-ir, stem-e-ie]}
+- {lemma: jugar, id: es.jugar.verb, level: a1, group: ar, class: [stem-u-ue, spell-g-gu], taught_after: [present-ar, stem-u-ue]}
+- {lemma: ganar, id: es.ganar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: tocar, id: es.tocar.verb, level: a1, group: ar, class: [spell-c-qu], taught_after: [present-ar]}
+- {lemma: correr, id: es.correr.verb, level: a1, group: er, class: [regular-er], taught_after: [present-er-ir]}
+- {lemma: bailar, id: es.bailar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: cantar, id: es.cantar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: preferir, id: es.preferir.verb, level: a1, group: ir, class: [stem-e-ie], taught_after: [present-er-ir, stem-e-ie]}
+- {lemma: pintar, id: es.pintar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: dibujar, id: es.dibujar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: pasar, id: es.pasar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: esperar, id: es.esperar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: quedar, id: es.quedar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: seguir, id: es.seguir.verb, level: a1, group: ir, class: [stem-e-i], taught_after: [present-er-ir, stem-e-i]}
+- {lemma: entrar, id: es.entrar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: preguntar, id: es.preguntar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: buscar, id: es.buscar.verb, level: a1, group: ar, class: [spell-c-qu], taught_after: [present-ar]}
+- {lemma: bajar, id: es.bajar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: caminar, id: es.caminar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: subir, id: es.subir.verb, level: a1, group: ir, class: [regular-ir], taught_after: [present-er-ir]}
+- {lemma: viajar, id: es.viajar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: visitar, id: es.visitar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: conducir, id: es.conducir.verb, level: a1, group: ir, class: [irregular-yo, irregular-preterite], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: cruzar, id: es.cruzar.verb, level: a1, group: ar, class: [spell-z-c], taught_after: [present-ar]}
+- {lemma: doblar, id: es.doblar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: girar, id: es.girar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: necesitar, id: es.necesitar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: pagar, id: es.pagar.verb, level: a1, group: ar, class: [spell-g-gu], taught_after: [present-ar]}
+- {lemma: comprar, id: es.comprar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: vender, id: es.vender.verb, level: a1, group: er, class: [regular-er], taught_after: [present-er-ir]}
+- {lemma: costar, id: es.costar.verb, level: a1, group: ar, class: [stem-o-ue], taught_after: [present-ar, stem-o-ue]}
+- {lemma: gastar, id: es.gastar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: usar, id: es.usar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: leer, id: es.leer.verb, level: a1, group: er, class: [spell-i-y], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: escribir, id: es.escribir.verb, level: a1, group: ir, class: [irregular-participle], taught_after: [present-er-ir]}
+- {lemma: enseñar, id: es.ensenhar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: aprender, id: es.aprender.verb, level: a1, group: er, class: [regular-er], taught_after: [present-er-ir]}
+- {lemma: cuidar, id: es.cuidar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: respirar, id: es.respirar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: doler, id: es.doler.verb, level: a1, group: er, class: [stem-o-ue], taught_after: [present-er-ir, stem-o-ue]}
+- {lemma: lastimar, id: es.lastimar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: toser, id: es.toser.verb, level: a1, group: er, class: [regular-er], taught_after: [present-er-ir]}
+- {lemma: hacer, id: es.hacer.verb, level: a1, group: er, class: [irregular-yo, irregular-participle, irregular-preterite], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: haber, id: es.haber.verb, level: a1, group: er, class: [fully-irregular], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: poder, id: es.poder.verb, level: a1, group: er, class: [stem-o-ue, irregular-preterite], taught_after: [present-er-ir, stem-o-ue]}
+- {lemma: decir, id: es.decir.verb, level: a1, group: ir, class: [stem-e-i, irregular-yo, irregular-preterite, irregular-participle], taught_after: [irregular-yo, present-er-ir, stem-e-i]}
+- {lemma: saber, id: es.saber.verb, level: a1, group: er, class: [irregular-yo, irregular-preterite], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: querer, id: es.querer.verb, level: a1, group: er, class: [stem-e-ie, irregular-preterite], taught_after: [present-er-ir, stem-e-ie]}
+- {lemma: ver, id: es.ver.verb, level: a1, group: er, class: [irregular-yo, irregular-participle], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: dar, id: es.dar.verb, level: a1, group: ar, class: [fully-irregular], taught_after: [irregular-yo, present-ar]}
+- {lemma: venir, id: es.venir.verb, level: a1, group: ir, class: [fully-irregular], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: pensar, id: es.pensar.verb, level: a1, group: ar, class: [stem-e-ie], taught_after: [present-ar, stem-e-ie]}
+- {lemma: mirar, id: es.mirar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: encontrar, id: es.encontrar.verb, level: a1, group: ar, class: [stem-o-ue], taught_after: [present-ar, stem-o-ue]}
+- {lemma: poner, id: es.poner.verb, level: a1, group: er, class: [irregular-yo, irregular-participle, irregular-preterite], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: oír, id: es.oir.verb, level: a1, group: ir, class: [irregular-yo, irregular-preterite, irregular-participle, spell-i-y], taught_after: [irregular-yo, present-er-ir]}
+- {lemma: ayudar, id: es.ayudar.verb, level: a1, group: ar, class: [regular-ar], taught_after: [present-ar]}
+- {lemma: abrir, id: es.abrir.verb, level: a1, group: ir, class: [irregular-participle], taught_after: [present-er-ir]}
+- {lemma: cerrar, id: es.cerrar.verb, level: a1, group: ar, class: [stem-e-ie], taught_after: [present-ar, stem-e-ie]}
+- {lemma: parar, id: es.parar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: creer, id: es.creer.verb, level: a2, group: er, class: [spell-i-y]}
+- {lemma: unir, id: es.unir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: llevar, id: es.llevar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: deber, id: es.deber.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: dejar, id: es.dejar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: traer, id: es.traer.verb, level: a2, group: er, class: [irregular-yo, irregular-preterite, spell-i-y]}
+- {lemma: parecer, id: es.parecer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: sentar, id: es.sentar.verb, level: a2, group: ar, class: [stem-e-ie]}
+- {lemma: morir, id: es.morir.verb, level: a2, group: ir, class: [stem-o-ue, irregular-participle]}
+- {lemma: vestir, id: es.vestir.verb, level: a2, group: ir, class: [stem-e-i]}
+- {lemma: regresar, id: es.regresar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: tratar, id: es.tratar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: acabar, id: es.acabar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: valer, id: es.valer.verb, level: a2, group: er, class: [irregular-yo, irregular-participle]}
+- {lemma: intentar, id: es.intentar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: recordar, id: es.recordar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: importar, id: es.importar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: casar, id: es.casar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: cambiar, id: es.cambiar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: comenzar, id: es.comenzar.verb, level: a2, group: ar, class: [stem-e-ie, spell-z-c]}
+- {lemma: conseguir, id: es.conseguir.verb, level: a2, group: ir, class: [stem-e-i]}
+- {lemma: tardar, id: es.tardar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: preocupar, id: es.preocupar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: olvidar, id: es.olvidar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: sacar, id: es.sacar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: amar, id: es.amar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: parir, id: es.parir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: crear, id: es.crear.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: probar, id: es.probar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: mover, id: es.mover.verb, level: a2, group: er, class: [stem-o-ue]}
+- {lemma: enviar, id: es.enviar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: meter, id: es.meter.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: encantar, id: es.encantar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: limpiar, id: es.limpiar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: funcionar, id: es.funcionar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: cortar, id: es.cortar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: recibir, id: es.recibir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: caer, id: es.caer.verb, level: a2, group: er, class: [irregular-yo, irregular-preterite, spell-i-y]}
+- {lemma: desear, id: es.desear.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: coser, id: es.coser.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: mostrar, id: es.mostrar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: odiar, id: es.odiar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: perdonar, id: es.perdonar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: tirar, id: es.tirar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: extrañar, id: es.extranhar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: acordar, id: es.acordar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: decidir, id: es.decidir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: romper, id: es.romper.verb, level: a2, group: er, class: [irregular-participle]}
+- {lemma: prometer, id: es.prometer.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: suponer, id: es.suponer.verb, level: a2, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: levantar, id: es.levantar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: faltar, id: es.faltar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: mantener, id: es.mantener.verb, level: a2, group: er, class: [fully-irregular]}
+- {lemma: sobrar, id: es.sobrar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: partir, id: es.partir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: significar, id: es.significar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: matar, id: es.matar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: callar, id: es.callar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: aceptar, id: es.aceptar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: volar, id: es.volar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: molestar, id: es.molestar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: andar, id: es.andar.verb, level: a2, group: ar, class: [irregular-preterite]}
+- {lemma: arreglar, id: es.arreglar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: imaginar, id: es.imaginar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: servir, id: es.servir.verb, level: a2, group: ir, class: [stem-e-i]}
+- {lemma: mandar, id: es.mandar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: mentir, id: es.mentir.verb, level: a2, group: ir, class: [stem-e-ie]}
+- {lemma: soñar, id: es.sonhar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: reír, id: es.reir.verb, level: a2, group: ir, class: [stem-e-i]}
+- {lemma: despertar, id: es.despertar.verb, level: a2, group: ar, class: [stem-e-ie]}
+- {lemma: explicar, id: es.explicar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: asir, id: es.asir.verb, level: a2, group: ir, class: [irregular-yo]}
+- {lemma: acercar, id: es.acercar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: equivocar, id: es.equivocar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: dudar, id: es.dudar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: llorar, id: es.llorar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: llenar, id: es.llenar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: robar, id: es.robar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: firmar, id: es.firmar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: besar, id: es.besar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: responder, id: es.responder.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: invitar, id: es.invitar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: bañar, id: es.banhar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: permitir, id: es.permitir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: gritar, id: es.gritar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: guardar, id: es.guardar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: ofrecer, id: es.ofrecer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: interesar, id: es.interesar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: quitar, id: es.quitar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: sonar, id: es.sonar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: soler, id: es.soler.verb, level: a2, group: er, class: [stem-o-ue]}
+- {lemma: devolver, id: es.devolver.verb, level: a2, group: er, class: [stem-o-ue, irregular-participle]}
+- {lemma: formar, id: es.formar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: regalar, id: es.regalar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: nombrar, id: es.nombrar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: crecer, id: es.crecer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: comprender, id: es.comprender.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: confiar, id: es.confiar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: mejorar, id: es.mejorar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: saltar, id: es.saltar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: disfrutar, id: es.disfrutar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: salvar, id: es.salvar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: respetar, id: es.respetar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: manejar, id: es.manejar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: revisar, id: es.revisar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: avisar, id: es.avisar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: pelear, id: es.pelear.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: calentar, id: es.calentar.verb, level: a2, group: ar, class: [stem-e-ie]}
+- {lemma: suceder, id: es.suceder.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: descubrir, id: es.descubrir.verb, level: a2, group: ir, class: [irregular-participle]}
+- {lemma: oler, id: es.oler.verb, level: a2, group: er, class: [stem-o-ue]}
+- {lemma: construir, id: es.construir.verb, level: a2, group: ir, class: [spell-i-y]}
+- {lemma: ocurrir, id: es.ocurrir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: detener, id: es.detener.verb, level: a2, group: er, class: [fully-irregular]}
+- {lemma: compartir, id: es.compartir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: notar, id: es.notar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: contestar, id: es.contestar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: quemar, id: es.quemar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: acompañar, id: es.acompanhar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: lograr, id: es.lograr.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: echar, id: es.echar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: proteger, id: es.proteger.verb, level: a2, group: er, class: [spell-g-j]}
+- {lemma: adelantar, id: es.adelantar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: elegir, id: es.elegir.verb, level: a2, group: ir, class: [stem-e-i, spell-g-j]}
+- {lemma: aparecer, id: es.aparecer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: armar, id: es.armar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: apagar, id: es.apagar.verb, level: a2, group: ar, class: [spell-g-gu]}
+- {lemma: culpar, id: es.culpar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: continuar, id: es.continuar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: coger, id: es.coger.verb, level: a2, group: er, class: [spell-g-j]}
+- {lemma: entregar, id: es.entregar.verb, level: a2, group: ar, class: [spell-g-gu]}
+- {lemma: prestar, id: es.prestar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: pasear, id: es.pasear.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: agradecer, id: es.agradecer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: fumar, id: es.fumar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: lavar, id: es.lavar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: recoger, id: es.recoger.verb, level: a2, group: er, class: [spell-g-j]}
+- {lemma: convertir, id: es.convertir.verb, level: a2, group: ir, class: [stem-e-ie]}
+- {lemma: repetir, id: es.repetir.verb, level: a2, group: ir, class: [stem-e-i]}
+- {lemma: divertir, id: es.divertir.verb, level: a2, group: ir, class: [stem-e-ie]}
+- {lemma: encender, id: es.encender.verb, level: a2, group: er, class: [stem-e-ie]}
+- {lemma: atacar, id: es.atacar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: celebrar, id: es.celebrar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: sufrir, id: es.sufrir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: reconocer, id: es.reconocer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: sangrar, id: es.sangrar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: apoyar, id: es.apoyar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: equipar, id: es.equipar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: sonreír, id: es.sonreir.verb, level: a2, group: ir, class: [stem-e-i, irregular-yo]}
+- {lemma: alegrar, id: es.alegrar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: cumplir, id: es.cumplir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: escoger, id: es.escoger.verb, level: a2, group: er, class: [spell-g-j]}
+- {lemma: copiar, id: es.copiar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: asegurar, id: es.asegurar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: saludar, id: es.saludar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: agarrar, id: es.agarrar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: resolver, id: es.resolver.verb, level: a2, group: er, class: [stem-o-ue, irregular-participle]}
+- {lemma: sorprender, id: es.sorprender.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: pegar, id: es.pegar.verb, level: a2, group: ar, class: [spell-g-gu]}
+- {lemma: cargar, id: es.cargar.verb, level: a2, group: ar, class: [spell-g-gu]}
+- {lemma: calmar, id: es.calmar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: utilizar, id: es.utilizar.verb, level: a2, group: ar, class: [spell-z-c]}
+- {lemma: completar, id: es.completar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: temer, id: es.temer.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: escapar, id: es.escapar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: controlar, id: es.controlar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: luchar, id: es.luchar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: alcanzar, id: es.alcanzar.verb, level: a2, group: ar, class: [spell-z-c]}
+- {lemma: confirmar, id: es.confirmar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: charlar, id: es.charlar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: bastar, id: es.bastar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: ocupar, id: es.ocupar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: abrazar, id: es.abrazar.verb, level: a2, group: ar, class: [spell-z-c]}
+- {lemma: discutir, id: es.discutir.verb, level: a2, group: ir, class: [regular-ir]}
+- {lemma: desaparecer, id: es.desaparecer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: jurar, id: es.jurar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: ordenar, id: es.ordenar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: enterar, id: es.enterar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: golpear, id: es.golpear.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: disparar, id: es.disparar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: causar, id: es.causar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: pesar, id: es.pesar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: practicar, id: es.practicar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: juntar, id: es.juntar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: dañar, id: es.danhar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: relajar, id: es.relajar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: informar, id: es.informar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: apostar, id: es.apostar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: soltar, id: es.soltar.verb, level: a2, group: ar, class: [stem-o-ue]}
+- {lemma: resultar, id: es.resultar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: atrapar, id: es.atrapar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: asustar, id: es.asustar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: esposar, id: es.esposar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: lamentar, id: es.lamentar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: mamar, id: es.mamar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: citar, id: es.citar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: encargar, id: es.encargar.verb, level: a2, group: ar, class: [spell-g-gu]}
+- {lemma: esconder, id: es.esconder.verb, level: a2, group: er, class: [regular-er]}
+- {lemma: freír, id: es.freir.verb, level: a2, group: ir, class: [stem-e-i]}
+- {lemma: marchar, id: es.marchar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: vengar, id: es.vengar.verb, level: a2, group: ar, class: [spell-g-gu]}
+- {lemma: forzar, id: es.forzar.verb, level: a2, group: ar, class: [stem-o-ue, spell-z-c]}
+- {lemma: contactar, id: es.contactar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: secar, id: es.secar.verb, level: a2, group: ar, class: [spell-c-qu]}
+- {lemma: referir, id: es.referir.verb, level: a2, group: ir, class: [stem-e-ie]}
+- {lemma: actuar, id: es.actuar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: merecer, id: es.merecer.verb, level: a2, group: er, class: [irregular-yo]}
+- {lemma: obtener, id: es.obtener.verb, level: a2, group: er, class: [irregular-yo, stem-e-ie, irregular-preterite]}
+- {lemma: averiguar, id: es.averiguar.verb, level: a2, group: ar, class: [spell-g-gu]}
+- {lemma: destruir, id: es.destruir.verb, level: a2, group: ir, class: [spell-i-y]}
+- {lemma: abandonar, id: es.abandonar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: describir, id: es.describir.verb, level: a2, group: ir, class: [irregular-participle]}
+- {lemma: considerar, id: es.considerar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: asesinar, id: es.asesinar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: enojar, id: es.enojar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: pelar, id: es.pelar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: evitar, id: es.evitar.verb, level: a2, group: ar, class: [regular-ar]}
+- {lemma: programar, id: es.programar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: marcar, id: es.marcar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: idear, id: es.idear.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: contratar, id: es.contratar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: largar, id: es.largar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: recuperar, id: es.recuperar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: dirigir, id: es.dirigir.verb, level: b1, group: ir, class: [spell-g-j]}
+- {lemma: adivinar, id: es.adivinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: regar, id: es.regar.verb, level: b1, group: ar, class: [stem-e-ie, spell-g-gu]}
+- {lemma: existir, id: es.existir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: engañar, id: es.enganhar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: empujar, id: es.empujar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: alejar, id: es.alejar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: basar, id: es.basar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: bromear, id: es.bromear.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: enfermar, id: es.enfermar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: negociar, id: es.negociar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: cometer, id: es.cometer.verb, level: b1, group: er, class: [regular-er]}
+- {lemma: pisar, id: es.pisar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: despedir, id: es.despedir.verb, level: b1, group: ir, class: [stem-e-i]}
+- {lemma: reunir, id: es.reunir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: enfrentar, id: es.enfrentar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: huir, id: es.huir.verb, level: b1, group: ir, class: [spell-i-y]}
+- {lemma: arruinar, id: es.arruinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: retirar, id: es.retirar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: cubrir, id: es.cubrir.verb, level: b1, group: ir, class: [irregular-participle]}
+- {lemma: alquilar, id: es.alquilar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: acostar, id: es.acostar.verb, level: b1, group: ar, class: [stem-o-ue]}
+- {lemma: centrar, id: es.centrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: iniciar, id: es.iniciar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: lanzar, id: es.lanzar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: podar, id: es.podar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: reservar, id: es.reservar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: organizar, id: es.organizar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: dedicar, id: es.dedicar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: aburrir, id: es.aburrir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: librar, id: es.librar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: planear, id: es.planear.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: atender, id: es.atender.verb, level: b1, group: er, class: [stem-e-ie]}
+- {lemma: sobrevivir, id: es.sobrevivir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: amenazar, id: es.amenazar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: enamorar, id: es.enamorar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: demostrar, id: es.demostrar.verb, level: b1, group: ar, class: [stem-o-ue]}
+- {lemma: realizar, id: es.realizar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: cancelar, id: es.cancelar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: convencer, id: es.convencer.verb, level: b1, group: er, class: [spell-z-c]}
+- {lemma: comunicar, id: es.comunicar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: confundir, id: es.confundir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: mencionar, id: es.mencionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: aguantar, id: es.aguantar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: barrer, id: es.barrer.verb, level: b1, group: er, class: [regular-er]}
+- {lemma: negar, id: es.negar.verb, level: b1, group: ar, class: [stem-e-ie, spell-g-gu]}
+- {lemma: entrenar, id: es.entrenar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: opinar, id: es.opinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: gobernar, id: es.gobernar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: proponer, id: es.proponer.verb, level: b1, group: er, class: [irregular-yo, irregular-preterite, irregular-participle]}
+- {lemma: pertenecer, id: es.pertenecer.verb, level: b1, group: er, class: [irregular-yo]}
+- {lemma: investigar, id: es.investigar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: ignorar, id: es.ignorar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: mezclar, id: es.mezclar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: estacionar, id: es.estacionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: admitir, id: es.admitir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: curar, id: es.curar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: ahorrar, id: es.ahorrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: cansar, id: es.cansar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: depender, id: es.depender.verb, level: b1, group: er, class: [regular-er]}
+- {lemma: mediar, id: es.mediar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: vigilar, id: es.vigilar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: fallar, id: es.fallar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: quejarse, id: es.quejarse.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: montar, id: es.montar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: colgar, id: es.colgar.verb, level: b1, group: ar, class: [stem-o-ue, spell-g-gu]}
+- {lemma: atrever, id: es.atrever.verb, level: b1, group: er, class: [regular-er]}
+- {lemma: botar, id: es.botar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: sugerir, id: es.sugerir.verb, level: b1, group: ir, class: [stem-e-ie]}
+- {lemma: comprobar, id: es.comprobar.verb, level: b1, group: ar, class: [stem-o-ue]}
+- {lemma: separar, id: es.separar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: liberar, id: es.liberar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: hallar, id: es.hallar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: acusar, id: es.acusar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: votar, id: es.votar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: aprobar, id: es.aprobar.verb, level: b1, group: ar, class: [stem-o-ue]}
+- {lemma: pescar, id: es.pescar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: obligar, id: es.obligar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: duchar, id: es.duchar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: prohibir, id: es.prohibir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: chocar, id: es.chocar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: participar, id: es.participar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: cercar, id: es.cercar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: helar, id: es.helar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: renunciar, id: es.renunciar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: fijar, id: es.fijar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: reducir, id: es.reducir.verb, level: b1, group: ir, class: [irregular-yo, irregular-preterite, spell-z-c]}
+- {lemma: observar, id: es.observar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: soportar, id: es.soportar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: apenar, id: es.apenar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: expresar, id: es.expresar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: borrar, id: es.borrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: animar, id: es.animar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: defender, id: es.defender.verb, level: b1, group: er, class: [stem-e-ie]}
+- {lemma: solucionar, id: es.solucionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: herir, id: es.herir.verb, level: b1, group: ir, class: [stem-e-ie]}
+- {lemma: apartar, id: es.apartar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: enfadar, id: es.enfadar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: diferenciar, id: es.diferenciar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: superar, id: es.superar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: cazar, id: es.cazar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: apuntar, id: es.apuntar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: castigar, id: es.castigar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: arribar, id: es.arribar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: plantar, id: es.plantar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: vaciar, id: es.vaciar.verb, level: b1, group: ar, class: [spell-i-y]}
+- {lemma: rentar, id: es.rentar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: avanzar, id: es.avanzar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: inventar, id: es.inventar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: tragar, id: es.tragar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: registrar, id: es.registrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: enterrar, id: es.enterrar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: comparar, id: es.comparar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: recomendar, id: es.recomendar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: ocultar, id: es.ocultar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: añadir, id: es.anhadir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: rechazar, id: es.rechazar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: incluir, id: es.incluir.verb, level: b1, group: ir, class: [spell-i-y]}
+- {lemma: juzgar, id: es.juzgar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: adorar, id: es.adorar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: salar, id: es.salar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: declarar, id: es.declarar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: grabar, id: es.grabar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: alimentar, id: es.alimentar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: apreciar, id: es.apreciar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: entrevistar, id: es.entrevistar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: divorciar, id: es.divorciar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: permanecer, id: es.permanecer.verb, level: b1, group: er, class: [irregular-yo]}
+- {lemma: colocar, id: es.colocar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: arrestar, id: es.arrestar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: aumentar, id: es.aumentar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: sospechar, id: es.sospechar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: cobrar, id: es.cobrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: afectar, id: es.afectar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: anunciar, id: es.anunciar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: rescatar, id: es.rescatar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: rezar, id: es.rezar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: deshacer, id: es.deshacer.verb, level: b1, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: identificar, id: es.identificar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: explotar, id: es.explotar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: criar, id: es.criar.verb, level: b1, group: ar, class: [spell-i-y]}
+- {lemma: vencer, id: es.vencer.verb, level: b1, group: er, class: [spell-z-c]}
+- {lemma: reparar, id: es.reparar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: motivar, id: es.motivar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: obedecer, id: es.obedecer.verb, level: b1, group: er, class: [irregular-yo]}
+- {lemma: relacionar, id: es.relacionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: arriesgar, id: es.arriesgar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: traducir, id: es.traducir.verb, level: b1, group: ir, class: [irregular-yo, irregular-preterite]}
+- {lemma: insistir, id: es.insistir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: medir, id: es.medir.verb, level: b1, group: ir, class: [stem-e-i]}
+- {lemma: concentrar, id: es.concentrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: representar, id: es.representar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: tapar, id: es.tapar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: rendir, id: es.rendir.verb, level: b1, group: ir, class: [stem-e-i]}
+- {lemma: acostumbrar, id: es.acostumbrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: confesar, id: es.confesar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: perseguir, id: es.perseguir.verb, level: b1, group: ir, class: [stem-e-i, spell-g-gu]}
+- {lemma: complicar, id: es.complicar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: congelar, id: es.congelar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: eliminar, id: es.eliminar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: desarrollar, id: es.desarrollar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: conectar, id: es.conectar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: proyectar, id: es.proyectar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: traicionar, id: es.traicionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: reinar, id: es.reinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: experimentar, id: es.experimentar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: resistir, id: es.resistir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: emplear, id: es.emplear.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: fingir, id: es.fingir.verb, level: b1, group: ir, class: [spell-g-j]}
+- {lemma: contener, id: es.contener.verb, level: b1, group: er, class: [fully-irregular]}
+- {lemma: provocar, id: es.provocar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: clavar, id: es.clavar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: accidentar, id: es.accidentar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: producir, id: es.producir.verb, level: b1, group: ir, class: [irregular-yo, irregular-preterite]}
+- {lemma: aprovechar, id: es.aprovechar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: interrumpir, id: es.interrumpir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: mojar, id: es.mojar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: indicar, id: es.indicar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: destinar, id: es.destinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: encerrar, id: es.encerrar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: asentir, id: es.asentir.verb, level: b1, group: ir, class: [stem-e-ie]}
+- {lemma: aguar, id: es.aguar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: mudar, id: es.mudar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: arrastrar, id: es.arrastrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: esforzar, id: es.esforzar.verb, level: b1, group: ar, class: [stem-o-ue, spell-z-c]}
+- {lemma: capturar, id: es.capturar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: sujetar, id: es.sujetar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: procesar, id: es.procesar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: poblar, id: es.poblar.verb, level: b1, group: ar, class: [stem-o-ue]}
+- {lemma: picar, id: es.picar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: presionar, id: es.presionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: empacar, id: es.empacar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: estrellar, id: es.estrellar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: rogar, id: es.rogar.verb, level: b1, group: ar, class: [stem-o-ue, spell-g-gu]}
+- {lemma: morder, id: es.morder.verb, level: b1, group: er, class: [stem-o-ue]}
+- {lemma: aplicar, id: es.aplicar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: brillar, id: es.brillar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: flotar, id: es.flotar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: retrasar, id: es.retrasar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: maldecir, id: es.maldecir.verb, level: b1, group: ir, class: [irregular-yo, irregular-preterite, stem-e-i]}
+- {lemma: sostener, id: es.sostener.verb, level: b1, group: er, class: [irregular-yo, stem-e-ie, irregular-preterite]}
+- {lemma: rodar, id: es.rodar.verb, level: b1, group: ar, class: [stem-o-ue]}
+- {lemma: diseñar, id: es.disenhar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: planchar, id: es.planchar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: agregar, id: es.agregar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: apurar, id: es.apurar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: transportar, id: es.transportar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: atravesar, id: es.atravesar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: asumir, id: es.asumir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: advertir, id: es.advertir.verb, level: b1, group: ir, class: [stem-e-ie]}
+- {lemma: publicar, id: es.publicar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: atraer, id: es.atraer.verb, level: b1, group: er, class: [fully-irregular]}
+- {lemma: apretar, id: es.apretar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: filmar, id: es.filmar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: manar, id: es.manar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: disponer, id: es.disponer.verb, level: b1, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: rodear, id: es.rodear.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: detallar, id: es.detallar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: activar, id: es.activar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: orar, id: es.orar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: atar, id: es.atar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: arrancar, id: es.arrancar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: prender, id: es.prender.verb, level: b1, group: er, class: [regular-er]}
+- {lemma: ofender, id: es.ofender.verb, level: b1, group: er, class: [regular-er]}
+- {lemma: impedir, id: es.impedir.verb, level: b1, group: ir, class: [stem-e-i]}
+- {lemma: involucrar, id: es.involucrar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: ahogar, id: es.ahogar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: combatir, id: es.combatir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: afeitar, id: es.afeitar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: pretender, id: es.pretender.verb, level: b1, group: er, class: [regular-er]}
+- {lemma: lucir, id: es.lucir.verb, level: b1, group: ir, class: [irregular-yo]}
+- {lemma: guiar, id: es.guiar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: ensayar, id: es.ensayar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: tender, id: es.tender.verb, level: b1, group: er, class: [stem-e-ie]}
+- {lemma: drogar, id: es.drogar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: comedir, id: es.comedir.verb, level: b1, group: ir, class: [stem-e-i]}
+- {lemma: avergonzar, id: es.avergonzar.verb, level: b1, group: ar, class: [stem-o-ue, spell-z-c]}
+- {lemma: reportar, id: es.reportar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: comentar, id: es.comentar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: premiar, id: es.premiar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: platicar, id: es.platicar.verb, level: b1, group: ar, class: [spell-c-qu]}
+- {lemma: vomitar, id: es.vomitar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: peinar, id: es.peinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: lindar, id: es.lindar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: aterrizar, id: es.aterrizar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: corregir, id: es.corregir.verb, level: b1, group: ir, class: [stem-e-i, spell-g-j]}
+- {lemma: amanecer, id: es.amanecer.verb, level: b1, group: er, class: [irregular-yo]}
+- {lemma: bendecir, id: es.bendecir.verb, level: b1, group: ir, class: [irregular-yo, irregular-preterite, stem-e-i]}
+- {lemma: fracasar, id: es.fracasar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: agradar, id: es.agradar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: fotografiar, id: es.fotografiar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: examinar, id: es.examinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: desafiar, id: es.desafiar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: excusar, id: es.excusar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: insultar, id: es.insultar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: campar, id: es.campar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: coincidir, id: es.coincidir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: asentar, id: es.asentar.verb, level: b1, group: ar, class: [stem-e-ie]}
+- {lemma: conservar, id: es.conservar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: abogar, id: es.abogar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: admirar, id: es.admirar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: requerir, id: es.requerir.verb, level: b1, group: ir, class: [stem-e-ie]}
+- {lemma: reemplazar, id: es.reemplazar.verb, level: b1, group: ar, class: [spell-z-c]}
+- {lemma: progresar, id: es.progresar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: pronunciar, id: es.pronunciar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: consultar, id: es.consultar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: emocionar, id: es.emocionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: manchar, id: es.manchar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: señalar, id: es.senhalar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: establecer, id: es.establecer.verb, level: b1, group: er, class: [irregular-yo]}
+- {lemma: burlar, id: es.burlar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: recompensar, id: es.recompensar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: exagerar, id: es.exagerar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: combinar, id: es.combinar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: alertar, id: es.alertar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: bloquear, id: es.bloquear.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: reaccionar, id: es.reaccionar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: asistir, id: es.asistir.verb, level: b1, group: ir, class: [regular-ir]}
+- {lemma: alarmar, id: es.alarmar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: abrigar, id: es.abrigar.verb, level: b1, group: ar, class: [spell-g-gu]}
+- {lemma: despejar, id: es.despejar.verb, level: b1, group: ar, class: [regular-ar]}
+- {lemma: destrozar, id: es.destrozar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: impresionar, id: es.impresionar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: anotar, id: es.anotar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: protestar, id: es.protestar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: operar, id: es.operar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: dividir, id: es.dividir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: derrotar, id: es.derrotar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: solicitar, id: es.solicitar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: analizar, id: es.analizar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: sanar, id: es.sanar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: encajar, id: es.encajar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: localizar, id: es.localizar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: aclarar, id: es.aclarar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: ensuciar, id: es.ensuciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: interpretar, id: es.interpretar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: batir, id: es.batir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: patear, id: es.patear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: archivar, id: es.archivar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: portar, id: es.portar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: revelar, id: es.revelar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: dominar, id: es.dominar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: temblar, id: es.temblar.verb, level: b2, group: ar, class: [stem-e-ie]}
+- {lemma: decepcionar, id: es.decepcionar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: embargar, id: es.embargar.verb, level: b2, group: ar, class: [spell-g-gu]}
+- {lemma: poseer, id: es.poseer.verb, level: b2, group: er, class: [spell-i-y]}
+- {lemma: silenciar, id: es.silenciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: comprometer, id: es.comprometer.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: sitiar, id: es.sitiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: transformar, id: es.transformar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: ligar, id: es.ligar.verb, level: b2, group: ar, class: [spell-g-gu]}
+- {lemma: chupar, id: es.chupar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: piar, id: es.piar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: denunciar, id: es.denunciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: personarse, id: es.personarse.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: arder, id: es.arder.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: repartir, id: es.repartir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: cavar, id: es.cavar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: invertir, id: es.invertir.verb, level: b2, group: ir, class: [stem-e-ie]}
+- {lemma: hundir, id: es.hundir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: descargar, id: es.descargar.verb, level: b2, group: ar, class: [spell-g-gu]}
+- {lemma: pulsar, id: es.pulsar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: principiar, id: es.principiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: soplar, id: es.soplar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: sacrificar, id: es.sacrificar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: penar, id: es.penar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: despegar, id: es.despegar.verb, level: b2, group: ar, class: [spell-g-gu]}
+- {lemma: aliviar, id: es.aliviar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: desconocer, id: es.desconocer.verb, level: b2, group: er, class: [irregular-yo]}
+- {lemma: espaciar, id: es.espaciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: razonar, id: es.razonar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: tranquilizar, id: es.tranquilizar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: sudar, id: es.sudar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: peligrar, id: es.peligrar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: surgir, id: es.surgir.verb, level: b2, group: ir, class: [spell-g-j]}
+- {lemma: garantizar, id: es.garantizar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: apetecer, id: es.apetecer.verb, level: b2, group: er, class: [irregular-yo]}
+- {lemma: acelerar, id: es.acelerar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: desperdiciar, id: es.desperdiciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: escalar, id: es.escalar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: lidiar, id: es.lidiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: libertar, id: es.libertar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estropear, id: es.estropear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: competir, id: es.competir.verb, level: b2, group: ir, class: [stem-e-i]}
+- {lemma: figurar, id: es.figurar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: expulsar, id: es.expulsar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: inspirar, id: es.inspirar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: adoptar, id: es.adoptar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: hervir, id: es.hervir.verb, level: b2, group: ir, class: [stem-e-ie]}
+- {lemma: instalar, id: es.instalar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: recorrer, id: es.recorrer.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: abusar, id: es.abusar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: precisar, id: es.precisar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: intercambiar, id: es.intercambiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: caber, id: es.caber.verb, level: b2, group: er, class: [irregular-yo, irregular-preterite]}
+- {lemma: aconsejar, id: es.aconsejar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: fabricar, id: es.fabricar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: retener, id: es.retener.verb, level: b2, group: er, class: [fully-irregular]}
+- {lemma: beneficiar, id: es.beneficiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: bancar, id: es.bancar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: coleccionar, id: es.coleccionar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: comportar, id: es.comportar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: impactar, id: es.impactar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: influenciar, id: es.influenciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: conceder, id: es.conceder.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: desmayar, id: es.desmayar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: sellar, id: es.sellar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: conversar, id: es.conversar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: determinar, id: es.determinar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: satisfacer, id: es.satisfacer.verb, level: b2, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: felicitar, id: es.felicitar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: limitar, id: es.limitar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: trasladar, id: es.trasladar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: fastidiar, id: es.fastidiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: extender, id: es.extender.verb, level: b2, group: er, class: [stem-e-ie]}
+- {lemma: acceder, id: es.acceder.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: distraer, id: es.distraer.verb, level: b2, group: er, class: [irregular-yo, irregular-preterite, spell-i-y]}
+- {lemma: ejecutar, id: es.ejecutar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: vetar, id: es.vetar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: oponer, id: es.oponer.verb, level: b2, group: er, class: [irregular-yo, irregular-preterite, irregular-participle]}
+- {lemma: honrar, id: es.honrar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: ajustar, id: es.ajustar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: respectar, id: es.respectar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: empeorar, id: es.empeorar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: secuestrar, id: es.secuestrar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: jalar, id: es.jalar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: rellenar, id: es.rellenar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: verificar, id: es.verificar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: exigir, id: es.exigir.verb, level: b2, group: ir, class: [spell-g-j]}
+- {lemma: pillar, id: es.pillar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: retar, id: es.retar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: voltear, id: es.voltear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: engordar, id: es.engordar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: danzar, id: es.danzar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: obrar, id: es.obrar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: entretener, id: es.entretener.verb, level: b2, group: er, class: [fully-irregular]}
+- {lemma: navegar, id: es.navegar.verb, level: b2, group: ar, class: [spell-g-gu]}
+- {lemma: calcular, id: es.calcular.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: detectar, id: es.detectar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: enloquecer, id: es.enloquecer.verb, level: b2, group: er, class: [irregular-yo]}
+- {lemma: educar, id: es.educar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: aplastar, id: es.aplastar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: quebrar, id: es.quebrar.verb, level: b2, group: ar, class: [stem-e-ie]}
+- {lemma: derribar, id: es.derribar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: condenar, id: es.condenar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: brindar, id: es.brindar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: radiar, id: es.radiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: alterar, id: es.alterar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: tumbar, id: es.tumbar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: noticiar, id: es.noticiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: recetar, id: es.recetar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: soldar, id: es.soldar.verb, level: b2, group: ar, class: [stem-o-ue]}
+- {lemma: pudrir, id: es.pudrir.verb, level: b2, group: ir, class: [irregular-participle]}
+- {lemma: exponer, id: es.exponer.verb, level: b2, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: aguardar, id: es.aguardar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: cooperar, id: es.cooperar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: rayar, id: es.rayar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: suplicar, id: es.suplicar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: proceder, id: es.proceder.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: ingresar, id: es.ingresar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: detestar, id: es.detestar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estallar, id: es.estallar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: acudir, id: es.acudir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: marear, id: es.marear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: consumir, id: es.consumir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: circular, id: es.circular.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: suicidar, id: es.suicidar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: resumir, id: es.resumir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: explorar, id: es.explorar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: accesar, id: es.accesar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: implicar, id: es.implicar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: descuidar, id: es.descuidar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: preciar, id: es.preciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: arrojar, id: es.arrojar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: comerciar, id: es.comerciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: apresurar, id: es.apresurar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: vagar, id: es.vagar.verb, level: b2, group: ar, class: [spell-g-gu]}
+- {lemma: demandar, id: es.demandar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: adaptar, id: es.adaptar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: festejar, id: es.festejar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: retroceder, id: es.retroceder.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: conquistar, id: es.conquistar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: distinguir, id: es.distinguir.verb, level: b2, group: ir, class: [spell-g-gu]}
+- {lemma: violar, id: es.violar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: consolar, id: es.consolar.verb, level: b2, group: ar, class: [stem-o-ue]}
+- {lemma: vendar, id: es.vendar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: igualar, id: es.igualar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: presenciar, id: es.presenciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: tejer, id: es.tejer.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: batallar, id: es.batallar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: criticar, id: es.criticar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: espiar, id: es.espiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estilar, id: es.estilar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: copar, id: es.copar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: alzar, id: es.alzar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: cepillar, id: es.cepillar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: bordar, id: es.bordar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: agendar, id: es.agendar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: graduar, id: es.graduar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: agotar, id: es.agotar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: definir, id: es.definir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: enfocar, id: es.enfocar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: frenar, id: es.frenar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: madurar, id: es.madurar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: enfriar, id: es.enfriar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: primar, id: es.primar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: entusiasmar, id: es.entusiasmar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: elevar, id: es.elevar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: apestar, id: es.apestar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: colar, id: es.colar.verb, level: b2, group: ar, class: [stem-o-ue]}
+- {lemma: cuadrar, id: es.cuadrar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: valorar, id: es.valorar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: transmitir, id: es.transmitir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: impulsar, id: es.impulsar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: demorar, id: es.demorar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: afirmar, id: es.afirmar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estimar, id: es.estimar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: derramar, id: es.derramar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: suspender, id: es.suspender.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: generar, id: es.generar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: reclamar, id: es.reclamar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: cuestionar, id: es.cuestionar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: rotar, id: es.rotar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: fallecer, id: es.fallecer.verb, level: b2, group: er, class: [irregular-yo]}
+- {lemma: triunfar, id: es.triunfar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: contentar, id: es.contentar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: desesperar, id: es.desesperar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: ubicar, id: es.ubicar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: corresponder, id: es.corresponder.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: escupir, id: es.escupir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: convenir, id: es.convenir.verb, level: b2, group: ir, class: [fully-irregular]}
+- {lemma: envolver, id: es.envolver.verb, level: b2, group: er, class: [stem-o-ue, irregular-participle]}
+- {lemma: envidiar, id: es.envidiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: mentar, id: es.mentar.verb, level: b2, group: ar, class: [stem-e-ie]}
+- {lemma: reflejar, id: es.reflejar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: interferir, id: es.interferir.verb, level: b2, group: ir, class: [stem-e-ie]}
+- {lemma: autorizar, id: es.autorizar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: alentar, id: es.alentar.verb, level: b2, group: ar, class: [stem-e-ie]}
+- {lemma: debatir, id: es.debatir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: adecuar, id: es.adecuar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: transferir, id: es.transferir.verb, level: b2, group: ir, class: [stem-e-ie]}
+- {lemma: chequear, id: es.chequear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: desgraciar, id: es.desgraciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: desviar, id: es.desviar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: atropellar, id: es.atropellar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: fluir, id: es.fluir.verb, level: b2, group: ir, class: [spell-i-y]}
+- {lemma: donar, id: es.donar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: orinar, id: es.orinar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: emitir, id: es.emitir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: hartar, id: es.hartar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: desnudar, id: es.desnudar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: pilotar, id: es.pilotar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: ceder, id: es.ceder.verb, level: b2, group: er, class: [regular-er]}
+- {lemma: turnar, id: es.turnar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: hornear, id: es.hornear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: rastrear, id: es.rastrear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: etiquetar, id: es.etiquetar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: captar, id: es.captar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: deletrear, id: es.deletrear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: inclinar, id: es.inclinar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: compensar, id: es.compensar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: evidenciar, id: es.evidenciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: tolerar, id: es.tolerar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: proporcionar, id: es.proporcionar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: memorizar, id: es.memorizar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: prensar, id: es.prensar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: manipular, id: es.manipular.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: multar, id: es.multar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: conformar, id: es.conformar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: intimidar, id: es.intimidar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: agachar, id: es.agachar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: invadir, id: es.invadir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: cosechar, id: es.cosechar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: asignar, id: es.asignar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estornudar, id: es.estornudar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: distanciar, id: es.distanciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: asaltar, id: es.asaltar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: despreciar, id: es.despreciar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: halar, id: es.halar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: suspirar, id: es.suspirar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: remar, id: es.remar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: cesar, id: es.cesar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: argumentar, id: es.argumentar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: refrescar, id: es.refrescar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: orientar, id: es.orientar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: ofertar, id: es.ofertar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: ventar, id: es.ventar.verb, level: b2, group: ar, class: [stem-e-ie]}
+- {lemma: aparcar, id: es.aparcar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: obsesionar, id: es.obsesionar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: imprimir, id: es.imprimir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: componer, id: es.componer.verb, level: b2, group: er, class: [irregular-yo, irregular-preterite, irregular-participle]}
+- {lemma: agitar, id: es.agitar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: imponer, id: es.imponer.verb, level: b2, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: certificar, id: es.certificar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: torturar, id: es.torturar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: sacudir, id: es.sacudir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: variar, id: es.variar.verb, level: b2, group: ar, class: [spell-i-y]}
+- {lemma: acertar, id: es.acertar.verb, level: b2, group: ar, class: [stem-e-ie]}
+- {lemma: consistir, id: es.consistir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: ascender, id: es.ascender.verb, level: b2, group: er, class: [stem-e-ie]}
+- {lemma: acampar, id: es.acampar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: marinar, id: es.marinar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: justificar, id: es.justificar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: introducir, id: es.introducir.verb, level: b2, group: ir, class: [irregular-yo, irregular-preterite]}
+- {lemma: iluminar, id: es.iluminar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: pecar, id: es.pecar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: asar, id: es.asar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: mercar, id: es.mercar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: privar, id: es.privar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: tropezar, id: es.tropezar.verb, level: b2, group: ar, class: [stem-e-ie, spell-z-c]}
+- {lemma: cultivar, id: es.cultivar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: susurrar, id: es.susurrar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: heredar, id: es.heredar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: filtrar, id: es.filtrar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: decorar, id: es.decorar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: repasar, id: es.repasar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: disfrazar, id: es.disfrazar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: descartar, id: es.descartar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: aplaudir, id: es.aplaudir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: patinar, id: es.patinar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: velar, id: es.velar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: deprimir, id: es.deprimir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: interrogar, id: es.interrogar.verb, level: b2, group: ar, class: [spell-g-gu]}
+- {lemma: descender, id: es.descender.verb, level: b2, group: er, class: [stem-e-ie]}
+- {lemma: brincar, id: es.brincar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: humillar, id: es.humillar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: abordar, id: es.abordar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: envejecer, id: es.envejecer.verb, level: b2, group: er, class: [irregular-yo]}
+- {lemma: predecir, id: es.predecir.verb, level: b2, group: ir, class: [stem-e-i, irregular-yo, irregular-preterite, irregular-participle]}
+- {lemma: seducir, id: es.seducir.verb, level: b2, group: ir, class: [irregular-yo, irregular-preterite]}
+- {lemma: derrumbar, id: es.derrumbar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: boxear, id: es.boxear.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: concordar, id: es.concordar.verb, level: b2, group: ar, class: [stem-o-ue]}
+- {lemma: intervenir, id: es.intervenir.verb, level: b2, group: ir, class: [irregular-yo, stem-e-ie, irregular-preterite]}
+- {lemma: enlazar, id: es.enlazar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: pinchar, id: es.pinchar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: disminuir, id: es.disminuir.verb, level: b2, group: ir, class: [spell-i-y]}
+- {lemma: imitar, id: es.imitar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: presumir, id: es.presumir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: refugiar, id: es.refugiar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: respaldar, id: es.respaldar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estrenar, id: es.estrenar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: agujerar, id: es.agujerar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: percibir, id: es.percibir.verb, level: b2, group: ir, class: [regular-ir]}
+- {lemma: documentar, id: es.documentar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: cegar, id: es.cegar.verb, level: b2, group: ar, class: [stem-e-ie, spell-g-gu]}
+- {lemma: derretir, id: es.derretir.verb, level: b2, group: ir, class: [stem-e-i]}
+- {lemma: modelar, id: es.modelar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: extraer, id: es.extraer.verb, level: b2, group: er, class: [irregular-yo, irregular-preterite, spell-i-y]}
+- {lemma: disgustar, id: es.disgustar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: fundar, id: es.fundar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: deportar, id: es.deportar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: objetar, id: es.objetar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: descontar, id: es.descontar.verb, level: b2, group: ar, class: [stem-o-ue]}
+- {lemma: evacuar, id: es.evacuar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: liar, id: es.liar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: anular, id: es.anular.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estirar, id: es.estirar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: aislar, id: es.aislar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: esperanzar, id: es.esperanzar.verb, level: b2, group: ar, class: [spell-z-c]}
+- {lemma: adquirir, id: es.adquirir.verb, level: b2, group: ir, class: [stem-e-ie]}
+- {lemma: afrontar, id: es.afrontar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: posar, id: es.posar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: estructurar, id: es.estructurar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: patrullar, id: es.patrullar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: reciclar, id: es.reciclar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: aventurar, id: es.aventurar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: evaluar, id: es.evaluar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: subestimar, id: es.subestimar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: infectar, id: es.infectar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: liderar, id: es.liderar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: quejar, id: es.quejar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: fechar, id: es.fechar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: coronar, id: es.coronar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: empatar, id: es.empatar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: dificultar, id: es.dificultar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: trucar, id: es.trucar.verb, level: b2, group: ar, class: [spell-c-qu]}
+- {lemma: complacer, id: es.complacer.verb, level: b2, group: er, class: [irregular-yo, irregular-preterite]}
+- {lemma: desatar, id: es.desatar.verb, level: b2, group: ar, class: [regular-ar]}
+- {lemma: lamer, id: es.lamer.verb, level: c1, group: er, class: [regular-er]}
+- {lemma: desconectar, id: es.desconectar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: dorar, id: es.dorar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: prevenir, id: es.prevenir.verb, level: c1, group: ir, class: [fully-irregular]}
+- {lemma: seleccionar, id: es.seleccionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reconstruir, id: es.reconstruir.verb, level: c1, group: ir, class: [spell-i-y]}
+- {lemma: conjuntar, id: es.conjuntar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: cursar, id: es.cursar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: discar, id: es.discar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: frustrar, id: es.frustrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: discursar, id: es.discursar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: administrar, id: es.administrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: incendiar, id: es.incendiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: expandir, id: es.expandir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: facturar, id: es.facturar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: improvisar, id: es.improvisar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: tostar, id: es.tostar.verb, level: c1, group: ar, class: [stem-o-ue]}
+- {lemma: sentenciar, id: es.sentenciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: datar, id: es.datar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: latir, id: es.latir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: incrementar, id: es.incrementar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: resbalar, id: es.resbalar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: evolucionar, id: es.evolucionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: recortar, id: es.recortar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: retornar, id: es.retornar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: obviar, id: es.obviar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: aterrorizar, id: es.aterrorizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: absorber, id: es.absorber.verb, level: c1, group: er, class: [regular-er]}
+- {lemma: concluir, id: es.concluir.verb, level: c1, group: ir, class: [spell-i-y]}
+- {lemma: uniformar, id: es.uniformar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: embarcar, id: es.embarcar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: manifestar, id: es.manifestar.verb, level: c1, group: ar, class: [stem-e-ie]}
+- {lemma: reformar, id: es.reformar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: acosar, id: es.acosar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: balar, id: es.balar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: provenir, id: es.provenir.verb, level: c1, group: ir, class: [fully-irregular]}
+- {lemma: revolver, id: es.revolver.verb, level: c1, group: er, class: [stem-o-ue, irregular-participle]}
+- {lemma: vacunar, id: es.vacunar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: esquiar, id: es.esquiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: anochecer, id: es.anochecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: minar, id: es.minar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: numerar, id: es.numerar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: licenciar, id: es.licenciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: sustituir, id: es.sustituir.verb, level: c1, group: ir, class: [spell-i-y]}
+- {lemma: revivir, id: es.revivir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: trazar, id: es.trazar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: osar, id: es.osar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: contemplar, id: es.contemplar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reforzar, id: es.reforzar.verb, level: c1, group: ar, class: [stem-o-ue, spell-z-c]}
+- {lemma: desactivar, id: es.desactivar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: contribuir, id: es.contribuir.verb, level: c1, group: ir, class: [spell-i-y]}
+- {lemma: adjuntar, id: es.adjuntar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: torcer, id: es.torcer.verb, level: c1, group: er, class: [stem-o-ue, spell-z-c]}
+- {lemma: colaborar, id: es.colaborar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: malentender, id: es.malentender.verb, level: c1, group: er, class: [stem-e-ie]}
+- {lemma: despachar, id: es.despachar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: retratar, id: es.retratar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ejercer, id: es.ejercer.verb, level: c1, group: er, class: [spell-z-c]}
+- {lemma: financiar, id: es.financiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: asombrar, id: es.asombrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: colapsar, id: es.colapsar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ladrar, id: es.ladrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: cabalgar, id: es.cabalgar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: procurar, id: es.procurar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: medicar, id: es.medicar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: anticipar, id: es.anticipar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: malinterpretar, id: es.malinterpretar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reflexionar, id: es.reflexionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: pastar, id: es.pastar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: destacar, id: es.destacar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: asociar, id: es.asociar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: finalizar, id: es.finalizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: acumular, id: es.acumular.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: vacacionar, id: es.vacacionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: fracturar, id: es.fracturar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: atrasar, id: es.atrasar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: apuñalar, id: es.apunhalar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: aspirar, id: es.aspirar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: deducir, id: es.deducir.verb, level: c1, group: ir, class: [irregular-yo, irregular-preterite]}
+- {lemma: desplegar, id: es.desplegar.verb, level: c1, group: ar, class: [stem-e-ie, spell-g-gu]}
+- {lemma: concertar, id: es.concertar.verb, level: c1, group: ar, class: [stem-e-ie]}
+- {lemma: concienciar, id: es.concienciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: almacenar, id: es.almacenar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: mascar, id: es.mascar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: sincerar, id: es.sincerar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: anillar, id: es.anillar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rondar, id: es.rondar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: arañar, id: es.aranhar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: falsar, id: es.falsar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: colegiar, id: es.colegiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: remediar, id: es.remediar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: concretar, id: es.concretar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: malgastar, id: es.malgastar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: detentar, id: es.detentar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: prever, id: es.prever.verb, level: c1, group: er, class: [irregular-participle, fully-irregular]}
+- {lemma: apasionar, id: es.apasionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: paralizar, id: es.paralizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: maravillar, id: es.maravillar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reventar, id: es.reventar.verb, level: c1, group: ar, class: [stem-e-ie]}
+- {lemma: devorar, id: es.devorar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: aportar, id: es.aportar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: dictar, id: es.dictar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: restaurar, id: es.restaurar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: calificar, id: es.calificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: chistar, id: es.chistar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: modificar, id: es.modificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: alojar, id: es.alojar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: oficiar, id: es.oficiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: bucear, id: es.bucear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: adelgazar, id: es.adelgazar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: emborrachar, id: es.emborrachar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ampliar, id: es.ampliar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: gozar, id: es.gozar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: escanear, id: es.escanear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: telefonear, id: es.telefonear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: bautizar, id: es.bautizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: remover, id: es.remover.verb, level: c1, group: er, class: [stem-o-ue]}
+- {lemma: ambientar, id: es.ambientar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: testificar, id: es.testificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: custodiar, id: es.custodiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: depositar, id: es.depositar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: originar, id: es.originar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: inyectar, id: es.inyectar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: socorrer, id: es.socorrer.verb, level: c1, group: er, class: [regular-er]}
+- {lemma: reconsiderar, id: es.reconsiderar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: envenenar, id: es.envenenar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: doctorar, id: es.doctorar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: recaudar, id: es.recaudar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: masticar, id: es.masticar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: debilitar, id: es.debilitar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: medicinar, id: es.medicinar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ejercitar, id: es.ejercitar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: diagnosticar, id: es.diagnosticar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: rimar, id: es.rimar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: subastar, id: es.subastar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: batear, id: es.batear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: profundar, id: es.profundar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: situar, id: es.situar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ministrar, id: es.ministrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: comandar, id: es.comandar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: aproximar, id: es.aproximar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: inundar, id: es.inundar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: preservar, id: es.preservar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: renovar, id: es.renovar.verb, level: c1, group: ar, class: [stem-o-ue]}
+- {lemma: pausar, id: es.pausar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: supervisar, id: es.supervisar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: simular, id: es.simular.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reproducir, id: es.reproducir.verb, level: c1, group: ir, class: [irregular-yo, irregular-preterite]}
+- {lemma: timar, id: es.timar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: clasificar, id: es.clasificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: multiplicar, id: es.multiplicar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: plantear, id: es.plantear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: excitar, id: es.excitar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: estrechar, id: es.estrechar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: fascinar, id: es.fascinar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: incomodar, id: es.incomodar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: abortar, id: es.abortar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: promover, id: es.promover.verb, level: c1, group: er, class: [stem-o-ue]}
+- {lemma: silbar, id: es.silbar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: contaminar, id: es.contaminar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: sembrar, id: es.sembrar.verb, level: c1, group: ar, class: [stem-e-ie]}
+- {lemma: cremar, id: es.cremar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: nominar, id: es.nominar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: moler, id: es.moler.verb, level: c1, group: er, class: [stem-o-ue]}
+- {lemma: duplicar, id: es.duplicar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: rozar, id: es.rozar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: internar, id: es.internar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: arreglárselas, id: es.arreglarselas.verb, level: c1, group: er, class: [regular-er]}
+- {lemma: distar, id: es.distar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: acariciar, id: es.acariciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: falsificar, id: es.falsificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: amantar, id: es.amantar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: alistar, id: es.alistar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: irritar, id: es.irritar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: madrugar, id: es.madrugar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: alborotar, id: es.alborotar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: capar, id: es.capar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: contagiar, id: es.contagiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: resfriar, id: es.resfriar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: excavar, id: es.excavar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: estresar, id: es.estresar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: facilitar, id: es.facilitar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: fundir, id: es.fundir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: influir, id: es.influir.verb, level: c1, group: ir, class: [spell-i-y]}
+- {lemma: aparentar, id: es.aparentar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rascar, id: es.rascar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: notificar, id: es.notificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: arrepentir, id: es.arrepentir.verb, level: c1, group: ir, class: [stem-e-ie]}
+- {lemma: inspeccionar, id: es.inspeccionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: enganchar, id: es.enganchar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: comisar, id: es.comisar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: vibrar, id: es.vibrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: concursar, id: es.concursar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: angustiar, id: es.angustiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: recolectar, id: es.recolectar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: descifrar, id: es.descifrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ocasionar, id: es.ocasionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: distribuir, id: es.distribuir.verb, level: c1, group: ir, class: [spell-i-y]}
+- {lemma: maltratar, id: es.maltratar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: persuadir, id: es.persuadir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: excluir, id: es.excluir.verb, level: c1, group: ir, class: [spell-i-y]}
+- {lemma: sobornar, id: es.sobornar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rever, id: es.rever.verb, level: c1, group: er, class: [irregular-yo, irregular-participle]}
+- {lemma: amarrar, id: es.amarrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reclutar, id: es.reclutar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: acondicionar, id: es.acondicionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: sedar, id: es.sedar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: elaborar, id: es.elaborar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: especializar, id: es.especializar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: disolver, id: es.disolver.verb, level: c1, group: er, class: [stem-o-ue, irregular-participle]}
+- {lemma: enjuagar, id: es.enjuagar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: broncear, id: es.broncear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: recargar, id: es.recargar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: acomodar, id: es.acomodar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: hollar, id: es.hollar.verb, level: c1, group: ar, class: [stem-o-ue]}
+- {lemma: roncar, id: es.roncar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: extremar, id: es.extremar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: bombardear, id: es.bombardear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rebajar, id: es.rebajar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: deslizar, id: es.deslizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: florecer, id: es.florecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: alabar, id: es.alabar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: convocar, id: es.convocar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: someter, id: es.someter.verb, level: c1, group: er, class: [regular-er]}
+- {lemma: favorecer, id: es.favorecer.verb, level: c1, group: er, class: [regular-er]}
+- {lemma: recrear, id: es.recrear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ultimar, id: es.ultimar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rebotar, id: es.rebotar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: oscurecer, id: es.oscurecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: habitar, id: es.habitar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: inhalar, id: es.inhalar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: ilustrar, id: es.ilustrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: adornar, id: es.adornar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: afilar, id: es.afilar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: sumir, id: es.sumir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: desobedecer, id: es.desobedecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: recitar, id: es.recitar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: actualizar, id: es.actualizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: brotar, id: es.brotar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: techar, id: es.techar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: violentar, id: es.violentar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: retomar, id: es.retomar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reponer, id: es.reponer.verb, level: c1, group: er, class: [irregular-yo, irregular-preterite, irregular-participle]}
+- {lemma: proveer, id: es.proveer.verb, level: c1, group: er, class: [spell-i-y, irregular-participle]}
+- {lemma: morar, id: es.morar.verb, level: c1, group: ar, class: [stem-o-ue]}
+- {lemma: prosperar, id: es.prosperar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: atracar, id: es.atracar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: halagar, id: es.halagar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: residir, id: es.residir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: apropiar, id: es.apropiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: enchufar, id: es.enchufar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: cocer, id: es.cocer.verb, level: c1, group: er, class: [stem-o-ue, spell-z-c]}
+- {lemma: coordinar, id: es.coordinar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: meditar, id: es.meditar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: accionar, id: es.accionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: planificar, id: es.planificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: pulir, id: es.pulir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: inquietar, id: es.inquietar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: monitorear, id: es.monitorear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: derivar, id: es.derivar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: topar, id: es.topar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: frecuentar, id: es.frecuentar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: mimar, id: es.mimar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reposar, id: es.reposar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: condicionar, id: es.condicionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: lesionar, id: es.lesionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: recurrir, id: es.recurrir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: tallar, id: es.tallar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: perturbar, id: es.perturbar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: murmurar, id: es.murmurar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: hechizar, id: es.hechizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: arar, id: es.arar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: potenciar, id: es.potenciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: tentar, id: es.tentar.verb, level: c1, group: ar, class: [stem-e-ie]}
+- {lemma: flirtear, id: es.flirtear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: aliar, id: es.aliar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: testimoniar, id: es.testimoniar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: integrar, id: es.integrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: albergar, id: es.albergar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: desconfiar, id: es.desconfiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: combar, id: es.combar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: fortalecer, id: es.fortalecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: suministrar, id: es.suministrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: mayar, id: es.mayar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: recobrar, id: es.recobrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: esparcir, id: es.esparcir.verb, level: c1, group: ir, class: [spell-z-c]}
+- {lemma: estimular, id: es.estimular.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: amistar, id: es.amistar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: perforar, id: es.perforar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: cascar, id: es.cascar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: reiniciar, id: es.reiniciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: revistar, id: es.revistar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: revestir, id: es.revestir.verb, level: c1, group: ir, class: [stem-e-i]}
+- {lemma: agenciar, id: es.agenciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: intrigar, id: es.intrigar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: surfear, id: es.surfear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: perfeccionar, id: es.perfeccionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: conmover, id: es.conmover.verb, level: c1, group: er, class: [stem-o-ue]}
+- {lemma: tronar, id: es.tronar.verb, level: c1, group: ar, class: [stem-o-ue]}
+- {lemma: tramar, id: es.tramar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: raer, id: es.raer.verb, level: c1, group: er, class: [irregular-yo, spell-i-y]}
+- {lemma: extinguir, id: es.extinguir.verb, level: c1, group: ir, class: [spell-g-gu]}
+- {lemma: desfilar, id: es.desfilar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: desordenar, id: es.desordenar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: merendar, id: es.merendar.verb, level: c1, group: ar, class: [stem-e-ie]}
+- {lemma: carecer, id: es.carecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: legar, id: es.legar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: editar, id: es.editar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: tirotear, id: es.tirotear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: traumar, id: es.traumar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: posicionar, id: es.posicionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: atentar, id: es.atentar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: presentir, id: es.presentir.verb, level: c1, group: ir, class: [stem-e-ie]}
+- {lemma: presupuestar, id: es.presupuestar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: presuponer, id: es.presuponer.verb, level: c1, group: er, class: [irregular-yo, irregular-preterite, irregular-participle]}
+- {lemma: embarazar, id: es.embarazar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: desistir, id: es.desistir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: estafar, id: es.estafar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: especificar, id: es.especificar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: especular, id: es.especular.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: disimular, id: es.disimular.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: invernar, id: es.invernar.verb, level: c1, group: ar, class: [stem-e-ie]}
+- {lemma: trotar, id: es.trotar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: liquidar, id: es.liquidar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: trepar, id: es.trepar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: trasplantar, id: es.trasplantar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: difundir, id: es.difundir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: jubilar, id: es.jubilar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: consentir, id: es.consentir.verb, level: c1, group: ir, class: [stem-e-ie]}
+- {lemma: otorgar, id: es.otorgar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: perfumar, id: es.perfumar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: restablecer, id: es.restablecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: validar, id: es.validar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: posponer, id: es.posponer.verb, level: c1, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: catar, id: es.catar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: templar, id: es.templar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: reabrir, id: es.reabrir.verb, level: c1, group: ir, class: [irregular-participle]}
+- {lemma: fotocopiar, id: es.fotocopiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: desembarcar, id: es.desembarcar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: concebir, id: es.concebir.verb, level: c1, group: ir, class: [stem-e-i]}
+- {lemma: familiarizar, id: es.familiarizar.verb, level: c1, group: ar, class: [spell-z-c]}
+- {lemma: fiar, id: es.fiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: alargar, id: es.alargar.verb, level: c1, group: ar, class: [spell-g-gu]}
+- {lemma: dignarse, id: es.dignarse.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rabiar, id: es.rabiar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: espantar, id: es.espantar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: parpadear, id: es.parpadear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: redactar, id: es.redactar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rociar, id: es.rociar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: vallar, id: es.vallar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: frotar, id: es.frotar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: anclar, id: es.anclar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: gotear, id: es.gotear.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: atascar, id: es.atascar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: referenciar, id: es.referenciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: desilusionar, id: es.desilusionar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: recostar, id: es.recostar.verb, level: c1, group: ar, class: [stem-o-ue]}
+- {lemma: rehusar, id: es.rehusar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: inscribir, id: es.inscribir.verb, level: c1, group: ir, class: [irregular-participle]}
+- {lemma: exhibir, id: es.exhibir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: regañar, id: es.reganhar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: rehacer, id: es.rehacer.verb, level: c1, group: er, class: [irregular-yo, irregular-participle, irregular-preterite]}
+- {lemma: enredar, id: es.enredar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: tornar, id: es.tornar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: encoger, id: es.encoger.verb, level: c1, group: er, class: [spell-g-j]}
+- {lemma: perjudicar, id: es.perjudicar.verb, level: c1, group: ar, class: [spell-c-qu]}
+- {lemma: suprimir, id: es.suprimir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: conferenciar, id: es.conferenciar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: esquivar, id: es.esquivar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: hinchar, id: es.hinchar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: encubrir, id: es.encubrir.verb, level: c1, group: ir, class: [regular-ir]}
+- {lemma: enfurecer, id: es.enfurecer.verb, level: c1, group: er, class: [irregular-yo]}
+- {lemma: abrochar, id: es.abrochar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: contraer, id: es.contraer.verb, level: c1, group: er, class: [irregular-yo, irregular-preterite]}
+- {lemma: precipitar, id: es.precipitar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: asomar, id: es.asomar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: guiñar, id: es.guinhar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: aterrar, id: es.aterrar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: vincular, id: es.vincular.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: digerir, id: es.digerir.verb, level: c1, group: ir, class: [stem-e-ie]}
+- {lemma: pervertir, id: es.pervertir.verb, level: c1, group: ir, class: [stem-e-ie]}
+- {lemma: defraudar, id: es.defraudar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: gestar, id: es.gestar.verb, level: c1, group: ar, class: [regular-ar]}
+- {lemma: desarmar, id: es.desarmar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: ilusionar, id: es.ilusionar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: facultar, id: es.facultar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: sumergir, id: es.sumergir.verb, level: c2, group: ir, class: [spell-g-j]}
+- {lemma: martillar, id: es.martillar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: sobrepasar, id: es.sobrepasar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: inflar, id: es.inflar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: emerger, id: es.emerger.verb, level: c2, group: er, class: [spell-g-j]}
+- {lemma: bombear, id: es.bombear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: incorporar, id: es.incorporar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: reembolsar, id: es.reembolsar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: becar, id: es.becar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: optar, id: es.optar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: fregar, id: es.fregar.verb, level: c2, group: ar, class: [stem-e-ie, spell-g-gu]}
+- {lemma: rasgar, id: es.rasgar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: rallar, id: es.rallar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: relatar, id: es.relatar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: empaquetar, id: es.empaquetar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: calzar, id: es.calzar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: traficar, id: es.traficar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: acortar, id: es.acortar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: ahorcar, id: es.ahorcar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: arrugar, id: es.arrugar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: serrar, id: es.serrar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: resaltar, id: es.resaltar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: censurar, id: es.censurar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: capacitar, id: es.capacitar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: sobresalir, id: es.sobresalir.verb, level: c2, group: ir, class: [irregular-yo]}
+- {lemma: rugir, id: es.rugir.verb, level: c2, group: ir, class: [spell-g-j]}
+- {lemma: enorgullecer, id: es.enorgullecer.verb, level: c2, group: er, class: [irregular-yo]}
+- {lemma: apelar, id: es.apelar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: volcar, id: es.volcar.verb, level: c2, group: ar, class: [stem-o-ue, spell-c-qu]}
+- {lemma: desmontar, id: es.desmontar.verb, level: c2, group: ar, class: [stem-o-ue]}
+- {lemma: confiscar, id: es.confiscar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: proseguir, id: es.proseguir.verb, level: c2, group: ir, class: [stem-e-i]}
+- {lemma: clonar, id: es.clonar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: dimitir, id: es.dimitir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: orillar, id: es.orillar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: asfixiar, id: es.asfixiar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: predicar, id: es.predicar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: insinuar, id: es.insinuar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: atormentar, id: es.atormentar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: contradecir, id: es.contradecir.verb, level: c2, group: ir, class: [irregular-yo, irregular-preterite, irregular-participle, stem-e-i]}
+- {lemma: desempeñar, id: es.desempenhar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: reprobar, id: es.reprobar.verb, level: c2, group: ar, class: [stem-o-ue]}
+- {lemma: privilegiar, id: es.privilegiar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: verter, id: es.verter.verb, level: c2, group: er, class: [stem-e-ie]}
+- {lemma: reanudar, id: es.reanudar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: disputar, id: es.disputar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: hilar, id: es.hilar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: delegar, id: es.delegar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: curvar, id: es.curvar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: resucitar, id: es.resucitar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: descomponer, id: es.descomponer.verb, level: c2, group: er, class: [irregular-yo, irregular-preterite, irregular-participle]}
+- {lemma: disciplinar, id: es.disciplinar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: sorber, id: es.sorber.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: reconciliar, id: es.reconciliar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: guisar, id: es.guisar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: indignar, id: es.indignar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: exprimir, id: es.exprimir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: sincronizar, id: es.sincronizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: chillar, id: es.chillar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: pactar, id: es.pactar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: propinar, id: es.propinar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: fichar, id: es.fichar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: hipnotizar, id: es.hipnotizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: convivir, id: es.convivir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: fomentar, id: es.fomentar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: interactuar, id: es.interactuar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: consumar, id: es.consumar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: apellidar, id: es.apellidar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: masacrar, id: es.masacrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: emprender, id: es.emprender.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: tatuar, id: es.tatuar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: saborear, id: es.saborear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: dispersar, id: es.dispersar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: padecer, id: es.padecer.verb, level: c2, group: er, class: [irregular-yo]}
+- {lemma: empapar, id: es.empapar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: pitar, id: es.pitar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: designar, id: es.designar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desenterrar, id: es.desenterrar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: deteriorar, id: es.deteriorar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: simbolizar, id: es.simbolizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: plagar, id: es.plagar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: cifrar, id: es.cifrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: acoger, id: es.acoger.verb, level: c2, group: er, class: [spell-g-j]}
+- {lemma: ayunar, id: es.ayunar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: suavizar, id: es.suavizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: revertir, id: es.revertir.verb, level: c2, group: ir, class: [stem-e-ie]}
+- {lemma: desorientar, id: es.desorientar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desempacar, id: es.desempacar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: digitar, id: es.digitar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: interceptar, id: es.interceptar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: obsequiar, id: es.obsequiar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: expedientar, id: es.expedientar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: agredir, id: es.agredir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: civilizar, id: es.civilizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: encarcelar, id: es.encarcelar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desechar, id: es.desechar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: ansiar, id: es.ansiar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: errar, id: es.errar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: domar, id: es.domar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: renacer, id: es.renacer.verb, level: c2, group: er, class: [irregular-yo]}
+- {lemma: retardar, id: es.retardar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: profundizar, id: es.profundizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: reversar, id: es.reversar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: insertar, id: es.insertar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: alinear, id: es.alinear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: cautivar, id: es.cautivar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: configurar, id: es.configurar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: murar, id: es.murar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: delatar, id: es.delatar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: minimizar, id: es.minimizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: estorbar, id: es.estorbar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: corromper, id: es.corromper.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: reescribir, id: es.reescribir.verb, level: c2, group: ir, class: [irregular-participle]}
+- {lemma: promediar, id: es.promediar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: propagar, id: es.propagar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: escoltar, id: es.escoltar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: deambular, id: es.deambular.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: amargar, id: es.amargar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: tensar, id: es.tensar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: aflojar, id: es.aflojar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desahogar, id: es.desahogar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: tiritar, id: es.tiritar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: traspasar, id: es.traspasar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: socializar, id: es.socializar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: omitir, id: es.omitir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: articular, id: es.articular.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: trozar, id: es.trozar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: aferrar, id: es.aferrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desalojar, id: es.desalojar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: concernir, id: es.concernir.verb, level: c2, group: ir, class: [stem-e-ie]}
+- {lemma: gruñir, id: es.grunhir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: constar, id: es.constar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: versar, id: es.versar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: empeñar, id: es.empenhar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desencadenar, id: es.desencadenar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: oxidar, id: es.oxidar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: infartarse, id: es.infartarse.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: ajar, id: es.ajar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: enriquecer, id: es.enriquecer.verb, level: c2, group: er, class: [spell-z-c]}
+- {lemma: percatar, id: es.percatar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: nivelar, id: es.nivelar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: inducir, id: es.inducir.verb, level: c2, group: ir, class: [irregular-yo, irregular-preterite]}
+- {lemma: ablandar, id: es.ablandar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desplazar, id: es.desplazar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: exhalar, id: es.exhalar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: machacar, id: es.machacar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: tachar, id: es.tachar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: cabrear, id: es.cabrear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desvestir, id: es.desvestir.verb, level: c2, group: ir, class: [stem-e-i]}
+- {lemma: calibrar, id: es.calibrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: herrar, id: es.herrar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: hospitalizar, id: es.hospitalizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: reñir, id: es.renhir.verb, level: c2, group: ir, class: [stem-e-i]}
+- {lemma: orquestar, id: es.orquestar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: estrangular, id: es.estrangular.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: abrumar, id: es.abrumar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: balancear, id: es.balancear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: enrollar, id: es.enrollar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: maniobrar, id: es.maniobrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: conllevar, id: es.conllevar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: coquetear, id: es.coquetear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: evaporar, id: es.evaporar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: efectuar, id: es.efectuar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: persistir, id: es.persistir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: apodar, id: es.apodar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: sortear, id: es.sortear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: emigrar, id: es.emigrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: rajar, id: es.rajar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: curiosear, id: es.curiosear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: asear, id: es.asear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: circunstanciar, id: es.circunstanciar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: prescindir, id: es.prescindir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: prolongar, id: es.prolongar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: equilibrar, id: es.equilibrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: evadir, id: es.evadir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: constituir, id: es.constituir.verb, level: c2, group: ir, class: [spell-i-y]}
+- {lemma: irrumpir, id: es.irrumpir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: chiflar, id: es.chiflar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: deshidratar, id: es.deshidratar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: estabilizar, id: es.estabilizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: estancar, id: es.estancar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: desconcertar, id: es.desconcertar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: alfombrar, id: es.alfombrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: nublar, id: es.nublar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: encadenar, id: es.encadenar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: traumatizar, id: es.traumatizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: formular, id: es.formular.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: postrar, id: es.postrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: recentar, id: es.recentar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: sustentar, id: es.sustentar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: confrontar, id: es.confrontar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: descalificar, id: es.descalificar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: crujir, id: es.crujir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: transplantar, id: es.transplantar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: afligir, id: es.afligir.verb, level: c2, group: ir, class: [spell-g-j]}
+- {lemma: acechar, id: es.acechar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desvanecer, id: es.desvanecer.verb, level: c2, group: er, class: [irregular-yo]}
+- {lemma: reprimir, id: es.reprimir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: restringir, id: es.restringir.verb, level: c2, group: ir, class: [spell-g-j]}
+- {lemma: romanzar, id: es.romanzar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: aplazar, id: es.aplazar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: asimilar, id: es.asimilar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: vacilar, id: es.vacilar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: promocionar, id: es.promocionar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: proclamar, id: es.proclamar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: impacientar, id: es.impacientar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: desanimar, id: es.desanimar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: incentivar, id: es.incentivar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: exceder, id: es.exceder.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: desbloquear, id: es.desbloquear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: zumbar, id: es.zumbar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: contrastar, id: es.contrastar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: virar, id: es.virar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: reorganizar, id: es.reorganizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: menear, id: es.menear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desgastar, id: es.desgastar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: neutralizar, id: es.neutralizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: eludir, id: es.eludir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: enmendar, id: es.enmendar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: tasar, id: es.tasar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: trastornar, id: es.trastornar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: gestionar, id: es.gestionar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: oprimir, id: es.oprimir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: entristecer, id: es.entristecer.verb, level: c2, group: er, class: [irregular-yo]}
+- {lemma: refinar, id: es.refinar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: penetrar, id: es.penetrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: remolcar, id: es.remolcar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: hipotecar, id: es.hipotecar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: elogiar, id: es.elogiar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: pegarse, id: es.pegarse.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: encomendar, id: es.encomendar.verb, level: c2, group: ar, class: [stem-e-ie]}
+- {lemma: simplificar, id: es.simplificar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: implementar, id: es.implementar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: cobijar, id: es.cobijar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: visualizar, id: es.visualizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: maquinar, id: es.maquinar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: instruir, id: es.instruir.verb, level: c2, group: ir, class: [spell-i-y]}
+- {lemma: triplicar, id: es.triplicar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: inaugurar, id: es.inaugurar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: indagar, id: es.indagar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: serenar, id: es.serenar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: adicionar, id: es.adicionar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: exiliar, id: es.exiliar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: deliberar, id: es.deliberar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: enmascarar, id: es.enmascarar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: deformar, id: es.deformar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: barajar, id: es.barajar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: recaer, id: es.recaer.verb, level: c2, group: er, class: [irregular-yo, spell-i-y, irregular-participle]}
+- {lemma: relucir, id: es.relucir.verb, level: c2, group: ir, class: [irregular-yo, spell-z-c]}
+- {lemma: pisotear, id: es.pisotear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: incitar, id: es.incitar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: anhelar, id: es.anhelar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: equivaler, id: es.equivaler.verb, level: c2, group: er, class: [irregular-yo]}
+- {lemma: encabezar, id: es.encabezar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: reprochar, id: es.reprochar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: absolver, id: es.absolver.verb, level: c2, group: er, class: [stem-o-ue, irregular-participle]}
+- {lemma: ausentar, id: es.ausentar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: aturdir, id: es.aturdir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: expirar, id: es.expirar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: aficionar, id: es.aficionar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: devastar, id: es.devastar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: enderezar, id: es.enderezar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: dotar, id: es.dotar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: tintar, id: es.tintar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: escocer, id: es.escocer.verb, level: c2, group: er, class: [stem-o-ue, spell-z-c]}
+- {lemma: conciliar, id: es.conciliar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: tararear, id: es.tararear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: ingerir, id: es.ingerir.verb, level: c2, group: ir, class: [stem-e-ie]}
+- {lemma: infiltrar, id: es.infiltrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: corear, id: es.corear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: sollozar, id: es.sollozar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: corroborar, id: es.corroborar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: demoler, id: es.demoler.verb, level: c2, group: er, class: [stem-o-ue]}
+- {lemma: entrometerse, id: es.entrometerse.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: asesorar, id: es.asesorar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desagradar, id: es.desagradar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: arrodillar, id: es.arrodillar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: abonar, id: es.abonar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: mendigar, id: es.mendigar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: desprender, id: es.desprender.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: oxigenar, id: es.oxigenar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: camellar, id: es.camellar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: trenzar, id: es.trenzar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: bufar, id: es.bufar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: pujar, id: es.pujar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: salpicar, id: es.salpicar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: decaer, id: es.decaer.verb, level: c2, group: er, class: [irregular-yo, spell-i-y, irregular-participle]}
+- {lemma: presidir, id: es.presidir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: escarbar, id: es.escarbar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: limar, id: es.limar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: estampar, id: es.estampar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: holgar, id: es.holgar.verb, level: c2, group: ar, class: [stem-o-ue, spell-g-gu]}
+- {lemma: codificar, id: es.codificar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: compadecer, id: es.compadecer.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: gatillar, id: es.gatillar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: arrebatar, id: es.arrebatar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: horrorizar, id: es.horrorizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: sofocar, id: es.sofocar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: cebar, id: es.cebar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: abarcar, id: es.abarcar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: cojear, id: es.cojear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: aullar, id: es.aullar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: retorcer, id: es.retorcer.verb, level: c2, group: er, class: [stem-o-ue, spell-z-c]}
+- {lemma: zarpar, id: es.zarpar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: chantajear, id: es.chantajear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: ponchar, id: es.ponchar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: direccionar, id: es.direccionar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: juramentar, id: es.juramentar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: implantar, id: es.implantar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: azotar, id: es.azotar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: raptar, id: es.raptar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: atajar, id: es.atajar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: laborar, id: es.laborar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: transcurrir, id: es.transcurrir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: galopar, id: es.galopar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desangrar, id: es.desangrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: exterminar, id: es.exterminar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: piratear, id: es.piratear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: patrocinar, id: es.patrocinar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: afinar, id: es.afinar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: tartamudear, id: es.tartamudear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desestimar, id: es.desestimar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: conmocionar, id: es.conmocionar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: timbrar, id: es.timbrar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: rizar, id: es.rizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: revocar, id: es.revocar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: externar, id: es.externar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: obstruir, id: es.obstruir.verb, level: c2, group: ir, class: [spell-i-y]}
+- {lemma: erradicar, id: es.erradicar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: vidriar, id: es.vidriar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: desacreditar, id: es.desacreditar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: sobrellevar, id: es.sobrellevar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: granizar, id: es.granizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: malcriar, id: es.malcriar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: arrasar, id: es.arrasar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: pavimentar, id: es.pavimentar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: resonar, id: es.resonar.verb, level: c2, group: ar, class: [stem-o-ue]}
+- {lemma: inculpar, id: es.inculpar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: deleitar, id: es.deleitar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: flechar, id: es.flechar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: regir, id: es.regir.verb, level: c2, group: ir, class: [stem-e-i, spell-g-j]}
+- {lemma: cachar, id: es.cachar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: gemir, id: es.gemir.verb, level: c2, group: ir, class: [stem-e-i]}
+- {lemma: rasguñar, id: es.rasgunhar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: preceder, id: es.preceder.verb, level: c2, group: er, class: [regular-er]}
+- {lemma: encuestar, id: es.encuestar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: averiar, id: es.averiar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: marginar, id: es.marginar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: ingeniar, id: es.ingeniar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: recopilar, id: es.recopilar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: derrochar, id: es.derrochar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: comprimir, id: es.comprimir.verb, level: c2, group: ir, class: [regular-ir]}
+- {lemma: escudar, id: es.escudar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: replicar, id: es.replicar.verb, level: c2, group: ar, class: [spell-c-qu]}
+- {lemma: perdurar, id: es.perdurar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: fantasear, id: es.fantasear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: moldear, id: es.moldear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: divulgar, id: es.divulgar.verb, level: c2, group: ar, class: [spell-g-gu]}
+- {lemma: subtitular, id: es.subtitular.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: husmear, id: es.husmear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: juguetear, id: es.juguetear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: abundar, id: es.abundar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: alucinar, id: es.alucinar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: movilizar, id: es.movilizar.verb, level: c2, group: ar, class: [spell-z-c]}
+- {lemma: reprogramar, id: es.reprogramar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: rebelar, id: es.rebelar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: extraviar, id: es.extraviar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: saquear, id: es.saquear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: balbucear, id: es.balbucear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: encriptar, id: es.encriptar.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: costear, id: es.costear.verb, level: c2, group: ar, class: [regular-ar]}
+- {lemma: denominar, id: es.denominar.verb, level: c2, group: ar, class: [regular-ar]}

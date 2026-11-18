@@ -1,0 +1,143 @@
+# Grammar for the level. concept: true marks items that need a longer explanation than one line.
+- id: es.b1.present-subjunctive-forms
+  name: Present subjunctive forms
+  explain: 'Take the yo present, drop -o and add the opposite vowel ending: -e for -ar, -a for -er/-ir; six verbs are irregular.'
+  forms: [hable, coma, sea, vaya, tenga]
+  concept: true
+  concept_reason: The subjunctive is a mood that English rarely marks, and its forms and uses need their own explanation.
+- id: es.b1.subjunctive-wishes
+  name: Subjunctive with wishes and requests
+  explain: After querer que, esperar que, pedir que and similar verbs, the subject of que takes the subjunctive.
+  forms: [quiero que vengas, espero que estés bien]
+  concept: true
+  concept_reason: Deciding when a clause needs the subjunctive rests on volition, emotion and doubt, which needs a framework.
+- id: es.b1.subjunctive-impersonal
+  name: Subjunctive with impersonal expressions
+  explain: Es importante que, es posible que, es necesario que lead to the subjunctive.
+  forms: [es importante que estudies]
+- id: es.b1.subjunctive-doubt
+  name: Subjunctive with doubt and denial
+  explain: No creo que, dudo que and no es verdad que take the subjunctive; creo que takes the indicative.
+  forms: [no creo que venga]
+- id: es.b1.subjunctive-cuando
+  name: Subjunctive after cuando and conjunctions of time
+  explain: Cuando, en cuanto and hasta que use the subjunctive for future events.
+  forms: [cuando llegues, hasta que termine]
+- id: es.b1.subjunctive-purpose
+  name: Para que and a menos que
+  explain: Para que (so that) and other purpose or condition conjunctions take the subjunctive.
+  forms: [para que entiendas]
+- id: es.b1.conditional
+  name: Conditional
+  explain: The conditional adds -ía endings to the infinitive and states polite requests, advice and hypothetical results.
+  forms: [hablaría, tendría, me gustaría, podrías]
+- id: es.b1.past-perfect
+  name: Past perfect
+  explain: Había + participle says an action was already done before another past point.
+  forms: [había comido, habíamos llegado]
+- id: es.b1.imperfect-progressive
+  name: Past progressive
+  explain: Estaba + gerund describes what was in progress in the past.
+  forms: [estaba leyendo]
+- id: es.b1.preterite-vs-imperfect
+  name: Preterite and imperfect in narration
+  explain: Narration alternates the imperfect for background and the preterite for events that advance the story.
+  forms: [Llovía cuando salí.]
+  concept: true
+  concept_reason: Telling a story needs the two past tenses used together with shifting viewpoint, which needs extended practice and explanation.
+- id: es.b1.verbs-change-meaning-preterite
+  name: Verbs that change meaning in the preterite
+  explain: Saber, conocer, querer and poder change meaning between imperfect and preterite.
+  forms: [supe, quise, pude]
+- id: es.b1.double-pronouns
+  name: Two object pronouns
+  explain: Indirect comes before direct, and le/les becomes se before lo/la/los/las.
+  forms: [Se lo doy., Me lo dijo.]
+- id: es.b1.negative-imperative
+  name: Negative commands
+  explain: Negative commands use the subjunctive for all persons.
+  forms: [no hables, no vengas, no lo hagas]
+- id: es.b1.imperative-pronouns
+  name: Commands with pronouns
+  explain: Pronouns attach to affirmative commands and precede negative ones; a written accent keeps the stress.
+  forms: [dímelo, no me lo digas, siéntate]
+- id: es.b1.nosotros-commands
+  name: Let us commands
+  explain: Vamos a + infinitive or the nosotros subjunctive suggest doing something together.
+  forms: [vamos a comer, comamos]
+- id: es.b1.passive-se
+  name: Impersonal and passive se
+  explain: Se plus a third-person verb states general facts or a passive without an agent.
+  forms: [se habla español, se venden casas]
+- id: es.b1.relative-pronouns
+  name: Relative pronouns
+  explain: Que, quien, el cual, donde and lo que link clauses; lo que refers to an idea.
+  forms: [la persona con quien hablo, lo que dices]
+- id: es.b1.reported-speech
+  name: Reported speech
+  explain: Reported statements shift tenses when the reporting verb is past.
+  forms: [Dijo que vendría., Me dijo que estaba cansada.]
+- id: es.b1.si-clauses-hypothetical
+  name: Hypothetical si clauses (intro)
+  explain: Si + imperfect subjunctive + conditional states an unlikely condition.
+  forms: ['Si tuviera tiempo, viajaría.']
+- id: es.b1.future-probability
+  name: Future of probability
+  explain: The future can express probability about the present.
+  forms: [Estará en casa.]
+- id: es.b1.por-para-extended
+  name: 'Por and para: extended uses'
+  explain: Por also marks agent, exchange and parts of the day; para marks recipient and opinion.
+  forms: [por la mañana, para mí]
+- id: es.b1.object-clitics-with-perfect
+  name: Pronouns with perfect tenses
+  explain: Object pronouns go before haber, never between haber and the participle.
+  forms: [lo he visto]
+- id: es.b1.verbs-with-prepositions
+  name: Verbs with prepositions
+  explain: 'Many verbs take a fixed preposition: pensar en, soñar con, depender de, empezar a.'
+  forms: [soñar con, depender de]
+- id: es.b1.ser-estar-advanced
+  name: 'Ser and estar: advanced contrasts'
+  explain: Passive resultant states, evaluative judgments and event location extend the ser and estar contrast.
+  forms: [La puerta está cerrada., La fiesta es en mi casa.]
+- id: es.b1.lo-neuter
+  name: Neuter lo
+  explain: 'Lo + adjective names an abstract quality: lo bueno, lo importante.'
+  forms: [lo bueno es que, lo mejor]
+- id: es.b1.discourse-connectors
+  name: Connectors of contrast and cause
+  explain: Sin embargo, por eso, aunque, por lo tanto, así que organize ideas.
+  forms: [sin embargo, por eso, así que]
+- id: es.b1.diminutives-augmentatives
+  name: Diminutives and augmentatives
+  explain: -ito and -ote change size or feeling; in Mexico diminutives are very common and soften speech.
+  forms: [un momentito, ahorita]
+- id: es.b1.gerund-uses
+  name: Gerund uses
+  explain: The gerund pairs with seguir, ir, llevar and venir to give duration and continuation.
+  forms: [sigue lloviendo, llevo dos años viviendo aquí]
+- id: es.b1.participle-adjectives
+  name: Participles as adjectives
+  explain: Participles agree like adjectives and describe a resulting state.
+  forms: [la ventana abierta, las puertas cerradas]
+- id: es.b1.numbers-fractions
+  name: Fractions, percentages and approximations
+  explain: Medio, tercio, por ciento and approximate numbers (unos veinte) express quantity.
+  forms: [la mitad, por ciento, unos diez]
+- id: es.b1.indefinite-quantifiers
+  name: Quantifiers
+  explain: Cada, todo, varios, ambos, demasiado, bastante give quantity detail.
+  forms: [cada día, todos los días, demasiado]
+- id: es.b1.hace-time
+  name: Hace for time spans
+  explain: Hace + time + que says how long; hace + time says ago.
+  forms: [hace dos años, hace tres horas que espero]
+- id: es.b1.desde-hace
+  name: Desde and desde hace
+  explain: Desde marks a point in time and desde hace a span, both with the present for continuing actions.
+  forms: [vivo aquí desde hace un año]
+- id: es.b1.soler-ir-a-venir-a
+  name: Soler and aspect verbs
+  explain: Soler (usually do), empezar a, dejar de, seguir say habit, start, stop and continue.
+  forms: [suelo caminar, dejé de fumar]

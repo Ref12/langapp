@@ -1,0 +1,378 @@
+# A1 teaching sequence: units of about 5 items (words and grammar together), modules of 8-12 units.
+# Items are ids from levels/a1/vocabulary.yaml and levels/a1/grammar.yaml.
+modules:
+- id: es.a1.m01
+  title: Greet and say goodbye
+  units:
+  - id: es.a1.m01.u01
+    items: [es.no.adv, es.a1.alphabet-sounds, es.si.adv, es.tambien.adv, es.la.det, es.el.det]
+  - id: es.a1.m01.u02
+    items: [es.a1.stress-accents, es.un.det, es.una.det, es.y.conj, es.lo.pron, es.a1.punctuation]
+  - id: es.a1.m01.u03
+    items: [es.por.prep, es.gracias.intj, es.favor.noun, es.bienvenido.adj, es.a1.greetings-farewells, es.perdon.intj]
+  - id: es.a1.m01.u04
+    items: [es.permiso.noun, es.que.pron, es.como.adv, es.a1.subject-pronouns, es.quien.pron]
+  - id: es.a1.m01.u05
+    items: [es.donde.adv, es.me.pron, es.te.pron, es.a1.tu-usted, es.yo.pron]
+  - id: es.a1.m01.u06
+    items: [es.tu.pron, es.el.pron, es.nosotros.pron, es.a1.ustedes, es.ella.pron]
+  - id: es.a1.m01.u07
+    items: [es.usted.pron, es.ustedes.pron, es.mi.det, es.su.det, es.a1.ser-present]
+  - id: es.a1.m01.u08
+    items: [es.tu.det, es.este.det, es.bien.adv, es.asi.adv, es.a1.question-words]
+  - id: es.a1.m01.u09
+    items: [es.mal.adv, es.regular.adj, es.muy.adv, es.mucho.det, es.gusto.noun]
+  - id: es.a1.m01.u10
+    items: [es.placer.noun, es.encantado.adj, es.bueno.adj, es.dia.noun, es.hola.intj]
+  - id: es.a1.m01.u11
+    items: [es.noche.noun, es.hasta.prep, es.manhana.adv, es.luego.adv, es.tarde.adv]
+  - id: es.a1.m01.u12
+    items: [es.adios.intj, es.pronto.adv, es.saludo.noun, es.despedida.noun, es.ser.verb]
+- id: es.a1.m02
+  title: Say where you are from
+  units:
+  - id: es.a1.m02.u01
+    items: [es.de.prep, es.a1.noun-gender, es.senhor.noun, es.senhora.noun, es.senhorita.noun]
+  - id: es.a1.m02.u02
+    items: [es.don.noun, es.a1.noun-plural, es.donha.noun, es.amigo.noun, es.companhero.noun]
+  - id: es.a1.m02.u03
+    items: [es.profesor.noun, es.estudiante.noun, es.a1.definite-articles, es.nombre.noun, es.apellido.noun]
+  - id: es.a1.m02.u04
+    items: [es.ciudad.noun, es.pais.noun, es.a1.indefinite-articles, es.americano.adj, es.extranjero.adj]
+  - id: es.a1.m02.u05
+    items: [es.japones.adj, es.estadounidense.adj, es.a1.present-ar, es.mexicano.adj, es.canadiense.adj]
+  - id: es.a1.m02.u06
+    items: [es.coreano.adj, es.argentino.adj, es.cubano.adj, es.a1.present-er-ir, es.brasilenho.adj]
+  - id: es.a1.m02.u07
+    items: [es.colombiano.adj, es.nacionalidad.noun, es.peruano.adj, es.venezolano.adj, es.chileno.adj]
+  - id: es.a1.m02.u08
+    items: [es.chino.adj, es.ingles.adj, es.frances.adj, es.aleman.adj, es.lengua.noun]
+  - id: es.a1.m02.u09
+    items: [es.italiano.adj, es.espanhol.adj, es.idioma.noun, es.portugues.adj, es.hablar.verb]
+  - id: es.a1.m02.u10
+    items: [es.llamar.verb, es.vivir.verb, es.disculpar.verb, es.presentar.verb]
+- id: es.a1.m03
+  title: Count and say your age
+  units:
+  - id: es.a1.m03.u01
+    items: [es.numero.noun, es.uno.num, es.dos.num, es.a1.cardinal-0-100, es.tres.num]
+  - id: es.a1.m03.u02
+    items: [es.cinco.num, es.cuatro.num, es.seis.num, es.diez.num, es.siete.num]
+  - id: es.a1.m03.u03
+    items: [es.ocho.num, es.nueve.num, es.a1.tener-present, es.cero.num, es.todo.det]
+  - id: es.a1.m03.u04
+    items: [es.mas.adv, es.algo.pron, es.nada.pron, es.poco.adv, es.menos.adv]
+  - id: es.a1.m03.u05
+    items: [es.demasiado.adv, es.cuanto.adv, es.a1.negation, es.medio.adj, es.punto.noun]
+  - id: es.a1.m03.u06
+    items: [es.bastante.adv, es.par.noun, es.mitad.noun, es.media.noun, es.cantidad.noun]
+  - id: es.a1.m03.u07
+    items: [es.docena.noun, es.a1.yes-no-questions, es.millon.noun, es.mil.num, es.ciento.num]
+  - id: es.a1.m03.u08
+    items: [es.cien.num, es.edad.noun, es.total.adj, es.veinte.num, es.doce.num]
+  - id: es.a1.m03.u09
+    items: [es.quince.num, es.once.num, es.trece.num, es.catorce.num, es.dieciseis.num]
+  - id: es.a1.m03.u10
+    items: [es.dieciocho.num, es.diecisiete.num, es.diecinueve.num, es.treinta.num, es.cincuenta.num]
+  - id: es.a1.m03.u11
+    items: [es.cuarenta.num, es.sesenta.num, es.ochenta.num, es.setenta.num, es.noventa.num]
+  - id: es.a1.m03.u12
+    items: [es.veintiuno.num, es.tener.verb, es.restar.verb, es.sumar.verb]
+- id: es.a1.m04
+  title: Talk about your family
+  units:
+  - id: es.a1.m04.u01
+    items: [es.nuestro.det, es.hombre.noun, es.gente.noun, es.persona.noun, es.vecino.noun]
+  - id: es.a1.m04.u02
+    items: [es.chico.noun, es.ninho.noun, es.chica.noun, es.bebe.noun, es.ninha.noun]
+  - id: es.a1.m04.u03
+    items: [es.adulto.noun, es.padre.noun, es.hijo.noun, es.madre.noun, es.a1.possessives]
+  - id: es.a1.m04.u04
+    items: [es.mama.noun, es.papa.noun, es.hermano.noun, es.familia.noun, es.tio.noun]
+  - id: es.a1.m04.u05
+    items: [es.hija.noun, es.hermana.noun, es.abuela.noun, es.abuelo.noun, es.tia.noun]
+  - id: es.a1.m04.u06
+    items: [es.primo.noun, es.sobrino.noun, es.gemelo.noun, es.nieto.noun, es.nieta.noun]
+  - id: es.a1.m04.u07
+    items: [es.mujer.noun, es.esposa.noun, es.marido.noun, es.esposo.noun, es.viejo.adj]
+  - id: es.a1.m04.u08
+    items: [es.joven.adj, es.mayor.adj, es.menor.adj, es.novia.noun, es.novio.noun]
+  - id: es.a1.m04.u09
+    items: [es.pareja.noun, es.casado.adj, es.soltero.adj, es.cunhado.noun]
+  - id: es.a1.m04.u10
+    items: [es.suegro.noun, es.suegra.noun, es.padrino.noun, es.madrina.noun]
+- id: es.a1.m05
+  title: Describe people and things
+  units:
+  - id: es.a1.m05.u01
+    items: [es.otro.det, es.mismo.adj, es.a1.adj-agreement, es.nuevo.adj, es.malo.adj]
+  - id: es.a1.m05.u02
+    items: [es.grande.adj, es.pequenho.adj, es.feliz.adj, es.a1.adj-position, es.miedo.noun]
+  - id: es.a1.m05.u03
+    items: [es.tranquilo.adj, es.preocupado.adj, es.triste.adj, es.nervioso.adj, es.asustado.adj]
+  - id: es.a1.m05.u04
+    items: [es.a1.quantifiers, es.contento.adj, es.enojado.adj, es.aburrido.adj, es.emocionado.adj]
+  - id: es.a1.m05.u05
+    items: [es.sorprendido.adj, es.a1.connectors, es.importante.adj, es.dificil.adj, es.facil.adj]
+  - id: es.a1.m05.u06
+    items: [es.bonito.adj, es.feo.adj, es.negro.adj, es.blanco.adj]
+  - id: es.a1.m05.u07
+    items: [es.rojo.adj, es.color.noun, es.azul.adj, es.verde.adj]
+  - id: es.a1.m05.u08
+    items: [es.rosa.noun, es.amarillo.adj, es.gris.adj, es.morado.adj]
+- id: es.a1.m06
+  title: Say where things are
+  units:
+  - id: es.a1.m06.u01
+    items: [es.en.prep, es.sobre.prep, es.a1.estar-present, es.junto.adj, es.entre.prep]
+  - id: es.a1.m06.u02
+    items: [es.lado.noun, es.detras.adv, es.a1.hay, es.delante.adv, es.enfrente.adv]
+  - id: es.a1.m06.u03
+    items: [es.aqui.adv, es.alli.adv, es.a1.demonstratives, es.ese.det, es.aquel.det]
+  - id: es.a1.m06.u04
+    items: [es.casa.noun, es.habitacion.noun, es.cuarto.noun, es.a1.ir-present, es.banho.noun]
+  - id: es.a1.m06.u05
+    items: [es.sala.noun, es.cocina.noun, es.salon.noun, es.comedor.noun, es.a1.ir-a-infinitive]
+  - id: es.a1.m06.u06
+    items: [es.recamara.noun, es.puerta.noun, es.ventana.noun, es.piso.noun, es.pared.noun]
+  - id: es.a1.m06.u07
+    items: [es.a1.contractions, es.escalera.noun, es.techo.noun, es.cerca.adv, es.lejos.adv]
+  - id: es.a1.m06.u08
+    items: [es.cama.noun, es.a1.basic-prepositions, es.silla.noun, es.escritorio.noun, es.sofa.noun]
+  - id: es.a1.m06.u09
+    items: [es.sillon.noun, es.estante.noun, es.caja.noun, es.llave.noun, es.bolsa.noun]
+  - id: es.a1.m06.u10
+    items: [es.reloj.noun, es.television.noun, es.refrigerador.noun, es.estufa.noun, es.jardin.noun]
+  - id: es.a1.m06.u11
+    items: [es.patio.noun, es.garaje.noun, es.espejo.noun, es.alfombra.noun]
+  - id: es.a1.m06.u12
+    items: [es.cortina.noun, es.lampara.noun, es.estar.verb, es.ir.verb]
+- id: es.a1.m07
+  title: Talk about days and weather
+  units:
+  - id: es.a1.m07.u01
+    items: [es.tiempo.noun, es.anho.noun, es.semana.noun, es.mes.noun, es.a1.dates-days, es.primero.adj]
+  - id: es.a1.m07.u02
+    items: [es.segundo.adj, es.tercero.adj, es.quinto.adj, es.sexto.adj, es.septimo.adj, es.octavo.adj]
+  - id: es.a1.m07.u03
+    items: [es.decimo.adj, es.noveno.adj, es.a1.time-telling, es.hora.noun, es.minuto.noun, es.medianoche.noun]
+  - id: es.a1.m07.u04
+    items: [es.mediodia.noun, es.hoy.adv, es.anoche.adv, es.ayer.adv, es.cielo.noun]
+  - id: es.a1.m07.u05
+    items: [es.sol.noun, es.a1.weather-hacer, es.viento.noun, es.grado.noun, es.tormenta.noun]
+  - id: es.a1.m07.u06
+    items: [es.lluvia.noun, es.nieve.noun, es.nube.noun, es.temperatura.noun, es.clima.noun]
+  - id: es.a1.m07.u07
+    items: [es.cumpleanhos.noun, es.fecha.noun, es.a1.time-adverbs, es.calendario.noun, es.verano.noun]
+  - id: es.a1.m07.u08
+    items: [es.invierno.noun, es.primavera.noun, es.otonho.noun, es.domingo.noun, es.viernes.noun]
+  - id: es.a1.m07.u09
+    items: [es.sabado.noun, es.lunes.noun, es.jueves.noun, es.martes.noun, es.miercoles.noun]
+  - id: es.a1.m07.u10
+    items: [es.julio.noun, es.mayo.noun, es.septiembre.noun, es.abril.noun, es.junio.noun]
+  - id: es.a1.m07.u11
+    items: [es.octubre.noun, es.agosto.noun, es.noviembre.noun, es.marzo.noun, es.diciembre.noun]
+  - id: es.a1.m07.u12
+    items: [es.enero.noun, es.febrero.noun, es.soleado.adj, es.nublado.adj, es.lluvioso.adj]
+- id: es.a1.m08
+  title: Describe your daily routine
+  units:
+  - id: es.a1.m08.u01
+    items: [es.se.pron, es.ya.adv, es.a1.reflexive-present, es.ahora.adv, es.antes.adv, es.despues.adv]
+  - id: es.a1.m08.u02
+    items: [es.todavia.adv, es.temprano.adv, es.nunca.adv, es.a1.irregular-yo, es.siempre.adv]
+  - id: es.a1.m08.u03
+    items: [es.cada.det, es.diario.adj, es.semanal.adj, es.mensual.adj, es.desde.prep]
+  - id: es.a1.m08.u04
+    items: [es.durante.prep, es.ultimo.adj, es.pasado.adj, es.proximo.adj, es.trabajar.verb]
+  - id: es.a1.m08.u05
+    items: [es.salir.verb, es.conocer.verb, es.llegar.verb, es.terminar.verb, es.durar.verb]
+  - id: es.a1.m08.u06
+    items: [es.cenar.verb, es.estudiar.verb, es.descansar.verb, es.cocinar.verb, es.nacer.verb]
+  - id: es.a1.m08.u07
+    items: [es.desayunar.verb, es.llamarse.verb, es.casarse.verb, es.levantarse.verb, es.ducharse.verb]
+  - id: es.a1.m08.u08
+    items: [es.banharse.verb, es.lavarse.verb, es.peinarse.verb, es.quedarse.verb, es.ponerse.verb]
+- id: es.a1.m09
+  title: Name foods and drinks
+  units:
+  - id: es.a1.m09.u01
+    items: [es.agua.noun, es.vino.noun, es.cafe.noun, es.cerveza.noun, es.te.noun, es.bebida.noun]
+  - id: es.a1.m09.u02
+    items: [es.leche.noun, es.jugo.noun, es.refresco.noun, es.sal.noun, es.azucar.noun, es.carne.noun]
+  - id: es.a1.m09.u03
+    items: [es.pollo.noun, es.cerdo.noun, es.pescado.noun, es.jamon.noun, es.res.noun]
+  - id: es.a1.m09.u04
+    items: [es.papa.noun-2, es.tomate.noun, es.maiz.noun, es.cebolla.noun, es.verdura.noun]
+  - id: es.a1.m09.u05
+    items: [es.zanahoria.noun, es.chile.noun, es.lechuga.noun, es.aguacate.noun, es.pan.noun]
+  - id: es.a1.m09.u06
+    items: [es.queso.noun, es.huevo.noun, es.arroz.noun, es.frijol.noun, es.tortilla.noun]
+  - id: es.a1.m09.u07
+    items: [es.naranja.noun, es.manzana.noun, es.fruta.noun, es.limon.noun, es.uva.noun]
+  - id: es.a1.m09.u08
+    items: [es.platano.noun, es.fresa.noun, es.mango.noun, es.pinha.noun, es.sandia.noun]
+- id: es.a1.m10
+  title: Order at a restaurant
+  units:
+  - id: es.a1.m10.u01
+    items: [es.cuenta.noun, es.a1.querer-poder-inf, es.restaurante.noun, es.menu.noun, es.propina.noun]
+  - id: es.a1.m10.u02
+    items: [es.mesero.noun, es.a1.polite-requests, es.comida.noun, es.cena.noun, es.almuerzo.noun]
+  - id: es.a1.m10.u03
+    items: [es.desayuno.noun, es.a1.stem-e-ie, es.dulce.adj, es.rico.adj, es.caliente.adj]
+  - id: es.a1.m10.u04
+    items: [es.fresco.adj, es.a1.stem-o-ue, es.delicioso.adj, es.salado.adj, es.mesa.noun]
+  - id: es.a1.m10.u05
+    items: [es.cuchillo.noun, es.a1.stem-e-i, es.plato.noun, es.vaso.noun, es.taza.noun]
+  - id: es.a1.m10.u06
+    items: [es.cuchara.noun, es.tenedor.noun, es.servilleta.noun, es.pizza.noun, es.sopa.noun]
+  - id: es.a1.m10.u07
+    items: [es.sandwich.noun, es.ensalada.noun, es.postre.noun, es.taco.noun, es.comer.verb]
+  - id: es.a1.m10.u08
+    items: [es.volver.verb, es.sentir.verb, es.tomar.verb, es.entender.verb, es.contar.verb]
+  - id: es.a1.m10.u09
+    items: [es.pedir.verb, es.empezar.verb, es.beber.verb, es.dormir.verb, es.preparar.verb]
+  - id: es.a1.m10.u10
+    items: [es.almorzar.verb, es.nevar.verb, es.llover.verb, es.despertarse.verb]
+  - id: es.a1.m10.u11
+    items: [es.vestirse.verb, es.acostarse.verb, es.sentarse.verb, es.divertirse.verb]
+- id: es.a1.m11
+  title: Talk about likes and hobbies
+  units:
+  - id: es.a1.m11.u01
+    items: [es.equipo.noun, es.partido.noun, es.a1.gustar, es.futbol.noun, es.pelota.noun]
+  - id: es.a1.m11.u02
+    items: [es.deporte.noun, es.beisbol.noun, es.a1.also-neither, es.tenis.noun, es.baloncesto.noun]
+  - id: es.a1.m11.u03
+    items: [es.juego.noun, es.fiesta.noun, es.foto.noun, es.a1.stem-u-ue, es.pelicula.noun]
+  - id: es.a1.m11.u04
+    items: [es.musica.noun, es.cancion.noun, es.baile.noun, es.radio.noun, es.concierto.noun]
+  - id: es.a1.m11.u05
+    items: [es.piano.noun, es.guitarra.noun, es.pasatiempo.noun, es.nadar.verb]
+  - id: es.a1.m11.u06
+    items: [es.gustar.verb, es.escuchar.verb, es.perder.verb, es.jugar.verb]
+  - id: es.a1.m11.u07
+    items: [es.ganar.verb, es.tocar.verb, es.correr.verb, es.bailar.verb]
+  - id: es.a1.m11.u08
+    items: [es.cantar.verb, es.preferir.verb, es.pintar.verb, es.dibujar.verb]
+- id: es.a1.m12
+  title: Name places in town
+  units:
+  - id: es.a1.m12.u01
+    items: [es.coche.noun, es.barco.noun, es.avion.noun, es.tren.noun, es.metro.noun]
+  - id: es.a1.m12.u02
+    items: [es.camion.noun, es.taxi.noun, es.autobus.noun, es.carro.noun, es.bicicleta.noun]
+  - id: es.a1.m12.u03
+    items: [es.moto.noun, es.pueblo.noun, es.calle.noun, es.centro.noun, es.parque.noun]
+  - id: es.a1.m12.u04
+    items: [es.esquina.noun, es.barrio.noun, es.plaza.noun, es.avenida.noun, es.campo.noun]
+  - id: es.a1.m12.u05
+    items: [es.playa.noun, es.hotel.noun, es.edificio.noun, es.banco.noun, es.iglesia.noun]
+  - id: es.a1.m12.u06
+    items: [es.cine.noun, es.correo.noun, es.teatro.noun, es.supermercado.noun]
+  - id: es.a1.m12.u07
+    items: [es.biblioteca.noun, es.museo.noun, es.estadio.noun, es.estacion.noun]
+  - id: es.a1.m12.u08
+    items: [es.aeropuerto.noun, es.parada.noun, es.puente.noun, es.carretera.noun]
+- id: es.a1.m13
+  title: Ask for directions
+  units:
+  - id: es.a1.m13.u01
+    items: [es.a.prep, es.oeste.noun, es.sur.noun, es.norte.noun]
+  - id: es.a1.m13.u02
+    items: [es.hacia.prep, es.derecha.noun, es.izquierda.noun, es.mapa.noun]
+  - id: es.a1.m13.u03
+    items: [es.recto.adj, es.viaje.noun, es.vuelo.noun, es.maleta.noun]
+  - id: es.a1.m13.u04
+    items: [es.boleto.noun, es.pasaporte.noun, es.equipaje.noun, es.turista.noun]
+  - id: es.a1.m13.u05
+    items: [es.pasar.verb, es.esperar.verb, es.quedar.verb, es.seguir.verb]
+  - id: es.a1.m13.u06
+    items: [es.entrar.verb, es.preguntar.verb, es.buscar.verb, es.bajar.verb]
+  - id: es.a1.m13.u07
+    items: [es.caminar.verb, es.subir.verb, es.viajar.verb, es.visitar.verb]
+  - id: es.a1.m13.u08
+    items: [es.conducir.verb, es.cruzar.verb, es.doblar.verb, es.girar.verb]
+- id: es.a1.m14
+  title: Shop for clothes
+  units:
+  - id: es.a1.m14.u01
+    items: [es.dinero.noun, es.dolar.noun, es.precio.noun, es.peso.noun, es.centavo.noun]
+  - id: es.a1.m14.u02
+    items: [es.moneda.noun, es.billete.noun, es.caro.adj, es.gratis.adj, es.barato.adj]
+  - id: es.a1.m14.u03
+    items: [es.cambio.noun, es.tarjeta.noun, es.efectivo.adj, es.ropa.noun, es.vestido.noun]
+  - id: es.a1.m14.u04
+    items: [es.zapato.noun, es.pantalon.noun, es.sombrero.noun, es.camisa.noun, es.abrigo.noun]
+  - id: es.a1.m14.u05
+    items: [es.camiseta.noun, es.calcetin.noun, es.falda.noun, es.bota.noun, es.gorra.noun]
+  - id: es.a1.m14.u06
+    items: [es.sueter.noun, es.playera.noun, es.short.noun, es.chamarra.noun]
+  - id: es.a1.m14.u07
+    items: [es.tienda.noun, es.mercado.noun, es.necesitar.verb, es.pagar.verb]
+  - id: es.a1.m14.u08
+    items: [es.comprar.verb, es.vender.verb, es.costar.verb, es.gastar.verb]
+- id: es.a1.m15
+  title: Talk about work and school
+  units:
+  - id: es.a1.m15.u01
+    items: [es.trabajo.noun, es.empresa.noun, es.policia.noun, es.abogado.noun, es.artista.noun, es.cantante.noun]
+  - id: es.a1.m15.u02
+    items: [es.ingeniero.noun, es.bombero.noun, es.cocinero.noun, es.profesion.noun, es.dentista.noun, es.jefe.noun]
+  - id: es.a1.m15.u03
+    items: [es.clase.noun, es.escuela.noun, es.universidad.noun, es.colegio.noun, es.telefono.noun]
+  - id: es.a1.m15.u04
+    items: [es.mensaje.noun, es.camara.noun, es.computadora.noun, es.raton.noun, es.internet.noun]
+  - id: es.a1.m15.u05
+    items: [es.celular.noun, es.pantalla.noun, es.teclado.noun, es.libro.noun, es.cuaderno.noun]
+  - id: es.a1.m15.u06
+    items: [es.oficina.noun, es.maestro.noun, es.alumno.noun, es.examen.noun, es.tarea.noun]
+  - id: es.a1.m15.u07
+    items: [es.leccion.noun, es.pluma.noun, es.lapiz.noun, es.mochila.noun, es.pizarra.noun]
+  - id: es.a1.m15.u08
+    items: [es.usar.verb, es.leer.verb, es.escribir.verb, es.ensenhar.verb, es.aprender.verb]
+- id: es.a1.m16
+  title: Describe your body and health
+  units:
+  - id: es.a1.m16.u01
+    items: [es.mano.noun, es.cabeza.noun, es.ojo.noun, es.corazon.noun, es.cara.noun]
+  - id: es.a1.m16.u02
+    items: [es.cuerpo.noun, es.pie.noun, es.boca.noun, es.pelo.noun, es.brazo.noun]
+  - id: es.a1.m16.u03
+    items: [es.pierna.noun, es.espalda.noun, es.cerebro.noun, es.dedo.noun, es.cuello.noun]
+  - id: es.a1.m16.u04
+    items: [es.nariz.noun, es.rodilla.noun, es.diente.noun, es.hombro.noun, es.labio.noun]
+  - id: es.a1.m16.u05
+    items: [es.estomago.noun, es.oreja.noun, es.garganta.noun, es.unha.noun, es.doctor.noun]
+  - id: es.a1.m16.u06
+    items: [es.medico.noun, es.enfermero.noun, es.suenho.noun, es.hospital.noun, es.farmacia.noun]
+  - id: es.a1.m16.u07
+    items: [es.dolor.noun, es.enfermedad.noun, es.fiebre.noun, es.gripe.noun, es.resfriado.noun]
+  - id: es.a1.m16.u08
+    items: [es.tos.noun, es.cita.noun, es.medicina.noun, es.pastilla.noun, es.medicamento.noun]
+  - id: es.a1.m16.u09
+    items: [es.receta.noun, es.frio.adj, es.enfermo.adj, es.hambre.noun, es.cansado.adj]
+  - id: es.a1.m16.u10
+    items: [es.calor.noun, es.sano.adj, es.sed.noun, es.salud.noun, es.cuidar.verb]
+  - id: es.a1.m16.u11
+    items: [es.respirar.verb, es.doler.verb, es.lastimar.verb, es.toser.verb]
+- id: es.a1.m17
+  title: Make plans and chat
+  units:
+  - id: es.a1.m17.u01
+    items: [es.que.conj, es.pero.conj, es.si.conj, es.a1.tener-que, es.como.adv-2, es.cuando.conj]
+  - id: es.a1.m17.u02
+    items: [es.o.conj, es.porque.conj, es.ni.conj, es.con.prep, es.para.prep]
+  - id: es.a1.m17.u03
+    items: [es.a1.estar-gerund, es.sin.prep, es.solo.adj, es.casi.adv, es.tampoco.adv]
+  - id: es.a1.m17.u04
+    items: [es.le.pron, es.nos.pron, es.les.pron, es.alguien.pron, es.nadie.pron]
+  - id: es.a1.m17.u05
+    items: [es.ninguno.det, es.cual.pron, es.cuando.adv, es.hacer.verb, es.haber.verb]
+  - id: es.a1.m17.u06
+    items: [es.poder.verb, es.decir.verb, es.saber.verb, es.querer.verb, es.ver.verb]
+  - id: es.a1.m17.u07
+    items: [es.dar.verb, es.venir.verb, es.pensar.verb, es.mirar.verb, es.encontrar.verb]
+  - id: es.a1.m17.u08
+    items: [es.poner.verb, es.oir.verb, es.ayudar.verb, es.abrir.verb, es.cerrar.verb]

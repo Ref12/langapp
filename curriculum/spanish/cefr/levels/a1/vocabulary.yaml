@@ -1,0 +1,747 @@
+# One record per teaching sense, cumulative levels: an item appears once, at its first level.
+# basis: pcic = Plan Curricular placement (unused: not reachable), frequency = open frequency rank, judgement = author placement.
+- {id: es.no.adv, lemma: 'no', pos: adv, gloss: no; not, basis: frequency}
+- {id: es.si.adv, lemma: sí, pos: adv, gloss: 'yes', basis: frequency}
+- {id: es.tambien.adv, lemma: también, pos: adv, gloss: 'also, too', basis: frequency}
+- {id: es.la.det, lemma: la, pos: det, gloss: the (feminine), basis: frequency}
+- {id: es.el.det, lemma: el, pos: det, gloss: the (masculine), basis: frequency}
+- {id: es.un.det, lemma: un, pos: det, gloss: 'a, an (masculine)', basis: frequency}
+- {id: es.una.det, lemma: una, pos: det, gloss: 'a, an (feminine)', basis: frequency}
+- {id: es.y.conj, lemma: y, pos: conj, gloss: and, basis: frequency}
+- {id: es.lo.pron, lemma: lo, pos: pron, gloss: 'him, it (direct object)', basis: frequency}
+- {id: es.por.prep, lemma: por, pos: prep, gloss: for; by; through, basis: frequency}
+- {id: es.gracias.intj, lemma: gracias, pos: intj, gloss: thank you, basis: frequency}
+- {id: es.favor.noun, lemma: favor, pos: noun, gender: m, gloss: favor, basis: frequency}
+- {id: es.bienvenido.adj, lemma: bienvenido, pos: adj, gloss: welcome, basis: frequency}
+- {id: es.perdon.intj, lemma: perdón, pos: intj, gloss: 'sorry, pardon', basis: frequency}
+- {id: es.permiso.noun, lemma: permiso, pos: noun, gender: m, gloss: 'permission, permit', basis: judgement}
+- {id: es.que.pron, lemma: qué, pos: pron, gloss: what, basis: frequency}
+- {id: es.como.adv, lemma: cómo, pos: adv, gloss: how, basis: frequency}
+- {id: es.quien.pron, lemma: quién, pos: pron, gloss: who, basis: frequency}
+- {id: es.donde.adv, lemma: dónde, pos: adv, gloss: where, basis: frequency}
+- {id: es.me.pron, lemma: me, pos: pron, gloss: 'me, to me', basis: frequency}
+- {id: es.te.pron, lemma: te, pos: pron, gloss: 'you, to you', basis: frequency}
+- {id: es.yo.pron, lemma: yo, pos: pron, gloss: I, basis: frequency}
+- {id: es.tu.pron, lemma: tú, pos: pron, gloss: you (informal), basis: frequency}
+- {id: es.el.pron, lemma: él, pos: pron, gloss: he; him, basis: frequency}
+- {id: es.nosotros.pron, lemma: nosotros, pos: pron, gloss: we; us, basis: frequency}
+- {id: es.ella.pron, lemma: ella, pos: pron, gloss: she; her, basis: frequency}
+- {id: es.usted.pron, lemma: usted, pos: pron, gloss: you (formal), basis: frequency}
+- {id: es.ustedes.pron, lemma: ustedes, pos: pron, gloss: you (plural), region_note: 'Spain: vosotros (informal)', basis: frequency}
+- {id: es.mi.det, lemma: mi, pos: det, gloss: my, basis: frequency}
+- {id: es.su.det, lemma: su, pos: det, gloss: 'his, her, their, your (formal)', basis: frequency}
+- {id: es.tu.det, lemma: tu, pos: det, gloss: your (informal), basis: judgement}
+- {id: es.este.det, lemma: este, pos: det, gloss: this, basis: frequency}
+- {id: es.bien.adv, lemma: bien, pos: adv, gloss: well; fine, basis: frequency}
+- {id: es.asi.adv, lemma: así, pos: adv, gloss: 'like this, thus', basis: frequency}
+- {id: es.mal.adv, lemma: mal, pos: adv, gloss: badly, basis: frequency}
+- {id: es.regular.adj, lemma: regular, pos: adj, gloss: 'average, so-so', basis: judgement}
+- {id: es.muy.adv, lemma: muy, pos: adv, gloss: very, basis: judgement}
+- {id: es.mucho.det, lemma: mucho, pos: det, gloss: 'a lot of, much', basis: frequency}
+- {id: es.gusto.noun, lemma: gusto, pos: noun, gender: m, gloss: pleasure; liking, basis: judgement}
+- {id: es.placer.noun, lemma: placer, pos: noun, gender: m, gloss: pleasure, basis: judgement}
+- {id: es.encantado.adj, lemma: encantado, pos: adj, gloss: pleased to meet you; delighted, basis: judgement}
+- {id: es.bueno.adj, lemma: bueno, pos: adj, gloss: good, basis: frequency}
+- {id: es.dia.noun, lemma: día, pos: noun, gender: m, gloss: day, basis: frequency}
+- {id: es.hola.intj, lemma: hola, pos: intj, gloss: hello, basis: frequency}
+- {id: es.noche.noun, lemma: noche, pos: noun, gender: f, gloss: night, basis: frequency}
+- {id: es.hasta.prep, lemma: hasta, pos: prep, gloss: 'until, up to', basis: frequency}
+- {id: es.manhana.adv, lemma: mañana, pos: adv, gloss: tomorrow, basis: frequency}
+- {id: es.luego.adv, lemma: luego, pos: adv, gloss: 'later, then', basis: frequency}
+- {id: es.tarde.adv, lemma: tarde, pos: adv, gloss: late, basis: frequency}
+- {id: es.adios.intj, lemma: adiós, pos: intj, gloss: goodbye, basis: frequency}
+- {id: es.pronto.adv, lemma: pronto, pos: adv, gloss: soon, basis: frequency}
+- {id: es.saludo.noun, lemma: saludo, pos: noun, gender: m, gloss: greeting, basis: judgement}
+- {id: es.despedida.noun, lemma: despedida, pos: noun, gender: f, gloss: 'farewell, goodbye', basis: judgement}
+- {id: es.ser.verb, lemma: ser, pos: verb, gloss: 'to be (identity, traits)', conj: er, verb_class: [fully-irregular], basis: frequency}
+- {id: es.de.prep, lemma: de, pos: prep, gloss: of; from, basis: frequency}
+- {id: es.senhor.noun, lemma: señor, pos: noun, gender: m/f, gloss: 'man; Mr., sir', basis: frequency}
+- {id: es.senhora.noun, lemma: señora, pos: noun, gender: f, gloss: 'lady, Mrs., madam', basis: frequency}
+- {id: es.senhorita.noun, lemma: señorita, pos: noun, gender: f, gloss: 'miss, young lady', basis: frequency}
+- {id: es.don.noun, lemma: don, pos: noun, gender: m, plural: dones, gloss: 'gift, talent', basis: judgement}
+- {id: es.donha.noun, lemma: doña, pos: noun, gender: f, gloss: title for a respected woman, basis: judgement}
+- {id: es.amigo.noun, lemma: amigo, pos: noun, gender: m/f, gloss: friend, basis: frequency}
+- {id: es.companhero.noun, lemma: compañero, pos: noun, gender: m/f, gloss: companion; classmate, basis: frequency}
+- {id: es.profesor.noun, lemma: profesor, pos: noun, gender: m/f, gloss: teacher; professor, basis: judgement}
+- {id: es.estudiante.noun, lemma: estudiante, pos: noun, gender: mf, gloss: student, basis: judgement}
+- {id: es.nombre.noun, lemma: nombre, pos: noun, gender: m, gloss: name, basis: frequency}
+- {id: es.apellido.noun, lemma: apellido, pos: noun, gender: m, gloss: 'last name, surname', basis: judgement}
+- {id: es.ciudad.noun, lemma: ciudad, pos: noun, gender: f, gloss: city, basis: frequency}
+- {id: es.pais.noun, lemma: país, pos: noun, gender: m, plural: países, gloss: country, basis: frequency}
+- {id: es.americano.adj, lemma: americano, pos: adj, gloss: American, basis: judgement}
+- {id: es.extranjero.adj, lemma: extranjero, pos: adj, gloss: foreign; foreigner, basis: judgement}
+- {id: es.japones.adj, lemma: japonés, pos: adj, gloss: Japanese, basis: judgement}
+- {id: es.estadounidense.adj, lemma: estadounidense, pos: adj, gloss: American (from the US), basis: judgement}
+- {id: es.mexicano.adj, lemma: mexicano, pos: adj, gloss: Mexican, basis: judgement}
+- {id: es.canadiense.adj, lemma: canadiense, pos: adj, gloss: Canadian, basis: judgement}
+- {id: es.coreano.adj, lemma: coreano, pos: adj, gloss: Korean, basis: judgement}
+- {id: es.argentino.adj, lemma: argentino, pos: adj, gloss: Argentine, basis: judgement}
+- {id: es.cubano.adj, lemma: cubano, pos: adj, gloss: Cuban, basis: judgement}
+- {id: es.brasilenho.adj, lemma: brasileño, pos: adj, gloss: Brazilian, basis: judgement}
+- {id: es.colombiano.adj, lemma: colombiano, pos: adj, gloss: Colombian, basis: judgement}
+- {id: es.nacionalidad.noun, lemma: nacionalidad, pos: noun, gender: f, gloss: nationality, basis: judgement}
+- {id: es.peruano.adj, lemma: peruano, pos: adj, gloss: Peruvian, basis: judgement}
+- {id: es.venezolano.adj, lemma: venezolano, pos: adj, gloss: Venezuelan, basis: judgement}
+- {id: es.chileno.adj, lemma: chileno, pos: adj, gloss: Chilean, basis: judgement}
+- {id: es.chino.adj, lemma: chino, pos: adj, gloss: Chinese, basis: judgement}
+- {id: es.ingles.adj, lemma: inglés, pos: adj, gloss: English, basis: judgement}
+- {id: es.frances.adj, lemma: francés, pos: adj, gloss: French, basis: judgement}
+- {id: es.aleman.adj, lemma: alemán, pos: adj, gloss: German, basis: judgement}
+- {id: es.lengua.noun, lemma: lengua, pos: noun, gender: f, gloss: tongue, basis: judgement}
+- {id: es.italiano.adj, lemma: italiano, pos: adj, gloss: Italian, basis: judgement}
+- {id: es.espanhol.adj, lemma: español, pos: adj, gloss: Spanish, basis: judgement}
+- {id: es.idioma.noun, lemma: idioma, pos: noun, gender: m, gloss: language, basis: judgement}
+- {id: es.portugues.adj, lemma: portugués, pos: adj, gloss: Portuguese, basis: judgement}
+- {id: es.hablar.verb, lemma: hablar, pos: verb, gloss: 'to speak, talk', conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.llamar.verb, lemma: llamar, pos: verb, gloss: to call, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.vivir.verb, lemma: vivir, pos: verb, gloss: to live, conj: ir, verb_class: [regular-ir], basis: frequency}
+- {id: es.disculpar.verb, lemma: disculpar, pos: verb, gloss: 'to excuse, to forgive', conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.presentar.verb, lemma: presentar, pos: verb, gloss: to introduce; to present, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.numero.noun, lemma: número, pos: noun, gender: m, gloss: number, basis: frequency}
+- {id: es.uno.num, lemma: uno, pos: num, gloss: one, basis: frequency}
+- {id: es.dos.num, lemma: dos, pos: num, gloss: two, basis: frequency}
+- {id: es.tres.num, lemma: tres, pos: num, gloss: three, basis: frequency}
+- {id: es.cinco.num, lemma: cinco, pos: num, gloss: five, basis: frequency}
+- {id: es.cuatro.num, lemma: cuatro, pos: num, gloss: four, basis: frequency}
+- {id: es.seis.num, lemma: seis, pos: num, gloss: six, basis: frequency}
+- {id: es.diez.num, lemma: diez, pos: num, gloss: ten, basis: frequency}
+- {id: es.siete.num, lemma: siete, pos: num, gloss: seven, basis: judgement}
+- {id: es.ocho.num, lemma: ocho, pos: num, gloss: eight, basis: judgement}
+- {id: es.nueve.num, lemma: nueve, pos: num, gloss: nine, basis: judgement}
+- {id: es.cero.num, lemma: cero, pos: num, gloss: zero, basis: judgement}
+- {id: es.todo.det, lemma: todo, pos: det, gloss: 'all, every', basis: frequency}
+- {id: es.mas.adv, lemma: más, pos: adv, gloss: more, basis: frequency}
+- {id: es.algo.pron, lemma: algo, pos: pron, gloss: something, basis: frequency}
+- {id: es.nada.pron, lemma: nada, pos: pron, gloss: nothing, basis: frequency}
+- {id: es.poco.adv, lemma: poco, pos: adv, gloss: 'little, not much', basis: frequency}
+- {id: es.menos.adv, lemma: menos, pos: adv, gloss: 'less, minus', basis: frequency}
+- {id: es.demasiado.adv, lemma: demasiado, pos: adv, gloss: 'too, too much', basis: frequency}
+- {id: es.cuanto.adv, lemma: cuánto, pos: adv, gloss: how much, basis: frequency}
+- {id: es.medio.adj, lemma: medio, pos: adj, gloss: half, basis: frequency}
+- {id: es.punto.noun, lemma: punto, pos: noun, gender: m, gloss: 'point, dot', basis: frequency}
+- {id: es.bastante.adv, lemma: bastante, pos: adv, gloss: 'quite, enough', basis: frequency}
+- {id: es.par.noun, lemma: par, pos: noun, gender: m, gloss: pair; couple, basis: frequency}
+- {id: es.mitad.noun, lemma: mitad, pos: noun, gender: f, plural: mitades, gloss: half, basis: judgement}
+- {id: es.media.noun, lemma: media, pos: noun, gender: f, gloss: average, basis: judgement}
+- {id: es.cantidad.noun, lemma: cantidad, pos: noun, gender: f, plural: cantidades, gloss: 'quantity, amount', basis: judgement}
+- {id: es.docena.noun, lemma: docena, pos: noun, gender: f, gloss: dozen, basis: judgement}
+- {id: es.millon.noun, lemma: millón, pos: noun, gender: m, plural: millones, gloss: million, basis: frequency}
+- {id: es.mil.num, lemma: mil, pos: num, gloss: thousand, basis: frequency}
+- {id: es.ciento.num, lemma: ciento, pos: num, gloss: hundred (in compounds), basis: judgement}
+- {id: es.cien.num, lemma: cien, pos: num, gloss: one hundred, basis: judgement}
+- {id: es.edad.noun, lemma: edad, pos: noun, gender: f, gloss: age, basis: judgement}
+- {id: es.total.adj, lemma: total, pos: adj, gloss: total, basis: judgement}
+- {id: es.veinte.num, lemma: veinte, pos: num, gloss: twenty, basis: judgement}
+- {id: es.doce.num, lemma: doce, pos: num, gloss: twelve, basis: judgement}
+- {id: es.quince.num, lemma: quince, pos: num, gloss: fifteen, basis: judgement}
+- {id: es.once.num, lemma: once, pos: num, gloss: eleven, basis: judgement}
+- {id: es.trece.num, lemma: trece, pos: num, gloss: thirteen, basis: judgement}
+- {id: es.catorce.num, lemma: catorce, pos: num, gloss: fourteen, basis: judgement}
+- {id: es.dieciseis.num, lemma: dieciséis, pos: num, gloss: sixteen, basis: judgement}
+- {id: es.dieciocho.num, lemma: dieciocho, pos: num, gloss: eighteen, basis: judgement}
+- {id: es.diecisiete.num, lemma: diecisiete, pos: num, gloss: seventeen, basis: judgement}
+- {id: es.diecinueve.num, lemma: diecinueve, pos: num, gloss: nineteen, basis: judgement}
+- {id: es.treinta.num, lemma: treinta, pos: num, gloss: thirty, basis: judgement}
+- {id: es.cincuenta.num, lemma: cincuenta, pos: num, gloss: fifty, basis: judgement}
+- {id: es.cuarenta.num, lemma: cuarenta, pos: num, gloss: forty, basis: judgement}
+- {id: es.sesenta.num, lemma: sesenta, pos: num, gloss: sixty, basis: judgement}
+- {id: es.ochenta.num, lemma: ochenta, pos: num, gloss: eighty, basis: judgement}
+- {id: es.setenta.num, lemma: setenta, pos: num, gloss: seventy, basis: judgement}
+- {id: es.noventa.num, lemma: noventa, pos: num, gloss: ninety, basis: judgement}
+- {id: es.veintiuno.num, lemma: veintiuno, pos: num, gloss: twenty-one, basis: judgement}
+- {id: es.tener.verb, lemma: tener, pos: verb, gloss: to have, conj: er, verb_class: [fully-irregular], basis: frequency}
+- {id: es.restar.verb, lemma: restar, pos: verb, gloss: to subtract, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.sumar.verb, lemma: sumar, pos: verb, gloss: to add, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.nuestro.det, lemma: nuestro, pos: det, gloss: our, basis: frequency}
+- {id: es.hombre.noun, lemma: hombre, pos: noun, gender: m, gloss: man, basis: frequency}
+- {id: es.gente.noun, lemma: gente, pos: noun, gender: f, gloss: people, basis: frequency}
+- {id: es.persona.noun, lemma: persona, pos: noun, gender: f, gloss: person, basis: frequency}
+- {id: es.vecino.noun, lemma: vecino, pos: noun, gender: m/f, gloss: neighbor, basis: judgement}
+- {id: es.chico.noun, lemma: chico, pos: noun, gender: m/f, gloss: 'boy, guy', basis: frequency}
+- {id: es.ninho.noun, lemma: niño, pos: noun, gender: m/f, gloss: 'child, boy', basis: frequency}
+- {id: es.chica.noun, lemma: chica, pos: noun, gender: f, gloss: girl, basis: frequency}
+- {id: es.bebe.noun, lemma: bebé, pos: noun, gender: mf, gloss: baby, basis: frequency}
+- {id: es.ninha.noun, lemma: niña, pos: noun, gender: f, gloss: girl, basis: frequency}
+- {id: es.adulto.noun, lemma: adulto, pos: noun, gender: m/f, gloss: adult, basis: judgement}
+- {id: es.padre.noun, lemma: padre, pos: noun, gender: m, gloss: father, basis: frequency}
+- {id: es.hijo.noun, lemma: hijo, pos: noun, gender: m/f, gloss: 'son, child', basis: frequency}
+- {id: es.madre.noun, lemma: madre, pos: noun, gender: f, gloss: mother, basis: frequency}
+- {id: es.mama.noun, lemma: mamá, pos: noun, gender: f, gloss: mom, basis: frequency}
+- {id: es.papa.noun, lemma: papá, pos: noun, gender: m, gloss: dad, basis: frequency}
+- {id: es.hermano.noun, lemma: hermano, pos: noun, gender: m/f, gloss: brother, basis: frequency}
+- {id: es.familia.noun, lemma: familia, pos: noun, gender: f, gloss: family, basis: frequency}
+- {id: es.tio.noun, lemma: tío, pos: noun, gender: m/f, gloss: uncle, basis: frequency}
+- {id: es.hija.noun, lemma: hija, pos: noun, gender: f, gloss: daughter, basis: frequency}
+- {id: es.hermana.noun, lemma: hermana, pos: noun, gender: f, gloss: sister, basis: frequency}
+- {id: es.abuela.noun, lemma: abuela, pos: noun, gender: f, gloss: grandmother, basis: judgement}
+- {id: es.abuelo.noun, lemma: abuelo, pos: noun, gender: m/f, gloss: grandfather, basis: judgement}
+- {id: es.tia.noun, lemma: tía, pos: noun, gender: f, gloss: aunt, basis: judgement}
+- {id: es.primo.noun, lemma: primo, pos: noun, gender: m/f, gloss: cousin, basis: judgement}
+- {id: es.sobrino.noun, lemma: sobrino, pos: noun, gender: m/f, gloss: nephew, basis: judgement}
+- {id: es.gemelo.noun, lemma: gemelo, pos: noun, gender: m/f, gloss: twin, basis: judgement}
+- {id: es.nieto.noun, lemma: nieto, pos: noun, gender: m/f, gloss: 'grandson, grandchild', basis: judgement}
+- {id: es.nieta.noun, lemma: nieta, pos: noun, gender: f, gloss: granddaughter, basis: judgement}
+- {id: es.mujer.noun, lemma: mujer, pos: noun, gender: f, gloss: 'woman, wife', basis: frequency}
+- {id: es.esposa.noun, lemma: esposa, pos: noun, gender: f, gloss: wife, basis: frequency}
+- {id: es.marido.noun, lemma: marido, pos: noun, gender: m, gloss: husband, basis: frequency}
+- {id: es.esposo.noun, lemma: esposo, pos: noun, gender: m/f, gloss: husband, basis: judgement}
+- {id: es.viejo.adj, lemma: viejo, pos: adj, gloss: old, basis: frequency}
+- {id: es.joven.adj, lemma: joven, pos: adj, gloss: young, basis: frequency}
+- {id: es.mayor.adj, lemma: mayor, pos: adj, gloss: 'older, greater', basis: frequency}
+- {id: es.menor.adj, lemma: menor, pos: adj, gloss: 'younger, lesser', basis: judgement}
+- {id: es.novia.noun, lemma: novia, pos: noun, gender: f, gloss: girlfriend; bride, basis: judgement}
+- {id: es.novio.noun, lemma: novio, pos: noun, gender: m, gloss: boyfriend; groom, basis: judgement}
+- {id: es.pareja.noun, lemma: pareja, pos: noun, gender: f, gloss: couple; partner, basis: judgement}
+- {id: es.casado.adj, lemma: casado, pos: adj, gloss: married, basis: judgement}
+- {id: es.soltero.adj, lemma: soltero, pos: adj, gloss: 'single, unmarried', basis: judgement}
+- {id: es.cunhado.noun, lemma: cuñado, pos: noun, gender: m/f, gloss: brother-in-law, basis: judgement}
+- {id: es.suegro.noun, lemma: suegro, pos: noun, gender: m/f, gloss: father-in-law, basis: judgement}
+- {id: es.suegra.noun, lemma: suegra, pos: noun, gender: f, gloss: mother-in-law, basis: judgement}
+- {id: es.padrino.noun, lemma: padrino, pos: noun, gender: m, gloss: godfather, basis: judgement}
+- {id: es.madrina.noun, lemma: madrina, pos: noun, gender: f, gloss: godmother, basis: judgement}
+- {id: es.otro.det, lemma: otro, pos: det, gloss: 'other, another', basis: frequency}
+- {id: es.mismo.adj, lemma: mismo, pos: adj, gloss: same, basis: frequency}
+- {id: es.nuevo.adj, lemma: nuevo, pos: adj, gloss: new, basis: frequency}
+- {id: es.malo.adj, lemma: malo, pos: adj, gloss: bad, basis: frequency}
+- {id: es.grande.adj, lemma: grande, pos: adj, gloss: 'big, large', basis: frequency}
+- {id: es.pequenho.adj, lemma: pequeño, pos: adj, gloss: 'small, little', basis: frequency}
+- {id: es.feliz.adj, lemma: feliz, pos: adj, gloss: happy, basis: frequency}
+- {id: es.miedo.noun, lemma: miedo, pos: noun, gender: m, gloss: fear, basis: frequency}
+- {id: es.tranquilo.adj, lemma: tranquilo, pos: adj, gloss: 'calm, quiet', basis: frequency}
+- {id: es.preocupado.adj, lemma: preocupado, pos: adj, gloss: worried, basis: judgement}
+- {id: es.triste.adj, lemma: triste, pos: adj, gloss: sad, basis: judgement}
+- {id: es.nervioso.adj, lemma: nervioso, pos: adj, gloss: nervous, basis: judgement}
+- {id: es.asustado.adj, lemma: asustado, pos: adj, gloss: scared, basis: judgement}
+- {id: es.contento.adj, lemma: contento, pos: adj, gloss: 'happy, glad', basis: judgement}
+- {id: es.enojado.adj, lemma: enojado, pos: adj, gloss: angry, region_note: 'Spain: enfadado', basis: judgement}
+- {id: es.aburrido.adj, lemma: aburrido, pos: adj, gloss: bored, basis: judgement}
+- {id: es.emocionado.adj, lemma: emocionado, pos: adj, gloss: 'excited, moved', basis: judgement}
+- {id: es.sorprendido.adj, lemma: sorprendido, pos: adj, gloss: surprised, basis: judgement}
+- {id: es.importante.adj, lemma: importante, pos: adj, gloss: important, basis: frequency}
+- {id: es.dificil.adj, lemma: difícil, pos: adj, gloss: 'difficult, hard', basis: frequency}
+- {id: es.facil.adj, lemma: fácil, pos: adj, gloss: easy, basis: frequency}
+- {id: es.bonito.adj, lemma: bonito, pos: adj, gloss: pretty; nice, basis: frequency}
+- {id: es.feo.adj, lemma: feo, pos: adj, gloss: ugly, basis: judgement}
+- {id: es.negro.adj, lemma: negro, pos: adj, gloss: black, basis: frequency}
+- {id: es.blanco.adj, lemma: blanco, pos: adj, gloss: white, basis: frequency}
+- {id: es.rojo.adj, lemma: rojo, pos: adj, gloss: red, basis: judgement}
+- {id: es.color.noun, lemma: color, pos: noun, gender: m, plural: colores, gloss: color, basis: judgement}
+- {id: es.azul.adj, lemma: azul, pos: adj, gloss: blue, basis: judgement}
+- {id: es.verde.adj, lemma: verde, pos: adj, gloss: green, basis: judgement}
+- {id: es.rosa.noun, lemma: rosa, pos: noun, gender: f, gloss: rose, basis: judgement}
+- {id: es.amarillo.adj, lemma: amarillo, pos: adj, gloss: yellow, basis: judgement}
+- {id: es.gris.adj, lemma: gris, pos: adj, gloss: gray, basis: judgement}
+- {id: es.morado.adj, lemma: morado, pos: adj, gloss: purple, basis: judgement}
+- {id: es.en.prep, lemma: en, pos: prep, gloss: in; on; at, basis: frequency}
+- {id: es.sobre.prep, lemma: sobre, pos: prep, gloss: 'on, about', basis: frequency}
+- {id: es.junto.adj, lemma: junto, pos: adj, gloss: together, basis: frequency}
+- {id: es.entre.prep, lemma: entre, pos: prep, gloss: 'between, among', basis: frequency}
+- {id: es.lado.noun, lemma: lado, pos: noun, gender: m, gloss: side, basis: frequency}
+- {id: es.detras.adv, lemma: detrás, pos: adv, gloss: behind, basis: frequency}
+- {id: es.delante.adv, lemma: delante, pos: adv, gloss: 'in front, ahead', basis: judgement}
+- {id: es.enfrente.adv, lemma: enfrente, pos: adv, gloss: opposite, basis: judgement}
+- {id: es.aqui.adv, lemma: aquí, pos: adv, gloss: here, basis: frequency}
+- {id: es.alli.adv, lemma: allí, pos: adv, gloss: there, basis: frequency}
+- {id: es.ese.det, lemma: ese, pos: det, gloss: that (near you), basis: frequency}
+- {id: es.aquel.det, lemma: aquel, pos: det, gloss: that (over there), basis: frequency}
+- {id: es.casa.noun, lemma: casa, pos: noun, gender: f, gloss: 'house, home', basis: frequency}
+- {id: es.habitacion.noun, lemma: habitación, pos: noun, gender: f, plural: habitaciones, gloss: room; bedroom, basis: frequency}
+- {id: es.cuarto.noun, lemma: cuarto, pos: noun, gender: m, gloss: room, basis: frequency}
+- {id: es.banho.noun, lemma: baño, pos: noun, gender: m, gloss: bathroom, basis: judgement}
+- {id: es.sala.noun, lemma: sala, pos: noun, gender: f, gloss: 'living room, hall', basis: judgement}
+- {id: es.cocina.noun, lemma: cocina, pos: noun, gender: f, gloss: kitchen, basis: judgement}
+- {id: es.salon.noun, lemma: salón, pos: noun, gender: m, gloss: 'living room, hall', basis: judgement}
+- {id: es.comedor.noun, lemma: comedor, pos: noun, gender: m, plural: comedores, gloss: dining room, basis: judgement}
+- {id: es.recamara.noun, lemma: recámara, pos: noun, gender: f, gloss: bedroom, region_note: 'Spain: dormitorio', basis: judgement}
+- {id: es.puerta.noun, lemma: puerta, pos: noun, gender: f, gloss: door, basis: frequency}
+- {id: es.ventana.noun, lemma: ventana, pos: noun, gender: f, gloss: window, basis: judgement}
+- {id: es.piso.noun, lemma: piso, pos: noun, gender: m, gloss: floor, region_note: 'Spain: apartment (piso)', basis: judgement}
+- {id: es.pared.noun, lemma: pared, pos: noun, gender: f, gloss: wall, basis: judgement}
+- {id: es.escalera.noun, lemma: escalera, pos: noun, gender: f, gloss: 'stairs, ladder', basis: judgement}
+- {id: es.techo.noun, lemma: techo, pos: noun, gender: m, gloss: 'ceiling, roof', basis: judgement}
+- {id: es.cerca.adv, lemma: cerca, pos: adv, gloss: 'near, close', basis: frequency}
+- {id: es.lejos.adv, lemma: lejos, pos: adv, gloss: 'far, far away', basis: frequency}
+- {id: es.cama.noun, lemma: cama, pos: noun, gender: f, gloss: bed, basis: frequency}
+- {id: es.silla.noun, lemma: silla, pos: noun, gender: f, gloss: chair, basis: judgement}
+- {id: es.escritorio.noun, lemma: escritorio, pos: noun, gender: m, gloss: desk, basis: judgement}
+- {id: es.sofa.noun, lemma: sofá, pos: noun, gender: m, gloss: sofa, basis: judgement}
+- {id: es.sillon.noun, lemma: sillón, pos: noun, gender: m, gloss: 'armchair, sofa', basis: judgement}
+- {id: es.estante.noun, lemma: estante, pos: noun, gender: m, gloss: shelf, region_note: 'Spain: estantería', basis: judgement}
+- {id: es.caja.noun, lemma: caja, pos: noun, gender: f, gloss: box, basis: judgement}
+- {id: es.llave.noun, lemma: llave, pos: noun, gender: f, gloss: key, basis: judgement}
+- {id: es.bolsa.noun, lemma: bolsa, pos: noun, gender: f, gloss: bag, basis: judgement}
+- {id: es.reloj.noun, lemma: reloj, pos: noun, gender: m, plural: relojes, gloss: 'clock, watch', basis: judgement}
+- {id: es.television.noun, lemma: televisión, pos: noun, gender: f, gloss: television, basis: judgement}
+- {id: es.refrigerador.noun, lemma: refrigerador, pos: noun, gender: m, gloss: refrigerator, region_note: 'Spain: nevera', basis: judgement}
+- {id: es.estufa.noun, lemma: estufa, pos: noun, gender: f, gloss: stove (Mex.); heater, region_note: 'Spain: cocina', basis: judgement}
+- {id: es.jardin.noun, lemma: jardín, pos: noun, gender: m, plural: jardines, gloss: garden, basis: judgement}
+- {id: es.patio.noun, lemma: patio, pos: noun, gender: m, gloss: patio; yard, basis: judgement}
+- {id: es.garaje.noun, lemma: garaje, pos: noun, gender: m, gloss: garage, basis: judgement}
+- {id: es.espejo.noun, lemma: espejo, pos: noun, gender: m, gloss: mirror, basis: judgement}
+- {id: es.alfombra.noun, lemma: alfombra, pos: noun, gender: f, gloss: 'rug, carpet', basis: judgement}
+- {id: es.cortina.noun, lemma: cortina, pos: noun, gender: f, gloss: curtain, basis: judgement}
+- {id: es.lampara.noun, lemma: lámpara, pos: noun, gender: f, gloss: lamp, basis: judgement}
+- {id: es.estar.verb, lemma: estar, pos: verb, gloss: 'to be (state, location)', conj: ar, verb_class: [fully-irregular], basis: frequency}
+- {id: es.ir.verb, lemma: ir, pos: verb, gloss: to go, conj: ir, verb_class: [fully-irregular], basis: frequency}
+- {id: es.tiempo.noun, lemma: tiempo, pos: noun, gender: m, gloss: time, basis: frequency}
+- {id: es.anho.noun, lemma: año, pos: noun, gender: m, gloss: year, basis: frequency}
+- {id: es.semana.noun, lemma: semana, pos: noun, gender: f, gloss: week, basis: frequency}
+- {id: es.mes.noun, lemma: mes, pos: noun, gender: m, plural: meses, gloss: month, basis: frequency}
+- {id: es.primero.adj, lemma: primero, pos: adj, gloss: first, basis: frequency}
+- {id: es.segundo.adj, lemma: segundo, pos: adj, gloss: second, basis: frequency}
+- {id: es.tercero.adj, lemma: tercero, pos: adj, gloss: third, basis: judgement}
+- {id: es.quinto.adj, lemma: quinto, pos: adj, gloss: fifth, basis: judgement}
+- {id: es.sexto.adj, lemma: sexto, pos: adj, gloss: sixth, basis: judgement}
+- {id: es.septimo.adj, lemma: séptimo, pos: adj, gloss: seventh, basis: judgement}
+- {id: es.octavo.adj, lemma: octavo, pos: adj, gloss: eighth, basis: judgement}
+- {id: es.decimo.adj, lemma: décimo, pos: adj, gloss: tenth, basis: judgement}
+- {id: es.noveno.adj, lemma: noveno, pos: adj, gloss: ninth, basis: judgement}
+- {id: es.hora.noun, lemma: hora, pos: noun, gender: f, gloss: hour, basis: frequency}
+- {id: es.minuto.noun, lemma: minuto, pos: noun, gender: m, gloss: minute, basis: frequency}
+- {id: es.medianoche.noun, lemma: medianoche, pos: noun, gender: f, gloss: midnight, basis: judgement}
+- {id: es.mediodia.noun, lemma: mediodía, pos: noun, gender: m, gloss: 'noon, midday', basis: judgement}
+- {id: es.hoy.adv, lemma: hoy, pos: adv, gloss: today, basis: frequency}
+- {id: es.anoche.adv, lemma: anoche, pos: adv, gloss: last night, basis: frequency}
+- {id: es.ayer.adv, lemma: ayer, pos: adv, gloss: yesterday, basis: frequency}
+- {id: es.cielo.noun, lemma: cielo, pos: noun, gender: m, gloss: sky; heaven, basis: frequency}
+- {id: es.sol.noun, lemma: sol, pos: noun, gender: m, plural: soles, gloss: sun, basis: judgement}
+- {id: es.viento.noun, lemma: viento, pos: noun, gender: m, gloss: wind, basis: judgement}
+- {id: es.grado.noun, lemma: grado, pos: noun, gender: m, gloss: degree, basis: judgement}
+- {id: es.tormenta.noun, lemma: tormenta, pos: noun, gender: f, gloss: storm, basis: judgement}
+- {id: es.lluvia.noun, lemma: lluvia, pos: noun, gender: f, gloss: rain, basis: judgement}
+- {id: es.nieve.noun, lemma: nieve, pos: noun, gender: f, gloss: snow, basis: judgement}
+- {id: es.nube.noun, lemma: nube, pos: noun, gender: f, gloss: cloud, basis: judgement}
+- {id: es.temperatura.noun, lemma: temperatura, pos: noun, gender: f, gloss: temperature, basis: judgement}
+- {id: es.clima.noun, lemma: clima, pos: noun, gender: m, gloss: 'climate, weather', basis: judgement}
+- {id: es.cumpleanhos.noun, lemma: cumpleaños, pos: noun, gender: m, plural: cumpleaños, gloss: birthday, basis: judgement}
+- {id: es.fecha.noun, lemma: fecha, pos: noun, gender: f, gloss: date, basis: judgement}
+- {id: es.calendario.noun, lemma: calendario, pos: noun, gender: m, gloss: calendar, basis: judgement}
+- {id: es.verano.noun, lemma: verano, pos: noun, gender: m, gloss: summer, basis: judgement}
+- {id: es.invierno.noun, lemma: invierno, pos: noun, gender: m, gloss: winter, basis: judgement}
+- {id: es.primavera.noun, lemma: primavera, pos: noun, gender: f, gloss: spring (season), basis: judgement}
+- {id: es.otonho.noun, lemma: otoño, pos: noun, gender: m, gloss: autumn, basis: judgement}
+- {id: es.domingo.noun, lemma: domingo, pos: noun, gender: m, gloss: Sunday, basis: judgement}
+- {id: es.viernes.noun, lemma: viernes, pos: noun, gender: m, plural: viernes, gloss: Friday, basis: judgement}
+- {id: es.sabado.noun, lemma: sábado, pos: noun, gender: m, gloss: Saturday, basis: judgement}
+- {id: es.lunes.noun, lemma: lunes, pos: noun, gender: m, plural: lunes, gloss: Monday, basis: judgement}
+- {id: es.jueves.noun, lemma: jueves, pos: noun, gender: m, plural: jueves, gloss: Thursday, basis: judgement}
+- {id: es.martes.noun, lemma: martes, pos: noun, gender: m, plural: martes, gloss: Tuesday, basis: judgement}
+- {id: es.miercoles.noun, lemma: miércoles, pos: noun, gender: m, plural: miércoles, gloss: Wednesday, basis: judgement}
+- {id: es.julio.noun, lemma: julio, pos: noun, gender: m, gloss: July, basis: judgement}
+- {id: es.mayo.noun, lemma: mayo, pos: noun, gender: m, gloss: May, basis: judgement}
+- {id: es.septiembre.noun, lemma: septiembre, pos: noun, gender: m, gloss: September, basis: judgement}
+- {id: es.abril.noun, lemma: abril, pos: noun, gender: m, gloss: April, basis: judgement}
+- {id: es.junio.noun, lemma: junio, pos: noun, gender: m, gloss: June, basis: judgement}
+- {id: es.octubre.noun, lemma: octubre, pos: noun, gender: m, gloss: October, basis: judgement}
+- {id: es.agosto.noun, lemma: agosto, pos: noun, gender: m, gloss: August, basis: judgement}
+- {id: es.noviembre.noun, lemma: noviembre, pos: noun, gender: m, gloss: November, basis: judgement}
+- {id: es.marzo.noun, lemma: marzo, pos: noun, gender: m, gloss: March, basis: judgement}
+- {id: es.diciembre.noun, lemma: diciembre, pos: noun, gender: m, gloss: December, basis: judgement}
+- {id: es.enero.noun, lemma: enero, pos: noun, gender: m, gloss: January, basis: judgement}
+- {id: es.febrero.noun, lemma: febrero, pos: noun, gender: m, gloss: February, basis: judgement}
+- {id: es.soleado.adj, lemma: soleado, pos: adj, gloss: sunny, basis: judgement}
+- {id: es.nublado.adj, lemma: nublado, pos: adj, gloss: cloudy, basis: judgement}
+- {id: es.lluvioso.adj, lemma: lluvioso, pos: adj, gloss: rainy, basis: judgement}
+- {id: es.se.pron, lemma: se, pos: pron, gloss: reflexive pronoun; to him/her/them, basis: frequency}
+- {id: es.ya.adv, lemma: ya, pos: adv, gloss: already; now, basis: frequency}
+- {id: es.ahora.adv, lemma: ahora, pos: adv, gloss: now, basis: frequency}
+- {id: es.antes.adv, lemma: antes, pos: adv, gloss: 'before, earlier', basis: frequency}
+- {id: es.despues.adv, lemma: después, pos: adv, gloss: 'after, afterward, later', basis: frequency}
+- {id: es.todavia.adv, lemma: todavía, pos: adv, gloss: 'still, yet', basis: frequency}
+- {id: es.temprano.adv, lemma: temprano, pos: adv, gloss: early, basis: judgement}
+- {id: es.nunca.adv, lemma: nunca, pos: adv, gloss: never, basis: frequency}
+- {id: es.siempre.adv, lemma: siempre, pos: adv, gloss: always, basis: frequency}
+- {id: es.cada.det, lemma: cada, pos: det, gloss: 'each, every', basis: frequency}
+- {id: es.diario.adj, lemma: diario, pos: adj, gloss: daily, basis: judgement}
+- {id: es.semanal.adj, lemma: semanal, pos: adj, gloss: weekly, basis: judgement}
+- {id: es.mensual.adj, lemma: mensual, pos: adj, gloss: monthly, basis: judgement}
+- {id: es.desde.prep, lemma: desde, pos: prep, gloss: 'since, from', basis: frequency}
+- {id: es.durante.prep, lemma: durante, pos: prep, gloss: during, basis: frequency}
+- {id: es.ultimo.adj, lemma: último, pos: adj, gloss: 'last, latest', basis: frequency}
+- {id: es.pasado.adj, lemma: pasado, pos: adj, gloss: 'past, last', basis: frequency}
+- {id: es.proximo.adj, lemma: próximo, pos: adj, gloss: next, basis: frequency}
+- {id: es.trabajar.verb, lemma: trabajar, pos: verb, gloss: to work, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.salir.verb, lemma: salir, pos: verb, gloss: 'to leave, go out', conj: ir, verb_class: [irregular-yo], basis: frequency}
+- {id: es.conocer.verb, lemma: conocer, pos: verb, gloss: 'to know (a person), meet', conj: er, verb_class: [irregular-yo], basis: frequency}
+- {id: es.llegar.verb, lemma: llegar, pos: verb, gloss: to arrive, conj: ar, verb_class: [spell-g-gu], basis: frequency}
+- {id: es.terminar.verb, lemma: terminar, pos: verb, gloss: 'to finish, to end', conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.durar.verb, lemma: durar, pos: verb, gloss: to last, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.cenar.verb, lemma: cenar, pos: verb, gloss: to have dinner, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.estudiar.verb, lemma: estudiar, pos: verb, gloss: to study, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.descansar.verb, lemma: descansar, pos: verb, gloss: to rest, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.cocinar.verb, lemma: cocinar, pos: verb, gloss: to cook, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.nacer.verb, lemma: nacer, pos: verb, gloss: to be born, conj: er, verb_class: [irregular-yo], basis: judgement}
+- {id: es.desayunar.verb, lemma: desayunar, pos: verb, gloss: to have breakfast, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.llamarse.verb, lemma: llamarse, pos: verb, gloss: to be called, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.casarse.verb, lemma: casarse, pos: verb, gloss: to get married, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.levantarse.verb, lemma: levantarse, pos: verb, gloss: to get up, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.ducharse.verb, lemma: ducharse, pos: verb, gloss: to take a shower, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.banharse.verb, lemma: bañarse, pos: verb, gloss: to take a bath, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.lavarse.verb, lemma: lavarse, pos: verb, gloss: to wash oneself, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.peinarse.verb, lemma: peinarse, pos: verb, gloss: to comb one's hair, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.quedarse.verb, lemma: quedarse, pos: verb, gloss: to stay, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.ponerse.verb, lemma: ponerse, pos: verb, gloss: to put on (clothes), conj: er, verb_class: [irregular-yo, irregular-preterite, irregular-participle], basis: judgement}
+- {id: es.agua.noun, lemma: agua, pos: noun, gender: f, gloss: water, basis: frequency}
+- {id: es.vino.noun, lemma: vino, pos: noun, gender: m, gloss: wine, basis: frequency}
+- {id: es.cafe.noun, lemma: café, pos: noun, gender: m, gloss: coffee, basis: frequency}
+- {id: es.cerveza.noun, lemma: cerveza, pos: noun, gender: f, gloss: beer, basis: judgement}
+- {id: es.te.noun, lemma: té, pos: noun, gender: m, plural: tés, gloss: tea, basis: judgement}
+- {id: es.bebida.noun, lemma: bebida, pos: noun, gender: f, gloss: 'drink, beverage', basis: judgement}
+- {id: es.leche.noun, lemma: leche, pos: noun, gender: f, gloss: milk, basis: judgement}
+- {id: es.jugo.noun, lemma: jugo, pos: noun, gender: m, gloss: juice, region_note: 'Spain: zumo', basis: judgement}
+- {id: es.refresco.noun, lemma: refresco, pos: noun, gender: m, gloss: soft drink, basis: judgement}
+- {id: es.sal.noun, lemma: sal, pos: noun, gender: f, plural: sales, gloss: salt, basis: judgement}
+- {id: es.azucar.noun, lemma: azúcar, pos: noun, gender: m, plural: azúcares, gloss: sugar, basis: judgement}
+- {id: es.carne.noun, lemma: carne, pos: noun, gender: f, gloss: meat, basis: judgement}
+- {id: es.pollo.noun, lemma: pollo, pos: noun, gender: m, gloss: chicken, basis: judgement}
+- {id: es.cerdo.noun, lemma: cerdo, pos: noun, gender: m/f, gloss: pig, basis: judgement}
+- {id: es.pescado.noun, lemma: pescado, pos: noun, gender: m, gloss: fish (as food), basis: judgement}
+- {id: es.jamon.noun, lemma: jamón, pos: noun, gender: m, plural: jamones, gloss: ham, basis: judgement}
+- {id: es.res.noun, lemma: res, pos: noun, gender: f, plural: reses, gloss: head of cattle, basis: judgement}
+- {id: es.papa.noun-2, lemma: papa, pos: noun, gender: f, gloss: potato, region_note: 'Spain: patata', basis: judgement}
+- {id: es.tomate.noun, lemma: tomate, pos: noun, gender: m, gloss: tomato, region_note: 'Spain: tomate (Mex: jitomate)', basis: judgement}
+- {id: es.maiz.noun, lemma: maíz, pos: noun, gender: m, plural: maíces, gloss: corn, basis: judgement}
+- {id: es.cebolla.noun, lemma: cebolla, pos: noun, gender: f, gloss: onion, basis: judgement}
+- {id: es.verdura.noun, lemma: verdura, pos: noun, gender: f, gloss: vegetable; greens, basis: judgement}
+- {id: es.zanahoria.noun, lemma: zanahoria, pos: noun, gender: f, gloss: carrot, basis: judgement}
+- {id: es.chile.noun, lemma: chile, pos: noun, gender: m, gloss: chili pepper, basis: judgement}
+- {id: es.lechuga.noun, lemma: lechuga, pos: noun, gender: f, gloss: lettuce, basis: judgement}
+- {id: es.aguacate.noun, lemma: aguacate, pos: noun, gender: m, gloss: avocado, basis: judgement}
+- {id: es.pan.noun, lemma: pan, pos: noun, gender: m, gloss: bread, basis: judgement}
+- {id: es.queso.noun, lemma: queso, pos: noun, gender: m, gloss: cheese, basis: judgement}
+- {id: es.huevo.noun, lemma: huevo, pos: noun, gender: m, gloss: egg, basis: judgement}
+- {id: es.arroz.noun, lemma: arroz, pos: noun, gender: m, plural: arroces, gloss: rice, basis: judgement}
+- {id: es.frijol.noun, lemma: frijol, pos: noun, gender: m, gloss: bean, region_note: 'Spain: judía', basis: judgement}
+- {id: es.tortilla.noun, lemma: tortilla, pos: noun, gender: f, gloss: tortilla, basis: judgement}
+- {id: es.naranja.noun, lemma: naranja, pos: noun, gender: f, gloss: orange, basis: judgement}
+- {id: es.manzana.noun, lemma: manzana, pos: noun, gender: f, gloss: apple, basis: judgement}
+- {id: es.fruta.noun, lemma: fruta, pos: noun, gender: f, gloss: fruit, basis: judgement}
+- {id: es.limon.noun, lemma: limón, pos: noun, gender: m, plural: limones, gloss: 'lime, lemon', basis: judgement}
+- {id: es.uva.noun, lemma: uva, pos: noun, gender: f, gloss: grape, basis: judgement}
+- {id: es.platano.noun, lemma: plátano, pos: noun, gender: m, gloss: banana, region_note: 'Spain: plátano (banana)', basis: judgement}
+- {id: es.fresa.noun, lemma: fresa, pos: noun, gender: f, gloss: strawberry, region_note: 'Spain: fresa (also)', basis: judgement}
+- {id: es.mango.noun, lemma: mango, pos: noun, gender: m, gloss: mango, basis: judgement}
+- {id: es.pinha.noun, lemma: piña, pos: noun, gender: f, gloss: pineapple, region_note: 'Spain: ananás/piña', basis: judgement}
+- {id: es.sandia.noun, lemma: sandía, pos: noun, gender: f, gloss: watermelon, basis: judgement}
+- {id: es.cuenta.noun, lemma: cuenta, pos: noun, gender: f, gloss: 'bill, check', basis: frequency}
+- {id: es.restaurante.noun, lemma: restaurante, pos: noun, gender: m, gloss: restaurant, basis: judgement}
+- {id: es.menu.noun, lemma: menú, pos: noun, gender: m, plural: menús, gloss: menu, basis: judgement}
+- {id: es.propina.noun, lemma: propina, pos: noun, gender: f, gloss: tip (gratuity), basis: judgement}
+- {id: es.mesero.noun, lemma: mesero, pos: noun, gender: m/f, gloss: waiter, region_note: 'Spain: camarero', basis: judgement}
+- {id: es.comida.noun, lemma: comida, pos: noun, gender: f, gloss: food; meal, basis: frequency}
+- {id: es.cena.noun, lemma: cena, pos: noun, gender: f, gloss: dinner, basis: judgement}
+- {id: es.almuerzo.noun, lemma: almuerzo, pos: noun, gender: m, gloss: lunch, basis: judgement}
+- {id: es.desayuno.noun, lemma: desayuno, pos: noun, gender: m, gloss: breakfast, basis: judgement}
+- {id: es.dulce.adj, lemma: dulce, pos: adj, gloss: sweet, basis: judgement}
+- {id: es.rico.adj, lemma: rico, pos: adj, gloss: rich, basis: judgement}
+- {id: es.caliente.adj, lemma: caliente, pos: adj, gloss: 'hot, warm', basis: judgement}
+- {id: es.fresco.adj, lemma: fresco, pos: adj, gloss: 'fresh, cool', basis: judgement}
+- {id: es.delicioso.adj, lemma: delicioso, pos: adj, gloss: delicious, basis: judgement}
+- {id: es.salado.adj, lemma: salado, pos: adj, gloss: salty, basis: judgement}
+- {id: es.mesa.noun, lemma: mesa, pos: noun, gender: f, gloss: table, basis: judgement}
+- {id: es.cuchillo.noun, lemma: cuchillo, pos: noun, gender: m, gloss: knife, basis: judgement}
+- {id: es.plato.noun, lemma: plato, pos: noun, gender: m, gloss: 'plate, dish', basis: judgement}
+- {id: es.vaso.noun, lemma: vaso, pos: noun, gender: m, gloss: glass (drinking), basis: judgement}
+- {id: es.taza.noun, lemma: taza, pos: noun, gender: f, gloss: 'cup, mug', basis: judgement}
+- {id: es.cuchara.noun, lemma: cuchara, pos: noun, gender: f, gloss: spoon, basis: judgement}
+- {id: es.tenedor.noun, lemma: tenedor, pos: noun, gender: m, gloss: fork, basis: judgement}
+- {id: es.servilleta.noun, lemma: servilleta, pos: noun, gender: f, gloss: napkin, basis: judgement}
+- {id: es.pizza.noun, lemma: pizza, pos: noun, gender: f, gloss: pizza, basis: judgement}
+- {id: es.sopa.noun, lemma: sopa, pos: noun, gender: f, gloss: soup, basis: judgement}
+- {id: es.sandwich.noun, lemma: sándwich, pos: noun, gender: m, plural: sándwiches, gloss: sandwich, basis: judgement}
+- {id: es.ensalada.noun, lemma: ensalada, pos: noun, gender: f, gloss: salad, basis: judgement}
+- {id: es.postre.noun, lemma: postre, pos: noun, gender: m, gloss: dessert, basis: judgement}
+- {id: es.taco.noun, lemma: taco, pos: noun, gender: m, gloss: taco, basis: judgement}
+- {id: es.comer.verb, lemma: comer, pos: verb, gloss: to eat, conj: er, verb_class: [regular-er], basis: frequency}
+- {id: es.volver.verb, lemma: volver, pos: verb, gloss: 'to return, come back', conj: er, verb_class: [stem-o-ue, irregular-participle], basis: frequency}
+- {id: es.sentir.verb, lemma: sentir, pos: verb, gloss: to feel, conj: ir, verb_class: [stem-e-ie], basis: frequency}
+- {id: es.tomar.verb, lemma: tomar, pos: verb, gloss: to take, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.entender.verb, lemma: entender, pos: verb, gloss: to understand, conj: er, verb_class: [stem-e-ie], basis: frequency}
+- {id: es.contar.verb, lemma: contar, pos: verb, gloss: to tell; to count, conj: ar, verb_class: [stem-o-ue], basis: frequency}
+- {id: es.pedir.verb, lemma: pedir, pos: verb, gloss: 'to ask for, to order', conj: ir, verb_class: [stem-e-i], basis: frequency}
+- {id: es.empezar.verb, lemma: empezar, pos: verb, gloss: 'to begin, to start', conj: ar, verb_class: [stem-e-ie, spell-z-c], basis: frequency}
+- {id: es.beber.verb, lemma: beber, pos: verb, gloss: to drink, conj: er, verb_class: [regular-er], basis: frequency}
+- {id: es.dormir.verb, lemma: dormir, pos: verb, gloss: to sleep, conj: ir, verb_class: [stem-o-ue], basis: frequency}
+- {id: es.preparar.verb, lemma: preparar, pos: verb, gloss: to prepare, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.almorzar.verb, lemma: almorzar, pos: verb, gloss: to have lunch, conj: ar, verb_class: [stem-o-ue, spell-z-c], basis: judgement}
+- {id: es.nevar.verb, lemma: nevar, pos: verb, gloss: to snow, conj: ar, verb_class: [stem-e-ie], basis: judgement}
+- {id: es.llover.verb, lemma: llover, pos: verb, gloss: to rain, conj: er, verb_class: [stem-o-ue], basis: judgement}
+- {id: es.despertarse.verb, lemma: despertarse, pos: verb, gloss: to wake up, conj: ar, verb_class: [stem-e-ie], basis: judgement}
+- {id: es.vestirse.verb, lemma: vestirse, pos: verb, gloss: to get dressed, conj: ir, verb_class: [stem-e-i], basis: judgement}
+- {id: es.acostarse.verb, lemma: acostarse, pos: verb, gloss: to go to bed, conj: ar, verb_class: [stem-o-ue], basis: judgement}
+- {id: es.sentarse.verb, lemma: sentarse, pos: verb, gloss: to sit down, conj: ar, verb_class: [stem-e-ie], basis: judgement}
+- {id: es.divertirse.verb, lemma: divertirse, pos: verb, gloss: to have fun, conj: ir, verb_class: [stem-e-ie, stem-e-i], basis: judgement}
+- {id: es.equipo.noun, lemma: equipo, pos: noun, gender: m, gloss: team, basis: frequency}
+- {id: es.partido.noun, lemma: partido, pos: noun, gender: m, gloss: 'match, game', basis: judgement}
+- {id: es.futbol.noun, lemma: fútbol, pos: noun, gender: m, gloss: soccer, basis: judgement}
+- {id: es.pelota.noun, lemma: pelota, pos: noun, gender: f, gloss: ball, basis: judgement}
+- {id: es.deporte.noun, lemma: deporte, pos: noun, gender: m, gloss: sport, basis: judgement}
+- {id: es.beisbol.noun, lemma: béisbol, pos: noun, gender: m, gloss: baseball, basis: judgement}
+- {id: es.tenis.noun, lemma: tenis, pos: noun, gender: m, plural: tenis, gloss: tennis, region_note: 'Spain: zapatillas', basis: judgement}
+- {id: es.baloncesto.noun, lemma: baloncesto, pos: noun, gender: m, gloss: basketball, basis: judgement}
+- {id: es.juego.noun, lemma: juego, pos: noun, gender: m, gloss: game, basis: frequency}
+- {id: es.fiesta.noun, lemma: fiesta, pos: noun, gender: f, gloss: party, basis: frequency}
+- {id: es.foto.noun, lemma: foto, pos: noun, gender: f, gloss: photo, basis: frequency}
+- {id: es.pelicula.noun, lemma: película, pos: noun, gender: f, gloss: movie, basis: frequency}
+- {id: es.musica.noun, lemma: música, pos: noun, gender: f, gloss: music, basis: frequency}
+- {id: es.cancion.noun, lemma: canción, pos: noun, gender: f, plural: canciones, gloss: song, basis: judgement}
+- {id: es.baile.noun, lemma: baile, pos: noun, gender: m, gloss: dance, basis: judgement}
+- {id: es.radio.noun, lemma: radio, pos: noun, gender: f, gloss: radio, basis: judgement}
+- {id: es.concierto.noun, lemma: concierto, pos: noun, gender: m, gloss: concert, basis: judgement}
+- {id: es.piano.noun, lemma: piano, pos: noun, gender: m, gloss: piano, basis: judgement}
+- {id: es.guitarra.noun, lemma: guitarra, pos: noun, gender: f, gloss: guitar, basis: judgement}
+- {id: es.pasatiempo.noun, lemma: pasatiempo, pos: noun, gender: m, gloss: 'hobby, pastime', basis: judgement}
+- {id: es.nadar.verb, lemma: nadar, pos: verb, gloss: to swim, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.gustar.verb, lemma: gustar, pos: verb, gloss: 'to be pleasing, to like', conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.escuchar.verb, lemma: escuchar, pos: verb, gloss: to listen to, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.perder.verb, lemma: perder, pos: verb, gloss: to lose, conj: er, verb_class: [stem-e-ie], basis: frequency}
+- {id: es.jugar.verb, lemma: jugar, pos: verb, gloss: to play, conj: ar, verb_class: [stem-u-ue, spell-g-gu], basis: frequency}
+- {id: es.ganar.verb, lemma: ganar, pos: verb, gloss: to win, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.tocar.verb, lemma: tocar, pos: verb, gloss: to touch, conj: ar, verb_class: [spell-c-qu], basis: frequency}
+- {id: es.correr.verb, lemma: correr, pos: verb, gloss: to run, conj: er, verb_class: [regular-er], basis: frequency}
+- {id: es.bailar.verb, lemma: bailar, pos: verb, gloss: to dance, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.cantar.verb, lemma: cantar, pos: verb, gloss: to sing, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.preferir.verb, lemma: preferir, pos: verb, gloss: to prefer, conj: ir, verb_class: [stem-e-ie], basis: frequency}
+- {id: es.pintar.verb, lemma: pintar, pos: verb, gloss: to paint, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.dibujar.verb, lemma: dibujar, pos: verb, gloss: to draw, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.coche.noun, lemma: coche, pos: noun, gender: m, gloss: car, basis: frequency}
+- {id: es.barco.noun, lemma: barco, pos: noun, gender: m, gloss: boat; ship, basis: judgement}
+- {id: es.avion.noun, lemma: avión, pos: noun, gender: m, plural: aviones, gloss: airplane, basis: judgement}
+- {id: es.tren.noun, lemma: tren, pos: noun, gender: m, plural: trenes, gloss: train, basis: judgement}
+- {id: es.metro.noun, lemma: metro, pos: noun, gender: m, gloss: subway; meter, basis: judgement}
+- {id: es.camion.noun, lemma: camión, pos: noun, gender: m, gloss: truck, region_note: 'Spain: autobús', basis: judgement}
+- {id: es.taxi.noun, lemma: taxi, pos: noun, gender: m, gloss: taxi, basis: judgement}
+- {id: es.autobus.noun, lemma: autobús, pos: noun, gender: m, plural: autobuses, gloss: bus, basis: judgement}
+- {id: es.carro.noun, lemma: carro, pos: noun, gender: m, gloss: car, region_note: 'Spain: coche', basis: judgement}
+- {id: es.bicicleta.noun, lemma: bicicleta, pos: noun, gender: f, gloss: bicycle, basis: judgement}
+- {id: es.moto.noun, lemma: moto, pos: noun, gender: f, gloss: motorcycle, register: colloquial, basis: judgement}
+- {id: es.pueblo.noun, lemma: pueblo, pos: noun, gender: m, gloss: 'town, village', basis: frequency}
+- {id: es.calle.noun, lemma: calle, pos: noun, gender: f, gloss: street, basis: frequency}
+- {id: es.centro.noun, lemma: centro, pos: noun, gender: m, gloss: 'center, downtown', basis: judgement}
+- {id: es.parque.noun, lemma: parque, pos: noun, gender: m, gloss: park, basis: judgement}
+- {id: es.esquina.noun, lemma: esquina, pos: noun, gender: f, gloss: corner (street), basis: judgement}
+- {id: es.barrio.noun, lemma: barrio, pos: noun, gender: m, gloss: neighborhood, basis: judgement}
+- {id: es.plaza.noun, lemma: plaza, pos: noun, gender: f, gloss: 'square, plaza', basis: judgement}
+- {id: es.avenida.noun, lemma: avenida, pos: noun, gender: f, gloss: avenue, basis: judgement}
+- {id: es.campo.noun, lemma: campo, pos: noun, gender: m, gloss: countryside, basis: frequency}
+- {id: es.playa.noun, lemma: playa, pos: noun, gender: f, gloss: beach, basis: judgement}
+- {id: es.hotel.noun, lemma: hotel, pos: noun, gender: m, gloss: hotel, basis: judgement}
+- {id: es.edificio.noun, lemma: edificio, pos: noun, gender: m, gloss: building, basis: judgement}
+- {id: es.banco.noun, lemma: banco, pos: noun, gender: m, gloss: bank, basis: judgement}
+- {id: es.iglesia.noun, lemma: iglesia, pos: noun, gender: f, gloss: church, basis: judgement}
+- {id: es.cine.noun, lemma: cine, pos: noun, gender: m, gloss: movie theater, basis: judgement}
+- {id: es.correo.noun, lemma: correo, pos: noun, gender: m, gloss: mail, basis: judgement}
+- {id: es.teatro.noun, lemma: teatro, pos: noun, gender: m, gloss: theater, basis: judgement}
+- {id: es.supermercado.noun, lemma: supermercado, pos: noun, gender: m, gloss: supermarket, basis: judgement}
+- {id: es.biblioteca.noun, lemma: biblioteca, pos: noun, gender: f, gloss: library, basis: judgement}
+- {id: es.museo.noun, lemma: museo, pos: noun, gender: m, gloss: museum, basis: judgement}
+- {id: es.estadio.noun, lemma: estadio, pos: noun, gender: m, gloss: stadium, basis: judgement}
+- {id: es.estacion.noun, lemma: estación, pos: noun, gender: f, gloss: station, basis: judgement}
+- {id: es.aeropuerto.noun, lemma: aeropuerto, pos: noun, gender: m, gloss: airport, basis: judgement}
+- {id: es.parada.noun, lemma: parada, pos: noun, gender: f, gloss: stop (bus stop), basis: judgement}
+- {id: es.puente.noun, lemma: puente, pos: noun, gender: m, gloss: bridge, basis: judgement}
+- {id: es.carretera.noun, lemma: carretera, pos: noun, gender: f, gloss: 'highway, road', basis: judgement}
+- {id: es.a.prep, lemma: a, pos: prep, gloss: to; at, basis: frequency}
+- {id: es.oeste.noun, lemma: oeste, pos: noun, gender: m, gloss: west, basis: frequency}
+- {id: es.sur.noun, lemma: sur, pos: noun, gender: m, plural: sures, gloss: south, basis: frequency}
+- {id: es.norte.noun, lemma: norte, pos: noun, gender: m, gloss: north, basis: judgement}
+- {id: es.hacia.prep, lemma: hacia, pos: prep, gloss: toward, basis: frequency}
+- {id: es.derecha.noun, lemma: derecha, pos: noun, gender: f, gloss: right (direction), basis: judgement}
+- {id: es.izquierda.noun, lemma: izquierda, pos: noun, gender: f, gloss: left (direction), basis: judgement}
+- {id: es.mapa.noun, lemma: mapa, pos: noun, gender: m, gloss: map, basis: judgement}
+- {id: es.recto.adj, lemma: recto, pos: adj, gloss: straight, basis: judgement}
+- {id: es.viaje.noun, lemma: viaje, pos: noun, gender: m, gloss: 'trip, journey', basis: frequency}
+- {id: es.vuelo.noun, lemma: vuelo, pos: noun, gender: m, gloss: flight, basis: judgement}
+- {id: es.maleta.noun, lemma: maleta, pos: noun, gender: f, gloss: suitcase, basis: judgement}
+- {id: es.boleto.noun, lemma: boleto, pos: noun, gender: m, gloss: ticket, region_note: 'Spain: billete', basis: judgement}
+- {id: es.pasaporte.noun, lemma: pasaporte, pos: noun, gender: m, gloss: passport, basis: judgement}
+- {id: es.equipaje.noun, lemma: equipaje, pos: noun, gender: m, gloss: luggage, basis: judgement}
+- {id: es.turista.noun, lemma: turista, pos: noun, gender: mf, gloss: tourist, basis: judgement}
+- {id: es.pasar.verb, lemma: pasar, pos: verb, gloss: to pass; to happen, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.esperar.verb, lemma: esperar, pos: verb, gloss: to wait; to hope, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.quedar.verb, lemma: quedar, pos: verb, gloss: 'to remain, be left', conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.seguir.verb, lemma: seguir, pos: verb, gloss: to follow, conj: ir, verb_class: [stem-e-i], basis: frequency}
+- {id: es.entrar.verb, lemma: entrar, pos: verb, gloss: to enter, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.preguntar.verb, lemma: preguntar, pos: verb, gloss: to ask, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.buscar.verb, lemma: buscar, pos: verb, gloss: to look for, conj: ar, verb_class: [spell-c-qu], basis: frequency}
+- {id: es.bajar.verb, lemma: bajar, pos: verb, gloss: 'to go down, to lower', conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.caminar.verb, lemma: caminar, pos: verb, gloss: to walk, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.subir.verb, lemma: subir, pos: verb, gloss: 'to go up, to climb', conj: ir, verb_class: [regular-ir], basis: frequency}
+- {id: es.viajar.verb, lemma: viajar, pos: verb, gloss: to travel, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.visitar.verb, lemma: visitar, pos: verb, gloss: to visit, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.conducir.verb, lemma: conducir, pos: verb, gloss: to drive, conj: ir, verb_class: [irregular-yo, irregular-preterite], basis: judgement}
+- {id: es.cruzar.verb, lemma: cruzar, pos: verb, gloss: to cross, conj: ar, verb_class: [spell-z-c], basis: judgement}
+- {id: es.doblar.verb, lemma: doblar, pos: verb, gloss: to fold, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.girar.verb, lemma: girar, pos: verb, gloss: 'to spin, to turn', conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.dinero.noun, lemma: dinero, pos: noun, gender: m, gloss: money, basis: frequency}
+- {id: es.dolar.noun, lemma: dólar, pos: noun, gender: m, plural: dólares, gloss: dollar, basis: frequency}
+- {id: es.precio.noun, lemma: precio, pos: noun, gender: m, gloss: price, basis: judgement}
+- {id: es.peso.noun, lemma: peso, pos: noun, gender: m, gloss: weight, basis: judgement}
+- {id: es.centavo.noun, lemma: centavo, pos: noun, gender: m, gloss: 'cent, centavo', basis: judgement}
+- {id: es.moneda.noun, lemma: moneda, pos: noun, gender: f, gloss: coin; currency, basis: judgement}
+- {id: es.billete.noun, lemma: billete, pos: noun, gender: m, gloss: banknote; ticket, basis: judgement}
+- {id: es.caro.adj, lemma: caro, pos: adj, gloss: expensive, basis: frequency}
+- {id: es.gratis.adj, lemma: gratis, pos: adj, gloss: free (no cost), basis: judgement}
+- {id: es.barato.adj, lemma: barato, pos: adj, gloss: cheap, basis: judgement}
+- {id: es.cambio.noun, lemma: cambio, pos: noun, gender: m, gloss: change, basis: frequency}
+- {id: es.tarjeta.noun, lemma: tarjeta, pos: noun, gender: f, gloss: card, basis: judgement}
+- {id: es.efectivo.adj, lemma: efectivo, pos: adj, gloss: effective, basis: judgement}
+- {id: es.ropa.noun, lemma: ropa, pos: noun, gender: f, gloss: clothes, basis: frequency}
+- {id: es.vestido.noun, lemma: vestido, pos: noun, gender: m, gloss: dress, basis: judgement}
+- {id: es.zapato.noun, lemma: zapato, pos: noun, gender: m, gloss: shoe, basis: judgement}
+- {id: es.pantalon.noun, lemma: pantalón, pos: noun, gender: m, plural: pantalones, gloss: 'pants, trousers', basis: judgement}
+- {id: es.sombrero.noun, lemma: sombrero, pos: noun, gender: m, gloss: hat, basis: judgement}
+- {id: es.camisa.noun, lemma: camisa, pos: noun, gender: f, gloss: shirt, basis: judgement}
+- {id: es.abrigo.noun, lemma: abrigo, pos: noun, gender: m, gloss: coat, basis: judgement}
+- {id: es.camiseta.noun, lemma: camiseta, pos: noun, gender: f, gloss: T-shirt, basis: judgement}
+- {id: es.calcetin.noun, lemma: calcetín, pos: noun, gender: m, plural: calcetines, gloss: sock, basis: judgement}
+- {id: es.falda.noun, lemma: falda, pos: noun, gender: f, gloss: skirt, basis: judgement}
+- {id: es.bota.noun, lemma: bota, pos: noun, gender: f, gloss: boot, basis: judgement}
+- {id: es.gorra.noun, lemma: gorra, pos: noun, gender: f, gloss: cap, basis: judgement}
+- {id: es.sueter.noun, lemma: suéter, pos: noun, gender: m, gloss: sweater, region_note: 'Spain: jersey', basis: judgement}
+- {id: es.playera.noun, lemma: playera, pos: noun, gender: f, gloss: T-shirt, region_note: 'Spain: camiseta', basis: judgement}
+- {id: es.short.noun, lemma: short, pos: noun, gender: m, gloss: shorts, region_note: 'Spain: pantalón corto', basis: judgement}
+- {id: es.chamarra.noun, lemma: chamarra, pos: noun, gender: f, gloss: jacket, region_note: 'Spain: chaqueta', basis: judgement}
+- {id: es.tienda.noun, lemma: tienda, pos: noun, gender: f, gloss: store; shop, basis: judgement}
+- {id: es.mercado.noun, lemma: mercado, pos: noun, gender: m, gloss: market, basis: judgement}
+- {id: es.necesitar.verb, lemma: necesitar, pos: verb, gloss: to need, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.pagar.verb, lemma: pagar, pos: verb, gloss: to pay, conj: ar, verb_class: [spell-g-gu], basis: frequency}
+- {id: es.comprar.verb, lemma: comprar, pos: verb, gloss: to buy, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.vender.verb, lemma: vender, pos: verb, gloss: to sell, conj: er, verb_class: [regular-er], basis: frequency}
+- {id: es.costar.verb, lemma: costar, pos: verb, gloss: to cost, conj: ar, verb_class: [stem-o-ue], basis: judgement}
+- {id: es.gastar.verb, lemma: gastar, pos: verb, gloss: to spend (money), conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.trabajo.noun, lemma: trabajo, pos: noun, gender: m, gloss: 'job, work', basis: frequency}
+- {id: es.empresa.noun, lemma: empresa, pos: noun, gender: f, gloss: 'company, business', basis: judgement}
+- {id: es.policia.noun, lemma: policía, pos: noun, gender: mf, gloss: police officer, basis: frequency}
+- {id: es.abogado.noun, lemma: abogado, pos: noun, gender: m/f, gloss: lawyer, basis: frequency}
+- {id: es.artista.noun, lemma: artista, pos: noun, gender: mf, gloss: artist, basis: judgement}
+- {id: es.cantante.noun, lemma: cantante, pos: noun, gender: mf, gloss: singer, basis: judgement}
+- {id: es.ingeniero.noun, lemma: ingeniero, pos: noun, gender: m/f, gloss: engineer, basis: judgement}
+- {id: es.bombero.noun, lemma: bombero, pos: noun, gender: m/f, gloss: firefighter, basis: judgement}
+- {id: es.cocinero.noun, lemma: cocinero, pos: noun, gender: m/f, gloss: cook; chef, basis: judgement}
+- {id: es.profesion.noun, lemma: profesión, pos: noun, gender: f, gloss: profession, basis: judgement}
+- {id: es.dentista.noun, lemma: dentista, pos: noun, gender: mf, gloss: dentist, basis: judgement}
+- {id: es.jefe.noun, lemma: jefe, pos: noun, gender: m/f, gloss: boss, basis: frequency}
+- {id: es.clase.noun, lemma: clase, pos: noun, gender: f, gloss: class, basis: frequency}
+- {id: es.escuela.noun, lemma: escuela, pos: noun, gender: f, gloss: school, basis: frequency}
+- {id: es.universidad.noun, lemma: universidad, pos: noun, gender: f, gloss: university, basis: frequency}
+- {id: es.colegio.noun, lemma: colegio, pos: noun, gender: m, gloss: school, basis: judgement}
+- {id: es.telefono.noun, lemma: teléfono, pos: noun, gender: m, gloss: telephone, basis: frequency}
+- {id: es.mensaje.noun, lemma: mensaje, pos: noun, gender: m, gloss: message, basis: frequency}
+- {id: es.camara.noun, lemma: cámara, pos: noun, gender: f, gloss: camera, basis: judgement}
+- {id: es.computadora.noun, lemma: computadora, pos: noun, gender: f, gloss: computer, region_note: 'Spain: ordenador', basis: judgement}
+- {id: es.raton.noun, lemma: ratón, pos: noun, gender: m, plural: ratones, gloss: mouse, basis: judgement}
+- {id: es.internet.noun, lemma: internet, pos: noun, gender: m, gloss: internet, basis: judgement}
+- {id: es.celular.noun, lemma: celular, pos: noun, gender: m, gloss: cell phone, region_note: 'Spain: móvil', basis: judgement}
+- {id: es.pantalla.noun, lemma: pantalla, pos: noun, gender: f, gloss: screen, basis: judgement}
+- {id: es.teclado.noun, lemma: teclado, pos: noun, gender: m, gloss: keyboard, basis: judgement}
+- {id: es.libro.noun, lemma: libro, pos: noun, gender: m, gloss: book, basis: frequency}
+- {id: es.cuaderno.noun, lemma: cuaderno, pos: noun, gender: m, gloss: notebook, basis: judgement}
+- {id: es.oficina.noun, lemma: oficina, pos: noun, gender: f, gloss: office, basis: frequency}
+- {id: es.maestro.noun, lemma: maestro, pos: noun, gender: m/f, gloss: teacher, basis: judgement}
+- {id: es.alumno.noun, lemma: alumno, pos: noun, gender: m/f, gloss: 'student, pupil', basis: judgement}
+- {id: es.examen.noun, lemma: examen, pos: noun, gender: m, plural: exámenes, gloss: exam, basis: judgement}
+- {id: es.tarea.noun, lemma: tarea, pos: noun, gender: f, gloss: 'task, homework', basis: judgement}
+- {id: es.leccion.noun, lemma: lección, pos: noun, gender: f, gloss: lesson, basis: judgement}
+- {id: es.pluma.noun, lemma: pluma, pos: noun, gender: f, gloss: feather, basis: judgement}
+- {id: es.lapiz.noun, lemma: lápiz, pos: noun, gender: m, plural: lápices, gloss: pencil, basis: judgement}
+- {id: es.mochila.noun, lemma: mochila, pos: noun, gender: f, gloss: backpack, basis: judgement}
+- {id: es.pizarra.noun, lemma: pizarra, pos: noun, gender: f, gloss: blackboard, basis: judgement}
+- {id: es.usar.verb, lemma: usar, pos: verb, gloss: to use, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.leer.verb, lemma: leer, pos: verb, gloss: to read, conj: er, verb_class: [spell-i-y], basis: frequency}
+- {id: es.escribir.verb, lemma: escribir, pos: verb, gloss: to write, conj: ir, verb_class: [irregular-participle], basis: frequency}
+- {id: es.ensenhar.verb, lemma: enseñar, pos: verb, gloss: to teach, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.aprender.verb, lemma: aprender, pos: verb, gloss: to learn, conj: er, verb_class: [regular-er], basis: frequency}
+- {id: es.mano.noun, lemma: mano, pos: noun, gender: f, gloss: hand, basis: frequency}
+- {id: es.cabeza.noun, lemma: cabeza, pos: noun, gender: f, gloss: head, basis: frequency}
+- {id: es.ojo.noun, lemma: ojo, pos: noun, gender: m, gloss: eye, basis: frequency}
+- {id: es.corazon.noun, lemma: corazón, pos: noun, gender: m, plural: corazones, gloss: heart, basis: frequency}
+- {id: es.cara.noun, lemma: cara, pos: noun, gender: f, gloss: face, basis: frequency}
+- {id: es.cuerpo.noun, lemma: cuerpo, pos: noun, gender: m, gloss: body, basis: frequency}
+- {id: es.pie.noun, lemma: pie, pos: noun, gender: m, gloss: foot, basis: frequency}
+- {id: es.boca.noun, lemma: boca, pos: noun, gender: f, gloss: mouth, basis: judgement}
+- {id: es.pelo.noun, lemma: pelo, pos: noun, gender: m, gloss: hair, basis: judgement}
+- {id: es.brazo.noun, lemma: brazo, pos: noun, gender: m, gloss: arm, basis: judgement}
+- {id: es.pierna.noun, lemma: pierna, pos: noun, gender: f, gloss: leg, basis: judgement}
+- {id: es.espalda.noun, lemma: espalda, pos: noun, gender: f, gloss: back (body), basis: judgement}
+- {id: es.cerebro.noun, lemma: cerebro, pos: noun, gender: m, gloss: brain, basis: judgement}
+- {id: es.dedo.noun, lemma: dedo, pos: noun, gender: m, gloss: finger, basis: judgement}
+- {id: es.cuello.noun, lemma: cuello, pos: noun, gender: m, gloss: neck, basis: judgement}
+- {id: es.nariz.noun, lemma: nariz, pos: noun, gender: f, plural: narices, gloss: nose, basis: judgement}
+- {id: es.rodilla.noun, lemma: rodilla, pos: noun, gender: f, gloss: knee, basis: judgement}
+- {id: es.diente.noun, lemma: diente, pos: noun, gender: m, gloss: tooth, basis: judgement}
+- {id: es.hombro.noun, lemma: hombro, pos: noun, gender: m, gloss: shoulder, basis: judgement}
+- {id: es.labio.noun, lemma: labio, pos: noun, gender: m, gloss: lip, basis: judgement}
+- {id: es.estomago.noun, lemma: estómago, pos: noun, gender: m, gloss: stomach, basis: judgement}
+- {id: es.oreja.noun, lemma: oreja, pos: noun, gender: f, gloss: ear (outer), basis: judgement}
+- {id: es.garganta.noun, lemma: garganta, pos: noun, gender: f, gloss: throat, basis: judgement}
+- {id: es.unha.noun, lemma: uña, pos: noun, gender: f, gloss: fingernail; toenail, basis: judgement}
+- {id: es.doctor.noun, lemma: doctor, pos: noun, gender: m/f, gloss: doctor, basis: frequency}
+- {id: es.medico.noun, lemma: médico, pos: noun, gender: m/f, gloss: doctor, basis: frequency}
+- {id: es.enfermero.noun, lemma: enfermero, pos: noun, gender: m/f, gloss: nurse, basis: judgement}
+- {id: es.suenho.noun, lemma: sueño, pos: noun, gender: m, gloss: dream, basis: frequency}
+- {id: es.hospital.noun, lemma: hospital, pos: noun, gender: m, gloss: hospital, basis: frequency}
+- {id: es.farmacia.noun, lemma: farmacia, pos: noun, gender: f, gloss: pharmacy, basis: judgement}
+- {id: es.dolor.noun, lemma: dolor, pos: noun, gender: m, gloss: pain, basis: judgement}
+- {id: es.enfermedad.noun, lemma: enfermedad, pos: noun, gender: f, gloss: illness, basis: judgement}
+- {id: es.fiebre.noun, lemma: fiebre, pos: noun, gender: f, gloss: fever, basis: judgement}
+- {id: es.gripe.noun, lemma: gripe, pos: noun, gender: f, gloss: flu, region_note: 'Spain: gripe', basis: judgement}
+- {id: es.resfriado.noun, lemma: resfriado, pos: noun, gender: m, gloss: cold (illness), basis: judgement}
+- {id: es.tos.noun, lemma: tos, pos: noun, gender: f, plural: toses, gloss: cough, basis: judgement}
+- {id: es.cita.noun, lemma: cita, pos: noun, gender: f, gloss: appointment; date, basis: judgement}
+- {id: es.medicina.noun, lemma: medicina, pos: noun, gender: f, gloss: medicine, basis: judgement}
+- {id: es.pastilla.noun, lemma: pastilla, pos: noun, gender: f, gloss: pill, basis: judgement}
+- {id: es.medicamento.noun, lemma: medicamento, pos: noun, gender: m, gloss: medication, basis: judgement}
+- {id: es.receta.noun, lemma: receta, pos: noun, gender: f, gloss: recipe, basis: judgement}
+- {id: es.frio.adj, lemma: frío, pos: adj, gloss: cold, basis: judgement}
+- {id: es.enfermo.adj, lemma: enfermo, pos: adj, gloss: sick, basis: judgement}
+- {id: es.hambre.noun, lemma: hambre, pos: noun, gender: f, gloss: hunger, basis: judgement}
+- {id: es.cansado.adj, lemma: cansado, pos: adj, gloss: tired, basis: judgement}
+- {id: es.calor.noun, lemma: calor, pos: noun, gender: m, gloss: heat, basis: judgement}
+- {id: es.sano.adj, lemma: sano, pos: adj, gloss: healthy, basis: judgement}
+- {id: es.sed.noun, lemma: sed, pos: noun, gender: f, gloss: thirst, basis: judgement}
+- {id: es.salud.noun, lemma: salud, pos: noun, gender: f, gloss: health, basis: judgement}
+- {id: es.cuidar.verb, lemma: cuidar, pos: verb, gloss: to take care of, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.respirar.verb, lemma: respirar, pos: verb, gloss: to breathe, conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.doler.verb, lemma: doler, pos: verb, gloss: 'to hurt, to ache', conj: er, verb_class: [stem-o-ue], basis: judgement}
+- {id: es.lastimar.verb, lemma: lastimar, pos: verb, gloss: 'to hurt, to injure', region_note: 'Spain: hacer daño', conj: ar, verb_class: [regular-ar], basis: judgement}
+- {id: es.toser.verb, lemma: toser, pos: verb, gloss: to cough, conj: er, verb_class: [regular-er], basis: judgement}
+- {id: es.que.conj, lemma: que, pos: conj, gloss: that; than, basis: frequency}
+- {id: es.pero.conj, lemma: pero, pos: conj, gloss: but, basis: frequency}
+- {id: es.si.conj, lemma: si, pos: conj, gloss: if, basis: frequency}
+- {id: es.como.adv-2, lemma: como, pos: adv, gloss: 'like, as', basis: frequency}
+- {id: es.cuando.conj, lemma: cuando, pos: conj, gloss: when, basis: frequency}
+- {id: es.o.conj, lemma: o, pos: conj, gloss: or, basis: frequency}
+- {id: es.porque.conj, lemma: porque, pos: conj, gloss: because, basis: frequency}
+- {id: es.ni.conj, lemma: ni, pos: conj, gloss: 'nor, not even', basis: frequency}
+- {id: es.con.prep, lemma: con, pos: prep, gloss: with, basis: frequency}
+- {id: es.para.prep, lemma: para, pos: prep, gloss: for; in order to, basis: frequency}
+- {id: es.sin.prep, lemma: sin, pos: prep, gloss: without, basis: frequency}
+- {id: es.solo.adj, lemma: solo, pos: adj, gloss: alone; only, basis: frequency}
+- {id: es.casi.adv, lemma: casi, pos: adv, gloss: almost, basis: frequency}
+- {id: es.tampoco.adv, lemma: tampoco, pos: adv, gloss: neither; not either, basis: frequency}
+- {id: es.le.pron, lemma: le, pos: pron, gloss: 'to him, her, you (formal)', basis: frequency}
+- {id: es.nos.pron, lemma: nos, pos: pron, gloss: 'us, to us', basis: frequency}
+- {id: es.les.pron, lemma: les, pos: pron, gloss: 'them, to them (indirect object)', basis: frequency}
+- {id: es.alguien.pron, lemma: alguien, pos: pron, gloss: someone, basis: frequency}
+- {id: es.nadie.pron, lemma: nadie, pos: pron, gloss: nobody, basis: frequency}
+- {id: es.ninguno.det, lemma: ninguno, pos: det, gloss: 'none, not any', basis: frequency}
+- {id: es.cual.pron, lemma: cuál, pos: pron, gloss: which, basis: frequency}
+- {id: es.cuando.adv, lemma: cuándo, pos: adv, gloss: when, basis: frequency}
+- {id: es.hacer.verb, lemma: hacer, pos: verb, gloss: to do; to make, conj: er, verb_class: [irregular-yo, irregular-participle, irregular-preterite], basis: frequency}
+- {id: es.haber.verb, lemma: haber, pos: verb, gloss: to have (auxiliary); there is, conj: er, verb_class: [fully-irregular], basis: frequency}
+- {id: es.poder.verb, lemma: poder, pos: verb, gloss: 'to be able to, can', conj: er, verb_class: [stem-o-ue, irregular-preterite], basis: frequency}
+- {id: es.decir.verb, lemma: decir, pos: verb, gloss: to say; to tell, conj: ir, verb_class: [stem-e-i, irregular-yo, irregular-preterite, irregular-participle], basis: frequency}
+- {id: es.saber.verb, lemma: saber, pos: verb, gloss: 'to know (facts, how to)', conj: er, verb_class: [irregular-yo, irregular-preterite], basis: frequency}
+- {id: es.querer.verb, lemma: querer, pos: verb, gloss: to want, conj: er, verb_class: [stem-e-ie, irregular-preterite], basis: frequency}
+- {id: es.ver.verb, lemma: ver, pos: verb, gloss: to see, conj: er, verb_class: [irregular-yo, irregular-participle], basis: frequency}
+- {id: es.dar.verb, lemma: dar, pos: verb, gloss: to give, conj: ar, verb_class: [fully-irregular], basis: frequency}
+- {id: es.venir.verb, lemma: venir, pos: verb, gloss: to come, conj: ir, verb_class: [fully-irregular], basis: frequency}
+- {id: es.pensar.verb, lemma: pensar, pos: verb, gloss: to think, conj: ar, verb_class: [stem-e-ie], basis: frequency}
+- {id: es.mirar.verb, lemma: mirar, pos: verb, gloss: 'to look at, watch', conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.encontrar.verb, lemma: encontrar, pos: verb, gloss: to find, conj: ar, verb_class: [stem-o-ue], basis: frequency}
+- {id: es.poner.verb, lemma: poner, pos: verb, gloss: 'to put, place', conj: er, verb_class: [irregular-yo, irregular-participle, irregular-preterite], basis: frequency}
+- {id: es.oir.verb, lemma: oír, pos: verb, gloss: to hear, conj: ir, verb_class: [irregular-yo, irregular-preterite, irregular-participle, spell-i-y], basis: frequency}
+- {id: es.ayudar.verb, lemma: ayudar, pos: verb, gloss: to help, conj: ar, verb_class: [regular-ar], basis: frequency}
+- {id: es.abrir.verb, lemma: abrir, pos: verb, gloss: to open, conj: ir, verb_class: [irregular-participle], basis: frequency}
+- {id: es.cerrar.verb, lemma: cerrar, pos: verb, gloss: to close, conj: ar, verb_class: [stem-e-ie], basis: frequency}

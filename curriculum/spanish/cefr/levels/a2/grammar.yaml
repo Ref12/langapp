@@ -1,0 +1,149 @@
+# Grammar for the level. concept: true marks items that need a longer explanation than one line.
+- id: es.a2.preterite-regular
+  name: Preterite of regular verbs
+  explain: 'The preterite tells completed past actions: -é, -aste, -ó, -amos, -aron for -ar and -í, -iste, -ió, -imos, -ieron for -er/-ir.'
+  forms: [hablé, comió, vivimos]
+- id: es.a2.preterite-spelling
+  name: Preterite spelling changes
+  explain: Yo forms of -car, -gar and -zar verbs change spelling to keep the sound; -er/-ir verbs with a vowel before the ending change i to y.
+  forms: [busqué, llegué, empecé, leyó]
+- id: es.a2.preterite-irregular
+  name: Irregular preterites
+  explain: 'Many common verbs have an irregular stem and no accents in the endings: tuve, estuve, hice, dije, pude, puse, quise, supe, vine.'
+  forms: [tuve, hice, dije, fui]
+- id: es.a2.preterite-ser-ir
+  name: Preterite of ser and ir
+  explain: 'Ser and ir share one preterite: fui, fuiste, fue, fuimos, fueron.'
+  forms: [fui, fuiste, fue]
+- id: es.a2.preterite-stem-ir
+  name: Preterite stem change in -ir
+  explain: Stem-changing -ir verbs change e to i and o to u only in the third persons.
+  forms: [pidió, durmieron]
+- id: es.a2.imperfect
+  name: Imperfect tense
+  explain: 'The imperfect describes habits, background and ongoing past states: -aba and -ía endings; only ser, ir and ver are irregular.'
+  forms: [hablaba, comía, era, iba, veía]
+- id: es.a2.preterite-vs-imperfect-intro
+  name: 'Preterite or imperfect: first contrast'
+  explain: Use the preterite for a finished event and the imperfect for what used to happen or was going on.
+  forms: [Ayer comí pizza., De niño comía pizza.]
+  concept: true
+  concept_reason: The choice depends on how the speaker views the past action (completed versus ongoing or habitual), and English has no matching pair of forms.
+- id: es.a2.present-perfect
+  name: Present perfect
+  explain: Haber (he, has, ha, hemos, han) plus the participle says a past action linked to now; Latin America often prefers the preterite.
+  forms: [he comido, has visto, ha hecho]
+- id: es.a2.participles
+  name: Past participles
+  explain: 'Participles end in -ado and -ido; some are irregular: hecho, dicho, escrito, visto, puesto, abierto, vuelto, roto.'
+  forms: [hablado, vivido, hecho, escrito]
+- id: es.a2.direct-object-pronouns
+  name: Direct object pronouns
+  explain: Lo, la, los, las replace a thing or person receiving the action and go before the conjugated verb.
+  forms: [Lo veo., No la conozco.]
+  concept: true
+  concept_reason: Pronoun placement and the replacement of a noun are new to English speakers, and the system needs a worked explanation.
+- id: es.a2.indirect-object-pronouns
+  name: Indirect object pronouns
+  explain: Me, te, le, nos, les say to or for whom something is done.
+  forms: [Te doy un libro., Le escribo a mi madre.]
+- id: es.a2.pronoun-placement
+  name: Pronouns with infinitives and gerunds
+  explain: Object pronouns may go before the conjugated verb or attach to the infinitive or gerund.
+  forms: [Lo quiero comer / Quiero comerlo.]
+- id: es.a2.personal-a
+  name: Personal a
+  explain: Put a before a specific person who is the direct object.
+  forms: [Veo a María., Conozco a tu hermano.]
+- id: es.a2.saber-conocer
+  name: Saber and conocer
+  explain: Saber is to know facts or how to do something; conocer is to be familiar with people and places.
+  forms: [sé la respuesta, conozco Madrid]
+  concept: true
+  concept_reason: Two verbs share one English "to know" and the choice rests on a fact-versus-acquaintance distinction.
+- id: es.a2.por-para
+  name: Por and para
+  explain: Para marks purpose, destination and deadline; por marks cause, means, exchange and duration.
+  forms: [para ti, por teléfono, gracias por todo]
+  concept: true
+  concept_reason: The two prepositions both often translate as "for" and each has several distinct uses that learners must contrast.
+- id: es.a2.comparatives
+  name: Comparatives
+  explain: Más/menos + adjective + que compares unequal things; tan + adjective + como compares equals.
+  forms: [más alto que, tan grande como, mejor, peor]
+- id: es.a2.superlatives
+  name: Superlatives
+  explain: El más / el menos + adjective says the most or the least; -ísimo is a very high degree.
+  forms: [el más grande, carísimo]
+- id: es.a2.affirmative-imperative-tu
+  name: 'Imperative: tú affirmative'
+  explain: The tú command is the él form of the present for regular verbs, with eight short irregulars.
+  forms: [habla, come, ven, di, haz, sal, ten, ve]
+- id: es.a2.imperative-usted
+  name: 'Imperative: usted and ustedes'
+  explain: 'Formal commands switch the vowel: -ar verbs use -e/-en and -er/-ir verbs use -a/-an.'
+  forms: [hable, coma, escriba]
+- id: es.a2.simple-future
+  name: Simple future
+  explain: The future adds -é, -ás, -á, -emos, -án to the infinitive; a dozen verbs change the stem (tendré, haré, diré).
+  forms: [hablaré, tendré, haré, diré]
+- id: es.a2.spelling-changes-present
+  name: Present spelling changes
+  explain: Verbs like escoger, seguir, conocer and construir change spelling in yo or in all forms to keep a sound.
+  forms: [escojo, sigo, conozco, construyo]
+- id: es.a2.more-reflexives
+  name: More reflexive uses
+  explain: Reflexive pronouns also show reciprocity and change-of-state; they attach to infinitives.
+  forms: [se quieren, quiero acostarme, se me olvidó]
+- id: es.a2.ordinals
+  name: Ordinal numbers
+  explain: Primero to décimo are adjectives that agree with the noun; primero and tercero shorten before a masculine noun.
+  forms: [primer piso, segunda calle]
+- id: es.a2.numbers-100-plus
+  name: Numbers over 100
+  explain: Hundreds agree in gender (doscientas casas) and are followed directly by the tens.
+  forms: [ciento diez, quinientas, mil, dos millones]
+- id: es.a2.adverbs-mente
+  name: Adverbs in -mente
+  explain: Add -mente to the feminine form of an adjective.
+  forms: [rápidamente, fácilmente]
+- id: es.a2.already-yet
+  name: Ya, todavía, aún
+  explain: Ya means already or now, todavía and aún mean still or yet.
+  forms: [ya terminé, todavía no, aún tengo]
+- id: es.a2.gustar-like
+  name: Gustar-type verbs
+  explain: Encantar, doler, interesar, molestar and parecer work like gustar with indirect pronouns.
+  forms: [me encanta, me duele la cabeza]
+- id: es.a2.estar-ser-adjectives
+  name: Adjectives with ser and estar
+  explain: 'Some adjectives change meaning with ser or estar: aburrido, listo, malo, rico.'
+  forms: [es aburrido, está aburrido]
+- id: es.a2.possessive-stressed
+  name: Possessive pronouns
+  explain: Mío, tuyo, suyo, nuestro follow the noun or stand alone after the article.
+  forms: [un amigo mío, el mío]
+- id: es.a2.aquel
+  name: Aquel and distance
+  explain: Aquel/aquella names things far from both speakers, completing este, ese, aquel.
+  forms: [aquel edificio]
+- id: es.a2.al-infinitive
+  name: Preposition + infinitive
+  explain: After a preposition Spanish uses the infinitive where English uses -ing.
+  forms: [antes de comer, para ayudar, sin hablar]
+- id: es.a2.acabar-de
+  name: Acabar de, volver a
+  explain: Acabar de + infinitive says just did; volver a + infinitive says do again.
+  forms: [acabo de llegar, vuelve a llamar]
+- id: es.a2.affirmative-negative-words
+  name: Indefinite and negative words
+  explain: Algo, alguien, algún, nada, nadie, ninguno, nunca; negatives after the verb need no.
+  forms: [no veo a nadie, nada]
+- id: es.a2.relative-que
+  name: Relative clauses with que
+  explain: 'Que joins a clause that describes a noun: the person who, the thing that.'
+  forms: [el libro que leo, la mujer que vive aquí]
+- id: es.a2.si-clauses-real
+  name: Si clauses for real conditions
+  explain: Si + present + present or future states a likely condition.
+  forms: ['Si llueve, me quedo.']

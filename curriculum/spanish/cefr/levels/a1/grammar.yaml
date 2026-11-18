@@ -1,0 +1,202 @@
+# Grammar for the level. concept: true marks items that need a longer explanation than one line.
+- id: es.a1.alphabet-sounds
+  name: Alphabet and sounds
+  explain: 'Spanish spelling is phonetic: each letter has a steady sound, and the vowels a e i o u are short and pure.'
+  forms: [a e i o u, ll, ñ, rr, h (silent)]
+- id: es.a1.stress-accents
+  name: Stress and accent marks
+  explain: Words stress the second-to-last syllable unless they end in a consonant other than n or s; an accent mark shows the exception.
+  forms: [está, también, canción]
+- id: es.a1.punctuation
+  name: Question and exclamation marks
+  explain: Questions and exclamations open with an upside-down mark and close with the normal one.
+  forms: ['¿Cómo estás?', ¡Hola!]
+- id: es.a1.noun-gender
+  name: Gender of nouns
+  explain: Every noun is masculine or feminine; -o nouns are usually masculine, -a nouns usually feminine, so learn each noun with its article.
+  forms: [el libro, la casa, el día, la mano]
+  concept: true
+  concept_reason: Gender is a grammatical class with no logic from meaning for English speakers, and articles, adjectives and pronouns all must agree with it.
+- id: es.a1.noun-plural
+  name: Plural of nouns
+  explain: Add -s after a vowel and -es after a consonant; z becomes c before -es.
+  forms: [casa → casas, papel → papeles, lápiz → lápices]
+- id: es.a1.definite-articles
+  name: Definite articles
+  explain: The is el, la, los or las depending on gender and number.
+  forms: [el, la, los, las]
+- id: es.a1.indefinite-articles
+  name: Indefinite articles
+  explain: A, an and some are un, una, unos and unas.
+  forms: [un, una, unos, unas]
+- id: es.a1.subject-pronouns
+  name: Subject pronouns
+  explain: Yo, tú, él, ella, usted, nosotros, ustedes, ellos, ellas; the verb ending usually shows the subject, so pronouns are often dropped. Vosotros is Spain only (recognition).
+  forms: [yo, tú, él/ella/usted, nosotros/-as, ustedes, ellos/ellas]
+  recognition_forms: ['vosotros/vosotras (Spain, recognition only)']
+- id: es.a1.tu-usted
+  name: Tú and usted
+  explain: Use tú with friends, family and peers and usted with strangers, elders and in formal settings; both take different verb forms.
+  forms: [tú eres, usted es]
+  concept: true
+  concept_reason: Choosing tú or usted depends on social relationship and varies by country, so it needs a short explanation of when each fits.
+- id: es.a1.ustedes
+  name: Ustedes as "you all"
+  explain: In Latin America ustedes is the plural of both tú and usted and takes the ellos verb form.
+  forms: [ustedes son, ustedes tienen]
+- id: es.a1.ser-present
+  name: Ser in the present
+  explain: 'Ser (soy, eres, es, somos, son) says who or what someone is: identity, origin, profession, nationality, time.'
+  forms: [soy, eres, es, somos, son]
+  concept: true
+  concept_reason: Ser and estar both mean "to be" in English, and choosing between them needs a framework (essence versus state or location).
+- id: es.a1.estar-present
+  name: Estar in the present
+  explain: Estar (estoy, estás, está, estamos, están) says where something is and how someone feels right now.
+  forms: [estoy, estás, está, estamos, están]
+  concept: true
+  concept_reason: Estar is contrasted with ser, and the choice depends on whether a quality is a lasting identity or a temporary state or location.
+- id: es.a1.tener-present
+  name: Tener in the present
+  explain: Tener (tengo, tienes, tiene, tenemos, tienen) means to have; it also gives age (tengo veinte años) and states like hambre and sed.
+  forms: [tengo, tienes, tiene, tenemos, tienen]
+- id: es.a1.ir-present
+  name: Ir in the present
+  explain: Ir (voy, vas, va, vamos, van) means to go and is followed by a to name a destination.
+  forms: [voy, vas, va, vamos, van]
+- id: es.a1.ir-a-infinitive
+  name: Ir a + infinitive
+  explain: Ir a plus an infinitive says what you are going to do soon.
+  forms: [voy a comer, vamos a ir]
+- id: es.a1.present-ar
+  name: 'Present tense: -ar verbs'
+  explain: Drop -ar and add -o, -as, -a, -amos, -an.
+  forms: [hablo, hablas, habla, hablamos, hablan]
+- id: es.a1.present-er-ir
+  name: 'Present tense: -er and -ir verbs'
+  explain: Drop -er/-ir and add -o, -es, -e, -emos/-imos, -en.
+  forms: [como, comes, vivo, vivimos, viven]
+- id: es.a1.adj-agreement
+  name: Adjective agreement
+  explain: Adjectives match the noun in gender and number; those ending in -e or a consonant have one form for both genders.
+  forms: [niño alto, niña alta, casas grandes]
+- id: es.a1.adj-position
+  name: Adjective position
+  explain: Descriptive adjectives normally follow the noun.
+  forms: [un coche rojo, una amiga simpática]
+- id: es.a1.negation
+  name: Negation with no
+  explain: Put no before the verb to make a sentence negative.
+  forms: [No tengo hambre., No es mi casa.]
+- id: es.a1.yes-no-questions
+  name: Yes/no questions
+  explain: Raise your voice at the end or swap the subject after the verb; no inversion helper like "do" exists.
+  forms: ['¿Hablas inglés?', '¿Es tu hermano?']
+- id: es.a1.question-words
+  name: Question words
+  explain: Qué, quién, dónde, cuándo, cómo, cuánto, por qué and cuál open information questions and carry an accent mark.
+  forms: ['¿Qué es?', '¿Dónde vives?', '¿Cuánto cuesta?']
+- id: es.a1.hay
+  name: Hay
+  explain: Hay means there is and there are; it never changes for number.
+  forms: [hay un libro, hay dos mesas]
+- id: es.a1.possessives
+  name: Possessive adjectives
+  explain: Mi, tu, su, nuestro agree with the thing owned, not the owner; su means his, her, your (usted) or their.
+  forms: [mi casa, tus libros, nuestra familia]
+- id: es.a1.demonstratives
+  name: This and that
+  explain: Este/esta say this, ese/esa say that; they agree with the noun.
+  forms: [este libro, esa mesa, estos zapatos]
+- id: es.a1.contractions
+  name: Al and del
+  explain: A + el becomes al and de + el becomes del.
+  forms: [al parque, del banco]
+- id: es.a1.basic-prepositions
+  name: Basic prepositions
+  explain: A (to), de (of, from), en (in, on, at), con (with), para (for), por (through, because of) are the first prepositions.
+  forms: [a, de, en, con, para, por]
+- id: es.a1.cardinal-0-100
+  name: Numbers 0–100
+  explain: Numbers up to thirty are single words; from thirty-one they join with y.
+  forms: [veintiuno, treinta y cinco, cien]
+- id: es.a1.time-telling
+  name: Telling time
+  explain: Es la una, son las dos; use a las plus the hour for when something happens.
+  forms: [Es la una., Son las tres., a las ocho]
+- id: es.a1.dates-days
+  name: Days, months and dates
+  explain: Days and months are not capitalized; dates read el + number + de + month.
+  forms: [lunes, el cinco de mayo]
+- id: es.a1.stem-e-ie
+  name: Stem change e→ie
+  explain: In stressed forms the e of the stem becomes ie; nosotros keeps e.
+  forms: [quiero, quieres, queremos, pienso]
+- id: es.a1.stem-o-ue
+  name: Stem change o→ue
+  explain: In stressed forms the o of the stem becomes ue; nosotros keeps o.
+  forms: [puedo, puedes, podemos, duermo]
+- id: es.a1.stem-e-i
+  name: Stem change e→i
+  explain: Some -ir verbs change e to i in every form except nosotros.
+  forms: [pido, pides, pedimos, sirvo]
+- id: es.a1.irregular-yo
+  name: Verbs irregular in yo
+  explain: 'Several verbs are regular except in the yo form: hago, salgo, pongo, traigo, veo, doy, sé.'
+  forms: [hago, salgo, pongo, veo, doy]
+- id: es.a1.gustar
+  name: Gustar
+  explain: 'Gustar works backwards: the thing liked is the subject and me/te/le say who likes it.'
+  forms: [me gusta el café, te gustan los perros, nos gusta bailar]
+  concept: true
+  concept_reason: Gustar reverses the English subject and object, with an indirect pronoun in front, and that structure needs a worked explanation.
+- id: es.a1.reflexive-present
+  name: Reflexive verbs
+  explain: Verbs like llamarse and levantarse use me, te, se, nos, se before the verb to show the action returns to the subject.
+  forms: [me llamo, te levantas, se ducha]
+  concept: true
+  concept_reason: The reflexive pronoun idea (action done to oneself) is new and its position and use differ from English.
+- id: es.a1.querer-poder-inf
+  name: Querer and poder + infinitive
+  explain: After querer, poder, necesitar and others the second verb stays in the infinitive.
+  forms: [quiero comer, puedo ayudar, necesito dormir]
+- id: es.a1.tener-que
+  name: Tener que and hay que
+  explain: Tener que plus infinitive says must; hay que says one must or it is necessary.
+  forms: [tengo que estudiar, hay que esperar]
+- id: es.a1.estar-gerund
+  name: Estar + gerund
+  explain: Estar plus a verb in -ando or -iendo says what is happening right now.
+  forms: [estoy comiendo, está hablando]
+- id: es.a1.quantifiers
+  name: Muy, mucho, poco
+  explain: Muy goes before adjectives and adverbs; mucho and poco agree with nouns.
+  forms: [muy bueno, mucha agua, pocos amigos]
+- id: es.a1.connectors
+  name: Y, o, pero, porque
+  explain: Basic connectors join words and sentences; y becomes e before i- and o becomes u before o-.
+  forms: [y, o, pero, porque]
+- id: es.a1.also-neither
+  name: También and tampoco
+  explain: También agrees (me too) and tampoco agrees with a negative; with a negative verb Spanish needs the double negative.
+  forms: [yo también, yo tampoco, no tengo nada]
+- id: es.a1.time-adverbs
+  name: Time and frequency words
+  explain: Hoy, mañana, ahora, siempre, nunca, a veces place events in time and say how often.
+  forms: [hoy, mañana, siempre, a veces]
+- id: es.a1.weather-hacer
+  name: Weather with hacer
+  explain: Weather uses hacer with a noun (hace frío, hace calor) and hay or está for other conditions.
+  forms: [hace frío, hace sol, está lloviendo]
+- id: es.a1.polite-requests
+  name: Polite requests
+  explain: Quiero, quisiera, me da, ¿me puede dar? plus por favor let you ask for things politely.
+  forms: [Quisiera un café., '¿Me puede ayudar?']
+- id: es.a1.greetings-farewells
+  name: Greetings and courtesy
+  explain: 'Greetings change with the time of day and formality: hola, buenos días, buenas tardes, buenas noches.'
+  forms: [hola, buenos días, mucho gusto]
+- id: es.a1.stem-u-ue
+  name: Stem change u→ue
+  explain: Jugar is the only common verb that changes u to ue.
+  forms: [juego, juegas, jugamos]
