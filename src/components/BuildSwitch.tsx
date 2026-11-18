@@ -9,11 +9,11 @@ declare const __BUILD_LANGUAGE__: string
 
 const channel = (): 'stable' | 'lab' => (typeof __BUILD_CHANNEL__ === 'undefined' ? 'lab' : __BUILD_CHANNEL__)
 
-/** The two builds. The other one is a plain link to its start page (the route is not kept): ./lab/ from Stable, ../ from Lab. */
+/** The two builds. The other one is a plain link to its start page (the route is not kept): ../ from Stable (now at stable/), ../ from Lab. */
 export const builds = (current: 'stable' | 'lab' = channel(), language: string = typeof __BUILD_LANGUAGE__ === 'undefined' ? 'zh' : __BUILD_LANGUAGE__) => [
   { id: 'stable' as const, label: 'Stable', href: '../', current: current === 'stable' },
-  { id: 'lab' as const, label: 'Lab', href: './lab/', current: current === 'lab' },
-].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? (language === 'zh' ? '../' : '../../') : './lab/' }))
+  { id: 'lab' as const, label: current === 'stable' ? 'Main app' : 'Lab', href: '../', current: current === 'lab' },
+].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? (language === 'zh' ? '../' : '../../') : '../' }))
 
 export interface BuildSwitchItem { label: string; onSelect: () => void }
 

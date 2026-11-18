@@ -68,7 +68,7 @@ describe('Mandarin learning loop', { timeout: 15_000 }, () => {
     const menu = await screen.findByRole('menu')
     expect(within(menu).getAllByRole('menuitemradio')).toHaveLength(2)
     expect(within(menu).getByRole('menuitemradio', { name: /Stable/ })).toHaveAttribute('aria-checked', 'true')
-    expect(within(menu).getByRole('menuitemradio', { name: /Lab/ })).toHaveAttribute('href', './lab/')
+    expect(within(menu).getByRole('menuitemradio', { name: /Main app/ })).toHaveAttribute('href', '../')
     expect(sidebar.querySelector('a.build-switch-gear')).toHaveAttribute('href', '#settings')
     expect(screen.queryByText(/Copy profile/)).toBeNull()
   })

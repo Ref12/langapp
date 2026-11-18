@@ -35,14 +35,14 @@ describe('build switch', () => {
     expect(screen.queryByRole('menu')).toBeNull()
   })
 
-  it('links to ./lab/ from Stable, shows no mark and no Lab-only item', async () => {
+  it('links to ../ (the main app) from Stable, shows no mark and no Lab-only item', async () => {
     const user = userEvent.setup()
     setup('stable')
     expect(screen.queryByRole('img', { name: /Lab build/ })).toBeNull()
     await user.click(screen.getByRole('button', { name: /Reader workspace/ }))
     const menu = screen.getByRole('menu')
     expect(within(menu).getByRole('menuitemradio', { name: /Stable/ })).toHaveAttribute('aria-checked', 'true')
-    expect(within(menu).getByRole('menuitemradio', { name: 'Lab' })).toHaveAttribute('href', './lab/')
+    expect(within(menu).getByRole('menuitemradio', { name: 'Main app' })).toHaveAttribute('href', '../')
     expect(within(menu).queryByRole('menuitem', { name: /Copy profile/ })).toBeNull()
   })
 
