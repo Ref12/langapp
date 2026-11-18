@@ -66,7 +66,7 @@ Verbs by class (a verb can have several; counts are over all 1,734):
 
 Regular verbs carry one `regular-*` class; an irregular verb carries only its irregularity classes and the group (`conj`) names its ending.
 
-## 3. A1 modules (17 modules, 163 units, 792 items)
+## 3. A1 modules (17 modules, 162 units, 792 items)
 
 | # | Title | Units | Items |
 |---|---|---|---|
