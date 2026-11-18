@@ -3,7 +3,7 @@ import { getPack } from '../../core/language'
 import { activeDisplayForm } from '../../core/forms/display'
 import { useDisplaySettings } from '../../components/display-settings'
 import { drillText } from '../../core/language/practice-wording'
-import { ArrowLeft, ArrowRight, Play } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Play, ChevronsRight } from 'lucide-react'
 import { PageHeading, type PageProps } from '../../components/shared'
 import { HearButton } from '../../components/assistant/SnippetActions'
 import { navigate } from '../../core/routing'
@@ -26,7 +26,8 @@ import { answerCurrent, currentExercise, currentStage, progressOf, replayRunner,
 import { isFormOffered } from '../../core/session/offered'
 import { formLabel } from '../../core/session/form-label'
 import { STAGES, STAGE_LABEL, type AnswerMode, type Form, type SessionPlan, type Stage } from '../../core/session/types'
-import { ExerciseQuestion, type Outcome } from './EngineQuestion'
+import type { Outcome } from './EngineQuestion'
+import { QuestionSlot, REVIEW_LIMIT, type Answered } from './EngineReview'
 import { IntroCard } from './IntroCards'
 import { PhraseCounts } from './PhraseItems'
 import { HandsFreeSection } from './HandsFreeRows'
@@ -131,6 +132,9 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const { plan, error, known } = usePlan(set, items, catalog, workspace)
   const [state, setState] = useState<RunnerState>()
   const [intro, setIntro] = useState(0)
+  // This sitting's answered questions (in memory only) and the one on view (undefined: the waiting exercise).
+  const [history, setHistory] = useState<Answered[]>([])
+  const [viewing, setViewing] = useState<number>()
   useEffect(() => { if (plan && !state) setState(replayRunner(plan, engine.answers ?? [])) }, [plan, state, engine.answers])
   const readings = useMemo(() => readingIndex([...new Set([...known, ...set.refs])].flatMap(ref => { const unit = catalog.units.get(ref); return unit ? [unit] : [] })), [known, set.refs, catalog])
   const [pinyin, setPinyin] = useState(workspace.preferences.pinyin)
@@ -148,6 +152,8 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   const stage = currentStage(state)
   const advance = (correct: boolean, refsOverride?: string[], hint?: boolean) => {
     const step = answerCurrent(state, correct)
+    if (exercise && exercise.form !== 'intro' && exercise.form !== 'repeat') setHistory(list => [...list, { key: state.log.length, exercise, outcome: { correct, missed: refsOverride, hint }, number: step.state.log.filter(attempt => attempt.round === 0).length }].slice(-REVIEW_LIMIT))
+    setViewing(undefined)
     setState(step.state)
     const progress = progressOf(step.state)
     if (!step.state.done) void saveEngineAnswer(set.id, correct, progress.done, progress.total).catch(reason => console.error('Saving the run failed.', reason))
@@ -159,23 +165,29 @@ export function EngineRun({ set, items, catalog, workspace, run, busy, now }: Pr
   }
   if (state.done) return <EngineSummary set={set} state={state} items={items} busy={busy} run={run} />
   const total = plan.stages.reduce((sum, entry) => sum + entry.exercises.length, 0)
+  const reviewed = viewing === undefined ? undefined : history[viewing]
+  const current = exercise && exercise.form !== 'intro' && exercise.form !== 'repeat' ? exercise : undefined
+  const slots = [...history.map(entry => ({ key: entry.key, exercise: entry.exercise, locked: true })), ...(current ? [{ key: state.log.length, exercise: current, locked: false }] : [])]
   const doneCount = state.log.filter(attempt => attempt.round === 0).length
   return <div className="dr engine engine-run">
     <a className="back-link" href={`#${setRoute(set.id)}`}><ArrowLeft size={16} /> {set.title}</a>
-    <div className="engine-progress"><span className="eyebrow">{stage ? STAGE_LABEL[stage] : ''}{exercise && exercise.round > 0 ? ' · another try' : ''}</span>
+    <div className="engine-progress">
+      <button type="button" className="icon-button engine-back" aria-label="Previous exercise" title="Previous exercise" disabled={viewing === undefined ? history.length === 0 : viewing === 0} onClick={() => setViewing(viewing === undefined ? history.length - 1 : viewing - 1)}><ArrowLeft size={18} /></button>
+      <span className="eyebrow">{stage ? STAGE_LABEL[stage] : ''}{exercise && exercise.round > 0 ? ' · another try' : ''}</span>
       <progress aria-label="Session progress" value={Math.min(doneCount, total)} max={Math.max(1, total)} /><span className="small muted">{Math.min(doneCount, total)} of {total}</span>
       <button type="button" className="button secondary small engine-pinyin" aria-pressed={pinyin} onClick={() => setPinyin(!pinyin)}>{pinyin ? getPack().practiceWording.hideReadings : getPack().practiceWording.showReadings}</button></div>
-    <section className="panel practice-card" aria-live="polite" data-form={exercise?.form} data-answer-lang={exercise && 'answerLang' in exercise ? exercise.answerLang : undefined}>
-      {exercise?.form === 'intro' && (() => { const item = items.find(entry => entry.ref === exercise.refs[0]); return <>
+    {reviewed && <p className="engine-review-strip small" role="status">Reviewing {reviewed.number} of {total} · <button type="button" className="link-button" onClick={() => setViewing(viewing! + 1 >= history.length ? undefined : viewing! + 1)}>Forward <ChevronsRight size={14} /></button> · <button type="button" className="link-button" onClick={() => setViewing(undefined)}>Back to current</button></p>}
+    <section className="panel practice-card" aria-live="polite" data-form={reviewed ? reviewed.exercise.form : exercise?.form} data-reviewing={reviewed ? 'true' : undefined} data-answer-lang={exercise && 'answerLang' in exercise ? exercise.answerLang : undefined}>
+      {!reviewed && exercise?.form === 'intro' && (() => { const item = items.find(entry => entry.ref === exercise.refs[0]); return <>
         <p className="engine-instruction small" data-instruction="intro">Learn the new word <span className="muted">· {intro + 1}</span></p>
         {item && <IntroCard item={item} catalog={catalog} workspace={workspace} now={now} run={run} busy={busy} route={setRoute(set.id, 'engine')} />}
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => { setIntro(intro + 1); advance(true) }}>Got it <ArrowRight size={16} /></button></div></> })()}
-      {exercise?.form === 'repeat' && <>
+      {!reviewed && exercise?.form === 'repeat' && <>
         <p className="engine-instruction small" data-instruction="repeat">Say it after the audio</p><p className="small muted">Nothing is graded.</p>
         <p className="practice-prompt native" lang={getPack().learningTag}>{exercise.zh}</p><p className="small">{exercise.py}</p><p lang="en">{exercise.en}</p>
         <p><HearButton text={exercise.zh} locale={getPack().speechLocale} kind="sentence" label="Hear it" /></p>
         <div className="answer-actions"><span aria-hidden="true" /><button type="button" className="button primary" onClick={() => advance(true)}>Next <ArrowRight size={16} /></button></div></>}
-      {exercise && exercise.form !== 'intro' && exercise.form !== 'repeat' && <ExerciseQuestion key={exercise.id} exercise={exercise} ctx={ctx} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed, outcome.hint)} />}
+      {slots.map(slot => <QuestionSlot key={slot.key} exercise={slot.exercise} ctx={ctx} locked={slot.locked} hidden={reviewed ? reviewed.key !== slot.key : slot.locked} onDone={(outcome: Outcome) => advance(outcome.correct, outcome.missed, outcome.hint)} />)}
     </section>
   </div>
 }

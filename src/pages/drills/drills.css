@@ -277,10 +277,12 @@
 .hf-pl-row.is-current .hf-pl-dir { background: var(--accent, #0b6b5d); color: #fff; border-color: transparent; }
 
 /* Engine run: progress row (stage label, bar, counter, pinyin toggle) and the typed answer at full width. */
-.engine-progress { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 4px 12px; }
+.engine-progress { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto auto; align-items: center; gap: 4px 12px; }
 .engine-progress > progress { width: 100%; }
+.engine-progress .engine-back { padding: 4px; min-height: 0; }
+.engine-progress .engine-back:disabled { opacity: 0.35; }
 .engine-progress .engine-pinyin { font-size: 11px; padding: 6px 10px; min-height: 0; }
-@media (max-width: 640px) { .engine-progress { grid-template-columns: minmax(0, 1fr) auto; } .engine-progress > progress { grid-column: 1 / -1; grid-row: 2; } .engine-progress > .small { grid-row: 3; } .engine-progress .engine-pinyin { grid-row: 3; justify-self: end; } }
+@media (max-width: 640px) { .engine-progress { grid-template-columns: auto minmax(0, 1fr) auto; } .engine-progress > progress { grid-column: 1 / -1; grid-row: 2; } .engine-progress > .small { grid-row: 3; } .engine-progress .engine-pinyin { grid-row: 3; grid-column: 3; justify-self: end; } }
 .engine-answer { display: grid; width: 100%; }
 .engine-answer input { width: 100%; box-sizing: border-box; min-height: 44px; padding: 8px 12px; font-size: 16px; }
 .engine-another { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
@@ -359,3 +361,6 @@
 .tt-line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; transition: opacity .15s; }
 .tt-line[data-state="playing"] { stroke-width: 5; }
 .tt-line[data-state="dimmed"] { opacity: .3; }
+
+/* A reviewed question is read only: whatever would change a mark or result stays out of sight. */
+.engine-reviewed [hidden] { display: none !important; }
