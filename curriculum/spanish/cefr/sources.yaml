@@ -1,0 +1,38 @@
+# Sources of the CEFR Spanish inventory (curriculum/spanish/cefr). Licences are only recorded here;
+# licensing is decided later in one separate pass.
+inventory: spanish-cefr
+variety: Latin American Spanish, Mexico reference, US classroom model (ustedes = you all; vosotros recognition only, marked Spain)
+sources:
+  - id: kaikki-spanish
+    name: Kaikki.org Wiktionary extract, Spanish
+    url: https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl.gz
+    retrieved: 2026-11-17
+    sha256: b25cd18584e510c516e4c9afac42a87e5acfd6bc1a13ea96a94057899521a427
+    bytes: 102536460
+    licence: "Wiktionary content: CC BY-SA 4.0 and GFDL (as stated by Kaikki/Wiktionary)"
+    taken: "Only the lemma list, part of speech, form-of links (to fold inflected forms into lemmas) and head-line hints (gender, plural form). No senses, definitions or examples were copied."
+  - id: frequencywords-es-2018
+    name: FrequencyWords Spanish 50k list (OpenSubtitles 2018), hermitdave
+    url: https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/es/es_50k.txt
+    retrieved: 2026-11-17
+    sha256: dcff3ad4316192f4dc4ff7d26e637c6ff314ef1ca0f3f720c5649018a71056c0
+    bytes: 658626
+    licence: "CC BY-SA 4.0 (repository licence, derived from OpenSubtitles); to be confirmed in the licensing pass"
+    taken: "Word counts, folded onto lemmas, used for the order and coverage inside a level."
+  - id: pcic
+    name: Instituto Cervantes, Plan curricular del Instituto Cervantes (level inventories A1-C2)
+    url: https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/
+    status: not obtained
+    licence: "Instituto Cervantes copyright; reference only, never copied"
+    taken: "Nothing. No page of the Plan Curricular was retrieved in this session, so no placement has basis pcic."
+  - id: author
+    name: Author judgement (written in this session by a model, Claude Sonnet 5.5, through the hexad gateway)
+    licence: original text for this project
+    taken: "Glosses (40 characters at most), gender and irregular plural for nouns, region and register notes, verb irregularity classes, level judgements, A1 topic lists, grammar items, functions, unit and module titles."
+placement:
+  a1: "A1 words come from model-written A1 topic lists (about 730 lemmas, basis judgement unless the word is also in the frequency top 700), plus 12 reflexive verbs added by hand."
+  a2_to_c2: "Frequency rank on the lemma list, adjusted by a model's level judgement and a 1-4 teaching priority; cut at cumulative sizes 1500, 2800, 4800, 7500, 10000. basis is frequency when the rank band and the placed level agree, otherwise judgement."
+known_gaps:
+  - "No Plan Curricular placement: every record has basis frequency or judgement."
+  - "Glosses, genders and verb classes are model-written and not reviewed by a person."
+  - "Subtitle frequency over-represents film vocabulary; some B1-C2 entries are low value and need a review pass."
