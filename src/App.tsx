@@ -48,10 +48,9 @@ import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } fr
 import { interruptAudio } from './core/assistant/audio-owner'
 import { getActiveProfile, initializeProfiles, markLocalSettingsImported, needsLocalSettingsImport, resetSelectedProfile } from './core/profiles/store'
 import { bootstrapDefaultProfile } from './core/profiles/bootstrap'
-import { BuildSwitch, LabMark } from './components/BuildSwitch'
+import { BuildSwitch } from './components/BuildSwitch'
 import { StableCopyDialog } from './components/StableCopyDialog'
 import { markCleanupNoticed, removeForeignLanguageRows, unseenCleanupCount } from './core/profiles/language-cleanup'
-import { labProfileIsEmpty } from './core/profiles/stable-import'
 import { buildChannel, buildLanguage, storageNames } from './core/storage-names'
 import { areaOfRoute, buildDisplayName, getPack, isAreaOn, type Area } from './core/language'
 import { PinyinFormatContext, ReadingSettingsContext } from './components/pinyin-context'
@@ -66,7 +65,7 @@ import { GroupDetail } from './pages/GroupDetail'
 import { DisplaySettingsProvider } from './components/display-context'
 import { resolveDisplaySettings } from './components/display-settings'
 import { AppSwitch } from './components/AppSwitch'
-import { appHref, appSwitchShown, labApps } from './core/language/apps'
+import { appHref, appSwitchShown, labApps, stableHref } from './core/language/apps'
 import { ToneColourProvider } from './components/ToneText'
 import { applyToneColours } from './core/tone-colour'
 
@@ -152,16 +151,9 @@ function CurrentPage({ route, returnRoute, assistantHeader, ...props }: PageProp
 function WorkspaceApp() {
   const profile = getActiveProfile()
   const workspace = useLiveQuery(loadWorkspace, [])
-  // Copy profile from Stable: from the build switch's menu, or offered once up front on an empty Lab profile.
-  const [copyDialog, setCopyDialog] = useState<'menu' | 'offer' | undefined>()
+  // Copy profile from Stable: from the build switch's menu, (the first-run offer is a card on the Overview).
+  const [copyDialog, setCopyDialog] = useState<'menu' | undefined>()
   const copyItems = useMemo(() => storageNames().stableCopy ? [{ label: storageNames().stableCopy === 'profile' ? 'Copy profile from Stable…' : 'Copy settings from Stable…', onSelect: () => setCopyDialog('menu') }] : [], [])
-  useEffect(() => {
-    if (buildChannel() !== 'lab' || storageNames().stableCopy !== 'profile') return undefined
-    let live = true
-    try { if (localStorage.getItem(storageNames().labOnly.copyOfferDeclined)) return undefined } catch { /* no storage */ }
-    void labProfileIsEmpty().then(empty => { if (live && empty) setCopyDialog('offer') }, () => undefined)
-    return () => { live = false }
-  }, [])
   const [removedCount, setRemovedCount] = useState(0)
   useEffect(() => { void unseenCleanupCount().then(setRemovedCount, () => undefined) }, [])
   const route = useRoute()
@@ -245,7 +237,7 @@ function WorkspaceApp() {
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
         </a>)}</nav>
         <div className="sidebar-bottom"><BackupNow />
-          <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems} apps={labApps().map(app => ({ label: app.name, glyph: app.glyph, lang: app.id, href: appHref(app.id), current: app.id === buildLanguage() }))}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
+          <BuildSwitch className="profile" settingsHref="#settings" extraItems={copyItems} oldVersionHref={stableHref()} apps={labApps().map(app => ({ label: app.name, glyph: app.glyph, lang: app.id, href: appHref(app.id), current: app.id === buildLanguage() }))}><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>{`English / ${getPack().wording.language}`}</small></span></BuildSwitch></div>
         </>
   return <PinyinFormatContext.Provider value={preferences.pinyinFormat ?? DEFAULT_PINYIN_FORMAT}><ReadingSettingsContext.Provider value={{ show: preferences.pinyin, japanese: preferences.japaneseReading ?? 'romaji' }}><DisplaySettingsProvider settings={displaySettings}><ToneColourProvider on={getPack().tones === true && preferences.toneColours === true}><PageSettingsProvider><PageActionsProvider><PageDockContext.Provider value={dock}>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
@@ -254,7 +246,7 @@ function WorkspaceApp() {
         {assistant && <AssistantSidebar selectedId={route.split('/')[1]} collapsed={collapsed}
           toggle={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))} returnRoute={returnRoute.current} />}
         <div className="workspace-navigation">
-          <div className="sidebar-header"><a className="brand" href="#overview" aria-label="LinguaWeave home"><span className="brand-mark">lw.</span><span className="brand-name">linguaweave</span></a><LabMark className="sidebar-mark" />
+          <div className="sidebar-header"><a className="brand" href="#overview" aria-label="LinguaWeave home"><span className="brand-mark">lw.</span><span className="brand-name">linguaweave</span></a>
             <button className="icon-button sidebar-toggle" disabled={busy} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'} aria-expanded={!collapsed}
               onClick={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))}>{collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button></div>
           {workspaceNavigation}

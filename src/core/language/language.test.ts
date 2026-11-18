@@ -17,8 +17,8 @@ describe('language packs', () => {
 
   it('names the languages', () => {
     expect([zhPack, jaPack, koPack].map(pack => [pack.id, pack.name, pack.nativeName])).toEqual([['zh', 'Chinese', '\u4E2D\u6587'], ['ja', 'Japanese', '\u65E5\u672C\u8A9E'], ['ko', 'Korean', '\uD55C\uAD6D\uC5B4']])
-    expect(buildDisplayName('lab', jaPack)).toBe('LinguaWeave Lab Japanese')
-    expect(buildDisplayName('lab', zhPack)).toBe('LinguaWeave Lab')
+    expect(buildDisplayName('lab', jaPack)).toBe('LinguaWeave 日本語')
+    expect(buildDisplayName('lab', zhPack)).toBe('LinguaWeave')
     expect(buildDisplayName('stable', zhPack)).toBe('LinguaWeave')
     expect(() => packFor('xx' as never)).toThrow(/Unknown language/)
   })

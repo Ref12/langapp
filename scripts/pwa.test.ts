@@ -55,7 +55,7 @@ describe('PWA plugin, lab channel', () => {
     expect(sw).toMatch(/"lab\.linguaweave-shell-[a-z0-9]+"/)
     expect(sw).toContain('"lab.linguaweave-shell-"')
     expect(sw).not.toMatch(/['"]linguaweave-(shell|runtime)/)
-    expect(JSON.parse(out['manifest.webmanifest']).name).toBe('LinguaWeave Lab')
+    expect(JSON.parse(out['manifest.webmanifest']).name).toBe('LinguaWeave')
     expect(JSON.parse(out['manifest.webmanifest']).scope).toBe('./')
   })
 })
@@ -119,15 +119,27 @@ describe('PWA plugin, language builds', () => {
     return { ask, answered, handlers, cacheNames, deleted }
   }
 
-  it('passes every request under lab/ja/ and lab/ko/ straight to the network from the Lab Chinese worker, and still serves its own pages', async () => {
+  it('passes every request under ja/, ko/, stable/ and the old lab/ straight to the network from the root worker, and still serves its own pages', async () => {
     const out = await emitFor('zh')
-    const sw = worker(out['sw-lab.js'], 'https://x.test/lab/')
-    for (const path of ['ja', 'ja/', 'ja/index.html', 'ja/assets/index-a.js', 'ja/sw-lab-ja.js', 'ja/manifest.webmanifest', 'ko/', 'ko/assets/x.css?v=1', 'ja?x=1']) {
+    const sw = worker(out['sw-lab.js'], 'https://x.test/')
+    for (const path of ['ja', 'ja/', 'ja/index.html', 'ja/assets/index-a.js', 'ja/sw-lab-ja.js', 'ja/manifest.webmanifest', 'ko/', 'ko/assets/x.css?v=1', 'ja?x=1',
+      'stable', 'stable/', 'stable/sw.js', 'stable/assets/a.js', 'stable/?x=1#a', 'lab', 'lab/', 'lab/index.html', 'lab/ja/', 'lab/sw-lab.js', 'lab/ko/sw-lab-ko.js']) {
       sw.ask(path, 'navigate'); sw.ask(path)
     }
     expect(sw.answered).toEqual([])
-    sw.ask('', 'navigate'); sw.ask('assets/index-a.js'); sw.ask('jazz.js'); sw.ask('kodak/a.js')
-    expect(sw.answered).toEqual(['', 'assets/index-a.js', 'jazz.js', 'kodak/a.js'])
+    sw.ask('', 'navigate'); sw.ask('assets/index-a.js'); sw.ask('jazz.js'); sw.ask('kodak/a.js'); sw.ask('stables.js'); sw.ask('labs/a.js')
+    expect(sw.answered).toEqual(['', 'assets/index-a.js', 'jazz.js', 'kodak/a.js', 'stables.js', 'labs/a.js'])
+    expect(out['sw-lab.js']).toContain('["ja","ko","stable","lab"]')
+  })
+
+  it('a language worker never answers for another app: its scope is its own folder, so the other folders are not its to serve', async () => {
+    const ja = worker((await emitFor('ja'))['sw-lab-ja.js'], 'https://x.test/ja/')
+    const answered: string[] = []
+    const ask = (url: string) => ja.handlers.get('fetch')!({ request: { method: 'GET', url, mode: 'navigate' }, respondWith: () => answered.push(url) })
+    for (const url of ['https://x.test/', 'https://x.test/ko/', 'https://x.test/stable/', 'https://x.test/lab/ja/', 'https://x.test/assets/a.js']) ask(url)
+    expect(answered).toEqual([])
+    ask('https://x.test/ja/')
+    expect(answered).toEqual(['https://x.test/ja/'])
   })
 
   it('has no language-folder rule in a language build (its scope is its own folder) and keeps only its own caches', async () => {
@@ -139,7 +151,7 @@ describe('PWA plugin, language builds', () => {
     expect(source).toMatch(/"lab\.ja\.linguaweave-shell-[a-z0-9]+"/)
     expect(source).toContain('"lab.ja.linguaweave-shell-"')
     expect(source.replace(/"lab\.ja\.[^"]*"/g, '')).not.toMatch(/linguaweave-(shell|runtime)/)
-    const sw = worker(source, 'https://x.test/lab/ja/')
+    const sw = worker(source, 'https://x.test/ja/')
     const waiting: Promise<unknown>[] = []
     sw.handlers.get('activate')!({ waitUntil: (p: Promise<unknown>) => waiting.push(p) })
     await Promise.all(waiting)
@@ -153,18 +165,18 @@ describe('PWA plugin, language builds', () => {
 
   it('names the manifest after the language, and leaves the Chinese manifest as it was', async () => {
     const ja = JSON.parse((await emitFor('ja'))['manifest.webmanifest'])
-    expect([ja.name, ja.short_name, ja.lang, ja.scope, ja.id]).toEqual(['LinguaWeave Lab Japanese', 'LW Lab Japanese', 'ja', './', './'])
-    expect(JSON.parse((await emitFor('ko'))['manifest.webmanifest']).name).toBe('LinguaWeave Lab Korean')
+    expect([ja.name, ja.short_name, ja.lang, ja.scope, ja.id]).toEqual(['LinguaWeave 日本語', 'LW Japanese', 'ja', './', './'])
+    expect(JSON.parse((await emitFor('ko'))['manifest.webmanifest']).name).toBe('LinguaWeave 한국어')
     const zh = JSON.parse((await emitFor('zh'))['manifest.webmanifest'])
-    expect(zh.name).toBe('LinguaWeave Lab')
-    expect(zh.short_name).toBe('LW Lab')
+    expect(zh.name).toBe('LinguaWeave')
+    expect(zh.short_name).toBe('LinguaWeave')
     expect('lang' in zh).toBe(false)
   })
 
   it('titles the page of a language build, and leaves the Chinese page alone', () => {
     const html = '<!doctype html><html lang="en"><head><title>LinguaWeave</title></head></html>'
     const ja = (pwa('lab', 'ja') as unknown as { transformIndexHtml: (html: string) => { html: string } }).transformIndexHtml(html)
-    expect(ja.html).toContain('<title>LinguaWeave Lab Japanese</title>')
+    expect(ja.html).toContain('<title>LinguaWeave 日本語</title>')
     expect(ja.html).toContain('<html lang="en"')
     expect(Array.isArray((pwa('lab', 'zh') as unknown as { transformIndexHtml: () => unknown }).transformIndexHtml())).toBe(true)
   })

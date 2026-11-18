@@ -5,38 +5,33 @@ import './BuildSwitch.css'
 // Self-contained on purpose: this file and BuildSwitch.css are copied unchanged onto the Stable branch, an older commit.
 // They depend on React, the icon library and the build constant only: import nothing else from the app.
 declare const __BUILD_CHANNEL__: 'stable' | 'lab'
-declare const __BUILD_LANGUAGE__: string
 
 const channel = (): 'stable' | 'lab' => (typeof __BUILD_CHANNEL__ === 'undefined' ? 'lab' : __BUILD_CHANNEL__)
 
-/** The two builds. The other one is a plain link to its start page (the route is not kept): ./lab/ from Stable, ../ from Lab. */
-export const builds = (current: 'stable' | 'lab' = channel(), language: string = typeof __BUILD_LANGUAGE__ === 'undefined' ? 'zh' : __BUILD_LANGUAGE__) => [
-  { id: 'stable' as const, label: 'Stable', href: '../', current: current === 'stable' },
-  { id: 'lab' as const, label: 'Lab', href: './lab/', current: current === 'lab' },
-].map(build => ({ ...build, href: build.current ? undefined : current === 'lab' ? (language === 'zh' ? '../' : '../../') : './lab/' }))
+/** The Stable build's menu (it only runs at stable/): Stable ticked, and the main app one level up. The main app has no such list; it shows one quiet "Old version (Stable)" item. */
+export const builds = (current: 'stable' | 'lab' = channel()) => [
+  { id: 'stable' as const, label: 'Stable', href: undefined as string | undefined, current: current === 'stable' },
+  { id: 'lab' as const, label: 'Main app', href: '../' as string | undefined, current: current === 'lab' },
+].map(build => ({ ...build, href: build.current ? undefined : build.href }))
 
 /** A language app offered in the menu (the app builds the list; this file imports none of the app's code). */
 export interface BuildSwitchApp { label: string; glyph: string; lang: string; href: string; current: boolean }
 
 export interface BuildSwitchItem { label: string; onSelect: () => void }
 
-/** A small always-visible "Lab" mark. Renders nothing in Stable. */
-export function LabMark({ className = '' }: { className?: string }) {
-  if (channel() !== 'lab') return null
-  return <span className={`build-mark ${className}`.trim()} role="img" aria-label="Lab build: experimental, not Stable" title="Lab build: experimental, not Stable">Lab</span>
-}
-
 /**
- * The profile item of the navigation as a menu button: it opens Stable / Lab (the current one ticked) and, in Lab, the extra items the app
+ * The profile item of the navigation as a menu button: in the main app it opens the language apps, "Old version (Stable)" and the extra items the app
  * passes in. With settingsHref it adds its own gear link to Settings beside it; leave it out where the page already shows a gear.
  */
-export function BuildSwitch({ children, className = '', settingsHref, settingsLabel = 'Settings', extraItems = [], apps = [] }: {
+export function BuildSwitch({ children, className = '', settingsHref, settingsLabel = 'Settings', extraItems = [], apps = [], oldVersionHref = './stable/' }: {
   children: ReactNode
   className?: string
   settingsHref?: string
   settingsLabel?: string
   extraItems?: BuildSwitchItem[]
   apps?: BuildSwitchApp[]
+  /** Where Stable is, relative to this page: ./stable/ from the root, ../stable/ from a language app. */
+  oldVersionHref?: string
 }) {
   const [open, setOpen] = useState(false)
   const root = useRef<HTMLSpanElement>(null)
@@ -45,7 +40,6 @@ export function BuildSwitch({ children, className = '', settingsHref, settingsLa
   const current = channel()
   const items = current === 'lab' ? extraItems : []
   const languageApps = current === 'lab' ? apps : []
-  const language = typeof __BUILD_LANGUAGE__ === 'undefined' ? 'zh' : __BUILD_LANGUAGE__
 
   useEffect(() => {
     if (!open) return undefined
@@ -73,11 +67,9 @@ export function BuildSwitch({ children, className = '', settingsHref, settingsLa
     </button>
     {settingsHref && <a className="build-switch-gear" href={settingsHref} aria-label={settingsLabel} title={settingsLabel}><Settings size={18} aria-hidden="true" /></a>}
     {open && <div className="build-switch-menu" id={menuId} role="menu" aria-label="Build">
-      {builds(current).map(build => build.href
+      {current === 'stable' && builds(current).map(build => build.href
         ? <a key={build.id} role="menuitemradio" aria-checked={false} href={build.href} tabIndex={-1} onClick={() => setOpen(false)}><span className="build-switch-tick" />{build.label}</a>
-        : build.id === 'lab' && language !== 'zh'
-          ? <a key={build.id} role="menuitemradio" aria-checked href="../" tabIndex={-1} onClick={() => setOpen(false)}><span className="build-switch-tick"><Check size={14} aria-hidden="true" /></span>{build.label}<small>this build</small></a>
-          : <button key={build.id} type="button" role="menuitemradio" aria-checked tabIndex={-1} onClick={() => { setOpen(false); button.current?.focus() }}>
+        : <button key={build.id} type="button" role="menuitemradio" aria-checked tabIndex={-1} onClick={() => { setOpen(false); button.current?.focus() }}>
           <span className="build-switch-tick"><Check size={14} aria-hidden="true" /></span>{build.label}<small>this build</small>
         </button>)}
       {languageApps.length > 0 && <>
@@ -90,6 +82,10 @@ export function BuildSwitch({ children, className = '', settingsHref, settingsLa
           : <a key={app.lang} role="menuitemradio" aria-checked={false} href={app.href} tabIndex={-1} onClick={() => setOpen(false)}>
             <span className="build-switch-tick" /><span className="build-switch-glyph" lang={app.lang} aria-hidden="true">{app.glyph}</span>{app.label}
           </a>)}
+      </>}
+      {current === 'lab' && <>
+        {languageApps.length > 0 && <div className="build-switch-rule" role="separator" />}
+        <a className="build-switch-quiet" role="menuitem" href={oldVersionHref} tabIndex={-1} onClick={() => setOpen(false)}><span className="build-switch-tick" />Old version (Stable)</a>
       </>}
       {items.length > 0 && <div className="build-switch-rule" role="separator" />}
       {items.map(item => <button key={item.label} type="button" role="menuitem" tabIndex={-1} onClick={() => { setOpen(false); item.onSelect() }}>

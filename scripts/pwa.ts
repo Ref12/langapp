@@ -8,7 +8,7 @@ import { buildDisplayName } from '../src/core/language/packs'
  * PWA for every production build: emits a web manifest and a service worker. All URLs
  * (id, scope, start_url, precache) are relative, so the same build works at
  * https://ref12.github.io/langapp/ and when proxied under another path such as /apps/lang/.
- * The service worker replaces the retired root worker at the same URL. It only touches same-origin GET requests inside its own scope and never
+ * The Lab worker (sw-lab.js) is the root worker; the assembly retires the old workers at their URLs (scripts/site/retiring-sw.js). It only touches same-origin GET requests inside its own scope and never
  * touches IndexedDB, so learning data is never cleared.
  */
 export function pwa(channel: BuildChannel = 'lab', language: LanguageId = 'zh'): Plugin {
@@ -16,8 +16,9 @@ export function pwa(channel: BuildChannel = 'lab', language: LanguageId = 'zh'):
   const pack = metaFor(names.language)
   const appName = buildDisplayName(channel, pack)
   const chinese = names.language === 'zh'
-  // The Lab Chinese worker (scope lab/) also contains the language builds' folders (lab/ja/, lab/ko/): those go straight to the network.
-  const languageFolders = channel === 'lab' && names.language === 'zh' ? LANGUAGE_IDS.filter(id => id !== 'zh') : []
+  // The Lab Chinese worker (scope: the site root) also contains the other apps' folders: the language builds (ja/, ko/), Stable (stable/) and the retired lab/ redirects.
+  // Those go straight to the network. A language worker's scope is its own folder, so the other folders are outside it already.
+  const languageFolders = channel === 'lab' && names.language === 'zh' ? [...LANGUAGE_IDS.filter(id => id !== 'zh'), 'stable', 'lab'] : []
   // One id per build: baked into the bundle (`__APP_BUILD__`) and published as version.json, so a running tab can tell whether a newer deploy exists.
   // LANGAPP_BUILD_ID (the workflow sets it to the checkout's commit sha) makes a rebuild of the same commit identical; local builds stay unique.
   const build = process.env.LANGAPP_BUILD_ID?.trim() || Date.now().toString(36)
@@ -39,7 +40,7 @@ export function pwa(channel: BuildChannel = 'lab', language: LanguageId = 'zh'):
         source: JSON.stringify({
           id: './',
           name: appName,
-          short_name: channel === 'lab' ? (chinese ? 'LW Lab' : 'LW Lab ' + pack.name) : 'LinguaWeave',
+          short_name: chinese ? 'LinguaWeave' : 'LW ' + pack.name,
           ...(chinese ? {} : { lang: pack.learningTag }),
           description: 'Learn languages through reading and conversation.',
           start_url: './',
@@ -86,7 +87,7 @@ self.addEventListener('fetch', event => {
   // Only this scope: AI gateway calls and other origins pass through untouched.
   if (url.origin !== location.origin || !url.href.startsWith(scope)) return
   if (url.pathname.endsWith('/' + ${JSON.stringify(names.serviceWorkerFile)})) return
-${languageFolders.length ? `  // A language build's folder (lab/ja/, lab/ko/) is another app with its own worker: straight to the network, never from this cache, never this index.html.
+${languageFolders.length ? `  // Another app's folder (ja/, ko/, stable/, the old lab/) is another app with its own worker: straight to the network, never from this cache, never this index.html.
   const below = url.href.slice(scope.length)
   if (LANGUAGE_FOLDERS.some(folder => below === folder || below.startsWith(folder + '/') || below.startsWith(folder + '?') || below.startsWith(folder + '#'))) return
 ` : ''}  // version.json is how a stale tab learns about a newer deploy: always from the network, never stored.

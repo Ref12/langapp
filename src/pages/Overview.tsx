@@ -7,6 +7,7 @@ import { countItems } from '../core/study/daily'
 import { levelProgress, moduleOf, unitIndexOf } from '../core/study/modules'
 import { curriculumWords } from '../data/curriculum'
 import { RestoreOffer } from '../components/BackupPanel'
+import { StableCopyCard } from '../components/StableCopyCard'
 import { PageHeading, type PageProps } from '../components/shared'
 import { navigate } from '../core/routing'
 import { useStudyActions } from './useStudyActions'
@@ -38,6 +39,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
       {`Build useful ${pack.wording.language} through short lessons and regular practice.`}
     </PageHeading>
     <RestoreOffer />
+    <StableCopyCard />
     <section className="overview-feature">
       <article className="course-card panel feature-panel" aria-label="Next step">
         <p className="eyebrow accent">{resumable ? 'PICK UP YOUR LESSON' : empty ? 'COMING SOON' : next ? `YOUR NEXT STEP IN ${pack.wording.language.toUpperCase()}` : catalog ? 'KEEP YOUR MOMENTUM' : 'LOADING'}</p>

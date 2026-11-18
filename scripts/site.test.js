@@ -45,4 +45,10 @@ describe('mockup site assembly', () => {
     }
   })
 
+  it('assembles the site from sources in the repo: main at the root, Stable at stable/, redirect and retiring-worker files in scripts/site', async () => {
+    const workflow = readFileSync(resolve('.github', 'workflows', 'deploy-pages.yml'), 'utf8')
+    expect(workflow).toContain('node scripts/assemble-site.mjs dist stable-src/dist site ja=dist-ja ko=dist-ko')
+    for (const name of ['redirect.html', 'retiring-sw.js', 'not-found.html']) expect((await readFile(resolve('scripts', 'site', name), 'utf8')).length).toBeGreaterThan(50)
+    expect(workflow).not.toMatch(/<script>|skipWaiting|location\.replace/)
+  })
 })

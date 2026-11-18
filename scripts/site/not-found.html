@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Page not found - LinguaWeave</title>
+<script>
+// An old link below lab/ (a deep file) lands on the start page of the app that now lives where lab/ was: lab/ -> the root, lab/ja/ -> ja/, lab/ko/ -> ko/.
+// Only the path the browser is on is used, so this works under /langapp/ and under /apps/lang/.
+(function () {
+  var parts = location.pathname.split('/')
+  var at = parts.indexOf('lab')
+  if (at < 0) return
+  var next = parts[at + 1]
+  var folder = next === 'ja' || next === 'ko' ? next + '/' : ''
+  location.replace(parts.slice(0, at).join('/') + '/' + folder + location.search + location.hash)
+})()
+</script>
+</head>
+<body>
+<h1>Page not found</h1>
+<p>There is nothing at this address. LinguaWeave's start page is at the top of this site.</p>
+</body>
+</html>

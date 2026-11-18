@@ -1,5 +1,4 @@
 /* Self-contained: copied unchanged onto the Stable branch. Colour variables come from the app's theme, with fallbacks. */
-.build-mark { display: inline-block; flex-shrink: 0; padding: 1px 6px; border: 1px solid var(--accent, #d9a441); border-radius: 4px; color: var(--accent, #d9a441); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; line-height: 1.5; }
 .build-switch { position: relative; display: inline-flex; align-items: center; gap: 4px; min-width: 0; }
 .build-switch-nav { display: flex; width: 100%; }
 .build-switch-nav .build-switch-button { flex: 1; min-width: 0; }
@@ -17,3 +16,4 @@
 .build-switch-rule { height: 1px; margin: 4px 2px; background: var(--line, #333); }
 .build-switch-heading { padding: 4px 10px 2px; color: var(--muted, #8b949e); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
 .build-switch-glyph { display: inline-block; width: 1.4em; text-align: center; }
+.build-switch-menu .build-switch-quiet { color: var(--muted, #8b949e); font-size: .92em; }

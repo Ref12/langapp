@@ -74,7 +74,7 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
 
-  # The Japanese build of Lab: the same commit and build id, its own output folder, published at lab/ja/.
+  # The Japanese build of Lab: the same commit and build id, its own output folder, published at ja/.
   build-ja:
     runs-on: ubuntu-latest
     steps:
@@ -87,7 +87,7 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-      - name: Build the Japanese app (Lab, published at lab/ja/)
+      - name: Build the Japanese app (published at ja/)
         env:
           LANGAPP_BUILD_ID: ${{ github.sha }}
           LANGAPP_LANGUAGE: ja
@@ -100,7 +100,7 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
 
-  # The Korean build of Lab: the same commit and build id, its own output folder, published at lab/ko/.
+  # The Korean build of Lab: the same commit and build id, its own output folder, published at ko/.
   build-ko:
     runs-on: ubuntu-latest
     steps:
@@ -113,7 +113,7 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-      - name: Build the Korean app (Lab, published at lab/ko/)
+      - name: Build the Korean app (published at ko/)
         env:
           LANGAPP_BUILD_ID: ${{ github.sha }}
           LANGAPP_LANGUAGE: ko
@@ -126,14 +126,14 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
 
-  # Stable is the same repository's `stable` branch, published at the site root.
+  # Stable is the same repository's `stable` branch, published at stable/ (the old version).
   build-stable:
     runs-on: ubuntu-latest
     steps:
       - name: Check that branch stable exists
         run: |
           if ! git ls-remote --exit-code --heads "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" stable >/dev/null; then
-            echo "::error::Branch 'stable' does not exist in $GITHUB_REPOSITORY. Stable is published at the site root, so there is nothing to deploy."
+            echo "::error::Branch 'stable' does not exist in $GITHUB_REPOSITORY. Stable is published at stable/, so there is nothing to deploy."
             exit 1
           fi
       - uses: actions/checkout@v4
@@ -186,8 +186,8 @@ jobs:
           name: build-stable
           path: stable-src/dist
 
-      - name: Assemble the site (Stable at the root, Lab under lab/, Lab Japanese under lab/ja/, Lab Korean under lab/ko/)
-        run: node scripts/assemble-site.mjs stable-src/dist dist site ja=dist-ja ko=dist-ko
+      - name: Assemble the site (main app at the root, Japanese at ja/, Korean at ko/, Stable at stable/, redirects and retiring workers for the old places)
+        run: node scripts/assemble-site.mjs dist stable-src/dist site ja=dist-ja ko=dist-ko
 
       - name: Configure existing Pages site
         uses: actions/configure-pages@v5

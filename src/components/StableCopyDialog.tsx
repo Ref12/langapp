@@ -90,15 +90,15 @@ export function StableCopyDialog({ mode, onClose }: { mode: 'offer' | 'menu'; on
           ? <>
             <p>This copies the AI connections, the speech connection, the GitHub backup connection (repository, branch and token) and the general settings (how many new items and reviews a practice has, listening aloud, AI engine presets and media translation pacing) from Stable into this {language} app, <strong>replacing</strong> its own. It copies nothing about learning: no knowledge, study cards, answers, history, collections, conversations or media. <strong>Your {language} learning is not touched.</strong> Stable is not changed.</p>
           </>
-          : <p>{mode === 'offer' ? 'Lab has an empty profile; this copies the Stable profile and its settings on this device.' : <>This <strong>replaces</strong> the Lab profile “{mine.name}” ({counts(mine.counts)}) with a copy of the Stable profile and its settings on this device.</>} Lab runs its own migrations on the copy. The GitHub backup connection (repository, branch and token) comes with it. Stable is not changed: nothing is copied back to Stable.</p>}
+          : <p>{mode === 'offer' ? 'This app has an empty profile; this copies the Stable profile and its settings on this device.' : <>This <strong>replaces</strong> the profile “{mine.name}” ({counts(mine.counts)}) with a copy of the Stable profile and its settings on this device.</>} Lab runs its own migrations on the copy. The GitHub backup connection (repository, branch and token) comes with it. Stable is not changed: nothing is copied back to Stable.</p>}
         <p>All the apps can share one backup repository and branch, because each keeps to its own folder in it (this app: <code>{folder}</code>). Copying the backup connection does not copy any backup status: the next backup starts fresh and writes only into this app's folder, never another app's.</p>
         {error && <p role="alert" className="notice error">{error}</p>}
         <div className="confirm-actions">
           <button type="button" ref={first} className="button secondary" disabled={busy} onClick={decline}>{mode === 'offer' ? 'No, start empty' : 'Cancel'}</button>
-          <button type="button" className={settingsOnly ? 'button primary' : 'button danger'} disabled={busy} onClick={() => void replace()}>{busy ? 'Copying…' : settingsOnly ? 'Copy settings' : mode === 'offer' ? 'Copy from Stable' : 'Replace Lab profile'}</button>
+          <button type="button" className={settingsOnly ? 'button primary' : 'button danger'} disabled={busy} onClick={() => void replace()}>{busy ? 'Copying…' : settingsOnly ? 'Copy settings' : mode === 'offer' ? 'Copy from Stable' : 'Replace profile'}</button>
         </div>
       </>}
-      {done && <p role="status">Copied. Reloading Lab…</p>}
+      {done && <p role="status">Copied. Reloading…</p>}
     </div>
   </div>
 }

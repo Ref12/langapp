@@ -1,5 +1,6 @@
-// Changeover check (not part of test:pages, not run by the workflow). Usage:
-//   node scripts/changeover-check.mjs --main <dist of today's main> --stable <dist> --lab <dist> [--shots <dir>]
+// Changeover check (not part of test:pages, not run by the workflow): today's site (Stable at the root, Lab at lab/, lab/ja/, lab/ko/) is replaced by the promoted layout
+// (the main app at the root, ja/, ko/, Stable at stable/, redirects and retiring workers at the old places), as a Pages deploy does, in a browser that visited the old site.
+//   node scripts/changeover-check.mjs --old-stable <dist> --old-lab <dist> --old-ja <dist> --old-ko <dist> --new-lab <dist> --new-ja <dist> --new-ko <dist> --new-stable <dist> [--shots <dir>] [--bases /langapp/,/apps/lang/]
 // Needs Playwright and Chromium: PW_DIR=<folder with node_modules/playwright> (or playwright resolvable from here).
 import { createServer } from 'node:http'
 import { createRequire } from 'node:module'
@@ -29,7 +30,11 @@ export async function startServer(base) {
       const body = await readFile(file)
       res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream', 'cache-control': 'no-cache' })
       res.end(body)
-    } catch { res.writeHead(404); res.end('not found') }
+    } catch {
+      // Like GitHub Pages: a missing file gets the site's own 404.html, with status 404.
+      const page = await readFile(join(state.dir, '404.html')).catch(() => undefined)
+      res.writeHead(404, { 'content-type': page ? 'text/html' : 'text/plain' }); res.end(page ?? 'not found')
+    }
   })
   await new Promise(done => server.listen(0, '127.0.0.1', done))
   return { port: server.address().port, state, close: () => server.close() }
@@ -117,171 +122,205 @@ function unchanged(before, after) {
 }
 const names = d => ({ databases: Object.keys(d.idb), localStorage: Object.keys(d.ls), caches: Object.fromEntries(Object.entries(d.caches).map(([k, v]) => [k, Object.keys(v).length])) })
 
-/** Today's main: install its worker, make state (five saved words, one device setting), return what the learner sees. */
-async function before(context, origin, base) {
-  const page = await context.newPage()
-  await route(page, origin, base)
-  await page.evaluate(() => navigator.serviceWorker.ready)
-  await page.reload(); await page.waitForTimeout(1500)
-  const ctl = await controller(page)
+
+/** Saves `count` words of the Dictionary page into the knowledge set. */
+async function saveItems(page, count) {
   await hash(page, 'dictionary')
-  for (let i = 0; i < 5; i++) {
+  await page.waitForTimeout(500)
+  // The old Lab offers to copy Stable's profile while its own is empty: start empty, as a learner who declined would.
+  const offer = page.getByRole('button', { name: 'No, start empty' })
+  if (await offer.count()) { await offer.click(); await page.waitForTimeout(500) }
+  for (let i = 0; i < count; i++) {
     await page.locator('main button.save-trigger').nth(i).click(); await page.waitForTimeout(300)
     await page.locator('.save-backdrop').getByText('Knowledge set', { exact: true }).click(); await page.waitForTimeout(500)
     await page.locator('.save-backdrop').getByRole('button', { name: 'Done' }).click(); await page.waitForTimeout(300)
   }
-  await page.evaluate(() => localStorage.setItem('practice.newItems', '10'))
-  await page.getByRole('button', { name: /Switch to light theme/ }).click()
-  // The overview recounts what is due only when the app starts (true of today's main too), so reload before recording what the learner sees.
-  await page.reload(); await page.waitForTimeout(2000)
-  return { page, ctl, seen: await view(page) }
 }
+/** Visits a page and waits until a worker controls it (a second load when the first only installed it). */
+async function installWorker(page, origin, path) {
+  await route(page, origin, path)
+  await page.evaluate(() => navigator.serviceWorker.ready)
+  await page.reload(); await page.waitForTimeout(1500)
+  return controller(page)
+}
+const registrations = page => page.evaluate(() => navigator.serviceWorker.getRegistrations().then(r => r.map(x => x.scope.replace(location.origin, '') + ' ' + (x.active?.scriptURL ?? '').replace(location.origin, ''))))
+/** Polls until check() is true (up to ms). */
+async function until(check, ms = 12000) { const end = Date.now() + ms; while (Date.now() < end) { if (await check().catch(() => false)) return true; await sleep(300) } return false }
 
 async function openSwitch(page) {
-  // On a phone the switch is in the profile pill of a page's top bar, or inside the navigation drawer.
   if (!(await page.locator('.build-switch-button:visible').count())) { await page.getByRole('button', { name: 'Open navigation' }).click(); await page.waitForTimeout(500) }
   await page.locator('.build-switch-button:visible').first().click(); await page.waitForTimeout(400)
 }
-async function chooseBuild(page, label) {
-  await openSwitch(page)
-  await Promise.all([page.waitForURL(url => true, { waitUntil: 'load' }).catch(() => {}), page.getByRole('menuitemradio', { name: new RegExp('^' + label) }).click()])
-  await page.waitForLoadState('load'); await page.waitForTimeout(1500)
-}
-const same = (a, b) => JSON.stringify({ ...a, build: 0 }) === JSON.stringify({ ...b, build: 0 })
 
 async function suite(browser, server, dirs, base, tag, shots) {
   const origin = 'http://127.0.0.1:' + server.port
-  const fresh = async () => { const sink = []; const context = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'allow' }); watch(context, sink); return { context, sink } }
   const L = (name, ok, detail) => log('[' + tag + '] ' + name, ok, detail)
-  const A = await fresh(), B = await fresh()
-  server.state.dir = dirs.main
-  const a = await before(A.context, origin, base), b = await before(B.context, origin, base)
-  L('1 before: today\'s main served, worker controls the page, state made', !!b.ctl && b.seen.words === '5' && !b.seen.build, JSON.stringify({ controller: b.ctl, ...b.seen }))
-  const mainDump = await dump(B.context, origin, base, false)
-  console.log('  names before:', JSON.stringify(names(mainDump)))
+  const fresh = async () => { const sink = []; const context = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'allow' }); watch(context, sink); return { context, sink } }
+  const A = await fresh()
+  const page = await A.context.newPage()
 
-  // 2. changeover: swap the files, as a Pages deploy does
-  server.state.dir = dirs.site
-  const page = b.page
-  await page.evaluate(() => navigator.serviceWorker.getRegistration().then(r => r?.update())).catch(() => {})
-  await page.waitForTimeout(1500)
-  const bar = await page.locator('.update-bar').count()
-  const afterUpdate = await view(page)
-  L('2a open tab after the deploy: still usable, counts same (update bar shown: ' + !!bar + ')', afterUpdate.words === '5' && !afterUpdate.broken, JSON.stringify(afterUpdate))
-  await page.reload(); await page.waitForTimeout(2500)
-  const plain = await view(page)
-  L('2b plain reload: Stable at the root, same counts, no error screen', plain.build === 'Stable' && same(plain, b.seen) && !plain.broken, JSON.stringify(plain))
-  const second = await B.context.newPage(); await route(second, origin, base, 'overview')
-  const visit = await view(second)
-  L('2c second visit (new tab): Stable, same counts', visit.build === 'Stable' && same(visit, b.seen) && !visit.broken, JSON.stringify(visit) + ' controller ' + await controller(second))
-  await second.close()
-  await page.reload(); await page.waitForTimeout(2500)
-  L('2d worker now: ' + await controller(page), (await controller(page)) === base + 'sw.js')
-  const consoleBad = B.sink.filter(s => BAD_LOG.test(s))
-  L('2e console has nothing about migrations or parsing', !consoleBad.length, consoleBad.slice(0, 3).join(' | ') + ' (other errors/warnings: ' + (B.sink.length - consoleBad.length) + ')')
-  if (B.sink.length) console.log('  console:', [...new Set(B.sink)].slice(0, 6).join('\n   '))
+  // 1. today's site: every old worker installs; state in Stable (2 words) and in Lab (1 word)
+  server.state.dir = dirs.oldSite
+  const stableCtl = await installWorker(page, origin, base)
+  await saveItems(page, 2)
+  await page.evaluate(() => localStorage.setItem('practice.newItems', '10'))
+  const stableSeen = (await view(page))
+  const labCtl = await installWorker(page, origin, base + 'lab/')
+  const jaCtl = await installWorker(page, origin, base + 'lab/ja/')
+  const koCtl = await installWorker(page, origin, base + 'lab/ko/')
+  await route(page, origin, base + 'lab/', 'practice')
+  await saveItems(page, 1)
+  await page.reload(); await page.waitForTimeout(2000)
+  const labSeen = await view(page)
+  L('1 old site: Stable at the root (2 words) with sw.js; Lab (1 word) with its worker; ja and ko workers installed',
+    stableCtl === base + 'sw.js' && labCtl === base + 'lab/sw-lab.js' && jaCtl === base + 'lab/ja/sw-lab-ja.js' && koCtl === base + 'lab/ko/sw-lab-ko.js' && stableSeen.words === '2' && labSeen.words === '1' && labSeen.build === 'Lab',
+    JSON.stringify({ stableCtl, labCtl, jaCtl, koCtl, stable: stableSeen.words, lab: labSeen.words, regs: await registrations(page) }))
+  const dataBefore = await dump(A.context, origin, base, false)
+  console.log('  names before:', JSON.stringify(names(dataBefore)))
 
-  // What Stable itself changed or left behind at the changeover, for the report (it is Stable's own business, not a failure).
-  const beforeDump = await dump(B.context, origin, base, false)
-  console.log('  changed by the first runs:', unchanged(mainDump, beforeDump).join('; ') || 'nothing', '| left behind from main:', Object.keys(beforeDump.caches).filter(c => !c.startsWith('lab.') && !c.includes('stable')).join(', ') || 'nothing')
+  // 2. swap in the new site. A visitor with Stable's root worker: how many reloads until the new root build?
+  server.state.dir = dirs.newSite
+  const root = await A.context.newPage()
+  await root.goto(origin + base + '#overview', { waitUntil: 'load' })
+  const firstLoad = (await view(root).catch(() => ({}))).build
+  let reloads = 0
+  // The retiring worker moves the open page by itself; an explicit reload is the fallback (at most one).
+  const moved = await until(async () => (await text(root)).includes('words in your knowledge set') && (await view(root)).build === 'Lab', 10000)
+  if (!moved) { reloads = 1; await root.reload(); await root.waitForTimeout(2500) }
+  const rootSeen = await view(root)
+  L('2 root, a visitor who had Stable\'s worker: the new main app within ' + reloads + ' reload(s) (first load showed ' + firstLoad + ') with the item added in Lab',
+    reloads <= 1 && rootSeen.build === 'Lab' && rootSeen.words === '1' && !rootSeen.broken, JSON.stringify(rootSeen))
+  const rootWorker = await until(async () => (await controller(root)) === base + 'sw-lab.js', 8000) || await until(async () => { await root.reload(); await root.waitForTimeout(1500); return (await controller(root)) === base + 'sw-lab.js' }, 8000)
+  L('2b the root is then controlled by sw-lab.js, and the old Stable root worker is not registered (the lab/ workers retire when their scope is visited: 3f)', rootWorker && !(await registrations(root)).some(r => /\/sw\.js/.test(r) && !/\/stable\//.test(r)), JSON.stringify(await registrations(root)))
+  const noRetired = !(await registrations(root)).some(r => r.includes(base + 'sw.js'))
+  L('2c Stable\'s old root worker is gone', noRetired)
 
-  // 3. Lab, from Stable, with the Stable worker in charge
-  await hash(page, 'overview')
-  if (shots) { await openSwitch(page); await page.screenshot({ path: join(shots, 'stable-switch-menu-390.png') }); await page.keyboard.press('Escape') }
-  await chooseBuild(page, 'Lab')
-  const labPath = new URL(page.url()).pathname
-  const mark = await page.locator('.build-mark').count()
-  L('3a switch lands on ' + base + 'lab/ with the Lab mark', labPath === base + 'lab/' && mark > 0, labPath)
-  const offerVisible = await page.getByRole('dialog', { name: /Copy profile from Stable/ }).count()
-  const labEmpty = await page.evaluate(() => document.body.innerText.match(/(\d+)\s*\n\s*words in your knowledge set/)?.[1])
-  L('3b empty Lab profile and the copy offer', offerVisible === 1 && (labEmpty === '0' || labEmpty === undefined), 'offer ' + offerVisible + ' words ' + labEmpty)
-  if (shots) await page.screenshot({ path: join(shots, 'lab-copy-offer-390.png') })
-  await page.getByRole('button', { name: 'Copy from Stable' }).click(); await page.waitForTimeout(3500)
-  const lab = await view(page)
-  L('3c after the copy Lab shows the same state', lab.build === 'Lab' && same(lab, b.seen), JSON.stringify(lab))
-  await page.reload(); await page.waitForTimeout(2500)
-  const labCtl = await controller(page)
-  L('3d Lab page is controlled by its own worker', labCtl === base + 'lab/sw-lab.js', String(labCtl))
-  const regs = await page.evaluate(() => navigator.serviceWorker.getRegistrations().then(r => r.map(x => x.scope.replace(location.origin, '') + ' ' + (x.active?.scriptURL ?? '').replace(location.origin, ''))))
-  console.log('  registrations:', JSON.stringify(regs))
-  if (shots) { await hash(page, 'overview'); await openSwitch(page); await page.screenshot({ path: join(shots, 'lab-switch-menu-390.png') }); await page.keyboard.press('Escape') }
-
-  // 4. back to Stable: everything Stable owned before step 3 is untouched
-  const afterLab = await dump(B.context, origin, base, true)
-  const diff = unchanged(beforeDump, afterLab)
-  L('4a Stable databases, localStorage and caches unchanged after Lab (' + Object.keys(beforeDump.idb).length + ' dbs, ' + Object.keys(beforeDump.ls).length + ' keys, ' + Object.values(beforeDump.caches).reduce((n, c) => n + Object.keys(c).length, 0) + ' cache entries)', !diff.length, diff.slice(0, 5).join('; '))
-  const labNames = names(await dump(B.context, origin, base, false))
-  console.log('  names after Lab:', JSON.stringify(labNames))
-  await chooseBuild(page, 'Stable')
-  const back = await view(page)
-  L('4b back on Stable: it works, same counts', new URL(page.url()).pathname === base && back.build === 'Stable' && same(back, b.seen) && !back.broken, JSON.stringify(back))
-  const finalDiff = unchanged(beforeDump, await dump(B.context, origin, base, true))
-  console.log('  after Stable ran again, differences from before step 3:', finalDiff.length ? finalDiff.join('; ') : 'none')
-
-  // 4c. publish again: Stable rebuilt from the same commit, Lab changed. The open Stable tab must not notice; the open Lab tab must.
-  const stableWorker = p => p.evaluate(async path => { const body = await (await fetch(path, { cache: 'no-store' })).arrayBuffer(); return [...new Uint8Array(await crypto.subtle.digest('SHA-256', body))].map(b => b.toString(16).padStart(2, '0')).join('') }, base + 'sw.js')
-  const swBefore = await stableWorker(page)
-  await hash(page, 'overview')
-  const labTab = await B.context.newPage(); await route(labTab, origin, base + 'lab/', 'overview')
-  const marker = tab => tab.evaluate(() => document.querySelector('meta[name=changeover]')?.content ?? 'none')
-  const titleBefore = await marker(labTab)
-  server.state.dir = dirs.site2
-  for (const tab of [page, labTab]) { await tab.evaluate(() => navigator.serviceWorker.getRegistration().then(r => r?.update())).catch(() => {}) }
-  await sleep(3000)
-  L('6a open Stable tab: no update bar after Stable is rebuilt from the same commit', (await page.locator('.update-bar').count()) === 0, 'bars: ' + await page.locator('.update-bar').count())
-  L('6b Stable sw.js byte-identical to before', (await stableWorker(page)) === swBefore, swBefore.slice(0, 12))
-  L('6c open Lab tab gets the update bar', (await labTab.locator('.update-bar').count()) > 0)
-  await labTab.getByRole('button', { name: 'Reload' }).click(); await sleep(2500)
-  const titleAfter = await marker(labTab)
-  L('6d Reload brings the new Lab build (index marker ' + JSON.stringify(titleBefore) + ' -> ' + JSON.stringify(titleAfter) + ')', titleBefore === 'none' && titleAfter === 'v2')
-  L('6e ...still Lab with the same state', (await view(labTab)).build === 'Lab' && same(await view(labTab), b.seen))
-  const stillStable = await view(page)
-  L('6f Stable tab still works after the second publish', stillStable.build === 'Stable' && same(stillStable, b.seen))
-  await labTab.close()
-  server.state.dir = dirs.site
-
-  // 5. offline
-  await B.context.setOffline(true)
-  const off = {}
-  for (const [key, path] of [['stable', base], ['lab', base + 'lab/']]) {
-    const q = await B.context.newPage()
-    try { await route(q, origin, path, 'settings'); off[key] = (await text(q)).match(/Build:\s*(Stable|Lab)/)?.[1] } catch (e) { off[key] = 'failed: ' + e.message.split('\n')[0] }
-    await q.close()
+  // 3. old links
+  const go = async (path, expectUrl, name) => {
+    const p = await A.context.newPage()
+    await p.goto(origin + path, { waitUntil: 'load' }).catch(() => {})
+    const ok = await until(async () => p.url() === origin + expectUrl && (await text(p)).length > 50, 10000)
+    L(name + ' -> ' + expectUrl, ok, p.url().replace(origin, ''))
+    return p
   }
-  await B.context.setOffline(false)
-  L('5 offline: ' + base + ' opens Stable and ' + base + 'lab/ opens Lab', off.stable === 'Stable' && off.lab === 'Lab', JSON.stringify(off))
+  await (await go(base + 'lab/#/practice', base + '#/practice', '3a lab/#/practice')).close()
+  await (await go(base + 'lab/?x=1#settings', base + '?x=1#settings', '3a2 lab/?x=1#settings')).close()
+  const ja = await go(base + 'lab/ja/', base + 'ja/', '3b lab/ja/')
+  const jaSeen = await text(ja)
+  L('3b2 ja/ is the Japanese build', /Japanese|日本語/.test(jaSeen) && (await ja.evaluate(() => document.title)).includes('日本語'), (await ja.evaluate(() => document.title)))
+  await ja.close()
+  await (await go(base + 'lab/ko/', base + 'ko/', '3c lab/ko/')).close()
+  await (await go(base + 'lab/assets/index-gone.js', base + '', '3d deep old file lab/assets/index-gone.js')).close()
+  await (await go(base + 'lab/ja/assets/x.css', base + 'ja/', '3e deep old file lab/ja/assets/x.css')).close()
+  const retired = await until(async () => { const regs = await registrations(root); return !regs.some(r => r.includes('/lab/')) }, 10000)
+  L('3f the old workers at lab/, lab/ja/ and lab/ko/ have retired themselves', retired, JSON.stringify(await registrations(root)))
 
-  // 3 (variant): Lab first, while the root worker is still today's main worker (context A never reloaded the root)
-  const pa = a.page
-  const rootBefore = await controller(pa)
-  const q = await A.context.newPage(); await route(q, origin, base + 'lab/')
-  const first = { controller: await controller(q), mark: await q.locator('.build-mark').count(), offer: await q.getByRole('dialog', { name: /Copy profile from Stable/ }).count() }
-  L('3e Lab opened first under the old root worker (' + rootBefore + '): Lab build, Lab mark, copy offer', first.mark > 0 && first.offer === 1, JSON.stringify(first))
-  await q.getByRole('button', { name: 'Copy from Stable' }).click(); await q.waitForTimeout(3500)
-  const labA = await view(q)
-  L('3f ...and the copy gives the same state', labA.build === 'Lab' && same(labA, a.seen), JSON.stringify(labA))
-  await q.reload(); await q.waitForTimeout(2000)
-  L('3g ...Lab then runs under its own worker', (await controller(q)) === base + 'lab/sw-lab.js', String(await controller(q)))
-  const rootAfter = await view(pa); await pa.reload(); await pa.waitForTimeout(2500)
-  const rootA = await view(pa)
-  L('3h ...and the root is Stable with the same counts', rootA.build === 'Stable' && same(rootA, a.seen), JSON.stringify(rootA))
-  await A.context.close(); await B.context.close()
+  // 4. Stable at stable/
+  const st = await A.context.newPage()
+  await installWorker(st, origin, base + 'stable/')
+  const stView = await view(st)
+  L('4 stable/ opens Stable with its data (2 words), own worker stable/sw.js', stView.build === 'Stable' && stView.words === '2' && (await controller(st)) === base + 'stable/sw.js', JSON.stringify({ ...stView, ctl: await controller(st) }))
+  const links = await st.evaluate(async () => { document.querySelector('.build-switch-button')?.click(); await new Promise(r => setTimeout(r, 300)); return [...document.querySelectorAll('.build-switch-menu a')].map(a => a.textContent + ' ' + a.getAttribute('href')) })
+  console.log('  stable/ menu links:', JSON.stringify(links))
+  if (shots) { await st.reload(); await st.waitForTimeout(1500); await hash(st, 'overview'); await st.screenshot({ path: join(shots, 'stable-at-stable-390.png') }) }
+
+  // 5. data untouched by the changeover
+  const dataAfter = await dump(A.context, origin, base, false)
+  const gone = Object.keys(dataBefore.idb).filter(n => !dataAfter.idb[n]).concat(Object.keys(dataBefore.idb).filter(n => dataAfter.idb[n] && dataAfter.idb[n].version !== dataBefore.idb[n].version))
+  const diff = unchanged(dataBefore, dataAfter).filter(d => !/^cache lab\.\S*shell/.test(d) && !/^cache lab\./.test(d)).filter(d => d !== 'rows of linguaweave-backup-state changed' /* startup timing marks Stable appends each time it runs, here when stable/ is opened */).filter(d => !d.startsWith('rows of lab.') && !d.startsWith('localStorage lab.'))
+  if (process.env.SHOW_BACKUP) for (const w of ['before', 'after']) console.log('  backup-state ' + w + ': ' + String((w === 'before' ? dataBefore : dataAfter).idb['linguaweave-backup-state']?.stores).slice(0, 500))
+  L('5 no database gone or upgraded; Stable\'s databases, keys and caches unchanged', !gone.length && !diff.length, [...gone, ...diff].slice(0, 6).join('; '))
+  const lab = unchanged({ ...dataBefore, idb: {}, ls: {}, caches: Object.fromEntries(Object.entries(dataBefore.caches).filter(([k]) => k.startsWith('lab.') && !k.includes('shell'))) }, dataAfter)
+  L('5b Lab\'s runtime caches are all still there', !lab.length, lab.slice(0, 4).join('; '))
+  const bad = A.sink.filter(s => BAD_LOG.test(s))
+  L('5c no console message about migrations or parsing', !bad.length, bad.slice(0, 3).join(' | '))
+
+  // 6. offline after a visit: the root opens (it was visited above under the new worker)
+  await root.reload(); await root.waitForTimeout(2000)
+  await A.context.setOffline(true)
+  const off = await A.context.newPage()
+  let offline
+  try { await off.goto(origin + base, { waitUntil: 'load' }); await off.waitForTimeout(1500); offline = (await text(off)).includes('Overview') } catch (e) { offline = 'failed: ' + e.message.split('\n')[0] }
+  await A.context.setOffline(false)
+  L('6 offline after one visit: the root still opens', offline === true, String(offline))
+  await off.close()
+
+  // 7. redeploy with Stable unchanged: no update bar in Stable
+  const stableWorker = p => p.evaluate(async path => { const body = await (await fetch(path, { cache: 'no-store' })).arrayBuffer(); return [...new Uint8Array(await crypto.subtle.digest('SHA-256', body))].map(b => b.toString(16).padStart(2, '0')).join('') }, base + 'stable/sw.js')
+  const swBefore = await stableWorker(st)
+  await hash(st, 'overview')
+  server.state.dir = dirs.newSite2
+  for (const tab of [st, root]) await tab.evaluate(() => navigator.serviceWorker.getRegistration().then(r => r?.update())).catch(() => {})
+  await sleep(3000)
+  L('7a open Stable tab: no update bar after a redeploy with Stable unchanged', (await st.locator('.update-bar').count()) === 0, 'bars: ' + await st.locator('.update-bar').count())
+  L('7b stable/sw.js byte-identical', (await stableWorker(st)) === swBefore, swBefore.slice(0, 12))
+  L('7c the open main-app tab gets the update bar (it changed)', (await root.locator('.update-bar').count()) > 0)
+  server.state.dir = dirs.newSite
+  await A.context.close()
+
+  // 8. a visitor with only Stable data and an empty main profile: the one-time card on the Overview
+  const C = await fresh()
+  server.state.dir = dirs.oldSite
+  const c = await C.context.newPage()
+  await installWorker(c, origin, base)
+  await saveItems(c, 2)
+  const cSeen = await view(c)
+  server.state.dir = dirs.newSite
+  const cr = await C.context.newPage()
+  await cr.goto(origin + base + '#overview', { waitUntil: 'load' })
+  let card = await until(async () => (await cr.getByText('Your progress from the old version can be copied in').count()) === 1, 12000)
+  if (!card) { await cr.reload(); card = await until(async () => (await cr.getByText('Your progress from the old version can be copied in').count()) === 1, 8000) }
+  L('8a Overview of the empty main profile shows the copy card (Stable has data)', card)
+  if (shots) { await cr.screenshot({ path: join(shots, 'root-copy-card-390.png') }) ; await openSwitch(cr); await cr.screenshot({ path: join(shots, 'profile-menu-390.png') }); await cr.keyboard.press('Escape') }
+  const menuItem = await (async () => { await openSwitch(cr).catch(() => {}); const a = cr.getByRole('menuitem', { name: 'Old version (Stable)' }); return (await a.count()) ? await a.getAttribute('href') : null })()
+  L('8b the profile menu has "Old version (Stable)" pointing at ./stable/ and no Stable / Lab list', menuItem === './stable/' && (await cr.getByRole('menuitemradio', { name: /^(Lab|Stable)/ }).count()) === 0, String(menuItem))
+  await cr.keyboard.press('Escape')
+  const drawer = cr.getByRole('button', { name: 'Close navigation' })
+  if (await drawer.isVisible().catch(() => false)) { await drawer.click(); await cr.waitForTimeout(400) }
+  await cr.getByRole('button', { name: 'Copy', exact: true }).click(); await cr.waitForTimeout(500)
+  await cr.getByRole('button', { name: 'Copy from Stable' }).click(); await cr.waitForTimeout(4000)
+  await cr.waitForLoadState('load')
+  const copied = await view(cr)
+  L('8c Copy brings the Stable data in; the card is gone afterwards', copied.words === cSeen.words && (await cr.getByText('Your progress from the old version can be copied in').count()) === 0, JSON.stringify(copied))
+  await C.context.close()
+
+  // 9. Not now is remembered
+  const D = await fresh()
+  server.state.dir = dirs.oldSite
+  const d = await D.context.newPage()
+  await installWorker(d, origin, base); await saveItems(d, 1)
+  server.state.dir = dirs.newSite
+  const dr = await D.context.newPage(); await dr.goto(origin + base + '#overview', { waitUntil: 'load' })
+  let dcard = await until(async () => (await dr.getByRole('button', { name: 'Not now' }).count()) === 1, 12000)
+  if (!dcard) { await dr.reload(); dcard = await until(async () => (await dr.getByRole('button', { name: 'Not now' }).count()) === 1, 8000) }
+  if (dcard) await dr.getByRole('button', { name: 'Not now' }).click()
+  await dr.reload(); await dr.waitForTimeout(2500)
+  L('9 Not now hides the card for good (kept under lab.linguaweave-copy-offer-declined)', dcard && (await dr.getByText('Your progress from the old version can be copied in').count()) === 0 && (await dr.evaluate(() => localStorage.getItem('lab.linguaweave-copy-offer-declined'))) === '1')
+  await D.context.close()
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
-  const dirs = { main: resolve(arg('main') ?? ''), stable: resolve(arg('stable') ?? ''), lab: resolve(arg('lab') ?? '') }
+  const need = ['old-stable', 'old-lab', 'old-ja', 'old-ko', 'new-lab', 'new-ja', 'new-ko', 'new-stable']
+  if (need.some(name => !arg(name))) { console.error('Needs --' + need.join(' --') + ' (build folders)'); process.exit(2) }
+  const d = Object.fromEntries(need.map(name => [name, resolve(arg(name))]))
   const shots = arg('shots') && resolve(arg('shots'))
   if (shots) await mkdir(shots, { recursive: true })
   const work = await mkdtemp(join(tmpdir(), 'changeover-'))
-  dirs.site = join(work, 'site')
-  await assembleSite(dirs.stable, dirs.lab, dirs.site)
-  // A throwaway second publish: Stable rebuilt from the same commit (--stable2, or the same folder), Lab with a visible change and a new build id.
-  const lab2 = join(work, 'lab2'); await cp(dirs.lab, lab2, { recursive: true })
+  // Today's layout, written the way the old assembly did: Stable at the root, Lab at lab/, languages at lab/<language>/.
+  const oldSite = join(work, 'old')
+  await cp(d['old-stable'], oldSite, { recursive: true })
+  await cp(d['old-lab'], join(oldSite, 'lab'), { recursive: true })
+  await cp(d['old-ja'], join(oldSite, 'lab', 'ja'), { recursive: true })
+  await cp(d['old-ko'], join(oldSite, 'lab', 'ko'), { recursive: true })
+  const newSite = join(work, 'new')
+  await assembleSite(d['new-lab'], d['new-stable'], newSite, { ja: d['new-ja'], ko: d['new-ko'] })
+  // A second publish: the main app changed (visible marker, new build id), Stable rebuilt from the same commit (the same folder).
+  const lab2 = join(work, 'lab2'); await cp(d['new-lab'], lab2, { recursive: true })
   await writeFile(join(lab2, 'version.json'), JSON.stringify({ build: 'lab-v2' }))
   await writeFile(join(lab2, 'sw-lab.js'), (await readFile(join(lab2, 'sw-lab.js'), 'utf8')) + '\n// second publish\n')
-  await writeFile(join(lab2, 'index.html'), (await readFile(join(lab2, 'index.html'), 'utf8')).replace('</head>', '<meta name="changeover" content="v2"></head>'))
-  dirs.site2 = join(work, 'site2')
-  await assembleSite(resolve(arg('stable2') ?? dirs.stable), lab2, dirs.site2)
+  const newSite2 = join(work, 'new2')
+  await assembleSite(lab2, d['new-stable'], newSite2, { ja: d['new-ja'], ko: d['new-ko'] })
+  const dirs = { oldSite, newSite, newSite2 }
   const browser = await chromium.launch()
   try {
     for (const base of (arg('bases') ?? '/langapp/,/apps/lang/').split(',')) {

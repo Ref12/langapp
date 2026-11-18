@@ -42,7 +42,7 @@ describe('Settings: Copy from Stable', () => {
   it('Chinese Lab copies the profile: the section and the button open the dialog', async () => {
     await openSettings('lab', 'zh')
     expect(screen.getByRole('heading', { name: 'Stable' })).toBeInTheDocument()
-    expect(screen.getByText(/Copy your profile from Stable into Lab, with its AI, speech and GitHub backup connections\. Stable is not changed\./)).toBeInTheDocument()
+    expect(screen.getByText(/Copy your profile from Stable \(the old version\) into this app, with its AI, speech and GitHub backup connections\. Stable is not changed\./)).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: PROFILE_BUTTON }))
     expect(await screen.findByRole('dialog', { name: 'Copy profile from Stable' })).toBeInTheDocument()
   })

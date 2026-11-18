@@ -79,7 +79,7 @@ describe('Copy profile from Stable', () => {
     expect(dialog).toHaveTextContent('4 items in the knowledge set (2 Japanese or Korean), 4 cards')
     expect(dialog).toHaveTextContent('replaces')
     expect(dialog).toHaveTextContent('The GitHub backup connection (repository, branch and token) comes with it.')
-    expect(dialog).toHaveTextContent('Lab profile “default” (1 items in the knowledge set')
+    expect(dialog).toHaveTextContent('profile “default” (1 items in the knowledge set')
     await user.click(screen.getByRole('button', { name: 'Cancel' }))
     expect(onClose).toHaveBeenCalledOnce()
     expect(JSON.stringify(await db.knowledge.toArray())).toBe(labBefore)
@@ -104,14 +104,14 @@ describe('Copy profile from Stable', () => {
     const user = userEvent.setup()
     const view = render(<StableCopyDialog mode="menu" onClose={() => undefined} />)
     await user.click(await screen.findByRole('radio', { name: /default/ }))
-    await user.click(screen.getByRole('button', { name: 'Replace Lab profile' }))
+    await user.click(screen.getByRole('button', { name: 'Replace profile' }))
     await waitFor(async () => expect((await db.knowledge.toArray()).map(row => row.ref).sort()).toEqual(['grammar:s-shi4-n--identity', 'ja:w:ja-n5-00679', 'ko:w:ko-nikl-24021', 'vocabulary:cha2--tea']))
     expect(await screen.findByText(/Copied/)).toBeInTheDocument()
     if (unmountAfter) view.unmount()
     return { reload, scheduled, clear, restore: () => Object.defineProperty(window, 'location', { configurable: true, value: original }) }
   }
 
-  it('replaces the Lab profile only after the learner confirms, then reloads 900 ms later', async () => {
+  it('replaces the profile only after the learner confirms, then reloads 900 ms later', async () => {
     const { reload, scheduled, restore } = await confirmCopy(false)
     try {
       expect(scheduled).toHaveLength(1)

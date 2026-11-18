@@ -44,7 +44,6 @@ p { line-height: 1.7; }
 .profile small { display: block; font-size: 10px; color: var(--muted); margin-top: 6px; }
 .profile { display: flex; gap: 10px; padding: 20px 5px; align-items: center; }
 .build-switch-nav { border-top: 1px solid var(--line); }
-.sidebar-mark { margin-left: auto; margin-right: 6px; }
 .stable-copy-pick { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; }
 .stable-copy-option { display: flex; align-items: center; gap: 8px; }
 .profile strong { display: block; max-width: 140px; font-size: 12px; overflow-wrap: anywhere; }
@@ -583,3 +582,6 @@ ruby[lang="ja"] > rt { letter-spacing: 0; }
 .photo-crop-sw { left: -11px; bottom: -11px; cursor: nesw-resize; } .photo-crop-se { right: -11px; bottom: -11px; cursor: nwse-resize; }
 .photo-crop-n { left: calc(50% - 11px); top: -11px; cursor: ns-resize; } .photo-crop-s { left: calc(50% - 11px); bottom: -11px; cursor: ns-resize; }
 .photo-crop-w { left: -11px; top: calc(50% - 11px); cursor: ew-resize; } .photo-crop-e { right: -11px; top: calc(50% - 11px); cursor: ew-resize; }
+.stable-copy-card { margin-bottom: 16px; }
+.stable-copy-card-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.stable-copy-card-actions .button { margin: 0; }
