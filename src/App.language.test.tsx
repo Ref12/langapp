@@ -23,7 +23,7 @@ describe('a language build', { timeout: 15_000 }, () => {
     await go('games/sudoku')
     expect(await screen.findByText('Not available in the Japanese app yet.')).toBeInTheDocument()
     expect(screen.queryByRole('group', { name: 'Current language' })).not.toBeInTheDocument()
-    expect(document.title).toBe('Games / LinguaWeave Lab Japanese')
+    expect(document.title).toBe('Games / LinguaWeave 日本語')
   })
 
   it('shows the whole Chinese navigation and the Games page in the Chinese build', async () => {
@@ -48,7 +48,7 @@ describe('a language build', { timeout: 15_000 }, () => {
     expect(screen.queryByRole('navigation', { name: 'Language apps' })).toBeNull()
   })
 
-  it.each([['zh', './ja/', 'Japanese'], ['ja', '../', 'Chinese']] as const)('lists the language apps in the side panel profile menu of the Lab %s build', async (language, href, other) => {
+  it.each([['zh', './ja/', 'Japanese', './stable/'], ['ja', '../', 'Chinese', '../stable/']] as const)('lists the language apps and the old version in the side panel profile menu of the %s build', async (language, href, other, stable) => {
     vi.stubGlobal('__BUILD_CHANNEL__', 'lab'); vi.stubGlobal('__BUILD_LANGUAGE__', language)
     setBuildChannelForTests('lab'); setBuildLanguageForTests(language)
     render(<App />)
@@ -56,7 +56,8 @@ describe('a language build', { timeout: 15_000 }, () => {
     await act(async () => { nav.parentElement?.querySelector<HTMLButtonElement>('.build-switch-button')?.click() })
     const menu = await screen.findByRole('menu', { name: 'Build' })
     expect(within(menu).getByRole('menuitemradio', { name: new RegExp(other) })).toHaveAttribute('href', href)
-    expect(within(menu).getAllByRole('menuitemradio', { checked: true }).map(item => item.textContent)).toHaveLength(2)
+    expect(within(menu).getAllByRole('menuitemradio', { checked: true }).map(item => item.textContent)).toHaveLength(1)
+    expect(within(menu).getByRole('menuitem', { name: /Old version \(Stable\)/ })).toHaveAttribute('href', stable)
     vi.unstubAllGlobals()
   })
 })
