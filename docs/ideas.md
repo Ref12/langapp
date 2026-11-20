@@ -54,6 +54,11 @@ Unchecked items remain open for scoping and follow-up.
   Study phrases met in media and lessons as items of their own; generate more
   uses of a grammar pattern from known vocabulary; rename practice sets to
   sessions. See [ideas/phrases-and-generation.md](ideas/phrases-and-generation.md).
+- [ ] **Colloquial ways of saying it (2026-11-19):** A suggestion to learn how
+  people actually say things in casual conversation, not only the formal
+  course version. Keep it as a separate dataset that links to course items
+  instead of mixing it into the course data. See
+  [ideas/colloquial-register.md](ideas/colloquial-register.md).
 
 ### AI navigation and time awareness
 
